@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Report - Agent Match Win/Loss Detail</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<style type="text/css">
+<!--
+.style1 {font-weight: bold}
+    .style2
+    {
+        font-weight: normal;
+    }
+-->
+</style>
+</head>
+
+<body>
+<h2 class="h2">输赢报告资料</h2>
+<p><span class="rpt-head1">定义:</span> </p>
+<p>这份报告显示会员, 代理, 总代理对于每场赛事的输赢总计。您可选择所需的日期, 然后点击提交键。</p>
+<center>
+  <img src="images/MatchWLDetail/MatchWinLossDetail.jpg" alt="Match Win/Loss Detail"/>
+  <br /> 
+  <em>图 1.1</em>
+</center>
+<span class="rpt-head1">用词注解:</span>
+<ul>
+  <li><strong>投注类别: </strong>被选择投注的投注类别。</li>
+  <li><strong>投注额:</strong> 投注额</li>
+  <li><strong>总佣金:</strong> 总代理从上线处可能得到的最高佣金数额。</li>
+  <li><strong>会员输赢:</strong> 会员输赢的数额。</li>
+  <li> <strong>会员佣金:</strong> 会员从代理处得到的佣金数额。</li>
+  <li> <strong>会员总和:</strong> 会员包括佣金的总输赢数额。</li>
+  <li><strong>代理输赢:</strong> 代理基于占成数的输赢数额。</li>
+  <li> <strong>代理佣金:</strong> 扣除会员佣金后, 总代理支付予代理的佣金数额。</li>
+  <li><strong>代理总和: </strong>总代理收到或支付予代理的数额。</li>
+  <li><strong>总代理输赢: </strong>总代理基于占成数的输赢数额。</li>
+  <li><strong>总代理佣金: </strong>扣除代理佣金后, 总代理从上线处收到的佣金数额。</li>
+  <li><strong>总代理总和: </strong>总代理包括佣金的总输赢数额。</li>
+  <li><strong>公司佣金: </strong>总代理从上线出收到的佣金。</li>
+  <li><strong>公司总和: </strong>总代理需支付予或从上线处接收到的总数额。</li>
+</ul>
+<span class="rpt-head1">如何理解报告:</span>
+<p>在这份报告, 会员投注 120, 赔率 = 0.86, 会员佣金 = 0.15%, 代理佣金 = 0.15%, 代理占成数 40%, 总代理佣金 = 0.2%, 总代理占成 = 30%。 让我们以赛事 "匹林 (中) -vs- 普夫迪夫火车头"作为例子, 以了解如何计算此报告。在这张注单, 会员输:</p>
+<center>
+  <img src="images/MatchWLDetail/MemberBetList.jpg" alt="Member Bet List"/>
+  <br /> 
+  <em>图 1.2</em>
+</center>
+<p><strong><i>注:</i></strong></p>
+<ul>
+  <li><strong>若 赔率 < 0</strong><br />    - 如果会员赢那么赔率 = 1.<br />    - 如果会员输那么赔率 = |当前赔率|。</li>
+  <li><strong>若 赔率 > 0</strong><br />    - 如果会员赢那么赔率 = 当前赔率。<br />    - 如果会员输那么赔率 = 1。</li>
+  <li>如果投注类别为波胆, 1x2, 总进球, 半场/全场, 优胜冠军, 混合过关, 最先得分/最后得分那么赔率 = 当前赔率 - 1。</li>
+  <li>这只是一个简单的例子告诉您如何计算一个投注的输赢输额。在现实中, 一场赛事可能包含很多投注所以我们必须计算个别投注的输赢及佣金, 总结后才能得到全部输赢的总额。</li>
+</ul>
+<ul>
+  <li><strong>投注额 </strong>= 投注额 = <b>120</b>.</li>
+    <li><strong>总佣金 </strong>= 投注额 * 总代理佣金 = 120 * 0.2% = <b>0.24</b>.</li>
+  <li><strong>会员输赢</strong> = -投注额 * 赔率 = -120 * 1 = <b>-120</b>.</li>
+  <li><strong>会员佣金</strong> = 投注额 * 会员佣金 = 120 * 0.15% = <b>0.18</b>.</li>
+    <li><strong>会员总和 </strong>= 会员输赢 + 会员佣金 = -120 + 0.18 = <b>-119.82</b>.</li>
+    <li><strong>代理输赢</strong> = 投注额 * 代理占成 = 120 * 40% = <b>48</b>.</li>
+    <li><strong>代理佣金</strong> = 投注额 * 代理佣金 * (1 - 代理占成) = 120 * 0.15% * (1 - 40%) = <b>0.11</b>.</li>
+    <li><strong>代理总和</strong> = 会员输赢 + 代理输赢 + 代理佣金 = -120 + 48 + 0.11 = <b>-71.89</b>.</li>
+    <li><strong>总代理输赢</strong>  = 投注额 * 总代理占成 = 120 * 30% = <b>36</b>.</li>
+    <li><strong>总代理佣金</strong> = 投注额 * 总代理佣金 * [1 - (总代理占成 + 代理占成)] - 代理佣金 = 120 * 0.2% * [1 - (30% + 40%)] - 0.11 = <b>-0.04</b>.</li>
+    <li><strong>总代理总和</strong> = 总代理输赢 + 总代理佣金 = 36 - 0.04 = <b>35.96</b>.</li>
+    <li><strong>公司佣金</strong> = 投注额 * 总代理佣金 * [1 - (总代理占成 + 代理占成)] = 120 * 0.2% * [1 - (30% + 40%)] = <b>0.07</b>.</li>
+    <li><strong>公司总和</strong> = -(会员输赢 + 代理输赢 + 总代理输赢 + 公司用金) = -(-120 + 48 + 36 + 0.07) = <b>35.93</b>.</li>
+</ul>
+
+</body>
+</html>

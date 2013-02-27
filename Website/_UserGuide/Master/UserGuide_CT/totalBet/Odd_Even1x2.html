@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .style2
+    {
+        color: #FF6600;
+        font-weight: bold;
+    }
+    .style3
+    {
+        color: #FF0000;
+    }
+    .style4
+    {
+        color: #FF0000;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<h2 class="h2">單雙 + 1 X 2</h2>
+<p><span class="rpt-head1">定義:</span> </p>
+<p>顯示基於注單佔成數的總代理輸贏, 投注類型之: 上半場及全場單雙, 1X2 (圖1.1)。
+<center>
+    <img src="images/OddEven-1x2/OddEven-1x2_1.jpg" /><br />
+    <em>圖 1.1</em>
+</center><p>
+<ul>
+  <li>從上圖中, 會員投注兩個聯賽:<br>
+<ul>
+<li><b>日本職業聯賽</b></li>
+<li><b>韓國全國錦標賽</b></li>
+</ul></ul>
+<ul>
+  <li>對於日本職業聯賽, member1 投注兩場賽事 <b>山形蒙迪奧</b> -vs- <b>川崎前鋒</b> 和 <b>大宮松鼠</b> -vs- <b>橫濱水手</b> 細節如下:
+      <ul>
+        <li><b>第一投注</b>: 投注額 = 70, 賠率 = 3.52, 投注類型: 1x2, 全場, 選擇: 全场.1,  總代理佔成 = 30% --> 總代理基於佔成數所得 = 70*30% = <b>21</b><br></li>
+        <li><b>第二投注</b>: 投注額 = 60, 賠率= 2.7, 投注類型: 1x2, 上半場, 選擇: 上半场.2, 總代理佔成 = 30% --> 總代理基於佔成數所得 = 60*30% = <b>18</b></li>
+      </ul>
+  </li>  
+  <li>對於 <b>韓國全國錦標賽</b>, member1 投注於賽事 <b>金海 (中)</b> -vs- <b>仁川鐵道</b>, 細節如下:
+      <ul>
+        <li><b>第一投注</b>: 投注額 = 80, 賠率 = 0.96, 投注類型: 單雙, 全場, 投注 單, 總代理佔成 = 30% --> 總代理基於佔成數所得 = 80*30% = <b>24</b><br></li>
+      </ul>
+  </li>
+</ul>
+<p><span class="rpt-head1">預測功能</span></p>
+此功能幫助總代理根據主隊比分, 客隊比分演算輸/贏數額。要查看輸贏預測, 點擊 "+" 標記
+<p>
+    <center>
+        <img src="images/OddEven-1x2/OddEven-1x2_2.jpg" /><br />
+        <em>圖 1.2</em>
+    </center>
+<p>
+</p>
+
+<ul>
+    <li>
+        <strong>全場 1x2:</strong> 在這個例子中, member1 投注於賽事 <b>山形蒙迪奧</b> -vs- <b>川崎前鋒</b>, 投注額 = 70, 選擇: <b>全场.1</b>, 賠率 = 3.52, 投注類型 = 全場 1x2, 總代理佔成 = 30%.<br>
+        <br />
+        <center>
+            <img src="images/OddEven-1x2/Forecast-FullTime1x2.jpg" /><br />
+            <em>圖 1.3</em>
+        </center>
+        <br />
+        這是 1x2 的全場結果預測及詳情如下:
+        <ul>        
+            <li>1: <span class="style3">53</span> --> 若主隊贏, 那麼總代理將會輸: 70*30%*(3.52 - 1) = <span class="style4">53</span>.</li>
+            <li>x: 21 --> 若結果為和局, 那麼總代理將會贏: 70*30% = <b>21</b>.</li>
+            <li>2: 21 --> 若客隊贏,那麼總代理將會贏: 70*30% = <b>21</b>.</li>
+        </ul>
+    </li>
+    <br />
+    <li>
+        <strong>上半場 1x2:</strong> 在這個例子中, member1 投注於賽事 <b>大宮松鼠</b> -vs- <b>橫濱水手</b>, 投注額 = 60: 上半场.2, 賠率 = 2.7, 投注類型 = 上半場 1x2, 總代理佔成 = 30%。<br>
+        <br />
+        <center>
+            <img src="images/OddEven-1x2/Forecast-1stHalf1x2.jpg" /><br />
+            <em>圖 1.4</em>
+        </center>
+        <br />
+        这是 1x2 的上半場结果预测及详情如下:
+        <ul>        
+            <li>1: 18 --> 若主隊贏, 那麼總代理將會贏: 60*30% = <b>18</b>.</li>
+            <li>x: 18 --> 若結果為和局, 那麼總代理將會贏: 60*30% = <b>18</b>.</li>
+            <li>2: <span class="style3">31</span> --> 若客隊贏,那麼總代理將會輸: 60*30%*(2.7 - 1) = <span class="style4">31</span>.</li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

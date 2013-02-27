@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <script type="text/javascript" src="images/jquery-1.2.6.pack.js"></script>
+
+    <script type="text/javascript" src="images/ddaccordion.js"></script>
+
+    <script type="text/javascript">
+ddaccordion.init({
+	headerclass: "expandable",
+	contentclass: "categoryitems", 
+	revealtype: "click",
+	mouseoverdelay: 200,
+	collapseprev: true, 
+	defaultexpanded: [0],
+	onemustopen: false,
+	animatedefault: false,
+	persiststate: true,
+	toggleclass: ["", "openheader"],
+	togglehtml: ["prefix", "", ""],
+	animatespeed: "fast",
+	oninit:function(headers, expandedindices){
+	},
+	onopenclose:function(header, index, state, isuseractivated){
+	}
+})
+
+    </script>
+
+    <!--Set Menu_ -->
+
+    <script type="text/javascript">        
+    var currentItem=0;    
+    var oldClassName = 'left_menu';
+    var newClassName = 'left_menu_curent';
+    
+    var currentTab=0;
+    var oldClssNameTab='b01';
+    var newClssNameTab='b01_current';
+    function TabMenu_Select(order)
+    {
+        
+        document.getElementById('xxx' + order).className = newClssNameTab;        
+        if (currentTab != order)
+        {             
+            document.getElementById('xxx' + currentTab).className = oldClssNameTab;             
+         }      
+        currentTab=order;
+        document.getElementById('menuitem'+currentItem).className = oldClassName; 
+    }
+    
+    function menu_select(order){                      
+        
+        document.getElementById('menuitem'+order).className = newClassName;        
+        if (currentItem != order)
+        {
+            document.getElementById('menuitem'+currentItem).className = oldClassName;                           
+            
+            }
+        currentItem=order;
+        document.getElementById('xxx' + currentTab).className = oldClssNameTab; 
+    }
+    </script>
+
+    <!--End_Setmenu -->
+    <link href="css/uguide_A.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        body
+        {
+            background: url(images/bg_left.jpg) repeat-y top left;
+            margin: 10px 0px 0px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="left_menu">
+        <div id="b_top">
+            <a id="xxx0" name="xxx0" href="balance/balance_section.html" target="mainFrame" class="b01" onclick="TabMenu_Select(0);">余额</a>|
+            <a id="xxx1" name="xxx1" href="transfer/transfer_section.html" target="mainFrame" class="b01" onclick="TabMenu_Select(1);">转账</a>|
+            <a id="xxx2" name="xxx2" href="viewlog/view_log.html" target="mainFrame" class="b01" onclick="TabMenu_Select(2);">察看日志</a><br />
+        </div>
+        <!--Begin_Tolal Bet -->
+        <h3 class="menuheader expandable">总投注</h3>
+        <ul class="categoryitems">
+            <li><a href="totalBet/handicap_over_under_live.html" target="mainFrame" id="menuitem0"
+                class="left_menu" onclick="menu_select(0);">亚洲盘/ 大小/ 滚球</a></li>
+            <li><a href="totalBet/money_line.html" target="mainFrame" id="menuitem1" class="left_menu"
+                onclick="menu_select(1);">独赢</a></li>
+            <li><a href="totalBet/Odd_Even1x2.html" target="mainFrame" id="menuitem2" class="left_menu"
+                onclick="menu_select(2);">单双 + 1 X 2</a></li>
+            <li><a href="totalBet/correct_score.html" target="mainFrame" id="menuitem3" class="left_menu"
+                onclick="menu_select(3);">波胆</a></li>
+            <li><a href="totalBet/total_goal.html" target="mainFrame" id="menuitem4" class="left_menu"
+                onclick="menu_select(4);">总入球</a></li>
+            <li><a href="totalBet/mix_parlay.html" target="mainFrame" id="menuitem5" class="left_menu"
+                onclick="menu_select(5);">混合过关</a></li>
+            <li><a href="totalBet/outright.html" target="mainFrame" id="menuitem6" class="left_menu"
+                onclick="menu_select(6);">优胜冠军</a></li>
+            <li><a href="totalBet/HT_FT.html" target="mainFrame" id="menuitem7" class="left_menu"
+                onclick="menu_select(7);">半场/ 全场</a></li>
+            <li><a href="totalBet/FG_LG.html" target="mainFrame" id="menuitem8" class="left_menu"
+                onclick="menu_select(8);">最先进球 / 最后进球 </a></li>
+            <!--<li><a href="totalBet/next_goal.html" target="mainFrame" id="menuitem9" class="left_menu" onclick="menu_select(9);">Next Goal</a></li>-->
+            <li><a href="totalBet/horse_racing.html" target="mainFrame" id="menuitem10" class="left_menu"
+                onclick="menu_select(10);">赛马</a></li>
+        </ul>
+        <!--End Tolal Bet -->
+        <!--Begin_Forecast-->
+        <h3 class="menuheader expandable">预测</h3>
+        <ul class="categoryitems">
+            <li><a href="forecast/Handicap_Over_Under_Live.html" target="mainFrame" id="menuitem11"
+                class="left_menu" onclick="menu_select(11);">亚洲盘/大小盘/滚球</a></li>
+            <li><a href="forecast/1x2.html" target="mainFrame" id="menuitem12" class="left_menu"
+                onclick="menu_select(12);">1x2</a></li>
+            <!--<li><a href="forecast/horseracingfodds.html" target="mainFrame" id="menuitem13" class="left_menu" onclick="menu_select(13);">Horse Racing (FOdds)</a></li>-->
+        </ul>
+        <!--End_Forecast -->
+        <!--Begin_Reports -->
+        <h3 class="menuheader expandable">报告</h3>
+        <ul class="categoryitems">
+            <li><a href="Report/AgentWinLoss.html" target="mainFrame" id="menuitem14" class="left_menu"
+                onclick="menu_select(14);">代理输赢</a></li>
+            <li><a href="Report/Agentwinlossdetail.html" target="mainFrame" id="menuitem15" class="left_menu" onclick="menu_select(15);">代理输赢细节</a></li>
+            <li><a href="Report/AgentOutstanding.html" target="mainFrame" id="menuitem16" class="left_menu" onclick="menu_select(16);">代理未结束交易</a></li>
+            <li><a href="Report/Realtimecasinowinloss.html" target="mainFrame" id="menuitem17" class="left_menu" onclick="menu_select(17);">即时娱乐场赢输</a></li>
+            <!--<li><a href="Report/AgentMatchWinLoss.html" target="mainFrame" id="menuitem18" class="left_menu"
+                onclick="menu_select(18);">Match Win Loss</a></li>-->
+            <li><a href="Report/MatchWinLossDetail.html" target="mainFrame" id="menuitem19" class="left_menu" onclick="menu_select(19);">输赢报告资料</a></li>
+            <li><a href="Report/AgentWinLossByBettype.html" target="mainFrame" id="menuitem20" class="left_menu" onclick="menu_select(20);">投注类别输赢</a></li>
+            <li><a href="Report/AgentCommByBettype.html" target="mainFrame" id="menuitem21" class="left_menu" onclick="menu_select(21);">投注类别分类佣金</a></li>
+            <li><a href="Report/Horseracingcommission.html" target="mainFrame" id="menuitem22" class="left_menu" onclick="menu_select(22);">赛马佣金</a></li>
+            <li><a href="Report/MemberCancelledBets.html" target="mainFrame" id="menuitem23" class="left_menu" onclick="menu_select(23);">已删除/作废注单</a></li>
+            <li><a href="Report/AgentStatement.html" target="mainFrame" id="menuitem24" class="left_menu" onclick="menu_select(24);">账目</a></li>
+            <li><a href="Report/Result.html" target="mainFrame" id="menuitem25" class="left_menu" onclick="menu_select(25);">赛果</a></li>
+        </ul>
+        <!--End_Reports -->
+        <!--Begin_Member Info -->
+        <h3 class="menuheader expandable">会员资料</h3>
+        <ul class="categoryitems">
+            <li><a href="memberinfo/new_agent.html" target="mainFrame" id="menuitem26" class="left_menu" onclick="menu_select(26);">新增代理</a></li>
+            <li><a href="memberinfo/sub_account.html" target="mainFrame" id="menuitem27" class="left_menu" onclick="menu_select(27);">子账号</a></li>
+            <li><a href="memberinfo/agent_list.html" target="mainFrame" id="menuitem28" class="left_menu" onclick="menu_select(28);">代理</a></li>
+            <li><a href="memberinfo/credit_balance.html" target="mainFrame" id="menuitem29" class="left_menu" onclick="menu_select(29);">信用额度/余额</a></li>
+            <li><a href="memberinfo/position_taking.html" target="mainFrame" id="menuitem30" class="left_menu" onclick="menu_select(30);">占成数%</a></li>
+            <li><a href="memberinfo/Casino_position_taking.html" target="mainFrame" id="menuitem31" class="left_menu" onclick="menu_select(31);">娱乐城占成数%</a></li>
+            <li><a href="memberinfo/member_commission.html" target="mainFrame" id="menuitem32" class="left_menu" onclick="menu_select(32);">会员佣金</a></li>
+        </ul>
+        <!--End_Member Info -->
+        <!--Begin_Account Info -->
+        <h3 class="menuheader expandable">用户资料</h3>
+        <ul class="categoryitems">
+            <li><a href="accountinfo/overview.html" target="mainFrame" id="menuitem34" class="left_menu" onclick="menu_select(34);">概述</a></li>
+            <li><a href="accountinfo/customer_info.html" target="mainFrame" id="menuitem35" class="left_menu" onclick="menu_select(35);">客户信息</a></li>
+            <li><a href="accountinfo/balance_info.html" target="mainFrame" id="menuitem36" class="left_menu" onclick="menu_select(36);">余额资料</a></li>
+            <li><a href="accountinfo/account_setting.html" target="mainFrame" id="menuitem37" class="left_menu" onclick="menu_select(37);">账号设定</a></li>
+        </ul>
+        <!--End_Account Info -->
+        <!--Begin_Glossary -->
+        <h3 class="menuheader expandable">词汇表</h3>
+        <ul class="categoryitems">
+            <li><a href="glossary/convention.html" target="mainFrame" id="menuitem33" class="left_menu" onclick="menu_select(33);">含义</a></li>
+        </ul>
+        <!--End_Glossary -->
+    </div>
+    <div id="img_left">
+    </div>
+</body>
+</html>

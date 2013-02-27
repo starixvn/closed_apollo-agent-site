@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Report - Agent Match Win/Loss</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body>
+<h2 class="h2">球賽輸贏</h2>
+<p><span class="rpt-head1">定義:</span> </p>
+<p>這是代理於每場特定的比賽 (只是單項投注類別) 輸贏數額的總計。用戶可選擇所需的日期以查看賽事的輸贏。</p>
+<p>
+注: 對於混合過關投注類別, 連接到輸贏報告資料
+</p>
+<center>
+  <img src="images/AgMatchWL/MatchWinLoss.jpg" alt="Match Win/Loss" width="775" height="208"/>
+  <br /> 
+  <em>圖 3.1</em>
+</center>
+<span class="rpt-head1">用詞註解:</span>
+<ul>
+  <li>賽事: 被選擇投注的賽事</li>
+  <li>投注類別: 被選擇投注的投注類別</li>
+  <li>佣金: 代理扣除會員佣金後, 從上線處得到的佣金</li>
+  <li>佔成數: 總計代理予該場賽事的輸贏數額基於他/她的佔成數</li>
+  <li>總和: 總計代理輸贏數額包括佣金</li>
+</ul>
+<span class="rpt-head1">如何理解報告:</span>
+<p>在上圖中, 以FC Koln -vs- Schalke 04這場賽事為例子, 要理解如何計算代理在此賽事的輸贏, 我們點擊賽事名稱以開啟會員投注歷史頁面</p>
+<center>
+  <img src="images/AgMatchWL/BetList.jpg" alt="Bet List" width="827" height="188"/>
+  <br /> 
+  <em>圖 3.2</em>
+</center>
+<p>
+在此註單, member02投注 200, 會員折扣 = 0.2%, 賠率 = -0.87, 他贏得該投注單, 代理佔成 = 30% 及代理從上線處接收 0.2% 佣金。
+根據此信息我們可計算代理在該場比賽的輸贏 (圖3.1, 第一行)</p>
+<ul>
+  <li>佣金: 代理佣金- 會員佣金 = 200*0.2%*(1-30%)-200*0.2% = 
+      <b>-0.12</b></li>
+  <li>佔成數: 若會員贏, 則佔成數: - (投注額*代理佔成數) 或會員輸, 則(投注額*代理佔成數) =  -200*30% = <b>-60</b></li>
+  <li>總和: 佣金 + 佔成數 = -0.12 -60 = <b>-60.12</b> </li>
+</ul>
+<p>注: 一場比賽可能會有很多投注, 因此我們必須使用上述公式計算代理佣金及代理每次投注的份額的總數</p>
+
+</body>
+</html>

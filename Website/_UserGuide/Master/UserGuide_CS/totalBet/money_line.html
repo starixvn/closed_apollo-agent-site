@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+            .style2
+            {
+                color: #FF0000;
+                font-weight: bold;
+            }
+        </style>
+</head>
+<body>
+<h2 class="h2">独赢</h2>
+<p><span class="rpt-head1">定义:</span> </p>
+<p>显示基于注单占成数的总代理输赢, 投注类型之: <strong>独赢。</strong>.
+<center>
+    <img src="images/MoneyLine/MoneyLine.jpg"/><br />
+    <em>图 1.1</em>
+</center>
+<p><span class="rpt-head1">用词注解</span>
+<ul>
+    <li><strong>主队总和: </strong>总代理从会员投注额基于占成的所得总额, 如果选择主队投注。</li>
+    <li><strong>客队总和: </strong>总代理从会员投注额基于占成的所得总额, 如果选择客队投注。</li>
+    <li><strong>主队预测: </strong>总代理可能会输的数额, 若会员赢得他们所选择的投注 (主队)。</li>
+    <li><strong>客队预测:</strong> 总代理可能会输的数额, 若会员赢得他们所选择的投注 (客队)。</li>
+</ul>
+
+<br /><strong>从上图中, 我们得到以下的投注信息:</strong>
+<ul>
+<li><strong>第一投注: </strong>投注额 = 120, 赔率 = 0.43, 选择 = 主队 (读卖巨人队), 总代理占成 = 30%<br></li>
+--> 主场总和 = 投注额 * 总代理占成 * 1 = 120 * 30% * 1 = <b>36</b><br>
+--> 客场总和 = <b>0</b><br>
+--> 主场预测 = 投注额 * 总代理占成 * 赔率 = 120 * 30% * 0.43 = <b>15.48</b><br>
+--> 客场预测 = -投注额 * 总代理占成 = -120 * 30% = <b>-36</b><br>
+<li><strong>第二投注: </strong>投注额 = 150, 赔率 = -0.55, 选择 = 客队 (<b>横滨湾之星队</b>), 总代理占成 = 30%<br></li>
+--> 主场总和 = <b>0</b><br>
+--> 客场总和 = 投注额 * 总代理占成 * 1 = 150 * 30% * 1 = <b>45</b><br>
+--> 主场预测 = 投注额 * 总代理占成 * 赔率 = 150 * 30% * (-0.55) = <b>-24.75</b><br>
+--> 客场预测 = 投注额 * 总代理占成 * 1 = 150 * 30% * 1 = <b>45</b><br>
+</ul>
+<strong>根据以上两个投注, 我们得到最后的结果, 如下:</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> 主场总和 = 36 + 0 = <b>36</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> 客场总和 = 0 + 45 = <b>45</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> 主场预测 = 15.48 - 24.75 = <b>-9.27</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> 客场预测 = -36 + 45 = <span class="style2">9</span>
+<br><br>
+<em><strong>注:</strong></em>
+<ul>
+    <li><strong>主场总和</strong><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- 如果会员投注主队, 那么:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 若赔率绝对值 < 1 那么: 主场总和 = 投注额 * 总代理占成 * 1。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 若赔率绝对值 >= 1 那么: 主场总和 = 投注额 * 总代理占成 * |赔率|。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- 如果会员投注客队, 那么: 主场总和 = 0。<br />
+    </li>        
+    <li><strong>客队总和</strong><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- 如果会员投注主队, 那么: 客队总和 = 0。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- 如果会员投注客队, 那么:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 若赔率绝对值 < 1 那么: 客队总和 = 投注额 * 总代理占成 * 1。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 若赔率绝对值 >= 1 那么: 客队总和 = 投注额 * 总代理占成 * |赔率|。<br />
+    </li>   
+    <!--<li><strong>Forecast Home</strong><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Home team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ If Odds < 0 then: Forecast Home = stake * Master PT * 1<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ If Odds >= 0 then: Forecast Home = stake * Master PT * odds<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Away team then: Forecast Home = -stake * Master PT<br />
+    </li> 
+    <li><strong>Forecast Away</strong><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Home team then: Forecast Away = -stake * Master PT<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Away team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ If Odds < 0 then: Forecast Away = stake * Master PT * 1<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ If Odds >= 0 then: Forecast Away = stake * Master PT * odds<br />
+    </li>   -->
+    
+    
+             
+    <li><strong>主场预测</strong><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- 若 赔率 < 0<br /> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 如果会员投注主队, 那么: 主场预测 = 投注额 * 总代理占成 * 1。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 如果会员投注客队, 那么: 主场预测 = 投注额 * 总代理占成 * 赔率。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- 若 赔率 > 0 <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 如果会员投注主队, 那么: 主场预测 = 投注额金 * 总代理占成 * 赔率。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 如果会员投注客队, 那么: 主场预测 = -投注额 * 总代理占成。<br />
+    </li>
+    <li><strong>客场预测</strong><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- 若 赔率 < 0<br /> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 如果会员投注主队, 那么: 客场预测 = 投注额 * 总代理占成 * 赔率。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 如果会员投注客队, 那么: 客场预测 = 投注额 * 总代理占成 * 1。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- 若 赔率 > 0 <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 如果会员投注主队, 那么: 客场预测 = -投注額 * 总代理占成。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 如果会员投注客队, 那么: 客场预测 = 投注額 * 总代理占成 * 赔率。<br />
+    </li>
+</ul>
+<!--<ul>
+    <li>If |Odds| < 1<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Home team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Total Home = stake * Master PT * 1<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Total Away = 0<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Away team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Total Home = 0<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Total Away = stake * Master PT * 1
+    <li>If |Odds| >= 1<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Home team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Total Home = stake * Master PT * |odds|<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Total Away = 0<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Away team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Total Home = 0<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Total Away = stake * Master PT * |odds|
+    <li>If Odds < 0<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Home team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Forecast Home = stake * Master PT * 1<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Forecast Away = -stake * Master PT<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Away team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Forecast Home = -stake * Master PT<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Forecast Away = stake * Master PT * 1
+    </li>
+    <li>If Odds > 0<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Home team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Forecast Home = stake * Master PT * odds<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Forecast Away = -stake * Master PT<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;- If member placed Away team then:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Forecast Home = -stake * Master PT<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Forecast Away = stake * Master PT * odds
+    </li>
+</ul>-->
+
+</body>
+</html>

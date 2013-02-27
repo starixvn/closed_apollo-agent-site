@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+            .style2
+            {
+                color: #FF6600;
+                font-weight: bold;
+            }
+            .style3
+            {
+                color: #FF0000;
+            }
+            .style4
+            {
+                color: #FF0000;
+                font-weight: bold;
+            }
+        </style>
+</head>
+<body>
+<h2 class="h2">Handicap/Over Under/Live</h2>
+<p><span class="rpt-head1">Definition:</span> </p>  
+<p>Show master’s win/loss based on position taking for tickets which have bet type Handicap/Over Under/Live for 1st Half or Full Time (figure 1.1).
+    <center>
+        <img src="images/Handicap-OverUnder-Live/Handicap-OverUnder-Live.jpg"  /><br />
+        <em>figure 1.1</em>
+    </center>
+<p>
+<ul>
+    With<strong> INTERNATIONAL FRIENDLY League</strong>, members bet on match <b>Poland U19</b> -vs- <b>Sweden U18</b> and details as below: </br>
+<ul>
+<li>
+    <strong>1st bet:</strong> stake = 110, odds = 0.88, bet type: Handicap, Full Time, Master position taking(PT) = 30%.<br>
+    --&gt; Master&#39;s earning based on PT = -(stake* PT)*1 = -110*30%*1 = <b>33</b>
+</li>
+<li>
+    <strong>2nd bet:</strong> stake=120, odds = 0.88, bet type: Over/Under, Full Time, Master PT = 30%.<br>
+    --&gt; Master &#39;s earning based on PT = -(stake* PT)*1 = -120*30%*1 = <span class="style2">-36</span>
+</li>
+</ul>
+</ul>
+<ul>
+<strong>Note:</strong> <br /> 
+  <li>Master's earning based on PT for Handicap = (Total Home stake –  Total Away stake) * Master PT.</li>
+  <li>Master's earning based on PT for Over/Under = (Total Over stake – Total Under stake) * Master PT.</li>
+  <li>Sign <b>"-"</b>  means total turnover for Away/Under greater than total turnover for Home/Over.</li>
+  <li>If absolute value of Odds < 1 then Master earning amount= stake * Master PT * 1.</li>
+  <li>If absolute value of Odds >= 1 then Master earning amount= stake * Master PT * |odds|.</li>
+</ul></ul>
+<p><span class="rpt-head1">Forecast function</span></p>
+This function helps master figure out win/loss amount based on Home score, Away score. To view the winlost forecast, click <b>“+”</b> sign.
+<!--In this example member1 placed a bet 130 on Home team - <b>Burnley</b> with Handicap=2.5, odds= 0.87, bettype=Over, agent position taking =50%.-->
+<p>
+    <center>
+        <img src="images/Handicap-OverUnder-Live/Handicap-OverUnder-Live2.jpg"  /><br />
+        <em>figure 1.2</em>
+    </center>
+<p>
+<ul>
+    
+    <li>
+        <strong>Full Time Handicap:</strong> In this example, member1 placed a bet 110 on <b>Poland U19 0.25</b>, odds= 0.88, bettype=FT.HDP, master position taking = 30%.<br>
+        <br />
+        <center>
+            <img src="images/Handicap-OverUnder-Live/Forecast-FullTimeHandicap.jpg" /><br />
+            <em>figure 1.3</em>
+        </center>
+        <br />
+        This is Handicap Forecast and details as below:
+        <ul>        
+            <li>-2: -33 --> If (Home score - Away score) = -2 then Master will win: -110*30%*1 = <b>-33</b></li>
+            <li>-1: -33 --> If (Home score - Away score) = -1 then Master will win: -110*30*1 = <b>-33</b></li>
+            <li>0: <span class="style3">15</span> --> If (Home score - Away score) = 0 then Master will lose 1/2: 110*30%*0.88*1/2 = <span class="style4">15</span></li>
+            <li>1: <span class="style3">29</span> --> If (Home score - Away score) = 1 then Master will lose: 110*30%*0.88 = <span class="style4">29</span></li>
+            <li>2: <span class="style3">29</span> --> If (Home score - Away score) = 2 then Master will lose: 110*30%*0.88 = <span class="style4">29</span></li>
+        </ul>
+    </li>
+    <li>
+        <strong>Full Time Over/Under:</strong> In this example, member1 placed a bet 120 on <b>Under 2.75</b>, odds= 0.88, bettype=FullTime Over/Under, master position taking = 30%.<br>
+        <br />
+        <center>
+            <img src="images/Handicap-OverUnder-Live/Forecast-FullTimeOverUnder.jpg" /><br />
+            <em>figure 1.4</em>
+        </center>
+        <br />
+        This is Over/Under Forecast and details as below:
+        <ul>        
+            <li>0: <span class="style3">32</span> --> If (Home score + Away score) = 0 then Master will lose: 120*30%*0.88 = <span class="style4">32</span></li>
+            <li>1: <span class="style3">32</span> --> If (Home score + Away score) = 1 then Master will lose: 120*30%*0.88 = <span class="style4">32</span></li>
+            <li>2: <span class="style3">32</span> --> If (Home score + Away score) = 2 then Master will lose: 120*30%*0.88 = <span class="style4">32</span></li>
+            <li>3: -18 --> If (Home score + Away score) = 3 then Master will win 1/2: -120*30%*1/2 = <b>-18</b></li>
+            <li>4: -36 --> If (Home score + Away score) = 4 then Master will win: -120*30%*1 = <b>-36</b></li>
+        </ul>
+    </li>
+    
+</ul>
+
+<em><strong>Note:</strong></em>
+<ul>
+  <li><strong>If Odds < 0</strong><br />    - If player wins then odds = 1.<br />    - If player loses then odds = |current odds|.</li>
+  <li><strong>If Odds > 0</strong><br />    - If player wins then odds = current odds.<br />    - If player loses then odds = 1.</li>
+</ul>
+</body>
+</html>

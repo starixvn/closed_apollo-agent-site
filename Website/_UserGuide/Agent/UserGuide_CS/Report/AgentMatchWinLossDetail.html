@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Report - Agent Match Win/Loss Detail</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<style type="text/css">
+<!--
+.style1 {font-weight: bold}
+    .style2
+    {
+        font-weight: normal;
+    }
+-->
+</style>
+</head>
+
+<body>
+<h2 class="h2">输赢报告资料</h2>
+<p><span class="rpt-head1">定义:</span> </p>
+<p>这份报告显示所有会员和代理每场赛事的输赢资料。您可以选择所需的日期然后点击提交按钮。</p>
+<center>
+  <img src="images/AgMatchWL/MatchWinLossDetail.jpg" alt="Match Win/Loss Detail"/>
+  <br /> 
+  <em>图 4.1</em>
+</center>
+<span class="rpt-head1">用词注解:</span>
+<ul>
+  <li>投注额: 总投注数额。</li>
+  <li>投注类别: 被选定进行投注的投注类别。</li>
+  <li>会员输赢: 会员输赢的数额。</li>
+  <li>会员佣金: 会员从代理处得到的佣金数额。</li>
+  <li> 会员总和: 会员包括佣金的总输赢数额。</li>
+  <li> 代理输赢: 代理基于占成数的输赢数额。</li>
+  <li>代理佣金: 扣除会员佣金后, 代理收到或支付予上线的佣金数额。</li>
+  <li> 代理总和: 代理包括佣金的总输赢数额。</li>
+  <li>公司佣金: 代理从上线处得到的佣金数额.</li>
+  <li>公司总和: 代理需支付予或从上线处接收到的总数额。</li>
+</ul>
+<span class="rpt-head1">如何理解报告:</span>
+<p>在这份报告中, 会员投注额 = 100, 赔率 = 0.66, 会员折扣 = 0.2%, 代理折扣 = 0.2%, 代理占成数 = 30%及会员赢得此投注。根据赛事<b>FC Tokyo </b>-vs- <b>Jubilo 
+    Iwata</b> 作为例子以理解如何计算此报告: (图4.1中,  第一行)。</p>
+<ul>
+  <li>会员输赢 = 投注额 * 赔率 = 100 * 0.66 = <b>66</b>.</li>
+    <li>会员佣金 = 投注额 * 会员折扣 = 100 * 0.2% = <b>0.2</b></li>
+  <li>会员总和 = 会员输赢 + 会员佣金 = 66 + 0.2 = 
+      <b>66.2</b></li>
+  <li>代理输赢 = -(会员输赢 * 代理占成数) = -66 * 30% =<b> 
+      -19.8</b></li>
+    <li>代理佣金 = (投注额 * (投注额 * 代理折扣 * 上线占成数) - 会员佣金 = (100 * 0.2%*( 100% - 30%)) - 0.2 = <strong>-0.06</strong></li>
+    <li>代理总和 = <span class="style2">代理输赢 + 代理佣金 = -19.8 - 0.06 = </span><b>-19.86</b></li>
+    <li>公司佣金 =<span class="style2"> 投注额 * 代理折扣 * 上线占成数 = 100 * 0.2% * (1-30%) = </span><b>0.14</b></li>
+    <li>公司总和 = -(会员总和 + 代理总和) = -(66.2 - 19.86) = <b>-46.34</b></li>
+</ul>
+
+<p><em>注</em>: 这只是一个简单的例子来指导您如何计算单一投注的输赢数额。在现实中, 一场赛事可能包含许多投注所以我们必须计算每个投注的输赢及佣金, 然后总计所有输赢的数额。</p>
+</body>
+</html>

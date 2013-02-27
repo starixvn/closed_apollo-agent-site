@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2 class="h2">新增代理</h2>
+<p><span class="rpt-head1">定義:</span></p>
+這個功能讓總代理新增一個會員, 然後編輯其佣金, 投注設定及對該代理的佔成數。<br>
+當我們打開新增代理功能, 新增代理頁面將顯示如下圖:<br>
+<p><center>
+<img src="images/NewAgent/AddNewAgent.jpg"/><br />
+<em>新增代理</em>
+</center>
+
+
+<p><span class="rpt-head1">如何?</span></p>
+為了實現創建一個新的代理, 您必須填寫:<br>
+<ul>
+<li>會員資料登記。<br></li>
+<li>佣金設置。<br></li>
+<li>轉賬設定 (此節只會出現在當總代理被允許每日轉賬)。<br></li>
+<li>投注設定。<br></li>
+<li>佔成數設定。</li>
+</ul>
+<p><span class="rpt-head1">代理资料登记</span></p>
+這是填寫代理的所需的資料。在這個形式中, 以下幾點值得關注:<br>
+<ul>
+<li>代理最高信用額度不能大於總代理的可用信用額度。</li>
+<li>會員最高信用額不能大於代理的最高信用額。</li>
+<li>會員信用額度一定要 <= 會員最高信用額。</li>
+<li>密碼必須至少6個字符, 包括2個字母和2個數字。<br></li>
+<li>若您的賬號被暫停, 那麼所有下線的賬號也將被暫停, 這意味著會員將無法投注。<br></li>
+<li>若您的賬號被關閉, 那麼所有下線的賬號也將被關閉。<br></li>
+<li>若您的賬號被上線恢復活躍, 所有下線的賬號也將被恢復活躍。<br></li>
+<li>若您的賬號被上線重啟, 所有下線的賬號仍維持關閉直到您重啟他們。</li>
+</ul><p><center>
+<img src="images/NewAgent/AgentInformation.jpg"/><br />
+<em>代理资料</em>
+</center><p>
+<p><a name="CommissionSetting"></a><span class="rpt-head1">佣金設置</span></p>
+這是為了設定代理佣金收入的百分比, 只需從下拉列表中選取一個值, 並記得代理佣金設定不能大於總代理的。
+<p><center>
+<img src="images/NewAgent/AgentCommission.jpg"/><br />
+<em>佣金設置</em>
+</center><p>
+<strong>用詞註解:</strong><br>
+<ul>
+    <li>
+        <b>組別 A,B,C,D</b>: 基於組別的代理佣金設定, 而這些設定將根據投注類別亞洲盤, 單雙, 大小盤應用於注單。注意每個會員將屬於一個明確的組別 (A, B, C, D)。<br>
+    </li>
+    
+    <li>
+        <b>1x2 佣金</b>: 基於會員注單根據投注類別1x2的代理佣金設定。<br>
+    </li>
+    <li>
+        <b>其他佣金</b>: 基於會員的注單根據其他投注類別除了亞洲盤, 大小盤, 單雙及1x2的代理佣金設定。<br>
+    </li>
+</ul>
+<p><a name="TranditionCondition"></a><span class="rpt-head1">賬號轉賬設定</span></p>
+這只會出現在当被您允許每日轉賬。
+<ul>
+<li>如果您被允許每日轉賬，那麼您的代理的轉賬設定可更改成任何時間。</li>
+<li>如果您被允許每週轉賬，那麼您的代理的轉賬設定將遵循和不能被改變。</li>
+</ul>
+<p><center>
+<img src="images/NewAgent/TransferCondition.jpg"/><br />
+<em>賬號轉賬設定</em>
+</center>
+
+<p><span class="rpt-head1">投注設定</span></p>
+<a name="BetSetting"></a>此設定適用於代理将限制最高及最低投注金額。必須注意的是最低投注 < 最高投注 < 單場限額。
+<p><center>
+<img src="images/NewAgent/BetSetting.jpg"/><br />
+<em>投注設定</em>
+</center>
+<p><strong>用詞註解:</strong></p>
+<ul>
+<li><strong>最低投注:</strong> 代理接受的最低投注金額。</li>
+<li><strong>最高投注:</strong> 代理接受的最高投注金額。</li>
+<li><strong>單場限額:</strong> 代理接受的單場最高金額。</li>
+<p>
+<b>備註:</b> 不同條目 /隊名將被視為另一場賽事。<br />
+例如, 以下賽事都將被視為不同的賽事或個別的項目。<br />
+a) "西班牙(中) -vs- 荷蘭" [2010 FIFA南非世界杯]。<br />
+b) "西班牙00:00-15:00 -vs- 荷蘭00:00-15:00" [2010 FIFA南非世界杯- 特定15分鐘大小]<br />
+c) "西班牙15:01-30:00 -vs- 荷蘭15:01-30:00" [2010 FIFA南非世界杯- 特定15分鐘大小]<br />
+即使聯賽名稱相同, 但由於不同的隊伍名稱, 上述條件仍然適用。
+</p>
+
+</ul>
+
+
+<p><span class="rpt-head1">佔成數設定</span></p>
+這個設定將決定您最初的佔成數, 及代理基於個別運動類型及投注類型, 對他/她的會員的投注額所得到的最高佔成數,。
+<p><center>
+<img src="images/NewAgent/PositionTaking.jpg"/><br />
+<em>佔成數設定</em>
+</center>
+完成所有這些步驟之後, 系統將引導您進入下一個頁面以更新金融, 賽馬及娛樂城設置。
+<p><a name="EditFI"></a><span class="tille_new">更新金融的設置</span></p>
+<p>代理必須被啟動金融, 他/她才能擁有開設或拒絕金融投注的選項給他/她的會員。管理金融的規則設定將遵循體育博彩。<center>
+<img src="images/NewAgent/FinanceSetting.jpg"/><br />
+<em>金融</em>
+</center>
+
+<p><a name="EditHR"></a> <span class="tille_new">更新賽馬的設置</span></p>
+<p>代理必須被啟動賽馬, 他/她才能擁有開設或拒絕賽馬投注的選項給他/她的會員。 管理賽馬的規則設定將遵循體育博彩。目前, 系統提供了南非彩池及英國彩池, 可投注類型: 獨贏, 位置。<center>
+<img src="images/NewAgent/HorseRacingSetting.jpg"/><br />
+<em>賽馬</em>
+</center>
+
+<p><a name="EditCS" ></a><span class="tille_new">更新娛樂城的設置</span></p>
+<p>代理必須被啟動娛樂城, 他/她才能擁有開設或拒絕娛樂城投注的選項給他/她的會員。 管理娛樂城的規則設定將遵循體育博彩, 此外還有一些其他的娛樂城條款及規則如下: 
+<ul>
+<li><strong>累計轉移金額:  </strong>包括今日輸贏的能夠被調動至娛樂城的總額。</li>
+<li><strong>會員最高調動信用額:</strong> 代理設給他/她的會員可以轉移至娛樂城的最高調動數額。</li>
+<li><strong>每日限額自動重設: </strong>於每日中午時間重設累計轉移金額等於會員最高調動信用額。</li>
+<li><strong>投注限制: </strong>此值設定給會員, 限制每場娛樂城遊戲的投注額度。</li>
+</ul>
+<center>
+<img src="images/NewAgent/CasinoSetting.jpg" /><br />
+<em>娛樂城</em>
+</center>
+
+     
+<!--<b>Note:</b> Accumulated transferable amount = Member Max Transfer Credit + Today Win/loss-->
+
+</body>
+</html>

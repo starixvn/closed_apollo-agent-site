@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Report - Horse Racing Commission</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body>
+<h2 class="h2">賽馬佣金</h2>
+<p><span class="rpt-head1">定義:</span> </p>
+<p>這是賽馬佣金報告, 其中個別投注類型的收入細節 (獨贏, 位置和獨贏/位置) 將被列出。 這份報告計算出總代理的收入或輸額, 根據個別代理的投注類型 (圖1.1)。</p>
+<center>
+    <img src="images/HRComm/HRCommAgent.jpg"  />
+    <br /><em>圖 1.1</em>
+</center>
+<p><span class="rpt-head1">用詞註解:</span></p>
+<ul>
+  <li>
+  <strong>獨贏:</strong> 扣除代理佣金後, 總代理從上線出接收到的佣金數額, 根據獨贏投注類型。</li>
+  <li><strong>位置:</strong> 扣除代理佣金後, 總代理從上線出接收到的佣金數額, 根據位置投注類型。</li>
+  <li><strong>獨贏及位置:</strong> 扣除代理佣金後, 總代理從上線出收到的佣金數額, 根據獨贏及位置投注類型。</li>
+  <li><strong>總和:</strong> 扣除代理佣金後, 總代理從上線出收到的總佣金數額。</li>
+</ul>
+<p>點擊代理用戶名以查看代理於個別會員的投注類型的收入或輸額 (圖1.2)。</p>
+<center>
+    <img src="images/HRComm/HRCommMember.jpg"  />
+    <br /><em>圖 1.2</em>
+</center>
+<p><span class="rpt-head1">用詞註解:</span></p>
+<ul>
+  <li>
+  <strong>獨贏:</strong> 扣除代理佣金後, 總代理從上線出接收到的佣金數額, 根據獨贏投注類型。</li>
+  <li><strong>位置:</strong> 扣除代理佣金後, 總代理從上線出接收到的佣金數額, 根據位置投注類型。</li>
+  <li><strong>獨贏及位置:</strong> 扣除代理佣金後, 總代理從上線出收到的佣金數額, 根據獨贏及位置投注類型。</li>
+  <li><strong>總和:</strong> 扣除代理佣金後, 總代理從上線出收到的總佣金數額。</li>
+</ul>
+
+<p><span class="rpt-head1">如何理解報告:</span> </p>
+<p>為計算佣金, 我們必須點擊用戶名 (例子: member1), 然後會員投注歷史頁面將被開啟和顯示每個投注的細節如下 (圖1.3):</p>
+<center>
+    <img src="images/HRComm/MemberBetList.jpg"/><br />
+    <em>圖 1.3</em>
+</center>
+<p>
+    而現在, 例子將告訴您如何計算佣金。讓我們計算master01, agent1的佣金數額如圖1.1及圖1.2所示。
+</p>
+
+<!--<ul>
+  <li>
+    <strong>Ticket 1:</strong> member01 placed bet 10 on bet type <b>Win</b>, member discount = 0.4%, master position taking = 20%, master discount = 0.8% , agent position taking = 20%, agent discount = 0.6% and member loses the bet.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Stake </strong>= <b>10</b><br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Win/Loss </strong>= -Stake = <b>-10</b><br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Comm </strong>= Stake * Member discount = 10 * 0.4% = <b>0.04</b><br />
+    &nbsp;&nbsp;&nbsp;<strong>Agent Comm </strong>= Stake * Agent discount * (1 - Agent PT) - Member Comm = 10 * 0.6% * (1 - 20%) - 0.04 = <b>0.01</b><br />
+    &nbsp;&nbsp;&nbsp;<strong>Master Comm </strong>= Stake * Master discount * [1 - (Master PT + Agent PT)] - Stake * Agent discount * (1 - Agent PT) = 10 * 0.8% * [1 - (20% + 20%)] - 10 * 0.6% * (1 - 20%) = <b>0</b><br />
+  </li>
+  <br />
+  <li>
+    <strong>Ticket 2:</strong> member01 placed bet 10 on bet type <b>Place</b>, member discount = 0.4%, master position taking = 20%, master discount = 0.8% , agent position taking = 
+      10%, agent discount = 0.6% and member loses the bet.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Stake </strong>= <b>10</b><br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Win/Loss </strong>= -Stake = <b>-10</b><br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Comm </strong>= Stake * Member discount = 10 * 0.4% = <b>0.04</b><br />
+    &nbsp;&nbsp;&nbsp;<strong>Agent Comm </strong>= Stake * Agent discount * (1 - Agent PT) - Member Comm = 10 * 0.6% * (1 - 
+      10%) - 0.04 = <b>0.01</b><br />
+    &nbsp;&nbsp;&nbsp;<strong>Master Comm </strong>= Stake * Master discount * [1 - (Master PT + Agent PT)] - Stake * Agent discount * (1 - Agent PT) = 10 * 0.8% * [1 - (20% + 
+      10%)] - 10 * 0.6% * (1 - 10%) = <b>0</b><br />
+  </li>
+</ul>
+<p>From two bettings above, we have last result as display in figure 1.1 and figure 1.2:</p> 
+-->
+<p><span class="sportname">圖 1.2: </span></p>
+<ul>
+    <li><strong>獨贏 </strong>= 投注額 * 代理佣金 * (1 - 代理佔成) - 投注額 * 會員佣金 = 20 * 0.5% * (1 - 20%) - 20 * 0.4% = <b>0</b><br /></li>
+    <li><strong>位置 </strong>= 投注額 * 代理佣金 * (1 - 代理佔成) - 投注額 * 會員佣金 = 20 * 0.5% * (1 - 10%) - 20 * 0.4% = <b>0.01</b><br /></li>
+    <li><strong>獨贏及位置 </strong>= <b>0</b><br /></li>
+    <li><strong>總和 </strong>= 獨贏 + 位置 + 獨贏及位置 = 0 + 0.01 + 0 = <b>0.01</b><br /></li>
+</ul>
+<p><span class="sportname">圖 1.1: </span></p>
+<ul>
+    <li><strong>獨贏 </strong>= 投注額 * 會員佣金 * [1 - (總代理佔成 + 代理佔成)] - 投注額 * 代理佣金 * (1 - 代理佔成) = 20 * 0.8% * [1 - (20% + 20%)] - 20 * 0.5% * (1 - 20%) = <b>0.02</b><br /></li>
+    <li><strong>位置 </strong>=  投注額 * 總代理佣金 * [1 - (總代理佔成 + 代理佔成)] - 投注額 * 代理佣金 * (1 - 代理佔成) = 20*0.8% * [1 - (20% + 10%)] - 20 * 0.5% * (1 - 10%) = <b>0.02</b><br /></li>
+    <li><strong>獨贏及位置 </strong>= <b>0</b><br /></li>
+    <li><strong>總和 </strong>= 獨贏 + 位置 + 獨贏及位置 = 0.02 + 0.02 + 0= <b>0.04</b><br /></li>
+</ul>
+
+</body>
+</html>

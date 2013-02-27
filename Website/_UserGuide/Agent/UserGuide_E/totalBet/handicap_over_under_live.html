@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .style2
+        {
+            color: #FF6600;
+            font-weight: bold;
+        }
+        .style3
+        {
+            color: #FF0000;
+        }
+        .style4
+        {
+            color: #FF0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="h2">
+        Handicap/Over Under/Live</h2>
+    <p>
+        <span class="rpt-head1">Definition:</span>
+    </p>
+    <p>
+        Show agent’s win/loss based on position taking for tickets which have bet type Handicap/Over Under/Live for 1st Half or Full Time.
+        <center>
+            <img src="images/h1.jpg" width="821" height="149" /><br />
+            <em>Handicap/Over Under/Live</em> _01</center>
+        <p>
+            <ul>
+                With<strong> FRANCE NATIONAL League</strong>, members bet on match <b>Rodez AF</b>-vs-<b>AC Arles</b> and details as below </br>
+                <ul>
+                    <li><strong>1st bet:</strong> stake = 10, odds = 0.85, bet type: Over/Under, Full Time, Agent position taking(PT) = 50%<br></li>
+                    --&gt; Agent&#39;s earning based on PT = - (stake* PT) = -10*50% = <span class="style2">-5</span>
+                    <br>
+                    <li><strong>2nd bet:</strong> stake=100, odds = -0.81, bet type: Over/Under, First Half, agent PT = 50%<br></li>
+                    --&gt; Agent &#39;s earning based on PT = - (stake* PT* odds) = -10*50%*0.81 = <span class="style2">-4</span>
+                </ul>
+            </ul>
+            <ul>
+                <strong>Note:</strong>
+                <br />
+                <li>Agent's earning based on PT for Handicap = (Total Home stake – Total Away stake) * Agent PT.</li>
+                <li>Agent's earning based on PT for Over/Under = (Total Over stake – Total Under stake) * Agent PT.</li>
+                <li>Sign <b>"-"</b> means total turnover for Away/Under greater than total turnover for Home /Over</li>
+                <li>Odds < 0 then Agent earning amount= stake * Agent PT * odds</li>
+                <li>Odds > 0 then Agent earning amount= stake * Agent PT </li>
+            </ul>
+            </ul>
+            <p>
+                <span class="rpt-head1">Forecast function</span></p>
+            This function helps agent figure out win/loss amount based on Home score, Away score. To view the winlost forecast, click <b>“+”</b> sign. In this example member01 placed a bet 200 on Home team - <b>Burnley</b> with Handicap=2.5, odds= 0.87, bettype=Over, agent position taking =50%.<p>
+                <center>
+                    <img src="images/h2.jpg" width="831" height="141" /><br />
+                    <em>Handicap/Over Under/Live _</em>02
+                </center>
+                <p>
+                    The popup window will appear as below:
+                    <center>
+                        <img src="images/h3.jpg" width="573" />
+                        <br />
+                        <em>Forecast</em></center>
+                    <p>
+                        <ul>
+                            This is Over/Under Forecast and details as below:
+                            <li>1: -100 --> If (Home score + Away score) = 1 then Agent will win: 200*50% = <b>100</b></li>
+                            <li>2: -100 --> If (Home score + Away score) = 2 then Agent will win: 200*50% = <b>100</b></li>
+                            <li>3: <span class="style3">87</span> --> If (Home score + Away score) = 3 then Agent will lose: 200*0.87*0.5 = <span class="style4">87</span></li>
+                            <li>4: <span class="style3">87</span> --> If (Home score + Away score) = 4 then Agent will lose: 200*0.87*0.5 = <span class="style4">87</li></span><p>
+                                    <strong>Note:</strong><br>
+                            For Handicap Forecast, the result will be calculated by Home score minus Away score.
+                        </ul>
+</body>
+</html>

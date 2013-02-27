@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Report - Member Win/Loss</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body>
+<h2 class="h2">Transfer</h2>
+<p><span class="rpt-head1">Definition:</span> </p>
+<p>Transfer refers to the amount of money that needs to transfer from sender to receiver for Win/Loss payment purposes. We have 2 types of transfer: <b>single transfer</b> or <b>multiple transfers</b>. You can only make the transfer if you&#39;re allowed to transfer on that day, and this is called transfer condition including: daily transfer and weekly transfer (Mon – Sun).
+    <p>
+        <strong>Note:</strong>
+        <ul>
+          <li>A message will appear to notify you the allowed date to make the transfer.</li>
+          <li>Transfer transaction must be done during 12PM to 11:59 PM (GMT +8).</li>
+          <li>Transfer can only be made to account which has status: Open, Closed, Suspended or Disabled.</li>
+          <li>Yesterday balance > 0 --&gt; master will pay to agent.</li>
+          <li>Yesterday balance < 0 --&gt; master will receive from agent.</li>
+          <!--<li>Maximum master transfer amount is total agent win/lost.<br></li>-->
+          <li>Sub account must have the transfer permission granted in order to make the transfer.</li>
+          <li>To edit Transfer condition of agent, master has to be allowed to transfer on Daily.</li>
+        </ul>
+    <center>
+        <img src="images/Transfer.jpg"/><br />
+        <em>figure 1.1</em>
+    </center>
+   </p>
+    <p><span class="rpt-head1">Term definition:</span></p>
+    <ul>
+      <li><strong>Given Credit:</strong> credit amount which was initially given to each agent.</li>
+      <li><strong>Used Credit:</strong> credit amount which was initially given to members by each agent.</li>
+      <li><strong>Outstanding: </strong>total agent’s share from member stakes based on his/her position taking on running/waiting tickets.</li>
+      <li><strong>Agent Cash: </strong>total agent win/loss.</li>
+      <li><strong>Yesterday Cash Balance: </strong>total agent win/loss till yesterday.</li>
+      <li><strong>Agent Balance:</strong> the total amount that master will receive from or pay to agent.</li>
+      <li><strong>Yesterday Balance:</strong> the total amount that master will receive from or pay to agent till yesterday.</li>
+    </ul>
+</p>
+<p><span class="rpt-head1">How to understand the report:</span></p>
+From the figure above, agent1 was initially given 500,000, total his/her share based on his/her position taking on running/waiting tickets are 176, currently he/she will receive 62.18 from master and agent total balance (include today win/loss) was 70.21.
+<p><span class="rpt-head1">How to make the transfer:</span></p>
+Click on Yesterday Balance amount of each agent to make the transfer or check on column ‘<b>Transfer</b>’ then click ‘<b>Transfer’</b> button to make a multiple transfer to all agents whose yesterday balances are different from 0.
+</body>
+</html>

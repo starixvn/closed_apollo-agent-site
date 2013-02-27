@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Report - Member Statement</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body>
+<h2 class="h2">Real Time Casino Win Loss</h2>
+<p><span class="rpt-head1">Definition:</span> </p>
+<p>Real time casino win loss is a report which keeps master updated about casino win/loss amount,commission right after a game is settled.</p>
+<center>
+    <img src="images/RealTimeCasinoWL/AgentRealTimeCWL.jpg" alt="Agent Real Time Casino WinLoss"/>
+    <br />
+    <em>figure: 1.1</em>
+</center>
+<p><span class="rpt-head1">Term definition:</span></p>
+<ul>
+  <li>
+  <strong>Turnover:</strong> The total betting amount on Casino games.</li>
+  <li><strong>Rolling Turnover:</strong> The total betting amount on Casino games exclude tie games.</li>
+  <li><strong>Member Win/Loss:</strong> Member win/loss amount.</li>
+  <li> <strong>Member Comm:</strong> The amount of money that member receives from the agent as commission.</li>
+  <li> <strong>Member Total:</strong> Total member win/loss amount including commission.</li>
+  <li><strong>Agent Win/Loss:</strong> Agent win/loss amount based on his position taking.</li>
+  <li> <strong>Agent Comm:</strong> The amount of money that agent receives from upline as commission after deducting member commission.</li>
+  <li> <strong>Agent Total:</strong> Total agent win/loss amount including commission.</li>
+  <li> <strong>Master Win/Loss:</strong> Master win/loss amount based on position taking.</li>
+  <li> <strong>Master Comm:</strong> The amount of money that master receives from up-line as commission after deducting agent commission.</li>
+  <li> <strong>Master Total:</strong> Total master win/loss amount including commission.</li>
+  <li> <strong>Company:</strong> The amount of money that master will pay to or receive from up-line.</li>
+ </ul>
+<p>Click on Agent username to view Member Real Time Casino WinLoss report under each particular agent(figure 1.2).</p>
+<center>
+    <img src="images/RealTimeCasinoWL/MemberRealTimeCWL.jpg" alt="Member Real Time Casino WinLoss"/>
+    <br />
+    <em>figure: 1.2</em>
+</center>
+
+<p><span class="rpt-head1">Term definition:</span></p>
+<ul>
+   <li> <strong>Company:</strong> The amount of money that agent will pay to or receive from up-line.</li>
+ </ul>
+
+<p>To view Casino Hand History, you can click on member username (figure 1.3).</p>
+<center>
+    <img src="images/RealTimeCasinoWL/CasinoHandHistory.jpg" alt="Casino Hand History" />
+    <br />
+    <em>figure: 1.3</em>
+</center>
+<p><span class="rpt-head1">Term definition:</span></p>
+<ul>
+  <li><strong>Game Type:</strong> Type of Game.</li>
+  <li><strong>Game Group:</strong> The group that game belongs to.</li>
+  <li><strong>Start Balance:</strong> Initial balance before the game is settled.</li>
+  <li><strong>End Balance:</strong> Overal balance after the game is settled.</li>
+  <li> <strong>Bet:</strong> Betting amount.</li>
+  <li><strong>Stake </strong>= Bet amount - Tie amount.</li>
+  <li> <strong>Win/Loss:</strong> Win/Loss amount </li>
+  <li> <strong>Rolling commission:</strong> Commission amount.</li>
+  <li><strong>Results:</strong> Game result.</li>
+  <li> <strong>MA%:</strong> Master position taking.</li>
+  <li> <strong>AG%:</strong> Agent position taking.</li>
+  <li> <strong>Session ID:</strong> a unique number used to identify a member that has accessed into Casino. </li>
+</ul>
+
+<p><span class="rpt-head1">How to understand the report:</span></p>
+<p>The report is sorted by GameID in descending order <em>(figure 1.3)</em>. Let's calculate win/loss number of master1, agent01 on member01 as shown in figure 1.1 and figure 1.2. In this report, member01 accessed into casino 2 times to play game.</p>
+<ul>
+  <li>
+    <strong>Session ID= 1256908: </strong> member01 played a Blackjack game, bet amount=10,  member discount = 0.6%, master position taking = 60%, master discount = 0.8% , agent position taking = 10%, agent discount = 0.6% and member loses the bet.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Start Balance </strong>= <b>100</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Stake </strong>= Bet = <b>10</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Win/Loss </strong>= -Stake = <b>-10</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Comm = Rolling Comm </strong>= Stake * Member discount = 10 * 0.6% = <b>0.06</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Total </strong>= Member Win/Loss + Member Comm = -10 + 0.06 = <b>-9.94</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>End Balance </strong>= Start Balance + Member Win/Loss + Member Comm = 100 - 10 + 0.06 = <b>90.06</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Agent Win/Loss </strong>= Stake * Agent PT = 10 * 10% = <b>1</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Agent Comm </strong>= Stake * Agent discount * (1 - Agent PT) - Member Comm = 10 * 0.6% * (1 - 10%) - 0.06 = <b>-0.01</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Agent Total </strong>= Agent Win/Loss + Agent Comm = 1 - 0.01 = <b>0.99</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Master Win/Loss </strong>= Stake * Master PT = 10 * 60% = <b>6</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Master Comm </strong>= Stake * Master discount * [1 - (Master PT + Agent PT)] - Stake * Agent discount * (1 - Agent PT) = 10 * 0.8% * [1 - (60% + 10%)] - 10 * 0.6% * (1 - 10%) = <b>-0.03</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Master Total </strong>= Master Win/Loss + Master Comm = 6 - 0.03 = <b>5.97</b>.<br />
+  </li>
+  <br />
+  <li>
+    <strong>Second session:</strong> member01 placed bet 5 on game type Blackjack, member discount = 0.6%, master position taking = 60%, master discount = 0.8% , agent position taking = 10%, agent discount = 0.6% and this is the tie game.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Start Balance </strong>= <b>End Balance</b> in betting 1 = <b>90.06</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Stake </strong>= <b>0</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Win/Loss </strong>= <b>0</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Comm = Rolling Comm </strong>= <b>0</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Member Total </strong>= <b>0</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>End Balance </strong>= Start Balance + Member Win/Loss + Member Comm = 90.06 + 0 + 0 = <b>90.06</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Agent Win/Loss </strong>= <b>0</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Agent Comm </strong>= <b>0</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Agent Total </strong>= <b>0</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Master Win/Loss </strong>= <b>0</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Master Comm </strong>= <b>0</b>.<br />
+    &nbsp;&nbsp;&nbsp;<strong>Master Total </strong>= <b>0</b>.<br />
+  </li>
+</ul>
+<p>From two bettings above, we have last result as display in figure 1.1 and figure 1.2:</p> 
+<p><span class="sportname">Figure 1.2: </span></p>
+<ul>
+    <li><strong>Turnover </strong>= 10 + 5 = <b>15</b>.<br /></li>
+    <li><strong>Rolling Turnover </strong>= 10 + 0 = <b>10</b>.<br /></li>
+    <li><strong>Member Win/Loss </strong>= -10 + 0 = <b>-10</b>.<br /></li>
+    <li><strong>Member Comm </strong>= 0.06 + 0 = <b>0.06</b>.<br /></li>
+    <li><strong>Member Total </strong>= -9.94 + 0 = <b>-9.94</b>.<br /></li>
+    <li><strong>Agent Win/Loss </strong>= 1 + 0 = <b>1</b>.<br /></li>
+    <li><strong>Agent Comm </strong>= -0.01 + 0 = <b>-0.01</b>.<br /></li>
+    <li><strong>Agent Total </strong>= 0.99 + 0 = <b>0.99</b><br /></li>
+    <li><strong>Company </strong>= -(Member Total + Agent Total) = -(-9.94 + 0.99) = <b>8.95</b>.<br /></li>
+</ul>
+<p><span class="sportname">Figure 1.1: </span></p>
+<ul>
+    <li><strong>Turnover </strong>= 10 + 5 = <b>15</b>.<br /></li>
+    <li><strong>Rolling Turnover </strong>= 10 + 0 = <b>10</b>.<br /></li>
+    <li><strong>Member Win/Loss </strong>= -10 + 0 = <b>-10</b>.<br /></li>
+    <li><strong>Member Comm </strong>= 0.06 + 0 = <b>0.06</b>.<br /></li>
+    <li><strong>Member Total </strong>= -9.94 + 0 = <b>-9.94</b>.<br /></li>
+    <li><strong>Agent Win/Loss </strong>= 1 + 0 = <b>1</b><br /></li>
+    <li><strong>Agent Comm </strong>= -0.01 + 0 = <b>-0.01</b>.<br /></li>
+    <li><strong>Agent Total </strong>= 0.99 + 0 = <b>0.99</b>.<br /></li>
+    <li><strong>Master Win/Loss </strong>= 6 + 0 = <b>6</b>.<br /></li>
+    <li><strong>Master Comm </strong>= -0.03 + 0 = <b>-0.03</b>.<br /></li>
+    <li><strong>Master Total </strong>= 5.97 + 0 = <b>5.97</b>.<br /></li>
+    <li><strong>Company </strong>= -(Member Total + Agent Total + Master Total) = -(-9.94 + 0.99 + 5.97) = <b>2.98</b>.<br /></li>
+</ul>
+<p><strong><i>Note:</i></strong></p>
+<ul>
+  <li>This report contains casino win/loss amount only.</li>
+  <li>To view casino game results with picture, tick "Results with pictures" check box <em>(figure 1.4)</em>.</li>
+</ul>
+<center>
+    <img src="images/RealTimeCasinoWL/ResultWithPicture.jpg" alt="Results with pictures" width="900" height="292"/>
+    <br />
+    <em>figure: 1.4</em>
+</center>
+</body>
+</html>

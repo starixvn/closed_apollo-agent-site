@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Forecast - Handicap/Over Under/Live</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+            .style1
+            {
+                font-weight: normal;
+            }
+            .style2
+            {
+                color: #FF0000;
+            }
+        </style>
+</head>
+<body>
+<h2 class="h2">Handicap/Over Under/Live</h2>
+<p>Show master&#39;s win/loss amount for Handicap/Over Under/Live bet type (figure 1.1).<p><center>
+<img src="images/Handicap-OverUnder-Live/handicap-overunder-live.jpg" /><br />
+<em>figure 1.1</em>
+</center><p>
+<p><strong><i>Note:</i></strong></p>
+<ul>
+  <li><strong>If Odds < 0</strong><br />    - If player wins then odds = 1.<br />    - If player loses then odds = |current odds|.</li>
+  <li><strong>If Odds > 0</strong><br />    - If player wins then odds = current odds.<br />    - If player loses then odds = 1.</li>
+
+</ul>
+
+  In this example, member placed a bet on<strong> URAWA RED DIAMOND </strong>-vs-<strong> HIROSHIMA SANFRECCE</strong>, stake = <strong class="style1">120</strong>, odds=<strong class="style1">0.86</strong>, master PT = 30%, agent PT = 40%, bettype = HDP, member choice: <strong>Hiroshima Sanfrecce 0.5</strong>.<br />
+<ul>
+<li>If (Home score - Away score) > 0 then member will lose.<br> --> master will win: 120 * 30% = <b>36</b>.<br></li>
+<li>If (Home score - Away score) <= 0 then member will win.<br> --> master will lose: 120 * 0.86 * 30% = <span class="style2"><b>31</b></span>.<br></li>
+</ul>
+</body>
+</html>

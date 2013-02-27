@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Report - Member Win/Loss</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body>
+<h2 class="h2">會員輸贏</h2>
+<p><span class="rpt-head1">定義:</span> </p>
+<p>這份報告顯示所有必要的信息, 以幫助代理清楚了解個別會員在特定日期裡的輸贏</p>
+<p>當我們開啟 "會員輸贏", 頁面會顯示今日與昨日的個別運動類型的賽事場數, 當中包括 "成績已輸入場數" 和 "成績還沒輸入場數" (圖1.1)
+</p>
+  <ul>
+    <li>成绩还没输入场数: 赛事还未输入成绩之总数</li>
+    <li>成績還沒輸入場數: 賽事還未輸入成績之總數</li>
+  </ul>
+  <center>
+  <img src="images/MemWL/member_winloss.jpg" alt="Member Winloss" width="646" height="364" />
+  <br />
+   <em>圖 1.1</em>
+</center>
+  <p>
+在 "從" 和 "到" 選擇日期, 然後點擊 "提交" 以查閱指定日期的輸贏報告 (圖1.2)</p>
+  <center>
+    <p><img src="images/MemWL/member_winloss_2.jpg" width="692" height="276" /><br />
+          <em>圖 1.2</em>  </p>
+</center>
+<p><span class="rpt-head1">用詞註解:</span></p>
+<ul>
+  <li>投注額: 總投注數額</li>
+  <li>會員輸贏: 會員輸贏的數額</li>
+  <li>會員佣金: 會員從代理處得到的佣金數額</li>
+  <li> 會員總和: 會員包括佣金的總輸贏數額</li>
+  <li> 代理輸贏: 代理基於佔成數的輸贏數額</li>
+  <li>代理佣金: 扣除會員佣金後, 代理收到或支付予上線的佣金數額</li>
+  <li>代理總和: 代理包括佣金的總輸贏數額</li>
+  <li>公司: 代理需支付予或從上線處接收到的總數額</li>
+</ul>
+<span class="rpt-head1">如何理解報告:</span>
+<p>在這份報告中, 代理獲取佔成數 30%, 代理折扣為 0.2%及會員折扣為 0.2%。為計算輸贏, 我們必須點擊用戶名 (例如: member01),
+ 進入會員投注列表頁, 並顯示每次投注之細節</p>
+<p><center><img src="images/MemWL/BetList.jpg" /><br />
+<em>圖 1.3</em></center></p>
+<p>
+現在, 例子將告訴您如何計算會員該投注單的輸贏。在現實中, 我們必須計算每張投注單的輸贏及佣金, 才能獲得代理、會員的輸贏總計
+</p>
+<p>如圖1.2所示, 讓我們根據member01計算代理的輸贏, 假設member01只有一張投注單</p>
+<ul>
+  <li>會員輸贏 = 投注額 *  賠率 = 100 * 0.66 = <b>66</b></li>
+  <li>會員佣金 = 投注額 * 會員折扣 =  100 *  0.2% = <b>0.2</b></li>
+  <li>會員總和 = 會員輸贏 + 會員佣金 = 66 + 0.2 = 
+      <b>66.2</b></li>
+  <li>代理輸贏 = 會員輸贏 * 代理佔成 = - 66 * 30% =<b>-19.8</b></li>
+  <li>代理佣金 = (投注額* 代理折扣* 上線佔成) - 會員佣金 <br/>
+             = [100 * 0.2% * (100 % - 30%)] – 0.2 = 0.14  – 0.2 = <b>-0.06</b></li>
+  <li>代理總和 = 代理輸贏 + 代理佣金 = -19.8 – 0.06 =<b> -19.86</b></li>
+  <li> 公司 = - (會員總和 + 代理總和) = -(66.2 – 19.86) = 
+      <b>-46.34</b></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>
