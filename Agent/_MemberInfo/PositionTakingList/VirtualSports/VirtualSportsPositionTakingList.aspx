@@ -1,0 +1,2 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="VirtualSportsPositionTakingList.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.PositionTakingList.VirtualSports.VirtualSportsPositionTakingList_Page" %>
+<%@ OutputCache Location="None"%>

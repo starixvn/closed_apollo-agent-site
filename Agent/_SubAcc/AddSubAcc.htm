@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.addsubaccount}</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../_GlobalResources/Css/Popup.css" rel="stylesheet" type="text/css" />
+    <link href="../_MemberInfo/CustomerList/Components/MenuPopup_Control/Resources/MenuPopup_Control.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div class="page_popup">
+
+{static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
+
+<table align="left" width="100%" class="tblPop" cellspacing="1" cellpadding="0" border="0" onkeydown="age.DoEnter(event, 'UpdateAddSubAcc()')">
+    <tr class="bg_eb2">
+        <td width="30%" class="r b">
+            {static:Resources.Lang.username}
+        </td>
+        <td class="l">
+            {username_value}
+            <select name="number1" id="number1">
+                <option selected="selected" value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+            <select name="number2" id="number2">
+                <option selected="selected" value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="0">0</option>
+            </select>
+        </td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="r b">
+            {static:Resources.Lang.password}
+        </td>
+        <td id="td_pass" class="l" title="{static:Resources.Lang.lblPasswordRequire}">
+            <input name="txtPwd" id="txtPwd" type="password" onkeyup="return CheckPass(this,'spnPwdIcon');" />
+            <span id="spnPwdIcon">&nbsp;</span>
+        </td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="r b">
+            {static:Resources.Lang.firstname}
+        </td>
+        <td id="td_fname" class="l">
+            <input name="txtFirstName" id="txtFirstName" type="text" />
+        </td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="r b">
+            {static:Resources.Lang.lastname}
+        </td>
+        <td id="td_lname" class="l">
+            <input name="txtLastName" id="txtLastName" type="text" />
+        </td>
+    </tr>
+    <tr class="bg_eb2">
+        <td colspan="2" class="l b">
+            * {static:Resources.Lang.accpermission}
+        </td>
+    </tr>
+    <tr class="bg_eb2">
+        <td colspan="2" class="c" valign="middle">
+            <table class="tblRpt" width="100%" cellspacing="1" cellpadding="0" border="0">    
+                <tr bgcolor="#F1E8D2">
+                    <td width="110">{static:Resources.Lang.memberinfo}</td>
+                    <td width="110">{static:Resources.Lang.totalbets}/{static:Resources.Lang.lblForecast}</td>
+                    <td width="70">{static:Resources.Lang.reports}</td>
+                    <td width="70">{static:Resources.Lang.transfer}</td>
+                    <td width="70">{static:Resources.Lang.viewlog}</td>
+                </tr>
+                <tr align="center" bgcolor="#faf9ee">
+                    <td>
+                        <div id="mi_CustId" onclick="OpenBoxMemberInfoAddNew(this)" class="pMemInfo" AccPermission="">{static:Resources.Lang.none}</div>
+                        <div style="display:none">
+                            <input type="checkbox" id="chkCreateAcc" name="chkCreateAcc"/>
+                            <input type="checkbox" id="chkUpdateAcc" name="chkUpdateAcc"/>
+                            <input type="checkbox" id="chkMemberInfo" name="chkMemberInfo"/>
+                        </div>
+                    </td>        
+                    <td><input type="checkbox" id="chkTotalBets" name="chkTotalBets"/></td>
+                    <td><input type="checkbox" id="chkReports" name="chkReports"/></td>        
+                    <td><input type="checkbox" id="chkTransfer" name="chkTransfer"/></td>
+                    <td><input type="checkbox" id="chkViewLog" name="chkViewLog"/></td>
+                </tr>
+            </table>            
+        </td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="c" colspan="2">
+            <input type="button" id="btnAdd" onclick="UpdateAddSubAcc()" name="btnAdd" value=" {static:Resources.Lang.btnAdd} " class="btn" />
+        </td>
+    </tr>
+</table>
+<div id="Popup" class="divMenuPopup">
+    <div>
+        <input type="radio" name="rdPermission" id="pNone" checked="checked">
+        <label class="rdLabel" for="pNone">{static:Resources.Lang.none}</label>
+    </div>
+    <div>
+        <input type="radio" name="rdPermission" id="pView">
+        <label class="rdLabel" for="pView">{static:Resources.Lang.view}</label>
+    </div>
+    <div>
+        <input type="radio" name="rdPermission" id="pUpdateView">
+        <label class="rdLabel" for="pUpdateView">{static:Resources.Lang.update}</label>
+    </div>    
+    <div>
+        <input type="radio" name="rdPermission" id="pFullControl">
+        <label class="rdLabel" for="pFullControl">{static:Resources.Lang.FullControl}</label>
+    </div>
+</div>
+
+</div>
+</body>
+<script src="../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+
+<script src="Resources/SubAcc.js" type="text/javascript"></script>
+</html>
+

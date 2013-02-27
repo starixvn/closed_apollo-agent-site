@@ -1,0 +1,125 @@
+﻿<div id="page_main">
+<div id="header_main" style="margin-left:2px">{title}</div> 
+<iframe name="UpdateFrm" id="UpdateFrm" style="display: none"></iframe>
+<form action="{urlAction}" method="post" id="form" name="form" target="UpdateFrm">
+<div style="width:700px;">
+    {error-message}
+    <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" id="diverr"
+        style="display: none;">
+        <tr>
+            <td id="1_1" class="emsg_1_1">
+                &nbsp;
+            </td>
+            <td id="1_2" class="emsg_1_2">
+                &nbsp;
+            </td>
+            <td id="1_3" class="emsg_1_3">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="2_1" valign="top" class="emsg_2_1">
+                &nbsp;
+            </td>
+            <td valign="top" id="err" class="Enrich">
+            </td>
+            <td id="2_2" class="emsg_2_2">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="3_1" class="emsg_3_1">
+                &nbsp;
+            </td>
+            <td id="3_2" class="emsg_3_2">
+                &nbsp;
+            </td>
+            <td id="3_3" class="emsg_3_3">
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="width: 700px;">
+<table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8" style="margin-left:2px">	
+    <tr>
+        <td colspan="4" class="c b" id="lstusername" style="white-space:normal;">
+             
+        </td>
+    </tr>
+    <!--none-Mult-->
+	<tr class="bg_eb">
+		<td width='25%' class="r">{uname-text}</td>
+		<td width='25%' class="l">{uname-value}</td>
+		<td width='25%' class="r">{fname-text}</td>
+		<td width='25%' class="l">{fname-value}</td>		
+	</tr>
+	
+    <tr class="bg_eb">
+        <td class="r" width="25%">{lname-text}</td>
+        <td class="l" width="25%">{lname-value}</td>
+        <td class="r" width="25%">{phone-text}</td>
+        <td class="l" width="25%">{phone-value}</td>
+    </tr>
+	<tr class="bg_eb">
+		<td class="r">{mobile-text}</td>
+		<td class="l">{mobile-value}</td>
+		<td class="r">{fax-text}</td>
+		<td class="l">{fax-value}</td>
+	</tr>	
+		
+	<!--Not-MinPT-->	
+	<tr class="RptHeader">		
+		<td colspan="4" class="c">{comm-text}</td>
+	</tr>	
+	<!--Not-Master-->
+	<tr class="bg_eb">	
+		<td class="r" width="25%"><!--None-FO-->{commM31-text}<!--/None-FO--></td>
+		<td class="l" nowrap="yes" width="25%"><!--None-FO-->{commM31-value}<!--/None-FO--></td>	
+			
+		<td class="r" width="25%">{commM41-text}</td>
+		<td class="l" nowrap="yes" width="25%">{commM41-value}</td>		
+	</tr>
+	<!--/Not-Master-->
+	<tr class="bg_eb">	
+		<td class="r" width="25%"><!--None-FO-->{commA31-text}<!--/None-FO--></td>
+		<td class="l" nowrap="yes" width="25%"><!--None-FO-->{commA31-value}<!--/None-FO--></td>		
+		
+		<td class="r" width="25%">{commA41-text}</td>
+		<td class="l" nowrap="yes" width="25%">{commA41-value}</td>		
+	</tr>	
+	<tr class="bg_eb">	
+		<td class="r"><!--None-FO-->{commMem31-text}<!--/None-FO--></td>
+		<td class="l" nowrap="yes"><!--None-FO-->{commMem31-value}<!--/None-FO--></td>		
+		
+		<td class="r">{commMem41-text}</td>
+		<td class="l" nowrap="yes">{commMem41-value}</td>				
+	</tr>
+	<!--/Not-MinPT-->  
+	<!--/none-Mult-->    
+	</table>
+	<!--none-Mult--> 	         
+	<!--/none-Mult--> 
+</div>
+
+<!--None-FO-->
+<div class="b" id="divCopyAll" name="divCopyAll" style="width: 700px; padding-top:5px; padding-bottom:5px; margin-left:2px;"> 
+    <input type="checkbox" id="chkCopyAll" {disableChkAll} name="chkCopyAll" value="" onclick="CopyAllPT(this);" />&nbsp;{copyall}
+</div>
+<!--/None-FO-->
+{PT}	
+  <div class="btnLeft">
+	    <input type="button" class="btnMain" AccountPermisssion="[B]" id="{add-id}" onclick="BtnOnClick();" value="{add-text}">
+    </div>
+  <br />
+
+</div>
+<input type="hidden" id="custid" name="custid" value="{custid-value}" />
+<input type="hidden" id="username" name="username" value="{custname-value}" />
+<input type="hidden" id="isNoBgr" name="isNoBgr" value="{isNoBgr}" />
+</form>
+
+<script type="text/javascript" src="../../Js/wz_tooltip/wz_tooltip.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_centerwindow.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_balloon.js"></script>

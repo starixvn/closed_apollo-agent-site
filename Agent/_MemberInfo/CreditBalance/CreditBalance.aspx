@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="CreditBalance.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.CreditBalance.CreditBalance_Page" %>

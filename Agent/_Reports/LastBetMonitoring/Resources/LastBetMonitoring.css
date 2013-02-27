@@ -1,0 +1,60 @@
+﻿#box_header
+{
+	padding: 0px;
+}
+
+.div_result
+{
+	display: none;
+}
+
+.bl_match
+{
+	/*white-space: nowrap;*/
+}
+
+.bl_lname
+{
+	/*white-space: nowrap;*/
+}
+
+.bl_evt
+{
+
+}
+
+.bl_btype
+{
+	display: inline;
+	padding-left: 5px;
+}
+
+.stake
+{
+	color: #ff0000;	
+}
+
+#Content
+{
+	width: 80%;
+}
+
+#loading
+{
+	width: 30px;
+	height: 25px;
+}
+
+td.c div.iplink
+{
+	text-decoration: none; 
+	color: #000;
+	cursor: default;
+	white-space: nowrap;
+}
+
+div.bl_ip div.iplink
+{
+	color: #0000ff;
+	cursor: pointer;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Report - Agent Match Win/Loss Detail</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <style type="text/css">
+        <!
+        -- .style1
+        {
+            font-weight: bold;
+        }
+        .style2
+        {
+            font-weight: normal;
+        }
+        -- ></style>
+</head>
+<body>
+    <h2 class="h2">
+        Match Win/Loss Detail</h2>
+    <p>
+        <span class="rpt-head1">Definition:</span>
+    </p>
+    <p>
+        This report displays the total member and agent win/loss detail for each match. You can select desired date and then just click on <b>&quot;Submit&quot;</b> button.
+    </p>
+    <center>
+        <img src="images/AgMatchWL/MatchWinLossDetail.jpg" alt="Match Win/Loss Detail" />
+        <br />
+        <em>figure 4.1</em>
+    </center>
+    <span class="rpt-head1">Term definition:</span>
+    <ul>
+        <li><strong>TurnOver: </strong>total amount of member stakes</li>
+        <li><strong>Bet type:</strong> bet type which has been selected to place bet.</li>
+        <li><strong>Member Win/Loss:</strong> win/loss amount of members.</li>
+        <li><strong>Member Comm:</strong> amount of money that members received from the agent as commission.</li>
+        <li><strong>Member Total:</strong> total member win/loss amount including commission.</li>
+        <li><strong>Agent Win/Loss:</strong> amount of money that agent wins/loses based on position taking.</li>
+        <li><strong>Agent Comm:</strong> amount of money that agent receives from or pays to upline as commission after deducting member commission.</li>
+        <li><strong>Agent total:</strong> total agent wins/loss amount including commission.</li>
+        <li><strong>Company Comm: </strong>the commission amount that agent received from upline.</li>
+        <li><strong>CompanyTotal: </strong>total amount that agent pays to or receives from upline.</li>
+    </ul>
+    <span class="rpt-head1">How to understand the report:</span>
+    <p>
+        In this report, member placed a bet with stake=100, odds=0.66, member discount=0.2%, agent discount =0.2%, agent position taking 30% and member won the bet. Let’s take match <b>FC Tokyo </b>-vs- <b>Jubilo Iwata</b> as an example to understand how to calculate the report: (<b>figure 4.1, first row</b>).
+    </p>
+    <ul>
+        <li><strong>Member Win/Loss </strong>= stake * odds = 100 * 0.66 = <b>66</b>.</li>
+        <li><strong>Member commission </strong>= stake * player discount = 100 * 0.2% = <b>0.2</b></li>
+        <li><strong>Member total</strong> = Member Win/Loss + Member commission = 66 + 0.2 = <b>66.2</b></li>
+        <li><strong>Agent Win/Loss</strong> = - ( Member Win/loss&nbsp; * Agent PT ) = 66 * 30% =<b> -19.8</b></li>
+        <li><strong>Agent comm</strong> = (stake *(stake * Agent discount* upline PT) - Member commission = (100 * 0.2%*( 100% - 30%)) - 0.2 = <strong>-0.06</strong></li>
+        <li><strong>Agent Total</strong> = Agent Win/Loss + Agent commission = - 19.8 - 0.06 = <strong>-19.86</strong></li>
+        <li><strong>Company comm</strong> = stake * Agent discount * upline Position Taking = 100 * 0.2% * (1-30%) = <strong>0.14</strong></li>
+        <li><strong>Company total</strong> = -(Member Total + Agent Total) = -(66.2 - 19.86) = <b>-46.34</b></li>
+    </ul>
+    <p>
+        <em><span class="style1"><strong>Note</strong></span>: <span class="style2">T</span>his is just a simple example to guide you how to calculate win/loss amount for 1 bet. In reality, 1 match might contain many bets so we have to calculate win/loss and commission for each bet then sum up to have total amount of all win/loss.</em>
+    </p>
+</body>
+</html>

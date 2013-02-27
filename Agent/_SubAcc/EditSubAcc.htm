@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.editsubacc}</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../_GlobalResources/Css/Popup.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div class="page_popup">
+
+{static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
+
+<table align="left" width="100%" class="tblPop" cellspacing="1" cellpadding="0" border="0" onkeydown="age.DoEnter(event, 'UpdateEditSubAcc(_page.SubAccId)')">
+    <tr class="bg_eb2">
+        <td class="r b">{static:Resources.Lang.username}</td>
+        <td>{username_value}</td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="r b">{static:Resources.Lang.firstname}</td>
+        <td class="l"><input name="txtFirstName" id="txtFirstName" type="text" value="{firstname_value}" /></td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="r b">{static:Resources.Lang.lastname}</td>
+        <td class="l"><input name="txtLastName" id="txtLastName" type="text" value="{lastname_value}" /></td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="r b">{static:Resources.Lang.statusclosed}</td>
+        <td class="l"><input name="chkStatus" id="chkStatus"{closed_value} type="checkbox" /></td>
+    </tr>    
+    <tr class="bg_eb2">
+        <td class="c" colspan="2">
+            <input type="button" id="btnEdit" onclick="UpdateEditSubAcc(_page.SubAccId)" name="btnEdit" value=" {static:Resources.Lang.update} " class="btn" />
+        </td>
+    </tr>
+</table>
+
+</div>
+
+</body>
+<script src="../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+
+<script src="Resources/SubAcc.js" type="text/javascript"></script>
+</html>
+
+
+

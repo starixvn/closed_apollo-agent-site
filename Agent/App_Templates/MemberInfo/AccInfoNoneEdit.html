@@ -1,0 +1,228 @@
+<div id="page_main">
+<div id="header_main">{title}</div>
+<div style="width:80%">
+    <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" id="diverr"
+        style="display: none;">
+        <tr>
+            <td id="1_1" class="emsg_1_1">
+                &nbsp;
+            </td>
+            <td id="1_2" class="emsg_1_2">
+                &nbsp;
+            </td>
+            <td id="1_3" class="emsg_1_3">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="2_1" valign="top" class="emsg_2_1">
+                &nbsp;
+            </td>
+            <td valign="top" id="err" class="Enrich">
+            </td>
+            <td id="2_2" class="emsg_2_2">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="3_1" class="emsg_3_1">
+                &nbsp;
+            </td>
+            <td id="3_2" class="emsg_3_2">
+                &nbsp;
+            </td>
+            <td id="3_3" class="emsg_3_3">
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="sptPT" style="width: 80%">
+<table width="100%" border="1" class="tblRpt" bordercolor="#D4D0C8">
+    <tr>
+        <td colspan="6" class="l" style="">
+            <div class="btnLeft">
+	            <input type="button" class="btnMain" AccountPermisssion="[B]" id="{add-id}" onclick="BtnOnClick();" value="{add-text}">
+            </div>
+        </td>
+    </tr>
+	<!--none-Mult-->
+	<tr class="bg_eb">
+		<td width="16%" class="r">{uname-text}</td>
+		<td width="16%" class="l">{uname-val}</td>
+		<td width="16%" class="r">{fname-text}</td>
+		<td width="16%" class="l">{fname-val}</td>
+		<td width="16%" class="r">{lname-text}</td>
+		<td width="16%" class="l">{lname-val}</td>
+	</tr>
+	<tr class="bg_eb">
+		<td class="r">{phone-text}</td>
+		<td class="l">{phone-val}</td>
+		<td class="r">{mobile-text}</td>
+		<td class="l">{mobile-val}</td>
+		<td class="r">{email-text}</td>
+		<td class="l">{email-val}</td>
+	</tr>
+	<!--none-edit-min-->
+	<tr class="bg_eb">
+		<td class="c" >{closed-text}<input type="checkbox" id="chkClosed" name="chkClosed" {check-val} onclick="ConfirmClosedMessage(this,{IsClosed});" /></td>
+		<td>
+		    {suspend-text} <input type="checkbox" id="chkSuspended" name="chkSuspended" {suspend-check} onclick="ConfirmSuspendedMessage(this,{IsSuspended});"/>
+		    <input type="hidden" id="IsSuspended" name="IsSuspended" value="{IsSuspended}" />
+		    <input type="hidden" id="UplineSuspended" name="UplineSuspended" value="{UplineSuspended}" />
+		    <input type="hidden" id="IsClosed" name="IsClosed" value="{IsClosed}" />
+            <input type="hidden" id="UplineClosed" name="UplineClosed" value="{UplineClosed}" />
+		 </td>
+		<td class="r">{credit-text}</td>
+		<td>{credit-val}</td>
+		<td class="r">{group-text}</td>
+		<td>{group-val}</td>
+	</tr>
+</table>
+</div>
+<div class="sptPT" style="width: 80%">
+<table width="100%" border="1" class="tblRpt" bordercolor="#D4D0C8">
+	<tr class="tblTitleCenter2">
+		<td colspan="4">{commission-text}</td>
+	</tr>
+	<!--none-Master-->
+	<tr class="bg_eb">
+		<td class="r" width="34%">{ma-comm-text}</td>
+		<td width="16%">{ma-comm-val}</td>
+		<td class="r" width="34%">{ma-commo-text}</td>
+		<td width="16%">{ma-commo-val}</td>
+	</tr>
+	<!--/none-Master-->
+	<tr class="bg_eb">
+		<td class="r" width="34%">{a-comm-text}</td>
+		<td width="16%">{a-comm-val}</td>
+		<td class="r" width="34%">{a-commo-text}</td>
+		<td width="16%">{a-commo-val}</td>
+	</tr>
+	<tr class="bg_eb">
+		<td class="r">{comm-text}</td>
+		<td>{comm-val}</td>
+		<td class="r">{commo-text}</td>
+		<td>{commo-val}</td>
+	</tr>
+	<!--none-Master-->
+	<tr>
+		<td class="r" width="34%">{ma-comm1x2-text}</td>
+		<td width="16%">{ma-comm1x2-val}</td>
+		<td class="r" width="34%">{ma-commng-text}</td>
+		<td width="16%">{ma-commng-val}</td>
+	</tr>
+	<!--/none-Master-->
+	<tr>
+		<td class="r" width="34%">{a-comm1x2-text}</td>
+		<td width="16%">{a-comm1x2-val}</td>
+		<td class="r" width="34%">{a-commng-text}</td>
+		<td width="16%">{a-commng-val}</td>
+	</tr>
+	<tr>
+		<td class="r">{comm1x2-text}</td>
+		<td>{comm1x2-val}</td>
+		<td class="r">{commng-text}</td>
+		<td>{commng-val}</td>
+	</tr>
+
+</table>
+</div>
+<!--none-maxperball-->
+<div class="sptPT {hideClss}" style="width: 80%">
+    <table width="100%" border="1" class="tblRpt" bordercolor="#D4D0C8">
+        <tr class="tblTitleCenter2">
+		    <td colspan="2">{othersetting-text}</td>
+	    </tr>
+	    <tr>
+	        <td class="r" width="50%">{maxperball-text}</td>
+	        <td class="l" style="padding-left:30px;">{maxperball-value}</td>
+	    </tr>
+    </table>
+</div>
+<!--/none-maxperball-->
+<div class="sptPT" style="width: 80%">
+<table width="100%" border="1" class="tblRpt" bordercolor="#D4D0C8">
+	<tr class="tblTitleCenter2">
+		<td width="14%"></td>
+		<td width="12%">{minbet-text}</td>
+		<td width="12%">{maxbet-text}</td>
+		<td width="12%">{maxpermatch-text}</td>
+		<td width="14%"></td>
+		<td width="12%">{minbet-text}</td>
+		<td width="12%">{maxbet-text}</td>
+		<td width="12%">{maxpermatch-text}</td>
+	</tr>
+	<tr class="bg_eb">
+		<td class="r">{soccer-text}</td>
+		<td>{minbet-val}</td>
+		<td>{maxbet-val}</td>
+		<td>{maxpermatch-val}</td>
+		<td class="r">{golf-text}</td>
+		<td>{minbet10-val}</td>
+		<td>{maxbet10-val}</td>
+		<td>{maxpermatch10-val}</td>
+	</tr>
+	<tr class="bg_eb">
+		<td class="r">{basket-text}</td>
+		<td>{minbet2-val}</td>
+		<td>{maxbet2-val}</td>
+		<td>{maxpermatch2-val}</td>
+		<td class="r">{moto-text}</td>
+		<td>{minbet11-val}</td>
+		<td>{maxbet11-val}</td>
+		<td>{maxpermatch11-val}</td>
+	</tr>
+	<tr class="bg_eb">
+		<td class="r">{football-text}</td>
+		<td>{minbet3-val}</td>
+		<td>{maxbet3-val}</td>
+		<td>{maxpermatch3-val}</td>
+		<!--none-Other-MinMaxBet-->
+		<td class="r">{othersports-text}</td>
+		<td>{minbet99-val}</td>
+		<td>{maxbet99-val}</td>
+		<td>{maxpermatch99-val}</td>
+		<!--/none-Other-MinMaxBet-->
+
+	</tr>
+	<tr class="bg_eb">
+		<td class="r">{tennis-text}</td>
+		<td>{minbet5-val}</td>
+		<td>{maxbet5-val}</td>
+		<td>{maxpermatch5-val}</td>
+		<!--none-Use-MinMaxBet-->
+		<td class="r">{mixsports-text}</td>
+		<td>{minbet99MP-val}</td>
+		<td>{maxbet99MP-val}</td>
+		<td>{maxpermatch99MP-val}</td>
+		<!--/none-Use-MinMaxBet-->
+
+	</tr>
+	<tr class="bg_eb">
+		<td class="r">{baseball-text}</td>
+		<td>{minbet8-val}</td>
+		<td>{maxbet8-val}</td>
+		<td>{maxpermatch8-val}</td>
+		<!--none-NumberGame-MinMaxBet-->
+		<td class="r">{numbergame-text}</td>
+		<td>{minbet161-val}</td>
+		<td>{maxbet161-val}</td>
+		<td>{maxpermatch161-val}</td>
+		<!--/none-NumberGame-MinMaxBet-->
+
+	</tr>
+	<!--/none-Mult-->
+	<!--none-Single-->
+	<tr class="bg_eb">
+		<td colspan="2" id="username"></td>
+	</tr>
+	<tr class="bg_eb">
+		<td width="15%" class="r"><input type="checkbox" name="chkUpdStatus" onclick="AllowUpdate(this);" id="chkUpdStatus"/> {status-text}</td>
+		<td class="l">{closed-text}<input type="checkbox" id="chkClosed" name="chkClosed" disabled onclick="ConfirmClosedMessage(this,0);"/></td>
+	<!--/none-edit-min-->
+	</tr>
+	<!--/none-Single-->
+</table>
+</div>
+</div>

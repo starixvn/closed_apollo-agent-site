@@ -1,0 +1,25 @@
+﻿.transferCondition
+{
+	min-width: 550px;
+	width: 550px;
+	float: none;
+}
+
+.line {
+    min-width: 550px;
+}
+
+.headerTab {
+    width: 550px;
+}
+
+.minWidthCustomer
+{
+	width: 550px;
+}
+
+#w20px
+{
+	width: 550px;
+	height: 20px;
+}

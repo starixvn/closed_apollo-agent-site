@@ -1,0 +1,77 @@
+﻿input.icon
+{
+	background-image: url(ui-icons.png);
+	width: 16px;
+	height: 16px;
+	border: 0 solid #000;
+	background-color: transparent;
+	cursor: pointer;
+	margin: 1px 2px 1px 2px;
+}
+
+#_PagingTop {
+    text-align: center;
+}
+
+input.pagingDisable
+{
+	background-image: url(ui-icons-disabled.png);
+	cursor: default;
+}
+
+input.pagingFirst
+{
+	background-position: -80px -160px;
+}
+
+input.pagingPrev
+{
+	background-position: -48px -160px;
+}
+
+input.pagingLast
+{
+	background-position: -64px -160px;
+}
+
+input.pagingNext
+{
+	background-position: -32px -160px;
+}
+
+input.pagingElementOver
+{
+	background-image: url(ui-icons-over.png);
+}
+
+input.pagingCurrent
+{
+	width: 40px;
+	margin: 1px 2px 1px 2px;
+	white-space: nowrap;
+	height:12px;
+	
+}
+
+div.pagingContainer
+{
+	text-align: center;
+	padding-top:3px;
+}
+
+div.pagingHiden
+{
+		display:none;
+		width:100%;
+	}
+
+span.pagingSeperator
+{
+	border-left: 1px solid #888;
+	filter: alpha(opacity=35);
+	-moz-opacity: .35;
+	-khtml-opacity: 0.35;
+	opacity: 0.35;
+	margin: 1px 4px 1px 4px;
+	width: 1px;
+}

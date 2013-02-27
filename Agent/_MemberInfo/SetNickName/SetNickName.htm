@@ -1,0 +1,33 @@
+﻿<div id="idnickname" style="z-index:1000;top:32px; left:180px;display:none" onmouseover="StopTimer();" onmouseout="HideForm(3000);">
+    <div class="iconUser"></div>
+    <div class="nickname">
+        <div class="bg">
+            <div class="loginOption float_l">{static:Resources.Lang.loginOptions}</div>
+            <div class="float_r" style="padding:3px 3px"><img src="Resources/close_icon.png" width="16px" height="16px" onclick="return CloseFormNickName();" style="cursor: pointer; border:0;"/></div>
+            <div class="clear"></div>
+            <div style="padding-left:17px;padding-top:30px">
+                <div class="float_l" style="width:165px">
+                    <div class="fontblack"><b>{static:Resources.Lang.nickname}</b></div>
+                    <div class="mt5"><input type="text" style="width:130px" onkeypress="return runValidNickName(event, '{msgValidNickName}');" id="textNickName" title="{msgValidNickName}" autocomplete="off" value="{NickName}" {NickNameReadOnly} maxlength="15" /></div>
+                </div>
+                <div class="float_l" style="width:260px">
+                    <div><label><input type="radio" name="username" id="chkUserName" {IsCheckedUserNameNickName}/> {static:Resources.Lang.usernameOrNickname}</label></div>
+                    <div class="mt5"><label><input type="radio" name="username" id="chkNickName" {IsCheckedNickName}/> {static:Resources.Lang.nicknameOnly}</label></div>
+                </div>
+                <div class="clear"></div>
+                <div style="padding-top:10px">{static:Resources.Lang.msgNicknameOnly}</div>
+            </div>
+
+            <div class="float_l" style="width:365px;padding-top:10px">
+                <div class="bg_arrow float_l">
+                    <div id="loading" class="loading" style="display:none; margin-top:10px; margin-left:5px"></div>
+                    <div id="msgError" class="error" style="display:none;"></div>
+                </div>
+                <div class="arrow float_l"></div>
+            </div>
+            <div class="mt5 float_r" style="padding-right:7px; padding-top:13px">
+                <button type="submit" onclick="return ValidNickName('{msgValidNickName}');">{static:Resources.Lang.submit}</button>
+            </div>
+        </div>
+    </div>
+</div>

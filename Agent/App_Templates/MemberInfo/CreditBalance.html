@@ -1,0 +1,137 @@
+{StyleSheet}
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<div id="page_main">  
+<!--/excel-export--> 
+<div id="header_main">
+<!--limit-agentlist-->
+<a href="{url-agentlist}">{agentlist}</a> |
+<!--/limit-agentlist-->
+<!--limit-customerlist-->
+<a href="{url-list}">{customerlist}</a>
+<!--/limit-customerlist--> |
+<!--limit-creditbalance-->
+<a href="{url-credit}">{creditbalance}</a>
+<!--/limit-creditbalance-->
+<!--limit-position-taking-->
+| <a href="{url-position}">{positiontaking}</a>
+<!--/limit-position-taking-->
+<!--print-function-->{printer}<!--/print-function-->
+</div>
+
+<!--limit-allowtransfer-->
+<div id="box_header" style="width:100%">
+    <!--search-head-section-->
+        <table class="l" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td id="tdfdatetext" style="padding-top:6px" class="l"><span>&nbsp;{lbl_username}:</span></td>
+                <td id="tdfdatetext" style="padding-top:6px" class="l"><input type="text" class="{classStyle}" autocomplete="off" name="txtUserName" id="txtUserName" style="width:145px;" value="{previous_value}" onkeypress="return KeyPress2(event);" onkeydown="onclickUser('{enterusername}')" onclick="onclickUser('{enterusername}')" onblur="onblurUser('{enterusername}')"  /></td>
+                <td style="padding-top:6px"></td>
+                <td style="padding-top:6px"></td>
+            </tr>
+            <tr>
+                <td style="padding-top:6px; padding-bottom:6px;"><span>&nbsp;{lbl_status}:</span></td>
+                <td style="padding-top:6px; padding-bottom:6px;">
+                <div style="width:80px; float:left;">
+                    <select style="width: 80px;" id="statusFilter" name="open" style="font-size:8pt; font-weight:normal;">
+                        <option value="0" {all-select}>{all}</option>
+                        <option value="1" {active-select}>{active}</option>
+                        <option value="2" {suspended-select}>{suspended}</option>
+                        <option value="3" {closed-select}>{closed}</option>
+                        <option value="4" {disabled-select}>{disabled}</option>
+                    </select>
+                    </div>
+                     <div style="width:65px; float:right; text-align:right">
+                    <input id="dSubmit" type="button" value="{label_submit}" class="btn" style="width:55px;" style="width:55px;" onclick="{search_by_username}" onmouseout="this.className='btn';" onmouseover="this.className='btnhover';" />
+                    </div>
+                </td>
+                <td style="padding-top:6px; padding-bottom:6px;">
+                    
+                </td>
+                <td><div id="loading" style="float:right" class="fl"></div></td>
+            </tr>
+            <!--allowtransfer-section-->
+            <tr>
+                <td colspan="4">
+                    <span class="warning"><ul><li>{allowtransfer}</li></ul></span>
+                </td>
+            </tr>
+            <!--/allowtransfer-section-->
+        </table>
+    <!--/search-head-section-->
+</div> 
+<!--/limit-allowtransfer-->
+
+ <div id="tbl-container">
+ <!-- print-style-sheet -->{printcss}<!-- /print-style-sheet -->
+ <div id="boderRight">
+ <table id="tbl-rpt" class="tblRpt nowrap r" cellpadding="0" cellspacing="{cellspacing}" style="width:100%;">
+   <thead>
+            <!--limit-header-->
+            <tr>
+                <td class="RptHeader">{no}</td>
+                <td class="RptHeader">{status}</td>
+                <td class="RptHeader">{username}</td>
+                <td class="RptHeader">{firstname}</td>
+                <td class="RptHeader">{lastname}</td>
+                <td class="RptHeader">{credit}</td>
+                <td class="RptHeader">{balance}</td>
+                <td class="RptHeader">{yesbalance}</td>
+                <td class="RptHeader">{betcredit}</td>
+                <td class="RptHeader">{outtxn}</td>
+                <td class="RptHeader">{memberturnover}</td>
+                <td class="RptHeader" style="width:110px;">{lastlogin}</td>
+                <td class="RptHeader">{lastloginip}</td>
+                <td class="RptHeader">{username}</td>
+            </tr>
+            <!--/limit-header-->
+            </thead>
+           <tbody>
+            <!--limit-content-->
+            <tr bgcolor="{color}" onmouseover="bgColor='{overcolor}'" onmouseout="bgColor='{color}'">
+                <td class="w-order">{no_value}</td>
+                <td class="c">{status_value}</td>
+                <td class="l">
+                    <!--limit-url-agent--><a href="{url_value}">{username_value} </a><!--/limit-url-agent-->
+                    <!--limit-url-master-super-->{username_value}<!--/limit-url-master-super-->
+                </td>
+                <td class="l">&nbsp;{firstname_value}</td>
+                <td class="l">&nbsp;{lastname_value}</td>
+                <td>
+                    <!--permission-url-credit--><a href="javascript:void('');" onclick="openTransfer('{custid}','{credit_value}','{usn}','{sitelist}');return false;">{credit_value}</a><!--/permission-url-credit-->
+                    <!--permission-credit-->{credit_value}<!--/permission-credit-->
+                </td>
+                <td><!--limit-link-agent-->&nbsp;<a href="javascript:void('');" onclick="showTransYesBalance('{custid}');">{balance_value}</a><!--/limit-link-agent--></td>
+                <td><!--limit-yes-agent--><a href="javascript:void('');" onclick="showTransYesBalance('{custid}');">{yesbalance_value}</a><!--/limit-yes-agent--></td>
+                <td>&nbsp;{betcredit_value}</td>
+                <td>
+                    <!--limit-url-link-out--><a href="{url_outtxn}">{outtxn_value}</a><!--/limit-url-link-out-->
+                    <!--limit-url-out-->{outtxn_value}<!--/limit-url-out-->
+                </td>
+                <td>{memberturnover_value}</td>
+                <td class="bl_time">&nbsp;{lastlogin_value}</td>
+                <td class="bl_time">&nbsp;{lastloginip_value}</td>
+                <td class="l">
+                    <!--limit-url-agent--><a href="{url_value}">{username_value} </a><!--/limit-url-agent-->
+                    <!--limit-url-master-super-->{username_value}<!--/limit-url-master-super-->                
+                </td>
+            </tr>
+            <!--/limit-content-->
+            
+            </tbody>
+       </table>
+ </div>
+</div><!--/excel-export-->
+<!--limit-footer-->
+{pagenevigator}
+<!--/limit-footer-->
+<input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" />             
+<input type="hidden" id="isAgentSite" name="isAgentSite" value="{isAgentSite}" />
+<input type="hidden" value="{cus}" name="hdcus" id="hdcus" />
+<input type="hidden" value="{search}" name="hdsearch" id="hdsearch" />
+<input type="hidden" value="{totalpages}" name="hdtotalpages" id="hdtotalpages" />
+</div>
+</td>
+</tr>
+</table>

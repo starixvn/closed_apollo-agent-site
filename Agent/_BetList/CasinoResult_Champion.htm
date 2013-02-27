@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>{static:Resources.Lang.handhistorydetail}</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table id="casino-betlist-a" style="width: 100%;">
+        <!--content-->
+        <thead>
+            <tr>
+                <th colspan="6" class="hd2 b">
+                    <span>{tablename} - {datetime}</span>
+                </th>
+            </tr>
+        </thead>
+        <tr class="b">
+            <td colspan="6" align="center">
+                {Player}: {UserName}
+            </td>
+        </tr>
+        <tr class="th b">
+            <td class="c" colspan="6">
+                {Result}
+            </td>
+        </tr>
+        <tr class="">
+            <td colspan="6" class="c">
+                {result_vl}
+            </td>
+        </tr>
+        <tr>
+            <td class="b c">
+                {historyNo}
+            </td>
+            <td class="l" colspan="5">
+                {historyNo_vl}
+            </td>
+        </tr>
+        <tr>
+            <td class="b c">
+                {mode}
+            </td>
+            <td class="l" colspan="5">
+                {mode_vl}
+            </td>
+        </tr>
+        <tr>
+            <td class="b c">
+                {autoSpin}</td>
+            <td class="l" colspan="5">
+                {autoSpin_vl}</td>
+        </tr>
+        <tr>
+            <td class="b c">
+                {freeSpin}
+            </td>
+            <td class="l" colspan="5">
+                {freeSpin_vl}
+            </td>
+        </tr>
+        <!--lineNo-->
+        <tr class="hd2 b">
+            <td class="c">
+                {lineNo}
+            </td>
+            <td class="c">
+                {symbol}
+            </td>
+            <td class="c">
+                {coinSize}
+            </td>
+            <td class="c">
+                {bet}
+            </td>
+            <td class="c">
+                {odds}
+            </td>
+            <td class="c">
+                {win}
+            </td>
+        </tr>
+        <!--/lineNo-->
+        <!--lineNoRow-->
+        <tr class="">
+            <td class="c" style="vertical-align: middle">
+                {lineNo_vl}
+            </td>
+            <td class="c" style="vertical-align: middle">
+                {symbol_vl}
+            </td>
+            <td class="c" style="vertical-align: middle">
+                {coinSize_vl}
+            </td>
+            <td class="c" style="vertical-align: middle">
+                {bet_vl}
+            </td>
+            <td class="c" style="vertical-align: middle">
+                {odds_vl}
+            </td>
+            <td class="c" style="vertical-align: middle">
+                {win_vl}
+            </td>
+        </tr>
+        <!--/lineNoRow-->
+        <!--totalLine-->
+        <tr class="b">
+            <td class="c">
+                {totalLineBet}
+            </td>
+            <td class="r" colspan="5">
+                {totalLineBet_vl}
+            </td>
+        </tr>
+        <!--/totalLine-->
+        <!--jackPotBlock-->
+        <tr class="b">
+            <td class="c" colspan="6">
+                {jackPot}
+            </td>
+        </tr>
+        <tr class="b">
+            <td class="c">
+                {jackPotTitle}
+            </td>
+            <td class="r" colspan="5">
+                {jackPot_vl}
+            </td>
+        </tr>
+        <tr class="b">
+            <td class="c" colspan="6">
+                &nbsp;
+            </td>
+        </tr>
+        <!--/jackPotBlock-->
+        <!--total-->
+        <tr class="th b">
+            <td class="l">
+                {totalBet}
+            </td>
+            <td class="r" colspan="5">
+                {totalBet_vl}
+            </td>
+        </tr>
+        <tr class="th b">
+            <td class="l">
+                {winloss}
+            </td>
+            <td class="r" colspan="5">
+                {winloss_vl}
+            </td>
+        </tr>
+        <!--/total-->
+        <!--/content-->
+        <!--NoInfo-->
+        <tr class="no_info">
+            <td colspan="6" class="c">
+                {static:Resources.Lang.noInfo}
+            </td>
+        </tr>
+        <!--/NoInfo-->
+    </table>
+</body>
+</html>

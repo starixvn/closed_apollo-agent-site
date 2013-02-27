@@ -1,0 +1,95 @@
+<!--nobackground-->
+<style type="text/css">
+    body
+    {
+        background: #f2f4f6 url(../App_Themes/AgencyV2/Images/bg_conts.jpg) repeat-x top;
+        background-color: #f5f6f8;
+        background-attachment: fixed;
+    }
+    #header_popup
+    {
+        height: 22px;
+        background: url(../App_Themes/AgencyV2/Images/bg_header01.jpg) no-repeat left bottom;
+        color: #9d1c1c;
+        font-weight: bold;
+        padding-left: 15px;
+        text-transform: uppercase;
+        line-height: 18px;
+    }
+</style>
+<!--/nobackground-->
+<form id="frmchange" method="post">
+<div id="page_popup">
+    <table width="350px" align="{tblalign}" cellpadding="0" cellspacing="1" border="0" style="position: relative; top: -3px;">
+        <tr>
+            <td class="l">
+                <div id="header_popup">
+                    {username}</div>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                {error-template}
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <table width="100%" align="center" cellpadding="0" cellspacing="1" border="0" class="tblRpt">
+                    <!--nobackground-->
+                    <tr class="RptHeader">
+                        <td colspan="2" align="center">
+                            {changepass}
+                        </td>
+                    </tr>
+                    <!--/nobackground-->
+                    <tr class="bg_eb2">
+                        <td class="r" style="width: 160px;">
+                            {password}:
+                        </td>
+                        <td id="td_pass" class="l" title="{errmsgpassvalidate}">
+                            <input type="password" id="pw" name="pw" onkeyup="checkpass(this,'td_pass');" />
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td class="r" style="width: 160px;">
+                            {confirmpassword}:
+                        </td>
+                        <td id="td_confirmpass" class="l" title="{errmsgpassvalidate}">
+                            <input type="password" id="cpw" name="cpw" onkeyup="checkpass(this,'td_confirmpass');" />
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2 c">
+                        <td colspan="2">
+                            <input type="submit" id="btnSubmit" value="{submit}" onclick="return ChangePass('{custid}');" class="btn" />
+                            &nbsp;
+                            <input type="button" id="btnCancel" value="{cancel}" onclick="$('pw').focus(); doCancel();" class="btn" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" id="errmsgOldPass" name="errmsgOldPass" value="{errmsgoldpass}" />
+    <input type="hidden" id="errmsgPassEmpty" name="errmsgPassEmpty" value="{errmsgpassempty}" />
+    <input type="hidden" id="errmsgCofirmPassEmpty" name="errmsgCofirmPassEmpty" value="{errmsgconfirmpassempty}" />
+    <input type="hidden" id="errmsgErrConfirm" name="errmsgErrConfirm" value="{ermsgconfirm}" />
+    <input type="hidden" id="errmsgPassValidate" name="errmsgPassValidate" value="{errmsgpassvalidate}" />
+    <input type="hidden" id="succmsg" name="succmsg" value="{succmsg}" />
+</div>
+</form>
+<style type="text/css">
+    html
+    {
+        overflow: none;
+    }
+</style>
+
+<script type="text/javascript">
+    document.body.scroll = "no";
+    document.body.style.overflow = "hidden";
+</script>
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h2 class="h2">新增会员</h2>
+<p><span class="rpt-head1">定义:</span></p>
+这个功能让代理新增一个会员, 然后编辑其佣金, 投注设定及对该会员的占成数。<br>
+当我们打开新增会员功能, 新增会员页面将显示适用于所有运动类别的简易模式。但我们能点击完全模式按钮以更换成完全模式。<br>
+<ul><li>简易模式: 所有运动类别具有相同的设置.</li></ul>
+<p><center>
+<img src="images/addnewSB_SimpleMode.png"/><br />
+<em>新增会员 - 简易模式</em>
+</center><p>
+<ul><li>完全模式:
+
+    个别运动类型的设置.</li></ul>
+<p><center>
+<img src="images/addnewSB_Fullmode.png" /><br />
+<em>新增会员 - 完全模式</em>
+</center><p>
+<p><span class="rpt-head1">如何?</span></p>
+为了实现创建一个新的会员, 您必须填写:<br>
+<ul>
+<li>会员资料登记.<br></li>
+<li> 佣金设置.<br></li>
+<li> 投注设定.<br></li>
+<li>占成数设定.</li>
+</ul>
+<p><span class="rpt-head1">会员资料登记</span></p>
+这是填写会员的所需的资料。 在这个形式中, 以下几点值得关注:<br>
+<ul>
+<li>会员最高信用额不能大于代理的最高信用额。代理的会员最高信用额度由上线设置。</li>
+<li>有8组会员: a, b, c, d, hka, hkb, hkc, hkd。不同组别代表不同的会员佣金设置。</li>
+<li>密码必须至少6个字符, 包括2个号码和2个数字。</li>
+<li>若您的状态为暂停, 那么您的会员状态同样为 "暂停", 这意味着他/她无法投注。</li>
+<li>若您的状态为关闭, 那么您的所有会员状态也将会关闭。</li>
+<li>若您的状态不是暂停, 那么您可以随时修改您的会员状态为暂停。</li>
+<li>若您更改会员状态为关闭那么他/她将无法登陆会员网进行投注。</li>
+</ul><p><center>
+<img src="images/MemberInformation.png"/><br />
+<em>会员资料</em>
+</center><p>
+<p><span class="rpt-head1">佣金设置:</span></p>
+这是为了设定会员折扣, 只需从下拉列表中选取一个折扣值, 记得会员折扣不能大于代理折扣。
+<p><center>
+<img src="images/CommisionSetting.png" /><br />
+<em>佣金设置</em>
+</center><p>
+用词注解:<br>
+<ul>
+<li>代理佣金: 亚洲盘, 大小盘, 单双: 由上线设定的代理折扣适用于亚洲盘,大小盘及单双的投注类别。<br></li>
+公式: 代理佣金 = 投注额 * 代理折扣 * 上线占成<br>
+<li>会员佣金: 亚洲盘, 大小盘, 单双: 由代理设定的会员折扣适用于亚洲盘,大小盘及单双的投注类别。<br></li>
+    公式: 会员佣金 = 投注额 * 会员折扣</ul><p><span class="rpt-head1">投注设定:</span></p>
+此设定将限制会员投注金额, 若违反规定那么警告信息将出现通知会员。必须注意的是最低投注 < 最高投注 < 单场限额.
+<p><center>
+<img src="images/BetSetting.png"/><br />
+<em>投注设定</em>
+</center><p><span class="rpt-head1">定义:</span></p>
+<ul>
+<li>最低投注: 每张注单会员必须投注的最低金额.</li>
+<li>最高投注: 每张注单会员能够投注的最高金额.</li>
+<li>单场限额: 每场比赛会员能够投注的最高金额.</li>
+</ul>
+备注: 不同条目/队名将被视为另一场赛事。
+<br />
+例如, 以下赛事都将被视为不同的赛事或个别的项目。
+<br />
+a) 西班牙 (中 ) -vs- 荷兰 [2010 FIFA南非世界杯 ]<br />
+b) 西班牙 00:00-15:00 -vs- 荷兰 00:00-15:00 [2010 FIFA南非世界杯 - 特定 15 分钟大小]<br />
+c) 西班牙 15:01-30:00 -vs- 荷兰 15:01-30:00 [2010 FIFA南非世界杯 - 特定 15 分钟大小]<br />
+即使联赛名称相同, 但由于不同的队伍名称, 上述条件仍然适用。
+<p><span class="rpt-head1">占成数设定:</span></p>
+这个设定将决定您对会员投注额的输赢数额。我们可以在完全模式内定义不同的设置于个别运动类别。
+<p><center>
+<img src="images/PTSetting.png" /><br />
+<em>占成数设定</em>
+</center>
+完成所有这些步骤之后, 系统将引导您进入下一个页面以更新赛马及娱乐城设置。
+<p><span class="tille_new">更新赛马的设置 </span></p>
+<p>会员必须被启动赛马方能对赛马进行投注。<center>
+<img src="images/AddNewHR.png"/><br />
+<em>赛马</em>
+</center>
+<p><span class="tille_new">更新娱乐城的设置 </span></p>
+<p>会员必须被启动娱乐城方能进行娱乐城游戏。<center>
+<img src="images/AddNewCasino.png" /><br />
+<em>娱乐城</em>
+</center>
+<p><span class="rpt-head1">用词注解:</span></p>
+
+<li>非滚球: 这个选项的占成数适用于预定中的赛事投注。
+
+    <li>滚球: 这个选项的占成数适用于现场赛事的投注。<li>
+    累计转移金额: 包括今日输赢的能够被调动总额, 这个值能手动式被重设或每天中午时分自动重设。
+    <li>最高调动信用额 : 能够调动至娱乐城的最高数额. 这个值必须归类于从0到信用额度及设定"无限制"为默认。
+    <li>娱乐城投注限制: 此值为会员设置, 也将限制每场游戏的投注额度。在游戏进行前会员将会有几个选项以选择负担得起的投注范围。<p>
+        注: 累计转移金额 = 最高调动信用额 + 今日输赢</p>
+    <p>
+        &nbsp;</p>
+</body>
+</html>

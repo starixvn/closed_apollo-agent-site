@@ -1,0 +1,260 @@
+{StyleSheet}
+<div id="page_main">
+<div id="header_main">{lblMasterList}
+<!--print-function-->{printer}<!--/print-function-->
+</div>
+
+<script type="text/javascript">
+    var callerIsSuspended = {callerIsSuspended};
+    var callerIsAllowOutright = {callerIsAllowOutright};
+
+    AGE.addEvent(window, 'load', function(){
+        InitFrmUpdStatus();
+        InitTagSuggestion();
+        }
+    );
+</script>
+
+<div style="display: none;">
+    <span id="txtOpen">{open}</span>
+    <span id="txtClosed">{closed}</span>
+    <span id="txtSuspended">{suspended}</span>
+    <span id="txtClose">{close}</span>
+    <span id="txtSuspend">{suspend}</span>
+    <span id="txtOutright">{outright}</span>
+    <span id="txtAllowNumberGame">{allowNumberGame}</span>
+    <input type="hidden" id="isDisableNumberGameStatus" name="isDisableNumberGameStatus" value="{isDisableNumberGameStatus}"/>
+    <input type="hidden" id="isDisableP2P" name="isDisableP2P" value="{isdisablep2p}"/>
+</div>
+
+<div id="mContent"  style="padding-bottom:15px;">
+<table id="mainTbl" align="left" border="0" cellpadding="0" cellspacing="0" width="99%">
+    <tr>
+        <td>
+             <span id="diverr" style="display: none;">
+                <table border="0" cellpadding="0" cellspacing="0" width="500px">
+                    <tr>
+                        <td class="emsg_1_1">&nbsp;</td>
+                        <td class="emsg_1_2">&nbsp;</td>
+                        <td class="emsg_1_3">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" class="emsg_2_1">&nbsp;</td>
+                        <td valign="top" id="err" class="msgerr" style="line-height: 20px">&nbsp;</td>
+                        <td class="emsg_2_2">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="emsg_3_1">&nbsp;</td>
+                        <td class="emsg_3_2">&nbsp;</td>
+                        <td class="emsg_3_3">&nbsp;</td>
+                    </tr>
+                </table>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+                <div id="box_header" style="width:100%">
+                    <!--search-head-section-->
+                        <table class="l" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td id="tdfdatetext" style="padding-top:6px" class="l"><span>&nbsp;{lbl_username}:</span></td>
+                                <td id="tdfdatetext" style="padding-top:6px" class="l"><input type="text" class="{classStyle}" style="width:145px;" name="txtUserName" id="txtUserName" value="{previous_value}" onkeypress="return KeyPress2(event);" onkeydown="onclickUser('{enterusername}')" onclick="onclickUser('{enterusername}')" onblur="onblurUser('{enterusername}')"  /></td>
+                                <td style="padding-top:6px"></td>
+                                <td style="padding-top:6px"></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top:6px; padding-bottom:6px;"><span>&nbsp;{lbl_status}:</span></td>
+                                <td style="padding-top:6px; padding-bottom:6px;">
+                                <div style="width:80px; float:left;">
+                                    <select style="width: 80px;" id="statusFilter" name="open" style="font-size:8pt; font-weight:normal;">
+                                        <option value="0" {all-select}>{all}</option>
+                                        <option value="1" {active-select}>{active}</option>
+                                        <option value="2" {suspended-select}>{suspended}</option>
+                                        <option value="3" {closed-select}>{closed}</option>
+                                        <option value="4" {disabled-select}>{disabled}</option>
+                                    </select>
+                                    </div>
+                                    <div style="width:65px; float:right; text-align:right">
+                                    <input id="dSubmit" type="button" value="{label_submit}" class="btn" style="width:55px;" style="width:55px;" onclick="{search_by_username}" onmouseout="this.className='btn';" onmouseover="this.className='btnhover';" />
+                                    </div>
+                                </td>
+                                <td style="padding-top:6px; padding-bottom:6px;">
+
+                                </td>
+                                <td><div id="loading" style="float:right" class="fl"></div></td>
+                            </tr>
+                        </table>
+                    <!--/search-head-section-->
+                </div>
+
+            <div id="tbl-container">
+                <!-- print style sheet -->{printcss}<!-- /print style sheet -->
+               <div id="boderRight">
+                  <table class="tblRpt r nowrap" cellpadding="0" cellspacing="{cellspacing}" style="width:100%;"  id="tbl-rpt">
+                   <thead >
+                    <tr class="RptSubTitle" id="rowTitle">
+                        <!--limit-space-->
+                        <td colspan="{colspan1}">&nbsp;</td>
+                        <!--/limit-space-->
+                        <!--limit-edit-->
+                        <td class="bgNormal" style="width: 20px;">
+                            <div onclick="{function_name_multi}('{custid_upline}');" class="btnEdit" onmouseover="HoverPen(this,1);"
+                                onmouseout="HoverPen(this,0);" />
+                        </td>
+                        <!--limit-->
+                        <td colspan="{colspan2}">&nbsp;</td>
+                        <!--/limit-->
+                        <!--/limit-edit-->
+                        <td colspan="{colbeforeCreate}" class="RptHeader01">{commission}</td>
+                        <td colspan="4">&nbsp;</td>
+                    </tr>
+                    <!--Limit-Header-->
+                    <tr class="RptHeader" {boder-top} >
+                        <td>{no}</td>
+                        <td>{username}</td>
+                        <td>{status}</td>
+                        <!--limit-edit-->
+                        <td><input type="checkbox" id="chkall" onclick="CheckAll();" /></td>
+                        <!--/limit-edit-->
+                        <!--edit-HR-->
+                        <td style="width:60px;">{horseracing}</td>
+                        <!--/edit-HR-->
+                        <!--casino-->
+                        <td style="width:60px;">{lblCasino}</td>
+                        <!--/casino-->
+                        <!--edit-P2P-->
+                        <td style="width:60px;">{lblP2P}</td>
+                        <!--/edit-P2P-->
+
+                        <!--bingo-->
+                        <td style="width:60px;">{lblBingo}</td>
+                        <!--/bingo-->
+
+                        <!--limit-edit-->
+                        <td style="white-space: nowrap;">{minposition}</td>
+                        <!--/limit-edit-->
+                        <!--limit-transfer-->
+                        <td>{transfer}</td>
+                        <!--/limit-transfer-->
+                        <td>{password}</td>
+                        <td>{member}</td>
+                        <td>{firstname}</td>
+                        <td>{lastname}</td>
+                        <td style="white-space: nowrap;">{group} A</td>
+                        <td style="white-space: nowrap;">{group} B</td>
+                        <td style="white-space: nowrap;">{group} C</td>
+                        <td style="white-space: nowrap;">{group} D</td>
+                        <td style="white-space: nowrap;">{1x2group}</td>
+                        <td>{other}</td>
+                        <!--disable-number-game-->
+                        <td>{lblGame}</td>
+                        <!--/disable-number-game-->
+                        <td align="center" style="width:110px;"><div style="display:block; width:110px;">{createdate}</div></td>
+                        <td style="width:70px;">{lastloginip}</td>
+                        <td>{username}</td>
+                    </tr>
+                    <!--/Limit-Header-->
+                    </thead>
+                    <tbody>
+                    <!--Limit-Content-->
+                    <tr align="center" bgcolor="{color}" onmouseover="bgColor='{overcolor}'" onmouseout="bgColor='{color}'" statusCS="{statusCS}">
+                        <td class="w-order">{no_value}</td>
+                        <td class="l"><!--limit-master--><a href="{url_link}">{username_value}</a><!--/limit-master--><!--no-link-->{username_value}<!--/no-link--></td>
+                        <td style="white-space: nowrap;">
+                            <!--limit-open-status-->
+                            <a href="javascript:{function_name_single}('{custid_value}', '{username_value}','{custid_upline}')" title="{status_value}">{status_value}</a>
+                            <!--/limit-open-status-->
+                            <!--litmit-edit-status-->
+                            &nbsp;<span style="cursor: pointer" onclick="ShowFrmUpdStatus(this, {custid_value}, {isClosed}, {isSuspended}, {isAllowNumber} , false, {isOutright},'{username_value}')"
+                                class="arrow1" title="{status}">&nbsp;&nbsp;&nbsp;</span>
+                            <!--/litmit-edit-status-->
+                        </td>
+                        <!--limit-edit-->
+                        <td><input name="chkid" value="{chkid_value}" onclick="chkChecked(this);" type="checkbox" statusCS="{statusCS}" /></td>
+                        <!--/limit-edit-->
+                        <!--edit-HR-->
+                        <td style="width:60px;"><div id="divHR_{custid_value}" class="{divHR}" style="cursor: pointer;" title="Edit" onclick="CustomerEditHR('{custid_value}',{roleid_val},'{actionOn}',0);" /></td>
+                        <!--/edit-HR-->
+
+                        <!--casino-->
+                        <td style="width:60px;"><div class="{divOp}" style="cursor: pointer;" title="{editCS}"  onclick="EditCS('{custid_value}');" /></td>
+                        <!--/casino-->
+
+                         <!--no-casino-->
+                        <td style="width:60px;"><div class="{divOp}" style="cursor: default" title="{editCS}" /></td>
+                        <!--/no-casino-->
+                        <!--no-p2p-->
+                        <td style="width: 60px;">
+                            <div class="{divOpP2P}" style="cursor: pointer" title="{editP2P}" onclick="EditP2P('{custid}', '{roleid}', '{username}');" />
+                        </td>
+                        <!--/no-p2p-->
+
+                        <!--bingo-->
+                        <td style="width:60px;"><div class="{divOpBG}" style="cursor: pointer;" title="{editBG}"  onclick="EditBG('{custid_value}');"></div></td>
+                        <!--/bingo-->
+
+                        <!--no-bingo-->
+                        <td style="width:60px;"><div class="{divOpBG}" style="cursor: default" title="{editBG}" /></td>
+                        <!--/no-bingo-->
+
+                        <!--limit-edit-->
+                        <td><div onclick="OpenEditMinMax('{custid_value}', '{username_value}')" class="divEdit" title="{edit}"></div></td>
+                        <!--/limit-edit-->
+
+                        <!--limit-transfer-->
+                        <td><div onclick="showTransferCondition('{custid_value}');" class="divEdit" title="{edit}"></div></td>
+                        <!--/limit-transfer-->
+
+                        <!--/limit-transfer-->
+                        <td><div onclick="showReset('{custid_value}','{username_value}')" class="divEdit" title="{edit}"></div></td>
+                        <td><a href="{url_view}" target="main" class="aView">{view}</a></td>
+                        <td class="l">{firstname_value}</td>
+                        <td class="l">{lastname_value}</td>
+                        <td>{groupA_value}</td>
+                        <td>{groupB_value}</td>
+                        <td>{groupC_value}</td>
+                        <td>{groupD_value}</td>
+                        <td>{group1x2_value}</td>
+                        <td>{other_value}</td>
+                        <!--disable-number-game-->
+                        <td>{numbergame_value}</td>
+                        <!--/disable-number-game-->
+                        <td class="bl_time">{createdate_value}</td>
+                        <td class="bl_time">{lastloginip_value}</td>
+                        <td class="l"><!--limit-master--><a href="{url_link}">{username_value}</a><!--/limit-master--><!--no-link-->{username_value}<!--/no-link--></td>
+                    </tr>
+                    <!--/Limit-Content-->
+
+                    <!--Limit-Not-Found-->
+                    <tr class="bg_white c"><td colspan="{numcol}" class="c" height="20" align="center">{noinfo}</td></tr>
+                    <!--/Limit-Not-Found-->
+                    </tbody>
+                </table>
+             </div>
+          </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="hidden" id="arrayCustID" name="arrayCustID" />
+            <input type="hidden" id="roleid" name="roleid" value="{roleid_val}" />
+            <input type="hidden" id="arrayUserName" name="arrayUserName" />
+            <input type="hidden" id="arrayStatus" name="arrayStatus" />
+            <input type="hidden" value="{totalpages}" name="hdtotalpages" id="hdtotalpages" />
+            <input type="hidden" value="{cus}" name="hdcus" id="hdcus" />
+            <input type="hidden" value="{search}" name="hdsearch" id="hdsearch" />
+        </td>
+    </tr>
+</table>
+</div>
+</div>
+<!--limit-footer-->
+<div style="clear:both">
+{pagenevigator}
+</div>
+                    <!--/limit-footer-->
+<div id="FrmUpd"></div>
+<div class="shadow" id="shadow" />
+<div class="output" id="output" />

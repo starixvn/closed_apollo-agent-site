@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.bingoPositionTaking}</title>
+    <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Reports/Resources/Reports.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/PositionTakingList.css" rel="stylesheet" type="text/css" />
+</head>
+<body onload="initContextMenu(0, 30)">
+<div id="page_main">
+<div id="header_main">
+    {static:Resources.Lang.bingoPositionTaking}		
+</div>
+<div id="tbl-container">
+ <div id="boderRight">
+    <div id="ctxContainer">{ContextMenu}</div>
+    <table id="tblMain" class="{ShowHideColumnClasses}"  border="1" cellpadding="2" cellspacing="0" style="width:50%;">
+        <!--header-->
+        <thead>
+        <tr id="headerTop" class="RptHeader">
+            <td colspan="{colNum}">&nbsp;</td>
+            <!--GameKind-->
+                <td class="{csShowHide}" {GameKindColSpan}>{lblGameKind}</td>
+            <!--/GameKind-->
+        </tr>
+        <tr id="headerBottom"> 
+            <td class="RptHeader">#</td>
+            <td class="RptHeader">{static:Resources.Lang.username}</td>	
+            <!--AdditionalRow-->
+            <td class="RptHeader">&nbsp;</td>
+		    <!--/AdditionalRow-->
+            <!--GameType-->
+                <td class="{csShowHide}" {GameTypeClass}>{lblGameType}</td>
+            <!--/GameType-->
+        </tr>
+        </thead>
+        <!--/header-->
+        <tbody>
+        <!--Rows-->
+        <tr class="{BgRow}">
+            <!--NonRepeat-->
+            <td class="w-order" {rowspan}>{No}</td>
+            <td {rowspan} class="l">
+	            <!--ViewDownLine-->
+	            <a href="javascript:ViewBG('{type}','{custid_value}','{UserName}')">{UserName}</a>
+	            <!--/ViewDownLine-->
+	            <!--EditMember-->
+	            <a href="javascript:EditBG('{custid_value}');">{UserName}</a>
+	            <!--/EditMember-->
+	        </td>
+	        <!--/NonRepeat-->
+	        <!--Role-->
+	        <td class="firstCol">{Role}</td>
+	        <!--/Role-->	
+            <!--RowData-->
+            <td class="{csShowHide}">{RowData}</td>
+            <!--/RowData-->            
+        </tr>
+        <!--/Rows-->
+        </tbody>
+    </table>
+ </div>
+</div>
+</div>
+    <script src="../../../_GlobalResources/Js/Core.js" type="text/javascript"></script>          
+    <script src="../../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+    <script src="../../../_Components/ShowHideColumn/Resources/ContextMenuColumns_Control.js" type="text/javascript"></script>
+    <script src="../Resources/PositionTakingList.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+/* CSS Document */
+/* indexpage */
+body {
+	margin: 0px;
+	font-family: Tahoma;
+	font-size: 11px;
+	overflow-x : hidden;
+	overflow-y : auto;
+	-webkit-text-size-adjust: none;
+}
+
+.login-btn{
+	font-size: 11px;
+	background-image: url(../../images/index/btn_icon.gif);
+	height: 23px;
+	width: 50px;
+	font-family: Tahoma;
+	color: #FFFFFF;
+	background-color: #FFFFFF;
+	background-position: left center;
+	padding-left: 18px;}
+	
+.text11_black{
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #333333;}
+	
+.div_login{display:inline;}
+
+.bg{background-image: url(../../images/index/bg.GIF);display:inline;}
+
+#TopMember {
+	float: left;
+	width: 200px;
+	padding-left: 25px;}
+
+#Copyright {
+	font-size: 11px;
+	color: #666666;
+	margin-right: 250px;
+	_margin-right: 150px;
+	float: right;
+	margin-bottom: 20px;}	
+	
+/* information page */	
+
+
+.text_11_GR{color: #999999;}	
+
+#information_logo{
+	background-image: url(../../images/info/top_01.jpg);
+	height: 62px;
+	width: 152px;
+	float: left;}
+#information_topbg{
+	background-image: url(../../images/info/bg.JPG);
+	height: 62px;
+	background-repeat: no-repeat;
+	background-position: left top;}
+#information_topmenu{
+	height: 28px;
+	position: relative;
+	visibility: visible;
+	width: 200px;
+	float: left;
+	top: 34px;
+	left: 48px;
+}
+
+.information_topmenu_1{
+	height: 18px;
+	position: absolute;
+	visibility: visible;
+	width: 334px;
+	float: left;
+	top: 41px;
+	left: 394px;*left: 430px;_left: 430px;
+}
+
+.information_topmenu_1 a:link{color: #000000;}
+.information_topmenu_1 a:visited{color: #000000;}
+.information_footer a:link{color: #000000;}
+.information_footer a:visited{color: #000000;}
+a:visited{color: #0000FF;}
+
+.information_topmenu_1 li{
+	display: inline;
+	font-family: Tahoma;
+	margin-left: 7px;
+}
+.information_topmenu_1 ul { margin: 0px;}
+
+.information_footer{
+	height: 16px;
+	position: absolute;
+	visibility: visible;
+	width: 254px;
+	float: left;
+	top: 14px;
+	left: 670px;
+}
+
+
+#information_text{
+	line-height: 20px;
+	color: #333333;
+	width: 500px;
+	margin-left: 20px;
+	margin-top: 10px;}
+
+#information_Head {
+	height: 57px;
+	width: 730px;
+	background-image: url(../../public/images/login_page/hd_bg.gif);
+	background-repeat: no-repeat;
+	clear: both;
+}
+	
+#path{width: 500px;margin-left: 10px;}
+
+#title_bg{
+	width: 500px;
+	margin-left: 20px;
+	font-size: 16px;
+	font-weight: 800;
+	color: #0f2b5f;
+	background-image: url(../../public/images/info/title_bg.JPG);
+	background-position: left bottom;
+	text-indent: 15px;
+	height: 25px;
+	background-repeat: no-repeat;
+	margin-top: 20px;}
+	
+#page_top a:link,a:visited{
+	/*color: #FF6600;*/
+	align: right;}
+	
+.text_box{
+	font-size: 12px;
+	position: absolute;
+	left: 100px;
+}
+	
+.Validatio_img{
+	position: absolute;
+	left: 250px;}
+	
+/* information page L-menu*/
+
+a { text-decoration: none } 
+
+#subnav_head{
+	background-image: url(../../public/images/info/menu_hard.GIF);
+	height: 33px;
+	width: 174px;
+}
+#subnav {
+	width: 164px;
+	background-image: url(../../public/images/info/menu_02.gif);
+	background-repeat: repeat-y;
+	background-position: left;
+	clip: rect(auto,20px,auto,auto);
+}
+
+#subnav #subnav-foot{
+	background-image: url(.../../public/images/info/subnav_foot.gif);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	width: 170px;
+	height: 6px;
+	clear: both;
+}
+#subnav h1{
+	background-image: url(../../public/images/info/sub_title01.gif);
+	background-repeat: no-repeat;
+	height: 39px;
+	width: 195px;
+	margin: 0px;
+	padding: 0px;
+
+}
+#subnav h1 span{ display:none;
+}
+
+#subnav a{
+	background-image: url(../../public/images/info/L_menu_button.gif);
+	background-repeat: no-repeat;
+background-position: 3px 0px;
+	padding-bottom: 0px;
+	padding-top: 2px;
+	_padding-top: 0px;
+	font-size:11px;
+	color: #022352;
+	font-weight: bold;
+	display: list-item;
+	list-style-type: none;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+
+}
+
+#subnav a:link, #subnav2 a:visited{
+	color: #022352 !important;
+	text-decoration: none;}
+	
+#subnav a:hover{
+	color: #FFFFFF !important;
+	background-image: url(../../public/images/info/L_menu_button.gif);
+	background-repeat: no-repeat;
+	background-position: 3px -75px;
+	cursor: hand;
+}
+	
+#subnav a span{
+	padding-left: 18px;
+	display:block;
+	/* height: 20px; */
+	padding-bottom: 3px;
+	padding-top: 1px;
+	_padding-top: 2px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #FFFFFF;
+	width: 140px;*width: 158px;_width: 158px;
+	margin-left: 5px;
+/*	text-indent: 10px; */
+}
+
+
+
+#subnav div.subnav-link {	}
+
+
+#subnav div.subnav-link a{
+	background-image: url(../../public/images/info/icon_dot.gif)!important;
+	background-repeat: no-repeat;
+	background-position: 27px 5px;
+	padding-bottom: 0px;
+	padding-top: 2px;
+	_padding-top: 0px;
+	font-size:11px !important;
+	color: #022352 !important;
+	/*list-style-type: disc;*/
+	font-weight: normal;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	left: 20px;
+}
+
+#subnav div.subnav-link a:link, #subnav div.subnav-link a:visited{
+	color: #666666 !important;
+	text-decoration: none;
+}
+	
+#subnav div.subnav-link a:hover{
+	color: #FF6600 !important;
+	background-repeat: no-repeat;}
+	
+#subnav div.subnav-link a span{
+	display:block;
+	border: 0px none #000000;
+	padding-bottom: 0px;
+	margin-left: 0px;
+	text-indent: 0px;
+	padding-left: 20px !important;
+}
+
+/*menu2 20090117*/
+
+#subnav div.subnav-menu2 a{
+	background-image: url(../../public/images/info/menu_04.gif)!important;
+	/*background-position: 27px 5px;*/
+	padding-bottom: 0px;
+	padding-top: 2px;
+	_padding-top: 0px;
+	font-size:11px !important;
+	font-weight: normal;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	left: 10px;
+	margin-left: 5px;
+	background-position: -5px bottom;
+}
+
+#subnav div.subnav-menu2 a:link, #subnav div.subnav-menu2 a:visited{
+	color: #386ab2 !important;
+	text-decoration: none;
+}
+	
+#subnav div.subnav-menu2 a:hover{
+	color: #FF6600 !important;
+	background-image: url(../../public/images/info/menu_04.gif)!important;
+	background-position: -5px bottom;
+}
+	
+#subnav div.subnav-menu2 a span{
+	display:block;
+	border: 0px none #000000;
+	padding-bottom: 5px;
+	text-indent: 0px;
+	padding-left: 13px !important;
+}
+
+/* information page L-banner*/
+#L-banner{
+	height: 337px;
+	width: 167px;
+	margin-right: 10px;
+}
+
+/*Open Account*/
+#Open_Account{
+	float: none;
+	width: 200px;
+}
+
+/*table*/
+#information_text table{
+	border-collapse:collapse;
+	/*width: 300px;*/
+}
+#information_text table td{
+	padding:3px;
+	border: 1px solid #999999;
+	background-color:#CCEDFF;
+}
+#information_text table th{
+	padding:3px;
+	border: 1px solid #999999;
+	background-color:#cccccc;
+	text-align: center;
+}
+#step_text{
+	line-height: 20px;
+	color: #333333;
+	width: 500px;
+	margin-left: 20px;	margin-top: 10px;}
+
+#step_text table{
+	border-collapse:collapse;
+	width: 300px;
+}
+
+
+/*new rr page*/
+
+h1 {
+	font-size: 13px;
+	font-weight: bold;
+	color: #006699;
+}
+
+h2 {
+	padding-left: 15px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #006699;
+}
+h3 {
+	padding-left: 43px;
+	font-weight: normal;
+	font-size: 11px;
+}
+h4 {
+	padding-left: 75px;
+	font-weight: normal;
+	font-size: 11px;
+}
+h5 {
+	padding-left: 125px;
+	font-weight: normal;
+	font-size: 11px;
+}
+h6 {
+	padding-left: 15px;
+	font-weight: normal;
+	font-size: 11px;
+}
+h7 {
+	font-size: 13px;
+	font-weight: bold;
+	color: #333;
+}
+
+.horse_table th{
+	text-align: center;
+	color: #333333!important;
+	background-color: #CCEDFF!important;
+	font-weight: bold;
+}
+.horse_table td{text-align: center;color: #666666;background-color: #eeeeee!important}
+
+/*20121016*/
+#information_text.luckyDraw{
+	width:95%;
+}
+.luckyDrawArea{
+	width:100%;
+}
+.ibclogo{
+	background: url(../images/luckyDrawHeader.jpg) no-repeat 0px 0px;
+	height:79px;
+	width:100%;
+}
+.luckyDrawContent{
+	padding-right:10px;
+}
+.footer{
+	padding: 10px 0;
+	width:100%;
+	background: #c7d1dd;
+	text-align: center;
+}
+#title_bg.luckyDrawT{
+	margin-left: 5px;
+	background-image:none;
+}
+.luckyDrawHeader{
+	width:100%;
+	height: 79px;
+	background: url(../../public/info/luckyDrawHeader_bg.png) repeat-x 0 0;
+}
+.headerPic{
+	height: inherit;
+	background: url(../images/luckyDrawHeader.jpg) no-repeat right 0;
+}
+.luckyDrawlogo{
+	width: 200px;
+	height: inherit;
+	background: url(../../public/layout/logo_nobg.png) no-repeat 20px 15px;
+}

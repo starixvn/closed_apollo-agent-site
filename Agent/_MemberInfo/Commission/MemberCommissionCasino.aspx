@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="MemberCommissionCasino.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.Commission.MemberCommissionCasino_Page" %>

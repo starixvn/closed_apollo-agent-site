@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>{static:Resources.Lang.handhistorydetail}</title>
+        <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+        <link href="Resources/BetList.css" rel="stylesheet" type="text/css" />    
+    </head>
+    <body>
+        <table id="casino-betlist-a" style="width: 100%;">
+            <thead>
+            <tr>
+                <th colspan="2" class="hd2 b">
+                    <span>{tablename} - {datetime}</span>
+                </th>
+            </tr>
+            </thead>
+            <tr class="th b">
+                <td colspan="2" align="center">
+                    {Player}: {UserName}
+                </td>
+            </tr>
+            <tr class="hd2 b">
+                <td class="c">
+                    {Result}
+                </td>
+                <td class="c">
+                    {Guess}
+                </td>        
+            </tr>
+            <!--Rows-->
+            <tr>
+                <td class="c">
+                    {Result_vl}
+                </td>
+                <td>
+                    {Guess_vl}
+                </td>
+            </tr>
+            <!--/Rows-->
+            <tr class="th">
+                <td class="b c">
+                    {PlayerHistoryNo}</td>
+                <td class="l">
+                    {PlayerHistoryNo_vl}</td>
+            </tr>
+            <tr class="th">
+                <td class="b c">
+                    {Odds}</td>
+                <td class="l">
+                    {Odds_vl}</td>
+            </tr>
+            <tr class="th b">
+                <td class="l">
+                    {bet}
+                </td>
+                <td class="r">
+                    {bet_vl}
+                </td>
+            </tr>
+            <tr class="th b">
+                <td class="l">
+                    {winloss}
+                </td>
+                <td class="r">
+                    {winloss_vl}
+                </td>
+            </tr>
+        </table>        
+    </body>
+</html>

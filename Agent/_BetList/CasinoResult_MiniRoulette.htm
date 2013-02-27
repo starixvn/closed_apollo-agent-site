@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.handhistorydetail}</title>
+    <link href="Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table id="casino-betlist-a" style="width: 100%">
+        <!--Content-->
+        <thead>
+            <tr>
+                <th colspan="3" class="c">
+                    {tableName} {static:Resources.Casino.at} {betTime}
+                </th>
+            </tr>
+        </thead>
+        <tr>
+            <td colspan="3" class="c b">
+                {static:Resources.Casino.Player}: {userName}
+            </td>
+        </tr>
+        <tr class="th b">
+            <td colspan="3" class="c">
+                {ResultName}
+            </td>
+        </tr>
+        <!--Result-->
+        <tr>
+            <td colspan="3" class="c">
+                {result}
+            </td>
+        </tr>
+        <!--/Result-->
+        <!--Result1-->
+        <tr>
+            <td class="c" style="vertical-align: middle">
+                {Result1}
+            </td>
+            <td colspan="2" class="c">
+                {Result1_vl}
+            </td>
+        </tr>
+        <!--/Result1-->
+        <tr class="hd">
+            <td class="c">
+                &nbsp;
+            </td>
+            <td class="th c b">
+                {Bet}
+            </td>
+            <td class="th b c">
+                {WinLoss}
+            </td>
+        </tr>
+        <!--Rows-->
+        <tr class="hd">
+            <td class="l">
+                {BetTypeName_vl}
+            </td>
+            <td class="r">
+                {Bet_vl}
+            </td>
+            <td class="r">
+                {WinLoss_vl}
+            </td>
+        </tr>
+        <!--/Rows-->
+        <!--Total-->
+        <tr class="hd">
+            <td class="l b">
+                {static:Resources.Casino.total}
+            </td>
+            <td class="b r">
+                {BetTotal}
+            </td>
+            <td class="b r">
+                {WinLossTotal}
+            </td>
+        </tr>
+        <!--/Total-->
+        <!--/Content-->
+        <!--NoInfo-->
+        <tr class="no_info">
+            <td colspan="3" class="c">
+                {static:Resources.Lang.noInfo}
+            </td>
+        </tr>
+        <!--/NoInfo-->
+    </table>
+</body>
+</html>

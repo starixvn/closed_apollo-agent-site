@@ -1,0 +1,31 @@
+<!--nobackground-->
+<style type="text/css">
+body
+{
+	background:#f2f4f6 url(../App_Themes/AgencyV2/Images/bg_conts.jpg) repeat-x top;
+	background-color:#f5f6f8;
+	background-attachment:fixed;	
+}
+#header_popup{	
+	height:22px;
+	background:url(../App_Themes/AgencyV2/Images/bg_header01.jpg) no-repeat left bottom;
+	color:#9d1c1c;
+	font-weight:bold;
+	padding-left:15px;
+	text-transform:uppercase;
+	line-height:18px;			
+}
+</style>
+<!--/nobackground-->
+
+<iframe name="frUpdate" frameborder="0" class="hidden" height="150px" width="800px">
+</iframe>
+<form name="fUpdateHR" id="fUpdateHR" action="../Handlers/{ControlHandler}"  target="frUpdate" method="post">
+    <input type="hidden" name="set" id="set" value="{fromSet}" />
+    <input type="hidden" name="type" id="type" value="{type}" />    
+    <input type="hidden" name="uname" id="uname" value="{username}" />    
+    <!--add new v2-->
+    
+        {content}
+    
+</form>

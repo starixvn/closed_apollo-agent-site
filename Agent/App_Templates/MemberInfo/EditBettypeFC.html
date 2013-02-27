@@ -1,0 +1,65 @@
+<table  style="width: 60%" class="sptPT">		
+	<tr>	
+		<td>		
+			<div id="divUpdPT{sportId}" name="divUpdPT{sportId}">
+				<table border="1" width="100%" class="tblRpt" bordercolor="#D4D0C8">        
+					<tr class="bg_eb">
+						<td style="width:13%;"></td>
+						<td class="c" style="width:150px;">{ou-text}</td>			
+                        <td class="c" style="width:150px;">{oe-text}</td>									    								
+						<td></td>
+					</tr>
+					<!--none-multi-->
+					<tr class="bg_eb">
+						<td class="right">{a-presetpt-text}</td>
+						<td class="c">{a-ou-val}</td>
+						<td class="c">{a-oe-val}</td>
+						<td></td>
+					</tr>
+					<!--/none-multi-->
+					<!--none-multi-master-->
+					<tr class="bg_eb"> 
+						<td class="right" style="width:10%">{m-presetpt-text}</td>
+						<td class="c">{m-ou-val}{m-ou-btn}</td>
+						<td class="c">{m-oe-val}</td>
+						<!--none-super-edit-member-->
+						<td rowspan="{copy-ou-col}" class="l">						    
+							<input type="checkbox" {chk-oe} id="chkCopy{sportId}OU" name="chkCopy{sportId}OU" onclick="CheckCopyPT(this,arrSuper{sportId});" />
+							{copy-ou-text}							
+						</td>
+						<!--/none-super-edit-member-->
+					</tr>
+					<!--/none-multi-master-->
+					<!--none_edit_MasterPT-->
+					<tr class="bg_eb">
+						<td class="right" style="width:10%">{p-presetpt-text}</td>
+						<td class="c">{p-ou-val}{p-ou-btn}</td>
+						<td class="c">{p-oe-val}</td>
+						<td rowspan="{copy-ou-col}" class="l">						    
+							<input type="checkbox" {chk-oe} id="chkCopy{sportId}OU" name="chkCopy{sportId}OU" onclick="CheckCopyPT(this,arrSuper{sportId});" />
+							{copy-ou-text}							
+						</td>
+					</tr>
+					
+					<tr class="bg_eb">
+						<td  rowspan="2" class="right">{au-presetpt-text}</td>
+						<td class="c">
+							<input type="checkbox" onclick="CheckAutoPreset(this)" id="chkAuto{sportId}OU" name="chkAuto{sportId}OU" {checked-ou}></input>
+						</td>	
+						<td class="c">
+							<input type="checkbox" onclick="CheckAutoPreset(this)" id="chkAuto{sportId}OE" name="chkAuto{sportId}OE" {checked-oe}></input>
+						</td>	
+						
+					</tr>
+					<tr class="bg_eb">						
+						<td class="c">{au-ou-val}{au-ou-btn}</td>
+						<td class="c">{au-oe-val}</td>
+						
+					</tr>
+					<!--/none_edit_MasterPT-->
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>
+

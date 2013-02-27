@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="EditTransferCondition.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.TransferCondition.EditTransferCondition_Page" %>

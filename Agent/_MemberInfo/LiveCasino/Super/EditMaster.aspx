@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="EditMaster.aspx.cs" Inherits="Fanex.Age.UI.LiveCasino.Super.EditMaster_Page" %>

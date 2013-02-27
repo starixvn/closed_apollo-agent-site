@@ -1,0 +1,21 @@
+<!--nobackground-->
+<link id="lnkNobackground" href='../../App_Themes/AgencyV2/userinfo.css' type='text/css' rel='stylesheet' />
+<!--/nobackground-->
+<iframe name="updateData" id="updateData" height="0" width="0" style="display: none"></iframe>
+<input type="hidden" id="hidEdit" name="hidEdit" value="1">
+<input type="hidden" id="saveControlDisabled" name="saveControlDisabled">
+<input type="hidden" id="maxMemberPT" name="maxMemberPT" value="0" />
+<form id="form" name="form" method="post" action="UpdateEditMaster.aspx?m=" target="updateData">
+<input type="hidden" id="saveCustid" name="saveCustid" value="{saveCustid}">
+<input type="hidden" id="saveUsername" name="saveUsername" value="{saveUsername}">
+<input type="hidden" id="saveStatus" name="saveStatus" value="{saveStatus}">
+<input type="hidden" id="isMult" name="isMult" value="{isMult}">
+<input type="hidden" id="isUpdateMember" name="isUpdateMember" value="0" />
+<input type="hidden" id="memberPT" name="memberPT" />
+{htmlEditMasterContent}
+</form>
+
+<script type="text/javascript">
+    window.onload = GetCustID;
+</script>
+

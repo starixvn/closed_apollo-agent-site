@@ -1,0 +1,20 @@
+﻿<!--HiddenBlock-->
+<link href="Resources/Announcement.css" rel="stylesheet" type="text/css" />
+<!--/HiddenBlock-->
+<div id="popup_container" style="width: {width}px; top: {top}px; left: {left}px">
+    <iframe frameborder="0" allowtransparency="yes" marginheight="0" marginwidth="0" scrolling="no" src='{src}' width="{width}" height="{height}"></iframe>
+    <div id="closePopup" class="closeAd">
+        <a href="javascript:;" onclick="parent.RemoveAnnouncement();" title="{static:Resources.Lang.close}">
+            <img src="../_Announcement/Resources/Images/close_button.png" style="border: 0px" alt="{static:Resources.Lang.close}" />
+        </a>
+    </div>
+    <!--HiddenCheckBox-->
+    <div class="notShowAd">
+        <input type="checkbox" id="chkHide" onclick="DoNotShowAnnoucement(this.checked)" />
+        <label for="chkHide" class="lblHide">
+            {static:Resources.Lang.donotshowagain}</label>
+    </div>
+    <!--/HiddenCheckBox-->
+</div>
+<input id="announcementCookiesId" value="{announcementCookiesId}" type="hidden" />
+<input id="popUpId" value="{popUpId}" type="hidden" />

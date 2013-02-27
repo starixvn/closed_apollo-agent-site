@@ -1,0 +1,114 @@
+<div id="page_main">
+<div id="header_main">{Balance}</div>
+<div id="sContent">
+<table width="420" border="0" cellpadding="0" cellspacing="1" class="tblRpt">
+  <tr>
+    <td colspan="2" class="RptHeader">{ReportBalance}:&nbsp; {vUsername}</td>
+    </tr>
+  <tr class="bg_eb">
+    <td>{CashBalance}</td>
+    <td class="l"><font class="{classCashBalance}">{vCashBalance}</font></td>
+  </tr >
+  <tr class="bg_eb">
+    <td>{YesCashBalance}</td>
+    <td class="l"><font class="{classCashBalance}">{vYesCashBalance}</font></td>
+  </tr>
+  <tr class="bg_eb">
+    <td>{TotalBalance}</td>
+    <td class="l"><font class="{classTotalBalance}">{vTotalBalance}</font></td>
+  </tr class="bg_eb">
+  <tr class="bg_eb">
+    <td>{YesTotalBalance}</td>
+    <td class="l"><font class="{classTotalBalance}">{vYesTotalBalance}</font></td>
+  </tr>
+  <tr class="bg_eb">
+    <td>{Outstanding}</td>
+    <td class="l"><font class="{classOutstanding}">{vOutstanding}</font></td>
+  </tr>
+  <tr class="bg_eb">
+    <td>{TotalOutstanding}</td>
+    <td class="l"><font class="{classTotalOutstanding}">{vTotalOutstanding}</font></td>
+  </tr>
+  <!--p2pCasino-->
+  <tr class="bg_eb">
+    <td>{TotalCSTransfer}</td>
+    <td class="l"><font class="{classTotalCSTransfer}">{vTotalCSTransfer}</font></td>
+  </tr>
+  <tr class="bg_eb">
+    <td>{TotalCSOutstanding}</td>
+    <td class="l"><font class="{classTotalCSOutstanding}">{vTotalCSOutstanding}</font></td>
+  </tr>
+  <!--/p2pCasino-->
+  <tr class="bg_eb">
+    <td>{Credit}</td>
+    <td class="l"><font class="{classCredit}">{vCredit}</font></td>
+  </tr>
+  <!--TotalMasterCredit-->  
+  <tr class="bg_eb">
+    <td>{TotalMasterCredit}</td>
+    <td class="l"><font class="{classTotalMasterCredit}">{vTotalMasterCredit}</font></td>
+  </tr>
+  <!--/TotalMasterCredit-->
+  <!--TotalAgentCredit-->
+  <tr class="bg_eb">
+    <td>{TotalAgentCredit}</td>
+    <td class="l"><font class="{classTotalAgentCredit}">{vTotalAgentCredit}</font></td>
+  </tr>
+  <!--/TotalAgentCredit-->    
+  <tr class="bg_eb">
+    <td>{TotalMemberCredit}</td>
+    <td class="l"><font class="{classTotalMemberCredit}">{vTotalMemberCredit}</font></td>
+  </tr>  
+  <!--TotalMasterActiveClosed-->
+  <tr class="bg_eb">
+    <td>{TotalMasterActiveClosed}</td>
+    <td class="b l"><font color="{classTotalActive}">{vTotalMasterActive}</font>/<font color="{classTotalClose}">{vTotalMasterClose}</font>/<font color="{classTotalSuspend}">{vTotalMasterSuspend}</font></td>
+  </tr>
+  <!--/TotalMasterActiveClosed-->
+  <!--TotalAgentActiveClosed-->
+  <tr class="bg_eb">
+    <td>{TotalAgentActiveClosed}</td>
+    <td class="b l"><font color="{classTotalActive}">{vTotalAgentActive}</font>/<font color="{classTotalClose}">{vTotalAgentClose}</font>/<font color="{classTotalSuspend}">{vTotalAgentSuspend}</font></td>
+  </tr>
+  <!--/TotalAgentActiveClosed-->
+  <tr class="bg_eb">
+    <td>{TotalMemberActiveClosed}</td>
+    <td class="b l"><font color="{classTotalActive}">{vTotalMemberActive}</font>/<font color="{classTotalClose}">{vTotalMemberClose}</font>/<font color="{classTotalSuspend}">{vTotalMemberSuspend}</font></td>
+  </tr>
+</table>
+</div>  
+{PopUpMessageContainer}
+
+<!--Start - nqminh - DivPopup-->
+<style type="text/css">
+.cssNoel{
+	position:absolute;
+	float:right;
+	bottom:1px;
+	z-index:1;
+	right:1px;
+}
+</style>
+<script>
+    function showFlashNoel(canDisplay, divContentId) {
+        if (canDisplay == 'True') {
+            if (!hasCookieName(divContentId, {userID}, {subID})) {
+                showDivPopup(divContentId);
+                setFlashCookie('{flashID}', true, {userID}, {subID});;
+                return 1;
+            }
+        }
+        return 0;
+    }     
+</script>
+<div id="{flashID}" style="display:none; width:730px; height:323px;" class="cssNoel">
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" allowscriptaccess="always" id="menu" width="100%" align="right" height="100%">
+          <param name="movie" value="../flash/xmas/flashNoel_{langcode}.swf">
+          <param name="quality" value="high">
+          <param name="wmode" value="transparent">
+          <embed src="../flash/xmas/flashNoel_{langcode}.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" name="menu" width="100%" align="right" height="100%">
+    </object>
+</div>
+<!--End - nqminh - DivPopup-->
+
+<input type="hidden" id="hddate" name="hddate" value="{hddate}" />

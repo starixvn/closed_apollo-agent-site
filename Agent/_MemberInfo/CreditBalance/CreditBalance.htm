@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Current Balance</title>
+    <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/CreditBalance.css" rel="stylesheet" type="text/css" />        
+</head>
+<body>
+    <div id="page_main">
+        <div id="header_main">
+            {static:Resources.Lang.balance}</div>
+        <div id="sContent">
+            <table width="420" border="0" cellpadding="0" cellspacing="1" class="tblRpt">
+                <tr>
+                    <td colspan="2" class="RptHeader">
+                        {reportBalance}:&nbsp; <b>{username}</b>
+                    </td>
+                </tr>
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblCashBalance}
+                    </td>
+                    <td class="b l">
+                        <font class="{classCashBalance}">{cashBalance}</font>
+                    </td>
+                </tr>
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.yesterdaycashbalance}
+                    </td>
+                    <td class="b l">
+                        <font class="{classCashBalance}">{yesterdayCashBalance}</font>
+                    </td>
+                </tr>
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalBalance}
+                    </td>
+                    <td class="b l">
+                        <font class="{classTotalBalance}">{totalBalance}</font>
+                    </td>
+                </tr>
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.yesterdaytotalbalance}
+                    </td>
+                    <td class="b l">
+                        <font class="{classTotalBalance}">{yesterdayTotalBalance}</font>
+                    </td>
+                </tr>
+                <tr class="bg_eb2">
+                    <td>
+                        {outstanding}
+                    </td>
+                    <td class="b l">
+                        <font class="{classOutstanding}">{outstanding_value}</font>
+                    </td>
+                </tr>
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalOutstanding}
+                    </td>
+                    <td class="b l">
+                        <font class="{classTotalOutstanding}">{totalOutstanding}</font>
+                    </td>
+                </tr>
+                <!--Casino-->
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalCSTransfer}
+                    </td>
+                    <td class="b l">
+                        <font class="{classTotalCasinoTransfer}">{totalCasinoTransfer}</font>
+                    </td>
+                </tr>
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalCSOutstanding}
+                    </td>
+                    <td class="b l">
+                        <font class="{classTotalCasinoOutstanding}">{totalCasinoOutstanding}</font>
+                    </td>
+                </tr>
+                <!--/Casino-->            
+                            
+                <!--Bingo-->
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalBGTransfer}
+                    </td>
+                    <td class="b l">
+                        <font class="{classTotalBingoTransfer}">{totalBingoTransfer}</font>
+                    </td>
+                </tr>
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalBGOutstanding}
+                    </td>
+                    <td class="b l">
+                        <font class="{classTotalBingoOutstanding}">{totalBingoOutstanding}</font>
+                    </td>
+                </tr>
+                <!--/Bingo-->
+
+                <tr class="bg_eb2">
+                    <td>
+                        {credit}
+                    </td>
+                    <td class="b l">
+                        <font class="{classCredit}">{credit_value}</font>
+                    </td>
+                </tr>
+                <!--TotalMasterCredit-->
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalMasterCredit}
+                    </td>
+                    <td class="b l">
+                        <font class="{className}">{value}</font>
+                    </td>
+                </tr>
+                <!--/TotalMasterCredit-->
+                <!--TotalAgentCredit-->
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalAgentCredit}
+                    </td>
+                    <td class="b l">
+                        <font class="{className}">{value}</font>
+                    </td>
+                </tr>
+                <!--/TotalAgentCredit-->
+                <!--TotalMemberCredit-->
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalMemberCredit}
+                    </td>
+                    <td class="b l">
+                        <font class="{className}">{value}</font>
+                    </td>
+                </tr>
+                <!--/TotalMemberCredit-->
+                <!--TotalMasterActiveClosed-->
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTMasterAC}
+                    </td>
+                    <td class="b l">
+                        <font class="active">{active}</font>/ <font class="closed">{closed}</font>/ <font class="suspended">{suspended}</font>
+                    </td>
+                </tr>
+                <!--/TotalMasterActiveClosed-->
+                <!--TotalAgentActiveClosed-->
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalAgentActiveClosed}
+                    </td>
+                    <td class="b l">
+                        <font class="active">{active}</font>/ <font class="closed">{closed}</font>/ <font class="suspended">{suspended}</font>
+                    </td>
+                </tr>
+                <!--/TotalAgentActiveClosed-->
+                <!--TotalMemberActiveClosed-->
+                <tr class="bg_eb2">
+                    <td>
+                        {static:Resources.Lang.lblTotalMemberActiveClosed}
+                    </td>
+                    <td class="b l">
+                        <font class="active">{active}</font>/ <font class="closed">{closed}</font>/ <font class="suspended">{suspended}</font>
+                    </td>
+                </tr>
+                <!--/TotalMemberActiveClosed-->
+            </table>
+        </div>
+       
+    </div>   
+    
+     <!--AdditionalContent-->
+     <!--/AdditionalContent-->
+    
+</body>
+</html>
+<script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+<script src="Resources/CreditBalance.js" type="text/javascript"></script>

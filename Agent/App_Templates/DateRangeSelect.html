@@ -1,0 +1,66 @@
+<script type="text/javascript">
+	function reset_date(){
+	var dayNoReset={DayNoReset};
+	var fdateId='{Fdate}';
+	var tdateId='{Tdate}';
+	var td = new Date();
+	var fd=new Date(td.getTime()-dayNoReset*24*60*60*1000);
+	
+	var fdateIdObj = $(fdateId);
+	fdateIdObj.value=(fd.getMonth()+1)+"/"+fd.getDate()+"/"+fd.getFullYear();
+	fdateIdObj.value=(td.getMonth()+1)+"/"+td.getDate()+"/"+td.getFullYear();
+	}
+	
+	function disableButton()
+	{
+	    var dSubmit = $('dSubmit');
+	    var dToday = $('dToday');
+	    var dYesterday = $('dYesterday');
+	    var btResultType = $('btResultType');
+        
+	    dSubmit.disabled=true; 
+	    if(!hasClassName(dSubmit, 'hidden')) dSubmit.className='btn2';
+	        
+	    dToday.disabled=true; 
+	    if(!hasClassName(dToday, 'hidden')) dToday.className='btn2';
+	        
+	    dYesterday.disabled=true; 
+	    if(!hasClassName(dYesterday, 'hidden')) dYesterday.className='btn2';
+	        
+	    if (btResultType) {
+	        btResultType.disabled = true;
+	        btResultType.className = 'btn2';
+	    }
+	}
+</script>
+
+<span id="spDateTimeSearch">
+<!--DateTimeSearch-->
+<table cellpading="0" cellspacing="0" border="0">
+    <tr style="height:32px;">
+        <!--limit-fromdate-->
+        <td id="tdfdatetext" style="padding-left:6px;" class="l"><span id="spfdatetext">{fdatetext}:</span></td>
+        <td id="tdFromDateCal" class="l"><span id="spFromDateCal">{FromDateCal}</span></td>
+        <!--/limit-fromdate-->
+        <!--limit-todate-->
+        <td id="tdtdatetext" class="l">&nbsp;&nbsp; <span id="sptdatetext">{tdatetext}:</span></td>
+        <td id="tdToDateCal" class="l"><span id="spToDateCal">{ToDateCal}</span></td>
+        <!--/limit-todate-->         
+        <!--limit-getall-->      
+        <td class="c">
+            {getall}<input id="chkgetall" name="chkgetall" type="checkbox" value="1" onclick="ChkGetAll();" {checked} />
+        </td>
+        <!--/limit-getall--> 
+        <td class="l">    
+            &nbsp;&nbsp;                  
+            <input type="button" class="btn" style="width:55px" id="dSubmit" value="{submit}" onclick="disableButton(); SearchByDate();" />&nbsp;
+            <input type="button" id="dToday" class="{hide} btn" style="width:80px" value="{today_now}" onclick="disableButton(); SearchOneDay(0);" />&nbsp;
+            <input type="button" id="dYesterday" class="{hide} btn" style="width:80px" value="{yesterday}" onclick="disableButton(); SearchOneDay(-1);" />
+        </td>
+        <td valign="top">
+            <div id="loading" class="myloading" style="float:left;"></div> 
+        </td>
+    </tr>
+</table>
+<!--/DateTimeSearch-->
+</span>

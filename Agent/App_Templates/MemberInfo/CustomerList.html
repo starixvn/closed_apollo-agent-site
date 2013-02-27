@@ -1,0 +1,291 @@
+{StyleSheet}
+<div id="page_main">
+    <div id="header_main">
+        <!--limit-tr-custlist-->
+        <!--limit-agentlist-->
+        <a href="{url-agentlist}">{agentlist}</a> |
+        <!--/limit-agentlist-->
+        <!--limit-customerlist-->
+        <a href="{url-list}">{customerlist}</a>
+        <!--/limit-customerlist-->
+        |
+        <!--limit-creditbalance-->
+        <a href="{url-credit}">{creditbalance}</a>
+        <!--/limit-creditbalance-->
+        <!--limit-position-taking-->
+        | <a href="{url-position}">{positiontaking}</a>
+        <!--/limit-position-taking-->
+        <!--/limit-tr-custlist-->
+        <!--limit-tr-custlist-normal-->
+        {lblcustomerlist}
+        <!--/limit-tr-custlist-normal-->
+        <!--print-function-->
+        {printer}<!--/print-function-->
+    </div>
+
+    <div id="FrmUpd"></div>
+    <script type="text/javascript">
+    var callerIsSuspended = {callerIsSuspended};
+    var callerIsAllowOutright = {callerIsAllowOutright};
+
+    AGE.addEvent(window, 'load', function(){
+        InitFrmUpdStatus();
+        }
+    );
+    </script>
+
+    <div style="display: none;">
+        <span id="txtOpen">{open}</span> <span id="txtClosed">{closed}</span> <span id="txtSuspended">{suspended}</span> <span id="txtClose">{close}</span> <span id="txtSuspend">{suspend}</span><span id="txtOutright">{outright}</span>
+    </div>
+    <div id="mContent" style="padding-bottom: 15px;">
+        <table id="mainTbl" align="left" border="0" cellpadding="0" cellspacing="0" width="99%">
+            <tr>
+                <td>
+                    <span id="diverr" style="display: none;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="500px">
+                            <tr>
+                                <td class="emsg_1_1">
+                                    &nbsp;
+                                </td>
+                                <td class="emsg_1_2">
+                                    &nbsp;
+                                </td>
+                                <td class="emsg_1_3">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" class="emsg_2_1">
+                                    &nbsp;
+                                </td>
+                                <td valign="top" id="err" class="msgerr" style="line-height: 20px">
+                                    &nbsp;
+                                </td>
+                                <td class="emsg_2_2">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="emsg_3_1">
+                                    &nbsp;
+                                </td>
+                                <td class="emsg_3_2">
+                                    &nbsp;
+                                </td>
+                                <td class="emsg_3_3">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <div id="tbl-container">
+                        <!--print-style-sheet-->
+                        {printcss}<!--/print-style-sheet-->
+                        <div id="boderRight">
+                            <table class="tblRpt r nowrap" cellpadding="0" cellspacing="{cellspacing}" style="width: 100%;" id="tbl-rpt">
+                                <thead>
+                                    <tr class="RptSubTitle" id="rowTitle">
+                                        <td colspan="3">
+                                            &nbsp;
+                                        </td>
+                                        <!--limit-td-agentlist-->
+                                        <td class="bgNormal" style="width: 20px;">
+                                            <div class="btnEdit" onclick="EditMember_Multi('{custid_upline}', '{Customer}', '{masterid}');" onmouseover="HoverPen(this,1);" onmouseout="HoverPen(this,0);" />
+                                        </td>
+                                        <!--/limit-td-agentlist-->
+                                        <td colspan="{colspan4}">
+                                            &nbsp;
+                                        </td>
+                                        <!--limit-comm-->
+                                        <td colspan="4" class="RptHeader01">
+                                            {commission}
+                                        </td>
+                                        <!--/limit-comm-->
+                                        <!--limit-space-->
+                                        <td colspan="{colspan2}">
+                                            &nbsp;
+                                        </td>
+                                        <!--/limit-space-->
+                                    </tr>
+                                    <!--limit-header-->
+                                    <tr class="RptHeader">
+                                        <td>
+                                            {no}
+                                        </td>
+                                        <td>
+                                            {username}
+                                        </td>
+                                        <td style="width: 60px;">
+                                            {status}
+                                        </td>
+                                        <!--limit-td-agentlist-->
+                                        <td>
+                                            <input type="checkbox" id="chkall" onclick="CheckAll();" />
+                                        </td>
+                                        <!--/limit-td-agentlist-->
+                                        <td style="width: 50px;">
+                                            {password}
+                                        </td>
+                                        <!--limit-horseracing-->
+                                        <td style="width: 60px;">
+                                            {horseracing}
+                                        </td>
+
+                                        <!--/limit-horseracing-->
+
+                                        <!--casino-->
+                                        <td style="width: 60px;">
+                                            {lblCasino}
+                                        </td>
+                                        <!--/casino-->
+
+                                        <!--nickname-->
+                                        <td style="width: 50px;">
+                                            {nickname}
+                                        </td>
+                                        <!--/nickname-->
+                                        <td style="width: 60px;">
+                                            {lastname}
+                                        </td>
+                                        <td style="width: 60px;">
+                                            {firstname}
+                                        </td>
+                                        <td style="width: 40px;">
+                                            {group}
+                                        </td>
+                                        <!--limit-comm-->
+                                        <td style="width: 55px;">
+                                            {comma1}
+                                        </td>
+                                        <td style="width: 55px;">
+                                            {comma2}
+                                        </td>
+                                        <td style="width: 55px;">
+                                            {commp1}
+                                        </td>
+                                        <td style="width: 55px;">
+                                            {commp2}
+                                        </td>
+                                        <!--/limit-comm-->
+                                        <td align="center" style="width: 110px;">
+                                            <div style="display: block; width: 110px;">
+                                                {createdate}</div>
+                                        </td>
+                                        <td style="width: 70px;">
+                                            {lastloginip}
+                                        </td>
+                                        <td>
+                                            {username}
+                                        </td>
+                                    </tr>
+                                    <!--/limit-header-->
+                                </thead>
+                                <tbody>
+                                    <!--limit-content-->
+                                    <tr align="center" bgcolor="{color}" onmouseover="bgColor='{overcolor}'" onmouseout="bgColor='{color}'">
+                                        <td class="w-order">
+                                            {no_value}
+                                        </td>
+                                        <td class="l">
+                                            <!--limit-agent-master-->
+                                            <a href="{url_link}">{username_value}</a><!--/limit-agent-master--><!--limit-super-->{username_value}<!--/limit-super-->
+                                        </td>
+                                        <td style="white-space: nowrap;">
+                                            &nbsp;<!--limit-status-->
+                                            <a href="javascript:EditMember_Single('{custid_value}', '{username_value}', '{custid_upline}', '{Customer}')" title="{status_value}">{status_value}</a>
+                                            <!--/limit-status-->
+                                            &nbsp;<span style="cursor: pointer" onclick="ShowFrmUpdStatus(this, {custid_value}, {isClosed}, {isSuspended}, false, {isOutright},'{username_value}')" class="arrow1" title="{status}">&nbsp;&nbsp;&nbsp;</span>
+                                        </td>
+                                        <!--limit-td-agentlist-->
+                                        <td>
+                                            <input type="checkbox" id="chkid" name="chkid" statuscs="{statusCS}" value="{chkid_value}" />
+                                        </td>
+                                        <!--/limit-td-agentlist-->
+                                        <td>
+                                            <!--limit-reset-edit-member-->
+                                            <div class="divEdit" title="{edit}" style="cursor: pointer;" onclick="EditMember_Single('{custid_value}', '{username_value}', '{custid_upline}', '{Customer}');" />
+                                            <!--/limit-reset-edit-member-->
+                                            <!--limit-reset-pass-->
+                                            <div class="divEdit" title="{edit}" style="cursor: pointer;" onclick="showReset('{custid_value}', '{username_value}');" />
+                                            <!--/limit-reset-pass-->
+                                        </td>
+                                        <!--limit-horseracing-value-->
+
+                                        <td style="width: 60px;">
+                                            <div class="divEdit" style="cursor: pointer;" title="{edit}" onclick="CustomerEditHR('{custid_value}',{roleid_val},'Master',0);" />
+                                        </td>
+                                        <!--/limit-horseracing-value-->
+                                        <!--casino-->
+
+                                        <td style="width: 60px;">
+                                            <div class="{divOp}" style="cursor: pointer;" title="{editCS}" onclick="EditCS('{custid_value}');" />
+                                        </td>
+                                        <!--/casino-->
+                                        <!--no-casino-->
+
+                                        <td style="width: 60px;">
+                                            <div class="{divOp}" style="cursor: default" title="{editCS}" />
+                                        </td>
+                                        <!--/no-casino-->
+
+                                        <!--nickname-->
+                                        <td class="l">
+                                            {nickname-value}
+                                        </td>
+                                        <!--/nickname-->
+                                        <td class="l">
+                                            {lastname_value}
+                                        </td>
+                                        <td class="l">
+                                            {firstname_value}
+                                        </td>
+                                        <td>
+                                            {group_value}
+                                        </td>
+                                        <!--limit-comm-->
+                                        <td>
+                                            {comma1_value}
+                                        </td>
+                                        <td>
+                                            {comma2_value}
+                                        </td>
+                                        <td>
+                                            {commp1_value}
+                                        </td>
+                                        <td>
+                                            {commp2_value}
+                                        </td>
+                                        <!--/limit-comm-->
+                                        <td class="bl_time">
+                                            {createdate_value}
+                                        </td>
+                                        <td class="bl_time">
+                                            {lastloginip_value}
+                                        </td>
+                                        <td class="l">
+                                            <!--limit-agent-master-->
+                                            <a href="{url_link}">{username_value}</a><!--/limit-agent-master--><!--limit-super-->{username_value}<!--/limit-super-->
+                                        </td>
+                                    </tr>
+                                    <!--/limit-content-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" id="arrayCustID" name="arrayCustID" />
+                    <input type="hidden" id="arrayUserName" name="arrayUserName" />
+                    <input type="hidden" id="arrayStatus" name="arrayStatus" />
+                    <input type="hidden" id="roleid" name="roleid" value="{roleid_val}" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

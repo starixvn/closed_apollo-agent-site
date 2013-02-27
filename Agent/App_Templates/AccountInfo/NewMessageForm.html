@@ -1,0 +1,76 @@
+﻿<!--calendar-include-->
+<script src="../../Js/Calendar2/calendar.js" type="text/javascript"></script>
+<script src="../../Js/Calendar2/date.js" type="text/javascript"></script>
+<script src="../../Js/Calendar2/Lang/calendar-{Lang}.js" type="text/javascript"></script>
+<script src="../../Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
+<link href="../../Js/Calendar2/Skin/calendar-blue.css" media="all" rel="stylesheet" type="text/css" title="Blue" />
+<!--/calendar-include-->
+<link rel="StyleSheet" href="../../App_Themes/AgencyV2/message.css" type="text/css">
+<div id="header_cont">
+<div class="b_msg0"><span class="text_header">{messagehistory}</span></div>
+<div class="msg">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><div id="msg_menu">
+        <ul>
+            <li {normalstyle}><a href="javascript:showMsg('normal');"><span>{normaltext}</span></a></li>
+            <li {specialstyle}><a href="javascript:showMsg('special');"><span>{specialtext}</span></a></li>
+            <li {personalstyle}><a href="javascript:showMsg('private');"><span>{personaltext}</span></a></li>
+        </ul>
+    </div></td>
+    <td >
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <!--DateTimeSearch-->
+            <td nowrap="nowrap">
+                {dateText}:&nbsp;<input id="{txtDate}" class="{TxtDateCls}" value="{currentDate}" type="text" size="13" name="{txtDate}" readonly />
+            </td>
+            <td nowrap="nowrap">
+                <a href="#" class="imaLink">
+                    <img alt="" id="{triggerId}" title="Date selector" style="margin: 0px; cursor:pointer;" src="../../App_Themes/AgencyV2/Images/cal.gif" />
+                </a>
+                <script type="text/javascript">
+                   var ctrInput = "{currentServerDate}";
+                   Calendar.setup({
+                    inputField : "{txtDate}", 
+                    ifFormat : "%m/%d/%Y", 
+                    showsTime : {ShowTime}, 
+                    button : "{triggerId}", 
+                    singleClick : {IsSingleClick},
+                    showOthers : {ShowOthers},
+                    step : 1
+                    });
+                </script>
+            </td>
+            <!--/DateTimeSearch-->
+          </tr>
+        </table>
+    </td>
+    <td><input type="button" class="btn" style="width:55px" id="dSubmit" value="{submit}" onclick="javascript:showMsg('');" /></td>
+  </tr>
+</table>
+</div>
+</div>
+<div id="divMsgContent" >
+    <table cellspacing="1" cellpadding="0" width="100%" class="tblRpt" border="0">
+        <tr class="RptHeader">
+            <td width="20px">{No_Header}</td>
+            <td width="60px">{MessageID_Header}</td>
+            <td width="80px">{PostDate_Header}</td>
+            <td>{Message_Header}</td>
+        </tr>
+        <!--MsgContent-->
+        <tr bgcolor="{clor-class}" onmouseover="bgColor='{clor-over}'" onmouseout="bgColor='{clor-class}'">
+            <td class="w_order_ms">{No}</td>
+            <td class="c_ms">{MessageID}</td>
+            <td class="bl_time_ms">{PostDate}</td>
+            <td class="message_content">{Message}</td>
+        </tr>
+        <!--/MsgContent-->
+    </table>
+</div>
+<input type="hidden" name="eroMeg" id="eroMeg" value="{invalidDateMessage}">
+<input type="hidden" name="msgType" id="msgType" value="{msgType}">
+<script type="text/javascript">
+    setStatusCalendar();
+</script>

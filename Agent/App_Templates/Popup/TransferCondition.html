@@ -1,0 +1,54 @@
+<!--nobackground-->
+<link href='../../App_Themes/AgencyV2/userinfo.css' type='text/css' rel='stylesheet' />
+<!--/nobackground-->
+<div id="page_popup">
+<table align="{tblalign}" width="530px" cellpadding="0" cellspacing="1" border="0" style="position:relative; top:-3px;">
+    <tr>
+    <td class="l">
+        <div id="header_popup">{TransferCondition}</div>
+        {error-message}
+    </td>
+    </tr>
+
+   <tr><td>
+    
+    <table width="100%" cellpadding="0" cellspacing="1" class="tblPop" border="0">
+        <tr class="bg_eb2">  
+            <td>
+            <input type="radio" id="rdbdaily" name="rdbcond" {rdbdailychecked} value="0" onclick="CheckedTransTime();"/> 
+            {daily}
+            </td>
+        </tr>
+        <tr class="bg_eb2">  
+            <td id="alldays">    
+            <input type="radio" id="rdbweekly" name="rdbcond" {rdbweeklychecked} value="1" onclick="CheckedTransTime();"/>
+            {weekly}
+            <input type="checkbox" value="{chkmonchecked_value}" id="chkmon" {chkmonchecked} onclick="return CheckedDateChoose(this);"/>
+            {mon}
+            <input type="checkbox" value="{chktuechecked_value}" id="chktue" {chktuechecked} onclick="return CheckedDateChoose(this);"/>
+            {tue}
+            <input type="checkbox" value="{chkwedchecked_value}" id="chkwed" {chkwedchecked} onclick="return CheckedDateChoose(this);"/>
+            {wed}
+            <input type="checkbox" value="{chkthurchecked_value}" id="chkthur" {chkthurchecked} onclick="return CheckedDateChoose(this);"/>
+            {thur}
+            <input type="checkbox" value="{chkfrichecked_value}" id="chkfri" {chkfrichecked} onclick="return CheckedDateChoose(this);"/>
+            {fri}
+            <input type="checkbox" value="{chksatchecked_value}" id="chksat" {chksatchecked} onclick="return CheckedDateChoose(this);"/>
+            {sat}
+            <input type="checkbox" value="{chksunchecked_value}" id="chksun" {chksunchecked} onclick="return CheckedDateChoose(this);"/>
+            {sun}
+            </td>
+        </tr>
+        <tr align="center" class="bg_eb2">
+            <td><input type="button" AccountPermisssion="[B]" id="btnSubmit" value="{submit}" onclick="UpdateTransCondition();" class="btn"/></td>
+        </tr>
+    </table>
+    </td></tr>
+</table>
+<input type="hidden" id="choosedaily" name="choosedaily" value="{choosedaily}" />
+<input type="hidden" id="chooseoneday" name="chooseoneday" value="{chooseoneday}" />
+<input type="hidden" id="confirm" name="confirm" value="{confirm}" />
+<input type="hidden" id="custid" name="custid" value="{custid}" />
+<input type="hidden" id="transop" name="transop" value="0000000" />
+<!--nobackground--><input id="nobackground" name="nobackground" value="1" type="hidden" /><!--/nobackground-->
+</div>

@@ -1,0 +1,266 @@
+﻿<!--sub-menu-->
+<!--sub menu will be here-->
+<!--/sub-menu-->
+<div style="padding-top: 8px">
+    <div id="header_main">
+        {op}
+    </div>
+    <table id="diverrmsg" style="display: none;" align="center" border="0" cellpadding="0" cellspacing="0" width="99%">
+        <tr>
+            <td id="1_1" class="emsg_1_1">
+                &nbsp;
+            </td>
+            <td id="1_2" class="emsg_1_2">
+                &nbsp;
+            </td>
+            <td id="1_3" class="emsg_1_3">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="2_1" class="emsg_2_1" valign="top">
+                &nbsp;
+            </td>
+            <td id="spmsgerr" class="msgerr" valign="top">
+            </td>
+            <td id="2_2" class="emsg_2_2">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="3_1" class="emsg_3_1">
+                &nbsp;
+            </td>
+            <td id="3_2" class="emsg_3_2">
+                &nbsp;
+            </td>
+            <td id="3_3" class="emsg_3_3">
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+    <table border="1" class="tblRpt" width="99%" bordercolor="#D4D0C8">
+        <tr>
+            <td colspan="8" id="lstusername" class="center b">
+            </td>
+        </tr>
+        <!--age-info-->
+        <tr>
+            <td colspan="8">
+                <table width="90%" align="left">
+                        <tr>
+                            <!--single-edit-->
+
+                            <td class="right b">
+                                {lblUsername}:&nbsp;
+                            </td>
+                            <td class="left">
+                                &nbsp;{username}
+                            </td>
+                            <td class="right b">
+                                {lblUsername2}:&nbsp;
+                            </td>
+                            <td class="left">
+                                {username2}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="right b">
+                                {lblFirstname}:&nbsp;
+                            </td>
+                            <td class="left">
+                                &nbsp;{firstname}
+                            </td>
+                            <td class="right b">
+                                {lblPhone}:&nbsp;
+                            </td>
+                            <td class="left">
+                                &nbsp;{phone}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="right b">
+                                {lblLastname}:&nbsp;
+                            </td>
+                            <td class="left">
+                                &nbsp;{lastname}
+                            </td>
+                            <td class="right b">
+                                {lblMobile}:&nbsp;
+                            </td>
+                            <td class="left">
+                                &nbsp;{mobile}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="right b">
+                                {lblFax}:&nbsp;
+                            </td>
+                            <td class="left">
+                                &nbsp;{fax}
+                            </td>
+
+                            <!--/single-edit-->
+
+                            <td class="right b">
+                                <!--inserting-->
+                                {lblEnableCS}:&nbsp;
+                                <!--/inserting-->
+                            </td>
+                            <td class="left">
+                                <!--inserting-->
+                                {disableCS}
+                                <!--/inserting-->
+                            </td>
+
+                        </tr>
+
+                </table>
+            </td>
+        </tr>
+        <!--/age-info-->
+        <!--cs-bet-setting-->
+        <tr>
+            <td class="tblTitleCenter left b" colspan="8">
+                {lblBetSetting}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <table width="90%" align="left" style="margin-bottom: 2px">
+                    <!--single-edit-->
+                    <tr>
+                        <td class="right b" style="width: 300px">
+                            {lblAccumulated}&nbsp;
+                        </td>
+                        <td class="left" style="white-space: nowrap;">
+                            <div id="lblAccumulatedWL" style="font-weight: normal; float: left">
+                                {accumulatedValue}
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <!--/single-edit-->
+                    <!--max-win-lose-->
+                    <tr>
+                        <td class="right b">
+                            {lblMaxWin} &nbsp;
+                        </td>
+                        <td class="left">
+                            &nbsp;{maxWinValue}
+                        </td>
+                        <td class="left">
+                            ({lblMin} = {minValue}; {lblNoLimited} = {noLimitedValue} )
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="right b">
+                            {lblMaxLose} &nbsp;
+                        </td>
+                        <td class="left">
+                            &nbsp;{maxLoseValue}
+                        </td>
+                        <td class="left">
+                            ({lblNoLimited} = {noLimitedValue} )
+                        </td>
+                    </tr>
+                    <!--/max-win-lose-->
+                    <!--max-transfer-->
+                    <tr>
+                        <td class="right b" style="width: 300px">
+                            {lblMaxTransferCredit} &nbsp;
+                        </td>
+                        <td class="left" style="width: 100px">
+                            {maxTransferCredit}
+                        </td>
+                        <td align="left" style="text-align: left;">
+                            <input type="hidden" id="hidTransferCredit" value="{MaxTransferCreditValue}" />
+                            <input id="cbxAutoReset" {disabled} name="cbxAutoReset" {cbxAutoResetchecked} type="checkbox" />
+                            <label for="cbxAutoReset">{autoReset}</label>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td align="left" style="text-align: left;">
+                            <!--single-edit-->({minLimitedValue} - {noLimitedValue})<!--/single-edit-->
+                        </td>
+                        <td align="left" style="text-align: left;">
+
+                        </td>
+                    </tr>
+
+                    <!--/max-transfer-->
+                </table>
+                <table>
+                    <tr>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--/cs-bet-setting-->
+        <tr>
+            <td class="tblTitleCenter left b" colspan="8">
+                {lblPositionTaking}
+            </td>
+        </tr>
+        <!--data-->
+        <tr>
+            <td colspan="8">
+                <table class="tblRpt" border="1">
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--/data-->
+
+    </table>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <!--inserting-->
+            <td align="left" id="btnAdd">
+                <input type="submit" id="btnSubmit" AccountPermisssion="[B]" style="display: none" value="submit" />
+                <table cellpadding="2" cellspacing="2">
+                    <tr>
+                        <td>
+                            <div class="btnLeft">
+	                            <input type="button" class="btnMain" AccountPermisssion="[B]" onclick="{func} CheckConfirmUpdDownline();" value="{submit}">
+                            </div>
+                        </td>
+                        <!--editting-->
+                        <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <div class="b_add" style="margin-top: 2px;">
+                                <li><a id="btnCancel" href="javascript:CancelCS()" class="b_add" style="float: right;"><span>{cancel}</span></a> </li>
+                            </div>
+                        </td>
+                        <!--/editting-->
+                    </tr>
+                </table>
+            </td>
+            <!--/inserting-->
+            <td>
+            </td>
+        </tr>
+    </table>
+    {jsdata} {hidden}
+</div>
+<input type="hidden" id="arrayCustID" name="custids" />
+<input type="hidden" id="arrayUserName" name="arrayUserName" />
+<input type="hidden" id="arrayStatus" name="arrayStatus" />
+
+<script type="text/javascript">
+    if(parent.ageWnd)
+    {
+        AGE.addEvent(window, "load", CopyMultData);
+    }
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .style1
+        {
+            color: #000000;
+            font-weight: bold;
+        }
+        .style3
+        {
+            color: #FF0000;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="h2">
+        Outright</h2>
+    <p>
+        <span class="rpt-head1">Definition:</span>
+    </p>
+    <p>
+        Show agent's winning amount based on postion taking displayed as <b>Balance</b> and the losing amount on each bet that agent might lost displayed as <b>Forecast</b> if member wins that bet.
+        <p>
+            <center>
+                <img src="images/h10_new.jpg" /><br />
+                <em>Outright</em>
+            </center>
+            <p>
+                <ul>
+                    <li>From the figure above, let's take league <strong>UEFA CHAMPIONS LEAGUE - Chelsea -vs- Juventus who will advance to Quarter Finals</strong> as an example to understand this report.<br></li>
+                    <li>Total balance that agent might win based on Position Taking for <strong>Chelsea</strong> and <strong>Juventus</strong> = 100 + 100 = 200<br></li>
+                    <ul>
+                        <li><strong>1 Chelsea:</strong> member stake = 200, agent PT is 50%<br>
+                            --&gt; Balance = stake* agent PT = 200 * 50% = <b>100</b>
+                            <br>
+                            --> Forecast = total balance - stake * odds * agent PT = 200 - 200 * 1.55 * 50% = <span class="style1">45</span><br>
+                            This means agent will win <span class="style1">45</span>.<br>
+                        </li>
+                        <li><strong>2 Juventus:</strong> member stake = 200, agent PT is 50%<br>
+                            --> Balance = stake * agent PT =200*50%=<b>100</b>
+                            <br>
+                            --> Forecast = total balance - stake * odds * agent PT = 200 - 200 * 2.44 * 50% = <b><span class="style3">- 44</span></b><br>
+                            This means agent will lose <b><span class="style3">44</span>.</b><br>
+                        </li>
+                    </ul>
+                </ul>
+</body>
+</html>

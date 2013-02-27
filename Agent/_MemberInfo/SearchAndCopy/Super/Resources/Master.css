@@ -1,0 +1,115 @@
+﻿#tblSB
+{
+    width: 100%;
+}
+
+#tblSB td
+{
+    background-color: #F7F0E4;
+    padding: 0px 10px;
+    height: 20px;
+    width: 25%;
+}
+
+#tblSB .r
+{
+    text-align: right;
+}
+
+#tblSB .rb
+{
+    text-align: right;
+    font-weight: bold;
+}
+
+#tblSB .t
+{
+    background-color: #F7F0E4;
+    padding: 0px;
+    margin: 0px;
+}
+
+#tblSB_Comm
+{
+    width: 100%;
+    border-collapse: collapse;
+    border-style: hidden;
+}
+
+#tblSB_Comm td
+{
+    padding: 0px 10px;
+    height: 20px;
+    width: 16%;
+    border: 1px solid #B7B7B7;
+}
+
+#tblSB_Comm .rb
+{
+	text-align: right;
+    font-weight: bold;
+}
+
+#tblRacing td, #tblVirtualSports td
+{
+    background-color: #F7F0E4;
+    padding: 0px 10px;
+    height: 20px;
+    width: 50%;
+}
+
+#tblRacing .r, #tblVirtualSports .r, #tblVirtualSportsPT .r
+{
+    text-align: right;
+}
+
+#tblVirtualSportsPT td
+{
+	background-color: #F7F0E4;
+    padding: 0px 10px;
+    height: 20px;
+    width: 16%;
+}
+
+#tblCasino
+{
+    width: 100%;
+}
+
+#tblCasino td
+{
+    background-color: #F7F0E4;
+    padding: 0px 10px;
+    height: 20px;
+    width: 50%;
+}
+
+#tblCasino .t
+{
+    background-color: #F7F0E4;
+    padding: 0px;
+    margin: 0px;
+}
+
+#tblCasino_PT
+{
+    width: 100%;
+    border-collapse: collapse;
+    border-style: hidden;
+}
+
+#tblCasino_PT td
+{
+    padding: 0px 0px;
+    height: 20px;
+    width: 14%;
+    border: 1px solid #B7B7B7;
+    text-align: center;
+}
+
+#tblCasino_PT .rb
+{
+    text-align: right;
+    font-weight: bold;
+    padding: 0px 10px;
+}

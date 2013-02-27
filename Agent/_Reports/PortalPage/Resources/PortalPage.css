@@ -1,0 +1,490 @@
+﻿/*
+	Author: Andy.Nguyen
+	Revision: 2011-06-01
+	For collapsing/expanding div
+*/
+.bl_underdog
+{
+    color: #01122B;
+    font-weight: bold !important;
+}
+.bl_favorite
+{
+    font-weight: bold !important;
+    color: #B50000;
+}
+.portalTable
+{
+    font-family: Tahoma,Arial,helvetica,sans-serif;
+    font-size: 11px;
+    background: #FAF9EE;
+    border-collapse: collapse;
+    width: 100%;
+    line-height: 20px;
+    table-layout: fixed;
+    text-indent: 5px;
+}
+.portalTable tbody tr:hover td
+{
+}
+#table-pp2 tbody tr:hover td
+{
+    background-color: Yellow;
+    border-color: Blue;
+    border-width: 1px;
+}
+#table-pp2 tbody td
+{
+    padding: 1px 5px 1px 5px;
+}
+.portalTable th
+{
+    font-weight: bold;
+    color: #000000;
+    background: repeat-x scroll center top #bfb29d;
+    border: solid 1px #999;
+    text-align: center;
+    padding: 0px 5px 0px 0px;
+}
+.portalTable tr.th
+{
+    font-weight: normal;
+    color: #000;
+    background-color: #F7F0E4;
+    border: solid 1px #999;
+    text-align: center;
+}
+
+.portalTable tr.hd
+{
+    background-color: #F7F0E4;
+    color: #000;
+}
+.portalTable tr.hd2
+{
+    color: #000;
+    background: repeat-x scroll center top #DFDDDC;
+    font-weight: normal;
+}
+.portalTable tr.hd3
+{
+    background-color: #F7F0E4;
+    color: #000;
+}
+.portalTable td
+{
+    vertical-align: top;
+    border: solid 1px #999;
+    padding: 0px 5px 0px 0px;
+}
+.portalTable td.hd
+{
+    background-color: #F7F0E4;
+    color: #000;
+}
+a
+{
+    text-decoration: none;
+}
+
+.sectionClose
+{
+    line-height: 20px;
+    cursor: pointer;
+}
+.sectionOpen
+{
+    color: Red;
+    line-height: 20px;
+    cursor: pointer;
+}
+.divCollapse
+{
+    width: 310px;
+    height: 280px;
+    overflow: auto;
+}
+.divCollapse2
+{
+    width: 364px;
+    height: 280px;
+    overflow: auto;
+}
+.tdOL
+{
+    width: 34%;
+}
+.tblMain
+{
+    border: 0px;
+    width: 735px;
+}
+.txtRedColor
+{
+    color: Red;
+}
+.txtNormalColor
+{
+    color: Black;
+}
+.txtGreenColor
+{
+    color: Green;
+}
+.ID
+{
+    width: 70px;
+}
+.Date
+{
+    width: 135px;
+}
+.active
+{
+    color: #003366;
+}
+
+.closed
+{
+    color: #d12320;
+}
+
+.suspended
+{
+    color: #d45f12;
+}
+.oddRow
+{
+    background-color: #f0f0f0;
+}
+.evenRow
+{
+    background-color: #e4ebf5;
+}
+.rowHeader
+{
+    background-color: #ccceb9;
+    text-align: center;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+#table-pp
+{
+    border: 1px;
+    line-height: 20px;
+    border-style: solid;
+    border-color: #bfb29d;
+    text-indent: 5px;
+}
+#table-pp2
+{
+    width: 100%;
+    border: 1px;
+    line-height: 20px;
+    border-style: solid;
+    border-color: #bfb29d;
+    text-indent: 5px;
+}
+#table-pp td
+{
+    padding: 0px 5px 0px 0px;
+}
+#table-pp2 td
+{
+    padding: 0px 5px 0px 0px;
+}
+#table-pp2 tbody td
+{
+    padding: 1px 5px 1px 5px;
+    line-height: 16px;
+    text-indent: 0px;
+}
+.r
+{
+    text-align: right;
+}
+.l
+{
+    text-align: left;
+}
+.c
+{
+    text-align: center;
+}
+.b
+{
+    font-weight: bold;
+}
+.statistic
+{
+    background-color: #f0f0f0;
+    text-indent: 5px;
+}
+ul
+{
+    padding-left: 25px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    line-height: 19px;
+}
+.newmem
+{
+    background-color: #e0e0e0;
+    border: solid 1px #999999;
+    float: left;
+    border-left-style: none;
+    border-top-width: 0px;
+    font-weight: normal;
+    text-align: center;
+}
+.newmem2
+{
+    background-color: #e0e0e0;
+    border-left-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-style: solid;
+    border-top-width: 0px;
+    border-color: #999999;
+    float: left;
+    font-weight: normal;
+    text-align: center;
+}
+.padding-right
+{
+    padding-top: 15px;
+    padding-right: 15px;
+    width: 300px;
+}
+.padding-top-right
+{
+    padding-top: 15px;
+    padding-right: 15px;
+}
+.paging
+{
+    background-color: #f3f3f3;
+}
+.leftTD
+{
+    background-color: #e4ebf5;
+    width: 55%;
+}
+.rightTD
+{
+    background-color: #f0f0f0;
+    width: 45%;
+}
+.imgLoading
+{
+    width: 11px;
+    height: 11px;
+    border-style: none;
+}
+.rightACS
+{
+    width: 120px;
+    font-weight: bold;
+}
+.divCollapse3
+{
+    width: 200px;
+}
+.balanceInfo
+{
+    background-image: url('../Images/balance.png');
+    background-repeat: no-repeat;
+    text-indent: 24px;
+    font-weight: bold;
+    color: #a21c1c;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.statistic
+{
+    background-image: url('../Images/statistic.png');
+    background-repeat: no-repeat;
+    text-indent: 24px;
+    font-weight: bold;
+    color: #a21c1c;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: Transparent;
+}
+.announcement
+{
+    background-image: url('../Images/announcement.png');
+    background-repeat: no-repeat;
+    text-indent: 24px;
+    font-weight: bold;
+    color: #a21c1c;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.onlineList
+{
+    background-image: url('../Images/onlinelist.png');
+    background-repeat: no-repeat;
+    text-indent: 24px;
+    font-weight: bold;
+    color: #a21c1c;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.tblTop
+{
+    width: 350px;
+}
+.tblBottom
+{
+    width: 100%;
+}
+a
+{
+    color: #3679fa;
+}
+.gotoMsg
+{
+    cursor: pointer;
+}
+.content
+{
+    text-align: justify;
+}
+.newMemFont
+{
+    font-size: 8px;
+}
+.newMemCol
+{
+    width: 100px;
+}
+.newMemWidth
+{
+    width: 347px;
+}
+
+/* Begin Announcement */
+#divAnnouncement
+{
+    border: 1px solid #CCCEB9;
+    padding: 1px;
+    max-height: 400px;
+    max-width: 718px;
+    overflow: auto;
+}
+#divAnnouncement .divGroupDate
+{
+    background-color: #CCCEB9;
+    font-weight: bold;
+    padding: 2px 5px;
+}
+#divAnnouncement .oddRow
+{
+    border: 1px solid transparent;
+    cursor: pointer;
+    background-color: #E4EBF5;
+    line-height: 18px;
+    max-width: 712px;
+}
+#divAnnouncement .evenRow
+{
+    border: 1px solid transparent;
+    cursor: pointer;
+    background-color: #F0F0F0;
+    line-height: 18px;
+    max-width: 712px;
+}
+#divAnnouncement .expanding
+{
+    background: -moz-linear-gradient(center top, #FFFFFF , #BBDDFF) repeat scroll 0 0 transparent;
+    border: 1px solid #3399FF;
+    border-radius: 3px 3px 3px 3px;
+    line-height: 18px;
+}
+#divAnnouncement .oddRow:hover
+{
+    background: -moz-linear-gradient(center top, #FFFFFF , #BBDDFF) repeat scroll 0 0 transparent;
+    border: 1px solid #3399FF;
+    border-radius: 3px 3px 3px 3px;
+    line-height: 18px;
+    max-width: 712px;
+}
+#divAnnouncement .evenRow:hover
+{
+    background: -moz-linear-gradient(center top, #FFFFFF , #BBDDFF) repeat scroll 0 0 transparent;
+    border: 1px solid #3399FF;
+    border-radius: 3px 3px 3px 3px;
+    line-height: 18px;
+    max-width: 712px;
+}
+#divAnnouncement .divTime
+{
+    width: 80px;
+    float: left;
+    text-align: right;
+    color: #92593B;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+#divAnnouncement #divMore
+{
+    text-align: center;
+    background-color: #CCCEB9;
+    font-weight: bold;
+    cursor: pointer;
+    padding-top: 2px;
+    height: 17px;
+}
+#divAnnouncement .divContent
+{
+    display: block;
+    max-width: 590px;
+    width: 590px;
+    overflow: auto;
+    word-wrap: break-word;
+}
+#divAnnouncement .public
+{
+    color: Black;
+}
+#divAnnouncement .private
+{
+    color: Green;
+}
+#divAnnouncement .private_unread
+{
+    color: Green;
+    font-weight: bold;
+}
+#divAnnouncement .special
+{
+    color: Red;
+}
+#divAnnouncement .toogleIcon
+{
+    background-image: url('../Images/expand_collapse_icon.png');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    float: left;
+    width: 8px;
+    height: 8px;
+    margin-top: 5px;
+}
+#divAnnouncement .text_exposed_show
+{
+    display: inline;
+}
+#divAnnouncement .text_exposed_hide
+{
+    display: none;
+}
+#divAnnouncement .moreIcon
+{
+    display: none;
+    text-align: center;
+}
+/* End Announcement */

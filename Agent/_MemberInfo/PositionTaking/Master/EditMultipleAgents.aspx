@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="EditMultipleAgents.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.PositionTaking.Master.EditMultipleAgents_Page" %>

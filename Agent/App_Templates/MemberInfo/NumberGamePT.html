@@ -1,0 +1,180 @@
+<head>
+    <style type="text/css">
+        .style2
+        {
+            width: 10%;
+        }
+        .style3
+        {
+        }
+        .style4
+        {
+            width: 11%;
+        }
+        .style5
+        {
+            width: 13%;
+        }
+        .style6
+        {
+            width: 9%;
+        }
+        .style7
+        {
+            width: 8%;
+        }
+        .style8
+        {
+            width: 16%;
+        }        
+        .hide
+        {
+        	display:none;
+        }
+    </style>
+</head>
+<table style="width:100%;" class="sptPT">			
+	<tr>
+		<td>
+			<div id="divUpdInfo161" name="divUpdInfo161">
+				<table border="0" width="100%" class="tblRpt"> 
+					<tr class="tblTitleCenter">					
+						<td colspan="3">{bet-text}</td>
+					</tr>
+					<tr class="bg_eb"> 
+						<td class="c tdPT1" width="40%">{minbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMinbet161" name="txtMinbet161" value="{minbet161-val}" />					
+							<span class="{mbMin}">&gt;=<span id="txtMinbet_Min161">{minbet-min-161}</span></span>
+						</td>
+						<td class="l" width="30%">{maxbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxbet161" name="txtMaxbet161" value="{maxbet161-val}" />					
+							<span class="{mbMax}">&lt;=<span id="txtMaxbet_Max161">{maxbet-max-161}</span></span>
+						</td>
+						<td class="c">{maxpermatch-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxPerMatch161" name="txtMaxPerMatch161" value="{maxpermatch161-val}" />					
+							<span class="{mpmMin}">&gt;=<span id="txtMaxPerMatch_Min161">{maxpermatch-min-161}</span>and</span>
+							<span class="{mpmMax}">&lt;=<span id="txtMaxPerMatch_Max161">{maxpermatch-max-161}</span></span>
+						</td>
+					</tr>
+					<!--none-maxperball-->	              
+	                <tr class="bg_eb" style="border-top:1px solid #B7B7B7;" >
+	                    <td></td>
+	                    <td class="l tdPT1 {hideClss}">
+	                      {lblMaxPerBall}&nbsp;<input type="text" maxlength="14" id="txtMaxPerBall" name="txtMaxPerBall" value="{MaxPerBall-val}" />					
+							                <span class="{maxperball_clss}">&lt;=<span id="txtMaxPerBall_Max">{MaxPerBall-max}</span>
+	                    </td>
+	                    
+	                    <td></td>
+	                </tr>
+	                <!--/none-maxperball-->				
+				</table>
+			</div> 
+		</td>
+	</tr>		
+	<tr>
+		<td>
+			<div id="divUpdPT161" name="divUpdPT161">
+				<table border="1" class="tblRpt" width="100%" bordercolor="#D4D0C8">
+					<tr class="tblTitleCenter">
+						<td colspan="{col-title}" class="style2">{pt-text}</td>
+					</tr>
+					<!--none-edit-->
+					<tr class="bg_eb" style="display:none">
+						<td colspan="2" class="r">{auto-super-text}</td>
+						<td colspan="6" class="l">
+							<input type="checkbox" id="chkAuto161" onclick="CheckAutoPreset(this,arrDdl161);" name="chkAuto161" />
+						</td>
+						<td class="style3"></td>
+						
+					</tr>
+					<!--/none-edit-->
+					{bettype-header}
+					<tr class="bg_eb">
+						<td rowspan="{dead-row}" class="style2">{deadball-text}</td>
+						<!--none-member--><td class="style4">{a-presetpt-text}</td><!--/none-member-->						
+						<td class="style8">{a-1stlastou-val}{a-1stlastou-btn}</td>
+						<td class="style7">{a-1stlastoe-val}</td>	
+						<td class="style7">{a-warrior-val}</td>
+						<td class="style7">{a-oe-val}</td>		
+						<td rowspan="{dead-row}" colspan ="2" class="l">						
+						<input type="checkbox" id="chkCopy1611stOUD" {chk-1611stOUD} name="chkCopy1611stOUD" onclick="CheckCopyPT(this,arr161Super81,arr161Master81,'{chkAuto-81}');" />{copy-1stlastou-text}
+                        </td>
+					</tr>					
+					<!--none-member-->
+					<tr class="bg_eb">
+						<td class="style2">{p-presetpt-text}</td>						
+						<td class="style4">{p-1stlastou-val}{p-1stlastou-btn}</td>
+						<td class="style7">{p-1stlastoe-val}</td>
+						<td class="style7">{p-warrior-val}</td>
+						<td class="style7">{p-oe-val}</td>		
+					</tr>
+					<!--/none-member-->
+					<!--auto-preset-->
+					<tr class="bg_eb {hdauto}">
+						<td rowspan="2" class="style2">{au-presetpt-text}</td>
+						<td class="style4"><input type="checkbox" id="chkAuto1611stOUD" name="chkAuto1611stOUD" {checked-1stOUD} onclick="CheckAutoPreset(this)" /></td>
+						<td class="style7"><input type="checkbox" id="chkAuto1611stOED" name="chkAuto1611stOED" {checked-1stOED} onclick="CheckAutoPreset(this,'chkCopy1611stOUD')" /></td>
+						<td class="style7"><input type="checkbox" id="chkAuto161WRD" name="chkAuto161WRD" {checked-WRD} onclick="CheckAutoPreset(this)" /></td>	
+						<td class="style7"><input type="checkbox" id="chkAuto161OED" name="chkAuto161OED" {checked-OED} onclick="CheckAutoPreset(this)" /></td>					
+					</tr>
+					<tr class="bg_eb {hdauto}">
+					    <td class="style4">{au-1stlastou-val}{au-1stlastou-btn}</td>
+						<td class="style7">{au-1stlastoe-val}</td>
+					    <td class="style7">{au-warrior-val}</td>
+						<td class="style7">{au-oe-val}</td>					
+					</tr>
+					<!--/auto-preset-->		
+					<tr class="bg_eb">
+					    <td colspan="2"></td>					    
+					    <td class="style7">{overunder-text}</td>
+					    <td class="style7">{oddeven-text}</td>
+					    <td class="style7">{highlow-text}</td>
+					    <td class="style7">{next-combo-text}</td>
+					    <td class="{hide}"> {numberGroup-text}</td>
+					    <td></td>
+					</tr>				
+					<tr class="bg_eb">
+						<td rowspan="{live-row}" class="style2">{live-text}</td>
+						<!--none-member--><td class="style4">{a-preset-live}</td><!--/none-member-->
+						<td class="style8">{a-Lou-val}{a-Lou-btn}</td>
+						<td class="style7">{a-Loe-val}</td>
+						<td class="style7">{a-Lhl-val}</td>
+						<td class="style7">{a-nextCombo-val}</td>
+						<td class="style7 {hide}">{a-NumGr-val}</td>	
+						<td rowspan="{live-row}" colspan="2" class="l">
+						<input type="checkbox" id="chkCopy161OUL" {chk-161OUL} name="chkCopy161OUL" onclick="CheckCopyPT(this,arr161Super85,arr161Master85,'{chkAuto-85}');" />
+							{copy-oulive-text}
+						</td>
+					</tr>					
+					<!--none-member-->
+					<tr class="bg_eb">					
+						<td class="style2">{p-preset-live}</td>
+						<td class="style4">{p-Lou-val}{p-Lou-btn}</td>
+						<td class="style7">{p-Loe-val}</td>	
+						<td class="style7">{p-Lhl-val}</td>	
+						<td class="style7">{p-nextCombo-val}</td>	
+						<td class="style7 {hide}">{p-NumGr-val}</td>
+					</tr>
+					<!--/none-member-->
+					<!--auto-preset-->	
+					<tr class="bg_eb {hdauto}">		
+						<!--none-member--><td rowspan="2" class="style6">{au-preset-live}</td><!--/none-member-->
+						<td class="style4"><input type="checkbox" onclick="CheckAutoPreset(this)" id="chkAuto161OUL" name="chkAuto161OUL" {checked-OUL} /></td>
+						<td class="style7"><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy161OUL')" id="chkAuto161OEL" name="chkAuto161OEL" {checked-OEL} /></td>
+					    <td class="style7"><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy161OUL')" id="chkAuto161HLL" name="chkAuto161HLL" {checked-HLL} /></td>
+					    <td class="style7"><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy161OUL')" id="chkAuto161NCL" name="chkAuto161NCL" {checked-NCL} /></td>
+					    <td class="style7 {hide}"><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy161OUL')" id="chkAuto161NGL" name="chkAuto161NGL" {checked-NGL} /></td>
+					</tr>		
+					<tr class="bg_eb {hdauto}">		
+						<!--none-member--><td class="style4">{au-Lou-val}{au-Lou-btn}</td><!--/none-member-->
+						<td class="style7">{au-Loe-val}</td>
+						<td class="style7">{au-Lhl-val}</td>
+		                <td class="style7">{au-nextCombo-val}</td>
+		                <td class="style7 {hide}">{au-NumGr-val}</td>	
+					</tr>	
+					<!--/auto-preset-->	
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>

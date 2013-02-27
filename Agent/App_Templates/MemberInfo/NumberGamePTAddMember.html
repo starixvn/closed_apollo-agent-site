@@ -1,0 +1,101 @@
+<head>
+    <style type="text/css">
+        .style1
+        {
+            width: 96px;
+        }
+        .hide
+        {
+         display:none;
+        }
+        
+    </style>
+</head>
+<table style="width:80%;" class="sptPT">			
+	<tr>
+		<td>
+			<div id="divUpdInfo161" name="divUpdInfo161">
+				<table border="0" width="100%" class="tblRpt"> 
+					<tr class="tblTitleCenter">					
+						<td colspan="3">{bet-text}</td>
+					</tr>
+					<tr class="bg_eb"> 
+						<td class="c tdPT1" width="30%">{minbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMinbet161" name="txtMinbet161" value="{minbet161-val}" />					
+							<span class="{mbMin}">&gt;=<span id="txtMinbet_Min161">{minbet-min-161}</span></span>
+						</td>
+						<td class="l" width="30%">{maxbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxbet161" name="txtMaxbet161" value="{maxbet161-val}" />					
+							<span class="{mbMax}">&lt;=<span id="txtMaxbet_Max161">{maxbet-max-161}</span></span>
+						</td>
+						<td class="c">{maxpermatch-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxPerMatch161" name="txtMaxPerMatch161" value="{maxpermatch161-val}" />					
+							<span class="{mpmMin}">&gt;=<span id="txtMaxPerMatch_Min161">{maxpermatch-min-161}</span>and</span>
+							<span class="{mpmMax}">&lt;=<span id="txtMaxPerMatch_Max161">{maxpermatch-max-161}</span></span>
+						</td>
+					</tr>		
+					<!--none-maxperball-->	               
+	                <tr class="bg_eb" style="border-top:1px solid #B7B7B7;">
+	                    <td></td>
+	                    <td class="l tdPT1 {hideClss}">
+	                      {lblMaxPerBall}&nbsp;<input type="text" maxlength="14" id="txtMaxPerBall" name="txtMaxPerBall" value="{MaxPerBall-val}" />					
+							                <span class="{maxperball_clss}">&lt;=<span id="txtMaxPerBall_Max">{MaxPerBall-max}</span>
+	                    </td>	                    
+	                    <td></td>
+	                </tr>
+	                <!--/none-maxperball-->					
+				</table>
+			</div> 
+		</td>
+	</tr>		
+	<tr>
+		<td>
+			<div id="divUpdPT161" name="divUpdPT161">
+				<table border="1" class="tblRpt" width="100%" bordercolor="#D4D0C8">
+					<tr class="tblTitleCenter">
+						<td colspan="{col-title}">{pt-text}</td>
+					</tr>					
+					{bettype-header}
+					<tr class="bg_eb">
+						<td rowspan="{dead-row}">{deadball-text}</td>									
+						<td>{a-1stlastou-val}{a-1stlastou-btn}</td>
+						<td>{a-1stlastoe-val}</td>	
+						<td>{a-w-val}</td>	
+						<td>{a-oe-val}</td>	
+										
+						<td rowspan="1" class="l" colspan="2">						
+						<input type="checkbox" id="chkCopy1611stOUD" {chk-1611stOUD} name="chkCopy1611stOUD" onclick="CheckCopyPT(this,arr161Super81,arr161Master81,'{chkAuto-81}');" />
+							{copy-1stlastou-text}						
+						</td>
+						
+					</tr>										
+					
+					<tr>
+					    <td colspan="1"></td>					    
+					    <td>{overunder-text}</td>
+					    <td>{oddeven-text}</td>
+					    <td>{highlow-text}</td>
+					    <td>{nextcombo-text}</td>
+					    <td class="style1 {hide}">{ng-text}</td>
+					    <td></td>
+					    
+					</tr>				
+					<tr class="bg_eb">
+						<td rowspan="{live-row}">{live-text}</td>						
+						<td>{a-Lou-val}{a-Lou-btn}</td>
+						<td>{a-Loe-val}</td>
+						<td>{a-Lhl-val}</td>
+						<td>{a-Lcb-val}</td>
+						<td class="style1 {hide}">{a-ng-val}</td>	
+						<td rowspan="1" colspan="3" class="l">
+						    <input type="checkbox" id="chkCopy161OUL" {chk-161OUL} name="chkCopy161OUL" onclick="CheckCopyPT(this,arr161Super85,arr161Master85,'{chkAuto-85}');" />
+							{copy-oulive-text}
+						</td>
+						
+					</tr>									
+					
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>{static:Resources.Lang.handhistorydetail}</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table id="casino-betlist-a" style="width: 100%;">
+        <!--Content-->
+        <thead>
+            <tr>
+                <th colspan="2" class="hd2 b">
+                    <span>{tablename} - {datetime}</span>
+                </th>
+            </tr>
+        </thead>
+        <tr class="th b">
+            <td colspan="2" align="center">
+                {Player}: {UserName}
+            </td>
+        </tr>
+        <tr class="th">
+            <td class="b c">
+                {PlayerHistoryNo}
+            </td>
+            <td class="l">
+                {PlayerHistoryNo_vl}
+            </td>
+        </tr>
+        <!--Result1-->
+        <tr>
+            <td class="c" colspan="2">
+                {Result1_vl}
+            </td>
+        </tr>
+        <tr class="th b">
+            <td class="l">
+                {roundType}
+            </td>
+            <td class="r">
+                {roundType_vl}
+            </td>
+        </tr>
+        <!--/Result1-->
+        <!--Result2-->
+        <tr>
+            <td class="c" colspan="2">
+                <table id="casino-betlist-a" style="width: 100%">
+                    <tr>
+                        <td class="b">
+                            {HandNo}
+                        </td>
+                        <td class="b">
+                            {OriginHand}
+                        </td>
+                        <td class="b" colspan="2">
+                            {FinalHand}
+                        </td>
+                        <td class="b">
+                            {WinLost}
+                        </td>
+                    </tr>
+                    <!--Result2Row-->
+                    <tr>
+                        <td class="c" style="vertical-align: middle;">
+                            {HandNo_vl}
+                        </td>
+                        <!--OriginHand-->
+                        <td class="c" style="vertical-align: middle;" rowspan="{rowspan}">
+                            {OriginHand_vl}
+                        </td>
+                        <!--/OriginHand-->
+                        <td class="c" style="vertical-align: middle;">
+                            {FinalHand_vl}
+                        </td>
+                        <td class="c" style="vertical-align: middle; width: 140px;">
+                            {Rank_vl}
+                        </td>
+                        <td class="c" style="vertical-align: middle; width: 140px;">
+                            {WinLoss_vl}
+                        </td>
+                    </tr>
+                    <!--/Result2Row-->
+                </table>
+            </td>
+        </tr>
+        <!--/Result2-->
+        <tr class="th b">
+            <td class="l">
+                {bet}
+            </td>
+            <td class="r">
+                {bet_vl}
+            </td>
+        </tr>
+        <tr class="th b">
+            <td class="l">
+                {winloss}
+            </td>
+            <td class="r">
+                {winloss_vl}
+            </td>
+        </tr>
+        <!--/Content-->
+        <!--NoInfo-->
+        <tr class="no_info c">
+            <td colspan="2">
+                {static:Resources.Lang.noInfo}
+            </td>
+        </tr>
+        <!--/NoInfo-->
+    </table>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.lblPositionTaking}</title>
+    <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Reports/Resources/Reports.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/PositionTakingList.css" rel="stylesheet" type="text/css" />
+</head>
+<body onload="initContextMenu(0, 110)">
+<div id="page_main">
+<div id="header_main">
+    {static:Resources.Lang.lblPositionTaking}		
+</div>
+
+<div id="tbl-container">
+ <div id="boderRight">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+                {CommonGroup}
+            </td>
+        </tr>
+        <tr>
+            <td>           
+                <input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" style="display:none" />
+                {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
+                <div id="ctxContainer">{ContextMenu}</div>
+                <table id="tblMain" class="{ShowHideColumnClasses}"  border="1" cellpadding="2" cellspacing="0" style="width:100%;">
+                <thead>
+                <tr id="headerTop" class="RptHeader">
+                    <td colspan="{colNum}">&nbsp;</td>
+	                <!--Horse--><td colspan="{hrcols}" class="HO">{static:Resources.Lang.horseRacing}</td><!--/Horse-->
+	                <!--Greyhound--><td colspan="{Greycols}" class="GH">{static:Resources.Lang.greyHound}</td><!--/Greyhound-->
+	                <!--AUHarness--><td colspan="2" class="HN">{static:Resources.Lang.harness}</td><!--/AUHarness-->
+                </tr>
+                <tr id="headerBottom">
+                    <td class="RptHeader">#</td>
+                    <td class="RptHeader">{static:Resources.Lang.username}</td>	
+                    <!--AdditionalRow-->
+                    <td>&nbsp;</td>
+		            <!--/AdditionalRow-->
+	                
+	                <!--SAHorse-->
+	                <td class="HO">{static:Resources.Lang.winsatote}</td>
+	                <td class="HO">{static:Resources.Lang.placesatote}</td>	
+	                <!--/SAHorse-->
+	                <!--UKHorse-->
+	                <td class="HO">{static:Resources.Lang.winuktote}</td>
+	                <td class="HO">{static:Resources.Lang.placeuktote}</td>
+	                <!--/UKHorse-->
+	                <!--AUHorse-->
+	                <td class="HO">{static:Resources.Lang.winautote}</td>
+	                <td class="HO">{static:Resources.Lang.placeautote}</td>
+	                <!--/AUHorse-->
+	                
+	                <!--UKGreyhound-->
+	                <td class="GH">{static:Resources.Lang.winuktote}</td>
+	                <td class="GH">{static:Resources.Lang.placeuktote}</td>
+	                <!--/UKGreyhound-->
+	                <!--AUGreyhound-->
+	                <td class="GH">{static:Resources.Lang.winautote}</td>
+	                <td class="GH">{static:Resources.Lang.placeautote}</td>
+	                <!--/AUGreyhound-->
+	                
+	                <!--AUHarness-->
+	                <td class="HN">{static:Resources.Lang.winautote}</td>
+	                <td class="HN">{static:Resources.Lang.placeautote}</td>
+	                <!--/AUHarness-->
+                </tr>
+               </thead>
+               
+                <tbody>
+                <!--Rows-->
+                <tr class="{BgRow}">
+	                <!--NonRepeat-->
+	                <td {rowspan}>{No}</td>
+	                <td {rowspan} class="l">
+	                    <!--ViewDownLine-->
+	                    <a href="{url}">{UserName}</a>
+	                    <!--/ViewDownLine-->
+	                    <!--EditMember-->
+	                    <a href="javascript:EditMemberRacing('{custid_value}', '{username_value}', '{custid_upline}', '{roleId}');">{UserName}</a>
+	                    <!--/EditMember-->
+	                </td>
+	                <!--/NonRepeat-->	
+	                <!--Role-->
+	                <td class="firstCol">{Role}</td>
+	                <!--/Role-->	
+	                
+	                <!--SAHorse-->	
+	                <td class="HO">{hr_win}</td>	
+	                <td class="HO">{hr_place}</td>
+	                <!--/SAHorse-->
+	                <!--UKHorse-->
+	                <td class="HO coPT">{UK_Win_Horse}</td>	
+	                <td class="HO coPT">{UK_Place_Horse}</td>
+	                <!--/UKHorse-->
+	                <!--AUHorse-->
+	                <td class="HO">{AU_win_Horse}</td>	
+	                <td class="HO">{AU_place_Horse}</td>
+	                <!--/AUHorse-->
+	                
+	                <!--UKGreyhound-->
+	                <td class="GH coPT">{UK_Win_Greyhound}</td>	
+	                <td class="GH coPT">{UK_Place_Greyhound}</td>
+	                <!--/UKGreyhound-->
+	                <!--AUGreyhound-->
+	                <td class="GH">{AU_win_Greyhound}</td>	
+	                <td class="GH">{AU_place_Greyhound}</td>
+                    <!--/AUGreyhound-->
+                    
+                    <!--AUHarness-->
+	                <td class="HN coPT">{AU_win_Harness}</td>	
+	                <td class="HN coPT">{AU_place_Harness}</td>
+                    <!--/AUHarness-->                    
+                </tr>
+                <!--/Rows-->
+                </tbody>
+                <!--PagingFooter-->
+                <tr>
+                    <td colspan="53">
+                        {pagingControl}
+                    </td>
+                </tr>
+                <!--/PagingFooter-->
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+</div>
+
+    <script src="../../../_GlobalResources/Js/Core.js" type="text/javascript"></script>          
+    <script src="../../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+    <script src="../../../_Components/ShowHideColumn/Resources/ContextMenuColumns_Control.js" type="text/javascript"></script>
+    <script src="../Resources/PositionTakingList.js" type="text/javascript"></script>
+</body>
+</html>

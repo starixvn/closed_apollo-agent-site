@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.handhistorydetail}</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<center>
+    <table id="casino-betlist-a">
+        <thead>
+            <tr>
+                <th colspan="4" class="c">
+                    {tableName} at {betTime}
+                </th>
+            </tr>
+        </thead>
+        <tr>
+            <td colspan="4" class="c">
+                {static:Resources.Casino.Player}: {userName}
+            </td>
+        </tr>
+        <tr class="th b">
+            <td colspan="4" class="c">
+                Result
+            </td>
+        </tr>
+       <!--result-->
+        <tr>
+            <td class="hd c">
+                 {resultNameDealer}
+            </td>
+            <td colspan="2">
+                {resultDealer}
+            </td>
+        </tr>     
+        <tr>
+            <td class="hd c">
+                 {resultNamePlayer}
+            </td>
+            <td colspan="2">
+                {resultPlayer}
+            </td>
+        </tr>     
+        <!--/result-->
+        <tr>
+            <td class="hd c">
+                {playerHistoryNo}
+            </td>
+            <td colspan="3" class="l">
+                {playerHistoryNoResult}
+            </td>
+        </tr>
+        <tr class="hd2 c">
+            <td>
+              
+            </td>
+            <td class="c">
+                {static:Resources.Casino.BetMoney}
+            </td>
+            
+            <td class="c">
+                {static:Resources.Casino.Win}
+            </td>
+        </tr>
+        <!--Row-->
+     
+        <tr>
+            <td class="c">
+                {BetType}
+            </td>
+            <td class="c">
+                {betMoney}
+            </td>
+            
+            <td class="c">
+                {Win}
+            </td>
+        </tr>
+        <!--/Row-->
+        <tr>
+            <td class="hd c">
+                {static:Resources.Casino.total}
+            </td>
+            <td class="c" >
+                {totalBetMoney}
+            </td>
+            <td class="c" >
+                {totalWin}
+            </td>
+        </tr>
+        
+    </table>
+</center>
+</body>
+</html>

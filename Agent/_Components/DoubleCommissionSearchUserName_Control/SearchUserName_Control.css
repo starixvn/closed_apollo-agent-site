@@ -1,0 +1,85 @@
+﻿#box_header
+{
+	background: url( "../../_GlobalResources/Images/bg_boxTop.jpg" ) repeat-x scroll center top #E7E7E7;
+	border: 1px solid #CACACA;
+	margin-bottom: 7px;
+	margin-top: 0;
+	padding: 0;
+}
+#box_option
+{
+	float: left;
+}
+#box_checking_filter
+{
+	width: 180px;
+	float: left;
+}
+#statusFilter
+{
+	width: 80px;
+	font-size: 8pt;
+	font-weight: normal;
+}
+.text_normal
+{
+	color: #F60;
+	font-size: 11px;
+	vertical-align: top;
+	outline: medium none;
+}
+.text_italic
+{
+	color: #F93;
+	font-style: italic;
+	font-size: 11px;
+	vertical-align: top;
+	outline: medium none;
+}
+
+.buttonSubmit
+{
+	background: url(../../_GlobalResources/Images/bg_buttonsite.jpg) repeat-x top;
+	height: 19px;
+	border: 1px #4d4d4d solid;
+	cursor: pointer;
+	padding: 0 5px;
+	padding-bottom: 2px;
+	font-size: 11px;
+	line-height: 15px;
+	width: 55px;
+}
+.buttonSubmit:hover
+{
+	background: url(../../_GlobalResources/Images/bg_buttonsiteOV.jpg) repeat-x top;
+	border: 1px #984d1a solid;
+	color: #cc4800;
+	height: 19px;
+	cursor: pointer;
+	padding: 0 5px;
+	padding-bottom: 2px;
+	font-size: 11px;
+	line-height: 15px;
+	width: 55px;
+}
+
+#tblSearch tr td, .dcommFilterHead
+{
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+}
+
+#imgPrint
+{
+	background: url(../../_GlobalResources/Images/printer1.gif) no-repeat;
+	height: 16px;
+	width: 16px;
+	cursor: pointer;
+	position: absolute;
+}
+
+.dcommFilterHead
+{
+	padding: 6px 10px 6px 14px;
+}

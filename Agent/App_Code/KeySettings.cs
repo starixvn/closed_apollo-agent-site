@@ -1,0 +1,337 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Collections;
+
+public partial class AppSettings
+{
+    public static string VirDir
+    {
+        get
+        {
+            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("VirDir");
+        }
+    }
+
+    public static bool RemoveFI
+    {
+        get
+        {
+            return true;
+        }
+
+    }
+
+    public static string Site
+    {
+        get
+        {
+            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("Site");
+        }
+
+    }
+
+    public static string JsVersion
+    {
+        get
+        {
+            return Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion;
+        }
+
+    }
+
+    public static string TplFolder
+    {
+        get
+        {
+            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("template_folder");
+        }
+
+    }
+
+    public static string SiteUrl
+    {
+        get
+        {
+            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("SiteUrl");;
+        }
+
+    }
+
+    public static string HtmlHeader
+    {
+        get
+        {
+            return string.Empty;
+        }
+    }
+
+    public static string ThemeDir
+    {
+        get
+        {
+            return @"App_Themes/" + Sunplus.Agent.Model.Entities.UserSession.Current.SiteName;
+        }
+    }
+
+    public static bool IsAgentSite
+    {
+        get
+        {
+
+            return (Sunplus.Agent.Model.Entities.UserSession.Current.RoleId == 2);
+        }
+    }
+
+    public static bool IsMasterSite
+    {
+        get
+        {
+
+            return (Sunplus.Agent.Model.Entities.UserSession.Current.RoleId == 3);
+        }
+    }
+
+    public static bool IsSuperSite
+    {
+        get
+        {
+
+            return (Sunplus.Agent.Model.Entities.UserSession.Current.RoleId == 4);
+        }
+    }
+        
+    public static string SiteLevel
+    {
+        get
+        {
+            return Common.GetLevel(Sunplus.Agent.Model.Entities.UserSession.Current.RoleId);
+        }
+    }
+
+    public static string Color
+    {
+        get
+        {
+            string c = "";
+            if (AppSettings.IsSuperSite) c = "#F0EEE0";
+            if (AppSettings.IsMasterSite) c = "#F3F5F9";
+            if (AppSettings.IsAgentSite) c = "#EFF7FF";
+            return c;
+        }
+    }
+
+    public static string ColorSuspended
+    {
+        get { return "#d8d8d8"; }
+    }
+
+    public static bool IsLocalTest
+    {
+        get
+        {
+            return Sunplus.Agent.Model.BL.Definitions.AppSettings.LocalTest;
+        }
+
+    }
+
+    public static string DefaultNoVNIP
+    {
+        get
+        {
+            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("DefaultNoIPVN");
+        }
+    }
+
+    public static string VirPath
+    {
+        get
+        {
+            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("VirPath");
+        }
+
+    }
+
+    public static int PageSize
+    {
+        get
+        {
+            return int.Parse(Sunplus.Agent.Configurations.AppSettings.Configuration.Get("PageSize"));
+        }
+    }
+
+    public static string RowBgOdd
+    {
+        get
+        {            
+            if (HttpContext.Current.Session["Tpl_Theme"] != null && HttpContext.Current.Session["Tpl_Theme"].Equals("AgencyV2"))
+            {
+                return "#F6F8F9";
+            }         
+            return "#f9f9f7";
+        }
+    }
+
+    public static string RowBgEven
+    {
+        get
+        {            
+            if (HttpContext.Current.Session["Tpl_Theme"] != null && HttpContext.Current.Session["Tpl_Theme"].Equals("AgencyV2"))
+            {
+                return "#faf9ee";
+            }         
+            return "#ffffff";
+        }
+    }
+
+    public static string RowBgOver
+    {
+        get
+        {        
+            if (HttpContext.Current.Session["Tpl_Theme"] != null && HttpContext.Current.Session["Tpl_Theme"].Equals("AgencyV2"))
+            {         
+                return "#f8ff8d";
+            }            
+            return "#ffff00";
+        }
+    }
+
+    public static string RowBgClosed
+    {
+        get
+        {
+            return "#ccc7ba";
+            
+        }
+    }
+
+    public static string RowBgSuspended
+    {
+        get
+        {
+            return "#f8ded7";
+            
+        }
+    }
+
+    public static string RowBgLive
+    {
+        get
+        {
+            return "#ffddcc";
+        }
+    }
+
+    public static string RowBgDisabled
+    {
+        get
+        {
+            return "#A0A97A";
+        }
+    }
+
+    #region Background Row Data for CSS
+    public static string BgOdd
+    {
+        get
+        {
+            return "BgOdd";
+        }
+    }
+
+    public static string BgEven
+    {
+        get
+        {
+            return "BgEven";
+        }
+    }
+
+    public static string BgOver
+    {
+        get
+        {        
+            return "BgOver";
+        }
+    }
+
+    public static string BgClosed
+    {
+        get
+        {
+            return "BgClo";
+        }
+    }
+
+    public static string BgSuspended
+    {
+        get
+        {
+            return "BgSus";
+        }
+    }
+
+    public static string BgLive
+    {
+        get
+        {
+            return "BgLive";
+        }
+    }
+
+    public static string BgDisabled
+    {
+        get
+        {
+            return "BgDis";
+        }
+    }
+    #endregion
+
+    public static string CookieRptBold
+    {
+        get
+        {
+            if (HttpContext.Current.Request.Cookies["rpt_bold"] == null)
+                return "1";
+            else
+                return HttpContext.Current.Request.Cookies["rpt_bold"].Value;
+        }
+        set
+        {
+            HttpCookie rpt_bold = new HttpCookie("rpt_bold");
+            rpt_bold.Expires = DateTime.Now.AddDays(30);
+            HttpContext.Current.Response.Cookies.Add(rpt_bold);
+        }
+
+    }
+        
+    public static bool IsNewGUI
+    {
+        get
+        {
+            return (HttpContext.Current.Session["Tpl_Theme"] != null && HttpContext.Current.Session["Tpl_Theme"].Equals("AgencyV2"));
+        }
+    }
+
+    public static bool IsIE6
+    {
+        get
+        {
+            if (HttpContext.Current.Request.Browser.Browser == "IE")
+            {
+                int versionIE = 6;
+                string version = HttpContext.Current.Request.Browser.Version.Substring(0, 1);
+                if (!String.IsNullOrEmpty(version))
+                {
+                    versionIE = DNAide.Core.CastAide.AsInt32(version);
+                }
+                if (versionIE < 7)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+}

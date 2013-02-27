@@ -1,0 +1,60 @@
+﻿<!--HiddenBlock-->
+<link href="MinMaxBet_Control.css" rel="stylesheet" type="text/css" />
+<!--/HiddenBlock-->
+
+<!--MinMaxBet-Control-->
+<table class="tbl_MinMaxBet">
+    <tbody>        
+        <tr>
+            <td>
+                {static:Resources.Racing.minbet}&nbsp;
+                <input type="text" value="{MinBetVal}" name="{MinBetID}" id="{MinBetID}" maxlength="14" {disabled}>
+                <!--MinBetMin-->
+                &gt;=<span id="{MinBetMinID}">{MinBetMinVal}</span>
+                <!--/MinBetMin-->
+            </td>
+            <td>
+                {static:Resources.Racing.maxbet}&nbsp;
+                <input type="text" value="{MaxBetVal}" name="{MaxBetID}" id="{MaxBetID}" maxlength="14" {disabled}>
+                <!--MaxBetMax-->
+                &lt;=<span id="{MaxBetMaxID}">{MaxBetMaxVal}</span>
+                <!--/MaxBetMax-->
+            </td>
+            <td>
+                {static:Resources.Racing.maxpermatch}&nbsp;
+                <input type="text" value="{MaxPerMatchVal}" name="{MaxPerMatchID}" id="{MaxPerMatchID}" maxlength="14" {disabled}>
+                <!--MaxPerMatchMax-->
+                    &lt;=<span id="{MaxPerMatch_MaxID}">{MaxPerMatch_MaxVal}</span>
+                    <!--/MaxPerMatchMax-->
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--/MinMaxBet-Control-->
+<!--MinMaxBet-View-->
+<table class="tbl_MinMaxBet_View">
+    <tbody>        
+        <tr>
+            <td style="width:20%">
+                {static:Resources.Racing.minbet}               
+            </td>
+            <td style="width:13%">
+                {MinBetVal}
+            </td>
+            <td style="width:20%">
+                {static:Resources.Racing.maxbet}
+                
+            </td>
+            <td style="width:13%">
+                {MaxBetVal}
+            </td>
+            <td style="width:20%">
+                {static:Resources.Racing.maxpermatch}               
+            </td>
+            <td>
+                {MaxPerMatchVal}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--/MinMaxBet-View-->

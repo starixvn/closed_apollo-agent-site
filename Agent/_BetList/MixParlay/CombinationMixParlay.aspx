@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="CombinationMixParlay.aspx.cs" Inherits="Sunplus.Agent.UI._BetList.MixParlay.CombinationMixParlay_Page" %>

@@ -1,0 +1,36 @@
+﻿body
+{
+	font-size: 12px;
+	font-family: Tahoma,Arial,Helvetica,sans-serif;
+}
+div
+{
+	line-height: 30px;
+}
+.b
+{
+	font-weight: bold;
+}
+.u
+{
+	text-decoration: underline;
+	font-weight: bold;
+}
+.c
+{
+	text-align: center;
+}
+.upper
+{
+	text-transform: uppercase;
+	color: Blue;
+}
+.r
+{
+	color: Red;
+	font-weight: bold;
+}
+.tab
+{
+	margin-left: 40px;
+}

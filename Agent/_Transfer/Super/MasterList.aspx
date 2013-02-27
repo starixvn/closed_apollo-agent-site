@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="MasterList.aspx.cs" Inherits="Sunplus.Agent.UI._Transfer.Super.MasterList_Page" %>

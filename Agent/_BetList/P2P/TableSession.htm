@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>P2P Table Session</title>
+    <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../../_Reports/Resources/Reports.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <!--Title-->
+    <div id="header_main">
+        {static:Resources.Lang.p2ptablesession} - {UserName}
+    </div>
+    <!--/Title-->
+    <table class="tblRpt" width="100%" border="0" cellpadding="0" cellspacing="1" id="tbl-rpt"
+        style="display: table;">
+        <tr class="RptHeader">
+            <td rowspan="2" style="width: 20px">
+                #
+            </td>
+            <td rowspan="2" style="width: 120px">
+                {static:Resources.Lang.date}
+            </td>
+            <td rowspan="2" style="width: 100px;">
+                {static:Resources.Lang.tableid}
+            </td>
+            <td rowspan="2" style="width: 100px;">
+                {static:Resources.Lang.tournamentid}
+            </td>
+            <td colspan="4" style="width: 65px;">
+                {static:Resources.Lang.tablecurrency}
+            </td>
+            <td rowspan="2">
+                {static:Resources.Lang.xrate}
+            </td>
+            <td colspan="3" style="width: 65px;">
+                {static:Resources.Lang.usercurrency} {User_Currency}
+            </td>
+        </tr>
+        <tr class="RptHeader02">
+            <td>
+                {static:Resources.Lang.currency}
+            </td>
+            <td>
+                {static:Resources.Lang.win}
+            </td>
+            <td>
+                {static:Resources.Lang.com}
+            </td>
+            <td>
+                {static:Resources.Lang.grosscomm}
+            </td>
+            <td>
+                {static:Resources.Lang.win}
+            </td>
+            <td>
+                {static:Resources.Lang.com}
+            </td>
+            <td>
+                {static:Resources.Lang.grosscomm}
+            </td>
+        </tr>
+        <!--DataRow-->
+        <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'"
+            onmouseout="this.style.backgroundColor='{ColorClass}'">
+            <td class="r">
+                {OrderId}
+            </td>
+            <td class="bl_time">
+                {Date}
+            </td>
+            <td class="c">
+                {Table}
+            </td>
+            <td class="c">
+                {Tournament}
+            </td>
+            <td class="c b">
+                {Currency}
+            </td>
+            <td class="{WinLoss_Class}">
+                {WinLoss}
+            </td>
+            <td class="{Comm_Class}">
+                {Comm}
+            </td>
+            <td class="{GrossComm_Class}">
+                {GrossComm}
+            </td>
+            <td class="b">
+                {XRate}
+            </td>
+            <td class="{User_WinLoss_Class}">
+                {User_WinLoss}
+            </td>
+            <td class="{User_Comm_Class}">
+                {User_Comm}
+            </td>
+            <td class="{User_GrossComm_Class}">
+                {User_GrossComm}
+            </td>
+        </tr>
+        <!--/DataRow-->
+        <!--TotalRow-->
+        <tr class="RptFooter">
+            <td />
+            <td />
+            <td />
+            <td>
+                {static:Resources.Lang.total}
+            </td>
+            <td class="c">
+                {Total_Currency}
+            </td>
+            <td>
+                {Total_WinLoss}
+            </td>
+            <td>
+                {Total_Comm}
+            </td>
+            <td>
+                {Total_GrossComm}
+            </td>
+            <td />
+            <td>
+                {Total_User_WinLoss}
+            </td>
+            <td>
+                {Total_User_Comm}
+            </td>
+            <td>
+                {Total_User_GrossComm}
+            </td>
+        </tr>
+        <!--/TotalRow-->
+        <!--NoInfoRow-->
+        <tr class="no_info">
+            <td colspan="12">
+                {Info}
+            </td>
+        </tr>
+        <!--/NoInfoRow-->
+    </table>
+    <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="../Resources/BetList.js" type="text/javascript"></script>
+</body>
+</html>

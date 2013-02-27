@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.handhistorydetail}</title>
+    <link href="Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table id="casino-betlist-a" style="width: 100%;">
+    <!--Content-->
+        <thead>
+            <tr>
+                <th colspan="4" class="c">
+                    {tableName} {static:Resources.Casino.at} {betTime}
+                </th>
+            </tr>
+        </thead>
+        <tr>
+            <td colspan="4" class="c b">
+                {static:Resources.Casino.Player}: {userName}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" class="c">
+                {result}
+            </td>                
+        </tr>
+        <tr>
+            <td colspan="4" class="c">
+                {result_vl}</td>                
+        </tr>
+        <tr class="hd">
+            <td class="c" colspan="2">
+                {playerHistoryNo}
+            </td>
+            <td class="l" colspan="2">
+                {playerHistoryNoResult}
+            </td>
+        </tr>
+        <tr>
+            <td class="l b">
+                {Combination}
+            </td>
+            <td class="r b">
+                {Bet}</td>
+            <td class="r b">
+                {Odds}</td>
+            <td class="r b">
+                {WinLoss}
+            </td>
+        </tr>
+        <!--Row-->
+        <tr>
+            <td class="l">
+                {Combination_vl}
+            </td>
+            <td class="r">
+                {Bet_vl}</td>
+            <td class="r">
+                {Odds_vl}</td>
+            <td class="r">
+                {WinLoss_vl}
+            </td>
+        </tr>
+        <!--/Row-->
+        <tr>
+            <td class="l b">
+                {Total} 
+            </td>
+            <td class="r b">
+                {Bet_tt}</td>
+            <td class="l b">
+                &nbsp;</td>
+            <td class="r b">
+                {WinLoss_tt}
+            </td>
+        </tr>
+        <!--/Content-->
+        <!--NoInfo-->
+        <tr class="no_info">
+            <td colspan="4" class="c">
+                {static:Resources.Lang.noInfo}
+                </td>
+        </tr>
+        <!--/NoInfo-->
+    </table>
+</body>
+</html>

@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EditMultMaster.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.RaceBook.Super.EditMultMaster_Page" %>

@@ -1,0 +1,79 @@
+﻿<link href='../../App_Themes/AgencyV2/userinfo.css' type='text/css' rel='stylesheet' />
+
+<div id="page_popup">    
+<div id="header_popup">{lbleditcomm}</div>
+<form name="fUpdateInfo" style="float:left;" id="fUpdateInfo" action="{updateinfohandler}"  target="frUpdate" method="post">
+<div style="width:800px;">{error-msg}</div>
+<table border="0" cellpadding="0" cellspacing="1" width="800px" class="tblRpt">
+<tbody>
+    <tr class="RptHeader">
+        <td colspan="4" align="center">
+        {lbleditcustcomm}
+        </td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="r" width="25%">
+            {lblCommissionForAgent} &nbsp;<u>{lblAsianHDC_OU_OE}
+        </td>
+        <td class="l" width="25%">
+            <input type ="text" id="txtDiscount" name="txtDiscount" value="{discount-val}" style="width:65px;" readonly="true"/>
+        </td>
+        <td class="r" width="25%">
+            {lblCommissionForAgent} &nbsp;<u>{lbl1x2_CS_TG}</u>
+        </td>
+        <td class="l" width="25%">
+            <input type ="text" id="txtDiscountcs" value = "{discountcs-val}" style="width:65px;" readonly="true"/>
+        </td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="r">
+            {lblCommissionForMember} &nbsp;<u>{lblAsianHDC_OU_OE}</u>
+        </td>
+        <td class="l">
+            {CommissionH_OU_OE} 
+        </td>
+        <td class="r">
+            {lblCommissionForMember} &nbsp;<u>{lbl1x2_CS_TG}</u>
+        </td>
+        <td class="l">
+            {CommissionCS_TG}
+        </td>
+    </tr>
+    <!--1x2-->
+    <tr class="bg_eb2">
+        <td class="r">
+            {lblCommissionForAgent} &nbsp;<u>{lbl1x2}</u>
+        </td>
+        <td class="l">
+            <input type ="text" id="txt1x2" value="{comm1x2-val}" ReadOnly="True" style="width:65px;" />
+        </td>
+        <td class="r">{lblCommissionForAgent_number} &nbsp;<u>{lblnumber}</u></td>
+        <td><!--none-number--><input type ="text" id="txtnumber" value="{commnumber-val}" ReadOnly="True" style="width:65px;" /><!--/none-number--></td>
+    </tr>
+    <tr class="bg_eb2">
+        <td class="r">
+            {lblCommissionForMember} &nbsp;<u>{lbl1x2}</u>
+        </td>
+        <td class="l">
+            {Commission1x2}
+        </td>
+        <td class="r">{lblCommissionForMember_number} &nbsp;<u>{lblnumber}</u></td>
+        <td class="l"><!--none-number-->{Commissionnumber}<!--/none-number--></td>
+    </tr>
+    <!--/1x2-->
+    <tr>
+    <td colspan="4" align="center" class="bg_eb">        
+        <input AccountPermisssion="[B]" type="submit" id="btnSubmit" value="{update}" onclick="return checkAndSubmitCustInfo();" class="btn" />
+        &nbsp;
+        <input AccountPermisssion="[B]" type="reset" id="btnReset" value="{reset}" onclick="$('diverrmsg').style.display='none'; $('txtDiscount').focus();" class="btn" />        
+        &nbsp;
+    </td>
+    </tr>
+</tbody>
+</table>
+</form>
+
+<iframe name="frUpdate" frameborder="0" class="hidden" height="0px" width="0px">
+</iframe>
+
+</div>

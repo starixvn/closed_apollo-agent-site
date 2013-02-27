@@ -1,0 +1,258 @@
+{StyleSheet}
+<div id="page_main">
+<div id="header_main">
+    <div>
+    <!--limit-header-position-normal-->
+        {lblPositionTaking}		
+	<!--/limit-header-position-normal-->
+    </div>
+    
+    <div>
+    <!--limit-header-position-->
+        <!--limit-agentlist-->
+        <a href="{url-agentlist}">{agentlist}</a> |
+        <!--/limit-agentlist-->
+        <!--limit-customerlist-->       
+        <a href="{url-list}">{customerlist}</a>
+        <!--/limit-customerlist--> | 
+        <!--limit-creditbalance-->       
+        <a href="{url-credit}">{creditbalance}</a>
+        <!--/limit-creditbalance--> |
+        <!--limit-position-taking-->            
+        <a href="{url-position}">{positiontaking}</a>
+        <!--/limit-position-taking-->	    
+	<!--/limit-header-position-->	    
+    </div>	
+</div>
+
+<div id="tbl-container">
+ <div id="boderRight">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+                <div id="box_header" style="width:100%; height:30px;padding-top:7px">
+                    <input type="radio" id="radSportbook" checked="checked" name="rdPositionTaking" onclick="DisablePage(); location.href='PositionTaking.aspx'"/> <label for="radSportbook">{Sportbook}</label> &nbsp;&nbsp;
+                    <input type="radio" id="radRacing" name="rdPositionTaking"  onclick="DisablePage(); location.href='PositionTakingRacing.aspx'"/> <label for="radRacing">{Racing}</label> &nbsp;&nbsp;
+                    <!--number-game-->
+                    <input type="radio" id="radNumberGame" name="rdPositionTaking"  onclick="DisablePage(); location.href='PositionTakingNumberGame.aspx'"/> <label for="radNumberGame">{NumberGame}</label> &nbsp;&nbsp;
+                    <!--/number-game-->
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!--Content-->
+                <table id="ver-zebra" class="nowrap c">
+                <colgroup>
+    	            <col class="vzebra-odd" />
+    	            
+    	            <col class="vzebra-even" />
+    	             <!--AdditionalRow-->
+                    <col />
+		            <!--/AdditionalRow-->
+    	            <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+                    <col class="vzebra-odd" /> 
+                    
+                    <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+                    
+                    <col class="vzebra-even" />
+    	            <col class="vzebra-even" />
+    	            <col class="vzebra-even" />
+                    <col class="vzebra-even" />
+                    
+                    <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+    	            
+    	            <col class="vzebra-even" />
+    	            <col class="vzebra-even" />
+    	            <col class="vzebra-even" />
+                    <col class="vzebra-even" /> 
+                    
+                    <col class="vzebra-odd" />                    
+                    <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+                    
+                    <col class="vzebra-even" />                    
+                    <col class="vzebra-even" />    
+                    <col class="vzebra-even" />                    
+                    <col class="vzebra-even" />    
+                    
+                    <col class="vzebra-odd" />    	            
+                    <col class="vzebra-odd" />   
+	                
+    	            <col class="vzebra-even" />
+                    <col class="vzebra-even" />
+                    <col class="vzebra-even" />    	            
+    	            <col class="vzebra-even" />
+    	            
+    	            <!--MixSportsParlay-->
+    	            <col class="vzebra-odd" />
+    	            <!--/MixSportsParlay-->
+    	            
+    	            <col class="vzebra-even" />
+    	          
+    	                               
+                </colgroup>
+                <thead>
+                <tr class="nowrap">
+                        <td colspan="{colNum}">&nbsp;</td>
+		                <td colspan="10">{lblSoccer}</td>
+		                <td colspan="4">{lblSoccer} {lblLive}</td>
+		                <td colspan="4">{lblBasketball}</td>
+		                <td colspan="4">{lblFootball}</td>
+		                <td colspan="4">{lblTennis}</td>
+		                <td colspan="3">{lblBaseball}</td>
+		                <td colspan="4">{lblGolf}</td>
+		                <td colspan="2">{lblMotosports}</td>
+		                <td colspan="4">{lblOtherSports}</td>
+		                <!--MixSportsParlay--><td>{lblParlayMixedSports}</td><!--/MixSportsParlay-->
+		                <td>&nbsp;</td>		
+                </tr>
+                 
+                <tr>
+                    <td>#</td>
+                    <td>{lblUserName}</td>	
+                    <!--AdditionalRow-->
+                    <th>&nbsp;</th>
+		            <!--/AdditionalRow-->
+	                <th>{lblHdp}</th>
+	                <th>{lblOU}</th>
+	                <th>{lbl1stHdp}</th>
+	                <th>{lbl1stOU}</th>
+	                <th>{lblOE}</th>
+	                <th>{lbl1x2}</th>
+	                <th>{lblCS}</th>
+	                <th>{lblTG}</th>
+	                <th>{lblMP}</th>
+	                <th>{lblOutRight}</th>
+	                <th>{lblHdp}</th>
+	                <th>{lblOU}</th>
+	                <th>{lbl1stHdp}</th>
+	                <th>{lbl1stOU}</th>
+	                <th>{lblHdp}</th>
+	                <th>{lblOU}</th>
+	                <th>{lblOE}</th>
+	                <th>{lblML}</th>
+	                <th>{lblHdp}</th>
+	                <th>{lblOU}</th>
+	                <th>{lblOE}</th>
+	                <th>{lblML}</th>
+	                <th>{lblHdp}</th>
+	                <th>{lblOU}</th>
+	                <th>{lblOE}</th>
+	                <th>{lblML}</th>
+	                <th>{lblHdp}</th>
+	                <th>{lblOU}</th>
+	                <th>{lblML}</th>
+	                <th>{lblHdp}</th>
+	                <th>{lblOU}</th>
+	                <th>{lblOE}</th>
+	                <th>{lblML}</th>
+	                <th>{lblHdp}</th>
+	                <th>{lblML}</th>
+	                <th>{lblHdp}</th>
+	                <th>{lblOU}</th>
+	                <th>{lblOE}</th>
+	                <th>{lblML}</th>	
+	                <!--MixSportsParlay-->
+	                <th>{lblMP}</th>
+	                <!--/MixSportsParlay-->
+	                <td>{lblUserName}</td>
+                </tr>
+               </thead>
+               
+                <tbody>
+                <!--row-->
+                <tr class="c" bgcolor="{color}">
+	                <!--NonRepeat-->
+	                <td {rowspan}>{No}</td>
+	                <td {rowspan} class="l">
+	                    <!--link-->
+	                    <a href="{url}">{UserName_vl}</a>
+	                    <!--/link-->
+	                    <!--editmember-->
+	                    <a href="javascript:EditMember_Single('{custid_value}', '{username_value}', '{custid_upline}', '{Customer}');">{UserName_vl}</a>
+	                    <!--/editmember-->
+	                </td>
+	                <!--/NonRepeat-->	
+	                <!--Role-->
+	                <td class="{firstCol}">{Role}</td>
+	                <!--/Role-->	
+	                <td>{Soccer_hdp}</td>
+	                <td>{Soccer_ou}</td>
+	                <td>{Soccer_1sthdp}</td>
+	                <td>{Soccer_1stou}</td>
+	                <td>{Soccer_oe}</td>
+	                <td>{Soccer_1x2}</td>
+	                <td>{Soccer_cs}</td>
+	                <td>{Soccer_tg}</td>
+	                <td>{Soccer_mp}</td>
+	                <td>{Soccer_outright}</td>
+	                <td>{SoccerLive_hdp}</td>
+	                <td>{SoccerLive_ou}</td>
+	                <td>{SoccerLive_1sthdp}</td>
+	                <td>{SoccerLive_1stou}</td>
+	                <td class="vzebra-PT">{Basketball_hdp}</td>
+	                <td class="vzebra-PT">{Basketball_ou}</td>
+	                <td class="vzebra-PT">{Basketball_oe}</td>
+	                <td class="vzebra-PT">{Basketball_ml}</td>
+	                <td>{Football_hdp}</td>
+	                <td>{Football_ou}</td>
+	                <td>{Football_oe}</td>
+	                <td>{Football_ml}</td>
+	                <td class="vzebra-PT">{Tennis_hdp}</td>
+	                <td class="vzebra-PT">{Tennis_ou}</td>
+	                <td class="vzebra-PT">{Tennis_oe}</td>
+	                <td class="vzebra-PT">{Tennis_ml}</td>
+	                <td>{Baseball_hdp}</td>
+	                <td>{Baseball_ou}</td>
+	                <td>{Baseball_ml}</td>
+	                <td class="vzebra-PT">{Golf_hdp}</td>
+	                <td class="vzebra-PT">{Golf_ou}</td>
+	                <td class="vzebra-PT">{Golf_oe}</td>
+	                <td class="vzebra-PT">{Golf_ml}</td>
+	                <td>{MotorSport_hdp}</td>
+	                <td>{MotorSport_ml}</td>	                	
+	                <td class="vzebra-PT">{OtherSports_hdp}</td>
+	                <td class="vzebra-PT">{OtherSports_ou}</td>
+	                <td class="vzebra-PT">{OtherSports_oe}</td>
+	                <td class="vzebra-PT">{OtherSports_ml}</td>
+	                <!--MixSportsParlay-->
+	                <td>{ParlayMixedSports_ml}</td>
+	                <!--/MixSportsParlay-->
+                	
+	                <!--NonRepeat-->
+	                <td {rowspan} class="l">
+	                    <!--link-->
+	                    <a href="{url}">{UserName_vl}</a>
+	                    <!--/link-->
+	                    <!--editmember-->
+	                    <a href="javascript:EditMember_Single('{custid_value}', '{username_value}', '{custid_upline}', '{Customer}');">{UserName_vl}</a>
+	                    <!--/editmember-->
+	                </td>
+	                <!--/NonRepeat-->	
+                </tr>
+                <!--/row-->
+                </tbody>
+                </table>
+                <!--End Content-->
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+<input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" />
+</div>

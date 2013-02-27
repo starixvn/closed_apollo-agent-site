@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="AccountInfo.aspx.cs" Inherits="Sunplus.Agent.UI._AccountInfo.AccountInfo_Page" %>

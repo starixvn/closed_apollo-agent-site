@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="CasinoResult_Keno.aspx.cs" Inherits="Sunplus.Agent.UI._BetList.CasinoResult_Keno" %>

@@ -1,0 +1,34 @@
+﻿#tblMain
+{
+    white-space: nowrap;
+    text-align: center;
+	border-collapse: collapse;
+	border-color: #b7b7b7;		
+	line-height:15px;
+}
+
+#tblMain tbody tr:hover td{
+    background-color: #ffff00 !important;
+}
+
+#headerBottom{background-color:#F1E8D2}
+
+.BgOdd{text-align:center; color:#171717; background-color:#F6F8F9}
+.BgEven{text-align:center; color:#171717; background-color:#faf9ee}
+.BgOver{text-align:center; color:#171717; background-color:#f8ff8d}
+.BgClo{text-align:center; color:#171717; background-color:#ccc7ba}
+.BgSus{text-align:center; color:#171717; background-color:#f8ded7}
+.BgLive{text-align:center; color:#171717; background-color:#ffddcc}
+.BgDis{text-align:center; color:#171717; background-color:#A0A97A}
+
+.coPT{background: #F9EEFB;color: #2222dd;}
+.cHeader{background: #F9EEFB}
+
+td {
+    padding-left: 3px;
+    padding-right: 3px;
+    white-space:nowrap;
+}
+
+.colHdr{background-color: #F1E8D2;white-space:nowrap;}
+.colHdr2{background-color: #F9EEFB;color: #000;white-space:nowrap;}

@@ -1,0 +1,49 @@
+﻿<!--HorseRacing-->
+ <td class="r">{disabledHR-text}</td>
+ <td class="l"> 
+    <input type="checkbox" id="chkDisabledHR" name="chkDisabledHR" {DisabledHR-check}  onclick="DisableHR('chkDisabledHR','chkDisabledHRDownline');"/>
+ </td>
+<!--/HorseRacing-->
+
+<!--Suspend-->
+<td class="r">{suspend-text}</td>
+<td class="l">
+    <input type="checkbox" id="chkSuspended" name="chkSuspended" {suspend-check} onclick="ConfirmSuspendedMessage(this,{IsSuspended});" />		       
+</td>
+<!--Captchar-->
+<td onclick="GetValidateImage()" class="r">
+    <img src="../_Authorization/Handlers/Captcha.ashx" id="imgCode" alt="" />
+</td>
+<td class="l">
+    <input class="tb" id="txtCaptchaAddNewMember" name="txtCaptchaAddNewMember" type="text" maxlength="4" autocomplete="off" style="width:62px"/>
+</td>
+<!--/Captchar-->
+<!--/Suspend-->
+
+<!--Casino-->
+<td class="r">{lblEnableCS}</td>
+<td class="l"> 
+   <input type="checkbox" name="hidCS" checked="checked" />
+</td>
+<!--/Casino-->
+
+<!--Financial-->
+<td class="r">{disabledFI-text}</td>
+<td class="l"> 
+    <input type="checkbox" id="chkDisabledFI" name="chkDisabledFI" {DisabledFI-check}  onclick="DisableFI('chkDisabledFI','chkDisabledFIDownline');"/> <!--downline-->{level}&nbsp;&nbsp;&nbsp<input type="checkbox" id="chkDisabledFIDownline" name="chkDisabledFIDownline" {DisabledFIDownline-check} onclick="DisableFI('chkDisabledFI','chkDisabledFIDownline');"/> {leveldownline}<!--/downline-->
+</td>
+<!--/Financial-->
+
+<!--AllowAutoMPT-->
+<td class="r">{allowAuto-MasterPT-text}</td>
+<td class="l"> 
+   <input type="checkbox" {checked-autoMPT} id="chkallowAutoMPT" name="chkallowAutoMPT" />
+</td>
+<!--/AllowAutoMPT-->
+
+<!--AllowNumberGame-->
+<td class="r">{allow-NumberGame-text}</td>
+<td class="l"> 
+   <input type="checkbox" {checked-numberGame} id="chkallowNumberGame" name="chkallowNumberGame" />
+</td>
+<!--/AllowNumberGame-->

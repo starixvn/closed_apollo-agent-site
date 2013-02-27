@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/SearchAndCopy.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Components/SearchUserName_Control/SearchUserName_Control.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Components/SearchUserName_Control/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="bdSearch">
+    <div id="page_main">
+        <div style="width: 60%">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        {static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!--Header-->
+                        {header}
+                        <!--/Header-->
+                    </td>
+                </tr>
+                <tr>
+                    <td id="search">
+                        <!--Search-->
+                        <span id="text_username" class="text_username">{static:Resources.Lang.username}</span>
+                        <input type="text" class="text_italic" name="txtUserName" id="txtUserName" value="{static:Resources.Lang.enterusername}"
+                            onkeypress="SearchAndCopy.onKeyPressUser(event);" onclick="SearchAndCopy.onclickUser('{static:Resources.Lang.enterusername}')"
+                            onblur="SearchAndCopy.onblurUser('{static:Resources.Lang.enterusername}')" autocomplete="off" />
+                        <span id="MessageWarning">&nbsp</span>
+                        <!--/Search-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="null">&nbsp</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="warning">
+                            <div class="infoAllSetting">{static:Resources.Lang.InfoAllSetting}</div>
+                            <div class="{cssInfoClickPreview}">{infoClickPreview}</div>
+                            <div class="infoClickSkip">{static:Resources.Lang.infoClickSkip}</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="buttonReView">
+                <a href="javascript:{review_function}"><span id="sbuttonReView" class="sbuttonReView">
+                    {static:Resources.Lang.preview} </span></a>
+            </div>
+            <div class="buttonNext">
+                <a href="javascript:{next_function}"><span id="sbuttonNext" class="sbuttonNext">{static:Resources.Lang.skip}
+                </span></a>
+            </div>
+        </div>
+    </div>
+    <div class="shadow" id="shadow" />
+    <div class="output" id="output" />
+    <script src="../../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="../../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+    <script src="../../_Components/AutoComplete/autocomplete.js" type="text/javascript"></script>
+    <script src="Resources/SearchAndCopy.js" type="text/javascript"></script>
+</body>
+</html>

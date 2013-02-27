@@ -1,0 +1,74 @@
+<table class="sptPT" style="width: 60%">		
+	<tr>
+		<td >
+        {ChkUpdatePT}
+			<div id="divUpdPT{sportId}" name="divUpdPT{sportId}">
+				<table border="1" width="100%" class="tblRpt" bordercolor="#D4D0C8">									
+					<tr class="bg_eb">
+						<!--none-edit-min--><td></td><!--/none-edit-min-->
+						<!--none-financial--><td>{hdp-text}</td><!--/none-financial-->
+						<td class="{clssStyle} c" style="width:{150px}">{ou-text}</td>								
+						
+						<td>{ml-text}</td>
+						
+						<!--limit-CopyHdp-->
+						<td></td>
+						<!--/limit-CopyHdp-->
+						
+					</tr>
+					<!--none-Multi-->				
+					<tr class="bg_eb">
+					    
+						<!--none-edit-min-->
+						<td class="r">{a-presetpt-text}</td>
+						<td>{a-hdp-val}</td>
+						<td>{a-ou-val}</td>					
+						<td>{a-ml-val}</td>
+						<!--limit-CopyHdp-->
+						<td rowspan="{cols-a}"></td>
+						<!--/limit-CopyHdp-->
+					</tr>
+					<!--none-Master-->
+					<tr class="bg_eb">
+						<td class="r">{master-text}</td>
+						<td>{m-hdp-val}</td>
+						<td>{m-ou-val}</td>					
+						<td>{m-ml-val}</td>
+					</tr>
+					<!--/none-Master-->
+					<!--/none-Multi-->	
+					<tr class="bg_eb">
+						<td class="r">{p-presetpt-text}</td><!--/none-edit-min-->
+						<!--none-financial-->
+						<td>{p-hdp-val}{p-hdp-btn}</td>
+						<!--/none-financial-->
+						<td class="{clssStyle} c">{p-ou-val}{p-ou-btn}</td>						
+						
+						<td>{p-ml-val}</td>
+						<!--limit-copyOU-->
+						    <!--limit-CopyHdp-->
+						<td rowspan="{copy-hdp-col}" class="l"><input type="checkbox" {chk-hdp} id="chkCopy{sportId}Hdp" name="chkCopy{sportId}Hdp" onclick="CheckCopyPT(this,arrSuper{sportId});" />
+							{copy-hdp-text}</td>
+							<!--/limit-CopyHdp-->
+						<!--/limit-copyOU-->
+						
+					</tr>					
+					<!--none-edit-min-->				
+					<tr class="bg_eb {clssHidden}">
+						<td rowspan="2" class="r">{au-presetpt-text}</td>
+						<td><input type="checkbox" onclick="CheckAutoPreset(this)" id="chkAuto{sportId}Hdp" name="chkAuto{sportId}Hdp" {checked-Hdp} /></td>
+						<td><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy{sportId}Hdp')" id="chkAuto{sportId}OU" name="chkAuto{sportId}OU" {checked-OU} />	</td>				
+						<td><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy{sportId}Hdp')" id="chkAuto{sportId}ML" name="chkAuto{sportId}ML" {checked-ML} /></td>
+					</tr>
+					<tr class="bg_eb {clssHidden}">
+						<td>{au-hdp-val}{au-hdp-btn}</td>
+						<td>{au-ou-val}</td>		
+						<td>{au-ml-val}</td>
+					</tr>					
+					<!--/none-edit-min-->		
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>
+

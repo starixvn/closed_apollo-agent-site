@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="EditCommission.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.EditCommission.EditCommission_Page" %>

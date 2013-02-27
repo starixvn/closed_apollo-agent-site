@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ViewAgent.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.RaceBook.Super.ViewAgent_Page" %>

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.lblMemberCommission}</title>
+    <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Reports/Resources/Reports.css" rel="stylesheet" type="text/css" />
+    <link href="../PositionTakingList/Resources/PositionTakingList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="page_main">
+<div id="header_main">
+    <div>{static:Resources.Lang.lblMemberCommission}</div>
+</div>
+
+<div id="tbl-container">
+ <div id="boderRight">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+                <table id="box_header" border="0" cellpadding="0" cellspacing="0" style="width:100%;padding-left:3px">
+                    <tr>                            
+                        <td width="400">
+                            {CommonGroup}
+                        </td>
+
+                        <!--GroupAgent-->
+                        <!--GroupMaster-->
+                        <td width="110" class="r">{static:Resources.Lang.selectmaster}</td>
+                        <td width="120" >
+                            <select id="selmaster" name="selmaster" onchange="getData_MemberCommission_Agent();">{ComboMaster}</select>
+                        </td>
+                        <!--/GroupMaster-->
+                        <td width="100" class="r">{static:Resources.Lang.selectagent}</td>
+                        <td width="140" id="selagent" name="selagent" >
+                            <select id="selAg" name="selAg" onchange="show_data_com();">{ComboAgent}</select>
+                        </td>
+                        <td></td>
+                        <!--/GroupAgent-->
+                    </tr>
+                    <tr>
+                        <td style="text-align: left" colspan="4" class="warning">
+                            <ul><li>{CommToAllTypes}</li></ul>
+                        </td>
+                    </tr>
+                </table> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table id="tblMain" border="1" cellpadding="2" cellspacing="0" style="width:100%;">         
+                    <thead>
+                    <tr class="RptHeader nowrap">
+                        <td colspan="4"></td>  
+                                     
+                        <!--Horse-->
+                        <!--SAHorse--><td colspan="{colspancomm}">{static:Resources.Racing.hrSaTote}(%)</td><!--/SAHorse-->
+                        <!--UKHorse--><td colspan="{colspancomm}">{static:Resources.Racing.hrUkTote}(%)</td><!--/UKHorse-->
+                        <!--AUHorse--><td colspan="{colspancomm}">{static:Resources.Racing.hrAUTote}(%)</td><!--/AUHorse-->
+                        <!--/Horse-->
+                                  
+                        <!--UKGreyhound--><td colspan="{colspancomm}">{static:Resources.Racing.GreyhoundUK}(%)</td><!--/UKGreyhound-->
+                        <!--AUGreyhound--><td colspan="{colspancomm}">{static:Resources.Racing.GreyhoundAU}(%)</td><!--/AUGreyhound-->
+                    
+                        <!--AUHarness--><td colspan="{colspancomm}">{static:Resources.Racing.HarnessAU}(%)</td><!--/AUHarness-->
+                    
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr id="headerBottom">
+                        <td class="RptHeader02" style="width: 25px;">#</td>
+                        <td class="RptHeader02">{static:Resources.Lang.username}</td>
+                        <td class="RptHeader02">{static:Resources.Lang.firstname}</td>
+                        <td class="RptHeader02">{static:Resources.Lang.lastname}</td>
+                              
+                        <!--Horse1--> 
+                            <!--SAHorse-->
+                            <!--IsAgentSite--><td class="colHdr2" title="{static:Resources.Lang.master}">M</td><!--/IsAgentSite-->
+                            <td class="colHdr2" title="{static:Resources.Lang.agent}">A</td>
+                            <td class="colHdr2" title="{static:Resources.Lang.member}">P</td>
+                            <!--/SAHorse-->
+                        
+                            <!--UKHorse-->
+                            <!--IsAgentSite--><td class="colHdr" title="{static:Resources.Lang.master}">M</td><!--/IsAgentSite-->                    
+                            <td class="colHdr" title="{static:Resources.Lang.agent}">A</td>
+                            <td class="colHdr" title="{static:Resources.Lang.member}">P</td>                    
+                            <!--/UKHorse-->
+                        
+                            <!--AUHorse-->
+                            <!--IsAgentSite--><td class="colHdr2" title="{static:Resources.Lang.master}">M</td><!--/IsAgentSite-->                    
+                            <td class="colHdr2" title="{static:Resources.Lang.agent}">A</td>
+                            <td class="colHdr2" title="{static:Resources.Lang.member}">P</td>                    
+                            <!--/AUHorse-->
+                        <!--/Horse1-->                    
+                    
+                        <!--UKGreyhound1-->
+                        <!--IsAgentSite--><td class="colHdr" title="{static:Resources.Lang.master}">M</td><!--/IsAgentSite-->                    
+                        <td class="colHdr" title="{static:Resources.Lang.agent}">A</td>
+                        <td class="colHdr" title="{static:Resources.Lang.member}">P</td>
+                        <!--/UKGreyhound1-->
+                        
+                        <!--AUGreyhound1-->
+                        <!--IsAgentSite--><td class="colHdr2" title="{static:Resources.Lang.master}">M</td><!--/IsAgentSite-->                    
+                        <td class="colHdr2" title="{static:Resources.Lang.agent}">A</td>
+                        <td class="colHdr2" title="{static:Resources.Lang.member}">P</td>
+                        <!--/AUGreyhound1-->
+                    
+                        <!--AUHarness1-->
+                        <!--IsAgentSite--><td class="colHdr" title="{static:Resources.Lang.master}">M</td><!--/IsAgentSite-->                    
+                        <td class="colHdr" title="{static:Resources.Lang.agent}">A</td>
+                        <td class="colHdr" title="{static:Resources.Lang.member}">P</td>
+                        <!--/AUHarness1-->
+                    
+                        <td class="RptHeader02">{static:Resources.Lang.credit}</td>
+                        <td class="RptHeader02">{static:Resources.Lang.username}</td>
+                    </tr>
+                    </thead>
+                     <tbody>
+                    <!--NoRowInfo-->
+                    <tr class="bg_white">
+                        <td colspan="{NoInfoColspan}" class="c nobold">{NoInfo}</td>
+                    </tr>
+                    <!--/NoRowInfo-->
+                    <!--Rows-->
+                    <tr class="{BgRow}">
+                        <td class="w-order">{No}</td>
+                        <td class="l">{UserName}</td>
+                        <td class="l">{FirstName}</td>
+                        <td class="l">{LastName}</td>
+                    
+                        <!--Horse-->                    
+                            <!--SAHorse-->
+                            <!--IsAgentSite--><td class="colHdr2">{v151adiscount_31}</td><!--/IsAgentSite-->
+                            <td class="colHdr2">{v151discount_31}</td>
+                            <td class="colHdr2">{v151playerdiscount_31}</td>
+                            <!--/SAHorse-->
+                        
+                            <!--UKHorse-->
+                            <!--IsAgentSite--><td class="colHdr">{v151adiscount_41}</td><!--/IsAgentSite-->
+                            <td class="colHdr">{v151discount_41}</td>
+                            <td class="colHdr">{v151playerdiscount_41}</td>
+                            <!--/UKHorse-->
+                        
+                            <!--AUHorse-->
+                            <!--IsAgentSite--><td class="colHdr2">{v151adiscount_51}</td><!--/IsAgentSite-->
+                            <td class="colHdr2">{v151discount_51}</td>
+                            <td class="colHdr2">{v151playerdiscount_51}</td>
+                            <!--/AUHorse-->
+                        <!--/Horse-->
+                    
+                        <!--UKGreyhound-->                    
+                        <!--IsAgentSite--><td class="colHdr">{v152adiscount_41}</td><!--/IsAgentSite-->
+                        <td class="colHdr">{v152discount_41}</td>
+                        <td class="colHdr">{v152playerdiscount_41}</td>
+                        <!--/UKGreyhound-->
+                        
+                        <!--AUGreyhound-->
+                        <!--IsAgentSite--><td class="colHdr2">{v152adiscount_51}</td><!--/IsAgentSite-->
+                        <td class="colHdr2">{v152discount_51}</td>
+                        <td class="colHdr2">{v152playerdiscount_51}</td>
+                        <!--/AUGreyhound-->
+                    
+                        <!--AUHarness-->                    
+                        <!--IsAgentSite--><td class="colHdr">{v153adiscount_51}</td><!--/IsAgentSite-->
+                        <td class="colHdr">{v153discount_51}</td>
+                        <td class="colHdr">{v153playerdiscount_51}</td>
+                        <!--/AUHarness-->
+                    
+                        <td class="r">{Credit}</td>
+                        <td class="l">{UserName}</td>
+                    </tr>
+                    <!--/Rows-->
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+</div>
+
+    <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="Resources/MemberCommissionRacing.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+﻿#tblHeader
+{
+	border: 0;
+	width: 100%;
+}
+
+#tblHeader tr
+{
+	/*height: 55px;*/
+	height: 40px;
+}
+#tblHeader td
+{
+	padding: 0;
+}
+
+#tblHeader .bgleft
+{
+	background: url( "left_table.jpg" ) no-repeat scroll left bottom transparent;
+	text-align: left;
+	width: 159px; /*padding-top: 15px;*/
+}
+
+#tblHeader .bgleft a:link, #tblHeader .bgleft a:visited
+{
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#tblHeader .bgleft a:hover, #tblHeader .bgleft a:active
+{
+	color: #666666;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#tblHeader .bgcenter
+{
+	background: url( "center_table.png" ) repeat-x scroll center bottom transparent;
+	text-align: center; /*padding-top: 13px;*/
+	padding-top: 2px;
+}
+
+#tblHeader .bgright
+{
+	background: url( "right_table.jpg" ) no-repeat scroll right bottom transparent;
+	width: 159px;
+	text-align: right;
+	padding-top: 10px;
+}
+
+#tblHeader .btnSubmit
+{
+	display: inline-block;
+	background: url(btn.bg.png) repeat-x 0px 0px;
+	padding: 2px 12px 2px 12px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+	border: 1px solid rgba(0,0,0,0.4);
+	-moz-border-radius: 3px;
+	-moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+	-webkit-border-radius: 8px;
+	-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+	cursor: pointer;
+	background-color: #CCCCCC;
+	color: #141414;
+	text-align: center;
+	margin-top: 8px;
+	margin-left: 10px;
+	width: 80px;
+	height: 15px;
+}
+
+#tblHeader .btnSubmitDisable
+{
+	display: inline-block;
+	padding: 2px 12px 2px 12px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+	border: 1px solid rgba(0,0,0,0.4);
+	-moz-border-radius: 3px;
+	-moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+	-webkit-border-radius: 8px;
+	-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+	cursor: default;
+	background-color: #CCCCCC;
+	color: #707070;
+	text-align: center;
+	margin-top: 8px;
+	margin-left: 10px;
+	width: 80px;
+	height: 15px;
+}
+
+#tblHeader .arrowIco
+{
+	background: url(Arrow.gif) no-repeat 0px 0px;
+	width: 7px;
+	height: 9px;
+	margin-top: -10px;
+	margin-left: 82px;
+}
+
+#tblHeader .btnSubmit:hover
+{
+	color: #cc4800;
+}

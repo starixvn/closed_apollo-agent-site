@@ -1,0 +1,74 @@
+﻿<link href='../../App_Themes/AgencyV2/userinfo.css' type='text/css' rel='stylesheet' />
+<style>
+td {
+	padding: 0px 0px 0px 0px;
+}
+</style>
+
+<div id="page_popup">    
+<div id="header_popup">{lbleditbetsetting}</div>
+<form id="fUpdateInfo" name="fUpdateInfo" style="float:left;" action="{updateinfohandler}"  target="frUpdate" method="post">
+<div style="width:800px;">{error-message}</div>
+<table id="tblOtherSetting" border="0" cellpadding="0" cellspacing="1" width="800px" class="tblRpt {OtherSetting_clss}" style="min-width:800px;">
+    <tr class="RptHeader">
+        <td>{othersetting}</td>
+    </tr>
+    <tr style="background-color:#ffffff;">
+        <td align="center">
+              {lblMaxPerBall} &nbsp; <input type="text" maxlength="14" id="txtMaxPerBall" name="txtMaxPerBall" value="{MaxPerBall-val}" />					
+							<span class="{maxperball_clss}">&lt;=<span id="txtMaxPerBall_Max">{MaxPerBall-max}</span>
+        </td>
+    </tr>
+</table>
+<br />
+<input type="checkbox" id="chkCopyAll" name="chkCopyAll" onclick="checkCopyAll(this);" />
+<b><span onclick="$('chkCopyAll').click();" style="cursor: pointer; position: relative; top: -2px;">{lbl_copyallsettingfromsoccer}</span></b>
+
+<table id="tblBetSetting" border="0" cellpadding="0" cellspacing="1" width="800px" class="tblRpt" style="min-width:800px;">
+<tbody>
+    <tr>
+    <td style="background-color:#ffffff;" class="RptHeader"></td>
+    <td class="RptHeader">{lblminbet} </td>
+    <td class="RptHeader">{lblmaxbet} </td>
+    <td class="RptHeader">{lblmaxpermatch} </td>
+    </tr>
+    <!--tblbetsettting-->     
+    <tr>
+        <td width="136" class="bg_eb2"><span class="tabl_text">{lblsportname}</span></td>
+        <td width="28%" valign="middle" class="tabl_conts">
+            <input type="text" value="{minbetval}" name="txtMinbet{sportid}" onkeypress="checkKeyEnter(event);" class="bettextbox" id="txtMinbet{sportid}" maxlength="14"/><!--blkminbetmax--> <span class="text_R">&nbsp;>={minbet_max} </span><!--/blkminbetmax-->
+            <input id="hidminbetmax{sportid}" type="hidden" value="{minbet_max}" />
+        </td>            
+        <td width="28%" class="tabl_conts">
+            <input type="text" value="{maxbetval}"  name="txtMaxbet{sportid}" onkeypress="checkKeyEnter(event);" class="bettextbox" id="txtMaxbet{sportid}" maxlength="14"/><!--blkmaxbetmin--> <span class="text_R">&nbsp;<={maxbet_min} </span> <!--/blkmaxbetmin-->
+            <input id="hidmaxbetmin{sportid}" type="hidden" value="{maxbet_min}" />
+        </td>            
+        <td width="28%" class="tabl_conts">
+           <input type="text" value="{maxpermatchval}" name="txtMaxPerMatch{sportid}" onkeypress="checkKeyEnter(event);"  class="bettextbox" id="txtMaxPerMatch{sportid}" maxlength="14"/><!--blkmaxpermatchmax--> <span class="text_R">&nbsp;<={maxpermatch_max} </span><!--/blkmaxpermatchmax--> 
+            <input id="hidmaxpermatchmax{sportid}" type="hidden" value="{maxpermatch_max}" />
+            <input id="hidmaxpermatchmin{sportid}" type="hidden" value="{maxpermatch_min}" />
+        </td>
+    </tr>
+    <!--/tblbetsettting-->
+    <tr class="bg_eb">
+        <td align="center" colspan="4">
+            <input AccountPermisssion="[B]" id="btnSubmit" type="button" value="{update}" onclick="return checkAndSubmitCustInfo();" class="btn" />
+            &nbsp;&nbsp;   
+            <input AccountPermisssion="[B]" id="btnReset" type="reset"" value="{reset}" class="btn" onclick="$('chkCopyAll').checked=false;checkCopyAll($('chkCopyAll')); $('diverrmsg').style.display='none';" />
+            &nbsp;
+        </td>
+    </tr>
+</tbody>
+</table>
+
+<br />        
+</form>
+
+<iframe name="frUpdate" frameborder="0" class="hidden" height="0px" width="0px">
+</iframe>
+
+</div>
+
+<script type="text/javascript" src="../../Js/wz_tooltip/wz_tooltip.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_centerwindow.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_balloon.js"></script>

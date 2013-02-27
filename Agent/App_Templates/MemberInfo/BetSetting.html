@@ -1,0 +1,45 @@
+  <!--edit-mode--> 
+    <tr class="bg_eb">
+      <td>
+        {minbet-text}&nbsp;
+        <input type="text" maxlength="14" onkeypress="return AllowNumber(event)" id="txtMinbet{sporttype}" name="txtMinbet{sporttype}" value="{minbet{sporttype}-val}" ></input>
+        <span class="{mbMin}">
+          &gt;=<span id="txtMinbet_Min{sporttype}">{minbet-min-{sporttype}}</span>
+        </span>
+      </td>
+      <td>
+        {maxbet-text}&nbsp;
+        <input type="text" maxlength="14" onkeypress="return AllowNumber(event)" id="txtMaxbet{sporttype}" name="txtMaxbet{sporttype}" value="{maxbet{sporttype}-val}" ></input>
+        <span class="{mbMax}">
+          &lt;=<span id="txtMaxbet_Max{sporttype}">{maxbet-max-{sporttype}}</span>
+        </span>
+      </td>
+      <td>
+        {maxpermatch-text}&nbsp;
+        <input type="text" maxlength="14" onkeypress="return AllowNumber(event)" id="txtMaxPerMatch{sporttype}" name="txtMaxPerMatch{sporttype}" value="{maxpermatch{sporttype}-val}" ></input>
+        <!--<span class="{mpmMin}">
+          &gt;=<span id="txtMaxPerMatch_Min{sporttype}">{maxpermatch-min-{sporttype}}</span> and
+        </span>-->
+        <span class="{mpmMax}">
+          &lt;=<span id="txtMaxPerMatch_Max{sporttype}">{maxpermatch-max-{sporttype}}</span>
+        </span>
+      </td>
+    </tr>
+ <!--/edit-mode-->
+ <!--view-mode-->
+    <tr class="bg_eb">
+      <td>
+        {minbet-text}:&nbsp;&nbsp;
+        {minbet{sporttype}-val}
+      </td>
+      <td>
+        {maxbet-text}:&nbsp;&nbsp;
+       {maxbet{sporttype}-val}
+        
+      </td>
+      <td class="c">
+        {maxpermatch-text}:&nbsp;&nbsp;
+        {maxpermatch{sporttype}-val}
+      </td>
+    </tr>
+ <!--/view-mode-->

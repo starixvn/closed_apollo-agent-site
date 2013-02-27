@@ -1,0 +1,33 @@
+﻿<div style="overflow: auto; {maxheight}: 150px; padding-right:1px;">
+    <table width="167px" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+      <tr>
+      <td>
+        <!--userline-->
+        <div style="width:{widthLeft}; float:left;">
+            <a class="link_leftnone" href="MenuUsrInfo.aspx?username={usercol1}">{usercol1}</a>
+        </div>
+        <div style="width:50%; float:left; text-align:{textAlign};">
+            <a class="link_leftnone" href="MenuUsrInfo.aspx?username={usercol2}">{usercol2}</a>
+        </div>
+        <!--/userline-->      
+      </td>
+      </tr>      
+    </tbody>
+</table>
+</div>
+<!--Paging-->
+<div style="height:20px; text-align:right; border-top:dotted 1px #ccc; padding-right:12px; padding-bottom:2px;">    
+    <span id="ploading" style="display:none;"><img width="15px" src="../App_Themes/AgencyV2/Images/ajax-loader.gif"/>&nbsp;</span>
+    <!--PPrev-->
+    <a href="Handlers/GetDownlineList.ashx?custid={custid}&pageidx={pageidxPrev}&totalpages={totalpages}" target="frmDownlineList" onclick="showLoadingDownline(1);" class="link_leftnone"> < </a>
+    <!--/PPrev-->    
+    <span id="spPage" class="link_leftnone" style="cursor:pointer; font-weight:bold;" onclick="showEditPage(1);">{curpage}</span>
+    <input id="txtPage" type="text" class="textBox" onblur="showEditPage(0)" onkeypress="return checkDownlinePageKeyPress(event, \'txtPage\');" maxlength="4" style="display:none; width: 20px; height:13px;"/>
+    /{totalpages}
+    <!--PNext-->
+    <a href="Handlers/GetDownlineList.ashx?custid={custid}&pageidx={pageidxNext}&totalpages={totalpages}" target="frmDownlineList" onclick="showLoadingDownline(1);" class="link_leftnone"> > </a>
+    <!--/PNext-->
+</div>
+<input id="hdnTotalPage" type="hidden" value="{totalpages}" />
+<!--/Paging-->

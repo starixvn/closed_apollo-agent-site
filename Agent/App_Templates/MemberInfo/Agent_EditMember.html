@@ -1,0 +1,16 @@
+<!--nobackground-->
+<link href='../../App_Themes/AgencyV2/userinfo.css' type='text/css' rel='stylesheet' />
+<!--/nobackground-->
+
+<iframe name="InsertData" id="InsertData" style="DISPLAY:none" width="0" height="0" frameborder="0">
+</iframe>
+<input type="hidden" id="hidEdit" name="hidEdit" value="1"/>
+<form id="fUpdate" name="fUpdate" method="post" action="UpdateNewMember.aspx?mode=edit&amp;custid={CID}" target="InsertData">
+	{content}
+    <script language="javascript" type="text/javascript">
+        window.onload = GetUserList; 
+	</script>
+	<input type="hidden" id="txtIDs" name="txtIDs"/> 
+	<input type ="hidden" id ="isMult" name ="isMult" value ="{Mult}" />
+	<input type ="hidden" id ="txtAllowPT" name ="txtAllowPT" value ="{AllowUdpPT}" />
+</form>

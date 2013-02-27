@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.lblPositionTaking}</title>
+    <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Reports/Resources/Reports.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/PositionTakingList.css" rel="stylesheet" type="text/css" />
+</head>
+<body onload="initContextMenu(0, 110)">
+<div id="page_main">
+<div id="header_main">
+    {static:Resources.Lang.lblPositionTaking}
+</div>
+
+<div id="tbl-container">
+ <div id="boderRight">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+                <input type="text" id="rowcount" name="rowcount" value="{rowcount}" style="display:none" />
+                {CommonGroup}
+            </td>
+        </tr>
+        <tr>
+            <td>                
+                {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
+                <div id="ctxContainer">{ContextMenu}</div>
+                <table id="tblMain" class="{ShowHideColumnClasses}"  border="1" cellpadding="2" cellspacing="0" style="width:100%;">
+                <thead>
+                    <tr id="headerTop" class="RptHeader">
+                        <td colspan="{colNum}">&nbsp;</td>
+		                <td class="SC" colspan="10">{static:Resources.Lang.soccer}</td>
+		                <td class="SL" colspan="4">{static:Resources.Lang.soccer} {static:Resources.Lang.lblLive}</td>
+		                <td class="BK" colspan="4">{static:Resources.Lang.Basketball}</td>
+		                <td class="FB" colspan="4">{static:Resources.Lang.Football}</td>
+		                <td class="TN" colspan="4">{static:Resources.Lang.Tennis}</td>
+		                <td class="BB" colspan="3">{static:Resources.Lang.Baseball}</td>
+		                <td class="GF" colspan="4">{static:Resources.Lang.Golf}</td>
+		                <td class="MS" colspan="2">{static:Resources.Lang.MotorSports}</td>
+		                <td class="OS" colspan="4">{static:Resources.Lang.OtherSports}</td>
+		                <!--MixSportsParlay--><td class="MP">{static:Resources.Lang.mixsports}</td><!--/MixSportsParlay-->
+		                <td>&nbsp;</td>
+                    </tr>                 
+                    <tr id="headerBottom">
+                        <td class="RptHeader">#</td>
+                        <td class="RptHeader">{static:Resources.Lang.username}</td>	
+                        <!--AdditionalRow-->
+                        <th>&nbsp;</th>
+		                <!--/AdditionalRow-->
+	                    <td class="SC">{static:Resources.Lang.hdp}</td>
+	                    <td class="SC">{static:Resources.Lang.lblOU}</td>
+	                    <td class="SC">{static:Resources.Lang.lbl1stHdp}</td>
+	                    <td class="SC">{static:Resources.Lang.lbl1stOU}</td>
+	                    <td class="SC">{static:Resources.Lang.lblOE}</td>
+	                    <td class="SC">{static:Resources.Lang.lbl1x2}</td>
+	                    <td class="SC">{static:Resources.Lang.lblCS}</td>
+	                    <td class="SC">{static:Resources.Lang.lblTG}</td>
+	                    <td class="SC">{static:Resources.Lang.lblMP}</td>
+	                    <td class="SC">{static:Resources.Lang.lblOutRight}</td>
+	                    <td class="SL">{static:Resources.Lang.hdp}</td>
+	                    <td class="SL">{static:Resources.Lang.lblOU}</td>
+	                    <td class="SL">{static:Resources.Lang.lbl1stHdp}</td>
+	                    <td class="SL">{static:Resources.Lang.lbl1stOU}</td>
+	                    <td class="BK cHeader">{static:Resources.Lang.hdp}</td>
+	                    <td class="BK cHeader">{static:Resources.Lang.lblOU}</td>
+	                    <td class="BK cHeader">{static:Resources.Lang.lblOE}</td>
+	                    <td class="BK cHeader">{static:Resources.Lang.lblML2}</td>
+	                    <td class="FB">{static:Resources.Lang.hdp}</td>
+	                    <td class="FB">{static:Resources.Lang.lblOU}</td>
+	                    <td class="FB">{static:Resources.Lang.lblOE}</td>
+	                    <td class="FB">{static:Resources.Lang.lblML2}</td>
+	                    <td class="TN cHeader">{static:Resources.Lang.hdp}</td>
+	                    <td class="TN cHeader">{static:Resources.Lang.lblOU}</td>
+	                    <td class="TN cHeader">{static:Resources.Lang.lblOE}</td>
+	                    <td class="TN cHeader">{static:Resources.Lang.lblML2}</td>
+	                    <td class="BB">{static:Resources.Lang.hdp}</td>
+	                    <td class="BB">{static:Resources.Lang.lblOU}</td>
+	                    <td class="BB">{static:Resources.Lang.lblML2}</td>
+	                    <td class="GF cHeader">{static:Resources.Lang.hdp}</td>
+	                    <td class="GF cHeader">{static:Resources.Lang.lblOU}</td>
+	                    <td class="GF cHeader">{static:Resources.Lang.lblOE}</td>
+	                    <td class="GF cHeader">{static:Resources.Lang.lblML2}</td>
+	                    <td class="MS">{static:Resources.Lang.hdp}</td>
+	                    <td class="MS">{static:Resources.Lang.lblML2}</td>
+	                    <td class="OS cHeader">{static:Resources.Lang.hdp}</td>
+	                    <td class="OS cHeader">{static:Resources.Lang.lblOU}</td>
+	                    <td class="OS cHeader">{static:Resources.Lang.lblOE}</td>
+	                    <td class="OS cHeader">{static:Resources.Lang.lblML2}</td>	
+	                    <!--MixSportsParlay-->
+	                    <td class="MP">{static:Resources.Lang.lblMP}</td>
+	                    <!--/MixSportsParlay-->
+	                    <td class="RptHeader">{static:Resources.Lang.username}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <!--Rows-->
+                <tr class="{BgRow}">
+	                <!--NonRepeat-->
+	                <td {rowspan}>{No}</td>
+	                <td {rowspan} class="l">
+	                    <!--ViewDownLine-->
+	                    <a href="{url}">{UserName}</a>
+	                    <!--/ViewDownLine-->
+	                    <!--EditMember-->
+	                    <a href="javascript:EditMember_Single('{custid_value}', '{username_value}', '{custid_upline}', '{roleId}');">{UserName}</a>
+	                    <!--/EditMember-->
+	                </td>
+	                <!--/NonRepeat-->	
+	                <!--Role-->
+	                <td class="firstCol">{Role}</td>
+	                <!--/Role-->	
+	                <td class="SC">{Soccer_hdp}</td>
+	                <td class="SC">{Soccer_ou}</td>
+	                <td class="SC">{Soccer_1sthdp}</td>
+	                <td class="SC">{Soccer_1stou}</td>
+	                <td class="SC">{Soccer_oe}</td>
+	                <td class="SC">{Soccer_1x2}</td>
+	                <td class="SC">{Soccer_cs}</td>
+	                <td class="SC">{Soccer_tg}</td>
+	                <td class="SC">{Soccer_mp}</td>
+	                <td class="SC">{Soccer_outright}</td>
+	                <td class="SL">{SoccerLive_hdp}</td>
+	                <td class="SL">{SoccerLive_ou}</td>
+	                <td class="SL">{SoccerLive_1sthdp}</td>
+	                <td class="SL">{SoccerLive_1stou}</td>
+	                <td class="BK coPT">{Basketball_hdp}</td>
+	                <td class="BK coPT">{Basketball_ou}</td>
+	                <td class="BK coPT">{Basketball_oe}</td>
+	                <td class="BK coPT">{Basketball_ml}</td>
+	                <td class="FB">{Football_hdp}</td>
+	                <td class="FB">{Football_ou}</td>
+	                <td class="FB">{Football_oe}</td>
+	                <td class="FB">{Football_ml}</td>
+	                <td class="TN coPT">{Tennis_hdp}</td>
+	                <td class="TN coPT">{Tennis_ou}</td>
+	                <td class="TN coPT">{Tennis_oe}</td>
+	                <td class="TN coPT">{Tennis_ml}</td>
+	                <td class="BB">{Baseball_hdp}</td>
+	                <td class="BB">{Baseball_ou}</td>
+	                <td class="BB">{Baseball_ml}</td>
+	                <td class="GF coPT">{Golf_hdp}</td>
+	                <td class="GF coPT">{Golf_ou}</td>
+	                <td class="GF coPT">{Golf_oe}</td>
+	                <td class="GF coPT">{Golf_ml}</td>
+	                <td class="MS">{MotorSport_hdp}</td>
+	                <td class="MS">{MotorSport_ml}</td>	                	
+	                <td class="OS coPT">{OtherSports_hdp}</td>
+	                <td class="OS coPT">{OtherSports_ou}</td>
+	                <td class="OS coPT">{OtherSports_oe}</td>
+	                <td class="OS coPT">{OtherSports_ml}</td>
+	                <!--MixSportsParlay-->
+	                <td class="MP">{ParlayMixedSports_ml}</td>
+	                <!--/MixSportsParlay-->
+                	
+	                <!--NonRepeat-->
+	                <td {rowspan} class="l">
+	                    <!--ViewDownLine-->
+	                    <a href="{url}">{UserName}</a>
+	                    <!--/ViewDownLine-->
+	                    <!--EditMember-->
+	                    <a href="javascript:EditMember_Single('{custid_value}', '{username_value}', '{custid_upline}', '{roleId}');">{UserName}</a>
+	                    <!--/EditMember-->
+	                </td>
+	                <!--/NonRepeat-->	
+                </tr>
+                <!--/Rows-->
+                </tbody>
+                <!--PagingFooter-->
+                <tr>
+                    <td colspan="53">
+                        {pagingControl}
+                    </td>
+                </tr>
+                <!--/PagingFooter-->
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+</div>
+
+    <script src="../../../_GlobalResources/Js/Core.js" type="text/javascript"></script>          
+    <script src="../../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+    <script src="../../../_Components/ShowHideColumn/Resources/ContextMenuColumns_Control.js" type="text/javascript"></script>
+    <script src="../Resources/PositionTakingList.js" type="text/javascript"></script>
+</body>
+</html>

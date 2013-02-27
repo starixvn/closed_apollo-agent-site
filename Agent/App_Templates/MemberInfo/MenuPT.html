@@ -1,0 +1,203 @@
+<style type="text/css">
+    div{clear:both;}
+</style>
+<!--limit-copyAll-->
+<!--none-Mult-->
+<div class="{none-copy}">
+    <div class="l">
+        <input type='checkbox' id="chkCopyAll" {disable_chkall} onclick="CopyAllPT(this);" name="chkCopyAll" /><b><span id="spCopyAll" style="cursor: pointer;" onclick="$('chkCopyAll').click();">{copy-all-text}</span></b>
+    </div>
+</div>
+<br />
+<!--/none-Mult-->
+<!--/limit-copyAll-->
+
+<div class="l" id="linkSoccer" onclick="OpenPanelEdit('panelSoccer'); togglePTmenu('bullet1')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet1" class="md2" href="#1">{soccer-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>           
+</div>
+
+<div id="panelSoccer">
+    <div class="l">{soccerPT}</div>
+</div>
+
+
+
+<!--limit-CopyBasket-->
+<!--none-Mult-->
+<div class="{none-copy}">
+    <div class="l"><br />
+        <input type='checkbox' id="chkCopyBasket" {disable_chkbasket} onclick="CopyBasketPT(this);" name="chkCopyBasket" />
+        <b>
+            <span id="spCopyBasket" style="cursor: pointer;" {disable_chkbasket} onclick="$('chkCopyBasket').click();">{copy-basket-text}</span>
+        </b>
+    </div>
+</div>
+<!--/none-Mult-->
+<!--/limit-CopyBasket-->
+
+<div class="l" id="linkBasket" onclick="OpenPanelEdit('panelBasket'); togglePTmenu('bullet2')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet2" class="md2_on" href="#1">{basket-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<div style="display: none" id="panelBasket">
+    <div class="l">{basketPT}</div>
+</div>
+
+<div class="l" id="linkFootball" onclick="OpenPanelEdit('panelFootball'); togglePTmenu('bullet3')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet3" class="md2_on" href="#1">{football-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>            
+</div>
+
+<div style="display: none" id="panelFootball">
+    <div class="l">{footballPT}</div> 
+</div>
+
+<div class="l" id="linkTennis" onclick="OpenPanelEdit('panelTennis'); togglePTmenu('bullet4')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet4" class="md2_on" href="#1">{tennis-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>            
+</div>
+
+<div style="display: none" id="panelTennis">
+    <div class="l">{tennisPT}</div>
+</div>
+
+<div class="l" id="linkBaseball" onclick="OpenPanelEdit('panelBaseball'); togglePTmenu('bullet5')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet5" class="md2_on" href="#1">{baseball-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>            
+</div>
+
+<div style="display: none" id="panelBaseball">
+    <div class="l">{baseballPT}</div>
+</div>
+
+<div class="l" id="linkGolf" onclick="OpenPanelEdit('panelGolf'); togglePTmenu('bullet6')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet6" class="md2_on" href="#1">{golf-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>            
+</div>
+
+<div style="display: none" id="panelGolf">
+    <div class="l">{golfPT}</div>
+</div>
+
+<div class="l" id="linkMoto" onclick="OpenPanelEdit('panelMoto'); togglePTmenu('bullet7')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet7" class="md2_on" href="#1">{moto-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>            
+</div>
+
+<div style="display: none" id="panelMoto">
+    <div class="l">{motoPT}</div>
+</div>    	
+
+<div class="l" id="linkOther" onclick="OpenPanelEdit('panelOtherSports'); togglePTmenu('bullet9')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet9" class="md2_on" href="#1">{othersports-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>            
+</div>
+
+<div style="display: none" id="panelOtherSports">
+    <div class="l">{otherPT}</div>
+</div>
+
+<div class="l {hideClssMP}" id="linkMixSport" onclick="OpenPanelEdit('panelMixSports'); togglePTmenu('bullet11')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet11" class="md2_on" href="#1">{mixsports-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>            
+</div>
+
+<div style="display: none" id="panelMixSports">
+    <div class="l">{mixSportPT}</div>
+</div>
+<div class="l {hideClss}" id="linkNumberGame" onclick="OpenPanelEdit('panelNumberGame'); togglePTmenu('bullet10')">
+    <div class="button_cont">
+    <div class="menu_content">
+        <ul>
+          <li>
+             <a id="bullet10" class="md2" href="#1">{numbergame-text}</a>
+          </li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<div id="panelNumberGame" class="{hideClss}">
+    <div class="l">{numbergamePT}</div>
+</div>
+<div>
+    <div class="btnLeft">
+	    <input type="button" class="btnMain" AccountPermisssion="[B]" id="{add-id}" onclick="{clickable};BtnOnClick();" value="{add-text}">
+    </div>
+</div>
+
+
+
+<input id="hidSynCS" name="hidSynCS" type="hidden" value="{hidSynCS}" />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br />
+
+<script type="text/javascript" src="../../Js/wz_tooltip/wz_tooltip.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_centerwindow.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_balloon.js"></script>

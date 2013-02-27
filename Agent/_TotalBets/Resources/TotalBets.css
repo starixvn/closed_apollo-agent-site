@@ -1,0 +1,96 @@
+﻿
+body
+{
+}
+
+a:link, a:visited
+{
+	color: #1e1eeb;
+	text-decoration: none;
+}
+a:hover
+{
+	color: #F60;
+	text-decoration: none;
+}
+table.tblRpt td
+{
+    padding: 0 2px;
+    line-height: normal;
+    height: 20px;
+}
+
+/* Total goal */
+.fcnum
+{
+    font-weight: bold;
+}
+.nobold
+{
+    font-weight: normal;
+}
+
+.round_color
+{
+    color: Red;
+}
+
+/* Handicap over under */
+.league
+{
+    background: url("../../_GlobalResources/Images/bg_header03.jpg") repeat-x scroll center top #F8F1E9;
+    color: #333333;
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+}
+.btnInfo
+{
+    background: url("../../_GlobalResources/Images/icon_add.jpg") no-repeat scroll center top transparent;
+    display: block;
+    height: 16px;
+    margin-left: 3px;
+    margin-right: 3px;
+    text-align: center;
+    width: 16px;
+}
+a.fcnum
+{
+    color: #1D1D1D;
+    text-decoration: none;
+}
+.fcbtn
+{
+    text-align: center;
+    width: auto;
+}
+.hide
+{
+    display: none;
+}
+.negative_color
+{
+    color: #eb6003;
+}
+.blue
+{
+    color: #2673CE;
+}
+.line_n
+{
+    background: url("../../_GlobalResources/Images/line_n.jpg") repeat scroll 0 0 transparent;
+}
+
+.raceNo
+{
+    font-size: 14px;
+}
+
+.header_tb04
+{
+    background: url("../../_GlobalResources/Images/bg_head05.jpg") repeat-x scroll 0 0 transparent;
+    color: #990000;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: right;
+}

@@ -1,0 +1,124 @@
+﻿<div id="page_main">
+<div id="header_main">{title}</div> 
+<iframe name="UpdateFrm" id="UpdateFrm" style="display: none"></iframe>
+<form action="{urlAction}" method="post" id="form" name="form" target="UpdateFrm">
+<div style="width:700px;">
+    {error-message}
+    <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" id="diverr"
+        style="display: none;">
+        <tr>
+            <td id="1_1" class="emsg_1_1">
+                &nbsp;
+            </td>
+            <td id="1_2" class="emsg_1_2">
+                &nbsp;
+            </td>
+            <td id="1_3" class="emsg_1_3">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="2_1" valign="top" class="emsg_2_1">
+                &nbsp;
+            </td>
+            <td valign="top" id="err" class="Enrich">
+            </td>
+            <td id="2_2" class="emsg_2_2">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td id="3_1" class="emsg_3_1">
+                &nbsp;
+            </td>
+            <td id="3_2" class="emsg_3_2">
+                &nbsp;
+            </td>
+            <td id="3_3" class="emsg_3_3">
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="sptPT" style="width: 700px;">
+<table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8">	
+    <tr>
+        <td colspan="4" class="c b" id="lstusername" style="white-space:normal;">             
+        </td>
+    </tr>
+    <!--none-Mult-->
+	<tr class="bg_eb">
+		<td width='25%' class="r">{uname-text}</td>
+		<td width='25%' class="l">{uname-value}</td>
+		<td width='25%' class="r">{fname-text}</td>
+		<td width='25%' class="l">{fname-value}</td>		
+	</tr>
+	
+    <tr class="bg_eb">
+        <td class="r" width="25%">{lname-text}</td>
+        <td class="l" width="25%">{lname-value}</td>
+        <td class="r" width="25%">{phone-text}</td>
+        <td class="l" width="25%">{phone-value}</td>
+    </tr>
+	<tr class="bg_eb">
+		<td class="r">{mobile-text}</td>
+		<td class="l">{mobile-value}</td>
+		<td class="r">{fax-text}</td>
+		<td class="l">{fax-value}</td>
+	</tr>	
+		
+	<!--Not-MinPT-->	
+	<tr class="RptHeader">		
+		<td colspan="4" class="c">{comm-text}</td>
+	</tr>	
+	<!--Not-Master-->
+	<tr class="bg_eb">	
+		<td class="r" width="25%">{commM-text}</td>
+		<td class="l" nowrap="yes" width="25%">{commM-value}</td>		
+		<td class="r" colspan="2" width="50%"></td>		
+	</tr>
+	<!--/Not-Master-->
+	<tr class="bg_eb">	
+		<td class="r" width="25%">{commA-text}</td>
+		<td class="l" nowrap="yes" width="25%">{commA-value}</td>		
+		<td class="r" colspan="2" width="50%"></td>		
+	</tr>	
+	<tr class="bg_eb">	
+		<td class="r">{commMem-text}</td>
+		<td class="l" nowrap="yes">{commMem-value}</td>		
+		<td class="r" colspan="2"></td>		
+	</tr>
+	<!--/none-Mult-->		
+	</table>
+	<div id="divUpdPT201" name="divUpdPT201" style="width: 700px;">
+	<!--none-Mult-->		
+	<table width="100%" border="1" class="tblRpt">
+		        <tr class="RptHeader">
+		            <td class="c" style="width:33%;">{minbet-text}</td>
+		            <td class="c" style="width:33%;">{maxbet-text}</td>
+		            <td class="c">{maxpermatch-text}</td>
+		        </tr>
+		        <tr>
+		            <td class="c">{minbet-value}</td>
+		            <td class="c">{maxbet-value}</td>
+		            <td class="c">{maxpermatch-value}</td>
+		        </tr>
+	</table>	
+	<!--/none-Mult-->		
+	<!--/Not-MinPT-->
+	{PT}	
+	</div>
+</div>
+  <div class="btnLeft">
+	    <input type="button" class="btnMain" AccountPermisssion="[B]" id="{add-id}" onclick="BtnOnClick();" value="{add-text}">
+    </div>
+  <br />
+
+<input type="hidden" id="custid" name="custid" value="{custid-value}" />
+<input type="hidden" id="username" name="username" value="{custname-value}" />
+<input type="hidden" id="isNoBgr" name="isNoBgr" value="{isNoBgr}" />
+</form>
+</div>
+<script type="text/javascript" src="../../Js/wz_tooltip/wz_tooltip.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_centerwindow.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_balloon.js"></script>

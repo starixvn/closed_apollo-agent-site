@@ -1,0 +1,140 @@
+﻿<iframe name="UpdateFrm" id="UpdateFrm" style="display: none"></iframe>
+<form action="../Handlers/UpdatePositionTaking_HR.ashx" method="post" id="form" name="form" target="UpdateFrm">
+<!--sub-menu-->
+<!--sub menu will be here-->
+<!--/sub-menu-->
+<div id="page_main">
+<div id="header_main" style="margin-left:2px;">{title}</div> 
+<div style="width:850px;">
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" id="diverr"
+    style="display: none;">
+    <tr>
+        <td id="1_1" class="emsg_1_1">
+            &nbsp;
+        </td>
+        <td id="1_2" class="emsg_1_2">
+            &nbsp;
+        </td>
+        <td id="1_3" class="emsg_1_3">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td id="2_1" valign="top" class="emsg_2_1">
+            &nbsp;
+        </td>
+        <td valign="top" id="err" class="Enrich">
+        </td>
+        <td id="2_2" class="emsg_2_2">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td id="3_1" class="emsg_3_1">
+            &nbsp;
+        </td>
+        <td id="3_2" class="emsg_3_2">
+            &nbsp;
+        </td>
+        <td id="3_3" class="emsg_3_3">
+            &nbsp;
+        </td>
+    </tr>
+</table>
+</div>
+
+<div style="width: 850px; border: 0 solid #CCCCCC;">
+<table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8" style="margin-left:2px;">	
+    <tr>
+        <td colspan="4" class="b" id="lstusername" style="white-space:normal;">
+             
+        </td>
+    </tr>
+    <!--none-Multi-->
+	<tr class="bg_eb">
+		<td width='25%' class="r">{uname-text}</td>
+		<td width='25%' class="l">{uname-value}</td>
+		<td width='25%' class="r">{fname-text}</td>
+		<td width='25%' class="l">{fname-value}</td>		
+	</tr>
+	
+    <tr class="bg_eb">
+        <td class="r" width="25%">{lname-text}</td>
+        <td class="l" width="25%">{lname-value}</td>
+        <td class="r" width="25%">{phone-text}</td>
+        <td class="l" width="25%">{phone-value}</td>
+    </tr>
+	<tr class="bg_eb">
+		<td class="r">{mobile-text}</td>
+		<td class="l">{mobile-value}</td>
+		<td class="r">{fax-text}</td>
+		<td class="l">{fax-value}</td>
+	</tr>		
+    <!--/none-Multi-->	    
+	<tr class="RptHeader">		
+		<td colspan="4" class="c">{comm-text}</td>
+	</tr>	
+	<!--Comm-Member-->
+	<tr class="bg_eb">	
+	    <td class="r"><!--None-FO-->{comm-upline-31-text}<!--/None-FO--></td>		
+		<td class="l"><!--None-FO--><input readonly style="width:65px;" value="{commUpline-31-value}" /><!--/None-FO-->  </td>		
+		<td class="r">{comm-upline-41-text}</td>		
+		<td class="l"><input readonly style="width:65px;" value="{commUpline-41-value}" />  </td>		
+	</tr>		
+	<tr class="bg_eb">	
+	    <td class="r"><!--None-FO-->{comm-downline-31-text}<!--/None-FO--></td>		
+		<td class="l"><!--None-FO--><select class="selectcomm" style="width:60px;" id="discount31" {sel-dis31} name="discount31">{tote-comm-value}</select><!--/None-FO--></td>		
+		<td class="r">{comm-downline-41-text}</td>		
+		<td class="l"><select class="selectcomm" style="width:60px;" id="discount41" {sel-dis41} name="discount41">{fo-comm-value}</select></td>		
+	</tr>
+	<!--/Comm-Member-->		
+	<!--Comm-SuperMaster-->
+	<tr class="bg_eb">	
+	    <!--None-HR-->
+	        <!--None-SA-->	    
+		    <td class="r">
+		        <!--None-FO-->{tote-comm-text}<!--/None-FO-->
+		    </td>		
+		    <td class="l">
+		        <!--None-FO-->
+		        <select class="selectcomm" style="width:60px;" id="discount31" {sel-dis31} name="discount31">{tote-comm-value}</select>
+		        <!--/None-FO-->
+		    </td>
+		    <!--/None-SA-->		
+		    <!--None-UK-->
+		    <td class="r">
+		        {fo-comm-text}
+		    </td>		
+		    <td class="l">		
+		        <select class="selectcomm" style="width:60px;" id="discount41" {sel-dis31} name="discount41">{fo-comm-value}</select>		    
+		    </td>		
+		    <!--/None-UK-->
+		<!--/None-HR-->
+	</tr>
+	<!--/Comm-SuperMaster-->
+	</table>	
+	
+	
+	<!--None-FO-->
+	<div class="b" id="divCopyAll" name="divCopyAll" style="width: 850px; padding-top:5px; padding-bottom:5px; padding-left:2px;"> 
+	    <input type="checkbox" id="chkCopyAll" name="chkCopyAll" value="" onclick="CopyAllPT(this);" />&nbsp;{copyall}
+	</div>
+	<!--/None-FO-->
+	{PT}
+ </div>
+    <div class="btnLeft">
+        <input type="button" class="btnMain" AccountPermisssion="[B]" id="{add-id}" onclick="BtnOnClick();" value="{add-text}">
+    </div> 
+</div>
+<br />
+
+<input type="hidden" id="custid" name="custid" value="{custid-value}" />
+<input type="hidden" id="username" name="username" value="" />
+<input type="hidden" id="isEdit" name="isEdit" value="{isedit-value}" />
+<input type="hidden" id="isNoBgr" name="isNoBgr" value="{isnobgr-value}" />
+
+<script type="text/javascript" src="../../Js/wz_tooltip/wz_tooltip.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_centerwindow.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_balloon.js"></script>
+
+

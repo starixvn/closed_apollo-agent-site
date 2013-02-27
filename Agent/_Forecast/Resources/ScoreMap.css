@@ -1,0 +1,350 @@
+﻿.paddingTopMatch{margin-top:10px;}
+#titleMatch
+{
+	padding-top: 3px;
+	border: solid 1px #999;
+	background: -moz-linear-gradient(center top , #3C3C3C, #111111) repeat scroll 0 0 #111111;
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, 	#3c3c3c),color-stop(1, 		#111111));
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#3c3c3c', EndColorStr='#111111')";
+    border: 1px solid #2A2A2A;
+    text-shadow: 0 -1px 1px #000000;
+	height:20px;
+	
+}
+#titleMatch .matchname{color: #FFFFFF;font-size:11px;font-weight:normal; padding-left:5px}
+
+.tblScoreMap{border-collapse: collapse;width: 780px;}
+.tblScoreMap td
+{
+	color: #000;
+	padding: 3px 1px 3px 1px;
+	border: solid 1px #999;
+	text-align: center;
+}
+.tblScoreMap tbody tr:hover td {
+    background-color: #d0d3d3;
+}
+.tblScoreMap tbody tr td:hover {
+    background-color: #f8ff8d !important;
+}
+
+.scoreMap{padding-top:1px;}
+.vsm {background-color: #DCFFFF; font-weight:bold}
+.vsmHomeWay {background-color: #f6d9b9; font-weight:bold}
+.vScoreMap {background-color: #FFF; font-weight:bold}
+.csm {background-color: #FFF !important; font-weight:bold}
+.even_row
+{
+	background-color: #faf9ee;
+}
+
+#page_main
+{
+	padding-top: 7px;
+	overflow: visible;
+	padding-bottom: 15px;
+}
+#header_main
+{
+	height: 22px;
+	background: url(../../_GlobalResources/Images/bg_header01.jpg) no-repeat left bottom;
+	color: #9d1c1c;
+	font-weight: bold;
+	padding-left: 15px;
+	text-transform: uppercase;
+	line-height: 18px;
+	width: 97%;
+	min-width: 100px;
+}
+.bold
+{
+	font-weight: bold;
+}
+#box_header
+{
+	background: url( "../../_GlobalResources/Images/bg_boxTop.jpg" ) repeat-x scroll center top #E7E7E7;
+	border: 1px solid #CACACA;
+	margin-top: 0;
+	padding: 0;
+	-moz-border-radius: 3px; /* Firefox */
+	-webkit-border-radius: 3px; /* Safari and Chrome */
+	border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+
+select
+{
+	font-size: 8pt;
+	font-weight: normal;
+	height: 19px;
+	line-height: 19px;
+}
+
+.no_info
+{
+	text-align: center;
+	font-weight: normal;
+	text-align: center;
+}
+
+.hand{cursor:pointer}
+.btnRefresh
+{
+    background: url( "Images/Refresh.png" ) no-repeat scroll left top transparent;
+    padding-left:15px;
+    font-weight:bold;
+    color:#90979A;    
+    width:25px;
+    height:25px;
+    cursor:pointer;
+}
+
+.lnkRefresh
+{
+    background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;    
+    font-weight:bold;
+    color:#90979A;    
+    margin-top:4px;
+    width:20px;
+    height:20px;
+    cursor:pointer;
+    float:right;
+    padding-right:1px;
+}
+.lnkRefreshClick
+{
+    background: url( "Images/Loading.gif" ) no-repeat scroll left top transparent;    
+    font-weight:bold;
+    color:#90979A;    
+    margin-top:4px;
+    width:20px;
+    height:20px;
+    cursor:pointer;
+    float:right;
+    padding-right:1px;
+}
+
+.lnkGroup
+{
+    background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+    background-position: 0 -21px;
+    font-weight:bold;
+    color:#333;    
+    padding-left:25px;
+    padding-top:1px;
+    height:20px;
+    cursor:pointer;
+    float:left;
+}
+.lnkGroupClick
+{    
+    background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+    background-position: 0 0px;
+    font-weight:bold;
+    color:#333;    
+    padding-left:25px;
+    padding-top:1px;
+    height:20px;
+    cursor:pointer;
+    float:left;
+}
+
+/* Start: Match WL Detail */
+#BoxMatchWL
+{
+    position: absolute;
+    background: #fff;
+    width: 700px;
+    border: solid 1px #B7B7B7;
+    left: 4px;
+    top: 62px;
+}
+
+#ContentMatchWL
+{
+    background:#fff;
+    width: 690px;
+    max-height: 310px;
+    border: none;
+    overflow: auto;
+    padding-right: 1px;
+}
+
+#ContentMatchWL .ListMatch li
+{
+    width: 50%;
+}
+
+#iconSelMatch
+{
+    background: url("../../_GlobalResources/Images/letter_icoconts.png") no-repeat scroll 5px center #FFEFDE;
+    font-weight: bold;
+    padding: 0 0 0 20px;
+    text-align: left;
+    width:100px;
+    text-transform: none;
+}
+
+#closeBoxMatch
+{
+    background: url("../../_GlobalResources/Images/icon_close.jpg") no-repeat scroll 5px 2px #FFEFDE;
+    font-weight: bold;
+    width:20px;
+    cursor:pointer;
+    text-transform: none;
+}
+
+#boderBoxMatch
+{
+    background: url("../../_GlobalResources/Images/global_bg.gif");
+    text-transform: none;
+    padding: 4px;
+}
+
+#SelMatchGroup
+{
+    position: absolute;
+    background: #fff;
+    width: 700px;
+    border-bottom: solid 1px #B7B7B7;
+    border-right: solid 1px #B7B7B7;
+    border-left: solid 1px #B7B7B7;
+    left: 4px;
+}
+
+.tblMatch
+{
+    text-align: left;
+    width: 700px;
+    background-image: url(bg_nav.gif);
+}
+.BoxMatch
+{
+    width: 799px;
+    height: 310px;
+    border: none;
+    overflow: auto;
+    padding-right: 1px;
+}
+
+.BoxMatch .ListMatch li
+{
+    width: 50%;
+}
+
+.ListMatch
+{
+    width: 90%;
+    float: left;
+    padding-left: 1px;
+    padding-right: 1px;
+    text-align: left;
+}
+
+.ListMatch li
+{
+    list-style: none;
+    float: left;
+    text-align: left;    
+}
+
+div.loading {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("../../_GlobalResources/Images/ajax-loader.gif");
+    background-origin: padding-box;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    display: block;
+    height: 23px;
+    opacity: 1;
+    width: 23px;
+}
+/* End: Box Match by League */
+
+
+
+table.reference {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #FFFFFF;
+    border-collapse: collapse;
+    border-right-color: #C3C3C3;
+    border-right-style:dotted;
+    border-right-width: 1px;    
+}
+table.reference td {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-right-color: #C3C3C3;
+    border-right-style: dotted;
+    border-right-width: 1px;
+    padding-bottom: 3px;
+    padding-right: 2px;
+    padding-top: 3px;
+    vertical-align: top;
+}
+
+.TLiveDead {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-right-color: #C3C3C3;
+    border-right-style: dotted;
+    border-right-width: 1px;
+    border-top-color: #C3C3C3;
+    border-top-style: dotted;
+    border-top-width: 1px;
+    padding-bottom: 3px;
+    padding-right: 2px;
+    padding-top: 3px;
+    vertical-align: top;
+    min-width:95px;
+}
+.RLiveDead {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-right-color: #C3C3C3;
+    border-right-style: dotted;
+    border-right-width: 1px;
+    border-right-color: #C3C3C3;
+    border-right-style: dotted;
+    border-right-width: 1px;
+    padding-bottom: 3px;
+    padding-right: 2px;
+    padding-top: 3px;
+    vertical-align: top;
+    min-width:95px;
+}
+
+.button_left {
+    background:url("Images/first_score.png") no-repeat;
+    width:12px;
+    height:26px;
+    float:left;
+}
+.button_mid {
+    background: url("Images/center_score.png") repeat-x;
+    font-size:12px;
+    min-width:250px;
+    height:26px;
+    float:left;
+}
+.button_right {
+    background: url("Images/last_score.png");
+    height:26px;
+    width:29px;
+    float:left;
+}

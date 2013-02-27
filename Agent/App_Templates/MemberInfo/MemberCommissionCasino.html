@@ -1,0 +1,126 @@
+{StyleSheet}
+<div id="page_main">
+<div id="header_main">
+    <div>
+    <!--limit-header-position-normal-->
+        {lblCommission}		
+	<!--/limit-header-position-normal-->
+    </div>    
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+    <td>
+        <div id="box_header" style="width:100%">
+            <table border="0" cellspacing="0" cellpadding="0" >
+                <tr>
+                    <td style="width:400px">
+                        <input type="radio" id="radSB" name="rdCommission" onclick="DisablePage(); location.href='MemberCommission.aspx'"/> <label for="radSB">{SportBook}</label> &nbsp;&nbsp;
+                        <input type="radio" id="radRacing" name="rdCommission" onclick="DisablePage(); location.href='MemberCommissionRacing.aspx'"/> <label for="radRacing">{Racing}</label> &nbsp;&nbsp;
+                        <input type="radio" id="radCasino" name="rdCommission" checked="checked" onclick="DisablePage(); location.href='MemberCommissionCasino.aspx'"/> <label for="radCasino">{Casino}</label> &nbsp;&nbsp;
+                        <!--p2pBingo-->
+                        <input type="radio" id="radBingo" name="rdCommission" onclick="DisablePage(); location.href='MemberCommissionBingo.aspx'"/> <label for="radBingo">{Bingo}</label> &nbsp;&nbsp;
+                        <!--/p2pBingo-->
+                        <!--P2P-->
+                        <input type="radio" id="radP2P" name="rdCommission" onclick="DisablePage(); location.href='../_MemberInfo/Commission/MemberCommissionP2P.aspx'"/> <label for="radP2P">{P2PText}</label> &nbsp;&nbsp;
+                        <!--/P2P-->
+                        <!--LiveCasino-->
+                        <input type="radio" id="radLiveCasino" name="rdCommission" onclick="DisablePage(); location.href='../_MemberInfo/Commission/MemberCommissionLiveCasino.aspx'"/> <label for="radLiveCasino">{LiveCasinoText}</label> &nbsp;&nbsp;
+                        <!--/LiveCasino-->
+                    </td>
+                    <!--limit-agent-->
+                    <!--limit-master-->
+                    <td style="padding-left:5px;">{selmaster}</td>
+                    <td>
+                        <select id="selmaster" name="selmaster" onchange="DisablePage(); getData_MemberCommission_Agent();">{option_master}</select>
+                    </td>
+                    <!--/limit-master-->
+                    <td style="padding-left:20px;">{selagent}</td>
+                    <td id="selagent" name="selagent" >
+                        <select id="selAg" name="selAg" onchange="DisablePage(); show_data_com();">{option_agent}</select>
+                    </td>
+                    <td>
+                        <div id="loading" class="" style=" width:24px; height:24px; float:left;padding-left:5px;"></div>
+                    </td>
+                    <!--/limit-agent-->
+                </tr>
+                <tr>
+                    <td style="padding-top:5px" class="warning">
+                        <ul><li>{appliesallbettype}</li></ul>
+                   </td>
+                </tr>     
+            </table>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div id="tbl-container">
+         <div id="boderRight">
+            <table id="tbl-rpt" class="tblRpt nowrap c" cellpadding="0" cellspacing="{cellspacing}" style="width:100%;">
+                <!--header-->
+                <thead>
+                <tr class="nowrap">
+                    <td class="RptHeader" colspan="3">&nbsp;</td>
+                    <!--GameKind-->
+                        <td class="RptHeader" {GameKindColSpan}>{lblGameKind}</td>
+                    <!--/GameKind-->
+                    <td class="RptHeader" colspan="2">&nbsp;</td>
+                </tr>
+                <tr> 
+                    <td class="RptHeader">#</td>
+                    <td class="RptHeader">{lblUserName}</td>	
+                    <!--AdditionalRow-->
+                    <td class="RptHeader">&nbsp;</td>
+		            <!--/AdditionalRow-->
+                    <!--GameType-->
+                        <td {GameTypeClass}>{lblGameType}</td>
+                    <!--/GameType-->
+                    <!--AdditionalRow-->
+                    <td class="RptHeader">&nbsp;</td>
+		            <!--/AdditionalRow-->
+		            <td class="RptHeader">{lblUserName}</td>	
+                </tr>
+                </thead>
+                <!--/header-->
+                <tbody>
+                <!--row-->
+                <tr class="c" bgcolor="{color}" onmouseover="bgColor='{overcolor}'" onmouseout="bgColor='{color}'">
+                    <!--NonRepeat-->
+                    <td class="w-order" {rowspan}>{No}</td>
+                    <td {rowspan} class="l">
+	                    <!--link-->
+	                    <a>{UserName_vl}</a>
+	                    <!--/link-->
+	                </td>
+	                <!--/NonRepeat-->	        
+	                <!--Role-->
+	                <td class="{firstCol}">{Role}</td>
+	                <!--/Role-->	
+                    <!--rowdata-->
+                    <td style="color:{normalCol}" >{rowdata}</td>
+                    <!--/rowdata-->
+                    <!--Role-->
+	                <td class="{firstCol}">{Role}</td>
+	                <!--/Role-->
+	                <!--NonRepeat-->
+                    <td {rowspan} class="l">
+	                    <!--link-->
+	                    <a>{UserName_vl}</a>
+	                    <!--/link-->
+	                </td>
+	                <!--/NonRepeat-->
+                </tr>
+                <!--/row-->
+                </tbody>
+            </table>
+         </div>
+        </div>
+    </td>
+</tr>
+</table>
+
+
+
+<input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" />
+</div>

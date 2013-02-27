@@ -1,0 +1,201 @@
+﻿{StyleSheet}
+<div id="page_main">
+<div id="header_main">
+    <div>
+    <!--limit-header-position-normal-->
+        {lblPositionTaking}		
+	<!--/limit-header-position-normal-->
+    </div>
+    
+    <div>
+    <!--limit-header-position-->
+        <!--limit-agentlist-->
+        <a href="{url-agentlist}">{agentlist}</a> |
+        <!--/limit-agentlist-->
+        <!--limit-customerlist-->       
+        <a href="{url-list}">{customerlist}</a>
+        <!--/limit-customerlist--> | 
+        <!--limit-creditbalance-->       
+        <a href="{url-credit}">{creditbalance}</a>
+        <!--/limit-creditbalance--> |
+        <!--limit-position-taking-->            
+        <a href="{url-position}">{positiontaking}</a>
+        <!--/limit-position-taking-->	    
+	<!--/limit-header-position-->	    
+    </div>	
+</div>
+
+<div id="tbl-container">
+ <div id="boderRight">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+                <div id="box_header" style="width:100%; height:30px;padding-top:7px">
+                    <input type="radio" id="radSportbook" name="rdPositionTaking" onclick="DisablePage(); location.href='PositionTaking.aspx'"/> <label for="radSportbook">{Sportbook}</label> &nbsp;&nbsp;
+                    <input type="radio" id="radRacing" checked="checked" name="rdPositionTaking"  onclick="DisablePage(); location.href='PositionTakingRacing.aspx'"/> <label for="radRacing">{Racing}</label> &nbsp;&nbsp;
+                    <!--number-game-->
+                    <input type="radio" id="radNumberGame" name="rdPositionTaking"  onclick="DisablePage(); location.href='PositionTakingNumberGame.aspx'"/> <label for="radNumberGame">{NumberGame}</label> &nbsp;&nbsp;
+                    <!--/number-game-->
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!--Content-->
+                <table id="ver-zebra" class="nowrap c">
+                <colgroup>
+    	            <col class="vzebra-odd" />    	            
+    	            <col class="vzebra-even" />
+    	             <!--AdditionalRow-->
+                    <col />
+		            <!--/AdditionalRow-->
+
+	                <!--Horse-->
+	                <!--SAHorse-->                
+    	            <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+                    <!--/SAHorse-->
+                    <!--UKHorse-->
+    	            <col class="vzebra-even" />
+    	            <col class="vzebra-even" />
+                    <!--/UKHorse-->
+                    <!--AUHorse-->
+    	            <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+                    <!--/AUHorse-->
+	                <!--/Horse-->
+	                
+	                <!--UKGreyhound-->
+    	            <col class="vzebra-even" />
+                    <col class="vzebra-even" />    	            
+                    <!--/UKGreyhound-->
+                    <!--AUGreyhound-->
+    	            <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+	                <!--/AUGreyhound-->
+	                
+	                <!--AUHarness-->
+    	            <col class="vzebra-even" />
+    	            <col class="vzebra-even" />
+	                <!--/AUHarness-->
+	                
+    	            <col class="vzebra-odd" />	                               
+                </colgroup>
+                <thead>
+                <tr class="nowrap">
+                    <td colspan="{colNum}">&nbsp;</td>
+	                <!--Horse--><td colspan="{hrcols}">{lblHorse}</td><!--/Horse-->
+	                <!--Greyhound--><td colspan="{Greycols}">{lblGreyhound}</td><!--/Greyhound-->
+	                <!--AUHarness--><td colspan="2">{lblHarness}</td><!--/AUHarness-->
+	                <td>&nbsp;</td>
+                </tr>
+                 
+                <tr>
+                    <td>#</td>
+                    <td>{lblUserName}</td>	
+                    <!--AdditionalRow-->
+                    <th>&nbsp;</th>
+		            <!--/AdditionalRow-->
+	                
+	                <!--Horse-->
+	                <!--SAHorse-->
+	                <th>{lblWin}</th>
+	                <th>{lblPlace}</th>	
+	                <!--/SAHorse-->
+	                <!--UKHorse-->
+	                <th>{lblUKWin}</th>
+	                <th>{lblUKPlace}</th>
+	                <!--/UKHorse-->
+	                <!--AUHorse-->
+	                <th>{lblAUWin}</th>
+	                <th>{lblAUPlace}</th>
+	                <!--/AUHorse-->
+	                <!--/Horse-->
+	                
+	                <!--UKGreyhound-->
+	                <th>{lblUKWin}</th>
+	                <th>{lblUKPlace}</th>
+	                <!--/UKGreyhound-->
+	                <!--AUGreyhound-->
+	                <th>{lblAUWin}</th>
+	                <th>{lblAUPlace}</th>
+	                <!--/AUGreyhound-->
+	                
+	                <!--AUHarness-->
+	                <th>{lblAUWin}</th>
+	                <th>{lblAUPlace}</th>
+	                <!--/AUHarness-->
+	                
+	                <td>{lblUserName}</td>
+                </tr>
+               </thead>
+               
+                <tbody>
+                <!--row-->
+                <tr class="c" bgcolor="{color}">
+	                <!--NonRepeat-->
+	                <td {rowspan}>{No}</td>
+	                <td {rowspan} class="l">
+	                    <!--link-->
+	                    <a href="{url}">{UserName_vl}</a>
+	                    <!--/link-->
+	                    <!--editmember-->
+	                    <a href="javascript:EditMemberRacing('{custid_value}', '{username_value}', '{custid_upline}', '{Customer}');">{UserName_vl}</a>
+	                    <!--/editmember-->
+	                </td>
+	                <!--/NonRepeat-->	
+	                <!--Role-->
+	                <td class="{firstCol}">{Role}</td>
+	                <!--/Role-->	
+	                
+	                <!--Horse-->
+	                <!--SAHorse-->	
+	                <td>{hr_win}</td>	
+	                <td>{hr_place}</td>
+	                <!--/SAHorse-->
+	                <!--UKHorse-->
+	                <td class="vzebra-PT">{UK_Win_Horse}</td>	
+	                <td class="vzebra-PT">{UK_Place_Horse}</td>
+	                <!--/UKHorse-->
+	                <!--AUHorse-->
+	                <td>{AU_win_Horse}</td>	
+	                <td>{AU_place_Horse}</td>
+	                <!--/AUHorse-->
+                    <!--/Horse-->
+	                
+	                <!--UKGreyhound-->
+	                <td class="vzebra-PT">{UK_Win_Greyhound}</td>	
+	                <td class="vzebra-PT">{UK_Place_Greyhound}</td>
+	                <!--/UKGreyhound-->
+	                <!--AUGreyhound-->
+	                <td>{AU_win_Greyhound}</td>	
+	                <td>{AU_place_Greyhound}</td>
+                    <!--/AUGreyhound-->
+                    
+                    <!--AUHarness-->
+	                <td class="vzebra-PT">{AU_win_Harness}</td>	
+	                <td class="vzebra-PT">{AU_place_Harness}</td>
+                    <!--/AUHarness-->                    
+                    
+	                <!--NonRepeat-->
+	                <td {rowspan} class="l">
+	                    <!--link-->
+	                    <a href="{url}">{UserName_vl}</a>
+	                    <!--/link-->
+	                    <!--editmember-->
+	                    <a href="javascript:EditMemberRacing('{custid_value}', '{username_value}', '{custid_upline}', '{Customer}');">{UserName_vl}</a>
+	                    <!--/editmember-->
+	                </td>
+	                <!--/NonRepeat-->	
+                </tr>
+                <!--/row-->
+                </tbody>
+                </table>
+                <!--End Content-->
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+<input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" />
+</div>

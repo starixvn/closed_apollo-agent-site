@@ -1,0 +1,72 @@
+﻿#toolTipSettingMinPT
+{
+  color:#333;
+  font-family:Arial;
+  font-size:9pt;
+  line-height:17px;
+  position:absolute;
+  width:355px;
+  z-index:1000;
+}
+
+#toolTipSettingMinPT .minptleft
+{
+  background:url(../images/minptleft.png) no-repeat;
+  float:left;
+  height:72px;
+  width:19px;
+}
+
+#toolTipSettingMinPT .minptbg
+{
+  background:url(../images/minptbg.png) repeat-x;
+  float:left;
+  height:72px;
+}
+
+#toolTipSettingMinPT .minptright
+{
+  background:url(../images/minptright.png) no-repeat;
+  float:left;
+  height:72px;
+  width:10px;
+}
+
+#toolTipSettingMinPT .minptarrow
+{
+  background:url(../images/minptarrow.png) no-repeat;
+  height:21px;
+  width:22px;
+}
+
+#toolTipSettingMinPT .arrow1
+{
+  float:left;
+  margin-left:50px;
+  margin-top:-7px;
+}
+
+#toolTipSettingMinPT .arrow2
+{
+  float:left;
+  margin-left:170px;
+  margin-top:-7px;
+}
+
+#toolTipSettingMinPT .minptclose
+{
+  background:url(../images/minptclose.png) no-repeat;
+  cursor:pointer;
+  float:left;
+  height:13px;
+  margin-right:-1px;
+  margin-top:10px;
+  width:13px;
+}
+
+#toolTipSettingMinPT .text
+{
+  float:left;
+  padding-top:26px;
+  width:310px;
+}

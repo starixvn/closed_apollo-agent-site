@@ -1,0 +1,44 @@
+﻿<link href='../../App_Themes/AgencyV2/userinfo.css' type='text/css' rel='stylesheet' />
+
+<div id="page_popup">    
+<div id="header_popup">{lbleditcomm}</div>
+<form name="fUpdateInfo" style="float:left;" id="fUpdateInfo" action="{updateinfohandler}"  target="frUpdate" method="post">
+<div style="width:800px;">{error-msg}</div>
+<table border="0" cellpadding="0" cellspacing="1" width="1000px" class="tblRpt">
+<tbody>
+    <tr class="RptHeader">
+        <td colspan="4" align="center">
+        {lbleditcustcomm}
+        </td>
+    </tr>
+    
+    <tr class="bg_eb2" align="center">
+        <td colspan="4">
+            <div name="divUpdComm" id="divUpdComm">
+		        {lblgroupa} {groupa-comm}&nbsp;
+                {lblgroupb} {groupb-comm}
+   		        {lblgroupc} {groupc-comm}
+   		        {lblgroupd} {groupd-comm}
+   		        {lblgroup1x2} {group1x2-comm}
+   		        {lblgroupother} {groupother-comm}
+   		        {lblgroupnumber} {groupnumber-comm}
+            </div>
+        </td>
+    </tr>
+    
+    <tr>
+    <td colspan="4" align="center" class="bg_eb">        
+        <input AccountPermisssion="[B]" id="btnSubmit" type="submit" value="{update}" onclick="return checkAndSubmitCustInfo();" class="btn" />
+        &nbsp;
+        <input AccountPermisssion="[B]" id="btnReset" type="reset" value="{reset}" onclick="$('diverrmsg').style.display='none';" class="btn" />        
+        &nbsp;
+    </td>
+    </tr>
+</tbody>
+</table>
+</form>
+
+<iframe name="frUpdate" frameborder="0" class="hidden" height="0px" width="0px">
+</iframe>
+
+</div>

@@ -1,0 +1,18 @@
+﻿<script type="text/javascript">    
+
+    function setMenuWidth()
+    {
+        if(document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight))
+            clientDocument=document.documentElement;
+        else
+            clientDocument=document.body;
+            
+        if (clientDocument)
+            clientWidth = clientDocument.clientWidth;        
+
+        $("banner_main").style.width = clientWidth + 'px';
+    }    
+    window.onload = setMenuWidth;
+    window.onresize = setMenuWidth;
+    
+</script>

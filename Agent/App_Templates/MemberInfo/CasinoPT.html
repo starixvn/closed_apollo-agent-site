@@ -1,0 +1,237 @@
+﻿<table border="1" width="100%" class="sptPT">
+    <!--min-max-pt-->
+    <tr>
+        <td class="tblTitleCenter" colspan="8">
+            {betsetting_text}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="8">
+            <table width="70%" align="left">
+                <tr>
+                    <td class="right">
+                        {accumulatedWL_text}
+                    </td>
+                    <td class="left">
+                        &nbsp;123456
+                    </td>
+                    <td class="left">
+                        {reset_text}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right">
+                        {maxwin_text}
+                    </td>
+                    <td class="left">
+                        &nbsp;<input type="text" value="200,000" name="txtMaxWin" id="txtMaxWin" maxlength="14" />
+                    </td>
+                    <td class="left">
+                        ({min} = 8,000; {nolimit} = 0 )
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right">
+                        {maxlose_text}
+                    </td>
+                    <td class="left">
+                        &nbsp;<input type="text" value="200,000" name="txtMaxLose" id="txtMaxLose" maxlength="14" />
+                    </td>
+                    <td class="left">
+                        ({nolimit} = 0 )
+                    </td>
+                </tr>
+                </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="tblTitleCenter" colspan="8">
+            {positiontaking_text}
+        </td>
+    </tr>
+    <!--/min-max-pt-->
+    
+    <!--live_group_setting-->
+    <!--header-->
+    <tr class="b">
+        <td class="b" rowspan="4">
+            {gamekind_text}
+        </td>
+        <td />
+        <!--preset_pt-->
+        <td class="center">
+            {preset_text}
+        </td>
+        <!--/preset_pt-->
+        <!--auto_pt-->
+        <td class="center" colspan="2">
+            {auto_text}
+        </td>
+        <!--/auto_pt-->
+        <!--max_pt-->
+        <td class="center">
+            {maxpt_text}
+        </td>
+        <!--/max_pt-->
+        <!--min_pt-->
+        <td class="center">
+            {minpt_text}
+        </td>
+        <!--/min_pt-->
+        <!--comm-->
+        <td class="center">
+            {comm_text}
+        </td>
+        <!--/comm-->
+    </tr>
+    <!--/header-->
+    
+    <tr>
+        <td class="right w130" style="width:15%">
+            <input type="checkbox" name="live_ChkSAutoPT2" id="live_ChkSAutoPT0" />
+            {groupsetting_text}
+        </td>
+        <!--preset_pt-->
+        <td>
+            <select id="live_SPT" name="live_SPT" class="select-pt">
+            </select>
+        </td>
+        <!--/preset_pt-->
+        <!--auto_pt-->
+        <td>
+            <input type="checkbox" name="live_ChkSAutoPT" id="live_ChkSAutoPT" />
+        </td>
+        <td>
+            <select id="live_SAutoPT" name="live_SAutoPT" class="select-pt">
+            </select>
+        </td>
+        <!--/auto_pt-->
+        <!--max_pt-->
+        <td>
+            <select id="live_MMaxPT" name="live_MMaxPT" class="select-pt">
+            </select>
+        </td>
+        <!--/max_pt-->
+        <!--min_pt-->
+        <td>
+            <select id="live_MMinPT" name="live_MMinPT" class="select-pt">
+            </select>
+        </td>
+        <!--/min_pt-->
+        <!--comm-->
+        <td>
+            <select id="live_Comm" name="live_Comm" class="select-pt">
+            </select>
+        </td>
+        <!--/comm-->
+    </tr>
+    <!--/live_group_setting-->
+    <!--live_private_setting-->
+    <tr>
+        <td class="right w130 b" rowspan="2" style="width: 15%">
+            {gametype_text}
+        </td>
+        <!--preset_pt-->
+        <td>
+            <select onchange="" id="live_SPT" name="live_SPT" class="select-pt">
+            </select>
+            <label id="live_SPT_error" class="errMaxValue">
+            </label>
+        </td>
+        <!--/preset_pt-->
+        <!--auto_pt-->
+        <td>
+            <input type="checkbox" name="live_ChkSAutoPT" id="live_ChkSAutoPT" />
+        </td>
+        <td>
+            <select id="live_SAutoPT" name="live_SAutoPT" class="select-pt">
+            </select>
+            <label id="live_SAutoPT_error" class="errMaxValue">
+            </label>
+        </td>
+        <!--/auto_pt-->
+        <!--max_pt-->
+        <td>
+            <select id="live_MMaxPT" name="live_MMaxPT" class="select-pt">
+            </select>
+        </td>
+        <!--/max_pt-->
+        <!--min_pt-->
+        <td>
+            <select id="live_MMinPT" name="live_MMinPT" class="select-pt">
+            </select>
+        </td>
+        <!--/min_pt-->
+        <!--comm-->
+        <td>
+            <select id="live_Comm" name="live_Comm" class="select-pt">
+            </select>
+            <label id="live_Comm_error" class="errMaxValue">
+            </label>
+        </td>
+        <!--/comm-->
+    </tr>
+    <tr>
+        <td class="left" colspan="6" style="height: 18px">
+            {bettinglimit_text}:
+            <input type="checkbox" name="live_LM1" id="live_LM1" />1-50&nbsp;&nbsp;
+            <input type="checkbox" name="live_LM2" id="live_LM2" />5-100&nbsp;&nbsp;
+            <input type="checkbox" name="live_LM3" id="live_LM3" />10-150
+        </td>
+    </tr>
+    <!--/live_private_setting-->
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--p2p_group_setting-->
+    <!--header-->
+    <tr>
+        <td class="b" rowspan="3">
+            {gamekind_text}
+        </td>
+        <td class="right w130" style="width: 15%">
+            &nbsp;</td>
+        <td>
+            {comm_text}
+        </td>
+    </tr>
+    <!--/header-->
+    
+    <tr>
+        <td class="right w130" style="width: 15%">
+            <input type="checkbox" name="p2p_ChkSAutoPT1" id="live_ChkSAutoPT" value="ON" />
+            {groupsetting_text}
+        </td>
+        <!--comm-->
+        <td>
+            <select id="live_SPT" name="live_SPT" class="select-pt">
+                
+            </select>
+        </td>
+        <!--/comm-->
+    </tr>
+    <!--/p2p_group_setting-->
+    
+    <!--p2p_private_setting-->
+    <tr>
+        <td class="right w130 b" style="width: 15%">
+            {gametype_text}
+        </td>
+        <!--comm-->
+        <td>
+            <select id="live_SPT" name="live_SPT" class="select-pt">
+            </select>
+            <label id="live_SPT_error" class="errMaxValue">
+            </label>
+        </td>
+        <!--/comm-->
+    </tr>
+    
+    <!--/p2p_private_setting-->    
+    
+</table>

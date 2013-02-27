@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="PortalPage.aspx.cs" Inherits="Fanex.Age.UI.Reports.PortalPage_Page" %>

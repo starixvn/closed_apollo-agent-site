@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="Header.aspx.cs" Inherits="Sunplus.Agent.UI._Header.Header_Page" %>

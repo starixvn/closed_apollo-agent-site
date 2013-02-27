@@ -1,0 +1,84 @@
+<table class="tblRpt_center" width="100%" border="0" cellpadding="0" cellspacing="1"
+    id="tbl-rpt">
+    <tr class="RptHeader">
+        <td style="width: 100px;">
+            {static:Resources.Lang.date}
+        </td>
+        <td style="width: 370px;">
+            {static:Resources.Lang.events}
+        </td>
+        <td style="width: 60px;">
+            {static:Resources.Lang.odds}
+        </td>
+        <td style="width: 60px;">
+            {static:Resources.Lang.stake}
+        </td>
+        <td style="width: 80px;">
+            {static:Resources.Lang.lblWinLoss}
+        </td>
+        <td style="width: 80px;">
+            {static:Resources.Lang.status}
+        </td>
+    </tr>
+    <!--RowData-->
+    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'"
+        onmouseout="this.style.backgroundColor='{ColorClass}'">
+        <!--WinlostDate-->
+        <td {rowSpan}>
+            {date}
+        </td>
+        <!--/WinlostDate-->
+
+        <td class="l">
+            {even}
+        </td>
+        <td class="r bl_underdog">
+            {odds}
+        </td>
+        <td class="r bl_underdog">
+            {stake}
+        </td>
+         <td class="r">
+            <div>
+                <span class="bl_underdog">{winlost}</span></div>
+            <div>
+                <font class="bl_underdog">{comm}</font></div>
+        </td>
+        <td class="bl_status c">
+            {status}
+        </td>
+    </tr>
+    <!--/RowData-->
+    <!--SubSummary-->
+    <tr class="bl_footertotal" style="background-color: #e8dfca;">
+        <td class="r" colspan="6">
+            <div style="float: left; width:580px; text-align:right">{static:Resources.Lang.subTotal}:</div>
+            <div style="float: right; padding-right: 78px;">{subTotal}</div>
+        </td>
+    </tr>
+    <!--/SubSummary-->
+
+    <!--OutStanding-->
+    <tr class="bl_footertotal" style="background-color: #f9c95b">
+        <td class="r" colspan="6">
+            <div style="float: left; width:580px; text-align:right">{static:Resources.Lang.outstanding}:</div>
+            <div style="float: right; padding-right: 78px;">{outstanding}</div>
+        </td>
+    </tr>
+    <!--/OutStanding-->    
+
+    <!--Summary-->
+    <tr class="bl_footertotal" style="background-color: #e8dfca;">
+        <td class="r" colspan="6">
+           <div style="float: left; width:580px; text-align:right">{static:Resources.Lang.total}:</div>
+           <div style="float: right; padding-right: 78px;">{total}</div>
+        </td>
+    </tr>
+    <!--/Summary-->
+
+</table>
+<!--HiddenBlock-->
+<link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+<link href="../../_Reports/Resources/Reports.css" rel="stylesheet" type="text/css" />
+<link href="../../_BetList/Resources/BetList.css" rel="stylesheet" type="text/css" />
+<!--/HiddenBlock-->

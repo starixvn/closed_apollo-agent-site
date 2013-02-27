@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sub-Account List</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../_MemberInfo/CustomerList/Components/MenuPopup_Control/Resources/MenuPopup_Control.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="page_main">
+<div class="divHeader">
+    {static:Resources.Lang.subaccount} &nbsp;
+    <input type="button" onclick="AddSubAccPopup();" value="{static:Resources.Lang.addsubaccount}" class="btn" />
+</div>
+<div style="width: 1050px">
+
+{static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
+
+</div>
+<table class="tblRpt" width="100%" cellspacing="1" cellpadding="0" border="0">    
+    <!--Header-->
+    <tr class="RptHeader">
+        <td>{static:Resources.Lang.no}</td>
+        <td>{static:Resources.Lang.username}</td>
+        <td>{static:Resources.Lang.firstname}</td>
+        <td>{static:Resources.Lang.lastname}</td>
+        <td>{static:Resources.Lang.CreatedDate}</td>        
+        
+        <td width="110">{static:Resources.Lang.memberinfo}</td>
+        <td width="110">{static:Resources.Lang.totalbets}/{static:Resources.Lang.lblForecast}</td>
+        <td width="70">{static:Resources.Lang.reports}</td>
+        <td width="70">{static:Resources.Lang.transfer}</td>
+        <td width="70">{static:Resources.Lang.viewlog}</td>
+
+        <td>{static:Resources.Lang.edit}</td>
+        <td>{static:Resources.Lang.password}</td>
+    </tr>
+    <!--/Header-->
+    <!--Content-->
+    <tr align="center" bgcolor="{color}" onmouseover="bgColor='{overcolor}'" onmouseout="bgColor='{color}'">
+        <td class="w-order">{no_value}</td>
+        <td class="l">{username_value}</td>
+        <td class="l">{firstname_value}</td>
+        <td class="l">{lastname_value}</td>
+        <td class="bl_time">{createdate_value}</td>
+
+        <td>
+            <div id="mi_{id_value}" onclick="OpenBoxMemberInfo(this,'{id_value}')" class="pMemInfo" AccPermission="{lblPermission}">{PermissionName}</div>
+        </td>        
+        <td><input type="checkbox" onclick="UpdatePageAccess({id_value});" {chkValueD} id="chk{id_value}[D]"/></td>
+        <td><input type="checkbox" onclick="UpdatePageAccess({id_value});" {chkValueE} id="chk{id_value}[E]"/></td>        
+        <td><input type="checkbox" onclick="UpdatePageAccess({id_value});" {chkValueC} id="chk{id_value}[C]"/></td>
+        <td><input type="checkbox" onclick="UpdatePageAccess({id_value});" {chkValueG} id="chk{id_value}[G]"/></td>
+        
+        <td align="center">
+            <input type="button" class="editBtn" onclick="EditSubAccPopup({id_value}, '{username_value}');" title="{static:Resources.Lang.edit}"/>
+        </td>
+        <td>
+            <input type="button" class="editBtn" onclick="ResetSubAccPwdPopup({id_value},'{username_value}');" title="{static:Resources.Lang.edit}"/>
+        </td>
+    </tr>
+    <!--/Content-->
+    <!--NoInfo-->
+    <tr class="bg_white c">
+        <td colspan="12">{static:Resources.Lang.noInfo}</td>
+    </tr>
+    <!--/NoInfo-->
+</table>
+<div id="Popup" class="divMenuPopup">
+    <div>
+        <input type="radio" name="rdPermission" id="pNone">
+        <label class="rdLabel" for="pNone">{static:Resources.Lang.none}</label>
+    </div>
+    <div>
+        <input type="radio" name="rdPermission" id="pView">
+        <label class="rdLabel" for="pView">{static:Resources.Lang.view}</label>
+    </div>
+    <div>
+        <input type="radio" name="rdPermission" id="pUpdateView">
+        <label class="rdLabel" for="pUpdateView">{static:Resources.Lang.update}</label>
+    </div>    
+    <div>
+        <input type="radio" name="rdPermission" id="pFullControl">
+        <label class="rdLabel" for="pFullControl">{static:Resources.Lang.FullControl}</label>
+    </div>
+</div>
+</body>
+<script src="../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+<script src="../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+<script src="Resources/SubAcc.js" type="text/javascript"></script>
+
+</html>
+

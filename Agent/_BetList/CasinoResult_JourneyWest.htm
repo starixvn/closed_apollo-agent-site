@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.handhistorydetail}</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<center>
+    <table id="casino-betlist-a">
+        <thead>
+            <tr>
+                <th colspan="6" class="c">
+                    {tableName} {betTime}
+                </th>
+            </tr>
+        </thead>
+        <tr>
+            <td colspan="6" class="c">
+                {player} : {userName}
+            </td>
+        </tr>
+        <tr class="th b">
+            <td colspan="6" class="c">
+                {static:Resources.Lang.result}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" class="c">
+                {result}
+            </td>
+        </tr>
+        <tr>
+            <td class="hd c">
+                {playerHistoryNo}
+            </td>
+            <td colspan="5" class="l">
+                {playerHistoryNo_value}
+            </td>
+        </tr>
+        <tr>
+            <td class="hd c">
+                {autoSpin}
+            </td>
+            <td colspan="5" class="l">
+                {autoSpin_value}
+            </td>
+        </tr>
+         
+        
+        <!--NormalGame-->
+        <tr class="hd2 c">
+            <td colspan="6">
+                {static:Resources.Casino.normalGame}
+            </td>
+        </tr>
+        <tr class="hd c">
+            <td>
+                {static:Resources.Lang.lineno}
+            </td>
+            
+            <td>
+                {static:Resources.Lang.symbol}
+            </td>
+            
+            <td>
+                {static:Resources.Lang.coinsize}
+            </td>
+            
+            <td>
+                {static:Resources.Lang.betperline}
+            </td>
+                
+            <td>
+                {static:Resources.Lang.odds}
+            </td>
+            
+            <td>
+                {static:Resources.Lang.perLineWin}
+            </td>
+        </tr>
+        
+        <!--Row-->
+        <tr>
+            <td class="c">
+                {lineNo}
+            </td>
+            
+            <td class="c">
+                {symbol}
+            </td>
+            
+            <td class="r">
+                {coinSize}
+            </td>
+            
+            <td class="r">
+                {betPerLine}
+            </td>
+                
+            <td class="r">
+                {odds}
+            </td>
+            
+            <td class="r">
+                {perLineWin}
+            </td>
+        </tr>
+        <!--/Row-->
+        
+        <tr class="hd3">
+            <td colspan="2" class="l">
+                {actionName}
+            </td>
+            <td colspan="4" class="r">
+                {win}
+            </td>
+        </tr>
+
+        
+        <!--/NormalGame-->
+        
+        
+        <!--ScatterGame-->
+        <tr class="hd2 c">
+            <td colspan="6">
+                {static:Resources.Casino.scatterGame}
+            </td>
+        </tr>        
+        <tr class="hd c">
+            <td>{static:Resources.Casino.name}</td>
+            <td>{static:Resources.Lang.symbol}</td>
+            <td>{static:Resources.Lang.odds}</td>
+            <td colspan="3">{static:Resources.Casino.scatterWin}</td>
+        </tr>
+        
+        <!--Row-->
+        <tr>
+            <td class="c">{name}</td>
+            <td class="c">{symbol}</td>
+            <td class="r">{odds}</td>
+            <td colspan="3" class="r">{scatterWin}</td>
+        </tr>
+        <!--/Row-->
+        
+        <tr class="hd3">
+            <td colspan="2" class="l">
+                {actionName}
+            </td>
+            <td colspan="4" class="r">
+                {win}
+            </td>
+        </tr>
+        
+        <!--/ScatterGame-->
+        
+        
+        <!--ExperienceGame-->
+        <tr class="hd2 c">
+            <td colspan="6">
+                {static:Resources.Casino.experienceGame}
+            </td>
+        </tr>        
+        <tr class="hd c">
+            <td>{static:Resources.Casino.experienceType}</td>
+            <td colspan="5">{static:Resources.Casino.reward}</td>
+        </tr>
+        
+        <!--Row-->
+        <tr>
+            <td class="c">{actionName}</td>
+            <td colspan="5" class="c">{win}</td>
+        </tr>
+        <!--/Row-->
+        
+        <tr class="hd3">
+            <td colspan="2" class="l">
+                {actionName}
+            </td>
+            <td colspan="4" class="r">
+                {win}
+            </td>
+        </tr>  
+        
+        <!--/ExperienceGame-->        
+        
+        
+        <!--JackpotGame-->
+        <tr class="hd2 c">
+            <td colspan="6">
+                {static:Resources.Casino.jackpotGame}
+            </td>
+        </tr>        
+        <tr class="hd c">
+            <td colspan="3">{static:Resources.Casino.name}</td>
+            <td colspan="3">{static:Resources.Casino.jackpotWin}</td>
+        </tr>
+        
+        <!--Row-->
+        <tr>
+            <td class="c">{actionName}</td>
+            <td colspan="5" class="c">{win}</td>
+        </tr>
+        <!--/Row-->
+        
+        <tr class="hd3">
+            <td colspan="2" class="c">
+                {actionName}
+            </td>
+            <td colspan="4" class="c">
+                {win}
+            </td>
+        </tr>
+        
+        <!--/JackpotGame-->          
+        
+        
+        <!--KidnappingGame-->
+        <tr class="hd2 c">
+            <td colspan="6">
+                {static:Resources.Casino.kidnappingGame}
+            </td>
+        </tr>        
+        <tr class="hd c">
+            <td>{static:Resources.Casino.name}</td>
+            <td colspan="2">{static:Resources.Lang.symbol}</td>
+            <td>{static:Resources.Lang.multiplier}</td>
+            <td colspan="2">{static:Resources.Casino.kidnappingGameWin}</td>
+        </tr>
+        
+        <!--Row-->
+        <tr class="c">
+            <td>{actionName}</td>
+            <td colspan="2">{symbol}</td>
+            <td>{multiplier}</td>
+            <td colspan="2">{kidnappingGameWin}</td>
+
+        </tr>
+        <!--/Row-->
+        
+        <tr class="hd3">
+            <td colspan="2" class="l">
+                {actionName}
+            </td>
+            <td colspan="4" class="r">
+                {win}
+            </td>
+        </tr>    
+        
+        <!--/KidnappingGame-->            
+        
+        
+        <tr>
+            <td colspan="2" class="hd l">
+                {static:Resources.Casino.totalBet}
+            </td>
+            <td colspan="4" class="r">
+                {totalBet}
+            </td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="2" class="hd l">
+                {static:Resources.Casino.totalWin}
+            </td>
+            <td colspan="4" class="r">
+                {totalWin}
+            </td>
+        </tr>        
+    </table>
+</center>
+</body>
+</html>

@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="EditMultiple.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.VirtualSports.EditMultiple_Page" %>

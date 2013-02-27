@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.handhistorydetail}</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <center>
+        <table id="casino-betlist-a">
+        <!--Content-->
+            <thead>
+                <tr>
+                    <th colspan="2" class="c">
+                        {tableName} {static:Resources.Casino.at} {betTime}
+                    </th>
+                </tr>
+            </thead>
+            <tr>
+                <td colspan="2" class="c">
+                    {static:Resources.Casino.Player}: {userName}
+                </td>
+            </tr>
+            <tr class="th b">
+                <td colspan="2" class="c">
+                    {static:Resources.Casino.Result}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="c">
+                     <center>
+                        <table class="c" id="casino-betlist-a2">
+                            <tr>
+                                <td>
+                                    {Val1}</td>
+                                <td>
+                                    {Val2}</td>
+                                <td>
+                                    {Val3}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {Val4}</td>
+                                <td>
+                                    {Val5}</td>
+                                <td>
+                                    {Val6}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {Val7}</td>
+                                <td>
+                                    {Val8}</td>
+                                <td>
+                                    {Val9}</td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+            <tr class="hd">
+                <td class="c">
+                    {playerHistoryNo}
+                </td>
+                <td class="l">
+                    {playerHistoryNoResult}
+                </td>
+            </tr>
+            <tr class="hd">
+                <td class="c">
+                    {static:Resources.Casino.AutoPlay}
+                </td>
+                <td class="l">
+                    {AutoPlay}
+                </td>
+            </tr>
+            <tr class="hd">
+                <td class="l">
+                    {static:Resources.Casino.Bet}
+                </td>
+                <td class="r b">
+                    {BetMoney}
+                </td>
+            </tr>
+            <tr class="hd">
+                <td class="l">
+                    {static:Resources.Casino.Odds}
+                </td>
+                <td class="r b">
+                    {Odds}
+                </td>
+            </tr>
+            <tr class="hd">
+                <td class="l">
+                    {static:Resources.Casino.Win}
+                </td>
+                <td class="r b">
+                    {Win}
+                </td>
+            </tr>
+            <!--/Content-->
+            <!--NoInfo-->
+            <tr class="no_info" cols>
+                <td colspan="2">
+                    {static:Resources.Lang.noInfo}
+                </td>
+            </tr>
+            <!--/NoInfo-->
+        </table>
+    </center>
+</body>
+
+</html>

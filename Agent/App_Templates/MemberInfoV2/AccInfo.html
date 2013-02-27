@@ -1,0 +1,167 @@
+<table cellspacing="0" cellpadding="0" border="0" style="width: 800px;">
+    <tr id="btntop">
+        <td class="bg_main_header padd" style="text-align: left;width:180px;">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="RptNameL"></td>
+                    <td class="hdmain RptName">{title}</td>
+                    <td class="RptNameR"></td>
+                </tr>
+            </table>
+        </td>
+        <td class="l"><!--single-mode--><span class="hide" id="abc123"></span><!--/single-mode--></td>
+    </tr>
+    <tr>
+        <td align="left" style="text-align: left" colspan="2">            
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="diverr" style="display: none">
+                <tr>
+                    <td class="emsg_1_1">&nbsp;</td>
+                    <td class="emsg_1_2">&nbsp;</td>
+                    <td class="emsg_1_3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="emsg_2_1">&nbsp;</td>
+                    <td valign="top" id="err" class="msgerr">&nbsp;</td>
+                    <td class="emsg_2_2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="emsg_3_1">&nbsp;</td>
+                    <td class="emsg_3_2">&nbsp;</td>
+                    <td class="emsg_3_3">&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<div class="sptPT" style="width: 800px;">
+<table width="100%" border="1" class="tblRpt">	
+	<!--none-mult-->
+	<!--none-edit-->
+	<tr>
+		<td width='20%' class="r">{uname-text}</td>
+		<td width='35%' class="l">{uname-parent}{number1-val}{number2-val}<!--none-member-->{number3-val}<!--/none-member--></td>
+		<td width='20%' class="r">{pwd-text}</td>
+		<TD width='25%' id="td_pass" class="l" nowrap="yes"><input id="txtPwd" style="width:122px" onkeyup="return checkpass(this);" type="password" size="15" name="txtPwd"  runat="server"></TD>		
+	</tr>
+	<!--/none-edit-->
+	<!--none-show-info-user-when-edit-mult-->
+    <tr>
+        <td width='20%' class="r">{fname-text}</td>
+        <td width='35%' class="l"><input type="text" style="width: 122px" id="txtFName" name="txtFName" value="{fname-val}" /></td>
+        <td width='20%' class="r">{lname-text}</td>
+        <td width='25%' class="l"><input type="text" style="width: 122px" id="txtLName" name="txtLName" value="{lname-val}" /></td>
+    </tr>
+	<tr>
+		<td class="r">{phone-text}</td>
+		<td class="l"><input type="text" style="width:122px" id="txtPhone" name="txtPhone" value="{phone-val}"/></td>
+		<td class="r">{mobile-text}</td>
+		<td class="l"><input type="text" style="width:122px" id="txtMobile" name="txtMobile" value="{mobile-val}"/></td>
+	</tr>	
+	<tr>
+		<td class="r">{fax-text}</td>
+		<td class="l" nowrap="yes"><input type="text" style="width:122px" id="txtFax" name="txtFax" value="{fax-val}"/></td>		
+		<td class="r"></td>
+		<td class="l"><input class="hand" type="button" id="btnUpdateInfo" value="{udp-text}" onclick="UdpCustInfo();" /></td>
+	</tr>
+	<tr style="height:5px; background-color:White;">
+	    <td colspan="4"></td>
+	</tr>
+	
+	<tr>
+	    <td class="r">{max-credit-text}</td>
+		<td class="l" nowrap="yes" colspan="2">
+			<input type="text" style="width:122px" maxlength="14" onchange="if($('lblMaxCredit')){if(this.value==''){ $('lblMaxCredit').innerHTML=0; this.value=0;} else $('lblMaxCredit').innerHTML=this.value;}" id="txtCredit"  name="txtCredit" value="{credit-val}" onkeypress="return CheckDecNumber(event);" />
+			<span class="{mpmMin}">&gt;=<span id="txtCreditMin">{credit-min}</span>&nbsp;and</span>
+			<span class="{mpmMax}">&lt;=<span id="txtCreditMax">{credit-max}</span></span>
+		</td>	
+		<td class="l"><input class="hand" type="button" id="btnUpdCredit" value="{udp-text}" onclick="UdpMaxCredit();" /></td>
+	</tr>
+	
+	<tr style="height:5px; background-color:White;">
+	    <td colspan="4"></td>
+	</tr>
+	
+	<tr>
+	    <td colspan="2" class="r">{suspend-text}</td>
+	    <td class="l">
+	        <input type="checkbox" id="chkSuspended" name="chkSuspended" {suspend-check} />		    
+		    <input type="hidden" id="IsSuspended" name="IsSuspended" value="{IsSuspended}" />
+		    <input type="hidden" id="UplineSuspended" name="UplineSuspended" value="{UplineSuspended}" />
+		 </td>
+		 <td class="l"><input class="hand" type="button" id="btnUpdSuspend" value="{udp-text}" onclick="UdpSuspend();" /></td>
+	</tr>
+	
+	<tr style="height:5px; background-color:White;">
+	    <td colspan="4"></td>
+	</tr>
+	
+	<tr>
+	    <td colspan="2" class="r">{closed-text}</td>
+	    <td class="l"><input type="checkbox" id="chkClosed" name="chkClosed" {check-val} /></td>
+	    <td class="l"><input class="hand" type="button" id="btnUdpClosed" value="{udp-text}" onclick="UdpStatus();" /></td>	    
+	</tr>
+		
+	<tr style="height:5px; background-color:White;">
+	    <td colspan="4"></td>
+	</tr>
+	<!--/none-show-info-user-when-edit-mult-->
+	
+	<!--none-single-->
+	<tr>		
+		<td colspan="{cols-untext}" id="username"></td>
+	</tr>	
+	<!--/none-single-->
+	<tr class="titleInfo">
+		<!--none-single--><td width="10%">{status-text}</td><!--/none-single-->
+		<td colspan="4">{commission-text}</td>		
+	</tr>
+	<!--none-super-->
+	<tr>		
+		<!--none-single--><td><div id="divUpdStatus" name="divUpdStatus">{closed-text}<input type="checkbox" id="Checkbox1" {check-val} name="chkClosed"/></div></td><!--/none-single-->
+		<td colspan="3" nowrap>
+		<div id="divUpdComm" name="divUpdComm">
+		{groupa-text}&nbsp;<select class="selectcomm" id="groupa" {sel-a} name="groupa">{groupa-val}</select>&nbsp;&nbsp;&nbsp;
+		{groupb-text}&nbsp;<select class="selectcomm" id="groupb" {sel-b} name="groupb">{groupb-val}</select>&nbsp;&nbsp;&nbsp;
+		{groupc-text}&nbsp;<select class="selectcomm" id="groupc" {sel-c} name="groupc">{groupc-val}</select>&nbsp;&nbsp;&nbsp;
+		{groupd-text}&nbsp;<select class="selectcomm" id="groupd" {sel-d} name="groupd">{groupd-val}</select>&nbsp;&nbsp;&nbsp;
+		{discountcs-text}&nbsp;<select class="selectcomm" id="discountcs" {sel-dis} name="discountcs">{discountcs-val}</select>		
+		</div>
+		</td>	
+		<td class="l"><input style="text-align:center;" class="hand" type="button" id="btnUdpComm" value="{udp-text}" onclick="UdpComm();" /></td>
+	</tr>
+	<!--/none-super-->
+	<!--none-edit-member-->	
+	<tr>		
+		<TD colspan="4">
+			<table border="0" width="100%">
+				<tr>
+					<td class="r" width="30%" nowrap>{lblCommissionForAgent} &nbsp;<u>{lblAsianHDC_OU_OE}</u></td>
+					<td class="l" width="20%"><input type ="text" id="txtDiscount" value="{discount-val}" ReadOnly="True"/></td>
+					<td class="r" width="30%" nowrap>{lblCommissionForAgent} &nbsp;<u>{lbl1x2_CS_TG}</u></td>
+					<td class="l" width="20%"><input type ="text" id="txtDiscountcs" value = "{discountcs-val}" ReadOnly="True"/></td>		
+				</tr>
+			</table>
+		</TD>
+	</tr>
+	<!--/none-edit-member-->	
+	<!--none-member-->
+	<tr>
+		<!--none-single--><td><div id="div1" name="divUpdStatus">{closed-text}<input type="checkbox" id="Checkbox2" {check-val} name="chkClosed"/></div></td><!--/none-single-->
+		<TD colspan="4">
+		    <table border="0" width="100%">
+		        <tr>
+		            <td class="r" width="30%" nowrap>{lblCommissionForMember} &nbsp;<u>{lblAsianHDC_OU_OE}</u></td>
+		            <td class="l" width="20%">{CommissionH_OU_OE} </td>
+		            <td class="r" width="30%" nowrap>{lblCommissionForMember} &nbsp;<u>{lbl1x2_CS_TG}</u></td>
+		            <td class="l" width="20%">{CommissionCS_TG}<span class="normal" id ="spddrCommissionCS_TG"></span> <input class="hand" type="button" id="Button1" name="btnUdpComm" value="{udp-text}" onclick="UdpComm();" /></td>		            
+		        </tr>
+			</table>
+		</TD>
+	</tr>
+	<!--/none-member-->
+</table>
+</div>
+{tranfer-time}
+<input type="hidden" name="from" id="from" value="{linkfrom}" />
+<br />

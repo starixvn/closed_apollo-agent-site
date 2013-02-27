@@ -1,0 +1,35 @@
+﻿<table id="tblMain" cellpadding="0" cellspacing="1">
+    <tr>
+        <td align="center" style="background-color: #F7F0E4">
+            <table id="tblHeadMain" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td id="SB" align="center">
+                        <span class="{sportBook_class}" onclick="SearchAndCopy.SportBookActive()">{static:Resources.Lang.sportBook}
+                        </span>
+                    </td>
+                    <td id="RaceBook" align="center" class="{RaceBook}">
+                        <span class="{racebook_class}" onclick="SearchAndCopy.RacingActive()">{static:Resources.Lang.Racebook}
+                        </span>
+                    </td>
+                    <td id="Casino" align="center" class="{Casino}">
+                        <span class="{casino_class}" onclick="SearchAndCopy.CasinoActive()">{static:Resources.Lang.casino}
+                        </span>
+                    </td>
+                    <td id="LiveCasino" align="center" class="{LiveCasino}">
+                        <span class="{liveCasino_class}" onclick="SearchAndCopy.LiveCasinoActive()">{static:Resources.Lang.LiveCasino}
+                        </span>
+                    </td>
+                    <td id="VirtualSports" align="center" class="{VirtualSports}">
+                        <span class="{virtualSports_class}" onclick="SearchAndCopy.VirtualSportsActive()">{static:Resources.Lang.VirtualSports}
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {showSetting}
+        </td>
+    </tr>
+</table>

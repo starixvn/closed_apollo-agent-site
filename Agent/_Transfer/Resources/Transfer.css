@@ -1,0 +1,182 @@
+﻿html
+{
+	color: #171717;
+	font-family: Arial,helvetica,sans-serif;
+	font-size: 11px;
+	margin: 0;
+}
+
+body
+{
+	background-color: #f5f6f8;
+	background-attachment: fixed;
+	padding: 2px 2px 2px 2px;
+	margin: 0px 0px 0px 0px;
+	
+}
+#tblMain
+{
+	width: 98%;
+}
+
+#tblTransferList
+{
+	background-color: #B7B7B7;
+	width: 100%;
+	
+}
+
+#tblTransferList .SubTitle
+{
+	background-color: #FFFFFF;
+	text-align: center;
+}
+
+#tblTransferList thead .Header th
+{
+	background: #6A6969 url( "../../_GlobalResources/Images/bg_header02.jpg" ) repeat-x scroll center top;
+	color: #FFF;
+	font-size: 12px !important;
+	text-align: center;
+	height: 20px;
+	font-weight: normal !important;
+}
+
+#tblTransferList tbody tr
+{
+	height: 20px;
+}
+
+#tblTransferList tbody td
+{
+	 padding: 2px;
+}
+
+#tblTransferList tbody tr:hover
+{
+	background-color: #ffff00;
+}
+
+#tblTransferList tbody tr a:link
+{
+	text-decoration:none;
+}
+
+#tblTransferList .w-order
+{
+	width: 20px;
+	text-align: right;
+	color: #7d7d7d;
+	font-weight: normal;
+}
+
+#tblTransferList .c
+{
+	text-align: center;
+}
+
+#tblTransferList .l
+{
+	text-align: left;
+}
+
+#tblTransferList .Footer
+{
+	background: #783819 url( "../../_GlobalResources/Images/bg_f01.jpg" ) repeat-x scroll center top;
+	color: #FFF;
+	font-weight: bold;
+	text-align: right;
+	height: 20px;
+}
+
+
+#tblTransferList tr.Header th
+{
+	white-space: nowrap;
+}
+
+.RowBgClosed
+{
+	background-color: #ccc7ba;
+}
+
+.RowBgSuspended
+{
+	background-color: #f8ded7;
+}
+
+.RowBgDisabled
+{
+	background-color: #A0A97A;
+}
+.RowBgOpen
+{
+	background-color: #f9f9f7;
+}
+
+.trans_underdog {
+    color: blue;
+    text-align: right;
+}
+
+.trans_favorite {
+    color: #B50000;
+    text-align: right;
+}
+.trans_underdog_hightlighted {
+    color: blue;
+    background-color: #ffff00;
+    text-align: right;
+}
+
+.trans_favorite_hightlighted {
+    color: #B50000;
+    background-color: #ffff00;
+    text-align: right;
+}
+.warningtranfer li
+{
+	background: url("../../_GlobalResources/Images/more.gif") no-repeat left;
+	padding-left: 20px;
+}
+.warningtranfer ul
+{
+	padding-left: 2px;
+	color: red;
+	font-weight: normal;
+	list-style: none;
+	margin-left: 2px;	
+}
+
+.highlight {
+    background: none repeat scroll 0 0 #FFFF99;
+    color: red;
+}
+
+#title_header {
+    background: url("../../_GlobalResources/Images/bg_header01.jpg") no-repeat scroll left bottom transparent;
+    color: #9D1C1C;
+    font-weight: bold;
+    height: 22px;
+    line-height: 18px;
+    min-width: 650px;
+    padding-left: 15px;
+    text-transform: uppercase;
+    width: 97%;
+    margin-top: 5px;
+}
+
+
+#tblTransferList tfoot tr td .btnSubmit:hover
+{
+	color: #cc4800;
+}
+
+#page_popup {
+    padding-top: 20px;
+    padding-left: 8px;
+}
+
+#page_popup_agent {
+    
+}

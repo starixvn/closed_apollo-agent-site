@@ -1,0 +1,195 @@
+{StyleSheet}
+<form id="frm" method="get">
+        <div id="page_main">
+        <div id="header_main">{lblCommission}</div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+        <div id="box_header" style="width:97%">
+          <table border="0" cellpadding="0" cellspacing="1" style="width:100%">                                  
+            <tr>
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            
+                            <td style="width:400px">
+                                <input type="radio" id="radSB" name="rdCommission" onclick="DisablePage(); location.href='MemberCommission.aspx'"/> <label for="radSB">{SportBook}</label> &nbsp;&nbsp;
+                                <input type="radio" id="radRacing" name="rdCommission" checked="checked" onclick="DisablePage(); location.href='MemberCommissionRacing.aspx'"/> <label for="radRacing">{Racing}</label> &nbsp;&nbsp;
+                                <!--p2pCasino-->
+                                <input type="radio" id="radCasino" name="rdCommission" onclick="DisablePage(); location.href='MemberCommissionCasino.aspx'"/> <label for="radCasino">{Casino}</label> &nbsp;&nbsp;
+                                <!--/p2pCasino-->
+                                <!--p2pBingo-->
+                                <input type="radio" id="radBingo" name="rdCommission" onclick="DisablePage(); location.href='MemberCommissionBingo.aspx'"/> <label for="radBingo">{Bingo}</label> &nbsp;&nbsp;
+                                <!--/p2pBingo-->
+                                <!--P2P-->
+                                <input type="radio" id="radP2P" name="rdCommission" onclick="DisablePage(); location.href='../_MemberInfo/Commission/MemberCommissionP2P.aspx'"/> <label for="radP2P">{P2PText}</label> &nbsp;&nbsp;
+                                <!--/P2P-->
+                                <!--LiveCasino-->
+                                <input type="radio" id="radLiveCasino" name="rdCommission" onclick="DisablePage(); location.href='../_MemberInfo/Commission/MemberCommissionLiveCasino.aspx'"/> <label for="radLiveCasino">{LiveCasinoText}</label> &nbsp;&nbsp;
+                                <!--/LiveCasino-->
+                            </td>
+                            
+                            <!--limit-agent-->
+                            <!--limit-master-->
+                            <td style="padding-left:5px;">{selmaster}</td>
+                            <td>
+                                <select id="selmaster" name="selmaster" onchange="DisablePage(); getData_MemberCommission_Agent();">{option_master}</select>
+                            </td>
+                            <!--/limit-master-->
+                            <td style="padding-left:20px;">{selagent}</td>
+                            <td id="selagent" name="selagent" >
+                                <select id="selAg" name="selAg" onchange="DisablePage(); show_data_com();">{option_agent}</select>
+                            </td>
+                            <td>
+                                <div id="loading" class="" style=" width:24px; height:24px; float:left;padding-left:5px;"></div>
+                            </td>
+                            <!--/limit-agent-->
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left" class="warning">
+                    <ul>{appliesallbettype}</ul>
+               </td>
+            </tr>            
+          </table> 
+        </div>  
+</td>
+<tr>
+<tr>
+<td>
+      <div id="tbl-container" style="width:97%">
+         <div id="boderRight">
+                <!--limit-data-->
+             <table id="tbl-rpt" class="tblRpt nowrap r" cellpadding="0" cellspacing="{cellspacing}" style="width:100%;">             
+                <thead>
+                <tr >
+                    <td class="RptHeader" colspan="4">&nbsp;</td>  
+                                     
+                    <!--Horse-->
+                    <!--SAHorse--><td class="RptHeader" colspan="{colspancomm}">{lblSAHorse}(%)</td><!--/SAHorse-->
+                    <!--UKHorse--><td class="RptHeader" colspan="{colspancomm}">{lblUKHorse}(%)</td><!--/UKHorse-->
+                    <!--AUHorse--><td class="RptHeader" colspan="{colspancomm}">{lblAUHorse}(%)</td><!--/AUHorse-->
+                    <!--/Horse-->
+                                  
+                    <!--UKGreyhound--><td class="RptHeader" colspan="{colspancomm}">{lblUKGreyhound}(%)</td><!--/UKGreyhound-->
+                    <!--AUGreyhound--><td class="RptHeader" colspan="{colspancomm}">{lblAUGreyhound}(%)</td><!--/AUGreyhound-->
+                    
+                    <!--AUHarness--><td class="RptHeader" colspan="{colspancomm}">{lblAUHarness}(%)</td><!--/AUHarness-->
+                    
+                    <td class="RptHeader" colspan="2">&nbsp;</td>                                      
+                   
+                </tr>
+                <tr class="c">
+                    <td class="RptHeader02" style="width: 25px;">{no}</td>
+                    <td class="RptHeader02">{username}</td>
+                    <td class="RptHeader02">{firstname}</td>
+                    <td class="RptHeader02">{lastname}</td>
+                              
+                    <!--Horse--> 
+                        <!--SAHorse-->
+                        <!--IsAgentSite--><td class="colHdr2" title="{lblM}">M</td><!--/IsAgentSite-->
+                        <td class="colHdr2" title="{lblA}">A</td>
+                        <td class="colHdr2" title="{lblMe}">P</td>
+                        <!--/SAHorse-->
+                        
+                        <!--UKHorse-->
+                        <!--IsAgentSite--><td class="colHdr" title="{lblM}">M</td><!--/IsAgentSite-->                    
+                        <td class="colHdr" title="{lblA}">A</td>
+                        <td class="colHdr" title="{lblMe}">P</td>                    
+                        <!--/UKHorse-->
+                        
+                        <!--AUHorse-->
+                        <!--IsAgentSite--><td class="colHdr2" title="{lblM}">M</td><!--/IsAgentSite-->                    
+                        <td class="colHdr2" title="{lblA}">A</td>
+                        <td class="colHdr2" title="{lblMe}">P</td>                    
+                        <!--/AUHorse-->
+                    <!--/Horse-->                    
+                    
+                    <!--UKGreyhound-->
+                    <!--IsAgentSite--><td class="colHdr" title="{lblM}">M</td><!--/IsAgentSite-->                    
+                    <td class="colHdr" title="{lblA}">A</td>
+                    <td class="colHdr" title="{lblMe}">P</td>
+                    <!--/UKGreyhound-->
+                        
+                    <!--AUGreyhound-->
+                    <!--IsAgentSite--><td class="colHdr2" title="{lblM}">M</td><!--/IsAgentSite-->                    
+                    <td class="colHdr2" title="{lblA}">A</td>
+                    <td class="colHdr2" title="{lblMe}">P</td>
+                    <!--/AUGreyhound-->
+                    
+                    <!--AUHarness-->
+                    <!--IsAgentSite--><td class="colHdr" title="{lblM}">M</td><!--/IsAgentSite-->                    
+                    <td class="colHdr" title="{lblA}">A</td>
+                    <td class="colHdr" title="{lblMe}">P</td>
+                    <!--/AUHarness-->
+                    
+                    <td class="RptHeader02">{credit}</td>
+                    <td class="RptHeader02">{username}</td>
+                </tr>
+                </thead>
+                 <tbody>
+                <!--limit-content-->
+                <tr bgcolor="{color}" onmouseover="bgColor='{overcolor}'" onmouseout="bgColor='{color}'">
+                    <td class="w-order">{no_value}</td>
+                    <td class="l">&nbsp;{username_value}</td>
+                    <td class="l">&nbsp;{firstname_value}</td>
+                    <td class="l">&nbsp;{lastname_value}</td>
+                    
+                    <!--Horse-->                    
+                        <!--SAHorse-->
+                        <!--IsAgentSite--><td class="commvalue colHdr2">{v151adiscount_31}</td><!--/IsAgentSite-->
+                        <td class="commvalue colHdr2">{v151discount_31}</td>
+                        <td class="commvalue colHdr2">{v151playerdiscount_31}</td>
+                        <!--/SAHorse-->
+                        
+                        <!--UKHorse-->
+                        <!--IsAgentSite--><td class="commvalue colHdr">{v151adiscount_41}</td><!--/IsAgentSite-->
+                        <td class="commvalue colHdr">{v151discount_41}</td>
+                        <td class="commvalue colHdr">{v151playerdiscount_41}</td>
+                        <!--/UKHorse-->
+                        
+                        <!--AUHorse-->
+                        <!--IsAgentSite--><td class="commvalue colHdr2">{v151adiscount_51}</td><!--/IsAgentSite-->
+                        <td class="commvalue colHdr2">{v151discount_51}</td>
+                        <td class="commvalue colHdr2">{v151playerdiscount_51}</td>
+                        <!--/AUHorse-->
+                    <!--/Horse-->
+                    
+                    <!--UKGreyhound-->                    
+                    <!--IsAgentSite--><td class="commvalue colHdr">{v152adiscount_41}</td><!--/IsAgentSite-->
+                    <td class="commvalue colHdr">{v152discount_41}</td>
+                    <td class="commvalue colHdr">{v152playerdiscount_41}</td>
+                    <!--/UKGreyhound-->
+                        
+                    <!--AUGreyhound-->
+                    <!--IsAgentSite--><td class="commvalue colHdr2">{v152adiscount_51}</td><!--/IsAgentSite-->
+                    <td class="commvalue colHdr2">{v152discount_51}</td>
+                    <td class="commvalue colHdr2">{v152playerdiscount_51}</td>
+                    <!--/AUGreyhound-->
+                    
+                    <!--AUHarness-->                    
+                    <!--IsAgentSite--><td class="commvalue colHdr">{v153adiscount_51}</td><!--/IsAgentSite-->
+                    <td class="commvalue colHdr">{v153discount_51}</td>
+                    <td class="commvalue colHdr">{v153playerdiscount_51}</td>
+                    <!--/AUHarness-->
+                    
+                    <td class="r">{credit_value}</td>
+                    <td class="l">{username_value}</td>
+                </tr>
+                <!--/limit-content-->
+                </tbody>
+            </table>
+            <!--/limit-data-->
+            </div>
+         </div>  
+</td>
+</tr>
+</table>
+
+     </div>
+     <input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" />                
+         
+</form>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Report - Agent Match Win/Loss</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+    <h2 class="h2">
+        Match Win/Loss</h2>
+    <p>
+        <span class="rpt-head1">Definition:</span>
+    </p>
+    <p>
+        This is a total agent win/loss amount on each particular match (single bet type only). User can choose desired date to view the match win/loss.
+    </p>
+    <p>
+        <em>Note</em>: For <b>Mix Parlay</b> bet type, go to Match Win Loss detail
+    </p>
+    <center>
+        <img src="images/AgMatchWL/MatchWinLoss.jpg" alt="Match Win/Loss" width="775" height="208" />
+        <br />
+        <em>figure 3.1</em>
+    </center>
+    <span class="rpt-head1">Term definition:</span>
+    <ul>
+        <li><strong>Match:</strong> match which has been selected to place bet.</li>
+        <li><strong>Bet type:</strong> bet type which has been selected to place bet.</li>
+        <li><strong>Comm: </strong>the money agent received from upline as commission after deducting member commission.</li>
+        <li><b>Position Taking:</b> total Agent Win/Loss amount on that match based on his/her position taking.</li>
+        <li><b>Total:</b> total Agent Win/Loss amount on that match including commission.</li>
+    </ul>
+    <span class="rpt-head1">How to understand the report:</span>
+    <p>
+        In figure above, take match <b>FC Koln</b> -vs- <b>Schalke 04</b> as an example, to understand how to calculate win/loss for agent on this match, we click on match name to open <b>Member Bet List</b> page.
+    </p>
+    <center>
+        <img src="images/AgMatchWL/BetList.jpg" alt="Bet List" width="827" height="188" />
+        <br />
+        <em>figure 3.2</em>
+    </center>
+    <p>
+        On this ticket, member02 placed a bet 200, member discount = 0.2%, odds = -087, he won the bet, agent PT = 30% and agent received 0.2% as commission percentage from upline. With this information we can calculate the match win loss for agent (figure 3.1, fist row).
+    </p>
+    <ul>
+        <li><strong>Comm </strong>= agent comm – member comm = 200*0.2%*(1-30%)-200*0.2% = <b>-0.12</b></li>
+        <li><strong>Position taking </strong>= -(stake*Agent PT) if member won or (stake*Agent PT) if member lost = -200*30% = <b>-60</b></li>
+        <li><strong>Total </strong>= comm + position taking = -0.12 -60 = <b>-60.12</b></li>
+    </ul>
+    <p>
+        <em>Note</em>: one match might contain many bets therefore we have to use the formula above to calculate agent commission and agent own&#39;s share on each bet then sum up all amounts.
+    </p>
+</body>
+</html>

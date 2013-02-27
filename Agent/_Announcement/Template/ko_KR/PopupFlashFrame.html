@@ -1,0 +1,21 @@
+<link href="../PopupAd.css" rel="stylesheet" type="text/css" />
+<div id="annountmentFash">
+    <div id="pop-up">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="460" height="220" id="ObjFlash">
+            <param name="movie" value="../../Flash/LuckyDraw/Sportbook/luckyDraw_banner_ko.swf?20120827" />
+            <param name="quality" value="high" />
+            <param name="wmode" value="transparent" />
+            <embed src="../../Flash/LuckyDraw/Sportbook/luckyDraw_banner_ko.swf?20120827" quality="high" pluginspage="https://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="460" height="220" wmode="transparent"></embed>
+        </object>
+    </div>
+</div>
+<script type="text/javascript">
+    function closePopup() {
+        parent.document.getElementById('AnnouncementId').style.display = 'none';
+        parent.RemoveAnnouncement();
+    }
+    function OpenAnnoucement() {
+        parent.document.getElementById('AnnouncementId').style.display = 'none';
+        window.open("../../Resources/PromotionDetails/sportsbook/ko/luckyDrawTerms.html", "Announcement", "location=0, width=640, height=480, scrollbars=Yes");
+    }
+</script>

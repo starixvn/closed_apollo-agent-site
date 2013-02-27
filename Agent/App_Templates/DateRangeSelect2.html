@@ -1,0 +1,48 @@
+﻿<script type="text/javascript">
+	function reset_date(){
+	var dayNoReset={DayNoReset};
+	var fdateId='{Fdate}';
+	var tdateId='{Tdate}';
+	var td = new Date();
+	var fd=new Date(td.getTime()-dayNoReset*24*60*60*1000);
+	$(fdateId).value=(fd.getMonth()+1)+"/"+fd.getDate()+"/"+fd.getFullYear();
+	$(tdateId).value=(td.getMonth()+1)+"/"+td.getDate()+"/"+td.getFullYear();
+	}
+</script>
+
+<input type="hidden" name="eroMeg" id="eroMeg" value="{invalidDateMessage}">
+<span id="spDateTimeSearch">
+<!--DateTimeSearch-->
+<input type="hidden" name="pageQuery" id="pageQuery" value="{pageQueryValue}">
+<div id="header_main2">
+    <table cellpading="0" cellspacing="0" border="0" width="100%">
+        <tr>
+            <td class="head_title" style="{leftcol}">
+                {messagehistory}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="Span1" class="special_text"><a href="javascript:showSpecial();">{FilterMessageBySpecialOrNotText}</a></span>
+            </td>
+            <td class="r" style="{rightcol}">
+                <div style="float:right">
+                <table cellpading="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <!--limit-fromdate-->
+                        <td id="tdfdatetext" class="r"><span id="spfdatetext">{fdatetext}:</span></td>
+                        <td id="tdFromDateCal" class="l"><span id="spFromDateCal">{FromDateCal}</span></td>
+                        <!--/limit-fromdate-->
+                        <!--limit-todate-->
+                        <td id="tdtdatetext" class="r"><span id="sptdatetext">{tdatetext}:</span></td>
+                        <td id="tdToDateCal" class="l"><span id="spToDateCal">{ToDateCal}</span></td>
+                        <!--/limit-todate-->
+                        <td class="r">
+                            <input type="button" class="btn" style="width:55px" id="dSubmit" value="{submit}" onclick="javascript:queryFromDate();" />
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--/DateTimeSearch-->
+</span>
+{SetDateCalendarScript}

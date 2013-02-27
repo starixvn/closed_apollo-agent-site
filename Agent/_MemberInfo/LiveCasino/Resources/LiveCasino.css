@@ -1,0 +1,232 @@
+﻿/*
+    Created by: Andy
+    Description: General css for Live Casino project
+*/
+html
+{
+	font-family: Tahoma,Arial,helvetica,sans-serif;
+	font-size: 11px;
+	color: #171717;
+	margin: 0px;
+	text-align: left;
+	cursor: default;
+}
+
+body
+{
+	background: #f5f6f8 url(Images/bg_conts.jpg) repeat-x fixed 50% top;
+	padding: 2px 2px 2px 2px;
+	margin: 0px 0px 0px 0px;
+}
+
+.l
+{
+	text-align: left;
+}
+
+.r
+{
+	text-align: right;
+}
+
+.c
+{
+	text-align: center;
+}
+
+.b
+{
+	font-weight: bold;
+}
+
+#liveCasino
+{
+	background: #F7F0E4 !important;
+	background-repeat: repeat-x;
+	border-collapse: collapse;
+	text-align: left;
+	width: 100%;
+}
+
+#liveCasino td
+{
+	vertical-align: middle;
+	height: 20px;
+	border: solid 1px #999;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.innerHeader
+{
+	background: url(Images/bgHeader.jpg) repeat-x left top;
+	color: #fff;
+}
+
+.liveCsTitle
+{
+	background: url(Images/titleHeader.jpg) no-repeat left bottom;
+	color: #9D1C1C;
+	padding-left: 12px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.saveDiv
+{
+	float: right;
+	height: 18px;
+}
+
+.leftTitle
+{
+	padding: 2px;
+	height: 18px;
+	display: inline-table;
+	float: left;
+	margin-left: 10px;
+}
+
+.save
+{
+	border-style: none;
+	border-color: inherit;
+	border-width: medium;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	background-image: url(Images/save.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+
+.justify
+{
+	text-align: justify;
+}
+
+.tableDiv
+{
+	padding-bottom: 5px;
+}
+
+.Div850px
+{
+	padding-bottom: 5px;
+	width: 850px;
+}
+
+#errMsg
+{
+	overflow: auto;
+	display: none;
+}
+
+.innerTable
+{
+	width: 100%;
+}
+
+a
+{
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+img
+{
+	border: none;
+}
+
+.mainDiv
+{
+	width: 850px;
+}
+
+.width
+{
+	width: 25%;
+}
+
+#liveCasino #tdInnerTable
+{
+	padding: 0px;
+}
+
+.tdPT
+{
+	width: 160px;
+}
+
+.tdAutoPT
+{
+	width: 190px;
+}
+
+.Hiden
+{
+	display: none;
+}
+
+#iptConfirm, #tblConfirm, #ddlMemberPT
+{
+	font-family: Tahoma,Arial,helvetica,sans-serif;
+	font-size: 11px;
+	color: #171717;
+	margin: 0px;
+	cursor: default;
+	margin-right: 3px;
+}
+
+.MaskLoadingDiv
+{
+	background: url(../../../_GlobalResources/Images/loader3.gif);
+}
+
+span.spanPT
+{
+	padding: 0px;
+	line-height: 20px;
+	height: 20px;
+	display: block;
+	overflow: hidden;
+	vertical-align: middle;
+}
+.spanPT select
+{
+	font-family: Tahoma,Arial,helvetica,sans-serif;
+	font-size: 11px;
+	height: 19px;
+	vertical-align: middle;
+	margin: 1px;
+}
+
+.spanPT input
+{
+	vertical-align: middle;
+}
+
+.warningMsg
+{
+	background: url("images/warning.gif") no-repeat scroll left center #F6F5F2;
+	color: #C28F06;
+	display: none;
+	border: 1px solid #C28F06;
+	font-weight: bold;
+	padding-left: 16px;
+	margin: 3px 0px 3px 0px;
+}
+
+.currentWinLimit
+{
+	float: left;
+	color: #3a66d5;
+	cursor: pointer;
+}
+
+.spanMWL select
+{
+	width: 67px;
+}

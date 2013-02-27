@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.lblPositionTaking}</title>
+    <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Reports/Resources/Reports.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/PositionTakingList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="page_main">
+<div id="header_main">
+    {static:Resources.Lang.lblPositionTaking}		
+</div>
+
+<div id="tbl-container">
+ <div id="boderRight">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+                {CommonGroup}
+            </td>
+        </tr>
+        <tr>
+            <td>   
+                <input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" style="display:none" />
+                {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
+                <table id="tblMain" border="1" cellpadding="2" cellspacing="0" style="width:100%;">
+                <thead>
+                <tr id="headerTop" class="RptHeader">
+                    <td colspan="{colNum}">&nbsp;</td>
+		            <td>{static:Resources.Lang.LiveCasino}</td>
+                </tr>
+                <tr id="headerBottom">
+                    <td class="RptHeader">#</td>
+                    <td class="RptHeader">{static:Resources.Lang.username}</td>
+                    <!--AdditionalRow-->
+                    <td>&nbsp;</td>
+		            <!--/AdditionalRow-->
+	                <td class="DB">{static:Resources.Lang.lblLive}</td>
+                </tr>
+               </thead>
+               
+                <tbody>
+                <!--Rows-->
+                <tr class="{BgRow}">
+	                <!--NonRepeat-->
+	                <td class="w-order" {rowspan}>{No}</td>
+	                <td {rowspan} class="l">
+                        <!--OnlyTextUser-->
+                            {UserName}
+                        <!--/OnlyTextUser-->
+	                    <!--ViewDownLine-->
+	                    <a href="{url}">{UserName}</a>
+	                    <!--/ViewDownLine-->
+	                    <!--EditMember-->
+	                    <a href="javascript:EditMemberLiveCasino('{custid_value}', '{UserName}');">{UserName}</a>
+	                    <!--/EditMember-->
+	                </td>
+	                <!--/NonRepeat-->	
+                    <!--Role-->
+	                <td class="firstCol">{Role}</td>
+	                <!--/Role-->
+	                <td class="DB">{DeadBall_1stLastOU}</td>
+                </tr>
+                <!--/Rows-->
+                </tbody>
+                <!--PagingFooter-->
+                <tr>
+                    <td colspan="4">
+                        {pagingControl}
+                    </td>
+                </tr>
+                <!--/PagingFooter-->
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</div>
+</div>
+
+    <script src="../../../_GlobalResources/Js/Core.js" type="text/javascript"></script>          
+    <script src="../../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+    <script src="../Resources/PositionTakingList.js" type="text/javascript"></script>
+</body>
+</html>

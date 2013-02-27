@@ -1,0 +1,20 @@
+﻿<link href='{pathCssCountDown}' type='text/css' rel='stylesheet' />
+<div class="btnCountDown">
+    <div id="ucCountDown_btnRefresh" class="btnRefresh" onclick="return doRefresh()" title="{lblrefresh}"></div>
+    <div class="btnDown" onclick="doOpenPnlOption(this);" ></div>
+</div>
+<div style="clear:both;"></div>
+<div id="ucCountDown_PanelDown" style="display:none;" class="panelDown">
+    <!--divMin--><div id="min{i}" class="menuitem" style="{borderbottom}" onclick="saveMinutes(this.id);">{min}</div><!--/divMin-->
+</div>
+
+<script>
+    var custId = {custId};    
+    var countDownId = "{funcId}";
+    var initCountDown = {initCountDown};    
+    var handlerProc = "{handlerProc}";
+    var placeHolder = "{placeHolder}";    
+    var funcRefresh = "{funcRefresh}";
+    var loadingTxt = "<span class='miniloading'>{txtLoading}</span>"; 
+</script>
+<script type="text/javascript" src="{pathJsCountDown}"></script>

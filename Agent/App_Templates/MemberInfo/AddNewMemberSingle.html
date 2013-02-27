@@ -1,0 +1,197 @@
+<form id="fUpdate" name="fUpdate" method="post" target="InsertData" action="../Handlers/AddNewMemSingle.ashx">
+    <div id="page_main">
+    <div id="header_main">{newmem}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn" style="font-size: 8pt;" type="button" value="{editmode}" onclick="location.href='AddNewMember.aspx';"/></div>
+        <table border="0" cellpadding="0" cellspacing="0" width="750px" id="diverr" style="display: none">
+            <tr>
+                <td class="emsg_1_1">&nbsp;</td>
+                <td class="emsg_1_2">&nbsp;</td>
+                <td class="emsg_1_3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td valign="top" class="emsg_2_1">&nbsp;</td>
+                <td valign="top" id="err" class="msgerr">&nbsp;</td>
+                <td class="emsg_2_2">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="emsg_3_1">&nbsp;</td>
+                <td class="emsg_3_2">&nbsp;</td>
+                <td class="emsg_3_3">&nbsp;</td>
+            </tr>
+        </table>        
+        <div class="sptPT" style="width:770px;">
+        <table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8">
+            <tr class="bg_eb">
+                <td class="r" style="width: 20%;">{username}</td>
+                <td class="l" style="width: 30%;">{agusername} {number1-val} {number2-val} {number3-val}</td>
+                <td class="r" style="width: 20%;">{password}</td>
+                <td class="l" style="width: 30%;" id="td_pass">
+                    <input type="password" id="txtPass" name="txtPass" onkeyup="return checkpass(this);" /></td>
+            </tr>
+            <tr class="bg_eb">
+                <td class="r">{fname}</td>
+                <td class="l"><input type="text" id="txtFName" name="txtFName" /></td>
+                <td class="r">{lname}</td>
+                <td class="l"><input type="text" id="txtLName" name="txtLName" /></td>
+            </tr>
+            <tr class="bg_eb">
+                <td class="r">{phone}</td>
+                <td class="l"><input type="text" id="txtPhone" name="txtPhone" /></td>
+                <td class="r">{mobilephone}</td>
+                <td class="l"><input type="text" id="txtMobilePhone" name="txtMobilePhone" /></td>
+            </tr>
+            <tr class="bg_eb">
+                <td class="r">{maxcredit}</td>
+                <td class="l"><input type="text" id="txtMaxCredit" name="txtMaxCredit" value="0" onkeypress="return CheckDecNumber(event);" /><span><= {maxcredit-val}</span></td>
+                <td class="r">{fax}</td>
+                <td class="l"><input type="text" id="txtFax" name="txtFax" /></td>                          
+            </tr>
+            <tr class="bg_eb">
+                <td class="r">{group}</td>
+                <td class="l">{slgroup}</td>             
+                <td class="r">{closed}</td>
+                <td class="l"><input type="checkbox" id="chkClosed" name="chkClosed" /></td>                            
+            </tr>
+            <!--DisableStatus--><!--will be here--><!--/DisableStatus-->
+        </table>
+        <table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8">
+            <tr class="RptHeader">
+                <td colspan="4">{commission}</td>
+            </tr>
+            <tr class="bg_eb">
+                <td class="r">{lblCommissionForAgent} &nbsp;<u>{lblAsianHDC_OU_OE}</u></td>
+                <td class="l"><input type="text" id="txtComHdp" name="txtComHdp" readonly style="width:70px;" /></td>
+                <td class="r">{lblCommissionForAgent} &nbsp;<u>{lbl1x2_CS_TG}</u></td>
+                <td class="l"><input type="text" id="txtAgComOther" name="txtAgComOther" readonly value="{comother-value}" style="width:70px;" /></td>
+            </tr>
+            <tr class="bg_eb">
+                <td class="r">{lblCommissionForMember} &nbsp;<u>{lblAsianHDC_OU_OE}</u></td>
+                <td class="l"><select id="slComHdp" name="slComHdp" class="selectcomm"></select></td>
+                <td class="r">{lblCommissionForMember} &nbsp;<u>{lbl1x2_CS_TG}</u></td>
+                <td class="l"><select id="slComOther" name="slComOther" class="selectcomm">{CS_TG_option}</select></td>
+            </tr>
+            <tr class="bg_eb">
+                <td class="r">{lblCommissionForAgent} &nbsp;<u>1x2</u></td>
+                <td class="l"><input type="text" id="txtDiscount1x2" name="txtDiscount1x2" readonly value="{discount1x2-val}" style="width:70px;" /></td>
+                <td class="r">{lblCommissionForAgent_number} &nbsp;<u>{numbergame}</u></td>
+                <td class="l"><!--none-numbergame--><input type="text" id="txtDiscountNumberGame" name="txtDiscountNumberGame" readonly value="{discountnumbergame-val}" style="width:70px;" /><!--/none-numbergame--></td>
+            </tr>
+             <tr class="bg_eb">
+                <td class="r">{lblCommissionForMember} &nbsp;<u>1x2</u></td>
+                <td class="l"><select id="slcom1x2" name="slcom1x2" class="selectcomm">{1x2option}</select></td>
+                <td class="r">{lblCommissionForMember_number} &nbsp;<u>{numbergame}</u></td>
+                <td class="l"><!--none-numbergame--><select id="slcomnumbergame" name="slcomnumbergame" class="selectcomm">{numbergameoption}</select><!--/none-numbergame--></td>
+            </tr>
+        </table>               
+        <table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8">
+            <tr class="RptHeader">
+                <td colspan="6">{betsetting}</td>
+            </tr>
+            <tr class="bg_eb">
+                <td class="c">{minbet}
+                    <input type="text" id="txtMinBet" name="txtMinBet" value="{minbet-val}" onkeypress="return CheckDecNumber(event);" />
+                    <span class="{hideMinbet}">>= {minbet-val}</span></td>
+                <td class="c">{maxbet}
+                    <input type="text" id="txtMaxBet" name="txtMaxBet" value="{maxbet-val}" onkeypress="return CheckDecNumber(event);" />
+                    <span class="{hideMaxbet}"><= {maxbet-val}</span></td>
+                <td class="c">{maxpermatch}
+                    <input type="text" id="txtMaxPerMatch" name="txtMaxPerMatch" onkeypress="return CheckDecNumber(event);" value="{maxpermatch-val}" />
+                    <span class="{hideMaxpermatch}"><= {maxpermatch-val}</span></td>
+            </tr>
+            <!--none-maxperball-->
+            <tr class="RptHeader {hideClss}">
+                <td colspan="3">
+                {othersetting}	    
+                </td>	    
+            </tr>
+            <tr class="bg_eb">
+            <td class="c {hideClss}" colspan="3">
+                  {lblMaxPerBall} &nbsp; <input type="text" maxlength="14" id="txtMaxPerBall" name="txtMaxPerBall" value="{MaxPerBall-val}" />					
+					                <span class="{maxperball_clss}">&lt;=<span id="txtMaxPerBall_Max">{MaxPerBall-max}</span>
+                </td>
+            </tr>
+            <!--/none-maxperball-->	
+        </table>
+        <table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8">
+            <tr class="RptHeader">
+                <td colspan="5">{pt}</td>
+               
+            </tr>
+            <tr class="bg_eb">
+                <td width="10%"></td>
+                <td class="l" width="40%">{handicap}, {overunder}, {oddeven}</td>
+                <td class="l" width="20%">{1x2}, {correctscore}, {totalgoal}, {parlay}</td>
+                <td class="l" width="15%">{outright}</td>
+                <!--none-numbergame-->
+                <td class="l" width="15%">{numbergame}</td>
+                <!--/none-numbergame-->
+            </tr>
+            <tr class="bg_eb">
+                <td class="r">{deadball}</td>
+                <td class="l">{slmempt} {hdp-btn}<input type="checkbox" id="chkCpyHdp" name="chkCpyHdp" onclick="CopyHandicap();" />&nbsp;{copyfromhdp}
+                </td>
+                <td class="l">{slotherpt}</td>
+                <td class="l">{slmemoutrightpt}</td>
+                <!--none-numbergame-->
+                <td class="l">{numbergamept}</td>
+                <!--/none-numbergame-->
+            </tr>
+            <tr class="bg_eb">
+                <td class="r">{live}</td>
+                <td class="l">{sllivehandicap} {live-hdp-btn}</td>
+                <td colspan="3"></td>               
+            </tr>
+        </table>        
+        </div>  
+        <div style="margin-top:-7px;margin-bottom:-7px" class="warning"><ul>{explanationtxt}&nbsp;<a href="AddNewMember.aspx">{fullversion}</a> </ul></div>              
+        
+        <table cellspacing="0" cellpadding="0" align="left" border="0" id="tblBtn">
+            <tr>
+                <td class="l" valign="top">
+                <div class="b_add">
+                    <li>
+                        <a id="btnAdd" onclick="BtnOnClick();" href="#"><span>{add}</span></a>
+                    </li>
+                </div>
+                </td>
+            </tr>
+        </table>
+        &nbsp;
+
+        <input type="hidden" id="hdMinBet" name="hdMinBet" value="{minbet-val}" />
+        <input type="hidden" id="hdMaxBet" name="hdMaxBet" value="{maxbet-val}" />
+        <input type="hidden" id="hdMaxPerMatch" name="hdMaxPerMatch" value="{maxpermatch-val}" />
+        <input type="hidden" id="hdMaxPerMatchMin" name="hdMaxPerMatchMin" value="{maxpermatchmin-val}" />
+        <input type="hidden" id="hdMaxPerBallMax" name="hdMaxPerBallMax" value="{MaxPerBall-max}" />
+        
+        <input type="hidden" id="hdMaxCredit" name="hdMaxCredit" value="{maxcredit-val}" />
+        <input type="hidden" id="hdDiscountcs" name="hdDiscountcs" value="{discountcs-value}" />
+        <input type="hidden" id="hdDiscountFC" name="hdDiscountFC" value="{DiscountFC-value}" />
+        <input type="hidden" id="hdukmeeting" name="hdukmeeting" value="{ukmeeting-value}" />     
+        <input type="hidden" id="hdothermeeting" name="hdothermeeting" value="{othermeeting-value}" />     
+        <input type="hidden" id="Hidden2" name="hdDiscountcs" value="{discountcs-value}" />
+        <input type="hidden" id="hdGroup" name="hdGroup" value="a" />
+        
+        <input type="hidden" id="hdAllowedCurr" name="hdAllowedCurr" value="{hdAllowedCurr-value}" />                
+        <input type="hidden" id="hdDisabledHR" name="hdDisabledHR" value="{hddisableHR-value}" />	
+        <input type="hidden" id="hdDisabledHRDownline" name="hdDisabledHRDownline" value="{hdDisabledHRDownline-value}" />
+        <input type="hidden" id="hdDisabledHR_Old" name="hdDisabledHR_Old" value="{hddisableHR-value}" />	
+        <input type="hidden" id="hdDisabledHRDownline_Old" name="hdDisabledHRDownline_Old" value="{hdDisabledHRDownline-value}" />
+
+        <input type="hidden" id="hdDisabledFI" name="hdDisabledFI" value="{hddisableFI-value}" />	
+        <input type="hidden" id="hdDisabledFIDownline" name="hdDisabledFIDownline" value="{hddisableFIDownline-value}" />
+        <input type="hidden" id="hdDisabledFI_Old" name="hdDisabledFI_Old" value="{hddisableFI-value}" />	
+        <input type="hidden" id="hdDisabledFIDownline_Old" name="hdDisabledFIDownline_Old" value="{hddisableFIDownline-value}" />
+        
+        <input type="hidden" id="UplineSuspended" name="UplineSuspended" value="{suspended-upline}" />
+
+        <input type="hidden" id="201AminPT3" name="201AminPT3" value="{201AminPT2-value}" />
+        <input type="hidden" id="201AminPT2" name="201AminPT2" value="{201AminPT2-value}" />
+        
+    </div>
+</form>
+<iframe id="InsertData" name="InsertData" class="hide" style="height: 0px; width: 0px;">
+</iframe>
+
+<script type="text/javascript" src="../../Js/wz_tooltip/wz_tooltip.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_centerwindow.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_balloon.js"></script>

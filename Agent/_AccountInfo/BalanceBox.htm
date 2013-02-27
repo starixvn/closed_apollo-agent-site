@@ -1,0 +1,198 @@
+<!--HiddenBlock-->
+<link href="Resources/AccountInfo.css" rel="stylesheet" type="text/css" />
+<link href="Resources/styles.css" rel="stylesheet" type="text/css" />
+<!--/HiddenBlock-->
+
+<div id="Bleft_Parent02">            
+    <div id="left_submenu">
+        <div id="left_tab">
+            <ul>
+                <li id="balinfo" class="current">
+                    <a href="javascript:showDownlineList(0);">{static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.balanceinfo,18,true)}</a>
+                </li>
+                <!--DownlineList-->
+                <li id="userdownline">
+                    <a href="DownlineListInfo.aspx?custid={CustId}" target="frmDownlineList" onclick="showDownlineList(1);"><span>{static:Resources.Lang.downlinelist}</span></a>
+                </li>
+                <!--/DownlineList-->
+            </ul>
+        </div>
+        <div id="clear0" />
+        <div id="tabbalance" class="Bleft_Sub02">
+            <table style="width:184px;" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+            <td>
+                <!--ForMember-->
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalBalance, 18)}:
+                </div>
+                <div class="divright">
+                   {TotalBalance}
+                </div>
+                <br /> 
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.yesterdaybalance, 18)}:
+                </div>
+                <div class="divright">
+                   {YesterdayBalance}
+                </div>
+                <br /> 
+                <!--/ForMember-->
+                <!--ForAgent-->
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalCash, 18)}: 
+                </div>
+                <div class="divright">
+                   {TotalCash}
+                </div> 
+                <br /> 
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblYesterdayCash, 18)}: 
+                </div>
+                <div class="divright">
+                   {YesterdayCash}
+                </div> 
+                <br /> 
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalBalance, 18)}:
+                </div>
+                <div class="divright">
+                   {TotalBalance}
+                </div>
+                <br /> 
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.yesterdaybalance, 18)}:
+                </div>
+                <div class="divright">
+                   {YesterdayBalance}
+                </div>
+                <br /> 
+                <div id="tdAgOutstand" class="divleft">
+                   {AgentOutstandingLabel}:
+                </div>
+                <div class="divright">
+                   <a class="{AgentOutstandingClass}" onclick="javascript:clearTopMenu();" {AgentOutstandingLink} target="main">{AgentOutstanding}</a>
+                </div>
+                <br /> 
+                <!--/ForAgent-->
+                <!--ForMember-->                            
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.outstanding, 14)}:
+                </div>
+                <div class="divright">
+                   <a class="{OutstandingClass}" onclick="javascript:clearTopMenu();" {OutstandingLink} target="main">{Outstanding}</a>
+                </div>
+                <br /> 
+                <!--/ForMember-->
+                <!--SyncCS-->
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblCSOutstanding, 18)}:
+                </div>
+                <div class="divright">
+                    <a class="{OutsCSClass}" onclick="javascript:clearTopMenu();" {OutstandingCSLink} target="main">{CasinoOuts}</a>
+                </div>
+                <br /> 
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblCSTransfer, 18)}:
+                </div>
+                <div class="divright">
+                   {CasinoTransf}
+                </div>
+                <br /> 
+                <!--/SyncCS-->
+                <!--SyncBingo-->
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblBingoOutstanding, 18)}:
+                </div>
+                <div class="divright">
+                    <a class="{OutsBingoClass}" onclick="javascript:clearTopMenu();" {OutstandingBingoLink} target="main">{BingoOuts}</a>
+                </div>                
+                <br /> 
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblBingoTransfer, 18)}:
+                </div>
+                <div class="divright text_bold">
+                   {BingoTransf}
+                </div>
+                <br /> 
+                <!--/SyncBingo-->
+                <!--SyncP2P-->
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalP2POutstanding, 18)}:
+                </div>
+                <div class="divright">
+                    <a class="{OutsP2PClass}" onclick="javascript:clearTopMenu();" {OutstandingP2PLink} target="main">{P2POuts}</a>
+                </div>                
+                <br /> 
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalP2PTransfer, 18)}:
+                </div>
+                <div class="divright text_bold">
+                   {P2PTransf}
+                </div>
+                <br /> 
+                <!--/SyncP2P-->
+                <!--ForAgent-->
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.usedcredit, 18)}:
+                </div>
+                <div class="divright text_bold">
+                   {UsedCredit}
+                </div>
+                <br /> 
+                <!--/ForAgent-->
+                <div class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.givencredit, 14)}:
+                </div>
+                <div class="divright" title="{GivenCreditLimit}">
+                   <input type="text" class="textBoxCredit" id="txtGivenCredit" onblur="changeCredit(false, 'txtGivenCredit');" onkeypress="return checkKeyPress(event, 'txtGivenCredit');" maxlength="14" style="display: none; width: 73px;"/>
+                   <span id="spantxtGivenCredit" {static: !Sunplus.Agent.Model.Entities.UserSession.Current.SubPageAccess.UpdateAccount ? "class='text_bold'" : "class='b_nleft' style='cursor:pointer' onclick=\"return changeCredit(true, 'txtGivenCredit')\""}>{GivenCredit}</span>
+                </div>
+                <br /> 
+                <!--MemMaxCredit-->
+                <div id="tdMemMaxCredit" class="divleft">
+                   {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblMemberMaxCredit, 14)}:
+                </div>
+                <div class="divright text_bold" title="{MemMaxCreditLimit}">
+                   <input type="text" class="textBoxCredit" id="txtMemMaxCredit" onblur="changeCredit(false, 'txtMemMaxCredit');" onkeypress="return checkKeyPress(event, 'txtMemMaxCredit');" maxlength="14" style="display: none; width: 73px;"/>
+                   <span id="spantxtMemMaxCredit" {EditMemMaxCredit}>{MemberMaxCredit}</span>
+                </div>
+                <br /> 
+                <!--/MemMaxCredit-->
+                <!--DownlineStatusMaster-->
+                    <div class="divleft" title="{TotalMemDesc}">
+                       {TotalMemStatus}:
+                    </div>
+                    <div class="divright">
+                        <span class='actived'>{TotalMemActive}</span>/<span class='closed'>{TotalMemClosed}</span>/<span class='suspended'>{TotalMemSuspended}</span>
+                    </div>
+                    <br /> 
+                <!--/DownlineStatusMaster-->
+                <!--DownlineStatusAgent-->
+                    <div class="divleft" title="{TotalMemDesc}">
+                       {TotalMemStatus}:
+                    </div>
+                    <div class="divright">
+                        <span class='actived'>{TotalMemActive}</span>/<span class='closed'>{TotalMemClosed}</span>/<span class='suspended'>{TotalMemSuspended}</span>
+                    </div>
+                    <br /> 
+                <!--/DownlineStatusAgent-->
+                <!--ForMember-->
+                    <div class="divleft">
+                       {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.betcredit, 14)}:
+                    </div>
+                    <div class="divright text_bold">
+                        {BetCredit}
+                    </div>
+                    <br /> 
+                <!--/ForMember-->
+            </td>
+            </tr>
+            </table>
+        </div>
+        <div id="tabdownline" class="Bleft_Sub02" style="display:none;">
+            <center><img src="../_GlobalResources/Images/ajax-loader.gif" alt="loading"/> {static:Resources.Lang.loading}...</center>
+        </div>
+        <iframe id="frmDownlineList" name="frmDownlineList" style="display:none; width:1px; height:1px;"></iframe>
+    </div>
+</div>

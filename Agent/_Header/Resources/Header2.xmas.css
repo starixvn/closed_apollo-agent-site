@@ -1,0 +1,14 @@
+﻿body
+{
+	background: url(../../_GlobalResources/Images/bgtop_f2.xmas.jpg) repeat-x top;
+}
+
+#logo
+{
+	background: url(../../_GlobalResources/Images/icon_user2.xmas.gif) no-repeat top left;
+}
+
+#banner
+{
+	background: url(../../_GlobalResources/Images/bg_banner2.xmas.jpg) no-repeat top left;
+}

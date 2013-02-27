@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/Transfer.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table id="tblMain">
+        <tr>
+            <td>
+                <div id="title_header">
+                    {static:Resources.Lang.lblMultipleTransfer} {print}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="box_header" style="width:100%">
+                {searchControl}
+                {allowTransfer}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="page_main">                
+                    {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
+                    <div id="print">    
+                    <link href="../Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css" media="print" />
+                    <table id="tblTransferList" cellspacing="1" cellpadding="0">
+                        
+                        <!--Header-->
+                        <thead>
+                            <tr class="Header">
+                            
+                                <th style="width: 3%;">
+                                    {static:Resources.Lang.no}
+                                </th>
+                                <th style="width: 3%;">
+                                    <input id="chkall" name="chkall" type="checkbox" onclick="CheckAll();" /><br />
+                                    {static:Resources.Lang.yesterday}
+                                </th>
+                                <th style="width: 9%;">
+                                    {static:Resources.Lang.username}
+                                </th>
+                                <th style="width: 9%;">
+                                    {static:Resources.Lang.yesterdaybalance}
+                                </th>
+                                <th style="width: 9%;">
+                                    {static:Resources.Lang.masterbalance}
+                                </th>
+                                <th style="width: 9%;">
+                                    {static:Resources.Lang.yesterdaycashbalance}
+                                </th>
+                                <th style="width: 9%;">
+                                    {static:Resources.Lang.mastercash}
+                                </th>
+                                <th style="width: 8%;">
+                                    {static:Resources.Lang.outstanding}
+                                </th>
+                                <th style="width: 9%;">
+                                    {static:Resources.Lang.givencredit}
+                                </th>
+                                <th style="width: 8%;">
+                                    {static:Resources.Lang.usedcredit}
+                                </th>
+                                <th style="width: 8%;">
+                                    {static:Resources.Lang.firstname}
+                                </th>
+                                <th style="width: 8%;">
+                                    {static:Resources.Lang.lastname}
+                                </th>
+                                <th style="width: 9%;">
+                                    {static:Resources.Lang.username}
+                                </th>
+                            </tr>
+                        </thead>
+                        <!--/Header-->
+                        <tbody>
+                            <!--Content-->
+                            <tr class="{color}">
+                                <td class="w-order">
+                                    {no_value}
+                                </td>
+                                <td class="c">
+                                    <input id="chkitem" name="chkitem" value="{balance_yesterday_value}_{custid}" type="checkbox" {disable} onclick="chkChecked();" />
+                                </td>
+                                <td class="l">
+                                    {username_value}
+                                </td>
+                                <td class="{color_mabalance_yes_value}">
+                                    <!--Link_Yes_Balance-->
+                                    <a href="javascript:void('');" onclick="ShowPopupTransfer('../Super/MasterTransfer.aspx','{mabalance_yes_value}','{custid}');">
+                                    <!--/Link_Yes_Balance-->
+                                    <span class="{color_mabalance_yes_value}" >{mabalance_yes_value}</span> </a>
+                                </td>
+                                <td class="{color_mabalance_value}">
+                                    <!--Link_Balance-->
+                                    <a href="javascript:void('');" onclick="ShowPopupTransfer('../Super/MasterTransfer.aspx','{mabalance_value}','{custid}');">
+                                    <!--/Link_Balance-->
+                                    <span class="{color_mabalance_value}" >{mabalance_value}</span> </a>
+                                </td>
+                                <td class="{color_macash_yes_value}">
+                                    {macash_yes_value}
+                                </td>
+                                <td class="{color_macash_value}">
+                                    {macash_value}
+                                </td>
+                                <td class="r">
+                                    {outstading_value}
+                                </td>
+                                <td class="r">
+                                    {givencredit_value}
+                                </td>
+                                <td class="r">
+                                    {usedcredit_value}
+                                </td>
+                                <td class="l">
+                                    {firstname_value}
+                                </td>
+                                <td class="l">
+                                    {lastname_value}
+                                </td>
+                                <td class="l">
+                                    {username_value}
+                                </td>
+                            </tr>
+                            <!--/Content-->
+                        </tbody>
+                        <tfoot>
+                            <!--Total-->
+                            <tr class="Footer">
+                                <td colspan="3" class="c">
+                                    {static:Resources.Lang.total}
+                                </td>
+                                <td>
+                                    {mabalance_yes_total}
+                                </td>
+                                <td>
+                                    {mabalance_total}
+                                </td>
+                                <td>
+                                    {macash_yes_total}
+                                </td>
+                                <td>
+                                    {macash_total}
+                                </td>
+                                <td>
+                                    {outstanding_total}
+                                </td>
+                                <td>
+                                    {givencredit_total}
+                                </td>
+                                <td>
+                                    {usedcredit_total}
+                                </td>
+                                <td colspan="4">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <!--/Total-->
+                            <tr>
+                                <!--Paging-->
+                                <td class="SubTitle" colspan="13" style="padding: 3px 0px 3px 0px">
+                                    {pagingControl}
+                                </td>
+                                <!--/Paging-->
+                            </tr>
+                        </tfoot>
+                        
+                    </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!--Extend_tpl-->
+    <!--/Extend_tpl-->
+    <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+    <script src="../Resources/Transfer.js" type="text/javascript"></script>
+    
+</body>
+</html>

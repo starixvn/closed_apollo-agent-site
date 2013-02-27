@@ -1,0 +1,149 @@
+<!--nobackground-->
+<link href='../../App_Themes/AgencyV2/userinfo.css' type='text/css' rel='stylesheet' />
+<!--/nobackground-->
+<div id="page_popup">
+    <table border="0" align="center" cellpadding="0" cellspacing="0" width="95%">
+        <tr>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td class="l">
+                <div id="header_popup">
+                    {accinfo}</div>
+                <div style="width: 99%;">
+                    {error-message}</div>
+                 <div class="warningtranfer">
+                        <ul>
+                            <li>{warning-message}</li>
+                        </ul>
+                 </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table cellpadding="0" cellspacing="1" width="100%" class="tblPop">
+                    <tr class="bg_eb2 c">
+                        <td colspan="2" class="b" style="color: #3e6286">
+                            {currentstatus}
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td class="l">
+                            {customer}
+                        </td>
+                        <td>
+                            {customer_value}
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td class="l">
+                            {cashbalance}
+                        </td>
+                        <td>
+                            {cashbalance_value}
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td class="l">
+                            {outtxn}
+                        </td>
+                        <td>
+                            {outtxn_value}
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td class="l">
+                            {given_credit}
+                        </td>
+                        <td>
+                            {given_credit_value}
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td class="l">
+                            {bet_credit}
+                        </td>
+                        <td>
+                            {bet_credit_value}
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td class="l">
+                            {transferamount}
+                        </td>
+                        <td>
+                            {transferamount_value}
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td class="l">
+                            {lastlogin}
+                        </td>
+                        <td>
+                            {lastlogin_value}
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td class="l">
+                            {lasttxn}
+                        </td>
+                        <td>
+                            {lasttxn_value}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form id="frForm" name="frForm" onsubmit="return UpdCreditYes();" method="post">
+                <table width="100%" cellpadding="0" cellspacing="1" class="tblPop c">
+                    <tr class="bg_eb2">
+                        <td>
+                            {from}:
+                        </td>
+                        <td>
+                            {customer_value}
+                        </td>
+                        <td>
+                            {to}:
+                        </td>
+                        <td>
+                            {usernameto}
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td>
+                            {amount}
+                        </td>
+                        <td colspan="2">
+                            <input class="r" style="width: 96%" type="text" id="txtamount" name="txtamount" value="{amtvalue}" onkeypress="return OnkeyUpAmt(event);" maxlength="17" />
+                        </td>
+                        <td>
+                            <input type="button" value="{transfer}" onclick="UpdCreditYes();" class="btn" />
+                        </td>
+                    </tr>
+                    <tr class="bg_eb2">
+                        <td colspan="4">
+                            {transfermaximum}
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" id="custid" name="custid" value="{custid}" />
+                <input type="hidden" id="username" name="username" value="{username}" />
+                <input type="hidden" id="isclose" name="isclose" value="{isclose}" />
+                <input type="hidden" id="confirm" name="confirm" value="{confirm}" />
+                <input id="amount" name="amount" value="{amtvalue}" type="hidden" />
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--showsuccmsg-->
+
+<script>    
+    showErrMsg('{transferok}', 1);    
+</script>
+
+<!--/showsuccmsg-->

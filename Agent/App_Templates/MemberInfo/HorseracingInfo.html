@@ -1,0 +1,182 @@
+<input type="hidden"  id="{parentId}" name="{parentId}"  value="{valueParentId}"/>
+<input type="hidden" id="custId" name="custId" value="{cust-id}" />
+<input type="hidden" id="isUpdateMember" name="isUpdateMember" value="0" />
+<input type="hidden" id="memberPT" name="memberPT" value="0" />
+<input type="hidden" id="maxMemberPT" name="maxMemberPT" value="0" />
+<input type="hidden" id="roleId" name="roleId" value="{role-id}" />
+<input type="hidden" id="IsUpdDownlineHR" name="IsUpdDownlineHR"  value="1"/>
+<input type="hidden" id="oldHRStatus" value="{oldHRStatus}"/>
+{VariableScript}
+<div id="page_popup" style="margin-left:10px;">
+ <div id="header_popup">{add-edit-agent} &nbsp;&nbsp; <!--single-mode--><span id="abc123" class="hide"/><!--/single-mode--></div>     
+ <div style="width:806px;">{error-message}</div>    
+
+<div class="sptPT" style="width: 850px; font-weight: normal">
+<table class="tblRpt" width="100%" border="1">     
+    <tbody>
+	    <tr class="bg_eb">
+		    <td width="20%" class="right">{lblFirstname}</td>
+		    <td width="30%" class="l">
+			    <input type="text" class="custinfo" disabled="disabled"  readonly="true" value="{firstname}" name="txtFName" id="txtFName"/>
+		    </td>
+		    <td width="20%" class="right">{lblLastname}</td>
+		    <td width="25%" class="left">
+			    <input type="text" readonly="true" disabled="disabled"  value="{lastname}" name="txtLName" id="txtLName"/>
+		    </td>
+	    </tr>
+	    <tr class="bg_eb">
+		    <td class="right">{lblPhone}</td>
+		    <td class="l">
+			    <input type="text" readonly="true" disabled="disabled"  value="{phone}" name="txtPhone" id="txtPhone"/>
+		    </td>
+		    <td class="right">{lblMobilePhone}</td>
+		    <td class="l">
+			    <input type="text" readonly="true" disabled="disabled"  value="{mobile}" name="txtMobile" id="txtMobile"/>
+		    </td>
+	    </tr>
+	    <tr class="bg_eb">
+
+		    <td width="20%" class="right">{lblFax}</td>
+		   <td width="25%" class="l" id="td_pass">
+			<input type="text" readonly="True" disabled="disabled"  value="{fax}" name="txtFax" id="txtFax"/>
+		    </td>
+		    <td class="right">
+		        <!--disablehrarea-->
+			    {lblDisabledHR} 
+			    <!--/disablehrarea-->
+		    </td>
+		    <td class="l">
+		        <!--disablehrarea-->
+			    <input type="checkbox"  id="chkDisabledHR" {DisabledHR-check} value="yes" name="chkDisabledHR" onclick="DisableHR('chkDisabledHR','chkDisabledHRDownline');"/><!--downline-->{level}&nbsp;&nbsp;&nbsp<input type="checkbox" id="chkDisabledHRDownline" name="chkDisabledHRDownline" {DisabledHRDownline-check} onclick="DisableHR('chkDisabledHR','chkDisabledHRDownline');"/> {leveldownline}<!--/downline-->
+			    <!--/disablehrarea-->
+			    
+			    <input type="hidden" id="hdDisabledHR" name="hdDisabledHR" value="{hddisableHR-value}" />	
+			    <input type="hidden" id="hdDisabledHRDownline" name="hdDisabledHRDownline" value="{hdDisabledHRDownline-value}" />
+			    
+			    <input type="hidden" id="hdDisabledHRDownline_Old" name="hdDisabledHRDownline_Old"  value="{hdDisabledHRDownline-value}"/>
+			    <input type="hidden" id="hdDisabledHR_Old" name="hdDisabledHR_Old"  value="{hddisableHR-value}"/>	
+		    </td>
+	    </tr>
+	  </table>
+	  <table class="tblRpt" width="100%" border="1">   
+        <tr class="RptHeader">
+            <td colspan="4">{lblCommHR}</td>
+        </tr>	
+        <!--edit-mode-->
+	    <!--comm-member-->
+	    <tr class="bg_eb">
+	        <td width="33%" class="r">{lblHRCommParent}&nbsp;<u>{lblUKMeeting}</u>&nbsp;</td>
+		    <td width="20%" class="l">
+			    <input type="text" style="width:56px" disabled="disabled"  readonly="True" value="{UKCommParent}" id="txtDiscount"/>
+		    </td>
+		    
+	        <td width="30%" class="r">{lblHRCommParent}&nbsp;<u>{lblOthersMeeting}</u>&nbsp;</td>
+		    <td width="20%" class="l">
+			    <input type="text" style="width:56px" disabled="disabled"  readonly="True" value="{OthersCommParent}" id="txtDiscountcs"/>
+		    </td> 			    
+	    </tr>
+	    <tr class="bg_eb">
+	    <td class="r">{lblHRComm}&nbsp;<u>{lblUKMeeting}</u>&nbsp;</td>
+		    <td class="l"><select class="select-group" style="width:60px" name="listUKMeeting" id="listUKMeeting">{listUKMeetingValue}</select></td>
+	        <td class="r">{lblHRComm}&nbsp;<u>{lblOthersMeeting}</u>&nbsp;</td>
+		    <td class="l"><select class="select-group" style="width:60px" name="listOthersMeeting" id="listOthersMeeting">{listOthersMeetingValue}</select><span id="spddrCommissionCS_TG" class="normal"/></td>
+	    </tr>
+	    <!--/comm-member-->
+		
+	    <!--comm-not-member-->
+	    <tr class="{group-com-hidden} bg_eb">
+		    <td colspan="4" class="calign">
+		    {lblHRComm}&nbsp;<u>{lblUKMeeting}</u>&nbsp;
+			    <select class="select-group" style="width:60px" name="listUKMeeting" id="Select1">{listUKMeetingValue}</select>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				   			    
+		        {lblHRComm}&nbsp;<u>{lblOthersMeeting}</u>&nbsp;
+			    <select class="select-group" style="width:60px" name="listOthersMeeting" id="Select2">{listOthersMeetingValue}</select> 
+		    </td>
+	    </tr>
+	    <!--/comm-not-member-->
+	    <!--/edit-mode-->
+	    
+	    <!--view-mode-->		    
+	    <!--master-comm-->
+	    <tr class="bg_eb">
+            <td width="30%" class="r">{lblMasterComm}&nbsp;<u>{lblUKMeeting}:</u>&nbsp;</td>
+		    <td width="20%" class="c">{UKCommMaster}</td>
+		    <td width="30%" class="r">{lblMasterComm}&nbsp;<u>{lblOthersMeeting}:</u>&nbsp;</td>
+		    <td width="20%" class="c">{OthersCommMaster}</td>	  
+	    </tr>
+	    <!--/master-comm-->
+	    <!--agent-comm-->
+	    <tr class="bg_eb">
+		    <td width="30%" class="r">{lblAgentComm}&nbsp;<u>{lblUKMeeting}:</u>&nbsp;</td>
+		    <td width="20%" class="c">{UKCommAgent}</td>
+		    <td width="30%" class="r">{lblAgentComm}&nbsp;<u>{lblOthersMeeting}:</u>&nbsp;</td>
+		    <td width="20%" class="c">{OthersCommAgent}</td>				
+	    </tr>
+	    <!--/agent-comm-->
+	    <!--member-comm-->
+	    <tr>
+            <td width="30%" class="r">{lblMemberComm}&nbsp;<u>{lblUKMeeting}:</u>&nbsp;</td>
+		    <td width="20%" class="c">{UKCommMember}</td>
+		    <td width="30%" class="r">{lblMemberComm}&nbsp;<u>{lblOthersMeeting}:</u>&nbsp;</td>
+		    <td width="20%" class="c">{OthersCommMember}</td>
+	    </tr>
+	    <!--/member-comm-->
+	    <!--/view-mode-->	
+</table>       
+<table class="tblRpt" width="100%" border="1">   
+   <tr class="RptHeader">
+        <td colspan="4">{lblBetSetting}</td>
+   </tr>
+    {BetSetting}	   
+ </table>
+ </div>
+<!--edit-mode-->
+<div style="padding-left:1px;">
+<table width="850px" style="border-left:solid 1px #CCC; border-right:solid 1px #CCC; border-bottom:solid 1px #CCC;">
+    <tr align="center" class="bg_eb">
+	    <td style="height:3px">
+	    </td>
+    </tr>
+    <tr align="center" class="bg_eb" >
+	    <td align="center">
+	        <input id="btnAdd" type="button" onclick="BtnOnClick();" class="btn" value="{lblUpdate}">
+	        &nbsp;&nbsp;&nbsp;
+            <input type="reset" id="btnReset" value="{reset}" onclick="$('diverrmsg').style.display='none';" class="btn" />
+	    </td>
+    </tr>
+    <tr align="center">
+	    <td>
+	        <span class="errMsg" id="error151"></span>
+	    </td>
+    </tr>	    
+  </table>
+  </div>
+  <!--/edit-mode-->
+  <!--view-mode-->
+  <table width="850px">
+    <tr>
+	    <td style="height:15px">
+
+	    </td>
+    </tr>
+    <tr>
+        <td>
+            <table cellspacing="0" cellpadding="0" border="0" align="left" style="width: 148px;" onmouseout="this.className='mainBtn'" onmouseover="this.className='mainBtnHover'" class="mainBtn" id="Table1">
+                <tbody>
+                    <tr>                      
+                         <td style="text-align: left;" align="left">                                
+                         </td>                       
+	                    <td class="left">
+		                    <span class="errMsg" id="error151"></span>
+	                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>	    
+    </tr>
+  </table>
+  <!--/view-mode-->
+</div>
+
+<script type="text/javascript" src="../../Js/wz_tooltip/wz_tooltip.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_centerwindow.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_balloon.js"></script>

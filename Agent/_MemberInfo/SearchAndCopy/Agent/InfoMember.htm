@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/SearchAndCopy.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                {static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!--Header-->
+                {header}
+                <!--/Header-->
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="memberSettingInfo">
+                    {static:Resources.Lang.lblMemberInfo}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table id="tblMain" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            <table id="tblInfo" cellpadding="0" cellspacing="1">
+                                <tr>
+                                    <td class="r">
+                                        {static:Resources.Lang.username}
+                                    </td>
+                                    <td class="w">
+                                        {uname-parent}{number1-val}{number2-val}{number3-val} <span id="msgIcon">&nbsp;&nbsp;&nbsp;</span>
+                                    </td>
+                                    <td class="r">
+                                        {static:Resources.Lang.password}
+                                    </td>
+                                    <td class="l">
+                                        <input class="inputWidth" onkeyup="SearchAndCopy.CheckPass(this, 'spnPwdIcon');"
+                                            type="password" size="15" name="txtPwd" id="txtPwd" runat="server" />
+                                        <span id="spnPwdIcon">&nbsp;</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="r">
+                                        {static:Resources.Lang.firstname}
+                                    </td>
+                                    <td class="w">
+                                        <input class="inputWidth" type="text" maxlength="32" name="txtFirstName" id="txtFirstName"
+                                            value="" />
+                                    </td>
+                                    <td class="r">
+                                        {static:Resources.Lang.lastname}
+                                    </td>
+                                    <td>
+                                        <input class="inputWidth" type="text" maxlength="32" name="txtLastName" id="txtLastName"
+                                            value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="r">
+                                        {static:Resources.Lang.lblPhone}
+                                    </td>
+                                    <td class="w">
+                                        <input class="inputWidth" type="text" maxlength="32" name="txtPhone" id="txtPhone"
+                                            value="" />
+                                    </td>
+                                    <td class="r">
+                                        {static:Resources.Lang.lblMobilePhone}
+                                    </td>
+                                    <td>
+                                        <input class="inputWidth" type="text" maxlength="32" name="txtMobilePhone" id="txtMobilePhone"
+                                            value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="r">
+                                        {static:Resources.Lang.givencredit}
+                                    </td>
+                                    <td class="w">
+                                        <input id="txtCredit" type="text" class="inputWidth" maxlength="14" onchange="SearchAndCopy.CheckNull('txtCredit');"
+                                            name="txtCredit" value="" onkeyup="return age.FormatNumber(event, true);" onblur="return age.FormatNumber(event, true);" />
+                                        <span class="minmaxbet">&lt;=<span id="spnCreditMax">{credit-max}</span></span>
+                                    </td>
+                                    <td class="r">
+                                        {static:Resources.Lang.lblFax}
+                                    </td>
+                                    <td>
+                                        <input class="inputWidth" type="text" maxlength="32" name="txtFax" id="txtFax" value="" />
+                                    </td>
+                                </tr>
+                                <!--Captchar-->
+                                <tr>
+                                    <td class="r" onclick="SearchAndCopy.Agent.GetValidateImage();">
+                                        <img src="../../../_Authorization/Handlers/Captcha.ashx" id="imgCode" alt="" />
+                                    </td>
+                                    <td class="w">
+                                        <input class="tb" id="txtCaptchaCopyMember" name="txtCaptchaCopyMember" type="text"
+                                            maxlength="4" autocomplete="off" style="width: 62px" />
+                                    </td>
+                                    <td colspan="2">
+                                    </td>
+                                </tr>
+                                <!--/Captchar-->
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div class="buttonReView">
+        <a href="javascript:;" onclick="{back_function}"><span class="sbuttonReView">{static:Resources.Lang.lblBack}
+        </span></a>
+    </div>
+    <div class="buttonNext">
+        <a href="javascript:;" onclick="{submit_function}"><span class="sbuttonNext">{static:Resources.Lang.submit}
+        </span></a>
+    </div>
+    <script src="../../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="../../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+    <script src="../Resources/SearchAndCopy.js" type="text/javascript"></script>
+    <script src="Resources/Member.js" type="text/javascript"></script>
+</body>
+</html>

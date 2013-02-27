@@ -1,0 +1,548 @@
+<div id="leftpanewrapper" style="display: none">
+<div id="tab_menu">
+	<div id="tab_menu_m"><a class="tab_menu01" target="menu" href="_Menu/Menu.aspx">{lblMainmenu}</a></div>
+    <div id="tab_menu_L"><a class="tab_menu02AC" style="cursor:default;" >{lblUserinfo}</a></div>
+</div>
+<div id="clear0"/>
+
+<div id="leftpane02">
+    <div id="button_left02">
+        <div id="Bleft_Parent02">
+            <!--Sub_menu -->
+            <div id="left_submenu">
+                <div id="left_line02">
+                    <img height="1" width="1" alt="" src="../App_Themes/AgencyV2/Images/dot.gif" name="" /></div>
+                <div class="Bleft_Sub02">
+                    <form name="frmAgent" id="frmAgent" method="get" action="" target="menu" style="float:left;">
+                        <div id="from_tab">
+                            <input maxlength="50" id="txtUsername" type="text" onkeydown="if (this.value=='{enterusername}') {this.className='text_f'; this.value='';}" onclick="if (this.value=='{enterusername}') {this.className='text_f'; this.value='';}" onblur="if (this.value=='') {this.className='text_f1'; this.value='{enterusername}';}" value="{usernamesearch}" style="width: 145px;" class="{classStyle}" name="txtUsername" />
+                        </div>
+                        <div id="b_serachL">
+                            <a id="lnkSearch" class="imaLink img" href="#" onclick="javascript:checkAndSubmitUI();">
+                                <img height="18" width="21" alt="Search" title="{lblSearch}" border="0" nowap="nowap" src="../App_Themes/AgencyV2/Images/icon_search.jpg" />
+                            </a>
+                         </div>
+                    </form><br />
+                    <!--fornotdirectdownline-->
+                    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tbody>
+                            <!--uplineinfo-->
+                            <tr>
+                                <td>
+                                    {agent}
+                                </td>
+                                <td align="right" class="text_org">
+                                    <a href="{agentnamelink}" class="linkAg">{agentname}</a>
+                                </td>
+                            </tr>
+                            <!--/uplineinfo-->
+                        </tbody>
+                    </table>
+                    <!--/fornotdirectdownline-->
+                    <div class="line_info">
+                        <img height="9" width="1" alt="" src="../App_Themes/AgencyV2/Images/dot.gif" name="" />
+                    </div>
+                    <!--CustInfo-->
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {lblCustomerUsername}:
+                                </td>
+                                <td align="right" class="text_org">
+                                    {CustomerUsername}
+                                </td>
+                            </tr>
+                            <!--blCustomerNickname-->
+                            <tr>
+                                <td>
+                                    {lblCustomerNickname}:
+                                </td>
+                                <td align="right" class="text_bold">
+                                    {CustomerNickname}
+                                </td>
+                            </tr>
+                            <!--/blCustomerNickname-->
+                            <!--blCustomerFullName-->
+                            <tr>
+                                <td>
+                                    {lblCustomerFullName}:
+                                </td>
+                                <td align="right" class="text_bold">
+                                    {CustomerFullName}
+                                </td>
+                            </tr>
+                            <!--/blCustomerFullName-->
+                            <!--blCustomerPhone-->
+                            <tr>
+                                <td>
+                                    {lblCustomerPhone}:
+                                </td>
+                                <td align="right" class="text_bold">
+                                    {CustomerPhone}
+                                </td>
+                            </tr>
+                            <!--/blCustomerPhone-->
+                            <!--blCustomerMobile-->
+                            <tr>
+                                <td>
+                                    {lblCustomerMobile}:
+                                </td>
+                                <td align="right" class="text_bold">
+                                    {CustomerMobile}
+                                </td>
+                            </tr>
+                            <!--/blCustomerMobile-->
+                            <!--blCustomerFax-->
+                            <tr>
+                                <td>
+                                    {lblCustomerFax}:
+                                </td>
+                                <td align="right" class="text_bold">
+                                    {CustomerFax}
+                                </td>
+                            </tr>
+                            <!--/blCustomerFax-->
+                        </tbody>
+                    </table>
+                    <!--/CustInfo-->
+                    <!--blErrorMsg-->
+                    <div class="errMsg">{ErrorMsg}</div>
+                    <!--/blErrorMsg-->
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--CustInfoLink-->
+        <!--MemberListLink-->
+        <div id="button_nLeft01">
+            <a class="b_nleft" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{memberlistlink}">{memberlist}</a></div>
+        <!--/MemberListLink-->
+        <!--StatementLink-->
+        <div id="button_nLeft02">
+            <a class="b_nleft" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{statementlink}">{statement}</a></div>
+        <!--/StatementLink-->
+        <div id="clear02">
+            <img height="5" width="1" alt="" src="../App_Themes/AgencyV2/Images/dot.gif" name="" /></div>
+        <!--/CustInfoLink-->
+
+        <!--TheRestAcc-->
+        <div id="Bleft_Parent02">
+
+            <div id="left_submenu">
+                <div id="left_tab">
+                    <ul>
+                        <li id="balinfo" class="current">
+                            <a href="#" onclick="showDownlineList(0);"><span {nocursor}>{lblbalanceinfo}</span></a>
+                        </li>
+                        <!--downlinelist-->
+                        <li id="userdownline">
+                            <a href="Handlers/GetDownlineList.ashx?custid={custid}" target="frmDownlineList" onclick="showDownlineList(1);"><span>{lbldownlinelist}</span></a>
+                        </li>
+                        <!--/downlinelist-->
+                    </ul>
+                </div>
+                <div id="clear0" />
+                <div id="tabbalance" class="Bleft_Sub02">
+                    <table style="width:184px;" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                    <td>
+                        <!--formember-->
+                        <div class="divleft">
+                           {lbltotalbalance}:
+                        </div>
+                        <div class="divright">
+                           {totalbalance}
+                        </div>
+                        <br />
+                        <div class="divleft">
+                           {lblyesterdaybalance}:
+                        </div>
+                        <div class="divright">
+                           {yesterdaybalance}
+                        </div>
+                        <br />
+                        <!--/formember-->
+                        <!--foragent-->
+                        <div class="divleft">
+                           {lbltotalcash}:
+                        </div>
+                        <div class="divright">
+                           {totalcash}
+                        </div>
+                        <br />
+                        <div class="divleft">
+                           {lblyesterdaycash}:
+                        </div>
+                        <div class="divright">
+                           {yesterdaycash}
+                        </div>
+                        <br />
+                        <div class="divleft">
+                           {lbltotalbalance}:
+                        </div>
+                        <div class="divright">
+                           {totalbalance}
+                        </div>
+                        <br />
+                        <div class="divleft">
+                           {lblyesterdaybalance}:
+                        </div>
+                        <div class="divright">
+                           {yesterdaybalance}
+                        </div>
+                        <br />
+                        <div id="tdAgOutstand" class="divleft">
+                           {lblagentoutstanding}:
+                        </div>
+                        <div class="divright">
+                           <a class="{agentoutstandingclass}" onclick="clearTopMenu();" {agentoutstandinglink} target="main">{agentoutstanding}</a>
+                        </div>
+                        <br />
+                        <!--/foragent-->
+                        <!--formember-->
+                        <div class="divleft">
+                           {lblmemoutstanding}:
+                        </div>
+                        <div class="divright">
+                           <a class="{outstandingclass}" onclick="clearTopMenu();" {outstadinglink} target="main">{memoutstanding}</a>
+                        </div>
+                        <br />
+                        <!--/formember-->
+                        <!--synccs-->
+                        <div class="divleft">
+                           {lblcasinoouts}:
+                        </div>
+                        <div class="divright text_bold">
+                           {casinoouts}
+                        </div>
+                        <br />
+                        <div class="divleft">
+                           {lblcasinotransf}:
+                        </div>
+                        <div class="divright text_bold">
+                           {casinotransf}
+                        </div>
+                        <br />
+                        <!--/synccs-->
+                        <!--foragent-->
+                        <div class="divleft">
+                           {lblusedcredit}:
+                        </div>
+                        <div class="divright text_bold">
+                           {usedcredit}
+                        </div>
+                        <br />
+                        <!--/foragent-->
+                        <div class="divleft">
+                           {lblgivencredit}:
+                        </div>
+                        <div class="divright" title="{givencreditlimit}">
+                           <input type="text" class="textBoxCredit" id="txtGivenCredit" onblur="changeCredit(false, 'txtGivenCredit');" onkeypress="return checkKeyPress(event, 'txtGivenCredit');" maxlength="14" style="display: none; width: 73px;"/>
+                           <span id="spantxtGivenCredit" {editgivencredit}>{givencredit}</span>
+                        </div>
+                        <br />
+                        <!--foragent-->
+                            <!--memmaxcredit-->
+                            <div id="tdMemMaxCredit" class="divleft">
+                               {lblmembermaxcredit}:
+                            </div>
+                            <div class="divright text_bold" title="{memmaxcreditlimit}">
+                               <input type="text" class="textBoxCredit" id="txtMemMaxCredit" onblur="changeCredit(false, 'txtMemMaxCredit');" onkeypress="return checkKeyPress(event, 'txtMemMaxCredit');" maxlength="14" style="display: none; width: 73px;"/>
+                               <span id="spantxtMemMaxCredit" {editmemmaxcredit}>{membermaxcredit}</span>
+                            </div>
+                            <br />
+                            <!--/memmaxcredit-->
+                        <!--/foragent-->
+                        <!--downlinestatus-->
+                            <div class="divleft" title="{totalmemdesc}">
+                               {totalmemstatus}:
+                            </div>
+                            <div class="divright">
+                                {totalmemstatusvalue}
+                            </div>
+                            <br />
+                        <!--/downlinestatus-->
+                        <!--formember-->
+                            <div class="divleft">
+                               {lblbetcredit}:
+                            </div>
+                            <div class="divright text_bold">
+                                {betcredit}
+                            </div>
+                            <br />
+                        <!--/formember-->
+                    </td>
+                    </tr>
+                    </table>
+                </div>
+                <div id="tabdownline" class="Bleft_Sub02" style="display:none;">
+                    <center><img src="../App_Themes/AgencyV2/Images/ajax-loader.gif" alt="loading"/> {loading}...</center>
+                </div>
+                <iframe id="frmDownlineList" name="frmDownlineList" style="display:none; width:1px; height:1px;"></iframe>
+            </div>
+        </div>
+        <div id="clear02">
+            <img height="5" width="1" alt="" src="../App_Themes/AgencyV2/Images/dot.gif" name="" /></div>
+        <div id="left_submenu">
+            <div id="left_tab">
+                <ul>
+                    <li id="custsettings" class="current"><a href="#" onclick="javascript:showSection(this.parentNode.id);"><span>{lblsetting}</span></a></li>
+                    <li id="logininfo"><a href="#" onclick="javascript:showSection(this.parentNode.id);">{lbllogin}</a></li>
+                    <li id="onlinelist"><a href="#" onclick="javascript:showSection(this.parentNode.id);">{lblonlinelist}</a></li>
+                </ul>
+            </div>
+            <div id="clear0" />
+            <div class="Bleft_Sub02">
+                <table id="tbl_custsettings" width="184" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                        <td colspan="2">
+                            <div style="width: 184px; float: left; position:relative; left:-3px;">
+                                <div class="divStatus">
+                                    <span class="text_smal">{lblsuspended} </span>
+                                    <img id="chkSuspend" style="{disableSuspendStyle}" src="../App_Themes/{checkedsuspend}.png"
+                                        class="{checkedsuspend}" onclick="{disableSuspend} changeStatus('suspended', {hasDownline});" />
+                                </div>
+                                <div class="divStatus">
+                                    <span class="text_smal">{lblclosed} </span>
+                                    <img id="chkClosed" style="{disableClosedStyle}" src="../App_Themes/{checkedclosed}.png"
+                                        class="{checkedclosed}" onclick="{disableclosed} changeStatus('closed', {hasDownline});" />
+                                </div>
+                                <div class="divStatus">
+                                    <span class="text_smal">{lblenableoutright} </span>
+                                    <img id="chkOR" style="{disableOutrightStyle}" src="../App_Themes/{checkedoutright}.png"
+                                        class="{checkedoutright}" onclick="{disableOutright} changeStatus('disableor', {hasDownline});" />
+                                </div>
+
+                                <!--statushr-->
+                                <div class="divStatus">
+                                    <span class="text_smal">{lblenablehr} </span>
+                                    <img id="chkHR" style="{disableHRStyle}" src="../App_Themes/{checkedhr}.png" class="{checkedhr}"
+                                        onclick="{disablehr} changeStatus('disablehr', {hasDownline});" />
+                                </div>
+                                <!--/statushr-->
+                                <!--statushr-uk-->
+                                <div class="divStatus">
+                                    <span class="text_smal">{lblenableopentote} </span>
+                                    <img id="chkOpenTote" style="{disableOpenToteStyle}" src="../App_Themes/{checkedOpenTote}.png" class="{checkedOpenTote}"
+                                        onclick="{disableopentote} changeStatus('disableopentote', {hasDownline});" />
+                                </div>
+                                <!--/statushr-uk-->
+                                <!--statusfinancial-->
+                                <div class="divStatus">
+                                    <span class="text_smal">{lblenablefi} </span>
+                                    <img id="chkFinancial" style="{disableFIStyle}" src="../App_Themes/{checkedfinancial}.png"
+                                        class="{checkedfinancial}" onclick="{disablefi} changeStatus('disablefi', {hasDownline});" />
+                                </div>
+                                <!--/statusfinancial-->
+                                <!--statuschkcs-->
+                                <!--statuscs-->
+                                <div class="divStatus">
+                                    <span class="text_smal">{lblenablecs} </span>
+                                    <img id="chkCS" style="{disableCSStyle}" src="../App_Themes/{checkedcs}.png" class="{checkedcs}"
+                                        onclick="{disablecs} changeStatus('disablecs', {hasDownline});" />
+                                </div>
+                                <!--/statuscs-->
+                                <!--/statuschkcs-->
+                                <!--statusmautopt-->
+                                <div class="divStatus">
+                                    <span class="text_smal">{lblallowautopt} </span>
+                                    <img id="chkMAutoPT" style="{disableMAutoPTStyle}" src="../App_Themes/{checkedmautopt}.png"
+                                        class="{checkedmautopt}" onclick="{disablemautopt} changeStatus('disablemautopt', {hasDownline});" />
+                                </div>
+                                <!--/statusmautopt-->
+                            </div>
+                            <div id="overlayBg" class="overlay"></div>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td height="5" colspan="2">
+                            <div class="line_info">
+                                <img height="9" width="1" alt="" src="../App_Themes/AgencyV2/Images/dot.gif" name="" />
+                            </div>
+                            </td>
+                        </tr>
+                        <!--othersettings-->
+                        <tr>
+                            <td colspan="2">
+                                <div style="width: 184px; float: left;">
+                                    <!--fordirectdownline-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem0" class="b_left" target="main" onclick="menu_select(0);" href="{lnkeditinfo}">{lbleditinfo}</a>
+                                    </div>
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem4" class="b_left" align="right" onclick="menu_select(4);" target="main" href="{lnkbetsetting}">{lblbetsetting}</a>
+                                    </div>
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem2" class="b_left" align="right" onclick="menu_select(2);" target="main" href="{lnkeditcomm}">{lblcommission}</a>
+                                    </div>
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem3" class="b_left" align="right" onclick="menu_select(3);" target="main" href="{lnkresetpassw}">{lblresetpassword}</a>
+                                    </div>
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem1" class="b_left" target="main" onclick="menu_select(1);" href="{editptlink}">{lbleditsb}</a>
+                                    </div>
+                                    <!--foragent-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem8" class="b_left" align="right" onclick="menu_select(8);" target="main" href="{lnksbminpt}">{lblsbminpt}</a>
+                                    </div>
+                                    <!--/foragent-->
+
+                                    <!--editHR-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem5" class="b_left" target="main" onclick="menu_select(5);" href="{lnkedithr}">{lbledithr}</a>
+                                    </div>
+
+                                    <!--foragent-->
+                                        <div class="divLinkSetting">
+                                            <a id="menuitem10" class="b_left" align="right" onclick="menu_select(10);" target="main" href="{lnkhrminpt}">{lblhrminpt}</a>
+                                        </div>
+                                    <!--/foragent-->
+                                    <!--/editHR-->
+
+                                    <!--statusfinancial-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem6" class="b_left" target="main" onclick="menu_select(6);" href="{lnkeditfi}">{lbleditfi}</a>
+                                    </div>
+                                    <!--/statusfinancial-->
+                                    <!--foragent-->
+                                        <!--statusfinancial-->
+                                        <div class="divLinkSetting">
+                                            <a id="menuitem9" class="b_left" align="right" onclick="menu_select(9);" target="main" href="{lnkfiminpt}">{lblfiminpt}</a>
+                                        </div>
+                                        <!--/statusfinancial-->
+                                    <!--/foragent-->
+
+                                    <!--statuscs-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem7" class="b_left" target="main" onclick="menu_select(7);" href="{lnkeditcs}">{lbleditcs}</a>
+                                    </div>
+                                    <!--/statuscs-->
+
+                                    <!--/fordirectdownline-->
+
+                                    <!--forsuperviewagent-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem11" class="b_left" align="right" onclick="menu_select(11);" target="main" href="{lnkresetpassw}">{lblresetpassword}</a>
+                                    </div>
+                                    <!--/forsuperviewagent-->
+
+                                    <!--foragent-->
+                                    <!--transfercond-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem12" class="b_left" align="right" onclick="menu_select(12);" target="main" href="{lnktransfercond}">{lbltransfercond}</a>
+                                    </div>
+                                    <!--/transfercond-->
+                                    <!--/foragent-->
+
+                                    <!--formember-->
+                                    <!--fordownlineviewmem-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem13" class="b_left" align="right" onclick="menu_select(13);" target="main" href="{lnkeditpt_member}">{lbleditpt_member}</a>
+                                    </div>
+                                    <!--editHR-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem14" class="b_left" align="right" onclick="menu_select(14);" target="main" href="{lnkedithr_member}">{lbledithr_member}</a>
+                                    </div>
+                                    <!--/editHR-->
+                                    <!--statusfinancial_member-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem15" class="b_left" align="right" onclick="menu_select(15);" target="main" href="{lnkeditfi_member}">{lbleditfi_member}</a>
+                                    </div>
+                                    <!--/statusfinancial_member-->
+                                    <!--statuscs_member-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem16" class="b_left" align="right" onclick="menu_select(16);" target="main" href="{lnkeditcs_member}">{lbleditcs_member}</a>
+                                    </div>
+                                    <!--/statuscs_member-->
+                                    <!--/fordownlineviewmem-->
+                                    <!--/formember-->
+
+                                    <!--clearcredit-->
+                                    <div class="divLinkSetting">
+                                        <a id="menuitem17" class="b_left" align="right" onclick="menu_select(17); return doClearAllCredit({custid}, {roleid});" href="javascript:;">{lblclearallcredit}</a>
+                                    </div>
+                                    <!--/clearcredit-->
+                                </div>
+                            </td>
+                        </tr>
+                        <!--/othersettings-->
+                    </tbody>
+                </table>
+
+                <table id="tbl_logininfo" style="display:none;" width="184" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>
+                            <span class="text_bold">{lblcreatedate}:</span><br />
+                            {createdate}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="text_bold">{lbllastlogin}:</span><br />
+                            {lastlogin}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="text_bold">{lbllasttxn}:</span><br />
+                            {lasttxn}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="text_bold">{lbllastloginip}:</span><br />
+                            <!--{lastloginip}-->
+                            <!--<a href="{loginiplink}" target="_blank" class="link_leftnone">{lastloginip}</a>-->
+                            <!--<a href="javascript:OpenIPInfo('{lastloginip}');" class="link_leftnone">{lastloginip}</a>-->
+                            {lastloginip}
+                        </td>
+                    </tr>
+                </table>
+
+                <span id="tbl_onlinelist" style="display:none;">
+                    <center><img src="../App_Themes/AgencyV2/Images/ajax-loader.gif" alt="loading"/> {loading}...</center>
+                </span>
+
+            </div>
+        </div>
+        <!--/TheRestAcc-->
+    </div>
+
+ <br />
+ </div>
+
+<div id="disabledStatusPop" class="popupsetting" style="display: none;">
+    <b><span id="lblEnableStatus">Enable Status</span></b><br/>
+    <input type="checkbox" name="chkEnabled" onclick="allowSubmit(this);" id="chkEnabled"/><span id="agtype"></span>
+    <!--chkdownlineR--><span id="spanChkEnabledDL"><br /><input type="checkbox" name="chkEnabledDL" id="chkEnabledDL" disabled=""/><span id="lbldownline">{downlines}</span></span><!--/chkdownlineR--><br/>
+    <center><input id="btnUptStatus" type="button" class="btn2" disabled="true" onclick="" value="{update}"/>&nbsp;<input type="button" class="btn" onclick="closeDivPopup();" value="{cancel}"/></center>
+    <input id="hdnAgentType" type="hidden" value="{agenttype}" />
+    <input id="hdnTypeStatus" type="hidden" value="" />
+    <input id="hdnOldFIStatus" type="hidden" value="{oldFIStatus}" />
+    <input id="hdnOldFIDownlineStatus" type="hidden" value="{oldFIDownlineStatus}" />
+    <input id="hdnOldHRStatus" type="hidden" value="{oldHRStatus}" />
+    <input id="hdnOldOpenToteStatus" type="hidden" value="{oldOpenToteStatus}" />
+    <input id="hdnOldHRDownlineStatus" type="hidden" value="{oldHRDownlineStatus}" />
+    <input id="hdnOldOpenToteDownlineStatus" type="hidden" value="{oldOpenToteDownlineStatus}" />
+    <input id="hdnOldCSStatus" type="hidden" value="{oldCSStatus}" />
+    <input id="hdnOldCSDownlineStatus" type="hidden" value="{oldCSDownlineStatus}" />
+    <input id="hdnOldClosedStatus" type="hidden" value="{oldClosedStatus}" />
+    <input id="hdnOldClosedDownlineStatus" type="hidden" value="{oldClosedDownlineStatus}" />
+</div>
+<iframe id="frmUpdate" name="frmUpdate" frameborder="0" height="0" width="0"></iframe>
+<!--for autocomplete -->
+<div class="shadow" id="shadow" />
+<div class="output" id="output" />
+<script type="text/javascript">
+    AGE.addEvent(window, 'load', function() {
+    initAutoComplete('txtUsername', '_AccountInfo/Handlers/QueryUserName.ashx');
+        $('leftpanewrapper').style.display = 'block';
+    }
+    );
+</script>
+
+</div>

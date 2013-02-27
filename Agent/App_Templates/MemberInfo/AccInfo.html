@@ -1,0 +1,181 @@
+<div id="page_main">
+
+<table cellspacing="0" cellpadding="0" border="0" style="width: 800px;">
+    <tr>
+        <td align="left" style="text-align: left" colspan="2">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="diverr" style="display: none">
+                <tr>
+                    <td class="emsg_1_1">&nbsp;</td>
+                    <td class="emsg_1_2">&nbsp;</td>
+                    <td class="emsg_1_3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="emsg_2_1">&nbsp;</td>
+                    <td valign="middle" class="Enrich" id="err">
+
+                    </td>
+                    <td class="emsg_2_2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="emsg_3_1">&nbsp;</td>
+                    <td class="emsg_3_2">&nbsp;</td>
+                    <td class="emsg_3_3">&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<div class="sptPT" style="width: 970px;">
+<table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8">
+    <tr>
+        <td colspan="4" class="">
+             <div class="btnLeft">
+	            <input type="button" class="btnMain" AccountPermisssion="[B]" id="{add-id}" onclick="{clickable};BtnOnClick();" value="{add-text}">
+            </div>
+        </td>
+    </tr>
+	<!--none-mult-->
+	<!--none-edit-->
+	<tr class="bg_eb">
+		<td width='25%' class="r">{uname-text}</td>
+		<td width='25%' class="l">{uname-parent}{number1-val}{number2-val}<!--none-member-->{number3-val}<!--/none-member--></td>
+		<td width='25%' class="r">{pwd-text}</td>
+		<td width='25%' id="td_pass" class="l" nowrap="yes"><input id="txtPwd" style="width:122px" onkeyup="return checkpass(this);" type="password" size="15" name="txtPwd"  runat="server"></td>
+	</tr>
+	<!--/none-edit-->
+	<!--none-show-info-user-when-edit-mult-->
+    <tr class="bg_eb">
+        <td class="r" width="25%">{fname-text}</td>
+        <td class="l" width="25%"><input type="text" style="width: 122px" maxlength="32" id="txtFName" name="txtFName" value="{fname-val}" /></td>
+        <td class="r" width="25%">{lname-text}</td>
+        <td class="l" width="25%"><input type="text" style="width: 122px" maxlength="32" id="txtLName" name="txtLName" value="{lname-val}" /></td>
+    </tr>
+	<tr class="bg_eb">
+		<td class="r">{phone-text}</td>
+		<td class="l"><input type="text" style="width:122px" maxlength="32" id="txtPhone" name="txtPhone" value="{phone-val}"/></td>
+		<td class="r">{mobile-text}</td>
+		<td class="l"><input type="text" style="width:122px" maxlength="32" id="txtMobile" name="txtMobile" value="{mobile-val}"/></td>
+	</tr>
+	<tr class="bg_eb">
+		<td class="r">{max-credit-text}</td>
+		<td class="l" nowrap="yes">
+			<input type="text" style="width:122px" maxlength="14" onchange="if($('lblMaxCredit')){if(this.value==''){ $('lblMaxCredit').innerHTML=0; this.value=0;} else $('lblMaxCredit').innerHTML=this.value;}" id="txtCredit"  name="txtCredit" value="{credit-val}" onkeypress="return CheckDecNumber(event);" />
+			<span class="{mpmMin}">&gt;=<span id="txtCreditMin">{credit-min}</span>&nbsp;and</span>
+			<span class="{mpmMax}">&lt;=<span id="txtCreditMax">{credit-max}</span></span>
+		</td>
+		<td class="r">{fax-text}</td>
+		<td class="l"><input type="text" style="width:122px" maxlength="32" id="txtFax" name="txtFax" value="{fax-val}"/></td>
+	</tr>
+	<!--/none-show-info-user-when-edit-mult-->
+	<!--none-add-->
+	<tr class="bg_eb">
+		<!--none-super-master-->
+		<td class="r"><!--none-group-->{group-text}<!--/none-group--></td>
+		<td class="l"><!--none-group-->{UGroup}<!--/none-group--></td>
+		<!--/none-super-master-->
+		<!--Close-->
+		<td {colspan} class="r">{closed-text}</td>
+		<td class="l" {colspan}><!--closed--><input type="checkbox" id="chkClosed" name="chkClosed" {check-val} onclick="ConfirmClosedMessage(this,{IsClosed});" /><!--{check-val}--><!--/closed--></td>
+		<!--/Close-->
+		<!--suspend1--><!--suspend will be here!--><!--/suspend1-->
+	</tr>
+	<!--/none-add-->
+	<!--for-master-site-->
+	<tr class="bg_eb">
+	    <td class="r">{member-max-credit}</td>
+	    <td class="l">
+	        <input type="text" style="width:122px" maxlength="14" id="txtMaxCredit" name="txtMaxCredit" value="{MemberMaxCredit-val}" onkeypress="return CheckDecNumber(event);" />
+	        <span class="{mMinCredit}">&gt;=<span id="lblMinCredit">{member-credit-min}</span>&nbsp;and</span>
+	        <span class="{mMaxCredit}">&lt;=<span id="lblMaxCredit">{member-credit-max}</span></span>
+	        <script type="text/javascript">AGE.addEvent(window, "load", function(){$('lblMaxCredit').innerHTML = $('txtCredit').value});</script>
+	    </td>
+	    <!--Add-Close-->
+	   <td colspan="2"></td>
+	   <!--/Add-Close-->
+	</tr>
+	<!--/for-master-site-->
+
+	<!--Status-Disable-->
+	<!--will be here-->
+	<!--/Status-Disable-->
+
+	<!--/none-mult-->
+	<!--none-single-->
+	<tr class="bg_eb">
+		<td colspan="{cols-untext}" id="username"></td>
+	</tr>
+	<!--/none-single-->
+	</table>
+
+	<table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8">
+	<tr class="RptHeader">
+		<!--none-single--><td width="10%">{status-text}</td><!--/none-single-->
+		<td colspan="4">{commission-text}</td>
+	</tr>
+	<!--none-super-->
+	<tr class="bg_eb">
+		<!--none-single--><td><div id="divUpdStatus" name="divUpdStatus">{closed-text}<input type="checkbox" id="chkClosed" {check-val} name="chkClosed" onclick="ConfirmClosedMessage(this,0);"/></div></td><!--/none-single-->
+		<td colspan="4">
+		    <div id="divUpdComm" name="divUpdComm">
+		    {groupa-text}&nbsp;<select class="selectcomm" id="groupa" {sel-a} name="groupa">{groupa-val}</select>&nbsp;&nbsp;&nbsp;
+		    {groupb-text}&nbsp;<select class="selectcomm" id="groupb" {sel-b} name="groupb">{groupb-val}</select>&nbsp;&nbsp;&nbsp;
+		    {groupc-text}&nbsp;<select class="selectcomm" id="groupc" {sel-c} name="groupc">{groupc-val}</select>&nbsp;&nbsp;&nbsp;
+		    {groupd-text}&nbsp;<select class="selectcomm" id="groupd" {sel-d} name="groupd">{groupd-val}</select>&nbsp;&nbsp;&nbsp;
+		    {discount1x2-text}&nbsp;<select class="selectcomm" id="discount1x2" {sel-dis1x2} name="discount1x2">{discount1x2-val}</select>&nbsp;&nbsp;&nbsp;
+		    {discountcs-text}&nbsp;<select class="selectcomm" id="discountcs" {sel-dis} name="discountcs">{discountcs-val}</select>
+		    <!--none-text-numbergame--><span id="spNumberGameComm" class="{hideClss}" style="font-weight:normal">
+		    &nbsp;&nbsp;&nbsp;{discountnumbergame-text}&nbsp;<select class="selectcomm" id="disnumbergame" {sel-disnumbergame} name="disnumbergame">{disnumbergame-val}</select>
+		    </span><!--/none-text-numbergame-->
+		    </div>
+		</td>
+	</tr>
+	<!--/none-super-->
+	<!--none-edit-member-->
+	<tr class="bg_eb">
+		<td class="r">{lblCommissionForAgent} &nbsp;<u>{lblAsianHDC_OU_OE}</u></td>
+		<td class="l"><input type ="text" id="txtDiscount" value="{discount-val}" style="width:65px;" ReadOnly="True"/></td>
+		<td class="r">{lblCommissionForAgent} &nbsp;<u>{lbl1x2_CS_TG}</u></td>
+		<td class="l"><input type ="text" id="txtDiscountcs" value = "{discountcs-val}" style="width:65px;" ReadOnly="True"/></td>
+	</tr>
+	<!--/none-edit-member-->
+	<!--none-member-->
+	<tr class="bg_eb">
+		<!--none-single--><td><div id="div1" name="divUpdStatus">{closed-text}<input type="checkbox" id="chkClosed" {check-val} name="chkClosed" onclick="ConfirmClosedMessage(this,0);"/></div></td><!--/none-single-->
+		<td class="r">{lblCommissionForMember} &nbsp;<u>{lblAsianHDC_OU_OE}</u></td>
+		<td class="l">{CommissionH_OU_OE} </td>
+		<td class="r">{lblCommissionForMember} &nbsp;<u>{lbl1x2_CS_TG}</u></td>
+		<td class="l">{CommissionCS_TG}<span class="normal" id ="spddrCommissionCS_TG"></span> </td>
+
+	</tr>
+	<!--/none-member-->
+
+	<!--none-edit-member-->
+	<tr class="bg_eb">
+		<td class="r">{lblCommissionForAgent} &nbsp;<u>1x2</u></td>
+		<td class="l"><input type ="text" id="txtDiscount1x2" value="{discount1x2-val}" style="width:65px;" ReadOnly="True"/></td>
+		<td class="r">{lblCommissionForAgent_numbergame} &nbsp;<u>{numbergame}</u></td>
+		<td class="l"><!--none-text-numbergame--><input type ="text" id="txtDiscountNumber" value="{discountnumber-val}" style="width:65px;" ReadOnly="True"/><!--/none-text-numbergame--></td>
+	</tr>
+	<!--/none-edit-member-->
+	<!--none-member-->
+	<tr class="bg_eb">
+    	<!--none-single--><td></td><!--/none-single-->
+		<td class="r">{lblCommissionForMember} &nbsp;<u>1x2</u></td>
+		<td class="l">{Commission1x2} </td>
+		<td class="r">{lblCommissionForMember_numbergame} &nbsp;<u>{numbergame}</u></td>
+		<td class="l">{CommissionNumberGame}</td>
+	</tr>
+	<!--/none-member-->
+	</table>
+</div>
+{tranfer-time}
+<input type="hidden" name="from" id="from" value="{linkfrom}" />
+
+<input type="hidden" id="hdAllowedCurr" name="hdAllowedCurr" value="{hdAllowedCurr-value}" />
+
+<input type="hidden" id="IsSuspended" name="IsSuspended" value="{IsSuspended}" />
+<input type="hidden" id="UplineSuspended" name="UplineSuspended" value="{UplineSuspended}" />
+<input type="hidden" id="IsClosed" name="IsClosed" value="{IsClosed}" />
+<input type="hidden" id="UplineClosed" name="UplineClosed" value="{UplineClosed}" />
+<input type="hidden" id="isTransferOption" name="isTransferOption" value="{isTransferOption}" />
+<!--</div>-->

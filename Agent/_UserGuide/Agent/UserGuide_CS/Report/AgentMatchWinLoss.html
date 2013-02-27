@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Report - Agent Match Win/Loss</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body>
+<h2 class="h2">球赛输赢</h2>
+<p><span class="rpt-head1">定义:</span> </p>
+<p>这是代理于每场特定的比赛 (只是单项投注类别) 输赢数额的总计。用户可选择所需的日期以查看赛事的输赢。</p>
+<p>
+<em>注</em>: 对于混合过关投注类别, 连接到输赢报告资料</p>
+<center>
+  <img src="images/AgMatchWL/MatchWinLoss.jpg" alt="Match Win/Loss" width="775" height="208"/>
+  <br /> 
+  <em>图 3.1</em>
+</center>
+<span class="rpt-head1">用词注解:</span>
+<ul>
+  <li>
+  赛事: 被选择投注的赛事。</li>
+  <li>投注类别: 被选择投注的投注类别。</li>
+  <li>佣金: 代理扣除会员佣金后, 从上线处得到的佣金。</li>
+  <li>占成数: 总计代理予该场赛事的输赢数额基于他/她的占成数。</li>
+  <li>总和: 总计代理输赢数额包括佣金。</li>
+</ul>
+<span class="rpt-head1">如何理解报告:</span>
+<p>在上图中, 以<b>FC Koln</b> -vs- <b>Schalke 04</b>这场赛事为例子, 要理解如何计算代理在此赛事的输赢, 我们点击赛事名称以开启会员投注历史页面。</p>
+<center>
+  <img src="images/AgMatchWL/BetList.jpg" alt="Bet List" width="827" height="188"/>
+  <br /> 
+  <em>图 3.2</em>
+</center>
+<p>
+在此注单, member02投注200, 会员折扣 = 0.2%, 赔率 = -0.87, 他赢得该投注单, 代理占成 = 30%及代理从上线处接收0.2%佣金。根据此信息我们可计算代理在该场比赛的输赢 (图3.1, 第一行)。</p>
+<ul>
+  <li>佣金 = 代理佣金 - 会员佣金 = 200*0.2%*(1-30%)-200*0.2% = 
+      <b>-0.12</b></li>
+  <li>占成数 = 若会员赢, 则占成数: - (投注额*代理占成数) 或 会员输, 则(投注额*代理占成数) =  -200*30% = <b>-60</b></li>
+  <li>总和 = 佣金 + 占成数 = -0.12 -60 = <b>-60.12</b> </li>
+</ul>
+<p><em>注</em>: 一场比赛可能会有很多投注, 因此我们必须使用上述公式计算代理佣金及代理每次投注的份额的总数.</p>
+
+</body>
+</html>

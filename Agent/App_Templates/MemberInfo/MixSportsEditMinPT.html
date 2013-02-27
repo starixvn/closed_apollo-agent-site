@@ -1,0 +1,42 @@
+<table class="sptPT" style="width: 60%">
+	<tr>
+		<td>
+         {ChkUpdatePT}
+			<div id="divUpdPT99_M" name="divUpdPT99_M">
+				<table border="1" width="100%" class="tblRpt" bordercolor="#D4D0C8">																	
+					<tr class="bg_eb">
+						<td></td>					
+						<td>{mp-text}</td>						
+					</tr>		
+					<!--none-Multi-->					
+					<tr class="bg_eb">
+						<!--none-edit-min-->
+						<td class="r">{a-presetpt-text}</td>					
+						<td>{a-mp-val}</td>						
+					</tr>
+					<!--none-Master-->
+					<tr class="bg_eb">
+						<td class="r">{master-text}</td>
+						<td>{m-mp-val}</td>						
+					</tr>
+					<!--/none-Master-->
+					<!--/none-Multi-->					
+					<tr class="bg_eb">
+						<td class="r">{p-presetpt-text}</td><!--/none-edit-min-->
+						<td>{p-mp-val}{p-mp-btn}</td>						
+					</tr>
+					
+					<!--none-edit-min-->		
+					<tr class="bg_eb {clssHidden}">
+						<td rowspan="2" class="r">{au-presetpt-text}</td>	
+						<td><input type="checkbox" onclick="CheckAutoPreset(this)" id="chkAuto99_M" name="chkAuto99_M" {checked-MP} /></td>					
+					</tr>
+					<tr class="bg_eb {clssHidden}">
+						<td>{au-mp-val}{au-mp-btn}</td>						
+					</tr>					
+					<!--/none-edit-min-->
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>

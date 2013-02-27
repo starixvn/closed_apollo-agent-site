@@ -1,0 +1,144 @@
+{StyleSheet}
+<form id="frm" method="get">
+        <div id="page_main">
+        <div id="header_main">{lblCommission}</div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+        <div id="box_header" style="width:97%">
+          <table border="0" cellpadding="0" cellspacing="1" style="width:100%">                                  
+            <tr>
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            
+                            <td>
+                                <input type="radio" id="radSB" name="rdCommission" checked="checked" onclick="DisablePage(); location.href='MemberCommission.aspx'"/> <label for="radSB">{SportBook}</label> &nbsp;&nbsp;
+                                <input type="radio" id="radRacing" name="rdCommission" onclick="DisablePage(); location.href='MemberCommissionRacing.aspx'"/> <label for="radRacing">{Racing}</label> &nbsp;&nbsp;
+                                <!--p2pCasino-->
+                                <input type="radio" id="radCasino" name="rdCommission" onclick="DisablePage(); location.href='MemberCommissionCasino.aspx'"/> <label for="radCasino">{Casino}</label> &nbsp;&nbsp;
+                                <!--/p2pCasino-->
+                                <!--p2pBingo-->
+                                <input type="radio" id="radBingo" name="rdCommission" onclick="DisablePage(); location.href='MemberCommissionBingo.aspx'"/> <label for="radBingo">{Bingo}</label> &nbsp;&nbsp;
+                                <!--/p2pBingo-->
+                                <!--P2P-->
+                                <input type="radio" id="radP2P" name="rdCommission" onclick="DisablePage(); location.href='../_MemberInfo/Commission/MemberCommissionP2P.aspx'"/> <label for="radP2P">{P2PText}</label> &nbsp;&nbsp;
+                                <!--/P2P-->
+                                <!--LiveCasino-->
+                                <input type="radio" id="radLiveCasino" name="rdCommission" onclick="DisablePage(); location.href='../_MemberInfo/Commission/MemberCommissionLiveCasino.aspx'"/> <label for="radLiveCasino">{LiveCasinoText}</label> &nbsp;&nbsp;
+                                <!--/LiveCasino-->
+                            </td>
+                            
+                            <!--limit-agent-->
+                            <!--limit-master-->
+                            <td style="padding-left:50px;">{selmaster}</td>
+                            <td>
+                                <select id="selmaster" name="selmaster" onchange="DisablePage(); getData_MemberCommission_Agent();">{option_master}</select>
+                            </td>
+                            <!--/limit-master-->
+                            <td style="padding-left:20px;">{selagent}</td>
+                            <td id="selagent" name="selagent" >
+                                <select id="selAg" name="selAg" onchange="DisablePage(); show_data_com();">{option_agent}</select>
+                            </td>
+                            <td>
+                                <div id="loading" class="" style=" width:24px; height:24px; float:left;padding-left:5px;"></div>
+                            </td>
+                            <!--/limit-agent-->
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left" class="warning">
+                    <ul>{appliesallbettype}</ul>
+               </td>
+            </tr>            
+          </table> 
+        </div>  
+</td>
+<tr>
+<tr>
+<td>
+      <div id="tbl-container" style="width:97%">
+         <div id="boderRight">
+                <!--limit-data-->
+             <table id="tbl-rpt" class="tblRpt nowrap r" cellpadding="0" cellspacing="{cellspacing}" style="width:100%;">             
+                <thead>
+                <tr >
+                    <td class="RptHeader" colspan="5">&nbsp;</td>                   
+                    <td class="RptHeader" colspan="{colspancomm}">{lblComm} 1(%)</td>
+                    <td class="RptHeader" colspan="{colspancomm}">{lblComm} 2(%)</td>
+                    <td class="RptHeader" colspan="{colspancomm}">{lblComm} 3(%)</td>
+                    <!--number-comm-->
+                    <td class="RptHeader" colspan="{colspancomm}">{lblNumberComm}(%)</td>
+                    <!--/number-comm-->
+                    <td class="RptHeader" colspan="2">&nbsp;</td>                                      
+                </tr>
+                <tr class="c">
+                    <td class="RptHeader02" style="width: 25px;">{no}</td>
+                    <td class="RptHeader02">{username}</td>
+                    <td class="RptHeader02">{firstname}</td>
+                    <td class="RptHeader02">{lastname}</td>
+                    <td class="RptHeader02">{group}</td>
+                    <!--mcomm1--><td class="colHdr2" title="{lblM}">M</td><!--/mcomm1-->
+                    <td class="colHdr2" title="{lblA}">A</td>
+                    <td class="colHdr2" title="{lblMe}">P</td>
+                    <!--mcomm1--><td class="colHdr" title="{lblM}">M</td><!--/mcomm1-->
+                    <td class="colHdr" title="{lblA}">A</td>
+                    <td class="colHdr" title="{lblMe}">P</td>
+                    <!--mcomm1--><td class="colHdr2" title="{lblM}">M</td><!--/mcomm1-->
+                    <td class="colHdr2" title="{lblA}">A</td>
+                    <td class="colHdr2" title="{lblMe}">P</td>
+                    
+                    <!--number-comm-->
+                    <!--mcomm1--><td class="colHdr" title="{lblM}">M</td><!--/mcomm1-->
+                    <td class="colHdr" title="{lblA}">A</td>
+                    <td class="colHdr" title="{lblMe}">P</td>
+                    <!--/number-comm-->
+                    
+                    <td class="RptHeader02">{credit}</td>
+                    <td class="RptHeader02">{username}</td>
+                </tr>
+                </thead>
+                 <tbody>
+                <!--limit-content-->
+                <tr bgcolor="{color}" onmouseover="bgColor='{overcolor}'" onmouseout="bgColor='{color}'">
+                    <td class="w-order">{no_value}</td>
+                    <td class="l">&nbsp;{username_value}</td>
+                    <td class="l">&nbsp;{firstname_value}</td>
+                    <td class="l">&nbsp;{lastname_value}</td>
+                    <td class="c">{group_value}</td>
+                    <!--mcomm1_value--><td class="commvalue colHdr2">{mcomm1_value}</td><!--/mcomm1_value-->
+                    <td class="commvalue colHdr2">{acomm1_value}</td>
+                    <td class="commvalue colHdr2">{pcomm1_value}</td>
+                    <!--mcomm2_value--><td class="commvalue">{mcomm2_value}</td><!--/mcomm2_value-->
+                    <td class="commvalue">{acomm2_value}</td>
+                    <td class="commvalue">{pcomm2_value}</td>
+                    <!--mcomm3_value--><td class="commvalue colHdr2">{mcomm3_value}</td><!--/mcomm3_value-->
+                    <td class="commvalue colHdr2">{acomm3_value}</td>
+                    <td class="commvalue colHdr2">{pcomm3_value}</td>
+                    
+                    <!--number-comm-->
+                    <!--mnumber_comm_value--><td class="commvalue">{mnumber_comm_value}</td><!--/mnumber_comm_value-->
+                    <td class="commvalue">{anumber_comm_value}</td>
+                    <td class="commvalue">{pnumber_comm_value}</td>
+                    <!--/number-comm-->
+                    
+                    <td class="r">{credit_value}</td>
+                    <td class="l">{username_value}</td>
+                </tr>
+                <!--/limit-content-->
+                </tbody>
+            </table>
+            <!--/limit-data-->
+            </div>
+         </div>  
+</td>
+</tr>
+</table>
+
+     </div>
+     <input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" />                
+         
+</form>

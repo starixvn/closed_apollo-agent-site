@@ -1,0 +1,78 @@
+﻿.customerInfoBlock1
+{
+    width: 206px;
+}
+.customerInfoBlock2
+{
+    width: 206px;
+}
+.customerInfoBlock3
+{
+    width: 206px;
+}
+.customerInfoBlock4
+{
+    width: 208px;
+}
+.customerInfoBlock5
+{
+    border-left: 1px solid #B7B7B7;
+    border-top: 1px solid #B7B7B7;
+    float: left;
+    height: 22px;
+    line-height: 22px;
+    margin: 0 0 0 1px;
+    padding: 2px 1px 1px;
+    vertical-align: middle;
+    width: 628px;
+}
+.customerInfoBlock6
+{
+    font-weight: bold;
+    text-align: center;
+    border-left: 1px solid #B7B7B7;
+    border-top: 1px solid #B7B7B7;
+    float: left;
+    width: 837px;
+    padding: 2px;
+}
+.customerInfoBlock7
+{
+    border-left: 1px solid #B7B7B7;
+    border-top: 1px solid #B7B7B7;
+    float: left;
+    height: 22px;
+    line-height: 22px;
+    margin: 0 0 0 1px;
+    padding: 2px 1px 1px;
+    text-align: right;
+    vertical-align: middle;
+    width: 206px;
+    margin: 0px;
+}
+.noInfoBlock
+{
+    text-align: center;
+    background-color: #F7F0E4;
+    border: 1px solid #B7B7B7;
+    float: left;
+    width: 837px;
+    padding: 2px;
+}
+.saveDiv
+{
+    float: right;
+}
+.save
+{
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background-image: url(Images/save.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    position: relative;
+}

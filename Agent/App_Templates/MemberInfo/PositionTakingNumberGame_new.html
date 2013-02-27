@@ -1,0 +1,120 @@
+﻿{StyleSheet}
+<div id="page_main">
+<div id="header_main">
+    <div>
+    <!--limit-header-position-normal-->
+        {lblPositionTaking}		
+	<!--/limit-header-position-normal-->
+    </div>
+    
+    <div>
+    <!--limit-header-position-->
+    <!--limit-agentlist-->
+    <a href="{url-agentlist}">{agentlist}</a> |
+    <!--/limit-agentlist-->
+         <!--limit-customerlist-->       
+          <a href="{url-list}">{customerlist}</a>
+          <!--/limit-customerlist--> | 
+          <!--limit-creditbalance-->       
+          <a href="{url-credit}">{creditbalance}</a>
+          <!--/limit-creditbalance--> |
+          <!--limit-position-taking-->            
+          <a href="{url-position}">{positiontaking}</a>
+          <!--/limit-position-taking-->	    
+	<!--/limit-header-position-->	    
+    </div>	
+</div>
+<div id="box_header" style="width:800px; height:30px;padding-top:7px">
+    <input type="radio" id="radSportbook" name="rdPositionTaking" onclick="DisablePage(); location.href='PositionTaking.aspx'"/> <label for="radSportbook">{Sportbook}</label> &nbsp;&nbsp;
+    <input type="radio" id="radRacing" name="rdPositionTaking"  onclick="DisablePage(); location.href='PositionTakingRacing.aspx'"/> <label for="radRacing">{Racing}</label> &nbsp;&nbsp;
+    <!--number-game-->
+    <input type="radio" id="radNumberGame" name="rdPositionTaking" checked="checked" onclick="DisablePage(); location.href='PositionTakingNumberGame.aspx'"/> <label for="radNumberGame">{NumberGame}</label> &nbsp;&nbsp;
+    <!--/number-game-->
+</div>
+<div id="tbl-container">
+ <div id="boderRight">
+ <table id="ver-zebra" class="nowrap c" cellpadding="0" cellspacing="{cellspacing}" style="width:800px;">
+ <colgroup>
+    	            <col class="vzebra-odd" />    	            
+    	            <col class="vzebra-even" />
+    	            <!--AdditionalRow-->
+                    <col class="vzebra-odd" />
+	                <!--/AdditionalRow-->        
+		            
+    	            <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+                    <col class="vzebra-odd" />
+    	            <col class="vzebra-odd" />
+    	                               
+                    <col class="vzebra-even" />
+    	            <col class="vzebra-even" />
+    	            <col class="vzebra-even" />
+    	            <col class="vzebra-even" />
+    	            <!--NumberGroup-->
+    	            <col class="vzebra-even" />
+    	            <!--/NumberGroup-->
+                </colgroup>
+<thead>
+<tr class="nowrap">
+        <td colspan="{colNum}">&nbsp;</td>
+		<td colspan="4">{NumberGame} ({lblDeadBall})</td>
+		<td colspan="5">{NumberGame} ({lblLiveBall})</td>
+</tr>
+<tr>
+    <td>#</td>
+    <td>{lblUserName}</td>
+    <!--AdditionalRow-->
+        <th>&nbsp;</th>
+	<!--/AdditionalRow-->
+    <th>{lbl1stLastOU}</th>
+	<th>{lbl1stLastOE}</th>
+   	<th>{lblWarrior}</th>
+	<th>{lblOE}</th>
+	
+	<th>{lblOU}</th>
+	<th>{lblOE}</th>
+	<th>{lblHL}</th>
+	<th>{lblNextCombo}</th>
+	<!--NumberGroup-->
+	<th>{lblNumberGroup}</th>
+	<!--/NumberGroup-->
+</tr>
+</thead>
+<tbody>
+<!--row-->
+<tr class="c" bgcolor="{color}">
+	<!--NonRepeat-->
+	<td class="w-order" {rowspan}>{No}</td>
+	<td {rowspan} class="l">
+	    <!--link-->
+	    <a href="{url}">{UserName_vl}</a>
+	    <!--/link-->
+	    <!--editmember-->
+	    <a href="javascript:EditMember_Single('{custid_value}', '{username_value}', '{custid_upline}', '{Customer}');">{UserName_vl}</a>
+	    <!--/editmember-->
+	</td>
+	<!--/NonRepeat-->	
+	<!--Role-->
+	<td class="{firstCol}">{Role}</td>
+	<!--/Role-->	
+	
+	<td>{DeadBall_1stLastOU}</td>
+	<td>{DeadBall_1stLastOE}</td>
+	<td>{DeadBall_Warrior}</td>
+	<td>{DeadBall_OE}</td>
+	
+	<td class="vzebra-PT">{LiveBall_OU}</td>
+	<td class="vzebra-PT">{LiveBall_OE}</td>
+	<td class="vzebra-PT">{LiveBall_HL}</td>
+	<td class="vzebra-PT">{LiveBall_NextCombo}</td>
+	<!--NumberGroup-->
+	<td class="vzebra-PT">{LiveBall_NumberGroup}</td>
+	<!--/NumberGroup-->
+</tr>
+<!--/row-->
+</tbody>
+</table>
+</div>
+</div>
+<input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" />
+</div>

@@ -1,0 +1,151 @@
+﻿<iframe name="UpdateFrm" id="UpdateFrm" style="display: none"></iframe>
+<form action="../Handlers/UpdatePositionTaking_FI.ashx" method="post" id="form" name="form" target="UpdateFrm">
+<!--sub-menu-->
+<!--sub menu will be here-->
+<!--/sub-menu-->
+<div id="page_main">
+<div id="header_main">{title}</div> 
+<div style="width:850px;">
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" id="diverr"
+    style="display: none;">
+    <tr>
+        <td id="1_1" class="emsg_1_1">
+            &nbsp;
+        </td>
+        <td id="1_2" class="emsg_1_2">
+            &nbsp;
+        </td>
+        <td id="1_3" class="emsg_1_3">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td id="2_1" valign="top" class="emsg_2_1">
+            &nbsp;
+        </td>
+        <td valign="top" id="err" class="Enrich">
+        </td>
+        <td id="2_2" class="emsg_2_2">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td id="3_1" class="emsg_3_1">
+            &nbsp;
+        </td>
+        <td id="3_2" class="emsg_3_2">
+            &nbsp;
+        </td>
+        <td id="3_3" class="emsg_3_3">
+            &nbsp;
+        </td>
+    </tr>
+</table>
+</div>
+
+<div class="sptPT" style="width: 850px;">
+<table class="tblRpt" width="100%" border="1" bordercolor="#D4D0C8">	
+    <tr>
+        <td colspan="4" class="b" id="lstusername" style="white-space:normal;">
+             
+        </td>
+    </tr>
+    <!--none-Multi-->
+	<tr class="bg_eb">
+		<td width='25%' class="r">{uname-text}</td>
+		<td width='25%' class="l">{uname-value}</td>
+		<td width='25%' class="r">{fname-text}</td>
+		<td width='25%' class="l">{fname-value}</td>		
+	</tr>
+	
+    <tr class="bg_eb">
+        <td class="r" width="25%">{lname-text}</td>
+        <td class="l" width="25%">{lname-value}</td>
+        <td class="r" width="25%">{phone-text}</td>
+        <td class="l" width="25%">{phone-value}</td>
+    </tr>
+	<tr class="bg_eb">
+		<td class="r">{mobile-text}</td>
+		<td class="l">{mobile-value}</td>
+		<td class="r">{fax-text}</td>
+		<td class="l">{fax-value}</td>
+	</tr>	
+	<tr class="bg_eb">
+		<td class="r">{max-credit-text}</td>
+		<td class="l" nowrap="yes">{max-credit-value}</td>		
+		<td class="r">{disablefi-text}</td>
+		<td class="l">
+		    <input type="checkbox" id="chkDisabledFI" name="chkDisabledFI" {DisabledFI-check}  onclick="DisableFI('chkDisabledFI','chkDisabledFIDownline');"/><!--downline--> {level}&nbsp;&nbsp;&nbsp<input type="checkbox" id="chkDisabledFIDownline" name="chkDisabledFIDownline" {DisabledFIDownline-check} onclick="DisableFI('chkDisabledFI','chkDisabledFIDownline');"/> {leveldownline}<!--/downline-->
+		</td>
+	</tr>	
+    <!--/none-Multi-->	
+    <!--Multi-->
+    <tr class="bg_eb">		
+		<td class="r" colspan="2">{disablefi-text}</td>
+		<td class="l" colspan="2">
+		    <input type="checkbox" id="chkDisabledFI" name="chkDisabledFI" {DisabledFI-check}  onclick="DisableFI('chkDisabledFI','chkDisabledFIDownline');"/><!--downline--> {level}&nbsp;&nbsp;&nbsp<input type="checkbox" id="chkDisabledFIDownline" name="chkDisabledFIDownline" {DisabledFIDownline-check} onclick="DisableFI('chkDisabledFI','chkDisabledFIDownline');"/> {leveldownline}<!--/downline-->
+		</td>
+	</tr>	
+    <!--/Multi-->
+	<tr class="RptHeader">		
+		<td colspan="4" class="c">{comm-text}</td>
+	</tr>	
+	<!--Comm-Member-->
+	<tr class="bg_eb">	
+	    <td class="r" colspan="2">{comm-upline-text}</td>		
+		<td class="l" colspan="2"><input id="txtFinancial" readonly style="width:65px;" value="{commUpline-value}" />  </td>		
+	</tr>		
+	<tr class="bg_eb">	
+	    <td class="r" colspan="2">{comm-downline-text}</td>		
+		<td class="l" colspan="2"><select class="selectcomm" style="width:60px;" id="discountcsFC" {sel-disFC} name="discountcsFC">{discountcsFC-val}</select></td>		
+	</tr>
+	<!--/Comm-Member-->		
+	<!--Comm-SuperMaster-->
+	<tr class="bg_eb">		    
+		<td class="c" colspan="4"><select class="selectcomm" style="width:60px;" id="discountcsFC" {sel-disFC} name="discountcsFC">{discountcsFC-val}</select></td>		
+	</tr>
+	<!--/Comm-SuperMaster-->
+	</table>	
+	
+				<table width="100%" class="tblRpt">
+					<tr class="tblTitleCenter">
+						<td colspan="3">{bet-text}</td>
+					</tr>
+					<tr class="bg_eb">
+						<td class="c tdPT1">{minbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMinbet201" name="txtMinbet201" value="{minbet201-val}" />					
+							<span class="{mbMin}">&gt;=<span id="txtMinbet_Min201">{minbet-min-201}</span></span>
+						</td>
+						<td class="c">{maxbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxbet201" name="txtMaxbet201" value="{maxbet201-val}" />					
+							<span class="{mbMax}">&lt;=<span id="txtMaxbet_Max201">{maxbet-max-201}</span></span>
+						</td>
+						<td class="c">{maxpermatch-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxPerMatch201" name="txtMaxPerMatch201" value="{maxpermatch201-val}" />					
+							<span class="{mpmMin}">&gt;=<span id="txtMaxPerMatch_Min201">{maxpermatch-min-201}</span> and</span>
+							<span class="{mpmMax}">&lt;=<span id="txtMaxPerMatch_Max201">{maxpermatch-max-201}</span></span>
+						</td>
+					</tr>				
+				</table>
+				<div id="divUpdPT201" name="divUpdPT201" style="width: 850px;">
+				    {PT}
+            	</div>	
+ </div>
+  <div class="btnLeft">
+	    <input type="button" class="btnMain" AccountPermisssion="[B]" id="{add-id}" onclick="BtnOnClick();" value="{add-text}">
+    </div>    
+</div>
+<br />
+
+<input type="hidden" id="hdDisabledFI" name="hdDisabledFI" value="{hddisableFI-value}" />	
+<input type="hidden" id="hdDisabledFIDownline" name="hdDisabledFIDownline" value="{hddisableFIDownline-value}" />
+<input type="hidden" id="hdDisabledFI_Old" name="hdDisabledFI_Old" value="{hddisableFI-value}" />	
+<input type="hidden" id="hdDisabledFIDownline_Old" name="hdDisabledFIDownline_Old" value="{hddisableFIDownline-value}" />
+<input type="hidden" id="custid" name="custid" value="{custid-value}" />
+<input type="hidden" id="username" name="username" value="" />
+<input type="hidden" id="isEdit" name="isEdit" value="{isedit-value}" />
+<input type="hidden" id="isNoBgr" name="isNoBgr" value="{isnobgr-value}" />
+
+<script type="text/javascript" src="../../Js/wz_tooltip/wz_tooltip.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_centerwindow.js"></script>
+<script type="text/javascript" src="../../Js/wz_tooltip/tip_balloon.js"></script>

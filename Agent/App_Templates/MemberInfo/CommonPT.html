@@ -1,0 +1,181 @@
+﻿    <!--Mytr-->
+	<tr class="bg_eb {clssTr-text}">    
+		{td-text}
+	</tr>
+	<!--/Mytr-->
+	
+	<!--Mytd-->
+	<td class="{clss-text}" style="width:{width}">{value}</td>
+	<!--/Mytd-->
+	
+	<!--Mytd-rowspan-->
+	<td rowspan="{rownum}" class="{clss-text}">{value}</td>
+	<!--/Mytd-rowspan-->
+	
+	<!--Mytd-colspan-->
+	<td colspan="{colnum}" class="{clss-text}">{value}</td>
+	<!--/Mytd-colspan-->
+	
+	<!--Myinput-copy-->
+	<input type="checkbox" id="{chkCopyId}" {chk-copy} name="{chkCopyId}" onclick="CheckCopyPT(this,arrSuper{bettype},arrMaster{bettype},'{chkAuto}');" />
+	<!--/Myinput-copy-->
+	
+	<!--Myinput-copy-2-->
+	<input type="checkbox" id="{chkCopyId}" {chk-copy} name="{chkCopyId}" onclick="CheckCopyPT(this,arrSuper{bettype});" />
+	<!--/Myinput-copy-2-->
+	
+	<!--Myinput-copy-preset-->
+	<input type="checkbox" id="{chkCopyPreset}" {chk-copypreset} name="{chkCopyPreset}" />
+	<!--/Myinput-copy-preset-->
+	
+	<!--Myinput-auto-->
+	<input type="checkbox" onclick="CheckAutoPreset(this)" id="{chkAutoId}" name="{chkAutoId}" {checked-Auto} />
+	<!--/Myinput-auto-->	
+	
+	<!--Myinput-auto-2-->
+	<input type="checkbox" onclick="CheckAutoPreset(this,null,10)" id="{chkAutoId}" name="{chkAutoId}" {checked-Auto} />
+	<!--/Myinput-auto-2-->
+	
+	<!--MySelect-->
+	<select id="{ddl-Id}" name="{ddl-Id}"  onChange="SelectOnChange('{ddl-Id}');" {disabled} >{ddl-val}</select>
+	<!--/MySelect-->
+	
+	<!--MySelect-2-->
+	<select id="{ddl-Id}" name="{ddl-Id}">{ddl-val}</select>
+	<!--/MySelect-2-->
+	
+	<!--MySelect-3-->
+	<select id="{ddl-Id}" name="{ddl-Id}"  onChange="SelectOnChange('{ddl-Id}',10);" {disabled} >{ddl-val}</select>
+	<!--/MySelect-3-->
+	
+	<!--MyButton-->	
+	<a class="imaLink img" href="javascript:ReducePT('{ddl-Id}',1)">
+    <img class="hand" hspace="1" id="btnReduce1" name="btnReduce1" src="../../App_Themes/AgencyV2/Images/b_down.jpg" />
+    </a>    
+    
+    <a class="imaLink img" href="javascript:IncreasePT('{ddl-Id}',1)">
+    <img class="hand" hspace="1" id="btnIncrease1" name="btnIncrease1" src="../../App_Themes/AgencyV2/Images/b_up.jpg"/>
+    </a>
+
+    <a class="imaLink img" href="javascript:ReducePT('{ddl-Id}',10)">
+    <img class="hand" hspace="1" id="btnReduce10" name="btnReduce10" src="../../App_Themes/AgencyV2/Images/b_sub.jpg"/>
+    </a>
+
+    <a class="imaLink img" href="javascript:IncreasePT('{ddl-Id}',10)">
+    <img class="hand" hspace="1" id="btnIncrease10" name="btnIncrease10" src="../../App_Themes/AgencyV2/Images/b_add.jpg"/>
+    </a>
+	<!--/MyButton-->	
+	
+	<!--MyButton-2-->	
+    <a class="imaLink img" href="javascript:ReducePT('{ddl-Id}',10)">
+    <img class="hand" hspace="1" id="Img3" name="btnReduce10" src="../../App_Themes/AgencyV2/Images/b_sub.jpg"/>
+    </a>
+
+    <a class="imaLink img" href="javascript:IncreasePT('{ddl-Id}',10)">
+    <img class="hand" hspace="1" id="Img4" name="btnIncrease10" src="../../App_Themes/AgencyV2/Images/b_add.jpg"/>
+    </a>
+	<!--/MyButton-2-->	
+	
+	<!--MyTemplMain-->
+	  <table border="1" width="100%" class="tblRpt" style="margin-left:2px;"> 
+	    <tr class="tblTitleCenter">
+		    <td colspan="{title-col}">{pt-text}</td>						
+	    </tr>
+	    <!--text-->	
+	        <!--Data will be here-->
+	    <!--/text-->	
+      </table>
+    <!--/MyTemplMain-->       
+    
+    <!--MyDiv-->
+    <div id="{divId}" name="{divId}" style="width: 850px;" class="{divclss}">
+	    {pt-text}			    
+    </div>
+    <!--/MyDiv-->
+    
+    <!--MyDiv-2-->
+    <div id="{divId}" name="{divId}" style="width: 700px;" class="{divclss}">
+	    {pt-text}			    
+    </div>
+    <!--/MyDiv-2-->
+    
+    <!--DivTitle-->
+    <div class="button_cont">
+        <div class="menu_content">
+            <ul>
+                <li>
+                    <a class="md2" href="#">{sporttype}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/DivTitle-->
+    
+    <!--MinMaxBet-->
+    <table width="100%" class="tblRpt" style="margin-left:2px;">
+		<tr class="tblTitleCenter">
+			<td colspan="3">{bet-text}</td>
+		</tr>
+		<tr class="bg_eb">
+			<td class="c tdPT1">{minbet-text}&nbsp;
+				<input type="text" maxlength="14" id="txtMinbet{sporttype}" name="txtMinbet{sporttype}" value="{minbet-val}" />					
+				<span class="{mbMin}">&gt;=<span id="txtMinbet_Min{sporttype}">{minbet-min}</span></span>
+			</td>
+			<td class="c">{maxbet-text}&nbsp;
+				<input type="text" maxlength="14" id="txtMaxbet{sporttype}" name="txtMaxbet{sporttype}" value="{maxbet-val}" />					
+				<span class="{mbMax}">&lt;=<span id="txtMaxbet_Max{sporttype}">{maxbet-max}</span></span>
+			</td>
+			<td class="c">{maxpermatch-text}&nbsp;
+				<input type="text" maxlength="14" id="txtMaxPerMatch{sporttype}" name="txtMaxPerMatch{sporttype}" value="{maxpermatch-val}" />					
+				<span class="{mpmMin}">&gt;=<span id="txtMaxPerMatch_Min{sporttype}">{maxpermatch-min}</span> and</span>
+				<span class="{mpmMax}">&lt;=<span id="txtMaxPerMatch_Max{sporttype}">{maxpermatch-max}</span></span>
+			</td>
+		</tr>				
+	</table>
+	<!--/MinMaxBet-->
+	<!--ViewMinMaxBet-->
+    <table class="tblRpt" width="100%" border="1" style="margin-left:2px">
+		<tr class="tblTitleCenter">
+			<td colspan="6">{bet-text}</td>
+		</tr>
+		<tr class="bg_eb" style="width:14%">
+			<td class="c tdPT1">{minbet-text}&nbsp;							
+			</td>
+			<td class="c tdPT1" style="width:20%">
+				{minbet-val}
+			</td>
+			<td class="c" style="width:13%">{maxbet-text}&nbsp;							
+			</td>
+			<td class="c" style="width:20%">
+				{maxbet-val}
+			</td>
+			<td class="c" style="width:13%">{maxpermatch-text}&nbsp;							
+			</td>
+			<td class="c" style="width:20%">
+				{maxpermatch-val}
+			</td>
+		</tr>				
+	</table>	
+	
+	<!--/ViewMinMaxBet-->
+    <!--TablePT-->
+    <table class="sptPT" style="width: 75%;">
+        <tr>
+            <td class="l"  >
+                {Status}
+            </td>
+        </tr>
+        <tr>
+            <td>{MinMaxBet}</td>
+        </tr>
+        <tr>
+            <td>{Pt}</td>
+        </tr>
+    </table>
+    <!--/TablePT-->
+    <!--CheckboxDisableHR-->
+    {disablehr-text}&nbsp;<input type="checkbox" id="chkDisabled{sporttype}" {DisabledHR-check} name="chkDisabled{sporttype}" onclick="DisableHR('chkDisabled{sporttype}','chkDisabled{sporttype}Downline');"/><!--downline-->&nbsp;{level}&nbsp;&nbsp;&nbsp<input type="checkbox" id="chkDisabled{sporttype}Downline" name="chkDisabled{sporttype}Downline" {DisabledHRDownline-check} onclick="DisableHR('chkDisabled{sporttype}','chkDisabled{sporttype}Downline');"/>&nbsp;{leveldownline}<!--/downline-->
+    <!--/CheckboxDisableHR-->
+    <!--CheckboxDisableHR-NoneEdit-->
+    {disablehr-text}&nbsp;<input type="checkbox" disabled {chkHrstatus} />
+    <!--/CheckboxDisableHR-NoneEdit-->

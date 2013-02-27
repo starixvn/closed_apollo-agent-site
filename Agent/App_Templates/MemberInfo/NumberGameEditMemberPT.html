@@ -1,0 +1,158 @@
+<head>
+    <style type="text/css">
+        .style1
+        {
+            width: 61px;
+        }
+        #chkAuto161NGD
+        {
+            width: 20px;
+        }
+        .style2
+        {
+        	width: 90px;
+        }
+        
+        .hide
+        {
+        	display:none;
+        }
+    </style>
+</head>
+<table class="sptPT" style="width:85%;">	
+	<tr>
+		<td>
+        {ChkUpdatePT}
+			<div id="divUpdPT161" name="divUpdPT161">
+				<table border="1" class="tblRpt" width="100%" bordercolor="#D4D0C8">										
+					<tr class="bg_eb">	
+	                    <td colspan="{col-title}"></td>		
+	                    <td>{1stlastou-text}</td>
+	                    <td>{1stlastoe-text}</td>	
+	                    <td>{w-text}</td>
+	                    <td>{oe-text}</td>                
+                     </tr>					
+					<tr class="bg_eb">
+						<td rowspan="{dead-row}">{deadball-text}</td>
+						<!--none-Multi-->						
+						<!--none-edit-min-->
+						<td class="r">{a-presetpt-text}</td>
+						<td>{a-1stou-val}</td>
+						<td>{a-1stoe-val}</td>
+						<td>{a-warrior-val}</td>
+						<td>{a-oe-val}</td>	
+						
+						<!--limit-Copy1stOU-->
+						<td rowspan="{dead-row}" colspan="3" class="l">						    
+							<input type="checkbox" {chk-1stoud} id="chkCopy1611stOUD" name="chkCopy1611stOUD" onclick="CheckCopyPT(this,arr161Super81);" />
+							{copy-1stou-text}							
+						</td>				
+						<!--/limit-Copy1stOU-->
+					</tr>	
+					<!--none-Master-->				
+					<tr class="bg_eb">			
+						<td class="r">{master-text}</td>
+						<td>{m-1stou-val}</td>
+						<td>{m-1stoe-val}</td>
+						<td>{m-warrior-val}</td>
+						<td>{m-oe-val}</td>	
+																
+					</tr>	
+					<!--/none-Master-->									
+					<tr class="bg_eb">					
+					<!--/none-Multi-->		
+						<td class="r">{p-presetpt-text}</td><!--/none-edit-min-->
+						<td>{p-1stou-val}{p-1stou-btn}</td>
+						<td>{p-1stoe-val}</td>
+						<td>{p-warrior-val}</td>
+						<td>{p-oe-val}</td>	
+						
+						<!--Copy1stOU--><!--Copy1stOU Will be here--><!--/Copy1stOU-->											
+					</tr>
+														
+					<tr class="bg_eb {clssHidden}">
+						<!--none-edit-min-->	
+						<td rowspan="2" class="r">{au-presetpt-text}</td>
+						<td><input type="checkbox" id="chkAuto1611stOUD" name="chkAuto1611stOUD" {checked-1stOUD} onclick="CheckAutoPreset(this)" /></td>
+						<td><input type="checkbox" id="chkAuto1611stOED" name="chkAuto1611stOED" {checked-1stOED} onclick="CheckAutoPreset(this,'chkCopy1611stOUD')" /></td>
+						<td><input type="checkbox" id="chkAuto161WRD" name="chkAuto161WRD" {checked-WRD} onclick="CheckAutoPreset(this,'chkCopy1611stOUD')" /></td>	
+						<td><input type="checkbox" id="chkAuto161OED" name="chkAuto161OED" {checked-OED} onclick="CheckAutoPreset(this,'chkCopy1611stOUD')" /></td>												
+					</tr>
+					<tr class="bg_eb {clssHidden}">
+						<td>{au-1stou-val}{au-1stou-btn}</td>
+						<td>{au-1stoe-val}</td>
+						<td>{au-warrior-val}</td>
+						<td>{au-oe-val}</td>	
+						
+							<!--/none-edit-min-->						
+					</tr>
+													
+					<tr class="bg_eb">
+						<td colspan="2"></td>
+						<td>{ou-text}</td>
+						<td>{oe-text}</td>
+						<td class="style1">{hl-text}</td>
+						<td>{cb-text}</td>
+						<td class="{hide} style2">{nb-text}</td>
+						<td colspan="2" class="l">						    
+						</td>					
+					</tr>									
+					<tr class="bg_eb">
+						<td rowspan="{live-row}">{live-text}</td>
+						<!--none-Multi-->	
+						<!--none-edit-min-->					
+						<td class="r">{a-preset-live}</td>
+						<td>{a-Lou-val}</td>
+						<td>{a-Loe-val}</td>
+						<td class="style1">{a-Lhl-val}</td>
+						<td>{a-Lcb-val}</td>	
+						<td class="{hide}">{a-NumGr-val}</td>	
+						<!--limit-CopyOUL-->												 
+						<td rowspan="{live-row}" colspan="3" class="l">						    
+							<input type="checkbox" {chk-oul} id="chkCopy161OUL" name="chkCopy161OUL" onclick="CheckCopyPT(this,arr161Super85);" />
+							{copy-ouL-text}							
+						</td>	
+						<!--/limit-CopyOUL-->			
+					</tr>
+					<!--none-Master-->					
+					<tr class="bg_eb">		
+						<td class="r">{master-text}</td>
+						<td>{m-Lou-val}</td>
+						<td>{m-Loe-val}</td>
+						<td>{m-Lhl-val}</td>
+						<td>{m-Lcb-val}</td>
+						<td class="{hide}">{m-NumGr-val}</td>												
+					</tr>
+					<!--/none-Master-->										
+					<tr class="bg_eb">	
+					<!--/none-Multi-->							
+						<td class="r">{p-preset-live}</td><!--/none-edit-min-->			
+						<td>{p-Lou-val}{p-Lou-btn}</td>
+						<td>{p-Loe-val}</td>
+						<td>{p-Lhl-val}</td>
+						<td>{p-Lcb-val}</td>	
+						<td class="{hide}">{p-NumGr-val}</td>											
+					    <!--CopyOUL--><!--CopyOUL Will be here--><!--/CopyOUL-->	
+					</tr>						
+					<!--none-edit-min-->		
+					<tr class="bg_eb {clssHidden}">		
+						<td rowspan="2" class="r">{au-preset-live}</td>
+						<td><input type="checkbox" onclick="CheckAutoPreset(this)" id="chkAuto161OUL" name="chkAuto161OUL" {checked-LOU} /></td>
+						<td><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy161OUL')" id="chkAuto161OEL" name="chkAuto161OEL" {checked-LOE} /></td>
+						<td><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy161OUL')" id="chkAuto161HLL" name="chkAuto161HLL" {checked-LHL} /></td>						
+						<td ><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy161OUL')" id="chkAuto161NCL" name="chkAuto161NCL" {checked-NCL} /></td>
+					    <td class="{hide}"><input type="checkbox" onclick="CheckAutoPreset(this,'chkCopy161OUL')" id="chkAuto161NGL" name="chkAuto161NGL" {checked-NGL} /></td>
+					</tr>		
+					<tr class="bg_eb {clssHidden}">		
+						<td>{au-Lou-val}{au-Lou-btn}</td>
+						<td>{au-Loe-val}</td>
+						<td>{au-Lhl-val}</td>	
+						<td>{au-Lcb-val}</td>	
+						<td class="{hide}">{au-NumGr-val}</td>					
+					</tr>					
+					<!--/none-edit-min-->				
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>

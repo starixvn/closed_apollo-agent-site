@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.creditbalance}</title>
+    <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Reports/Resources/Reports.css" rel="stylesheet" type="text/css" />
+    <link href="../PositionTakingList/Resources/PositionTakingList.css" rel="stylesheet" type="text/css" />
+    <link href="../CustomerList/Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body onload="initContextMenu(0, 110)">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td>
+                <div id="page_main">
+                    <div id="header_main">
+                        {static:Resources.Lang.creditbalance} {printer}
+                    </div>
+                    <div id="box_header" style="width: 100%">
+                        <table class="l" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td>
+                                    {searchControl}
+                                </td>
+                            </tr>
+                            <!--AllowTransferSection-->
+                            <tr>
+                                <td>
+                                    <span class="warning">
+                                        <ul>
+                                            <li>{allowtransfer}</li></ul>
+                                    </span>
+                                </td>
+                            </tr>
+                            <!--/AllowTransferSection-->
+                        </table>
+                    </div>
+                    <div id="tbl-container">
+                        <div id="boderRight">
+                            {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
+                            <div id="ctxContainer">
+                                {ContextMenu}</div>
+                            <table id="tblMain" class="{ShowHideColumnClasses}" border="1" cellpadding="2" cellspacing="0" style="width: 100%;">
+                                <thead>
+                                    <tr id="headerTop" class="RptHeader">
+                                        <td class="NO">
+                                            {no}
+                                        </td>
+                                        <td class="ST">
+                                            {status}
+                                        </td>
+                                        <td>
+                                            {username}
+                                        </td>
+                                        <td class="FN">
+                                            {firstname}
+                                        </td>
+                                        <td class="LN">
+                                            {lastname}
+                                        </td>
+                                        <td class="CD">
+                                            {credit}
+                                        </td>
+                                        <td class="BL">
+                                            {balance}
+                                        </td>
+                                        <td class="YB">
+                                            {yesbalance}
+                                        </td>
+                                        <td class="BC">
+                                            {betcredit}
+                                        </td>
+                                        <!--LCSWinLimit-->
+                                        <td class="LCS">
+                                            {static:Resources.Lang.LCSWinLimit}
+                                        </td>
+                                        <!--/LCSWinLimit-->
+                                        <td class="OT">
+                                            {outtxn}
+                                        </td>
+                                        <td class="TO">
+                                            {memberturnover}
+                                        </td>
+                                        <td class="LL" style="width: 110px;">
+                                            {lastlogin}
+                                        </td>
+                                        <td class="LI">
+                                            {lastloginip}
+                                        </td>
+                                        <td class="UN">
+                                            {username}
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--Rows-->
+                                    <tr class="{BgRow}">
+                                        <td class="w-order">
+                                            {no_value}
+                                        </td>
+                                        <td class="ST">
+                                            {status_value}
+                                        </td>
+                                        <td class="l">
+                                            <!--UrlAgent-->
+                                            <a href="javascript:viewBal('{Action}', {CustId})">{username_value} </a>
+                                            <!--/UrlAgent-->
+                                            <!--UrlMasterSuper-->
+                                            {username_value}<!--/UrlMasterSuper-->
+                                        </td>
+                                        <td class="FN l">
+                                            {firstname_value}&nbsp;
+                                        </td>
+                                        <td class="LN l">
+                                            {lastname_value}&nbsp;
+                                        </td>
+                                        <td class="CD r">
+                                            <!--PermissionUrlCredit-->
+                                            <a href="javascript:void('');" onclick="openTransfer('{custId}','{credit_value}','{usn}','{RoleId}');return false;">{credit_value}</a><!--/PermissionUrlCredit-->
+                                            <!--PermissionCredit-->
+                                            {credit_value}<!--/PermissionCredit-->
+                                        </td>
+                                        <td class="BL r">
+                                            <!--LinkAgent-->
+                                            <a href="javascript:void('');" onclick="showTransYesBalance('{custId}');">{balance_value}</a><!--/LinkAgent-->
+                                        </td>
+                                        <td class="YB r">
+                                            <!--YesAgent-->
+                                            <a href="javascript:void('');" onclick="showTransYesBalance('{custId}');">{yesbalance_value}</a><!--/YesAgent-->
+                                        </td>
+                                        <td class="BC r">
+                                            {betcredit_value}
+                                        </td>
+                                        <!--LCSValue-->
+                                        <td class="LCS r">
+                                            {LCS}
+                                        </td>
+                                        <!--/LCSValue-->
+                                        <td class="OT r">
+                                            <!--LinkOut-->
+                                            <a href="javascript:viewOutSt({CustId},'{UserName}');">{outtxn_value}</a><!--/LinkOut-->
+                                            <!--UrlOut-->
+                                            {outtxn_value}<!--/UrlOut-->
+                                        </td>
+                                        <td class="TO r">
+                                            {memberturnover_value}
+                                        </td>
+                                        <td class="LL bl_time">
+                                            {lastlogin_value}
+                                        </td>
+                                        <td class="LI bl_time">
+                                            {lastloginip_value}&nbsp;
+                                        </td>
+                                        <td class="UN l">
+                                            <!--UrlAgent-->
+                                            <a href="javascript:viewBal('{Action}', {CustId})">{username_value} </a>
+                                            <!--/UrlAgent-->
+                                            <!--UrlMasterSuper-->
+                                            {username_value}<!--/UrlMasterSuper-->
+                                        </td>
+                                    </tr>
+                                    <!--/Rows-->
+                                    <!--PagingFooter-->
+                                    <tr>
+                                        <td colspan="15">
+                                            {pagingControl}
+                                        </td>
+                                    </tr>
+                                    <!--/PagingFooter-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="../../_GlobalResources/Js/Core.js"></script>
+    <script type="text/javascript" src="../../_Components/AGEWnd/AGEWnd.js"></script>
+    <script type="text/javascript" src="../../_Components/ShowHideColumn/Resources/ContextMenuColumns_Control.js"></script>
+    <script type="text/javascript" src="Resources/CreditBalanceList.js"></script>
+</body>
+</html>

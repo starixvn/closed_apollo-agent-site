@@ -1,0 +1,24 @@
+{JS}
+<table cellpading="0" cellspacing="0" border="0">
+    <tr>
+        <td>
+            <input id="{txtDate}" class="{TxtDateCls}" value="{currentDate}" {disabled} type="text" size="13" name="{txtDate}" readonly="readonly" />
+        </td>
+        <td>
+        <!--limit-calendar-->        
+           <img alt="" id="{triggerId}" {disabled} title="Date selector" class="img-date-selector" style="margin: 0px; cursor:pointer;"  src="../../App_Themes/AgencyV2/Images/cal.gif" />
+        <!--/limit-calendar-->       
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+  Calendar.setup({
+  inputField     :    "{txtDate}",
+  ifFormat       :    "mm/dd/y",
+  button         :    "{triggerId}",
+  singleClick    :    {IsSingleClick},
+  showsTime      :		{ShowTime}
+  });
+</script>
+

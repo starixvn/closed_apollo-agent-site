@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>{static:Resources.Lang.handhistorydetail}</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table id="casino-betlist-a" style="width: 100%;">
+        <!--tableName-->
+        <thead>
+            <tr>
+                <th colspan="2" class="hd2 b">
+                    <span>{tablename} - {datetime}</span>
+                </th>
+            </tr>
+        </thead>
+        <!--/tableName-->
+        <!--userName-->
+        <tr class="th b">
+            <td colspan="2" align="center">
+                {Player}: {UserName}
+            </td>
+        </tr>
+        <!--/userName-->
+        <!--Details-->
+        <!--resultValue-->
+        <tr class="bg_eb">
+            <td colspan="2" align="center" style="padding: 3px 3px 3px 3px">
+                {result_vl}
+            </td>
+        </tr>
+        <!--/resultValue-->
+        <!--/Details-->
+        <!--total-->
+        <tr>
+            <td class="l">
+                {bet}
+            </td>
+            <td class="r">
+                {bet_vl}
+            </td>
+        </tr>
+        <tr>
+            <td class="l">
+                {winloss}
+            </td>
+            <td class="r">
+                {winloss_vl}
+            </td>
+        </tr>
+        <!--/total-->
+    </table>
+</body>
+</html>

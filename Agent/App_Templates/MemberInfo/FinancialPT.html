@@ -1,0 +1,82 @@
+<table class="sptPT" style="width: 75%">	
+	<tr> 
+		<td>
+			<div id="divUpdInfo201" name="divUpdInfo201">
+				<table width="100%" class="tblRpt">
+					<tr class="tblTitleCenter">
+						<td colspan="3">{bet-text}</td>
+					</tr>
+					<tr class="bg_eb">
+						<td class="c tdPT1">{minbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMinbet201" name="txtMinbet201" value="{minbet201-val}" />					
+							<span class="{mbMin}">&gt;=<span id="txtMinbet_Min201">{minbet-min-201}</span></span>
+						</td>
+						<td class="c">{maxbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxbet201" name="txtMaxbet201" value="{maxbet201-val}" />					
+							<span class="{mbMax}">&lt;=<span id="txtMaxbet_Max201">{maxbet-max-201}</span></span>
+						</td>
+						<td class="c">{maxpermatch-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxPerMatch201" name="txtMaxPerMatch201" value="{maxpermatch201-val}" />					
+							<span class="{mpmMin}">&gt;=<span id="txtMaxPerMatch_Min201">{maxpermatch-min-201}</span> and</span>
+							<span class="{mpmMax}">&lt;=<span id="txtMaxPerMatch_Max201">{maxpermatch-max-201}</span></span>
+						</td>
+					</tr>				
+				</table>
+			</div>
+		</td>
+	</tr>	
+	<tr>
+		<td>
+			<div id="divUpdPT201" name="divUpdPT201">
+				<table border="1" width="100%" class="tblRpt" bordercolor="#D4D0C8"> 
+					<tr class="tblTitleCenter">
+						<td colspan="{title-col}">{pt-text}</td>						
+					</tr>
+					<!--none-edit-->
+					<tr class="bg_eb" style="display:none">
+						<td class="r">{auto-super-text}</td>
+						<td colspan="5" class="l">
+							<input type="checkbox" id="chkAuto201" onclick="CheckAutoPreset(this,arrDdl201);" name="chkAuto201" />
+						</td>
+						
+					</tr>
+					<!--/none-edit-->
+					<tr class="bg_eb">    
+						<!--none-member--><td></td><!--/none-member-->
+						<td class="l" style="width:{150px};text-align:center;">{ou-text}</td>	
+						<td class="l" style="width:{150px};text-align:center;">{oe-text}</td>	
+						<td></td>
+					</tr>
+					<tr class="bg_eb">
+						<!--none-member--><td class="r">{a-presetpt-text}</td><!--/none-member-->
+						<td class="c">{a-ou-val}{a-ou-btn}</td>											
+						<td class="c">{a-oe-val}</td>											
+						<td rowspan="{copy-ou-col}" class="l">
+						<input type="checkbox" id="chkCopy201OU" {chk-ou} name="chkCopy201OU" onclick="CheckCopyPT(this,arrSuper201,arrMaster201,'{chkAuto-201}');" />
+						{copy-ou-text}</td>
+					</tr>
+					<!--none-member-->
+					<tr class="bg_eb">
+						<td class="r" style="width:20%">{p-presetpt-text}</td>
+						<td class="c">{p-ou-val}{p-ou-btn}</td>						
+						<td class="c">{p-oe-val}</td>										   
+					</tr>
+					<!--/none-member-->
+					<!--auto-preset-->
+					<tr class="bg_eb {hdauto}"> 
+						<td rowspan="2" class="r">{au-presetpt-text}</td>
+						<td class="c"><input type="checkbox" onclick="CheckAutoPreset(this)" id="chkAuto201OU" name="chkAuto201OU" {checked-OU} /></td>						
+						<td class="c"><input type="checkbox" onclick="CheckAutoPreset(this)" id="chkAuto201OE" name="chkAuto201OE" {checked-OE} /></td>						
+						<td></td>
+					</tr>
+					<tr class="bg_eb {hdauto}">
+						<td class="c">{au-ou-val}{au-ou-btn}</td>						
+						<td class="c">{au-oe-val}</td>						
+						<td></td>
+					</tr>
+					<!--/auto-preset-->
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>

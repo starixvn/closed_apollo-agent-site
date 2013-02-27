@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+    <title>{PageTitle}</title>
+    <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/P2P.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="warning" class="warningMsg">
+            {WarningMsg}
+        </div>
+        <!--Msg-->
+        <div id="errMsg">
+            {ErrorMsg}
+        </div>
+        <!--/Msg-->
+        <div class="left">
+            {EditGame}</div>
+        <div style="display: none" id="custids">{UserIDs}</div>
+        <div class="last">
+            <table id="p2p-userinfo">
+                <tbody>
+                    <tr>
+                        <td id="custnames" colspan="4" style="text-align: justify;">{UserNames}</td>
+                    </tr>
+                    <!--UserInfos-->
+                    <tr>
+                        <td class="right tdWidth">{UserName}</td>
+                        <td class="tdWidth">{UserName_vl}</td>
+                        <td class="right tdWidth">{ScreenName}</td>
+                        <td class="tdWidth"><span id="screenName">{ScreenName_vl}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="right">{FirstName}</td>
+                        <td>{FirstName_vl}</td>
+                        <td class="right">{LastName}</td>
+                        <td>{LastName_vl}</td>
+                    </tr>
+                    <tr>
+                        <td class="right">{Phone}</td>
+                        <td>{Phone_vl}</td>
+                        <td class="right">{MobilePhone}</td>
+                        <td>{MobilePhone_vl}</td>
+                    </tr>
+                    <!--/UserInfos-->
+                    <tr>
+                        <td class="b innerHeader" colspan="4">
+                            <div id="betSetting" style="float: left; width: 25%">{BetSetting}</div>
+                            <div class="msgHeight">
+                                <input accountpermisssion="[B]" type="button" {btndisabled} id="imgMaxTransfer" title="{saveBetSetting}" class="save" onclick="singleSubmit('1', 'false');" />
+                            </div>
+                        </td>
+                    </tr>
+                    <!--ATA_Item-->
+                    <tr>
+                        <td class="right">{ATA}</td>
+                        <td><span id="ata">{ATA_vl}</span></td>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                    <!--/ATA_Item-->
+                    <tr>
+                        <td class="right">{MemberMaxTranCredit}</td>
+                        <td><input id="maxTranCredit" type="text" maxlength="13" oncontextmenu="return false;" onkeyup="formatNumber(event)" onkeydown="return numberOnly(event);" value="{maxTranCreditValue}" style="width: 98%" /></td>
+                        <td colspan="2"><input id="chkResetTranLimit" type="checkbox" {disabledReset} {checked_vl} /><label for="chkResetTranLimit">&nbsp;{DailyResetLimit}</label></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>({MinTransfer} - {MaxTransfer})</td>
+                        <td colspan="2">({FullMulTranResetLimit})</td>
+                    </tr>
+                    <tr>
+                        <td class="b innerHeader" colspan="4">
+                            <div id="gameSetting" style="float: left; width: 25%">{GameSetting}</div>
+                            <div class="msgHeight">
+                                <input accountpermisssion="[B]" type="button" {btndisabled} id="imgGameSetting" title="{saveGameSetting}" class="save" onclick="singleSubmit('2', 'false');" />&nbsp;
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="b center">{GameType}</td>
+                        <td colspan="3" class="b">{StakeLevel}</td>
+                    </tr>
+                    <!--GameRow-->
+                    <tr>
+                        <td class="right">{GameType_vl}</td>
+                        <td colspan="3">
+                            <div id="divGameSetting{ID}"><span id="bettypeID{bettypeID}" style="display: none">{BettypeValue}</span>
+                                <input type="checkbox" id="chkFun{FunID}" {checkedFun} disabled="disabled" value="{funValue}" />
+                                <label for="chkFun{FunID}">&nbsp;{Fun_vl}</label>
+                                <input type="checkbox" id="chkLow{LowID}" {checkedLow} {disabledLow} />
+                                <label for="chkLow{LowID}">&nbsp;{Low_vl}</label>
+                                <input type="checkbox" id="chkMed{MedID}" {checkedMed} {disabledMed} />
+                                <label for="chkMed{MedID}">&nbsp;{Med_vl}</label>
+                                <input type="checkbox" id="chkHigh{HighID}" {checkedHigh} {disabledHigh} />
+                                <label for="chkHigh{HighID}">&nbsp;{High_vl}</label>
+                                <input type="checkbox" id="chkVip{VipID}" {checkedVip} {disabledVip} />
+                                <label for="chkVip{VipID}">&nbsp;{Vip_vl}</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--/GameRow-->
+                    <tr>
+                        <td class="b innerHeader" colspan="4">
+                            <div id="commission" style="float: left; width: 25%">{Commission}</div>
+                            <div class="msgHeight">
+                                <input accountpermisssion="[B]" type="button" {btndisabled} id="imgCommission" title="{saveCommission}" class="save" onclick="singleSubmit('3', 'false');" />&nbsp;
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="b">{CommUplineLevel}</td>
+                        <td class="b" colspan="2">{CommLevel}</td>
+                    </tr>
+                    <!--CommRow-->
+                    <tr>
+                        <td class="right">{Games}</td>
+                        <td>
+                            <div id="divCommUpline{UpID}">{GamesUpline_vl}</div>
+                        </td>
+                        <td colspan="2">
+                            <div id="divComm{ID}">{Games_vl}</div>
+                        </td>
+                    </tr>
+                    <!--/CommRow-->
+                </tbody>
+            </table>
+        </div>
+        <div class="btnLeft" >
+            <input id="btnSubmit" accountpermisssion="[B]" type="button" {btndisabled} value="{Submit}" onclick="btnSubmit_OnClick();" class="btnMain" />
+        </div>
+    </form>
+    <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="Resources/P2P.js" type="text/javascript"></script>
+</body>
+</html>

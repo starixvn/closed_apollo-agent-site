@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="SetNickName.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.SetNickName.SetNickName_Page" %>

@@ -1,0 +1,62 @@
+{StyleSheet}
+
+<div id="page_main">
+<div id="header_main">
+    <div>
+    <!--limit-header-position-normal-->
+        {lblPositionTaking}		
+	<!--/limit-header-position-normal-->
+    </div>    
+</div>
+<div id="tbl-container">
+ <div id="boderRight">
+    <table id="tbl-rpt" class="tblRpt nowrap c" cellspacing="{cellspacing}" cellpadding="0" border="0" style="width:50%;">
+        <!--header-->
+        <thead>
+        <tr class="nowrap RptHeader">
+            <td colspan="{colNum}">&nbsp;</td>
+            <!--GameKind-->
+                <td {GameKindColSpan}>{lblGameKind}</td>
+            <!--/GameKind-->
+        </tr>
+        <tr> 
+            <td class="RptHeader">#</td>
+            <td class="RptHeader">{lblUserName}</td>	
+            <!--AdditionalRow-->
+            <td class="RptHeader">&nbsp;</td>
+		    <!--/AdditionalRow-->
+            <!--GameType-->
+                <td {GameTypeClass}>{lblGameType}</td>
+            <!--/GameType-->
+        </tr>
+        </thead>
+        <!--/header-->
+        <tbody>
+        <!--row-->
+        <tr class="c" bgcolor="{color}" onmouseover="bgColor='{overcolor}'" onmouseout="bgColor='{color}'">
+            <!--NonRepeat-->
+            <td class="w-order" {rowspan}>{No}</td>
+            <td {rowspan} class="l">
+	            <!--link-->
+	            <a href="javascript:ViewBingoDL('{type}','{custid_value}','{UserName_vl}')">{UserName_vl}</a>
+	            <!--/link-->
+	            <!--editmember-->
+	            <a href="javascript:EditBG('{custid_value}');">{UserName_vl}</a>
+	            <!--/editmember-->
+	        </td>
+	        <!--/NonRepeat-->
+	        <!--Role-->
+	        <td class="{firstCol}">{Role}</td>
+	        <!--/Role-->	
+            <!--rowdata-->
+            <td style="color:{normalCol}" >{rowdata}</td>
+            <!--/rowdata-->
+        </tr>
+        <!--/row-->
+        </tbody>
+    </table>
+ </div>
+</div>
+
+<input type="hidden" id="rowcount" name="rowcount" value="{rowcount}" />
+</div>

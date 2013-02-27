@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#"  AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="EditMultipleMasters.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.PositionTaking.Super.EditMultipleMasters_Page" %>

@@ -1,0 +1,70 @@
+<table class="sptPT" style="width: 75%">	
+	<tr>
+		<td>
+			<div id="divUpdInfo99_M" name="divUpdInfo99_M">
+				<table width="100%" class="tblRpt">
+					<tr class="tblTitleCenter">					
+						<td colspan="3">{bet-text}</td>
+					</tr>
+					<tr class="bg_eb">
+						<td class="c tdPT1">{minbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMinbet99_M" name="txtMinbet99_M" value="{minbet99_M-val}" />					
+							<span class="{mbMin}">&gt;=<span id="txtMinbet_Min99_M">{minbet-min-99_M}</span></span>
+						</td>
+						<td class="c">{maxbet-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxbet99_M" name="txtMaxbet99_M" value="{maxbet99_M-val}" />					
+							<span class="{mbMax}">&lt;=<span id="txtMaxbet_Max99_M">{maxbet-max-99_M}</span></span>
+						</td>
+						<td class="c">{maxpermatch-text}&nbsp;
+							<input type="text" maxlength="14" id="txtMaxPerMatch99_M" name="txtMaxPerMatch99_M" value="{maxpermatch99_M-val}" />					
+							<span class="{mpmMin}">&gt;=<span id="txtMaxPerMatch_Min99_M">{maxpermatch-min-99_M}</span> and</span>
+							<span class="{mpmMax}">&lt;=<span id="txtMaxPerMatch_Max99_M">{maxpermatch-max-99_M}</span></span>
+						</td>
+					</tr>				
+				</table>
+			</div>
+		</td>
+	</tr>	
+	<tr>
+		<td>
+			<div id="divUpdPT99_M" name="divUpdPT99_M">
+				<table border="1" width="100%" class="tblRpt" bordercolor="#D4D0C8">
+					<tr class="tblTitleCenter">
+						<td colspan="{title-col}">{pt-text}</td>
+					</tr>
+					<!--none-edit-->
+					<tr class="bg_eb" style="display:none">
+						<td class="r">{auto-super-text}</td>
+						<td colspan="5" class="l">
+							<input type="checkbox" id="chkAuto99_M" onclick="CheckAutoPreset(this,arrDdl99_M);" name="chkAuto99_M" />
+						</td>
+					</tr>
+					<!--/none-edit-->
+					<tr class="bg_eb">
+						<!--none-member--><td></td><!--/none-member-->
+						<td>{mp-text}</td>						
+					</tr>
+					<tr class="bg_eb">
+						<!--none-member--><td class="r">{a-presetpt-text}</td><!--/none-member-->
+						<td>{a-mp-val}{a-mp-btn}</td>						
+					</tr>
+					<!--none-member-->
+					<tr class="bg_eb">
+						<td class="r">{p-presetpt-text}</td>
+						<td>{p-mp-val}{p-mp-btn}</td>						
+					</tr>
+					<!--/none-member-->
+					<!--auto-preset-->
+					<tr class="bg_eb {hdauto}">
+						<td rowspan="2" class="r">{au-presetpt-text}</td>
+						<td><input type="checkbox" onclick="CheckAutoPreset(this)" id="chkAuto99_M" name="chkAuto99_M" {checked-mp} /></td>						
+					</tr>
+					<tr class="bg_eb {hdauto}">
+						<td>{au-mp-val}{au-mp-btn}</td>						
+					</tr>
+					<!--/auto-preset-->
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Report - Agent Match Win/Loss Detail</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<style type="text/css">
+<!--
+.style1 {font-weight: bold}
+    .style2
+    {
+        font-weight: normal;
+    }
+-->
+</style>
+</head>
+
+<body>
+<h2 class="h2">輸贏報告資料</h2>
+<p><span class="rpt-head1">定義:</span> </p>
+<p>這份報告顯示所有會員和代理每場賽事的輸贏資料。您可以選擇所需的日期然後點擊提交按鈕</p>
+<center>
+  <img src="images/AgMatchWL/MatchWinLossDetail.jpg" alt="Match Win/Loss Detail"/>
+  <br /> 
+  <em>圖 4.1</em>
+</center>
+<span class="rpt-head1">用詞註解:</span>
+<ul>
+  <li>投注額: 總投注數額</li>
+  <li>投注類別: 被選定進行投注的投注類別</li>
+  <li>會員輸贏: 會員輸贏的數額</li>
+  <li>會員佣金: 會員從代理處得到的佣金數額</li>
+  <li> 會員總和: 會員包括佣金的總輸贏數額</li>
+  <li> 代理輸贏: 代理基於佔成數的輸贏數額</li>
+  <li>代理佣金: 扣除會員佣金後, 代理收到或支付予上線的佣金數額</li>
+  <li>代理總和: 代理包括佣金的總輸贏數額</li>
+  <li>公司佣金: 代理從上線處得到的佣金數額</li>
+  <li>公司總和: 代理需支付予或從上線處接收到的總數額</li>
+</ul>
+<span class="rpt-head1">如何理解報告:</span>
+<p>在這份報告中, 會員投注額 = 100, 賠率 = 0.66, 會員折扣 = 0.2%, 代理折扣  =0.2%, 代理佔成數 = 30% 及會員贏得此投注。
+根據賽事 FC Tokyo -vs- Jubilo Iwata 作為例子以理解如何計算此報告: (圖4.1中, 第一行)。
+</p>
+<ul>
+  <li>會員輸贏 = 投注額 * 賠率 = 100 * 0.66 = <b>66</b>.</li>
+    <li>會員佣金 = 投注額 * 會員折扣 = 100 * 0.2% = <b>0.2</b></li>
+  <li>會員總和 = 會員輸贏 + 會員佣金 = 66 + 0.2 = 
+      <b>66.2</b></li>
+  <li>代理輸贏 = - (會員輸贏* 代理佔成數) = -(66 * 30%) =<b> 
+      -19.8</b></li>
+    <li>代理佣金 = (投注額 * (投注額 * 代理折扣 * 上線佔成數) - 會員佣金 = (100 * 0.2%*( 100% - 30%)) - 0.2 = <strong>
+        -0.06</strong></li>
+        <li>代理總和 = 代理輸贏 + 代理佣金 = - 19.8 - 0.06 = </span><b>-19.86</b><br /></li>
+    <li>公司佣金 = 投注額 * 代理折扣 * 上線佔成數 = 100 * 0.2% * (1-30%) = </span><b>0.14</b><br /></li>
+    <li>公司總和 = - (會員總和 + 代理總和) = 
+        -(66.2 - 19.86) = <b>-46.34</b></li>
+</ul>
+
+<p>注. 這只是一個簡單的例子來指導您如何計算單一投注的輸贏數額。在現實中,
+ 一場賽事可能包含許多投注所以我們必須計算每個投注的輸贏及佣金, 然後總計所有輸贏的數額</p>
+</body>
+</html>

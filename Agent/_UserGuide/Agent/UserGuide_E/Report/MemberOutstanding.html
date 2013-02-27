@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Report - Member Outstanding</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <style type="text/css">
+        .style1
+        {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="h2">
+        Member Outstanding</h2>
+    <p>
+        <span class="rpt-head1">Definition:</span>
+    </p>
+    <p>
+        This report shows the total amount of member stake on running tickets and the shared amount of agent based on the position taking.</p>
+    <center>
+        <img src="images/MemOut/member_oustanding_new.jpg" alt="Member Oustanding" />
+        <br />
+        <em>figure 2.1</em>
+    </center>
+    <p>
+        <strong><em>Note</em></strong>:</p>
+    <ul>
+        <li>Stake = 100, odds = 0.9 then Outstanding = 100</li>
+        <li>Stake = 100, odds = - 0.9 then Outstanding = 90</li>
+        <li>Agent position = Outstanding * Agent PT</li>
+    </ul>
+    <span class="rpt-head1">Term definition:</span>
+    <ul>
+        <li><strong>Outstanding: </strong>sum of all stakes of running tickets.</li>
+        <li><strong>Agent position:</strong> shared amount of agent based on the position taking.</li>
+    </ul>
+    <span class="rpt-head1">How to understand the report:</span>
+    <p>
+        For example, <strong>member02 </strong>placed a bet 200 on match <b>FC Koln </b> -vs- <b>Schalke</b>, odds = -0.87, this bet has status <b>“running”</b> and Agent currently occupies 30% position taking.
+    </p>
+    <ul>
+        <li><strong>Outstanding</strong> = 200 * 0.87 = <b>174</b></li>
+        <li><strong>Agent Position</strong> = 174 * 30% = <b>52.2</b></li>
+    </ul>
+    <p>
+        To drill down details of these running tickets, click on outstanding amount to see <strong>Bet List (running)</strong>. At the running ticket page, you can view also
+    </p>
+    <ul>
+        <li>Bet List </li>
+        <li>Daily Statement </li>
+    </ul>
+    <p>
+        <span class="sportname">1. Bet List(running): </span>
+    </p>
+    <ul>
+        <li>This is a list of member01&#39;s running tickets - figure 2.2</li>
+            <br /><center>
+                <img src="images/MemOut/BetList_Running.jpg" alt="Bet List - Running" width="848" height="253" />
+                <br />
+                <em>figure 2.2</em>
+            </center>
+    </ul>
+    <p>
+        <span class="sportname">2. Bet List: </span>
+    </p>
+    <ul>
+        <li>List of member01&#39;s tickets including settled and running ones.</li>
+        <br /><center>
+            <img src="images/MemOut/BetList.jpg" alt="Bet List" width="920" height="253" />
+            <br />
+            <em>figure 2.3</em>
+        </center>
+    </ul>
+    
+    
+    
+    <p>
+        <span class="sportname">3. Daily Statement:</span></p>
+    <ul>
+        <li>This report summarizes all transactions then put them into daily record. Each daily record balance is summed up to the current date as latest balance.</li>
+        <br /><center>
+            <img src="images/MemOut/DailyStatement.jpg" alt="Daily Statement" />
+            <br />
+            <em>figure 2.4</em>
+        </center>
+    </ul>
+    
+    <p>
+        In the figure above, all win/loss amounts of member01 up to Saturday 10/04/2008 will be summed up and displays in this report as Opening balance on Sunday 10/05/2008.
+    </p>
+    <p>
+        <span class="rpt-head1">TERM DEFINITION</span></p>
+    <ul>
+        <li><strong>Bal-Opening balance</strong>: sum amount of all winlost and transfer transactions up to the day before Opening balance date.</li>
+        <li><strong>Bet-Betting statement</strong>: sum of all bets which have win/loss amount.</li>
+        <li><strong>Tra-To customer</strong>: transfer amount made by agent.</li>
+        <li><strong>Bet-Outstanding Bet</strong>: sum of all bets which have status as running.</li>
+        <li><strong>Credit/debit</strong>: win/loss amount or transfer amount.</li>
+        <li><strong>Commission</strong>: member commission.</li>
+    </ul>
+    <p>
+        <span class="rpt-head1">HOW TO UNDERSTAND THE REPORT</span></p>
+    <p>
+        Daily statement above shows the following details:
+    </p>
+    
+        <ul>
+            <li><strong>Sunday 10/05/2008</strong>, is the opening balance date and total balance up to that day of member01 was <b>269.40</b></li>
+            <li><strong>Friday 10/10/2008</strong>, member01 bet 100, won 39, got 0.1 as commission and therefore his/her balance = 269.4 + 39 + 0.1= <b>308.5</b></li>
+            <li><strong>Saturday 10/11/2008</strong>, member01 bet 1,000, lost 104.5, got 5.2 as commission so his/her balance = 308.5 -104.5 + 5.2 =<b> 209.2</b></li>
+            <li><strong>Tuesday 10/14/2008</strong>, agent01 transfer 100 to member01 then his/her balance= 209.2 - 100 = <b>109.2</b></li>
+            <li><strong>Wednesday 10/15/2008</strong>, member01 bet 100 and these bets are still running so his/her latest balance is still <b>109.2</b></li>
+        </ul>
+</body>
+</html>
