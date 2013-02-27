@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xslLogFormat="urn:LogFormat">
+    <xsl:param name="IsInternal" select="0"></xsl:param>
+    <xsl:output method="html" indent="no" />
+    <xsl:template match="dot_dep_customerinsmember_ag">
+        <table class="tblDesc">
+            <tr>
+                <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('discount')" /></td>
+                <td class="colW2">
+                    <xsl:value-of select="@discount" />
+                </td>
+                <td class="colTitle"></td>
+                <td class="colValue">
+
+                </td>
+                <td class="colTitle"></td>
+                <td class="colValue">
+
+                </td>
+            </tr>
+        </table>
+    </xsl:template>
+
+</xsl:stylesheet>
