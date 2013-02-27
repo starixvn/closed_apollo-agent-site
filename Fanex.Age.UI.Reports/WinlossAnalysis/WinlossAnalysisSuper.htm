@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{title}</title>
+    <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/Reports.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="frmmain" method="get" {actionForm}>
+    <div id="page_main">
+        <div id="header_main">
+            {title}
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    {SearchPanel}                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="tbl-container">
+                        <div id="boderRight">
+                            <!--ExcelContents-->
+                            <table class="tblRpt {BoldRow}" width="750" border="0" cellpadding="0" cellspacing="1"
+                                id="tbl-rpt">
+                                <tr id="rowTitle" class="RptTitle">
+                                    <td id="content_title" colspan="16">
+                                        {title} <span id='spSumaryDate'>{DateFrom}--&gt;{DateTo}</span>
+                                    </td>
+                                </tr>
+                                <tr class="RptHeader">
+                                    <td rowspan="2" columnname="breakdown">
+                                        {option}
+                                    </td>
+                                    <td rowspan="2" columnname="turnover">
+                                        {static:Resources.Lang.turnover}
+                                    </td>
+                                    <td colspan="3">
+                                        {static:Resources.Lang.member}
+                                    </td>
+                                    <td colspan="3">
+                                        {static:Resources.Lang.agent}
+                                    </td>
+                                    <td colspan="3">
+                                        {static:Resources.Lang.master}
+                                    </td>
+                                    <td colspan="3">
+                                        {static:Resources.Lang.super}
+                                    </td>
+                                    <td rowspan="2" columnname="company">
+                                        {static:Resources.Lang.company}
+                                    </td>
+                                   <td rowspan="2" columnname="betcount">
+                                        {static:Resources.Lang.betcount}
+                                    </td>
+                                   
+                                </tr>
+                                <tr class="RptHeader02">
+                                    <td columnname="member_winlost">
+                                        {static:Resources.Lang.lblWinLoss}
+                                    </td>
+                                    <td columnname="member_comm">
+                                        {static:Resources.Lang.lblComm}
+                                    </td>
+                                    <td columnname="member_total">
+                                        {static:Resources.Lang.total}
+                                    </td>
+                                    <td columnname="agent_winlost">
+                                        {static:Resources.Lang.lblWinLoss}
+                                    </td>
+                                    <td columnname="agent_comm">
+                                        {static:Resources.Lang.lblComm}
+                                    </td>
+                                    <td columnname="agent_total">
+                                        {static:Resources.Lang.total}
+                                    </td>
+                                    <td columnname="master_winlost">
+                                        {static:Resources.Lang.lblWinLoss}
+                                    </td>
+                                    <td columnname="master_comm">
+                                        {static:Resources.Lang.lblComm}
+                                    </td>
+                                    <td columnname="master_total">
+                                        {static:Resources.Lang.total}
+                                    </td>
+                                    <td columnname="super_winlost">
+                                        {static:Resources.Lang.lblWinLoss}
+                                    </td>
+                                    <td columnname="super_comm">
+                                        {static:Resources.Lang.lblComm}
+                                    </td>
+                                    <td columnname="super_total">
+                                        {static:Resources.Lang.total}
+                                    </td>
+                                    
+                                    
+                                </tr>
+                                <!--Content-->
+                                <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'"
+                                    onmouseout="this.style.backgroundColor='{ColorClass}'">
+                                    <td>
+                                        {option}
+                                    </td>
+                                    <td>
+                                        {turnover}
+                                    </td>
+                                        
+                                    <td class="altercol">
+                                        {mem_winloss}
+                                    </td>
+                                    <td class="altercol">
+                                        {mem_comm}
+                                    </td>
+                                    <td class="altercol_bold">
+                                        {mem_total}
+                                    </td>
+                                    
+                                    <td>
+                                        {age_winloss}
+                                    </td>
+                                    <td>
+                                        {age_comm}
+                                    </td>
+                                    <td class="b">
+                                        {age_total}
+                                    </td>
+                                    
+                                    <td class="altercol">
+                                        {ma_winloss}
+                                    </td>
+                                    <td class="altercol">
+                                        {ma_comm}
+                                    </td>
+                                    <td class="altercol_bold">
+                                        {ma_total}
+                                    </td>
+                                    
+                                    <td>
+                                        {sup_winloss}
+                                    </td>
+                                    <td>
+                                        {sup_comm}
+                                    </td>
+                                    <td class="b">
+                                        {sup_total}
+                                    </td>
+                                    <td>
+                                        {company}
+                                    </td>
+                                    <td>
+                                        {betcount}
+                                    </td>
+                                   
+                                </tr>
+                                <!--/Content-->
+                                <!--ContentTotal-->
+                                <tr class="RptFooter">
+                                    <td class="l">
+                                        {static:Resources.Lang.total}
+                                    </td>
+                                    <td>
+                                        {turnover}
+                                    </td>
+                                        
+                                    <td class="altercol_master">
+                                        {mem_winloss}
+                                    </td>
+                                    <td class="altercol_master">
+                                        {mem_comm}
+                                    </td>
+                                    <td class="altercol_master">
+                                        {mem_total}
+                                    </td>
+                                    
+                                    <td>
+                                        {age_winloss}
+                                    </td>
+                                    <td>
+                                        {age_comm}
+                                    </td>
+                                    <td>
+                                        {age_total}
+                                    </td>
+                                    
+                                    <td class="altercol_master">
+                                        {ma_winloss}
+                                    </td>
+                                    <td class="altercol_master">
+                                        {ma_comm}
+                                    </td>
+                                    <td class="altercol_master">
+                                        {ma_total}
+                                    </td>
+                                    
+                                    <td>
+                                        {sup_winloss}
+                                    </td>
+                                    <td>
+                                        {sup_comm}
+                                    </td>
+                                    <td>
+                                        {sup_total}
+                                    </td>
+                                    <td>
+                                        {company}
+                                    </td>
+                                    <td>
+                                        {betcount}
+                                    </td>
+                                  
+                                </tr>
+                                <!--/ContentTotal-->
+                                 <!--NoInfo-->
+                                {load:Fanex.Age.UI.Reports.Components.NoInfo_Template NoInfoRow=new Fanex.Age.UI.Reports.Components.NoInfo_Template()}
+                                <!--/NoInfo-->
+                            </table>
+                            <!--/ExcelContents-->
+                            {PagingControl}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+     <input type="hidden" name="CustId" id="CustId" value="{CustId}" />    
+    <input type="hidden" name="IsSwitch" id="IsSwitch" value="{IsSwitch}" />
+    <input type="hidden" name="OldView" id="OldView" value="{OldView}" />
+    <input type="hidden" name="UserName" id="UserName" value="{UserName}" />
+    <input type="hidden" name="Type" id="Type" value="{BetType}" />
+    </form>
+</body>
+
+<script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+<script src="../Resources/Reports.js" type="text/javascript"></script>
+
+<script src="Resources/WinlossAnalysis.js" type="text/javascript"></script>
+</html>

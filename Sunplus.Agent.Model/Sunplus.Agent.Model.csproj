@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sunplus.Agent.Model</RootNamespace>
+    <AssemblyName>Sunplus.Agent.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CasinoLibrary">
+      <HintPath>..\Dependencies\CasinoLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Caching">
+      <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data">
+      <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.PTEngine, Version=1.0.4594.30938, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.PTEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCasinoLibrary">
+      <HintPath>..\Dependencies\LiveCasinoLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\RemotingRef.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Configurations">
+      <HintPath>..\Dependencies\Sunplus.Agent.Configurations.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Utilities">
+      <HintPath>..\Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Core.Common">
+      <HintPath>..\Dependencies\Sunplus.Core.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Libraries.AOP">
+      <HintPath>..\Dependencies\Sunplus.Libraries.AOP.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Libraries.APILogger">
+      <HintPath>..\Dependencies\Sunplus.Libraries.APILogger.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Libraries.ThirdPartyTestData">
+      <HintPath>..\Dependencies\Sunplus.Libraries.ThirdPartyTestData.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UMControllerLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\UMControllerLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BL\BetSetting\BetSettingBO.cs" />
+    <Compile Include="BL\BetSummary\BetSummaryBO.cs" />
+    <Compile Include="BL\Bingo\BingoBO.cs" />
+    <Compile Include="BL\Bingo\BingoAPICaller.cs" />
+    <Compile Include="BL\Casino\CasinoAPILogger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BL\Casino\CasinoBO.cs" />
+    <Compile Include="BL\Casino\CasinoAPICaller.cs" />
+    <Compile Include="BL\Charts\ChartsBO.cs" />
+    <Compile Include="BL\DailyStatement\DailyStatementBO.cs" />
+    <Compile Include="BL\Definitions\SportType.cs" />
+    <Compile Include="BL\GivenCredit\GivenCreditBO.cs" />
+    <Compile Include="BL\MemberInfo\CustomerList\CustomerListBO.cs" />
+    <Compile Include="BL\MemberInfo\EditCommission\EditCommissionBO.cs" />
+    <Compile Include="BL\MemberInfo\MemberCommission\MemberCommissionBO.cs" />
+    <Compile Include="BL\MemberInfo\NewMember\NewMemberBO.cs" />
+    <Compile Include="BL\MemberInfo\P2P\P2PBO.cs" />
+    <Compile Include="BL\MemberInfo\PositionTakingList\PositionTakingListBO.cs" />
+    <Compile Include="BL\MemberInfo\SearchAndCopy\SearchAndCopyBO.cs" />
+    <Compile Include="BL\MemberInfo\SetNickname\SetNicknameBO.cs" />
+    <Compile Include="BL\MemberInfo\TransferCondition\TransferConditionBO.cs" />
+    <Compile Include="BL\SubAcc\SubAccBO.cs" />
+    <Compile Include="BL\Transfer\TransferBO.cs" />
+    <Compile Include="Common\AgentIPFormat.cs" />
+    <Compile Include="DL\BetSetting\BetSettingDAO.cs" />
+    <Compile Include="DL\BetSummary\BetSummaryDAO.cs" />
+    <Compile Include="DL\Charts\ChartsDAO.cs" />
+    <Compile Include="DL\DailyStatement\DailyStatementDAO.cs" />
+    <Compile Include="DL\MemberInfo\EditCommission\EditCommissionDAO.cs" />
+    <Compile Include="DL\MemberInfo\MemberCommission\MemberCommissionDAO.cs" />
+    <Compile Include="DL\MemberInfo\NewMember\NewMemberDAO.cs" />
+    <Compile Include="DL\MemberInfo\P2P\P2PDAO.cs" />
+    <Compile Include="DL\MemberInfo\PositionTakingList\PositionTakingListDAO.cs" />
+    <Compile Include="DL\MemberInfo\SearchAndCopy\SearchAndCopyDAO.cs" />
+    <Compile Include="DL\MemberInfo\SetNickname\SetNicknameDAO.cs" />
+    <Compile Include="DL\MemberInfo\TransferCondition\TransferConditionDAO.cs" />
+    <Compile Include="Entities\BetSummaryEntity.cs" />
+    <Compile Include="Entities\CustomerInfo.cs" />
+    <Compile Include="Entities\DailyStatementEntity.cs" />
+    <Compile Include="Entities\ExtObject.cs" />
+    <Compile Include="Entities\IExtObject.cs" />
+    <Compile Include="Entities\PageAccess.cs" />
+    <Compile Include="Entities\SubAccount.cs" />
+    <Compile Include="Security\HttpFrequenceRule.cs" />
+    <Compile Include="Services\DeviceService.cs" />
+    <Compile Include="Services\LiveDataService.cs" />
+    <Compile Include="DL\GivenCredit\GivenCreditDAO.cs" />
+    <Compile Include="DL\MemberInfo\CustomerList\CustomerListDAO.cs" />
+    <Compile Include="DL\Transfer\TransferDAO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BL\AccountInfo\AccountInfoBO.cs" />
+    <Compile Include="BL\Authorization\AuthorizationBO.cs" />
+    <Compile Include="BL\Authorization\PageFunction.cs" />
+    <Compile Include="BL\BetList\BetListBO.cs" />
+    <Compile Include="BL\Forecast\ForecastBO.cs" />
+    <Compile Include="BL\Racing\RacingBO.cs" />
+    <Compile Include="BL\MemberInfo\ChangePassword\ChangePasswordBO.cs" />
+    <Compile Include="BL\MemberInfo\CreditBalance\CreditBalanceBO.cs" />
+    <Compile Include="BL\MemberInfo\PositionTaking\PositionTakingBO.cs" />
+    <Compile Include="BL\Reports\ReportsBO.cs" />
+    <Compile Include="BL\Statistic\StatisticBO.cs" />
+    <Compile Include="BL\TotalBets\TotalBetsBO.cs" />
+    <Compile Include="BL\UserMessage\UserMessageBO.cs" />
+    <Compile Include="BL\Base\BOBase.cs" />
+    <Compile Include="Services\MaintenanceService.cs" />
+    <Compile Include="BL\Base\UserSessionService.cs" />
+    <Compile Include="BL\Base\_Extension.cs" />
+    <Compile Include="BL\BusinessException\BusinessException.cs" />
+    <Compile Include="BL\Cache\CacheRef.cs" />
+    <Compile Include="BL\Definitions\AppSettings.cs" />
+    <Compile Include="BL\Definitions\BetType.cs" />
+    <Compile Include="Common\Language.cs" />
+    <Compile Include="DL\AccountInfo\AccountInfoDAO.cs" />
+    <Compile Include="DL\Authorization\AuthorizationDAO.cs" />
+    <Compile Include="DL\BetList\BetListDAO.cs" />
+    <Compile Include="DL\Casino\CasinoDAO.cs" />
+    <Compile Include="DL\Forecast\ForecastDAO.cs" />
+    <Compile Include="DL\Racing\RacingDAO.cs" />
+    <Compile Include="DL\MemberInfo\ChangePassword\ChangePasswordDAO.cs" />
+    <Compile Include="DL\MemberInfo\CreditBalance\CreditBalanceDAO.cs" />
+    <Compile Include="DL\MemberInfo\PositionTaking\PositionTakingDAO.cs" />
+    <Compile Include="DL\Reports\ReportsDAO.cs" />
+    <Compile Include="DL\Statistic\StatisticDAO.cs" />
+    <Compile Include="DL\SubAcc\SubAccDAO.cs" />
+    <Compile Include="DL\TotalBets\TotalBetsDAO.cs" />
+    <Compile Include="DL\UserMessage\UserMessageDAO.cs" />
+    <Compile Include="DL\Base\DAOBase.cs" />
+    <Compile Include="DL\DataException\DataException.cs" />
+    <Compile Include="DL\Definitions\DbTypes.cs" />
+    <Compile Include="Entities\IUserSession.cs" />
+    <Compile Include="Entities\Permission\UserPermission.cs" />
+    <Compile Include="Entities\UserSession.cs" />
+    <Compile Include="Entities\UserSessionBase.cs" />
+    <Compile Include="Entities\_Base\IEntity.cs" />
+    <Compile Include="Entities\_Base\_Extension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{126FBBFF-EE95-4B2E-B871-3576E4A79A92}"
+	ProjectSection(SolutionItems) = preProject
+		IBC.Core.vsmdi = IBC.Core.vsmdi
+		IBC.Core1.vsmdi = IBC.Core1.vsmdi
+		TestRunConfig1.testrunconfig = TestRunConfig1.testrunconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Core.CachingLib", "CachingLib\Sunplus.Core.CachingLib.csproj", "{4C9AA39A-00DB-4A1B-A0E4-8464C9A71E55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Core.DataAccessLib", "DataAccessLib\Sunplus.Core.DataAccessLib.csproj", "{ABF4C1D8-57D6-4768-BC30-722D54A0D810}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Core.LoggingLib", "LoggingLib\Sunplus.Core.LoggingLib.csproj", "{EC9EA638-8C63-4753-8F4A-030C2DE3F495}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Core.Common", "Common\Sunplus.Core.Common.csproj", "{F7FC1BB1-0B42-4249-8528-143B68FD658D}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://10.18.200.213:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = LoggingLib\\Sunplus.Core.LoggingLib.csproj
+		SccProjectName1 = LoggingLib
+		SccLocalPath1 = LoggingLib
+		SccProjectUniqueName2 = DataAccessLib\\Sunplus.Core.DataAccessLib.csproj
+		SccProjectName2 = DataAccessLib
+		SccLocalPath2 = DataAccessLib
+		SccProjectUniqueName3 = Common\\Sunplus.Core.Common.csproj
+		SccProjectName3 = Common
+		SccLocalPath3 = Common
+		SccProjectUniqueName4 = CachingLib\\Sunplus.Core.CachingLib.csproj
+		SccProjectName4 = CachingLib
+		SccLocalPath4 = CachingLib
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C9AA39A-00DB-4A1B-A0E4-8464C9A71E55}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9AA39A-00DB-4A1B-A0E4-8464C9A71E55}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{4C9AA39A-00DB-4A1B-A0E4-8464C9A71E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9AA39A-00DB-4A1B-A0E4-8464C9A71E55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABF4C1D8-57D6-4768-BC30-722D54A0D810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF4C1D8-57D6-4768-BC30-722D54A0D810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABF4C1D8-57D6-4768-BC30-722D54A0D810}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC9EA638-8C63-4753-8F4A-030C2DE3F495}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{EC9EA638-8C63-4753-8F4A-030C2DE3F495}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{EC9EA638-8C63-4753-8F4A-030C2DE3F495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC9EA638-8C63-4753-8F4A-030C2DE3F495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7FC1BB1-0B42-4249-8528-143B68FD658D}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{F7FC1BB1-0B42-4249-8528-143B68FD658D}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{F7FC1BB1-0B42-4249-8528-143B68FD658D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7FC1BB1-0B42-4249-8528-143B68FD658D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

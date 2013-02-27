@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Text;
+using System.Data;
+
+namespace Sunplus.Agent.UI.ScoreMap.UI
+{
+    public interface IScoreMapItem : TplCore.Element.IComponent
+    {
+        string Render();
+        void ToString(ref StringBuilder bd);
+        void Assign(DataRow row);
+    }
+}

@@ -1,0 +1,27 @@
+﻿<div id="BoxLeagueWL" style="display:none">
+    <table>
+        <tr height="20">
+            <td id="iconSelLeague">{static:Resources.Lang.selectLeague}</td>            
+            <td id="closeBoxLeague" onclick="hiddenBoxLeague()"></td>
+        </tr>
+        <tr>
+        <td id="boderBoxLeague" colspan="2">
+            <div id="ContentLeagueWL">
+            <!--ContentLeague-->
+                <ul class="ListLeague">
+                    <!--ColLeague-->
+                    <li>
+                        <input class="hand" type="checkbox" {isChecked} {checkAll} id="chL{League}">
+                        <label class="hand" for="chL{League}">{LeagueName}</label>
+                    </li>
+                    <!--/ColLeague-->
+                </ul>
+            <!--/ContentLeague-->
+            </div>    
+        </td>
+        </tr>
+    </table>
+</div>
+<input id="leagueIds" name="leagueIds" type="hidden" value="{v_leagueIds}"/>
+<input id="leagueFull" name="leagueFull" type="hidden" value="{v_leagueFull}"/>
+<input id="isChanged" name="isChanged" type="hidden" value="0"/>

@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.Age.UI.Components</RootNamespace>
+    <AssemblyName>Fanex.Age.UI.Components</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.Age.UI">
+      <HintPath>..\Dependencies\Fanex.Age.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Sunplus.Agent.Utilities">
+      <HintPath>..\Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="TplCore">
+      <HintPath>..\Dependencies\TplCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\CasinoLibrary.dll" />
+    <Content Include="bin\CasinoSetting.dll" />
+    <Content Include="bin\CasinoUtility.dll" />
+    <Content Include="bin\Fanex.Age.UI.Components.dll" />
+    <Content Include="bin\Fanex.Age.UI.Components.pdb" />
+    <Content Include="bin\Fanex.Age.UI.dll" />
+    <Content Include="bin\Fanex.Caching.dll" />
+    <Content Include="bin\Fanex.Common.dll" />
+    <Content Include="bin\Fanex.Data.dll" />
+    <Content Include="bin\Fanex.Logging.dll" />
+    <Content Include="bin\Fanex.PTEngine.dll" />
+    <Content Include="bin\IBCCrypt.dll" />
+    <Content Include="bin\IBCFile.dll" />
+    <Content Include="bin\ILogger.dll" />
+    <Content Include="bin\LiveCasinoLibrary.dll" />
+    <Content Include="bin\log4net.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
+    <Content Include="bin\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="bin\Microsoft.Practices.Unity.dll" />
+    <Content Include="bin\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="bin\Nini.dll" />
+    <Content Include="bin\RemotingRef.dll" />
+    <Content Include="bin\SPSRemoting.dll" />
+    <Content Include="bin\Sunplus.Agent.Configurations.dll" />
+    <Content Include="bin\Sunplus.Agent.Model.dll" />
+    <Content Include="bin\Sunplus.Agent.Utilities.dll" />
+    <Content Include="bin\Sunplus.Core.Common.dll" />
+    <Content Include="bin\Sunplus.Libraries.AOP.dll" />
+    <Content Include="bin\Sunplus.Libraries.APILogger.dll" />
+    <Content Include="bin\Sunplus.Libraries.ThirdPartyTestData.dll" />
+    <Content Include="bin\TplCore.dll" />
+    <Content Include="bin\UMControllerLibrary.dll" />
+    <Content Include="DoubleCommissionSearchUserName_Control\DoubleCommissionSearchUserName_Control.htm" />
+    <Content Include="Transfer\AllowTransfer.htm" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="AnalysisReportFilter\AnalysisReportFilter.htm" />
+    <Content Include="AnalysisReportFilter\AnalysisReportFilterOnChart.htm" />
+    <Content Include="AutoCheckBox_Control\AutoCheckBox_Control.htm" />
+    <Content Include="CopyFromCheckBox_Control\CopyFromCheckBox_Control.htm" />
+    <Content Include="CurrencyFilter\CurrencyFilter.htm" />
+    <Content Include="DateRangeSelect\DateRangeSelect.htm" />
+    <Content Include="DateTimeControl\JSCalendar\JSCalendar.htm" />
+    <Content Include="DateTimeFilter\DateTimeFilter.htm" />
+    <Content Include="ErrorMsg\ErrorMsg.htm" />
+    <Content Include="ErrorPage\ErrorPage.htm" />
+    <Content Include="MatchByLeague\MatchByLeague.htm" />
+    <Content Include="PagingHeader\PagingHeader.htm" />
+    <Content Include="Paging\Paging.htm" />
+    <Content Include="PopupAd\FlashAd.htm" />
+    <Content Include="PopupAd\PopupAd.htm" />
+    <Content Include="PopupAd\PopupIntroduction.htm" />
+    <Content Include="PopupMessage\PopupMessage.htm" />
+    <Content Include="PT_Control\PT_Control.htm" />
+    <Content Include="RefreshCountDown\RefreshCountDown.htm" />
+    <Content Include="SearchUserName_Control\SearchUserName_Control.htm" />
+    <Content Include="ShowHideColumn\ContextMenuColumns_Control.htm" />
+    <Content Include="WinlossReportFilter\WinlossReportFilter.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnalysisReportFilter\AnalysisReportFilter.cs" />
+    <Compile Include="AnalysisReportFilter\AnalysisReportFilter.htm.cs" />
+    <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.cs" />
+    <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.htm.cs" />
+    <Compile Include="App_GlobalResources\Lang.designer.cs">
+      <DependentUpon>Lang.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="AutoCheckBox_Control\AutoCheckBox_Control.cs" />
+    <Compile Include="AutoCheckBox_Control\AutoCheckBox_Control.htm.cs" />
+    <Compile Include="CopyFromCheckBox_Control\CopyFromCheckBox_Control.cs" />
+    <Compile Include="CopyFromCheckBox_Control\CopyFromCheckBox_Control.htm.cs" />
+    <Compile Include="CurrencyFilter\CurrencyFilter.cs" />
+    <Compile Include="CurrencyFilter\CurrencyFilter.htm.cs" />
+    <Compile Include="DateRangeSelect\DateRangeSelect.htm.cs" />
+    <Compile Include="DateRangeSelect\DateRangeSelect_Control.cs" />
+    <Compile Include="DateTimeControl\Calendar\Calendar_Control.cs" />
+    <Compile Include="DateTimeControl\JSCalendar\Calendar_Control.cs" />
+    <Compile Include="DateTimeControl\JSCalendar\JSCalendar.htm.cs" />
+    <Compile Include="DateTimeFilter\DateTimeFilter.cs" />
+    <Compile Include="DateTimeFilter\DateTimeFilter.htm.cs" />
+    <Compile Include="DoubleCommissionSearchUserName_Control\DoubleCommissionSearchUserName_Control.cs" />
+    <Compile Include="DoubleCommissionSearchUserName_Control\DoubleCommissionSearchUserName_Control.htm.cs" />
+    <Compile Include="ErrorMsg\ErrorMsg.htm.cs" />
+    <Compile Include="ErrorMsg\ErrorMsg_Control.cs" />
+    <Compile Include="ErrorPage\ErrorPage.cs" />
+    <Compile Include="ErrorPage\ErrorPage.htm.cs" />
+    <Compile Include="MatchByLeague\MatchByLeague.htm.cs" />
+    <Compile Include="PagingHeader\PagingHeader.htm.cs" />
+    <Compile Include="Paging\Paging.htm.cs" />
+    <Compile Include="Paging\Paging_Control.cs" />
+    <Compile Include="PopupAd\FlashAd.htm.cs" />
+    <Compile Include="PopupAd\PopupAd.htm.cs" />
+    <Compile Include="PopupAd\PopupIntroduction.htm.cs" />
+    <Compile Include="PopupMessage\PopupMessage.cs" />
+    <Compile Include="PopupMessage\PopupMessage.htm.cs" />
+    <Compile Include="PT_Control\PT_Control.cs" />
+    <Compile Include="PT_Control\PT_Control.htm.cs" />
+    <Compile Include="RefreshCountDown\RefreshCountDown.htm.cs" />
+    <Compile Include="RefreshCountDown\RefreshCountDown_Control.cs" />
+    <Compile Include="RefreshLeague\RefreshLeague.cs" />
+    <Compile Include="SearchUserName_Control\SearchUserName_Control.cs" />
+    <Compile Include="SearchUserName_Control\SearchUserName_Control.htm.cs" />
+    <Compile Include="ShowHideColumn\ContextMenuColumns.cs" />
+    <Compile Include="ShowHideColumn\ContextMenuColumnsBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowHideColumn\ContextMenuColumns_Control.htm.cs" />
+    <Compile Include="ShowHideColumn\IContextMenuColumns.cs" />
+    <Compile Include="Transfer\AllowTransfer_Control.cs" />
+    <Compile Include="Transfer\AllowTransfer.htm.cs" />
+    <Compile Include="WinlossReportFilter\FilterElement.cs" />
+    <Compile Include="WinlossReportFilter\Filter_Control.cs" />
+    <Compile Include="WinlossReportFilter\WinlossReportFilter.htm.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WinlossReportFilter\WinlossReportFilterManager.cs" />
+    <Compile Include="WinlossReportFilter\WinlossReportFilter_Control.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Lang.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\TplCore\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
+      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
+      <Name>Sunplus.Agent.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57056</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

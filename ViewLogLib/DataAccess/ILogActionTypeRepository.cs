@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Sunplus.Shared.ViewLogLib.Entities;
+
+
+namespace Sunplus.Shared.ViewLogLib.DataAccess
+{
+    public interface ILogActionTypeRepository : IRepository<LogActionType>
+    {
+     
+    }
+}

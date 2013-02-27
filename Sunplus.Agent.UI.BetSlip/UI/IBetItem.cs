@@ -1,0 +1,13 @@
+﻿using System.Data;
+using System.Text;
+using TplCore.Element;
+
+namespace Sunplus.Agent.UI.BetSlip.UI
+{
+    public interface IBetItem : IComponent
+    {
+        DataRow Data { get; set; }
+        void AssignData();
+        void ToString(ref StringBuilder bd);
+    }
+}

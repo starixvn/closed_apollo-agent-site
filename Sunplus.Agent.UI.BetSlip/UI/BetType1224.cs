@@ -1,0 +1,11 @@
+﻿using Sunplus.Agent.Model.BL.Cache;
+
+namespace Sunplus.Agent.UI.BetSlip.UI
+{
+    /// <summary>
+    /// Double Chance
+    /// </summary>
+    public class BetType1224 : BetType24
+    {
+    }
+}

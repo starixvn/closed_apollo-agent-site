@@ -1,0 +1,17 @@
+﻿<div id="box_header">
+    <table style="width: 100%">
+        <tr>           
+            <td>                
+                {load:Fanex.Age.UI.Components.DateRangeSelect_Control DateRangeSelect=new Fanex.Age.UI.Components.DateRangeSelect_Control(this,true,DateTime.Today,DateTime.Today)}
+                <!--ExtentTpl--><!--/ExtentTpl-->
+            </td>
+            <td align="right">
+                {load:Fanex.Age.UI.Reports.Components.BoldExportExcel_Template BoldExportExcel=new Fanex.Age.UI.Reports.Components.BoldExportExcel_Template()}
+            </td>
+        </tr>
+    </table>
+    {reportFilter}
+    {load:Fanex.Age.UI.Reports.Components.HistoryMessage_Template HistoryMessage=new Fanex.Age.UI.Reports.Components.HistoryMessage_Template()}
+    <!--AdditionalContent-->
+    <!--/AdditionalContent-->
+</div>

@@ -1,0 +1,46 @@
+﻿<!--HiddenBlock-->
+<link href="Resources/PortalPage.css" rel="stylesheet" type="text/css" />
+<!--/HiddenBlock-->
+<!--Title-->
+<div class="announcement">
+    <span class="gotoMsg" onclick="openMsg()">{Announcement}</span>
+</div>
+<!--/Title-->
+<div id="divAnnouncement">
+    <!--NoRow-->
+    <div class="c">
+        {NoRowInfo}
+    </div>
+    <!--/NoRow-->
+    <!--GroupDate-->
+    <!--GroupTitle-->
+    <div class="divGroupDate">
+        {GroupDate}
+    </div>
+    <!--/GroupTitle-->
+    <!--DataRow-->
+    <div class="{oddEvenRow} {msgType}" id="{Announment_Id}" onclick="ToggleAnnouncementContent('{Announment_Id}');" isread="{IsRead}">
+        <div class="divTime">
+            <div class="toogleIcon">
+            </div>
+            <div>
+                {Date}
+            </div>
+        </div>
+        <div class="divContent">
+            <div class="text_exposed_show">
+                {SmallContent}
+            </div>
+            <div class="text_exposed_hide">
+                {FullContent}
+            </div>
+        </div>
+    </div>
+    <!--/DataRow-->
+    <!--/GroupDate-->
+    <!--MoreFooter-->
+    <div id="divMore" onclick="ShowMoreAnnouncements();">
+        {static:Resources.Lang.more} ...
+    </div>
+    <!--/MoreFooter-->
+</div>

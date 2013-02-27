@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Sunplus.Shared.ViewLogLib.Entities
+{
+    public class LogStatus : LogRunSp
+    {
+    }
+}

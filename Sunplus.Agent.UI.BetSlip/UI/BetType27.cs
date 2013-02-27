@@ -1,0 +1,9 @@
+﻿namespace Sunplus.Agent.UI.BetSlip.UI
+{
+    /// <summary>
+    /// To win to nil
+    /// </summary>
+    public class BetType27 : BetType25
+    {
+    }
+}

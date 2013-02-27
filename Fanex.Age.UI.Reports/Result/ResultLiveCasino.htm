@@ -1,0 +1,51 @@
+﻿<table class="tblRpt_center" width="100%" border="0" cellpadding="0" cellspacing="1" id="tbl-rpt" style="display:table;">
+    <tr class="RptHeader">
+        <td style="width: 90px" columnname="kickofftime">
+            {static:Resources.Lang.kickofftime}
+        </td>
+        <td>
+            {static:Resources.Lang.gameTypeAndTableNumber}
+        </td>
+        <td style="width: 70px;">
+            {static:Resources.Lang.finalscore}
+        </td>
+        <td style="width: 200px;">
+            {static:Resources.Lang.result}
+        </td>
+        <td style="width: 65px;">
+            {static:Resources.Lang.status}
+        </td>
+    </tr>
+    <!--RowData-->
+    <!--League-->
+    <tr>
+        <td colspan="5" class="league" style="padding-left: 97px;">
+            <div class="float_l">{LeagueName}</div>
+            <div class="float_r" style="padding-right:297px">{PlayerAndBanker}</div>
+        </td>
+    </tr>
+    <!--/League-->
+    <!--Row-->
+    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+        <td class="bl_time_nowrap" style="padding-top:2px; padding-bottom:2px">
+            {KickOffTime}
+        </td>
+        <td class="left_normal">
+            {GameTypeAndTableNumber}
+        </td>
+        <td>
+            {FinalScore}
+        </td>
+        <td>
+            {Results}
+        </td>
+        <td>
+            {EventStatus}
+        </td>
+    </tr>
+    <!--/Row-->
+    <!--/RowData-->
+    <!--LimitNotFound-->
+    {load:Fanex.Age.UI.Reports.Components.NoInfo_Template NoInfoRow=new Fanex.Age.UI.Reports.Components.NoInfo_Template()}
+    <!--/LimitNotFound-->
+</table>

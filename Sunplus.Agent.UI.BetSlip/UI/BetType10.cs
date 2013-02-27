@@ -1,0 +1,9 @@
+﻿namespace Sunplus.Agent.UI.BetSlip.UI
+{
+    /// <summary>
+    /// Outright
+    /// </summary>
+    public class BetType10 : BetType5
+    {
+    }
+}

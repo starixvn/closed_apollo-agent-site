@@ -1,0 +1,337 @@
+﻿#race-book-userinfo
+{
+    background: #F7F0E4 !important;
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+
+#race-book-userinfo th
+{
+    font-size: 14px font-weight: normal;
+    color: #fff;
+    background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969;
+    height: 22px;
+    border: solid 1px #999;
+    text-align: center;
+}
+
+#race-book-userinfo td
+{
+    color: #000;
+    vertical-align: top;
+    height: 20px;
+    border: solid 1px #999;
+    text-align: right;
+}
+
+#race-book-userinfo tbody tr:hover td
+{
+    background-color: White;
+}
+
+#race-book-positiontaking-header
+{
+    height: 22px;
+    background: url(Images/titleHeader.jpg) no-repeat left bottom;
+    color: #9d1c1c;
+    font-weight: bold;
+    padding-left: 15px;
+    text-transform: uppercase;
+    line-height: 18px;
+    min-width: 650px;
+}
+
+.race-book-positiontaking
+{
+    background: #F7F0E4 !important;
+    border-collapse: collapse;
+    border-top: solid 1px #999;
+    border-bottom: solid 1px #999;
+    border-left: solid 1px #999;
+    border-right: solid 1px #999;
+    width: 100%;
+    margin-top: 5px;
+}
+.race-book-positiontaking th
+{
+    font-size: 12px font-weight: normal;
+    color: #fff;
+    height: 22px;
+    text-align: center;
+    background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969;
+    border: solid 1px #999;
+}
+
+
+.race-book-positiontaking-content
+{
+    font-size: 11px;
+    background: #F7F0E4 !important;
+    border-collapse: collapse;
+    border: solid 1px #999;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.race-book-positiontaking-content td
+{
+	height: 20px;
+    border: solid 1px #999;
+}
+.race-book-positiontaking-content th
+{
+    text-align: center;
+    font-size: 12px font-weight: normal;
+    color: #ddd;
+    background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969; 
+    background-position: 0px -2px;
+    height: 20px;
+    border: solid 1px #999;
+}
+.race-book-positiontaking-content tbody tr:hover td
+{
+    background-color: White;
+}
+
+
+.left
+{
+    text-align: left;
+}
+
+.right
+{
+    text-align: right;
+}
+.center
+{
+    text-align: center;
+}
+#divCopyAll
+{
+    font-weight: bold;
+    width: 100%;
+}
+#divUserName
+{
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+    vertical-align: middle;
+    border: solid 1px #999;
+}
+.menu_content
+{
+    width: 176px;
+    height: 24px;
+    padding-left: 12px;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 25px;
+    display: block;
+    background: url(Images/button_content.jpg) no-repeat;
+    cursor: pointer;
+    color: #9D1C1C;
+    background-position: 0px 0px;
+}
+.menu_content1
+{
+    width: 176px;
+    height: 24px;
+    padding-left: 12px;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 25px;
+    display: block;
+    background: url(Images/button_content.jpg) no-repeat;
+    cursor: pointer;
+    color: #9D1C1C;
+    background-position: 0px -24px;
+}
+
+.divdisableracing
+{
+    width: 100%;
+    text-align: center;
+    border: solid 1px #999;
+    height: 20px;
+    vertical-align: middle;
+}
+.button
+{
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    float: left;
+}
+.button li
+{
+    font-size: 12px;
+    display: inline;
+}
+.button a
+{
+    font-size: 12px;
+    float: left;
+    background: url(Images/b_left.gif) no-repeat left top;
+    min-width: 64px;
+    margin-right: 2px;
+    padding-left: 6px;
+    text-decoration: none;
+}
+.button a span
+{
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    float: left;
+    min-width: 64px;
+    display: block;
+    background: url(Images/b_right.gif) no-repeat right top;
+    padding: 4px 17px 4px 5px;
+}
+.button a:hover span
+{
+    color: #000;
+    cursor: pointer;
+    background-position: 100% -22px;
+}
+.button a:hover
+{
+    background-position: 0% -22px;
+}
+
+
+#Div_Message
+{
+	display:none;
+	border:0;	
+	 width:100%;
+}
+
+.emsg_1_1
+{
+	background: url(Images/emsg_1_1.gif) no-repeat right bottom;
+	width: 11px;
+	height: 9px;
+}
+.emsg_1_2
+{
+	background: url(Images/emsg_1_2.gif) repeat-x left bottom;
+}
+.emsg_1_3
+{
+	background: url(Images/emsg_1_3.gif) no-repeat left bottom;
+	width: 9px;
+}
+.emsg_2_1
+{
+	background: url(Images/emsg_2_1.gif) repeat-y right top;
+}
+.emsg_2_2
+{
+	background: url(Images/emsg_2_2.gif) repeat-y left top;
+}
+.emsg_3_1
+{
+	background: url(Images/emsg_3_1.gif) no-repeat right top;
+	height: 8px;
+}
+.emsg_3_2
+{
+	background: url(Images/emsg_3_2.gif) repeat-x left top;
+}
+.emsg_3_3
+{
+	background: url(Images/emsg_3_3.gif) no-repeat left top;
+}
+
+.succ_1_1
+{
+	background: url(Images/succ_1_1.gif) no-repeat right bottom;
+	width: 11px;
+	height: 9px;
+}
+.succ_1_2
+{
+	background: url(Images/succ_1_2.gif) repeat-x left bottom;
+}
+.succ_1_3
+{
+	background: url(Images/succ_1_3.gif) no-repeat left bottom;
+	width: 9px;
+}
+.succ_2_1
+{
+	background: url(Images/succ_2_1.gif) repeat-y right top;
+}
+.succ_2_2
+{
+	background: url(Images/succ_2_2.gif) repeat-y left top;
+}
+.succ_3_1
+{
+	background: url(Images/succ_3_1.gif) no-repeat right top;
+	height: 8px;
+}
+.succ_3_2
+{
+	background: url(Images/succ_3_2.gif) repeat-x left top;
+}
+.succ_3_3
+{
+	background: url(Images/succ_3_3.gif) no-repeat left top;
+}
+
+.EnrichScc
+{
+	padding-left: 40px;
+	text-align: left;
+	position: relative;
+	color: #2d9d3b;
+	background: url(Images/infoMsg.gif) no-repeat left top;
+	height: 30px;
+	vertical-align: middle;
+}
+
+.Enrich
+{
+	padding-left: 40px;
+	text-align: left;
+	position: relative;
+	color: #df2267;
+	background: url(Images/infoMsg.gif) no-repeat left top;
+	height: 30px;
+	vertical-align: middle;
+}
+.EnrichErrmsg
+{
+	color: #df2267;
+	height: 16px;
+	background: url(Images/cross.png) no-repeat left top;
+	padding-left: 20px;
+	text-align: left;
+}
+.EnrichSuccmsg
+{
+	color: #2d9d3b;
+	height: 16px;
+	background: url(Images/tick.png) no-repeat left top;
+	padding-left: 20px;
+	text-align: left;
+}
+.EnrichUserName
+{
+	color: Blue;
+	height: 16px;
+	text-align: left;
+	font-weight: bold;
+}

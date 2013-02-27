@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/IPService.DAL" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IPService.DAL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://vn107hwcp00302.sms.local/IPServices/Services/WCF/WCF_IPService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:complexType name="IPTable">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q1:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ISP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Latitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Longtitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Region" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="countryLONG" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="countrySHORT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ipFrom" type="xs:long" />
+          <xs:element minOccurs="0" name="ipKeyFrom" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="ipKeyTo" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="ipTo" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IPTable" nillable="true" type="tns:IPTable" />
+</xs:schema>

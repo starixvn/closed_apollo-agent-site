@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TotalBets</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/TotalBets.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="page_main">
+        <div id="header_main">
+            {static:Resources.Lang.hr}</div>
+        {load:Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown = new Fanex.Age.UI.Components.RefreshCountDown_Control(this,30,"HorseRacing")}
+        <div id="sContent">
+            <!--Contents-->
+            <table class="tblRpt" cellpading="0" cellspacing="1" border="0" style="width: 80%">
+                <tr class="RptHeader">
+                    <td rowspan="3" style="width: 7%;">
+                        {static:Resources.Lang.lblRace}
+                    </td>
+                    <td rowspan="3" style="width: 6%;" class="nowrap">
+                        {static:Resources.Lang.noHR}
+                    </td>
+                    <td rowspan="3" style="width: 21%;">
+                        {static:Resources.Lang.runner}
+                    </td>
+                    <td colspan="6">
+                        {static:Resources.Lang.tote}
+                    </td>
+                </tr>
+                <tr class="RptHeader">
+                    <td colspan="2">
+                        {static:Resources.Lang.WinHR}
+                    </td>
+                    <td colspan="2">
+                        {static:Resources.Lang.Place}
+                    </td>
+                    <td colspan="2">
+                        {static:Resources.Lang.EachWay}
+                    </td>
+                </tr>
+                <tr class="RptHeader02">
+                    <td class="nowrap" style="width: 5%">
+                        {static:Resources.Lang.total}
+                    </td>
+                    <td class="nowrap" style="width: 6%">
+                        {static:Resources.Lang.lblWinLoss}
+                    </td>
+                    <td class="nowrap" style="width: 5%">
+                        {static:Resources.Lang.total}
+                    </td>
+                    <td class="nowrap" style="width: 6%">
+                        {static:Resources.Lang.lblWinLoss}
+                    </td>
+                    <td class="nowrap" style="width: 5%">
+                        {static:Resources.Lang.total}
+                    </td>
+                    <td class="nowrap" style="width: 6%">
+                        {static:Resources.Lang.lblWinLoss}
+                    </td>
+                </tr>
+                <!--LeagueContents-->
+                <tr align="center">
+                    <td colspan="{TotalCols}" style="padding-left: 20px;" class="league">
+                        {LeagueName}
+                    </td>
+                </tr>
+                <!--MatchContents-->
+                <tr class="r" bgcolor="{ColorClass}" onmouseover="bgColor='{ColorOver}'" onmouseout="bgColor='{ColorClass}'">
+                    <!--RaceTime-->
+                    <td class="c b" title="{HRStatusTip}" bgcolor="{ColorStatus}" onmouseover="bgColor='{ColorOver}'"
+                        onmouseout="bgColor='{ColorStatus}'" {RaceRowspan}>
+                    <span class="raceNo">{RaceVal}</span><br />
+                    <div style="margin-top: 5px;" class="bl_time">
+                        {KickOffDay}<br />
+                        {KickOffTime}</div>
+                    </td>
+                    <!--/RaceTime-->
+                    <td class="c b">
+                        {No}
+                    </td>
+                    <td class="l">
+                        {Horse}
+                    </td>
+                    <td class="b">
+                        <!--WinTote-->
+                        <a href="javascript:doViewBetListRacing({MatchId},31,'{BetType}')">{WinToteTotal}</a>
+                        <!--/WinTote-->
+                        <!--WinToteValue-->
+                        {WinToteTotal}<!--/WinToteValue-->
+                    </td>
+                    <td class="b">
+                        {WinToteWinloss}
+                    </td>
+                    <td class="b">
+                        <!--PlaceTote-->
+                        <a href="javascript:doViewBetListRacing({MatchId},32,'{BetType}')">{PlaceToteTotal}</a>
+                        <!--/PlaceTote-->
+                        <!--PlaceToteValue-->
+                        {PlaceToteTotal}<!--/PlaceToteValue-->
+                    </td>
+                    <td class="b">
+                        {PlaceToteWinloss}
+                    </td>
+                    <td class="b">
+                        <!--WinplaceTote-->
+                        <a href="javascript:doViewBetListRacing({MatchId},33,'{BetType}')">{WinplaceToteTotal}</a>
+                        <!--/WinplaceTote-->
+                        <!--WinplaceToteValue-->
+                        {WinplaceToteTotal}<!--/WinplaceToteValue-->
+                    </td>
+                    <td class="b">
+                        {WinplaceToteWinloss}
+                    </td>
+                </tr>
+                <!--/MatchContents-->
+                <!--/LeagueContents-->
+                <!--TotalContents-->
+                <tr class="RptFooter r">
+                    <td colspan="3">
+                        {static:Resources.Lang.total}
+                    </td>
+                    <td>
+                        {SumWinTotal}
+                    </td>
+                    <td>
+                        {SumWinWinloss}
+                    </td>
+                    <td>
+                        {SumPlaceTotal}
+                    </td>
+                    <td>
+                        {SumPlaceWinloss}
+                    </td>
+                    <td>
+                        {SumWinplaceTotal}
+                    </td>
+                    <td>
+                        {SumWinplaceWinloss}
+                    </td>
+                </tr>
+                <!--/TotalContents-->
+                <!--NotFoundContent-->
+                <tr class="bg_white">
+                    <td colspan="{NoFoundColSpan}" class="c nobold">
+                        {static:Resources.Lang.noInfo}
+                    </td>
+                </tr>
+                <!--/NotFoundContent-->
+            </table>
+            <!--/Contents-->
+        </div>
+    </div>
+
+    <script src="../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+
+    <script src="Resources/TotalBets.js" type="text/javascript"></script>
+
+</body>
+</html>

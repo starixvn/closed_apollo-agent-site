@@ -1,0 +1,151 @@
+<table class="tblRpt_center" width="100%" border="0" cellpadding="0" cellspacing="1" id="tbl-rpt" style="display:table;">
+    <tr class="RptHeader">
+        <td style="width: 90px" columnname="kickofftime">
+            {static:Resources.Lang.kickofftime}
+        </td>
+        <td>
+            {static:Resources.Lang.events}
+        </td>
+        <td style="width: 18px;">
+            1
+        </td>
+        <td style="width: 18px;">
+            2
+        </td>
+        <td style="width: 18px;">
+            3
+        </td>
+        <td style="width: 18px;">
+            4
+        </td>
+        <td style="width: 18px;">
+            5
+        </td>
+        <td style="width: 18px;">
+            6
+        </td>
+        <td style="width: 18px;">
+            7
+        </td>
+        <td style="width: 18px;">
+            8
+        </td>
+        <td style="width: 18px;">
+            9
+        </td>
+        <td style="width: 18px;">
+            E.I
+        </td>
+        <td style="width: 70px;">
+            {static:Resources.Lang.lblHTScore}
+        </td>
+        <td style="width: 70px;">
+            {static:Resources.Lang.finalscore}
+        </td>
+        <td style="width: 70px;">
+            {static:Resources.Lang.status}
+        </td>
+    </tr>
+    <!--RowData-->
+    <!--League-->
+    <tr>
+        <td colspan="15" class="league" style="padding-left: 20px">
+            {LeagueName}
+        </td>
+    </tr>
+    <!--/League-->
+    <!--Row-->
+    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+        <td class="bl_time_nowrap" rowspan="2">
+            {KickOffTime}
+        </td>
+        <td class="l">
+            {Home}
+        </td>
+        <td>
+            {Home1}
+        </td>
+        <td>
+            {Home2}
+        </td>
+        <td>
+            {Home3}
+        </td>
+        <td>
+            {Home4}
+        </td>
+        <td>
+            {Home5}
+        </td>
+        <td>
+            {Home6}
+        </td>
+        <td>
+            {Home7}
+        </td>
+        <td>
+            {Home8}
+        </td>
+        <td>
+            {Home9}
+        </td>
+        <td>
+            {EIHome}
+        </td>
+        <td>
+            {HalfTimeScoreHome}
+        </td>
+        <td>
+            {FinalScoreHome}
+        </td>
+        <td rowspan="2">
+            {EventStatus}
+        </td>
+    </tr>
+    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+        <td class="l">
+            {Away}
+        </td>
+        <td>
+            {Away1}
+        </td>
+        <td>
+            {Away2}
+        </td>
+        <td>
+            {Away3}
+        </td>
+        <td>
+            {Away4}
+        </td>
+        <td>
+            {Away5}
+        </td>
+        <td>
+            {Away6}
+        </td>
+        <td>
+            {Away7}
+        </td>
+        <td>
+            {Away8}
+        </td>
+        <td>
+            {Away9}
+        </td>
+        <td>
+            {EIAway}
+        </td>
+        <td>
+            {HalfTimeScoreAway}
+        </td>
+        <td>
+            {FinalScoreAway}
+        </td>
+    </tr>
+    <!--/Row-->
+    <!--/RowData-->
+    <!--LimitNotFound-->
+    {load:Fanex.Age.UI.Reports.Components.NoInfo_Template NoInfoRow=new Fanex.Age.UI.Reports.Components.NoInfo_Template()}
+    <!--/LimitNotFound-->
+</table>

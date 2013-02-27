@@ -1,0 +1,38 @@
+﻿<table class="tblRpt_center" width="100%" border="0" cellpadding="0" cellspacing="1" id="tbl-rpt" style="display:table;">
+    <tr class="RptHeader">
+        <td style="width: 18%" columnname="eventdate">
+            {static:Resources.Lang.time}
+        </td>
+        <td style="width: 70%">
+            {static:Resources.Lang.lblTeam}
+        </td>
+        <td style="width: 20%">
+            {static:Resources.Lang.result}
+        </td>
+    </tr>
+    <!--RowData-->
+    <!--League-->
+    <tr>
+        <td colspan="3" class="league" style="padding-left: 20px">
+            {LeagueName}
+        </td>
+    </tr>
+    <!--/League-->
+    <!--Row-->
+    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+        <td class="bl_time_nowrap">
+            {TimeValue}
+        </td>
+        <td class="l">
+            {TeamValue}
+        </td>
+        <td>
+            {ResultValue}
+        </td>
+    </tr>
+    <!--/Row-->
+    <!--/RowData-->
+    <!--LimitNotFound-->
+        {load:Fanex.Age.UI.Reports.Components.NoInfo_Template NoInfoRow=new Fanex.Age.UI.Reports.Components.NoInfo_Template()}
+    <!--/LimitNotFound-->
+</table>

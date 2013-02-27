@@ -1,0 +1,37 @@
+﻿<!--HiddenBlock-->
+<link href="Resources/PortalPage.css" rel="stylesheet" type="text/css" />
+<!--/HiddenBlock-->
+
+<div class="onlineList">{OnlineList}</div>
+<table id="table-pp" style="width: 100%">    
+    <tr class="rowHeader">        
+        <td class="tdOL">{UserName}
+        </td>
+        <td class="tdOL">{LoggedIn}
+        </td>
+        <td class="tdOL">{IP}
+        </td>
+    </tr>
+    
+    <!--NoRow-->    
+    <tr>
+        <td class="c" colspan="4">{NoRowInfo}</td>
+    </tr>
+    <!--/NoRow-->
+
+    <!--Rows-->
+    <tr class="{oddEvenRow}">
+        <td class="l">{UserName_vl}
+        </td>
+        <td class="c">{LoggedIn_vl}
+        </td>
+        <td class="c"><a href="javascript:OpenIPInfo('{currentIP}');">{IP_vl}</a>
+        </td>
+    </tr>
+    <!--/Rows-->
+    <!--Paging-->
+    <tr class="paging">
+        <td colspan="4">{PagingControl}</td>
+    </tr>
+    <!--/Paging-->
+</table>

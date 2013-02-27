@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6a47d8d3-52e6-4141-9692-1c8a32037ea6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/IPServices/Services/WCF/WCF_IPService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCF_IPService1.disco" MetadataType="Disco" ID="69a4cb7e-47ce-457e-9e86-c7b21b34c772" SourceId="1" SourceUrl="http://vn107hwcp00302.sms.local/IPServices/Services/WCF/WCF_IPService.svc?disco" />
+    <MetadataFile FileName="IPService1.wsdl" MetadataType="Wsdl" ID="1e6ea725-6f5e-4067-a333-b8fc74eb55d1" SourceId="1" SourceUrl="http://vn107hwcp00302.sms.local/IPServices/Services/WCF/WCF_IPService.svc?wsdl" />
+    <MetadataFile FileName="WCF_IPService5.xsd" MetadataType="Schema" ID="d9214456-2735-4ffc-a758-c23b72d54a5d" SourceId="1" SourceUrl="http://vn107hwcp00302.sms.local/IPServices/Services/WCF/WCF_IPService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCF_IPService51.xsd" MetadataType="Schema" ID="4d0df66a-4819-4461-b96c-e5e59d7c0dbb" SourceId="1" SourceUrl="http://vn107hwcp00302.sms.local/IPServices/Services/WCF/WCF_IPService.svc?xsd=xsd3" />
+    <MetadataFile FileName="WCF_IPService52.xsd" MetadataType="Schema" ID="9beba940-9982-4945-a782-96bbf88c6623" SourceId="1" SourceUrl="http://vn107hwcp00302.sms.local/IPServices/Services/WCF/WCF_IPService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCF_IPService53.xsd" MetadataType="Schema" ID="60fde6f8-3cbb-4bc0-b68f-2a988d572e8a" SourceId="1" SourceUrl="http://vn107hwcp00302.sms.local/IPServices/Services/WCF/WCF_IPService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCF_IPService54.xsd" MetadataType="Schema" ID="cb995406-4aaa-43d5-98b6-8b6c8647ba7d" SourceId="1" SourceUrl="http://vn107hwcp00302.sms.local/IPServices/Services/WCF/WCF_IPService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Sunplus.Shared.ViewLogLib">
+</Property><Property Name="Solution File" Value="D:\Projects\Samurai\Dev\ViewLogLib\Sunplus.Shared.ViewLogLib.sln">
+</Property><Property Name="Date" Value="Friday, September 14, 2012">
+</Property><Property Name="Time" Value="17:55 PM">
+</Property></Properties><Event ErrorLevel="0" Project="Sunplus.Shared.ViewLogLib" Source="Sunplus.Shared.ViewLogLib.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Sunplus.Shared.ViewLogLib" Source="Sunplus.Shared.ViewLogLib.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="2" Project="" Source="Sunplus.Shared.ViewLogLib.sln" Description="Solution file 'D:\Projects\Samurai\Dev\ViewLogLib\Sunplus.Shared.ViewLogLib.sln' cannot be converted because it is read-only on disk. To convert the solution, change the permissions on the solution file to allow modification and re-open it.">
+</Event><Event ErrorLevel="3" Project="" Source="Sunplus.Shared.ViewLogLib.sln" Description="Not Converted">
+</Event></UpgradeLog>

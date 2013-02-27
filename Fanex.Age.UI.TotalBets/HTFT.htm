@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TotalBets</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/TotalBets.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="page_main">
+        <div id="header_main">
+            {static:Resources.Lang.htft}</div>
+        {load:Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown = new Fanex.Age.UI.Components.RefreshCountDown_Control(this,90,"HTFT")}
+        <div id="sContent">
+        <!--Contents-->
+            <table class="tblRpt" cellpadding="0" cellspacing="1" border="0">
+                <tr class="RptHeader">
+                    <td style="width: 20px;">
+                        {static:Resources.Lang.no}
+                    </td>
+                    <td style="width: 200px;">
+                        {static:Resources.Lang.home}
+                    </td>
+                    <td style="width: 200px;">
+                        {static:Resources.Lang.away}
+                    </td>
+                    <td style="width: 50px;">
+                        {static:Resources.Lang.hh}
+                    </td>
+                    <td style="width: 50px;">
+                        {static:Resources.Lang.hd}
+                    </td>
+                    <td style="width: 50px;">
+                        {static:Resources.Lang.ha}
+                    </td>
+                    <td style="width: 50px;">
+                        {static:Resources.Lang.dh}
+                    </td>
+                    <td style="width: 50px;">
+                        {static:Resources.Lang.dd}
+                    </td>
+                    <td style="width: 50px;">
+                        {static:Resources.Lang.da}
+                    </td>
+                    <td style="width: 50px;">
+                        {static:Resources.Lang.ah}
+                    </td>
+                    <td style="width: 50px;">
+                        {static:Resources.Lang.ad}
+                    </td>
+                    <td style="width: 50px;">
+                        {static:Resources.Lang.aa}
+                    </td>
+                </tr>
+                <!--HTFTContents-->
+                <tr class="r" bgcolor="{ColorClass}" onmouseover="bgColor='{ColorOver}'" onmouseout="bgColor='{ColorClass}'">
+                    <td class="w-order">
+                        {NoValue}
+                    </td>
+                    <td class="l">
+                        <a href="javascript:doViewBetList({MatchId}, 16, '{BetType}')">{HomeValue}</a>
+                    </td>
+                    <td class="l">
+                        {AwayValue}
+                    </td>
+                    <td class="fcnum">
+                        {HHValue}
+                    </td>
+                    <td class="fcnum">
+                        {HDValue}
+                    </td>
+                    <td class="fcnum">
+                        {HAValue}
+                    </td>
+                    <td class="fcnum">
+                        {DHValue}
+                    </td>
+                    <td class="fcnum">
+                        {DDValue}
+                    </td>
+                    <td class="fcnum">
+                        {DAValue}
+                    </td>
+                    <td class="fcnum">
+                        {AHValue}
+                    </td>
+                    <td class="fcnum">
+                        {ADValue}
+                    </td>
+                    <td class="fcnum">
+                        {AAValue}
+                    </td>
+                </tr>
+                <!--/HTFTContents-->
+                <!--NotFoundContent-->
+                <tr class="bg_white">
+                    <td colspan="12" class="c nobold">
+                        {static:Resources.Lang.noInfo}
+                    </td>
+                </tr>
+                <!--/NotFoundContent-->
+            </table>
+        <!--/Contents-->
+        </div>
+    </div>
+    <script src="../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+
+    <script src="Resources/TotalBets.js" type="text/javascript"></script>
+
+</body>
+</html>

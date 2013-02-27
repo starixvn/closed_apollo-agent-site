@@ -1,0 +1,9 @@
+﻿namespace Sunplus.Agent.UI.BetSlip.UI
+{
+    /// <summary>
+    /// Last ball OU
+    /// </summary>
+    public class BetType82 : BetType81
+    {
+    }
+}

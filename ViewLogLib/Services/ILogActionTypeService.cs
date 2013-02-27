@@ -1,0 +1,12 @@
+﻿using System.Collections.Generic;
+using Sunplus.Shared.ViewLogLib.Entities;
+
+
+namespace Sunplus.Shared.ViewLogLib.Services
+{
+    public interface ILogActionTypeService
+    {
+        List<LogActionType> GetAll();
+        bool Update(LogActionType logActionType);
+    }
+}

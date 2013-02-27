@@ -1,0 +1,9 @@
+﻿namespace Sunplus.Agent.UI.BetSlip.UI
+{
+    /// <summary>
+    /// Next Odd/Even
+    /// </summary>
+    public class BetType86 : BetType83
+    {
+    }
+}

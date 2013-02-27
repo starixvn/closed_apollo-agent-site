@@ -1,0 +1,88 @@
+<table class="tblRpt_center" width="100%" border="0" cellpadding="0" cellspacing="1" id="tbl-rpt" style="display:table;">
+    <tr class="RptHeader">
+        <td style="width: 80px" columnname="kickofftime">
+            {static:Resources.Lang.kickofftime}
+        </td>
+        <td>
+            {static:Resources.Lang.match}
+        </td>
+        <td style="width: 30px;">
+            {static:Resources.Lang.P1}
+        </td>
+        <td style="width: 30px;">
+            {static:Resources.Lang.P2}
+        </td>
+        <td style="width: 30px;">
+            {static:Resources.Lang.P3}
+        </td>
+        <td style="width: 30px;">
+            {static:Resources.Lang.OT}
+        </td>
+        <td class="nowrap" style="width: 50px;">
+            {static:Resources.Lang.finalscore}
+        </td>
+        <td style="width: 70px;">
+            {static:Resources.Lang.status}
+        </td>
+    </tr>
+    <!--RowData-->
+    <!--League-->
+    <tr>
+        <td colspan="8" class="league" style="padding-left: 20px;">
+            {LeagueName}
+        </td>
+    </tr>
+    <!--/League-->
+    <!--Row-->
+    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+        <td class="bl_time_nowrap" rowspan="2">
+            {KickOffTime}
+        </td>
+        <td class="l">
+            {Home}
+        </td>
+        <td>
+            {P1Home}
+        </td>
+        <td>
+            {P2Home}
+        </td>
+        <td>
+            {P3Home}
+        </td>
+        <td>
+            {OTHome}
+        </td>
+        <td>
+            {FinalScoreHome}
+        </td>
+        <td rowspan="2">
+            {EventStatus}
+        </td>
+    </tr>
+    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+        <td class="l">
+            {Away}
+        </td>
+        <td>
+            {P1Away}
+        </td>
+        <td>
+            {P2Away}
+        </td>
+        <td>
+            {P3Away}
+        </td>
+        <td>
+            {OTAway}
+        </td>
+        <td>
+            {FinalScoreAway}
+        </td>
+    </tr>
+    <!--/Row-->
+    <!--/RowData-->
+    <!--LimitNotFound-->
+    {load:Fanex.Age.UI.Reports.Components.NoInfo_Template NoInfoRow=new Fanex.Age.UI.Reports.Components.NoInfo_Template()}
+    <!--/LimitNotFound-->
+</table>

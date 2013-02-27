@@ -1,0 +1,449 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.lblMatchWinLostDetail}</title>
+    <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/Reports.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="frmmain" method="post" action="MatchWinLossDetail.aspx">
+    <div id="page_main" onclick="setVisibleBoxLeague()">
+        <div id="header_main">
+            {static:Resources.Lang.lblMatchWinLostDetail}
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0" style="width: 99%">
+            <tr>
+                <td>
+                    {SearchPanel}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="tbl-container">
+                        <div id="boderRight">
+                            <!--ExcelContents-->
+                            <table class="tblRpt {BoldRow}" cellpadding="0" cellspacing="1" style="width: 100%;"
+                                id="tbl-rpt">
+                                <thead>
+                                    <tr id="rowTitle" class="RptTitleLeft">
+                                        <td id="content_title" colspan="{NumCols}">
+                                            {static:Resources.Lang.lblMatchWinLostDetail}&nbsp;{DateFrom}--&gt;{DateTo}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="RptHeader" colspan="3">
+                                            &nbsp;
+                                        </td>
+                                        <td class="RptHeader" colspan="3">
+                                            {static:Resources.Lang.member}
+                                        </td>
+                                        <td class="RptHeader" colspan="3">
+                                            {static:Resources.Lang.agent}
+                                        </td>
+                                        <!--Master1-->
+                                        <td class="RptHeader" colspan="3">
+                                            {static:Resources.Lang.master}
+                                        </td>
+                                        <!--/Master1-->
+                                        <!--Super1-->
+                                        <td class="RptHeader" colspan="3">
+                                            {static:Resources.Lang.super}
+                                        </td>
+                                        <!--/Super1-->
+                                        <td class="RptHeader" colspan="2">
+                                            {static:Resources.Lang.company}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.bettype}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.turnover}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.grosscomm}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.win}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.com}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.total}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.win}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.com}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.total}
+                                        </td>
+                                        <!--Master2-->
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.win}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.com}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.total}
+                                        </td>
+                                        <!--/Master2-->
+                                        <!--Super2-->
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.win}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.com}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.total}
+                                        </td>
+                                        <!--/Super2-->
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.com}
+                                        </td>
+                                        <td class="RptHeader02">
+                                            {static:Resources.Lang.total}
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--Content-->
+                                    <!--MatchContent-->
+                                    <tr>
+                                        <td colspan="{NumCols}" class="league" style="font-weight: normal;">
+                                            <span id="winloss_league">
+                                                {League}</span>
+                                            <!--MatchName-->
+                                            <span id="virtual_span">&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span>
+                                            <span id="winloss_match">
+                                                {MatchName}</span>
+                                            <!--/MatchName-->
+                                        </td>
+                                    </tr>
+                                    <!--/MatchContent-->
+                                    <!--BetTypeRow-->
+                                    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+                                        <td class="left_normal">
+                                            <span class='downline_link' onclick="doViewBetList({LeagueId},{MatchId},{BetTypeId},'{BetVewType}', {Race}, {islive})">
+                                                {BetTypeName}</span>
+                                        </td>
+                                        <td>
+                                            {TurnOver}
+                                        </td>
+                                        <td>
+                                            {MaxComm}
+                                        </td>
+                                        <td>
+                                            {WinlossMem}
+                                        </td>
+                                        <td>
+                                            {CommMem}
+                                        </td>
+                                        <td class="b">
+                                            {TotalMem}
+                                        </td>
+                                        <td class="altercol">
+                                            {WinlossAg}
+                                        </td>
+                                        <td class="altercol">
+                                            {CommAg}
+                                        </td>
+                                        <td class="altercol_bold">
+                                            {TotalAg}
+                                        </td>
+                                        <!--Master-->
+                                        <td>
+                                            {WinlossMAg}
+                                        </td>
+                                        <td>
+                                            {CommMAg}
+                                        </td>
+                                        <td class="b">
+                                            {TotalMAg}
+                                        </td>
+                                        <!--/Master-->
+                                        <!--Super-->
+                                        <td class="altercol">
+                                            {WinlossSAg}
+                                        </td>
+                                        <td class="altercol">
+                                            {CommSAg}
+                                        </td>
+                                        <td class="altercol_bold">
+                                            {TotalSAg}
+                                        </td>
+                                        <!--/Super-->
+                                        <td>
+                                            {CommComp}
+                                        </td>
+                                        <td class="b">
+                                            {TotalComp}
+                                        </td>
+                                    </tr>
+                                    <!--/BetTypeRow-->
+                                    <!--TotalBetTypeRow-->
+                                    <tr style="color:#394E6E" class="b" bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+                                        <td class="l">
+                                            {static:Resources.Lang.subTotal}
+                                        </td>
+                                        <td>
+                                            {TurnOver}
+                                        </td>
+                                        <td>
+                                            {MaxComm}
+                                        </td>
+                                        <td>
+                                            {WinlossMem}
+                                        </td>
+                                        <td>
+                                            {CommMem}
+                                        </td>
+                                        <td class="b">
+                                            {TotalMem}
+                                        </td>
+                                        <td class="altercol">
+                                            {WinlossAg}
+                                        </td>
+                                        <td class="altercol">
+                                            {CommAg}
+                                        </td>
+                                        <td class="altercol_bold">
+                                            {TotalAg}
+                                        </td>
+                                        <!--Master-->
+                                        <td>
+                                            {WinlossMAg}
+                                        </td>
+                                        <td>
+                                            {CommMAg}
+                                        </td>
+                                        <td class="b">
+                                            {TotalMAg}
+                                        </td>
+                                        <!--/Master-->
+                                        <!--Super-->
+                                        <td class="altercol">
+                                            {WinlossSAg}
+                                        </td>
+                                        <td class="altercol">
+                                            {CommSAg}
+                                        </td>
+                                        <td class="altercol_bold">
+                                            {TotalSAg}
+                                        </td>
+                                        <!--/Super-->
+                                        <td>
+                                            {CommComp}
+                                        </td>
+                                        <td class="b">
+                                            {TotalComp}
+                                        </td>
+                                    </tr>
+                                    <!--/TotalBetTypeRow-->
+                                    <!--/Content-->
+                                    <!--LimitFooter-->
+                                    <tr class="RptFooter">
+                                        <td class="l">
+                                            {static:Resources.Lang.total}
+                                        </td>
+                                        <td>
+                                            {TurnOverTotal}
+                                        </td>
+                                        <td>
+                                            {MaxCommTotal}
+                                        </td>
+                                        <td>
+                                            {WinlossMemTotal}
+                                        </td>
+                                        <td>
+                                            {CommMemTotal}
+                                        </td>
+                                        <td>
+                                            {TotalMemTotal}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {WinlossAgtTotal}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {CommAgtTotal}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {TotalAgtTotal}
+                                        </td>
+                                        <!--Master-->
+                                        <td>
+                                            {WinlossMasTotal}
+                                        </td>
+                                        <td>
+                                            {CommMasTotal}
+                                        </td>
+                                        <td>
+                                            {TotalMasTotal}
+                                        </td>
+                                        <!--/Master-->
+                                        <!--Super-->
+                                        <td class="altercol_master">
+                                            {WinlossSupTotal}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {CommSupTotal}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {TotalSupTotal}
+                                        </td>
+                                        <!--/Super-->
+                                        <td>
+                                            {CommComTotal}
+                                        </td>
+                                        <td>
+                                            {TotalComTotal}
+                                        </td>
+                                    </tr>
+                                    <!--Parlay-->
+                                    <tr bgcolor="#F6F8F9" onmouseover="this.style.backgroundColor='{ColorOver}'" onmouseout="this.style.backgroundColor='#F6F8F9'">
+                                        <td class="left_normal">
+                                            <span class='downline_link' onclick="doViewMPBetList('{MPDateFrom}','{MPDateTo}','{MPBetType}','{MPType}')">
+                                                {BetTypeName}</span>
+                                        </td>
+                                        <td>
+                                            {TurnoverParlay}
+                                        </td>
+                                        <td>
+                                            {MaxcommParlay}
+                                        </td>
+                                        <td>
+                                            {WinlossMemParlay}
+                                        </td>
+                                        <td>
+                                            {CommMemParlay}
+                                        </td>
+                                        <td class="b">
+                                            {TotalMemParlay}
+                                        </td>
+                                        <td class="altercol">
+                                            {WinlossAgtParlay}
+                                        </td>
+                                        <td class="altercol">
+                                            {CommAgtParlay}
+                                        </td>
+                                        <td class="altercol_bold">
+                                            {TotalAgtParlay}
+                                        </td>
+                                        <!--Master-->
+                                        <td>
+                                            {WinlossMasParlay}
+                                        </td>
+                                        <td>
+                                            {CommMasParlay}
+                                        </td>
+                                        <td class="b">
+                                            {TotalMasParlay}
+                                        </td>
+                                        <!--/Master-->
+                                        <!--Super-->
+                                        <td class="altercol">
+                                            {WinlossSupParlay}
+                                        </td>
+                                        <td class="altercol">
+                                            {CommSupParlay}
+                                        </td>
+                                        <td class="altercol_bold">
+                                            {TotalSupParlay}
+                                        </td>
+                                        <!--/Super-->
+                                        <td>
+                                            {CommComParlay}
+                                        </td>
+                                        <td class="b">
+                                            {TotalComParlay}
+                                        </td>
+                                    </tr>
+                                    <!--/Parlay-->
+                                    <!--TotalAll-->
+                                    <tr class="RptFooter">
+                                        <td class="l">
+                                            {static:Resources.Lang.grandTotal}
+                                        </td>
+                                        <td>
+                                            {TurnoverTotalAll}
+                                        </td>
+                                        <td>
+                                            {MaxCommTotalAll}
+                                        </td>
+                                        <td>
+                                            {WinlossTotalAll}
+                                        </td>
+                                        <td>
+                                            {CommTotalAll}
+                                        </td>
+                                        <td>
+                                            {TotalTotalAll}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {WinlossAgtTotalAll}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {CommAgtTotalAll}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {TotalAgtTotalAll}
+                                        </td>
+                                        <!--Master-->
+                                        <td>
+                                            {WinlossMasTotalAll}
+                                        </td>
+                                        <td>
+                                            {CommMasTotalAll}
+                                        </td>
+                                        <td>
+                                            {TotalMasTotalAll}
+                                        </td>
+                                        <!--/Master-->
+                                        <!--Super-->
+                                        <td class="altercol_master">
+                                            {WinlossSupTotalAll}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {CommSupTotalAll}
+                                        </td>
+                                        <td class="altercol_master">
+                                            {TotalSupTotalAll}
+                                        </td>
+                                        <!--/Super-->
+                                        <td>
+                                            {CommComTotalAll}
+                                        </td>
+                                        <td>
+                                            {TotalComTotalAll}
+                                        </td>
+                                    </tr>
+                                    <!--/TotalAll-->
+                                    <!--/LimitFooter-->
+                                    <!--NoInfo-->
+                                    {load:Fanex.Age.UI.Reports.Components.NoInfo_Template NoInfoRow=new Fanex.Age.UI.Reports.Components.NoInfo_Template()}
+                                    <!--/NoInfo-->
+                                </tbody>
+                            </table>
+                            <!--/ExcelContents-->
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {BoxLeague}
+    </form>
+    
+    <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+
+    <script src="../Resources/Reports.js" type="text/javascript"></script>
+    <script src="../Resources/SelectLeagues.js" type="text/javascript"></script>
+
+</body>
+</html>

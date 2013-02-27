@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Sunplus.Agent.UI.PositionTaking.RaceBook">
+</Property><Property Name="Solution File" Value="E:\TFS\Agent\Main\Sunplus.Agent.UI.PositionTaking.RaceBook\Sunplus.Agent.UI.PositionTaking.RaceBook.sln">
+</Property><Property Name="Date" Value="Tuesday, October 18, 2011">
+</Property><Property Name="Time" Value="10:28:41 AM">
+</Property></Properties><Event ErrorLevel="0" Project="Sunplus.Agent.UI.PositionTaking.RaceBook" Source="Sunplus.Agent.UI.PositionTaking.RaceBook.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Sunplus.Agent.UI.PositionTaking.RaceBook" Source="Sunplus.Agent.UI.PositionTaking.RaceBook.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Sunplus.Agent.UI.PositionTaking.RaceBook" Source="Sunplus.Agent.UI.PositionTaking.RaceBook.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

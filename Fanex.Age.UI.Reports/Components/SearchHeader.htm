@@ -1,0 +1,20 @@
+﻿<table style="width: 100%">
+    <tr>
+        <td>
+            {load:Fanex.Age.UI.Components.DateRangeSelect_Control DateRangeSelect=new Fanex.Age.UI.Components.DateRangeSelect_Control(this,true,DateTime.Today,DateTime.Today)}
+        </td>
+        <td align="right">
+            <!--BoldCheckbox-->
+            <input type="checkbox" id="chk_rpt_bold" {Checked} onclick="boldTable(this.checked);" />
+            <label for="chk_rpt_bold" style="color: #999; text-transform: none; font-weight: bold;
+                line-height: 18px;">
+                {static:Resources.Lang.lblBold}</label>&nbsp;
+            <!--/BoldCheckbox-->
+            <!--ExportExcel-->
+            <input alt="{static:Resources.Lang.exporttoexcel}" src="../../_GlobalResources/Images/excel.gif" type="image" id="exporttoexcel" name="exporttoexcel"
+                nofocus="true" title="{static:Resources.Lang.exporttoexcel}"
+                class="hand" />
+            <!--/ExportExcel-->
+        </td>
+    </tr>
+</table>

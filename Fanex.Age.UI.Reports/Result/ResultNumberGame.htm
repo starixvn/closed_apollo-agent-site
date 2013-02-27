@@ -1,0 +1,70 @@
+<table class="tblRpt_numbergame" width="100%" border="0" cellpadding="0" cellspacing="1" id="tbl-rpt" style="display:table;">
+    <tr class="RptHeader">
+        <td style="width: 90px" columnname="kickofftime">
+            {static:Resources.Lang.kickofftime}
+        </td>
+        <td style="width: 75px">
+            {static:Resources.Lang.match}
+        </td>
+        <td style="width: 235px;">
+            {static:Resources.Lang.result}
+        </td>        
+        <td style="width: 60px;">
+            {static:Resources.Lang.warrior}
+        </td>
+        <td style="width: 40px;">
+            {static:Resources.Lang.lblOEFT}
+        </td>
+        <td style="width: 40px;">
+            {static:Resources.Lang.lbl1stBall}
+        </td>
+       
+        <td style="width: 50px;">
+            {static:Resources.Lang.lastball}
+        </td>
+        <td style="width: 60px;">
+            {static:Resources.Lang.status}
+        </td>
+    </tr>
+    <!--Content-->
+    <!--League-->
+    <tr>
+        <td colspan="8" class="league" style="padding-left: 20px;">
+            {LeagueName}
+        </td>
+    </tr>
+    <!--/League-->
+    <!--Match-->
+    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+        <td class="bl_time_nowrap">
+            {KickOffTime}
+        </td>
+        <td class="l">
+            {static:Resources.Lang.numbergameno}&nbsp;{GameNo}
+        </td>
+        <td align="left" style="text-align:left">
+            <!--Ball--><img src='{BallImageSource}' alt=""/><!--/Ball-->
+        </td>
+        <td>
+            {warrior}
+        </td>
+        <td>
+            {OEFT}
+        </td>
+        <td>
+            {FirstBall}
+        </td>
+        
+        <td>
+            {LastBall}
+        </td>
+        <td>
+            {EventStatus}
+        </td>
+    </tr>
+    <!--/Match-->
+    <!--NotFound-->
+    {load:Fanex.Age.UI.Reports.Components.NoInfo_Template NoInfoRow=new Fanex.Age.UI.Reports.Components.NoInfo_Template()}
+    <!--/NotFound-->
+    <!--/Content-->
+</table>

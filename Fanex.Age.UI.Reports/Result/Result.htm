@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{Title}</title>
+    <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/Reports.css" rel="stylesheet" type="text/css" />
+    <link href="../../_BetList/Resources/BetList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="frmmain" method="get" action="Result.aspx">
+    <div id="page_main">
+        <!--ResultTitle-->
+        <div id="header_main">
+            {Title}
+        </div>
+        <!--/ResultTitle-->
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <!--HeaderRegion-->
+            <tr>
+                <td>
+                    <div id="box_header">
+                        <table style="width: 100%">
+                            <tr>
+                                <td>
+                                    {load:Fanex.Age.UI.Components.DateRangeSelect_Control DateRangeSelect=new Fanex.Age.UI.Components.DateRangeSelect_Control(this,true,DateTime.Today,DateTime.Today)}
+                                </td>
+                                <td align="right">
+                                    <input type="button" class="btn" style="width: 90px" id="btResultType" value="{ResultType}" onclick="DisableButton(); Result_ToggleResultType();" />
+                                </td>
+                                <td align="right">
+                                    <input type="image" id="exporttoexcel" name="exporttoexcel" alt="{static:Resources.Lang.exporttoexcel}"
+                                        nofocus="true" src="../../_GlobalResources/Images/excel.gif" title="{static:Resources.Lang.exporttoexcel}"
+                                    class="hand" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <!--/HeaderRegion-->        
+            <!--SportCriteria-->
+            <tr>
+                <td>
+                    <table border="0">
+                        <tr>
+                            <td>
+                                {static:Resources.Lang.sport}
+                            </td>
+                            <td id="selSport">
+                                <select onchange="Result_ChangeSport();" name="ddlSport" id="ddlSport" style="position: relative;">
+                                    <!--SportOption-->
+                                    <option {SelectedOption} value="{SportId}">{SportName}</option>
+                                    <!--/SportOption-->
+                                </select>
+                            </td>
+                            <td width="10">
+                                &nbsp;
+                            </td>
+                            <td>
+                                {static:Resources.Lang.league}
+                            </td>
+                            <td id="selLeague" name="selLeague">
+                                <select onchange="Result_ChangeLeague();" name="ddlLeague" id="ddlLeague">
+                                    <option value='0' selected='selected'>*..::* Show All Leagues  *::..*</option>
+                                    <!--LeagueOption-->
+                                    <option value="{LeagueId}" {SelectedOption}>{LeagueName}</option>
+                                    <!--/LeagueOption-->
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!--/SportCriteria-->
+            <tr>
+                <td>
+                    <div id="tbl-container">
+                        <div id="boderRight">
+                            <!--ExcelContents-->
+                            
+                            <!--/ExcelContents-->
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <input type="hidden" id="is_outright" name="is_outright" value="{IsOutright}" />
+    <input type="hidden" id="changeSportType" name="changeSportType" value="0" />
+    </form>
+
+    <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+
+    <script src="../Resources/Reports.js" type="text/javascript"></script>
+</body>
+</html>

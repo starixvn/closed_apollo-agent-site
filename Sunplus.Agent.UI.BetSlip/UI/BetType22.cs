@@ -1,0 +1,10 @@
+﻿namespace Sunplus.Agent.UI.BetSlip.UI
+{
+    public class BetType22 : BetType1
+    {
+        public override void AssignHdp()
+        {
+            Hdp = "--";
+        }
+    }
+}

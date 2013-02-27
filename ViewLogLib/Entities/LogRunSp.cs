@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Sunplus.Shared.ViewLogLib.Entities
+{
+    public class LogRunSp : LogBase
+    {
+        public string TrackingValue { get; set; }
+        public string TrackingValueOld { get; set; }
+    }
+}

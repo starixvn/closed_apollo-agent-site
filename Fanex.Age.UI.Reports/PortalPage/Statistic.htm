@@ -1,0 +1,109 @@
+﻿<!--HiddenBlock-->
+<link href="Resources/PortalPage.css" rel="stylesheet" type="text/css" />
+<!--/HiddenBlock-->
+
+<div class="statistic">{Statistic}</div>
+<table id="table-pp" style="width: 350px;">    
+    <tr>
+        <td class="leftTD">{AgentOutstanding}</td>
+        <td class="r b rightTD">{AgentOutstanding_vl}</td>                                
+    </tr>
+    <tr>
+        <td class="leftTD">{TotalOutstanding}</td>
+        <td class="r b rightTD">{TotalOutstanding_vl}</td>                                
+    </tr>
+    <!--OldUI-->
+    <!--Casino-->
+    <tr>
+        <td class="leftTD">{TotalCasinoTransfer}</td>
+        <td class="r b rightTD">{TotalCasinoTransfer_vl}</td>                                
+    </tr>
+    <tr>
+        <td class="leftTD">{TotalCasinoOutstanding}</td>
+        <td class="r b rightTD">{TotalCasinoOutstanding_vl}</td>                
+    </tr>
+    <!--/Casino-->
+    <!--Bingo-->
+    <tr>
+        <td class="leftTD">{TotalBingoTransfer}</td>
+        <td class="r b rightTD">{TotalBingoTransfer_vl}</td>                
+    </tr>
+    <tr>
+        <td class="leftTD">{TotalBingoOutstanding}</td>
+        <td class="r b rightTD">{TotalBingoOutstanding_vl}</td>                
+    </tr>
+    <!--/Bingo-->
+    <!--/OldUI-->
+    <!--NewUI-->
+    <!--Casino-->
+    <tr>
+        <td class="leftTD">{TotalCasinoTransferOutstanding}</td>
+        <td class="r b rightTD">{CasinoTransfer}|{CasinoOutstanding}</td>                                
+    </tr>
+    <!--/Casino-->
+    <!--Bingo-->
+    <tr>
+        <td class="leftTD">{TotalBingoTransferOutstanding}</td>
+        <td class="r b rightTD">{BingoTransfer}|{BingoOutstanding}</td>                
+    </tr>
+    <!--/Bingo-->
+    <!--P2P-->
+    <tr>
+        <td class="leftTD">{TotalP2PTransferOutstanding}</td>
+        <td class="r b rightTD">{P2PTransfer}|{P2POutstanding}</td>                
+    </tr>
+    <!--/P2P-->
+    <!--/NewUI-->
+    <tr class="leftTD">
+        <td colspan="2">
+            <span id="ACST" onclick="toogleDiv('ACST', 'ACS', 'imgACS', null, 'highest', 'newmem', 'imgHighest', 'imgNewmem', 'top10', 'imgTop10');">{TotalMemberACS} <img id="imgACS" class="imgLoading" alt="Show" src="Images/collapse.png" /></span>
+            <div onmouseover="divOnMouseOver();" onmouseout="divOnMouseOut();" id="ACS" class="divCollapse3">{ACS_Detail}</div>                
+        </td>                
+    </tr>
+    <tr class="leftTD">
+        <td colspan="2">
+            <span id="top10T" onclick="toogleDiv('top10T', 'top10', 'imgTop10', null, 'highest', 'newmem', 'imgHighest', 'imgNewmem', 'ACS', 'imgACS');">
+                        {Top10WinningOfMonth}&nbsp;
+                <img class="imgLoading" id="imgTop10" alt="Show" src="Images/collapse.png" />
+            </span>
+            <div onmouseover="divOnMouseOver();" onmouseout="divOnMouseOut();" class="divCollapse" id="top10">{Top10WinningDetail}</div>
+        </td>                
+    </tr>
+    <tr class="leftTD">
+        <td colspan="2">
+            <span id="highestT" onclick="toogleDiv('highestT', 'highest', 'imgHighest', null, 'top10', 'newmem', 'imgTop10', 'imgNewmem', 'ACS', 'imgACS');">
+                        {HighestTurnoverOfMonth}&nbsp;
+                <img class="imgLoading" id="imgHighest" alt="Show" src="Images/collapse.png" />
+            </span>
+            <div onmouseover="divOnMouseOver();" onmouseout="divOnMouseOut();" class="divCollapse" id="highest">{HighestTurnoverDetail}</div>
+        </td>                
+    </tr>
+    <!--NewMember-->
+    <tr class="leftTD">
+        <td colspan="2">
+            <span id="newmemT" onclick="toogleDiv('newmemT', 'newmem', 'imgNewmem', null, 'top10', 'highest', 'imgTop10', 'imgHighest', 'ACS', 'imgACS');">
+                        {NewMemberOfMonth}: <span id="newmemVal" class="b">{NewMemberOfMonth_vl}</span>&nbsp;
+                        <img class="imgLoading" id="imgNewmem" alt="Show" src="Images/collapse.png" />
+            </span>
+            <div style="position: absolute; text-indent: 0px;" id="newmemH" onmouseover="divOnMouseOver();" onmouseout="divOnMouseOut();">
+            <table class="portalTable newMemWidth" style="padding-left: -5px">                        
+                <tr>
+                    <th class="c">{UserName}
+                    </th>
+                    <th class="c newMemCol">{GivenCredit}
+                    </th>
+                    <th class="c newMemCol">{CreatedDate}
+                    </th>
+                </tr>
+                <!--NoRow-->
+                <tr>
+                    <td colspan="3" class="c">{NoRowInfo}</td>
+                </tr>                        
+                <!--/NoRow-->
+            </table>
+            <div class="divCollapse2" id="newmem">{NewMemberDetail}</div>
+            </div>
+        </td>                
+    </tr>
+    <!--/NewMember-->
+</table>

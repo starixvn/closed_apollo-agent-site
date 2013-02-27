@@ -1,0 +1,62 @@
+<table class="tblRpt_center" width="100%" border="0" cellpadding="0" cellspacing="1" id="tbl-rpt" style="display:table;">
+    <tr class="RptHeader">
+        <td style="width: 90px; white-space: nowrap;" colspan="3">
+            {static:Resources.Lang.lblRace}
+        </td>
+        <td style="width: 120px; white-space: nowrap;">
+            {static:Resources.Lang.result}
+        </td>
+        <td style="width: 60px;">
+            {static:Resources.Lang.WinHR}
+        </td>
+        <td style="width: 60px;">
+            {static:Resources.Lang.Place}
+        </td>
+        <td class="nowrap">
+            {static:Resources.Lang.status}
+        </td>
+    </tr>
+    <!--RowData-->
+    <!--League-->
+    <tr>
+        <td colspan="7" class="league" style="padding-left: 20px">
+            {LeagueName}
+        </td>
+    </tr>
+    <!--/League-->
+    <!--Row-->
+    <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+        <!--STTContent-->
+        <td rowspan="{RowSpan}" style="font-size: 13px; font-weight: bold;">
+            {STT}
+        </td>
+        <!--/STTContent-->
+        <td>
+            {Placing}
+        </td>
+        <td class="b">
+            {HorseNo}
+        </td>
+        <td class="b l">
+            {Result}
+        </td>
+        <td>
+            {Win}
+        </td>
+        <td>
+            {Place}
+        </td>
+        <!--StatusContent-->
+        <td rowspan="{RowSpan}">
+            <font color='red'> {static:Resources.Lang.official}</font>
+            <!--SCRContent--><br/>{static:Resources.Lang.scr}: {SCR}<!--SCRInfo--><span class="detailInfo" onclick="Result_ViewSCRInfo('{EventDate}','{RaceName}',{LeagueId});">&nbsp;</span><!--/SCRInfo--><!--/SCRContent-->
+            <!--TFCOntent--><br/>{static:Resources.Lang.tf}: {TF}<!--/TFCOntent-->
+        </td>
+        <!--/StatusContent-->
+    </tr>
+    <!--/Row-->
+    <!--/RowData-->
+    <!--LimitNotFound-->
+    {load:Fanex.Age.UI.Reports.Components.NoInfo_Template NoInfoRow=new Fanex.Age.UI.Reports.Components.NoInfo_Template()}
+    <!--/LimitNotFound-->
+</table>

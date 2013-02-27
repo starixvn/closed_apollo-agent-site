@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Text;
+using Sunplus.Agent.Utilities;
+using System.Data;
+
+namespace Sunplus.Agent.UI.ScoreMap.UI
+{
+    public class ScoreMap : ScoreMapBase
+    {
+        #region Properties and define variable
+        protected int index = 0, indexMatch = 0;
+        protected int indexHome = 0, indexAway = 0;
+
+        StringBuilder content = new StringBuilder();
+        StringBuilder main = new StringBuilder();
+        StringBuilder sbChild = new StringBuilder();
+        StringBuilder sbTotal = new StringBuilder();
+
+        #endregion
+        public override void Assign(System.Data.DataRow row)
+        {
+            decimal total = Convert.ToDecimal(row["total"]);
+            this.total = Formater.DecFormat(total, 0);
+            this.color = total > 0 ? "color:red" : "";
+        }
+        #region IComponent Members
+        public override string Render()
+        {
+            return ToString();
+        }
+        public override void ToString(ref System.Text.StringBuilder bd)
+        {
+            base.ToString(ref bd);
+        }
+        public override void HideLinkedResources()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+}

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{static:Resources.Lang.memberwinloss}</title>
+    <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/Reports.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="frmmain" method="get" {actionForm}>
+    <div id="page_main">
+        <div id="header_main" style="width:740px;">
+            <span style="float:left">{static:Resources.Lang.memberwinloss}</span> 
+            <!--BoldExportExcel-->
+                <span class="right_box">{load:Fanex.Age.UI.Reports.Components.BoldExportExcel_Template BoldExportExcel=new Fanex.Age.UI.Reports.Components.BoldExportExcel_Template()}</span>
+                <input type="hidden" id="fdate" name="fdate" value="{DateFrom}" />
+                <input type="hidden" id="tdate" name="tdate" value="{DateTo}" />
+            <!--/BoldExportExcel-->
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    {SearchPanel}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="tbl-container">
+                        <div id="boderRight">
+                            <!--ExcelContents-->
+                            <table class="tblRpt {BoldRow}" width="750px" border="0" cellpadding="0" cellspacing="1" id="tbl-rpt" style="display:none">
+                                <tr id="rowTitle" class="RptTitle">
+                                    <td id="content_title" colspan="10">
+                                        {static:Resources.Lang.memberwinloss} {DateFrom}--&gt;{DateTo}
+                                    </td>
+                                </tr>
+                                <tr class="RptHeader">
+                                    <td rowspan="2" class="nowrap" columnname="username">
+                                        {static:Resources.Lang.member}
+                                    </td>
+                                    <td rowspan="2" columnname="turnover">
+                                        {static:Resources.Lang.turnover}
+                                    </td>
+                                    <td rowspan="2" class="nowrap" style="width: 80px" columnname="grosscomm">
+                                        {static:Resources.Lang.grosscomm}
+                                    </td>
+                                    <td colspan="3">
+                                        {static:Resources.Lang.member}
+                                    </td>
+                                    <td colspan="3">
+                                        {static:Resources.Lang.agent}
+                                    </td>
+                                    <td rowspan="2" columnname="company">
+                                        {static:Resources.Lang.company}
+                                    </td>
+                                </tr>
+                                <tr class="RptHeader02">
+                                    <td columnname="memberwinlost">
+                                        {static:Resources.Lang.win}
+                                    </td>
+                                    <td columnname="playercomm">
+                                        {static:Resources.Lang.com}
+                                    </td>
+                                    <td columnname="membertotal">
+                                        {static:Resources.Lang.total}
+                                    </td>
+                                    <td columnname="agwinlost">
+                                        {static:Resources.Lang.win}
+                                    </td>
+                                    <td columnname="agcomm">
+                                        {static:Resources.Lang.com}
+                                    </td>
+                                    <td columnname="agtotal">
+                                        {static:Resources.Lang.total}
+                                    </td>
+                                </tr>
+                                <!--Content-->
+                                <tr bgcolor="{ColorClass}" onmouseover="this.style.backgroundColor='{static:Fanex.Age.UI.Common.RowBgOver}'" onmouseout="this.style.backgroundColor='{ColorClass}'">
+                                    <td class="left_normal">
+                                        <span onclick="ViewDownlineWLReport('{FdateDownline}','{TdateDownline}','{DownlineMemberId}','{ActionPage}','{UserName}');"
+                                            class="downline_link">{UserName}</span>
+                                    </td>
+                                    <td>
+                                        {turnover}
+                                    </td>
+                                    <td>
+                                        {gcomm}
+                                    </td>
+                                    <td>
+                                        {winlossmem}
+                                    </td>
+                                    <td>
+                                        {commem}
+                                    </td>
+                                    <td class="b">
+                                        {totalmem}
+                                    </td>
+                                    <td class="altercol">
+                                        {winlossagent}
+                                    </td>
+                                    <td class="altercol">
+                                        {comagent}
+                                    </td>
+                                    <td class="altercol_bold">
+                                        {totalagent}
+                                    </td>
+                                    <td class="b">
+                                        {company}
+                                    </td>
+                                </tr>
+                                <!--/Content-->
+                                <!--ContentTotal-->
+                                <tr class="RptFooter">
+                                    <td class="l">
+                                        {static:Resources.Lang.total}
+                                    </td>
+                                    <td class="nowrap">
+                                        {total_turnover}
+                                    </td>
+                                    <td class="nowrap">
+                                        {total_gcomm}
+                                    </td>
+                                    <td class="nowrap">
+                                        {total_winlossmem}
+                                    </td>
+                                    <td class="nowrap">
+                                        {total_commem}
+                                    </td>
+                                    <td class="nowrap">
+                                        {total_totalmem}
+                                    </td>
+                                    <td class="altercol_master">
+                                        {total_winlossagent}
+                                    </td>
+                                    <td class="altercol_master">
+                                        {total_comagent}
+                                    </td>
+                                    <td class="altercol_master">
+                                        {total_totalagent}
+                                    </td>
+                                    <td class="nowrap">
+                                        {total_company}
+                                    </td>
+                                </tr>
+                                <!--/ContentTotal-->
+                                <!--NoInfo-->
+                                {load:Fanex.Age.UI.Reports.Components.NoInfo_Template NoInfoRow=new Fanex.Age.UI.Reports.Components.NoInfo_Template()}
+                                <!--/NoInfo-->
+                            </table>
+                            <!--/ExcelContents-->
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <input type="hidden" name="CustId" id="CustId" value="{CustId}" />
+    <input type="hidden" name="IsHistoryReport" id="IsHistoryReport" value="{IsHistoryReport}" />
+    <input type="hidden" name="IsSwitch" id="IsSwitch" value="{IsSwitch}" />
+    <input type="hidden" name="UserName" id="UserName" value="{UserName}" />
+    <input type="hidden" name="Type" id="Type" value="{BetType}" />
+    <input type="hidden" name="WorkOnOldBetList" id="WorkOnOldBetList" value="{IsWorkedOnOldBetList}" />
+    </form>
+</body>
+
+<script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+<script src="../Resources/Reports.js" type="text/javascript"></script>
+
+</html>

@@ -1,0 +1,17 @@
+﻿/*
+ * Created 20100219@Lee - Business exception
+ * Revision:
+ * ?@? - ... 
+ * 
+ */
+
+namespace Sunplus.Agent.Model.BL
+{
+    public class BusinessException : System.Exception
+    {
+        public BusinessException(string message)
+            : base("Business exception - " + message)
+        { 
+        }
+    }
+}

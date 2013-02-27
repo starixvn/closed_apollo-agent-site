@@ -1,0 +1,632 @@
+﻿<!--HiddenBlock-->
+<link href="../Resources/RaceBook.css" rel="stylesheet" type="text/css" />
+<!--/HiddenBlock-->
+
+{load:Sunplus.Agent.UI.PositionTaking.RaceBook.UserInfo_Template UserInfo=new Sunplus.Agent.UI.PositionTaking.RaceBook.UserInfo_Template()}
+<!--Section_151-->
+<table id="tbl_151" class="race-book-positiontaking">
+    <tr>
+        <th>
+            {title}
+        </th>
+    </tr>
+    <tbody>
+        <tr>
+            <td>
+                <!--Section_151-41-->
+                <div id="div_151_41" class="menu_content" onclick="ShowHide(this);">
+                    {menu-text}
+                </div>
+                <div>
+                    <div class="divdisableracing">
+                        {status_disable}
+                    </div>
+                    <table class="race-book-positiontaking-content">
+                        <tr>
+                            <th colspan="3">
+                                {commission-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {commission-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {betsetting-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {betsetting-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {positiontaking-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr class="center">
+                                <td style="width:30%">
+                                </td>
+                                <td style="width:35%">
+                                    {win-text}
+                                </td>
+                                <td style="width:35%">
+                                    {place-text}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {agent-preset-text}
+                                </td>
+                                <td>
+                                    {agent-win-val}
+                                </td>
+                                <td>
+                                    {agent-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {master-preset-text}
+                                </td>
+                                <td>
+                                    {master-win-val}
+                                </td>
+                                <td>
+                                    {master-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td rowspan="2" class="right">
+                                    {master-auto-preset-text}
+                                </td>
+                                <td>
+                                    {master-auto-win-checkbox}
+                                </td>
+                                <td>
+                                    {master-auto-place-checkbox}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td>
+                                    {master-auto-win-val}
+                                </td>
+                                <td>
+                                    {master-auto-place-val}
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!--/Section_151-41-->
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!--Section_151-31-->
+                <div id="div_151_31" class="menu_content" onclick="ShowHide(this);">
+                    {menu-text}
+                </div>
+                <div style="display:none;">
+                    <div class="divdisableracing">
+                        {status_disable}
+                    </div>
+                    <table class="race-book-positiontaking-content">
+                        <tr>
+                            <th colspan="3">
+                                {commission-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {commission-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {betsetting-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {betsetting-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {positiontaking-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr class="center">
+                                <td style="width:30%">
+                                </td>
+                                <td style="width:35%">
+                                    {win-text}
+                                </td>
+                                <td style="width:35%">
+                                    {place-text}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {agent-preset-text}
+                                </td>
+                                <td>
+                                    {agent-win-val}
+                                </td>
+                                <td>
+                                    {agent-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {master-preset-text}
+                                </td>
+                                <td>
+                                    {master-win-val}
+                                </td>
+                                <td>
+                                    {master-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td rowspan="2" class="right">
+                                    {master-auto-preset-text}
+                                </td>
+                                <td>
+                                    {master-auto-win-checkbox}
+                                </td>
+                                <td>
+                                    {master-auto-place-checkbox}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td>
+                                    {master-auto-win-val}
+                                </td>
+                                <td>
+                                    {master-auto-place-val}
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+                <!--/Section_151-31-->
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <!--Section_151-51-->
+                <div id="div_151_51" class="menu_content" onclick="ShowHide(this);">
+                    {menu-text}
+                </div>
+                <div style="display:none;">
+                    <div class="divdisableracing">
+                        {status_disable}
+                    </div>
+                    <table class="race-book-positiontaking-content">
+                        <tr>
+                            <th colspan="3">
+                                {commission-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {commission-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {betsetting-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {betsetting-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {positiontaking-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr class="center">
+                                <td style="width:30%">
+                                </td>
+                                <td style="width:35%">
+                                    {win-text}
+                                </td>
+                                <td style="width:35%">
+                                    {place-text}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {agent-preset-text}
+                                </td>
+                                <td>
+                                    {agent-win-val}
+                                </td>
+                                <td>
+                                    {agent-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {master-preset-text}
+                                </td>
+                                <td>
+                                    {master-win-val}
+                                </td>
+                                <td>
+                                    {master-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td rowspan="2" class="right">
+                                    {master-auto-preset-text}
+                                </td>
+                                <td>
+                                    {master-auto-win-checkbox}
+                                </td>
+                                <td>
+                                    {master-auto-place-checkbox}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td>
+                                    {master-auto-win-val}
+                                </td>
+                                <td>
+                                    {master-auto-place-val}
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!--/Section_151-51-->
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--/Section_151-->
+<!--Section_152-->
+<table id="tbl_152" class="race-book-positiontaking">
+    <tr>
+        <th>
+            {title}
+        </th>
+    </tr>
+    <tbody>
+        <tr>
+            <td>
+                <!--Section_152-41-->
+                <div id="div_152_41" class="menu_content" onclick="ShowHide(this);">
+                    {menu-text}
+                </div>
+                <div style="display:none;">
+                    <div class="divdisableracing">
+                        {status_disable}
+                    </div>
+                    <table class="race-book-positiontaking-content">
+                        <tr>
+                            <th colspan="3">
+                                {commission-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {commission-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {betsetting-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {betsetting-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {positiontaking-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr class="center">
+                                <td style="width:30%">
+                                </td>
+                                <td style="width:35%">
+                                    {win-text}
+                                </td>
+                                <td style="width:35%">
+                                    {place-text}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {agent-preset-text}
+                                </td>
+                                <td>
+                                    {agent-win-val}
+                                </td>
+                                <td>
+                                    {agent-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {master-preset-text}
+                                </td>
+                                <td>
+                                    {master-win-val}
+                                </td>
+                                <td>
+                                    {master-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td rowspan="2" class="right">
+                                    {master-auto-preset-text}
+                                </td>
+                                <td>
+                                    {master-auto-win-checkbox}
+                                </td>
+                                <td>
+                                    {master-auto-place-checkbox}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td>
+                                    {master-auto-win-val}
+                                </td>
+                                <td>
+                                    {master-auto-place-val}
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+                <!--/Section_152-41-->
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <!--Section_152-51-->
+                <div id="div_152_51" class="menu_content" onclick="ShowHide(this);">
+                    {menu-text}
+                </div>
+                <div style="display:none;">
+                    <div class="divdisableracing">
+                        {status_disable}
+                    </div>
+                    <table class="race-book-positiontaking-content">
+                        <tr>
+                            <th colspan="3">
+                                {commission-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {commission-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {betsetting-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {betsetting-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {positiontaking-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr class="center">
+                                <td style="width:30%">
+                                </td>
+                                <td style="width:35%">
+                                    {win-text}
+                                </td>
+                                <td style="width:35%">
+                                    {place-text}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {agent-preset-text}
+                                </td>
+                                <td>
+                                    {agent-win-val}
+                                </td>
+                                <td>
+                                    {agent-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {master-preset-text}
+                                </td>
+                                <td>
+                                    {master-win-val}
+                                </td>
+                                <td>
+                                    {master-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td rowspan="2" class="right">
+                                    {master-auto-preset-text}
+                                </td>
+                                <td>
+                                    {master-auto-win-checkbox}
+                                </td>
+                                <td>
+                                    {master-auto-place-checkbox}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td>
+                                    {master-auto-win-val}
+                                </td>
+                                <td>
+                                    {master-auto-place-val}
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!--/Section_152-51-->
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--/Section_152-->
+<!--Section_153-->
+<table id="tbl_153" class="race-book-positiontaking">
+    <tr>
+        <th>
+            {title}
+        </th>
+    </tr>
+    <tbody>
+        <tr>
+            <td>
+                <!--Section_153-51-->
+                <div id="div_153_51" class="menu_content" onclick="ShowHide(this);">
+                    {menu-text}
+                </div>
+                <div style="display:none;">
+                    <div class="divdisableracing">
+                        {status_disable}
+                    </div>
+                    <table class="race-book-positiontaking-content">
+                        <tr>
+                            <th colspan="3">
+                                {commission-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {commission-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {betsetting-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="center">
+                                    {betsetting-val}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan="3">
+                                {positiontaking-text}
+                            </th>
+                        </tr>
+                        <tbody>
+                            <tr class="center">
+                                <td style="width:30%">
+                                </td>
+                                <td style="width:35%">
+                                    {win-text}
+                                </td>
+                                <td style="width:35%">
+                                    {place-text}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {agent-preset-text}
+                                </td>
+                                <td>
+                                    {agent-win-val}
+                                </td>
+                                <td>
+                                    {agent-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td class="right">
+                                    {master-preset-text}
+                                </td>
+                                <td>
+                                    {master-win-val}
+                                </td>
+                                <td>
+                                    {master-place-val}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td rowspan="2" class="right">
+                                    {master-auto-preset-text}
+                                </td>
+                                <td>
+                                    {master-auto-win-checkbox}
+                                </td>
+                                <td>
+                                    {master-auto-place-checkbox}
+                                </td>
+                            </tr>
+                            <tr class="center">
+                                <td>
+                                    {master-auto-win-val}
+                                </td>
+                                <td>
+                                    {master-auto-place-val}
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!--/Section_153-51-->
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--/Section_153-->

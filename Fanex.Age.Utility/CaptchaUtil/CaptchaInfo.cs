@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Fanex.Age.Utility.CaptchaUtil
+{
+    public class CaptchaInfo
+    {
+        public CaptchaType Type { get; set; }
+        public string Ip { get; set; }
+        public string Username { get; set; }
+    }
+}
