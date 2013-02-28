@@ -26,7 +26,8 @@ div.match + div.league{background: none; font-weight:normal; text-align: right; 
 .w-order{color: #7D7D7D;font-weight: normal;text-align: right;width: 20px;}
 .bl_btype,.bettype{color: #003399;font-weight: 600;}
 .b{font-weight: bold;}
-.bl_time{color: #434343;font-size: 7pt;	font-weight: normal;text-align: center;}
+.bl_time,.time{color: #434343;font-size: 7pt;	font-weight: normal;text-align: center;}
+.time{margin-top: 10px;}
 .bl_ip{color: #434343;font-size: 7pt;font-weight: normal;text-align: center;}
 
 .bl_evt{color: #FFFFFF;font-size: 11px;}
@@ -37,7 +38,7 @@ div.match + div.league{background: none; font-weight:normal; text-align: right; 
 .lastGoal{background: url(Images/lastGoal.gif) no-repeat scroll center center transparent;display: inline;	height: 10px;	padding: 0 4px;	width: 14px;}
 .bl_match{color: #000000;font-weight: normal;line-height: 15px;}
 .bl_oddtype,.oddstype{color: #586985;}
-.bl_status{color: #606060;font-size: 11px;font-weight: bold;}
+.bl_status,.status{color: #606060;font-size: 11px;font-weight: bold;}
 .colorHandicap,.handicap{color:#606060}
 .handicap.custom{font-weight:bold;}
 .link{color: #0066CC;text-decoration: none;white-space: nowrap;}
@@ -47,8 +48,8 @@ a{text-decoration: none;}
 
 .bl_stype,.sport{color: #0066CC;}
 .div_pt{background: none repeat scroll 0% 0% rgb(245, 227, 227);}
-.div_result{cursor: pointer;color: rgb(27, 164, 237);}
-.iplink{cursor: pointer;color:#1E1EEB;font-size: 11px;}
+.div_result,.result{cursor: pointer;color: rgb(27, 164, 237);}
+.iplink,.betsliplink{cursor: pointer;color:#1E1EEB;font-size: 11px;}
 .div_horline{height:1px; background:#b7b7b7; margin-top:3px; margin-bottom:3px;}
 
 .detail{background: url(Images/q_Icon2_1.png) no-repeat scroll center center transparent;display: inline;height: 10px;padding: 0 1px 0px 65px;	width: 14px;line-height: 20px;color:#755200;font-weight:bold;}
@@ -62,3 +63,7 @@ a{text-decoration: none;}
 .hand_result{color: #1BA4ED; padding: 3px 3px 3px 3px;cursor:pointer}
 .no_info{text-align: center;background-color: #FFFFFF;font-weight: normal;}
 .RptTB{background-color: #E8DFCA;}
+td.nonbreak
+{
+    white-space: nowrap;
+}

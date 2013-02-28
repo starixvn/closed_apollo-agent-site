@@ -1,0 +1,48 @@
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="Choice10.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Marc.Bui" date="2012.11.16">Create</change>
+// </history>
+// ---------------------------------------------------------------------------------
+
+namespace Fanex.BetList.Core.Builder.ChoiceBuilder
+{
+    using System.Collections.Generic;
+    using Fanex.BetList.Core.Entities;
+
+    /// <summary>
+    /// Outright
+    /// </summary>    
+    public class Choice10 : Choice1
+    {
+        /// <summary>
+        /// Builds the choice.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
+        {
+            this.Template.Handicap.handicap = null;
+            this.Template.homeTeam = null;
+            this.Template.awayTeam = null;
+            this.Template.VS = null;
+            this.Template.home_firstGoal_lastGoal = null;
+            this.Template.away_firstGoal_lastGoal = null;
+
+            if (!ticket.IsLive)
+            {
+                this.Template.Score = null;
+            }
+
+            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
+            this.Template.betTeam = ticketHelper.GetTeamNameById(ticket.HomeId == 0 ? ticket.AwayId : ticket.HomeId);
+            this.Template.betTeamClassName = BL_FAVORITE;
+            this.Template.sportTypeName = ticketHelper.GetSportNameById(ticket.SportTypeId);
+            this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
+        }
+    }
+}

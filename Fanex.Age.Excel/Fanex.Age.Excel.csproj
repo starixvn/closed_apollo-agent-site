@@ -84,8 +84,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="BetList\BetListReport.cs" />
-    <Compile Include="BetList\BetListReportBuilder.cs" />
     <Compile Include="BetList\CancelBetListReport.cs" />
     <Compile Include="BetList\CancelBetListReportBuilder.cs" />
     <Compile Include="BetList\TemplateSettings.cs" />
@@ -208,13 +206,13 @@
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
+      <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
+      <Name>Fanex.BetList.Age</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
       <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
       <Name>Sunplus.Agent.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sunplus.Agent.UI.BetList\Sunplus.Agent.UI.BetList.csproj">
-      <Project>{E8F74ADD-E088-477E-AC52-45DBDEE1ED37}</Project>
-      <Name>Sunplus.Agent.UI.BetList</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

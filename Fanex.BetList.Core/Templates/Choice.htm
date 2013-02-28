@@ -1,0 +1,32 @@
+﻿<div class='{eventClassName:}'>
+    <!--ScoreMapIcon-->
+    <span class='scoremap'><a href="javascript:OpenScoreMap({matchId},{betTypeId},{liveindicator});"
+        title="Score Map">
+        <div class='scoremapIcon'>
+        </div>
+    </a></span>
+    <!--/ScoreMapIcon-->
+    <span class="{betTeamClassName}">{betTeam}
+        <!--Handicap-->
+        <span class='handicap'> {handicap}<!--Odds--><span class="odds"> @ {odds}</span><!--/Odds--></span>
+        <!--/Handicap-->
+        <!--OddMixParlay-->
+        <!--/OddMixParlay-->
+        <!--Score-->
+        <span class="{scoreClassName:favorite}"> [{homeScore}-{awayScore}]</span>
+        <!--/Score-->
+    </span>
+    <div class="bettype"> {betTypeName}</div>
+    <div class="match">        
+        {homeTeam}{home_firstGoal_lastGoal}
+        <!--VS-->
+        &nbsp;-&nbsp;vs&nbsp;-&nbsp;
+        <!--/VS-->
+        {awayTeam}{away_firstGoal_lastGoal}
+    </div>
+    <div class="league">
+        <span class="sport">{sportTypeName}</span>
+        <!--LeagueName-->
+        &nbsp;{leagueName}<!--/LeagueName-->
+    </div>
+</div>

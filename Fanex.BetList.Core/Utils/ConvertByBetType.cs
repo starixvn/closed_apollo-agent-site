@@ -1,0 +1,362 @@
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="ConvertByBetType.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Marc.Bui" date="2012.11.16">Create</change>
+//     <change who="Marc.Bui" date="2013.01.23">Update format string for Stake to follow
+//                                              general rules: show all significant decimals</change>
+//     <change who="Marc.Bui" date="2013.01.29">Update show Odds value: 0 instead of -</change>
+// </history>
+// ---------------------------------------------------------------------------------
+
+namespace Fanex.BetList.Core.Utils
+{
+    using System;
+    using System.Collections.Generic;
+    using Fanex.BetList.Core.App_GlobalResources;
+
+    public static partial class ConvertByBetType
+    {
+        #region [f_GetOddsByBettype], [f_ShowOddsByBettype], [f_GetChoice]
+
+        public const string FontOpenTag = "<font color='#B50000'>";
+        public const string FontCloseTag = "</font>";
+        private static List<int> oddsBettypes = new List<int>(new int[] { 1, 2, 3, 7, 12, 8, 20, 124, 125, 81, 82, 83, 84, 85, 86, 87, 88 });
+        private static string minus = "<font color='#B50000'>{0}</font>";
+
+        public static string Minus
+        {
+            get { return ConvertByBetType.minus; }
+            set { ConvertByBetType.minus = value; }
+        }
+
+        /// <summary>
+        /// Shows the odds by bettype.
+        /// </summary>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="oddsType">Type of the odds.</param>
+        /// <returns>System.Int32.</returns>
+        public static int ShowOddsByBettype(int betType, int oddsType)
+        {
+            if (oddsBettypes.Contains(betType))
+            {
+                return oddsType;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Gets the type of the odds by bet.
+        /// </summary>
+        /// <param name="odds">The odds.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="oddsType">Type of the odds.</param>
+        /// <returns>System.Double.</returns>
+        public static double GetOddsByBetType(double odds, int betType, int oddsType)
+        {
+            bool isShownOddType = ShowOddsByBettype(betType, oddsType) != 0;
+            if (isShownOddType && oddsType == 1)
+            {
+                return odds + 1;
+            }
+            else if (isShownOddType && oddsType == 5)
+            {
+                return odds * 100;
+            }
+            else
+            {
+                return odds;
+            }
+        }
+
+        /// <summary>
+        /// Gets the bet team.
+        /// </summary>
+        /// <param name="betTeam">The bet team.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <returns>System.String.</returns>
+        public static string GetBetTeam(string betTeam, int betType)
+        {
+            if (string.IsNullOrEmpty(betTeam))
+            {
+                return betTeam;
+            }
+
+            char[] chars = betTeam.ToCharArray();
+            int c = chars.Length;
+
+            string returnValue = string.Empty;
+
+            // FGLG
+            if (betType == 14)
+            {
+                if (chars[0] == '1')
+                {
+                    returnValue = CoreLang.home;
+                }
+                else if (chars[0] == '2')
+                {
+                    returnValue = CoreLang.away;
+                }
+                else
+                {
+                    returnValue = CoreLang.no0;
+                }
+
+                if (chars[c - 1] == '1')
+                {
+                    returnValue += "&nbsp;" + CoreLang.FG;
+                }
+                else if (chars[c - 1] == '2')
+                {
+                    returnValue += "&nbsp;" + CoreLang.LG;
+                }
+                else
+                {
+                    returnValue += "&nbsp;" + CoreLang.goal;
+                }
+            }
+            else if (betType == 16)
+            {
+                // HTFT
+                if (chars[0] == '1')
+                {
+                    returnValue = CoreLang.h;
+                }
+                else if (chars[0] == '2')
+                {
+                    returnValue = CoreLang.a;
+                }
+                else
+                {
+                    returnValue = CoreLang.d;
+                }
+
+                if (chars[c - 1] == '1')
+                {
+                    returnValue += CoreLang.h;
+                }
+                else if (chars[c - 1] == '2')
+                {
+                    returnValue += CoreLang.a;
+                }
+                else
+                {
+                    returnValue += CoreLang.d;
+                }
+            }
+            else
+            {
+                return betTeam;
+            }
+
+            return returnValue;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// HDPs the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string Hdp(object value)
+        {
+            return Cast.AsDecimal(value).ToString("0.##");
+        }
+
+        /// <summary>
+        /// Oddses the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string Odds(object value)
+        {
+            decimal d = Cast.AsDecimal(value);
+
+            if (d < 0)
+            {
+                return string.Format(minus, string.Format(Formatter.DECIMAL_FORMAT3, d));
+            }            
+            else
+            {
+                return string.Format(Formatter.DECIMAL_FORMAT3, d);
+            }
+        }
+
+        /// <summary>
+        /// Oddses the specified odds.
+        /// </summary>
+        /// <param name="odds">The odds.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="oddsType">Type of the odds.</param>
+        /// <returns>System.String.</returns>
+        public static string Odds(object odds, object betType, object oddsType)
+        {
+            double d = ConvertByBetType.GetOddsByBetType(Convert.ToDouble(odds), Convert.ToInt32(betType), Convert.ToInt32(oddsType));
+            if (d < 0)
+            {
+                return string.Format(minus, string.Format(Formatter.DECIMAL_FORMAT3, d));
+            }
+            else if (d == 0)
+            {
+                return "-";
+            }
+            else
+            {
+                return string.Format(Formatter.DECIMAL_FORMAT3, d);
+            }
+        }
+
+        /// <summary>
+        /// Oddses the type.
+        /// </summary>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="oddsType">Type of the odds.</param>
+        /// <returns>System.Object.</returns>
+        public static object OddsType(object betType, object oddsType)
+        {
+            return ConvertByBetType.ShowOddsByBettype(Convert.ToInt32(betType), Convert.ToInt32(oddsType));
+        }
+
+        /// <summary>
+        /// Ms the odds.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string MOdds(object value)
+        {
+            decimal d = Cast.AsDecimal(value);
+
+            if (d < 0)
+            {
+                return string.Format(minus, string.Format(Formatter.DECIMAL_FORMAT3, d));
+            }
+            else
+            {
+                return string.Format(Formatter.DECIMAL_FORMAT3, d);
+            }
+        }
+
+        /// <summary>
+        /// Ms the odds4.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string MOdds4(object value)
+        {
+            decimal d = Cast.AsDecimal(value);
+
+            if (d < 0)
+            {
+                return string.Format(minus, string.Format(Formatter.DECIMAL_FORMAT4, d));
+            }
+            else
+            {
+                return string.Format(Formatter.DECIMAL_FORMAT4, d);
+            }
+        }
+
+        /// <summary>
+        /// Winlosses the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string Winloss(object value)
+        {
+            decimal d = Cast.AsDecimal(value);
+
+            if (d < 0)
+            {
+                return string.Format(minus, string.Format(Formatter.DECIMAL_FORMAT20, d));
+            }
+            else
+            {
+                return string.Format(Formatter.DECIMAL_FORMAT20, d);
+            }
+        }
+
+        /// <summary>
+        /// Comms the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string Comm(object value)
+        {
+            return string.Format(Formatter.DECIMAL_FORMAT20, value);
+        }
+
+        /// <summary>
+        /// Comm_s the percentage.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string Comm_Percentage(object value)
+        {
+            return string.Format(Formatter.DECIMAL_FORMAT2, Cast.AsDecimal(value) * 100);
+        }
+
+        /// <summary>
+        /// Comms the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string CommValue(object value)
+        {
+            decimal d = Cast.AsDecimal(value);
+
+            if (d < 0)
+            {
+                return string.Format(minus, string.Format(Formatter.DECIMAL_FORMAT40, d));
+            }
+            else
+            {
+                return string.Format(Formatter.DECIMAL_FORMAT40, d);
+            }
+        }
+
+        /// <summary>
+        /// Stakes the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string Stake(object value)
+        {
+            return string.Format(Formatter.DECIMAL_FORMAT2, value);
+        }
+
+        /// <summary>
+        /// Pts the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string Pt(object value)
+        {
+            return (Cast.AsDecimal(value) * 100).ToString("N0");
+        }
+
+        /// <summary>
+        /// Pts the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string PtValue(object value)
+        {
+            decimal d = Cast.AsDecimal(value);
+
+            if (d < 0)
+            {
+                return string.Format(minus, string.Format(Formatter.DECIMAL_FORMAT20, d));
+            }
+            else
+            {
+                return string.Format(Formatter.DECIMAL_FORMAT20, d);
+            }
+        }
+    }
+}

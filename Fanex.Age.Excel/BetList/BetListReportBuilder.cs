@@ -2,9 +2,9 @@
 {
     using System.Data;
     using System.IO;
+    using Fanex.BetList.Age.Definition;
     using NPOI.HSSF.UserModel;
     using Sunplus.Agent.Model.BL.Definitions;
-    using Sunplus.Agent.UI.BetList;
 
     public class BetListReportBuilder
     {
