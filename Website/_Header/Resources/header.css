@@ -23,11 +23,23 @@ td
 }
 #banner_main
 {
-	height: 90px;
-	margin-left: 5px;
-	margin-right: 1px;
+	height: 100px;
+	background: url(../../_GlobalResources/Images/suncityheader.gif) #090A08 no-repeat;
+	position: relative;
+	/*margin-left: 5px;
+	margin-right: 1px;*/
 }
-
+.logo {
+    position: absolute;
+    z-index: 1000;
+    top: 14px;
+    left: 35px;
+}
+.logo a {
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+}
 #privateMsgLnk
 {
 	white-space: nowrap;
@@ -96,67 +108,29 @@ div.messageBlock
 	padding: 3px 0px 7px 0px;
 }
 
-#logo
-{
-	height: 74px;
-	width: 201px;
-	float: left;
-}
-#logo2
-{
-	height: 74px;
-	width: 201px;
-	float: left;
-}
-#logo3
-{
-	height: 74px;
-	width: 201px;
-	float: left;
-}
-#logo4
-{
-	height: 74px;
-	width: 201px;
-	float: left;
+.username {
+    color: #85648D;
+    float: left;
+    padding-top: 22px;
+    padding-left: 40px;
 }
 
-#text_logo
-{
-	padding-left: 60px;
-	color: #FFFFFF;
-	padding-top: 19px;
-	line-height: 16px;
-	margin-left:3px;
-}
-#text_logo .adminAndSubAcc{color:Black; font-weight:bold; text-transform:uppercase; padding-top:5px}
 #banner
 {
-	margin-left: 212px;
-	height: 90px;
+	/*margin-left: 212px;*/
+	height: 100px;
 	text-align: left;
 }
 #button
 {
 	height: 57px;
 	margin-right: 10px;
-	background: url(../../_GlobalResources/Images/bg_button.jpg) repeat-x top;
-	min-width: 750px;
+	/*background: url(../../_GlobalResources/Images/bg_button.jpg) repeat-x top;*/
+	width: 400px;
+	margin: auto;
+	padding-top: 25px;
 }
-#g_left
-{
-	width: 7px;
-	height: 56px;
-	float: left;
-	background: url(../../_GlobalResources/Images/gLeft_button.jpg) no-repeat top;
-}
-#g_right
-{
-	width: 7px;
-	height: 56px;
-	float: right;
-	background: url(../../_GlobalResources/Images/gRight_button.jpg) no-repeat top;
-}
+
 #button_main
 {
 	display: block;
@@ -164,45 +138,74 @@ div.messageBlock
 	font-size: 11px;
 	font-weight: bold;
 	font-size: 11px;
-	background: transparent url(../../_GlobalResources/Images/bgOFF.gif) repeat-x top left;
+	/*background: transparent url(../../_GlobalResources/Images/bgOFF.gif) repeat-x top left;*/
 	font-family: arial,tahoma,verdana,helvetica,sans-serif;
 }
+
 #button_main li
 {
 	display: block;
 	float: left;
+	/*border-left: 1px solid #fff;	*/
 }
 #button_main li a
 {
 	display: block;
 	float: left;
-	color: #eeeeee;
+	color: #85648D;
 	text-decoration: none;
-	padding-left: 12px;
-	padding-right: 12px;
-	line-height: 26px;
-	height: 27px;
-	background: transparent url(../../_GlobalResources/Images/bgDIVIDER.gif) no-repeat top right;
-	margin-top: 1px;
+	padding-left: 7px;
+	padding-right: 7px;
+	line-height: 9px;
+	height: 11px;
+	/*background: transparent url(../../_GlobalResources/Images/bgDIVIDER.gif) no-repeat top right;*/
+	margin-top: 1px;	
+	
+}
+#button_main li:first-child {
+    border-left: 0;
 }
 #button_main li a:hover
 {
-	margin-top: 0px;
-	height: 29px;
+	margin-top: 0;
+	height: 11px;
+	color: #fff;
 }
 #button_main li a.active
 {
-	color: #000000;
-	margin-top: 0px;
-	height: 29px;
-	background: transparent url(../../_GlobalResources/Images/bgON.gif) no-repeat top right;
+	color: #fff;
+	margin-top: 1px;
+	height: 11px;
+	/*background: transparent url(../../_GlobalResources/Images/bgON.gif) no-repeat top right;*/
 }
+#button_main .hotline {
+    width: 50px;
+    margin-left: 7px;
+}
+#button_main .phone {
+    margin: 0;
+    padding: 0;
+}
+#button_main .hotline, #button_main .phone{    
+    color: #85648D;    
+    float: left;
+    margin-top: 5px;
+}
+#button_main .phone li {
+    color: #85648D;
+    border-left: 0;
+    float: none;   
+    padding-top: 2px;
+    
+}
+
 #news_main
 {
 	height: 28px;
 	color: #CC0000;
 	width: auto;
 	overflow: hidden;
+	background: #3D3C3E;
 }
 #text_news
 {
@@ -211,7 +214,7 @@ div.messageBlock
 	float: inherit;
 	padding-right: 28px;
 	line-height: 25px;
-	color: #0853de;
+	color: #CECECE;
 	text-align: right;
 }
 #text_news a
@@ -220,22 +223,27 @@ div.messageBlock
 }
 #text_news_out
 {
+    margin-top: 3px;
 	background: url(../../_GlobalResources/Images/line_news.gif) no-repeat right;
+	height: 20px;
 }
 #text_news_out:hover
 {
+    margin-top: 3px;
 	background: url(../../_GlobalResources/Images/line_newsOV.gif) no-repeat right;
+	height: 20px;
 }
 #button_top
 {
 	line-height: 18px;
 	padding-left: 5px;
+	margin-top: 3px;
 }
 a.b_top
 {
 	border: 1px #2c2c2c solid;
-	background: url(../../_GlobalResources/Images/BGb_top.jpg);
-	color: #FFFFFF;
+	background: url(../../_GlobalResources/Images/BGb_top.jpg) #C9C8C8 repeat-x;
+	color: #414140;
 	cursor: pointer;
 	text-indent: 2;
 	text-decoration: none;
@@ -243,7 +251,7 @@ a.b_top
 }
 a.b_top:hover
 {
-	color: #FF6600;
+	color: #8A65A1;
 }
 #button_left
 {
@@ -353,10 +361,19 @@ a.b_top:hover
 
 #language{
 	height:32px;
-	margin-right:10px;
+	margin-right: 10px;
 	text-align:right;
 	padding-right:5px;
-	min-width:750px;
+	min-width:300px;
+	float: right;
+	position: relative;
+}
+
+#language .info {
+    position: absolute;
+    top: 35px;
+    right: 12px;
+    width: 200px;
 }
 
 #language_box{	
@@ -397,6 +414,6 @@ a.b_top:hover
 #tooltip_box .normal{color:#BF0104;font-family:Tahoma,Arial,helvetica,sans-serif; line-height:14px}
 .linkConfigNow:link, .linkConfigNow:visited{color: #006AB3 ;text-decoration: none; cursor:pointer;}
 .linkConfigNow:hover{color:#CC000B;text-decoration: underline; cursor:pointer;text-decoration: none;}
-.linkNickName:link, .linkNickName:visited{color: Black ;text-decoration: none; cursor:pointer;}
-.linkNickName:hover{color:#CC000B;text-decoration: underline; cursor:pointer;text-decoration: none;}
+.linkNickName:link, .linkNickName:visited{color: #85648D ;text-decoration: none; cursor:pointer;}
+.linkNickName:hover{color:#fff;text-decoration: underline; cursor:pointer;text-decoration: none;}
 

@@ -47,7 +47,7 @@ td
 .tab_menu01AC
 {
 	background: transparent url(../../_GlobalResources/Images/menutop_OV.jpg) no-repeat scroll right top;
-	color: red;
+	color: #B39D74;
 	display: block;
 	margin-top: 2px;
 	padding-left: 10px;
@@ -64,13 +64,13 @@ a.tab_menu02
 a.tab_menu02:hover
 {
 	background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;
-	color: red;
+	color: #B39D74;
 	margin-top: 2px;
 }
 .tab_menu02AC
 {
 	background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;
-	color: red;
+	color: #B39D74;
 	display: block;
 	margin-top: 2px;
 	padding-right: 10px;
@@ -79,7 +79,7 @@ a.tab_menu02:hover
 a.tab_menu01:hover
 {
 	background: transparent url(../../_GlobalResources/Images/menutop_OV.jpg) no-repeat scroll right top;
-	color: red;
+	color: #B39D74;
 	margin-top: 2px;
 }
 a.tab_menu01
@@ -101,7 +101,7 @@ a.tab_menu01
 .tab_menu02Blink:hover
 {
 	background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;
-	color: red;
+	color: #4B483C;
 	margin-top: 2px;
 }
 #leftpane02
@@ -422,13 +422,13 @@ a.Bleft_Parent
 	display: block;
 	width: 190px;
 	background: url(../../_GlobalResources/Images/icon_off.jpg) no-repeat right;
-	color: #394e6e;
+	color: #333D46;
 	text-decoration: none;
 	text-transform: uppercase;
 }
 a.Bleft_Parent:hover
 {
-	color: #dd0000;
+	color: #B39D74;
 	background: url(../../_GlobalResources/Images/icon_active.jpg) no-repeat right;
 }
 a.Bleft_ParentAc
@@ -436,7 +436,7 @@ a.Bleft_ParentAc
 	display: block;
 	width: 190px;
 	background: url(../../_GlobalResources/Images/icon_active.jpg) no-repeat right;
-	color: #dd0000;
+	color: #B39D74;
 	text-decoration: none;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -484,7 +484,7 @@ a.Bleft_Sub_2
 
 a.Bleft_Sub:hover
 {
-	color: #dd0000;
+	color: #B39D74;
 	background: url(../../_GlobalResources/Images/icon_left01.jpg) no-repeat left;
 }
 .Bleft_SubAc
