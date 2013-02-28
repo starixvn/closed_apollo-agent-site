@@ -98,7 +98,7 @@ namespace Sunplus.Agent.UI._Header
 
             //tpl.Transfer.TransferURL = "Transfer/MultipleTransfer.aspx";
 
-            if (session.RoleId == (int)(UserTypes.Agent))
+            /*if (session.RoleId == (int)(UserTypes.Agent))
             {
                 tpl.Transfer.TransferURL = "_Transfer/Agent/MemberList.aspx";
             }
@@ -110,7 +110,7 @@ namespace Sunplus.Agent.UI._Header
             {
                 tpl.Transfer.TransferURL = "_Transfer/Super/MasterList.aspx";
             }
-
+            */
             #endregion Transfer filter for Super, Master, Agent
 
             #region Tab filter for sub-account
@@ -118,7 +118,7 @@ namespace Sunplus.Agent.UI._Header
             if (session.IsSubAcc)
             {
                 PageAccess pageAccess = session.SubPageAccess;
-
+                /*
                 // Transfer tab
                 if (!pageAccess.Transfer)
                 {
@@ -130,10 +130,11 @@ namespace Sunplus.Agent.UI._Header
                 {
                     tpl.Viewlog = null;
                 }
+                */
             }
 
             #endregion Tab filter for sub-account
-
+            /*
             if (!CurrentUserSession.IsLogged)
             {
                 tpl.Transfer = null;
@@ -144,8 +145,8 @@ namespace Sunplus.Agent.UI._Header
             {
                 tpl.Viewlog = null;
             }
-
-            tpl.langFlag = "langFlag_" + session.LangKey.ToLower();
+            */
+            //tpl.langFlag = "langFlag_" + session.LangKey.ToLower();
 
             tpl.popupTopDisplay = "none";
 
@@ -160,43 +161,46 @@ namespace Sunplus.Agent.UI._Header
             tpl.ctime = DateTime.Now.AddHours(12).ToString("H-m-s-tt");
 
             string space = " ";
+
             if (session.IsSubAcc)
             {
                 tpl.SetUserName.SetValue(HttpUtility.HtmlEncode(session.UserName));
-                tpl.addAccName = Resources.Lang.subacc + space + HttpUtility.HtmlEncode(session.SubUserName);
-                tpl.Tooltip = null;
-                tpl.SetNickName = null;
+                //tpl.addAccName = Resources.Lang.subacc + space + HttpUtility.HtmlEncode(session.SubUserName);
+                //tpl.Tooltip = null;
+                //tpl.SetNickName = null;
             }
             else if (session.IsInternal)
             {
                 tpl.SetUserName.SetValue(HttpUtility.HtmlEncode(session.UserName));
-                tpl.addAccName = Resources.Lang.admin + space + HttpUtility.HtmlEncode(session.AdminName);
-                tpl.Tooltip = null;
-                tpl.SetNickName = null;
+                //tpl.addAccName = Resources.Lang.admin + space + HttpUtility.HtmlEncode(session.AdminName);
+                //tpl.Tooltip = null;
+                //tpl.SetNickName = null;
             }
             else
             {
-                tpl.addAccName = null;
+                //tpl.addAccName = null;
 
                 #region Check counter display Tooltip
 
                 if (session.NickName != null && session.NickName != "")
                 {
-                    tpl.SetNickName.nickname = session.NickName;
-                    tpl.Tooltip = null;
-                    tpl.SetNickName.IconSetNickName.IsShowIcon = null;
-                    tpl.SetNickName.LabelNickName = null;
-                    tpl.SetNickName.SetLinkConfigNow = "linkNickName";
+                    //tpl.SetNickName.nickname = session.NickName;
+                    //tpl.Tooltip = null;
+                    //tpl.SetNickName.IconSetNickName.IsShowIcon = null;
+                    //tpl.SetNickName.LabelNickName = null;
+                    //tpl.SetNickName.SetLinkConfigNow = "linkNickName";
                 }
                 else
                 {
                     if (CountNickNameToolTip > 3)
-                        tpl.Tooltip = null;
+                    {
+                        //tpl.Tooltip = null;
+                    }
                     else
                         CountNickNameToolTip++;
-                    tpl.SetNickName.nickname = Resources.Lang.configNow;
-                    tpl.SetNickName.IconSetNickName.IsShowIcon = "none";
-                    tpl.SetNickName.SetLinkConfigNow = "linkConfigNow";
+                    //tpl.SetNickName.nickname = Resources.Lang.configNow;
+                    //tpl.SetNickName.IconSetNickName.IsShowIcon = "none";
+                    //tpl.SetNickName.SetLinkConfigNow = "linkConfigNow";
                 }
 
                 #endregion Check counter display Tooltip
@@ -207,7 +211,7 @@ namespace Sunplus.Agent.UI._Header
             #region User Message
 
             SetHotMessage(ref tpl);
-            tpl.issticky = string.Empty;
+            //tpl.issticky = string.Empty;
             tpl.scrollMessage = string.Empty;
             tpl.priMsgCount = InitUnreadPrivateMsgCountText();
 
@@ -281,7 +285,7 @@ namespace Sunplus.Agent.UI._Header
                         msgListKR.Add(msgKR);
                     }
                 }
-                
+
                 if (string.Compare(CurrentUserSession.Site, "789y", true) == 0) // hardcode for 789y message
                 {
                     string msgUS = "Dear valued agents,<br />We added a new feature ‘Member Win Limit’ for you to better handling your member winning in Live Casino. You may now go to your downline list and click on ‘Edit Live Casino’ for configuration.";
@@ -360,7 +364,7 @@ namespace Sunplus.Agent.UI._Header
             // Register correct message language
             if (string.Compare(CurrentUserSession.Language, "zh-TW") == 0)
             {
-                msgList = msgListTW.ToArray();                
+                msgList = msgListTW.ToArray();
             }
             else if (string.Compare(CurrentUserSession.Language, "zh-CN") == 0)
             {

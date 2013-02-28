@@ -183,7 +183,7 @@ td
 .tab_menu02AC
 {
 	background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;
-	color: red;
+	color: #B39D74;
 	display: block;
 	margin-top: 2px;
 	padding-right: 10px;
@@ -192,7 +192,7 @@ td
 .tab_menu01:hover
 {
 	background: transparent url(../../_GlobalResources/Images/menutop_OV.jpg) no-repeat scroll right top;
-	color: red;
+	color: #B39D74;
 	margin-top: 2px;
 }
 .tab_menu01

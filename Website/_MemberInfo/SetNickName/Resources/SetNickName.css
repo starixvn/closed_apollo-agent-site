@@ -9,7 +9,7 @@
 body{overflow:hidden;}
 .header
 {
-	height: 90px;
+	height: 128px;
 }
 .content
 {
@@ -69,6 +69,7 @@ body{overflow:hidden;}
 	-moz-border-radius: 4px; /* Firefox */
 	-webkit-border-radius: 4px; /* Safari and Chrome */
 	border-radius: 4px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	right: 0;
 }
 .nickname .error
 {
