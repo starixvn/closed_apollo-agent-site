@@ -919,10 +919,11 @@ input[type=reset]
     width: 182px !important;    
 }
 
-.setting-left {
+.title-left-menu {
     color: #F78F1E;
     font-size: 11px;
     font-weight: bold;
+    text-decoration: none;
 }
 .hide {
     display: none !important;

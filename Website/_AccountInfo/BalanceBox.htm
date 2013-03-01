@@ -5,15 +5,21 @@
 
 <div id="Bleft_Parent02">            
     <div id="left_submenu">
+        <span class="setting-left">
+            <a id="downlineLink" class="title-left-menu" href="DownlineListInfo.aspx?custid={CustId}" target="frmDownlineList" onclick="showDownlineList(1);"><span>{static:Resources.Lang.downlinelist}</span></a>
+        </span>
+        <div id="left_line02">
+            <img width="1" height="1" name="" src="../_GlobalResources/Images/dot.gif" alt="">
+        </div>
         <div id="left_tab">
             <ul>
                 <li id="balinfo" class="hide" >
                     <a href="javascript:showDownlineList(0);">{static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.balanceinfo,18,true)}</a>
                 </li>
                 <!--DownlineList-->
-                <li id="userdownline" class="current">
+                <!--<li id="userdownline" class="current">
                     <a id="downlineLink" href="DownlineListInfo.aspx?custid={CustId}" target="frmDownlineList" onclick="showDownlineList(1);"><span>{static:Resources.Lang.downlinelist}</span></a>
-                </li>
+                </li>-->
                 <!--/DownlineList-->
             </ul>
         </div>

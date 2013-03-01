@@ -12,9 +12,9 @@ namespace Sunplus.Agent.UI
 	{
 		public class SettingBox_Template : Template
 		{
-			protected static string s0 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div id=\"clear0\" /><span class=\"setting-left\">Setting</span><div id=\"left_line02\"><img width=\"1\" height=\"1\" name=\"\" src=\"";
+			protected static string s0 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><span class=\"title-left-menu\">Setting</span><div id=\"left_line02\"><img width=\"1\" height=\"1\" name=\"\" src=\"";
 			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s2 = "\" alt=\"\"></div><div class=\"Bleft_Sub02\"><table id=\"tbl_custsettings\"><tr><td colspan=\"2\"><div style=\"position: relative; left: -3px;\" class=\"settingWidth\"><div class=\"divStatus\" onmousedown=\"return changeSuspendedStatus(event, this);\" title=\"";
+			protected static string s2 = "\" alt=\"\"></div><div id=\"clear0\" /><div class=\"Bleft_Sub02\"><table id=\"tbl_custsettings\"><tr><td colspan=\"2\"><div style=\"position: relative; left: -3px;\" class=\"settingWidth\"><div class=\"divStatus\" onmousedown=\"return changeSuspendedStatus(event, this);\" title=\"";
 			public string SuspendedTooltip = "{SuspendedTooltip}";
 			protected static string s3 = "\"><label for=\"chkSuspend\" class=\"text_smal\">";
 			protected static string s4{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.suspended,9);}}
