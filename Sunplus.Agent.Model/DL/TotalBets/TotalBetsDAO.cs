@@ -1,8 +1,8 @@
 /*
  * Created 20100506@Jacob - Data access object of TotalBet function
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.DL.TotalBets
@@ -13,23 +13,23 @@ namespace Sunplus.Agent.Model.DL.TotalBets
     public class TotalBetsDAO : Sunplus.Agent.Model.DL.Base.DAOBase
     {
         #region TotalGoal
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel6_Ag(int custId, string language)
+        public DataTable Age_TotalBets_6(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
+            parameters.Add("agentid", custId);
 
-            return ExecSpTable("Age_TotalBets_Sel6_Ag", parameters);
+            return ExecSpTable("Age_TotalBets_6", parameters);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -44,7 +44,7 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -57,7 +57,8 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel6_SAg", parameters);
         }
-        #endregion
+
+        #endregion TotalGoal
 
         #region HDPOU
 
@@ -67,13 +68,12 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel1378_Ag(int custId, string language)
+        public DataTable Age_TotalBets_1_3_7_8(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
+            parameters.Add("agentid", custId);
 
-            return ExecSpTable("Age_TotalBets_Sel1378_Ag", parameters);
+            return ExecSpTable("Age_TotalBets_1_3_7_8", parameters);
         }
 
         /// <summary>
@@ -105,7 +105,8 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel1378_SAg", parameters);
         }
-        #endregion
+
+        #endregion HDPOU
 
         #region MoneyLine
 
@@ -115,46 +116,15 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel2021_Ag(int custId, string language)
+        public DataTable Age_TotalBets_20_21(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
+            parameters.Add("agentid", custId);
 
-            return ExecSpTable("Age_TotalBets_Sel2021_Ag", parameters);
+            return ExecSpTable("Age_TotalBets_20_21", parameters);
         }
 
-        /// <summary>
-        /// Get money line for agent
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel2021_MAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel2021_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Get money line for agent
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel2021_SAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel2021_SAg", parameters);
-        }
-
-        #endregion
+        #endregion MoneyLine
 
         #region OddEvent_OneXTwo
 
@@ -164,13 +134,12 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel25_Ag(int custId, string language)
+        public DataTable Age_TotalBets_2_5_12_15_123(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
+            parameters.Add("agentid", custId);
 
-            return ExecSpTable("Age_TotalBets_Sel25_Ag", parameters);
+            return ExecSpTable("Age_TotalBets_2_5_12_15_123", parameters);
         }
 
         /// <summary>
@@ -202,22 +171,23 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel25_SAg", parameters);
         }
-        #endregion
+
+        #endregion OddEvent_OneXTwo
 
         #region OutRight
+
         /// <summary>
         /// Get outright for agent
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel10_Ag(int custId, string language)
+        public DataTable Age_TotalBets_10(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
+            parameters.Add("agentid", custId);
 
-            return ExecSpTable("Age_TotalBets_Sel10_Ag", parameters);
+            return ExecSpTable("Age_TotalBets_10", parameters);
         }
 
         /// <summary>
@@ -249,7 +219,8 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel10_SAg", parameters);
         }
-        #endregion
+
+        #endregion OutRight
 
         #region HTFT
 
@@ -259,13 +230,12 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel16_Ag(int custId, string language)
+        public DataTable Age_TotalBets_16(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
+            parameters.Add("agentid", custId);
 
-            return ExecSpTable("Age_TotalBets_Sel16_Ag", parameters);
+            return ExecSpTable("Age_TotalBets_16", parameters);
         }
 
         /// <summary>
@@ -297,7 +267,8 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel16_SAg", parameters);
         }
-        #endregion
+
+        #endregion HTFT
 
         #region FGLG
 
@@ -307,13 +278,12 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel14_Ag(int custId, string language)
+        public DataTable Age_TotalBets_14(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
+            parameters.Add("agentid", custId);
 
-            return ExecSpTable("Age_TotalBets_Sel14_Ag", parameters);
+            return ExecSpTable("Age_TotalBets_14", parameters);
         }
 
         /// <summary>
@@ -345,7 +315,8 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel14_SAg", parameters);
         }
-        #endregion
+
+        #endregion FGLG
 
         #region Home/Draw/AwayNoBet
 
@@ -355,13 +326,12 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel121_Ag(int custId, string language)
+        public DataTable Age_TotalBets_25_121_122(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
+            parameters.Add("agentid", custId);
 
-            return ExecSpTable("Age_TotalBets_Sel121_Ag", parameters);
+            return ExecSpTable("Age_TotalBets_25_121_122", parameters);
         }
 
         /// <summary>
@@ -393,7 +363,8 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel121_SAg", parameters);
         }
-        #endregion
+
+        #endregion Home/Draw/AwayNoBet
 
         #region NextGoal
 
@@ -440,7 +411,8 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel22_SAg", parameters);
         }
-        #endregion
+
+        #endregion NextGoal
 
         #region HorseRacing
 
@@ -487,7 +459,8 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_SelHR_SAg", parameters);
         }
-        #endregion
+
+        #endregion HorseRacing
 
         #region Financial
 
@@ -534,25 +507,26 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel201_SAg", parameters);
         }
-        #endregion
+
+        #endregion Financial
 
         #region NumberGame
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel161_Ag(int custId, string language)
+        public DataTable Age_TotalBets_161(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-            return ExecSpTable("Age_TotalBets_Sel161_Ag", parameters);
+            parameters.Add("agentid", custId);
+            return ExecSpTable("Age_TotalBets_161", parameters);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -566,7 +540,7 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -579,11 +553,13 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel161_SAg", parameters);
         }
-        #endregion
+
+        #endregion NumberGame
 
         #region LiveCasino
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -597,7 +573,7 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -611,7 +587,7 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -624,11 +600,13 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel162_SAg", parameters);
         }
-        #endregion
+
+        #endregion LiveCasino
 
         #region VirtualSports
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -642,7 +620,7 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -656,7 +634,7 @@ namespace Sunplus.Agent.Model.DL.TotalBets
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="language"></param>
@@ -669,7 +647,8 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 
             return ExecSpTable("Age_TotalBets_Sel180_SAg", parameters);
         }
-        #endregion
+
+        #endregion VirtualSports
 
         #region GetOtherBettypes
 
@@ -718,6 +697,6 @@ namespace Sunplus.Agent.Model.DL.TotalBets
             return ExecSpTable("Age_TotalBets_SelOthers_SAg", parameters);
         }
 
-        #endregion
+        #endregion GetOtherBettypes
     }
 }

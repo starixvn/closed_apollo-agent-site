@@ -1,9 +1,0 @@
-﻿namespace Sunplus.Agent.UI.BetSlip.UI
-{
-    /// <summary>
-    /// 1st Odd/Even
-    /// </summary>
-    public class BetType12 : BetType2
-    {
-    }
-}

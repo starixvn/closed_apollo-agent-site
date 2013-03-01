@@ -1,8 +1,8 @@
 ﻿/*
  * Created 20100507@Jacob - Business class of total bet function
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.BL.TotalBets
@@ -14,15 +14,18 @@ namespace Sunplus.Agent.Model.BL.TotalBets
     public class TotalBetsBO : Sunplus.Agent.Model.BL.Base.BOBase
     {
         #region Variable
+
         private static readonly TotalBetsDAO totalBetsDAO = new TotalBetsDAO();
-        #endregion
+
+        #endregion Variable
 
         public TotalBetsBO(string netSessionId)
             : base(netSessionId)
-        { 
+        {
         }
 
         #region TotalGoal
+
         /// <summary>
         /// Get data for total goal page
         /// </summary>
@@ -38,16 +41,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                totalGoal = totalBetsDAO.Age_TotalBets_Sel6_Ag(customerID, language);
+                totalGoal = totalBetsDAO.Age_TotalBets_6(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                totalGoal = totalBetsDAO.Age_TotalBets_Sel6_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                totalGoal = totalBetsDAO.Age_TotalBets_Sel6_SAg(customerID, language);
-            }
+
             else
             {
                 totalGoal = new DataTable();
@@ -55,9 +51,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return totalGoal;
         }
-        #endregion
+
+        #endregion TotalGoal
 
         #region HDPOU
+
         /// <summary>
         /// Get data for HDPOU page
         /// </summary>
@@ -73,16 +71,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                hpdOU = totalBetsDAO.Age_TotalBets_Sel1378_Ag(customerID, language);
+                hpdOU = totalBetsDAO.Age_TotalBets_1_3_7_8(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                hpdOU = totalBetsDAO.Age_TotalBets_Sel1378_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                hpdOU = totalBetsDAO.Age_TotalBets_Sel1378_SAg(customerID, language);
-            }
+
             else
             {
                 hpdOU = new DataTable();
@@ -90,7 +81,8 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return hpdOU;
         }
-        #endregion
+
+        #endregion HDPOU
 
         #region MoneyLine
 
@@ -109,15 +101,7 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                moneyline = totalBetsDAO.Age_TotalBets_Sel2021_Ag(customerID, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                moneyline = totalBetsDAO.Age_TotalBets_Sel2021_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                moneyline = totalBetsDAO.Age_TotalBets_Sel2021_SAg(customerID, language);
+                moneyline = totalBetsDAO.Age_TotalBets_20_21(customerID, language);
             }
             else
             {
@@ -126,7 +110,8 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return moneyline;
         }
-        #endregion
+
+        #endregion MoneyLine
 
         #region OddEvent_OneXTwo
 
@@ -145,16 +130,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                oddEventOneXTwo = totalBetsDAO.Age_TotalBets_Sel25_Ag(customerID, language);
+                oddEventOneXTwo = totalBetsDAO.Age_TotalBets_2_5_12_15_123(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                oddEventOneXTwo = totalBetsDAO.Age_TotalBets_Sel25_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                oddEventOneXTwo = totalBetsDAO.Age_TotalBets_Sel25_SAg(customerID, language);
-            }
+
             else
             {
                 oddEventOneXTwo = new DataTable();
@@ -162,9 +140,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return oddEventOneXTwo;
         }
-        #endregion
+
+        #endregion OddEvent_OneXTwo
 
         #region OutRight
+
         /// <summary>
         /// Get data for outright page
         /// </summary>
@@ -180,15 +160,7 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                outright = totalBetsDAO.Age_TotalBets_Sel10_Ag(customerID, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                outright = totalBetsDAO.Age_TotalBets_Sel10_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                outright = totalBetsDAO.Age_TotalBets_Sel10_SAg(customerID, language);
+                outright = totalBetsDAO.Age_TotalBets_10(customerID, language);
             }
             else
             {
@@ -197,9 +169,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return outright;
         }
-        #endregion
+
+        #endregion OutRight
 
         #region HTFT
+
         /// <summary>
         /// Get data for HTFT page
         /// </summary>
@@ -215,15 +189,7 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                asHTFT = totalBetsDAO.Age_TotalBets_Sel16_Ag(customerID, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                asHTFT = totalBetsDAO.Age_TotalBets_Sel16_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                asHTFT = totalBetsDAO.Age_TotalBets_Sel16_SAg(customerID, language);
+                asHTFT = totalBetsDAO.Age_TotalBets_16(customerID, language);
             }
             else
             {
@@ -232,9 +198,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return asHTFT;
         }
-        #endregion
+
+        #endregion HTFT
 
         #region FGLG
+
         /// <summary>
         /// Get data for FGLG page
         /// </summary>
@@ -250,15 +218,7 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                asFGLG = totalBetsDAO.Age_TotalBets_Sel14_Ag(customerID, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                asFGLG = totalBetsDAO.Age_TotalBets_Sel14_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                asFGLG = totalBetsDAO.Age_TotalBets_Sel14_SAg(customerID, language);
+                asFGLG = totalBetsDAO.Age_TotalBets_14(customerID, language);
             }
             else
             {
@@ -267,9 +227,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return asFGLG;
         }
-        #endregion
+
+        #endregion FGLG
 
         #region Home/Draw/AwayNoBet
+
         /// <summary>
         /// Get data for Home/Draw/AwayNoBet page
         /// </summary>
@@ -285,16 +247,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_Sel121_Ag(customerID, language);
+                homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_25_121_122(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_Sel121_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_Sel121_SAg(customerID, language);
-            }
+
             else
             {
                 homeDrawAwayNoBet = new DataTable();
@@ -302,9 +257,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return homeDrawAwayNoBet;
         }
-        #endregion
+
+        #endregion Home/Draw/AwayNoBet
 
         #region NextGoal
+
         /// <summary>
         /// Get data for NextGoal page
         /// </summary>
@@ -337,9 +294,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return nextGoal;
         }
-        #endregion
+
+        #endregion NextGoal
 
         #region HorseRacing
+
         /// <summary>
         /// Get data for NextGoal page
         /// </summary>
@@ -372,9 +331,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return horseRacing;
         }
-        #endregion
+
+        #endregion HorseRacing
 
         #region Financial
+
         /// <summary>
         /// Get data for Financial page
         /// </summary>
@@ -407,9 +368,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return financial;
         }
-        #endregion
+
+        #endregion Financial
 
         #region NumberGame
+
         /// <summary>
         /// Get data for number game page
         /// </summary>
@@ -425,16 +388,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                numberGame = totalBetsDAO.Age_TotalBets_Sel161_Ag(customerID, language);
+                numberGame = totalBetsDAO.Age_TotalBets_161(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                numberGame = totalBetsDAO.Age_TotalBets_Sel161_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                numberGame = totalBetsDAO.Age_TotalBets_Sel161_SAg(customerID, language);
-            }
+
             else
             {
                 numberGame = new DataTable();
@@ -442,9 +398,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return numberGame;
         }
-        #endregion
+
+        #endregion NumberGame
 
         #region LiveCasino
+
         /// <summary>
         /// Get data for LiveCasino page
         /// </summary>
@@ -477,9 +435,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return liveCasino;
         }
-        #endregion
+
+        #endregion LiveCasino
 
         #region VirtualSports
+
         /// <summary>
         /// Get data for VirtualSports page
         /// </summary>
@@ -512,9 +472,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return virtualSports;
         }
-        #endregion
+
+        #endregion VirtualSports
 
         #region Other bettypes
+
         /// <summary>
         /// Get data for Other bettypes page
         /// </summary>
@@ -548,6 +510,6 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             return otherBettypes;
         }
 
-        #endregion
+        #endregion Other bettypes
     }
 }

@@ -64,7 +64,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="TplCore">
-      <HintPath>..\..\Main\Dependencies\TplCore.dll</HintPath>
+      <HintPath>..\Dependencies\TplCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

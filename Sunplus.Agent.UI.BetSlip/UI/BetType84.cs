@@ -1,9 +1,0 @@
-﻿namespace Sunplus.Agent.UI.BetSlip.UI
-{
-    /// <summary>
-    /// Last ball OE
-    /// </summary>
-    public class BetType84 : BetType83
-    {
-    }
-}
