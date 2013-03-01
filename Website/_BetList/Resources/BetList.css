@@ -94,24 +94,33 @@ div.match + div.league {
 #hor-minimalist-a {
     font-size: 12px;
     background: #fff;
-    border-collapse: collapse;
     text-align: left;
-    width: 100%;
+    width: 100%;    
+    border: 1px solid #323435;
+    border-spacing:0px;
 }
 #hor-minimalist-a th {
     font-weight: normal;
-    color: #fff;
-    background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969;
+    color: #FAFDEB;
+    /*background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969;*/
+    background: #323435;
     padding: 2px 2px;
-    border: solid 1px #999;
+    border-left: solid 1px #fff;
     text-align: center;
+    border-top: 1px solid #323435;
+}
+#hor-minimalist-a th:first-child {
+    border-left: 1px solid #323435;
 }
 #hor-minimalist-a td {
     color: #000;
     vertical-align: top;
     padding: 2px 2px 0px 2px;
-    border: solid 1px #999;
+    border-left: solid 1px #323435;
     text-align: right;
+}
+#hor-minimalist-a td:first-child {
+    border-left: none;
 }
 #hor-minimalist-a tbody tr:hover td {
     color: #009;

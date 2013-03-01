@@ -1,14 +1,14 @@
 ﻿body
 {
-	background: url(../../_GlobalResources/Images/bgtop_f3.jpg) repeat-x top;
+	/*background: url(../../_GlobalResources/Images/bgtop_f3.jpg) repeat-x top;*/
 }
 
 #logo
 {
-	background: url(../../_GlobalResources/Images/icon_user3.gif) no-repeat top left;	
+	/*background: url(../../_GlobalResources/Images/icon_user3.gif) no-repeat top left;*/
 }
 #logo .userName{font-weight:bold; color:#1B5C0C}
 #banner
 {
-	background: url(../../_GlobalResources/Images/bg_banner3.jpg) no-repeat top left;
+	/*background: url(../../_GlobalResources/Images/bg_banner3.jpg) no-repeat top left;*/
 }

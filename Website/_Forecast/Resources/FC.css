@@ -1,5 +1,5 @@
 ﻿table.tblRpt {
-    background-color: #cdcdcd;
+    /*background-color: #cdcdcd;*/
 }
 table.tblRpt tr {
     height: 20px;
@@ -8,8 +8,9 @@ td {
     padding: 0 2px;
 }
 .RptHeader {
-    background: #8C897E url(../../_GlobalResources/Images/bg_header02.jpg) repeat-x scroll center top;
-    color: #FFF;
+    /*background: #8C897E url(../../_GlobalResources/Images/bg_header02.jpg) repeat-x scroll center top;*/
+    background: #323435;
+    color: #FAFDEB;
     font-size: 12px;
     text-align: center;
     height: 22px;

@@ -419,6 +419,7 @@ font.positive
 	font-weight: bold;
 	line-height: 18px;
 	width: 190px;
+	display: none;
 }
 #left_tab ul
 {

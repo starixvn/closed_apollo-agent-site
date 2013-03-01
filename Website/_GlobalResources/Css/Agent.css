@@ -193,7 +193,7 @@ select {
 }
 
 .tblRpt {
-    background-color: #B7B7B7;
+    background-color: #323435;
     margin-top: 10px;
 }
 
@@ -210,20 +210,34 @@ select {
 }
 
 .RptHeader {
-    background: #6A6969 url(../Images/bg_header02.jpg) repeat-x scroll center top;
-    color: #FFF;
+    /*background: #6A6969 url(../Images/bg_header02.jpg) repeat-x scroll center top;*/
+    background: #323435;
+    color: #FAFDEB;
     font-size: 12px !important;
     font-weight: 400 !important;
     height: 22px;
     text-align: center;
 }
 
+.RptHeader td {
+    border-left: 1px solid #fff;
+}
+
+.RptHeader td:first-child {
+    border-left: none;
+}
+
 .RptHeader02 {
-    background-color: #323435;
-    color: #FFF;
+    background-color: #CCCCCC;
+    color: #323435;
     font-size: 12px !important;
     font-weight: 400 !important;
     text-align: center;
+    border: 1px solid #fff;
+}
+
+.RptHeader02 td {
+    border: 1px solid #fff;
 }
 
 .RptHeader01 {
@@ -560,7 +574,7 @@ div.divBoxRight {
     cursor: pointer;
 }
 
-input[type=submit], input[type=reset], table {
+input[type=submit], input[type=reset] {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
