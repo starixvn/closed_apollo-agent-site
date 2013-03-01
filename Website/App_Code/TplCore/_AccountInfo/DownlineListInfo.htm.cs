@@ -20,6 +20,7 @@ namespace Sunplus.Agent.UI
 			public DownlineListInfo_Paging_Block Paging = new DownlineListInfo_Paging_Block();
 			public override void ToString(ref StringBuilder bd)
 			{
+				if(!Visible) return;
 				bd.Append(s0);
 				bd.Append(maxHeight);
 				bd.Append(s1);
@@ -44,13 +45,13 @@ namespace Sunplus.Agent.UI
 			protected static string s4 = "; float: left;\"><a class=\"link_leftnone\" href=\"AccountInfo.aspx?username=";
 			public string usercol1 = "{usercol1}";
 			protected static string s5 = "\">";
-			private string t0_usercol1;
+			protected string t0_usercol1;
 			protected static string s6 = "</a></div><div style=\"width: 50%; float: left; text-align: ";
 			public string textAlign = "{textAlign}";
 			protected static string s7 = "\"><a class=\"link_leftnone\" href=\"AccountInfo.aspx?username=";
 			public string usercol2 = "{usercol2}";
 			protected static string s8 = "\">";
-			private string t1_usercol2;
+			protected string t1_usercol2;
 			protected static string s9 = "</a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -78,7 +79,7 @@ namespace Sunplus.Agent.UI
 		public class DownlineListInfo_Paging_Block: Block
 		{
 			protected static string s10 = "<div style=\"height: 20px; text-align: right; border-top: dotted 1px #ccc; padding-right: 12px; padding-bottom: 2px;\"><span id=\"ploading\" style=\"display: none;\"><img alt=\"loading\" width=\"15px\" src=\"";
-			private static string s11{get{return AbsoluteUrl("_GlobalResources/Images/ajax-loader.gif");}}
+			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Images/ajax-loader.gif");}}
 			protected static string s12 = "\" />&nbsp;</span>";
 			public DownlineListInfo_Paging_PPrev_Block PPrev = new DownlineListInfo_Paging_PPrev_Block();
 			protected static string s13 = "<span id=\"spPage\" class=\"link_leftnone\" style=\"cursor: pointer; font-weight: bold;\" onclick=\"showEditPage(1);\">";
@@ -87,7 +88,7 @@ namespace Sunplus.Agent.UI
 			public string totalpages = "{totalpages}";
 			public DownlineListInfo_Paging_PNext_Block PNext = new DownlineListInfo_Paging_PNext_Block();
 			protected static string s15 = "</div><input id=\"hdnTotalPage\" type=\"hidden\" value=\"";
-			private string t2_totalpages;
+			protected string t2_totalpages;
 			protected static string s16 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{

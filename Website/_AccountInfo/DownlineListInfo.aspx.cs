@@ -40,6 +40,8 @@ namespace Sunplus.Agent.UI._AccountInfo
         public override void RenderContent(System.Web.UI.HtmlTextWriter writer)
         {
             DownlineListInfo_Template tpl = new DownlineListInfo_Template();
+
+            
             string maxHeight = "height";
             int versionIE = getVersionIE();
             if (versionIE < 0 || versionIE > 6) maxHeight = "max-height";

@@ -56,7 +56,7 @@ function AddIconNew() {
 }
 
 function iniMenu() {
-    AddIconNew();
+    //AddIconNew();
     SetiPhoneAdGifLinkUrl();
 }
 

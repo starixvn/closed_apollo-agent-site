@@ -331,7 +331,7 @@ td
 .divStatus
 {
 	float: left;
-	width: 91px;
+	width: 88px;
 	text-align: right;
 }
 .divStatus input[type=checkbox]
@@ -919,3 +919,11 @@ input[type=reset]
     width: 182px !important;    
 }
 
+.setting-left {
+    color: #F78F1E;
+    font-size: 11px;
+    font-weight: bold;
+}
+.hide {
+    display: none !important;
+}

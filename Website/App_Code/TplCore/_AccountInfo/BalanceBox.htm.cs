@@ -12,11 +12,11 @@ namespace Sunplus.Agent.UI
 	{
 		public class BalanceBox_Template : Template
 		{
-			protected static string s0 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div id=\"left_tab\"><ul><li id=\"balinfo\" class=\"current\"><a href=\"javascript:showDownlineList(0);\">";
+			protected static string s0 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div id=\"left_tab\"><ul><li id=\"balinfo\" class=\"hide\" ><a href=\"javascript:showDownlineList(0);\">";
 			protected static string s1{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.balanceinfo,18,true);}}
 			protected static string s2 = "</a></li>";
 			public BalanceBox_DownlineList_Block DownlineList = new BalanceBox_DownlineList_Block();
-			protected static string s3 = "</ul></div><div id=\"clear0\" /><div id=\"tabbalance\" class=\"Bleft_Sub02\"><table style=\"width:184px;\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td>";
+			protected static string s3 = "</ul></div><div id=\"clear0\" /><div id=\"tabbalance\" class=\"Bleft_Sub02 hide\"><table style=\"width:184px;\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td>";
 			public BalanceBox_ForMember_Block ForMember = new BalanceBox_ForMember_Block();
 			public BalanceBox_ForAgent_Block ForAgent = new BalanceBox_ForAgent_Block();
 			public BalanceBox_ForMember1_Block ForMember1 = new BalanceBox_ForMember1_Block();
@@ -37,11 +37,13 @@ namespace Sunplus.Agent.UI
 			public BalanceBox_DownlineStatusMaster_Block DownlineStatusMaster = new BalanceBox_DownlineStatusMaster_Block();
 			public BalanceBox_DownlineStatusAgent_Block DownlineStatusAgent = new BalanceBox_DownlineStatusAgent_Block();
 			public BalanceBox_ForMember2_Block ForMember2 = new BalanceBox_ForMember2_Block();
-			protected static string s11 = "</td></tr></table></div><div id=\"tabdownline\" class=\"Bleft_Sub02\" style=\"display:none;\"><center><img src=\"";
+			protected static string s11 = "</td></tr></table></div><div id=\"tabdownline\" class=\"Bleft_Sub02\"><!--<center><img src=\"";
 			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Images/ajax-loader.gif");}}
 			protected static string s13 = "\" alt=\"loading\"/> ";
 			protected static string s14{get{return Resources.Lang.loading;}}
-			protected static string s15 = "...</center></div><iframe id=\"frmDownlineList\" name=\"frmDownlineList\" style=\"display:none; width:1px; height:1px;\"></iframe></div></div>";
+			protected static string s15 = "...</center>--></div>";
+			public string DownlineListFrame = "{DownlineListFrame}";
+			protected static string s16 = "</div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -75,6 +77,8 @@ namespace Sunplus.Agent.UI
 				bd.Append(s13);
 				bd.Append(s14);
 				bd.Append(s15);
+				bd.Append(DownlineListFrame);
+				bd.Append(s16);
 				bd.Append(Value);
 			}
 			public string ToString()
@@ -88,21 +92,21 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_DownlineList_Block: Block
 		{
-			protected static string s16 = "<li id=\"userdownline\"><a href=\"DownlineListInfo.aspx?custid=";
+			protected static string s17 = "<li id=\"userdownline\" class=\"current\"><a id=\"downlineLink\" href=\"DownlineListInfo.aspx?custid=";
 			public string CustId = "{CustId}";
-			protected static string s17 = "\" target=\"frmDownlineList\" onclick=\"showDownlineList(1);\"><span>";
-			protected static string s18{get{return Resources.Lang.downlinelist;}}
-			protected static string s19 = "</span></a></li>";
+			protected static string s18 = "\" target=\"frmDownlineList\" onclick=\"showDownlineList(1);\"><span>";
+			protected static string s19{get{return Resources.Lang.downlinelist;}}
+			protected static string s20 = "</span></a></li>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s16);
-					bd.Append(CustId);
 					bd.Append(s17);
+					bd.Append(CustId);
 					bd.Append(s18);
 					bd.Append(s19);
+					bd.Append(s20);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -110,29 +114,29 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_ForMember_Block: Block
 		{
-			protected static string s20 = "<div class=\"divleft\">";
-			protected static string s21{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalBalance, 18);}}
-			protected static string s22 = ":</div><div class=\"divright\">";
+			protected static string s21 = "<div class=\"divleft\">";
+			protected static string s22{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalBalance, 18);}}
+			protected static string s23 = ":</div><div class=\"divright\">";
 			public string TotalBalance = "{TotalBalance}";
-			protected static string s23 = "</div><br /><div class=\"divleft\">";
-			protected static string s24{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.yesterdaybalance, 18);}}
-			protected static string s25 = ":</div><div class=\"divright\">";
+			protected static string s24 = "</div><br /><div class=\"divleft\">";
+			protected static string s25{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.yesterdaybalance, 18);}}
+			protected static string s26 = ":</div><div class=\"divright\">";
 			public string YesterdayBalance = "{YesterdayBalance}";
-			protected static string s26 = "</div><br />";
+			protected static string s27 = "</div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);
-					bd.Append(TotalBalance);
 					bd.Append(s23);
+					bd.Append(TotalBalance);
 					bd.Append(s24);
 					bd.Append(s25);
-					bd.Append(YesterdayBalance);
 					bd.Append(s26);
+					bd.Append(YesterdayBalance);
+					bd.Append(s27);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -140,61 +144,61 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_ForAgent_Block: Block
 		{
-			protected static string s27 = "<div class=\"divleft\">";
-			protected static string s28{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalCash, 18);}}
-			protected static string s29 = ":</div><div class=\"divright\">";
+			protected static string s28 = "<div class=\"divleft\">";
+			protected static string s29{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalCash, 18);}}
+			protected static string s30 = ":</div><div class=\"divright\">";
 			public string TotalCash = "{TotalCash}";
-			protected static string s30 = "</div><br /><div class=\"divleft\">";
-			protected static string s31{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblYesterdayCash, 18);}}
-			protected static string s32 = ":</div><div class=\"divright\">";
+			protected static string s31 = "</div><br /><div class=\"divleft\">";
+			protected static string s32{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblYesterdayCash, 18);}}
+			protected static string s33 = ":</div><div class=\"divright\">";
 			public string YesterdayCash = "{YesterdayCash}";
-			protected static string s33 = "</div><br /><div class=\"divleft\">";
-			protected static string s34{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalBalance, 18);}}
-			protected static string s35 = ":</div><div class=\"divright\">";
+			protected static string s34 = "</div><br /><div class=\"divleft\">";
+			protected static string s35{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalBalance, 18);}}
+			protected static string s36 = ":</div><div class=\"divright\">";
 			public string TotalBalance = "{TotalBalance}";
-			protected static string s36 = "</div><br /><div class=\"divleft\">";
-			protected static string s37{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.yesterdaybalance, 18);}}
-			protected static string s38 = ":</div><div class=\"divright\">";
+			protected static string s37 = "</div><br /><div class=\"divleft\">";
+			protected static string s38{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.yesterdaybalance, 18);}}
+			protected static string s39 = ":</div><div class=\"divright\">";
 			public string YesterdayBalance = "{YesterdayBalance}";
-			protected static string s39 = "</div><br /><div id=\"tdAgOutstand\" class=\"divleft\">";
+			protected static string s40 = "</div><br /><div id=\"tdAgOutstand\" class=\"divleft\">";
 			public string AgentOutstandingLabel = "{AgentOutstandingLabel}";
-			protected static string s40 = ":</div><div class=\"divright\"><a class=\"";
+			protected static string s41 = ":</div><div class=\"divright\"><a class=\"";
 			public string AgentOutstandingClass = "{AgentOutstandingClass}";
-			protected static string s41 = "\" onclick=\"javascript:clearTopMenu();\" ";
+			protected static string s42 = "\" onclick=\"javascript:clearTopMenu();\" ";
 			public string AgentOutstandingLink = "{AgentOutstandingLink}";
-			protected static string s42 = " target=\"main\">";
+			protected static string s43 = " target=\"main\">";
 			public string AgentOutstanding = "{AgentOutstanding}";
-			protected static string s43 = "</a></div><br />";
+			protected static string s44 = "</a></div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
-					bd.Append(TotalCash);
 					bd.Append(s30);
+					bd.Append(TotalCash);
 					bd.Append(s31);
 					bd.Append(s32);
-					bd.Append(YesterdayCash);
 					bd.Append(s33);
+					bd.Append(YesterdayCash);
 					bd.Append(s34);
 					bd.Append(s35);
-					bd.Append(TotalBalance);
 					bd.Append(s36);
+					bd.Append(TotalBalance);
 					bd.Append(s37);
 					bd.Append(s38);
-					bd.Append(YesterdayBalance);
 					bd.Append(s39);
-					bd.Append(AgentOutstandingLabel);
+					bd.Append(YesterdayBalance);
 					bd.Append(s40);
-					bd.Append(AgentOutstandingClass);
+					bd.Append(AgentOutstandingLabel);
 					bd.Append(s41);
-					bd.Append(AgentOutstandingLink);
+					bd.Append(AgentOutstandingClass);
 					bd.Append(s42);
-					bd.Append(AgentOutstanding);
+					bd.Append(AgentOutstandingLink);
 					bd.Append(s43);
+					bd.Append(AgentOutstanding);
+					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -202,29 +206,29 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_ForMember1_Block: Block
 		{
-			protected static string s44 = "<div class=\"divleft\">";
-			protected static string s45{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.outstanding, 14);}}
-			protected static string s46 = ":</div><div class=\"divright\"><a class=\"";
+			protected static string s45 = "<div class=\"divleft\">";
+			protected static string s46{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.outstanding, 14);}}
+			protected static string s47 = ":</div><div class=\"divright\"><a class=\"";
 			public string OutstandingClass = "{OutstandingClass}";
-			protected static string s47 = "\" onclick=\"javascript:clearTopMenu();\" ";
+			protected static string s48 = "\" onclick=\"javascript:clearTopMenu();\" ";
 			public string OutstandingLink = "{OutstandingLink}";
-			protected static string s48 = " target=\"main\">";
+			protected static string s49 = " target=\"main\">";
 			public string Outstanding = "{Outstanding}";
-			protected static string s49 = "</a></div><br />";
+			protected static string s50 = "</a></div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s44);
 					bd.Append(s45);
 					bd.Append(s46);
-					bd.Append(OutstandingClass);
 					bd.Append(s47);
-					bd.Append(OutstandingLink);
+					bd.Append(OutstandingClass);
 					bd.Append(s48);
-					bd.Append(Outstanding);
+					bd.Append(OutstandingLink);
 					bd.Append(s49);
+					bd.Append(Outstanding);
+					bd.Append(s50);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -232,37 +236,37 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_SyncCS_Block: Block
 		{
-			protected static string s50 = "<div class=\"divleft\">";
-			protected static string s51{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblCSOutstanding, 18);}}
-			protected static string s52 = ":</div><div class=\"divright\"><a class=\"";
+			protected static string s51 = "<div class=\"divleft\">";
+			protected static string s52{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblCSOutstanding, 18);}}
+			protected static string s53 = ":</div><div class=\"divright\"><a class=\"";
 			public string OutsCSClass = "{OutsCSClass}";
-			protected static string s53 = "\" onclick=\"javascript:clearTopMenu();\" ";
+			protected static string s54 = "\" onclick=\"javascript:clearTopMenu();\" ";
 			public string OutstandingCSLink = "{OutstandingCSLink}";
-			protected static string s54 = " target=\"main\">";
+			protected static string s55 = " target=\"main\">";
 			public string CasinoOuts = "{CasinoOuts}";
-			protected static string s55 = "</a></div><br /><div class=\"divleft\">";
-			protected static string s56{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblCSTransfer, 18);}}
-			protected static string s57 = ":</div><div class=\"divright\">";
+			protected static string s56 = "</a></div><br /><div class=\"divleft\">";
+			protected static string s57{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblCSTransfer, 18);}}
+			protected static string s58 = ":</div><div class=\"divright\">";
 			public string CasinoTransf = "{CasinoTransf}";
-			protected static string s58 = "</div><br />";
+			protected static string s59 = "</div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s50);
 					bd.Append(s51);
 					bd.Append(s52);
-					bd.Append(OutsCSClass);
 					bd.Append(s53);
-					bd.Append(OutstandingCSLink);
+					bd.Append(OutsCSClass);
 					bd.Append(s54);
-					bd.Append(CasinoOuts);
+					bd.Append(OutstandingCSLink);
 					bd.Append(s55);
+					bd.Append(CasinoOuts);
 					bd.Append(s56);
 					bd.Append(s57);
-					bd.Append(CasinoTransf);
 					bd.Append(s58);
+					bd.Append(CasinoTransf);
+					bd.Append(s59);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -270,37 +274,37 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_SyncBingo_Block: Block
 		{
-			protected static string s59 = "<div class=\"divleft\">";
-			protected static string s60{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblBingoOutstanding, 18);}}
-			protected static string s61 = ":</div><div class=\"divright\"><a class=\"";
+			protected static string s60 = "<div class=\"divleft\">";
+			protected static string s61{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblBingoOutstanding, 18);}}
+			protected static string s62 = ":</div><div class=\"divright\"><a class=\"";
 			public string OutsBingoClass = "{OutsBingoClass}";
-			protected static string s62 = "\" onclick=\"javascript:clearTopMenu();\" ";
+			protected static string s63 = "\" onclick=\"javascript:clearTopMenu();\" ";
 			public string OutstandingBingoLink = "{OutstandingBingoLink}";
-			protected static string s63 = " target=\"main\">";
+			protected static string s64 = " target=\"main\">";
 			public string BingoOuts = "{BingoOuts}";
-			protected static string s64 = "</a></div><br /><div class=\"divleft\">";
-			protected static string s65{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblBingoTransfer, 18);}}
-			protected static string s66 = ":</div><div class=\"divright text_bold\">";
+			protected static string s65 = "</a></div><br /><div class=\"divleft\">";
+			protected static string s66{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblBingoTransfer, 18);}}
+			protected static string s67 = ":</div><div class=\"divright text_bold\">";
 			public string BingoTransf = "{BingoTransf}";
-			protected static string s67 = "</div><br />";
+			protected static string s68 = "</div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s59);
 					bd.Append(s60);
 					bd.Append(s61);
-					bd.Append(OutsBingoClass);
 					bd.Append(s62);
-					bd.Append(OutstandingBingoLink);
+					bd.Append(OutsBingoClass);
 					bd.Append(s63);
-					bd.Append(BingoOuts);
+					bd.Append(OutstandingBingoLink);
 					bd.Append(s64);
+					bd.Append(BingoOuts);
 					bd.Append(s65);
 					bd.Append(s66);
-					bd.Append(BingoTransf);
 					bd.Append(s67);
+					bd.Append(BingoTransf);
+					bd.Append(s68);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -308,37 +312,37 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_SyncP2P_Block: Block
 		{
-			protected static string s68 = "<div class=\"divleft\">";
-			protected static string s69{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalP2POutstanding, 18);}}
-			protected static string s70 = ":</div><div class=\"divright\"><a class=\"";
+			protected static string s69 = "<div class=\"divleft\">";
+			protected static string s70{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalP2POutstanding, 18);}}
+			protected static string s71 = ":</div><div class=\"divright\"><a class=\"";
 			public string OutsP2PClass = "{OutsP2PClass}";
-			protected static string s71 = "\" onclick=\"javascript:clearTopMenu();\" ";
+			protected static string s72 = "\" onclick=\"javascript:clearTopMenu();\" ";
 			public string OutstandingP2PLink = "{OutstandingP2PLink}";
-			protected static string s72 = " target=\"main\">";
+			protected static string s73 = " target=\"main\">";
 			public string P2POuts = "{P2POuts}";
-			protected static string s73 = "</a></div><br /><div class=\"divleft\">";
-			protected static string s74{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalP2PTransfer, 18);}}
-			protected static string s75 = ":</div><div class=\"divright text_bold\">";
+			protected static string s74 = "</a></div><br /><div class=\"divleft\">";
+			protected static string s75{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblTotalP2PTransfer, 18);}}
+			protected static string s76 = ":</div><div class=\"divright text_bold\">";
 			public string P2PTransf = "{P2PTransf}";
-			protected static string s76 = "</div><br />";
+			protected static string s77 = "</div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s68);
 					bd.Append(s69);
 					bd.Append(s70);
-					bd.Append(OutsP2PClass);
 					bd.Append(s71);
-					bd.Append(OutstandingP2PLink);
+					bd.Append(OutsP2PClass);
 					bd.Append(s72);
-					bd.Append(P2POuts);
+					bd.Append(OutstandingP2PLink);
 					bd.Append(s73);
+					bd.Append(P2POuts);
 					bd.Append(s74);
 					bd.Append(s75);
-					bd.Append(P2PTransf);
 					bd.Append(s76);
+					bd.Append(P2PTransf);
+					bd.Append(s77);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -346,21 +350,21 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_ForAgent1_Block: Block
 		{
-			protected static string s77 = "<div class=\"divleft\">";
-			protected static string s78{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.usedcredit, 18);}}
-			protected static string s79 = ":</div><div class=\"divright text_bold\">";
+			protected static string s78 = "<div class=\"divleft\">";
+			protected static string s79{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.usedcredit, 18);}}
+			protected static string s80 = ":</div><div class=\"divright text_bold\">";
 			public string UsedCredit = "{UsedCredit}";
-			protected static string s80 = "</div><br />";
+			protected static string s81 = "</div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s77);
 					bd.Append(s78);
 					bd.Append(s79);
-					bd.Append(UsedCredit);
 					bd.Append(s80);
+					bd.Append(UsedCredit);
+					bd.Append(s81);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -368,29 +372,29 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_MemMaxCredit_Block: Block
 		{
-			protected static string s81 = "<div id=\"tdMemMaxCredit\" class=\"divleft\">";
-			protected static string s82{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblMemberMaxCredit, 14);}}
-			protected static string s83 = ":</div><div class=\"divright text_bold\" title=\"";
+			protected static string s82 = "<div id=\"tdMemMaxCredit\" class=\"divleft\">";
+			protected static string s83{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblMemberMaxCredit, 14);}}
+			protected static string s84 = ":</div><div class=\"divright text_bold\" title=\"";
 			public string MemMaxCreditLimit = "{MemMaxCreditLimit}";
-			protected static string s84 = "\"><input type=\"text\" class=\"textBoxCredit\" id=\"txtMemMaxCredit\" onblur=\"changeCredit(false, 'txtMemMaxCredit');\" onkeypress=\"return checkKeyPress(event, 'txtMemMaxCredit');\" maxlength=\"14\" style=\"display: none; width: 73px;\"/><span id=\"spantxtMemMaxCredit\" ";
+			protected static string s85 = "\"><input type=\"text\" class=\"textBoxCredit\" id=\"txtMemMaxCredit\" onblur=\"changeCredit(false, 'txtMemMaxCredit');\" onkeypress=\"return checkKeyPress(event, 'txtMemMaxCredit');\" maxlength=\"14\" style=\"display: none; width: 73px;\"/><span id=\"spantxtMemMaxCredit\" ";
 			public string EditMemMaxCredit = "{EditMemMaxCredit}";
-			protected static string s85 = ">";
+			protected static string s86 = ">";
 			public string MemberMaxCredit = "{MemberMaxCredit}";
-			protected static string s86 = "</span></div><br />";
+			protected static string s87 = "</span></div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s81);
 					bd.Append(s82);
 					bd.Append(s83);
-					bd.Append(MemMaxCreditLimit);
 					bd.Append(s84);
-					bd.Append(EditMemMaxCredit);
+					bd.Append(MemMaxCreditLimit);
 					bd.Append(s85);
-					bd.Append(MemberMaxCredit);
+					bd.Append(EditMemMaxCredit);
 					bd.Append(s86);
+					bd.Append(MemberMaxCredit);
+					bd.Append(s87);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -398,33 +402,33 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_DownlineStatusMaster_Block: Block
 		{
-			protected static string s87 = "<div class=\"divleft\" title=\"";
+			protected static string s88 = "<div class=\"divleft\" title=\"";
 			public string TotalMemDesc = "{TotalMemDesc}";
-			protected static string s88 = "\">";
+			protected static string s89 = "\">";
 			public string TotalMemStatus = "{TotalMemStatus}";
-			protected static string s89 = ":</div><div class=\"divright\"><span class='actived'>";
+			protected static string s90 = ":</div><div class=\"divright\"><span class='actived'>";
 			public string TotalMemActive = "{TotalMemActive}";
-			protected static string s90 = "</span>/<span class='closed'>";
+			protected static string s91 = "</span>/<span class='closed'>";
 			public string TotalMemClosed = "{TotalMemClosed}";
-			protected static string s91 = "</span>/<span class='suspended'>";
+			protected static string s92 = "</span>/<span class='suspended'>";
 			public string TotalMemSuspended = "{TotalMemSuspended}";
-			protected static string s92 = "</span></div><br />";
+			protected static string s93 = "</span></div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s87);
-					bd.Append(TotalMemDesc);
 					bd.Append(s88);
-					bd.Append(TotalMemStatus);
+					bd.Append(TotalMemDesc);
 					bd.Append(s89);
-					bd.Append(TotalMemActive);
+					bd.Append(TotalMemStatus);
 					bd.Append(s90);
-					bd.Append(TotalMemClosed);
+					bd.Append(TotalMemActive);
 					bd.Append(s91);
-					bd.Append(TotalMemSuspended);
+					bd.Append(TotalMemClosed);
 					bd.Append(s92);
+					bd.Append(TotalMemSuspended);
+					bd.Append(s93);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -432,33 +436,33 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_DownlineStatusAgent_Block: Block
 		{
-			protected static string s93 = "<div class=\"divleft\" title=\"";
+			protected static string s94 = "<div class=\"divleft\" title=\"";
 			public string TotalMemDesc = "{TotalMemDesc}";
-			protected static string s94 = "\">";
+			protected static string s95 = "\">";
 			public string TotalMemStatus = "{TotalMemStatus}";
-			protected static string s95 = ":</div><div class=\"divright\"><span class='actived'>";
+			protected static string s96 = ":</div><div class=\"divright\"><span class='actived'>";
 			public string TotalMemActive = "{TotalMemActive}";
-			protected static string s96 = "</span>/<span class='closed'>";
+			protected static string s97 = "</span>/<span class='closed'>";
 			public string TotalMemClosed = "{TotalMemClosed}";
-			protected static string s97 = "</span>/<span class='suspended'>";
+			protected static string s98 = "</span>/<span class='suspended'>";
 			public string TotalMemSuspended = "{TotalMemSuspended}";
-			protected static string s98 = "</span></div><br />";
+			protected static string s99 = "</span></div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s93);
-					bd.Append(TotalMemDesc);
 					bd.Append(s94);
-					bd.Append(TotalMemStatus);
+					bd.Append(TotalMemDesc);
 					bd.Append(s95);
-					bd.Append(TotalMemActive);
+					bd.Append(TotalMemStatus);
 					bd.Append(s96);
-					bd.Append(TotalMemClosed);
+					bd.Append(TotalMemActive);
 					bd.Append(s97);
-					bd.Append(TotalMemSuspended);
+					bd.Append(TotalMemClosed);
 					bd.Append(s98);
+					bd.Append(TotalMemSuspended);
+					bd.Append(s99);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -466,21 +470,21 @@ namespace Sunplus.Agent.UI
 
 		public class BalanceBox_ForMember2_Block: Block
 		{
-			protected static string s99 = "<div class=\"divleft\">";
-			protected static string s100{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.betcredit, 14);}}
-			protected static string s101 = ":</div><div class=\"divright text_bold\">";
+			protected static string s100 = "<div class=\"divleft\">";
+			protected static string s101{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.betcredit, 14);}}
+			protected static string s102 = ":</div><div class=\"divright text_bold\">";
 			public string BetCredit = "{BetCredit}";
-			protected static string s102 = "</div><br />";
+			protected static string s103 = "</div><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s99);
 					bd.Append(s100);
 					bd.Append(s101);
-					bd.Append(BetCredit);
 					bd.Append(s102);
+					bd.Append(BetCredit);
+					bd.Append(s103);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
