@@ -41,16 +41,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                totalGoal = totalBetsDAO.Age_TotalBets_Sel6_Ag(customerID, language);
+                totalGoal = totalBetsDAO.Age_TotalBets_6(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                totalGoal = totalBetsDAO.Age_TotalBets_Sel6_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                totalGoal = totalBetsDAO.Age_TotalBets_Sel6_SAg(customerID, language);
-            }
+
             else
             {
                 totalGoal = new DataTable();
@@ -78,16 +71,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                hpdOU = totalBetsDAO.Age_TotalBets_Sel1378_Ag(customerID, language);
+                hpdOU = totalBetsDAO.Age_TotalBets_1_3_7_8(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                hpdOU = totalBetsDAO.Age_TotalBets_Sel1378_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                hpdOU = totalBetsDAO.Age_TotalBets_Sel1378_SAg(customerID, language);
-            }
+
             else
             {
                 hpdOU = new DataTable();
@@ -144,16 +130,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                oddEventOneXTwo = totalBetsDAO.Age_TotalBets_Sel25_Ag(customerID, language);
+                oddEventOneXTwo = totalBetsDAO.Age_TotalBets_2_5_12_15_123(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                oddEventOneXTwo = totalBetsDAO.Age_TotalBets_Sel25_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                oddEventOneXTwo = totalBetsDAO.Age_TotalBets_Sel25_SAg(customerID, language);
-            }
+
             else
             {
                 oddEventOneXTwo = new DataTable();
@@ -181,15 +160,7 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                outright = totalBetsDAO.Age_TotalBets_Sel10_Ag(customerID, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                outright = totalBetsDAO.Age_TotalBets_Sel10_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                outright = totalBetsDAO.Age_TotalBets_Sel10_SAg(customerID, language);
+                outright = totalBetsDAO.Age_TotalBets_10(customerID, language);
             }
             else
             {
@@ -218,15 +189,7 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                asHTFT = totalBetsDAO.Age_TotalBets_Sel16_Ag(customerID, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                asHTFT = totalBetsDAO.Age_TotalBets_Sel16_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                asHTFT = totalBetsDAO.Age_TotalBets_Sel16_SAg(customerID, language);
+                asHTFT = totalBetsDAO.Age_TotalBets_16(customerID, language);
             }
             else
             {
@@ -255,15 +218,7 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                asFGLG = totalBetsDAO.Age_TotalBets_Sel14_Ag(customerID, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                asFGLG = totalBetsDAO.Age_TotalBets_Sel14_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                asFGLG = totalBetsDAO.Age_TotalBets_Sel14_SAg(customerID, language);
+                asFGLG = totalBetsDAO.Age_TotalBets_14(customerID, language);
             }
             else
             {
@@ -292,16 +247,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_Sel121_Ag(customerID, language);
+                homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_25_121_122(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_Sel121_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_Sel121_SAg(customerID, language);
-            }
+
             else
             {
                 homeDrawAwayNoBet = new DataTable();
@@ -440,16 +388,9 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                numberGame = totalBetsDAO.Age_TotalBets_Sel161_Ag(customerID, language);
+                numberGame = totalBetsDAO.Age_TotalBets_161(customerID, language);
             }
-            else if (CurrentSession.IsMaster)
-            {
-                numberGame = totalBetsDAO.Age_TotalBets_Sel161_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                numberGame = totalBetsDAO.Age_TotalBets_Sel161_SAg(customerID, language);
-            }
+
             else
             {
                 numberGame = new DataTable();
