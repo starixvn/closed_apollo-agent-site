@@ -12,37 +12,31 @@ namespace Sunplus.Agent.UI
 	{
 		public class SettingBox_Template : Template
 		{
-			protected static string s0 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div id=\"left_tab\"><ul><li id=\"custsettings\" class=\"current\"><a href=\"#\" onclick=\"showSection(this.parentNode.id);\"><span>";
-			protected static string s1{get{return Resources.Lang.setting;}}
-			protected static string s2 = "</span></a></li><li id=\"logininfo\"><a href=\"#\" onclick=\"showSection(this.parentNode.id);\">";
-			protected static string s3{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.Login, 7, true);}}
-			protected static string s4 = "</a></li><li id=\"onlinelist\"><a href=\"#\" onclick=\"showSection(this.parentNode.id);\">";
-			protected static string s5{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.onlinelist,11, true);}}
-			protected static string s6 = "</a></li></ul></div><div id=\"clear0\" /><div class=\"Bleft_Sub02\"><table id=\"tbl_custsettings\"><tr><td colspan=\"2\"><div style=\"position: relative; left: -3px;\" class=\"settingWidth\"><div class=\"divStatus\" onmousedown=\"return changeSuspendedStatus(event, this);\" title=\"";
+			protected static string s0 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div id=\"clear0\" /><div class=\"Bleft_Sub02\"><table id=\"tbl_custsettings\"><tr><td><span class=\"setting-left\">Setting</span></td></tr><tr><td colspan=\"2\"><div style=\"position: relative; left: -3px;\" class=\"settingWidth\"><div class=\"divStatus\" onmousedown=\"return changeSuspendedStatus(event, this);\" title=\"";
 			public string SuspendedTooltip = "{SuspendedTooltip}";
-			protected static string s7 = "\"><label for=\"chkSuspend\" class=\"text_smal\">";
-			protected static string s8{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.suspended,9);}}
-			protected static string s9 = "</label><input type=\"checkbox\" id=\"chkSuspend\" ";
+			protected static string s1 = "\"><label for=\"chkSuspend\" class=\"text_smal\">";
+			protected static string s2{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.suspended,9);}}
+			protected static string s3 = "</label><input type=\"checkbox\" id=\"chkSuspend\" ";
 			public string disableSuspend = "{disableSuspend}";
-			protected static string s10 = " ";
+			protected static string s4 = " ";
 			public string checkedSuspended = "{checkedSuspended}";
-			protected static string s11 = " /></div><div class=\"divStatus\" onmousedown=\"return changeClosedStatus(event, this);\"title=\"";
+			protected static string s5 = " /></div><div class=\"divStatus\" onmousedown=\"return changeClosedStatus(event, this);\"title=\"";
 			public string ClosedTooltip = "{ClosedTooltip}";
-			protected static string s12 = "\"><label for=\"chkClosed\" class=\"text_smal\">";
-			protected static string s13{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblClosed, Sunplus.Agent.Model.Entities.UserSession.Current.LangKey.Equals("KO")?5:9);}}
-			protected static string s14 = "</label><input type=\"checkbox\" id=\"chkClosed\" ";
+			protected static string s6 = "\"><label for=\"chkClosed\" class=\"text_smal\">";
+			protected static string s7{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblClosed, Sunplus.Agent.Model.Entities.UserSession.Current.LangKey.Equals("KO")?5:9);}}
+			protected static string s8 = "</label><input type=\"checkbox\" id=\"chkClosed\" ";
 			public string disableClosed = "{disableClosed}";
-			protected static string s15 = " ";
+			protected static string s9 = " ";
 			public string checkedClosed = "{checkedClosed}";
-			protected static string s16 = " /></div><div class=\"divStatus\" onmousedown=\"return changeOutrightStatus(event, this);\" title=\"";
+			protected static string s10 = " /></div><div class=\"divStatus\" onmousedown=\"return changeOutrightStatus(event, this);\" title=\"";
 			public string OutrightTooltip = "{OutrightTooltip}";
-			protected static string s17 = "\"><label for=\"chkOutright\" class=\"text_smal\">";
-			protected static string s18{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblenableOutRight,14);}}
-			protected static string s19 = "</label><input type=\"checkbox\" id=\"chkOutright\" ";
+			protected static string s11 = "\"><label for=\"chkOutright\" class=\"text_smal\">";
+			protected static string s12{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblenableOutRight,14);}}
+			protected static string s13 = "</label><input type=\"checkbox\" id=\"chkOutright\" ";
 			public string disableOutright = "{disableOutright}";
-			protected static string s20 = " ";
+			protected static string s14 = " ";
 			public string checkedOutright = "{checkedOutright}";
-			protected static string s21 = " /></div>";
+			protected static string s15 = " /></div>";
 			public SettingBox_StatusAutoPT_Block StatusAutoPT = new SettingBox_StatusAutoPT_Block();
 			public SettingBox_StatusCasino_Block StatusCasino = new SettingBox_StatusCasino_Block();
 			public SettingBox_StatusBingo_Block StatusBingo = new SettingBox_StatusBingo_Block();
@@ -51,72 +45,66 @@ namespace Sunplus.Agent.UI
 			public SettingBox_StatusLiveCasino_Block StatusLiveCasino = new SettingBox_StatusLiveCasino_Block();
 			public SettingBox_StatusVirtualSports_Block StatusVirtualSports = new SettingBox_StatusVirtualSports_Block();
 			public SettingBox_StatusDoubleComm_Block StatusDoubleComm = new SettingBox_StatusDoubleComm_Block();
-			protected static string s22 = "</div><div id=\"overlayBg\" class=\"overlay\"></div></td></tr><tr><td height=\"5\" colspan=\"2\"><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
-			protected static string s23{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s24 = "\" name=\"\" /></div></td></tr>";
+			protected static string s16 = "</div><div id=\"overlayBg\" class=\"overlay\"></div></td></tr><tr><td height=\"5\" colspan=\"2\"><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
+			protected static string s17{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
+			protected static string s18 = "\" name=\"\" /></div></td></tr>";
 			public string otherSettings = "{otherSettings}";
-			protected static string s25 = "</table><table id=\"tbl_logininfo\" style=\"display: none;\"><tr><td><span class=\"text_bold\">";
-			protected static string s26{get{return Resources.Lang.CreatedDate;}}
-			protected static string s27 = ":</span><br />";
+			protected static string s19 = "</table><table id=\"tbl_logininfo\" style=\"display: none;\"><tr><td><span class=\"text_bold\">";
+			protected static string s20{get{return Resources.Lang.CreatedDate;}}
+			protected static string s21 = ":</span><br />";
 			public string createDate = "{createDate}";
-			protected static string s28 = "</td></tr><tr><td><span class=\"text_bold\">";
-			protected static string s29{get{return Resources.Lang.lastlogin;}}
-			protected static string s30 = ":</span><br />";
+			protected static string s22 = "</td></tr><tr><td><span class=\"text_bold\">";
+			protected static string s23{get{return Resources.Lang.lastlogin;}}
+			protected static string s24 = ":</span><br />";
 			public string lastLogin = "{lastLogin}";
-			protected static string s31 = "</td></tr><tr><td><span class=\"text_bold\">";
-			protected static string s32{get{return Resources.Lang.lasttxn;}}
-			protected static string s33 = ":</span><br />";
+			protected static string s25 = "</td></tr><tr><td><span class=\"text_bold\">";
+			protected static string s26{get{return Resources.Lang.lasttxn;}}
+			protected static string s27 = ":</span><br />";
 			public string lastTXN = "{lastTXN}";
-			protected static string s34 = "</td></tr><tr><td><span class=\"text_bold\">";
-			protected static string s35{get{return Resources.Lang.lastloginIP;}}
-			protected static string s36 = ":</span><br />";
+			protected static string s28 = "</td></tr><tr><td><span class=\"text_bold\">";
+			protected static string s29{get{return Resources.Lang.lastloginIP;}}
+			protected static string s30 = ":</span><br />";
 			public string lastLoginIP = "{lastLoginIP}";
-			protected static string s37 = "</td></tr></table><center><span id=\"tbl_onlinelist\" style=\"display: none;\"><img src=\"";
-			protected static string s38{get{return AbsoluteUrl("_GlobalResources/Images/ajax-loader.gif");}}
-			protected static string s39 = "\" alt=\"loading\" />";
-			protected static string s40{get{return Resources.Lang.loading;}}
-			protected static string s41 = " </span></center></div></div></div><div id=\"disabledStatusPop\" class=\"popupSetting\" style=\"display: none;\"><b><span id=\"lblEnableStatus\">Enable Status</span></b><br /><input type=\"checkbox\" name=\"chkEnabled\" onclick=\"allowSubmit(this);\" id=\"chkEnabled\" /><label id=\"agtype\" for=\"chkEnabled\"></label><span id=\"spanChkEnabledDL\"><br /><input type=\"checkbox\" name=\"chkEnabledDL\" id=\"chkEnabledDL\" disabled=\"disabled\" /><label id=\"lbldownline\" for=\"chkEnabledDL\">";
-			protected static string s42{get{return Resources.Lang.downlines;}}
-			protected static string s43 = "</label></span><br /><center><input id=\"btnUpdStatus\" type=\"button\" class=\"btn2\" disabled=\"disabled\" value=\"";
-			protected static string s44{get{return Resources.Lang.update;}}
-			protected static string s45 = "\" />&nbsp;<input type=\"button\" class=\"btn\" onclick=\"closeDivPopup();\" value=\"";
-			protected static string s46{get{return Resources.Lang.cancel;}}
-			protected static string s47 = "\" /></center><input id=\"hdnTypeStatus\" type=\"hidden\" value=\"\" /></div>";
+			protected static string s31 = "</td></tr></table><center><span id=\"tbl_onlinelist\" style=\"display: none;\"><img src=\"";
+			protected static string s32{get{return AbsoluteUrl("_GlobalResources/Images/ajax-loader.gif");}}
+			protected static string s33 = "\" alt=\"loading\" />";
+			protected static string s34{get{return Resources.Lang.loading;}}
+			protected static string s35 = " </span></center></div></div></div><div id=\"disabledStatusPop\" class=\"popupSetting\" style=\"display: none;\"><b><span id=\"lblEnableStatus\">Enable Status</span></b><br /><input type=\"checkbox\" name=\"chkEnabled\" onclick=\"allowSubmit(this);\" id=\"chkEnabled\" /><label id=\"agtype\" for=\"chkEnabled\"></label><span id=\"spanChkEnabledDL\"><br /><input type=\"checkbox\" name=\"chkEnabledDL\" id=\"chkEnabledDL\" disabled=\"disabled\" /><label id=\"lbldownline\" for=\"chkEnabledDL\">";
+			protected static string s36{get{return Resources.Lang.downlines;}}
+			protected static string s37 = "</label></span><br /><center><input id=\"btnUpdStatus\" type=\"button\" class=\"btn2\" disabled=\"disabled\" value=\"";
+			protected static string s38{get{return Resources.Lang.update;}}
+			protected static string s39 = "\" />&nbsp;<input type=\"button\" class=\"btn\" onclick=\"closeDivPopup();\" value=\"";
+			protected static string s40{get{return Resources.Lang.cancel;}}
+			protected static string s41 = "\" /></center><input id=\"hdnTypeStatus\" type=\"hidden\" value=\"\" /></div>";
 			public SettingBox_StatusRacingPopup_Block StatusRacingPopup = new SettingBox_StatusRacingPopup_Block();
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				bd.Append(s0);
+				bd.Append(SuspendedTooltip);
 				bd.Append(s1);
 				bd.Append(s2);
 				bd.Append(s3);
+				bd.Append(disableSuspend);
 				bd.Append(s4);
+				bd.Append(checkedSuspended);
 				bd.Append(s5);
+				bd.Append(ClosedTooltip);
 				bd.Append(s6);
-				bd.Append(SuspendedTooltip);
 				bd.Append(s7);
 				bd.Append(s8);
+				bd.Append(disableClosed);
 				bd.Append(s9);
-				bd.Append(disableSuspend);
+				bd.Append(checkedClosed);
 				bd.Append(s10);
-				bd.Append(checkedSuspended);
+				bd.Append(OutrightTooltip);
 				bd.Append(s11);
-				bd.Append(ClosedTooltip);
 				bd.Append(s12);
 				bd.Append(s13);
-				bd.Append(s14);
-				bd.Append(disableClosed);
-				bd.Append(s15);
-				bd.Append(checkedClosed);
-				bd.Append(s16);
-				bd.Append(OutrightTooltip);
-				bd.Append(s17);
-				bd.Append(s18);
-				bd.Append(s19);
 				bd.Append(disableOutright);
-				bd.Append(s20);
+				bd.Append(s14);
 				bd.Append(checkedOutright);
-				bd.Append(s21);
+				bd.Append(s15);
 				if(null != StatusAutoPT) StatusAutoPT.ToString(ref bd);
 				if(null != StatusCasino) StatusCasino.ToString(ref bd);
 				if(null != StatusBingo) StatusBingo.ToString(ref bd);
@@ -125,37 +113,37 @@ namespace Sunplus.Agent.UI
 				if(null != StatusLiveCasino) StatusLiveCasino.ToString(ref bd);
 				if(null != StatusVirtualSports) StatusVirtualSports.ToString(ref bd);
 				if(null != StatusDoubleComm) StatusDoubleComm.ToString(ref bd);
+				bd.Append(s16);
+				bd.Append(s17);
+				bd.Append(s18);
+				bd.Append(otherSettings);
+				bd.Append(s19);
+				bd.Append(s20);
+				bd.Append(s21);
+				bd.Append(createDate);
 				bd.Append(s22);
 				bd.Append(s23);
 				bd.Append(s24);
-				bd.Append(otherSettings);
+				bd.Append(lastLogin);
 				bd.Append(s25);
 				bd.Append(s26);
 				bd.Append(s27);
-				bd.Append(createDate);
+				bd.Append(lastTXN);
 				bd.Append(s28);
 				bd.Append(s29);
 				bd.Append(s30);
-				bd.Append(lastLogin);
+				bd.Append(lastLoginIP);
 				bd.Append(s31);
 				bd.Append(s32);
 				bd.Append(s33);
-				bd.Append(lastTXN);
 				bd.Append(s34);
 				bd.Append(s35);
 				bd.Append(s36);
-				bd.Append(lastLoginIP);
 				bd.Append(s37);
 				bd.Append(s38);
 				bd.Append(s39);
 				bd.Append(s40);
 				bd.Append(s41);
-				bd.Append(s42);
-				bd.Append(s43);
-				bd.Append(s44);
-				bd.Append(s45);
-				bd.Append(s46);
-				bd.Append(s47);
 				if(null != StatusRacingPopup) StatusRacingPopup.ToString(ref bd);
 				bd.Append(Value);
 			}
@@ -170,25 +158,25 @@ namespace Sunplus.Agent.UI
 
 		public class SettingBox_StatusAutoPT_Block: Block
 		{
-			protected static string s48 = "<div class=\"divStatus\" onmousedown=\"return changeAutoMPTStatus(event, this);\"><label for=\"chkMAutoPT\" class=\"text_smal\">";
-			protected static string s49{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.allowautopt,13);}}
-			protected static string s50 = "</label><input type=\"checkbox\" id=\"chkMAutoPT\" ";
+			protected static string s42 = "<div class=\"divStatus\" onmousedown=\"return changeAutoMPTStatus(event, this);\"><label for=\"chkMAutoPT\" class=\"text_smal\">";
+			protected static string s43{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.allowautopt,13);}}
+			protected static string s44 = "</label><input type=\"checkbox\" id=\"chkMAutoPT\" ";
 			public string disableMasterAutoPT = "{disableMasterAutoPT}";
-			protected static string s51 = " ";
+			protected static string s45 = " ";
 			public string checkedMasterAutoPT = "{checkedMasterAutoPT}";
-			protected static string s52 = " /></div>";
+			protected static string s46 = " /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s48);
-					bd.Append(s49);
-					bd.Append(s50);
+					bd.Append(s42);
+					bd.Append(s43);
+					bd.Append(s44);
 					bd.Append(disableMasterAutoPT);
-					bd.Append(s51);
+					bd.Append(s45);
 					bd.Append(checkedMasterAutoPT);
-					bd.Append(s52);
+					bd.Append(s46);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -196,14 +184,44 @@ namespace Sunplus.Agent.UI
 
 		public class SettingBox_StatusCasino_Block: Block
 		{
-			protected static string s53 = "<div class=\"divStatus\" onmousedown=\"return changeCasinoStatus(event, this, ";
+			protected static string s47 = "<div class=\"divStatus\" onmousedown=\"return changeCasinoStatus(event, this, ";
 			public string hasDownline = "{hasDownline}";
-			protected static string s54 = ");\"><label for=\"chkCasino\" class=\"text_smal\">";
-			protected static string s55{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableCS,13);}}
-			protected static string s56 = "</label><input type=\"checkbox\" id=\"chkCasino\" ";
+			protected static string s48 = ");\"><label for=\"chkCasino\" class=\"text_smal\">";
+			protected static string s49{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableCS,13);}}
+			protected static string s50 = "</label><input type=\"checkbox\" id=\"chkCasino\" ";
 			public string disableCasino = "{disableCasino}";
-			protected static string s57 = " ";
+			protected static string s51 = " ";
 			public string checkedCasino = "{checkedCasino}";
+			protected static string s52 = " /></div>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s47);
+					bd.Append(hasDownline);
+					bd.Append(s48);
+					bd.Append(s49);
+					bd.Append(s50);
+					bd.Append(disableCasino);
+					bd.Append(s51);
+					bd.Append(checkedCasino);
+					bd.Append(s52);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class SettingBox_StatusBingo_Block: Block
+		{
+			protected static string s53 = "<div class=\"divStatus\" onmousedown=\"return changeBingoStatus(event, this, ";
+			public string hasDownline = "{hasDownline}";
+			protected static string s54 = ");\"><label for=\"chkBingo\" class=\"text_smal\">";
+			protected static string s55{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblEnableBingo,13);}}
+			protected static string s56 = "</label><input type=\"checkbox\" id=\"chkBingo\" ";
+			public string disableBingo = "{disableBingo}";
+			protected static string s57 = " ";
+			public string checkedBingo = "{checkedBingo}";
 			protected static string s58 = " /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -215,25 +233,25 @@ namespace Sunplus.Agent.UI
 					bd.Append(s54);
 					bd.Append(s55);
 					bd.Append(s56);
-					bd.Append(disableCasino);
+					bd.Append(disableBingo);
 					bd.Append(s57);
-					bd.Append(checkedCasino);
+					bd.Append(checkedBingo);
 					bd.Append(s58);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
 		}
 
-		public class SettingBox_StatusBingo_Block: Block
+		public class SettingBox_StatusNumberGame_Block: Block
 		{
-			protected static string s59 = "<div class=\"divStatus\" onmousedown=\"return changeBingoStatus(event, this, ";
+			protected static string s59 = "<div class=\"divStatus\" onmousedown=\"return changeNumberGameStatus(event, this, ";
 			public string hasDownline = "{hasDownline}";
-			protected static string s60 = ");\"><label for=\"chkBingo\" class=\"text_smal\">";
-			protected static string s61{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblEnableBingo,13);}}
-			protected static string s62 = "</label><input type=\"checkbox\" id=\"chkBingo\" ";
-			public string disableBingo = "{disableBingo}";
+			protected static string s60 = ");\"><label for=\"chkNumberGame\" class=\"text_smal\">";
+			protected static string s61{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableNumber,13);}}
+			protected static string s62 = "</label><input type=\"checkbox\" id=\"chkNumberGame\" ";
+			public string disableNumberGame = "{disableNumberGame}";
 			protected static string s63 = " ";
-			public string checkedBingo = "{checkedBingo}";
+			public string checkedNumberGame = "{checkedNumberGame}";
 			protected static string s64 = " /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -245,26 +263,22 @@ namespace Sunplus.Agent.UI
 					bd.Append(s60);
 					bd.Append(s61);
 					bd.Append(s62);
-					bd.Append(disableBingo);
+					bd.Append(disableNumberGame);
 					bd.Append(s63);
-					bd.Append(checkedBingo);
+					bd.Append(checkedNumberGame);
 					bd.Append(s64);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
 		}
 
-		public class SettingBox_StatusNumberGame_Block: Block
+		public class SettingBox_StatusRacing_Block: Block
 		{
-			protected static string s65 = "<div class=\"divStatus\" onmousedown=\"return changeNumberGameStatus(event, this, ";
+			protected static string s65 = "<div class=\"divStatus\" onclick=\"ShowFrmUpdRacingStatus(this, ";
 			public string hasDownline = "{hasDownline}";
-			protected static string s66 = ");\"><label for=\"chkNumberGame\" class=\"text_smal\">";
-			protected static string s67{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableNumber,13);}}
-			protected static string s68 = "</label><input type=\"checkbox\" id=\"chkNumberGame\" ";
-			public string disableNumberGame = "{disableNumberGame}";
-			protected static string s69 = " ";
-			public string checkedNumberGame = "{checkedNumberGame}";
-			protected static string s70 = " /></div>";
+			protected static string s66 = ")\"><label for=\"chkRacing\" class=\"text_smal\">";
+			protected static string s67{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Racing.enableRacing,14);}}
+			protected static string s68 = "</label><span id=\"chkRacing\" class=\"arrow1\">&nbsp;&nbsp;&nbsp;</span></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -275,32 +289,6 @@ namespace Sunplus.Agent.UI
 					bd.Append(s66);
 					bd.Append(s67);
 					bd.Append(s68);
-					bd.Append(disableNumberGame);
-					bd.Append(s69);
-					bd.Append(checkedNumberGame);
-					bd.Append(s70);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class SettingBox_StatusRacing_Block: Block
-		{
-			protected static string s71 = "<div class=\"divStatus\" onclick=\"ShowFrmUpdRacingStatus(this, ";
-			public string hasDownline = "{hasDownline}";
-			protected static string s72 = ")\"><label for=\"chkRacing\" class=\"text_smal\">";
-			protected static string s73{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Racing.enableRacing,14);}}
-			protected static string s74 = "</label><span id=\"chkRacing\" class=\"arrow1\">&nbsp;&nbsp;&nbsp;</span></div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s71);
-					bd.Append(hasDownline);
-					bd.Append(s72);
-					bd.Append(s73);
-					bd.Append(s74);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -308,25 +296,25 @@ namespace Sunplus.Agent.UI
 
 		public class SettingBox_StatusLiveCasino_Block: Block
 		{
-			protected static string s75 = "<div class=\"divStatus\"><label for=\"chkLiveCasino\" class=\"text_smal\">";
-			protected static string s76{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.LiveCasino,13);}}
-			protected static string s77 = "</label><input onclick=\"return changeLiveCasinoStatus(event, this)\" type=\"checkbox\" id=\"chkLiveCasino\" ";
+			protected static string s69 = "<div class=\"divStatus\"><label for=\"chkLiveCasino\" class=\"text_smal\">";
+			protected static string s70{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.LiveCasino,13);}}
+			protected static string s71 = "</label><input onclick=\"return changeLiveCasinoStatus(event, this)\" type=\"checkbox\" id=\"chkLiveCasino\" ";
 			public string disableLiveCasino = "{disableLiveCasino}";
-			protected static string s78 = " ";
+			protected static string s72 = " ";
 			public string checkedLiveCasino = "{checkedLiveCasino}";
-			protected static string s79 = " /></div>";
+			protected static string s73 = " /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s75);
-					bd.Append(s76);
-					bd.Append(s77);
+					bd.Append(s69);
+					bd.Append(s70);
+					bd.Append(s71);
 					bd.Append(disableLiveCasino);
-					bd.Append(s78);
+					bd.Append(s72);
 					bd.Append(checkedLiveCasino);
-					bd.Append(s79);
+					bd.Append(s73);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -334,14 +322,44 @@ namespace Sunplus.Agent.UI
 
 		public class SettingBox_StatusVirtualSports_Block: Block
 		{
-			protected static string s80 = "<div class=\"divStatus\" onmousedown=\"return changeVirtualSportsStatus(event, ";
+			protected static string s74 = "<div class=\"divStatus\" onmousedown=\"return changeVirtualSportsStatus(event, ";
 			public string hasDownline = "{hasDownline}";
-			protected static string s81 = ")\"><label for=\"chkVirtualSports\" class=\"text_smal\">";
-			protected static string s82{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.VirtualSports,14);}}
-			protected static string s83 = "</label><input type=\"checkbox\" id=\"chkVirtualSports\" ";
+			protected static string s75 = ")\"><label for=\"chkVirtualSports\" class=\"text_smal\">";
+			protected static string s76{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.VirtualSports,14);}}
+			protected static string s77 = "</label><input type=\"checkbox\" id=\"chkVirtualSports\" ";
 			public string disableVirtualSports = "{disableVirtualSports}";
-			protected static string s84 = " ";
+			protected static string s78 = " ";
 			public string checkedVirtualSports = "{checkedVirtualSports}";
+			protected static string s79 = " /></div>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s74);
+					bd.Append(hasDownline);
+					bd.Append(s75);
+					bd.Append(s76);
+					bd.Append(s77);
+					bd.Append(disableVirtualSports);
+					bd.Append(s78);
+					bd.Append(checkedVirtualSports);
+					bd.Append(s79);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class SettingBox_StatusDoubleComm_Block: Block
+		{
+			protected static string s80 = "<div class=\"divStatus\" onmousedown=\"return changeDoubleCommStatus(event, ";
+			public string hasDownline = "{hasDownline}";
+			protected static string s81 = ")\"><label for=\"chkDoubleComm\" class=\"text_smal\">";
+			protected static string s82{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.doublecommission,14);}}
+			protected static string s83 = "</label><input type=\"checkbox\" id=\"chkDoubleComm\" ";
+			public string disableDoubleComm = "{disableDoubleComm}";
+			protected static string s84 = " ";
+			public string checkedDoubleComm = "{checkedDoubleComm}";
 			protected static string s85 = " /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -353,40 +371,10 @@ namespace Sunplus.Agent.UI
 					bd.Append(s81);
 					bd.Append(s82);
 					bd.Append(s83);
-					bd.Append(disableVirtualSports);
-					bd.Append(s84);
-					bd.Append(checkedVirtualSports);
-					bd.Append(s85);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class SettingBox_StatusDoubleComm_Block: Block
-		{
-			protected static string s86 = "<div class=\"divStatus\" onmousedown=\"return changeDoubleCommStatus(event, ";
-			public string hasDownline = "{hasDownline}";
-			protected static string s87 = ")\"><label for=\"chkDoubleComm\" class=\"text_smal\">";
-			protected static string s88{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.doublecommission,14);}}
-			protected static string s89 = "</label><input type=\"checkbox\" id=\"chkDoubleComm\" ";
-			public string disableDoubleComm = "{disableDoubleComm}";
-			protected static string s90 = " ";
-			public string checkedDoubleComm = "{checkedDoubleComm}";
-			protected static string s91 = " /></div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s86);
-					bd.Append(hasDownline);
-					bd.Append(s87);
-					bd.Append(s88);
-					bd.Append(s89);
 					bd.Append(disableDoubleComm);
-					bd.Append(s90);
+					bd.Append(s84);
 					bd.Append(checkedDoubleComm);
-					bd.Append(s91);
+					bd.Append(s85);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -394,50 +382,56 @@ namespace Sunplus.Agent.UI
 
 		public class SettingBox_StatusRacingPopup_Block: Block
 		{
-			protected static string s92 = "<div id=\"disabledRacingStatusPop\" class=\"popupSetting\" style=\"display: none;\"><table class=\"tblRacingPopUp\"><tr><th colspan=\"2\">";
-			protected static string s93{get{return Resources.Racing.horseracing;}}
-			protected static string s94 = "</th></tr><tr><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_41\" id=\"chkEnabled_151_41\" /><label for=\"chkEnabled_151_41\">";
+			protected static string s86 = "<div id=\"disabledRacingStatusPop\" class=\"popupSetting\" style=\"display: none;\"><table class=\"tblRacingPopUp\"><tr><th colspan=\"2\">";
+			protected static string s87{get{return Resources.Racing.horseracing;}}
+			protected static string s88 = "</th></tr><tr><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_41\" id=\"chkEnabled_151_41\" /><label for=\"chkEnabled_151_41\">";
 			public string ukirishtote = "{ukirishtote}";
-			protected static string s95 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_41\" id=\"chkEnabledDL_151_41\" /><label for=\"chkEnabledDL_151_41\">";
-			protected static string s96{get{return Resources.Lang.downlines;}}
-			protected static string s97 = "</label></td></tr><tr id=\"row_151_31\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_31\" id=\"chkEnabled_151_31\" /><label for=\"chkEnabled_151_31\">";
-			protected static string s98{get{return Resources.Racing.satote;}}
-			protected static string s99 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_31\" id=\"chkEnabledDL_151_31\" /><label for=\"chkEnabledDL_151_31\">";
-			protected static string s100{get{return Resources.Lang.downlines;}}
-			protected static string s101 = "</label></td></tr><tr id=\"row_151_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_51\" id=\"chkEnabled_151_51\" /><label for=\"chkEnabled_151_51\">";
-			protected static string s102{get{return Resources.Racing.autote;}}
-			protected static string s103 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_51\" id=\"chkEnabledDL_151_51\" /><label for=\"chkEnabledDL_151_51\">";
-			protected static string s104{get{return Resources.Lang.downlines;}}
-			protected static string s105 = "</label></td></tr><tr id=\"row_152_hd\"><th colspan=\"2\">";
-			protected static string s106{get{return Resources.Racing.greyhound;}}
-			protected static string s107 = "</th></tr><tr id=\"row_152_41\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_152_41\" id=\"chkEnabled_152_41\" /><label for=\"chkEnabled_152_41\">";
+			protected static string s89 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_41\" id=\"chkEnabledDL_151_41\" /><label for=\"chkEnabledDL_151_41\">";
+			protected static string s90{get{return Resources.Lang.downlines;}}
+			protected static string s91 = "</label></td></tr><tr id=\"row_151_31\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_31\" id=\"chkEnabled_151_31\" /><label for=\"chkEnabled_151_31\">";
+			protected static string s92{get{return Resources.Racing.satote;}}
+			protected static string s93 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_31\" id=\"chkEnabledDL_151_31\" /><label for=\"chkEnabledDL_151_31\">";
+			protected static string s94{get{return Resources.Lang.downlines;}}
+			protected static string s95 = "</label></td></tr><tr id=\"row_151_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_51\" id=\"chkEnabled_151_51\" /><label for=\"chkEnabled_151_51\">";
+			protected static string s96{get{return Resources.Racing.autote;}}
+			protected static string s97 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_51\" id=\"chkEnabledDL_151_51\" /><label for=\"chkEnabledDL_151_51\">";
+			protected static string s98{get{return Resources.Lang.downlines;}}
+			protected static string s99 = "</label></td></tr><tr id=\"row_152_hd\"><th colspan=\"2\">";
+			protected static string s100{get{return Resources.Racing.greyhound;}}
+			protected static string s101 = "</th></tr><tr id=\"row_152_41\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_152_41\" id=\"chkEnabled_152_41\" /><label for=\"chkEnabled_152_41\">";
 			protected string t0_ukirishtote;
-			protected static string s108 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_152_41\" id=\"chkEnabledDL_152_41\" /><label for=\"chkEnabledDL_152_41\">";
-			protected static string s109{get{return Resources.Lang.downlines;}}
-			protected static string s110 = "</label></td></tr><tr id=\"row_152_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_152_51\" id=\"chkEnabled_152_51\" /><label for=\"chkEnabled_152_51\">";
+			protected static string s102 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_152_41\" id=\"chkEnabledDL_152_41\" /><label for=\"chkEnabledDL_152_41\">";
+			protected static string s103{get{return Resources.Lang.downlines;}}
+			protected static string s104 = "</label></td></tr><tr id=\"row_152_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_152_51\" id=\"chkEnabled_152_51\" /><label for=\"chkEnabled_152_51\">";
+			protected static string s105{get{return Resources.Racing.autote;}}
+			protected static string s106 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_152_51\" id=\"chkEnabledDL_152_51\" /><label for=\"chkEnabledDL_152_51\">";
+			protected static string s107{get{return Resources.Lang.downlines;}}
+			protected static string s108 = "</label></td></tr><tr id=\"row_153_hd\"><th colspan=\"2\">";
+			protected static string s109{get{return Resources.Racing.harness;}}
+			protected static string s110 = "</th></tr><tr id=\"row_153_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_153_51\" id=\"chkEnabled_153_51\" /><label for=\"chkEnabled_153_51\">";
 			protected static string s111{get{return Resources.Racing.autote;}}
-			protected static string s112 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_152_51\" id=\"chkEnabledDL_152_51\" /><label for=\"chkEnabledDL_152_51\">";
+			protected static string s112 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_153_51\" id=\"chkEnabledDL_153_51\" /><label for=\"chkEnabledDL_153_51\">";
 			protected static string s113{get{return Resources.Lang.downlines;}}
-			protected static string s114 = "</label></td></tr><tr id=\"row_153_hd\"><th colspan=\"2\">";
-			protected static string s115{get{return Resources.Racing.harness;}}
-			protected static string s116 = "</th></tr><tr id=\"row_153_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_153_51\" id=\"chkEnabled_153_51\" /><label for=\"chkEnabled_153_51\">";
-			protected static string s117{get{return Resources.Racing.autote;}}
-			protected static string s118 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_153_51\" id=\"chkEnabledDL_153_51\" /><label for=\"chkEnabledDL_153_51\">";
-			protected static string s119{get{return Resources.Lang.downlines;}}
-			protected static string s120 = "</label></td></tr></table><center><input accountpermisssion=\"[B]\" id=\"btnUpdRacingStatus\" type=\"button\" class=\"btn2\" disabled=\"disabled\" value=\"";
-			protected static string s121{get{return Resources.Lang.update;}}
-			protected static string s122 = "\" />&nbsp;<input type=\"button\" class=\"btn\" onclick=\"closeDivRacingPopup();\" value=\"";
-			protected static string s123{get{return Resources.Lang.cancel;}}
-			protected static string s124 = "\" /></center></div>";
+			protected static string s114 = "</label></td></tr></table><center><input accountpermisssion=\"[B]\" id=\"btnUpdRacingStatus\" type=\"button\" class=\"btn2\" disabled=\"disabled\" value=\"";
+			protected static string s115{get{return Resources.Lang.update;}}
+			protected static string s116 = "\" />&nbsp;<input type=\"button\" class=\"btn\" onclick=\"closeDivRacingPopup();\" value=\"";
+			protected static string s117{get{return Resources.Lang.cancel;}}
+			protected static string s118 = "\" /></center></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s86);
+					bd.Append(s87);
+					bd.Append(s88);
+					bd.Append(ukirishtote);
+					bd.Append(s89);
+					bd.Append(s90);
+					bd.Append(s91);
 					bd.Append(s92);
 					bd.Append(s93);
 					bd.Append(s94);
-					bd.Append(ukirishtote);
 					bd.Append(s95);
 					bd.Append(s96);
 					bd.Append(s97);
@@ -445,13 +439,13 @@ namespace Sunplus.Agent.UI
 					bd.Append(s99);
 					bd.Append(s100);
 					bd.Append(s101);
+					bd.Append(ukirishtote);
 					bd.Append(s102);
 					bd.Append(s103);
 					bd.Append(s104);
 					bd.Append(s105);
 					bd.Append(s106);
 					bd.Append(s107);
-					bd.Append(ukirishtote);
 					bd.Append(s108);
 					bd.Append(s109);
 					bd.Append(s110);
@@ -463,12 +457,6 @@ namespace Sunplus.Agent.UI
 					bd.Append(s116);
 					bd.Append(s117);
 					bd.Append(s118);
-					bd.Append(s119);
-					bd.Append(s120);
-					bd.Append(s121);
-					bd.Append(s122);
-					bd.Append(s123);
-					bd.Append(s124);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

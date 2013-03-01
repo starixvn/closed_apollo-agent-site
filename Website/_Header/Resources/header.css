@@ -213,9 +213,11 @@ div.messageBlock
 	margin-right: 28px;
 	float: inherit;
 	padding-right: 28px;
-	line-height: 25px;
-	color: #CECECE;
+	line-height: 19px;
 	text-align: right;
+}
+#topnews {
+    color: #CECECE;
 }
 #text_news a
 {

@@ -6,20 +6,15 @@
 <!--/HiddenBlock-->
 
 <div id="Bleft_Parent02">
-    <div id="left_submenu">
-        <div id="left_tab">
-            <ul>
-                <li id="custsettings" class="current"><a href="#" onclick="showSection(this.parentNode.id);">
-                    <span>{static:Resources.Lang.setting}</span></a></li>
-                <li id="logininfo"><a href="#" onclick="showSection(this.parentNode.id);">
-                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.Login, 7, true)}</a></li>
-                <li id="onlinelist"><a href="#" onclick="showSection(this.parentNode.id);">
-                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.onlinelist,11, true)}</a></li>
-            </ul>
-        </div>
+    <div id="left_submenu">       
         <div id="clear0" />
         <div class="Bleft_Sub02">
             <table id="tbl_custsettings">
+                <tr>
+                    <td>
+                        <span class="setting-left">Setting</span>
+                    </td>
+                </tr>
                 <tr>
                     <td colspan="2">
                         <div style="position: relative; left: -3px;" class="settingWidth">

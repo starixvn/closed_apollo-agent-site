@@ -22,6 +22,7 @@
     min-height: 400px;
     width: 910px;
     min-width: 400px;
+    margin-top: 31px;
 }
 .message_content {
     padding-top: 2px !important;
@@ -63,6 +64,8 @@
     float: right;
     text-align: left;
     margin-top: 2px;
+    position: absolute;
+    top: 42px;
 }
 #msg_menu {
     font-size: 11px;
@@ -128,7 +131,7 @@
     margin-top:  7px;
 }
 .text_header {
-    color: #af1a1a;
+    color: #4B483C;
     font-weight: bold;
     padding-left: 15px;
     text-transform: uppercase;

@@ -48,7 +48,7 @@
 {
 	height: 22px;
 	background: url(../../_GlobalResources/Images/bg_header01.jpg) no-repeat left bottom;
-	color: #9d1c1c;
+	color: #4B483C;
 	font-weight: bold;
 	padding-left: 15px;
 	text-transform: uppercase;
@@ -347,4 +347,7 @@ table.reference td {
     height:26px;
     width:29px;
     float:left;
+}
+#sContent {
+    margin-top: 10px;
 }

@@ -410,10 +410,10 @@ function HideTooltipIntroNickname() {
 
 // Start up
 function InitHeader() {
-    SetCurrentLanguage();
+   // SetCurrentLanguage();
     ShowHotMsg(_page.msgList);
     timeoutId1 = setTimeout(GetMessages, 100);
-    ClockTick();
+    //ClockTick();
     SelectTopMenu();
     setTimeout(ReCheckin, 30000);
     HideTooltipIntroNickname();
