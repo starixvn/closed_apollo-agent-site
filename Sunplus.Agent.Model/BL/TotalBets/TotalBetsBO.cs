@@ -1,8 +1,8 @@
 ﻿/*
  * Created 20100507@Jacob - Business class of total bet function
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.BL.TotalBets
@@ -14,15 +14,18 @@ namespace Sunplus.Agent.Model.BL.TotalBets
     public class TotalBetsBO : Sunplus.Agent.Model.BL.Base.BOBase
     {
         #region Variable
+
         private static readonly TotalBetsDAO totalBetsDAO = new TotalBetsDAO();
-        #endregion
+
+        #endregion Variable
 
         public TotalBetsBO(string netSessionId)
             : base(netSessionId)
-        { 
+        {
         }
 
         #region TotalGoal
+
         /// <summary>
         /// Get data for total goal page
         /// </summary>
@@ -55,9 +58,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return totalGoal;
         }
-        #endregion
+
+        #endregion TotalGoal
 
         #region HDPOU
+
         /// <summary>
         /// Get data for HDPOU page
         /// </summary>
@@ -90,7 +95,8 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return hpdOU;
         }
-        #endregion
+
+        #endregion HDPOU
 
         #region MoneyLine
 
@@ -109,15 +115,7 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             // execute
             if (CurrentSession.IsAgent)
             {
-                moneyline = totalBetsDAO.Age_TotalBets_Sel2021_Ag(customerID, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                moneyline = totalBetsDAO.Age_TotalBets_Sel2021_MAg(customerID, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                moneyline = totalBetsDAO.Age_TotalBets_Sel2021_SAg(customerID, language);
+                moneyline = totalBetsDAO.Age_TotalBets_20_21(customerID, language);
             }
             else
             {
@@ -126,7 +124,8 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return moneyline;
         }
-        #endregion
+
+        #endregion MoneyLine
 
         #region OddEvent_OneXTwo
 
@@ -162,9 +161,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return oddEventOneXTwo;
         }
-        #endregion
+
+        #endregion OddEvent_OneXTwo
 
         #region OutRight
+
         /// <summary>
         /// Get data for outright page
         /// </summary>
@@ -197,9 +198,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return outright;
         }
-        #endregion
+
+        #endregion OutRight
 
         #region HTFT
+
         /// <summary>
         /// Get data for HTFT page
         /// </summary>
@@ -232,9 +235,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return asHTFT;
         }
-        #endregion
+
+        #endregion HTFT
 
         #region FGLG
+
         /// <summary>
         /// Get data for FGLG page
         /// </summary>
@@ -267,9 +272,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return asFGLG;
         }
-        #endregion
+
+        #endregion FGLG
 
         #region Home/Draw/AwayNoBet
+
         /// <summary>
         /// Get data for Home/Draw/AwayNoBet page
         /// </summary>
@@ -302,9 +309,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return homeDrawAwayNoBet;
         }
-        #endregion
+
+        #endregion Home/Draw/AwayNoBet
 
         #region NextGoal
+
         /// <summary>
         /// Get data for NextGoal page
         /// </summary>
@@ -337,9 +346,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return nextGoal;
         }
-        #endregion
+
+        #endregion NextGoal
 
         #region HorseRacing
+
         /// <summary>
         /// Get data for NextGoal page
         /// </summary>
@@ -372,9 +383,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return horseRacing;
         }
-        #endregion
+
+        #endregion HorseRacing
 
         #region Financial
+
         /// <summary>
         /// Get data for Financial page
         /// </summary>
@@ -407,9 +420,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return financial;
         }
-        #endregion
+
+        #endregion Financial
 
         #region NumberGame
+
         /// <summary>
         /// Get data for number game page
         /// </summary>
@@ -442,9 +457,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return numberGame;
         }
-        #endregion
+
+        #endregion NumberGame
 
         #region LiveCasino
+
         /// <summary>
         /// Get data for LiveCasino page
         /// </summary>
@@ -477,9 +494,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return liveCasino;
         }
-        #endregion
+
+        #endregion LiveCasino
 
         #region VirtualSports
+
         /// <summary>
         /// Get data for VirtualSports page
         /// </summary>
@@ -512,9 +531,11 @@ namespace Sunplus.Agent.Model.BL.TotalBets
 
             return virtualSports;
         }
-        #endregion
+
+        #endregion VirtualSports
 
         #region Other bettypes
+
         /// <summary>
         /// Get data for Other bettypes page
         /// </summary>
@@ -548,6 +569,6 @@ namespace Sunplus.Agent.Model.BL.TotalBets
             return otherBettypes;
         }
 
-        #endregion
+        #endregion Other bettypes
     }
 }
