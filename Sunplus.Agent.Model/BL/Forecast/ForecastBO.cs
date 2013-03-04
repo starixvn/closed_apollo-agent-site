@@ -88,14 +88,14 @@ namespace Sunplus.Agent.Model.BL.Forecast
         /// </summary>
         /// <param name="matchId"></param>
         /// <returns></returns>
-        public DataTable GetFCNextGoal(int matchId)
-        {
-            //// parameter
-            int customerId = CurrentSession.CustId;
-            int roleId = CurrentSession.RoleId;
-            //// execute
-            return forecastDAO.Age_Forecast_Sel22(matchId, customerId, roleId);
-        }
+        //public DataTable GetFCNextGoal(int matchId)
+        //{
+        //    //// parameter
+        //    int customerId = CurrentSession.CustId;
+        //    int roleId = CurrentSession.RoleId;
+        //    //// execute
+        //    return forecastDAO.Age_Forecast_Sel22(matchId, customerId, roleId);
+        //}
 
         #endregion NextGoal
 

@@ -298,7 +298,7 @@
   <Function Name="Agent - Forecast">
     <Setting Key="Age_Forecast_OddsSelTopByMatch" SpName="Age_Forecast_OddsSelTopByMatch" DbName="archive" Plain="0" />
     <Setting Key="Age_Forecast_Sel1X2" SpName="Age_Forecast_Sel1X2" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="archive" Plain="0" />
+    <!--<Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="archive" Plain="0" />-->
     <Setting Key="Age_Forecast_SelByLeague_Ag" SpName="Age_Forecast_SelByLeague_Ag" DbName="archive" Plain="0" />
     <Setting Key="Age_Forecast_SelByLeague_MAg" SpName="Age_Forecast_SelByLeague_MAg" DbName="archive" Plain="0" />
     <Setting Key="Age_Forecast_SelByLeague_SAg" SpName="Age_Forecast_SelByLeague_SAg" DbName="archive" Plain="0" />
@@ -321,6 +321,16 @@
     <Setting Key="Age_TotalBets_6" SpName="Age_TotalBets_6" DbName="DB05" Plain="0" />
   </Function>
 
+  <Function Name="Agent-Apollo-ForeCast">
+    <Setting Key="Age_Forecast_OddsGetTopByMatch" SpName="Age_Forecast_OddsGetTopByMatch" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_1_3_7_8_GetByLeague" SpName="Age_Forecast_1_3_7_8_GetByLeague" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_5_15_GetByLeague" SpName="Age_Forecast_5_15_GetByLeague" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_1_7_GetByMatch" SpName="Age_Forecast_1_7_GetByMatch" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_3_8_GetByMatch" SpName="Age_Forecast_3_8_GetByMatch" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_5_15_GetByMatch" SpName="Age_Forecast_5_15_GetByMatch" DbName="archive" Plain="0" />
+  </Function>
+  
   <Function Name="Agent-Apollo-ScoreMap">
     <Setting Key="Age_ScoreMap_Result_Ag" SpName="Age_ScoreMap_Result" DbName="DB05" Plain="0" />
     <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="DB05" Plain="0" />

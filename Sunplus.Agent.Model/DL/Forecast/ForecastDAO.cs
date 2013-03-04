@@ -82,14 +82,14 @@ namespace Sunplus.Agent.Model.DL.Forecast
         /// <param name="custId"></param>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public DataTable Age_Forecast_Sel22(int matchId, int custId, int roleId)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("matchid", matchId);
-            parameters.Add("custid", custId);
-            parameters.Add("roleid", roleId);
-            return ExecSpTable("Age_Forecast_Sel22", parameters);
-        }
+        //public DataTable Age_Forecast_Sel22(int matchId, int custId, int roleId)
+        //{
+        //    Hashtable parameters = new Hashtable();
+        //    parameters.Add("matchid", matchId);
+        //    parameters.Add("custid", custId);
+        //    parameters.Add("roleid", roleId);
+        //    return ExecSpTable("Age_Forecast_Sel22", parameters);
+        //}
 
         #endregion NextGoal
 
