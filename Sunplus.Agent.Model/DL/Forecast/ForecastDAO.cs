@@ -22,7 +22,6 @@ namespace Sunplus.Agent.Model.DL.Forecast
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
-        /// <param name="langKey"></param>
         /// <returns></returns>
         public DataTable Age_Forecast_OddsGetTopByMatch(int matchId, int betType)
         {
@@ -41,7 +40,6 @@ namespace Sunplus.Agent.Model.DL.Forecast
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="custId"></param>
-        /// <param name="roleId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
         public DataTable Age_Forecast_1_7_GetByMatch(int matchId, int custId, int betType)
@@ -62,7 +60,6 @@ namespace Sunplus.Agent.Model.DL.Forecast
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="custId"></param>
-        /// <param name="roleId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
         public DataTable Age_Forecast_3_8_GetByMatch(int matchId, int custId, int betType)
@@ -122,7 +119,6 @@ namespace Sunplus.Agent.Model.DL.Forecast
         /// </summary>
         /// <param name="leagueId"></param>
         /// <param name="agentId"></param>
-        /// <param name="langKey"></param>
         /// <returns></returns>
         public DataTable Age_Forecast_1_3_7_8_GetByLeague(int leagueId, int agentId)
         {
