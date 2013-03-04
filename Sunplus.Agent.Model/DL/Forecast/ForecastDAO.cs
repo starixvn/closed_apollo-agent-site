@@ -1,6 +1,5 @@
 namespace Sunplus.Agent.Model.DL.Forecast
 {
-    using System;
     using System.Collections;
     using System.Data;
     using Sunplus.Agent.Model.DL.Definitions;
