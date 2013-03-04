@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Data;
-using System.Web.UI;
-using Sunplus.Agent.Model.BL.Forecast;
-using Sunplus.Agent.Utilities;
-
-/*
+﻿/*
  * Created 20100529@Jacob - Render FCAH page
  * Revision:
  * ?@? - ... 
@@ -13,6 +6,12 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.Forecast
 {
+    using System;
+    using System.Collections;
+    using System.Data;
+    using System.Web.UI;
+    using Sunplus.Agent.Model.BL.Forecast;
+    using Sunplus.Agent.Utilities;
 
     public partial class FCAH_Page : Fanex.Age.UI.TplPage
     {

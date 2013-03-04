@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-using System.Web.UI;
-using Sunplus.Agent.Model.BL.Forecast;
-using Sunplus.Agent.Utilities;
-
-
-/*
+﻿/*
  * Created 20100529@Jacob - Render FC1X2 page
  * Revision:
  * ?@? - ... 
@@ -15,6 +6,13 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.Forecast
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Text;
+    using System.Web.UI;
+    using Sunplus.Agent.Model.BL.Forecast;
+    using Sunplus.Agent.Utilities;
 
     public partial class FC1X2_Page : Fanex.Age.UI.TplPage
     {
