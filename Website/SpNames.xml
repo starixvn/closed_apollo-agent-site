@@ -329,6 +329,7 @@
     <Setting Key="Age_Forecast_1_7_GetByMatch" SpName="Age_Forecast_1_7_GetByMatch" DbName="DB05" Plain="0" />
     <Setting Key="Age_Forecast_3_8_GetByMatch" SpName="Age_Forecast_3_8_GetByMatch" DbName="DB05" Plain="0" />
     <Setting Key="Age_Forecast_5_15_GetByMatch" SpName="Age_Forecast_5_15_GetByMatch" DbName="DB05" Plain="0" />
+    <Setting Key="Age_League_GetRunning" SpName="Age_League_GetRunning" DbName="DB05" Plain="0" />
   </Function>
   
   <Function Name="Agent-Apollo-ScoreMap">
