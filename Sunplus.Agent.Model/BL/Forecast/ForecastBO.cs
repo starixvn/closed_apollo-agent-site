@@ -1,8 +1,8 @@
 ﻿/*
  * Created 20100507@Jacob - Business class of total bet function
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.BL.Forecast
@@ -17,17 +17,20 @@ namespace Sunplus.Agent.Model.BL.Forecast
     public class ForecastBO : Sunplus.Agent.Model.BL.Base.BOBase
     {
         #region Variable
+
         private static readonly ForecastDAO forecastDAO = new ForecastDAO();
         private const string BETTYPE_SCOREMAP_KEY = "BETTYPESCOREMAP";
         private const string BETTYPELIST_SCOREMAP_KEY = "BETTYPESLISTCOREMAP";
-        #endregion
+
+        #endregion Variable
 
         public ForecastBO(string netSessionId)
             : base(netSessionId)
-        { 
+        {
         }
 
         #region TopOddsByMatch
+
         /// <summary>
         /// Get the most odds of match
         /// </summary>
@@ -38,9 +41,11 @@ namespace Sunplus.Agent.Model.BL.Forecast
         {
             return forecastDAO.Age_Forecast_OddsGetTopByMatch(matchId, betType);
         }
-        #endregion
+
+        #endregion TopOddsByMatch
 
         #region Handicap
+
         /// <summary>
         /// Forecast for handicap
         /// </summary>
@@ -54,9 +59,11 @@ namespace Sunplus.Agent.Model.BL.Forecast
             //// execute
             return forecastDAO.Age_Forecast_1_7_GetByMatch(matchId, customerId, betType);
         }
-        #endregion
+
+        #endregion Handicap
 
         #region OverUnder
+
         /// <summary>
         /// Forecast for Over under
         /// </summary>
@@ -71,9 +78,11 @@ namespace Sunplus.Agent.Model.BL.Forecast
             //// execute
             return forecastDAO.Age_Forecast_3_8_GetByMatch(matchId, customerId, betType);
         }
-        #endregion
+
+        #endregion OverUnder
 
         #region NextGoal
+
         /// <summary>
         /// Forecast for next goal
         /// </summary>
@@ -87,9 +96,11 @@ namespace Sunplus.Agent.Model.BL.Forecast
             //// execute
             return forecastDAO.Age_Forecast_Sel22(matchId, customerId, roleId);
         }
-        #endregion
+
+        #endregion NextGoal
 
         #region Running Leagues
+
         /// <summary>
         /// Get running leagues for FC
         /// </summary>
@@ -106,9 +117,11 @@ namespace Sunplus.Agent.Model.BL.Forecast
 
             return runningLeagues;
         }
-        #endregion
+
+        #endregion Running Leagues
 
         #region League
+
         /// <summary>
         /// Forecast league for agent
         /// </summary>
@@ -124,9 +137,11 @@ namespace Sunplus.Agent.Model.BL.Forecast
 
             return leagues;
         }
-        #endregion
+
+        #endregion League
 
         #region 1x2ByLeague
+
         /// <summary>
         /// Forecast 1X2 league for agent
         /// </summary>
@@ -143,10 +158,11 @@ namespace Sunplus.Agent.Model.BL.Forecast
             leagues = forecastDAO.Age_Forecast_5_15_GetByLeague(leagueId, customerId);
             return leagues;
         }
-        
-        #endregion
+
+        #endregion 1x2ByLeague
 
         #region 1X2ByMatch
+
         /// <summary>
         /// Forecast 1X2 by match for agent
         /// </summary>
@@ -165,10 +181,13 @@ namespace Sunplus.Agent.Model.BL.Forecast
 
             return matches;
         }
-        #endregion
+
+        #endregion 1X2ByMatch
 
         #region Score Map
+
         #region League in Score Map
+
         /// <summary>
         /// Forecast league for agent
         /// </summary>
@@ -227,9 +246,11 @@ namespace Sunplus.Agent.Model.BL.Forecast
             dv.Sort = "leaguename";
             return dv.ToTable();
         }
-        #endregion
+
+        #endregion League in Score Map
 
         #region Get Match By League
+
         /// <summary>
         /// Get Match By League
         /// </summary>
@@ -286,9 +307,11 @@ namespace Sunplus.Agent.Model.BL.Forecast
             dv.Sort = "matchname";
             return dv.ToTable();
         }
-        #endregion
+
+        #endregion Get Match By League
 
         #region Bet Type Score Map
+
         /// <summary>
         /// Bet Type Score Map
         /// </summary>
@@ -311,7 +334,7 @@ namespace Sunplus.Agent.Model.BL.Forecast
         }
 
         public List<int> GetListBetTypeScoreMap()
-        {            
+        {
             ICache cache = CacheService.CreateInstance(CacheType.MemoryCache);
             object oldData = cache.Get<List<int>>(BETTYPELIST_SCOREMAP_KEY);
             if (oldData == null)
@@ -336,37 +359,26 @@ namespace Sunplus.Agent.Model.BL.Forecast
 
             return oldData as List<int>;
         }
-        #endregion
+
+        #endregion Bet Type Score Map
 
         #region Get Score Map Result
+
         /// <summary>
         /// Get Score Map Result
         /// </summary>
         /// <returns></returns>
         public DataSet GetScoreMapResult(string matchIds, string bettypes_live, string bettypes_dead)
         {
-            DataSet scoreMapResult = null;
-            int customerId = CurrentSession.CustId;
-            if (CurrentSession.IsAgent)
-            {
-                scoreMapResult = forecastDAO.Age_ScoreMap_Result_Ag(customerId, matchIds, bettypes_live, bettypes_dead);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                scoreMapResult = forecastDAO.Age_ScoreMap_Result_MAg(customerId, matchIds, bettypes_live, bettypes_dead);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                scoreMapResult = forecastDAO.Age_ScoreMap_Result_SAg(customerId, matchIds, bettypes_live, bettypes_dead);
-            }
-            else
-            {
-                scoreMapResult = new DataSet();
-            }
+            DataSet scoreMapResult = new DataSet();
+
+            scoreMapResult = forecastDAO.Age_ScoreMap_Result(CurrentSession.CustId, matchIds, bettypes_live, bettypes_dead);
 
             return scoreMapResult;
         }
-        #endregion
-        #endregion
+
+        #endregion Get Score Map Result
+
+        #endregion Score Map
     }
 }
