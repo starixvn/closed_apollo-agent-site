@@ -4,20 +4,24 @@
 // </copyright>
 // ---------------------------------------------------------------------------------
 // <history>
-//     <change who="Marc.Bui" date="2012.12.19">Appy CoreBetList</change>
-//     <change who="Marc.Bui" date="2013.01.10">Rollback old betlist</change>
+//     <change who="Marc.Bui" date="2013.02.28">Apply CoreBetList</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
 namespace Sunplus.Agent.UI._BetList.MixParlay
 {
     using System.Collections;
+    using System.Collections.Generic;
     using System.Data;
-    using System.Text;
     using System.Web.UI;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
-    using Sunplus.Agent.UI.BetList;
+    using Fanex.BetList.Age.DTO;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Factories;
+    using Fanex.BetList.Core.TicketHelper;
+    using Fanex.BetList.Age.BetListCmd;
 
     public partial class MixParlay_Page : TplPage
     {
@@ -27,7 +31,27 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
         {
             betListData = View as DataTable;
 
-            StringBuilder row = Sunplus.Agent.UI.BetList.Factories.RenderingFactory.RenderMixParlay(ref betListData, false);
+            IList<ITicket> tickets = TicketTransformer.Transform(betListData);
+
+            BetListHTMLFactory factory = new BetListHTMLFactory();
+            BetListHTMLBuilder builder = factory.CreateBuilder();
+            ITicketHelper ticketHelper = new TicketHelper();
+
+            ticketHelper.IsShowOddsWithChoice = true;
+
+            string line = "<div class='line'></div>";
+
+            for (int i = 0; i < tickets.Count; i++)
+            {
+                if (i == tickets.Count - 1)
+                {
+                    line = "<div></div>";
+                }
+                builder.AddChoice(tickets[i], ticketHelper, null, string.Empty, line, false);
+            }
+
+            string row = builder.GetBetList();                 
+
             writer.Write(row.ToString());
         }
 

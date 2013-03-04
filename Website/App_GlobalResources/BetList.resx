@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="agentPTcomm" xml:space="preserve">
     <value>AgentPT/ &lt;br/&gt;Comm</value>
@@ -318,19 +318,25 @@
   <data name="betweenXandY" xml:space="preserve">
     <value>Between {0} and {1}</value>
   </data>
-	<data name="points" xml:space="preserve">
+  <data name="points" xml:space="preserve">
     <value>points</value>
   </data>
-	<data name="upPoints" xml:space="preserve">
+  <data name="upPoints" xml:space="preserve">
     <value>UP points</value>
   </data>
-	<data name="exactly" xml:space="preserve">
+  <data name="exactly" xml:space="preserve">
     <value>Exactly</value>
   </data>
-	<data name="set" xml:space="preserve">
+  <data name="set" xml:space="preserve">
     <value>Set</value>
   </data>
-	<data name="noTiebreak" xml:space="preserve">
+  <data name="noTiebreak" xml:space="preserve">
     <value>No Tiebreak</value>
+  </data>
+  <data name="agentComm" xml:space="preserve">
+    <value>Agent Com</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>Agent PT</value>
   </data>
 </root>

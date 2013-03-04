@@ -1,38 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Web;
-using System.Web.UI;
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="CombinationMixParlay.aspx.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Marc.Bui" date="2013.02.28">Apply CoreBetList</change>
+// </history>
+// ---------------------------------------------------------------------------------
 
-using Sunplus.Agent.Model.BL.Forecast;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-using Sunplus.Agent.Utilities;
-
-using System.Text;
-using System.Collections;
-using Sunplus.Agent.Model.BL.Reports;
-using Sunplus.Agent.Model.BL.BetList;
-using Sunplus.Agent.UI.BetList;
-
-/*
-
- * 
- */
 namespace Sunplus.Agent.UI._BetList.MixParlay
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Web.UI;
+    using Fanex.Age.UI;
+    using Fanex.Age.UI.Components;
+    using Fanex.BetList.Age.DTO;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Factories;
+    using Fanex.BetList.Core.TicketHelper;
+    using Fanex.BetList.Age.BetListCmd;
+
     public partial class CombinationMixParlay_Page : TplPage
     {
         DataTable betListData = null;
         long transid;
         public override void RenderContent(HtmlTextWriter writer)
         {
+
             betListData = View as DataTable;
 
-            StringBuilder row = Sunplus.Agent.UI.BetList.Factories.RenderingFactory.RenderMixParlay(ref betListData, false);
+            IList<ITicket> tickets = TicketTransformer.Transform(betListData);
+
+            BetListHTMLFactory factory = new BetListHTMLFactory();
+            BetListHTMLBuilder builder = factory.CreateBuilder();
+            ITicketHelper ticketHelper = new TicketHelper();
+
+            ticketHelper.IsShowOddsWithChoice = true;
+
+            string line = "<div class='line'></div>";
+
+            for (int i = 0; i < tickets.Count; i++)
+            {
+                if (i == tickets.Count - 1)
+                {
+                    line = "<div></div>";
+                }
+                builder.AddChoice(tickets[i], ticketHelper, null, string.Empty, line, false);
+            }
+
+            string row = builder.GetBetList();
 
             writer.Write(row.ToString());
         }

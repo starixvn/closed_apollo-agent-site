@@ -8,6 +8,7 @@
 //     <change who="Thai" date="2011.03.08">Render BetList page</change>
 //     <change who="Marc.Bui" date="2012.12.19">Apply CoreBetList</change>
 //     <change who="Marc.Bui" date="2012.12.19">Rollback old Betlist</change>
+//     <change who="Marc.Bui" date="2013.02.26">Apply CoreBetList</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -15,14 +16,27 @@ namespace Sunplus.Agent.UI._BetList
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Data;
+    using System.IO;
     using System.Text;
     using System.Web;
     using System.Web.UI;
     using Fanex.Age.UI.Components;
+    using Fanex.BetList.Age.BetListCmd;
+    using Fanex.BetList.Age.BetListExcelBuilderExt;
+    using Fanex.BetList.Age.BetListHTMLBuilderExt;
+    using Fanex.BetList.Age.Definition;
+    using Fanex.BetList.Age.DTO;
+    using Fanex.BetList.Age.ExtTemplate;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Factories;
+    using Fanex.BetList.Core.TicketHelper;
+    using NPOI.SS.UserModel;
     using Sunplus.Agent.Model.BL.Definitions;
-    using Sunplus.Agent.UI.BetList;
-    using Sunplus.Agent.UI.BetList.Factories;
+    using Sunplus.Agent.Model.BL.Forecast;
+    using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
 
     public partial class BetList_Page : Fanex.Age.UI.Reports.WinlossReports_Page
@@ -38,71 +52,294 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void RenderContent(HtmlTextWriter writer)
         {
-            DataTable betListData = View as DataTable;
-            BetList_Template2 tpl = new BetList_Template2();
-            UserTypes userType = UserTypes.Unknown;
-            if (CurrentUserSession.IsSuper) userType = UserTypes.Super;
-            else if (CurrentUserSession.IsMaster) userType = UserTypes.Master;
-            else if (CurrentUserSession.IsAgent) userType = UserTypes.Agent;
+            #region INIT
 
-            DataTable betTransm = command.OutDataTable();
+            UserTypes userType = UserTypes.Unknown;
+
+            if (CurrentUserSession.IsSuper)
+            {
+                userType = UserTypes.Super;
+            }
+            else if (CurrentUserSession.IsMaster)
+            {
+                userType = UserTypes.Master;
+            }
+            else if (CurrentUserSession.IsAgent)
+            {
+                userType = UserTypes.Agent;
+            }
+
+            BetListType betlistType = this.setBetListType();
+
+            bool isShowWinLost = true,
+                 isShowSuperPT = true,
+                 isShowMasterPT = true,
+                 isShowAgentPT = true,
+                 isShowMember = true;
+
+            if ((betlistType & BetListType.Canceled) == BetListType.Canceled)
+            {
+                isShowWinLost = isShowSuperPT = isShowMasterPT = isShowAgentPT = false;
+            }
+            else
+            {
+                if ((betlistType & BetListType.Winlost) != BetListType.Winlost)
+                {
+                    isShowWinLost = false;
+                }
+
+                if ((betlistType & BetListType.Member) != BetListType.Member)
+                {
+                    isShowMember = false;
+                }
+
+                if ((betlistType & BetListType.DailyStatement) == BetListType.DailyStatement)
+                {
+                    isShowSuperPT = isShowMasterPT = isShowAgentPT = false;
+                }
+
+                switch (userType)
+                {
+                    case UserTypes.Super:
+                        break;
+                    case UserTypes.Master:
+                        isShowSuperPT = false;
+                        break;
+                    case UserTypes.Agent:
+                        isShowSuperPT = isShowMasterPT = false;
+                        break;
+                    default: // Hide all position taking
+                        isShowSuperPT = isShowMasterPT = isShowAgentPT = false;
+                        break;
+                }
+            }
+
+            DataTable betListData = View as DataTable;
+            IList<ITicket> tickets = new List<ITicket>();
+
+            if (betListData != null)
+            {
+                tickets = TicketTransformer.Transform(betListData);
+                betListData.Dispose();
+            }
+
+            DataTable commandData = command.OutDataTable();
+            List<ITicketData> ticketData = new List<ITicketData>();
+
+            if (commandData != null)
+            {
+                ticketData = TicketDataTransformer.Transform(commandData);
+                commandData.Dispose();
+            }
+
+            #endregion INIT
+
+            #region Customize
+
+            string reportTitle = string.Empty;
+
             if (type.Equals("MixParlay"))
             {
-                if (exportExcel) tpl.title = Resources.Lang.lblMixParlay;
+                if (exportExcel)
+                {
+                    reportTitle = Resources.Lang.lblMixParlay;
+                }
                 else
                 {
-                    tpl.title = string.Join(null, new string[]{Resources.Lang.lblMixParlay,
-                                                         " | ",
-                                                         "<a href=\"BetList.aspx?type=CombinationMixParlay\">",                                                         
+                    reportTitle = string.Join(null, new string[]{Resources.Lang.lblMixParlay,
+                                                         "&nbsp;|&nbsp; ",
+                                                         "<a href=\"BetList.aspx?type=CombinationMixParlay\">",
                                                          Resources.Lang.lblSystemParlay,
                                                          "</a>"});
                 }
             }
             else if (type.Equals("CombinationMixParlay"))
             {
-                if (exportExcel) tpl.title = Resources.Lang.lblSystemParlay;
+                if (exportExcel) reportTitle = Resources.Lang.lblSystemParlay;
                 else
                 {
-                    tpl.title = string.Join(null, new string[]{ "<a href=\"BetList.aspx?type=MixParlay\">",
+                    reportTitle = string.Join(null, new string[]{ "<a href=\"BetList.aspx?type=MixParlay\">",
                                                          Resources.Lang.lblMixParlay,
                                                          "</a>",
-                                                         " | ",
+                                                         "&nbsp;|&nbsp; ",
                                                          Resources.Lang.lblSystemParlay});
                 }
             }
             else
             {
-                tpl.title = string.IsNullOrEmpty(command.Title) ? Resources.Lang.BetList : command.Title;
+                reportTitle = string.IsNullOrEmpty(command.Title) ? Resources.Lang.BetList : command.Title;
             }
 
-            RegisterJavascriptObject("type", type);
-            RegisterJavascriptObject("fdate", dateFrom.ToShortDateString());
-            RegisterJavascriptObject("tdate", dateTo.ToShortDateString());
-            RegisterJavascriptObject("isHistoryReport", base._isHistoryReport == true ? 1 : 0);
+            short excelColumns = 11;
+            Header1_Template betlistHeader = new Header1_Template();
+
+            //if (!isShowAgentPT)
+            //{
+            //    excelColumns--;
+            //    betlistHeader.Agent.Hide();
+            //}
+
+            if (!isShowMember)
+            {
+                excelColumns--;
+                betlistHeader.Member.Hide();
+            }
+
+            if (!isShowWinLost)
+            {
+                excelColumns--;
+                betlistHeader.Winloss.Hide();
+            }
+
+            #endregion Customize
+
+            int index = 0;
+            bool isAdminCanViewVNIP = UserSession.Current.IsAdminCanViewVNIP;
+
             if (exportExcel)
             {
+                #region EXPORT EXCEL
 
+                reportTitle = reportTitle.Replace("&nbsp;", " ").Replace("<a href=\"BetList.aspx?type=CombinationMixParlay\">", string.Empty).Replace("</a>", string.Empty);
 
-                var resMan = GetLangResourceManager();
-                var builder = new Fanex.Age.Excel.BetList.BetListReportBuilder(setBetListType(), betListData, userType, tpl.title.ToUpper(), betTransm);
-                var excelStream = builder.Build();
-                if (excelStream != null)
+                GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
+                ITicketHelper ticketHelper = new TicketHelper();
+                BetListExcelFactory factory = new BetListExcelFactory();
+                BetListExcelBuilder builder = factory.CreateBuilder();
+
+                builder.BuildWorksheet("BetList", excelColumns);
+                builder.AddCaption(reportTitle, excelColumns);
+                builder.AddHeader(isShowWinLost, isShowAgentPT, isShowMember);
+
+                foreach (ITicket ticket in tickets)
                 {
-                    ExportToExcel(excelStream, "BetList.xls");
-                    excelStream.Dispose();
-                    return;
+                    index++;
+                    ticketHelper.Index = index;
+
+                    builder
+                        .AddNo(index);
+                    if (isShowMember)
+                    {
+                        builder.AddMember(ticket, ticketHelper);
+                    }
+
+                    builder.AddTrans(ticket, ticketHelper);
+
+                    builder
+                        .AddChoice(ticket, ticketHelper, ticketData)
+                        .AddOdds(ticket, ticketData, funcGetOddsTypeName)
+                        .AddStake(ticket);
+
+                    if (isShowWinLost)
+                    {
+                        builder.AddWinLoss(ticket);
+                    }
+
+                    builder
+                        .AddStatus(ticket, ticketHelper, ticketData, isAdminCanViewVNIP);
+
+                    if (isShowAgentPT)
+                    {
+                        builder.AddAgentPT(ticket, ticketData);
+                    }
                 }
 
-                //this.ExportToExcel(Response, string.Concat("<b>", tpl.title, "</b>", tpl.content), "BetList");
+                if (tickets.Count == 0 || (betlistType & BetListType.Winlost) == BetListType.Winlost)
+                {
+                    builder.AddFooter(tickets, isShowMember, excelColumns);
+                }
+
+                MemoryStream ms = new MemoryStream();
+                IWorkbook resultWorkbook = builder.GetBetList();
+                resultWorkbook.Write(ms);
+
+                ExportToExcel(ms, "NewBetList.xls");
+                ms.Dispose();
+                return;
+
+                #endregion EXPORT EXCEL
             }
             else
             {
-                // Estimate size of the content
-                StringBuilder content = new StringBuilder(1024 * 2 * (betListData.Rows.Count + 3));
-                RenderingFactory.Render(setBetListType(), ref betListData, userType, content, exportExcel, betTransm);
+                #region RENDER HTML
+
+                BetListTemplate tpl = new BetListTemplate();
+                StringBuilder content = new StringBuilder();
+
+                tpl.title = reportTitle;
+
+                Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
+                content.Append(betlistOpenTag);
+
+                content.Append(betlistHeader);
+                content.Append("<tbody>");
+                ForecastBO bo = new ForecastBO(UserSession.Current.NetSessionId);
+                List<int> lstScoremap = bo.GetListBetTypeScoreMap();
+
+                bool isShowScoremap;
+                bool mode = ((BetListType)bettype & BetListType.SmartPhone) != BetListType.SmartPhone;
+                GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
+
+                ITicketHelper ticketHelper = new TicketHelper();
+                BetListHTMLFactory factory = new BetListHTMLFactory();
+                BetListHTMLBuilder builder = factory.CreateBuilder();
+
+                foreach (ITicket ticket in tickets)
+                {
+                    if (lstScoremap.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running) && mode)
+                    {
+                        isShowScoremap = true;
+                    }
+                    else
+                    {
+                        isShowScoremap = false;
+                    }
+
+                    index++;
+                    ticketHelper.Index = index;
+
+                    builder.Append(string.Format("<tr id='{0}'>", ticket.TransId))
+                           .AddNo(index, "<td class='w-order'>", "</td>");
+
+                    if (isShowMember)
+                    {
+                        builder.AddMember(ticket, "<td class='c'>", "</td>");
+                    }
+
+                    builder
+                            .AddTrans(ticket, "<td class='c nonbreak'>", "</td>")
+                            .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", isShowScoremap)
+                            .AddOdds(ticket, ticketData, "<td class='bl_underdog nonbreak'>", "</td>", funcGetOddsTypeName)
+                            .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
+
+                    if (isShowWinLost)
+                    {
+                        builder.AddWinLoss(ticket, "<td class='r nonbreak'>", "</td>");
+                    }
+
+                    builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
+
+                    builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
+                    builder.AddAgentComm(ticket, ticketData, "<td class='r'>", "</td>");
+
+                    builder.Append("</tr>");
+                }
+
+                builder.AddFooter(tickets, string.Empty, string.Empty, userType, (Fanex.BetList.Age.Definition.BetListType)betlistType);
+
+                content.Append(builder.GetBetList());
+                content.Append("</tbody></table>");
+
                 tpl.content = content.ToString();
-                RenderFilterElementNames();
                 tpl.ToString(writer);
+
+                RegisterJavascriptObject("type", type);
+                RegisterJavascriptObject("fdate", dateFrom.ToShortDateString());
+                RegisterJavascriptObject("tdate", dateTo.ToShortDateString());
+                RegisterJavascriptObject("isHistoryReport", base._isHistoryReport == true ? 1 : 0);
+                RenderFilterElementNames();
+
+                #endregion RENDER HTML
             }
         }
 
@@ -226,11 +463,11 @@ namespace Sunplus.Agent.UI._BetList
                             .league{color: #000000; background: #aacccc;}
                             td{vertical-align:top;text-align:right;font-size:12px;}
                             font, div, span{font-size:12px;text-decoration:none;}
-                            .bl_underdog{font-weight:bold}                            
-                            .bl_footertotal{font-weight:bold}                            
+                            .bl_underdog{font-weight:bold}
+                            .bl_footertotal{font-weight:bold}
                             .bl_match{white-space: nowrap; width: 200px}
                             .bl_favorite{color: red;font-weight:bold}
-                            a{font-size:12px;text-decoration: none; color: #000}                                                        
+                            a{font-size:12px;text-decoration: none; color: #000}
                             .r,td.r,td.div{text-align:right;font-size:12px;}
                             .l,td.l{text-align:left;font-size:12px;}
                             .c,td.c{text-align:center;font-size:12px;}
@@ -252,13 +489,11 @@ namespace Sunplus.Agent.UI._BetList
                     </body>
                 </html>";
 
-
             Response.Write(excelHtmlHeader);
             Response.Write(data);
             Response.Write(excelHtmlFooter);
 
             Response.End();
         }
-
     }
 }
