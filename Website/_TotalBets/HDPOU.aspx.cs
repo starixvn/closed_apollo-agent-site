@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-
 using Sunplus.Agent.Utilities;
-
 
 /*
  * Created 20100507@Jacob - Render HDPOU page
@@ -23,10 +11,8 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class HDPOU_Page : TotalBets_Page
     {
-
         #region Override
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -56,7 +42,10 @@ namespace Fanex.Age.UI.TotalBets
                     if (i == 0 || currentLeagueId != leagueId)
                     {
                         // New league, ignore first row
-                        if (i != 0) tpl.Contents.LeagueContents.Append(leagueBlock);
+                        if (i != 0)
+                        {
+                            tpl.Contents.LeagueContents.Append(leagueBlock);
+                        }
 
                         matchIndex = 1;
                         currentLeagueId = leagueId;
@@ -74,7 +63,10 @@ namespace Fanex.Age.UI.TotalBets
                     leagueBlock.MatchContents.Append(matchBlock);
                 }
 
-                if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
+                if (leagueBlock != null)
+                {
+                    tpl.Contents.LeagueContents.Append(leagueBlock);
+                }
             }
             
             if (_fullMode)
@@ -122,6 +114,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.TimeValue = dr["showtime"].ToString();
                 matchBlock.LiveNotice.Hide();
             }
+            
             matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
             matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + (Convert.ToBoolean(dr["isNeutral"]) ? Resources.Lang.IsNeutral : string.Empty);
             matchBlock.Away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
@@ -141,7 +134,7 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         private void RenderHandicapTotal(HDPOU_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr)
         {
-            //Handicap Total
+            // Handicap Total
             if (Convert.ToInt16(dr["betcount_hdp"]) != 0)
             {
                 decimal HdpTotal = Convert.ToDecimal(dr["home_odds_HDP"]) - Convert.ToDecimal(dr["away_odds_HDP"]);
@@ -167,7 +160,7 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         private void RenderOverUnderTotal(HDPOU_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr)
         {
-            //Over Under Total
+            // Over Under Total
             if (Convert.ToInt16(dr["betcount_ou"]) != 0)
             {
                 decimal OUTotal = Convert.ToDecimal(dr["home_odds_OU"]) - Convert.ToDecimal(dr["away_odds_OU"]);

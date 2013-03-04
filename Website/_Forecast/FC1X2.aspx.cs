@@ -1,23 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Web;
-using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.Forecast;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-
-using Sunplus.Agent.Utilities;
-using System.Text;
-using System.Collections;
-
-
-/*
+﻿/*
  * Created 20100529@Jacob - Render FC1X2 page
  * Revision:
  * ?@? - ... 
@@ -25,6 +6,13 @@ using System.Collections;
  */
 namespace Fanex.Age.UI.Forecast
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Text;
+    using System.Web.UI;
+    using Sunplus.Agent.Model.BL.Forecast;
+    using Sunplus.Agent.Utilities;
 
     public partial class FC1X2_Page : Fanex.Age.UI.TplPage
     {
@@ -61,7 +49,7 @@ namespace Fanex.Age.UI.Forecast
                 for (int i = 0; i < fcData.Rows.Count; i++)
                 {
                     DataRow dr = fcData.Rows[i];
-                    block.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : String.Empty);
+                    block.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : string.Empty);
                     block.Away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
 
                     if (Convert.ToInt16(dr["liveindicator"]) == 1)
@@ -72,6 +60,7 @@ namespace Fanex.Age.UI.Forecast
                     {
                         block.Time = dr["showtime"].ToString();
                     }
+
                     block.MatchId = dr["matchid"].ToString();
 
                     block.HomeWinLose = Convert.IsDBNull(dr["hl"]) ? "" : RedForPositiveAmount(dr["hl"], 0);
@@ -83,6 +72,7 @@ namespace Fanex.Age.UI.Forecast
 
                     tpl.Content.RowContent.Append(block);
                 }
+
                 tpl.Content.NotFoundContent.Hide();
             }
 
@@ -91,12 +81,19 @@ namespace Fanex.Age.UI.Forecast
                 tpl.TitleHeader.Hide();
                 tpl.TitleFooter.Hide();
             }
+
             // Table width
             tpl.Content.TableWidth = _isPopup ? "100%" : "600px";
             tpl.Content.LimitLeagueList.TableWidth = _isPopup ? "100%" : "600px";
             // response
-            if (_fullMode) writer.Write(tpl);
-            else writer.Write(tpl.Content);
+            if (_fullMode)
+            {
+                writer.Write(tpl);
+            }
+            else
+            {
+                writer.Write(tpl.Content);
+            }
         }
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
@@ -106,8 +103,8 @@ namespace Fanex.Age.UI.Forecast
                 "leagueid",
                 "bettype" 
             }, Request);
-            _fullMode = String.IsNullOrEmpty(Request["full_mode"]) ? true : Convert.ToInt32(Request["full_mode"]) > 0;
-            _isPopup = String.IsNullOrEmpty(Request["is_popup"]) ? false : Convert.ToInt32(Request["is_popup"]) > 0;
+            _fullMode = string.IsNullOrEmpty(Request["full_mode"]) ? true : Convert.ToInt32(Request["full_mode"]) > 0;
+            _isPopup = string.IsNullOrEmpty(Request["is_popup"]) ? false : Convert.ToInt32(Request["is_popup"]) > 0;
             _leagueId = Convert.ToInt32(p["leagueid"]);
             _matchId = Convert.ToInt32(p["matchid"]);
             _betType = Convert.ToInt32(p["bettype"]);
@@ -121,7 +118,7 @@ namespace Fanex.Age.UI.Forecast
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            Dictionary<String, DataTable> view = new Dictionary<string, DataTable>();
+            Dictionary<string, DataTable> view = new Dictionary<string, DataTable>();
             ForecastBO bo = new ForecastBO(CurrentUserSession.NetSessionId);
 
             DataTable fcData = null;
@@ -133,7 +130,7 @@ namespace Fanex.Age.UI.Forecast
             }
             else
             {
-                runningLeagues = bo.GetFCRunningLeagues(5); //5: for 1x2
+                runningLeagues = bo.GetFCRunningLeagues(5); // 5: for 1x2
                 if (_leagueId == 0 && runningLeagues.Rows.Count > 0)
                 {
                     _leagueId = Convert.ToInt32(runningLeagues.Rows[0]["leagueid"]);
@@ -143,6 +140,7 @@ namespace Fanex.Age.UI.Forecast
                     fcData = bo.GetFC1X2ByLeague(_leagueId);
                 }
             }
+
             view.Add(RUNNING_LEAGUES, runningLeagues);
             view.Add(FC_DATA, fcData);
             return view;
@@ -158,14 +156,18 @@ namespace Fanex.Age.UI.Forecast
         private string RedForPositiveAmount(object amount, byte decDigits)
         {
             if ((decimal)amount > 0)
+            {
                 return "<font color='red'>" + Formater.DecFormat(amount, decDigits) + "</font>";
+            }
             else
+            {
                 return Formater.DecFormat(amount, decDigits);
+            }
         }
 
         private void RenderLeagueList(FC1X2_Content_Block content)
         {
-            DataTable leagues = (View as Dictionary<String, DataTable>)[RUNNING_LEAGUES];
+            DataTable leagues = (View as Dictionary<string, DataTable>)[RUNNING_LEAGUES];
 
             if (leagues != null && leagues.Rows.Count > 0)
             {
@@ -173,16 +175,17 @@ namespace Fanex.Age.UI.Forecast
                 foreach (DataRow dr in leagues.Rows)
                 {
                     int leagueId = Convert.ToInt32(dr["leagueid"]);
-                    String leagueName = Sunplus.Agent.Model.BL.Cache.CacheRef.GetLeagueName(dr["leagueid"]);
+                    string leagueName = Sunplus.Agent.Model.BL.Cache.CacheRef.GetLeagueName(dr["leagueid"]);
                     if (leagueId == _leagueId)
                     {
-                        sb.Append(String.Format("<option value='{0}' selected>{1}</option>", leagueId, leagueName));
+                        sb.Append(string.Format("<option value='{0}' selected>{1}</option>", leagueId, leagueName));
                     }
                     else
                     {
-                        sb.Append(String.Format("<option value='{0}'>{1}</option>", leagueId, leagueName));
+                        sb.Append(string.Format("<option value='{0}'>{1}</option>", leagueId, leagueName));
                     }
                 }
+
                 content.LimitLeagueList.LeagueList = sb.ToString();
             }
             else

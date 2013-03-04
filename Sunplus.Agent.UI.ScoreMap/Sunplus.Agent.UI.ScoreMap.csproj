@@ -60,9 +60,8 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="TplCore, Version=1.0.4303.25044, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Main\Dependencies\TplCore.dll</HintPath>
+    <Reference Include="TplCore">
+      <HintPath>..\Dependencies\TplCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

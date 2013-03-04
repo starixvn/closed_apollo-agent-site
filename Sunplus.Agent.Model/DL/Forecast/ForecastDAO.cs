@@ -1,6 +1,5 @@
 namespace Sunplus.Agent.Model.DL.Forecast
 {
-    using System;
     using System.Collections;
     using System.Data;
     using Sunplus.Agent.Model.DL.Definitions;
@@ -16,64 +15,65 @@ namespace Sunplus.Agent.Model.DL.Forecast
         }
 
         #region TopOddsByMatch
+
         /// <summary>
         /// Get the most odds of match
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
-        /// <param name="langKey"></param>
         /// <returns></returns>
-        public DataTable Age_Forecast_OddsSelTopByMatch(int matchId, int betType, string langKey)
+        public DataTable Age_Forecast_OddsGetTopByMatch(int matchId, int betType)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("matchid", matchId);
             parameters.Add("bettype", betType);
-            parameters.Add("language", langKey);
-            return ExecSpTable("Age_Forecast_OddsSelTopByMatch", parameters);
+            return ExecSpTable("Age_Forecast_OddsGetTopByMatch", parameters);
         }
-        #endregion
+
+        #endregion TopOddsByMatch
 
         #region Handicap
+
         /// <summary>
         /// Forecast for handicap
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="custId"></param>
-        /// <param name="roleId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public DataTable Age_Forecast_SelHDP(int matchId, int custId, int roleId, int betType)
+        public DataTable Age_Forecast_1_7_GetByMatch(int matchId, int custId, int betType)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("matchid", matchId);
             parameters.Add("agentid", custId);
-            parameters.Add("roleid", roleId);
             parameters.Add("bettype", betType);
-            return ExecSpTable("Age_Forecast_SelHDP", parameters);
+            return ExecSpTable("Age_Forecast_1_7_GetByMatch", parameters);
         }
-        #endregion
+
+        #endregion Handicap
 
         #region OverUnder
+
         /// <summary>
         /// Forecast for Over under
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="custId"></param>
-        /// <param name="roleId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public DataTable Age_Forecast_SelOU(int matchId, int custId, int roleId, int betType)
+        public DataTable Age_Forecast_3_8_GetByMatch(int matchId, int custId, int betType)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("matchid", matchId);
             parameters.Add("agentid", custId);
-            parameters.Add("roleid", roleId);
             parameters.Add("bettype", betType);
-            return ExecSpTable("Age_Forecast_SelOU", parameters);
+            return ExecSpTable("Age_Forecast_3_8_GetByMatch", parameters);
         }
-        #endregion
+
+        #endregion OverUnder
 
         #region NextGoal
+
         /// <summary>
         /// Forecast for next goal
         /// </summary>
@@ -81,170 +81,80 @@ namespace Sunplus.Agent.Model.DL.Forecast
         /// <param name="custId"></param>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public DataTable Age_Forecast_Sel22(int matchId, int custId, int roleId)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("matchid", matchId);
-            parameters.Add("custid", custId);
-            parameters.Add("roleid", roleId);
-            return ExecSpTable("Age_Forecast_Sel22", parameters);
-        }
-        #endregion
+        //public DataTable Age_Forecast_Sel22(int matchId, int custId, int roleId)
+        //{
+        //    Hashtable parameters = new Hashtable();
+        //    parameters.Add("matchid", matchId);
+        //    parameters.Add("custid", custId);
+        //    parameters.Add("roleid", roleId);
+        //    return ExecSpTable("Age_Forecast_Sel22", parameters);
+        //}
+
+        #endregion NextGoal
 
         #region Running League
+
         /// <summary>
         /// Get running league for agent
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public DataTable Age_LeagueSelRunning_Ag(int agentId, int betType)
+        public DataTable Age_League_GetRunning(int agentId, int betType)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("agid", agentId);
             parameters.Add("bettypes", betType);
-            return ExecSpTable("Age_LeagueSelRunning_Ag", parameters);
+            return ExecSpTable("Age_League_GetRunning", parameters);
         }
 
-        /// <summary>
-        /// Get running leagues for master
-        /// </summary>
-        /// <param name="masterId"></param>
-        /// <param name="betType"></param>
-        /// <returns></returns>
-        public DataTable Age_LeagueSelRunning_MAg(int masterId, int betType)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("magid", masterId);
-            parameters.Add("bettypes", betType);
-            return ExecSpTable("Age_LeagueSelRunning_MAg", parameters);
-        }
 
-        /// <summary>
-        /// Get running leagues for super
-        /// </summary>
-        /// <param name="superId"></param>
-        /// <param name="betType"></param>
-        /// <returns></returns>
-        public DataTable Age_LeagueSelRunning_SAg(int superId, int betType)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("sagid", superId);
-            parameters.Add("bettypes", betType);
-            return ExecSpTable("Age_LeagueSelRunning_SAg", parameters);
-        }
-        #endregion
+        #endregion Running League
 
         #region League
+
         /// <summary>
         /// Forecast league for agent
         /// </summary>
         /// <param name="leagueId"></param>
         /// <param name="agentId"></param>
-        /// <param name="langKey"></param>
         /// <returns></returns>
-        public DataTable Age_Forecast_SelByLeague_Ag(int leagueId, int agentId, string langKey)
+        public DataTable Age_Forecast_1_3_7_8_GetByLeague(int leagueId, int agentId)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("language", langKey);
             parameters.Add("baseoffsethdp", 0);
             parameters.Add("baseoffsetou", 0);
             parameters.Add("baseoffseththdp", 0);
             parameters.Add("baseoffsethtou", 0);
             parameters.Add("leagueid", leagueId);
-            parameters.Add("recommend", agentId);
+            parameters.Add("AgentId", agentId);
 
-            return ExecSpTable("Age_Forecast_SelByLeague_Ag", parameters);
+            return ExecSpTable("Age_Forecast_1_3_7_8_GetByLeague", parameters);
         }
 
-        /// <summary>
-        /// Forecast league for master
-        /// </summary>
-        /// <param name="leagueId"></param>
-        /// <param name="masterId"></param>
-        /// <param name="langKey"></param>
-        /// <returns></returns>
-        public DataTable Age_Forecast_SelByLeague_MAg(int leagueId, int masterId, string langKey)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("language", langKey);
-            parameters.Add("baseoffsethdp", 0);
-            parameters.Add("baseoffsetou", 0);
-            parameters.Add("baseoffseththdp", 0);
-            parameters.Add("baseoffsethtou", 0);
-            parameters.Add("leagueid", leagueId);
-            parameters.Add("mrecommend", masterId);
 
-            return ExecSpTable("Age_Forecast_SelByLeague_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Forecast league for super
-        /// </summary>
-        /// <param name="leagueId"></param>
-        /// <param name="superId"></param>
-        /// <param name="langKey"></param>
-        /// <returns></returns>
-        public DataTable Age_Forecast_SelByLeague_SAg(int leagueId, int superId, string langKey)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("language", langKey);
-            parameters.Add("baseoffsethdp", 0);
-            parameters.Add("baseoffsetou", 0);
-            parameters.Add("baseoffseththdp", 0);
-            parameters.Add("baseoffsethtou", 0);
-            parameters.Add("leagueid", leagueId);
-            parameters.Add("srecommend", superId);
-
-            return ExecSpTable("Age_Forecast_SelByLeague_SAg", parameters);
-        }
-        #endregion
+        #endregion League
 
         #region 1x2ByLeague
+
         /// <summary>
         /// Forecast 1X2 league for agent
         /// </summary>
         /// <param name="leagueId"></param>
         /// <param name="agentId"></param>
         /// <returns></returns>
-        public DataTable Age_Forecast1x2_SelByLeague_Ag(int leagueId, int agentId)
+        public DataTable Age_Forecast_5_15_GetByLeague(int leagueId, int agentId)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("leagueid", leagueId);
-            parameters.Add("custid", agentId);
-            return ExecSpTable("Age_Forecast1x2_SelByLeague_Ag", parameters);
+            parameters.Add("AgentId", agentId);
+            return ExecSpTable("Age_Forecast_5_15_GetByLeague", parameters);
         }
 
-        /// <summary>
-        /// Forecast 1X2 by league for master
-        /// </summary>
-        /// <param name="leagueId"></param>
-        /// <param name="masterId"></param>
-        /// <returns></returns>
-        public DataTable Age_Forecast1x2_SelByLeague_MAg(int leagueId, int masterId)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("leagueid", leagueId);
-            parameters.Add("custid", masterId);
-            return ExecSpTable("Age_Forecast1x2_SelByLeague_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Forecast 1X2 by league for super
-        /// </summary>
-        /// <param name="leagueId"></param>
-        /// <param name="superId"></param>
-        /// <returns></returns>
-        public DataTable Age_Forecast1x2_SelByLeague_SAg(int leagueId, int superId)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("leagueid", leagueId);
-            parameters.Add("custid", superId);
-            return ExecSpTable("Age_Forecast1x2_SelByLeague_SAg", parameters);
-        }
-        #endregion
+        #endregion 1x2ByLeague
 
         #region 1X2ByMatch
+
         /// <summary>
         /// Forecast 1X2 by match.
         /// </summary>
@@ -252,19 +162,19 @@ namespace Sunplus.Agent.Model.DL.Forecast
         /// <param name="custId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public DataTable Age_Forecast_Sel1X2(int matchId, int custId, int roleId, int betType)
+        public DataTable Age_Forecast_5_15_GetByMatch(int matchId, int custId, int betType)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("matchid", matchId);
-            parameters.Add("custid", custId);
+            parameters.Add("AgentId", custId);
             parameters.Add("bettype", betType);
-            parameters.Add("roleid", roleId);
-            return ExecSpTable("Age_Forecast_Sel1X2", parameters);
+            return ExecSpTable("Age_Forecast_5_15_GetByMatch", parameters);
         }
 
-        #endregion
+        #endregion 1X2ByMatch
 
-        #region For Score Map        
+        #region For Score Map
+
         /// <summary>
         /// Get Score Map League
         /// </summary>
@@ -301,43 +211,16 @@ namespace Sunplus.Agent.Model.DL.Forecast
         /// Get Score Map Result for Agent
         /// </summary>
         /// <returns></returns>
-        public DataSet Age_ScoreMap_Result_Ag(int customerId, string matchIds, string bettypes_live, string bettypes_dead)
+        public DataSet Age_ScoreMap_Result(int customerId, string matchIds, string bettypes_live, string bettypes_dead)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("recommend", customerId);
+            parameters.Add("agentid", customerId);
             parameters.Add("matchids", matchIds);
             parameters.Add("bettypes_live", bettypes_live);
             parameters.Add("bettypes_dead", bettypes_dead);
-            return ExecSpDataset("Age_ScoreMap_Result_Ag", parameters);
+            return ExecSpDataset("Age_ScoreMap_Result", parameters);
         }
 
-        /// <summary>
-        /// Get Score Map Result for Master
-        /// </summary>
-        /// <returns></returns>
-        public DataSet Age_ScoreMap_Result_MAg(int customerId, string matchIds, string bettypes_live, string bettypes_dead)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("mrecommend", customerId);
-            parameters.Add("matchids", matchIds);
-            parameters.Add("bettypes_live", bettypes_live);
-            parameters.Add("bettypes_dead", bettypes_dead);
-            return ExecSpDataset("Age_ScoreMap_Result_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Get Score Map Result for Supper
-        /// </summary>
-        /// <returns></returns>
-        public DataSet Age_ScoreMap_Result_SAg(int customerId, string matchIds, string bettypes_live, string bettypes_dead)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("srecommend", customerId);
-            parameters.Add("matchids", matchIds);
-            parameters.Add("bettypes_live", bettypes_live);
-            parameters.Add("bettypes_dead", bettypes_dead);
-            return ExecSpDataset("Age_ScoreMap_Result_SAg", parameters);
-        }
-        #endregion
+        #endregion For Score Map
     }
 }
