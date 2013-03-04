@@ -178,7 +178,7 @@ namespace Fanex.Age.UI.Forecast
                     stId = Convert.ToInt32(dr["1stId"]);
                     tplLBDB.BetType = typeId + (stId != 0 ? "," + stId : "");
                     tplLBDB.BetTypeName = GetBetTypeName(typeId);
-                    tplLBDB.Title = GetTitleName(typeId);
+                    //tplLBDB.Title = GetTitleName(typeId);
 
                     if (Convert.ToBoolean(dr["islive"]))
                     {

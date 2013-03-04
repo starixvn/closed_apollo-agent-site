@@ -108,13 +108,26 @@ div.messageBlock
 	padding: 3px 0px 7px 0px;
 }
 
-.username {
+.login-info {
     color: #85648D;
     float: left;
     padding-top: 22px;
     padding-left: 40px;
 }
-
+.username  {
+    color: #B39D74;
+    margin: 0 3px;
+}
+.login-info a {
+    color: #B39D74;
+    text-decoration: none;
+    margin: 0 3px;
+}
+.login-info a:hover {
+    color: #fff;
+    text-decoration: underline;
+    margin: 0 3px;
+}
 #banner
 {
 	/*margin-left: 212px;*/
@@ -213,9 +226,11 @@ div.messageBlock
 	margin-right: 28px;
 	float: inherit;
 	padding-right: 28px;
-	line-height: 25px;
-	color: #CECECE;
+	line-height: 19px;
 	text-align: right;
+}
+#topnews {
+    color: #CECECE;
 }
 #text_news a
 {

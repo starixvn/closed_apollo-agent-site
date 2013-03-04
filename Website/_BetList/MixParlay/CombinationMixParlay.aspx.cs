@@ -17,11 +17,6 @@ using System.Collections;
 using Sunplus.Agent.Model.BL.Reports;
 using Sunplus.Agent.Model.BL.BetList;
 using Sunplus.Agent.UI.BetList;
-using Fanex.BetList.Core.Factories;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using Fanex.BetList.Core.TicketHelper;
-using Fanex.BetList.Age.DTO;
 
 /*
 
@@ -35,29 +30,9 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
         long transid;
         public override void RenderContent(HtmlTextWriter writer)
         {
-
             betListData = View as DataTable;
 
-            IList<ITicket> tickets = TicketTransformer.Transform(betListData);
-
-            BetListHTMLFactory factory = new BetListHTMLFactory();
-            BetListHTMLBuilder builder = factory.CreateBuilder();
-            ITicketHelper ticketHelper = new TicketHelper();
-
-            ticketHelper.IsShowOddsWithChoice = true;
-
-            string line = "<div class='line'></div>";
-
-            for (int i = 0; i < tickets.Count; i++)
-            {
-                if (i == tickets.Count - 1)
-                {
-                    line = "<div></div>";
-                }
-                builder.AddChoice(tickets[i], ticketHelper, null, string.Empty, line, false);
-            }
-
-            string row = builder.GetBetList();
+            StringBuilder row = Sunplus.Agent.UI.BetList.Factories.RenderingFactory.RenderMixParlay(ref betListData, false);
 
             writer.Write(row.ToString());
         }

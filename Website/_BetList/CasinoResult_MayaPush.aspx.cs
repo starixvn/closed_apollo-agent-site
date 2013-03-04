@@ -42,12 +42,12 @@
 
         private void renderTotal(CasinoResult_MayaPush_Template tpl, DataRow row)
         {
-            tpl.bet = Resources.Casino.Bet;
+            tpl.bet = Resources.Casino.totalBet;
             tpl.bet_vl = string.Join(" ", new string[] { row["Currency"].ToString(), decimal.Round((decimal)row["Bet"], 2).ToString() });
             tpl.odds = Resources.Casino.Odds;
             tpl.odds_vl = decimal.Round((decimal)row["Odds"], 2).ToString();
 
-            tpl.winloss = Resources.Casino.Win;
+            tpl.winloss = Resources.Casino.totalWin;
 
             var dec = decimal.Round((decimal)row["WinLoss"], 2);
             var spanClass = dec >= 0 ? "bl_underdog" : "bl_favorite";

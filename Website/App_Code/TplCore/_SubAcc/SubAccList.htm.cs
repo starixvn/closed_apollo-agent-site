@@ -20,7 +20,7 @@ namespace Sunplus.Agent.UI
 			protected static string s5{get{return Resources.Lang.subaccount;}}
 			protected static string s6 = " &nbsp;<input type=\"button\" onclick=\"AddSubAccPopup();\" value=\"";
 			protected static string s7{get{return Resources.Lang.addsubaccount;}}
-			protected static string s8 = "\" class=\"btn\" /></div><div style=\"width: 1050px\">";
+			protected static string s8 = "\" class=\"btn hide\" /></div><div style=\"width: 1050px\">";
 			protected static string s9{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
 			protected static string s10 = "</div><table class=\"tblRpt\" width=\"100%\" cellspacing=\"1\" cellpadding=\"0\" border=\"0\">";
 			public SubAccList_Header_Block Header = new SubAccList_Header_Block();
@@ -108,11 +108,11 @@ namespace Sunplus.Agent.UI
 			protected static string s45{get{return Resources.Lang.transfer;}}
 			protected static string s46 = "</td><td width=\"70\">";
 			protected static string s47{get{return Resources.Lang.viewlog;}}
-			protected static string s48 = "</td><td>";
+			protected static string s48 = "</td><!--<td>";
 			protected static string s49{get{return Resources.Lang.edit;}}
 			protected static string s50 = "</td><td>";
 			protected static string s51{get{return Resources.Lang.password;}}
-			protected static string s52 = "</td></tr>";
+			protected static string s52 = "</td>--></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -200,7 +200,7 @@ namespace Sunplus.Agent.UI
 			public string chkValueG = "{chkValueG}";
 			protected static string s76 = " id=\"chk";
 			protected string t9_id_value;
-			protected static string s77 = "[G]\"/></td><td align=\"center\"><input type=\"button\" class=\"editBtn\" onclick=\"EditSubAccPopup(";
+			protected static string s77 = "[G]\"/></td><!--<td align=\"center\"><input type=\"button\" class=\"editBtn\" onclick=\"EditSubAccPopup(";
 			protected string t10_id_value;
 			protected static string s78 = ", '";
 			protected string t11_username_value;
@@ -212,7 +212,7 @@ namespace Sunplus.Agent.UI
 			protected string t13_username_value;
 			protected static string s83 = "');\" title=\"";
 			protected static string s84{get{return Resources.Lang.edit;}}
-			protected static string s85 = "\"/></td></tr>";
+			protected static string s85 = "\"/></td>--></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

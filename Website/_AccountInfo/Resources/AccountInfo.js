@@ -295,8 +295,8 @@ function showDownlineList(isShow) {
     if (isShow == 1) {
         $('tabbalance').style.display = 'none';
         $('tabdownline').style.display = '';
-        $('balinfo').className = "";
-        $('userdownline').className = "current";
+        //$('balinfo').className = "";
+        //$('userdownline').className = "current";
     }
     else {
         $('tabbalance').style.display = '';

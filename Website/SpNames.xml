@@ -309,6 +309,7 @@
     <Setting Key="Age_Forecast1x2_SelByLeague_SAg" SpName="Age_Forecast1x2_SelByLeague_SAg" DbName="archive" Plain="0" />
   </Function>
 
+<<<<<<< HEAD
   <Function Name="Agent-Apollo-TotalBets">
     <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="DB05" Plain="0" />
     <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="DB05" Plain="0" />
@@ -328,6 +329,8 @@
     <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="DB05" Plain="0" />
   </Function>
 
+=======
+>>>>>>> c776d95da2083e4e95bedcd31464d463b7f4f681
   <Function Name="Agent - Monitoring Betlist">
     <Setting Key="Age_Monitor_BetlistSel_Ag_AllBettypes" SpName="Age_Monitor_BetlistSel_Ag_AllBettypes" DbName="archive052" Plain="0" />
     <Setting Key="Age_Monitor_BetlistSel_Ag_HDP" SpName="Age_Monitor_BetlistSel_Ag_HDP" DbName="archive052" Plain="0" />
@@ -418,7 +421,6 @@
     <Setting Key="Age_Statement_Rpt_Ag" SpName="Age_Statement_Rpt_Ag" DbName="DBAGE.BODB02" Plain="0" />
     <Setting Key="Age_Statement_Rpt_MAg" SpName="Age_Statement_Rpt_MAg" DbName="DBAGE.BODB02" Plain="0" />
     <Setting Key="Age_Statement_Rpt_SAg" SpName="Age_Statement_Rpt_SAg" DbName="DBAGE.BODB02" Plain="0" />
-
     <Setting Key="Age_TotalBets_Sel10_Ag" SpName="Age_TotalBets_Sel10_Ag" DbName="archive" Plain="0" />
     <Setting Key="Age_TotalBets_Sel10_MAg" SpName="Age_TotalBets_Sel10_MAg" DbName="archive" Plain="0" />
     <Setting Key="Age_TotalBets_Sel10_SAg" SpName="Age_TotalBets_Sel10_SAg" DbName="archive" Plain="0" />

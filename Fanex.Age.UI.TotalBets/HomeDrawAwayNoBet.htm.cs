@@ -61,7 +61,7 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HomeDrawAwayNoBet_Contents_Block: Block
 		{
-			protected static string s15 = "<table cellpadding=\"0\" cellspacing=\"1\" border=\"0\" class=\"tblRpt c\"><tr class=\"RptHeader\"><td rowspan=\"2\" style=\"width: 20px;\">#</td><td rowspan=\"2\" style=\"width: 110px;\">";
+			protected static string s15 = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"tblRpt c\"><tr class=\"RptHeader\"><td rowspan=\"2\" style=\"width: 20px;\">#</td><td rowspan=\"2\" style=\"width: 110px;\">";
 			protected static string s16{get{return Resources.Lang.time;}}
 			protected static string s17 = "</td><td rowspan=\"3\" style=\"width: 366px;\">";
 			protected static string s18{get{return Resources.Lang.events;}}

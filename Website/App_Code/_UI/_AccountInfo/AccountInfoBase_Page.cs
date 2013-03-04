@@ -743,6 +743,16 @@
         #endregion Render Setting Box
 
         #region Render Balance Box
+        private const string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='DownlineListInfo.aspx?custid={0}' style='width:1px;height:1px;display:none;'></iframe>";
+        
+        /// <summary>
+        /// Get downline list
+        /// </summary>
+        /// <returns></returns>
+        public string GetDownlineFrameHtml(int custId)
+        {
+            return (custId > 0) ? string.Format(htmlFrame, custId) : string.Empty;          
+        }
 
         /// <summary>
         /// Render balance box
@@ -754,6 +764,9 @@
             this.custRoleId = (byte)dtrCustomerInfo["roleid"];
 
             BalanceBox_Template tpl = new BalanceBox_Template();
+
+            
+
             decimal givenCredit = this.GetDBDecimalValue(dtrCustomerInfo["credit"]);
             bool isAllowTransfer = CurrentUserSession.SubPageAccess.Transfer;
             tpl.DownlineList.CustId = this.custId.ToString();
@@ -796,6 +809,8 @@
         /// <param name="tpl"></param>
         private void RenderBalanceBoxDownlineStatus(DataRow dtrCustomerInfo, BalanceBox_Template tpl)
         {
+            tpl.DownlineListFrame = GetDownlineFrameHtml(this.custId);
+
             if (this.custRoleId == 1)
             {
                 tpl.DownlineStatusAgent.Hide();

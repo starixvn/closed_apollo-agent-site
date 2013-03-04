@@ -1,26 +1,32 @@
-﻿// ---------------------------------------------------------------------------------
-// <copyright file="CombinationMixParlayDetail.aspx.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ---------------------------------------------------------------------------------
-// <history>
-//     <change who="Marc.Bui" date="2013.02.28">Apply CoreBetList</change>
-// </history>
-// ---------------------------------------------------------------------------------
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Web;
+using System.Web.UI;
 
+using Sunplus.Agent.Model.BL.Forecast;
+using Sunplus.Agent.Model.BL.Definitions;
+
+using Fanex.Age.UI;
+
+using Fanex.Age.UI.Components;
+using Sunplus.Agent.Utilities;
+
+using System.Text;
+using System.Collections;
+using Sunplus.Agent.Model.BL.Reports;
+using Sunplus.Agent.Model.BL.BetList;
+using Sunplus.Agent.UI.BetList;
+using Sunplus.Agent.UI.BetList.Utils;
+
+using Fanex.Data.DNAide;
+
+/*
+
+ * 
+ */
 namespace Sunplus.Agent.UI._BetList.MixParlay
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Web.UI;
-    using Fanex.Age.UI;
-    using Fanex.BetList.Age.BetListCmd;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.Utils;
-    using Fanex.Data.DNAide;
-
     public partial class CombinationMixParlayDetail_Page : TplPage
     {
         #region Variable
@@ -105,7 +111,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
             if(numRow>0)
             {
                 #region details
-                
+
                 for (int i=0;i<numRow;i++)
                 {                    
                     DataRow dr = dt.Rows[i];
@@ -136,7 +142,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     else
                     {
                         //even
-                        serial = Sunplus.Agent.Utilities.Cast.AsInt32(dr["serial"]);
+                        serial = Cast.AsInt32(dr["serial"]);
                         DataRow[] rows = dtDetail.Select("serial=" + serial);
                         even = string.Empty;
                         foreach (DataRow row in rows)
@@ -149,7 +155,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
 
                         if (Cast.AsDecimal(dr["modds"]) > 0)
                         {
-                            rowBlock.odds = float.Parse(dr["modds"].ToString()).ToString("##0.###");
+                            rowBlock.odds = float.Parse(dr["modds"].ToString()).ToString();
                         }
                         else
                         {
@@ -157,8 +163,8 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         }
                     }
 
-                    winlostdate = Formatter.ShortDateFormat(dr["winlostdate"]);
-                    if (i == 0)
+                    winlostdate = Formater.ShortDateFormat(dr["winlostdate"]);
+                    if (subWinlostSum == 0)
                     {
                         IEnumerable<DataRow> row = dt.AsEnumerable().Where(t => t.Field<DateTime>("winlostdate") == Convert.ToDateTime(winlostdate));
                         int numRowSpan = row.CopyToDataTable().Rows.Count;
@@ -172,8 +178,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     else
                     {
                         rowBlock.WinlostDate.Hide();
-                    }                   
-
+                    }
                     subWinlostSum += Cast.AsDecimal(dr["winlost"]) + Cast.AsDecimal(dr["playercomm"]);
                     rowBlock.ColorClass = i % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
                     template.RowData.Append(rowBlock);
@@ -186,7 +191,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     else
                     {
                         DataRow drTemp = dt.Rows[i + 1];
-                        winlostNextDate = Formatter.ShortDateFormat(drTemp["winlostdate"]);
+                        winlostNextDate = Formater.ShortDateFormat(drTemp["winlostdate"]);
                     }
 
                     GetSubTotalByDay(template, ref subWinlostSum, winlostdate, winlostNextDate);

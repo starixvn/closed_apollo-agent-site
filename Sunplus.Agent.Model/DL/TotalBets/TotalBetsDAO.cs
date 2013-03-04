@@ -76,36 +76,6 @@ namespace Sunplus.Agent.Model.DL.TotalBets
             return ExecSpTable("Age_TotalBets_1_3_7_8", parameters);
         }
 
-        /// <summary>
-        /// Get handicap over under for master
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel1378_MAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel1378_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Get handicap over under for super
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel1378_SAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel1378_SAg", parameters);
-        }
-
         #endregion HDPOU
 
         #region MoneyLine
@@ -142,36 +112,6 @@ namespace Sunplus.Agent.Model.DL.TotalBets
             return ExecSpTable("Age_TotalBets_2_5_12_15_123", parameters);
         }
 
-        /// <summary>
-        /// Get odd event and one x two for master
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel25_MAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel25_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Get odd event and one x two for super
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel25_SAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel25_SAg", parameters);
-        }
-
         #endregion OddEvent_OneXTwo
 
         #region OutRight
@@ -188,36 +128,6 @@ namespace Sunplus.Agent.Model.DL.TotalBets
             parameters.Add("agentid", custId);
 
             return ExecSpTable("Age_TotalBets_10", parameters);
-        }
-
-        /// <summary>
-        /// Get outright for master
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel10_MAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel10_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Get outright for super
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel10_SAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel10_SAg", parameters);
         }
 
         #endregion OutRight
@@ -284,36 +194,6 @@ namespace Sunplus.Agent.Model.DL.TotalBets
             parameters.Add("agentid", custId);
 
             return ExecSpTable("Age_TotalBets_14", parameters);
-        }
-
-        /// <summary>
-        /// Get FGLG for Master
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel14_MAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel14_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Get FGLG for super
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel14_SAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_TotalBets_Sel14_SAg", parameters);
         }
 
         #endregion FGLG

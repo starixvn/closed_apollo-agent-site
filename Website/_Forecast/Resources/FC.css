@@ -1,166 +1,138 @@
-﻿table.tblRpt
-{
-	background-color: #cdcdcd;
+﻿table.tblRpt {
+    /*background-color: #cdcdcd;*/
 }
-table.tblRpt tr
-{
-	height: 20px;
+table.tblRpt tr {
+    height: 20px;
 }
-td
-{
-	padding: 0 2px;
+td {
+    padding: 0 2px;
 }
-.RptHeader
-{
-	background: #8C897E url(../../_GlobalResources/Images/bg_header02.jpg) repeat-x scroll center top;
-	color: #FFF;
-	font-size: 12px;
-	text-align: center;
-	height: 22px;
+.RptHeader {
+    /*background: #8C897E url(../../_GlobalResources/Images/bg_header02.jpg) repeat-x scroll center top;*/
+    background: #323435;
+    color: #FAFDEB;
+    font-size: 12px;
+    text-align: center;
+    height: 22px;
 }
 
-.RptHeader td
-{
-	font-size: 12px;
+.RptHeader td {
+    font-size: 12px;
 }
 
-.odd_row
-{
-	background-color: #F6F8F9;
+.odd_row {
+    background-color: #F6F8F9;
 }
-.even_row
-{
-	background-color: #faf9ee;
+.even_row {
+    background-color: #faf9ee;
 }
-.fl
-{
-	float: left;
+.fl {
+    float: left;
 }
-.l
-{
-	text-align: left;
+.l {
+    text-align: left;
 }
-.r
-{
-	text-align: right;
+.r {
+    text-align: right;
 }
-.c
-{
-	text-align: center;
+.c {
+    text-align: center;
 }
-.b
-{
-	font-weight: bold;
+.b {
+    font-weight: bold;
 }
-.n
-{
-	font-weight: normal;
+.n {
+    font-weight: normal;
 }
-td, span, div, a
-{
-	font-family: Tahoma,Arial,helvetica,sans-serif;
-	font-size: 11px;
+td, span, div, a {
+    font-family: Tahoma,Arial,helvetica,sans-serif;
+    font-size: 11px;
 }
-a:link, a:visited
-{
-	color: #1E1EEB;
-	text-decoration: none;
+a:link, a:visited {
+    color: #1E1EEB;
+    text-decoration: none;
 }
-#page_main
-{
-	padding-top: 7px;
-	overflow: visible;
-	padding-bottom: 15px;
+#page_main {
+    padding-top: 7px;
+    overflow: visible;
+    padding-bottom: 15px;
 }
-#header_main
-{
-	height: 22px;
-	background: url(../../_GlobalResources/Images/bg_header01.jpg) no-repeat left bottom;
-	color: #9d1c1c;
-	font-weight: bold;
-	padding-left: 15px;
-	text-transform: uppercase;
-	line-height: 18px;
-	width: 97%;
-	min-width: 100px;
+#header_main {
+    height: 22px;
+    background: url(../../_GlobalResources/Images/bg_header01.jpg) no-repeat left bottom;
+    color: #4B483C;
+    font-weight: bold;
+    padding-left: 15px;
+    text-transform: uppercase;
+    line-height: 18px;
+    width: 97%;
+    min-width: 100px;
 }
-body
-{
-	background: url( "../../_GlobalResources/Images/bg_conts.jpg" ) repeat-x fixed center top #F5F6F8;
-	margin: 0;
+body {
+    background: url( "../../_GlobalResources/Images/bg_conts.jpg" ) repeat-x fixed center top #F5F6F8;
+    margin: 0;
 }
-.bold
-{
-	font-weight: bold;
+.bold {
+    font-weight: bold;
 }
-.league
-{
-	background: url( "../../_GlobalResources/Images/bg_header03.jpg" ) repeat-x scroll center top #F8F1E9;
-	color: #333333;
-	font-weight: bold;
-	text-align: left;
-	text-transform: uppercase;
+.league {
+    background: url( "../../_GlobalResources/Images/bg_header03.jpg" ) repeat-x scroll center top #F8F1E9;
+    color: #333333;
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
 }
 
-#box_header
-{
-	background: url( "../../_GlobalResources/Images/bg_boxTop.jpg" ) repeat-x scroll center top #E7E7E7;
-	border: 1px solid #CACACA;
-	margin-bottom: 7px;
-	margin-top: 0;
-	padding: 0;
-	-moz-border-radius: 3px; /* Firefox */
-	-webkit-border-radius: 3px; /* Safari and Chrome */
-	border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+#box_header {
+    background: url( "../../_GlobalResources/Images/bg_boxTop.jpg" ) repeat-x scroll center top #E7E7E7;
+    border: 1px solid #CACACA;
+    margin-bottom: 7px;
+    margin-top: 0;
+    padding: 0;
+    -moz-border-radius: 3px; /* Firefox */
+    -webkit-border-radius: 3px; /* Safari and Chrome */
+    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
 }
-.btnInfo
-{
-	background: url( "../../_GlobalResources/Images/icon_add.jpg" ) no-repeat scroll center top transparent;
-	display: block;
-	height: 16px;
-	margin-left: 3px;
-	margin-right: 3px;
-	text-align: center;
-	width: 16px;
+.btnInfo {
+    background: url( "../../_GlobalResources/Images/icon_add.jpg" ) no-repeat scroll center top transparent;
+    display: block;
+    height: 16px;
+    margin-left: 3px;
+    margin-right: 3px;
+    text-align: center;
+    width: 16px;
 }
-select
-{
-	font-size: 8pt;
-	font-weight: normal;
-	height: 19px;
-	line-height: 19px;
+select {
+    font-size: 8pt;
+    font-weight: normal;
+    height: 19px;
+    line-height: 19px;
 }
 
-.nobold
-{
-	font-weight: normal;
+.nobold {
+    font-weight: normal;
 }
-.bg_white
-{
-	background-color: White;
+.bg_white {
+    background-color: White;
 }
-.no_info
-{
-	text-align: center;
-	background-color: #FFFFFF;
-	font-weight: normal;
-	text-align: center;
+.no_info {
+    text-align: center;
+    background-color: #FFFFFF;
+    font-weight: normal;
+    text-align: center;
 }
 
-a.forecast_betlist_link
-{
-	display: block;
-	float: left;
+a.forecast_betlist_link {
+    display: block;
+    float: left;
 }
-a.forecast_toggle_link
-{
-	display: block;
-	float: right;
+a.forecast_toggle_link {
+    display: block;
+    float: right;
 }
 
-table
-{
-	-moz-border-radius: 3px; /* Firefox */
-	-webkit-border-radius: 3px; /* Safari and Chrome */
-	border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+table {
+    -moz-border-radius: 3px; /* Firefox */
+    -webkit-border-radius: 3px; /* Safari and Chrome */
+    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
 }

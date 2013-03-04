@@ -157,6 +157,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\TplCore\PortalPage\PortalPage.htm.cs" />
+    <Content Include="App_Code\TplCore\PortalPage\BalanceInfo.htm.cs" />
     <Compile Include="App_GlobalResources\Bingo.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

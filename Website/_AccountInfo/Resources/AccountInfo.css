@@ -331,7 +331,7 @@ td
 .divStatus
 {
 	float: left;
-	width: 91px;
+	width: 88px;
 	text-align: right;
 }
 .divStatus input[type=checkbox]
@@ -419,6 +419,7 @@ font.positive
 	font-weight: bold;
 	line-height: 18px;
 	width: 190px;
+	display: none;
 }
 #left_tab ul
 {
@@ -917,4 +918,14 @@ input[type=reset]
 .expandable 
 {
     width: 182px !important;    
+}
+
+.title-left-menu {
+    color: #F78F1E;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.hide {
+    display: none !important;
 }

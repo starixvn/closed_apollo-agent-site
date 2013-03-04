@@ -294,11 +294,11 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_GroupStatement_Block: Block
 		{
-			protected static string s55 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s55 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string statementlink = "{statementlink}";
 			protected static string s56 = "\">";
 			protected static string s57{get{return Resources.Lang.lblStatement;}}
-			protected static string s58 = "</a></div>";
+			protected static string s58 = "</a></div>-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
