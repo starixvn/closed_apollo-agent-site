@@ -420,16 +420,9 @@ namespace Sunplus.Agent.Model.BL.Forecast
         /// <returns></returns>
         public DataSet GetScoreMapResult(string matchIds, string bettypes_live, string bettypes_dead)
         {
-            DataSet scoreMapResult = null;
-            int customerId = CurrentSession.CustId;
-            if (CurrentSession.IsAgent)
-            {
-                scoreMapResult = forecastDAO.Age_ScoreMap_Result_Ag(customerId, matchIds, bettypes_live, bettypes_dead);
-            }
-            else
-            {
-                scoreMapResult = new DataSet();
-            }
+            DataSet scoreMapResult = new DataSet();
+
+            scoreMapResult = forecastDAO.Age_ScoreMap_Result(CurrentSession.CustId, matchIds, bettypes_live, bettypes_dead);
 
             return scoreMapResult;
         }

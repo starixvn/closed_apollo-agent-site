@@ -32,22 +32,13 @@ namespace Sunplus.Agent.Model.BL.TotalBets
         /// <returns></returns>
         public DataTable GetTotalGoal()
         {
-            DataTable totalGoal = null;
+            DataTable totalGoal = new DataTable();
 
             // parameter
             int customerID = CurrentSession.CustId;
             string language = CurrentSession.LangKey;
 
-            // execute
-            if (CurrentSession.IsAgent)
-            {
-                totalGoal = totalBetsDAO.Age_TotalBets_6(customerID, language);
-            }
-
-            else
-            {
-                totalGoal = new DataTable();
-            }
+            totalGoal = totalBetsDAO.Age_TotalBets_6(customerID, language);
 
             return totalGoal;
         }
@@ -62,22 +53,14 @@ namespace Sunplus.Agent.Model.BL.TotalBets
         /// <returns></returns>
         public DataTable GetHDPOU()
         {
-            DataTable hpdOU = null;
+            DataTable hpdOU = new DataTable();
 
             // parameter
             int customerID = CurrentSession.CustId;
             string language = CurrentSession.LangKey;
 
             // execute
-            if (CurrentSession.IsAgent)
-            {
-                hpdOU = totalBetsDAO.Age_TotalBets_1_3_7_8(customerID, language);
-            }
-
-            else
-            {
-                hpdOU = new DataTable();
-            }
+            hpdOU = totalBetsDAO.Age_TotalBets_1_3_7_8(customerID, language);
 
             return hpdOU;
         }
@@ -92,21 +75,13 @@ namespace Sunplus.Agent.Model.BL.TotalBets
         /// <returns></returns>
         public DataTable GetMoneyLine()
         {
-            DataTable moneyline = null;
+            DataTable moneyline = new DataTable();
 
             // parameter
             int customerID = CurrentSession.CustId;
             string language = CurrentSession.LangKey;
 
-            // execute
-            if (CurrentSession.IsAgent)
-            {
-                moneyline = totalBetsDAO.Age_TotalBets_20_21(customerID, language);
-            }
-            else
-            {
-                moneyline = new DataTable();
-            }
+            moneyline = totalBetsDAO.Age_TotalBets_20_21(customerID, language);
 
             return moneyline;
         }
@@ -121,22 +96,13 @@ namespace Sunplus.Agent.Model.BL.TotalBets
         /// <returns></returns>
         public DataTable GetOddEventOneXTwo()
         {
-            DataTable oddEventOneXTwo = null;
+            DataTable oddEventOneXTwo = new DataTable();
 
             // parameter
             int customerID = CurrentSession.CustId;
             string language = CurrentSession.LangKey;
 
-            // execute
-            if (CurrentSession.IsAgent)
-            {
-                oddEventOneXTwo = totalBetsDAO.Age_TotalBets_2_5_12_15_123(customerID, language);
-            }
-
-            else
-            {
-                oddEventOneXTwo = new DataTable();
-            }
+            oddEventOneXTwo = totalBetsDAO.Age_TotalBets_2_5_12_15_123(customerID, language);
 
             return oddEventOneXTwo;
         }
@@ -151,21 +117,13 @@ namespace Sunplus.Agent.Model.BL.TotalBets
         /// <returns></returns>
         public DataTable GetOutRight()
         {
-            DataTable outright = null;
+            DataTable outright = new DataTable();
 
             // parameter
             int customerID = CurrentSession.CustId;
             string language = CurrentSession.LangKey;
 
-            // execute
-            if (CurrentSession.IsAgent)
-            {
-                outright = totalBetsDAO.Age_TotalBets_10(customerID, language);
-            }
-            else
-            {
-                outright = new DataTable();
-            }
+            outright = totalBetsDAO.Age_TotalBets_10(customerID, language);
 
             return outright;
         }
@@ -180,23 +138,16 @@ namespace Sunplus.Agent.Model.BL.TotalBets
         /// <returns></returns>
         public DataTable GetHTFT()
         {
-            DataTable asHTFT = null;
+            DataTable HTFT = new DataTable();
 
             // parameter
             int customerID = CurrentSession.CustId;
             string language = CurrentSession.LangKey;
 
             // execute
-            if (CurrentSession.IsAgent)
-            {
-                asHTFT = totalBetsDAO.Age_TotalBets_16(customerID, language);
-            }
-            else
-            {
-                asHTFT = new DataTable();
-            }
+            HTFT = totalBetsDAO.Age_TotalBets_16(customerID, language);
 
-            return asHTFT;
+            return HTFT;
         }
 
         #endregion HTFT
@@ -209,21 +160,14 @@ namespace Sunplus.Agent.Model.BL.TotalBets
         /// <returns></returns>
         public DataTable GetFGLG()
         {
-            DataTable asFGLG = null;
+            DataTable asFGLG = new DataTable();
 
             // parameter
             int customerID = CurrentSession.CustId;
             string language = CurrentSession.LangKey;
 
             // execute
-            if (CurrentSession.IsAgent)
-            {
-                asFGLG = totalBetsDAO.Age_TotalBets_14(customerID, language);
-            }
-            else
-            {
-                asFGLG = new DataTable();
-            }
+            asFGLG = totalBetsDAO.Age_TotalBets_14(customerID, language);
 
             return asFGLG;
         }
@@ -238,22 +182,14 @@ namespace Sunplus.Agent.Model.BL.TotalBets
         /// <returns></returns>
         public DataTable GetHomeDrawAwayNoBet()
         {
-            DataTable homeDrawAwayNoBet = null;
+            DataTable homeDrawAwayNoBet = new DataTable();
 
             // parameter
             int customerID = CurrentSession.CustId;
             string language = CurrentSession.LangKey;
 
             // execute
-            if (CurrentSession.IsAgent)
-            {
-                homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_25_121_122(customerID, language);
-            }
-
-            else
-            {
-                homeDrawAwayNoBet = new DataTable();
-            }
+            homeDrawAwayNoBet = totalBetsDAO.Age_TotalBets_25_121_122(customerID, language);
 
             return homeDrawAwayNoBet;
         }
@@ -379,22 +315,14 @@ namespace Sunplus.Agent.Model.BL.TotalBets
         /// <returns></returns>
         public DataTable GetNumberGame()
         {
-            DataTable numberGame = null;
+            DataTable numberGame = new DataTable();
 
             // parameter
             int customerID = CurrentSession.CustId;
             string language = CurrentSession.LangKey;
 
             // execute
-            if (CurrentSession.IsAgent)
-            {
-                numberGame = totalBetsDAO.Age_TotalBets_161(customerID, language);
-            }
-
-            else
-            {
-                numberGame = new DataTable();
-            }
+            numberGame = totalBetsDAO.Age_TotalBets_161(customerID, language);
 
             return numberGame;
         }

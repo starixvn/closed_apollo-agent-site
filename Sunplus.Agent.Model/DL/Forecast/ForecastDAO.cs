@@ -317,14 +317,14 @@ namespace Sunplus.Agent.Model.DL.Forecast
         /// Get Score Map Result for Agent
         /// </summary>
         /// <returns></returns>
-        public DataSet Age_ScoreMap_Result_Ag(int customerId, string matchIds, string bettypes_live, string bettypes_dead)
+        public DataSet Age_ScoreMap_Result(int customerId, string matchIds, string bettypes_live, string bettypes_dead)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("agentid", customerId);
             parameters.Add("matchids", matchIds);
             parameters.Add("bettypes_live", bettypes_live);
             parameters.Add("bettypes_dead", bettypes_dead);
-            return ExecSpDataset("Age_ScoreMap_Result_Ag", parameters);
+            return ExecSpDataset("Age_ScoreMap_Result", parameters);
         }
 
         #endregion For Score Map
