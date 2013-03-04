@@ -16,6 +16,7 @@ namespace Sunplus.Agent.Model.DL.Forecast
         }
 
         #region TopOddsByMatch
+
         /// <summary>
         /// Get the most odds of match
         /// </summary>
@@ -31,9 +32,11 @@ namespace Sunplus.Agent.Model.DL.Forecast
             parameters.Add("language", langKey);
             return ExecSpTable("Age_Forecast_OddsSelTopByMatch", parameters);
         }
-        #endregion
+
+        #endregion TopOddsByMatch
 
         #region Handicap
+
         /// <summary>
         /// Forecast for handicap
         /// </summary>
@@ -51,9 +54,11 @@ namespace Sunplus.Agent.Model.DL.Forecast
             parameters.Add("bettype", betType);
             return ExecSpTable("Age_Forecast_SelHDP", parameters);
         }
-        #endregion
+
+        #endregion Handicap
 
         #region OverUnder
+
         /// <summary>
         /// Forecast for Over under
         /// </summary>
@@ -71,9 +76,11 @@ namespace Sunplus.Agent.Model.DL.Forecast
             parameters.Add("bettype", betType);
             return ExecSpTable("Age_Forecast_SelOU", parameters);
         }
-        #endregion
+
+        #endregion OverUnder
 
         #region NextGoal
+
         /// <summary>
         /// Forecast for next goal
         /// </summary>
@@ -89,9 +96,11 @@ namespace Sunplus.Agent.Model.DL.Forecast
             parameters.Add("roleid", roleId);
             return ExecSpTable("Age_Forecast_Sel22", parameters);
         }
-        #endregion
+
+        #endregion NextGoal
 
         #region Running League
+
         /// <summary>
         /// Get running league for agent
         /// </summary>
@@ -133,9 +142,11 @@ namespace Sunplus.Agent.Model.DL.Forecast
             parameters.Add("bettypes", betType);
             return ExecSpTable("Age_LeagueSelRunning_SAg", parameters);
         }
-        #endregion
+
+        #endregion Running League
 
         #region League
+
         /// <summary>
         /// Forecast league for agent
         /// </summary>
@@ -198,9 +209,11 @@ namespace Sunplus.Agent.Model.DL.Forecast
 
             return ExecSpTable("Age_Forecast_SelByLeague_SAg", parameters);
         }
-        #endregion
+
+        #endregion League
 
         #region 1x2ByLeague
+
         /// <summary>
         /// Forecast 1X2 league for agent
         /// </summary>
@@ -242,9 +255,11 @@ namespace Sunplus.Agent.Model.DL.Forecast
             parameters.Add("custid", superId);
             return ExecSpTable("Age_Forecast1x2_SelByLeague_SAg", parameters);
         }
-        #endregion
+
+        #endregion 1x2ByLeague
 
         #region 1X2ByMatch
+
         /// <summary>
         /// Forecast 1X2 by match.
         /// </summary>
@@ -262,9 +277,10 @@ namespace Sunplus.Agent.Model.DL.Forecast
             return ExecSpTable("Age_Forecast_Sel1X2", parameters);
         }
 
-        #endregion
+        #endregion 1X2ByMatch
 
-        #region For Score Map        
+        #region For Score Map
+
         /// <summary>
         /// Get Score Map League
         /// </summary>
@@ -304,40 +320,13 @@ namespace Sunplus.Agent.Model.DL.Forecast
         public DataSet Age_ScoreMap_Result_Ag(int customerId, string matchIds, string bettypes_live, string bettypes_dead)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("recommend", customerId);
+            parameters.Add("agentid", customerId);
             parameters.Add("matchids", matchIds);
             parameters.Add("bettypes_live", bettypes_live);
             parameters.Add("bettypes_dead", bettypes_dead);
             return ExecSpDataset("Age_ScoreMap_Result_Ag", parameters);
         }
 
-        /// <summary>
-        /// Get Score Map Result for Master
-        /// </summary>
-        /// <returns></returns>
-        public DataSet Age_ScoreMap_Result_MAg(int customerId, string matchIds, string bettypes_live, string bettypes_dead)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("mrecommend", customerId);
-            parameters.Add("matchids", matchIds);
-            parameters.Add("bettypes_live", bettypes_live);
-            parameters.Add("bettypes_dead", bettypes_dead);
-            return ExecSpDataset("Age_ScoreMap_Result_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Get Score Map Result for Supper
-        /// </summary>
-        /// <returns></returns>
-        public DataSet Age_ScoreMap_Result_SAg(int customerId, string matchIds, string bettypes_live, string bettypes_dead)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("srecommend", customerId);
-            parameters.Add("matchids", matchIds);
-            parameters.Add("bettypes_live", bettypes_live);
-            parameters.Add("bettypes_dead", bettypes_dead);
-            return ExecSpDataset("Age_ScoreMap_Result_SAg", parameters);
-        }
-        #endregion
+        #endregion For Score Map
     }
 }
