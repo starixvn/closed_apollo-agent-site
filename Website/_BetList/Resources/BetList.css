@@ -103,20 +103,20 @@ div.match + div.league {
     font-weight: normal;
     color: #FAFDEB;
     /*background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969;*/
-    background: #323435;
+    background: #3D3C3E;
     padding: 2px 2px;
     border-left: solid 1px #fff;
     text-align: center;
-    border-top: 1px solid #323435;
+    border-top: 1px solid #3D3C3E;
 }
 #hor-minimalist-a th:first-child {
-    border-left: 1px solid #323435;
+    border-left: 1px solid #3D3C3E;
 }
 #hor-minimalist-a td {
     color: #000;
     vertical-align: top;
     padding: 2px 2px 0px 2px;
-    border-left: solid 1px #323435;
+    border-left: solid 1px #3D3C3E;
     text-align: right;
 }
 #hor-minimalist-a td:first-child {
@@ -283,6 +283,7 @@ a {
     text-transform: uppercase;
     background: url(../../_GlobalResources/Images/bg_header01.jpg) no-repeat scroll left bottom;
     line-height: 28px;
+    margin-bottom: 10px;
 }
 .hand_result {
     color: #1BA4ED;

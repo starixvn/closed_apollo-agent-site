@@ -183,7 +183,7 @@ select {
 
 .divHeader {
     background: transparent url(../Images/bg_header01.jpg) no-repeat scroll left bottom;
-    color: #9D1C1C;
+    color: #4B483C;
     font-weight: 700;
     height: 22px;
     line-height: 18px;
@@ -193,7 +193,7 @@ select {
 }
 
 .tblRpt {
-    background-color: #323435;
+    background-color: #3D3C3E;
     margin-top: 10px;    
 }
 
@@ -211,7 +211,7 @@ select {
 
 .RptHeader {
     /*background: #6A6969 url(../Images/bg_header02.jpg) repeat-x scroll center top;*/
-    background: #323435;
+    background: #3D3C3E;
     color: #FAFDEB;
     font-size: 12px !important;
     font-weight: 400 !important;
@@ -350,7 +350,7 @@ select {
     min-width: 650px;
     padding-left: 15px;
     text-transform: uppercase;
-    width: 97%;
+    width: 97%;    
 }
 
 .positive {
@@ -637,4 +637,7 @@ button[disabled]:active, button[disabled], input[type="reset"][disabled]:active,
     filter: alpha(opacity=60); /* For IE8 and earlier */
     color: #000;
     cursor: pointer;
+}
+.hide {
+    display: none;
 }

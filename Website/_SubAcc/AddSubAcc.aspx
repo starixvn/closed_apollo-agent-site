@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="AddSubAcc.aspx.cs" Inherits="Sunplus.Agent.UI._SubAcc.AddSubAcc_Page" %>

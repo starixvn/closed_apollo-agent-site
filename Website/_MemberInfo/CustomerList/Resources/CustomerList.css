@@ -102,13 +102,14 @@ body
 #title_header
 {
 	background: url( "Images/title.jpg" ) no-repeat scroll left bottom transparent;
-	color: #9D1C1C;
+	color: #4B483C;
 	font-weight: bold;
 	height: 22px;
 	line-height: 18px;
 	min-width: 650px;
 	padding-left: 15px;
 	text-transform: uppercase;
+	margin-bottom: 7px;
 }
 
 #tblHeader

@@ -10,7 +10,7 @@
 <div id="page_main">
 <div class="divHeader">
     {static:Resources.Lang.subaccount} &nbsp;
-    <input type="button" onclick="AddSubAccPopup();" value="{static:Resources.Lang.addsubaccount}" class="btn" />
+    <input type="button" onclick="AddSubAccPopup();" value="{static:Resources.Lang.addsubaccount}" class="btn hide" />
 </div>
 <div style="width: 1050px">
 
@@ -31,9 +31,9 @@
         <td width="70">{static:Resources.Lang.reports}</td>
         <td width="70">{static:Resources.Lang.transfer}</td>
         <td width="70">{static:Resources.Lang.viewlog}</td>
-
+        <!--
         <td>{static:Resources.Lang.edit}</td>
-        <td>{static:Resources.Lang.password}</td>
+        <td>{static:Resources.Lang.password}</td>-->
     </tr>
     <!--/Header-->
     <!--Content-->
@@ -51,13 +51,13 @@
         <td><input type="checkbox" onclick="UpdatePageAccess({id_value});" {chkValueE} id="chk{id_value}[E]"/></td>        
         <td><input type="checkbox" onclick="UpdatePageAccess({id_value});" {chkValueC} id="chk{id_value}[C]"/></td>
         <td><input type="checkbox" onclick="UpdatePageAccess({id_value});" {chkValueG} id="chk{id_value}[G]"/></td>
-        
+        <!--
         <td align="center">
             <input type="button" class="editBtn" onclick="EditSubAccPopup({id_value}, '{username_value}');" title="{static:Resources.Lang.edit}"/>
         </td>
         <td>
             <input type="button" class="editBtn" onclick="ResetSubAccPwdPopup({id_value},'{username_value}');" title="{static:Resources.Lang.edit}"/>
-        </td>
+        </td>-->
     </tr>
     <!--/Content-->
     <!--NoInfo-->
