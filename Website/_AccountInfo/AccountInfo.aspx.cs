@@ -319,6 +319,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             if ((CurrentUserSession.RoleId - int.Parse(this.dtrCustomerInfo["roleid"].ToString())) == 1)
             {
                 string nickName = this.dtrCustomerInfo["username2"].ToString();
+                /*
                 if (string.IsNullOrEmpty(nickName))
                 {
                     tpl.CustInfo.blCustomerNickname = null;
@@ -327,12 +328,13 @@ namespace Sunplus.Agent.UI._AccountInfo
                 {
                     tpl.CustInfo.blCustomerNickname.CustomerNickname = Formater.TruncateWithTip(nickName, MAXLENGTH);
                 }
+                 * */
             }
             else
             {
-                tpl.CustInfo.blCustomerNickname = null;
+                //tpl.CustInfo.blCustomerNickname = null;
             }
-
+            /*
             if (string.IsNullOrEmpty(fullName.Trim()))
             {
                 tpl.CustInfo.blCustomerFullName = null;
@@ -350,7 +352,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             {
                 tpl.CustInfo.blCustomerPhone.CustomerPhone = Formater.TruncateWithTip(phone, MAXLENGTH);
             }
-
+            
             if (string.IsNullOrEmpty(mobilephone))
             {
                 tpl.CustInfo.blCustomerMobile = null;
@@ -368,22 +370,30 @@ namespace Sunplus.Agent.UI._AccountInfo
             {
                 tpl.CustInfo.blCustomerFax.CustomerFax = Formater.TruncateWithTip(fax, MAXLENGTH);
             }
-
+            */
             #endregion Set Basic Information: Name, Phone, mobile, Fax
 
             switch (this.custRoleId)
             {
                 case (int)UserTypes.Member:
                     tpl.CustInfo.lblCustomerUsername = Resources.Lang.customer;
+                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
+                    tpl.CustInfo.lblAgent = Resources.Lang.lblAgent;
                     break;
                 case (int)UserTypes.Agent:
                     tpl.CustInfo.lblCustomerUsername = Resources.Lang.agent;
+                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
+                    tpl.CustInfo.lblAgent = Resources.Lang.lblAgent;
                     break;
                 case (int)UserTypes.Master:
                     tpl.CustInfo.lblCustomerUsername = Resources.Lang.master;
+                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
+                    tpl.CustInfo.lblAgent = Resources.Lang.lblAgent;
                     break;
                 case (int)UserTypes.Super:
                     tpl.CustInfo.lblCustomerUsername = Resources.Lang.super;
+                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
+                    tpl.CustInfo.lblAgent = Resources.Lang.lblAgent;
                     break;
             }
 

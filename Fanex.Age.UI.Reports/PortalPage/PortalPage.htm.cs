@@ -5,19 +5,18 @@ using System.Text;
 using TplCore;
 using TplCore.Element;
 #pragma warning disable
-namespace Fanex.Age.UI.Reports
+namespace Sunplus.Agent.UI
 {
 	using PortalPage;
 	namespace PortalPage
 	{
-
 		public class PortalPage_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title></title><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("PortalPage/Resources/PortalPage.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"Stylesheet\" type=\"text/css\" /></head><body><div><table class=\"tblMain\" cellspacing=\"0\"><tr><td valign=\"top\" style=\"width: 50%\"><div id=\"balanceInfo\" class=\"padding-right\"></div></td><td valign=\"top\" style=\"width: 50%\"><div id=\"statistic\" class=\"padding-right\"></div></td></tr>";
+			protected static string s4 = "\" rel=\"Stylesheet\" type=\"text/css\" /></head><body><div><table class=\"tblMain\" cellspacing=\"0\"><tr class=\"hide\"><td valign=\"top\" style=\"width: 50%\"><div id=\"balanceInfo\" class=\"padding-right\"></div></td><td valign=\"top\" style=\"width: 50%\"><div id=\"statistic\" class=\"padding-right\"></div></td></tr>";
 			public PortalPage_OnlineList_Block OnlineList = new PortalPage_OnlineList_Block();
 			protected static string s5 = "<tr><td colspan=\"2\" valign=\"top\"><div id=\"announcement\" class=\"padding-top-right\"></div></td></tr></table></div><script src=\"";
 			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}

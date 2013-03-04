@@ -10,7 +10,11 @@
         <div class="Bleft_Sub02">
             <form name="frmAgent" id="frmAgent" method="get" action="" target="menu" style="float:left;">   
                 <div id="from_tab">                            
-                    <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" style="width: 145px;" class="{classStyle}" name="txtUsername" />
+                    <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" style="width: 72px;" class="{classStyle}" name="txtUsername" />
+                    <select class="search-option">
+                        <option value="0">Agent</option>
+                        <option value="0">Player</option>
+                    </select>
                 </div>
                 <div id="b_serachL">
                     <a id="lnkSearch" class="imaLink" href="#" onclick="javascript:checkAndSubmitUI();">
@@ -42,61 +46,70 @@
                 <tbody>
                     <tr>
                         <td>
-                            {lblCustomerUsername}:
+                            <!--{lblCustomerUsername}:-->
+                            {lblUsername}:
                         </td>
                         <td align="right" class="text_org">
                             {CustomerUsername}
                         </td>
                     </tr>
-                    <!--blCustomerNickname-->
                     <tr>
+                        <td>
+                            {lblAgent}:
+                        </td>
+                        <td align="right" class="text_org">
+                            
+                        </td>
+                    </tr>
+                    <!--blCustomerNickname-->
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.nickname}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerNickname}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerNickname-->
                     <!--blCustomerFullName-->
-                    <tr>
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.name}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerFullName}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerFullName-->
                     <!--blCustomerPhone-->
-                    <tr>
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.lblPhone}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerPhone}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerPhone-->
                     <!--blCustomerMobile-->
-                    <tr>
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.lblMobilePhone}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerMobile}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerMobile-->
                     <!--blCustomerFax-->
-                    <tr>
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.lblFax}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerFax}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerFax-->
                 </tbody>
             </table>

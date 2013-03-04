@@ -135,9 +135,10 @@
     font-weight: bold;
     padding-left: 15px;
     text-transform: uppercase;
+    width: 200px;
 }
 .b_msg0 {
     float: left;
-    width: 120px;
+    width: 200px;
     margin-top: 6px;
 }

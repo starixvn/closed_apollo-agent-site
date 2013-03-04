@@ -242,9 +242,9 @@ td
 }
 #left_line02
 {
-	background: url(../../_GlobalResources/Images/line_left.jpg) no-repeat top left;
-	width: 190px;
-	height: 7px;
+    background: #B2B2B2;
+	width: 188px;
+	height: 1px;
 }
 #clear0
 {
@@ -278,7 +278,7 @@ td
 	float: left;
 	height: 18px;
 	margin-bottom: 10px;
-	width: 145px;
+	width: 142px;
 }
 #b_serachL
 {
@@ -305,8 +305,9 @@ td
 .line_info
 {
 	background: transparent url(../../_GlobalResources/Images/img_lineinfo.jpg) no-repeat scroll center top;
-	height: 9px;
-	width: 177px;
+	height: 1px;
+	width: 172px;
+	margin-top: 2px;
 }
 .line_table
 {
@@ -322,28 +323,28 @@ td
 	border-left: 1px solid #B2B2B2;
 	border-right: 1px solid #B2B2B2;
 	margin-bottom: 1px;
-	padding: 0 0 0 5px;
-	width: 185px;
-	-moz-border-radius: 0px 4px 4px 4px; /* Firefox */
-	-webkit-border-radius: 0px 4px 4px 4px; /* Safari and Chrome */
-	border-radius: 0px 4px 4px 4px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	padding: 5px;
+	width: 176px;	
 }
 .divStatus
 {
-	float: left;
+	/*float: left;*/
 	width: 88px;
-	text-align: right;
+	text-align: left;
 }
 .divStatus input[type=checkbox]
 {
 	width: 12px;
 	height: 12px;
-	margin: 0px 0px 0px 2px;
+	margin: 0px 5px 0px 2px;
 	padding: 0;
+}
+.divStatus * {
+    vertical-align: middle;
 }
 .divLinkSetting
 {
-	float: left;
+	/*float: left;*/
 	width: 91px;
 	text-align: left;
 }
@@ -926,6 +927,11 @@ input[type=reset]
     font-weight: bold;
     text-decoration: none;
 }
+
 .hide {
     display: none !important;
+}
+
+.search-option {
+    margin-left: 2px;
 }
