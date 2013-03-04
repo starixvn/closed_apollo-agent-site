@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Web;
-using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.Forecast;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-
-using Sunplus.Agent.Utilities;
 using System.Text;
-
+using System.Web.UI;
+using Sunplus.Agent.Model.BL.Forecast;
+using Sunplus.Agent.Utilities;
 
 /*
  * Created 20100529@Jacob - Render FCHDPOU page
@@ -45,7 +35,7 @@ namespace Fanex.Age.UI.Forecast
         /// <param name="writer"></param>
         public override void RenderContent(HtmlTextWriter writer)
         {
-            DataTable fcData = (View as Dictionary<String, DataTable>)[FC_DATA];
+            DataTable fcData = (View as Dictionary<string, DataTable>)[FC_DATA];
             FCHDPOU_Template tpl = new FCHDPOU_Template();
 
             // Header name
@@ -59,7 +49,7 @@ namespace Fanex.Age.UI.Forecast
                 {
                     DataRow dr = fcData.Rows[i];
 
-                    block.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : String.Empty);
+                    block.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : string.Empty);
                     block.Away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
 
                     int liveHomeScore = Convert.ToInt32(dr["livehomescore"]);
@@ -76,6 +66,7 @@ namespace Fanex.Age.UI.Forecast
                     {
                         block.Time = dr["showtime"].ToString();
                     }
+
                     block.MatchId = dr["matchid"].ToString();
                     //2nd
                     block.OffsetHDPMinus1 = (offsetHDP - 1).ToString();
@@ -101,10 +92,18 @@ namespace Fanex.Age.UI.Forecast
 
                     tpl.Content.RowContent.Append(block);
                 }
+
                 tpl.Content.NotFoundContent.Hide();
             }
-            if (_fullMode) writer.Write(tpl);
-            else writer.Write(tpl.Content);
+
+            if (_fullMode)
+            {
+                writer.Write(tpl);
+            }
+            else
+            {
+                writer.Write(tpl.Content);
+            }
         }
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
@@ -112,7 +111,7 @@ namespace Fanex.Age.UI.Forecast
             p.AddHttpParameters(new string[] { 
                 "leagueid",
             }, Request);
-            _fullMode = String.IsNullOrEmpty(Request["full_mode"]) ? true : Convert.ToInt32(Request["full_mode"]) > 0;
+            _fullMode = string.IsNullOrEmpty(Request["full_mode"]) ? true : Convert.ToInt32(Request["full_mode"]) > 0;
             _leagueId = Convert.ToInt32(p["leagueid"]);
 
         }
@@ -124,18 +123,19 @@ namespace Fanex.Age.UI.Forecast
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            Dictionary<String, DataTable> view = new Dictionary<string, DataTable>();
+            Dictionary<string, DataTable> view = new Dictionary<string, DataTable>();
             ForecastBO bo = new ForecastBO(CurrentUserSession.NetSessionId);
 
             DataTable fcData = null;
             DataTable runningLeagues = null;
             // Get default leagueid
 
-            runningLeagues = bo.GetFCRunningLeagues(1); //1: for Hdp/OU/Live
+            runningLeagues = bo.GetFCRunningLeagues(1); // 1: for Hdp/OU/Live
             if (_leagueId == 0 && runningLeagues.Rows.Count > 0)
             {
                 _leagueId = Convert.ToInt32(runningLeagues.Rows[0]["leagueid"]);
             }
+
             if (_leagueId > 0)
             {
                 fcData = bo.GetFCByLeague(_leagueId);
@@ -156,14 +156,18 @@ namespace Fanex.Age.UI.Forecast
         private string RedForPositiveAmount(object amount, byte decDigits)
         {
             if ((decimal)amount > 0)
+            {
                 return "<font color='red'>" + Formater.DecFormat(amount, decDigits) + "</font>";
+            }
             else
+            {
                 return Formater.DecFormat(amount, decDigits);
+            }
         }
 
         private void RenderLeagueList(FCHDPOU_Content_Block content)
         {
-            DataTable leagues = (View as Dictionary<String, DataTable>)[RUNNING_LEAGUES];
+            DataTable leagues = (View as Dictionary<string, DataTable>)[RUNNING_LEAGUES];
 
             if (leagues != null && leagues.Rows.Count > 0)
             {
@@ -171,16 +175,17 @@ namespace Fanex.Age.UI.Forecast
                 foreach (DataRow dr in leagues.Rows)
                 {
                     int leagueId = Convert.ToInt32(dr["leagueid"]);
-                    String leagueName = Sunplus.Agent.Model.BL.Cache.CacheRef.GetLeagueName(dr["leagueid"]);
+                    string leagueName = Sunplus.Agent.Model.BL.Cache.CacheRef.GetLeagueName(dr["leagueid"]);
                     if (leagueId == _leagueId)
                     {
-                        sb.Append(String.Format("<option value='{0}' selected>{1}</option>", leagueId, leagueName));
+                        sb.Append(string.Format("<option value='{0}' selected>{1}</option>", leagueId, leagueName));
                     }
                     else
                     {
-                        sb.Append(String.Format("<option value='{0}'>{1}</option>", leagueId, leagueName));
+                        sb.Append(string.Format("<option value='{0}'>{1}</option>", leagueId, leagueName));
                     }
                 }
+
                 content.LimitLeagueList.LeagueList = sb.ToString();
             }
             else

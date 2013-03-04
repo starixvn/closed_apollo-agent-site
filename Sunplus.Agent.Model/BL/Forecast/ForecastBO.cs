@@ -36,8 +36,7 @@ namespace Sunplus.Agent.Model.BL.Forecast
         /// <returns></returns>
         public DataTable GetFCTopOddsByMatch(int matchId, int betType)
         {
-            string language = CurrentSession.LangKey;
-            return forecastDAO.Age_Forecast_OddsSelTopByMatch(matchId, betType, language);
+            return forecastDAO.Age_Forecast_OddsGetTopByMatch(matchId, betType);
         }
         #endregion
 
@@ -52,9 +51,8 @@ namespace Sunplus.Agent.Model.BL.Forecast
         {
             // parameter
             int customerId = CurrentSession.CustId;
-            int roleId = CurrentSession.RoleId;
             //// execute
-            return forecastDAO.Age_Forecast_SelHDP(matchId, customerId, roleId, betType);
+            return forecastDAO.Age_Forecast_1_7_GetByMatch(matchId, customerId, betType);
         }
         #endregion
 
@@ -71,7 +69,7 @@ namespace Sunplus.Agent.Model.BL.Forecast
             int customerId = CurrentSession.CustId;
             int roleId = CurrentSession.RoleId;
             //// execute
-            return forecastDAO.Age_Forecast_SelOU(matchId, customerId, roleId, betType);
+            return forecastDAO.Age_Forecast_3_8_GetByMatch(matchId, customerId, betType);
         }
         #endregion
 
@@ -104,22 +102,7 @@ namespace Sunplus.Agent.Model.BL.Forecast
             int customerId = CurrentSession.CustId;
 
             //// execute
-            if (CurrentSession.IsAgent)
-            {
-                runningLeagues = forecastDAO.Age_LeagueSelRunning_Ag(customerId, betType);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                runningLeagues = forecastDAO.Age_LeagueSelRunning_MAg(customerId, betType);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                runningLeagues = forecastDAO.Age_LeagueSelRunning_SAg(customerId, betType);
-            }
-            else
-            {
-                runningLeagues = new DataTable();
-            }
+            runningLeagues = forecastDAO.Age_League_GetRunning(customerId, betType);
 
             return runningLeagues;
         }
@@ -136,24 +119,8 @@ namespace Sunplus.Agent.Model.BL.Forecast
             DataTable leagues = null;
             //// parameter
             int customerId = CurrentSession.CustId;
-            string language = CurrentSession.LangKey;
             //// execute
-            if (CurrentSession.IsAgent)
-            {
-                leagues = forecastDAO.Age_Forecast_SelByLeague_Ag(leagueId, customerId, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                leagues = forecastDAO.Age_Forecast_SelByLeague_MAg(leagueId, customerId, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                leagues = forecastDAO.Age_Forecast_SelByLeague_SAg(leagueId, customerId, language);
-            }
-            else
-            {
-                leagues = new DataTable();
-            }
+            leagues = forecastDAO.Age_Forecast_1_3_7_8_GetByLeague(leagueId, customerId);
 
             return leagues;
         }
@@ -173,23 +140,7 @@ namespace Sunplus.Agent.Model.BL.Forecast
             int customerId = CurrentSession.CustId;
 
             // execute
-            if (CurrentSession.IsAgent)
-            {
-                leagues = forecastDAO.Age_Forecast1x2_SelByLeague_Ag(leagueId, customerId);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                leagues = forecastDAO.Age_Forecast1x2_SelByLeague_MAg(leagueId, customerId);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                leagues = forecastDAO.Age_Forecast1x2_SelByLeague_SAg(leagueId, customerId);
-            }
-            else
-            {
-                leagues = new DataTable();
-            }
-
+            leagues = forecastDAO.Age_Forecast_5_15_GetByLeague(leagueId, customerId);
             return leagues;
         }
         
@@ -208,10 +159,9 @@ namespace Sunplus.Agent.Model.BL.Forecast
 
             // parameter
             int customerId = CurrentSession.CustId;
-            int roleId = CurrentSession.RoleId;
 
             // execute
-            matches = forecastDAO.Age_Forecast_Sel1X2(matchId, customerId, roleId, betType);
+            matches = forecastDAO.Age_Forecast_5_15_GetByMatch(matchId, customerId, betType);
 
             return matches;
         }

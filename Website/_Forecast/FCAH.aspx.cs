@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Web;
-using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.Forecast;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-using Sunplus.Agent.Utilities;
 using System.Collections;
-
+using System.Data;
+using System.Web.UI;
+using Sunplus.Agent.Model.BL.Forecast;
+using Sunplus.Agent.Utilities;
 
 /*
  * Created 20100529@Jacob - Render FCAH page
@@ -56,10 +46,13 @@ namespace Fanex.Age.UI.Forecast
                 "score"
             }, Request);
             _currentScore = p["score"] == null ? 0 : Convert.ToInt32(p["score"]);
-            _fullMode = String.IsNullOrEmpty(Request["full_mode"]) ? true : Convert.ToInt32(Request["full_mode"]) > 0;
+            _fullMode = string.IsNullOrEmpty(Request["full_mode"]) ? true : Convert.ToInt32(Request["full_mode"]) > 0;
             _matchId = Convert.ToInt32(p["matchid"]);
             _betType = Convert.ToInt32(p["b"]);
-            if (_betType == 0) _betType = 1;
+            if (_betType == 0)
+            {
+                _betType = 1;
+            }
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
@@ -127,6 +120,7 @@ namespace Fanex.Age.UI.Forecast
             {
                 forecast += ((decimal)dr["hl"]);
             }
+
             return forecast;
         }
         /// <summary>
@@ -156,6 +150,7 @@ namespace Fanex.Age.UI.Forecast
             {
                 forecast += ((decimal)dr["hl"]);
             }
+
             return forecast;
         }
         /// <summary>
@@ -178,6 +173,7 @@ namespace Fanex.Age.UI.Forecast
                 FCValue3 = GetFCHDValue(dr, _currentScore, 1, FCValue3);
                 FCValue4 = GetFCHDValue(dr, _currentScore, 2, FCValue4);
             }
+
             return dtData.Rows.Count > 0 ? true : false;
         }
         /// <summary>
@@ -200,6 +196,7 @@ namespace Fanex.Age.UI.Forecast
                 FCValue3 = GetFCOUValue(dr, _currentScore, 3, FCValue3);
                 FCValue4 = GetFCOUValue(dr, _currentScore, 4, FCValue4);
             }
+
             return dtData.Rows.Count > 0 ? true : false;
         }
 
@@ -222,7 +219,7 @@ namespace Fanex.Age.UI.Forecast
                 DataRow dr = topodds.Rows[0];
                 int liveHomeScore = Convert.ToInt16(dr["livehomescore"]);
                 int liveAwayScore = Convert.ToInt16(dr["liveawayscore"]);
-                string home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : String.Empty);
+                string home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : string.Empty);
                 string away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
 
                 FCAH_Content_ForecastContent_Block forecastContent = tpl.Content.ForecastContent;
@@ -251,8 +248,15 @@ namespace Fanex.Age.UI.Forecast
             {
                 tpl.Content.ForecastContent.Hide();
             }
-            if (_fullMode) writer.Write(tpl);
-            else writer.Write(tpl.Content);
+
+            if (_fullMode)
+            {
+                writer.Write(tpl);
+            }
+            else
+            {
+                writer.Write(tpl.Content);
+            }
         }
 
         /// <summary>
@@ -396,9 +400,13 @@ namespace Fanex.Age.UI.Forecast
         private string RedForPositiveAmount(object amount, byte decDigits)
         {
             if ((decimal)amount > 0)
+            {
                 return "<font color='red'>" + Formater.DecFormat(Math.Round((decimal)amount), decDigits) + "</font>";
+            }
             else
+            {
                 return Formater.DecFormat(Math.Round((decimal)amount), decDigits);
+            }
 
         }
         /// <summary>
@@ -407,10 +415,10 @@ namespace Fanex.Age.UI.Forecast
         /// <param name="index"></param>
         /// <param name="selectedIndex"></param>
         /// <returns></returns>
-        private String BoldSelectedScore(int index, int selectedIndex)
+        private string BoldSelectedScore(int index, int selectedIndex)
         {
-            const String boldSpan = "<span style='text-decoration:none;color:#FF0000;font-weight:bold;'>{0}</span>";
-            return index == selectedIndex ? String.Format(boldSpan, index) : index.ToString();
+            const string boldSpan = "<span style='text-decoration:none;color:#FF0000;font-weight:bold;'>{0}</span>";
+            return index == selectedIndex ? string.Format(boldSpan, index) : index.ToString();
         }
         #endregion
         #endregion
