@@ -307,19 +307,20 @@ namespace Sunplus.Agent.UI._AccountInfo
             #region Set Basic Information: Name, Phone, mobile, Fax
 
             string userName = this.dtrCustomerInfo["username"].ToString();
+            /*
             string fullName = this.dtrCustomerInfo["firstname"].ToString() + " " + this.dtrCustomerInfo["lastname"].ToString();
             string phone = this.dtrCustomerInfo["phone"].ToString();
             string mobilephone = this.dtrCustomerInfo["mobilephone"].ToString();
             string fax = this.dtrCustomerInfo["fax"].ToString();
-
+            */
             tpl.classStyle = "text_f";
             tpl.usernamesearch = this.userNameRequest;
             tpl.CustInfo.CustomerUsername = this.FormatUsername(userName, Convert.ToBoolean(this.dtrCustomerInfo["enabled"]), true); //if string exceed this MaxLength, it will be truncated with tooltip!
-
+             /*
             if ((CurrentUserSession.RoleId - int.Parse(this.dtrCustomerInfo["roleid"].ToString())) == 1)
             {
                 string nickName = this.dtrCustomerInfo["username2"].ToString();
-                /*
+               
                 if (string.IsNullOrEmpty(nickName))
                 {
                     tpl.CustInfo.blCustomerNickname = null;
@@ -328,13 +329,13 @@ namespace Sunplus.Agent.UI._AccountInfo
                 {
                     tpl.CustInfo.blCustomerNickname.CustomerNickname = Formater.TruncateWithTip(nickName, MAXLENGTH);
                 }
-                 * */
+                 
             }
             else
             {
-                //tpl.CustInfo.blCustomerNickname = null;
+                tpl.CustInfo.blCustomerNickname = null;
             }
-            /*
+           
             if (string.IsNullOrEmpty(fullName.Trim()))
             {
                 tpl.CustInfo.blCustomerFullName = null;
@@ -376,24 +377,20 @@ namespace Sunplus.Agent.UI._AccountInfo
             switch (this.custRoleId)
             {
                 case (int)UserTypes.Member:
-                    tpl.CustInfo.lblCustomerUsername = Resources.Lang.customer;
-                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
-                    tpl.CustInfo.lblAgent = Resources.Lang.lblAgent;
+                    //tpl.CustInfo.lblCustomerUsername = Resources.Lang.customer;
+                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;                    
                     break;
                 case (int)UserTypes.Agent:
-                    tpl.CustInfo.lblCustomerUsername = Resources.Lang.agent;
+                    //tpl.CustInfo.lblCustomerUsername = Resources.Lang.agent;
                     tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
-                    tpl.CustInfo.lblAgent = Resources.Lang.lblAgent;
                     break;
                 case (int)UserTypes.Master:
-                    tpl.CustInfo.lblCustomerUsername = Resources.Lang.master;
-                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
-                    tpl.CustInfo.lblAgent = Resources.Lang.lblAgent;
+                    //tpl.CustInfo.lblCustomerUsername = Resources.Lang.master;
+                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;                   
                     break;
                 case (int)UserTypes.Super:
-                    tpl.CustInfo.lblCustomerUsername = Resources.Lang.super;
+                    //tpl.CustInfo.lblCustomerUsername = Resources.Lang.super;
                     tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
-                    tpl.CustInfo.lblAgent = Resources.Lang.lblAgent;
                     break;
             }
 
@@ -405,7 +402,7 @@ namespace Sunplus.Agent.UI._AccountInfo
                                    string.Format("../_Reports/Common/Statement.aspx")
                                  };
 
-            string[] roleName = { Resources.Lang.lblBetLists, Resources.Lang.memberList, Resources.Lang.agentList, Resources.Lang.masterlist };
+            string[] roleName = { Resources.Lang.lblBetLists, Resources.Lang.memberList, Resources.Lang.agentList, Resources.Lang.masterlist, Resources.Lang.lblPlayerList };
 
             string[] customerListLink = { string.Format("../_Reports/BetList/OutstandingDetail.aspx?username={0}&option=4&custid={1}&chk_all=on&chk_ShowSB=on&chk_ShowCasino=on&chk_ShowRB=on&chk_showng=on&chk_ShowBI=on", userName, this.custId),
                               string.Format("../_MemberInfo/CustomerList/Super/MemberList.aspx?custid={0}", this.custId),
@@ -417,7 +414,7 @@ namespace Sunplus.Agent.UI._AccountInfo
                             };
 
             #region Group Customer List
-
+            /*
             if (CurrentUserSession.SubPageAccess.ViewMemberInfo)
             {
                 tpl.GroupCustomerList.memberlist = roleName[this.custRoleId - 1];
@@ -446,7 +443,36 @@ namespace Sunplus.Agent.UI._AccountInfo
             {
                 tpl.GroupCustomerList.Hide();
             }
+            */
+            if (CurrentUserSession.SubPageAccess.ViewMemberInfo)
+            {
+                tpl.CustInfo.memberlist = roleName[this.custRoleId - 1];
+                tpl.CustInfo.lblPlayerList = roleName[4];
 
+                if (roleName[this.custRoleId - 1] == Resources.Lang.lblBetLists)
+                {
+                    tpl.CustInfo.memberlistlink = customerListLink[0];
+                }
+                else
+                {
+                    if (CurrentUserSession.IsSuper)
+                    {
+                        tpl.CustInfo.memberlistlink = customerListLink[this.custRoleId - 1];
+                    }
+                    else if (CurrentUserSession.IsMaster)
+                    {
+                        tpl.CustInfo.memberlistlink = customerListLink[this.custRoleId + 2];
+                    }
+                    else
+                    {
+                        tpl.CustInfo.memberlistlink = customerListLink[this.custRoleId + 4];
+                    }
+                }
+            }
+            else
+            {
+                tpl.CustInfo.Hide();
+            }
             #endregion Group Customer List
 
             #region Group Statement
