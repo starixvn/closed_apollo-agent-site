@@ -20,6 +20,11 @@ namespace Sunplus.Agent.Model.Entities
     {
         #region Contructors
 
+        // APOLLO CONTRUCTORS
+        public const string AGENTLEVEL = "AGENTLEVEL";
+        public const string ISUSERMASTER = "ISUSERMASTER";
+        //-------------------
+
         public const string DEFAULT_LANGUAGE = "en-US";
         private const string HYPHEN = "_";
         private const string ISBELONGTO9CURRENCY = "ISBELONGTO9CURRENCY";
@@ -88,6 +93,37 @@ namespace Sunplus.Agent.Model.Entities
         private string asNetSessionId;
 
         #endregion Contructors
+
+        #region Apollo-Session
+
+        public short AgentLevel
+        {
+            get
+            {
+                object value = this.GetProperty(AGENTLEVEL);
+                return (null == value) ? (short)0 : (short)value;
+            }
+            set
+            {
+                this.SetProperty(AGENTLEVEL, value);
+            }
+        }
+
+        public bool IsUserMaster
+        {
+            get
+            {
+                object value = this.GetProperty(ISUSERMASTER);
+                return (null == value) ? false : (bool)value;
+            }
+
+            set
+            {
+                this.SetProperty(ISUSERMASTER, value);
+            }
+        }
+
+        #endregion Apollo-Session
 
         #region Misc
 
@@ -737,6 +773,7 @@ namespace Sunplus.Agent.Model.Entities
         #endregion Live Casino
 
         #region Double Comm Losing
+
         public bool IsDoubleCommLosing
         {
             get
@@ -750,9 +787,11 @@ namespace Sunplus.Agent.Model.Entities
                 this.SetProperty(ISDOUBLECOMMLOSING, value);
             }
         }
-        #endregion
+
+        #endregion Double Comm Losing
 
         #region Virtual Sports
+
         public bool IsHideVirtualSports
         {
             get
@@ -780,6 +819,7 @@ namespace Sunplus.Agent.Model.Entities
                 this.SetProperty(ISDISABLEDVIRTUALSPORTS, value);
             }
         }
+
         #endregion Virtual Sports
 
         #region Bingo

@@ -1,8 +1,8 @@
 ﻿/*
  * Created 20091229@Lee - User session service.
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.BL
@@ -64,32 +64,32 @@ namespace Sunplus.Agent.Model.BL
 
         /// <summary>
         /// Init user session from a hash table of values:
-        /// int custid, 
-        /// string userName, 
+        /// int custid,
+        /// string userName,
         /// string nickname,
-        /// int subaccid, 
-        /// string subaccname, 
-        /// string subpageaccess, 
-        /// string sitename, 
-        /// string site, 
-        /// string currency, 
-        /// int currencyid, 
-        /// int roleid, 
-        /// int serverid, 
-        /// int adminid, 
-        /// string accusername, 
-        /// string loginip, 
-        /// bool isallowhrcurrency, 
-        /// bool iscasinodisabled, 
-        /// bool iscasinosync, 
+        /// int subaccid,
+        /// string subaccname,
+        /// string subpageaccess,
+        /// string sitename,
+        /// string site,
+        /// string currency,
+        /// int currencyid,
+        /// int roleid,
+        /// int serverid,
+        /// int adminid,
+        /// string accusername,
+        /// string loginip,
+        /// bool isallowhrcurrency,
+        /// bool iscasinodisabled,
+        /// bool iscasinosync,
         /// bool disablenumber,
         /// bool disablebingo,
         /// bool syncbingo
-        /// int on_userid, 
-        /// bool disablehorseracing, 
-        /// bool disablefi, 
-        /// bool disableautompt, 
-        /// int srecommend, 
+        /// int on_userid,
+        /// bool disablehorseracing,
+        /// bool disablefi,
+        /// bool disableautompt,
+        /// int srecommend,
         /// bool isadmincanviewvnip,
         /// bool isallowedtotalbalancetransfer,
         /// bool IsLogNickname
@@ -105,124 +105,127 @@ namespace Sunplus.Agent.Model.BL
 
             UserSessionBase session = userSession as UserSessionBase;
 
-            session.CustId = (int)values["custid"];
+            session.CustId = (int)values["agentid"];
             session.UserName = (values["username"] as string).ToUpperInvariant().Trim();
-            session.SubAccId = (int)values["subaccid"];
+            session.Currency = values["currency"] as string;
+            session.AgentLevel = (short)values["agentlevel"];
+            session.IsUserMaster = (bool)values["ismaster"];
+            session.RoleId = (byte)(short)values["agentlevel"];
+            session.IsLogged = true;
 
-            session.SubUserName = values["subaccname"] as string;
+            //session.SubUserName = values["subaccname"] as string;
             session.SubPageAccess = (PageAccess)(values["subpageaccess"] as string);
             if (!session.IsSubAcc)
             {
                 session.SubPageAccess.SetFullPermission();
             }
 
-            session.SiteName = values["sitename"] as string;
-            session.Site = values["site"] as string;
+            //session.SiteName = values["sitename"] as string;
+            //session.Site = values["site"] as string;
 
-            session.Currency = values["currency"] as string;
-            session.CurrencyId = (int)values["currencyid"];
-            session.RoleId = (byte)(int)values["roleid"];
-            session.ServerId = (int)values["serverid"];
+            //session.CurrencyId = (int)values["currencyid"];
+            //session.RoleId = (byte)(int)values["roleid"];
+            //session.ServerId = (int)values["serverid"];
 
-            session.AdminId = (int)values["adminid"];
-            session.AdminName = values["accusername"] as string;
+            //session.AdminId = (int)values["adminid"];
+            //session.AdminName = values["accusername"] as string;
 
-            session.IsLogged = session.IsSubAcc || session.IsInternal || !string.IsNullOrEmpty(values["loginip"] as string);
+            //session.IsLogged = session.IsSubAcc || session.IsInternal || !string.IsNullOrEmpty(values["loginip"] as string);
 
-            session.IsAllowHRCurrency = (bool)values["isallowhrcurrency"];
+            //session.IsAllowHRCurrency = (bool)values["isallowhrcurrency"];
 
-            session.IsCasinoDisabled = (bool)values["iscasinodisabled"];
-            session.IsCasinoSync = (bool)values["iscasinosync"];
+            //session.IsCasinoDisabled = (bool)values["iscasinodisabled"];
+            //session.IsCasinoSync = (bool)values["iscasinosync"];
 
-            if (values.Contains("disablep2p"))
-            {
-                session.IsP2PDisabled = (bool)values["disablep2p"];
-            }
+            //if (values.Contains("disablep2p"))
+            //{
+            //    session.IsP2PDisabled = (bool)values["disablep2p"];
+            //}
 
-            if (values.Contains("disablelivecasino"))
-            {
-                session.IsLiveCasinoDisabled = (bool)values["disablelivecasino"];
-            }
+            //if (values.Contains("disablelivecasino"))
+            //{
+            //    session.IsLiveCasinoDisabled = (bool)values["disablelivecasino"];
+            //}
 
-            if (values.Contains("synclivecasino"))
-            {
-                session.IsLiveCasinoSync = (bool)values["synclivecasino"];
-            }
+            //if (values.Contains("synclivecasino"))
+            //{
+            //    session.IsLiveCasinoSync = (bool)values["synclivecasino"];
+            //}
 
-            if (values.Contains("doublecommlosing"))
-            {
-                session.IsDoubleCommLosing = (bool)values["doublecommlosing"];
-            }
+            //if (values.Contains("doublecommlosing"))
+            //{
+            //    session.IsDoubleCommLosing = (bool)values["doublecommlosing"];
+            //}
 
-            if (values.Contains("disablevirtualsports"))
-            {
-                session.IsDisabledVirtualSports = (bool)values["disablevirtualsports"];
-            }            
+            //if (values.Contains("disablevirtualsports"))
+            //{
+            //    session.IsDisabledVirtualSports = (bool)values["disablevirtualsports"];
+            //}
 
-            if (values.Contains("hidevirtualsports"))
-            {
-                session.IsHideVirtualSports = (bool)values["hidevirtualsports"];
-            }
+            //if (values.Contains("hidevirtualsports"))
+            //{
+            //    session.IsHideVirtualSports = (bool)values["hidevirtualsports"];
+            //}
 
-            if (values.Contains("nickname"))
-            {
-                session.NickName = (values["nickname"] + string.Empty).ToUpperInvariant();
-            }
+            //if (values.Contains("nickname"))
+            //{
+            //    session.NickName = (values["nickname"] + string.Empty).ToUpperInvariant();
+            //}
 
-            if (values.Contains("nicknameloginonly"))
-            {
-                session.IsNicknameLoginOnly = string.IsNullOrEmpty(values["nicknameloginonly"].ToString()) ? false : (bool)values["nicknameloginonly"];
-            }
+            //if (values.Contains("nicknameloginonly"))
+            //{
+            //    session.IsNicknameLoginOnly = string.IsNullOrEmpty(values["nicknameloginonly"].ToString()) ? false : (bool)values["nicknameloginonly"];
+            //}
 
-            if (values.Contains("isnickname"))
-            {
-                session.IsNickname = string.IsNullOrEmpty(values["isnickname"].ToString()) ? false : (bool)values["isnickname"];
-            }
+            //if (values.Contains("isnickname"))
+            //{
+            //    session.IsNickname = string.IsNullOrEmpty(values["isnickname"].ToString()) ? false : (bool)values["isnickname"];
+            //}
 
-            session.DisplayNickName = session.IsNickname ? session.NickName : session.UserName;
+            //session.DisplayNickName = session.IsNickname ? session.NickName : session.UserName;
 
-            if (values.Contains("disablenumber"))
-            {
-                session.IsNumberGameDisabled = (bool)values["disablenumber"];
-            }
+            //if (values.Contains("disablenumber"))
+            //{
+            //    session.IsNumberGameDisabled = (bool)values["disablenumber"];
+            //}
 
-            if (values.Contains("disablebingo"))
-            {
-                session.IsBingoDisabled = (bool)values["disablebingo"];
-            }            
+            //if (values.Contains("disablebingo"))
+            //{
+            //    session.IsBingoDisabled = (bool)values["disablebingo"];
+            //}
 
-            if (values.Contains("syncbingo"))
-            {
-                session.IsBingoSync = (bool)values["syncbingo"];
-            }            
+            //if (values.Contains("syncbingo"))
+            //{
+            //    session.IsBingoSync = (bool)values["syncbingo"];
+            //}
 
-            session.OnUserId = (int)values["on_userid"];
+            //session.OnUserId = (int)values["on_userid"];
 
             // Extra informations
-            if (values.Contains("disable151_41"))
-            {
-                session.IsDisable151_31 = (bool)values["disable151_31"];
-                session.IsDisable151_41 = (bool)values["disable151_41"];
-                session.IsDisable151_51 = (bool)values["disable151_51"];
-                session.IsDisable152_41 = (bool)values["disable152_41"];
-                session.IsDisable152_51 = (bool)values["disable152_51"];
-                session.IsDisable153_51 = (bool)values["disable153_51"];
-            }
+            //if (values.Contains("disable151_41"))
+            //{
+            //    session.IsDisable151_31 = (bool)values["disable151_31"];
+            //    session.IsDisable151_41 = (bool)values["disable151_41"];
+            //    session.IsDisable151_51 = (bool)values["disable151_51"];
+            //    session.IsDisable152_41 = (bool)values["disable152_41"];
+            //    session.IsDisable152_51 = (bool)values["disable152_51"];
+            //    session.IsDisable153_51 = (bool)values["disable153_51"];
+            //}
 
-            // Will be removed when Racing was launched
-            if (values.Contains("disablehorseracing"))
-            {
-                session.IsDisabledHR = (bool)values["disablehorseracing"];
-            }
+            //// Will be removed when Racing was launched
+            //if (values.Contains("disablehorseracing"))
+            //{
+            //    session.IsDisabledHR = (bool)values["disablehorseracing"];
+            //}
 
-            session.IsDisabledFI = (bool)values["disablefi"];
-            session.IsDisabledAutoMPT = (bool)values["disableautompt"];
-            session.SRecommendId = (int)values["srecommend"];
-            session.MRecommendId = (int)values["mrecommend"];
-            session.ARecommendId = (int)values["arecommend"];
-            session.IsAdminCanViewVNIP = (bool)values["isadmincanviewvnip"];
-            session.IsAllowedTotalBalanceTransfer = (bool)values["isallowedtotalbalancetransfer"];
-            session.IsShowConsolidatedReport = (bool)values["isshowconsolidated"]; 
-        }        
+            //session.IsDisabledFI = (bool)values["disablefi"];
+            //session.IsDisabledAutoMPT = (bool)values["disableautompt"];
+            //session.SRecommendId = (int)values["srecommend"];
+            //session.MRecommendId = (int)values["mrecommend"];
+            //session.ARecommendId = (int)values["arecommend"];
+            //session.IsAdminCanViewVNIP = (bool)values["isadmincanviewvnip"];
+            //session.IsAllowedTotalBalanceTransfer = (bool)values["isallowedtotalbalancetransfer"];
+            //session.IsShowConsolidatedReport = (bool)values["isshowconsolidated"];
+        }
     }
 }

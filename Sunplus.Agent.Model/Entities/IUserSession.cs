@@ -1,8 +1,8 @@
 ﻿/*
  * Created 20091229@Lee - User session interface
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.Entities
@@ -12,6 +12,22 @@ namespace Sunplus.Agent.Model.Entities
 
     public interface IUserSession : Sunplus.Agent.Model.Entities.Base.IEntity, ISerializable
     {
+        #region Apollo-Session
+
+        short AgentLevel
+        {
+            get;
+            set;
+        }
+
+        bool IsUserMaster
+        {
+            get;
+            set;
+        }
+
+        #endregion Apollo-Session
+
         #region Misc
 
         /// <summary>
@@ -55,9 +71,10 @@ namespace Sunplus.Agent.Model.Entities
             set;
         }
 
-        #endregion
+        #endregion Misc
 
         #region Logged-in informations
+
         /// <summary>
         /// Id of admin account (logging from accounting site).
         /// </summary>
@@ -75,7 +92,7 @@ namespace Sunplus.Agent.Model.Entities
         }
 
         /// <summary>
-        /// Id of main logged-in account. 
+        /// Id of main logged-in account.
         /// Return 0 if it is not available.
         /// </summary>
         int CustId
@@ -84,7 +101,7 @@ namespace Sunplus.Agent.Model.Entities
         }
 
         /// <summary>
-        /// Role id of main logged-in account. 
+        /// Role id of main logged-in account.
         /// Return 0 if it is not available.
         /// </summary>
         byte RoleId
@@ -146,7 +163,7 @@ namespace Sunplus.Agent.Model.Entities
         }
 
         /// <summary>
-        /// Logged-in indentify on OnUser database, use for ReCheckin and Kichout feature. 
+        /// Logged-in indentify on OnUser database, use for ReCheckin and Kichout feature.
         /// Return 0 if it is not available.
         /// </summary>
         int OnUserId
@@ -155,7 +172,7 @@ namespace Sunplus.Agent.Model.Entities
         }
 
         /// <summary>
-        /// Id of logged-in sub-account. 
+        /// Id of logged-in sub-account.
         /// If logged-in account is main, return 0.
         /// </summary>
         int SubAccId
@@ -197,7 +214,7 @@ namespace Sunplus.Agent.Model.Entities
         }
 
         /// <summary>
-        /// User name of logged-in sub-account. 
+        /// User name of logged-in sub-account.
         /// If logged-in account is main, return null.
         /// </summary>
         string SubUserName
@@ -261,7 +278,7 @@ namespace Sunplus.Agent.Model.Entities
         {
             get;
         }
-        
+
         /// <summary>
         /// True indicate current user is agent
         /// </summary>
@@ -287,7 +304,7 @@ namespace Sunplus.Agent.Model.Entities
             set;
         }
 
-        #endregion
+        #endregion Logged-in informations
 
         #region Casino
 
@@ -318,17 +335,20 @@ namespace Sunplus.Agent.Model.Entities
             set;
         }
 
-        #endregion
+        #endregion Casino
 
         #region P2P
+
         bool IsP2PDisabled
         {
             get;
             set;
         }
-        #endregion
+
+        #endregion P2P
 
         #region LiveCasino
+
         bool IsLiveCasinoDisabled
         {
             get;
@@ -340,9 +360,11 @@ namespace Sunplus.Agent.Model.Entities
             get;
             set;
         }
-        #endregion
+
+        #endregion LiveCasino
 
         #region VirtualSports
+
         bool IsHideVirtualSports
         {
             get;
@@ -354,15 +376,18 @@ namespace Sunplus.Agent.Model.Entities
             get;
             set;
         }
-        #endregion
+
+        #endregion VirtualSports
 
         #region Double Commission
+
         bool IsDoubleCommLosing
         {
             get;
             set;
         }
-        #endregion
+
+        #endregion Double Commission
 
         #region Bingo
 
@@ -390,7 +415,7 @@ namespace Sunplus.Agent.Model.Entities
             get;
         }
 
-        #endregion
+        #endregion Bingo
 
         #region Will be removed when Racing was launched
 
@@ -404,7 +429,7 @@ namespace Sunplus.Agent.Model.Entities
             get;
         }
 
-        #endregion
+        #endregion Will be removed when Racing was launched
 
         #region Racing
 
@@ -461,7 +486,7 @@ namespace Sunplus.Agent.Model.Entities
             get;
         }
 
-        #endregion
+        #endregion Racing
 
         #region PostionTaking
 
@@ -470,7 +495,7 @@ namespace Sunplus.Agent.Model.Entities
             get;
         }
 
-        #endregion
+        #endregion PostionTaking
 
         #region UplineInformations
 
@@ -498,7 +523,7 @@ namespace Sunplus.Agent.Model.Entities
             get;
         }
 
-        #endregion
+        #endregion UplineInformations
 
         #region TotalBalanceTransfer
 
@@ -510,7 +535,7 @@ namespace Sunplus.Agent.Model.Entities
             get;
         }
 
-        #endregion
+        #endregion TotalBalanceTransfer
 
         /// <summary>
         /// Current session id.

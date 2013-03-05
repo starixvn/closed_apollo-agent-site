@@ -1,8 +1,8 @@
 /*
  * Created 20091224@Lee - Authorization data access
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.DL.Authorization
@@ -14,7 +14,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
     using Sunplus.Agent.Utilities;
 
     public class AuthorizationDAO : Sunplus.Agent.Model.DL.Base.DAOBase
-    {        
+    {
         /// <summary>
         /// SMA after login.
         /// </summary>
@@ -32,7 +32,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
             int custId,
             string password,
             int subAccId,
-            string nickname, 
+            string nickname,
             bool isNickname,
             DateTime loginTime,
             string language,
@@ -174,7 +174,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
             parameters.Add("errcode", 0);
             parameters.Add("errmsg", string.Empty);
             InsertRequestInfo(requestInfo, parameters);
-            
+
             DbResult dr = ExecSp("Age_LoginVerifyDownline", parameters);
             isNickname = dr.Outputs.Contains("isnickname") ? (bool)dr.Outputs["isnickname"] : false;
             nickName = dr.Outputs.Contains("nickname") ? Convert.ToString(dr.Outputs["nickname"]) : string.Empty;
@@ -227,34 +227,36 @@ namespace Sunplus.Agent.Model.DL.Authorization
         /// <param name="isSubAcc"></param>
         /// <returns></returns>
         public bool SignIn(
-            string userName, 
+            string userName,
             string password,
             string language,
             string netSessionId,
             Hashtable requestInfo,
-            out int errCode, 
-            out string errMsg, 
-            ref Hashtable outputValues, 
+            out int errCode,
+            out string errMsg,
+            ref Hashtable outputValues,
             out bool isSubAcc)
         {
-            Hashtable parameters = new Hashtable();
+            //Hashtable parameters = new Hashtable();
 
-            parameters.Add("isexist", 0);
-            parameters.Add("subusername", userName);
+            //parameters.Add("isexist", 0);
+            //parameters.Add("subusername", userName);
 
-            Hashtable outputs = ExecSpHashtable("Age_LoginDownline_CheckSubUsername", parameters);
+            //Hashtable outputs = ExecSpHashtable("Age_LoginDownline_CheckSubUsername", parameters);
 
-            if ((bool)outputs["isexisted"])
-            {
-                isSubAcc = true;
-                outputValues = this.Age_LoginDownline_Sub(userName, password, language, requestInfo, out errCode, out errMsg);
-            }
-            else
-            {
-                isSubAcc = false;
-                outputValues = this.Age_LoginDownline(userName, password, language, requestInfo, out errCode, out errMsg);
-            }
-
+            //if ((bool)outputs["isexisted"])
+            //{
+            //    isSubAcc = true;
+            //    outputValues = this.Age_LoginDownline_Sub(userName, password, language, requestInfo, out errCode, out errMsg);
+            //}
+            //else
+            //{
+            //    isSubAcc = false;
+            //    //outputValues = this.Age_LoginDownline(userName, password, language, requestInfo, out errCode, out errMsg);
+            //    outputValues = this.Agent_Login(userName, out errCode, out errMsg);
+            //}
+            isSubAcc = false;
+            outputValues = this.Agent_Login(userName, out errCode, out errMsg);
             return errCode == 0;
         }
 
@@ -268,10 +270,10 @@ namespace Sunplus.Agent.Model.DL.Authorization
         /// <param name="ip"></param>
         /// <param name="onUserId"></param>
         public void Acc_Checkin(
-            int custId, 
-            int subAccId, 
-            string netSessionId, 
-            int serverId, 
+            int custId,
+            int subAccId,
+            string netSessionId,
+            int serverId,
             string ip,
             out int onUserId)
         {
@@ -332,9 +334,9 @@ namespace Sunplus.Agent.Model.DL.Authorization
         /// <param name="serverId"></param>
         public void Acc_CheckOut(
             int onUserId,
-            string userName, 
+            string userName,
             string nickName,
-            byte roleId, 
+            byte roleId,
             int serverId)
         {
             Hashtable parameters = new Hashtable();
@@ -362,10 +364,10 @@ namespace Sunplus.Agent.Model.DL.Authorization
         /// <returns></returns>
         public bool Age_CustSubCheckPageAccess(
             int subAccId,
-            string pageAccess, 
+            string pageAccess,
             string language,
             int userId,
-            out int errCode, 
+            out int errCode,
             out string errMsg)
         {
             Hashtable parameters = new Hashtable();
@@ -413,7 +415,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
             parameters.Add("custid", custId);
             parameters.Add("isshownmenu", 0);
             Hashtable outputs = ExecSpHashtable("Age_Rpt_ConsolidatedGroup_isShownMenu", parameters);
-            
+
             return (bool)outputs["isshownmenu"];
         }
 
@@ -445,8 +447,8 @@ namespace Sunplus.Agent.Model.DL.Authorization
             Hashtable parameters = new Hashtable();
 
             parameters.Add("custid", custId);
-            parameters.Add("errcode",  0);
-            parameters.Add("errmsg",  string.Empty);
+            parameters.Add("errcode", 0);
+            parameters.Add("errmsg", string.Empty);
 
             Hashtable outputs = ExecSpHashtable("Acc_CustomerSelCheckEnable", parameters);
 
@@ -505,7 +507,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
 
             return (short)outputs["roleid"] > 0;
         }
-                
+
         public bool Age_CustomerSelCheckBelonging_Multi(string custIds, int currentCustId)
         {
             Hashtable parameters = new Hashtable();
@@ -518,7 +520,8 @@ namespace Sunplus.Agent.Model.DL.Authorization
 
             return (byte)outputs["roleid"] > 0;
         }
-        #endregion
+
+        #endregion Checking Permission
 
         #region ViewLogDependencies
 
@@ -590,9 +593,10 @@ namespace Sunplus.Agent.Model.DL.Authorization
             return hasPermission;
         }
 
-        #endregion
+        #endregion ViewLogDependencies
 
         #region Get Request Info
+
         private static void InsertRequestInfo(Hashtable requestInfo, Hashtable parameters)
         {
             foreach (DictionaryEntry d in requestInfo)
@@ -600,7 +604,8 @@ namespace Sunplus.Agent.Model.DL.Authorization
                 parameters.Add(d.Key, d.Value);
             }
         }
-        #endregion
+
+        #endregion Get Request Info
 
         /// <summary>
         /// Sub-account login.
@@ -675,6 +680,29 @@ namespace Sunplus.Agent.Model.DL.Authorization
             InsertRequestInfo(requestInfo, parameters);
 
             Hashtable outputs = ExecSpHashtable("Age_LoginDownline", parameters);
+            errCode = (int)outputs["errcode"];
+            errMsg = null;
+            if (errCode != 0)
+            {
+                errMsg = outputs["errmsg"] as string;
+            }
+
+            return outputs;
+        }
+
+        private Hashtable Agent_Login(string userName, out int errCode, out string errMsg)
+        {
+            Hashtable parameters = new Hashtable();
+            parameters.Add("username", userName);
+            parameters.Add("agentid", 0);
+            parameters.Add("agentlevel", 0);
+            parameters.Add("currency", 0);
+            parameters.Add("ismaster", 0);
+            parameters.Add("pageaccess", string.Empty);
+            parameters.Add("errcode", 0);
+            parameters.Add("errmsg", string.Empty);
+
+            Hashtable outputs = ExecSpHashtable("Agent_Login", parameters);
             errCode = (int)outputs["errcode"];
             errMsg = null;
             if (errCode != 0)
