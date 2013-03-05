@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-using System.Web.UI;
-using Sunplus.Agent.Model.BL.Forecast;
-using Sunplus.Agent.Utilities;
+﻿// --------------------------------------------------------------------------
+// <copyright file="FC1X2.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.5">Created</change>
+// </history>
 
-
-/*
- * Created 20100529@Jacob - Render FC1X2 page
- * Revision:
- * ?@? - ... 
- * 
- */
 namespace Fanex.Age.UI.Forecast
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Text;
+    using System.Web.UI;
+    using Sunplus.Agent.Model.BL.Forecast;
+    using Sunplus.Agent.Utilities;
 
     public partial class FC1X2_Page : Fanex.Age.UI.TplPage
     {
         #region Const
-        private const String RUNNING_LEAGUES = "RunningLeague";
-        private const String FC_DATA = "FCData";
+        private const string RUNNING_LEAGUES = "RunningLeague";
+        private const string FC_DATA = "FCData";
         #endregion
 
         #region Variable
@@ -38,12 +39,11 @@ namespace Fanex.Age.UI.Forecast
         /// <param name="writer"></param>
         public override void RenderContent(HtmlTextWriter writer)
         {
-
-            DataTable fcData = (View as Dictionary<String, DataTable>)[FC_DATA];
+            DataTable fcData = (View as Dictionary<string, DataTable>)[FC_DATA];
             FC1X2_Template tpl = new FC1X2_Template();
 
             RenderLeagueList(tpl.Content);
-            //Render row content
+            //// Render row content
             FC1X2_Content_RowContent_Block block = new FC1X2_Content_RowContent_Block();
             tpl.Content.RowContent.Clear();
             if (fcData != null && fcData.Rows.Count > 0)
@@ -65,12 +65,12 @@ namespace Fanex.Age.UI.Forecast
 
                     block.MatchId = dr["matchid"].ToString();
 
-                    block.HomeWinLose = Convert.IsDBNull(dr["hl"]) ? "" : RedForPositiveAmount(dr["hl"], 0);
-                    block.DrawWinLose = Convert.IsDBNull(dr["dl"]) ? "" : RedForPositiveAmount(dr["dl"], 0);
-                    block.AwayWinLose = Convert.IsDBNull(dr["al"]) ? "" : RedForPositiveAmount(dr["al"], 0);
-                    block.HTHomeWinLose = Convert.IsDBNull(dr["ht_hl"]) ? "" : RedForPositiveAmount(dr["ht_hl"], 0);
-                    block.HTDrawWinLose = Convert.IsDBNull(dr["ht_dl"]) ? "" : RedForPositiveAmount(dr["ht_dl"], 0);
-                    block.HTAwayWinLose = Convert.IsDBNull(dr["ht_al"]) ? "" : RedForPositiveAmount(dr["ht_al"], 0);
+                    block.HomeWinLose = Convert.IsDBNull(dr["hl"]) ? string.Empty : RedForPositiveAmount(dr["hl"], 0);
+                    block.DrawWinLose = Convert.IsDBNull(dr["dl"]) ? string.Empty : RedForPositiveAmount(dr["dl"], 0);
+                    block.AwayWinLose = Convert.IsDBNull(dr["al"]) ? string.Empty : RedForPositiveAmount(dr["al"], 0);
+                    block.HTHomeWinLose = Convert.IsDBNull(dr["ht_hl"]) ? string.Empty : RedForPositiveAmount(dr["ht_hl"], 0);
+                    block.HTDrawWinLose = Convert.IsDBNull(dr["ht_dl"]) ? string.Empty : RedForPositiveAmount(dr["ht_dl"], 0);
+                    block.HTAwayWinLose = Convert.IsDBNull(dr["ht_al"]) ? string.Empty : RedForPositiveAmount(dr["ht_al"], 0);
 
                     tpl.Content.RowContent.Append(block);
                 }
@@ -87,7 +87,7 @@ namespace Fanex.Age.UI.Forecast
             // Table width
             tpl.Content.TableWidth = _isPopup ? "100%" : "600px";
             tpl.Content.LimitLeagueList.TableWidth = _isPopup ? "100%" : "600px";
-            // response
+            //// Response
             if (_fullMode)
             {
                 writer.Write(tpl);
@@ -100,17 +100,15 @@ namespace Fanex.Age.UI.Forecast
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
-            p.AddHttpParameters(new string[] { 
-                "matchid", 
-                "leagueid",
-                "bettype" 
-            }, Request);
+            p.AddHttpParameters(
+                new string[] { "matchid", "leagueid", "bettype" }, 
+                Request);
+
             _fullMode = string.IsNullOrEmpty(Request["full_mode"]) ? true : Convert.ToInt32(Request["full_mode"]) > 0;
             _isPopup = string.IsNullOrEmpty(Request["is_popup"]) ? false : Convert.ToInt32(Request["is_popup"]) > 0;
             _leagueId = Convert.ToInt32(p["leagueid"]);
             _matchId = Convert.ToInt32(p["matchid"]);
             _betType = Convert.ToInt32(p["bettype"]);
-
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
@@ -125,7 +123,7 @@ namespace Fanex.Age.UI.Forecast
 
             DataTable fcData = null;
             DataTable runningLeagues = null;
-            // Get default leagueid
+            //// Get default leagueid
             if (_matchId > 0)
             {
                 fcData = bo.GetFC1X2ByMatch(_matchId, _betType);
@@ -137,6 +135,7 @@ namespace Fanex.Age.UI.Forecast
                 {
                     _leagueId = Convert.ToInt32(runningLeagues.Rows[0]["leagueid"]);
                 }
+
                 if (_leagueId > 0)
                 {
                     fcData = bo.GetFC1X2ByLeague(_leagueId);
@@ -196,7 +195,5 @@ namespace Fanex.Age.UI.Forecast
             }
         }
         #endregion
-
     }
-
 }

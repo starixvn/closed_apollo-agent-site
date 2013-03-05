@@ -10,21 +10,25 @@
         <div class="Bleft_Sub02">
             <form name="frmAgent" id="frmAgent" method="get" action="" target="menu" style="float:left;">   
                 <div id="from_tab">                            
-                    <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" style="width: 145px;" class="{classStyle}" name="txtUsername" />
+                    <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" style="width: 87px;" class="{classStyle}" name="txtUsername" />
+                    <select class="search-option">
+                        <option value="0">Agent</option>
+                        <option value="0">Player</option>
+                    </select>
                 </div>
                 <div id="b_serachL">
                     <a id="lnkSearch" class="imaLink" href="#" onclick="javascript:checkAndSubmitUI();">
                         <img height="18" width="21" alt="Search" title="{static:Resources.Lang.search}" border="0" nowap="nowap" src="../_GlobalResources/Images/icon_search.jpg" />
                     </a>
                  </div>
-            </form><br />
+            </form>
             <!--fornotdirectdownline-->                                                            
             <table cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tbody> 
                     <!--uplineinfo-->
                     <tr>
                         <td>
-                            {agent}
+                            {agent}:
                         </td>
                         <td align="right" class="text_org">
                             <a href="AccountInfo.aspx?username={AgentNameValue}" class="linkAg">{agentname}</a>
@@ -42,61 +46,76 @@
                 <tbody>
                     <tr>
                         <td>
-                            {lblCustomerUsername}:
+                            <!--{lblCustomerUsername}:-->
+                            {lblUsername}:
                         </td>
                         <td align="right" class="text_org">
                             {CustomerUsername}
                         </td>
+                    </tr>                    
+                    <tr>
+                        <td colspan="2">
+                            <div class="divLinkSetting">
+                                <a class="b_left" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{memberlistlink}">{memberlist}</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="divLinkSetting">
+                                <a class="b_left" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{memberlistlink}">{lblPlayerList}</a>
+                            </div>
+                        </td>
                     </tr>
                     <!--blCustomerNickname-->
-                    <tr>
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.nickname}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerNickname}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerNickname-->
                     <!--blCustomerFullName-->
-                    <tr>
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.name}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerFullName}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerFullName-->
                     <!--blCustomerPhone-->
-                    <tr>
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.lblPhone}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerPhone}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerPhone-->
                     <!--blCustomerMobile-->
-                    <tr>
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.lblMobilePhone}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerMobile}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerMobile-->
                     <!--blCustomerFax-->
-                    <tr>
+                    <!--<tr>
                         <td>
                             {static:Resources.Lang.lblFax}:
                         </td>
                         <td align="right" class="text_bold">
                             {CustomerFax}
                         </td>
-                    </tr>
+                    </tr>-->
                     <!--/blCustomerFax-->
                 </tbody>
             </table>
@@ -105,9 +124,7 @@
     </div>    
 </div>        
 
-<!--GroupCustomerList-->
-<div id="button_nLeft01"><a class="b_nleft" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{memberlistlink}">{memberlist}</a></div>
-<!--/GroupCustomerList-->
+
 <!--GroupStatement-->
 <!--<div id="button_nLeft02"><a class="b_nleft" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{statementlink}">{static:Resources.Lang.lblStatement}</a></div>-->
 <!--/GroupStatement-->

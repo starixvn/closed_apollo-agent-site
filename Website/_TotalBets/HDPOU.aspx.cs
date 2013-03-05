@@ -1,20 +1,22 @@
-﻿using System;
-using System.Data;
-using System.Web.UI;
-using Sunplus.Agent.Utilities;
+﻿// --------------------------------------------------------------------------
+// <copyright file="HDPOU.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.5">Created</change>
+// </history>
 
-/*
- * Created 20100507@Jacob - Render HDPOU page
- * Revision:
- * ?@? - ... 
- * 
- */
 namespace Fanex.Age.UI.TotalBets
 {
+    using System;
+    using System.Data;
+    using System.Web.UI;
+    using Sunplus.Agent.Utilities;
+
     public partial class HDPOU_Page : TotalBets_Page
     {
         #region Override
-
         public override void RenderContent(HtmlTextWriter writer)
         {
             DataTable hdpOUList = View as DataTable;
@@ -91,6 +93,18 @@ namespace Fanex.Age.UI.TotalBets
         #endregion
 
         #region Utility
+
+        /// <summary>
+        /// Round color for negative number
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        private static string NegativeNumberRoundColor(object number)
+        {
+            decimal num = Convert.ToDecimal(number);
+
+            return num < 0 ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
+        }
 
         /// <summary>
         /// Render match row
@@ -179,6 +193,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OverUnderTotalButton.Hide();
             }
         }
+
         /// <summary>
         /// Render handicap first half column
         /// </summary>
@@ -205,6 +220,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.HandicapFirstHalfButton.Hide();
             }
         }
+
         /// <summary>
         /// Render over under first half column
         /// </summary>
@@ -231,19 +247,6 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OverUnderFirstHalfButton.Hide();
             }
         }
-        /// <summary>
-        /// Round color for negative number
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        private static string NegativeNumberRoundColor(object number)
-        {
-            decimal num = Convert.ToDecimal(number);
-
-            return num < 0 ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
-
-        }
         #endregion
     }
-
 }

@@ -40,11 +40,11 @@ namespace Sunplus.Agent.UI
 
 		public class SettingBoxViewAgent_ForDirectDownline_Block: Block
 		{
-			protected static string s2 = "<div class=\"divLinkSetting\"><a id=\"menuitem0\" class=\"b_left\" target=\"main\" onclick=\"menu_select(0);\" href=\"";
+			protected static string s2 = "<!--<div class=\"divLinkSetting\"><a id=\"menuitem0\" class=\"b_left\" target=\"main\" onclick=\"menu_select(0);\" href=\"";
 			public string editInfoLink = "{editInfoLink}";
 			protected static string s3 = "\">";
 			protected static string s4{get{return Resources.Lang.lblEditInfo;}}
-			protected static string s5 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem4\" class=\"b_left\" align=\"right\" onclick=\"menu_select(4);\" target=\"main\"href=\"";
+			protected static string s5 = "</a></div>--><div class=\"divLinkSetting\"><a id=\"menuitem4\" class=\"b_left\" align=\"right\" onclick=\"menu_select(4);\" target=\"main\"href=\"";
 			public string betSettingLink = "{betSettingLink}";
 			protected static string s6 = "\">";
 			protected static string s7{get{return Resources.Lang.lblBetSetting;}}
@@ -52,30 +52,47 @@ namespace Sunplus.Agent.UI
 			public string editCommLink = "{editCommLink}";
 			protected static string s9 = "\">";
 			protected static string s10{get{return Resources.Lang.commission;}}
-			protected static string s11 = "</a></div>";
-			public SettingBoxViewAgent_ForDirectDownline_LnkResetPassword_Block LnkResetPassword = new SettingBoxViewAgent_ForDirectDownline_LnkResetPassword_Block();
-			protected static string s12 = "<div class=\"divLinkSetting\"><a id=\"menuitem1\" class=\"b_left\" target=\"main\" onclick=\"menu_select(1);\" href=\"";
+			protected static string s11 = "</a></div><!--LnkResetPassword--><!--<div class=\"divLinkSetting\"><a id=\"menuitem3\" class=\"b_left\" align=\"right\" onclick=\"menu_select(3);\" target=\"main\"href=\"";
+			public string resetPasswordLink = "{resetPasswordLink}";
+			protected static string s12 = "\">";
+			protected static string s13{get{return Resources.Lang.lblresetpassword;}}
+			protected static string s14 = "</a></div>--><!--/LnkResetPassword--><div class=\"divLinkSetting\"><a id=\"menuitem1\" class=\"b_left\" target=\"main\" onclick=\"menu_select(1);\" href=\"";
 			public string editPTLink = "{editPTLink}";
-			protected static string s13 = "\">";
-			protected static string s14{get{return Resources.Lang.lblEditSB;}}
-			protected static string s15 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem8\" class=\"b_left\" align=\"right\" onclick=\"menu_select(8);\" target=\"main\"href=\"";
+			protected static string s15 = "\">";
+			protected static string s16{get{return Resources.Lang.lblEditSB;}}
+			protected static string s17 = "</a></div><!--<div class=\"divLinkSetting\"><a id=\"menuitem8\" class=\"b_left\" align=\"right\" onclick=\"menu_select(8);\" target=\"main\"href=\"";
 			public string spMinPTLink = "{spMinPTLink}";
-			protected static string s16 = "\">";
-			protected static string s17{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.sbminpt1, 14);}}
-			protected static string s18 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem5\" class=\"b_left\" target=\"main\" onclick=\"menu_select(5);\" href=\"";
+			protected static string s18 = "\">";
+			protected static string s19{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.sbminpt1, 14);}}
+			protected static string s20 = "</a></div>--><!--<div class=\"divLinkSetting\"><a id=\"menuitem5\" class=\"b_left\" target=\"main\" onclick=\"menu_select(5);\" href=\"";
 			public string editRacingLink = "{editRacingLink}";
-			protected static string s19 = "\">";
-			protected static string s20{get{return Resources.Lang.lbledithr;}}
-			protected static string s21 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem10\" class=\"b_left\" align=\"right\" onclick=\"menu_select(10);\" target=\"main\"href=\"";
+			protected static string s21 = "\">";
+			protected static string s22{get{return Resources.Lang.lbledithr;}}
+			protected static string s23 = "</a></div>--><!--<div class=\"divLinkSetting\"><a id=\"menuitem10\" class=\"b_left\" align=\"right\" onclick=\"menu_select(10);\" target=\"main\"href=\"";
 			public string racingMinPTLink = "{racingMinPTLink}";
-			protected static string s22 = "\">";
-			protected static string s23{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.hrminpt, 14);}}
-			protected static string s24 = "</a></div>";
-			public SettingBoxViewAgent_ForDirectDownline_Casino_Block Casino = new SettingBoxViewAgent_ForDirectDownline_Casino_Block();
-			public SettingBoxViewAgent_ForDirectDownline_Bingo_Block Bingo = new SettingBoxViewAgent_ForDirectDownline_Bingo_Block();
-			public SettingBoxViewAgent_ForDirectDownline_ForP2P_Block ForP2P = new SettingBoxViewAgent_ForDirectDownline_ForP2P_Block();
-			public SettingBoxViewAgent_ForDirectDownline_ForLiveCasino_Block ForLiveCasino = new SettingBoxViewAgent_ForDirectDownline_ForLiveCasino_Block();
-			public SettingBoxViewAgent_ForDirectDownline_ForVirtualSports_Block ForVirtualSports = new SettingBoxViewAgent_ForDirectDownline_ForVirtualSports_Block();
+			protected static string s24 = "\">";
+			protected static string s25{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.hrminpt, 14);}}
+			protected static string s26 = "</a></div>--><!--Casino--><!--<div class=\"divLinkSetting\"><a id=\"menuitem7\" class=\"b_left\" target=\"main\" onclick=\"menu_select(7);\" href=\"";
+			public string editCasinoLink = "{editCasinoLink}";
+			protected static string s27 = "\">";
+			public string editCasinoLabel = "{editCasinoLabel}";
+			protected static string s28 = "</a></div>--><!--/Casino--><!--Bingo--><!--<div class=\"divLinkSetting\"><a id=\"menuitem18\" class=\"b_left\" target=\"main\" onclick=\"menu_select(18);\" href=\"";
+			public string editBingoLink = "{editBingoLink}";
+			protected static string s29 = "\">";
+			public string editBingoLabel = "{editBingoLabel}";
+			protected static string s30 = "</a></div>--><!--/Bingo--><!--ForP2P--><!--<div class=\"divLinkSetting\"><a id=\"menuitem20\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(20);\"href=\"";
+			public string editP2P = "{editP2P}";
+			protected static string s31 = "\">";
+			protected static string s32{get{return Resources.Lang.editP2P;}}
+			protected static string s33 = "</a></div>--><!--/ForP2P--><!--ForLiveCasino--><!--<div class=\"divLinkSetting\"><a id=\"menuitem21\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(21);\"href=\"";
+			public string editLiveCasino = "{editLiveCasino}";
+			protected static string s34 = "\">";
+			protected static string s35{get{return Resources.Lang.EditLiveCasino;}}
+			protected static string s36 = "</a></div>--><!--/ForLiveCasino--><!--ForVirtualSports--><!--<div class=\"divLinkSetting2\"><a id=\"menuitem22\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(22);\"href=\"";
+			public string editVirtualSports = "{editVirtualSports}";
+			protected static string s37 = "\">";
+			protected static string s38{get{return Resources.Lang.EditVirtualSports;}}
+			protected static string s39 = "</a></div>--><!--/ForVirtualSports-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -94,161 +111,46 @@ namespace Sunplus.Agent.UI
 					bd.Append(s9);
 					bd.Append(s10);
 					bd.Append(s11);
-					if(null != LnkResetPassword) LnkResetPassword.ToString(ref bd);
+					bd.Append(resetPasswordLink);
 					bd.Append(s12);
-					bd.Append(editPTLink);
 					bd.Append(s13);
 					bd.Append(s14);
+					bd.Append(editPTLink);
 					bd.Append(s15);
-					bd.Append(spMinPTLink);
 					bd.Append(s16);
 					bd.Append(s17);
+					bd.Append(spMinPTLink);
 					bd.Append(s18);
-					bd.Append(editRacingLink);
 					bd.Append(s19);
 					bd.Append(s20);
+					bd.Append(editRacingLink);
 					bd.Append(s21);
-					bd.Append(racingMinPTLink);
 					bd.Append(s22);
 					bd.Append(s23);
+					bd.Append(racingMinPTLink);
 					bd.Append(s24);
-					if(null != Casino) Casino.ToString(ref bd);
-					if(null != Bingo) Bingo.ToString(ref bd);
-					if(null != ForP2P) ForP2P.ToString(ref bd);
-					if(null != ForLiveCasino) ForLiveCasino.ToString(ref bd);
-					if(null != ForVirtualSports) ForVirtualSports.ToString(ref bd);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class SettingBoxViewAgent_ForDirectDownline_LnkResetPassword_Block: Block
-		{
-			protected static string s25 = "<div class=\"divLinkSetting\"><a id=\"menuitem3\" class=\"b_left\" align=\"right\" onclick=\"menu_select(3);\" target=\"main\"href=\"";
-			public string resetPasswordLink = "{resetPasswordLink}";
-			protected static string s26 = "\">";
-			protected static string s27{get{return Resources.Lang.lblresetpassword;}}
-			protected static string s28 = "</a></div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
 					bd.Append(s25);
-					bd.Append(resetPasswordLink);
 					bd.Append(s26);
-					bd.Append(s27);
-					bd.Append(s28);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class SettingBoxViewAgent_ForDirectDownline_Casino_Block: Block
-		{
-			protected static string s29 = "<div class=\"divLinkSetting\"><a id=\"menuitem7\" class=\"b_left\" target=\"main\" onclick=\"menu_select(7);\" href=\"";
-			public string editCasinoLink = "{editCasinoLink}";
-			protected static string s30 = "\">";
-			public string editCasinoLabel = "{editCasinoLabel}";
-			protected static string s31 = "</a></div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s29);
 					bd.Append(editCasinoLink);
-					bd.Append(s30);
+					bd.Append(s27);
 					bd.Append(editCasinoLabel);
-					bd.Append(s31);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class SettingBoxViewAgent_ForDirectDownline_Bingo_Block: Block
-		{
-			protected static string s32 = "<div class=\"divLinkSetting\"><a id=\"menuitem18\" class=\"b_left\" target=\"main\" onclick=\"menu_select(18);\" href=\"";
-			public string editBingoLink = "{editBingoLink}";
-			protected static string s33 = "\">";
-			public string editBingoLabel = "{editBingoLabel}";
-			protected static string s34 = "</a></div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s32);
+					bd.Append(s28);
 					bd.Append(editBingoLink);
-					bd.Append(s33);
+					bd.Append(s29);
 					bd.Append(editBingoLabel);
-					bd.Append(s34);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class SettingBoxViewAgent_ForDirectDownline_ForP2P_Block: Block
-		{
-			protected static string s35 = "<div class=\"divLinkSetting\"><a id=\"menuitem20\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(20);\"href=\"";
-			public string editP2P = "{editP2P}";
-			protected static string s36 = "\">";
-			protected static string s37{get{return Resources.Lang.editP2P;}}
-			protected static string s38 = "</a></div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s35);
+					bd.Append(s30);
 					bd.Append(editP2P);
+					bd.Append(s31);
+					bd.Append(s32);
+					bd.Append(s33);
+					bd.Append(editLiveCasino);
+					bd.Append(s34);
+					bd.Append(s35);
 					bd.Append(s36);
+					bd.Append(editVirtualSports);
 					bd.Append(s37);
 					bd.Append(s38);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class SettingBoxViewAgent_ForDirectDownline_ForLiveCasino_Block: Block
-		{
-			protected static string s39 = "<div class=\"divLinkSetting\"><a id=\"menuitem21\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(21);\"href=\"";
-			public string editLiveCasino = "{editLiveCasino}";
-			protected static string s40 = "\">";
-			protected static string s41{get{return Resources.Lang.EditLiveCasino;}}
-			protected static string s42 = "</a></div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
 					bd.Append(s39);
-					bd.Append(editLiveCasino);
-					bd.Append(s40);
-					bd.Append(s41);
-					bd.Append(s42);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class SettingBoxViewAgent_ForDirectDownline_ForVirtualSports_Block: Block
-		{
-			protected static string s43 = "<div class=\"divLinkSetting2\"><a id=\"menuitem22\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(22);\"href=\"";
-			public string editVirtualSports = "{editVirtualSports}";
-			protected static string s44 = "\">";
-			protected static string s45{get{return Resources.Lang.EditVirtualSports;}}
-			protected static string s46 = "</a></div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s43);
-					bd.Append(editVirtualSports);
-					bd.Append(s44);
-					bd.Append(s45);
-					bd.Append(s46);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -256,21 +158,21 @@ namespace Sunplus.Agent.UI
 
 		public class SettingBoxViewAgent_ForSuperViewAgent_Block: Block
 		{
-			protected static string s47 = "<div class=\"divLinkSetting\"><a id=\"menuitem11\" class=\"b_left\" align=\"right\" onclick=\"menu_select(11);\" target=\"main\"href=\"";
+			protected static string s40 = "<!--<div class=\"divLinkSetting\"><a id=\"menuitem11\" class=\"b_left\" align=\"right\" onclick=\"menu_select(11);\" target=\"main\"href=\"";
 			public string resetPasswordLink = "{resetPasswordLink}";
-			protected static string s48 = "\">";
-			protected static string s49{get{return Resources.Lang.lblresetpassword;}}
-			protected static string s50 = "</a></div>";
+			protected static string s41 = "\">";
+			protected static string s42{get{return Resources.Lang.lblresetpassword;}}
+			protected static string s43 = "</a></div>-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s47);
+					bd.Append(s40);
 					bd.Append(resetPasswordLink);
-					bd.Append(s48);
-					bd.Append(s49);
-					bd.Append(s50);
+					bd.Append(s41);
+					bd.Append(s42);
+					bd.Append(s43);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -278,21 +180,21 @@ namespace Sunplus.Agent.UI
 
 		public class SettingBoxViewAgent_ForAgent_Block: Block
 		{
-			protected static string s51 = "<div class=\"divLinkSetting\"><a id=\"menuitem12\" class=\"b_left\" align=\"right\" onclick=\"menu_select(12);\" target=\"main\"href=\"";
+			protected static string s44 = "<!--<div class=\"divLinkSetting\"><a id=\"menuitem12\" class=\"b_left\" align=\"right\" onclick=\"menu_select(12);\" target=\"main\"href=\"";
 			public string tranferCondLink = "{tranferCondLink}";
-			protected static string s52 = "\">";
-			protected static string s53{get{return Resources.Lang.transfer;}}
-			protected static string s54 = "</a></div>";
+			protected static string s45 = "\">";
+			protected static string s46{get{return Resources.Lang.transfer;}}
+			protected static string s47 = "</a></div>-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s51);
+					bd.Append(s44);
 					bd.Append(tranferCondLink);
-					bd.Append(s52);
-					bd.Append(s53);
-					bd.Append(s54);
+					bd.Append(s45);
+					bd.Append(s46);
+					bd.Append(s47);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -300,25 +202,25 @@ namespace Sunplus.Agent.UI
 
 		public class SettingBoxViewAgent_ClearCredit_Block: Block
 		{
-			protected static string s55 = "<div class=\"divLinkSetting\"><a id=\"menuitem17\" class=\"b_left\" align=\"right\" onclick=\"menu_select(17); return doClearAllCredit(";
+			protected static string s48 = "<div class=\"divLinkSetting\"><a id=\"menuitem17\" class=\"b_left\" align=\"right\" onclick=\"menu_select(17); return doClearAllCredit(";
 			public string CustId = "{CustId}";
-			protected static string s56 = ", ";
+			protected static string s49 = ", ";
 			public string RoleId = "{RoleId}";
-			protected static string s57 = ");\"href=\"javascript:;\">";
-			protected static string s58{get{return Resources.Lang.clearallcredit;}}
-			protected static string s59 = "</a></div>";
+			protected static string s50 = ");\"href=\"javascript:;\">";
+			protected static string s51{get{return Resources.Lang.clearallcredit;}}
+			protected static string s52 = "</a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s55);
+					bd.Append(s48);
 					bd.Append(CustId);
-					bd.Append(s56);
+					bd.Append(s49);
 					bd.Append(RoleId);
-					bd.Append(s57);
-					bd.Append(s58);
-					bd.Append(s59);
+					bd.Append(s50);
+					bd.Append(s51);
+					bd.Append(s52);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

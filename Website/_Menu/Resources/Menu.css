@@ -447,9 +447,10 @@ a.Bleft_ParentAc
 }
 .left_line
 {
-	background: url(../../_GlobalResources/Images/line_left.jpg) no-repeat top left;
+	background: #B2B2B2;
+	height: 1px;
 	width: 190px;
-	height: 7px;
+	
 }
 .Bleft_Sub0
 {

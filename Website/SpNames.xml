@@ -326,13 +326,14 @@
   </Function>
 
   <Function Name="Agent-Apollo-ForeCast">
-    <Setting Key="Age_Forecast_OddsGetTopByMatch" SpName="Age_Forecast_OddsGetTopByMatch" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_1_3_7_8_GetByLeague" SpName="Age_Forecast_1_3_7_8_GetByLeague" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_5_15_GetByLeague" SpName="Age_Forecast_5_15_GetByLeague" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_1_7_GetByMatch" SpName="Age_Forecast_1_7_GetByMatch" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_3_8_GetByMatch" SpName="Age_Forecast_3_8_GetByMatch" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_5_15_GetByMatch" SpName="Age_Forecast_5_15_GetByMatch" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_OddsGetTopByMatch" SpName="Age_Forecast_OddsGetTopByMatch" DbName="DB05" Plain="0" />
+    <!--<Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="DB05" Plain="0" />-->
+    <Setting Key="Age_Forecast_1_3_7_8_GetByLeague" SpName="Age_Forecast_1_3_7_8_GetByLeague" DbName="DB05" Plain="0" />
+    <Setting Key="Age_Forecast_5_15_GetByLeague" SpName="Age_Forecast_5_15_GetByLeague" DbName="DB05" Plain="0" />
+    <Setting Key="Age_Forecast_1_7_GetByMatch" SpName="Age_Forecast_1_7_GetByMatch" DbName="DB05" Plain="0" />
+    <Setting Key="Age_Forecast_3_8_GetByMatch" SpName="Age_Forecast_3_8_GetByMatch" DbName="DB05" Plain="0" />
+    <Setting Key="Age_Forecast_5_15_GetByMatch" SpName="Age_Forecast_5_15_GetByMatch" DbName="DB05" Plain="0" />
+    <Setting Key="Age_League_GetRunning" SpName="Age_League_GetRunning" DbName="DB05" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-ScoreMap">

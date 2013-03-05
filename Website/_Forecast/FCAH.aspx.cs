@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Data;
-using System.Web.UI;
-using Sunplus.Agent.Model.BL.Forecast;
-using Sunplus.Agent.Utilities;
+﻿// --------------------------------------------------------------------------
+// <copyright file="FCAH.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.5">Created</change>
+// </history>
 
-/*
- * Created 20100529@Jacob - Render FCAH page
- * Revision:
- * ?@? - ... 
- * 
- */
 namespace Fanex.Age.UI.Forecast
 {
+    using System;
+    using System.Collections;
+    using System.Data;
+    using System.Web.UI;
+    using Sunplus.Agent.Model.BL.Forecast;
+    using Sunplus.Agent.Utilities;
 
     public partial class FCAH_Page : Fanex.Age.UI.TplPage
     {
@@ -25,7 +27,7 @@ namespace Fanex.Age.UI.Forecast
         private int _betType = 0;
         private int _matchId = 0;
         private bool _fullMode = true;
-        ForecastBO _forecastBO = null;
+        private ForecastBO _forecastBO = null;
         #endregion
 
         #region Override
@@ -40,11 +42,9 @@ namespace Fanex.Age.UI.Forecast
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
-            p.AddHttpParameters(new string[] { 
-                "matchid", 
-                "b" ,
-                "score"
-            }, Request);
+            p.AddHttpParameters(
+                new string[] {"matchid", "b", "score"},
+                Request);
             _currentScore = p["score"] == null ? 0 : Convert.ToInt32(p["score"]);
             _fullMode = string.IsNullOrEmpty(Request["full_mode"]) ? true : Convert.ToInt32(Request["full_mode"]) > 0;
             _matchId = Convert.ToInt32(p["matchid"]);
@@ -68,7 +68,7 @@ namespace Fanex.Age.UI.Forecast
 
             decimal FCValue0 = 0, FCValue1 = 0, FCValue2 = 0, FCValue3 = 0, FCValue4 = 0;
             bool hasData = false;
-            // Forecast value
+            //// Forecast value
             if (_betType == 1 || _betType == 7)
             {
                 hasData = GetFCHD(ref FCValue0, ref FCValue1, ref FCValue2, ref FCValue3, ref FCValue4);
@@ -123,6 +123,7 @@ namespace Fanex.Age.UI.Forecast
 
             return forecast;
         }
+
         /// <summary>
         /// Calculate OU forecast value
         /// </summary>
@@ -153,6 +154,7 @@ namespace Fanex.Age.UI.Forecast
 
             return forecast;
         }
+
         /// <summary>
         /// Calculate 5 HD forecast value
         /// </summary>
@@ -176,6 +178,7 @@ namespace Fanex.Age.UI.Forecast
 
             return dtData.Rows.Count > 0 ? true : false;
         }
+
         /// <summary>
         /// Calculate 5 OU forecast value
         /// </summary>
@@ -229,17 +232,15 @@ namespace Fanex.Age.UI.Forecast
                 forecastContent.LiveHomeScore = liveHomeScore.ToString();
                 forecastContent.BetType = _betType.ToString();
                 forecastContent.ScoreValue = _currentScore.ToString();
-
-
-                // Title and switch link
+                //// Title and switch link
                 RenderForecastTitle(tpl.Content.ForecastContent);
-                // Forecast index link
+                //// Forecast index link
                 RenderForecastIndexLink(tpl.Content.ForecastContent);
-                // Forecast value
+                //// Forecast value
                 RenderForecastValue(viewData, tpl.Content.ForecastContent.ForecastValue, tpl.Content.ForecastContent.NoInfo);
-                // Toggle link
+                //// Toggle link
                 RenderToogleLink(tpl.Content.ForecastContent);
-                // BetList link
+                //// BetList link
                 RenderBetListLink(viewData, tpl.Content.ForecastContent.BetListLink);
 
                 tpl.Content.NoInfo.Hide();
@@ -282,6 +283,7 @@ namespace Fanex.Age.UI.Forecast
                 default: break;
             }
         }
+
         /// <summary>
         /// Render empty forcast in case there is no available data
         /// </summary>
@@ -297,7 +299,7 @@ namespace Fanex.Age.UI.Forecast
                 forecastContent.FCValue2 = RedForPositiveAmount(viewData["FCValue2"], 2);
                 forecastContent.FCValue3 = RedForPositiveAmount(viewData["FCValue3"], 2);
                 forecastContent.FCValue4 = RedForPositiveAmount(viewData["FCValue4"], 2);
-                // Forecast index
+                //// Forecast index
                 RenderForecastIndex(forecastContent);
 
                 noInfoBlock.Hide();
@@ -306,8 +308,8 @@ namespace Fanex.Age.UI.Forecast
             {
                 forecastContent.Hide();
             }
-
         }
+
         /// <summary>
         /// Render toogle link: view handicap forecast, view over under forecast
         /// </summary>
@@ -336,6 +338,7 @@ namespace Fanex.Age.UI.Forecast
                 default: break;
             }
         }
+
         /// <summary>
         /// Render forecast index link
         /// </summary>
@@ -354,12 +357,13 @@ namespace Fanex.Age.UI.Forecast
             for (int i = 0; i < indexCount; i++)
             {
                 block.ForecastPoint = (endIndex).ToString();
-                // Bold, red the selected forecast point
+                //// Bold, red the selected forecast point
                 block.ForecastPointValue = BoldSelectedScore(endIndex, selectedIndex);
                 forecastContent.ForecastPointContent.Append(block);
                 endIndex--;
             }
         }
+
         /// <summary>
         /// Render forecast index
         /// </summary>
@@ -374,6 +378,7 @@ namespace Fanex.Age.UI.Forecast
             forecastContent.VScore1 = (startIndex + 1).ToString();
             forecastContent.VScore = (startIndex).ToString();
         }
+
         /// <summary>
         /// Only show bet list link if HasData=true
         /// </summary>
@@ -392,6 +397,7 @@ namespace Fanex.Age.UI.Forecast
                 betListBlock.Hide();
             }
         }
+
         /// <summary>
         /// Round color for negative number
         /// </summary>
@@ -407,8 +413,8 @@ namespace Fanex.Age.UI.Forecast
             {
                 return Formater.DecFormat(Math.Round((decimal)amount), decDigits);
             }
-
         }
+
         /// <summary>
         /// Bold the selected score
         /// </summary>
@@ -422,7 +428,5 @@ namespace Fanex.Age.UI.Forecast
         }
         #endregion
         #endregion
-
     }
-
 }

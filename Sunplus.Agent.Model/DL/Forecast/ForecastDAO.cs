@@ -1,6 +1,5 @@
 namespace Sunplus.Agent.Model.DL.Forecast
 {
-    using System;
     using System.Collections;
     using System.Data;
     using Sunplus.Agent.Model.DL.Definitions;
@@ -74,7 +73,6 @@ namespace Sunplus.Agent.Model.DL.Forecast
         #endregion OverUnder
 
         #region NextGoal
-
         /// <summary>
         /// Forecast for next goal
         /// </summary>
@@ -90,7 +88,6 @@ namespace Sunplus.Agent.Model.DL.Forecast
         //    parameters.Add("roleid", roleId);
         //    return ExecSpTable("Age_Forecast_Sel22", parameters);
         //}
-
         #endregion NextGoal
 
         #region Running League
@@ -108,7 +105,6 @@ namespace Sunplus.Agent.Model.DL.Forecast
             parameters.Add("bettypes", betType);
             return ExecSpTable("Age_League_GetRunning", parameters);
         }
-
 
         #endregion Running League
 
@@ -132,7 +128,6 @@ namespace Sunplus.Agent.Model.DL.Forecast
 
             return ExecSpTable("Age_Forecast_1_3_7_8_GetByLeague", parameters);
         }
-
 
         #endregion League
 
