@@ -1,9 +1,12 @@
-﻿/*
- * Created 20100529@Jacob - Render FCHDPOU page
- * Revision:
- * ?@? - ... 
- * 
- */
+﻿// --------------------------------------------------------------------------
+// <copyright file="FCHDPOU.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.5">Created</change>
+// </history>
+
 namespace Fanex.Age.UI.Forecast
 {
     using System;
@@ -17,8 +20,8 @@ namespace Fanex.Age.UI.Forecast
     public partial class FCHDPOU_Page : Fanex.Age.UI.TplPage
     {
         #region Const
-        private const String RUNNING_LEAGUES = "RunningLeague";
-        private const String FC_DATA = "FCData";
+        private const string RUNNING_LEAGUES = "RunningLeague";
+        private const string FC_DATA = "FCData";
         #endregion
 
         #region Variable
@@ -39,7 +42,7 @@ namespace Fanex.Age.UI.Forecast
 
             // Header name
             RenderLeagueList(tpl.Content);
-            //Render row content
+            //// Render row content
             FCHDPOU_Content_RowContent_Block block = new FCHDPOU_Content_RowContent_Block();
             tpl.Content.RowContent.Clear();
             if (fcData != null && fcData.Rows.Count > 0)
@@ -67,7 +70,7 @@ namespace Fanex.Age.UI.Forecast
                     }
 
                     block.MatchId = dr["matchid"].ToString();
-                    //2nd
+                    //// 2nd
                     block.OffsetHDPMinus1 = (offsetHDP - 1).ToString();
                     block.OffsetHDP = offsetHDP.ToString();
                     block.OffsetHDPPlus1 = (offsetHDP + 1).ToString();
@@ -75,19 +78,19 @@ namespace Fanex.Age.UI.Forecast
                     block.OffsetOUPlus1 = (offsetOU + 1).ToString();
                     block.OffsetOUPlus2 = (offsetOU + 2).ToString();
 
-                    block.HDPM1 = Convert.IsDBNull(dr["WinLost_M1_HDP"]) ? "" : RedForPositiveAmount(dr["WinLost_M1_HDP"], 0);
-                    block.HDPBase = Convert.IsDBNull(dr["WinLost_0_HDP"]) ? "" : RedForPositiveAmount(dr["WinLost_0_HDP"], 0);
-                    block.HDPP1 = Convert.IsDBNull(dr["WinLost_1_HDP"]) ? "" : RedForPositiveAmount(dr["WinLost_1_HDP"], 0);
-                    block.OUP2 = Convert.IsDBNull(dr["WinLost_2_OU"]) ? "" : RedForPositiveAmount(dr["WinLost_2_OU"], 0);
-                    block.OUP1 = Convert.IsDBNull(dr["WinLost_1_OU"]) ? "" : RedForPositiveAmount(dr["WinLost_1_OU"], 0);
-                    block.OUBase = Convert.IsDBNull(dr["WinLost_0_OU"]) ? "" : RedForPositiveAmount(dr["WinLost_0_OU"], 0);
+                    block.HDPM1 = Convert.IsDBNull(dr["WinLost_M1_HDP"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_M1_HDP"], 0);
+                    block.HDPBase = Convert.IsDBNull(dr["WinLost_0_HDP"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_0_HDP"], 0);
+                    block.HDPP1 = Convert.IsDBNull(dr["WinLost_1_HDP"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_1_HDP"], 0);
+                    block.OUP2 = Convert.IsDBNull(dr["WinLost_2_OU"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_2_OU"], 0);
+                    block.OUP1 = Convert.IsDBNull(dr["WinLost_1_OU"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_1_OU"], 0);
+                    block.OUBase = Convert.IsDBNull(dr["WinLost_0_OU"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_0_OU"], 0);
 
-                    block.HTHDPM1 = Convert.IsDBNull(dr["WinLost_M1_HTHDP"]) ? "" : RedForPositiveAmount(dr["WinLost_M1_HTHDP"], 0);
-                    block.HTHDPBase = Convert.IsDBNull(dr["WinLost_0_HTHDP"]) ? "" : RedForPositiveAmount(dr["WinLost_0_HTHDP"], 0);
-                    block.HTHDPP1 = Convert.IsDBNull(dr["WinLost_1_HTHDP"]) ? "" : RedForPositiveAmount(dr["WinLost_1_HTHDP"], 0);
-                    block.HTOUP2 = Convert.IsDBNull(dr["WinLost_2_HTOU"]) ? "" : RedForPositiveAmount(dr["WinLost_2_HTOU"], 0);
-                    block.HTOUP1 = Convert.IsDBNull(dr["WinLost_1_HTOU"]) ? "" : RedForPositiveAmount(dr["WinLost_1_HTOU"], 0);
-                    block.HTOUBase = Convert.IsDBNull(dr["WinLost_0_HTOU"]) ? "" : RedForPositiveAmount(dr["WinLost_0_HTOU"], 0);
+                    block.HTHDPM1 = Convert.IsDBNull(dr["WinLost_M1_HTHDP"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_M1_HTHDP"], 0);
+                    block.HTHDPBase = Convert.IsDBNull(dr["WinLost_0_HTHDP"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_0_HTHDP"], 0);
+                    block.HTHDPP1 = Convert.IsDBNull(dr["WinLost_1_HTHDP"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_1_HTHDP"], 0);
+                    block.HTOUP2 = Convert.IsDBNull(dr["WinLost_2_HTOU"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_2_HTOU"], 0);
+                    block.HTOUP1 = Convert.IsDBNull(dr["WinLost_1_HTOU"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_1_HTOU"], 0);
+                    block.HTOUBase = Convert.IsDBNull(dr["WinLost_0_HTOU"]) ? string.Empty : RedForPositiveAmount(dr["WinLost_0_HTOU"], 0);
 
                     tpl.Content.RowContent.Append(block);
                 }
@@ -107,12 +110,9 @@ namespace Fanex.Age.UI.Forecast
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
-            p.AddHttpParameters(new string[] { 
-                "leagueid",
-            }, Request);
+            p.AddHttpParameters(new string[] { "leagueid" }, Request);
             _fullMode = string.IsNullOrEmpty(Request["full_mode"]) ? true : Convert.ToInt32(Request["full_mode"]) > 0;
             _leagueId = Convert.ToInt32(p["leagueid"]);
-
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
@@ -127,7 +127,7 @@ namespace Fanex.Age.UI.Forecast
 
             DataTable fcData = null;
             DataTable runningLeagues = null;
-            // Get default leagueid
+            //// Get default leagueid
 
             runningLeagues = bo.GetFCRunningLeagues(1); // 1: for Hdp/OU/Live
             if (_leagueId == 0 && runningLeagues.Rows.Count > 0)
@@ -194,5 +194,4 @@ namespace Fanex.Age.UI.Forecast
         }
         #endregion
     }
-
 }

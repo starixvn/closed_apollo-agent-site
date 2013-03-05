@@ -1,32 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Web;
-using System.Web.UI;
+﻿// --------------------------------------------------------------------------
+// <copyright file="OddEven1X2.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.5">Created</change>
+// </history>
 
-using Sunplus.Agent.Model.BL.TotalBets;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-using Sunplus.Agent.Utilities;
-
-/*
- * Created 20100507@Jacob - Render OddEven1x2 page
- * Revision:
- * ?@? - ... 
- * 
- */
 namespace Fanex.Age.UI.TotalBets
 {
+    using System;
+    using System.Data;
+    using System.Web.UI;
+    using Sunplus.Agent.Utilities;
 
     public partial class OddEven1x2_Page : TotalBets_Page
     {
-
         #region Override
-
         public override void RenderContent(HtmlTextWriter writer)
         {
             DataTable oddEventOneXTwo = View as DataTable;
@@ -51,7 +41,10 @@ namespace Fanex.Age.UI.TotalBets
                     if (i == 0 || currentLeagueId != leagueId)
                     {
                         // New league, ignore first row
-                        if (i != 0) tpl.Contents.LeagueContents.Append(leagueBlock);
+                        if (i != 0)
+                        {
+                            tpl.Contents.LeagueContents.Append(leagueBlock);
+                        }
 
                         matchIndex = 1;
                         currentLeagueId = leagueId;
@@ -70,7 +63,10 @@ namespace Fanex.Age.UI.TotalBets
                     leagueBlock.MatchContents.Append(matchBlock);
                 }
 
-                if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
+                if (leagueBlock != null)
+                {
+                    tpl.Contents.LeagueContents.Append(leagueBlock);
+                }
             }
 
             if (_fullMode)
@@ -80,9 +76,9 @@ namespace Fanex.Age.UI.TotalBets
             else
             {
                 writer.Write(tpl.Contents);
-            }   
+            }
         }
-        
+
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
             return null;
@@ -95,6 +91,17 @@ namespace Fanex.Age.UI.TotalBets
         #endregion
 
         #region Utility
+        /// <summary>
+        /// Round color for negative number
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        private static string NegativeNumberRoundColor(object number)
+        {
+            decimal num = Convert.ToDecimal(number);
+
+            return (num < 0) ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
+        }
 
         /// <summary>
         /// Render match row
@@ -127,6 +134,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.TimeValue = dr["showtime"].ToString();
                 matchBlock.LiveNotice.Hide();
             }
+
             matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
 
             // Event 
@@ -149,7 +157,7 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         private void RenderOddEvenTotal(OddEven1X2_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr)
         {
-            //Odd-Even Total
+            //// Odd-Even Total
             if (Convert.ToInt16(dr["betcount_oe"]) != 0)
             {
                 decimal OETotal = (decimal)(dr["home_odds_OE"]) - (decimal)(dr["away_odds_OE"]);
@@ -171,7 +179,7 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         private void RenderOneXTwoTotal(OddEven1X2_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr)
         {
-            // OneXTwo Total
+            //// OneXTwo Total
             if (Convert.ToInt16(dr["betcount_1x2"]) != 0)
             {
                 decimal OneXTwoTotal = (decimal)(dr["odds_1"]) + (decimal)(dr["odds_x"]) + (decimal)(dr["odds_2"]);
@@ -189,6 +197,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OneXTwoButton.Hide();
             }
         }
+
         /// <summary>
         /// Render draw/no draw under total column
         /// </summary>
@@ -211,6 +220,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.DNDValue.Hide();
             }
         }
+
         /// <summary>
         /// Render odd event first half column
         /// </summary>
@@ -233,6 +243,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OddEvenFirstHalfValue.Hide();
             }
         }
+
         /// <summary>
         /// Render one x two under first half column
         /// </summary>
@@ -258,18 +269,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OneXTwoFirstHalfButton.Hide();
             }
         }
-        /// <summary>
-        /// Round color for negative number
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        private static string NegativeNumberRoundColor(object number)
-        {
-            decimal num = Convert.ToDecimal(number);
 
-            return (num < 0) ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
-        }
         #endregion
     }
-
 }

@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Web;
-using System.Web.UI;
+﻿// --------------------------------------------------------------------------
+// <copyright file="MoneyLine.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.5">Created</change>
+// </history>
 
-using Sunplus.Agent.Model.BL.TotalBets;
-
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-
-using Sunplus.Agent.Utilities;
-
-/*
- * Created 20100507@Jacob - Render MoneyLine page
- * Revision:
- * ?@? - ... 
- * 
- */
 namespace Fanex.Age.UI.TotalBets
 {
+    using System;
+    using System.Data;
+    using System.Web.UI;
+    using Sunplus.Agent.Utilities;
 
     public partial class MoneyLine_Page : TotalBets_Page
     {
@@ -54,7 +44,10 @@ namespace Fanex.Age.UI.TotalBets
                     if (i == 0 || currentLeagueId != leagueId)
                     {
                         // New league, ignore first row
-                        if (i != 0) tpl.Contents.LeagueContents.Append(leagueBlock);
+                        if (i != 0)
+                        {
+                            tpl.Contents.LeagueContents.Append(leagueBlock);
+                        }
 
                         matchIndex = 1;
                         currentLeagueId = leagueId;
@@ -72,9 +65,11 @@ namespace Fanex.Age.UI.TotalBets
                     leagueBlock.MatchContents.Append(matchBlock);
                 }
 
-                if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
+                if (leagueBlock != null)
+                {
+                    tpl.Contents.LeagueContents.Append(leagueBlock);
+                }
             }
-
 
             if (_fullMode)
             {
@@ -98,6 +93,16 @@ namespace Fanex.Age.UI.TotalBets
         #endregion
 
         #region Utility
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public string RoundPositiveColor(object number)
+        {
+            decimal num = Convert.ToDecimal(number);
+            return (num > 0) ? "<font color='red'>" + Formater.FormatNumber2(num, CurrentUserSession.Language) + "</font>" : Formater.FormatNumber2(num, CurrentUserSession.Language);
+        }
 
         /// <summary>
         /// Render match row
@@ -108,7 +113,7 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="rowIndex"></param>
         private void RenderMatchRow(MoneyLine_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, int matchIndex, int rowIndex)
         {
-            // Render match content
+            //// Render match content
 
             if (dr.Table.Columns.Contains("closed") && Convert.ToInt32(dr["closed"]) != 0)
             {
@@ -122,6 +127,7 @@ namespace Fanex.Age.UI.TotalBets
             {
                 matchBlock.ColorClass = Fanex.Age.UI.Common.RowBgOdd;
             }
+
             matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
             matchBlock.NoValue = rowIndex.ToString();
             matchBlock.TimeValue = dr["showtime"].ToString();
@@ -138,21 +144,6 @@ namespace Fanex.Age.UI.TotalBets
             matchBlock.MatchId = dr["matchid"].ToString();
             matchBlock.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        public string RoundPositiveColor(object number)
-        {
-            decimal num = Convert.ToDecimal(number);
-            return (num > 0) ? "<font color='red'>" + Formater.FormatNumber2(num, CurrentUserSession.Language) + "</font>" : Formater.FormatNumber2(num, CurrentUserSession.Language);
-        }
-
         #endregion
-
-
     }
-
 }
