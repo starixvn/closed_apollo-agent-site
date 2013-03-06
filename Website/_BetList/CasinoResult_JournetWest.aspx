@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="CasinoResult_JournetWest.aspx.cs" Inherits="Sunplus.Agent.UI._BetList.CasinoResult_JournetWest_Page" %>
