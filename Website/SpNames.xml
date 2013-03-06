@@ -172,6 +172,9 @@
   </Function>
 
   <Function Name="Agent - BetList">
+
+    <Setting Key="Acc_BetList_AgentDetail" SpName="Acc_BetList_AgentDetail" DbName="archive" Plain="0" />
+
     <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details" DbName="archive" Plain="0" />
     <Setting Key="Age_BetList_SelAllByDate_Mem" SpName="Age_BetList_SelAllByDate_Mem" DbName="archive" Plain="0" />
     <Setting Key="Age_BetList_SelAllByDateHR_Ag" SpName="Age_BetList_SelAllByDateHR_Ag" DbName="archive" Plain="0" />

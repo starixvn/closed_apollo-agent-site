@@ -34,6 +34,7 @@ namespace Fanex.Age.Excel.Reports.Commission
 
             int rowId = 0;
             int colId = 0;
+            hssfWorkbook.SetSheetName(0, Resources.Lang.lblcommssionhorseracing);
 
             // header
             resultSheet.GetCell(rowId, colId).SetCellValue(Resources.Lang.lblcommssionhorseracing + " " +

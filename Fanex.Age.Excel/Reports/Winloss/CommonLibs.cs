@@ -45,6 +45,23 @@
                     }
 
                     break;
+                // For Virtual Sports
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VS_1X2:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VS_CorrectScore:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VS_DoubleChange:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VS_Handicap:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VS_OverUnder:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VS_TotalGoal:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VHR_Win:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VHR_Place:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VHR_WinPlace:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VHR_Forecast:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VHR_Tricast:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VT_PlayerWin:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VT_ScoreBet:
+                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.VT_TotalPoints:
+                    betTypeName = betTypeName + " (" + Resources.Lang.VirtualSports + ")";
+                    break;
                 default:
                     break;
             }

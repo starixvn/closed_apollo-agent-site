@@ -42,7 +42,6 @@ namespace Fanex.Age.Excel.Reports.Common
 
             int rowId = 0;
             int colId = 0;
-
             // header
             resultSheet.GetCell(rowId, colId).SetCellValue(Resources.Lang.date);
             resultSheet.GetCell(rowId, colId + 1).SetCellValue(Formater.ShortDateFormat(_builder.FromDate));

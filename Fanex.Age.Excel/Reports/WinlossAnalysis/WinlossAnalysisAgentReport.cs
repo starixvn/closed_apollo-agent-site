@@ -44,6 +44,7 @@ namespace Fanex.Age.Excel.Reports.WinlossAnalysis
 
             int rowId = 0;
             int colId = 0;
+            hssfWorkbook.SetSheetName(0, CommonLibs.GetHeaderTitle(this.builder.ReportType));
 
             //// header
             string title = CommonLibs.GetHeaderTitle(this.builder.ReportType);

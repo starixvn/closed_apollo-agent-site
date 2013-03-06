@@ -43,6 +43,7 @@
             bool checkMaster = (_builder.IsSuper == true || _builder.IsMaster == true);
             bool checkAgent = (_builder.IsSuper == true || _builder.IsMaster == true || _builder.IsAgent == true);
 
+            hssfWorkbook.SetSheetName(0, Resources.Lang.lblMatchWinLostDetail);
             // header
             resultSheet.GetCell(rowId, colId).SetCellValue(Resources.Lang.lblMatchWinLostDetail + " " + Formater.ShortDateFormat(_builder.FromDate) + "-->" + Formater.ShortDateFormat(_builder.ToDate));
             rowId = 1;

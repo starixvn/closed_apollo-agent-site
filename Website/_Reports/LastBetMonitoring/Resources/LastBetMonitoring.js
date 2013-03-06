@@ -1,18 +1,9 @@
-﻿require(["/_Reports/LastBetMonitoring/Resources/smoothie.js"], function () { });
-
-require(["/_Components/AGEWnd/AGEWnd.js"], function () { });
-
-require(["/_GlobalResources/Js/shortcut.js"], function () { });
-
-require(["/_Components/ErrorMsg/ErrorMsg.js"], function () { });
-
-require(["/_BetList/Resources/BetList.js"], function () {
-    RegisterStartUp(InitLastBetMonitering);
-});
+﻿RegisterStartUp(InitLastBetMonitering);
 
 function isCanvasSupported() {
-    var elem = document.createElement('canvas');
-    return !!(elem.getContext && elem.getContext('2d'));
+    return false;
+    //var elem = document.createElement('canvas');
+    //return !!(elem.getContext && elem.getContext('2d'));
 }
 
 var timeoutId;
@@ -67,8 +58,10 @@ function LoadDataByBetType(betTypeGroup) {
 
     if (betTypeGroup == 1 || betTypeGroup == 3) {
         setDisplayStyle('.bl_btype', 'none');
+        setDisplayStyle('.bettype', 'none');
     } else {
         setDisplayStyle('.bl_btype', 'inline');
+        setDisplayStyle('.bettype', 'block');
     }
 
     GetLatestBets();

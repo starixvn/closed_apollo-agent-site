@@ -399,5 +399,4 @@ function ShowMoreAnnouncements() {
 
 //Load all infos
 
-//RegisterStartUp("displayBlocks('none');loadBalanceInfo();loadStatistic();verifyOnlineList();loadAnnouncement('Announcement.aspx?' + _page.key, true);");
-RegisterStartUp("displayBlocks('block');verifyOnlineList();loadAnnouncement('Announcement.aspx?' + _page.key, true);");
+RegisterStartUp("displayBlocks('none');loadBalanceInfo();loadStatistic();verifyOnlineList();loadAnnouncement('Announcement.aspx?' + _page.key, true);");

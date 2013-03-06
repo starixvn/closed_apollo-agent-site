@@ -6,99 +6,105 @@
 <!--/HiddenBlock-->
 
 <div id="Bleft_Parent02">
-    <div id="left_submenu"> 
-        <span class="title-left-menu">Setting</span>
-        <div id="left_line02">
-            <img width="1" height="1" name="" src="../_GlobalResources/Images/dot.gif" alt="">
+    <div id="left_submenu">
+        <div id="left_tab">
+            <ul>
+                <li id="custsettings" class="current"><a href="#" onclick="showSection(this.parentNode.id);">
+                    <span>{static:Resources.Lang.setting}</span></a></li>
+                <li id="logininfo"><a href="#" onclick="showSection(this.parentNode.id);">
+                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.Login, 7, true)}</a></li>
+                <li id="onlinelist"><a href="#" onclick="showSection(this.parentNode.id);">
+                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.onlinelist,11, true)}</a></li>
+            </ul>
         </div>
         <div id="clear0" />
         <div class="Bleft_Sub02">
-            <table id="tbl_custsettings">             
+            <table id="tbl_custsettings">
                 <tr>
                     <td colspan="2">
                         <div style="position: relative; left: -3px;" class="settingWidth">
                             <div class="divStatus" onmousedown="return changeSuspendedStatus(event, this);" title="{SuspendedTooltip}">
-                                <input type="checkbox" id="chkSuspend" {disableSuspend} {checkedSuspended} />
                                 <label for="chkSuspend" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.suspended,9)}
                                 </label>
+                                <input type="checkbox" id="chkSuspend" {disableSuspend} {checkedSuspended} />
                             </div>
                             <div class="divStatus" onmousedown="return changeClosedStatus(event, this);"  title="{ClosedTooltip}">
-                                <input type="checkbox" id="chkClosed" {disableClosed} {checkedClosed} />
                                 <label for="chkClosed" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblClosed, Sunplus.Agent.Model.Entities.UserSession.Current.LangKey.Equals("KO")?5:9)}
                                 </label>
+                                <input type="checkbox" id="chkClosed" {disableClosed} {checkedClosed} />
                             </div>
                             <div class="divStatus" onmousedown="return changeOutrightStatus(event, this);" title="{OutrightTooltip}">
-                                <input type="checkbox" id="chkOutright" {disableOutright} {checkedOutright} />
                                 <label for="chkOutright" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblenableOutRight,14)}
-                                </label>                                
+                                </label>
+                                <input type="checkbox" id="chkOutright" {disableOutright} {checkedOutright} />
                             </div>
                             <!--StatusAutoPT-->
-                            <!--<div class="divStatus" onmousedown="return changeAutoMPTStatus(event, this);">
-                                <input type="checkbox" id="chkMAutoPT" {disableMasterAutoPT} {checkedMasterAutoPT} />
+                            <div class="divStatus" onmousedown="return changeAutoMPTStatus(event, this);">
                                 <label for="chkMAutoPT" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.allowautopt,13)}
                                 </label>
-                            </div>-->
+                                <input type="checkbox" id="chkMAutoPT" {disableMasterAutoPT} {checkedMasterAutoPT} />
+                            </div>
                             <!--/StatusAutoPT-->
                             
                             <!--StatusCasino-->
-                            <!--<div class="divStatus" onmousedown="return changeCasinoStatus(event, this, {hasDownline});">
+                            <div class="divStatus" onmousedown="return changeCasinoStatus(event, this, {hasDownline});">
                                 <label for="chkCasino" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableCS,13)}
                                 </label>
                                 <input type="checkbox" id="chkCasino" {disableCasino} {checkedCasino} />
-                            </div>-->
+                            </div>
                             <!--/StatusCasino-->
                             <!--StatusBingo-->
-                            <!--<div class="divStatus" onmousedown="return changeBingoStatus(event, this, {hasDownline});">
+                            <div class="divStatus" onmousedown="return changeBingoStatus(event, this, {hasDownline});">
                                 <label for="chkBingo" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblEnableBingo,13)}
                                 </label>
                                 <input type="checkbox" id="chkBingo" {disableBingo} {checkedBingo} />
-                            </div>-->
+                            </div>
                             <!--/StatusBingo-->
                             <!--StatusNumberGame-->
                             <div class="divStatus" onmousedown="return changeNumberGameStatus(event, this, {hasDownline});">
-                                <input type="checkbox" id="chkNumberGame" {disableNumberGame} {checkedNumberGame} />
                                 <label for="chkNumberGame" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableNumber,13)}
                                 </label>
+                                <input type="checkbox" id="chkNumberGame" {disableNumberGame} {checkedNumberGame} />
                             </div>
                             <!--/StatusNumberGame-->
                             <!--StatusRacing-->
-                           <!-- <div class="divStatus" onclick="ShowFrmUpdRacingStatus(this, {hasDownline})">
+                            <div class="divStatus" onclick="ShowFrmUpdRacingStatus(this, {hasDownline})">
                                 <label for="chkRacing" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Racing.enableRacing,14)}
                                 </label>   
                                 <span id="chkRacing" class="arrow1">&nbsp;&nbsp;&nbsp;</span>
-                            </div>-->
+                            </div>
                             <!--/StatusRacing-->
                             <!--StatusLiveCasino-->
-                            <!--<div class="divStatus">
+                            <div class="divStatus">
                                 <label for="chkLiveCasino" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.LiveCasino,13)}
                                 </label>
                                 <input onclick="return changeLiveCasinoStatus(event, this)" type="checkbox" id="chkLiveCasino" {disableLiveCasino} {checkedLiveCasino} />
-                            </div>-->
+                            </div>
                             <!--/StatusLiveCasino-->
                             <!--StatusVirtualSports-->
-                            <!--<div class="divStatus" onmousedown="return changeVirtualSportsStatus(event, {hasDownline})">
-                                <input type="checkbox" id="chkVirtualSports" {disableVirtualSports} {checkedVirtualSports} />
+                            <div class="divStatus" onmousedown="return changeVirtualSportsStatus(event, {hasDownline})">
                                 <label for="chkVirtualSports" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.VirtualSports,14)}
                                 </label>
-                            </div>-->
+                                <input type="checkbox" id="chkVirtualSports" {disableVirtualSports} {checkedVirtualSports} />
+                            </div>
                             <!--/StatusVirtualSports-->
                             <!--StatusDoubleComm-->
-                            <!--<div class="divStatus" onmousedown="return changeDoubleCommStatus(event, {hasDownline})">
-                                <input type="checkbox" id="chkDoubleComm" {disableDoubleComm} {checkedDoubleComm} />
+                            <div class="divStatus" onmousedown="return changeDoubleCommStatus(event, {hasDownline})">
                                 <label for="chkDoubleComm" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.doublecommission,14)}
                                 </label>
-                            </div>-->
+                                <input type="checkbox" id="chkDoubleComm" {disableDoubleComm} {checkedDoubleComm} />
+                            </div>
                             <!--/StatusDoubleComm-->
                         </div>
                         <div id="overlayBg" class="overlay">

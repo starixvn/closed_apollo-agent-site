@@ -19,7 +19,7 @@
         public HSSFWorkbook Build()
         {
             var data = _builder.Data;
-            if (data == null) return null;
+            //if (data == null) return null;
 
             ISheet templateSheet = hssfWorkbook.GetSheet("Template");
             ISheet resultSheet = hssfWorkbook.GetSheet("CSWinlossMaster");
@@ -32,6 +32,7 @@
 
             int rowId = 0;
             int colId = 0;
+            hssfWorkbook.SetSheetName(0, Resources.Lang.agentRealTimeWinloss);
 
             // header
             resultSheet.GetCell(rowId, colId).SetCellValue(Resources.Lang.agentRealTimeWinloss + " " +
@@ -60,7 +61,7 @@
             // content
             rowId = 3;
             int id = 1;
-            if (data.Count > 0)
+            if (data != null && data.Count > 0)
             {
                 foreach (var item in data)
                 {

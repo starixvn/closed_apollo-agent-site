@@ -1149,7 +1149,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <value>Winning</value>
   </data>
   <data name="lblWon" xml:space="preserve">
-    <value>Won</value>
+    <value>Thắng</value>
     <comment>Not found</comment>
   </data>
   <data name="league" xml:space="preserve">
@@ -2047,7 +2047,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <value>Oh …hệ thống đang bi lỗi,Vui lòng báo với người quản lý</value>
   </data>
   <data name="official" xml:space="preserve">
-    <value>Official</value>
+    <value>Chính thức</value>
   </data>
   <data name="scr" xml:space="preserve">
     <value>SCR</value>
@@ -2113,7 +2113,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <value>Doanh thu / Lời lỗ</value>
   </data>
   <data name="confirmCloseMem" xml:space="preserve">
-    <value>Bạn có chắc muốn bỏ trạng thái "Khóa" của thành viên này ?</value>
+    <value>Bạn có chắc muốn thay đổi trạng thái "Khóa" của thành viên này không?</value>
   </data>
   <data name="confirmCloseDownline" xml:space="preserve">
     <value>Bạn có chắc muốn khóa thành viên này?\nKhuyến cáo: tất cả cấp dưới của tài khoản này cũng sẽ bị khóa?</value>
@@ -2125,7 +2125,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <value>Bạn có chắc muốn đình chỉ thành viên này?\n Khuyến cáo: thành viên này sẽ không thể đặt cược?</value>
   </data>
   <data name="confirmUnSuspendMem" xml:space="preserve">
-    <value>Bạn có chắc muốn đình chỉ thành viên này?</value>
+    <value>Bạn có chắc muốn thay đổi trạng thái "Đình Chỉ" cho thành viên này không?</value>
   </data>
   <data name="alertCloseCustDownline" xml:space="preserve">
     <value>Bạn có chắc chắn muốn đóng tài khoản của khách hàng này và toàn bộ cấp dưới?</value>
@@ -2244,7 +2244,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <value>Hạn chót</value>
   </data>
   <data name="lblGameGroup" xml:space="preserve">
-    <value>Game Group</value>
+    <value>Phân nhóm</value>
   </data>
   <data name="lblGameID" xml:space="preserve">
     <value>Game ID</value>
@@ -2509,7 +2509,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <value>Trạng thái hiện tại của tất cả các giao dịch</value>
   </data>
   <data name="lblCasinoHandHistory" xml:space="preserve">
-    <value>Casino Hand History</value>
+    <value>Nhật ký Casino</value>
   </data>
   <data name="transferredamount" xml:space="preserve">
     <value>Số tiền được chuyển khoản</value>
@@ -2687,7 +2687,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <comment>Not found</comment>
   </data>
   <data name="copysuperpresetformember" xml:space="preserve">
-    <value>Áp dụng giá trị PT trước của Super cho tất cả  thành viên</value>
+    <value>Áp dụng PT trước đó của Super cho tất cả những thành viên trực thuộc</value>
     <comment>Not found</comment>
   </data>
   <data name="filterfi" xml:space="preserve">
@@ -2855,7 +2855,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <value>Di chuyển đến trang</value>
   </data>
   <data name="withPictures" xml:space="preserve">
-    <value>Results with pictures</value>
+    <value>Kết quả bằng hình ảnh</value>
   </data>
   <data name="undermaintenance" xml:space="preserve">
     <value>Server đang được bảo trì,Webside sẽ không thể truy cập từ {0} cho đến {1} .Xin lỗi vì sự bất tiện này</value>
@@ -3380,10 +3380,10 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
     <comment>Not found</comment>
   </data>
   <data name="lblNo" xml:space="preserve">
-    <value>No</value>
+    <value>Không</value>
   </data>
   <data name="lblYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Có</value>
   </data>
   <data name="AllBetTypes" xml:space="preserve">
     <value>Tất cả loại cược</value>
@@ -4055,16 +4055,16 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
     <value>Sao chép thiết lập PT của {1}  cho {0}</value>
   </data>
   <data name="labelMinPosition" xml:space="preserve">
-    <value>Giá tri PT nhỏ nhất</value>
+    <value>Giá trị PT nhỏ nhất</value>
   </data>
   <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0}-Tiền cược lớn nhất phải ít hơn hoặc bằng Tiền cược tối đa của mỗi trận đấu</value>
+    <value>{0} - Tiền cược lớn nhất phải nhỏ hơn hoặc bằng Tiền cược tối đa của mỗi trận đấu</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxBet" xml:space="preserve">
-    <value>{0}-Tiền cược nhỏ nhất phải ít hơn hoặc bằng Tiền cược lớn nhất</value>
+    <value>{0} - Tiền cược nhỏ nhất phải nhỏ hơn hoặc bằng Tiền cược lớn nhất</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0}-Tiền cược nhỏ nhất phải ít hơn hoặc bằng Tiền cược lớn của mỗi trận đấu</value>
+    <value>{0} - Tiền cược nhỏ nhất phải nhỏ hơn hoặc bằng Tiền cược tối đa của mỗi trận đấu</value>
   </data>
   <data name="otherBetTypesOf" xml:space="preserve">
     <value>Các thể loại cá cược khác của {0}</value>
@@ -4379,7 +4379,19 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
 	<data name="agentList" xml:space="preserve">
     <value>Các Agent</value>
   </data>
-	<data name="memberList" xml:space="preserve">
-    <value>Thành viên</value>
+	<data name="confirmUpdateMembers" xml:space="preserve">
+    <value>Xác nhận thay đổi giá trị PT của thành viên</value>
+  </data>
+	<data name="firstGoalLastGoal" xml:space="preserve">
+    <value>Bàn thắng Đầu/Cuối</value>
+  </data>
+	<data name="nextOverUnder" xml:space="preserve">
+    <value>Banh kế tiếp - Over/Under</value>
+  </data>
+	<data name="nextOddEven" xml:space="preserve">
+    <value>Banh kế tiếp - Lẻ/Chẵn</value>
+  </data>
+	<data name="numberWheel" xml:space="preserve">
+    <value>Number Wheel</value>
   </data>
 </root>

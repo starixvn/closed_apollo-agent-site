@@ -45,6 +45,7 @@ namespace Fanex.Age.Excel.Reports.Winloss
 
             int rowId = 0;
             int colId = 0;
+            hssfWorkbook.SetSheetName(0, Resources.Lang.masterwinlostdetail);
 
             // header
             resultSheet.GetCell(rowId, colId).SetCellValue(Resources.Lang.masterwinlostdetail + " " +

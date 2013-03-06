@@ -45,6 +45,7 @@ namespace Fanex.Age.Excel.Reports.Consolidated
 
             int rowId = 0;
             int colId = 0;
+            hssfWorkbook.SetSheetName(0, CommonLibs.GetHeaderTitle(_builder.ReportType));
 
             // header
             string title = CommonLibs.GetHeaderTitle(_builder.ReportType);

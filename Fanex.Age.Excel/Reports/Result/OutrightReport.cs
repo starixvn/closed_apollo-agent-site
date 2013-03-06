@@ -35,6 +35,7 @@ namespace Fanex.Age.Excel.Reports.Result
             ISheet resultSheet = hssfWorkbook.GetSheet("Result");
             int rowId = 0;
             int colId = 0;
+            hssfWorkbook.SetSheetName(0, Resources.Lang.result);
 
             // title
             this.WriteTitle(resultSheet, ref rowId, ref colId, this.builder);

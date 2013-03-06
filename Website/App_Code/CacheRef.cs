@@ -24,7 +24,7 @@ public static class CacheRef
             case "zh-CN": return "cs"; // Simplified
             case "ja-JP": return "jp";
             case "th-TH": return "th"; // Thai
-            case "vi-VN": return "vn"; // Thai
+
             default: return "en";
         }
     }

@@ -5,6 +5,9 @@ using System.Web.UI;
 using Fanex.Age.UI.Reports.Components;
 using Sunplus.Agent.Model.Entities.Permission;
 using Sunplus.Agent.Utilities;
+using Sunplus.Agent.Model.Entities;
+using System.Globalization;
+using System.Threading;
 
 /*
  * Created 20100529@Jacob - Render WinlossByBetTypeAgent page
@@ -23,7 +26,7 @@ namespace Fanex.Age.UI.Reports.Winloss
         }
 
         #region Variable
-
+        bool isVN = false;
         #endregion Variable
 
         #region Override
@@ -36,7 +39,7 @@ namespace Fanex.Age.UI.Reports.Winloss
         {
             WinlossByBetTypeAgent_Template tpl = new WinlossByBetTypeAgent_Template();
             tpl.LocalControl.Hide();
-
+            isVN = Thread.CurrentThread.CurrentCulture.Name == "vi-VN";
             RegisterJavascriptObject("role", CurrentUserSession.RoleId);
 
             if (_exportToExcel)
@@ -73,6 +76,9 @@ namespace Fanex.Age.UI.Reports.Winloss
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
+            CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(UserSession.Current.Language);
+
             base.ProcessRequest(ref p);
         }
 
@@ -143,7 +149,7 @@ namespace Fanex.Age.UI.Reports.Winloss
                 {
                     DataRow dr = reportData.Rows[i];
                     int betType = Convert.ToInt32(dr["bettype"]);
-                    string betTypeName = Sunplus.Agent.Model.BL.Cache.CacheRef.GetBettype(dr["bettype"]);
+                    string betTypeName = GetBetTypeName(betType);
 
                     switch (betType)
                     {
@@ -168,10 +174,23 @@ namespace Fanex.Age.UI.Reports.Winloss
                             }
                             break;
                         case (int)(Sunplus.Agent.Model.BL.Definitions.BetType.N_Over_Under): // Number game Over/Under
-                            rowBlock.BetTypeName = Resources.Lang.next + " " + betTypeName + " (" + Resources.Lang.numbergame + ")";
+                            if (isVN)
+                            {
+                                rowBlock.BetTypeName = betTypeName + " (" + Resources.Lang.numbergame + ")";
+                            }
+                            else
+                            {
+                                rowBlock.BetTypeName = Resources.Lang.next + " " + betTypeName + " (" + Resources.Lang.numbergame + ")";
+                            }
+
                             break;
                         case (int)(Sunplus.Agent.Model.BL.Definitions.BetType.N_Odd_Even): // Number game Odd/Even
                             string strNextCombo = (int)dr["liveindicator"] == 1 ? Resources.Lang.next + " " : Resources.Lang.ft + ". ";
+                            if (isVN && (int)dr["liveindicator"] == 1)
+                            {
+                                strNextCombo = string.Empty;
+                            }
+
                             rowBlock.BetTypeName = strNextCombo + betTypeName + " (" + Resources.Lang.numbergame + ")";
                             break;
                         case (int)(Sunplus.Agent.Model.BL.Definitions.BetType.NumberWheel): // Number game - NumberWheel
@@ -230,6 +249,63 @@ namespace Fanex.Age.UI.Reports.Winloss
             {
                 excelBlock.TotalContent.Hide();
                 excelBlock.NoInfo.NoInfoRow.NumCols = "10";
+            }
+        }
+
+        private string GetBetTypeName(int typeid)
+        {
+            switch (typeid)
+            {
+                case 1: return Resources.Lang.lblHandicapFC;
+                case 2: return Resources.Lang.lblOddEven;
+                case 3: return Resources.Lang.lblOverUnder;
+                case 4: return Resources.Lang.correctscore;
+                case 5: return Resources.Lang.lbl1x2;
+                case 6: return Resources.Lang.totalgoal;
+                case 7: return Resources.Lang.No1 + " " + Resources.Lang.lblHandicapFC;
+                case 8: return Resources.Lang.No1 + " " + Resources.Lang.lblOverUnder;
+                case 14:
+                    if (isVN)
+                    {
+                        return Resources.Lang.firstGoalLastGoal;
+                    }
+                    else
+                    {
+                        return Sunplus.Agent.Model.BL.Cache.CacheRef.GetBettype(typeid);
+                    }
+                case 20: return Resources.Lang.moneyline;
+                case 71: return Resources.Lang.casinoGame;
+                case 85:
+                    if (isVN)
+                    {
+                        return Resources.Lang.nextOverUnder;
+                    }
+                    else
+                    {
+                        return Sunplus.Agent.Model.BL.Cache.CacheRef.GetBettype(typeid);
+                    }
+                case 86:
+                    if (isVN)
+                    {
+                        return Resources.Lang.nextOddEven;
+                    }
+                    else
+                    {
+                        return Sunplus.Agent.Model.BL.Cache.CacheRef.GetBettype(typeid);
+                    }
+                case 90:
+                    if (isVN)
+                    {
+                        return Resources.Lang.numberWheel;
+                    }
+                    else
+                    {
+                        return Sunplus.Agent.Model.BL.Cache.CacheRef.GetBettype(typeid);
+                    }
+
+                case 123: return Resources.Lang.lblDraw + " &#92 " + Resources.Lang.lblNoDraw;
+
+                default: return Sunplus.Agent.Model.BL.Cache.CacheRef.GetBettype(typeid);
             }
         }
 

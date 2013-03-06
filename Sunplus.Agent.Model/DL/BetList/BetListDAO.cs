@@ -4,7 +4,7 @@ using System.Data;
  * Created 20100506@Jacob - Data access object of BetList function
  * Revision:
  * 20110301@Qui - Refactor
- * 
+ *
  */
 
 namespace Sunplus.Agent.Model.DL.BetList
@@ -17,6 +17,7 @@ namespace Sunplus.Agent.Model.DL.BetList
     public class BetListDAO : Sunplus.Agent.Model.DL.Base.DAOBase
     {
         #region GetWinLossByDateAndMem
+
         /// <summary>
         /// Report/WinLoss --> BetList
         /// </summary>
@@ -100,10 +101,11 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-        
-        #endregion
+
+        #endregion GetWinLossByDateAndMem
 
         #region WinlossOutright
+
         /// <summary>
         /// BetList -> Get winloss outright
         /// </summary>
@@ -166,10 +168,11 @@ namespace Sunplus.Agent.Model.DL.BetList
 
             return ExecSpTable("Age_BetList_SelWinlossOutright_SAg", parameters);
         }
-        
-        #endregion
+
+        #endregion WinlossOutright
 
         #region WinlossHR
+
         /// <summary>
         /// Get agent winloss in horse racing
         /// </summary>
@@ -296,9 +299,10 @@ namespace Sunplus.Agent.Model.DL.BetList
             }
         }
 
-        #endregion
+        #endregion WinlossHR
 
         #region WinlossByBetTypeMatch
+
         /// <summary>
         /// Get agent Winloss by match
         /// </summary>
@@ -406,7 +410,8 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-        #endregion
+
+        #endregion WinlossByBetTypeMatch
 
         #region RunningByDateAndMem
 
@@ -442,7 +447,8 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-        #endregion
+
+        #endregion RunningByDateAndMem
 
         #region AllBetsByDateAndMem
 
@@ -478,9 +484,11 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-        #endregion
+
+        #endregion AllBetsByDateAndMem
 
         #region DeletedBets
+
         /// <summary>
         /// Get deleted bets
         /// </summary>
@@ -528,9 +536,11 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-        #endregion
+
+        #endregion DeletedBets
 
         #region AllHRByDate
+
         /// <summary>
         /// Get horse racing bet by matchid for agent
         /// @HanhVu: Select data for Betlist of HR (link from Total Bets==>HR)
@@ -638,9 +648,11 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-        #endregion
+
+        #endregion AllHRByDate
 
         #region RunningByBettypeAndMatch
+
         /// <summary>
         /// Get Running bets by bettype and match for agent
         /// </summary>
@@ -672,7 +684,7 @@ namespace Sunplus.Agent.Model.DL.BetList
         /// <param name="liveindicator"></param>
         /// <param name="betteam"></param>
         /// <param name="outDataTable"></param>
-        /// <returns></returns>       
+        /// <returns></returns>
         public DataTable Age_BetList_SelRunningByBettypeMatch_Ag(int matchId, int custId, int betType, string language, int liveindicator, string betteam, out DataTable outDataTable)
         {
             Hashtable parameters = new Hashtable();
@@ -778,7 +790,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             parameters.Add("betteam", betteam);
             return ExecSpTable("Age_BetList_SelRunningByBettypeMatch_SAg", parameters);
         }
-        
+
         /// <summary>
         /// Get Running bets by bettype and match for super
         /// </summary>
@@ -816,7 +828,8 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-        #endregion
+
+        #endregion RunningByBettypeAndMatch
 
         #region DailyStatement
 
@@ -885,9 +898,11 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-        #endregion
+
+        #endregion DailyStatement
 
         #region RunningByBettype
+
         /// <summary>
         /// Get running bets by bet type for agent
         /// </summary>
@@ -980,9 +995,11 @@ namespace Sunplus.Agent.Model.DL.BetList
             parameters.Add("language", language);
             return ExecSpTable("Age_TotalBets_Sel430_SAg", parameters);
         }
-        #endregion
+
+        #endregion RunningByBettype
 
         #region ParlayWinloss
+
         /// <summary>
         /// Details for MixParlay for agent
         /// </summary>
@@ -1049,9 +1066,10 @@ namespace Sunplus.Agent.Model.DL.BetList
             return ExecSpTable("Age_BetList_SelWinlossParlay_SAg", parameters);
         }
 
-        #endregion
+        #endregion ParlayWinloss
 
         #region MixParlay
+
         /// <summary>
         /// Get Mix Parlay BetList
         /// </summary>
@@ -1066,7 +1084,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             parameters.Add("language", language);
 
             return ExecSpTable("Age_BetList_SelParlayDetail", parameters);
-        }    
+        }
 
         /// <summary>
         /// Get Combination Mix Parlay BetList Detail
@@ -1088,7 +1106,8 @@ namespace Sunplus.Agent.Model.DL.BetList
 
             return ExecSp("Acc_BetlistCombinationParlay_Details", parameters);
         }
-        #endregion
+
+        #endregion MixParlay
 
         #region BetSlip
 
@@ -1108,12 +1127,12 @@ namespace Sunplus.Agent.Model.DL.BetList
             return ExecSpTable("Age_BettransSelBetSlip_Old", parameters);
         }
 
-        #endregion
+        #endregion BetSlip
 
-        #region Cancel Betlist      
+        #region Cancel Betlist
 
         public DataTable Age_BetList_SelDeleted_UserList_Ag(int custId)
-        {            
+        {
             Hashtable parameters = new Hashtable();
             parameters.Add("custid", custId);
             return ExecSpTable("Age_BetList_SelDeleted_UserList_Ag", parameters);
@@ -1132,6 +1151,24 @@ namespace Sunplus.Agent.Model.DL.BetList
             parameters.Add("custid", custId);
             return ExecSpTable("Age_BetList_SelDeleted_UserList_SAg", parameters);
         }
+
+        #endregion Cancel Betlist
+
+        # region Agent Viewdetail
+
+        public DataTable Acc_BetList_AgentDetail(long transId, long agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, bool showSB, bool showNG)
+        {
+            Hashtable parameters = new Hashtable();
+            parameters.Add("transid", transId);
+            parameters.Add("agentid", agentId);
+            parameters.Add("fromdate", fromDate);
+            parameters.Add("todate", toDate);
+            parameters.Add("movebetsday", moveBetsDay);
+            parameters.Add("showsb", showSB);
+            parameters.Add("showng", showNG);
+            return ExecSpTable("Acc_BetList_AgentDetail", parameters);
+        }
+
         #endregion
     }
 }

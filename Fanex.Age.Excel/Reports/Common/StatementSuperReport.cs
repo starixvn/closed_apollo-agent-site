@@ -37,6 +37,7 @@ namespace Fanex.Age.Excel.Reports.Common
             ISheet resultSheet = hssfWorkbook.GetSheet("Statement");
             int rowId = 0;
             int colId = 0;
+            hssfWorkbook.SetSheetName(0, Resources.Lang.lblStatement);
 
             ICellStyle negStyle1 = templateSheet.GetCell(5, 0).CellStyle;
             ICellStyle negStyle2 = templateSheet.GetCell(5, 1).CellStyle;

@@ -19,7 +19,7 @@
         public HSSFWorkbook Build()
         {
             var data = this.builder.Data;
-            if (data == null) return null;
+            //if (data == null) return null;
 
             ISheet templateSheet = hssfWorkbook.GetSheet("Template");
             ISheet resultSheet = hssfWorkbook.GetSheet("CSWinlossDetailMaster");
@@ -32,7 +32,7 @@
 
             int rowId = 0;
             int colId = 0;
-
+            hssfWorkbook.SetSheetName(0, Resources.Lang.lblCasinoWinLoss);
             // header
             resultSheet.GetCell(rowId, colId).SetCellValue(Resources.Lang.lblCasinoWinLoss + " " +
                 Formater.ShortDateFormat(this.builder.FromDate) + "-->" + Formater.ShortDateFormat(this.builder.ToDate));
@@ -52,7 +52,7 @@
             // content
             rowId = 3;
             int id = 1;
-            if (data.Count > 0)
+            if (data != null && data.Count > 0)
             {
                 foreach (var item in data)
                 {

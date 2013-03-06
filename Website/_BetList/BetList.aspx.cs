@@ -54,32 +54,15 @@ namespace Sunplus.Agent.UI._BetList
         {
             #region INIT
 
-            UserTypes userType = UserTypes.Unknown;
-
-            if (CurrentUserSession.IsSuper)
-            {
-                userType = UserTypes.Super;
-            }
-            else if (CurrentUserSession.IsMaster)
-            {
-                userType = UserTypes.Master;
-            }
-            else if (CurrentUserSession.IsAgent)
-            {
-                userType = UserTypes.Agent;
-            }
-
             BetListType betlistType = this.setBetListType();
 
             bool isShowWinLost = true,
-                 isShowSuperPT = true,
-                 isShowMasterPT = true,
                  isShowAgentPT = true,
                  isShowMember = true;
 
             if ((betlistType & BetListType.Canceled) == BetListType.Canceled)
             {
-                isShowWinLost = isShowSuperPT = isShowMasterPT = isShowAgentPT = false;
+                isShowWinLost = isShowAgentPT = false;
             }
             else
             {
@@ -95,22 +78,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 if ((betlistType & BetListType.DailyStatement) == BetListType.DailyStatement)
                 {
-                    isShowSuperPT = isShowMasterPT = isShowAgentPT = false;
-                }
-
-                switch (userType)
-                {
-                    case UserTypes.Super:
-                        break;
-                    case UserTypes.Master:
-                        isShowSuperPT = false;
-                        break;
-                    case UserTypes.Agent:
-                        isShowSuperPT = isShowMasterPT = false;
-                        break;
-                    default: // Hide all position taking
-                        isShowSuperPT = isShowMasterPT = isShowAgentPT = false;
-                        break;
+                    isShowAgentPT = false;
                 }
             }
 
@@ -173,11 +141,11 @@ namespace Sunplus.Agent.UI._BetList
             short excelColumns = 11;
             Header1_Template betlistHeader = new Header1_Template();
 
-            //if (!isShowAgentPT)
-            //{
-            //    excelColumns--;
-            //    betlistHeader.Agent.Hide();
-            //}
+            if (!isShowAgentPT)
+            {
+                excelColumns--;
+                betlistHeader.Agent.Hide();
+            }
 
             if (!isShowMember)
             {
@@ -325,7 +293,7 @@ namespace Sunplus.Agent.UI._BetList
                     builder.Append("</tr>");
                 }
 
-                builder.AddFooter(tickets, string.Empty, string.Empty, userType, (Fanex.BetList.Age.Definition.BetListType)betlistType);
+                builder.AddFooter(tickets, string.Empty, string.Empty, (Fanex.BetList.Age.Definition.BetListType)betlistType);
 
                 content.Append(builder.GetBetList());
                 content.Append("</tbody></table>");

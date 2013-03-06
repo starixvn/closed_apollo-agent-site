@@ -1,8 +1,8 @@
 ﻿/*
  * Created 20100507@Jacob - Business class of Bet List function
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.BL.BetList
@@ -19,7 +19,7 @@ namespace Sunplus.Agent.Model.BL.BetList
     {
         public BetListBO(string netSessionId)
             : base(netSessionId)
-        { 
+        {
         }
 
         #region MixParlay
@@ -55,9 +55,10 @@ namespace Sunplus.Agent.Model.BL.BetList
             return mixParlay;
         }
 
-        #endregion        
+        #endregion MixParlay
 
         #region WinLossOutright
+
         /// <summary>
         /// Get winloss outright
         /// </summary>
@@ -90,9 +91,11 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return outright;
         }
-        #endregion
+
+        #endregion WinLossOutright
 
         #region WinLossHR
+
         /// <summary>
         /// Get winloss horse racing
         /// </summary>
@@ -129,9 +132,11 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return horseRacing;
         }
-        #endregion
+
+        #endregion WinLossHR
 
         #region WinlossByBettypeMatch
+
         /// <summary>
         /// Get winloss by bettype and match
         /// </summary>
@@ -178,7 +183,7 @@ namespace Sunplus.Agent.Model.BL.BetList
             return this.GetWinlossByBettypeMatch(matchId, betType, userName, 0, out dtbWinloss);
         }
 
-        #endregion
+        #endregion WinlossByBettypeMatch
 
         #region RunningByDateAndMem
 
@@ -203,7 +208,8 @@ namespace Sunplus.Agent.Model.BL.BetList
             runningBets = betListDAO.Age_BetList_SelRunningByDate_Mem(custId, userName, dateFrom, dateTo, language, getAll, filterParams, out dataTable);
             return runningBets;
         }
-        #endregion
+
+        #endregion RunningByDateAndMem
 
         #region AllBetsByDateAndMem
 
@@ -228,9 +234,11 @@ namespace Sunplus.Agent.Model.BL.BetList
             allBets = betListDAO.Age_BetList_SelAllByDate_Mem(custId, agentId, userName, dateFrom, dateTo, language, filterParams, out outDataTable);
             return allBets;
         }
-        #endregion
+
+        #endregion AllBetsByDateAndMem
 
         #region GetDeletedBets
+
         /// <summary>
         /// Get deleted bets
         /// If user is agent or master, set roleid = 1
@@ -254,7 +262,7 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return deletedBets;
         }
-        
+
         /// <summary>
         /// Get deleted bets
         /// If user is agent or master, set roleid = 1
@@ -279,9 +287,11 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return deletedBets;
         }
-        #endregion
+
+        #endregion GetDeletedBets
 
         #region All Racing By Date
+
         /// <summary>
         /// Get all hr bets by match id
         /// </summary>
@@ -320,9 +330,11 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return racingBets;
         }
-        #endregion
+
+        #endregion All Racing By Date
 
         #region RunningByBettypeAndMatch
+
         /// <summary>
         /// Get Running bets by bettype and match for agent
         /// </summary>
@@ -380,7 +392,7 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return runningBets;
         }
-        
+
         /// <summary>
         /// Get Running bets by bettype and match for agent
         /// </summary>
@@ -418,9 +430,11 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return runningBets;
         }
-        #endregion
+
+        #endregion RunningByBettypeAndMatch
 
         #region DailyStatement
+
         /// <summary>
         /// GetDailyStatement
         /// </summary>
@@ -456,9 +470,10 @@ namespace Sunplus.Agent.Model.BL.BetList
             return daillyBets;
         }
 
-        #endregion
+        #endregion DailyStatement
 
         #region RunningBetByBetType
+
         /// <summary>
         /// Get running bets by bettype
         /// </summary>
@@ -524,9 +539,11 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return runningBets;
         }
-        #endregion
+
+        #endregion RunningBetByBetType
 
         #region ParlayWinloss
+
         /// <summary>
         /// Get parlay winloss
         /// </summary>
@@ -573,8 +590,9 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return mixParlay;
         }
-        #endregion
-        
+
+        #endregion ParlayWinloss
+
         #region Combination MixParlay
 
         /// <summary>
@@ -605,10 +623,10 @@ namespace Sunplus.Agent.Model.BL.BetList
             BetListDAO betListDAO = new BetListDAO();
             string language = CurrentSession.LangKey;
 
-            return betListDAO.Acc_BetlistCombinationParlay_Details(refno, language, transid, betid, custId, ReportsBO.BalanceUpDate, ReportsBO.MoveBetsDate);          
+            return betListDAO.Acc_BetlistCombinationParlay_Details(refno, language, transid, betid, custId, ReportsBO.BalanceUpDate, ReportsBO.MoveBetsDate);
         }
 
-        #endregion
+        #endregion Combination MixParlay
 
         #region BetSlip
 
@@ -628,7 +646,7 @@ namespace Sunplus.Agent.Model.BL.BetList
             return betSlipOld;
         }
 
-        #endregion
+        #endregion BetSlip
 
         #region Cancel Betlist
 
@@ -645,12 +663,12 @@ namespace Sunplus.Agent.Model.BL.BetList
             BetListDAO betListDAO = new BetListDAO();
             DataTable betList = new DataTable();
             betList = betListDAO.Age_BetList_SelDeleted(custId, roleId, CurrentSession.LangKey, out outDataTable);
-            return betList;      
+            return betList;
         }
 
         public DataTable GetCancelBetList_UserList(int custId, int roleId)
         {
-            BetListDAO betListDAO = new BetListDAO();            
+            BetListDAO betListDAO = new BetListDAO();
             DataTable dt = null;
 
             if (((int)UserTypes.Agent).Equals(roleId))
@@ -668,8 +686,8 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return dt;
         }
-        
-        #endregion
+
+        #endregion Cancel Betlist
 
         #region WinlossByDateAndMem
 
@@ -752,6 +770,19 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             return table;
         }
+
+        #endregion WinlossByDateAndMem
+
+        # region Agent Viewdetail
+
+        public DataTable GetAgentPTComm(long transId, long agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, bool showSB, bool showNG)
+        {
+            BetListDAO dao = new BetListDAO();
+            DataTable ptComm = new DataTable();
+            ptComm = dao.Acc_BetList_AgentDetail(transId, agentId, fromDate, toDate, moveBetsDay, showSB, showNG);
+            return ptComm;
+        }
+
         #endregion
     }
 }

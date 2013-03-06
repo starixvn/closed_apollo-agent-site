@@ -4068,4 +4068,19 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="memberList" xml:space="preserve">
     <value>고객 리스트</value>
   </data>
+  <data name="confirmUpdateMembers" xml:space="preserve">
+    <value>Confirm Update Members\'s PT</value>
+  </data>
+  <data name="firstGoalLastGoal" xml:space="preserve">
+    <value>First Goal/Last Goal</value>
+  </data>
+  <data name="nextOverUnder" xml:space="preserve">
+    <value>Next Over/Under</value>
+  </data>
+  <data name="nextOddEven" xml:space="preserve">
+    <value>Next Odd/Even</value>
+  </data>
+  <data name="numberWheel" xml:space="preserve">
+    <value>Number Wheel</value>
+  </data>
 </root>

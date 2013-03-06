@@ -97,9 +97,6 @@
     <Reference Include="Sunplus.Agent.Configurations">
       <HintPath>..\Dependencies\Sunplus.Agent.Configurations.dll</HintPath>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model">
-      <HintPath>..\Dependencies\Sunplus.Agent.Model.dll</HintPath>
-    </Reference>
     <Reference Include="Sunplus.Core.Common">
       <HintPath>..\Dependencies\Sunplus.Core.Common.dll</HintPath>
     </Reference>
@@ -182,6 +179,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
+      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
+      <Name>Sunplus.Agent.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

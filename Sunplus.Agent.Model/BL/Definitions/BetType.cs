@@ -81,6 +81,23 @@ namespace Sunplus.Agent.Model.BL.Definitions
         Baccarat = 1101,
         Roulette = 1102,
         Sicbo = 1103,
+        // Virtual Soccer
+        VS_Handicap = 1201,
+        VS_OverUnder = 1203,
+        VS_CorrectScore = 1204,
+        VS_1X2 = 1205,
+        VS_TotalGoal = 1206,
+        VS_DoubleChange = 1224,
+        // Virtual Horses Racing
+        VHR_Win = 1231,
+        VHR_Place = 1232,
+        VHR_WinPlace = 1233,
+        VHR_Forecast = 1237,
+        VHR_Tricast = 1238,
+        // Virtual Tennis
+        VT_PlayerWin = 1220,
+        VT_ScoreBet = 1235,
+        VT_TotalPoints = 1236,
         // Sporting Solution
         MatchWinner = 1301,
         MatchCorrectScore = 1302,

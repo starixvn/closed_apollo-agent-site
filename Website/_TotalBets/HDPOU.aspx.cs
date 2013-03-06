@@ -1,22 +1,34 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="HDPOU.aspx.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Quinn.Vo" date="2013.3.5">Created</change>
-// </history>
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Web;
+using System.Web.UI;
 
+using Sunplus.Agent.Model.BL.TotalBets;
+using Sunplus.Agent.Model.BL.Definitions;
+
+using Fanex.Age.UI;
+
+using Fanex.Age.UI.Components;
+
+
+using Sunplus.Agent.Utilities;
+
+
+/*
+ * Created 20100507@Jacob - Render HDPOU page
+ * Revision:
+ * ?@? - ... 
+ * 
+ */
 namespace Fanex.Age.UI.TotalBets
 {
-    using System;
-    using System.Data;
-    using System.Web.UI;
-    using Sunplus.Agent.Utilities;
 
     public partial class HDPOU_Page : TotalBets_Page
     {
+
         #region Override
+
         public override void RenderContent(HtmlTextWriter writer)
         {
             DataTable hdpOUList = View as DataTable;
@@ -44,10 +56,7 @@ namespace Fanex.Age.UI.TotalBets
                     if (i == 0 || currentLeagueId != leagueId)
                     {
                         // New league, ignore first row
-                        if (i != 0)
-                        {
-                            tpl.Contents.LeagueContents.Append(leagueBlock);
-                        }
+                        if (i != 0) tpl.Contents.LeagueContents.Append(leagueBlock);
 
                         matchIndex = 1;
                         currentLeagueId = leagueId;
@@ -65,10 +74,7 @@ namespace Fanex.Age.UI.TotalBets
                     leagueBlock.MatchContents.Append(matchBlock);
                 }
 
-                if (leagueBlock != null)
-                {
-                    tpl.Contents.LeagueContents.Append(leagueBlock);
-                }
+                if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
             }
             
             if (_fullMode)
@@ -95,18 +101,6 @@ namespace Fanex.Age.UI.TotalBets
         #region Utility
 
         /// <summary>
-        /// Round color for negative number
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        private static string NegativeNumberRoundColor(object number)
-        {
-            decimal num = Convert.ToDecimal(number);
-
-            return num < 0 ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
-        }
-
-        /// <summary>
         /// Render match row
         /// </summary>
         /// <param name="matchBlock"></param>
@@ -128,7 +122,6 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.TimeValue = dr["showtime"].ToString();
                 matchBlock.LiveNotice.Hide();
             }
-            
             matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
             matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + (Convert.ToBoolean(dr["isNeutral"]) ? Resources.Lang.IsNeutral : string.Empty);
             matchBlock.Away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
@@ -148,7 +141,7 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         private void RenderHandicapTotal(HDPOU_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr)
         {
-            // Handicap Total
+            //Handicap Total
             if (Convert.ToInt16(dr["betcount_hdp"]) != 0)
             {
                 decimal HdpTotal = Convert.ToDecimal(dr["home_odds_HDP"]) - Convert.ToDecimal(dr["away_odds_HDP"]);
@@ -174,7 +167,7 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         private void RenderOverUnderTotal(HDPOU_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr)
         {
-            // Over Under Total
+            //Over Under Total
             if (Convert.ToInt16(dr["betcount_ou"]) != 0)
             {
                 decimal OUTotal = Convert.ToDecimal(dr["home_odds_OU"]) - Convert.ToDecimal(dr["away_odds_OU"]);
@@ -193,7 +186,6 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OverUnderTotalButton.Hide();
             }
         }
-
         /// <summary>
         /// Render handicap first half column
         /// </summary>
@@ -220,7 +212,6 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.HandicapFirstHalfButton.Hide();
             }
         }
-
         /// <summary>
         /// Render over under first half column
         /// </summary>
@@ -247,6 +238,19 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OverUnderFirstHalfButton.Hide();
             }
         }
+        /// <summary>
+        /// Round color for negative number
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        private static string NegativeNumberRoundColor(object number)
+        {
+            decimal num = Convert.ToDecimal(number);
+
+            return num < 0 ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
+
+        }
         #endregion
     }
+
 }
