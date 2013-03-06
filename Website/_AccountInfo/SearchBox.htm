@@ -12,16 +12,16 @@
         <div class="Bleft_Sub02">
             <form name="frmAgent" id="frmAgent" method="get" action="" target="menu" style="float:left;">   
                 <div id="from_tab">                            
-                    <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" style="width: 80px;" class="{classStyle}" name="txtUsername" />                    
-                    <select class="search-option" name="search-option">
-                        <option value="0">Agent</option>
-                        <option value="1">Member</option>
-                    </select>
+                    <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" style="width: 78px;" class="{classStyle}" name="txtUsername" />                    
                 </div>
                 <div id="b_serachL">
                     <a id="lnkSearch" class="imaLink" href="#" onclick="javascript:checkAndSubmitUI();">
                         <img height="18" width="21" alt="Search" title="{static:Resources.Lang.search}" border="0" nowap="nowap" src="../_GlobalResources/Images/icon_search.jpg" />
                     </a>
+                 </div>
+                 <div class="search-option">
+                    <input type="checkbox" name="search-member" />
+                    <label>Member</label>
                  </div>
             </form>
             <!--fornotdirectdownline-->                                                            
@@ -102,57 +102,7 @@
                                 <a class="b_left" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{memberlistlink}">{lblPlayerList}</a>
                             </div>
                         </td>
-                    </tr>
-                    <!--blCustomerNickname-->
-                    <!--<tr>
-                        <td>
-                            {static:Resources.Lang.nickname}:
-                        </td>
-                        <td align="right" class="text_bold">
-                            {CustomerNickname}
-                        </td>
-                    </tr>-->
-                    <!--/blCustomerNickname-->
-                    <!--blCustomerFullName-->
-                    <!--<tr>
-                        <td>
-                            {static:Resources.Lang.name}:
-                        </td>
-                        <td align="right" class="text_bold">
-                            {CustomerFullName}
-                        </td>
-                    </tr>-->
-                    <!--/blCustomerFullName-->
-                    <!--blCustomerPhone-->
-                    <!--<tr>
-                        <td>
-                            {static:Resources.Lang.lblPhone}:
-                        </td>
-                        <td align="right" class="text_bold">
-                            {CustomerPhone}
-                        </td>
-                    </tr>-->
-                    <!--/blCustomerPhone-->
-                    <!--blCustomerMobile-->
-                    <!--<tr>
-                        <td>
-                            {static:Resources.Lang.lblMobilePhone}:
-                        </td>
-                        <td align="right" class="text_bold">
-                            {CustomerMobile}
-                        </td>
-                    </tr>-->
-                    <!--/blCustomerMobile-->
-                    <!--blCustomerFax-->
-                    <!--<tr>
-                        <td>
-                            {static:Resources.Lang.lblFax}:
-                        </td>
-                        <td align="right" class="text_bold">
-                            {CustomerFax}
-                        </td>
-                    </tr>-->
-                    <!--/blCustomerFax-->
+                    </tr>  
                 </tbody>
             </table>
             <!--/CustInfo-->
@@ -161,12 +111,14 @@
     </div>    
 </div>        
 
-
+<div class="btnSearchList">
+    <a href="" class="btnList" onclick="clearTopMenu(); ClearCurrentLeftMenu();">Agent List</a>
+    <a href="" class="btnList" onclick="clearTopMenu(); ClearCurrentLeftMenu();">Member List</a>
+    <a href="" class="btnList" onclick="clearTopMenu(); ClearCurrentLeftMenu();">Bet List</a>
+</div>
 <!--GroupStatement-->
 <!--<div id="button_nLeft02"><a class="b_nleft" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{statementlink}">{static:Resources.Lang.lblStatement}</a></div>-->
 <!--/GroupStatement-->
-<div id="clear02">
-    <img height="5" width="1" alt="" src="../_GlobalResources/Images/dot.gif" name="" /></div>
 
 <!--insert jquery and treeview javascript-->
 <script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>

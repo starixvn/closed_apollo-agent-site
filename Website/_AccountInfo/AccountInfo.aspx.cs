@@ -582,7 +582,7 @@ namespace Sunplus.Agent.UI._AccountInfo
                 {
                     isupLineEnabled = this.GetDBBooleanValue(this.dtrCustomerInfo["uplineEnabled"]);
                 }
-
+               
                 tpl.agent = GetGlobalResourceObject("lang", roleName[i]).ToString();
                 tpl.agentname = this.FormatUsername(fieldAgentNameValue, isupLineEnabled, false);
                 tpl.AgentNameValue = fieldAgentNameValue;
