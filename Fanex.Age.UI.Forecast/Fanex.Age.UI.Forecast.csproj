@@ -76,6 +76,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\TplCore\FCAH.htm.cs" />
     <Compile Include="App_GlobalResources\Lang.designer.cs">
       <DependentUpon>Lang.resx</DependentUpon>
       <AutoGen>True</AutoGen>

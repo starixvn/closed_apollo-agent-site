@@ -405,12 +405,12 @@ namespace Sunplus.Agent.UI._AccountInfo
             string[] roleName = { Resources.Lang.lblBetLists, Resources.Lang.memberList, Resources.Lang.agentList, Resources.Lang.masterlist, Resources.Lang.lblPlayerList };
 
             string[] customerListLink = { string.Format("../_Reports/BetList/OutstandingDetail.aspx?username={0}&option=4&custid={1}&chk_all=on&chk_ShowSB=on&chk_ShowCasino=on&chk_ShowRB=on&chk_showng=on&chk_ShowBI=on", userName, this.custId),
-                              string.Format("../_MemberInfo/CustomerList/Super/MemberList.aspx?custid={0}", this.custId),
-                              string.Format("../_MemberInfo/CustomerList/Super/AgentList.aspx?custid={0}", this.custId),
-                              string.Format("../_MemberInfo/CustomerList/Super/MasterList.aspx"),
-                              string.Format("../_MemberInfo/CustomerList/Master/MemberList.aspx?custid={0}", this.custId),
-                              string.Format("../_MemberInfo/CustomerList/Master/AgentList.aspx"),
-                              string.Format("../_MemberInfo/CustomerList/Agent/MemberList.aspx")
+                              string.Format("../_MemberInfo/CustomerList/MemberList.aspx?custid={0}", this.custId),
+                              string.Format("../_MemberInfo/CustomerList/AgentList.aspx?custid={0}", this.custId),
+                              string.Format("../_MemberInfo/CustomerList/AgentList.aspx"),
+                              string.Format("../_MemberInfo/CustomerList/MemberList.aspx?custid={0}", this.custId),
+                              string.Format("../_MemberInfo/CustomerList/AgentList.aspx"),
+                              string.Format("../_MemberInfo/CustomerList/MemberList.aspx")
                             };
 
             #region Group Customer List
