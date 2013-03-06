@@ -150,15 +150,7 @@ namespace Sunplus.Agent.UI
 			public string CustomerUsername = "{CustomerUsername}";
 			protected static string s39 = "<a href=\"javascript:void(0)\" id=\"treeview-link\"><img height=\"15\" width=\"15\" alt=\"Treeview\" src=\"";
 			protected static string s40{get{return AbsoluteUrl("_AccountInfo/Resources/Images/treeview.png");}}
-			protected static string s41 = "\" title=\"Treeview\"/></a></td></tr><tr><td colspan=\"2\"><div class=\"downline-title\">Downline List</div><div class=\"agent-treeview\"><ul class=\"filetree treeview\" id=\"browser\"><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.1</span><ul><li class=\"last\"><span class=\"\">Agent 1.1.1</span></li></ul></li><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.2</span><ul><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.2.1</span><ul id=\"folder21\"><li><span class=\"\">Agent 1.2.1.1</span></li><li class=\"last\"><span class=\"\">Agent 1.2.1.2</span></li></ul></li><li class=\"last active-link\"><span class=\"\">Agent 1.2.2</span></li></ul></li><li class=\"expandable\"><div class=\"hitarea closed-hitarea expandable-hitarea\"></div>Agent 1.3</span><ul style=\"display: none;\"><li class=\"last\"><span class=\"\">Agent 1.3.1</span></li></ul></li><li class=\"last\"><span class=\"\">Agent 1.4</span></li></ul></div></td></tr><tr><td colspan=\"2\"><div class=\"divLinkSetting\"><a class=\"b_left\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
-			public string memberlistlink = "{memberlistlink}";
-			protected static string s42 = "\">";
-			public string memberlist = "{memberlist}";
-			protected static string s43 = "</a></div></td></tr><tr><td colspan=\"2\"><div class=\"divLinkSetting\"><a class=\"b_left\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
-			protected string t0_memberlistlink;
-			protected static string s44 = "\">";
-			public string lblPlayerList = "{lblPlayerList}";
-			protected static string s45 = "</a></div></td></tr></tbody></table>";
+			protected static string s41 = "\" title=\"Treeview\"/></a></td></tr><tr><td colspan=\"2\"><div class=\"downline-title\">Downline List</div><div class=\"agent-treeview\"><ul class=\"filetree treeview\" id=\"browser\"><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.1</span><ul><li class=\"last\"><span class=\"\">Agent 1.1.1</span></li></ul></li><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.2</span><ul><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.2.1</span><ul id=\"folder21\"><li><span class=\"\">Agent 1.2.1.1</span></li><li class=\"last\"><span class=\"\">Agent 1.2.1.2</span></li></ul></li><li class=\"last active-link\"><span class=\"\">Agent 1.2.2</span></li></ul></li><li class=\"expandable\"><div class=\"hitarea closed-hitarea expandable-hitarea\"></div>Agent 1.3</span><ul style=\"display: none;\"><li class=\"last\"><span class=\"\">Agent 1.3.1</span></li></ul></li><li class=\"last\"><span class=\"\">Agent 1.4</span></li></ul></div></td></tr></tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -173,14 +165,6 @@ namespace Sunplus.Agent.UI
 					bd.Append(s39);
 					bd.Append(s40);
 					bd.Append(s41);
-					bd.Append(memberlistlink);
-					bd.Append(s42);
-					bd.Append(memberlist);
-					bd.Append(s43);
-					bd.Append(memberlistlink);
-					bd.Append(s44);
-					bd.Append(lblPlayerList);
-					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -188,21 +172,21 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_GroupStatement_Block: Block
 		{
-			protected static string s46 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s42 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string statementlink = "{statementlink}";
-			protected static string s47 = "\">";
-			protected static string s48{get{return Resources.Lang.lblStatement;}}
-			protected static string s49 = "</a></div>-->";
+			protected static string s43 = "\">";
+			protected static string s44{get{return Resources.Lang.lblStatement;}}
+			protected static string s45 = "</a></div>-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s46);
+					bd.Append(s42);
 					bd.Append(statementlink);
-					bd.Append(s47);
-					bd.Append(s48);
-					bd.Append(s49);
+					bd.Append(s43);
+					bd.Append(s44);
+					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
