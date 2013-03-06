@@ -94,6 +94,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\TplCore\FGLG.htm.cs" />
     <Compile Include="App_GlobalResources\Casino.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

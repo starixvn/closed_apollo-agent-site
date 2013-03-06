@@ -124,7 +124,7 @@
     <Content Include="ErrorPage\ErrorPage.htm" />
     <Content Include="MatchByLeague\MatchByLeague.htm" />
     <Content Include="PagingHeader\PagingHeader.htm" />
-    <Content Include="Paging\Paging.htm" />
+    <Content Include="MatchByLeague\Paging\Paging.htm" />
     <Content Include="PopupAd\FlashAd.htm" />
     <Content Include="PopupAd\PopupAd.htm" />
     <Content Include="PopupAd\PopupIntroduction.htm" />
@@ -140,6 +140,7 @@
     <Compile Include="AnalysisReportFilter\AnalysisReportFilter.htm.cs" />
     <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.cs" />
     <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.htm.cs" />
+    <Content Include="App_Code\TplCore\RefreshCountDown\RefreshCountDown.htm.cs" />
     <Compile Include="App_GlobalResources\Lang.designer.cs">
       <DependentUpon>Lang.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -166,8 +167,8 @@
     <Compile Include="ErrorPage\ErrorPage.htm.cs" />
     <Compile Include="MatchByLeague\MatchByLeague.htm.cs" />
     <Compile Include="PagingHeader\PagingHeader.htm.cs" />
-    <Compile Include="Paging\Paging.htm.cs" />
-    <Compile Include="Paging\Paging_Control.cs" />
+    <Compile Include="MatchByLeague\Paging\Paging.htm.cs" />
+    <Compile Include="MatchByLeague\Paging\Paging_Control.cs" />
     <Compile Include="PopupAd\FlashAd.htm.cs" />
     <Compile Include="PopupAd\PopupAd.htm.cs" />
     <Compile Include="PopupAd\PopupIntroduction.htm.cs" />
@@ -201,9 +202,7 @@
       <LastGenOutput>Lang.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Code\TplCore\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
       <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>

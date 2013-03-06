@@ -2070,7 +2070,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Closed</value>
   </data>
   <data name="lblSuper" xml:space="preserve">
-    <value>Super</value>
+    <value>Main Shareholder</value>
   </data>
   <data name="lblSuperAuto" xml:space="preserve">
     <value>Super Auto</value>
@@ -2226,7 +2226,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>March</value>
   </data>
   <data name="master" xml:space="preserve">
-    <value>Master</value>
+    <value>Shareholder</value>
   </data>
   <data name="masterbalance" xml:space="preserve">
     <value>Master Balance</value>
@@ -4084,6 +4084,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Username</value>
   </data>
   <data name="lblPlayerList" xml:space="preserve">
-    <value>Player List</value>
+    <value>Member List</value>
   </data>
 </root>

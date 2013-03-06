@@ -638,6 +638,13 @@ button[disabled]:active, button[disabled], input[type="reset"][disabled]:active,
     color: #000;
     cursor: pointer;
 }
+
+/*hide element*/
 .hide {
     display: none;
+}
+
+/*default padding, margin for tblRpt*/
+.default-tbl {
+    margin: 0;
 }

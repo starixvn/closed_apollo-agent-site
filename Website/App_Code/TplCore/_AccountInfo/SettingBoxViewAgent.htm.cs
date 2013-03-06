@@ -12,7 +12,7 @@ namespace Sunplus.Agent.UI
 	{
 		public class SettingBoxViewAgent_Template : Template
 		{
-			protected static string s0 = "<tr><td colspan=\"2\"><div class=\"settingWidth\">";
+			protected static string s0 = "<tr><td colspan=\"2\"><div class=\"settingWidth hide\">";
 			public SettingBoxViewAgent_ForDirectDownline_Block ForDirectDownline = new SettingBoxViewAgent_ForDirectDownline_Block();
 			public SettingBoxViewAgent_ForSuperViewAgent_Block ForSuperViewAgent = new SettingBoxViewAgent_ForSuperViewAgent_Block();
 			public SettingBoxViewAgent_ForAgent_Block ForAgent = new SettingBoxViewAgent_ForAgent_Block();
