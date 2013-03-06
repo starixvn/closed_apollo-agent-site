@@ -7,226 +7,226 @@ using TplCore.Element;
 #pragma warning disable
 namespace Sunplus.Agent.UI
 {
-    using _AccountInfo;
-    namespace _AccountInfo
-    {
-        public class SettingBoxViewMember_Template : Template
-        {
-            protected static string s0 = "<tr><td colspan=\"2\"><div class=\"settingWidth\">";
-            public SettingBoxViewMember_ForDirectDownline_Block ForDirectDownline = new SettingBoxViewMember_ForDirectDownline_Block();
-            public SettingBoxViewMember_ForMember_Block ForMember = new SettingBoxViewMember_ForMember_Block();
-            public SettingBoxViewMember_ClearCredit_Block ClearCredit = new SettingBoxViewMember_ClearCredit_Block();
-            protected static string s1 = "</div></td></tr>";
-            public override void ToString(ref StringBuilder bd)
-            {
-                if (!Visible) return;
-                bd.Append(s0);
-                if (null != ForDirectDownline) ForDirectDownline.ToString(ref bd);
-                if (null != ForMember) ForMember.ToString(ref bd);
-                if (null != ClearCredit) ClearCredit.ToString(ref bd);
-                bd.Append(s1);
-                bd.Append(Value);
-            }
-            public string ToString()
-            {
-                StringBuilder bd = new StringBuilder();
-                ToString(ref bd);
-                return bd.ToString();
-            }
+	using _AccountInfo;
+	namespace _AccountInfo
+	{
+		public class SettingBoxViewMember_Template : Template
+		{
+			protected static string s0 = "<tr><td colspan=\"2\"><div class=\"settingWidth\">";
+			public SettingBoxViewMember_ForDirectDownline_Block ForDirectDownline = new SettingBoxViewMember_ForDirectDownline_Block();
+			public SettingBoxViewMember_ForMember_Block ForMember = new SettingBoxViewMember_ForMember_Block();
+			public SettingBoxViewMember_ClearCredit_Block ClearCredit = new SettingBoxViewMember_ClearCredit_Block();
+			protected static string s1 = "</div></td></tr>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				bd.Append(s0);
+				if(null != ForDirectDownline) ForDirectDownline.ToString(ref bd);
+				if(null != ForMember) ForMember.ToString(ref bd);
+				if(null != ClearCredit) ClearCredit.ToString(ref bd);
+				bd.Append(s1);
+				bd.Append(Value);
+			}
+			public string ToString()
+			{
+				StringBuilder bd = new StringBuilder();
+				ToString(ref bd);
+				return bd.ToString();
+			}
 
-        }
+		}
 
-        public class SettingBoxViewMember_ForDirectDownline_Block : Block
-        {
-            protected static string s2 = "<!--<div class=\"divLinkSetting\"><a id=\"menuitem0\" class=\"b_left\" target=\"main\" onclick=\"menu_select(0);\" href=\"";
-            public string editInfoLink = "{editInfoLink}";
-            protected static string s3 = "\">";
-            protected static string s4 { get { return Resources.Lang.lblEditInfo; } }
-            protected static string s5 = "</a></div>--><div class=\"divLinkSetting\"><a id=\"menuitem4\" class=\"b_left\" align=\"right\" onclick=\"menu_select(4);\" target=\"main\" href=\"";
-            public string betSettingLink = "{betSettingLink}";
-            protected static string s6 = "\">";
-            protected static string s7 { get { return Resources.Lang.lblBetSetting; } }
-            protected static string s8 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem2\" class=\"b_left\" align=\"right\" onclick=\"menu_select(2);\" target=\"main\" href=\"";
-            public string editCommLink = "{editCommLink}";
-            protected static string s9 = "\">";
-            protected static string s10 { get { return Resources.Lang.commission; } }
-            protected static string s11 = "</a></div><!--LnkResetPassword--><!--<div class=\"divLinkSetting\"><a id=\"menuitem3\" class=\"b_left\" align=\"right\" onclick=\"menu_select(3);\" target=\"main\" href=\"";
-            public string resetPasswordLink = "{resetPasswordLink}";
-            protected static string s12 = "\">";
-            protected static string s13 { get { return Resources.Lang.lblresetpassword; } }
-            protected static string s14 = "</a></div>--><!--/LnkResetPassword--><div class=\"divLinkSetting\"><a id=\"menuitem1\" class=\"b_left\" target=\"main\" onclick=\"menu_select(1);\" href=\"";
-            public string editPTLink = "{editPTLink}";
-            protected static string s15 = "\">";
-            protected static string s16 { get { return Resources.Lang.lblEditSB; } }
-            protected static string s17 = "</a></div><!--<div class=\"divLinkSetting\"><a id=\"menuitem5\" class=\"b_left\" target=\"main\" onclick=\"menu_select(5);\" href=\"";
-            public string editRacingLink = "{editRacingLink}";
-            protected static string s18 = "\">";
-            protected static string s19 { get { return Resources.Lang.lbledithr; } }
-            protected static string s20 = "</a></div>--><!--Casino--><!--<div class=\"divLinkSetting\"><a id=\"menuitem7\" class=\"b_left\" target=\"main\" onclick=\"menu_select(7);\" href=\"";
-            public string editCasinoLink = "{editCasinoLink}";
-            protected static string s21 = "\">";
-            public string editCasinoLabel = "{editCasinoLabel}";
-            protected static string s22 = "</a></div>--><!--/Casino--><!--Bingo--><!--<div class=\"divLinkSetting\"><a id=\"menuitem18\" class=\"b_left\" target=\"main\" onclick=\"menu_select(18);\" href=\"";
-            public string editBingoLink = "{editBingoLink}";
-            protected static string s23 = "\">";
-            public string editBingoLabel = "{editBingoLabel}";
-            protected static string s24 = "</a></div>--><!--/Bingo--><!--ForP2P--><div class=\"divLinkSetting\"><a id=\"menuitem20\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(20);\"href=\"";
-            public string editP2P = "{editP2P}";
-            protected static string s25 = "\">";
-            protected static string s26 { get { return Resources.Lang.editP2P; } }
-            protected static string s27 = "</a></div><!--/ForP2P--><!--ForLiveCasino--><!--<div class=\"divLinkSetting\"><a id=\"menuitem21\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(21);\"href=\"";
-            public string editLiveCasino = "{editLiveCasino}";
-            protected static string s28 = "\">";
-            protected static string s29 { get { return Resources.Lang.EditLiveCasino; } }
-            protected static string s30 = "</a></div>--><!--/ForLiveCasino--><!--ForVirtualSports--><div class=\"divLinkSetting2\"><a id=\"menuitem22\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(22);\"href=\"";
-            public string editVirtualSports = "{editVirtualSports}";
-            protected static string s31 = "\">";
-            protected static string s32 { get { return Resources.Lang.EditVirtualSports; } }
-            protected static string s33 = "</a></div><!--/ForVirtualSports-->";
-            public override void ToString(ref StringBuilder bd)
-            {
-                if (!Visible) return;
-                if (RenderChild)
-                {
-                    bd.Append(s2);
-                    bd.Append(editInfoLink);
-                    bd.Append(s3);
-                    bd.Append(s4);
-                    bd.Append(s5);
-                    bd.Append(betSettingLink);
-                    bd.Append(s6);
-                    bd.Append(s7);
-                    bd.Append(s8);
-                    bd.Append(editCommLink);
-                    bd.Append(s9);
-                    bd.Append(s10);
-                    bd.Append(s11);
-                    bd.Append(resetPasswordLink);
-                    bd.Append(s12);
-                    bd.Append(s13);
-                    bd.Append(s14);
-                    bd.Append(editPTLink);
-                    bd.Append(s15);
-                    bd.Append(s16);
-                    bd.Append(s17);
-                    bd.Append(editRacingLink);
-                    bd.Append(s18);
-                    bd.Append(s19);
-                    bd.Append(s20);
-                    bd.Append(editCasinoLink);
-                    bd.Append(s21);
-                    bd.Append(editCasinoLabel);
-                    bd.Append(s22);
-                    bd.Append(editBingoLink);
-                    bd.Append(s23);
-                    bd.Append(editBingoLabel);
-                    bd.Append(s24);
-                    bd.Append(editP2P);
-                    bd.Append(s25);
-                    bd.Append(s26);
-                    bd.Append(s27);
-                    bd.Append(editLiveCasino);
-                    bd.Append(s28);
-                    bd.Append(s29);
-                    bd.Append(s30);
-                    bd.Append(editVirtualSports);
-                    bd.Append(s31);
-                    bd.Append(s32);
-                    bd.Append(s33);
-                }
-                if (IsAssigned) { bd.Append(Value); }
-            }
-        }
+		public class SettingBoxViewMember_ForDirectDownline_Block: Block
+		{
+			protected static string s2 = "<!--<div class=\"divLinkSetting\"><a id=\"menuitem0\" class=\"b_left\" target=\"main\" onclick=\"menu_select(0);\" href=\"";
+			public string editInfoLink = "{editInfoLink}";
+			protected static string s3 = "\">";
+			protected static string s4{get{return Resources.Lang.lblEditInfo;}}
+			protected static string s5 = "</a></div>--><div class=\"divLinkSetting\"><a id=\"menuitem4\" class=\"b_left\" align=\"right\" onclick=\"menu_select(4);\" target=\"main\" href=\"";
+			public string betSettingLink = "{betSettingLink}";
+			protected static string s6 = "\">";
+			protected static string s7{get{return Resources.Lang.lblBetSetting;}}
+			protected static string s8 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem2\" class=\"b_left\" align=\"right\" onclick=\"menu_select(2);\" target=\"main\" href=\"";
+			public string editCommLink = "{editCommLink}";
+			protected static string s9 = "\">";
+			protected static string s10{get{return Resources.Lang.commission;}}
+			protected static string s11 = "</a></div><!--LnkResetPassword--><!--<div class=\"divLinkSetting\"><a id=\"menuitem3\" class=\"b_left\" align=\"right\" onclick=\"menu_select(3);\" target=\"main\" href=\"";
+			public string resetPasswordLink = "{resetPasswordLink}";
+			protected static string s12 = "\">";
+			protected static string s13{get{return Resources.Lang.lblresetpassword;}}
+			protected static string s14 = "</a></div>--><!--/LnkResetPassword--><!--<div class=\"divLinkSetting\"><a id=\"menuitem1\" class=\"b_left\" target=\"main\" onclick=\"menu_select(1);\" href=\"";
+			public string editPTLink = "{editPTLink}";
+			protected static string s15 = "\">";
+			protected static string s16{get{return Resources.Lang.lblEditSB;}}
+			protected static string s17 = "</a></div>--><!--<div class=\"divLinkSetting\"><a id=\"menuitem5\" class=\"b_left\" target=\"main\" onclick=\"menu_select(5);\" href=\"";
+			public string editRacingLink = "{editRacingLink}";
+			protected static string s18 = "\">";
+			protected static string s19{get{return Resources.Lang.lbledithr;}}
+			protected static string s20 = "</a></div>--><!--Casino--><!--<div class=\"divLinkSetting\"><a id=\"menuitem7\" class=\"b_left\" target=\"main\" onclick=\"menu_select(7);\" href=\"";
+			public string editCasinoLink = "{editCasinoLink}";
+			protected static string s21 = "\">";
+			public string editCasinoLabel = "{editCasinoLabel}";
+			protected static string s22 = "</a></div>--><!--/Casino--><!--Bingo--><!--<div class=\"divLinkSetting\"><a id=\"menuitem18\" class=\"b_left\" target=\"main\" onclick=\"menu_select(18);\" href=\"";
+			public string editBingoLink = "{editBingoLink}";
+			protected static string s23 = "\">";
+			public string editBingoLabel = "{editBingoLabel}";
+			protected static string s24 = "</a></div>--><!--/Bingo--><!--ForP2P--><!--<div class=\"divLinkSetting\"><a id=\"menuitem20\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(20);\"href=\"";
+			public string editP2P = "{editP2P}";
+			protected static string s25 = "\">";
+			protected static string s26{get{return Resources.Lang.editP2P;}}
+			protected static string s27 = "</a></div>--><!--/ForP2P--><!--ForLiveCasino--><!--<div class=\"divLinkSetting\"><a id=\"menuitem21\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(21);\"href=\"";
+			public string editLiveCasino = "{editLiveCasino}";
+			protected static string s28 = "\">";
+			protected static string s29{get{return Resources.Lang.EditLiveCasino;}}
+			protected static string s30 = "</a></div>--><!--/ForLiveCasino--><!--ForVirtualSports--><!-- <div class=\"divLinkSetting2\"><a id=\"menuitem22\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(22);\"href=\"";
+			public string editVirtualSports = "{editVirtualSports}";
+			protected static string s31 = "\">";
+			protected static string s32{get{return Resources.Lang.EditVirtualSports;}}
+			protected static string s33 = "</a></div>--><!--/ForVirtualSports-->";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s2);
+					bd.Append(editInfoLink);
+					bd.Append(s3);
+					bd.Append(s4);
+					bd.Append(s5);
+					bd.Append(betSettingLink);
+					bd.Append(s6);
+					bd.Append(s7);
+					bd.Append(s8);
+					bd.Append(editCommLink);
+					bd.Append(s9);
+					bd.Append(s10);
+					bd.Append(s11);
+					bd.Append(resetPasswordLink);
+					bd.Append(s12);
+					bd.Append(s13);
+					bd.Append(s14);
+					bd.Append(editPTLink);
+					bd.Append(s15);
+					bd.Append(s16);
+					bd.Append(s17);
+					bd.Append(editRacingLink);
+					bd.Append(s18);
+					bd.Append(s19);
+					bd.Append(s20);
+					bd.Append(editCasinoLink);
+					bd.Append(s21);
+					bd.Append(editCasinoLabel);
+					bd.Append(s22);
+					bd.Append(editBingoLink);
+					bd.Append(s23);
+					bd.Append(editBingoLabel);
+					bd.Append(s24);
+					bd.Append(editP2P);
+					bd.Append(s25);
+					bd.Append(s26);
+					bd.Append(s27);
+					bd.Append(editLiveCasino);
+					bd.Append(s28);
+					bd.Append(s29);
+					bd.Append(s30);
+					bd.Append(editVirtualSports);
+					bd.Append(s31);
+					bd.Append(s32);
+					bd.Append(s33);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
 
-        public class SettingBoxViewMember_ForMember_Block : Block
-        {
-            protected static string s34 = "<div class=\"divLinkSetting\"><a id=\"menuitem13\" class=\"b_left\" align=\"right\" onclick=\"menu_select(13);\" target=\"main\" href=\"";
-            public string editSBLink = "{editSBLink}";
-            protected static string s35 = "\">";
-            protected static string s36 { get { return Resources.Lang.lblEditSB; } }
-            protected static string s37 = "</a></div><!--<div class=\"divLinkSetting\"><a id=\"menuitem14\" class=\"b_left\" align=\"right\" onclick=\"menu_select(14);\" target=\"main\" href=\"";
-            public string editRacingLink = "{editRacingLink}";
-            protected static string s38 = "\">";
-            protected static string s39 { get { return Resources.Lang.lbledithr; } }
-            protected static string s40 = "</a></div>--><!--StatusCasinoMember--><!--<div class=\"divLinkSetting\"><a id=\"menuitem16\" class=\"b_left\" align=\"right\" onclick=\"menu_select(16);\" target=\"main\" href=\"";
-            public string editCasinoLink = "{editCasinoLink}";
-            protected static string s41 = "\">";
-            public string editCasinoLabel = "{editCasinoLabel}";
-            protected static string s42 = "</a></div>--><!--/StatusCasinoMember--><!--StatusBingoMember--><!--<div class=\"divLinkSetting\"><a id=\"menuitem19\" class=\"b_left\" align=\"right\" onclick=\"menu_select(19);\" target=\"main\" href=\"";
-            public string editBingoLink = "{editBingoLink}";
-            protected static string s43 = "\">";
-            public string editBingoLabel = "{editBingoLabel}";
-            protected static string s44 = "</a></div>--><!--/StatusBingoMember--><!--StatusLiveCasinoMember--><!--<div class=\"divLinkSetting\"><a id=\"menuitem21\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(21);\"href=\"";
-            public string editLiveCasino = "{editLiveCasino}";
-            protected static string s45 = "\">";
-            protected static string s46 { get { return Resources.Lang.EditLiveCasino; } }
-            protected static string s47 = "</a></div>--><!--/StatusLiveCasinoMember--><!--StatusVirtualSportsMember--><div class=\"divLinkSetting2\"><a id=\"menuitem22\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(22);\"href=\"";
-            public string editVirtualSports = "{editVirtualSports}";
-            protected static string s48 = "\">";
-            protected static string s49 { get { return Resources.Lang.EditVirtualSports; } }
-            protected static string s50 = "</a></div><!--/StatusVirtualSportsMember-->";
-            public override void ToString(ref StringBuilder bd)
-            {
-                if (!Visible) return;
-                if (RenderChild)
-                {
-                    bd.Append(s34);
-                    bd.Append(editSBLink);
-                    bd.Append(s35);
-                    bd.Append(s36);
-                    bd.Append(s37);
-                    bd.Append(editRacingLink);
-                    bd.Append(s38);
-                    bd.Append(s39);
-                    bd.Append(s40);
-                    bd.Append(editCasinoLink);
-                    bd.Append(s41);
-                    bd.Append(editCasinoLabel);
-                    bd.Append(s42);
-                    bd.Append(editBingoLink);
-                    bd.Append(s43);
-                    bd.Append(editBingoLabel);
-                    bd.Append(s44);
-                    bd.Append(editLiveCasino);
-                    bd.Append(s45);
-                    bd.Append(s46);
-                    bd.Append(s47);
-                    bd.Append(editVirtualSports);
-                    bd.Append(s48);
-                    bd.Append(s49);
-                    bd.Append(s50);
-                }
-                if (IsAssigned) { bd.Append(Value); }
-            }
-        }
+		public class SettingBoxViewMember_ForMember_Block: Block
+		{
+			protected static string s34 = "<div class=\"divLinkSetting\"><a id=\"menuitem13\" class=\"b_left\" align=\"right\" onclick=\"menu_select(13);\" target=\"main\" href=\"";
+			public string editSBLink = "{editSBLink}";
+			protected static string s35 = "\">";
+			protected static string s36{get{return Resources.Lang.lblEditSB;}}
+			protected static string s37 = "</a></div><!--<div class=\"divLinkSetting\"><a id=\"menuitem14\" class=\"b_left\" align=\"right\" onclick=\"menu_select(14);\" target=\"main\" href=\"";
+			public string editRacingLink = "{editRacingLink}";
+			protected static string s38 = "\">";
+			protected static string s39{get{return Resources.Lang.lbledithr;}}
+			protected static string s40 = "</a></div>--><!--StatusCasinoMember--><!--<div class=\"divLinkSetting\"><a id=\"menuitem16\" class=\"b_left\" align=\"right\" onclick=\"menu_select(16);\" target=\"main\" href=\"";
+			public string editCasinoLink = "{editCasinoLink}";
+			protected static string s41 = "\">";
+			public string editCasinoLabel = "{editCasinoLabel}";
+			protected static string s42 = "</a></div>--><!--/StatusCasinoMember--><!--StatusBingoMember--><!--<div class=\"divLinkSetting\"><a id=\"menuitem19\" class=\"b_left\" align=\"right\" onclick=\"menu_select(19);\" target=\"main\" href=\"";
+			public string editBingoLink = "{editBingoLink}";
+			protected static string s43 = "\">";
+			public string editBingoLabel = "{editBingoLabel}";
+			protected static string s44 = "</a></div>--><!--/StatusBingoMember--><!--StatusLiveCasinoMember--><!--<div class=\"divLinkSetting\"><a id=\"menuitem21\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(21);\"href=\"";
+			public string editLiveCasino = "{editLiveCasino}";
+			protected static string s45 = "\">";
+			protected static string s46{get{return Resources.Lang.EditLiveCasino;}}
+			protected static string s47 = "</a></div>--><!--/StatusLiveCasinoMember--><!--StatusVirtualSportsMember--><!--<div class=\"divLinkSetting2\"><a id=\"menuitem22\" class=\"b_left\" align=\"right\" target=\"main\" onclick=\"menu_select(22);\"href=\"";
+			public string editVirtualSports = "{editVirtualSports}";
+			protected static string s48 = "\">";
+			protected static string s49{get{return Resources.Lang.EditVirtualSports;}}
+			protected static string s50 = "</a></div>--><!--/StatusVirtualSportsMember-->";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s34);
+					bd.Append(editSBLink);
+					bd.Append(s35);
+					bd.Append(s36);
+					bd.Append(s37);
+					bd.Append(editRacingLink);
+					bd.Append(s38);
+					bd.Append(s39);
+					bd.Append(s40);
+					bd.Append(editCasinoLink);
+					bd.Append(s41);
+					bd.Append(editCasinoLabel);
+					bd.Append(s42);
+					bd.Append(editBingoLink);
+					bd.Append(s43);
+					bd.Append(editBingoLabel);
+					bd.Append(s44);
+					bd.Append(editLiveCasino);
+					bd.Append(s45);
+					bd.Append(s46);
+					bd.Append(s47);
+					bd.Append(editVirtualSports);
+					bd.Append(s48);
+					bd.Append(s49);
+					bd.Append(s50);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
 
-        public class SettingBoxViewMember_ClearCredit_Block : Block
-        {
-            protected static string s51 = "<div class=\"divLinkSetting\"><a id=\"menuitem17\" class=\"b_left\" align=\"right\" onclick=\"menu_select(17); return doClearAllCredit(";
-            public string custId = "{custId}";
-            protected static string s52 = ", ";
-            public string roleId = "{roleId}";
-            protected static string s53 = ");\" href=\"javascript:;\">";
-            protected static string s54 { get { return Resources.Lang.clearallcredit; } }
-            protected static string s55 = "</a></div>";
-            public override void ToString(ref StringBuilder bd)
-            {
-                if (!Visible) return;
-                if (RenderChild)
-                {
-                    bd.Append(s51);
-                    bd.Append(custId);
-                    bd.Append(s52);
-                    bd.Append(roleId);
-                    bd.Append(s53);
-                    bd.Append(s54);
-                    bd.Append(s55);
-                }
-                if (IsAssigned) { bd.Append(Value); }
-            }
-        }
+		public class SettingBoxViewMember_ClearCredit_Block: Block
+		{
+			protected static string s51 = "<div class=\"divLinkSetting\"><a id=\"menuitem17\" class=\"b_left\" align=\"right\" onclick=\"menu_select(17); return doClearAllCredit(";
+			public string custId = "{custId}";
+			protected static string s52 = ", ";
+			public string roleId = "{roleId}";
+			protected static string s53 = ");\" href=\"javascript:;\">";
+			protected static string s54{get{return Resources.Lang.clearallcredit;}}
+			protected static string s55 = "</a></div>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s51);
+					bd.Append(custId);
+					bd.Append(s52);
+					bd.Append(roleId);
+					bd.Append(s53);
+					bd.Append(s54);
+					bd.Append(s55);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
 
-    }
+	}
 }
 #pragma warning enable
 #endregion

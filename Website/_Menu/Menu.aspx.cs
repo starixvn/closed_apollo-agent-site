@@ -104,21 +104,13 @@ namespace Sunplus.Agent.UI._Menu
             SiteMapNode rootNode = SiteMap.RootNode;
             SiteMapNode contextNode = null;
 
-            if (roleId == (int)(UserTypes.Agent))
+            if (roleId > 4)
             {
                 contextNode = rootNode.ChildNodes[0];
             }
-            else if (roleId == (int)(UserTypes.Master))
-            {
-                contextNode = rootNode.ChildNodes[1];
-            }
-            else if (roleId == (int)(UserTypes.Super))
-            {
-                contextNode = rootNode.ChildNodes[2];
-            }
             else
             {
-                throw new BusinessException("Invalid role id for customer " + CurrentUserSession.CustId + ": " + roleId);
+                contextNode = rootNode.ChildNodes[1];
             }
 
             RenderMenu(contextNode, ref tpl);
@@ -229,7 +221,7 @@ namespace Sunplus.Agent.UI._Menu
                 if (!UserPermission.IsShowBingo && item.Description == "bgPT") continue;//BG PT
 
                 // NG
-                if (!UserPermission.IsShowNumberGame&& item.Title == NG) continue;
+                if (!UserPermission.IsShowNumberGame && item.Title == NG) continue;
 
                 // Live Casino
                 if (!UserPermission.IsShowLiveCasino && item.Title == LiveCasino) continue;
@@ -257,7 +249,7 @@ namespace Sunplus.Agent.UI._Menu
         private void RenderMenuItem(SiteMapNode menuItem, ref Menu_SubMenu_MenuItem_Block itemBlock, int index, int parentIndex)
         {
             string title = menuItem.Title;
-            int bettypeId=0;
+            int bettypeId = 0;
 
             if (title.Contains("bettype") && Int32.TryParse(title.Substring(7), out bettypeId))//get from remoting ref
             {

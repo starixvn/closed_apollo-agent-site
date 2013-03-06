@@ -31,8 +31,8 @@ namespace Sunplus.Agent.UI._Authorization
         {
             // Check-out
 
-            AuthorizationBO bo = new AuthorizationBO(CurrentUserSession.NetSessionId);
-            bo.SignOut();
+            //AuthorizationBO bo = new AuthorizationBO(CurrentUserSession.NetSessionId);
+            //bo.SignOut();
 
             return null;
         }

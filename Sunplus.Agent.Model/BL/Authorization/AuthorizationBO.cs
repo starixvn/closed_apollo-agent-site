@@ -1,8 +1,8 @@
 ﻿/*
  * Created 20091224@Lee - Authorization business object
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.BL.Authorization
@@ -24,7 +24,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
 
         public AuthorizationBO(string netSessionId)
             : base(netSessionId)
-        { 
+        {
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
                 ref outputs,
                 out isSubAcc);
 
-            int custId = (int)outputs["custid"]; // Equal zero if log-in failed
+            //int custId = (int)outputs["custid"]; // Equal zero if log-in failed
 
             if (!result)
             {
@@ -71,12 +71,12 @@ namespace Sunplus.Agent.Model.BL.Authorization
                 return false;
             }
 
-            int roleId = (int)outputs["roleid"];
+            //int roleId = (int)outputs["roleid"];
 
-            // Site name
-            outputs.Add("sitename", Sunplus.Agent.Model.BL.Definitions.AppSettings.SiteNameFromRoleId(roleId));
+            //// Site name
+            //outputs.Add("sitename", Sunplus.Agent.Model.BL.Definitions.AppSettings.SiteNameFromRoleId(roleId));
 
-            outputs.Add("subaccname", isSubAcc ? userName.ToUpperInvariant() : string.Empty);
+            //outputs.Add("subaccname", isSubAcc ? userName.ToUpperInvariant() : string.Empty);
 
             PageAccess pageAccess;
             if (!isSubAcc)
@@ -91,19 +91,19 @@ namespace Sunplus.Agent.Model.BL.Authorization
                 outputs["subpageaccess"] = pageAccess;
             }
 
-            string currency = outputs["currency"] as string;
-            RacingBO racing = new RacingBO(NetSessionId);
-            outputs.Add("isallowhrcurrency", racing.IsHRCurrency(currency));
+            //string currency = outputs["currency"] as string;
+            //RacingBO racing = new RacingBO(NetSessionId);
+            //outputs.Add("isallowhrcurrency", racing.IsHRCurrency(currency));
 
-            int onUserId;
-            int serverId = (int)outputs["serverid"];
-            int subAccId = (int)outputs["subaccid"];
-            this.dao.Acc_Checkin(custId, subAccId, userSession.NetSessionId, serverId, requestInfo["loginip"].ToString(), out onUserId);
-            outputs.Add("on_userid", onUserId);
+            //int onUserId;
+            //int serverId = (int)outputs["serverid"];
+            //int subAccId = (int)outputs["subaccid"];
+            //this.dao.Acc_Checkin(custId, subAccId, userSession.NetSessionId, serverId, requestInfo["loginip"].ToString(), out onUserId);
+            //outputs.Add("on_userid", onUserId);
 
-            this.GetCustomerStatus(custId, 0, ref outputs);
+            //this.GetCustomerStatus(custId, 0, ref outputs);
 
-            outputs.Add("adminid", 0);
+            //outputs.Add("adminid", 0);
 
             UserSessionService.SetUserSessionValues(CurrentSession, outputs);
 
@@ -133,7 +133,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
                 custId,
                 password,
                 subAccId,
-                nickname, 
+                nickname,
                 isNickname,
                 loginTime,
                 userSession.LangKey,
@@ -179,7 +179,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
             return errCode == 0;
         }
 
-         /// <summary>
+        /// <summary>
         /// Override: Customer after sign-in system and get necessary informations.
         /// </summary>
         /// <param name="custId"></param>
@@ -240,7 +240,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
             this.dao.Acc_Checkin(custId, -adminId, userSession.NetSessionId, serverId, requestInfo["loginip"].ToString(), out onUserId);
 
             // on_userid already existed in internal login case
-            outputs["on_userid"] = onUserId; 
+            outputs["on_userid"] = onUserId;
 
             this.GetCustomerStatus(custId, adminId, ref outputs);
 
@@ -348,7 +348,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
             DataRow row = dt.Rows[0];
 
             foreach (DataColumn column in dt.Columns)
-            { 
+            {
                 outputs.Add(column.ColumnName.ToLower(), row[column]);
             }
 
@@ -367,7 +367,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
         /// <returns></returns>
         public bool IsShownConsilatedReport(int custId)
         {
-            return this.dao.Age_Rpt_ConsolidatedGroup_isShownMenu(custId); 
+            return this.dao.Age_Rpt_ConsolidatedGroup_isShownMenu(custId);
         }
 
         /// <summary>
@@ -403,7 +403,8 @@ namespace Sunplus.Agent.Model.BL.Authorization
         {
             return this.dao.Age_CustomerSelCheckBelonging_Multi(custIds, CurrentSession.CustId);
         }
-        #endregion
+
+        #endregion Checking Permission
 
         /// <summary>
         /// Authorize a http request by checking it's param: custid, cid, recommend, mrecommend, transid, refno, isWHCheck.
@@ -441,7 +442,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
             int length = roleRules.Length;
 
             // Match at least one role rule
-            for (int i = 0; i < length; i++) 
+            for (int i = 0; i < length; i++)
             {
                 RolePermissionPair rule = roleRules[i];
                 if (rule.Role <= currentRoleId)
@@ -452,10 +453,10 @@ namespace Sunplus.Agent.Model.BL.Authorization
                         if (!CurrentSession.IsInternal)
                         {
                             var statistic = new Statistic.StatisticBO(NetSessionId);
-                            
+
                             // statistic.UpdatePageVisit_Old(url);
 
-                            statistic.UpdateFunctionUsage(pageFunction.Url, pageFunction.Name, pageFunction.SubName, (CurrentSession.Site));
+                            //statistic.UpdateFunctionUsage(pageFunction.Url, pageFunction.Name, pageFunction.SubName, (CurrentSession.Site));
                         }
 
                         return true;
@@ -503,9 +504,10 @@ namespace Sunplus.Agent.Model.BL.Authorization
             return hasPermission;
         }
 
-        #endregion
+        #endregion ViewLogDependencies
 
         #region Search&Copy
+
         /// <summary>
         /// Check if userName is belong to uplineId.
         /// Author: Jeff
@@ -528,6 +530,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
             custId = dao.Age_CustomerSelCheckBelonging_ByUsername(userName, uplineId, out isSubAcc, out roleId);
             return custId > 0;
         }
-        #endregion
+
+        #endregion Search&Copy
     }
 }

@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
 
+  <Function Name="Apollo-Login">
+    <Setting Key="Agent_Login" SpName="Agent_Login" DbName="CUSTDB" Plain="0" />
+  </Function>
+
   <Function Name="Login">
     <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBTXN.BODB02" Plain="0" />
     <Setting Key="Age_LoginVerifyDownline" SpName="Age_LoginVerifyDownline" DbName="DBTXN.BODB02" Plain="0" />
@@ -331,7 +335,7 @@
     <Setting Key="Age_Forecast_5_15_GetByMatch" SpName="Age_Forecast_5_15_GetByMatch" DbName="DB05" Plain="0" />
     <Setting Key="Age_League_GetRunning" SpName="Age_League_GetRunning" DbName="DB05" Plain="0" />
   </Function>
-  
+
   <Function Name="Agent-Apollo-ScoreMap">
     <Setting Key="Age_ScoreMap_Result_Ag" SpName="Age_ScoreMap_Result" DbName="DB05" Plain="0" />
     <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="DB05" Plain="0" />
