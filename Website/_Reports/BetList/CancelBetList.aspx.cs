@@ -1,30 +1,32 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Collections;
-using System.Data;
-using Sunplus.Agent.UI._BetList;
-using Sunplus.Agent.Model.BL.Definitions;
-using System.Text;
-using Fanex.Age.UI.Reports.BetList;
-using Sunplus.Agent.UI.BetList.Factories;
-using Sunplus.Agent.UI.BetList;
-using Sunplus.Agent.Utilities;
 using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
+using Fanex.Age.UI.Reports.BetList;
+using Sunplus.Agent.Model.BL.Definitions;
+using Sunplus.Agent.UI._BetList;
+using Sunplus.Agent.UI.BetList;
+using Sunplus.Agent.UI.BetList.Factories;
+using Sunplus.Agent.Utilities;
+
 /*
  * Created 20110308@Thai - Cancel BetList page
  * Revision:
  * Modified
- * 
+ *
  */
+
 namespace Fanex.Age.UI.Reports.BetList
 {
     public partial class CancelBetList : TplPage
-    {        
+    {
         int masterId = 0;
         int agentId = 0;
         int memberId = 0;
@@ -34,7 +36,7 @@ namespace Fanex.Age.UI.Reports.BetList
 
         CancelBetList_Template tpl = new CancelBetList_Template();
         IBetListCmd command = null;
-        
+
         bool exportExcel = false;
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -47,33 +49,32 @@ namespace Fanex.Age.UI.Reports.BetList
             Show_HideComboBox(results, userType);
             DataTable betTransm = command.OutDataTable();
 
-            if (exportExcel)
+            //if (exportExcel)
+            //{
+            //    //var builder = new Fanex.Age.Excel.BetList.BetListReportBuilder(BetListType.Canceled, dtDeletedBets, userType, Resources.Lang.voidandreject.ToUpper(), betTransm);
+            //    //var excelStream = builder.Build();
+            //    //if (excelStream != null)
+            //    //{
+            //    //    ExportToExcel(excelStream, "CancelBetList.xls");
+            //    //    excelStream.Dispose();
+            //    //    return;
+            //    //}
+
+            //    //StringBuilder content = RenderingFactory.Render(BetListType.Canceled, ref dtDeletedBets, userType, false, betTransm);
+            //    //ExportToExcel(Response, content.ToString(), "CancelBetList");
+            //}
+            //else
+            //{
+            StringBuilder content = RenderingFactory.Render(BetListType.Canceled, ref dtDeletedBets, userType, false, betTransm);
+
+            if (dtDeletedBets.Rows.Count == 0)
             {
-
-                var builder = new Fanex.Age.Excel.BetList.BetListReportBuilder(BetListType.Canceled, dtDeletedBets, userType, Resources.Lang.voidandreject.ToUpper(), betTransm);
-                var excelStream = builder.Build();
-                if (excelStream != null)
-                {
-                    ExportToExcel(excelStream, "CancelBetList.xls");
-                    excelStream.Dispose();
-                    return;
-                }
-
-                //StringBuilder content = RenderingFactory.Render(BetListType.Canceled, ref dtDeletedBets, userType, false, betTransm);
-                //ExportToExcel(Response, content.ToString(), "CancelBetList");
+                tpl.Options.SetValue("");
             }
-            else
-            {
-                StringBuilder content = RenderingFactory.Render(BetListType.Canceled, ref dtDeletedBets, userType, false, betTransm);
+            tpl.content = content.ToString();
 
-                if (dtDeletedBets.Rows.Count == 0)
-                {
-                    tpl.Options.SetValue("");
-                }
-                tpl.content = content.ToString();
-
-                writer.Write(tpl);
-            }
+            writer.Write(tpl);
+            //}
         }
 
         protected void ExportToExcel(System.IO.MemoryStream excelStream, string fileName)
@@ -139,15 +140,15 @@ namespace Fanex.Age.UI.Reports.BetList
                 tpl.Options.Master.Visible = false;
                 tpl.Options.Agent.Visible = false;
                 tpl.Options.Member.Visible = false;
-            }            
+            }
         }
 
         public override object InvokeData(Hashtable hash)
-        {            
+        {
             command = BetListFactory.CreateBetList("CancelBetList", CurrentUserSession.NetSessionId, null);
 
             if (command != null)
-            {                
+            {
                 hash.Add("memberId", memberId);
                 hash.Add("agentId", agentId);
                 hash.Add("masterId", masterId);
@@ -165,7 +166,7 @@ namespace Fanex.Age.UI.Reports.BetList
             int.TryParse(Request["masterId"] + string.Empty, out masterId);
             int.TryParse(Request["agentId"] + string.Empty, out agentId);
             int.TryParse(Request["memberId"] + string.Empty, out memberId);
-                        
+
             exportExcel = Request["exporttoexcel.x"] != null ? true : false;
         }
 
@@ -189,7 +190,7 @@ namespace Fanex.Age.UI.Reports.BetList
             const String excelHtmlHeader = @"<html>
                     <head>
                         <META http-EQUIV='Content-Type' CONTENT='text/html; charset=unicode-utf8'>
-                        <style>               
+                        <style>
                             body{font-family:Tahoma; font-size:12px; color:#000000; background:#ffffff;}
                             td,table{border-collapse:collapse;border-color:#7C98A4; border-style:Solid; border-width:thin;}
                             .league{color: #000000; background: #aacccc;}
@@ -198,7 +199,7 @@ namespace Fanex.Age.UI.Reports.BetList
                             .bl_underdog{font-weight:bold}
                             .bl_match{white-space: nowrap; width: 200px}
                             .bl_favorite{color: red;font-weight:bold}
-                            a{font-size:12px;text-decoration: none; color: #000}                            
+                            a{font-size:12px;text-decoration: none; color: #000}
                             .r,td.r,td.div{text-align:right;font-size:12px;}
                             .l,td.l{text-align:left;font-size:12px;}
                             .c,td.c{text-align:center;font-size:12px;}
@@ -217,7 +218,6 @@ namespace Fanex.Age.UI.Reports.BetList
                         </table>
                     </body>
                 </html>";
-
 
             StringBuilder content = new StringBuilder();
             content.Append(excelHtmlHeader);
