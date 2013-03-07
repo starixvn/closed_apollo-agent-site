@@ -446,6 +446,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             */
             if (CurrentUserSession.SubPageAccess.ViewMemberInfo)
             {
+                /*
                 tpl.CustInfo.memberlist = roleName[this.custRoleId - 1];
                 tpl.CustInfo.lblPlayerList = roleName[4];
 
@@ -468,6 +469,7 @@ namespace Sunplus.Agent.UI._AccountInfo
                         tpl.CustInfo.memberlistlink = customerListLink[this.custRoleId + 4];
                     }
                 }
+                */
             }
             else
             {

@@ -224,24 +224,25 @@
             tpl.checkedSuspended = isSuspend ? CHECKED_CHECKBOX : string.Empty;
 
             tpl.checkedOutright = isEnabledOutright ? CHECKED_CHECKBOX : string.Empty;
+            /*
             tpl.StatusAutoPT.checkedMasterAutoPT = isEnabledAutoPT ? CHECKED_CHECKBOX : string.Empty;
             tpl.StatusCasino.checkedCasino = isEnabledCS ? CHECKED_CHECKBOX : string.Empty;
             tpl.StatusNumberGame.checkedNumberGame = isEnabledNumberGame ? CHECKED_CHECKBOX : string.Empty;
             tpl.StatusVirtualSports.checkedVirtualSports = isEnabledVirtualSports ? CHECKED_CHECKBOX : string.Empty;
             tpl.StatusDoubleComm.checkedDoubleComm = isEnabledDoubleCommLosing ? CHECKED_CHECKBOX : string.Empty;
-
+           
             if (CurrentUserSession.IsAgent && this.custRoleId == 1)
             {
                 var cust = new SettingService().GetCustomerInfo(this.custId);
 
-                tpl.StatusLiveCasino.checkedLiveCasino = !cust.UplineDisableLiveCasino && !cust.DisableLiveCasino ? CHECKED_CHECKBOX : string.Empty;
-                tpl.StatusLiveCasino.disableLiveCasino = cust.UplineDisableLiveCasino ? DISABLE_HTML_ELEMENT : string.Empty;
+                //tpl.StatusLiveCasino.checkedLiveCasino = !cust.UplineDisableLiveCasino && !cust.DisableLiveCasino ? CHECKED_CHECKBOX : string.Empty;
+                //tpl.StatusLiveCasino.disableLiveCasino = cust.UplineDisableLiveCasino ? DISABLE_HTML_ELEMENT : string.Empty;
             }
             else
             {
                 tpl.StatusLiveCasino.Clear();
             }
-
+             */
             // Disabled or not
             bool isUplineSuspend = GetDBBooleanValue(dtrCustomerInfo["upLineSuspend"]);
             bool isUplineClosed = GetDBBooleanValue(dtrCustomerInfo["upLineClosed"]);
@@ -256,14 +257,14 @@
             tpl.disableSuspend = isUplineSuspend || !subAccountPermission ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
             tpl.disableClosed = isUplineClosed || !subAccountPermission ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
             tpl.disableOutright = isUplineDisableOutright || !subAccountPermission ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
-            tpl.StatusCasino.disableCasino = isUplineDisabledCS || !subAccountPermission || !IsDirectDownline(this.custRoleId) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
-            tpl.StatusBingo.disableBingo = isUplineDisabledBingo || !subAccountPermission || !IsDirectDownline(this.custRoleId) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
-            tpl.StatusBingo.checkedBingo = isEnabledBingo ? CHECKED_CHECKBOX : string.Empty;
+            //tpl.StatusCasino.disableCasino = isUplineDisabledCS || !subAccountPermission || !IsDirectDownline(this.custRoleId) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
+            //tpl.StatusBingo.disableBingo = isUplineDisabledBingo || !subAccountPermission || !IsDirectDownline(this.custRoleId) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
+            //tpl.StatusBingo.checkedBingo = isEnabledBingo ? CHECKED_CHECKBOX : string.Empty;
 
-            tpl.StatusNumberGame.disableNumberGame = (isUplineDisabledNumberGame || !subAccountPermission || !IsDirectDownline(this.custRoleId) || Sunplus.Agent.Model.BL.Definitions.AppSettings.DisableNumberGameStatus) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
-            tpl.StatusAutoPT.disableMasterAutoPT = !subAccountPermission || !IsDirectDownline(this.custRoleId) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
-            tpl.StatusVirtualSports.disableVirtualSports = (isUplineDisabledVirtualSports || !subAccountPermission || !IsDirectDownline(this.custRoleId)) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
-            tpl.StatusDoubleComm.disableDoubleComm = (!isUplineDoubleCommLosing || !subAccountPermission || !IsDirectDownline(this.custRoleId)) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
+            //tpl.StatusNumberGame.disableNumberGame = (isUplineDisabledNumberGame || !subAccountPermission || !IsDirectDownline(this.custRoleId) || Sunplus.Agent.Model.BL.Definitions.AppSettings.DisableNumberGameStatus) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
+            //tpl.StatusAutoPT.disableMasterAutoPT = !subAccountPermission || !IsDirectDownline(this.custRoleId) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
+            //tpl.StatusVirtualSports.disableVirtualSports = (isUplineDisabledVirtualSports || !subAccountPermission || !IsDirectDownline(this.custRoleId)) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
+            //tpl.StatusDoubleComm.disableDoubleComm = (!isUplineDoubleCommLosing || !subAccountPermission || !IsDirectDownline(this.custRoleId)) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
 
             // Render tooltip
             tpl.SuspendedTooltip = isUplineSuspend ? Resources.Lang.UplineHasSuspended : string.Empty;
@@ -278,6 +279,7 @@
         private void RenderSettingBoxHasDownline(SettingBox_Template tpl)
         {
             string hasDownline = this.custRoleId > 1 ? "true" : "false";
+           /*
             tpl.StatusCasino.hasDownline =
                 tpl.StatusBingo.hasDownline =
                 tpl.StatusNumberGame.hasDownline =
@@ -286,6 +288,7 @@
                 tpl.StatusRacing.hasDownline = hasDownline;
 
             tpl.StatusRacingPopup.ukirishtote = this.custRoleId > 1 ? Formater.TruncateWithTip(Resources.Racing.ukirishtote, 13) : Resources.Racing.ukirishtote;
+           */
         }
 
         /// <summary>
@@ -704,6 +707,7 @@
         /// <param name="isSyncCasino"></param>
         private void HideDisabledSettingBox(SettingBox_Template tpl, bool isUpdaterDisableCasino, bool isSyncCasino, bool isUpdaterDisableBingo, bool isSyncBingo, bool isUpdaterDisableNumber)
         {
+            /*
             if (!UserPermission.IsShowCasino || isUpdaterDisableCasino || !isSyncCasino)
             {
                 tpl.StatusCasino = null;
@@ -739,6 +743,7 @@
             {
                 tpl.StatusAutoPT = null;
             }
+            */
         }
 
         #endregion Render Setting Box
