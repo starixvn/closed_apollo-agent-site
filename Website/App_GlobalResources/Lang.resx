@@ -4095,4 +4095,10 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="soccerPT" xml:space="preserve">
     <value>Soccer PT (%)</value>
   </data>
+  <data name="hdpLive" xml:space="preserve">
+    <value>HDP Live</value>
+  </data>
+  <data name="ovLive" xml:space="preserve">
+    <value>O/U Live</value>
+  </data>
 </root>
