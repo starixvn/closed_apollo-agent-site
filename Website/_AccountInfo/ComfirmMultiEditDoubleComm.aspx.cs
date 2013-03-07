@@ -11,6 +11,7 @@ namespace Sunplus.Agent.UI._AccountInfo
     using System.Web;
     using System.Web.UI;
     using Sunplus.Agent.UI._AccountInfo;
+    using Fanex.Agent.UI._AccountInfo;
 
     /// <summary>
     /// Dialog for confirming on editing double commission of multiple users
