@@ -7,7 +7,7 @@
     <tr>
         <td>
             <div id="title_header">
-                {static:Resources.Lang.lblMasterList} {print}
+                {static:Resources.Lang.customerlist} {print}
             </div>
         </td>
     </tr>
@@ -21,9 +21,9 @@
     <tr>
         <td>
             <div id="page_main">
-                <link href="../Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
+                <link href="Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
                     media="print" />
-                {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader  = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
+                {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
                 <table id="tblCustomerList">
                     <!--Header-->
                     <thead>
@@ -32,7 +32,7 @@
                                 No.
                             </th>
                             <th rowspan="2" {DisplayUpdMulti:} isDirectDownline="1" isShowDCom={isShowDCom}>
-                                {editMult}
+                                {editmult}
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.username}
@@ -43,24 +43,27 @@
                             <th rowspan="2">
                                 {static:Resources.Lang.edit}
                             </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.member}
-                            </th>
                             <!--DCom-->
-                            <th rowspan="2">
+                            <th rowspan="2" style="white-space: pre-line;">
                                 {static:Resources.Lang.doublecommission}
                             </th>
                             <!--/DCom-->
+                            <th rowspan="2">
+                                {static:Resources.Lang.nickname}
+                            </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.firstname}
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.lastname}
                             </th>
+                            <th rowspan="2">
+                                {static:Resources.Lang.group}
+                            </th>
                             <th colspan="7" class="header_comm">
                                 {static:Resources.Lang.commission}
                             </th>
-                            <th rowspan="2" class="createdate">
+                            <th rowspan="2">
                                 {static:Resources.Lang.CreatedDate}
                             </th>
                             <th rowspan="2">
@@ -72,22 +75,22 @@
                         </tr>
                         <tr class="header">
                             <th>
-                                {static:Resources.Lang.lblGroupa}
+                                {static:Resources.Lang.acomm1}
                             </th>
                             <th>
-                                {static:Resources.Lang.lblGroupb}
+                                {static:Resources.Lang.acomm2}
                             </th>
                             <th>
-                                {static:Resources.Lang.lblGroupc}
+                                {static:Resources.Lang.acomm3}
                             </th>
                             <th>
-                                {static:Resources.Lang.lblGroupd}
+                                {static:Resources.Lang.pcomm1}
                             </th>
                             <th>
-                                {static:Resources.Lang.lbl1x2}
+                                {static:Resources.Lang.pcomm2}
                             </th>
                             <th>
-                                {static:Resources.Lang.other}
+                                {static:Resources.Lang.pcomm3}
                             </th>
                             <th>
                                 {static:Resources.Lang.game}
@@ -102,7 +105,7 @@
                                 {id}
                             </td>
                             <td {DisplayUpdMulti:}>
-                                <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" statuscs="{statusCS}" statusracing="{statusRacing}" statusbingo="{statusBingo}" statusp2p="{statusP2P}"  statusLiveCasino="{statusLiveCasino}" statusVirtualSport="{statusVirtualSport}"/>
+                                <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" statuscs="{statusCS}" statusracing="{statusRacing}" statusbingo="{statusBingo}" statusp2p="{statusP2P}" statusLiveCasino="{statusLiveCasino}" statusVirtualSport="{statusVirtualSport}"/>
                             </td>
                             <td class="l">
                                 <div {LnkUserName}>{username}</div>
@@ -113,14 +116,14 @@
                             <td align="center">
                                 {other_Option}
                             </td>
-                            <td>
-                                {view}
-                            </td>
                             <!--DCom-->
                             <td>
                                 {doublecommission}
                             </td>
                             <!--/DCom-->
+                            <td class="l">
+                                {nickname}
+                            </td>
                             <td class="l">
                                 {firstName}
                             </td>
@@ -128,22 +131,25 @@
                                 {lastName}
                             </td>
                             <td>
-                                {groupA}
+                                {group}
                             </td>
                             <td>
-                                {groupB}
+                                {acomm1}
                             </td>
                             <td>
-                                {groupC}
+                                {acomm2}
                             </td>
                             <td>
-                                {groupD}
+                                {acomm3}
                             </td>
                             <td>
-                                {lb1x2}
+                                {pcomm1}
                             </td>
                             <td>
-                                {other}
+                                {pcomm2}
+                            </td>
+                            <td>
+                                {pcomm3}
                             </td>
                             <td>
                                 {game}
@@ -171,5 +177,4 @@
             </div>
         </td>
     </tr>
-</table>
-<script src="MasterList.js" type="text/javascript"></script>
+</table> 

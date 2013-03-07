@@ -7,7 +7,7 @@
     <tr>
         <td>
             <div id="title_header">
-                {static:Resources.Lang.customerlist} {print}
+                {static:Resources.Lang.lblAgentList} {print}
             </div>
         </td>
     </tr>
@@ -21,7 +21,7 @@
     <tr>
         <td>
             <div id="page_main">
-                <link href="../Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
+                <link href="Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
                     media="print" />
                 {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
                 <table id="tblCustomerList">
@@ -31,8 +31,8 @@
                             <th rowspan="2">
                                 No.
                             </th>
-                            <th rowspan="2" {DisplayUpdMulti:}>
-                                {editmult}
+                            <th rowspan="2" {DisplayUpdMulti:} isDirectDownline="1" isShowDCom={isShowDCom}>
+                                {editMult}
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.username}
@@ -43,22 +43,19 @@
                             <th rowspan="2">
                                 {static:Resources.Lang.edit}
                             </th>
+                            <th rowspan="2">
+                                {static:Resources.Lang.member}
+                            </th>
                             <!--DCom-->
-                            <th rowspan="2" style="white-space: pre-line;">
+                            <th rowspan="2">
                                 {static:Resources.Lang.doublecommission}
                             </th>
                             <!--/DCom-->
-                            <th rowspan="2">
-                                {static:Resources.Lang.nickname}
-                            </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.firstname}
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.lastname}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.group}
                             </th>
                             <th colspan="7" class="header_comm">
                                 {static:Resources.Lang.commission}
@@ -75,22 +72,22 @@
                         </tr>
                         <tr class="header">
                             <th>
-                                {static:Resources.Lang.acomm1}
+                                {static:Resources.Lang.lblGroupa}
                             </th>
                             <th>
-                                {static:Resources.Lang.acomm2}
+                                {static:Resources.Lang.lblGroupb}
                             </th>
                             <th>
-                                {static:Resources.Lang.acomm3}
+                                {static:Resources.Lang.lblGroupc}
                             </th>
                             <th>
-                                {static:Resources.Lang.pcomm1}
+                                {static:Resources.Lang.lblGroupd}
                             </th>
                             <th>
-                                {static:Resources.Lang.pcomm2}
+                                {static:Resources.Lang.lbl1x2}
                             </th>
                             <th>
-                                {static:Resources.Lang.pcomm3}
+                                {static:Resources.Lang.other}
                             </th>
                             <th>
                                 {static:Resources.Lang.game}
@@ -100,7 +97,7 @@
                     <!--/Header-->
                     <tbody>
                         <!--Content-->
-                        <tr class="{color}" id="{custId}" iconhr="{iconhr}" iconcs="{iconcs}" iconbg="{iconbg}" iconp2p="{iconp2p}" iconLiveCasino="{iconLiveCasino}" isDisabledLiveCS="{isDisabledLiveCS}" iconVirtualSport="{iconVirtualSport}" isDisabledVS="{isDisabledVS}">
+                        <tr class="{color}" id="{custId}" iconhr="{iconhr}" iconcs="{iconcs}" iconbg="{iconbg}" iconp2p="{iconp2p}" isDisabledP2P="{isDisabledP2P}" iconLiveCasino="{iconLiveCasino}" isDisabledLiveCS="{isDisabledLiveCS}" iconVirtualSport="{iconVirtualSport}" isDisabledVS="{isDisabledVS}" iconEdit="{iconEdit:}">
                             <td>
                                 {id}
                             </td>
@@ -114,16 +111,16 @@
                                 {status}
                             </td>
                             <td align="center">
-                                {other}
+                                {other_Option}
                             </td>
-                             <!--DCom-->
+                            <td>
+                                {view}
+                            </td>
+                            <!--DCom-->
                             <td>
                                 {doublecommission}
                             </td>
                             <!--/DCom-->
-                            <td class="l">
-                                {nickname}
-                            </td>
                             <td class="l">
                                 {firstName}
                             </td>
@@ -131,25 +128,22 @@
                                 {lastName}
                             </td>
                             <td>
-                                {group}
+                                {groupA}
                             </td>
                             <td>
-                                {acomm1}
+                                {groupB}
                             </td>
                             <td>
-                                {acomm2}
+                                {groupC}
                             </td>
                             <td>
-                                {acomm3}
+                                {groupD}
                             </td>
                             <td>
-                                {pcomm1}
+                                {lb1x2}
                             </td>
                             <td>
-                                {pcomm2}
-                            </td>
-                            <td>
-                                {pcomm3}
+                                {other}
                             </td>
                             <td>
                                 {game}
@@ -163,7 +157,7 @@
                             <td class="l">
                                 <div {LnkUserName}>{username}</div>
                             </td>
-                    </tr>
+                        </tr>
                         <!--/Content-->
                     </tbody>
                     <tfoot>
@@ -174,7 +168,7 @@
                     </tr>
                 </tfoot>
             </table>
-            </div> 
-        </td> 
-    </tr> 
+            </div>
+        </td>
+    </tr>
 </table> 
