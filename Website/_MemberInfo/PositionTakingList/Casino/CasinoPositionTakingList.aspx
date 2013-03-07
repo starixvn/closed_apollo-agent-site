@@ -1,0 +1,2 @@
+﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="CasinoPositionTakingList.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.PositionTakingList.Casino.CasinoPositionTakingList_Page" %>
+<%@ OutputCache Location="None"%>

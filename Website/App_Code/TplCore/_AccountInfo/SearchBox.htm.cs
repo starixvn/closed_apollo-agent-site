@@ -24,31 +24,29 @@ namespace Sunplus.Agent.UI
 			protected static string s9{get{return Resources.Lang.enterusername;}}
 			protected static string s10 = "')\" value=\"";
 			public string usernamesearch = "{usernamesearch}";
-			protected static string s11 = "\" style=\"width: 80px;\" class=\"";
+			protected static string s11 = "\" style=\"width: 78px;\" class=\"";
 			public string classStyle = "{classStyle}";
-			protected static string s12 = "\" name=\"txtUsername\" /><select class=\"search-option\" name=\"search-option\"><option value=\"0\">Agent</option><option value=\"1\">Member</option></select></div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
+			protected static string s12 = "\" name=\"txtUsername\" /></div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
 			protected static string s13{get{return Resources.Lang.search;}}
 			protected static string s14 = "\" border=\"0\" nowap=\"nowap\" src=\"";
 			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
-			protected static string s16 = "\" /></a></div></form>";
+			protected static string s16 = "\" /></a></div><div class=\"search-option\"><input type=\"checkbox\" name=\"search-member\" /><label>Member</label></div></form>";
 			public SearchBox_fornotdirectdownline_Block fornotdirectdownline = new SearchBox_fornotdirectdownline_Block();
 			protected static string s17 = "<div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
 			protected static string s18{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
 			protected static string s19 = "\" name=\"\" /></div>";
 			public SearchBox_CustInfo_Block CustInfo = new SearchBox_CustInfo_Block();
-			protected static string s20 = "</div></div></div>";
+			protected static string s20 = "</div></div></div><div class=\"btnSearchList\"><a href=\"\" class=\"btnList\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\">Agent List</a><a href=\"\" class=\"btnList\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\">Member List</a><a href=\"\" class=\"btnList\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\">Bet List</a></div>";
 			public SearchBox_GroupStatement_Block GroupStatement = new SearchBox_GroupStatement_Block();
-			protected static string s21 = "<div id=\"clear02\"><img height=\"5\" width=\"1\" alt=\"\" src=\"";
-			protected static string s22{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s23 = "\" name=\"\" /></div><!--insert jquery and treeview javascript--><script type=\"text/javascript\" src=\"";
-			protected static string s24{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
+			protected static string s21 = "<!--insert jquery and treeview javascript--><script type=\"text/javascript\" src=\"";
+			protected static string s22{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
+			protected static string s23 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s24{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
 			protected static string s25 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s26{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
+			protected static string s26{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
 			protected static string s27 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s28{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
-			protected static string s29 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s30{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.js");}}
-			protected static string s31 = "\"></script><script type=\"text/javascript\">jQuery(function () {jQuery(\"#treeview-link\").click(function () {jQuery(\".downline-title\").toggle();jQuery(\".agent-treeview\").toggle();});})</script>";
+			protected static string s28{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.js");}}
+			protected static string s29 = "\"></script><script type=\"text/javascript\">jQuery(function () {jQuery(\"#treeview-link\").click(function () {jQuery(\".downline-title\").toggle();jQuery(\".agent-treeview\").toggle();});})</script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -87,8 +85,6 @@ namespace Sunplus.Agent.UI
 				bd.Append(s27);
 				bd.Append(s28);
 				bd.Append(s29);
-				bd.Append(s30);
-				bd.Append(s31);
 				bd.Append(Value);
 			}
 			public string ToString()
@@ -102,17 +98,17 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_fornotdirectdownline_Block: Block
 		{
-			protected static string s32 = "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\"><tbody>";
+			protected static string s30 = "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\"><tbody>";
 			public SearchBox_fornotdirectdownline_uplineinfo_Block uplineinfo = new SearchBox_fornotdirectdownline_uplineinfo_Block();
-			protected static string s33 = "</tbody></table>";
+			protected static string s31 = "</tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s32);
+					bd.Append(s30);
 					if(null != uplineinfo) uplineinfo.ToString(ref bd);
-					bd.Append(s33);
+					bd.Append(s31);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -120,25 +116,25 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_fornotdirectdownline_uplineinfo_Block: Block
 		{
-			protected static string s34 = "<tr><td>";
+			protected static string s32 = "<tr><td>";
 			public string agent = "{agent}";
-			protected static string s35 = ":</td><td align=\"right\" class=\"text_org\"><a href=\"AccountInfo.aspx?username=";
+			protected static string s33 = ":</td><td align=\"right\" class=\"text_org\"><a href=\"AccountInfo.aspx?username=";
 			public string AgentNameValue = "{AgentNameValue}";
-			protected static string s36 = "\" class=\"linkAg\">";
+			protected static string s34 = "\" class=\"linkAg\">";
 			public string agentname = "{agentname}";
-			protected static string s37 = "</a></td></tr>";
+			protected static string s35 = "</a></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s34);
+					bd.Append(s32);
 					bd.Append(agent);
-					bd.Append(s35);
+					bd.Append(s33);
 					bd.Append(AgentNameValue);
-					bd.Append(s36);
+					bd.Append(s34);
 					bd.Append(agentname);
-					bd.Append(s37);
+					bd.Append(s35);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -146,85 +142,29 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_CustInfo_Block: Block
 		{
-			protected static string s38 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td><!--";
+			protected static string s36 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td><!--";
 			public string lblCustomerUsername = "{lblCustomerUsername}";
-			protected static string s39 = ":-->";
+			protected static string s37 = ":-->";
 			public string lblUsername = "{lblUsername}";
-			protected static string s40 = ":</td><td align=\"right\" class=\"text_org\">";
+			protected static string s38 = ":</td><td align=\"right\" class=\"text_org\">";
 			public string CustomerUsername = "{CustomerUsername}";
-			protected static string s41 = "<a href=\"javascript:void(0)\" id=\"treeview-link\"><img height=\"15\" width=\"15\" alt=\"Treeview\" src=\"";
-			protected static string s42{get{return AbsoluteUrl("_AccountInfo/Resources/Images/treeview.png");}}
-			protected static string s43 = "\" title=\"Treeview\"/></a></td></tr><tr><td colspan=\"2\"><div class=\"downline-title\">Downline List</div><div class=\"agent-treeview\"><ul class=\"filetree treeview\" id=\"browser\"><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.1</span><ul><li class=\"last\"><span class=\"\">Agent 1.1.1</span></li></ul></li><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.2</span><ul><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.2.1</span><ul id=\"folder21\"><li><span class=\"\">Agent 1.2.1.1</span></li><li class=\"last\"><span class=\"\">Agent 1.2.1.2</span></li></ul></li><li class=\"last active-link\"><span class=\"\">Agent 1.2.2</span></li></ul></li><li class=\"expandable\"><div class=\"hitarea closed-hitarea expandable-hitarea\"></div>Agent 1.3</span><ul style=\"display: none;\"><li class=\"last\"><span class=\"\">Agent 1.3.1</span></li></ul></li><li class=\"last\"><span class=\"\">Agent 1.4</span></li></ul></div></td></tr><tr><td colspan=\"2\"><div class=\"divLinkSetting\"><a class=\"b_left\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
-			public string memberlistlink = "{memberlistlink}";
-			protected static string s44 = "\">";
-			public string memberlist = "{memberlist}";
-			protected static string s45 = "</a></div></td></tr><tr><td colspan=\"2\"><div class=\"divLinkSetting\"><a class=\"b_left\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
-			protected string t0_memberlistlink;
-			protected static string s46 = "\">";
-			public string lblPlayerList = "{lblPlayerList}";
-			protected static string s47 = "</a></div></td></tr><!--blCustomerNickname--><!--<tr><td>";
-			protected static string s48{get{return Resources.Lang.nickname;}}
-			protected static string s49 = ":</td><td align=\"right\" class=\"text_bold\">";
-			public string CustomerNickname = "{CustomerNickname}";
-			protected static string s50 = "</td></tr>--><!--/blCustomerNickname--><!--blCustomerFullName--><!--<tr><td>";
-			protected static string s51{get{return Resources.Lang.name;}}
-			protected static string s52 = ":</td><td align=\"right\" class=\"text_bold\">";
-			public string CustomerFullName = "{CustomerFullName}";
-			protected static string s53 = "</td></tr>--><!--/blCustomerFullName--><!--blCustomerPhone--><!--<tr><td>";
-			protected static string s54{get{return Resources.Lang.lblPhone;}}
-			protected static string s55 = ":</td><td align=\"right\" class=\"text_bold\">";
-			public string CustomerPhone = "{CustomerPhone}";
-			protected static string s56 = "</td></tr>--><!--/blCustomerPhone--><!--blCustomerMobile--><!--<tr><td>";
-			protected static string s57{get{return Resources.Lang.lblMobilePhone;}}
-			protected static string s58 = ":</td><td align=\"right\" class=\"text_bold\">";
-			public string CustomerMobile = "{CustomerMobile}";
-			protected static string s59 = "</td></tr>--><!--/blCustomerMobile--><!--blCustomerFax--><!--<tr><td>";
-			protected static string s60{get{return Resources.Lang.lblFax;}}
-			protected static string s61 = ":</td><td align=\"right\" class=\"text_bold\">";
-			public string CustomerFax = "{CustomerFax}";
-			protected static string s62 = "</td></tr>--><!--/blCustomerFax--></tbody></table>";
+			protected static string s39 = "<a href=\"javascript:void(0)\" id=\"treeview-link\"><img height=\"15\" width=\"15\" alt=\"Treeview\" src=\"";
+			protected static string s40{get{return AbsoluteUrl("_AccountInfo/Resources/Images/treeview.png");}}
+			protected static string s41 = "\" title=\"Treeview\"/></a></td></tr><tr><td colspan=\"2\"><div class=\"downline-title\">Downline List</div><div class=\"agent-treeview\"><ul class=\"filetree treeview\" id=\"browser\"><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.1</span><ul><li class=\"last\"><span class=\"\">Agent 1.1.1</span></li></ul></li><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.2</span><ul><li class=\"collapsable\"><div class=\"hitarea collapsable-hitarea\"></div><span class=\"\">Agent 1.2.1</span><ul id=\"folder21\"><li><span class=\"\">Agent 1.2.1.1</span></li><li class=\"last\"><span class=\"\">Agent 1.2.1.2</span></li></ul></li><li class=\"last active-link\"><span class=\"\">Agent 1.2.2</span></li></ul></li><li class=\"expandable\"><div class=\"hitarea closed-hitarea expandable-hitarea\"></div>Agent 1.3</span><ul style=\"display: none;\"><li class=\"last\"><span class=\"\">Agent 1.3.1</span></li></ul></li><li class=\"last\"><span class=\"\">Agent 1.4</span></li></ul></div></td></tr></tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s38);
+					bd.Append(s36);
 					bd.Append(lblCustomerUsername);
-					bd.Append(s39);
+					bd.Append(s37);
 					bd.Append(lblUsername);
-					bd.Append(s40);
+					bd.Append(s38);
 					bd.Append(CustomerUsername);
+					bd.Append(s39);
+					bd.Append(s40);
 					bd.Append(s41);
-					bd.Append(s42);
-					bd.Append(s43);
-					bd.Append(memberlistlink);
-					bd.Append(s44);
-					bd.Append(memberlist);
-					bd.Append(s45);
-					bd.Append(memberlistlink);
-					bd.Append(s46);
-					bd.Append(lblPlayerList);
-					bd.Append(s47);
-					bd.Append(s48);
-					bd.Append(s49);
-					bd.Append(CustomerNickname);
-					bd.Append(s50);
-					bd.Append(s51);
-					bd.Append(s52);
-					bd.Append(CustomerFullName);
-					bd.Append(s53);
-					bd.Append(s54);
-					bd.Append(s55);
-					bd.Append(CustomerPhone);
-					bd.Append(s56);
-					bd.Append(s57);
-					bd.Append(s58);
-					bd.Append(CustomerMobile);
-					bd.Append(s59);
-					bd.Append(s60);
-					bd.Append(s61);
-					bd.Append(CustomerFax);
-					bd.Append(s62);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -232,21 +172,21 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_GroupStatement_Block: Block
 		{
-			protected static string s63 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s42 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string statementlink = "{statementlink}";
-			protected static string s64 = "\">";
-			protected static string s65{get{return Resources.Lang.lblStatement;}}
-			protected static string s66 = "</a></div>-->";
+			protected static string s43 = "\">";
+			protected static string s44{get{return Resources.Lang.lblStatement;}}
+			protected static string s45 = "</a></div>-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s63);
+					bd.Append(s42);
 					bd.Append(statementlink);
-					bd.Append(s64);
-					bd.Append(s65);
-					bd.Append(s66);
+					bd.Append(s43);
+					bd.Append(s44);
+					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

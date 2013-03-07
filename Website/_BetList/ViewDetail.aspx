@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ViewDetail.aspx.cs" Inherits="Sunplus.Agent.UI._BetList.ViewDetail_Page" %>

@@ -10,14 +10,26 @@
         <div class="Bleft_Sub02">
             <form name="frmAgent" id="frmAgent" method="get" action="" target="menu" style="float:left;">   
                 <div id="from_tab">                            
+<<<<<<< HEAD
                     <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" style="width: 145px;" class="{classStyle}" name="txtUsername" />
+=======
+                    <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" style="width: 78px;" class="{classStyle}" name="txtUsername" />                    
+>>>>>>> 2066a2a9f0015587ab6816e1f75c5ba7ba29367f
                 </div>
                 <div id="b_serachL">
                     <a id="lnkSearch" class="imaLink" href="#" onclick="javascript:checkAndSubmitUI();">
                         <img height="18" width="21" alt="Search" title="{static:Resources.Lang.search}" border="0" nowap="nowap" src="../_GlobalResources/Images/icon_search.jpg" />
                     </a>
                  </div>
+<<<<<<< HEAD
             </form><br />
+=======
+                 <div class="search-option">
+                    <input type="checkbox" name="search-member" />
+                    <label>Member</label>
+                 </div>
+            </form>
+>>>>>>> 2066a2a9f0015587ab6816e1f75c5ba7ba29367f
             <!--fornotdirectdownline-->                                                            
             <table cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tbody> 
@@ -46,6 +58,7 @@
                         </td>
                         <td align="right" class="text_org">
                             {CustomerUsername}
+<<<<<<< HEAD
                         </td>
                     </tr>
                     <!--blCustomerNickname-->
@@ -98,6 +111,44 @@
                         </td>
                     </tr>
                     <!--/blCustomerFax-->
+=======
+                            <a href="javascript:void(0)" id="treeview-link">
+                                <img height="15" width="15" alt="Treeview" src="../_AccountInfo/Resources/Images/treeview.png" title="Treeview"/>
+                            </a>
+                        </td>
+                    </tr>                    
+                    <tr>
+                        <td colspan="2">
+                            <div class="downline-title">Downline List</div>
+                            <div class="agent-treeview">
+                                <ul class="filetree treeview" id="browser">
+		                            <li class="collapsable"><div class="hitarea collapsable-hitarea"></div><span class="">Agent 1.1</span>
+			                            <ul>
+				                            <li class="last"><span class="">Agent 1.1.1</span></li>
+			                            </ul>
+		                            </li>
+		                            <li class="collapsable"><div class="hitarea collapsable-hitarea"></div><span class="">Agent 1.2</span>
+			                            <ul>
+				                            <li class="collapsable"><div class="hitarea collapsable-hitarea"></div><span class="">Agent 1.2.1</span>
+					                            <ul id="folder21">
+						                            <li><span class="">Agent 1.2.1.1</span></li>
+						                            <li class="last"><span class="">Agent 1.2.1.2</span></li>
+					                            </ul>
+				                            </li>
+				                            <li class="last active-link"><span class="">Agent 1.2.2</span></li>
+			                            </ul>
+		                            </li>
+		                            <li class="expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div>Agent 1.3</span>
+			                            <ul style="display: none;">
+				                            <li class="last"><span class="">Agent 1.3.1</span></li>
+			                            </ul>
+		                            </li>
+		                            <li class="last"><span class="">Agent 1.4</span></li>
+	                            </ul>
+                            </div>
+                        </td>
+                    </tr>
+>>>>>>> 2066a2a9f0015587ab6816e1f75c5ba7ba29367f
                 </tbody>
             </table>
             <!--/CustInfo-->
@@ -105,11 +156,37 @@
     </div>    
 </div>        
 
+<<<<<<< HEAD
 <!--GroupCustomerList-->
 <div id="button_nLeft01"><a class="b_nleft" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{memberlistlink}">{memberlist}</a></div>
 <!--/GroupCustomerList-->
+=======
+<div class="btnSearchList">
+    <a href="" class="btnList" onclick="clearTopMenu(); ClearCurrentLeftMenu();">Agent List</a>
+    <a href="" class="btnList" onclick="clearTopMenu(); ClearCurrentLeftMenu();">Member List</a>
+    <a href="" class="btnList" onclick="clearTopMenu(); ClearCurrentLeftMenu();">Bet List</a>
+</div>
+>>>>>>> 2066a2a9f0015587ab6816e1f75c5ba7ba29367f
 <!--GroupStatement-->
 <div id="button_nLeft02"><a class="b_nleft" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{statementlink}">{static:Resources.Lang.lblStatement}</a></div>
 <!--/GroupStatement-->
+<<<<<<< HEAD
 <div id="clear02">
     <img height="5" width="1" alt="" src="../_GlobalResources/Images/dot.gif" name="" /></div>
+=======
+
+<!--insert jquery and treeview javascript-->
+<script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/jquery.cookie.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/treeview.js"></script>   
+ 
+<script type="text/javascript">
+    jQuery(function () {       
+        jQuery("#treeview-link").click(function () {           
+            jQuery(".downline-title").toggle();
+            jQuery(".agent-treeview").toggle();
+        });
+    })
+</script>
+>>>>>>> 2066a2a9f0015587ab6816e1f75c5ba7ba29367f

@@ -1,0 +1,482 @@
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="OutstandingDetail.aspx.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Thai" date="2011.03.24">Create</change>
+//     <change who="Marc.Bui" date="2012.12.13">Apply CoreBetList</change>
+// </history>
+// ---------------------------------------------------------------------------------
+
+namespace Fanex.Age.UI.Reports.BetList
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Text;
+    using System.Web.UI;
+    using Fanex.Age.UI.Reports.Components;
+    using Fanex.BetList.Age.BetListHTMLBuilderExt;
+    using Fanex.BetList.Age.Definition;
+    using Fanex.BetList.Age.DTO;
+    using Fanex.BetList.Age.ExtTemplate;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Factories;
+    using Fanex.BetList.Core.TicketHelper;
+    using Sunplus.Agent.Model.BL.BetList;
+    using Sunplus.Agent.Model.BL.Definitions;
+    using Sunplus.Agent.Model.BL.Forecast;
+    using Sunplus.Agent.Model.Entities;
+    using Sunplus.Agent.Utilities;
+
+    public partial class OutstandingDetail_Page : WinlossReports_Page
+    {
+        DataTable dtResult = null;
+        BetListBO betList = null;
+        DataTable outDataTable = null;
+
+        int custid;
+        string username = string.Empty;
+        DateTime dateFrom;
+        DateTime dateTo;
+
+        OutstandingDetail_Template2 tpl = new OutstandingDetail_Template2();
+
+        int getAll = 0;
+        string option = string.Empty;
+        string lblBetList = string.Empty;
+        string selectedValue = string.Empty;
+        const string CHECKED = Fanex.Age.UI.Common.CHECKED;
+
+        string page = null;
+
+        #region Override
+
+        public override void RenderContent(HtmlTextWriter writer)
+        {
+            // Render Header
+            RenderReportHeader(tpl);
+
+            #region INIT
+
+            // Render Content
+            DataTable betListData = View as DataTable;
+            IList<ITicket> tickets = TicketTransformer.Transform(betListData);
+            betListData.Dispose();
+
+            UserTypes userType = UserTypes.Unknown;
+
+            if (CurrentUserSession.IsSuper)
+            {
+                userType = UserTypes.Super;
+            }
+            else if (CurrentUserSession.IsMaster)
+            {
+                userType = UserTypes.Master;
+            }
+            else if (CurrentUserSession.IsAgent)
+            {
+                userType = UserTypes.Agent;
+            }
+
+            StringBuilder content = new StringBuilder();
+
+            DataTable betTransm = (outDataTable == null ? new DataTable() : outDataTable);
+            List<ITicketData> ticketData = TicketDataTransformer.Transform(betTransm);
+            betTransm.Dispose();
+
+            BetListHTMLFactory factory = new BetListHTMLFactory();
+            BetListHTMLBuilder builder = factory.CreateBuilder();
+            TicketHelper ticketHelper = new TicketHelper();
+            GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
+            Header1_Template betlistHeader = new Header1_Template();
+            BetListType betlistType;
+
+            if (option.Equals("4"))
+            {
+                tpl.title = Resources.Lang.lblBetLists + " - " + username;
+                betlistType = BetListType.Default;
+            }
+            else
+            {
+                tpl.title = Resources.Lang.lblBetListRunning + " - " + username;
+                betlistType = BetListType.None;
+            }
+
+            bool isShowWinLost = true,
+                 isShowSuperPT = true,
+                 isShowMasterPT = true,
+                 isShowAgentPT = true,
+                 isShowMember = true;
+
+            if ((betlistType & BetListType.Canceled) == BetListType.Canceled)
+            {
+                isShowWinLost = isShowSuperPT = isShowMasterPT = isShowAgentPT = false;
+            }
+            else
+            {
+                if ((betlistType & BetListType.Winlost) != BetListType.Winlost)
+                {
+                    isShowWinLost = false;
+                }
+
+                if ((betlistType & BetListType.Member) != BetListType.Member)
+                {
+                    isShowMember = false;
+                }
+
+                if ((betlistType & BetListType.DailyStatement) == BetListType.DailyStatement)
+                {
+                    isShowSuperPT = isShowMasterPT = isShowAgentPT = false;
+                }
+
+                switch (userType)
+                {
+                    case UserTypes.Super:
+                        break;
+                    case UserTypes.Master:
+                        isShowSuperPT = false;
+                        break;
+                    case UserTypes.Agent:
+                        isShowSuperPT = isShowMasterPT = false;
+                        break;
+                    default: // Hide all position taking
+                        isShowSuperPT = isShowMasterPT = isShowAgentPT = false;
+                        break;
+                }
+            }
+
+            if (!isShowWinLost)
+            {
+                betlistHeader.Winloss.Hide();
+            }
+
+            if (!isShowSuperPT)
+            {
+                betlistHeader.Super.Hide();
+            }
+
+            if (!isShowMasterPT)
+            {
+                betlistHeader.Master.Hide();
+            }
+
+            if (!isShowAgentPT)
+            {
+                betlistHeader.Agent.Hide();
+            }
+
+            if (!isShowMember)
+            {
+                betlistHeader.Member.Hide();
+            }
+
+            Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
+
+            ForecastBO bo = new ForecastBO(UserSession.Current.NetSessionId);
+            List<int> lstScoremap = bo.GetListBetTypeScoreMap();
+
+            bool isShowScoremap;
+            bool mode = ((BetListType)betlistType & BetListType.SmartPhone) != BetListType.SmartPhone;
+            bool isAdminCanViewVNIP = UserSession.Current.IsAdminCanViewVNIP;
+
+            #endregion
+
+            builder.Append(betlistOpenTag);
+            builder.Append(betlistHeader);
+
+            int index = 0;
+
+            foreach (ITicket ticket in tickets)
+            {
+                if (lstScoremap.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running) && mode)
+                {
+                    isShowScoremap = true;
+                }
+                else
+                {
+                    isShowScoremap = false;
+                }
+
+                ticketHelper.Index = index++;
+                builder
+                    .Append(string.Format("<tr id='r{0}'>", ticket.TransId))
+                    .AddNo(index, "<td class='w-order'>", "</td>");
+
+                if (isShowMember)
+                {
+                    builder.AddMember(ticket, "<td class='c'>", "</td>");
+                }
+
+                builder
+                    .AddTrans(ticket, "<td class='c nonbreak'>", "</td>")
+                    .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'>", "</td>", isShowScoremap)
+                    .AddOdds(ticket, ticketData, "<td class='bl_underdog nonbreak'>", "</td>", funcGetOddsTypeName)
+                    .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
+
+                if (isShowWinLost)
+                {
+                    builder.AddWinLoss(ticket, "<td class='r nonbreak'>", "</td>");
+                }
+
+                builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
+
+                if (isShowSuperPT)
+                {
+                    builder.AddSuperPT(ticket, ticketData, "<td class='r'>", "</td>");
+                }
+                if (isShowMasterPT)
+                {
+                    builder.AddMasterPT(ticket, ticketData, "<td class='r'>", "</td>");
+                }
+
+                if (isShowAgentPT)
+                {
+                    builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
+                }
+
+                builder.Append("</tr>");
+            }
+
+            builder.Append("</tbody></table>");
+
+            tpl.content = builder.GetBetList();           
+
+            RegisterJavascriptObject("fdate", dateFrom.ToShortDateString());
+            RegisterJavascriptObject("tdate", dateTo.ToShortDateString());
+            RegisterJavascriptObject("page", page);
+            RegisterJavascriptObject("option", option);
+
+            tpl.ToString(writer);
+        }
+
+        public override void ProcessRequest(ref System.Collections.Hashtable hash)
+        {
+            MAX_REPORT_DATE = DateTime.Now.AddDays(7);
+
+            base.ProcessRequest(ref hash);
+
+            if (Request["custid"] != null && Request["username"] != null)
+            {
+                int.TryParse(Request["custid"] + string.Empty, out custid);
+                username = Request["username"] + string.Empty;
+            }
+
+            option = (Request["option"] == null) ? "5" : Request["option"].ToString();
+            page = (Request["page"] != null ? Request["page"].ToString() : string.Empty);
+
+            #region Date
+
+            switch (option)
+            {
+                case "4":
+                    SetDate_BetList();
+                    break;
+                case "5":
+                    SetDate_BetListRunning();
+                    break;
+            }
+
+            dateFrom = Sunplus.Agent.Utilities.Formater.ResetStartDate(dateFrom);
+            dateTo = Sunplus.Agent.Utilities.Formater.ResetEndDate(dateTo);
+
+            #endregion
+
+            selectedValue = string.Join(null, new string[] { option, "^", lblBetList, "^", custid.ToString(), "^", username });
+        }
+
+        private void SetDate_BetListRunning()
+        {
+            lblBetList = Resources.Lang.lblBetListRunning;
+
+            dateFrom = DateTime.Now.AddDays(-7);
+            dateTo = DateTime.Now;
+
+            getAll = (Request["chkgetall"] == null) ? 0 : (Request["chkgetall"].Equals("on") ? 1 : 0);
+
+            if (!string.IsNullOrEmpty(Request["isdate"]))
+            {
+                if (Request["isdate"] == "-1")
+                {
+                    dateFrom = DateTime.Now.AddDays(-1);
+                    dateTo = DateTime.Now.AddDays(-1);
+                    getAll = 0;
+
+                }
+                else if (Request["isdate"] == "0")
+                {
+                    dateFrom = DateTime.Now;
+                    dateTo = DateTime.Now;
+                    getAll = 0;
+                }
+                else
+                {
+                    dateFrom = Cast.AsDateTime(Request["fdate"]);
+                    dateTo = Cast.AsDateTime(Request["tdate"]);
+                }
+
+            }
+            else
+            {
+                if (getAll == 0)
+                {
+                    dateFrom = Cast.AsDateTime(Request["fdate"]);
+                    dateTo = Cast.AsDateTime(Request["tdate"]);
+                }
+            }
+        }
+
+        private void SetDate_BetList()
+        {
+            lblBetList = Resources.Lang.lblBetLists;
+
+            dateFrom = DateTime.Now;
+            dateTo = DateTime.Now;
+            if (!string.IsNullOrEmpty(Request["isdate"]))
+            {
+                if (Request["isdate"] == "-1")
+                {
+                    dateFrom = DateTime.Now.AddDays(-1);
+                    dateTo = DateTime.Now.AddDays(-1);
+                }
+                else
+                {
+                    dateFrom = Cast.AsDateTime(Request["fdate"]);
+                    dateTo = Cast.AsDateTime(Request["tdate"]);
+                }
+            }
+            else
+            {
+                dateFrom = Cast.AsDateTime(Request["fdate"]);
+                dateTo = Cast.AsDateTime(Request["tdate"]);
+
+                if (Request["tdate"] == null)//extend ToDate to 7 days
+                {
+                    dateTo = DateTime.Now.AddDays(7);
+                }
+            }
+        }
+
+        public override object InvokeData(System.Collections.Hashtable p)
+        {
+            betList = new BetListBO(CurrentUserSession.NetSessionId);
+
+            if (lblBetList.Equals(Resources.Lang.lblBetListRunning))
+            {
+                dtResult = betList.GetRunningByDateAndMem(custid, username, dateFrom, dateTo, getAll, _permission, out outDataTable);
+            }
+            else if (lblBetList.Equals(Resources.Lang.lblBetLists))
+            {
+                dtResult = betList.GetAllBetsByDateAndMem(custid, username, dateFrom, dateTo, _permission, out outDataTable);
+            }
+            return dtResult != null ? dtResult : new DataTable();
+        }
+
+        public override object ValidateRequest(System.Collections.Hashtable p)
+        {
+            return null;
+        }
+        #endregion
+
+        #region Helper
+
+        /// <summary>
+        /// Render Report Header
+        /// </summary>
+        /// <param name="template"></param>
+        private void RenderReportHeader(OutstandingDetail_Template template)
+        {
+            //bool isShowed = (_custId == 0 || _custId == CurrentUserSession.CustId);
+            bool isShowed = true;//todo
+            template.SearchPanel = RenderSearchPanel(isShowed);
+        }
+
+        protected new string RenderSearchPanel(bool isShowed)
+        {
+            RenderFilterElementNames();
+
+            _dateFrom = this.dateFrom;
+            _dateTo = this.dateTo;
+
+            WinlossSearchView_Control searchControl = new WinlossSearchView_Control(_filterControl, _dateFrom, _dateTo, isShowed);
+            searchControl.IsHistoryReport = _isHistoryReport;
+            searchControl.UserType = _userType;
+            searchControl._template.BoldExportExcel.Visible = false;
+            //searchControl.BoldExportExcel = this.BoldChecked;
+
+            searchControl._template.HistoryMessage.GrossCommMsg.Hide();
+            searchControl._template.HistoryMessage.OptionMsg.Hide();
+            searchControl._template.HistoryMessage.ContentMessage.SetValue(string.Empty);
+
+            DataTable dt = createBetListOption();
+
+            BetListSections_BetListCombo_Block combo = new BetListSections_BetListCombo_Block();
+            combo.BetListComboBox = HtmlGenerator.ComboBox("idoption", selectedValue, dt, "Opvalue", "option", "OnchangeData(this)");
+
+            BetListSections_BetListGetAll_Block getAll = new BetListSections_BetListGetAll_Block();
+            if (this.getAll == 1)
+            {
+                getAll.checkedText = CHECKED;
+            }
+
+            searchControl._template.DateRangeSelect.SetDateRange(MIN_REPORT_DATE, MAX_REPORT_DATE);
+
+            searchControl._template.DateRangeSelect._template.BetListOption.Append(combo);
+            if (lblBetList.Equals(Resources.Lang.lblBetListRunning))
+            {
+                searchControl._template.DateRangeSelect._template.BetListGetAll.Append(getAll);
+            }
+            return searchControl.ToString();
+
+        }
+
+        private DataTable createBetListOption()
+        {
+            DataTable dt = new DataTable();
+
+            DataColumn column;
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Opvalue";
+            dt.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "option";
+            dt.Columns.Add(column);
+
+            DataRow row;
+
+            row = dt.NewRow();
+            row["Opvalue"] = "0^";
+            row["option"] = "--------------------------------";
+            dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["Opvalue"] = "1^" + Resources.Lang.dailystatement + "^" + custid + "^" + username;
+            row["option"] = Resources.Lang.dailystatement;
+            dt.Rows.Add(row);
+
+            //row = dt.NewRow();
+            //row["Opvalue"] = "3^" + Resources.Lang.betsummary + "^" + custid + "^" + username;
+            //row["option"] = Resources.Lang.betsummary;
+            //dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["Opvalue"] = "4^" + Resources.Lang.lblBetLists + "^" + custid + "^" + username;
+            row["option"] = Resources.Lang.lblBetLists;
+            dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["Opvalue"] = "5^" + Resources.Lang.lblBetListRunning + "^" + custid + "^" + username;
+            row["option"] = Resources.Lang.lblBetListRunning;
+            dt.Rows.Add(row);
+
+            return dt;
+        }
+
+        #endregion
+    }
+}

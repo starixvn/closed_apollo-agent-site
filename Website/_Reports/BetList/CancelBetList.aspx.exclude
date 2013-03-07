@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CancelBetList.aspx.cs" Inherits="Fanex.Age.UI.Reports.BetList.CancelBetList" %>
