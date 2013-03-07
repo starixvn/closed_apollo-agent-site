@@ -24,9 +24,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
     using Sunplus.Agent.Utilities;
+<<<<<<< HEAD
     using Fanex.PTVirtualSports.Extension;
     using Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control;
     using Fanex.Agent.UI._MemberInfo.CustomerList;
+=======
+>>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
 
     public partial class AgentList_Page : CustomerList_Page
     {
@@ -56,9 +59,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public override void RenderContent(HtmlTextWriter writer)
         {
             this.InitJsLang();
-            this.InitPopupStatus(false);
-            this.InitPopupMulti();
-            this.InitPopupOther();
+            //this.InitPopupStatus(false);
+            //this.InitPopupMulti();
+            //this.InitPopupOther();
 
             this.RequestQueryString = this.HashTableQueryString;
 
@@ -143,16 +146,29 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public void RenderHeader(TplCore.Element.IElement e)
         {
             // Render MultiEdit Icon
+<<<<<<< HEAD
             string renderMulti = "RenderMulti(this,'MultiPopup','','" + this.MasterId + "','0')";
             AgentList_Header_Block tplBlock = e as AgentList_Header_Block;
             if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             {
                 tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
             }
+=======
+            //string renderMulti = "RenderMulti(this,'MultiPopup','','" + this.MasterId + "','0')";
+            AgentList_Header_Block tplBlock = e as AgentList_Header_Block;
+            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
+            //{
+            //    tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
+            //}
+>>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
 
             tplBlock.isShowDCom = UserPermission.IsShowDoubleCommission.ToString();
 
+<<<<<<< HEAD
             tplBlock.editMult = new IcoEditMulti(TemplateMain, renderMulti);
+=======
+            tplBlock.editMult = new IcoEditMulti(TemplateMain, "");
+>>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
         }
 
         public void RenderContentBlock(DataTable dtb, TplCore.Element.IElement e)
@@ -193,6 +209,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             AgentList_Content_Block tplBlock = e as AgentList_Content_Block;
 
+<<<<<<< HEAD
             bool enable = Convert.ToBoolean(dr["enabled"]);
             bool isClosed = Convert.ToBoolean(dr["closed"]);
             bool isSuspended = Convert.ToBoolean(dr["suspended"]);
@@ -205,10 +222,19 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             tplBlock.custId = this.agentId;
             tplBlock.chkid = "chkid_" + dr["custid"];
             tplBlock.chkid_value = dr["username"] as string;
+=======
+            this.agentId = dr["agentid"].ToString();
+            // tplBlock.LnkUserName = CurrentUserSession.SubPageAccess.ViewReports ? "class='text' onclick=\"viewStatement(" + this.agentId + ",'Agent')\"" : string.Empty;
+
+            //tplBlock.custId = this.agentId;
+            //tplBlock.chkid = "chkid_" + dr["custid"];
+            //tplBlock.chkid_value = dr["username"] as string;
+>>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
 
             tplBlock.id = dr["RowNumber"].ToString();
             tplBlock.username = dr["username"] as string;
 
+<<<<<<< HEAD
             string editAgent_Single = "EditAgent_Single('" + this.agentId + "','" + dr["username"].ToString() + "', " + this.MasterId + ")";
             string renderStatus = "RenderStatus(this,'Popup','" + this.agentId + "'," + isClosed.ToString().ToLower() + "," + isSuspended.ToString().ToLower() + ",0," + disableOutright.ToString().ToLower() + ", '" + tplBlock.chkid + "')";
             Dictionary<object, bool> dictStatus = new Dictionary<object, bool>();
@@ -248,10 +274,52 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             tplBlock.firstName = dr["firstname"] as string;
             tplBlock.lastName = dr["lastname"] as string;
+=======
+            //string editAgent_Single = "EditAgent_Single('" + this.agentId + "','" + dr["username"].ToString() + "', " + this.MasterId + ")";
+            //string renderStatus = "RenderStatus(this,'Popup','" + this.agentId + "'," + isClosed.ToString().ToLower() + "," + isSuspended.ToString().ToLower() + ",0," + disableOutright.ToString().ToLower() + ", '" + tplBlock.chkid + "')";
+            //Dictionary<object, bool> dictStatus = new Dictionary<object, bool>();
+            //string backgroundColor = string.Empty;
+            //dictStatus.Add("Enabled", enable);
+            //dictStatus.Add("Closed", isClosed);
+            //dictStatus.Add("Suspended", isSuspended);
+            //IcoStatus status = new IcoStatus(TemplateMain, dictStatus, ref backgroundColor, editAgent_Single, renderStatus);
+            //tplBlock.color = backgroundColor;
+            //tplBlock.status = status;
+
+            //string setDoubleCommission = string.Format("SetDoubleCommission('{0}',this,true);", this.agentId);
+
+            //if (!UserPermission.IsShowDoubleCommission)
+            //{
+            //    setDoubleCommission = string.Empty;
+            //}
+
+            //bool isDoubleCommission = Convert.ToBoolean(dr["DoubleCommLosing"]);
+
+            //IcoDComm dcomm = new IcoDComm(TemplateMain, isDoubleCommission, setDoubleCommission);
+            //tplBlock.DCom.doublecommission = dcomm;
+
+            //// Render Other
+            //string otherOnclick = "ShowFrmUpdOthers(this,'divUpdOthers', '" + this.agentId + "', '" + dr["username"].ToString() + "', 'Agent')";
+            tplBlock.other_Option = new IcoOther(TemplateMain, "");
+
+            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
+            //{
+            //    tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
+            //}
+
+            //string viewDonwlineClick = "ViewDownLine('MemberList.aspx?custid=" + this.agentId + "&masterId=" + this.MasterId + "')";
+            IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "");
+            tplBlock.viewAgentList = viewAgentDownline;
+
+            IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "");
+            tplBlock.viewPlayerList = viewPlayerDownline;
+
+>>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
             tplBlock.groupA = Formater.FormatNumber4(dr["groupa"], this.langKey);
             tplBlock.groupB = Formater.FormatNumber4(dr["groupb"], this.langKey);
             tplBlock.groupC = Formater.FormatNumber4(dr["groupc"], this.langKey);
             tplBlock.groupD = Formater.FormatNumber4(dr["groupd"], this.langKey);
+<<<<<<< HEAD
             tplBlock.other = Formater.FormatNumber4(dr["discountcs"], this.langKey);
             tplBlock.lb1x2 = Formater.FormatNumber4(dr["discount1x2"], this.langKey);
             tplBlock.game = Formater.FormatNumber4(dr["discountnumber"], this.langKey);
@@ -423,6 +491,16 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             tplBlock.isDisabledVS = isDisabledVS.ToString();
             tplBlock.statusVirtualSport = statusVirtualSport.ToString();
             tplBlock.iconVirtualSport = iconVirtualSport.ToString();
+=======
+            tplBlock.other = Formater.FormatNumber4(dr["DiscountOther"], this.langKey);
+            tplBlock.onextwo = Formater.FormatNumber4(dr["Discount1x2"], this.langKey);
+            tplBlock.game = Formater.FormatNumber4(dr["DiscountNumberGame"], this.langKey);
+
+            tplBlock.HDP = dr["HDP_PositionTaking"].ToString();
+            tplBlock.OU = dr["OU_PositionTaking"].ToString();
+            tplBlock.HDPLive = dr["HDP_PositionTaking_Live"].ToString();
+            tplBlock.OULive = dr["OU_PositionTaking_Live"].ToString();
+>>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
         }
     }
 }
