@@ -20,9 +20,10 @@ body
 #tblCustomerList
 {
 	font-weight: normal;
-	background-color: #B7B7B7;
-	border-collapse: collapse;
+	background-color: #3D3C3E;
+	border-collapse: separate;
 	width: 100%;
+	border-spacing: 1px;
 }
 
 #tblCustomerList .header_comm
@@ -41,26 +42,32 @@ body
 }
 
 #tblCustomerList thead tr.header th
-{
-	color: #FFFFFF;
+{	
 	font-size: 11px;
-	background-color: #3F3F3F;
+	background-color: #CCCCCC;
+    color: #323435;
 	font-weight: normal;
 	height: 22px;
 	width: 200px;
 	text-align: center;
 	background-image: none;
-	border: solid 1px #999;
+	border: solid 1px #fff;
+	padding: 3px;
 }
 
 #tblCustomerList thead tr th
 {
-	background: url("Images/bg_header02.jpg") repeat-x scroll center top #6A6969;
-	color: #FFFFFF;
+	background: #3D3C3E;
+	color: #FAFDEB;
 	font-size: 11px;
 	text-align: center;
 	font-weight: normal;
-	border: solid 1px #999;
+	border-left: 1px solid #fff;
+	padding: 0 3px;
+}
+
+#tblCustomerList th:first-child {
+    border-left: none;
 }
 
 #tblCustomerList thead tr td
@@ -76,10 +83,15 @@ body
 	border: solid 1px #999;
 }
 
+#tblCustomerList tbody tr
+{
+	text-align: center;
+	border: solid 1px #999;
+}
+
 #tblCustomerList tbody tr:hover td
 {
-	background-color: #ffff00;
-	border: solid 1px #999;
+	background-color: #ffff00;	
 }
 
 #tblCustomerList tr th
@@ -87,8 +99,7 @@ body
 	border-top: none;
 	height: 22px;
 	padding: 2px;
-	white-space: nowrap;
-	border: solid 1px #999;
+	white-space: nowrap;	
 }
 
 #tblCustomerList td
@@ -96,7 +107,11 @@ body
 	border-top: none;
 	padding: 2px;
 	white-space: nowrap;
-	border: solid 1px #999;
+	background: #fff;	
+}
+
+#tblCustomerList td,th {
+    padding: 0 2px;
 }
 
 #title_header

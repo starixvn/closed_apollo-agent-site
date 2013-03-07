@@ -501,7 +501,7 @@
     <value>Next Combo</value>
   </data>
   <data name="commission" xml:space="preserve">
-    <value>Commission</value>
+    <value>Commission (%)</value>
   </data>
   <data name="company" xml:space="preserve">
     <value>Company</value>

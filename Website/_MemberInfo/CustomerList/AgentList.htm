@@ -7,7 +7,7 @@
     <tr>
         <td>
             <div id="title_header">
-                {static:Resources.Lang.lblAgentList} {print}
+                {static:Resources.Lang.lblAgentList} {navigation} {print}
             </div>
         </td>
     </tr>
@@ -31,17 +31,6 @@
                             <th rowspan="2">
                                 {static:Resources.Lang.edit}
                             </th>
-<<<<<<< HEAD
-                            <th rowspan="2" {DisplayUpdMulti:} isDirectDownline="1" isShowDCom={isShowDCom}>
-                                {editMult}
-                            </th>
-                            <th rowspan="2">
-                                No.
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.username}
-                            </th>   
-=======
                             <th rowspan="2">
                                 {editMult}
                             </th>
@@ -58,17 +47,17 @@
                                 {static:Resources.Lang.memberList}
                             </th>
                             <th colspan="4" class="header_comm">
-                                {SoccerPT}
+                                {static:Resources.Lang.soccerPT}
                             </th>
->>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
                             <th colspan="7" class="header_comm">
                                 {static:Resources.Lang.commission}
-                            </th>                         
-                            <th colspan="7" class="header_comm">
-                                {static:Resources.Lang.commission}
-                            </th>                            
+                            </th>
                         </tr>
                         <tr class="header">
+                            <th>HDP</th>
+                            <th>O/U</th>
+                            <th>HDP Live</th>
+                            <th>O/U Live</th>
                             <th>
                                 {static:Resources.Lang.lblGroupa}
                             </th>
@@ -88,16 +77,13 @@
                                 {static:Resources.Lang.other}
                             </th>
                             <th>
-                                {static:Resources.Lang.game}
+                                Number Game
                             </th>
                         </tr>
                     </thead>
                     <!--/Header-->
                     <tbody>
                         <!--Content-->
-<<<<<<< HEAD
-                        <tr class="{color}" id="{custId}" iconhr="{iconhr}" iconcs="{iconcs}" iconbg="{iconbg}" iconp2p="{iconp2p}" isDisabledP2P="{isDisabledP2P}" iconLiveCasino="{iconLiveCasino}" isDisabledLiveCS="{isDisabledLiveCS}" iconVirtualSport="{iconVirtualSport}" isDisabledVS="{isDisabledVS}" iconEdit="{iconEdit:}">
-=======
                         <tr class="{color}" id="{custId}">
                              <td align="center">
                                 {other_Option}
@@ -105,34 +91,18 @@
                             <td>
                                 <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}"/>
                             </td>
->>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
                             <td>
                                 {id}
-                            </td>
-                            <td {DisplayUpdMulti:}>
-                                <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" statuscs="{statusCS}" statusracing="{statusRacing}" statusbingo="{statusBingo}" statusp2p="{statusP2P}" statusLiveCasino="{statusLiveCasino}" statusVirtualSport="{statusVirtualSport}"/>
                             </td>
                             <td class="l">
                                 <div {LnkUserName}>{username}</div>
                             </td>
                             <td>
-                                {status}
-                            </td>
-                            <td align="center">
-                                {other_Option}
+                                {viewAgentList}
                             </td>
                             <td>
-                                {view}
+                                {viewPlayerList}
                             </td>
-<<<<<<< HEAD
-                            <!--DCom-->
-                            <td>
-                                {doublecommission}
-                            </td>
-                            <!--/DCom-->
-                            <td class="l">
-                                {firstName}
-=======
 
                             <td>
                                 {HDP}
@@ -142,10 +112,9 @@
                             </td>
                             <td>
                                 {HDPLive}
->>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
                             </td>
-                            <td class="l">
-                                {lastName}
+                            <td>
+                                {OULive}
                             </td>
                             <td>
                                 {groupA}
@@ -160,22 +129,13 @@
                                 {groupD}
                             </td>
                             <td>
-                                {lb1x2}
+                                {onextwo}
                             </td>
                             <td>
                                 {other}
                             </td>
                             <td>
                                 {game}
-                            </td>
-                            <td class="bl_time">
-                                {createdate}
-                            </td>
-                            <td>
-                                {lastLoginIp}
-                            </td>
-                            <td class="l">
-                                <div {LnkUserName}>{username}</div>
                             </td>
                         </tr>
                         <!--/Content-->
