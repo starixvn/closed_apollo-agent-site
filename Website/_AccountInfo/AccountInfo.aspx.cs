@@ -17,6 +17,7 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.Utilities;
     using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
+    using Fanex.Agent.UI._AccountInfo;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {

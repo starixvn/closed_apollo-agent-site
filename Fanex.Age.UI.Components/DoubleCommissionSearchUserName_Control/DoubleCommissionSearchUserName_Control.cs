@@ -31,10 +31,10 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
             if (parent != null) parent.RegisterComponent("SearchUserName_Control", this);
 
             tpl.username = Resources.Lang.username;
-            tpl.status = Resources.Lang.status;
+            //tpl.status = Resources.Lang.status;
             tpl.enterusername = Resources.Lang.enterusername;
             tpl.submit = Resources.Lang.submit;
-
+            /*
             if (!UserPermission.IsShowDoubleCommission)
             {
                 tpl.DCom.Hide();
@@ -43,7 +43,7 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
             {
                 tpl.DCom.doublecommission = Resources.Lang.doublecommission;
             }
-
+            */
             tpl.onClick_function = onclickFunction;
             if (textValue.ToLower() == Resources.Lang.enterusername.ToLower())
             {
@@ -75,12 +75,12 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
             if (parent != null) parent.RegisterComponent("SearchUserName_Control", this);
 
             tpl.username = Resources.Lang.username;
-            tpl.status = Resources.Lang.status;
+            //tpl.status = Resources.Lang.status;
             tpl.enterusername = Resources.Lang.enterusername;
             tpl.submit = Resources.Lang.submit;
 
             SetDoubleCommissionFilterStatus(dcommOptions);
-
+            /*
             if (!UserPermission.IsShowDoubleCommission)
             {
                 tpl.DCom.Hide();
@@ -89,7 +89,7 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
             {
                 tpl.DCom.doublecommission = Resources.Lang.doublecommission;
             }
-
+            */
             tpl.onClick_function = onclickFunction;
             if (textValue.ToLower() == Resources.Lang.enterusername.ToLower())
             {
@@ -118,6 +118,7 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
 
         private void CreateStatusFilterOption(int index)
         {
+            /*
             DoubleCommissionSearchUserName_Control_statusOption_Block tplOption = new DoubleCommissionSearchUserName_Control_statusOption_Block();
             tpl.statusOption.Clear();
             foreach (object key in statusFilterDict.Keys)
@@ -135,11 +136,12 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
                 tplOption.optionValue = statusFilterDict[key].ToString();
                 tpl.statusOption.Append(tplOption);
             }
+             * */
         }
 
         private void CreateDcommFilterOption(int index)
         {
-            DoubleCommissionSearchUserName_Control_DCom_dCommOption_Block tplOption = new DoubleCommissionSearchUserName_Control_DCom_dCommOption_Block();
+           /* DoubleCommissionSearchUserName_Control_DCom_dCommOption_Block tplOption = new DoubleCommissionSearchUserName_Control_DCom_dCommOption_Block();
             tpl.DCom.dCommOption.Clear();
             foreach (object key in dcommFilterDict.Keys)
             {
@@ -156,6 +158,7 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
                 tplOption.optionValue = dcommFilterDict[key].ToString();
                 tpl.DCom.dCommOption.Append(tplOption);
             }
+           */
         }
 
         private string usernamOld()
