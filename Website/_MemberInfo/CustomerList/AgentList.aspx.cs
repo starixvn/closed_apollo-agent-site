@@ -144,7 +144,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             // Render MultiEdit Icon
             //string renderMulti = "RenderMulti(this,'MultiPopup','','" + this.MasterId + "','0')";
-            //AgentList_Header_Block tplBlock = e as AgentList_Header_Block;
+            AgentList_Header_Block tplBlock = e as AgentList_Header_Block;
             //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             //{
             //    tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
@@ -152,7 +152,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             //tplBlock.isShowDCom = UserPermission.IsShowDoubleCommission.ToString();
 
-            //tplBlock.editMult = new IcoEditMulti(TemplateMain, renderMulti);
+            tplBlock.editMult = new IcoEditMulti(TemplateMain, "");
         }
 
         public void RenderContentBlock(DataTable dtb, TplCore.Element.IElement e)
@@ -228,7 +228,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             //// Render Other
             //string otherOnclick = "ShowFrmUpdOthers(this,'divUpdOthers', '" + this.agentId + "', '" + dr["username"].ToString() + "', 'Agent')";
-            //tplBlock.other_Option = new IcoOther(TemplateMain, otherOnclick);
+            tplBlock.other_Option = new IcoOther(TemplateMain, "");
 
             //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             //{

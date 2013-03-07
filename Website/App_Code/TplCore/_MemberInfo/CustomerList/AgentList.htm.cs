@@ -77,9 +77,9 @@ namespace Fanex.Agent.UI
 		{
 			protected static string s14 = "<thead><tr><th rowspan=\"2\">";
 			protected static string s15{get{return Resources.Lang.edit;}}
-			protected static string s16 = "</th><th rowspan=\"2\">No.</th><th rowspan=\"2\">";
+			protected static string s16 = "</th><th rowspan=\"2\">";
 			public string editMult = "{editMult}";
-			protected static string s17 = "</th><th rowspan=\"2\">";
+			protected static string s17 = "</th><th rowspan=\"2\">No.</th><th rowspan=\"2\">";
 			protected static string s18{get{return Resources.Lang.username;}}
 			protected static string s19 = "</th><th rowspan=\"2\">";
 			public string AgentList = "{AgentList}";
