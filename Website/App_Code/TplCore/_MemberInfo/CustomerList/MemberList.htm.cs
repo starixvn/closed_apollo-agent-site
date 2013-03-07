@@ -71,70 +71,71 @@ namespace Fanex.Agent.UI
 
 		public class MemberList_Header_Block: Block
 		{
-			protected static string s13 = "<thead><tr><th rowspan=\"2\">No.</th><th rowspan=\"2\" ";
+			protected static string s13 = "<thead><tr><th rowspan=\"2\">";
+			protected static string s14{get{return Resources.Lang.edit;}}
+			protected static string s15 = "</th><th rowspan=\"2\" ";
 			public string DisplayUpdMulti = "";
-			protected static string s14 = " isDirectDownline=\"1\" isShowDCom=";
+			protected static string s16 = " isDirectDownline=\"1\" isShowDCom=";
 			public string isShowDCom = "{isShowDCom}";
-			protected static string s15 = ">";
+			protected static string s17 = ">";
 			public string editmult = "{editmult}";
-			protected static string s16 = "</th><th rowspan=\"2\">";
-			protected static string s17{get{return Resources.Lang.username;}}
-			protected static string s18 = "</th><th rowspan=\"2\">";
-			protected static string s19{get{return Resources.Lang.status;}}
-			protected static string s20 = "</th><th rowspan=\"2\">";
-			protected static string s21{get{return Resources.Lang.edit;}}
-			protected static string s22 = "</th>";
-			public MemberList_Header_DCom_Block DCom = new MemberList_Header_DCom_Block();
-			protected static string s23 = "<th rowspan=\"2\">";
-			protected static string s24{get{return Resources.Lang.nickname;}}
-			protected static string s25 = "</th><th rowspan=\"2\">";
-			protected static string s26{get{return Resources.Lang.firstname;}}
-			protected static string s27 = "</th><th rowspan=\"2\">";
-			protected static string s28{get{return Resources.Lang.lastname;}}
-			protected static string s29 = "</th><th rowspan=\"2\">";
-			protected static string s30{get{return Resources.Lang.group;}}
-			protected static string s31 = "</th><th colspan=\"7\" class=\"header_comm\">";
-			protected static string s32{get{return Resources.Lang.commission;}}
-			protected static string s33 = "</th><th rowspan=\"2\">";
-			protected static string s34{get{return Resources.Lang.CreatedDate;}}
-			protected static string s35 = "</th><th rowspan=\"2\">";
-			protected static string s36{get{return Resources.Lang.lastloginIP;}}
-			protected static string s37 = "</th><th rowspan=\"2\">";
-			protected static string s38{get{return Resources.Lang.username;}}
-			protected static string s39 = "</th></tr><tr class=\"header\"><th>";
-			protected static string s40{get{return Resources.Lang.acomm1;}}
-			protected static string s41 = "</th><th>";
-			protected static string s42{get{return Resources.Lang.acomm2;}}
-			protected static string s43 = "</th><th>";
-			protected static string s44{get{return Resources.Lang.acomm3;}}
-			protected static string s45 = "</th><th>";
-			protected static string s46{get{return Resources.Lang.pcomm1;}}
-			protected static string s47 = "</th><th>";
-			protected static string s48{get{return Resources.Lang.pcomm2;}}
-			protected static string s49 = "</th><th>";
-			protected static string s50{get{return Resources.Lang.pcomm3;}}
-			protected static string s51 = "</th><th>";
-			protected static string s52{get{return Resources.Lang.game;}}
-			protected static string s53 = "</th></tr></thead>";
+			protected static string s18 = "</th><th rowspan=\"2\">No.</th><th rowspan=\"2\">";
+			protected static string s19{get{return Resources.Lang.username;}}
+			protected static string s20 = "</th><th colspan=\"4\" class=\"header_comm\">";
+			protected static string s21{get{return Resources.Lang.soccerPT;}}
+			protected static string s22 = "</th><th rowspan=\"2\">";
+			protected static string s23{get{return Resources.Lang.group;}}
+			protected static string s24 = "</th><th colspan=\"4\" class=\"header_comm\">";
+			protected static string s25{get{return Resources.Lang.AgentCommission;}}
+			protected static string s26 = "</th><th colspan=\"4\" class=\"header_comm\">";
+			protected static string s27{get{return Resources.Lang.memberCommission;}}
+			protected static string s28 = "</th><th rowspan=\"2\">";
+			protected static string s29{get{return Resources.Lang.CreatedDate;}}
+			protected static string s30 = "</th><th rowspan=\"2\">";
+			protected static string s31{get{return Resources.Lang.lastloginIP;}}
+			protected static string s32 = "</th><th rowspan=\"2\">";
+			protected static string s33{get{return Resources.Lang.username;}}
+			protected static string s34 = "</th></tr><tr class=\"header\"><th>";
+			protected static string s35{get{return Resources.Lang.acomm1;}}
+			protected static string s36 = "</th><th>";
+			protected static string s37{get{return Resources.Lang.acomm2;}}
+			protected static string s38 = "</th><th>";
+			protected static string s39{get{return Resources.Lang.acomm3;}}
+			protected static string s40 = "</th><th>";
+			protected static string s41{get{return Resources.Lang.pcomm1;}}
+			protected static string s42 = "</th><th>";
+			protected static string s43{get{return Resources.Lang.acomm1;}}
+			protected static string s44 = "</th><th>";
+			protected static string s45{get{return Resources.Lang.acomm2;}}
+			protected static string s46 = "</th><th>";
+			protected static string s47{get{return Resources.Lang.acomm3;}}
+			protected static string s48 = "</th><th>";
+			protected static string s49{get{return Resources.Lang.pcomm1;}}
+			protected static string s50 = "</th><th>";
+			protected static string s51{get{return Resources.Lang.pcomm2;}}
+			protected static string s52 = "</th><th>";
+			protected static string s53{get{return Resources.Lang.pcomm3;}}
+			protected static string s54 = "</th><th>";
+			protected static string s55{get{return Resources.Lang.game;}}
+			protected static string s56 = "</th></tr></thead>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(s13);
-					bd.Append(DisplayUpdMulti);
 					bd.Append(s14);
-					bd.Append(isShowDCom);
 					bd.Append(s15);
-					bd.Append(editmult);
+					bd.Append(DisplayUpdMulti);
 					bd.Append(s16);
+					bd.Append(isShowDCom);
 					bd.Append(s17);
+					bd.Append(editmult);
 					bd.Append(s18);
 					bd.Append(s19);
 					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);
-					if(null != DCom) DCom.ToString(ref bd);
 					bd.Append(s23);
 					bd.Append(s24);
 					bd.Append(s25);
@@ -166,21 +167,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s51);
 					bd.Append(s52);
 					bd.Append(s53);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class MemberList_Header_DCom_Block: Block
-		{
-			protected static string s54 = "<th rowspan=\"2\" style=\"white-space: pre-line;\">";
-			protected static string s55{get{return Resources.Lang.doublecommission;}}
-			protected static string s56 = "</th>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
 					bd.Append(s54);
 					bd.Append(s55);
 					bd.Append(s56);
