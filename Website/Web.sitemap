@@ -157,7 +157,7 @@
       <siteMapNode title="lblMemberInfo" expand="true">
         <!--<siteMapNode title="lblNewAgent" href="_MemberInfo/SearchAndCopy/MasterPage.aspx"></siteMapNode>-->
         <!--<siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>-->
-        <siteMapNode title="lblAgentList" href="_MemberInfo/CustomerList/Master/AgentList.aspx"></siteMapNode>
+        <siteMapNode title="lblAgentList" href="_MemberInfo/CustomerList/AgentList.aspx"></siteMapNode>
         <!--<siteMapNode title="creditbalance" href="_MemberInfo/CreditBalance/CreditBalanceList.aspx"></siteMapNode>-->
         <siteMapNode title="lblPositionTaking" href="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
         <!--Casino-PositionTaking--><!--

@@ -5,20 +5,26 @@
 
 <div id="Bleft_Parent02">            
     <div id="left_submenu">
+        <span class="setting-left hide">
+            <a id="downlineLink" class="title-left-menu" href="DownlineListInfo.aspx?custid={CustId}" target="frmDownlineList" onclick="showDownlineList(1);"><span>{static:Resources.Lang.downlinelist}</span></a>
+        </span>
+        <div id="left_line02 hide">
+            <img width="1" height="1" name="" src="../_GlobalResources/Images/dot.gif" alt="">
+        </div>
         <div id="left_tab">
             <ul>
-                <li id="balinfo" class="current">
+                <li id="balinfo" class="hide" >
                     <a href="javascript:showDownlineList(0);">{static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.balanceinfo,18,true)}</a>
                 </li>
                 <!--DownlineList-->
-                <li id="userdownline">
-                    <a href="DownlineListInfo.aspx?custid={CustId}" target="frmDownlineList" onclick="showDownlineList(1);"><span>{static:Resources.Lang.downlinelist}</span></a>
-                </li>
+                <!--<li id="userdownline" class="current">
+                    <a id="downlineLink" href="DownlineListInfo.aspx?custid={CustId}" target="frmDownlineList" onclick="showDownlineList(1);"><span>{static:Resources.Lang.downlinelist}</span></a>
+                </li>-->
                 <!--/DownlineList-->
             </ul>
         </div>
         <div id="clear0" />
-        <div id="tabbalance" class="Bleft_Sub02">
+        <div id="tabbalance" class="Bleft_Sub02 hide">
             <table style="width:184px;" cellpadding="0" cellspacing="0" border="0">
             <tr>
             <td>
@@ -190,9 +196,14 @@
             </tr>
             </table>
         </div>
-        <div id="tabdownline" class="Bleft_Sub02" style="display:none;">
-            <center><img src="../_GlobalResources/Images/ajax-loader.gif" alt="loading"/> {static:Resources.Lang.loading}...</center>
+        <div id="tabdownline" class="Bleft_Sub02 hide">
+            <!--<center><img src="../_GlobalResources/Images/ajax-loader.gif" alt="loading"/> {static:Resources.Lang.loading}...</center>-->
         </div>
-        <iframe id="frmDownlineList" name="frmDownlineList" style="display:none; width:1px; height:1px;"></iframe>
+     
+         <!--{DownlineListFrame}-->
+          
+     
+      
     </div>
 </div>
+

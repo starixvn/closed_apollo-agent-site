@@ -9,6 +9,7 @@ using Sunplus.Agent.Model.BL;
 using Sunplus.Agent.Model.BL.Definitions;
 using Sunplus.Agent.Model.Entities;
 using Sunplus.Agent.Utilities;
+using Fanex.Agent.UI._Header;
 
 /*
  * Created 20100126@Lee - Render header page

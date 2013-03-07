@@ -71,13 +71,13 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_Header_Block: Block
 		{
-			protected static string s13 = "<thead><tr><th rowspan=\"2\">No.</th><th rowspan=\"2\" ";
+			protected static string s13 = "<thead><tr><th rowspan=\"2\" ";
 			public string DisplayUpdMulti = "";
 			protected static string s14 = " isDirectDownline=\"1\" isShowDCom=";
 			public string isShowDCom = "{isShowDCom}";
 			protected static string s15 = ">";
 			public string editMult = "{editMult}";
-			protected static string s16 = "</th><th rowspan=\"2\">";
+			protected static string s16 = "</th><th rowspan=\"2\">No.</th><th rowspan=\"2\">";
 			protected static string s17{get{return Resources.Lang.username;}}
 			protected static string s18 = "</th><th rowspan=\"2\">";
 			protected static string s19{get{return Resources.Lang.status;}}
