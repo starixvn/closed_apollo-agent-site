@@ -764,7 +764,8 @@ namespace Sunplus.Agent.Model.BL.BetList
         {
             BetListDAO dao = new BetListDAO();
             DataTable ptComm = new DataTable();
-            ptComm = dao.Acc_BetList_AgentDetail(transId, agentId, fromDate, toDate, moveBetsDay, showSB, showNG);
+            //ptComm = dao.Acc_BetList_AgentDetail(transId, agentId, fromDate, toDate, moveBetsDay, showSB, showNG);
+            ptComm = dao.Acc_BetList_TotalBet_AgentDetail(transId, CurrentSession.CustId);
             return ptComm;
         }
 

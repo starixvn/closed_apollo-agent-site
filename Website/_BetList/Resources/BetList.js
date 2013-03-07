@@ -260,6 +260,6 @@ RegisterStartUp(InitBetList);
 var BetList = {
 	viewDetail: function (transId) {
 		var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
-		wnd.open(age.GetBaseUrl() + "_BetList/ViewDetail.aspx?transId=" + transId + "&fromDate=" + _page.fdate + "&toDate=" + _page.tdate + "&isSportsbook=1", 'View detail', 300, 100, 400, 170);
+		wnd.open(age.GetBaseUrl() + "_BetList/ViewDetail.aspx?transId=" + transId + "&fromDate=" + _page.fdate + "&toDate=" + _page.tdate + "&isSportsbook=1", 'View detail', 250, 100, 350, 350);
 	}
 };

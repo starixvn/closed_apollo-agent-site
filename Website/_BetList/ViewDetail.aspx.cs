@@ -16,6 +16,7 @@ using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
+using Fanex.BetList.Core.Utils;
 using Sunplus.Agent.Model.BL.BetList;
 using Sunplus.Agent.Model.BL.Reports;
 using Sunplus.Agent.Model.Entities;
@@ -39,7 +40,6 @@ namespace Sunplus.Agent.UI._BetList
         {
             #region INIT
 
-           
             bool isShowAgentPT = true;
 
             DataTable betListData = View as DataTable;
@@ -59,10 +59,8 @@ namespace Sunplus.Agent.UI._BetList
 
             #region RENDER HTML
 
-            BetListTemplate tpl = new BetListTemplate();
+            ViewDetail_Template tpl = new ViewDetail_Template();
             StringBuilder content = new StringBuilder();
-
-            tpl.title = "View detail";
 
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
             content.Append(betlistOpenTag);
@@ -73,29 +71,49 @@ namespace Sunplus.Agent.UI._BetList
             ITicketHelper ticketHelper = new TicketHelper();
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
-
+            ITicket totalTicket = new Ticket();
             foreach (ITicket ticket in tickets)
             {
                 index++;
                 ticketHelper.Index = index;
 
                 builder.Append("<tr>")
-                    .AddMember(ticket, "<td class='c'>", "</td>")
-                    .AddNo(index, "<td class='c'>", "</td>");
+                    .AddMember(ticket, "<td class='c' style='vertical-align:middle'>", "</td>")
+                    .AddNo(ticket.AgentLevel, "<td class='c' style='vertical-align:middle'>", "</td>");
 
                 if (isShowAgentPT)
                 {
                     builder.AddAgentPT(ticket, null, "<td class='r'>", "</td>");
-                    builder.AddAgentComm(ticket, null, "<td class='r'>", "</td>");
+                    builder.AddAgentComm(ticket, null, true, "<td class='r'>", "</td>");
                 }
                 builder.Append("</tr>");
+
+                #region Total ticket
+
+                totalTicket.Comm += ticket.Comm;
+                totalTicket.SComm += ticket.SComm;
+                totalTicket.AgentPositionTaking += ticket.AgentPositionTaking;
+                totalTicket.AgentWinlost += ticket.AgentWinlost;
+                totalTicket.Status = ticket.Status;
+
+                #endregion Total ticket
             }
 
+            builder.Append("<tr>");
+            builder.Append(string.Format("<td class='r underdog' style='vertical-align:middle' colspan='2'>{0}</td>", Resources.Lang.total));
+
+            if (isShowAgentPT)
+            {
+                builder.AddAgentPT(totalTicket, null, "<td class='r'>", "</td>");
+                builder.AddAgentComm(totalTicket, null, true, "<td class='r'>", "</td>");
+            }
+
+            builder.Append("</tr>");
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
 
             tpl.content = content.ToString();
-            tpl.ToString(writer);
+            writer.Write(tpl);
 
             #endregion RENDER HTML
         }
@@ -118,14 +136,7 @@ namespace Sunplus.Agent.UI._BetList
         public override object InvokeData(System.Collections.Hashtable p)
         {
             BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
-            if (isSportsbook)
-            {
-                return bo.GetAgentPTComm(transID, agentID, fromDate, toDate, ReportsBO.MoveBetsDate, true, false);
-            }
-            else
-            {
-                return bo.GetAgentPTComm(transID, agentID, fromDate, toDate, ReportsBO.MoveBetsDate, false, true);
-            }
+            return bo.GetAgentPTComm(transID, agentID, fromDate, toDate, ReportsBO.MoveBetsDate, true, false);
         }
 
         private object RenderNoInfo()

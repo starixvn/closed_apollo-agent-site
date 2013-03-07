@@ -1141,6 +1141,14 @@ namespace Sunplus.Agent.Model.DL.BetList
             return ExecSpTable("Acc_BetList_AgentDetail", parameters);
         }
 
+        public DataTable Acc_BetList_TotalBet_AgentDetail(long transId, long agentId)
+        {
+            Hashtable parameters = new Hashtable();
+            parameters.Add("transid", transId);
+            parameters.Add("agentid", agentId);
+            return ExecSpTable("Acc_BetList_TotalBet_AgentDetail", parameters);
+        }
+
         #endregion
     }
 }
