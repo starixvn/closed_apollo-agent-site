@@ -152,7 +152,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             //tplBlock.isShowDCom = UserPermission.IsShowDoubleCommission.ToString();
 
-            tplBlock.editMult = new IcoEditMulti(TemplateMain, "");
+            //tplBlock.editMult = new IcoEditMulti(TemplateMain, "");
         }
 
         public void RenderContentBlock(DataTable dtb, TplCore.Element.IElement e)
