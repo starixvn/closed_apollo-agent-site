@@ -1,15 +1,15 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="MasterList.aspx.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberList.aspx.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Kaden.Trinh" date="2012.05.30">Level Super - View list Master </change>
+//   <change who="Kaden.Trinh" date="2012.05.30">Level Agent - View Member List</change>
 //   <change who="Kaden.Trinh" date="2012.05.30">Refactor code and check StyleCop</change>
 //   <change who="Marc.Bui" date="2012.10.11">Add Double Commission feature</change>
 // </history>
 
-namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
+namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 {
     using System;
     using System.Collections;
@@ -20,22 +20,22 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
     using System.Web.UI;
     using Fanex.Age.UI.Components;
     using Sunplus.Agent.Model.BL.MemberInfo.CustomerList;
-    using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
     using Sunplus.Agent.Utilities;
     using Fanex.PTVirtualSports.Extension;
     using Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control;
+    using Fanex.Agent.UI._MemberInfo.CustomerList;
 
-    public partial class MasterList_Page : CustomerList_Page
+    public partial class MemberList_Page : CustomerList_Page
     {
         #region Variable
 
         private static string cssHideUpdateMulti = "class='HideCol'";
+        private MemberList_Template tempate = new MemberList_Template();
         private string langKey = string.Empty;
-        private MasterList_Template template = new MasterList_Template();
-        private string superId = string.Empty;
-        private string masterid = string.Empty;
+        private string agentId = string.Empty;
+        private string memberId = string.Empty;
 
         #endregion Variable
 
@@ -52,18 +52,17 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
         public override void RenderContent(HtmlTextWriter writer)
         {
             this.InitJsLang();
-            this.InitPopupStatus(true);
+            this.InitPopupStatus(false);
             this.InitPopupMulti();
-            this.InitPopupOther();
+            this.InitPopupOther_EditMember();
 
             this.RequestQueryString = this.HashTableQueryString;
             this.JavaScriptRegister("custid", this.CustId);
             this.JavaScriptRegister("roleid", CurrentUserSession.RoleId);
             this.JavaScriptRegister("roleidP2P", CurrentUserSession.RoleId - 1);
-
             this.JavaScriptRegister("roleidLiveCasino", CurrentUserSession.RoleId - 1);
             this.JavaScriptRegister("roleidVirtualSports", CurrentUserSession.RoleId - 1);
-            this.JavaScriptRegister("isAgentLevel", 0);
+            this.JavaScriptRegister("isAgentLevel", 1);
             this.JavaScriptRegister("usernamedefault", Resources.Lang.enterusername);
 
             // Double Commission
@@ -71,30 +70,36 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
             this.JavaScriptRegister("lblAlertDisableDoubleCommMember", Resources.Lang.strConfirmDisableDoubleCommMember);
             this.JavaScriptRegister("strConfirmEnableDoubleComm", Resources.Lang.strConfirmEnableDoubleComm);
             this.JavaScriptRegister("strConfirmEnableDoubleCommMember", Resources.Lang.strConfirmEnableDoubleCommMember);
-            this.JavaScriptRegister("strAllowed", Resources.Lang.allowed);
-            this.JavaScriptRegister("strDisallowed", Resources.Lang.disallowed);
+            this.JavaScriptRegister("strAllowed", Resources.Lang.doublecommissionON);
+            this.JavaScriptRegister("strDisallowed", Resources.Lang.doublecommissionOFF);
 
             this.RegisterClientVariables();
 
-            this.template.Content.Clear();
+            this.langKey = CurrentUserSession.LangKey;
             DataTable customerData = (View as Dictionary<string, DataTable>)["CustomerData"];
 
+            this.RenderHeader(this.tempate.Header);
+            this.RenderContentBlock(customerData, this.tempate.Content);
             this.RenderSearchControl();
-            this.RenderHeader(this.template.Header);
-            this.RenderContentBlock(customerData, this.template);
 
-            TemplateMain.content = this.template;
+            TemplateMain.content = this.tempate;
             writer.Write(this.TemplateMain);
+        }
+
+        public override void ProcessRequest(HttpContext context)
+        {
+            base.ProcessRequest(context);
+            HashTableQueryString.Add("masterid", MasterId.ToString());
+            HashTableQueryString.Add("FromAccount", string.Empty);
+            HashTableQueryString.Add("ParentForm", "CustomerList/Agent/MemberList.aspx");
         }
 
         public override object InvokeData(Hashtable p)
         {
-            this.superId = CurrentUserSession.CustId.ToString();
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
+            this.agentId = CurrentUserSession.CustId.ToString();
             int totalPage = 0;
-
-            DataTable dtb = bo.GetMasterCollection(CurrentUserSession.CustId, (UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, Status, DCommStatus, ref totalPage);
-
+            DataTable dtb = bo.GetMemberCollection(CurrentUserSession.CustId, (UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, Status, DCommStatus, ref totalPage);
             this.TotalPage = totalPage;
             this.ViewData.Add("CustomerData", dtb);
             return this.ViewData;
@@ -104,42 +109,48 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
         {
             // Printer
             string printClick = "getPrint('page_main')";
-            this.template.print = new PrintControl(this.template, printClick);
+            this.tempate.print = new PrintControl(this.tempate, printClick);
 
             // Searching
-            string getCustomer_onClick = "GetCustomer('MasterList.aspx')";
-            this.template.searchControl = new DoubleCommissionSearchUserName(TemplateMain, UserName, Status, DCommStatus, getCustomer_onClick);
+            Dictionary<object, int> dcommFilterDict = new Dictionary<object, int>() { 
+                {Resources.Lang.all, 2},{Resources.Lang.doublecommissionON, 1},
+                {Resources.Lang.doublecommissionOFF, 0}
+            };
 
-            // Paging
+            DoubleCommissionSearchUserName dcomControl = new DoubleCommissionSearchUserName(TemplateMain, UserName, Status, DCommStatus, "GetCustomer('MemberList.aspx')", dcommFilterDict);
+            this.tempate.searchControl = dcomControl;
+
             string pagingControlName_top = "_PagingTop";
-            string pagingControlName_bottom = CurrentUserSession.SiteName + "_PagingBottom";
+            string pagingControlName_bottom = "MemberList" + CurrentUserSession.SiteName + "_PagingBottom";
 
-            this.template.PagingHeader.pagingControl = new Paging_Control(TemplateMain, pagingControlName_top, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
-            this.template.PagingHeader.selPageSize = this.RenderPageSize(pagingControlName_top, this.PageSize);
+            // Paging on Top
+            this.tempate.PagingHeader.pagingControl = new Paging_Control(TemplateMain, pagingControlName_top, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
+            this.tempate.PagingHeader.selPageSize = this.RenderPageSize(pagingControlName_top, this.PageSize);
 
             if (this.TotalPage == 0)
             {
-                this.template.pagingControl = string.Empty;
+                this.tempate.pagingControl = string.Empty;
             }
             else
             {
-                this.template.pagingControl = new Paging_Control(TemplateMain, pagingControlName_bottom, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
+                this.tempate.pagingControl = new Paging_Control(TemplateMain, pagingControlName_bottom, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
             }
 
-            this.template.PagingHeader.button.Hide();
+            this.tempate.PagingHeader.button.Hide();
 
             if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             {
-                this.template.PagingHeader.selected.Hide();
+                this.tempate.PagingHeader.selected.Hide();
             }
 
-            this.template.PagingHeader.selected.function_all = "CheckAll_onClick(true);";
-            this.template.PagingHeader.selected.function_none = "CheckAll_onClick(false);";
+            this.tempate.PagingHeader.selected.function_all = "CheckAll_onClick(true);";
+            this.tempate.PagingHeader.selected.function_none = "CheckAll_onClick(false);";
         }
 
         public void RenderHeader(TplCore.Element.IElement e)
         {
-            MasterList_Header_Block tplBlock = e as MasterList_Header_Block;
+            // Render MultiEdit Icon
+            MemberList_Header_Block tplBlock = e as MemberList_Header_Block;
 
             if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             {
@@ -148,15 +159,16 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
 
             tplBlock.isShowDCom = UserPermission.IsShowDoubleCommission.ToString();
 
-            string renderMulti = "RenderMulti(this,'MultiPopup','','" + this.superId + "')";
-            tplBlock.editMult = new IcoEditMulti(TemplateMain, renderMulti);
+            string renderMulti = "RenderMulti(this,'MultiPopup','Agent','" + this.agentId + "','" + MasterId.ToString() + "')";
+            tplBlock.editmult = new IcoEditMulti(TemplateMain, renderMulti);
         }
 
         public void RenderContentBlock(DataTable dtb, TplCore.Element.IElement e)
         {
             if (dtb.Rows.Count > 0)
             {
-                MasterList_Content_Block tplBlock = new MasterList_Content_Block();
+                MemberList_Content_Block tplBlock = new MemberList_Content_Block();
+                this.tempate.Content.Clear();
                 foreach (DataRow dr in dtb.Rows)
                 {
                     this.RenderDetail(dr, tplBlock);
@@ -167,7 +179,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
                     this.RenderLiveCasino(dr, tplBlock);
                     this.RenderVirtualSport(dr, tplBlock);
 
-                    this.template.Content.Append(tplBlock);
+                    this.tempate.Content.Append(tplBlock);
                 }
             }
             else
@@ -179,84 +191,80 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
                 noInfo.Append("</td>");
                 noInfo.Append("</tr>");
 
-                this.template.Content.Clear();
-                this.template.Content.Append(noInfo.ToString());
+                this.tempate.Content.Clear();
+                this.tempate.Content.Append(noInfo.ToString());
             }
         }
 
         public void RenderDetail(DataRow dr, TplCore.Element.IElement e)
         {
-            MasterList_Content_Block tplBlock = e as MasterList_Content_Block;
-
-            this.masterid = dr["custid"].ToString();
+            MemberList_Content_Block tplBlock = e as MemberList_Content_Block;
             bool enable = Convert.ToBoolean(dr["enabled"]);
             bool isClosed = Convert.ToBoolean(dr["closed"]);
             bool isSuspended = Convert.ToBoolean(dr["suspended"]);
-            bool isAllowAutoPT = !Convert.ToBoolean(dr["DisableAutoMPT"]);
-            bool isOutright = !Convert.ToBoolean(dr["DisableOutright"]);
+            bool disableOutright = !Convert.ToBoolean(dr["DisableOutright"]);
+            bool isDisableNumber = dr.Table.Columns.Contains("disablenumber") ? Convert.ToBoolean(dr["disablenumber"]) : true;
 
-            tplBlock.custId = this.masterid;
-            tplBlock.chkid = "chkid_" + this.masterid;
+            tplBlock.chkid = "chkid_" + dr["custid"];
             tplBlock.chkid_value = dr["username"] as string;
 
+            this.memberId = dr["custid"].ToString();
+            tplBlock.LnkUserName = CurrentUserSession.SubPageAccess.ViewReports ? "class='text' onclick=\"viewCustOutSt('" + dr["username"].ToString() + "'," + this.memberId + ")\"" : string.Empty;
+
+            tplBlock.custId = this.memberId;
             tplBlock.id = dr["RowNumber"].ToString();
             tplBlock.username = dr["username"] as string;
 
-            // Render Status and Status Menu Popup
-            string editMaster_Single = "EditMaster_Single('" + this.masterid + "','" + dr["username"].ToString() + "', " + this.superId + ")";
-            string renderStatus = "RenderStatus(this,'Popup','" + this.masterid + "'," + isClosed.ToString().ToLower() + "," + isSuspended.ToString().ToLower() + "," + isAllowAutoPT.ToString().ToLower() + "," + isOutright.ToString().ToLower() + ", '" + tplBlock.chkid + "')";
+            string editMember_Single = "EditMember_Single('" + this.memberId + "','" + dr["username"].ToString() + "', " + this.agentId + ", '" + "Agent" + "')";
+            string renderStatus = "RenderStatus(this,'Popup','" + this.memberId + "'," + isClosed.ToString().ToLower() + "," + isSuspended.ToString().ToLower() + ",0," + disableOutright.ToString().ToLower() + ", '" + tplBlock.chkid + "')";
             Dictionary<object, bool> dictStatus = new Dictionary<object, bool>();
             string backgroundColor = string.Empty;
+
             dictStatus.Add("Enabled", enable);
             dictStatus.Add("Closed", isClosed);
             dictStatus.Add("Suspended", isSuspended);
-            IcoStatus status = new IcoStatus(TemplateMain, dictStatus, ref backgroundColor, editMaster_Single, renderStatus);
+            IcoStatus status = new IcoStatus(TemplateMain, dictStatus, ref backgroundColor, editMember_Single, renderStatus);
             tplBlock.color = backgroundColor;
             tplBlock.status = status;
 
-            string setDoubleCommission = string.Format("SetDoubleCommission('{0}',this,true);", this.masterid);
+            string setDoubleCommission = string.Format("SetDoubleCommission('{0}',this);", this.memberId);
             if (!UserPermission.IsShowDoubleCommission)
             {
                 setDoubleCommission = string.Empty;
             }
 
-            bool isDoubleCommission = Convert.ToBoolean(dr["DoubleCommLosing"]);
+            bool isDoubleCommission = Convert.ToBoolean(dr["DoubleCommLosing"]);            
 
-            IcoDComm dcomm = new IcoDComm(TemplateMain, isDoubleCommission, setDoubleCommission);
+            MemberIcoDComm dcomm = new MemberIcoDComm(TemplateMain, isDoubleCommission, setDoubleCommission);
             tplBlock.DCom.doublecommission = dcomm;
 
             // Render Other menu
-            string otherOnclick = "ShowFrmUpdOthers(this,'divUpdOthers', '" + this.masterid + "', '" + dr["username"].ToString() + "', 'Master')";
+            string otherOnclick = "ShowFrmUpdOthers(this,'divUpdOthers', '" + this.memberId + "', '" + dr["username"].ToString() + "', 'Member')";
             tplBlock.other_Option = new IcoOther(TemplateMain, otherOnclick);
-
             if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             {
                 tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
             }
 
-            tplBlock.LnkUserName = CurrentUserSession.SubPageAccess.ViewReports ? "class='text' onclick=\"viewStatement(" + this.masterid + ",'Master')\"" : string.Empty;
-
-            // View downline agent level
-            string viewDownlineClick = "ViewDownLine('AgentList.aspx?custId=" + this.masterid.ToString() + "')";
-            IcoViewDownline viewDownline = new IcoViewDownline(TemplateMain, viewDownlineClick);
-            tplBlock.view = viewDownline;
-
-            tplBlock.firstName = dr["firstname"] as string;
+            tplBlock.nickname = dr["username2"] as string;
             tplBlock.lastName = dr["lastname"] as string;
-            tplBlock.groupA = Formater.FormatNumber4(dr["groupa"], this.langKey);
-            tplBlock.groupB = Formater.FormatNumber4(dr["groupb"], this.langKey);
-            tplBlock.groupC = Formater.FormatNumber4(dr["groupc"], this.langKey);
-            tplBlock.groupD = Formater.FormatNumber4(dr["groupd"], this.langKey);
-            tplBlock.other = Formater.FormatNumber4(dr["discountcs"], this.langKey);
-            tplBlock.lb1x2 = Formater.FormatNumber4(dr["discount1x2"], this.langKey);
-            tplBlock.game = Formater.FormatNumber4(dr["discountnumber"], this.langKey);
+            tplBlock.firstName = dr["firstname"] as string;
+            tplBlock.group = dr["ugroup"] as string;
+            tplBlock.acomm1 = Formater.FormatNumber4(dr["discount"], this.langKey);
+            tplBlock.acomm2 = Formater.FormatNumber4(dr["discount1x2"], this.langKey);
+            tplBlock.acomm3 = Formater.FormatNumber4(dr["discountcs"], this.langKey);
+            tplBlock.pcomm1 = Formater.FormatNumber4(dr["playerdiscount"], this.langKey);
+            tplBlock.pcomm2 = Formater.FormatNumber4(dr["playerdiscount1x2"], this.langKey);
+            tplBlock.pcomm3 = Formater.FormatNumber4(dr["playerdiscountcs"], this.langKey);
+            tplBlock.game = Formater.FormatNumber4(dr["playerdiscountnumber"], this.langKey);
             tplBlock.createdate = Formater.FormatDateTimeEn12(dr["createdate"]);
             tplBlock.lastLoginIp = Sunplus.Agent.Model.Common.AgentIPFormat.FormatIP(dr["lastloginip"].ToString());
         }
 
         private void RenderRacing(DataRow dr, TplCore.Element.IElement e)
         {
-            MasterList_Content_Block tplBlock = e as MasterList_Content_Block;
+            MemberList_Content_Block tplBlock = e as MemberList_Content_Block;
+
             bool disStatus = DisabledRacing(dr);
             int status = 1;
             int iconHR = 1;
@@ -273,7 +281,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
 
         private void RenderP2P(DataRow dr, TplCore.Element.IElement e)
         {
-            MasterList_Content_Block tplBlock = e as MasterList_Content_Block;
+            MemberList_Content_Block tplBlock = e as MemberList_Content_Block;
             int statusP2P = -1;
             int iconP2P = 0;
             int isDisabledP2P = 0;
@@ -294,14 +302,14 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
                 isDisabledP2P = 1;
             }
 
+            tplBlock.isDisabledP2P = isDisabledP2P.ToString();
             tplBlock.statusP2P = statusP2P.ToString();
             tplBlock.iconp2p = iconP2P.ToString();
-            tplBlock.isDisabledP2P = isDisabledP2P.ToString();
         }
 
         private void RenderCasino(DataRow dr, TplCore.Element.IElement e)
         {
-            MasterList_Content_Block tplBlock = e as MasterList_Content_Block;
+            MemberList_Content_Block tplBlock = e as MemberList_Content_Block;
             int statusCS = -1;
             int iconCS = 0;
 
@@ -329,8 +337,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
 
         private void RenderBingo(DataRow dr, TplCore.Element.IElement e)
         {
-            MasterList_Content_Block tplBlock = e as MasterList_Content_Block;
-
+            MemberList_Content_Block tplBlock = e as MemberList_Content_Block;
             int statusBG = -1;
             int iconBG = 0;
 
@@ -358,8 +365,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
 
         private void RenderLiveCasino(DataRow dr, TplCore.Element.IElement e)
         {
-            MasterList_Content_Block tplBlock = e as MasterList_Content_Block;
-
+            MemberList_Content_Block tplBlock = e as MemberList_Content_Block;
             int statusLiveCasino = -1;
             int iconLiveCasino = 0;
             int isDisabledLiveCS = 0;
@@ -387,14 +393,14 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
                 isDisabledLiveCS = 1;
             }
 
+            tplBlock.isDisabledLiveCS = isDisabledLiveCS.ToString();
             tplBlock.statusLiveCasino = statusLiveCasino.ToString();
             tplBlock.iconLiveCasino = iconLiveCasino.ToString();
-            tplBlock.isDisabledLiveCS = isDisabledLiveCS.ToString();
         }
 
         private void RenderVirtualSport(DataRow dr, TplCore.Element.IElement e)
         {
-            MasterList_Content_Block tplBlock = e as MasterList_Content_Block;
+            MemberList_Content_Block tplBlock = e as MemberList_Content_Block;
             int statusVirtualSport = -1;
             int iconVirtualSport = 0;
             int isDisabledVS = 0;
@@ -412,7 +418,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Super
                     }
                 }
 
-                if (CurrentUserSession.IsInternal == true || Convert.ToBoolean(DataRowExtension.HasColumn(dr, "disablevirtualsports")) == true)
+                if (CurrentUserSession.IsInternal == true || Convert.ToBoolean(dr["disablevirtualsports"]) == true)
                 {
                     isDisabledVS = 1;
                 }

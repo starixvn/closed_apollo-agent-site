@@ -7,7 +7,7 @@
     <tr>
         <td>
             <div id="title_header">
-                {static:Resources.Lang.lblMasterList} {print}
+                {static:Resources.Lang.lblAgentList} {navigation} {print}
             </div>
         </td>
     </tr>
@@ -21,56 +21,43 @@
     <tr>
         <td>
             <div id="page_main">
-                <link href="../Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
+                <link href="Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
                     media="print" />
-                {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader  = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
+                {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
                 <table id="tblCustomerList">
                     <!--Header-->
                     <thead>
                         <tr>
                             <th rowspan="2">
-                                No.
+                                {static:Resources.Lang.edit}
                             </th>
-                            <th rowspan="2" {DisplayUpdMulti:} isDirectDownline="1" isShowDCom={isShowDCom}>
+                            <th rowspan="2">
                                 {editMult}
+                            </th>
+                            <th rowspan="2">
+                                No.
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.username}
                             </th>
                             <th rowspan="2">
-                                {static:Resources.Lang.status}
+                                {static:Resources.Lang.agentList}
                             </th>
                             <th rowspan="2">
-                                {static:Resources.Lang.edit}
+                                {static:Resources.Lang.memberList}
                             </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.member}
-                            </th>
-                            <!--DCom-->
-                            <th rowspan="2">
-                                {static:Resources.Lang.doublecommission}
-                            </th>
-                            <!--/DCom-->
-                            <th rowspan="2">
-                                {static:Resources.Lang.firstname}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.lastname}
+                            <th colspan="4" class="header_comm">
+                                {static:Resources.Lang.soccerPT}
                             </th>
                             <th colspan="7" class="header_comm">
                                 {static:Resources.Lang.commission}
                             </th>
-                            <th rowspan="2" class="createdate">
-                                {static:Resources.Lang.CreatedDate}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.lastloginIP}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.username}
-                            </th>
                         </tr>
                         <tr class="header">
+                            <th>HDP</th>
+                            <th>O/U</th>
+                            <th>HDP Live</th>
+                            <th>O/U Live</th>
                             <th>
                                 {static:Resources.Lang.lblGroupa}
                             </th>
@@ -90,42 +77,44 @@
                                 {static:Resources.Lang.other}
                             </th>
                             <th>
-                                {static:Resources.Lang.game}
+                                Number Game
                             </th>
                         </tr>
                     </thead>
                     <!--/Header-->
                     <tbody>
                         <!--Content-->
-                        <tr class="{color}" id="{custId}" iconhr="{iconhr}" iconcs="{iconcs}" iconbg="{iconbg}" iconp2p="{iconp2p}" isDisabledP2P="{isDisabledP2P}" iconLiveCasino="{iconLiveCasino}" isDisabledLiveCS="{isDisabledLiveCS}" iconVirtualSport="{iconVirtualSport}" isDisabledVS="{isDisabledVS}" iconEdit="{iconEdit:}">
+                        <tr class="{color}" id="{custId}">
+                             <td align="center">
+                                {other_Option}
+                            </td>
+                            <td>
+                                <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}"/>
+                            </td>
                             <td>
                                 {id}
-                            </td>
-                            <td {DisplayUpdMulti:}>
-                                <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" statuscs="{statusCS}" statusracing="{statusRacing}" statusbingo="{statusBingo}" statusp2p="{statusP2P}"  statusLiveCasino="{statusLiveCasino}" statusVirtualSport="{statusVirtualSport}"/>
                             </td>
                             <td class="l">
                                 <div {LnkUserName}>{username}</div>
                             </td>
                             <td>
-                                {status}
-                            </td>
-                            <td align="center">
-                                {other_Option}
+                                {viewAgentList}
                             </td>
                             <td>
-                                {view}
+                                {viewPlayerList}
                             </td>
-                            <!--DCom-->
+
                             <td>
-                                {doublecommission}
+                                {HDP}
                             </td>
-                            <!--/DCom-->
-                            <td class="l">
-                                {firstName}
+                            <td>
+                                {OU}
                             </td>
-                            <td class="l">
-                                {lastName}
+                            <td>
+                                {HDPLive}
+                            </td>
+                            <td>
+                                {OULive}
                             </td>
                             <td>
                                 {groupA}
@@ -140,22 +129,13 @@
                                 {groupD}
                             </td>
                             <td>
-                                {lb1x2}
+                                {onextwo}
                             </td>
                             <td>
                                 {other}
                             </td>
                             <td>
                                 {game}
-                            </td>
-                            <td class="bl_time">
-                                {createdate}
-                            </td>
-                            <td>
-                                {lastLoginIp}
-                            </td>
-                            <td class="l">
-                                <div {LnkUserName}>{username}</div>
                             </td>
                         </tr>
                         <!--/Content-->
@@ -171,5 +151,4 @@
             </div>
         </td>
     </tr>
-</table>
-<script src="MasterList.js" type="text/javascript"></script>
+</table> 

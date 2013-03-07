@@ -9,25 +9,8 @@
         </td>
         <td>
             <input type="text" style="width:145px;" class="{textClass}" name="txtUserName" id="txtUserName" value="{value}" onkeypress="onKeyPressUser('dSubmit',event);"  onclick="onclickUser('{enterusername}')" onblur="onblurUser('{enterusername}')" autocomplete="off"  />
-        </td>                                    
-            
-        <td>{status}</td>
-        <td>
-            <div id="box_option">
-                <select id="statusFilter" name="statusFilter">
-                    <!--statusOption-->
-                    <option value="{optionValue}" {selected}>{optionText}</option>                                              
-                    <!--/statusOption-->
-                </select>
-                <!--DCom-->
-                <span class="dcommFilterHead">{doublecommission}</span>                
-                <select id="dcommFilter" name="dcommFilter">
-                    <!--dCommOption-->
-                    <option value="{optionValue}" {selected}>{optionText}</option>                                              
-                    <!--/dCommOption-->
-                </select>                
-                <!--/DCom-->
-            </div>
+        </td>    
+        <td>            
             <!--CheckingFilter-->
             <div id="box_checking_filter"> <input type="checkbox" id="{chkId}" name="{chkId}" onclick="CheckingFilter();" {ischecked} /> {CheckBoxText}  </div>
             <!--/CheckingFilter-->

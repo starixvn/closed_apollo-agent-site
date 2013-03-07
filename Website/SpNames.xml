@@ -334,6 +334,10 @@
     <Setting Key="Age_TotalBets_6" SpName="Age_TotalBets_6" DbName="DB05" Plain="0" />
   </Function>
 
+  <Function Name="Agent-Apollo-DownlinesInfo">
+    <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="DB05" Plain="0" />
+  </Function>
+
   <Function Name="Agent-Apollo-ForeCast">
     <Setting Key="Age_Forecast_OddsGetTopByMatch" SpName="Age_Forecast_OddsGetTopByMatch" DbName="DB05" Plain="0" />
     <!--<Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="DB05" Plain="0" />-->

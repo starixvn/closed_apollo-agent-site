@@ -21,7 +21,7 @@
     <tr>
         <td>
             <div id="page_main">
-                <link href="../Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
+                <link href="Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
                     media="print" />
                 {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
                 <table id="tblCustomerList">
@@ -29,39 +29,28 @@
                     <thead>
                         <tr>
                             <th rowspan="2">
-                                No.
-                            </th>
-                            <th rowspan="2" {DisplayUpdMulti:}>
+                                {static:Resources.Lang.edit}
+                            </th>                            
+                            <th rowspan="2" {DisplayUpdMulti:} isDirectDownline="1" isShowDCom={isShowDCom}>
                                 {editmult}
                             </th>
                             <th rowspan="2">
+                                No.
+                            </th>
+                            <th rowspan="2">
                                 {static:Resources.Lang.username}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.status}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.edit}
-                            </th>
-                            <!--DCom-->
-                            <th rowspan="2" style="white-space: pre-line;">
-                                {static:Resources.Lang.doublecommission}
-                            </th>
-                            <!--/DCom-->
-                            <th rowspan="2">
-                                {static:Resources.Lang.nickname}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.firstname}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.lastname}
-                            </th>
+                            </th>                            
+                            <th colspan="4" class="header_comm">
+                                {static:Resources.Lang.soccerPT}
+                            </th> 
                             <th rowspan="2">
                                 {static:Resources.Lang.group}
                             </th>
-                            <th colspan="7" class="header_comm">
-                                {static:Resources.Lang.commission}
+                            <th colspan="4" class="header_comm">
+                                {static:Resources.Lang.AgentCommission}
+                            </th>
+                            <th colspan="4" class="header_comm">
+                                {static:Resources.Lang.memberCommission}
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.CreatedDate}
@@ -74,6 +63,20 @@
                             </th>
                         </tr>
                         <tr class="header">
+                            <th>
+                                {static:Resources.Lang.acomm1}
+                            </th>
+                            <th>
+                                {static:Resources.Lang.acomm2}
+                            </th>
+                            <th>
+                                {static:Resources.Lang.acomm3}
+                            </th>
+                            <th>
+                                {static:Resources.Lang.pcomm1}
+                            </th>
+
+                            
                             <th>
                                 {static:Resources.Lang.acomm1}
                             </th>
@@ -100,7 +103,7 @@
                     <!--/Header-->
                     <tbody>
                         <!--Content-->
-                        <tr class="{color}" id="{custId}" iconhr="{iconhr}" iconcs="{iconcs}" iconbg="{iconbg}" iconp2p="{iconp2p}" iconLiveCasino="{iconLiveCasino}" isDisabledLiveCS="{isDisabledLiveCS}" iconVirtualSport="{iconVirtualSport}" isDisabledVS="{isDisabledVS}">
+                        <tr class="{color}" id="{custId}" iconhr="{iconhr}" iconcs="{iconcs}" iconbg="{iconbg}" iconp2p="{iconp2p}" isDisabledP2P="{isDisabledP2P}" iconLiveCasino="{iconLiveCasino}" isDisabledLiveCS="{isDisabledLiveCS}" iconVirtualSport="{iconVirtualSport}" isDisabledVS="{isDisabledVS}" iconEdit="{iconEdit:}">
                             <td>
                                 {id}
                             </td>
@@ -114,9 +117,9 @@
                                 {status}
                             </td>
                             <td align="center">
-                                {other}
+                                {other_Option}
                             </td>
-                             <!--DCom-->
+                            <!--DCom-->
                             <td>
                                 {doublecommission}
                             </td>
@@ -163,7 +166,7 @@
                             <td class="l">
                                 <div {LnkUserName}>{username}</div>
                             </td>
-                    </tr>
+                        </tr>
                         <!--/Content-->
                     </tbody>
                     <tfoot>
@@ -174,7 +177,7 @@
                     </tr>
                 </tfoot>
             </table>
-            </div> 
-        </td> 
-    </tr> 
+            </div>
+        </td>
+    </tr>
 </table> 

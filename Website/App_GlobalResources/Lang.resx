@@ -501,7 +501,7 @@
     <value>Next Combo</value>
   </data>
   <data name="commission" xml:space="preserve">
-    <value>Commission</value>
+    <value>Commission (%)</value>
   </data>
   <data name="company" xml:space="preserve">
     <value>Company</value>
@@ -4085,5 +4085,14 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblPlayerList" xml:space="preserve">
     <value>Member List</value>
+  </data>
+  <data name="AgentCommission" xml:space="preserve">
+    <value>Agent Commission (%)</value>
+  </data>
+  <data name="memberCommission" xml:space="preserve">
+    <value>Member Commission (%)</value>
+  </data>
+  <data name="soccerPT" xml:space="preserve">
+    <value>Soccer PT (%)</value>
   </data>
 </root>
