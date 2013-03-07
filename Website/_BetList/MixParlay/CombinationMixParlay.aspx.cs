@@ -16,20 +16,20 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using System.Web.UI;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
+    using Fanex.BetList.Age.BetListCmd;
     using Fanex.BetList.Age.DTO;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Fanex.BetList.Age.BetListCmd;
 
     public partial class CombinationMixParlay_Page : TplPage
     {
         DataTable betListData = null;
         long transid;
+
         public override void RenderContent(HtmlTextWriter writer)
         {
-
             betListData = View as DataTable;
 
             IList<ITicket> tickets = TicketTransformer.Transform(betListData);
@@ -83,5 +83,4 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
             return null;
         }
     }
-
 }

@@ -75,7 +75,6 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_Header_Block: Block
 		{
-<<<<<<< HEAD
 			protected static string s14 = "<thead><tr><th rowspan=\"2\">";
 			protected static string s15{get{return Resources.Lang.edit;}}
 			protected static string s16 = "</th><th rowspan=\"2\">No.</th><th rowspan=\"2\">";
@@ -84,18 +83,6 @@ namespace Fanex.Agent.UI
 			protected static string s18{get{return Resources.Lang.username;}}
 			protected static string s19 = "</th><th rowspan=\"2\">";
 			public string AgentList = "{AgentList}";
-=======
-			protected static string s13 = "<thead><tr><th rowspan=\"2\" ";
-			public string DisplayUpdMulti = "";
-			protected static string s14 = " isDirectDownline=\"1\" isShowDCom=";
-			public string isShowDCom = "{isShowDCom}";
-			protected static string s15 = ">";
-			public string editMult = "{editMult}";
-			protected static string s16 = "</th><th rowspan=\"2\">No.</th><th rowspan=\"2\">";
-			protected static string s17{get{return Resources.Lang.username;}}
-			protected static string s18 = "</th><th rowspan=\"2\">";
-			protected static string s19{get{return Resources.Lang.status;}}
->>>>>>> a29ee5e2fe0515b40b9ee1ee5a279d642e361c37
 			protected static string s20 = "</th><th rowspan=\"2\">";
 			public string PlayerList = "{PlayerList}";
 			protected static string s21 = "</th><th colspan=\"4\" class=\"header_comm\">";
@@ -158,65 +145,45 @@ namespace Fanex.Agent.UI
 			public string color = "{color}";
 			protected static string s37 = "\" id=\"";
 			public string custId = "{custId}";
-			protected static string s38 = "\" iconhr=\"";
-			public string iconhr = "{iconhr}";
-			protected static string s39 = "\" iconcs=\"";
-			public string iconcs = "{iconcs}";
-			protected static string s40 = "\" iconbg=\"";
-			public string iconbg = "{iconbg}";
-			protected static string s41 = "\" iconp2p=\"";
-			public string iconp2p = "{iconp2p}";
-			protected static string s42 = "\" isDisabledP2P=\"";
-			public string isDisabledP2P = "{isDisabledP2P}";
-			protected static string s43 = "\" iconLiveCasino=\"";
-			public string iconLiveCasino = "{iconLiveCasino}";
-			protected static string s44 = "\" isDisabledLiveCS=\"";
-			public string isDisabledLiveCS = "{isDisabledLiveCS}";
-			protected static string s45 = "\" iconVirtualSport=\"";
-			public string iconVirtualSport = "{iconVirtualSport}";
-			protected static string s46 = "\" isDisabledVS=\"";
-			public string isDisabledVS = "{isDisabledVS}";
-			protected static string s47 = "\" iconEdit=\"";
-			public string iconEdit = "";
-			protected static string s48 = "\"><td align=\"center\">";
+			protected static string s38 = "\"><td align=\"center\">";
 			public string other_Option = "{other_Option}";
-			protected static string s49 = "</td><td><input type=\"checkbox\" id=\"";
+			protected static string s39 = "</td><td><input type=\"checkbox\" id=\"";
 			public string chkid = "{chkid}";
-			protected static string s50 = "\" name=\"chkid\" value=\"";
+			protected static string s40 = "\" name=\"chkid\" value=\"";
 			public string chkid_value = "{chkid_value}";
-			protected static string s51 = "\"/></td><td>";
+			protected static string s41 = "\"/></td><td>";
 			public string id = "{id}";
-			protected static string s52 = "</td><td class=\"l\"><div ";
+			protected static string s42 = "</td><td class=\"l\"><div ";
 			public string LnkUserName = "{LnkUserName}";
-			protected static string s53 = ">";
+			protected static string s43 = ">";
 			public string username = "{username}";
-			protected static string s54 = "</div></td><td>";
+			protected static string s44 = "</div></td><td>";
 			public string viewAgentList = "{viewAgentList}";
-			protected static string s55 = "</td><td>";
+			protected static string s45 = "</td><td>";
 			public string viewPlayerList = "{viewPlayerList}";
-			protected static string s56 = "</td><td class=\"l\">";
+			protected static string s46 = "</td><td class=\"l\">";
 			public string HDP = "{HDP}";
-			protected static string s57 = "</td><td class=\"l\">";
+			protected static string s47 = "</td><td class=\"l\">";
 			public string OU = "{OU}";
-			protected static string s58 = "</td><td>";
+			protected static string s48 = "</td><td>";
 			public string HDPLive = "{HDPLive}";
-			protected static string s59 = "</td><td>";
+			protected static string s49 = "</td><td>";
 			public string OULive = "{OULive}";
-			protected static string s60 = "</td><td>";
+			protected static string s50 = "</td><td>";
 			public string groupA = "{groupA}";
-			protected static string s61 = "</td><td>";
+			protected static string s51 = "</td><td>";
 			public string groupB = "{groupB}";
-			protected static string s62 = "</td><td>";
+			protected static string s52 = "</td><td>";
 			public string groupC = "{groupC}";
-			protected static string s63 = "</td><td>";
+			protected static string s53 = "</td><td>";
 			public string groupD = "{groupD}";
-			protected static string s64 = "</td><td>";
+			protected static string s54 = "</td><td>";
 			public string onextwo = "{onextwo}";
-			protected static string s65 = "</td><td>";
+			protected static string s55 = "</td><td>";
 			public string other = "{other}";
-			protected static string s66 = "</td><td>";
+			protected static string s56 = "</td><td>";
 			public string game = "{game}";
-			protected static string s67 = "</td></tr>";
+			protected static string s57 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -227,64 +194,44 @@ namespace Fanex.Agent.UI
 					bd.Append(s37);
 					bd.Append(custId);
 					bd.Append(s38);
-					bd.Append(iconhr);
-					bd.Append(s39);
-					bd.Append(iconcs);
-					bd.Append(s40);
-					bd.Append(iconbg);
-					bd.Append(s41);
-					bd.Append(iconp2p);
-					bd.Append(s42);
-					bd.Append(isDisabledP2P);
-					bd.Append(s43);
-					bd.Append(iconLiveCasino);
-					bd.Append(s44);
-					bd.Append(isDisabledLiveCS);
-					bd.Append(s45);
-					bd.Append(iconVirtualSport);
-					bd.Append(s46);
-					bd.Append(isDisabledVS);
-					bd.Append(s47);
-					bd.Append(iconEdit);
-					bd.Append(s48);
 					bd.Append(other_Option);
-					bd.Append(s49);
+					bd.Append(s39);
 					bd.Append(chkid);
-					bd.Append(s50);
+					bd.Append(s40);
 					bd.Append(chkid_value);
-					bd.Append(s51);
+					bd.Append(s41);
 					bd.Append(id);
-					bd.Append(s52);
+					bd.Append(s42);
 					bd.Append(LnkUserName);
-					bd.Append(s53);
+					bd.Append(s43);
 					bd.Append(username);
-					bd.Append(s54);
+					bd.Append(s44);
 					bd.Append(viewAgentList);
-					bd.Append(s55);
+					bd.Append(s45);
 					bd.Append(viewPlayerList);
-					bd.Append(s56);
+					bd.Append(s46);
 					bd.Append(HDP);
-					bd.Append(s57);
+					bd.Append(s47);
 					bd.Append(OU);
-					bd.Append(s58);
+					bd.Append(s48);
 					bd.Append(HDPLive);
-					bd.Append(s59);
+					bd.Append(s49);
 					bd.Append(OULive);
-					bd.Append(s60);
+					bd.Append(s50);
 					bd.Append(groupA);
-					bd.Append(s61);
+					bd.Append(s51);
 					bd.Append(groupB);
-					bd.Append(s62);
+					bd.Append(s52);
 					bd.Append(groupC);
-					bd.Append(s63);
+					bd.Append(s53);
 					bd.Append(groupD);
-					bd.Append(s64);
+					bd.Append(s54);
 					bd.Append(onextwo);
-					bd.Append(s65);
+					bd.Append(s55);
 					bd.Append(other);
-					bd.Append(s66);
+					bd.Append(s56);
 					bd.Append(game);
-					bd.Append(s67);
+					bd.Append(s57);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

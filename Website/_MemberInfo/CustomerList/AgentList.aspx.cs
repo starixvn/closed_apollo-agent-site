@@ -27,12 +27,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
     using Sunplus.Agent.Utilities;
-<<<<<<< HEAD
-=======
-    using Fanex.PTVirtualSports.Extension;
-    using Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control;
-    using Fanex.Agent.UI._MemberInfo.CustomerList;
->>>>>>> a29ee5e2fe0515b40b9ee1ee5a279d642e361c37
 
     public partial class AgentList_Page : CustomerList_Page
     {
@@ -62,9 +56,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public override void RenderContent(HtmlTextWriter writer)
         {
             this.InitJsLang();
-            this.InitPopupStatus(false);
-            this.InitPopupMulti();
-            this.InitPopupOther();
+            //this.InitPopupStatus(false);
+            //this.InitPopupMulti();
+            //this.InitPopupOther();
 
             this.RequestQueryString = this.HashTableQueryString;
 
@@ -256,172 +250,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             //tplBlock.game = Formater.FormatNumber4(dr["discountnumber"], this.langKey);
             //tplBlock.createdate = Formater.FormatDateTimeEn12(dr["createdate"]);
             //tplBlock.lastLoginIp = Sunplus.Agent.Model.Common.AgentIPFormat.FormatIP(dr["lastloginip"].ToString());
-        }
-
-        private void RenderRacing(DataRow dr, TplCore.Element.IElement e)
-        {
-            AgentList_Content_Block tplBlock = e as AgentList_Content_Block;
-            bool disStatus = DisabledRacing(dr);
-            int status = 1;
-            int iconhr = 1;
-
-            if (disStatus)
-            {
-                status = 0;
-                iconhr = 2;
-            }
-
-            tplBlock.statusRacing = status.ToString();
-            tplBlock.iconhr = iconhr.ToString();
-        }
-
-        private void RenderP2P(DataRow dr, TplCore.Element.IElement e)
-        {
-            AgentList_Content_Block tplBlock = e as AgentList_Content_Block;
-            int statusP2P = -1;
-            int iconP2P = 0;
-            int isDisabledP2P = 0;
-
-            if (UserPermission.IsShowP2P)
-            {
-                statusP2P = 1;
-                iconP2P = 1;
-
-                if (Convert.ToBoolean(dr["disablep2p"]))
-                {
-                    iconP2P = 2;
-                }
-            }
-
-            if (CurrentUserSession.IsInternal == true || Convert.ToBoolean(dr["disablep2p"]) == true)
-            {
-                isDisabledP2P = 1;
-            }
-
-            tplBlock.isDisabledP2P = isDisabledP2P.ToString();
-            tplBlock.statusP2P = statusP2P.ToString();
-            tplBlock.iconp2p = iconP2P.ToString();
-        }
-
-        private void RenderCasino(DataRow dr, TplCore.Element.IElement e)
-        {
-            AgentList_Content_Block tplBlock = e as AgentList_Content_Block;
-            int statusCS = -1;
-            int iconCS = 0;
-
-            if (UserPermission.IsShowCasino)
-            {
-                statusCS = 0;
-                iconCS = 3; // Not syn
-
-                if (Convert.ToBoolean(dr["synccasino"]))
-                {
-                    statusCS = 1;
-                    iconCS = 1;
-
-                    if (Convert.ToBoolean(dr["disablecasino"]))
-                    {
-                        // Edit Sync Casino button
-                        iconCS = 2;
-                    }
-                }
-            }
-
-            tplBlock.statusCS = statusCS.ToString();
-            tplBlock.iconcs = iconCS.ToString();
-        }
-
-        private void RenderBingo(DataRow dr, TplCore.Element.IElement e)
-        {
-            AgentList_Content_Block tplBlock = e as AgentList_Content_Block;
-            int statusBG = -1;
-            int iconBG = 0;
-
-            if (UserPermission.IsShowBingo)
-            {
-                statusBG = 0;
-                iconBG = 3; // Not syn
-
-                if (Convert.ToBoolean(dr["syncbingo"]))
-                {
-                    statusBG = 1;
-                    iconBG = 1;
-                    if (Convert.ToBoolean(dr["disablebingo"]))
-                    {
-                        // Edit Sync Casino button
-                        iconBG = 2;
-                    }
-                }
-            }
-
-            tplBlock.statusBingo = statusBG.ToString();
-            tplBlock.iconbg = iconBG.ToString();
-        }
-
-        private void RenderLiveCasino(DataRow dr, TplCore.Element.IElement e)
-        {
-            AgentList_Content_Block tplBlock = e as AgentList_Content_Block;
-            int statusLiveCasino = -1;
-            int iconLiveCasino = 0;
-            int isDisabledLiveCS = 0;
-
-            if (UserPermission.IsShowLiveCasino)
-            {
-                statusLiveCasino = 0;
-                iconLiveCasino = 3; // Not syn
-
-                if (Convert.ToBoolean(dr["synclivecasino"]))
-                {
-                    statusLiveCasino = 1;
-                    iconLiveCasino = 1;
-
-                    if (Convert.ToBoolean(dr["disablelivecasino"]))
-                    {
-                        // Edit Sync Casino button
-                        iconLiveCasino = 2;
-                    }
-                }
-            }
-
-            if (CurrentUserSession.IsInternal == true || Convert.ToBoolean(dr["disablelivecasino"]) == true)
-            {
-                isDisabledLiveCS = 1;
-            }
-
-            tplBlock.isDisabledLiveCS = isDisabledLiveCS.ToString();
-            tplBlock.statusLiveCasino = statusLiveCasino.ToString();
-            tplBlock.iconLiveCasino = iconLiveCasino.ToString();
-        }
-
-        private void RenderVirtualSport(DataRow dr, TplCore.Element.IElement e)
-        {
-            AgentList_Content_Block tplBlock = e as AgentList_Content_Block;
-            int statusVirtualSport = -1;
-            int iconVirtualSport = 0;
-            int isDisabledVS = 0;
-
-            if (DataRowExtension.HasColumn(dr, "disablevirtualsports"))
-            {
-                if (UserPermission.IsShowVirtualSports)
-                {
-                    statusVirtualSport = 1;
-                    iconVirtualSport = 1;
-
-                    if (Convert.ToBoolean(dr["disablevirtualsports"]))
-                    {
-                        iconVirtualSport = 2;
-                    }
-                }
-
-                if (CurrentUserSession.IsInternal == true || Convert.ToBoolean(dr["disablevirtualsports"]) == true)
-                {
-                    isDisabledVS = 1;
-                }
-            }
-
-            tplBlock.isDisabledVS = isDisabledVS.ToString();
-            tplBlock.statusVirtualSport = statusVirtualSport.ToString();
-            tplBlock.iconVirtualSport = iconVirtualSport.ToString();
         }
     }
 }
