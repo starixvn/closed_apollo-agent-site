@@ -39,18 +39,8 @@ namespace Sunplus.Agent.UI._BetList
         {
             #region INIT
 
-            BetListType betlistType = command.BetListType;
-
+           
             bool isShowAgentPT = true;
-
-            if ((betlistType & BetListType.Canceled) == BetListType.Canceled)
-            {
-                isShowAgentPT = false;
-            }
-            else if ((betlistType & BetListType.DailyStatement) == BetListType.DailyStatement)
-            {
-                isShowAgentPT = false;
-            }
 
             DataTable betListData = View as DataTable;
             IList<ITicket> tickets = new List<ITicket>();
@@ -61,18 +51,9 @@ namespace Sunplus.Agent.UI._BetList
                 betListData.Dispose();
             }
 
-            DataTable commandData = command.OutDataTable();
-            List<ITicketData> ticketData = new List<ITicketData>();
-
-            if (commandData != null)
-            {
-                ticketData = TicketDataTransformer.Transform(commandData);
-                commandData.Dispose();
-            }
-
             #endregion INIT
 
-            Header1_Template betlistHeader = new Header1_Template();
+            HeaderViewDetail_Template header = new HeaderViewDetail_Template();
 
             int index = 0;
 
@@ -86,7 +67,7 @@ namespace Sunplus.Agent.UI._BetList
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
             content.Append(betlistOpenTag);
 
-            content.Append(betlistHeader);
+            content.Append(header);
             content.Append("<tbody>");
 
             ITicketHelper ticketHelper = new TicketHelper();
@@ -104,13 +85,11 @@ namespace Sunplus.Agent.UI._BetList
 
                 if (isShowAgentPT)
                 {
-                    builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
-                    builder.AddAgentComm(ticket, ticketData, "<td class='r'>", "</td>");
+                    builder.AddAgentPT(ticket, null, "<td class='r'>", "</td>");
+                    builder.AddAgentComm(ticket, null, "<td class='r'>", "</td>");
                 }
                 builder.Append("</tr>");
             }
-
-            builder.AddFooter(tickets, string.Empty, string.Empty, (Fanex.BetList.Age.Definition.BetListType)betlistType);
 
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
