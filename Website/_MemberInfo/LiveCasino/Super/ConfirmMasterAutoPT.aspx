@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="ConfirmMasterAutoPT.aspx.cs" Inherits="Fanex.Age.UI.LiveCasino.Super.ConfirmMasterAutoPT_Page" %>

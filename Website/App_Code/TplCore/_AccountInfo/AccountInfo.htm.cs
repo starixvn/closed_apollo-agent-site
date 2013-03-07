@@ -104,13 +104,13 @@ namespace Sunplus.Agent.UI
 			protected static string s37{get{return Resources.Lang.enterusername;}}
 			protected static string s38 = "')\" value=\"";
 			public string usernamesearch = "{usernamesearch}";
-			protected static string s39 = "\" style=\"width: 145px;\" class=\"";
+			protected static string s39 = "\" style=\"width: 78px;\" class=\"";
 			public string classStyle = "{classStyle}";
 			protected static string s40 = "\" name=\"txtUsername\" /></div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink img\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
 			protected static string s41{get{return Resources.Lang.search;}}
 			protected static string s42 = "\" border=\"0\" nowap=\"nowap\" src=\"";
 			protected static string s43{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
-			protected static string s44 = "\" /></a></div></form><br /><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
+			protected static string s44 = "\" /></a></div><div class=\"search-option\"><input type=\"checkbox\" name=\"search-member\" /><label>Member</label></div></form><br /><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
 			protected static string s45{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
 			protected static string s46 = "\" name=\"\" /></div><div class=\"errMsg\">";
 			public string errMsg = "{errMsg}";

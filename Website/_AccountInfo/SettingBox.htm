@@ -23,7 +23,12 @@
                 <tr>
                     <td colspan="2">
                         <div style="position: relative; left: -3px;" class="settingWidth">
+<<<<<<< HEAD
                             <div class="divStatus" onmousedown="return changeSuspendedStatus(event, this);" title="{SuspendedTooltip}">
+=======
+                            <!--<div class="divStatus" onmousedown="return changeSuspendedStatus(event, this);" title="{SuspendedTooltip}">
+                                <input type="checkbox" id="chkSuspend" {disableSuspend} {checkedSuspended} />
+>>>>>>> 860266222fc05df4af1a5eb66441b57d51a8b420
                                 <label for="chkSuspend" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.suspended,9)}
                                 </label>
@@ -38,9 +43,14 @@
                             <div class="divStatus" onmousedown="return changeOutrightStatus(event, this);" title="{OutrightTooltip}">
                                 <label for="chkOutright" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblenableOutRight,14)}
+<<<<<<< HEAD
                                 </label>
                                 <input type="checkbox" id="chkOutright" {disableOutright} {checkedOutright} />
                             </div>
+=======
+                                </label>                                
+                            </div>-->
+>>>>>>> 860266222fc05df4af1a5eb66441b57d51a8b420
                             <!--StatusAutoPT-->
                             <div class="divStatus" onmousedown="return changeAutoMPTStatus(event, this);">
                                 <label for="chkMAutoPT" class="text_smal">
@@ -67,12 +77,21 @@
                             </div>
                             <!--/StatusBingo-->
                             <!--StatusNumberGame-->
+<<<<<<< HEAD
                             <div class="divStatus" onmousedown="return changeNumberGameStatus(event, this, {hasDownline});">
                                 <label for="chkNumberGame" class="text_smal">
                                     {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableNumber,13)}
                                 </label>
                                 <input type="checkbox" id="chkNumberGame" {disableNumberGame} {checkedNumberGame} />
                             </div>
+=======
+                            <!--<div class="divStatus" onmousedown="return changeNumberGameStatus(event, this, {hasDownline});">
+                                <input type="checkbox" id="chkNumberGame" {disableNumberGame} {checkedNumberGame} />
+                                <label for="chkNumberGame" class="text_smal">
+                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableNumber,13)}
+                                </label>
+                            </div>-->
+>>>>>>> 860266222fc05df4af1a5eb66441b57d51a8b420
                             <!--/StatusNumberGame-->
                             <!--StatusRacing-->
                             <div class="divStatus" onclick="ShowFrmUpdRacingStatus(this, {hasDownline})">

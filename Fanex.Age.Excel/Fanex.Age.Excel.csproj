@@ -87,26 +87,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\BingoWinloss\BingoWinlossAgentReport.cs" />
-    <Compile Include="Reports\BingoWinloss\BingoWinlossAgentReportBuilder.cs" />
-    <Compile Include="Reports\BingoWinloss\BingoWinlossMasterReport.cs" />
-    <Compile Include="Reports\BingoWinloss\BingoWinlossMasterReportBuilder.cs" />
-    <Compile Include="Reports\BingoWinloss\BingoWinlossSuperReport.cs" />
-    <Compile Include="Reports\BingoWinloss\BingoWinlossSuperReportBuilder.cs" />
-    <Compile Include="Reports\BingoWinloss\TemplateSettings.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossAgentReport.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossAgentReportBuilder.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossDetailAgentReport.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossDetailAgentReportBuilder.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossDetailMasterReport.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossDetailMasterReportBuilder.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossDetailSuperReport.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossDetailSuperReportBuilder.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossMasterReport.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossMasterReportBuilder.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossSuperReport.cs" />
-    <Compile Include="Reports\CasinoWinloss\CSWinlossSuperReportBuilder.cs" />
-    <Compile Include="Reports\CasinoWinloss\TemplateSettings.cs" />
     <Compile Include="Reports\Commission\CommissionByBetTypeReport.cs" />
     <Compile Include="Reports\Commission\CommissionByBetTypeReportBuilder.cs" />
     <Compile Include="Reports\Commission\HRCommissionReport.cs" />

@@ -520,22 +520,7 @@ namespace Sunplus.Agent.Model.BL.BetList
             int customerId = CurrentSession.CustId;
 
             DataTable runningBets = null;
-            if (CurrentSession.IsAgent)
-            {
-                runningBets = betListDAO.Age_TotalBets_Sel430_Ag(customerId, language);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                runningBets = betListDAO.Age_TotalBets_Sel430_MAg(customerId, language);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                runningBets = betListDAO.Age_TotalBets_Sel430_SAg(customerId, language);
-            }
-            else
-            {
-                runningBets = new DataTable();
-            }
+            runningBets = betListDAO.Acc_Betlist_TotalBets_Sel_4_30(customerId, language);
 
             return runningBets;
         }

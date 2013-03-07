@@ -11,7 +11,6 @@ namespace Sunplus.Agent.UI._MemberInfo.SearchAndCopy
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-    using BLL;
     using DAL;
     using Fanex.Age.UI;
     using Sunplus.Agent.Model.Entities;
@@ -87,12 +86,12 @@ namespace Sunplus.Agent.UI._MemberInfo.SearchAndCopy
         public string FormatStackLevel(CSCustomerDetail custCS, GameTypeDetail gameTypeDetail)
         {
             string result = "";
-            List<StakeLevelDetail> lsStakeLevel = (custCS.CasinoSync) ? CasinoManager.GetCustStakeLevels(custCS.IBCCustID, gameTypeDetail.GameTypeID) : CasinoManager.GetCustStakeLevels(UserSession.Current.CustId, gameTypeDetail.GameTypeID);
-            if (lsStakeLevel != null && lsStakeLevel.Count > 0)
-            {
-                var query = lsStakeLevel.Where(p => p.IsChecked == true).Select(p => p.StakeLevelName);
-                result = string.Join(Globals.SEP_STAKE, query);
-            }
+            //List<StakeLevelDetail> lsStakeLevel = (custCS.CasinoSync) ? CasinoManager.GetCustStakeLevels(custCS.IBCCustID, gameTypeDetail.GameTypeID) : CasinoManager.GetCustStakeLevels(UserSession.Current.CustId, gameTypeDetail.GameTypeID);
+            //if (lsStakeLevel != null && lsStakeLevel.Count > 0)
+            //{
+            //    var query = lsStakeLevel.Where(p => p.IsChecked == true).Select(p => p.StakeLevelName);
+            //    result = string.Join(Globals.SEP_STAKE, query);
+            //}
             return result;
         }
 

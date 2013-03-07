@@ -173,8 +173,6 @@
 
   <Function Name="Agent - BetList">
 
-    <Setting Key="Acc_BetList_AgentDetail" SpName="Acc_BetList_AgentDetail" DbName="archive" Plain="0" />
-
     <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details" DbName="archive" Plain="0" />
     <Setting Key="Age_BetList_SelAllByDate_Mem" SpName="Age_BetList_SelAllByDate_Mem" DbName="archive" Plain="0" />
     <Setting Key="Age_BetList_SelAllByDateHR_Ag" SpName="Age_BetList_SelAllByDateHR_Ag" DbName="archive" Plain="0" />
@@ -316,6 +314,11 @@
     <Setting Key="Age_Forecast1x2_SelByLeague_SAg" SpName="Age_Forecast1x2_SelByLeague_SAg" DbName="archive" Plain="0" />
   </Function>
 
+  <Function Name="Agent-Apollo-TotalBets-BetList">
+    <Setting Key="Acc_Betlist_TotalBets_Sel_4_30" SpName="Acc_Betlist_TotalBets_Sel_4_30" DbName="DB05" Plain="0" />
+    <Setting Key="Acc_BetList_TotalBets_SelRunningByBettype" SpName="Acc_BetList_TotalBets_SelRunningByBettype" DbName="DB05" Plain="0" />
+    <Setting Key="Acc_BetList_AgentDetail" SpName="Acc_BetList_AgentDetail" DbName="DB05" Plain="0" />
+  </Function>
   <Function Name="Agent-Apollo-TotalBets">
     <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="DB05" Plain="0" />
     <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="DB05" Plain="0" />

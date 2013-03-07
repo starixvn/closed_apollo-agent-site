@@ -22,7 +22,7 @@ using Sunplus.Agent.Model.Entities;
 
 namespace Sunplus.Agent.UI._BetList
 {
-    public partial class ViewDetail_Page : Fanex.Age.UI.TplPage
+    public partial class ViewDetail_Page : Fanex.Age.UI.Reports.WinlossReports_Page
     {
         #region Define variable
 

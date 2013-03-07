@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EditMinPT.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.RaceBook.Super.EditMinPT_Page" %>

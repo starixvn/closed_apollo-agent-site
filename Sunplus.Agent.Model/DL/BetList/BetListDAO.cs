@@ -960,40 +960,12 @@ namespace Sunplus.Agent.Model.DL.BetList
         /// <param name="custId"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_TotalBets_Sel430_Ag(int custId, string language)
+        public DataTable Acc_Betlist_TotalBets_Sel_4_30(int custId, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
+            parameters.Add("agentid", custId);
             parameters.Add("language", language);
-            return ExecSpTable("Age_TotalBets_Sel430_Ag", parameters);
-        }
-
-        /// <summary>
-        /// Get correct score for Master
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel430_MAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-            return ExecSpTable("Age_TotalBets_Sel430_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Get correct score for Super
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_TotalBets_Sel430_SAg(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("language", language);
-            return ExecSpTable("Age_TotalBets_Sel430_SAg", parameters);
+            return ExecSpTable("Acc_Betlist_TotalBets_Sel_4_30", parameters);
         }
 
         #endregion RunningByBettype
