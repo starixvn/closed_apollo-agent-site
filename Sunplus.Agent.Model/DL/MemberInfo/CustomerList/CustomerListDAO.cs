@@ -14,7 +14,7 @@
         /// <param name="custId"></param>
         /// <param name="username"></param>
         /// <param name="pageindex"></param>
-        /// <param name="pagesize"></param>        
+        /// <param name="pagesize"></param>
         /// <param name="closed"></param>
         /// <param name="suspended"></param>
         /// <param name="enabled"></param>
@@ -28,7 +28,7 @@
             parameters.Add("pageindex", pageindex);
             parameters.Add("totalpages", totalpages);
             parameters.Add("username", username);
-            parameters.Add("pagesize", pagesize);            
+            parameters.Add("pagesize", pagesize);
 
             if (closed != -1)
             {
@@ -61,7 +61,7 @@
         /// <param name="custId"></param>
         /// <param name="username"></param>
         /// <param name="pageindex"></param>
-        /// <param name="pagesize"></param>        
+        /// <param name="pagesize"></param>
         /// <param name="closed"></param>
         /// <param name="suspended"></param>
         /// <param name="enabled"></param>
@@ -90,7 +90,7 @@
             if (enabled != -1)
             {
                 parameters.Add("enabled", enabled);
-            }           
+            }
 
             DbResult res = ExecSp("Acc_CustomerSelBySAg", parameters);
             totalpages = Convert.ToInt32(res.Outputs["totalpages"]);
@@ -103,43 +103,22 @@
         /// <param name="custId"></param>
         /// <param name="username"></param>
         /// <param name="pageindex"></param>
-        /// <param name="pagesize"></param>        
+        /// <param name="pagesize"></param>
         /// <param name="closed"></param>
         /// <param name="suspended"></param>
         /// <param name="enabled"></param>
         /// <param name="totalpages"></param>
         /// <returns></returns>
-        public DataTable Acc_CustomerSelByMAg(int custId, string userName, int pageindex, int pagesize, int closed, int suspended, int enabled, int doubleCommStatus, ref int totalpages)
+        public DataTable Acc_Agent_GetByAgent(int custId, string userName, int pageindex, int pagesize, ref int totalpages)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("mrecommend", custId);
-            parameters.Add("isagentsite", 0);
-            parameters.Add("pageindex", pageindex);
-            parameters.Add("totalpages", totalpages);
+            parameters.Add("agentid", custId);
             parameters.Add("username", userName);
             parameters.Add("pagesize", pagesize);
+            parameters.Add("pageindex", pageindex);
+            parameters.Add("totalpages", totalpages);
 
-            if (closed != -1)
-            {
-                parameters.Add("closed", closed);
-            }
-
-            if (suspended != -1)
-            {
-                parameters.Add("suspended", suspended);
-            }
-
-            if (enabled != -1)
-            {
-                parameters.Add("enabled", enabled);
-            }
-
-            if (doubleCommStatus != 2)
-            {
-                parameters.Add("doublecommlosing", doubleCommStatus);
-            }
-
-            DbResult res = ExecSp("Acc_CustomerSelByMAg", parameters);
+            DbResult res = ExecSp("Acc_Agent_GetByAgent", parameters);
             totalpages = Convert.ToInt32(res.Outputs["totalpages"]);
             return res.ResultSet.Tables[0];
         }
@@ -150,7 +129,7 @@
         /// <param name="custId"></param>
         /// <param name="username"></param>
         /// <param name="pageindex"></param>
-        /// <param name="pagesize"></param>        
+        /// <param name="pagesize"></param>
         /// <param name="closed"></param>
         /// <param name="suspended"></param>
         /// <param name="enabled"></param>
@@ -179,7 +158,7 @@
             if (enabled != -1)
             {
                 parameters.Add("enabled", enabled);
-            }           
+            }
 
             DbResult res = ExecSp("Acc_CustomerSelByMAg", parameters);
             totalpages = Convert.ToInt32(res.Outputs["totalpages"]);
@@ -192,7 +171,7 @@
         /// <param name="custId"></param>
         /// <param name="username"></param>
         /// <param name="pageindex"></param>
-        /// <param name="pagesize"></param>        
+        /// <param name="pagesize"></param>
         /// <param name="closed"></param>
         /// <param name="suspended"></param>
         /// <param name="enabled"></param>
@@ -234,7 +213,7 @@
         /// <param name="custId"></param>
         /// <param name="username"></param>
         /// <param name="pageindex"></param>
-        /// <param name="pagesize"></param>        
+        /// <param name="pagesize"></param>
         /// <param name="closed"></param>
         /// <param name="suspended"></param>
         /// <param name="enabled"></param>
