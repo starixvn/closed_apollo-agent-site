@@ -9,7 +9,7 @@
 //   <change who="Marc.Bui" date="2012.10.11">Add Double Commission feature</change>
 // </history>
 
-namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Agent
+namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 {
     using System;
     using System.Collections;
@@ -25,6 +25,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Agent
     using Sunplus.Agent.Utilities;
     using Fanex.PTVirtualSports.Extension;
     using Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control;
+    using Fanex.Agent.UI._MemberInfo.CustomerList;
 
     public partial class MemberList_Page : CustomerList_Page
     {

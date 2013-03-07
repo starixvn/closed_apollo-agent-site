@@ -4086,4 +4086,13 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblPlayerList" xml:space="preserve">
     <value>Member List</value>
   </data>
+  <data name="AgentCommission" xml:space="preserve">
+    <value>Agent Commission (%)</value>
+  </data>
+  <data name="memberCommission" xml:space="preserve">
+    <value>Member Commission (%)</value>
+  </data>
+  <data name="soccerPT" xml:space="preserve">
+    <value>Soccer PT (%)</value>
+  </data>
 </root>
