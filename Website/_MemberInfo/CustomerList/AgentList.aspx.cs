@@ -200,8 +200,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             //tplBlock.chkid = "chkid_" + dr["custid"];
             //tplBlock.chkid_value = dr["username"] as string;
 
-            //tplBlock.id = dr["RowNumber"].ToString();
-            //tplBlock.username = dr["username"] as string;
+            tplBlock.id = dr["RowNumber"].ToString();
+            tplBlock.username = dr["username"] as string;
 
             //string editAgent_Single = "EditAgent_Single('" + this.agentId + "','" + dr["username"].ToString() + "', " + this.MasterId + ")";
             //string renderStatus = "RenderStatus(this,'Popup','" + this.agentId + "'," + isClosed.ToString().ToLower() + "," + isSuspended.ToString().ToLower() + ",0," + disableOutright.ToString().ToLower() + ", '" + tplBlock.chkid + "')";
@@ -236,20 +236,24 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             //}
 
             //string viewDonwlineClick = "ViewDownLine('MemberList.aspx?custid=" + this.agentId + "&masterId=" + this.MasterId + "')";
-            //IcoViewDownline viewDownline = new IcoViewDownline(TemplateMain, viewDonwlineClick);
-            //tplBlock.view = viewDownline;
+            IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "");
+            tplBlock.viewAgentList = viewAgentDownline;
 
-            //tplBlock.firstName = dr["firstname"] as string;
-            //tplBlock.lastName = dr["lastname"] as string;
-            //tplBlock.groupA = Formater.FormatNumber4(dr["groupa"], this.langKey);
-            //tplBlock.groupB = Formater.FormatNumber4(dr["groupb"], this.langKey);
-            //tplBlock.groupC = Formater.FormatNumber4(dr["groupc"], this.langKey);
-            //tplBlock.groupD = Formater.FormatNumber4(dr["groupd"], this.langKey);
-            //tplBlock.other = Formater.FormatNumber4(dr["discountcs"], this.langKey);
-            //tplBlock.lb1x2 = Formater.FormatNumber4(dr["discount1x2"], this.langKey);
-            //tplBlock.game = Formater.FormatNumber4(dr["discountnumber"], this.langKey);
-            //tplBlock.createdate = Formater.FormatDateTimeEn12(dr["createdate"]);
-            //tplBlock.lastLoginIp = Sunplus.Agent.Model.Common.AgentIPFormat.FormatIP(dr["lastloginip"].ToString());
+            IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "");
+            tplBlock.viewPlayerList = viewPlayerDownline;
+
+            tplBlock.groupA = Formater.FormatNumber4(dr["groupa"], this.langKey);
+            tplBlock.groupB = Formater.FormatNumber4(dr["groupb"], this.langKey);
+            tplBlock.groupC = Formater.FormatNumber4(dr["groupc"], this.langKey);
+            tplBlock.groupD = Formater.FormatNumber4(dr["groupd"], this.langKey);
+            tplBlock.other = Formater.FormatNumber4(dr["DiscountOther"], this.langKey);
+            tplBlock.onextwo = Formater.FormatNumber4(dr["Discount1x2"], this.langKey);
+            tplBlock.game = Formater.FormatNumber4(dr["DiscountNumberGame"], this.langKey);
+
+            tplBlock.HDP = dr["HDP_PositionTaking"].ToString();
+            tplBlock.OU = dr["OU_PositionTaking"].ToString();
+            tplBlock.HDPLive = dr["HDP_PositionTaking_Live"].ToString();
+            tplBlock.OULive = dr["OU_PositionTaking_Live"].ToString();
         }
     }
 }
