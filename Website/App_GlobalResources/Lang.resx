@@ -4104,4 +4104,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="confirmUpdateMembers" xml:space="preserve">
     <value>Confirm Update Members\'s PT</value>
   </data>
+  <data name="lblAgentListTitle" xml:space="preserve">
+    <value>Agent List:</value>
+  </data>
 </root>
