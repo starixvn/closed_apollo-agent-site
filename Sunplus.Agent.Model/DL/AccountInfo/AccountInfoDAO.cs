@@ -42,13 +42,14 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
             return rs.ResultSet.Tables[0];
         }
 
-        public DataSet Age_CustomerSelAllInfo(string userName, int updaterId, bool isInternal)
+        public DataSet Age_CustomerSelAllInfo(int currentAgentId, string userName, bool isMember)
         {
             Hashtable param = new Hashtable();
+            param.Add("currentagentid", currentAgentId);
             param.Add("username", userName);
-            param.Add("uplineid", updaterId);
-            param.Add("isinternalagent", isInternal);
-            return ExecSpDataset("Age_CustomerSelAllInfo", param);
+            param.Add("ismember", isMember);
+           
+            return ExecSpDataset("Age_Customer_GetAllInfo", param);
         }
 
         public DataTable Acc_CustomerSelOnline(int custId)

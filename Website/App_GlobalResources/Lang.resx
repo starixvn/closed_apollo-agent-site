@@ -4092,7 +4092,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="memberCommission" xml:space="preserve">
     <value>Member Commission (%)</value>
   </data>
-  <data name="soccerPT" xml:space="preserve">
+  <data name="lblSoccerPT" xml:space="preserve">
     <value>Soccer PT (%)</value>
   </data>
   <data name="hdpLive" xml:space="preserve">
@@ -4104,7 +4104,28 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="confirmUpdateMembers" xml:space="preserve">
     <value>Confirm Update Members\'s PT</value>
   </data>
+  <data name="AgentLevel0" xml:space="preserve">
+    <value>Super</value>
+  </data>
+  <data name="AgentLevel1" xml:space="preserve">
+    <value>Main Shareholder</value>
+  </data>
+  <data name="AgentLevel2" xml:space="preserve">
+    <value>Shareholder</value>
+  </data>
+  <data name="AgentLevel3" xml:space="preserve">
+    <value>Main Agent</value>
+  </data>
+  <data name="lblagentCommission" xml:space="preserve">
+    <value>Agent Commission (%)</value>
+  </data>
   <data name="lblAgentListTitle" xml:space="preserve">
     <value>Agent List:</value>
+  </data>
+  <data name="lblMemberCommissionPercent" xml:space="preserve">
+    <value>Member Commission (%)</value>
+  </data>
+  <data name="lblNoList" xml:space="preserve">
+    <value>No.</value>
   </data>
 </root>

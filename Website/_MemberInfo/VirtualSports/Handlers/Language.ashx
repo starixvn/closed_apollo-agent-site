@@ -72,7 +72,7 @@ namespace Sunplus.Agent.UI._MemberInfo.VirtualSports
             language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
             language.AppendLine(this.SetValue("CONFIRM_UPDATE_POSITION_TAKING", Resources.Lang.titleConfirmEditPT));
             language.AppendLine(this.SetValue("WANT_TO_UPDATE_ALL_MEMBER_POSITION_TAKING", Resources.Lang.msgUpdateAllMember));
-            language.AppendLine(this.SetValue("CONFIRM_UPDATE_MEMBERS_PT", Resources.Lang.confirmUpdateMembers));
+            language.AppendLine(this.SetValue("CONFIRM_UPDATE_MEMBERS_PT", ""));
             language.AppendLine(this.SetValue("YES", Resources.Lang.lblYes));
             language.AppendLine(this.SetValue("NO", Resources.Lang.lblNo));
             language.AppendLine(this.SetValue("BASKETBALL", Resources.Lang.Basketball));

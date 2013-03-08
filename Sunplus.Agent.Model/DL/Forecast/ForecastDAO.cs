@@ -124,7 +124,7 @@ namespace Sunplus.Agent.Model.DL.Forecast
             parameters.Add("baseoffseththdp", 0);
             parameters.Add("baseoffsethtou", 0);
             parameters.Add("leagueid", leagueId);
-            parameters.Add("AgentId", agentId);
+            parameters.Add("agentid", agentId);
 
             return ExecSpTable("Age_Forecast_1_3_7_8_GetByLeague", parameters);
         }
@@ -143,7 +143,7 @@ namespace Sunplus.Agent.Model.DL.Forecast
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("leagueid", leagueId);
-            parameters.Add("AgentId", agentId);
+            parameters.Add("agentid", agentId);
             return ExecSpTable("Age_Forecast_5_15_GetByLeague", parameters);
         }
 
@@ -162,7 +162,7 @@ namespace Sunplus.Agent.Model.DL.Forecast
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("matchid", matchId);
-            parameters.Add("AgentId", custId);
+            parameters.Add("agentid", custId);
             parameters.Add("bettype", betType);
             return ExecSpTable("Age_Forecast_5_15_GetByMatch", parameters);
         }
