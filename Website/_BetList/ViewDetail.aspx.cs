@@ -91,8 +91,8 @@ namespace Sunplus.Agent.UI._BetList
                 #region Total ticket
 
                 totalTicket.Comm += ticket.Comm;
-                totalTicket.SComm += ticket.SComm;
-                totalTicket.AgentPositionTaking += ticket.AgentPositionTaking;
+                totalTicket.TComm += ticket.TComm;
+                totalTicket.TPositionTaking += ticket.TPositionTaking;
                 totalTicket.AgentWinlost += ticket.AgentWinlost;
                 totalTicket.Status = ticket.Status;
 
