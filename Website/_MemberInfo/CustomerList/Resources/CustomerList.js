@@ -511,7 +511,7 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
             virtualSports.href = 'javascript:EditMultiVirtualSports()';
         }
 
-        //Link to edit DoubleComm        
+        //Link to edit DoubleComm
         var isShowDCom = $('EdiMulti').parentNode.attributes.getNamedItem('isshowdcom');
         var isDirectDownline = $('EdiMulti').parentNode.attributes.getNamedItem('isdirectdownline');
 
@@ -600,51 +600,41 @@ function ChangedIcon(Id, Icon) {
     }
 }
 
+function EditMenuControl(element, popupId, custId, userName) {
+    var div = $(popupId);
+    if (!div) return false;
+
+    element.style.position = 'relative';
+    var pos = GetPosition(element);
+    div.style.top = (pos.offsetTop - 35) + 'px';
+    div.style.left = (pos.offsetLeft + 17) + 'px';
+
+    div.style.display = 'block';
+    clearTimeout(div.timerID);
+    div.timerID = 0;
+    div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 2000);
+    age.addEvent(div, "mouseover", function () {
+        clearTimeout(div.timerID);
+        div.timerID = 0;
+    }, true);
+
+    age.addEvent(div, "mouseout", function () {
+        clearTimeout(div.timerID);
+        div.timerID = 0;
+        div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 100);
+    }, true);
+}
+
 function ShowFrmUpdOthers(el, divID, custid, username, actionOn) {
     var div = $(divID);
     if (!div) return false;
 
-    var isDisHR = $(custid).getAttribute('iconhr');
-    var isCasino = $(custid).getAttribute('iconcs');
-    var isBingo = $(custid).getAttribute('iconbg');
-    var isP2P = $(custid).getAttribute('iconp2p');
-    var isLiveCasino = $(custid).getAttribute('iconLiveCasino');
-    var isVirtualSport = $(custid).getAttribute('iconVirtualSport');
-    var isEdit = $(custid).getAttribute('iconEdit');
+    var isEdit = "";
 
-    if ($('tr_racingPT') && $('tr_racingPT').style.display == 'none') {
-        $('tr_racingPT').style.display = 'block';
-    }
-    if ($('tr_casinoPT') && $('tr_casinoPT').style.display == 'none') {
-        $('tr_casinoPT').style.display = 'block';
-    }
-    if ($('tr_bingoPT') && $('tr_bingoPT').style.display == 'none') {
-        $('tr_bingoPT').style.display = 'block';
-    }
-    if ($('tr_p2pPT') && $('tr_p2pPT').style.display == 'none') {
-        $('tr_p2pPT').style.display = 'block';
-    }
-    if ($('tr_livecasinoPT') && $('tr_livecasinoPT').style.display == 'none') {
-        $('tr_livecasinoPT').style.display = 'block';
-    }
-    if ($('tr_virtualsportPT') && $('tr_virtualsportPT').style.display == 'none') {
-        $('tr_virtualsportPT').style.display = 'block';
-    }
-
-    ChangedIcon('racingPT', isDisHR);
-    ChangedIcon('casinoPT', isCasino);
-    ChangedIcon('bingoPT', isBingo);
-    ChangedIcon('p2pPT', isP2P);
     ChangedIcon('editInfo', isEdit);
     ChangedIcon('betSetting', isEdit);
     ChangedIcon('commission', isEdit);
 
-    if (document.getElementById('livecasinoPT') != null) {
-        ChangedIcon('livecasinoPT', isLiveCasino);
-    }
-    if (document.getElementById('virtualsportsPT') != null) {
-        ChangedIcon('virtualsportsPT', isVirtualSport);
-    }
     if (document.getElementById('sportBookMinPT') != null) {
         ChangedIcon('sportBookMinPT', "1");
     }
@@ -671,48 +661,12 @@ function ShowFrmUpdOthers(el, divID, custid, username, actionOn) {
         }
     }
 
-    var urlPass = 'showReset(' + custid + ',"' + username + '",' + isCasino + ')';
+    var urlPass = '';  //'showReset(' + custid + ',"' + username + '",' + isCasino + ')';
     SetAttributeURL('password', urlPass);
 
-    var urlEditPT_HR = 'CustomerEditHR(' + custid + ',"' + actionOn + '",0)';
-    SetAttributeURL('racingPT', urlEditPT_HR);
-
-    var urlEditPT_CS = "";
-    if (isCasino != "0") {
-        urlEditPT_CS = 'EditCS(' + custid + ')';
-    }
-    SetAttributeURL('casinoPT', urlEditPT_CS);
-
     var role = _page.roleid - 1;
-    var urlEditPT_P2P = "";
-    if (isP2P != "0") {
-        urlEditPT_P2P = 'EditP2P(' + custid + ',' + role + ',"' + username + '")';
-    }
-    SetAttributeURL('p2pPT', urlEditPT_P2P);
 
-    var urlEditPT_BG = "";
-    if (isBingo != "0") {
-        urlEditPT_BG = 'EditBG(' + custid + ')';
-    }
-    SetAttributeURL('bingoPT', urlEditPT_BG);
-
-    var urlEditPT_LiveCS = "";
-    if (isLiveCasino != "0") {
-        urlEditPT_LiveCS = 'EditLiveCS(' + custid + ',' + _page.roleid + ', "' + username + '")';
-    }
-    if (document.getElementById('livecasinoPT') != null) {
-        SetAttributeURL('livecasinoPT', urlEditPT_LiveCS);
-    }
-
-    var urlEditPT_VirtualSport = "";
-    if (isVirtualSport != "0") {
-        urlEditPT_VirtualSport = 'EditSingleVirtualSports(' + custid + ',' + _page.roleidVirtualSports + ', "' + username + '")';
-    }
-    if (document.getElementById('virtualsportsPT') != null) {
-        SetAttributeURL('virtualsportsPT', urlEditPT_VirtualSport);
-    }
-
-    var urlEditInfo = "EditInfo(" + custid + ",'" + username + "'," + isCasino + "," + isBingo + ")";
+    var urlEditInfo = '';  //"EditInfo(" + custid + ",'" + username + "'," + isCasino + "," + isBingo + ")";
     if (document.getElementById('editInfo') != null) {
         SetAttributeURL('editInfo', urlEditInfo);
     }

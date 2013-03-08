@@ -7,7 +7,18 @@
     <tr>
         <td>
             <div id="title_header">
-                {static:Resources.Lang.lblAgentList} {navigation} {print}
+                <div class="agent-list-title">
+                    {static:Resources.Lang.lblAgentListTitle} 
+                </div>                
+                <div class="navigation">
+                    <span class="short-link">{navigation}</span>
+                    <ul class="full-link">
+                       <!--fullLink--> 
+                       <li>{lineLink}<a href="{urlAgentSite}">{txtAgentSite}</a></li>
+                       <!--/fullLink-->
+                    </ul>
+                </div>
+                {print}
             </div>
         </td>
     </tr>
@@ -27,12 +38,12 @@
                 <table id="tblCustomerList">
                     <!--Header-->
                     <thead>
-                        <tr>
-                            <th rowspan="2">
-                                {static:Resources.Lang.edit}
-                            </th>
+                        <tr>                            
                             <th rowspan="2">
                                 <input type="checkbox" id="chkAll" name="chkAll"/>
+                            </th>
+                            <th rowspan="2">
+                                {static:Resources.Lang.edit}
                             </th>
                             <th rowspan="2">
                                 No.
@@ -84,12 +95,12 @@
                     <!--/Header-->
                     <tbody>
                         <!--Content-->
-                        <tr class="{color}" id="{custId}">
-                             <td align="center">
-                                {other_Option}
-                            </td>
+                        <tr class="{color}" id="{custId}">                             
                             <td>
                                 <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}"/>
+                            </td>
+                            <td align="center">
+                                {other_Option}
                             </td>
                             <td>
                                 {id}

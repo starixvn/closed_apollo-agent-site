@@ -117,7 +117,7 @@ body
 #title_header
 {
 	background: url( "Images/title.jpg" ) no-repeat scroll left bottom transparent;
-	color: #9D1C1C;
+	color: #4B483C;
 	font-weight: bold;
 	height: 22px;
 	line-height: 18px;
@@ -406,4 +406,52 @@ input[type=text]
 .HideCol
 {
 	display: none;
+}
+
+/*navigation*/
+.title_header {
+    position: relative;
+}
+
+.agent-list-title {
+    float: left;
+}
+
+.navigation {
+    float: left;
+    cursor: pointer;  
+    margin-left: 5px;  
+}
+
+.navigation:hover .full-link {
+    display: inline;
+}
+
+.full-link {
+    display: none; 
+    position: absolute;
+    top: 0;
+    left: 90px;  
+    background: #fff;   
+    z-index: 100;
+    padding: 5px 10px;
+    border: 1px solid #B2B2B2;
+}
+
+.full-link li {
+    list-style: none;
+    display: inline;   
+    line-height: 20px;
+}
+
+.full-link li a {
+    color: #FF9933;
+}
+
+.full-link li a:hover {
+    color: #B39D74;
+}
+
+.line-link {
+    margin: 0 3px;
 }

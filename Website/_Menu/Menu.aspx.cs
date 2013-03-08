@@ -204,32 +204,7 @@ namespace Sunplus.Agent.UI._Menu
                 //if (isSubAcc && itemCount == 8 && (j == PT || j == CSPT || j == BGPT || j == MEMBERCOMM) && !pageAccess.ViewMemberInfo) continue;
 
                 // Authorize AGE permission
-                if (!authorize.AuthorizeUrl(0, 0, false, item.GetAttribute("href"))) continue;
-
-                // HR
-                if ((!Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowRacing) && (item.Description == HR)) continue;
-
-                // FI
-                if (CurrentUserSession.IsDisabledFI && (item.Description == FI)) continue;
-
-                // CS
-                if (!UserPermission.IsShowCasino && (item.Description == CS)) continue;
-
-                // BG
-                if (!UserPermission.IsShowBingoReport && item.Description == BG) continue;
-
-                if (!UserPermission.IsShowBingo && item.Description == "bgPT") continue;//BG PT
-
-                // NG
-                if (!UserPermission.IsShowNumberGame && item.Title == NG) continue;
-
-                // Live Casino
-                if (!UserPermission.IsShowLiveCasino && item.Title == LiveCasino) continue;
-
-                // Consolidated Report
-
-                if (!CurrentUserSession.IsShowConsolidatedReport && item.Title == CR)
-                    continue;
+               // if (!authorize.AuthorizeUrl(0, 0, false, item.GetAttribute("href"))) continue;                            
 
                 RenderMenuItem(item, ref itemBlock, j, index);
                 subBlock.MenuItem.Append(itemBlock);
