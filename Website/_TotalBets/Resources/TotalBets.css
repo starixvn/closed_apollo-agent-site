@@ -5,12 +5,12 @@ body
 
 a:link, a:visited
 {
-	color: #1e1eeb;
+	color: #4DABFE;
 	text-decoration: none;
 }
 a:hover
 {
-	color: #F60;
+	color: #EB6003;
 	text-decoration: none;
 }
 table.tblRpt td

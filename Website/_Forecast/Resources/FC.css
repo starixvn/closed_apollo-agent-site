@@ -48,10 +48,7 @@ td, span, div, a {
     font-family: Tahoma,Arial,helvetica,sans-serif;
     font-size: 11px;
 }
-a:link, a:visited {
-    color: #1E1EEB;
-    text-decoration: none;
-}
+
 #page_main {
     padding-top: 7px;
     overflow: visible;
@@ -88,10 +85,7 @@ body {
     border: 1px solid #CACACA;
     margin-bottom: 7px;
     margin-top: 0;
-    padding: 0;
-    -moz-border-radius: 3px; /* Firefox */
-    -webkit-border-radius: 3px; /* Safari and Chrome */
-    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+    padding: 0;   
 }
 .btnInfo {
     background: url( "../../_GlobalResources/Images/icon_add.jpg" ) no-repeat scroll center top transparent;
@@ -122,17 +116,22 @@ select {
     text-align: center;
 }
 
+a:link, a:visited {
+    color: #4DABFE;
+    text-decoration: none;
+}
+
 a.forecast_betlist_link {
     display: block;
     float: left;
+    padding-left: 10px;
 }
 a.forecast_toggle_link {
     display: block;
     float: right;
+    padding-right: 10px;
 }
 
-table {
-    -moz-border-radius: 3px; /* Firefox */
-    -webkit-border-radius: 3px; /* Safari and Chrome */
-    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+a:hover {
+    color: #EB6003;
 }
