@@ -20,26 +20,11 @@
                     </a>
                  </div>
                  <div class="search-option">
-                    <input type="checkbox" name="search-member" />
+                    <input type="checkbox" name="isMember" />
                     <label>Member</label>
                  </div>
             </form>
-            <!--fornotdirectdownline-->                                                            
-            <table cellspacing="0" cellpadding="0" border="0" width="100%">
-                <tbody> 
-                    <!--uplineinfo-->
-                    <tr>
-                        <td>
-                            {agent}:
-                        </td>
-                        <td align="right" class="text_org">
-                            <a href="AccountInfo.aspx?username={AgentNameValue}" class="linkAg">{agentname}</a>
-                        </td>
-                    </tr>
-                    <!--/uplineinfo-->
-                </tbody>
-            </table>
-            <!--/fornotdirectdownline--> 
+          
             <div class="line_info">
                 <img height="9" width="1" alt="" src="../_GlobalResources/Images/dot.gif" name="" />
             </div>
@@ -98,10 +83,18 @@
 </div>        
 
 <div class="btnSearchList">
+    <!--ButtonAgentList-->
     <a href="" class="btnList" onclick="clearTopMenu(); ClearCurrentLeftMenu();">Agent List</a>
+    <!--/ButtonAgentList-->
+    <!--ButtonMemberList-->
     <a href="" class="btnList" onclick="clearTopMenu(); ClearCurrentLeftMenu();">Member List</a>
+    <!--/ButtonMemberList-->
+    <!--ButtonBetList-->
     <a href="" class="btnList" onclick="clearTopMenu(); ClearCurrentLeftMenu();">Bet List</a>
+    <!--/ButtonBetList-->  
 </div>
+
+
 <!--GroupStatement-->
 <!--<div id="button_nLeft02"><a class="b_nleft" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{statementlink}">{static:Resources.Lang.lblStatement}</a></div>-->
 <!--/GroupStatement-->

@@ -17,7 +17,6 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.Utilities;
     using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
-    using Fanex.Agent.UI._AccountInfo;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
@@ -30,11 +29,14 @@ namespace Sunplus.Agent.UI._AccountInfo
         const string ENABLE_HTML_ELEMENT = "style='cursor:pointer;'";
         const string CHECKED_CHECKBOX = "checked='checked'";
         const string CLASS_NAME = "b_nleft";
-        private int custId = -1, custRoleId = -1;
+        private int custId = -1; // custRoleId = -1;
+        private int agentLevel = -1;
+        private bool isMember = false;
         private bool isChangedUserName = false;
         private string userNameRequest;
         private DataSet dataset = null;
-        private DataRow dtrUpdaterInfo = null, dtrCustomerInfo = null, dtrDownlineInfo = null, dtrBalanceInfo = null;
+        // private DataRow dtrUpdaterInfo = null, dtrCustomerInfo = null, dtrDownlineInfo = null, dtrBalanceInfo = null;
+        private DataRow dtrCustomerInfo = null;
 
         #endregion Defination
 
@@ -43,6 +45,9 @@ namespace Sunplus.Agent.UI._AccountInfo
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
             this.userNameRequest = Request.QueryString["username"];
+
+            this.isMember = Request.QueryString["isMember"] == "on" ? true : false;
+
             if (!string.IsNullOrEmpty(this.userNameRequest))
             {
                 this.userNameRequest = this.userNameRequest.Trim();
@@ -110,26 +115,26 @@ namespace Sunplus.Agent.UI._AccountInfo
         public override object InvokeData(System.Collections.Hashtable p)
         {
             AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-            this.dataset = bo.GetCustomerInfo(this.userNameRequest);
+            this.dataset = bo.GetCustomerInfo(this.userNameRequest, this.isMember);
 
             //Increase user search sugesstion
             if (this.dataset.Tables.Count > 0)
             {
-                if (this.dataset.Tables[1].Rows.Count > 0)
+                if (this.dataset.Tables[0].Rows.Count > 0)
                 {
-                    this.dtrUpdaterInfo = this.dataset.Tables[0].Rows[0]; //Updater Info
-                    this.dtrCustomerInfo = this.dataset.Tables[1].Rows[0]; //Customer Info
-                    this.dtrDownlineInfo = this.dataset.Tables[2].Rows[0]; //Downline Info
-                    this.dtrBalanceInfo = null;                 //Balance Info
+                    //this.dtrUpdaterInfo = this.dataset.Tables[0].Rows[0]; //Updater Info
+                    this.dtrCustomerInfo = this.dataset.Tables[0].Rows[0]; //Customer Info
+                    //this.dtrDownlineInfo = this.dataset.Tables[2].Rows[0]; //Downline Info
+                    //this.dtrBalanceInfo = null;                 //Balance Info
 
-                    if (this.dataset.Tables.Count > 3)
-                    {
-                        this.dtrBalanceInfo = this.dataset.Tables[3].Rows[0];
-                    }
+                    //if (this.dataset.Tables.Count > 3)
+                    //{
+                    //    this.dtrBalanceInfo = this.dataset.Tables[3].Rows[0];
+                    //}
 
                     if (this.isChangedUserName)
                     {
-                        bo.UpdateUserSearch(this.userNameRequest, this.dtrCustomerInfo["firstname"].ToString(), this.dtrCustomerInfo["lastname"].ToString());
+                        // bo.UpdateUserSearch(this.userNameRequest, this.dtrCustomerInfo["firstname"].ToString(), this.dtrCustomerInfo["lastname"].ToString());
                     }
                 }
             }
@@ -146,35 +151,37 @@ namespace Sunplus.Agent.UI._AccountInfo
             AccountInfo_Template tpl = new AccountInfo_Template();
 
             string strBalanceBox = string.Empty, strSearchBox = string.Empty, strSettingBox = string.Empty;
-            if (this.dataset.Tables.Count == 0 || this.dataset.Tables[1].Rows.Count == 0)
+            if (this.dataset.Tables.Count == 0 || this.dataset.Tables[0].Rows.Count == 0)
             {
                 this.FillCustomerEmpty(ref tpl, Resources.Lang.usernamenotexisted);
             }
             else
             {
-                this.custId = (int)this.dtrCustomerInfo["custid"];
-                this.custRoleId = (byte)this.dtrCustomerInfo["roleid"];
+                this.custId = (int)this.dtrCustomerInfo["ObjectId"];
+                this.agentLevel = int.Parse(this.dtrCustomerInfo["AgentLevel"].ToString());
+                // this.custRoleId = (byte)this.dtrCustomerInfo["roleid"];
 
-                if (!this.IsMemberDownlineMe(this.dtrDownlineInfo))
+                //if (!this.IsMemberDownlineMe(this.dtrDownlineInfo))
+                //{
+                //    this.FillCustomerEmpty(ref tpl, Resources.Lang.usernamenotexisted);
+                //}
+                //else
+                //{
+                tpl.searchBox = this.RenderSearchBox();
+
+                if (this.dtrCustomerInfo["ObjectId"].ToString().Trim() == CurrentUserSession.CustId.ToString().Trim())
                 {
-                    this.FillCustomerEmpty(ref tpl, Resources.Lang.usernamenotexisted);
+                    tpl.TheRestAcc = null;
                 }
                 else
                 {
-                    tpl.searchBox = this.RenderSearchBox();
-                    if (this.dtrCustomerInfo["custid"].ToString().Trim() == CurrentUserSession.CustId.ToString().Trim())
-                    {
-                        tpl.TheRestAcc = null;
-                    }
-                    else
-                    {
-                        tpl.TheRestAcc.balanceBox = RenderBalanceBox(dtrCustomerInfo, dtrBalanceInfo);
-                        tpl.TheRestAcc.settingBox = RenderSettingBox(dtrUpdaterInfo, dtrCustomerInfo, dtrDownlineInfo, dtrBalanceInfo);
-                    }
+                    //tpl.TheRestAcc.balanceBox = RenderBalanceBox(dtrCustomerInfo, dtrBalanceInfo);
+                    //tpl.TheRestAcc.settingBox = RenderSettingBox(dtrUpdaterInfo, dtrCustomerInfo, dtrDownlineInfo, dtrBalanceInfo);
                 }
+                //}
 
                 tpl.NoData = null;
-                this.RenderJavascriptObject();
+                // this.RenderJavascriptObject();
             }
 
             writer.Write(tpl);
@@ -183,6 +190,7 @@ namespace Sunplus.Agent.UI._AccountInfo
         /// <summary>
         /// Bind the javascript variable
         /// </summary>
+        /*
         private void RenderJavascriptObject()
         {
             RegisterJavascriptObject("usernamerequired", Resources.Lang.usernamerequired);
@@ -295,7 +303,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             RegisterJavascriptObject("IsShowRacing_152_51", UserPermission.IsShowRacing_152_51);
             RegisterJavascriptObject("IsShowRacing_153_51", UserPermission.IsShowRacing_153_51);
         }
-
+        */
         #endregion Render Content
 
         #region Render Search Box
@@ -316,84 +324,109 @@ namespace Sunplus.Agent.UI._AccountInfo
             */
             tpl.classStyle = "text_f";
             tpl.usernamesearch = this.userNameRequest;
-            tpl.CustInfo.CustomerUsername = this.FormatUsername(userName, Convert.ToBoolean(this.dtrCustomerInfo["enabled"]), true); //if string exceed this MaxLength, it will be truncated with tooltip!
-             /*
-            if ((CurrentUserSession.RoleId - int.Parse(this.dtrCustomerInfo["roleid"].ToString())) == 1)
+            tpl.CustInfo.CustomerUsername = userName;
+
+            if (!bool.Parse(this.dtrCustomerInfo["HasAgentDownLine"].ToString()))
             {
-                string nickName = this.dtrCustomerInfo["username2"].ToString();
+                tpl.ButtonAgentList.Hide();
+            }
+
+            if (!bool.Parse(this.dtrCustomerInfo["HasPlayerDownLine"].ToString()))
+            {
+                tpl.ButtonMemberList.Hide();
+            }
+
+            if (!bool.Parse(this.dtrCustomerInfo["IsMember"].ToString()))
+            {
+                tpl.ButtonBetList.Hide();
+            }
+
+            // tpl.CustInfo.CustomerUsername = this.FormatUsername(userName, string.IsNullOrEmpty(this.dtrCustomerInfo["enabled"].ToString()) ? false : Convert.ToBoolean(this.dtrCustomerInfo["enabled"].ToString()), true); //if string exceed this MaxLength, it will be truncated with tooltip!
+            /*
+           if ((CurrentUserSession.RoleId - int.Parse(this.dtrCustomerInfo["roleid"].ToString())) == 1)
+           {
+               string nickName = this.dtrCustomerInfo["username2"].ToString();
                
-                if (string.IsNullOrEmpty(nickName))
-                {
-                    tpl.CustInfo.blCustomerNickname = null;
-                }
-                else
-                {
-                    tpl.CustInfo.blCustomerNickname.CustomerNickname = Formater.TruncateWithTip(nickName, MAXLENGTH);
-                }
+               if (string.IsNullOrEmpty(nickName))
+               {
+                   tpl.CustInfo.blCustomerNickname = null;
+               }
+               else
+               {
+                   tpl.CustInfo.blCustomerNickname.CustomerNickname = Formater.TruncateWithTip(nickName, MAXLENGTH);
+               }
                  
-            }
-            else
-            {
-                tpl.CustInfo.blCustomerNickname = null;
-            }
+           }
+           else
+           {
+               tpl.CustInfo.blCustomerNickname = null;
+           }
            
-            if (string.IsNullOrEmpty(fullName.Trim()))
-            {
-                tpl.CustInfo.blCustomerFullName = null;
-            }
-            else
-            {
-                tpl.CustInfo.blCustomerFullName.CustomerFullName = Formater.TruncateWithTip(fullName, MAXLENGTH);
-            }
+           if (string.IsNullOrEmpty(fullName.Trim()))
+           {
+               tpl.CustInfo.blCustomerFullName = null;
+           }
+           else
+           {
+               tpl.CustInfo.blCustomerFullName.CustomerFullName = Formater.TruncateWithTip(fullName, MAXLENGTH);
+           }
 
-            if (string.IsNullOrEmpty(phone))
-            {
-                tpl.CustInfo.blCustomerPhone = null;
-            }
-            else
-            {
-                tpl.CustInfo.blCustomerPhone.CustomerPhone = Formater.TruncateWithTip(phone, MAXLENGTH);
-            }
+           if (string.IsNullOrEmpty(phone))
+           {
+               tpl.CustInfo.blCustomerPhone = null;
+           }
+           else
+           {
+               tpl.CustInfo.blCustomerPhone.CustomerPhone = Formater.TruncateWithTip(phone, MAXLENGTH);
+           }
             
-            if (string.IsNullOrEmpty(mobilephone))
-            {
-                tpl.CustInfo.blCustomerMobile = null;
-            }
-            else
-            {
-                tpl.CustInfo.blCustomerMobile.CustomerMobile = Formater.TruncateWithTip(mobilephone, MAXLENGTH);
-            }
+           if (string.IsNullOrEmpty(mobilephone))
+           {
+               tpl.CustInfo.blCustomerMobile = null;
+           }
+           else
+           {
+               tpl.CustInfo.blCustomerMobile.CustomerMobile = Formater.TruncateWithTip(mobilephone, MAXLENGTH);
+           }
 
-            if (string.IsNullOrEmpty(fax))
-            {
-                tpl.CustInfo.blCustomerFax = null;
-            }
-            else
-            {
-                tpl.CustInfo.blCustomerFax.CustomerFax = Formater.TruncateWithTip(fax, MAXLENGTH);
-            }
-            */
+           if (string.IsNullOrEmpty(fax))
+           {
+               tpl.CustInfo.blCustomerFax = null;
+           }
+           else
+           {
+               tpl.CustInfo.blCustomerFax.CustomerFax = Formater.TruncateWithTip(fax, MAXLENGTH);
+           }
+           */
             #endregion Set Basic Information: Name, Phone, mobile, Fax
 
-            switch (this.custRoleId)
+            if (this.isMember)
             {
-                case (int)UserTypes.Member:
-                    //tpl.CustInfo.lblCustomerUsername = Resources.Lang.customer;
-                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;                    
-                    break;
-                case (int)UserTypes.Agent:
-                    //tpl.CustInfo.lblCustomerUsername = Resources.Lang.agent;
-                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
-                    break;
-                case (int)UserTypes.Master:
-                    //tpl.CustInfo.lblCustomerUsername = Resources.Lang.master;
-                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;                   
-                    break;
-                case (int)UserTypes.Super:
-                    //tpl.CustInfo.lblCustomerUsername = Resources.Lang.super;
-                    tpl.CustInfo.lblUsername = Resources.Lang.lblUsername;
-                    break;
+                tpl.CustInfo.lblUsername = "Member";
             }
+            else
+            {
+
+                switch (this.agentLevel)
+                {
+                    case 0:
+                        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel0;
+                        break;
+                    case 1:
+                        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel1;
+                        break;
+                    case 2:
+                        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel2;
+                        break;
+                    case 3:
+                        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel3;
+                        break;
+                    default:
+                        tpl.CustInfo.lblUsername = Resources.Lang.agent;
+                        break;
+                }
+            }
+
 
             #region Name/List/Statment Link
 
@@ -482,7 +515,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
             if (CurrentUserSession.SubPageAccess.ViewReports)
             {
-                tpl.GroupStatement.statementlink = statementLink[this.custRoleId - 1];
+                // tpl.GroupStatement.statementlink = statementLink[this.custRoleId - 1];
             }
             else
             {
@@ -494,13 +527,13 @@ namespace Sunplus.Agent.UI._AccountInfo
             #endregion Name/List/Statment Link
 
             //Upline Info:
-            tpl.fornotdirectdownline.uplineinfo.SetValue(this.GenerateUplineInfo(this.custRoleId));
+            //tpl.fornotdirectdownline.uplineinfo.SetValue(this.GenerateUplineInfo(this.custRoleId));
 
             //If enter itself, just show the customer section only!
-            if (this.IsDirectDownline(this.custRoleId) || this.userNameRequest.Equals(CurrentUserSession.UserName, StringComparison.OrdinalIgnoreCase))
-            {
-                tpl.fornotdirectdownline = null;
-            }
+            //if (this.IsDirectDownline(this.custRoleId) || this.userNameRequest.Equals(CurrentUserSession.UserName, StringComparison.OrdinalIgnoreCase))
+            //{
+            //    tpl.fornotdirectdownline = null;
+            //}
 
             return tpl.ToString();
         }
@@ -557,6 +590,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             return userName;
         }
 
+        /*
         private string GenerateUplineInfo(int custRoleId)
         {
             // Use DataRow row2
@@ -595,7 +629,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
             return uplineInfo;
         }
-
+        */
         #endregion Render Search Box
 
 

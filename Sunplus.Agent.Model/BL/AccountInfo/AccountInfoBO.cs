@@ -50,9 +50,9 @@
             return this.accountInfoDAO.Acc_CustomerSelList(custId, pageSize, pageIndex, ref totalPages);
         }
 
-        public DataSet GetCustomerInfo(string userName)
+        public DataSet GetCustomerInfo(string userName, bool isMember)
         {
-            return this.accountInfoDAO.Age_CustomerSelAllInfo(userName, CurrentSession.CustId, CurrentSession.IsInternal);
+            return this.accountInfoDAO.Age_CustomerSelAllInfo(this.CurrentSession.CustId, userName, isMember);
         }
 
         public DataTable CustomerSelOnline(int custId)

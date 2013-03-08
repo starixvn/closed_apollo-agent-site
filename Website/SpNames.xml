@@ -322,6 +322,11 @@
     <Setting Key="Acc_BetList_AgentDetail" SpName="Acc_BetList_AgentDetail" DbName="DB05" Plain="0" />
 
   </Function>
+
+  <Function Name="Agent-Apollo-Customer Setting">
+    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="DB05" Plain="0" />
+  </Function>
+  
   <Function Name="Agent-Apollo-TotalBets">
     <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="DB05" Plain="0" />
     <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="DB05" Plain="0" />
