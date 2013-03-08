@@ -104,14 +104,9 @@ table.tblRpt tr td
 #box_header
 {
     background: url("../../_GlobalResources/Images/bg_boxTop.jpg") repeat-x scroll center top #E7E7E7;
-    border: 1px solid #CACACA;
-    margin-bottom: 7px;
-    margin-top: 0;
-    padding: 0;
-    
-	-moz-border-radius: 3px; /* Firefox */
-	-webkit-border-radius: 3px; /* Safari and Chrome */
-	border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */ 
+    border: 1px solid #CACACA;    
+    margin-top: 10px;
+    padding: 0;    
 }
 input.date_no
 {

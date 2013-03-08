@@ -24,7 +24,7 @@ td {
     background-color: #F6F8F9;
 }
 .even_row {
-    background-color: #faf9ee;
+    background-color: #fff;
 }
 .fl {
     float: left;
@@ -50,6 +50,10 @@ td, span, div, a {
 }
 a:link, a:visited {
     color: #1E1EEB;
+    text-decoration: none;
+}
+a:hover {
+    color: #FF6600;
     text-decoration: none;
 }
 #page_main {
@@ -87,11 +91,8 @@ body {
     background: url( "../../_GlobalResources/Images/bg_boxTop.jpg" ) repeat-x scroll center top #E7E7E7;
     border: 1px solid #CACACA;
     margin-bottom: 7px;
-    margin-top: 0;
-    padding: 0;
-    -moz-border-radius: 3px; /* Firefox */
-    -webkit-border-radius: 3px; /* Safari and Chrome */
-    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+    margin-top: 7px;
+    padding: 0;   
 }
 .btnInfo {
     background: url( "../../_GlobalResources/Images/icon_add.jpg" ) no-repeat scroll center top transparent;
@@ -131,8 +132,14 @@ a.forecast_toggle_link {
     float: right;
 }
 
-table {
-    -moz-border-radius: 3px; /* Firefox */
-    -webkit-border-radius: 3px; /* Safari and Chrome */
-    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+a.forecast_betlist_link {
+    display: block;
+    float: left;
+    padding-left: 10px;
+}
+
+a.forecast_toggle_link {
+    display: block;
+    float: right;
+    padding-left: 10px;
 }

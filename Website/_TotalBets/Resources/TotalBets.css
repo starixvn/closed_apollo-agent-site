@@ -15,9 +15,10 @@ a:hover
 }
 table.tblRpt td
 {
-    padding: 0 2px;
+    padding: 2px 5px;
     line-height: normal;
     height: 20px;
+    text-align: left;
 }
 
 /* Total goal */

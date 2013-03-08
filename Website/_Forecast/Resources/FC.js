@@ -18,7 +18,7 @@ function openForecast(matchId, betType) {
     }
 }
 function openForecastPopup(matchId, betType) {
-    ageWnd.open(age.GetBaseUrl() + '_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 210);
+    ageWnd.open(age.GetBaseUrl() + '_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
 }
 
 function RefreshFC() {
@@ -79,7 +79,7 @@ function initFC() {
     if (typeof ageWnd == 'undefined') {
         return;
     }
-    var h = 210;
+    var h = 222;
     var w = 600;
 
     if (ageWnd.loaded) {

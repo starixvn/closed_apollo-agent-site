@@ -193,8 +193,9 @@ select {
 }
 
 .tblRpt {
-    background-color: #3D3C3E;
-    margin-top: 10px;    
+    background-color: #716F72;
+    margin-top: 10px;
+    border-spacing: 1px;    
 }
 
 .RptSubTitle {
@@ -286,12 +287,9 @@ select {
 }
 
 .bg_white {
-    background-color: #fff;
+    background-color: #fff;    
 }
 
-.bg_white td {
-    border-left: 1px solid #323435;      
-}
 
 .bg_white td:first-child {
     border-left: none;      
@@ -389,7 +387,7 @@ select {
 }
 
 .warning ul {
-    color: #90979a;
+    color: #6A686B;
     font-weight: 700;
     list-style: none;
     margin-left: 2px;

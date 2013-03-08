@@ -115,32 +115,32 @@ namespace Fanex.Agent.UI
 			protected static string s26{get{return Resources.Lang.agentList;}}
 			protected static string s27 = "</th><th rowspan=\"2\">";
 			protected static string s28{get{return Resources.Lang.memberList;}}
-			protected static string s29 = "</th><th colspan=\"4\" class=\"header_comm\">";
-			protected static string s30{get{return Resources.Lang.lblSoccerPT;}}
-			protected static string s31 = "</th><th colspan=\"7\" class=\"header_comm\">";
-			protected static string s32{get{return Resources.Lang.lblagentCommission;}}
+			protected static string s29 = "</th><th colspan=\"7\" class=\"header_comm\">";
+			protected static string s30{get{return Resources.Lang.commission;}}
+			protected static string s31 = "</th><th colspan=\"4\" class=\"header_comm\">";
+			protected static string s32{get{return Resources.Lang.lblSoccerPT;}}
 			protected static string s33 = "</th></tr><tr class=\"header\"><th>";
-			protected static string s34{get{return Resources.Lang.hdp;}}
+			protected static string s34{get{return Resources.Lang.lblGroupa;}}
 			protected static string s35 = "</th><th>";
-			protected static string s36{get{return Resources.Lang.lblOU;}}
+			protected static string s36{get{return Resources.Lang.lblGroupb;}}
 			protected static string s37 = "</th><th>";
-			protected static string s38{get{return Resources.Lang.hdpLive;}}
+			protected static string s38{get{return Resources.Lang.lblGroupc;}}
 			protected static string s39 = "</th><th>";
-			protected static string s40{get{return Resources.Lang.ovLive;}}
+			protected static string s40{get{return Resources.Lang.lblGroupd;}}
 			protected static string s41 = "</th><th>";
-			protected static string s42{get{return Resources.Lang.lblGroupa;}}
+			protected static string s42{get{return Resources.Lang.lbl1x2;}}
 			protected static string s43 = "</th><th>";
-			protected static string s44{get{return Resources.Lang.lblGroupb;}}
+			protected static string s44{get{return Resources.Lang.other;}}
 			protected static string s45 = "</th><th>";
-			protected static string s46{get{return Resources.Lang.lblGroupc;}}
+			protected static string s46{get{return Resources.Lang.numbergame;}}
 			protected static string s47 = "</th><th>";
-			protected static string s48{get{return Resources.Lang.lblGroupd;}}
+			protected static string s48{get{return Resources.Lang.hdp;}}
 			protected static string s49 = "</th><th>";
-			protected static string s50{get{return Resources.Lang.lbl1x2;}}
+			protected static string s50{get{return Resources.Lang.lblOU;}}
 			protected static string s51 = "</th><th>";
-			protected static string s52{get{return Resources.Lang.other;}}
+			protected static string s52{get{return Resources.Lang.hdpLive;}}
 			protected static string s53 = "</th><th>";
-			protected static string s54{get{return Resources.Lang.numbergame;}}
+			protected static string s54{get{return Resources.Lang.ovLive;}}
 			protected static string s55 = "</th></tr></thead>";
 			public override void ToString(ref StringBuilder bd)
 			{
