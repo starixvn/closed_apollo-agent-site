@@ -105,7 +105,7 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_Header_Block: Block
 		{
-			protected static string s19 = "<thead><tr><th rowspan=\"2\"><input type=\"checkbox\" id=\"chkAll\" name=\"chkAll\"/></th><th rowspan=\"2\">";
+			protected static string s19 = "<thead><tr><th rowspan=\"2\"><input type=\"checkbox\" id=\"chkAll\" name=\"chkAll\" onclick=\"CheckAll_onClick(this);\"/></th><th rowspan=\"2\">";
 			protected static string s20{get{return Resources.Lang.edit;}}
 			protected static string s21 = "</th><th rowspan=\"2\">";
 			protected static string s22{get{return Resources.Lang.lblNoList;}}
@@ -199,7 +199,11 @@ namespace Fanex.Agent.UI
 			public string chkid = "{chkid}";
 			protected static string s59 = "\" name=\"chkid\" value=\"";
 			public string chkid_value = "{chkid_value}";
+<<<<<<< HEAD
+			protected static string s58 = "\" onclick=\"ItemCheck_OnClick(this);\"/></td><td align=\"center\">";
+=======
 			protected static string s60 = "\"/></td><td align=\"center\">";
+>>>>>>> d69e555f119fa542757b581bd5755ddb65c479b0
 			public string other_Option = "{other_Option}";
 			protected static string s61 = "</td><td>";
 			public string id = "{id}";

@@ -106,11 +106,34 @@ function GetCustomer(url) {
     location.href = url;
 }
 
-function CheckAll_onClick(ischecked) {
+function CheckAll_onClick(els) {
     var arrChk = document.getElementsByName('chkid');
     for (var i = 0; i < arrChk.length; i++) {
-        if (ischecked && !arrChk[i].checked) arrChk[i].checked = true;
-        else if (!ischecked && arrChk[i].checked) arrChk[i].checked = false;
+        if (els.checked && !arrChk[i].checked) {
+            arrChk[i].checked = true;
+        }
+        else if (!els.checked && arrChk[i].checked) {
+            arrChk[i].checked = false;
+        }
+    }
+}
+
+function ItemCheck_OnClick(els) {
+    if (!els.checked) {
+        $("chkAll").checked = false;
+    }
+    else {
+        var arrChk = document.getElementsByName('chkid');
+        var isChecked = true;
+        for (var i = 0; i < arrChk.length; i++) {
+            if (!arrChk[i].checked) {
+                isChecked = false;
+                return;
+            }
+        }
+        if (isChecked) {
+            $("chkAll").checked = true;
+        }
     }
 }
 

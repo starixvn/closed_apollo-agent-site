@@ -197,9 +197,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.agentId = dr["agentid"].ToString();
             // tplBlock.LnkUserName = CurrentUserSession.SubPageAccess.ViewReports ? "class='text' onclick=\"viewStatement(" + this.agentId + ",'Agent')\"" : string.Empty;
 
-            //tplBlock.custId = this.agentId;
-            //tplBlock.chkid = "chkid_" + dr["custid"];
-            //tplBlock.chkid_value = dr["username"] as string;
+            tplBlock.custId = this.agentId;
+            tplBlock.chkid = "chkid_" + this.agentId;
+            tplBlock.chkid_value = dr["username"] as string;
 
             tplBlock.id = dr["RowNumber"].ToString();
             tplBlock.username = dr["username"] as string;
@@ -229,7 +229,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             //// Render Other
             string editMenuControl = "EditMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
-            tplBlock.other_Option = new IcoOther(TemplateMain, editMenuControl);
+            tplBlock.other_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, string.Empty, editMenuControl);
 
             //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             //{
