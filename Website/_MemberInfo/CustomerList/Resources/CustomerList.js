@@ -119,21 +119,29 @@ function CheckAll_onClick(els) {
 }
 
 function ItemCheck_OnClick(els) {
-    if (!els.checked) {
+    var arrChk = document.getElementsByName('chkid');
+    if (!els.checked) { // Uncheck
         $("chkAll").checked = false;
     }
-    else {
-        var arrChk = document.getElementsByName('chkid');
+    else { // Checked
         var isChecked = true;
         for (var i = 0; i < arrChk.length; i++) {
             if (!arrChk[i].checked) {
                 isChecked = false;
-                return;
+                break;
             }
         }
         if (isChecked) {
             $("chkAll").checked = true;
         }
+    }
+}
+
+function ChangeAtribute(id, attDestinationName, attSourceName) {
+    if ($(id)) {
+        var sourceName = $(id).getAttribute(attSourceName);
+        $(id).setAttribute(attDestinationName, sourceName);
+        $(id).removeAttribute(attSourceName);
     }
 }
 
