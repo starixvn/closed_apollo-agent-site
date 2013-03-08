@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-<<<<<<< HEAD
-=======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.DTO", "Fanex.Age.DTO\Fanex.Age.DTO.csproj", "{A7134F35-65C9-43A6-9386-86CD65F349DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.Utility", "Fanex.Age.Utility\Fanex.Age.Utility.csproj", "{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}"
@@ -13,15 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Agent.Utilities", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Shared.ViewLogLib", "ViewLogLib\Sunplus.Shared.ViewLogLib.csproj", "{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}"
 EndProject
->>>>>>> 1b91de761f89360cdfd7f78c9818aa6a8dcf7c72
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website", "{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-<<<<<<< HEAD
-		ProjectReferences = "{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}|Fanex.Age.Utility.dll;{016F274C-1F76-450B-B80D-E7FB59BE6A2B}|Sunplus.Agent.Utilities.dll;{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}|Fanex.BetList.Age.dll;{5384E9C5-8CF1-42F8-8D12-8089EA725351}|Fanex.BetList.Core.TicketHelper.dll;{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}|Sunplus.Shared.ViewLogLib.dll;{A7134F35-65C9-43A6-9386-86CD65F349DD}|Fanex.Age.DTO.dll;{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}|Sunplus.Agent.Model.dll;{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}|Fanex.BetList.Core.dll;"
-=======
-		ProjectReferences = ""
->>>>>>> 029c22e7153215cb7d6e78f02aa608b963e63923
+		ProjectReferences = "{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}|Fanex.Age.Utility.dll;{016F274C-1F76-450B-B80D-E7FB59BE6A2B}|Sunplus.Agent.Utilities.dll;{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}|Sunplus.Shared.ViewLogLib.dll;{A7134F35-65C9-43A6-9386-86CD65F349DD}|Fanex.Age.DTO.dll;{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}|Sunplus.Agent.Model.dll;{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}|Fanex.BetList.Age.dll;{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}|Fanex.BetList.Core.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Website"
 		Debug.AspNetCompiler.PhysicalPath = "Website\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Website\"
@@ -39,15 +32,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website", "{C99C
 		VWDPort = "59488"
 	EndProjectSection
 EndProject
-<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Age", "..\apollo-betlist\Fanex.BetList.Age\Fanex.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core.TicketHelper", "..\apollo-betlist\Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core", "..\apollo-betlist\Fanex.BetList.Core\Fanex.BetList.Core.csproj", "{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}"
 EndProject
-=======
->>>>>>> 029c22e7153215cb7d6e78f02aa608b963e63923
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,7 +58,6 @@ Global
 		{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}.Release|Any CPU.Build.0 = Debug|Any CPU
-<<<<<<< HEAD
 		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,8 +70,6 @@ Global
 		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
->>>>>>> 029c22e7153215cb7d6e78f02aa608b963e63923
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

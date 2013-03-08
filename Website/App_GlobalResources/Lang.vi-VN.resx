@@ -4376,22 +4376,25 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
   <data name="VirtualTennis" xml:space="preserve">
     <value>Virtual Tennis</value>
   </data>
-	<data name="agentList" xml:space="preserve">
+  <data name="agentList" xml:space="preserve">
     <value>Các Agent</value>
   </data>
-	<data name="confirmUpdateMembers" xml:space="preserve">
+  <data name="confirmUpdateMembers" xml:space="preserve">
     <value>Xác nhận thay đổi giá trị PT của thành viên</value>
   </data>
-	<data name="firstGoalLastGoal" xml:space="preserve">
+  <data name="firstGoalLastGoal" xml:space="preserve">
     <value>Bàn thắng Đầu/Cuối</value>
   </data>
-	<data name="nextOverUnder" xml:space="preserve">
+  <data name="nextOverUnder" xml:space="preserve">
     <value>Banh kế tiếp - Over/Under</value>
   </data>
-	<data name="nextOddEven" xml:space="preserve">
+  <data name="nextOddEven" xml:space="preserve">
     <value>Banh kế tiếp - Lẻ/Chẵn</value>
   </data>
-	<data name="numberWheel" xml:space="preserve">
+  <data name="numberWheel" xml:space="preserve">
     <value>Number Wheel</value>
+  </data>
+  <data name="confirmUpdateMembers1" xml:space="preserve">
+    <value>Confirm Update Members\'s PT</value>
   </data>
 </root>
