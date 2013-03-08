@@ -131,13 +131,13 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             this.template.PagingHeader.button.Hide();
 
-            if (!CurrentUserSession.SubPageAccess.UpdateAccount)
-            {
-                this.template.PagingHeader.selected.Hide();
-            }
+            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
+            //{
+            //    this.template.PagingHeader.selected.Hide();
+            //}
 
-            this.template.PagingHeader.selected.function_all = "CheckAll_onClick(true);";
-            this.template.PagingHeader.selected.function_none = "CheckAll_onClick(false);";
+            //this.template.PagingHeader.selected.function_all = "CheckAll_onClick(true);";
+            //this.template.PagingHeader.selected.function_none = "CheckAll_onClick(false);";
         }
 
         public void RenderHeader(TplCore.Element.IElement e)

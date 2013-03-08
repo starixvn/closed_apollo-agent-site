@@ -75,9 +75,9 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_Header_Block: Block
 		{
-			protected static string s14 = "<thead><tr><th rowspan=\"2\">";
+			protected static string s14 = "<thead><tr><th rowspan=\"2\"><input type=\"checkbox\" id=\"chkAll\" name=\"chkAll\"/></th><th rowspan=\"2\">";
 			protected static string s15{get{return Resources.Lang.edit;}}
-			protected static string s16 = "</th><th rowspan=\"2\"><input type=\"checkbox\" id=\"chkAll\" name=\"chkAll\"/></th><th rowspan=\"2\">No.</th><th rowspan=\"2\">";
+			protected static string s16 = "</th><th rowspan=\"2\">No.</th><th rowspan=\"2\">";
 			protected static string s17{get{return Resources.Lang.username;}}
 			protected static string s18 = "</th><th rowspan=\"2\">";
 			protected static string s19{get{return Resources.Lang.agentList;}}
@@ -161,13 +161,13 @@ namespace Fanex.Agent.UI
 			public string color = "{color}";
 			protected static string s50 = "\" id=\"";
 			public string custId = "{custId}";
-			protected static string s51 = "\"><td align=\"center\">";
-			public string other_Option = "{other_Option}";
-			protected static string s52 = "</td><td><input type=\"checkbox\" id=\"";
+			protected static string s51 = "\"><td><input type=\"checkbox\" id=\"";
 			public string chkid = "{chkid}";
-			protected static string s53 = "\" name=\"chkid\" value=\"";
+			protected static string s52 = "\" name=\"chkid\" value=\"";
 			public string chkid_value = "{chkid_value}";
-			protected static string s54 = "\"/></td><td>";
+			protected static string s53 = "\"/></td><td align=\"center\">";
+			public string other_Option = "{other_Option}";
+			protected static string s54 = "</td><td>";
 			public string id = "{id}";
 			protected static string s55 = "</td><td class=\"l\"><div ";
 			public string LnkUserName = "{LnkUserName}";
@@ -210,11 +210,11 @@ namespace Fanex.Agent.UI
 					bd.Append(s50);
 					bd.Append(custId);
 					bd.Append(s51);
-					bd.Append(other_Option);
-					bd.Append(s52);
 					bd.Append(chkid);
-					bd.Append(s53);
+					bd.Append(s52);
 					bd.Append(chkid_value);
+					bd.Append(s53);
+					bd.Append(other_Option);
 					bd.Append(s54);
 					bd.Append(id);
 					bd.Append(s55);
