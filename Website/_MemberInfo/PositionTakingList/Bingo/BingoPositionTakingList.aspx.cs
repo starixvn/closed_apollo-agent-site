@@ -17,6 +17,7 @@ namespace Sunplus.Agent.UI._MemberInfo.PositionTakingList.Bingo
     using Sunplus.Bingo.Core;
     using Sunplus.Bingo.Entities;
     using Sunplus.Bingo.Services;
+    using Fanex.Agent.UI._MemberInfo.PositionTakingList.Bingo;
 
     public partial class BingoPositionTakingList_Page : ContextMenuColumnsBase
     {

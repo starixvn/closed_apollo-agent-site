@@ -11,6 +11,7 @@
     using Sunplus.Agent.UI._MemberInfo.Commission;
     using Sunplus.Agent.Utilities;
     using Sunplus.Agent.Model.Entities.Permission;
+    using Fanex.Agent.UI._MemberInfo.Commission;
 
     public partial class MemberCommissionSportbook_Page : MemberCommision_Page
     {
