@@ -4116,4 +4116,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="AgentLevel3" xml:space="preserve">
     <value>Main Agent</value>
   </data>
+  <data name="lblAgentListTitle" xml:space="preserve">
+    <value>Agent List:</value>
+  </data>
 </root>
