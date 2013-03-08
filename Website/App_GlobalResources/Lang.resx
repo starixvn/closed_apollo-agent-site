@@ -4101,4 +4101,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="ovLive" xml:space="preserve">
     <value>O/U Live</value>
   </data>
+  <data name="confirmUpdateMembers" xml:space="preserve">
+    <value>Confirm Update Members\'s PT</value>
+  </data>
 </root>
