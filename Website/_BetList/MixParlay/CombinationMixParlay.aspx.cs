@@ -58,15 +58,16 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
 
         public override object InvokeData(Hashtable hash)
         {
-            DataTable dtResult = null;
-            IBetListCmd command = new CombMixParlayBetListCmd(CurrentUserSession.NetSessionId);
-            if (command != null)
-            {
-                hash.Add("transid", transid);
-                command.SetParams(hash);
-                dtResult = command.Execute() as System.Data.DataTable;
-            }
-            return dtResult;
+            //DataTable dtResult = null;
+            //IBetListCmd command = new CombMixParlayBetListCmd(CurrentUserSession.NetSessionId);
+            //if (command != null)
+            //{
+            //    hash.Add("transid", transid);
+            //    command.SetParams(hash);
+            //    dtResult = command.Execute() as System.Data.DataTable;
+            //}
+            //return dtResult;
+            return null;
         }
 
         public override void ProcessRequest(ref Hashtable hash)
