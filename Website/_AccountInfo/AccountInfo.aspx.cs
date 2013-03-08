@@ -176,7 +176,7 @@ namespace Sunplus.Agent.UI._AccountInfo
                 else
                 {
                     //tpl.TheRestAcc.balanceBox = RenderBalanceBox(dtrCustomerInfo, dtrBalanceInfo);
-                    //tpl.TheRestAcc.settingBox = RenderSettingBox(dtrUpdaterInfo, dtrCustomerInfo, dtrDownlineInfo, dtrBalanceInfo);
+                    tpl.TheRestAcc.settingBox = RenderSettingBox(dtrCustomerInfo);
                 }
                 //}
 

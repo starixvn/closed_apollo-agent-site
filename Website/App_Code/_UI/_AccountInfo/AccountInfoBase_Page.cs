@@ -167,35 +167,35 @@
         /// Render Setting box
         /// </summary>
         /// <returns></returns>
-        public string RenderSettingBox(DataRow dtrUpdaterInfo, DataRow dtrCustomerInfo, DataRow dtrDownlineInfo, DataRow dtrBalanceInfo)
+        public string RenderSettingBox(DataRow dtrCustomerInfo)
         {
             this.custId = (int)dtrCustomerInfo["custid"];
             this.custRoleId = (byte)dtrCustomerInfo["roleid"];
 
             // Use DataRow row1, row2, row3.
             SettingBox_Template tpl = new SettingBox_Template();
-            bool isUpdaterDisableCasino = GetDBBooleanValue(dtrUpdaterInfo["DisableCasino"]);
-            bool isUpdaterDisableBingo = dtrUpdaterInfo.Table.Columns.Contains("DisableBingo") ? GetDBBooleanValue(dtrUpdaterInfo["DisableBingo"]) : true;
-            bool isUpdaterNumber = dtrUpdaterInfo.Table.Columns.Contains("DisableNumber") ? GetDBBooleanValue(dtrUpdaterInfo["DisableNumber"]) : true;
+            //bool isUpdaterDisableCasino = GetDBBooleanValue(dtrUpdaterInfo["DisableCasino"]);
+            //bool isUpdaterDisableBingo = dtrUpdaterInfo.Table.Columns.Contains("DisableBingo") ? GetDBBooleanValue(dtrUpdaterInfo["DisableBingo"]) : true;
+            //bool isUpdaterNumber = dtrUpdaterInfo.Table.Columns.Contains("DisableNumber") ? GetDBBooleanValue(dtrUpdaterInfo["DisableNumber"]) : true;
 
-            // CN 2 3 4 5 6 7: 00000000 (Last Number: weekly/daily use for transfer function)
-            string updaterTransferOption = Convert.IsDBNull(dtrUpdaterInfo["TransferOption"]) ? "00000000" : dtrUpdaterInfo["TransferOption"].ToString();
-            bool isUpdaterTransferDaily = updaterTransferOption[7] == '0';
-            bool isSyncCasino = GetDBBooleanValue(dtrCustomerInfo["synccasino"]);
-            bool isSyncLiveCasino = GetDBBooleanValue(dtrCustomerInfo["synclivecasino"]);
-            bool isSyncBingo = dtrCustomerInfo.Table.Columns.Contains("syncbingo") ? GetDBBooleanValue(dtrCustomerInfo["syncbingo"]) : false;
+            //// CN 2 3 4 5 6 7: 00000000 (Last Number: weekly/daily use for transfer function)
+            //string updaterTransferOption = Convert.IsDBNull(dtrUpdaterInfo["TransferOption"]) ? "00000000" : dtrUpdaterInfo["TransferOption"].ToString();
+            //bool isUpdaterTransferDaily = updaterTransferOption[7] == '0';
+            //bool isSyncCasino = GetDBBooleanValue(dtrCustomerInfo["synccasino"]);
+            //bool isSyncLiveCasino = GetDBBooleanValue(dtrCustomerInfo["synclivecasino"]);
+            //bool isSyncBingo = dtrCustomerInfo.Table.Columns.Contains("syncbingo") ? GetDBBooleanValue(dtrCustomerInfo["syncbingo"]) : false;
 
-            //Status
-            this.RenderSettingBoxStatus(tpl, dtrCustomerInfo);
+            ////Status
+            //this.RenderSettingBoxStatus(tpl, dtrCustomerInfo);
 
-            // hasDownline
-            this.RenderSettingBoxHasDownline(tpl);
+            //// hasDownline
+            //this.RenderSettingBoxHasDownline(tpl);
 
-            this.HideDisabledSettingBox(tpl, isUpdaterDisableCasino, isSyncCasino, isUpdaterDisableBingo, isSyncBingo, isUpdaterNumber);
+            //this.HideDisabledSettingBox(tpl, isUpdaterDisableCasino, isSyncCasino, isUpdaterDisableBingo, isSyncBingo, isUpdaterNumber);
 
-            this.RenderSettingBoxEditLink(tpl, dtrDownlineInfo, isUpdaterDisableCasino, isSyncCasino, isUpdaterDisableBingo, isSyncBingo, isSyncLiveCasino, isUpdaterTransferDaily);
+            //this.RenderSettingBoxEditLink(tpl, dtrDownlineInfo, isUpdaterDisableCasino, isSyncCasino, isUpdaterDisableBingo, isSyncBingo, isSyncLiveCasino, isUpdaterTransferDaily);
 
-            this.RenderSettingBoxLoginInfo(tpl, dtrCustomerInfo, dtrBalanceInfo);
+            //this.RenderSettingBoxLoginInfo(tpl, dtrCustomerInfo, dtrBalanceInfo);
 
             return tpl.ToString();
         }
