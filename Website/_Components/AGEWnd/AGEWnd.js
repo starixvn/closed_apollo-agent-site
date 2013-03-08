@@ -214,7 +214,7 @@ AGEWnd.prototype.setRect = function(left, top, width, height) {
 
     this.title.style.width = this.maskTitle.style.width = (this.width - 20) + 'px';
     this.content.style.width = (this.width) + "px";
-    this.content.style.height = (this.height - 8) + "px";
+    this.content.style.height = (this.height - 20) + "px";
 
     this.element.style.left = this.left + "px";
     this.element.style.top = this.top + "px";

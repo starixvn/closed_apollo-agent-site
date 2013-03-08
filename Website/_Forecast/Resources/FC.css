@@ -24,7 +24,7 @@ td {
     background-color: #F6F8F9;
 }
 .even_row {
-    background-color: #faf9ee;
+    background-color: #fff;
 }
 .fl {
     float: left;
@@ -48,7 +48,14 @@ td, span, div, a {
     font-family: Tahoma,Arial,helvetica,sans-serif;
     font-size: 11px;
 }
-
+a:link, a:visited {
+    color: #1E1EEB;
+    text-decoration: none;
+}
+a:hover {
+    color: #FF6600;
+    text-decoration: none;
+}
 #page_main {
     padding-top: 7px;
     overflow: visible;
@@ -84,7 +91,7 @@ body {
     background: url( "../../_GlobalResources/Images/bg_boxTop.jpg" ) repeat-x scroll center top #E7E7E7;
     border: 1px solid #CACACA;
     margin-bottom: 7px;
-    margin-top: 0;
+    margin-top: 7px;
     padding: 0;   
 }
 .btnInfo {
@@ -116,9 +123,13 @@ select {
     text-align: center;
 }
 
-a:link, a:visited {
-    color: #4DABFE;
-    text-decoration: none;
+a.forecast_betlist_link {
+    display: block;
+    float: left;
+}
+a.forecast_toggle_link {
+    display: block;
+    float: right;
 }
 
 a.forecast_betlist_link {
@@ -126,12 +137,9 @@ a.forecast_betlist_link {
     float: left;
     padding-left: 10px;
 }
+
 a.forecast_toggle_link {
     display: block;
     float: right;
-    padding-right: 10px;
-}
-
-a:hover {
-    color: #EB6003;
+    padding-left: 10px;
 }

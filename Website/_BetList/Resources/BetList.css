@@ -92,7 +92,7 @@ div.match + div.league {
 
 #hor-minimalist-a {
     font-size: 12px;
-    background: #3D3C3E;
+    background: #716F72;
     border-collapse: collapse;
     text-align: left;
     width: 100%;
@@ -103,7 +103,7 @@ div.match + div.league {
     color: #fff;
     /*background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969;*/
     background: #3D3C3E;
-    padding: 2px 2px;    
+    padding: 2px 5px;    
     text-align: center;
     border-left: 1px solid #fff;
 }
@@ -115,8 +115,8 @@ div.match + div.league {
 #hor-minimalist-a td {
     color: #000;
     vertical-align: top;
-    padding: 2px 2px 0px 2px;
-    border: solid 1px #3D3C3E;
+    padding: 2px 5px;
+    border: solid 1px #716F72;
     text-align: right;
     background: #fff;
 }

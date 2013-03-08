@@ -5,19 +5,20 @@ body
 
 a:link, a:visited
 {
-	color: #4DABFE;
+	color: #1e1eeb;
 	text-decoration: none;
 }
 a:hover
 {
-	color: #EB6003;
+	color: #F60;
 	text-decoration: none;
 }
 table.tblRpt td
 {
-    padding: 0 2px;
+    padding: 2px 5px;
     line-height: normal;
     height: 20px;
+    text-align: left;
 }
 
 /* Total goal */
