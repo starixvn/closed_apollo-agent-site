@@ -225,7 +225,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             dictStatus.Add("Suspended", isSuspended);
             IcoStatus status = new IcoStatus(TemplateMain, dictStatus, ref backgroundColor, editMember_Single, renderStatus);
             tplBlock.color = backgroundColor;
-            tplBlock.status = status;
+            //tplBlock.status = status;
 
             string setDoubleCommission = string.Format("SetDoubleCommission('{0}',this);", this.memberId);
             if (!UserPermission.IsShowDoubleCommission)
@@ -236,7 +236,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             bool isDoubleCommission = Convert.ToBoolean(dr["DoubleCommLosing"]);            
 
             MemberIcoDComm dcomm = new MemberIcoDComm(TemplateMain, isDoubleCommission, setDoubleCommission);
-            tplBlock.DCom.doublecommission = dcomm;
+            //tplBlock.DCom.doublecommission = dcomm;
 
             // Render Other menu
             string otherOnclick = "ShowFrmUpdOthers(this,'divUpdOthers', '" + this.memberId + "', '" + dr["username"].ToString() + "', 'Member')";
@@ -246,17 +246,17 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
             }
 
-            tplBlock.nickname = dr["username2"] as string;
-            tplBlock.lastName = dr["lastname"] as string;
-            tplBlock.firstName = dr["firstname"] as string;
+            //tplBlock.nickname = dr["username2"] as string;
+            //tplBlock.lastName = dr["lastname"] as string;
+            //tplBlock.firstName = dr["firstname"] as string;
             tplBlock.group = dr["ugroup"] as string;
-            tplBlock.acomm1 = Formater.FormatNumber4(dr["discount"], this.langKey);
-            tplBlock.acomm2 = Formater.FormatNumber4(dr["discount1x2"], this.langKey);
-            tplBlock.acomm3 = Formater.FormatNumber4(dr["discountcs"], this.langKey);
-            tplBlock.pcomm1 = Formater.FormatNumber4(dr["playerdiscount"], this.langKey);
-            tplBlock.pcomm2 = Formater.FormatNumber4(dr["playerdiscount1x2"], this.langKey);
-            tplBlock.pcomm3 = Formater.FormatNumber4(dr["playerdiscountcs"], this.langKey);
-            tplBlock.game = Formater.FormatNumber4(dr["playerdiscountnumber"], this.langKey);
+            //tplBlock.acomm1 = Formater.FormatNumber4(dr["discount"], this.langKey);
+            //tplBlock.acomm2 = Formater.FormatNumber4(dr["discount1x2"], this.langKey);
+            //tplBlock.acomm3 = Formater.FormatNumber4(dr["discountcs"], this.langKey);
+            //tplBlock.pcomm1 = Formater.FormatNumber4(dr["playerdiscount"], this.langKey);
+            //tplBlock.pcomm2 = Formater.FormatNumber4(dr["playerdiscount1x2"], this.langKey);
+            //tplBlock.pcomm3 = Formater.FormatNumber4(dr["playerdiscountcs"], this.langKey);
+            //tplBlock.game = Formater.FormatNumber4(dr["playerdiscountnumber"], this.langKey);
             tplBlock.createdate = Formater.FormatDateTimeEn12(dr["createdate"]);
             tplBlock.lastLoginIp = Sunplus.Agent.Model.Common.AgentIPFormat.FormatIP(dr["lastloginip"].ToString());
         }
