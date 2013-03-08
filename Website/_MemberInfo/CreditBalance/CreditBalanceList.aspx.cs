@@ -465,8 +465,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CreditBalance
             List<object> arrPageSize = new List<object>(new object[] { 10, 50, 100, 500 });
             this.template.PagingHeader.pagingControl = new Paging_Control(this.template, pagingControlName_top, this.pageSize, Request.Url.AbsoluteUri, this.totalPages * this.pageSize, false);
             this.template.PagingHeader.selPageSize = Lang.pagesize + Utilities.HtmlGenerator.ComboBox("sel" + pagingControlName_top, (object)this.pageSize, arrPageSize, pagingControlName_top + ".SetPageSize(this.value)");
-            this.template.PagingHeader.selected = null;
-            this.template.PagingHeader.button = null;
+            //   this.template.PagingHeader.selected = null;
+            //   this.template.PagingHeader.button = null;
 
             // Paging on bottom
             if (this.totalPages > 1)
