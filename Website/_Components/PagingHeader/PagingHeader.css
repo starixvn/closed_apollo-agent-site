@@ -37,17 +37,18 @@
 
 #tblHeader .bgcenter
 {
-	background: url( "center_table.png" ) repeat-x scroll center bottom transparent;
+    background: url( "center_table.png" ) repeat-x scroll center bottom transparent;
+    padding-top: 2px;    
 	text-align: center; /*padding-top: 13px;*/
-	padding-top: 2px;
+	
 }
 
 #tblHeader .bgright
 {
 	background: url( "right_table.jpg" ) no-repeat scroll right bottom transparent;
+    padding-top: 10px;   
 	width: 159px;
 	text-align: right;
-	padding-top: 10px;
 }
 
 #tblHeader .btnSubmit
@@ -105,4 +106,8 @@
 #tblHeader .btnSubmit:hover
 {
 	color: #cc4800;
+}
+
+#page_main {
+    padding-top: 0;
 }
