@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Agent.Utilities", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Shared.ViewLogLib", "ViewLogLib\Sunplus.Shared.ViewLogLib.csproj", "{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website", "{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 <<<<<<< HEAD
