@@ -199,11 +199,7 @@ namespace Fanex.Agent.UI
 			public string chkid = "{chkid}";
 			protected static string s59 = "\" name=\"chkid\" value=\"";
 			public string chkid_value = "{chkid_value}";
-<<<<<<< HEAD
-			protected static string s58 = "\" onclick=\"ItemCheck_OnClick(this);\"/></td><td align=\"center\">";
-=======
-			protected static string s60 = "\"/></td><td align=\"center\">";
->>>>>>> d69e555f119fa542757b581bd5755ddb65c479b0
+			protected static string s60 = "\" onclick=\"ItemCheck_OnClick(this);\"/></td><td align=\"center\">";
 			public string other_Option = "{other_Option}";
 			protected static string s61 = "</td><td>";
 			public string id = "{id}";
