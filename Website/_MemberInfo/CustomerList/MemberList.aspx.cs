@@ -240,7 +240,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             // Render Other menu
             string otherOnclick = "ShowFrmUpdOthers(this,'divUpdOthers', '" + this.memberId + "', '" + dr["username"].ToString() + "', 'Member')";
-            tplBlock.other_Option = new IcoOther(TemplateMain, otherOnclick);
+            //tplBlock.other_Option = new IcoOther(TemplateMain, otherOnclick);
             if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             {
                 tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
