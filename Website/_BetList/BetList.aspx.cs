@@ -288,7 +288,7 @@ namespace Sunplus.Agent.UI._BetList
                     builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
 
                     builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
-                    builder.AddAgentComm(ticket, ticketData, "<td class='r'>", "</td>");
+                    builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
 
                     builder.Append("</tr>");
                 }

@@ -317,7 +317,10 @@
   <Function Name="Agent-Apollo-TotalBets-BetList">
     <Setting Key="Acc_Betlist_TotalBets_Sel_4_30" SpName="Acc_Betlist_TotalBets_Sel_4_30" DbName="DB05" Plain="0" />
     <Setting Key="Acc_BetList_TotalBets_SelRunningByBettype" SpName="Acc_BetList_TotalBets_SelRunningByBettype" DbName="DB05" Plain="0" />
+    <Setting Key="Acc_BetList_TotalBet_AgentDetail" SpName="Acc_BetList_TotalBet_AgentDetail" DbName="DB05" Plain="0" />
+
     <Setting Key="Acc_BetList_AgentDetail" SpName="Acc_BetList_AgentDetail" DbName="DB05" Plain="0" />
+
   </Function>
   <Function Name="Agent-Apollo-TotalBets">
     <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="DB05" Plain="0" />
