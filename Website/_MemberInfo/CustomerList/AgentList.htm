@@ -8,12 +8,12 @@
         <td>
             <div id="title_header">
                 <div class="agent-list-title">
-                    {static:Resources.Lang.lblAgentListTitle} 
-                </div>                
+                    {static:Resources.Lang.lblAgentListTitle}
+                </div>
                 <div class="navigation">
                     <span class="short-link">{navigation}</span>
                     <ul class="full-link">
-                       <!--fullLink--> 
+                       <!--fullLink-->
                        <li>{lineLink}<a href="{urlAgentSite}">{txtAgentSite}</a></li>
                        <!--/fullLink-->
                     </ul>
@@ -38,9 +38,9 @@
                 <table id="tblCustomerList">
                     <!--Header-->
                     <thead>
-                        <tr>                            
+                        <tr>
                             <th rowspan="2">
-                                <input type="checkbox" id="chkAll" name="chkAll"/>
+                                <input type="checkbox" id="chkAll" name="chkAll" onclick="CheckAll_onClick(this);"/>
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.edit}
@@ -95,9 +95,9 @@
                     <!--/Header-->
                     <tbody>
                         <!--Content-->
-                        <tr class="{color}" id="{custId}">                             
+                        <tr class="{color}" id="{custId}">
                             <td>
-                                <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}"/>
+                                <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" onclick="ItemCheck_OnClick(this);"/>
                             </td>
                             <td align="center">
                                 {other_Option}

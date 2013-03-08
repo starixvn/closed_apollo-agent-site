@@ -8,17 +8,21 @@ using TplCore.Element;
 /// <summary>
 /// Summary description for IcoOther_Control
 /// </summary>
-/// 
+///
 namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Components
 {
-    using IcoOther_Control;
+    using Fanex.Agent.UI._MemberInfo.CustomerList.Components.IcoOther_Control;
+
     public class IcoOther : IComponent
     {
         IcoOther_Control_Template tpl = new IcoOther_Control_Template();
-        public IcoOther(IElement parent, string onClick)
+
+        public IcoOther(IElement parent, string id, string onClick, string onMouseOver)
         {
             if (parent != null) parent.RegisterComponent("IcoOther_Control", this);
             tpl.onClick = onClick;
+            tpl.menuSettingId = id;
+            tpl.onMouseOver = onMouseOver;
             tpl.Edit = Resources.Lang.edit;
         }
 
@@ -26,10 +30,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Components
         {
             return value.ToString();
         }
+
         public void HideLinkedResources()
         {
             tpl.ExternalResources = null;
         }
+
         public override string ToString()
         {
             return tpl.ToString();
