@@ -332,6 +332,32 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.RenderOtherStatus(this.arrayTextPopupMenu, this.arrayDisabledPopupMenu, this.arrayIdPopupMenu);
         }
 
+        /// <summary>
+        /// Apollo Agent - Init Edit Menu Control
+        /// </summary>
+        public void InitEditMenuControl()
+        {
+            int itemArray = 3;
+
+            this.arrayDisabledPopupMenu = new object[itemArray];
+            this.arrayTextPopupMenu = new object[itemArray];
+            this.arrayIdPopupMenu = new object[itemArray];
+
+            this.arrayDisabledPopupMenu[0] = 0;
+            this.arrayTextPopupMenu[0] = Resources.Lang.commission;
+            this.arrayIdPopupMenu[0] = "editCommission";
+
+            this.arrayDisabledPopupMenu[1] = 0;
+            this.arrayTextPopupMenu[1] = Resources.Lang.lblBetSetting;
+            this.arrayIdPopupMenu[1] = "editBetSetting";
+
+            this.arrayDisabledPopupMenu[2] = 0;
+            this.arrayTextPopupMenu[2] = Resources.Lang.positiontaking;
+            this.arrayIdPopupMenu[2] = "editPositionTaking";
+
+            this.RenderEditControl(arrayTextPopupMenu, arrayIdPopupMenu, arrayDisabledPopupMenu);
+        }
+
         public void InitPopupOther()
         {
             // Init Div Other's Popup
@@ -505,6 +531,19 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             string editOther = "divUpdOthers";
             string other = menuOther.RenderLink(textsOther, idsOther, isDisableOther, editOther);
             this.TemplateMain.Extend_tpl.Append(other);
+        }
+
+        /// <summary>
+        /// Apollo Agent - Render Menu Popup Control
+        /// </summary>
+        /// <param name="texts"></param>
+        /// <param name="ids"></param>
+        /// <param name="isDisabled"></param>
+        public virtual void RenderEditControl(object[] texts, object[] ids, object[] isDisabled)
+        {
+            MenuPopup menuPopup = new MenuPopup();
+            string menu = menuPopup.RenderLink(texts, ids, isDisabled, "editControl");
+            this.TemplateMain.Extend_tpl.Append(menu);
         }
 
         public bool DisabledRacing(DataRow dr)

@@ -56,9 +56,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public override void RenderContent(HtmlTextWriter writer)
         {
             this.InitJsLang();
-            //this.InitPopupStatus(false);
-            //this.InitPopupMulti();
-            //this.InitPopupOther();
+            this.InitEditMenuControl();
+            ////this.InitPopupStatus(false);
+            ////this.InitPopupMulti();
+            ////this.InitPopupOther();
 
             this.RequestQueryString = this.HashTableQueryString;
 
@@ -227,16 +228,16 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             //tplBlock.DCom.doublecommission = dcomm;
 
             //// Render Other
-            //string otherOnclick = "ShowFrmUpdOthers(this,'divUpdOthers', '" + this.agentId + "', '" + dr["username"].ToString() + "', 'Agent')";
-            tplBlock.other_Option = new IcoOther(TemplateMain, "");
+            string editMenuControl = "EditMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
+            tplBlock.other_Option = new IcoOther(TemplateMain, editMenuControl);
 
             //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             //{
             //    tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
             //}
 
-            //string viewDonwlineClick = "ViewDownLine('MemberList.aspx?custid=" + this.agentId + "&masterId=" + this.MasterId + "')";
-            IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "");
+            string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "')";
+            IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, viewAgentDonwlineClick);
             tplBlock.viewAgentList = viewAgentDownline;
 
             IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "");
