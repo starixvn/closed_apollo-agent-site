@@ -28,75 +28,73 @@
                     <!--Header-->
                     <thead>
                         <tr>
-                            <th rowspan="2">
-                                {static:Resources.Lang.edit}
-                            </th>                            
                             <th rowspan="2" {DisplayUpdMulti:} isDirectDownline="1" isShowDCom={isShowDCom}>
                                 {editmult}
                             </th>
                             <th rowspan="2">
-                                No.
+                                {static:Resources.Lang.edit}
+                            </th> 
+                            <th rowspan="2">
+                                {static:Resources.Lang.lblNoList}
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.username}
-                            </th>                            
-                            <th colspan="4" class="header_comm">
-                                {static:Resources.Lang.soccerPT}
-                            </th> 
+                            </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.group}
                             </th>
                             <th colspan="4" class="header_comm">
-                                {static:Resources.Lang.AgentCommission}
+                                {static:Resources.Lang.lblagentCommission}
                             </th>
                             <th colspan="4" class="header_comm">
-                                {static:Resources.Lang.memberCommission}
+                                {static:Resources.Lang.lblMemberCommissionPercent}
                             </th>
+                            <th colspan="4" class="header_comm">
+                                {static:Resources.Lang.lblSoccerPT}
+                            </th> 
                             <th rowspan="2">
                                 {static:Resources.Lang.CreatedDate}
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.lastloginIP}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.username}
-                            </th>
+                            </th>                           
                         </tr>
                         <tr class="header">
                             <th>
-                                {static:Resources.Lang.acomm1}
+                                {static:Resources.Lang.group}
                             </th>
                             <th>
-                                {static:Resources.Lang.acomm2}
+                                {static:Resources.Lang.lbl1x2}
                             </th>
                             <th>
-                                {static:Resources.Lang.acomm3}
+                                {static:Resources.Lang.other}
                             </th>
                             <th>
-                                {static:Resources.Lang.pcomm1}
-                            </th>
-
-                            
+                                {static:Resources.Lang.numbergame}
+                            </th>                            
                             <th>
-                                {static:Resources.Lang.acomm1}
+                                {static:Resources.Lang.group}
                             </th>
                             <th>
-                                {static:Resources.Lang.acomm2}
+                                {static:Resources.Lang.lbl1x2}
                             </th>
                             <th>
-                                {static:Resources.Lang.acomm3}
+                                {static:Resources.Lang.other}
                             </th>
                             <th>
-                                {static:Resources.Lang.pcomm1}
+                                {static:Resources.Lang.numbergame}
                             </th>
                             <th>
-                                {static:Resources.Lang.pcomm2}
+                                {static:Resources.Lang.hdp}
                             </th>
                             <th>
-                                {static:Resources.Lang.pcomm3}
+                                {static:Resources.Lang.lblOU}
                             </th>
                             <th>
-                                {static:Resources.Lang.game}
+                                {static:Resources.Lang.hdpLive}
+                            </th>
+                            <th>
+                                {static:Resources.Lang.ovLive}
                             </th>
                         </tr>
                     </thead>
@@ -104,68 +102,63 @@
                     <tbody>
                         <!--Content-->
                         <tr class="{color}" id="{custId}" iconhr="{iconhr}" iconcs="{iconcs}" iconbg="{iconbg}" iconp2p="{iconp2p}" isDisabledP2P="{isDisabledP2P}" iconLiveCasino="{iconLiveCasino}" isDisabledLiveCS="{isDisabledLiveCS}" iconVirtualSport="{iconVirtualSport}" isDisabledVS="{isDisabledVS}" iconEdit="{iconEdit:}">
-                            <td>
-                                {id}
-                            </td>
                             <td {DisplayUpdMulti:}>
                                 <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" statuscs="{statusCS}" statusracing="{statusRacing}" statusbingo="{statusBingo}" statusp2p="{statusP2P}" statusLiveCasino="{statusLiveCasino}" statusVirtualSport="{statusVirtualSport}"/>
-                            </td>
-                            <td class="l">
-                                <div {LnkUserName}>{username}</div>
-                            </td>
-                            <td>
-                                {status}
                             </td>
                             <td align="center">
                                 {other_Option}
                             </td>
-                            <!--DCom-->
                             <td>
-                                {doublecommission}
-                            </td>
-                            <!--/DCom-->
+                                {id}
+                            </td>                            
                             <td class="l">
-                                {nickname}
-                            </td>
-                            <td class="l">
-                                {firstName}
-                            </td>
-                            <td class="l">
-                                {lastName}
-                            </td>
+                                <div {LnkUserName}>{username}</div>
+                            </td>                            
                             <td>
                                 {group}
                             </td>
                             <td>
-                                {acomm1}
+                                {groupAgent}
                             </td>
                             <td>
-                                {acomm2}
+                                {oneXtwoAgent}
                             </td>
                             <td>
-                                {acomm3}
+                                {otherAgent}
                             </td>
                             <td>
-                                {pcomm1}
+                                {gameAgent}
                             </td>
                             <td>
-                                {pcomm2}
+                                {groupMember}
                             </td>
                             <td>
-                                {pcomm3}
+                                {oneXtwoMember}
                             </td>
                             <td>
-                                {game}
+                                {otherMember}
+                            </td>
+                            <td>
+                                {gameMember}
+                            </td>
+                            <td>
+                                {HDP}
+                            </td>
+                            <td>
+                                {OU}
+                            </td>
+                            <td>
+                                {HDPLive}
+                            </td>
+                            <td>
+                                {OULive}
                             </td>
                             <td class="bl_time">
                                 {createdate}
                             </td>
                             <td>
                                 {lastLoginIp}
-                            </td>
-                            <td class="l">
-                                <div {LnkUserName}>{username}</div>
-                            </td>
+                            </td>                           
                         </tr>
                         <!--/Content-->
                     </tbody>
