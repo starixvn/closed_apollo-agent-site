@@ -325,6 +325,8 @@
 
   <Function Name="Agent-Apollo-Customer Setting">
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="DB05" Plain="0" />
+    <Setting Key="Age_Customer_GetDownLine" SpName="Age_Customer_GetDownLine" DbName="DB05" Plain="0" />
+ 
   </Function>
   
   <Function Name="Agent-Apollo-TotalBets">
