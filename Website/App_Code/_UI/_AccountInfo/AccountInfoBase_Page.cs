@@ -16,6 +16,7 @@
     {
         #region Variable
         private int custId = -1, custRoleId = -1;
+        private bool isMember = false;
         const string CLASS_NAME = "b_nleft";
         const string DISABLE_HTML_ELEMENT = "disabled='disabled'";
         const string ENABLE_HTML_ELEMENT = "style='cursor:pointer;'";
@@ -169,8 +170,9 @@
         /// <returns></returns>
         public string RenderSettingBox(DataRow dtrCustomerInfo)
         {
-            this.custId = (int)dtrCustomerInfo["custid"];
-            this.custRoleId = (byte)dtrCustomerInfo["roleid"];
+            this.custId = (int)dtrCustomerInfo["ObjectId"];
+            this.isMember = string.IsNullOrEmpty(dtrCustomerInfo["IsMember"].ToString()) ? true : bool.Parse(dtrCustomerInfo["IsMember"].ToString());
+            //this.custRoleId = (byte)dtrCustomerInfo["roleid"];
 
             // Use DataRow row1, row2, row3.
             SettingBox_Template tpl = new SettingBox_Template();
@@ -193,7 +195,7 @@
 
             //this.HideDisabledSettingBox(tpl, isUpdaterDisableCasino, isSyncCasino, isUpdaterDisableBingo, isSyncBingo, isUpdaterNumber);
 
-            //this.RenderSettingBoxEditLink(tpl, dtrDownlineInfo, isUpdaterDisableCasino, isSyncCasino, isUpdaterDisableBingo, isSyncBingo, isSyncLiveCasino, isUpdaterTransferDaily);
+            this.RenderSettingBoxEditLink(tpl, dtrCustomerInfo);
 
             //this.RenderSettingBoxLoginInfo(tpl, dtrCustomerInfo, dtrBalanceInfo);
 
@@ -319,12 +321,12 @@
         /// <param name="isUpdaterDisableCasino"></param>
         /// <param name="isSyncCasino"></param>
         /// <param name="isUpdaterTransferDaily"></param>
-        private void RenderSettingBoxEditLink(SettingBox_Template tpl, DataRow dtrDownlineInfo, bool isUpdaterDisableCasino, bool isSyncCasino, bool isUpdaterDisableBingo, bool isSyncBingo, bool isSyncLiveCasino, bool isUpdaterTransferDaily)
+        private void RenderSettingBoxEditLink(SettingBox_Template tpl, DataRow dtrCustomerInfo)
         {
             //Other settings
-            int agentId = Convert.IsDBNull(dtrDownlineInfo["agentID"]) ? -1 : (int)dtrDownlineInfo["agentID"];
-            string agentName = this.GetDBStringValue(dtrDownlineInfo["agentName"]);
-            string masterName = this.GetDBStringValue(dtrDownlineInfo["masterName"]);
+            int agentId = Convert.IsDBNull(dtrCustomerInfo["ObjectId"]) ? -1 : (int)dtrCustomerInfo["ObjectId"];
+            // string agentName = this.GetDBStringValue(dtrCustomerInfo["UserName"]);
+            //string masterName = this.GetDBStringValue(dtrDownlineInfo["masterName"]);
 
             string[] editPTLink = { string.Format("../_MemberInfo/PositionTaking/Agent/EditMember.aspx?m=0&custid={0}&USER={1}&agentid={2}&CallBack=Fanex.Customer.NewMember.OnRedirectToPage()", this.custId, this.userNameRequest, CurrentUserSession.CustId),
                         string.Format("../_MemberInfo/PositionTaking/Master/EditAgent.aspx?m=0&custid={0}&USER={1}&masterid={2}&CallBack=Fanex.EditPT.OnRedirectToPage()", this.custId, this.userNameRequest, CurrentUserSession.CustId),
@@ -343,35 +345,32 @@
                                 string.Format("../_MemberInfo/RaceBook/{1}/EditMember.aspx?custid={0}&popup=false", new object[] { this.custId, ((UserTypes)CurrentUserSession.RoleId).ToString() }),
                                 string.Empty
                                 };
+            
 
-            switch (this.custRoleId)
+            if (this.isMember)
             {
-                case (int)UserTypes.Member:
-                    tpl.otherSettings = this.RenderOtherSettingViewMember(editPTLink, editPTOnMemberLink, editHROnMemberLink, isUpdaterDisableCasino, isSyncCasino, isUpdaterDisableBingo, isSyncBingo, isSyncLiveCasino);
-                    RegisterJavascriptObject("agenttype", Resources.Lang.member);
-                    break;
-                case (int)UserTypes.Agent:
-                    tpl.otherSettings = this.RenderOtherSettingViewAgent(editPTLink, editPTOnMemberLink, editHROnMemberLink, isSyncCasino, isSyncBingo, isUpdaterTransferDaily);
-                    RegisterJavascriptObject("agenttype", Resources.Lang.agent);
-                    break;
-                case (int)UserTypes.Master:
-                    tpl.otherSettings = this.RenderOtherSettingViewMaster(editPTLink, editPTOnMemberLink, editHROnMemberLink, isSyncCasino, isSyncBingo, isUpdaterTransferDaily);
-                    RegisterJavascriptObject("agenttype", Resources.Lang.master);
-                    break;
-            }
-        }
-
-        private string RenderOtherSettingViewMember(string[] editPTLink, string[] editPTOnMemberLink, string[] editHROnMemberLink, bool isUpdaterDisableCasino, bool isSyncCasino, bool isUpdaterDisableBingo, bool isSyncBingo, bool isSyncLiveCasino)
-        {
-            SettingBoxViewMember_Template tplMember = new SettingBoxViewMember_Template();
-
-            if (!IsDirectDownline(this.custRoleId))
-            {
-                tplMember.ForDirectDownline.Hide();
+                // tpl.otherSettings = this.RenderOtherSettingViewMember(editPTLink, editPTOnMemberLink, editHROnMemberLink);
+                tpl.otherSettings = this.RenderOtherSettingViewAgent(editPTLink, editPTOnMemberLink, editHROnMemberLink);
+                RegisterJavascriptObject("agenttype", Resources.Lang.member);
             }
             else
             {
-                tplMember.ForDirectDownline.editPTLink = editPTLink[this.custRoleId - 1];
+                tpl.otherSettings = this.RenderOtherSettingViewAgent(editPTLink, editPTOnMemberLink, editHROnMemberLink);
+                RegisterJavascriptObject("agenttype", Resources.Lang.agent);
+            }
+        }
+
+        private string RenderOtherSettingViewMember(string[] editPTLink, string[] editPTOnMemberLink, string[] editHROnMemberLink)
+        {
+            SettingBoxViewMember_Template tplMember = new SettingBoxViewMember_Template();
+
+            //if (!IsDirectDownline(this.custRoleId))
+            //{
+            //    tplMember.ForDirectDownline.Hide();
+            //}
+            //else
+            //{
+                tplMember.ForDirectDownline.editPTLink = editPTLink[0];
                 //tplMember.ForDirectDownline.LnkResetPassword.resetPasswordLink = string.Format("../_AccountInfo/ResetPassword.aspx?custid={0}&usn={1}&nobackground=1&isSyncCasino={2}", this.custId, this.userNameRequest, isSyncCasino);
                 tplMember.ForDirectDownline.editRacingLink = string.Format("../_MemberInfo/RaceBook/{1}/EditMember.aspx?custid={0}&popup=false", this.custId, ((UserTypes)CurrentUserSession.RoleId).ToString());
                 /*
@@ -431,9 +430,9 @@
                             };
 
                 tplMember.ForDirectDownline.editCommLink = editCommLink[this.custRoleId - 1];
-                tplMember.ForDirectDownline.editInfoLink = string.Format("EditCustomerInfo.aspx?custId={0}&username={1}&isSyncCasino={2}&isSyncBingo={3}", this.custId, this.userNameRequest, isSyncCasino ? "1" : "0", isSyncBingo ? "1" : "0");
+                //tplMember.ForDirectDownline.editInfoLink = string.Format("EditCustomerInfo.aspx?custId={0}&username={1}&isSyncCasino={2}&isSyncBingo={3}", this.custId, this.userNameRequest, isSyncCasino ? "1" : "0", isSyncBingo ? "1" : "0");
                 tplMember.ForDirectDownline.betSettingLink = string.Format("../_MemberInfo/BetSetting/EditBetSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
-            }
+            //}
 
             if (CurrentUserSession.RoleId == (int)UserTypes.Agent)
             {
@@ -504,7 +503,7 @@
             return tplMember.ToString();
         }
 
-        private string RenderOtherSettingViewAgent(string[] editPTLink, string[] editPTOnMemberLink, string[] editHROnMemberLink, bool isSyncCasino, bool isSyncBingo, bool isUpdaterTransferDaily)
+        private string RenderOtherSettingViewAgent(string[] editPTLink, string[] editPTOnMemberLink, string[] editHROnMemberLink)
         {
             SettingBoxViewAgent_Template tplAgent = new SettingBoxViewAgent_Template();
             /*
@@ -513,191 +512,97 @@
                 tplAgent.ForDirectDownline.LnkResetPassword.Hide();
             }
             */
-            if (!CurrentUserSession.IsSuper || (CurrentUserSession.IsSubAcc && !CurrentUserSession.SubPageAccess.UpdateAccount))
-            {
-                tplAgent.ForSuperViewAgent.Hide();
-            }
+            //if (!CurrentUserSession.IsSuper || (CurrentUserSession.IsSubAcc && !CurrentUserSession.SubPageAccess.UpdateAccount))
+            //{
+            //    tplAgent.ForSuperViewAgent.Hide();
+            //}
 
-            if (!IsDirectDownline(this.custRoleId))
-            {
-                tplAgent.ForDirectDownline.Hide();
-                tplAgent.ForSuperViewAgent.resetPasswordLink = string.Format("../_AccountInfo/ResetPassword.aspx?custid={0}&usn={1}&nobackground=1&isSynCasino={2}", this.custId, this.userNameRequest, isSyncCasino);
-            }
-            else
-            {
-                //tplAgent.ForDirectDownline.LnkResetPassword.resetPasswordLink = string.Format("../_AccountInfo/ResetPassword.aspx?custid={0}&usn={1}&nobackground=1&isSynCasino={2}", this.custId, this.userNameRequest, isSyncCasino);
-                tplAgent.ForDirectDownline.spMinPTLink = string.Format("../UserSuper/EditMinPT.aspx?custid={0}&username={1}&nobackground=1", this.custId, this.userNameRequest);
-                tplAgent.ForDirectDownline.racingMinPTLink = string.Format("../_MemberInfo/RaceBook/{1}/EditMinPT.aspx?custid={0}&popup=false", new object[] { this.custId, ((UserTypes)CurrentUserSession.RoleId).ToString() });
-                tplAgent.ForDirectDownline.editPTLink = editPTLink[this.custRoleId - 1];
-                tplAgent.ForDirectDownline.editRacingLink = string.Format("../_MemberInfo/RaceBook/{1}/EditAgent.aspx?custid={0}&popup=false", this.custId, ((UserTypes)CurrentUserSession.RoleId).ToString());
-                /*
-                if (Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowCasino)
-                {
-                    tplAgent.ForDirectDownline.Casino.editCasinoLink = string.Format("../MemberInfo/PositionTakingCS.aspx?custId={0}&nobackground=1", this.custId);
-                    tplAgent.ForDirectDownline.Casino.editCasinoLabel = isSyncCasino ? Resources.Lang.lbleditcasino : Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.synccasino, 14);
-                }
-                else
-                {
-                    tplAgent.ForDirectDownline.Casino = null;
-                }
+            //if (!IsDirectDownline(this.custRoleId))
+            //{
+            //    tplAgent.ForDirectDownline.Hide();
+            //    //tplAgent.ForSuperViewAgent.resetPasswordLink = string.Format("../_AccountInfo/ResetPassword.aspx?custid={0}&usn={1}&nobackground=1&isSynCasino={2}", this.custId, this.userNameRequest, isSyncCasino);
+            //}
+            //else
+            //{
+            //    //tplAgent.ForDirectDownline.LnkResetPassword.resetPasswordLink = string.Format("../_AccountInfo/ResetPassword.aspx?custid={0}&usn={1}&nobackground=1&isSynCasino={2}", this.custId, this.userNameRequest, isSyncCasino);
+            //    tplAgent.ForDirectDownline.spMinPTLink = string.Format("../UserSuper/EditMinPT.aspx?custid={0}&username={1}&nobackground=1", this.custId, this.userNameRequest);
+            //    tplAgent.ForDirectDownline.racingMinPTLink = string.Format("../_MemberInfo/RaceBook/{1}/EditMinPT.aspx?custid={0}&popup=false", new object[] { this.custId, ((UserTypes)CurrentUserSession.RoleId).ToString() });
+            //    tplAgent.ForDirectDownline.editPTLink = editPTLink[this.custRoleId - 1];
+            //    tplAgent.ForDirectDownline.editRacingLink = string.Format("../_MemberInfo/RaceBook/{1}/EditAgent.aspx?custid={0}&popup=false", this.custId, ((UserTypes)CurrentUserSession.RoleId).ToString());
+            //    /*
+            //    if (Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowCasino)
+            //    {
+            //        tplAgent.ForDirectDownline.Casino.editCasinoLink = string.Format("../MemberInfo/PositionTakingCS.aspx?custId={0}&nobackground=1", this.custId);
+            //        tplAgent.ForDirectDownline.Casino.editCasinoLabel = isSyncCasino ? Resources.Lang.lbleditcasino : Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.synccasino, 14);
+            //    }
+            //    else
+            //    {
+            //        tplAgent.ForDirectDownline.Casino = null;
+            //    }
 
-                if (Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowBingo)
-                {
-                    tplAgent.ForDirectDownline.Bingo.editBingoLink = string.Format("../MemberInfo/PositionTakingBingo.aspx?custId={0}&nobackground=1", this.custId);
-                    tplAgent.ForDirectDownline.Bingo.editBingoLabel = isSyncBingo ? Resources.Bingo.lbleditBingo : Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.syncBingo, 14);
-                }
-                else
-                {
-                    tplAgent.ForDirectDownline.Bingo = null;
-                }
+            //    if (Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowBingo)
+            //    {
+            //        tplAgent.ForDirectDownline.Bingo.editBingoLink = string.Format("../MemberInfo/PositionTakingBingo.aspx?custId={0}&nobackground=1", this.custId);
+            //        tplAgent.ForDirectDownline.Bingo.editBingoLabel = isSyncBingo ? Resources.Bingo.lbleditBingo : Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.syncBingo, 14);
+            //    }
+            //    else
+            //    {
+            //        tplAgent.ForDirectDownline.Bingo = null;
+            //    }
                
-                //For P2P
-                if (UserPermission.IsShowP2P)
-                {
-                    tplAgent.ForDirectDownline.ForP2P.editP2P = string.Format("../_MemberInfo/P2P/P2P_Page.aspx?custids={0}&uplineRoleId={1}&roleid={2}&username={3}", this.custId, CurrentUserSession.RoleId.ToString(), this.custRoleId, this.userNameRequest);
-                }
-                else
-                {
-                    tplAgent.ForDirectDownline.ForP2P.Clear();
-                }
+            //    //For P2P
+            //    if (UserPermission.IsShowP2P)
+            //    {
+            //        tplAgent.ForDirectDownline.ForP2P.editP2P = string.Format("../_MemberInfo/P2P/P2P_Page.aspx?custids={0}&uplineRoleId={1}&roleid={2}&username={3}", this.custId, CurrentUserSession.RoleId.ToString(), this.custRoleId, this.userNameRequest);
+            //    }
+            //    else
+            //    {
+            //        tplAgent.ForDirectDownline.ForP2P.Clear();
+            //    }
 
-                if (UserPermission.IsShowLiveCasino)
-                {
-                    tplAgent.ForDirectDownline.ForLiveCasino.editLiveCasino = string.Format("../_MemberInfo/LiveCasino/Master/EditAgent.aspx?custids={0}&username={1}&roleid={2}&isMult=0", this.custId, this.userNameRequest, this.custRoleId);
-                }
-                else
-                {
-                    tplAgent.ForDirectDownline.ForLiveCasino.Clear();
-                }
+            //    if (UserPermission.IsShowLiveCasino)
+            //    {
+            //        tplAgent.ForDirectDownline.ForLiveCasino.editLiveCasino = string.Format("../_MemberInfo/LiveCasino/Master/EditAgent.aspx?custids={0}&username={1}&roleid={2}&isMult=0", this.custId, this.userNameRequest, this.custRoleId);
+            //    }
+            //    else
+            //    {
+            //        tplAgent.ForDirectDownline.ForLiveCasino.Clear();
+            //    }
 
-                //For Virtual Sport
-                if (UserPermission.IsShowVirtualSports)
-                {
-                    tplAgent.ForDirectDownline.ForVirtualSports.editVirtualSports = string.Format("../_MemberInfo/VirtualSports/EditSingle.aspx?custid={0}&roleid={1}&username={2}", this.custId, this.custRoleId, this.userNameRequest);
-                }
-                else
-                {
-                    tplAgent.ForDirectDownline.ForVirtualSports.Clear();
-                }
-                 */
-                string[] editCommLink = { string.Format("../_MemberInfo/EditCommission/EditMemberCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest),
-                              string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
-                              string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
-                              string.Empty
-                            };
+            //    //For Virtual Sport
+            //    if (UserPermission.IsShowVirtualSports)
+            //    {
+            //        tplAgent.ForDirectDownline.ForVirtualSports.editVirtualSports = string.Format("../_MemberInfo/VirtualSports/EditSingle.aspx?custid={0}&roleid={1}&username={2}", this.custId, this.custRoleId, this.userNameRequest);
+            //    }
+            //    else
+            //    {
+            //        tplAgent.ForDirectDownline.ForVirtualSports.Clear();
+            //    }
+            //     */
+            //    string[] editCommLink = { string.Format("../_MemberInfo/EditCommission/EditMemberCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest),
+            //                  string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
+            //                  string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
+            //                  string.Empty
+            //                };
 
-                tplAgent.ForDirectDownline.editCommLink = editCommLink[this.custRoleId - 1];
-                tplAgent.ForDirectDownline.editInfoLink = string.Format("EditCustomerInfo.aspx?custId={0}&username={1}&isSyncCasino={2}&isSyncBingo={3}", this.custId, this.userNameRequest, isSyncCasino ? "1" : "0", isSyncBingo ? "1" : "0");
-                tplAgent.ForDirectDownline.betSettingLink = string.Format("../_MemberInfo/BetSetting/EditBetSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
-            }
+            //    tplAgent.ForDirectDownline.editCommLink = editCommLink[this.custRoleId - 1];
+            //   // tplAgent.ForDirectDownline.editInfoLink = string.Format("EditCustomerInfo.aspx?custId={0}&username={1}&isSyncCasino={2}&isSyncBingo={3}", this.custId, this.userNameRequest, isSyncCasino ? "1" : "0", isSyncBingo ? "1" : "0");
+            //    tplAgent.ForDirectDownline.editBetSettingLink = string.Format("../_MemberInfo/BetSetting/EditBetSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+            //}
 
             //if updater's transfer condition is not daily, then do not allow to edit TransferCondtion
-            if (!IsDirectDownline(this.custRoleId) || !isUpdaterTransferDaily)
-            {
-                tplAgent.ForAgent = null;
-            }
-            else
-            {
-                tplAgent.ForAgent.tranferCondLink = string.Format("../_MemberInfo/TransferCondition/EditTransferCondition.aspx?custid={0}&username={1}", this.custId, this.userNameRequest);
-            }
+            //if (!IsDirectDownline(this.custRoleId) || !isUpdaterTransferDaily)
+            //{
+            //    tplAgent.ForAgent = null;
+            //}
+            //else
+            //{
+            //    tplAgent.ForAgent.tranferCondLink = string.Format("../_MemberInfo/TransferCondition/EditTransferCondition.aspx?custid={0}&username={1}", this.custId, this.userNameRequest);
+            //}
 
-            tplAgent.ClearCredit = null;
+            tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/BetSetting/EditBetSetting.aspx?custid={0}&username={1}", this.custId, this.userNameRequest);
+
             return tplAgent.ToString();
-        }
-
-        private string RenderOtherSettingViewMaster(string[] editPTLink, string[] editPTOnMemberLink, string[] editHROnMemberLink, bool isSyncCasino, bool isSyncBingo, bool isUpdaterTransferDaily)
-        {
-            SettingBoxViewMaster_Template tplMaster = new SettingBoxViewMaster_Template();
-
-            if (!IsDirectDownline(this.custRoleId))
-            {
-                tplMaster.ForDirectDownline.Hide();
-            }
-            else
-            {
-                //tplMaster.ForDirectDownline.LnkResetPassword.resetPasswordLink = string.Format("../_AccountInfo/ResetPassword.aspx?custid={0}&usn={1}&nobackground=1&isSynCasino={2}", this.custId, this.userNameRequest, isSyncCasino);
-                tplMaster.ForDirectDownline.spMinPTLink = string.Format("../UserSuper/EditMinPT.aspx?custid={0}&username={1}&nobackground=1", this.custId, this.userNameRequest);
-                tplMaster.ForDirectDownline.racingMinPTLink = string.Format("../_MemberInfo/RaceBook/{1}/EditMinPT.aspx?custid={0}&popup=false", new object[] { this.custId, ((UserTypes)CurrentUserSession.RoleId).ToString() });
-                tplMaster.ForDirectDownline.editPTLink = editPTLink[this.custRoleId - 1];
-                tplMaster.ForDirectDownline.editRacingLink = string.Format("../_MemberInfo/RaceBook/{1}/EditMaster.aspx?custid={0}&popup=false", this.custId, ((UserTypes)CurrentUserSession.RoleId).ToString());
-                /*
-                if (Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowCasino)
-                {
-                    tplMaster.ForDirectDownline.Casino.editCasinoLink = string.Format("../MemberInfo/PositionTakingCS.aspx?custId={0}&nobackground=1", this.custId);
-                    tplMaster.ForDirectDownline.Casino.editCasinoLabel = isSyncCasino ? Resources.Lang.lbleditcasino : Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.synccasino, 14);
-                }
-                else
-                {
-                    tplMaster.ForDirectDownline.Casino = null;
-                }
-
-                if (Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowBingo)
-                {
-                    tplMaster.ForDirectDownline.Bingo.editBingoLink = string.Format("../MemberInfo/PositionTakingBingo.aspx?custId={0}&nobackground=1", this.custId);
-                    tplMaster.ForDirectDownline.Bingo.editBingoLabel = isSyncBingo ? Resources.Bingo.lbleditBingo : Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.syncBingo, 14);
-                }
-                else
-                {
-                    tplMaster.ForDirectDownline.Bingo = null;
-                }
-               
-                //For P2P
-                if (UserPermission.IsShowP2P)
-                {
-                    tplMaster.ForDirectDownline.ForP2P.editP2P = string.Format("../_MemberInfo/P2P/P2P_Page.aspx?custids={0}&uplineRoleId={1}&roleid={2}&username={3}", this.custId, CurrentUserSession.RoleId.ToString(), this.custRoleId, this.userNameRequest);
-                }
-                else
-                {
-                    tplMaster.ForDirectDownline.ForP2P.Clear();
-                }
-
-                if (UserPermission.IsShowLiveCasino)
-                {
-                    tplMaster.ForDirectDownline.ForLiveCasino.editLiveCasino = string.Format("../_MemberInfo/LiveCasino/Super/EditMaster.aspx?custids={0}&username={1}&roleid={2}&isMult=0", this.custId, this.userNameRequest, this.custRoleId);
-                }
-                else
-                {
-                    tplMaster.ForDirectDownline.ForLiveCasino.Clear();
-                }
-                 
-                //For Virtual Sport
-                if (UserPermission.IsShowVirtualSports)
-                {
-                    tplMaster.ForDirectDownline.ForVirtualSports.editVirtualSports = string.Format("../_MemberInfo/VirtualSports/EditSingle.aspx?custid={0}&roleid={1}&username={2}", this.custId, this.custRoleId, this.userNameRequest);
-                }
-                else
-                {
-                    tplMaster.ForDirectDownline.ForVirtualSports.Clear();
-                }
-                */
-                string[] editCommLink = { string.Format("../_MemberInfo/EditCommission/EditMemberCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest),
-                              string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
-                              string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
-                              string.Empty
-                            };
-
-                tplMaster.ForDirectDownline.editCommLink = editCommLink[this.custRoleId - 1];
-                tplMaster.ForDirectDownline.editInfoLink = string.Format("EditCustomerInfo.aspx?custId={0}&username={1}&isSyncCasino={2}&isSyncBingo={3}", this.custId, this.userNameRequest, isSyncCasino ? "1" : "0", isSyncBingo ? "1" : "0");
-                tplMaster.ForDirectDownline.betSettingLink = string.Format("../_MemberInfo/BetSetting/EditBetSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
-            }
-            /*
-            if (CurrentUserSession.IsSubAcc && !CurrentUserSession.SubPageAccess.UpdateAccount)
-            {
-                tplMaster.ForDirectDownline.LnkResetPassword.Hide();
-            }
-            */
-            //if updater's transfer condition is not daily, then do not allow to edit TransferCondtion
-            if (!IsDirectDownline(this.custRoleId) || !isUpdaterTransferDaily)
-            {
-                tplMaster.ForAgent = null;
-            }
-            else
-            {
-                tplMaster.ForAgent.tranferCondLink = string.Format("../_MemberInfo/TransferCondition/EditTransferCondition.aspx?custid={0}&username={1}", this.custId, this.userNameRequest);
-            }
-
-            tplMaster.ClearCredit = null;
-            return tplMaster.ToString();
         }
 
         /// <summary>

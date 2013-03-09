@@ -158,7 +158,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             else
             {
                 this.custId = (int)this.dtrCustomerInfo["ObjectId"];
-                this.agentLevel = int.Parse(this.dtrCustomerInfo["AgentLevel"].ToString());
+                this.agentLevel = string.IsNullOrEmpty(this.dtrCustomerInfo["AgentLevel"].ToString()) ? 0 : int.Parse(this.dtrCustomerInfo["AgentLevel"].ToString());
                 // this.custRoleId = (byte)this.dtrCustomerInfo["roleid"];
 
                 //if (!this.IsMemberDownlineMe(this.dtrDownlineInfo))

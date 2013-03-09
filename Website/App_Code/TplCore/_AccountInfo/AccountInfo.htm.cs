@@ -110,7 +110,7 @@ namespace Sunplus.Agent.UI
 			protected static string s41{get{return Resources.Lang.search;}}
 			protected static string s42 = "\" border=\"0\" nowap=\"nowap\" src=\"";
 			protected static string s43{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
-			protected static string s44 = "\" /></a></div><div class=\"search-option\"><input type=\"checkbox\" name=\"search-member\" /><label>Member</label></div></form><br /><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
+			protected static string s44 = "\" /></a></div><div class=\"search-option\"><input type=\"checkbox\" name=\"isMember\" /><label>Member</label></div></form><br /><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
 			protected static string s45{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
 			protected static string s46 = "\" name=\"\" /></div><div class=\"errMsg\">";
 			public string errMsg = "{errMsg}";
