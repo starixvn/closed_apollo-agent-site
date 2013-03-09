@@ -55,6 +55,11 @@
             return this.accountInfoDAO.Age_CustomerSelAllInfo(this.CurrentSession.CustId, userName, isMember);
         }
 
+        public DataSet Age_Customer_GetDownLine(int agentID)
+        {
+            return this.accountInfoDAO.Age_Customer_GetDownLine(agentID);
+        }
+
         public DataTable CustomerSelOnline(int custId)
         {
             return this.accountInfoDAO.Acc_CustomerSelOnline(custId);

@@ -17,6 +17,8 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.Utilities;
     using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
+    using Fanex.Age.DTO.Reports.TreeView;
+    using System.Collections.Generic;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
@@ -40,6 +42,31 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         #endregion Defination
 
+        //[System.Web.Services.WebMethod]
+        //[System.Web.Script.Services.ScriptMethod(UseHttpGet = true)]
+        //public List<TreeViewNode> FileSystemInfos(string root)
+        //{
+        //    int? nodeId = (root == "source") ? (int?)null : Convert.ToInt32(root);
+        //    // IEnumerable<FileSystemInfo> children = FileSystemInfosRepository.GetFileSystemInfos(nodeId);
+        //    AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
+        //    this.dataset = bo.Age_Customer_GetDownLine(1);
+
+        //    List<TreeViewNode> nodes = new List<TreeViewNode>();
+        //    foreach (FileSystemInfo child in children)
+        //    {
+        //        bool leaf = child is FileInfo;
+        //        nodes.Add(new TreeViewNode()
+        //        {
+        //            Id = Convert.ToString(FileSystemInfosRepository.GetNodeId(child)),
+        //            Text = child.Name,
+        //            Classes = leaf ? "file" : "folder",
+        //            HasChildren = !leaf
+        //        });
+        //    }
+
+        //    return nodes;
+        //}
+
         #region Override
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
@@ -47,7 +74,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             this.userNameRequest = Request.QueryString["username"];
 
             this.isMember = Request.QueryString["isMember"] == "on" ? true : false;
-
+            
             if (!string.IsNullOrEmpty(this.userNameRequest))
             {
                 this.userNameRequest = this.userNameRequest.Trim();
