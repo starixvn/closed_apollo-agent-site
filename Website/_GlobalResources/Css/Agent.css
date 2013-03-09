@@ -193,7 +193,7 @@ select {
 }
 
 .tblRpt {
-    background-color: #716F72;
+    background-color: #B2B2B2;;
     margin-top: 10px;
     border-spacing: 1px;    
 }
@@ -217,20 +217,15 @@ select {
     font-size: 12px !important;
     font-weight: 400 !important;
     height: 22px;
-    text-align: center;
-   
+    text-align: center   
 }
 
-.RptHeader td {
-    border-left: 1px solid #fff;
-}
-
-.RptHeader td:first-child {
-    border-left: none;
+.RptHeader td {    
+    border-spacing: 0;
 }
 
 .RptHeader02 {
-    background-color: #CCCCCC;
+    background-color: #C7C7C7;
     color: #323435;
     font-size: 12px !important;
     font-weight: 400 !important;
@@ -238,8 +233,9 @@ select {
     border-spacing: 0;
 }
 
-.RptHeader02 td {
-    border: 1px solid #fff;
+.RptHeader02 td {    
+    border-spacing: 0;
+    border-left: 1px solid #F6F8F9;
 }
 
 .RptHeader01 {
@@ -387,8 +383,7 @@ select {
 }
 
 .warning ul {
-    color: #6A686B;
-    font-weight: 700;
+    color: #6A686B;    
     list-style: none;
     margin-left: 2px;
     padding-left: 2px;

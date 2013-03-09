@@ -95,71 +95,69 @@ namespace Fanex.Agent.UI
 			public string checkedDoubleComm = "{checkedDoubleComm}";
 			protected static string s51 = " /><label for=\"chkDoubleComm\" class=\"text_smal\">";
 			protected static string s52{get{return Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.doublecommission,14);}}
-			protected static string s53 = "</label></div>--><!--/StatusDoubleComm--></div><div id=\"overlayBg\" class=\"overlay\"></div></td></tr><tr><td height=\"5\" colspan=\"2\"><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
-			protected static string s54{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s55 = "\" name=\"\" /></div></td></tr>";
+			protected static string s53 = "</label></div>--><!--/StatusDoubleComm--></div><div id=\"overlayBg\" class=\"overlay\"></div></td></tr>";
 			public string otherSettings = "{otherSettings}";
-			protected static string s56 = "</table><table id=\"tbl_logininfo\" style=\"display: none;\"><tr><td><span class=\"text_bold\">";
-			protected static string s57{get{return Resources.Lang.CreatedDate;}}
-			protected static string s58 = ":</span><br />";
+			protected static string s54 = "</table><table id=\"tbl_logininfo\" style=\"display: none;\"><tr><td><span class=\"text_bold\">";
+			protected static string s55{get{return Resources.Lang.CreatedDate;}}
+			protected static string s56 = ":</span><br />";
 			public string createDate = "{createDate}";
-			protected static string s59 = "</td></tr><tr><td><span class=\"text_bold\">";
-			protected static string s60{get{return Resources.Lang.lastlogin;}}
-			protected static string s61 = ":</span><br />";
+			protected static string s57 = "</td></tr><tr><td><span class=\"text_bold\">";
+			protected static string s58{get{return Resources.Lang.lastlogin;}}
+			protected static string s59 = ":</span><br />";
 			public string lastLogin = "{lastLogin}";
-			protected static string s62 = "</td></tr><tr><td><span class=\"text_bold\">";
-			protected static string s63{get{return Resources.Lang.lasttxn;}}
-			protected static string s64 = ":</span><br />";
+			protected static string s60 = "</td></tr><tr><td><span class=\"text_bold\">";
+			protected static string s61{get{return Resources.Lang.lasttxn;}}
+			protected static string s62 = ":</span><br />";
 			public string lastTXN = "{lastTXN}";
-			protected static string s65 = "</td></tr><tr><td><span class=\"text_bold\">";
-			protected static string s66{get{return Resources.Lang.lastloginIP;}}
-			protected static string s67 = ":</span><br />";
+			protected static string s63 = "</td></tr><tr><td><span class=\"text_bold\">";
+			protected static string s64{get{return Resources.Lang.lastloginIP;}}
+			protected static string s65 = ":</span><br />";
 			public string lastLoginIP = "{lastLoginIP}";
-			protected static string s68 = "</td></tr></table><center><span id=\"tbl_onlinelist\" style=\"display: none;\"><img src=\"";
-			protected static string s69{get{return AbsoluteUrl("_GlobalResources/Images/ajax-loader.gif");}}
-			protected static string s70 = "\" alt=\"loading\" />";
-			protected static string s71{get{return Resources.Lang.loading;}}
-			protected static string s72 = " </span></center></div></div></div><div id=\"disabledStatusPop\" class=\"popupSetting\" style=\"display: none;\"><b><span id=\"lblEnableStatus\">Enable Status</span></b><br /><input type=\"checkbox\" name=\"chkEnabled\" onclick=\"allowSubmit(this);\" id=\"chkEnabled\" /><label id=\"agtype\" for=\"chkEnabled\"></label><span id=\"spanChkEnabledDL\"><br /><input type=\"checkbox\" name=\"chkEnabledDL\" id=\"chkEnabledDL\" disabled=\"disabled\" /><label id=\"lbldownline\" for=\"chkEnabledDL\">";
-			protected static string s73{get{return Resources.Lang.downlines;}}
-			protected static string s74 = "</label></span><br /><center><input id=\"btnUpdStatus\" type=\"button\" class=\"btn2\" disabled=\"disabled\" value=\"";
-			protected static string s75{get{return Resources.Lang.update;}}
-			protected static string s76 = "\" />&nbsp;<input type=\"button\" class=\"btn\" onclick=\"closeDivPopup();\" value=\"";
-			protected static string s77{get{return Resources.Lang.cancel;}}
-			protected static string s78 = "\" /></center><input id=\"hdnTypeStatus\" type=\"hidden\" value=\"\" /></div><!--StatusRacingPopup--><div id=\"disabledRacingStatusPop\" class=\"popupSetting\" style=\"display: none;\"><table class=\"tblRacingPopUp\"><tr><th colspan=\"2\">";
-			protected static string s79{get{return Resources.Racing.horseracing;}}
-			protected static string s80 = "</th></tr><tr><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_41\" id=\"chkEnabled_151_41\" /><label for=\"chkEnabled_151_41\">";
+			protected static string s66 = "</td></tr></table><center><span id=\"tbl_onlinelist\" style=\"display: none;\"><img src=\"";
+			protected static string s67{get{return AbsoluteUrl("_GlobalResources/Images/ajax-loader.gif");}}
+			protected static string s68 = "\" alt=\"loading\" />";
+			protected static string s69{get{return Resources.Lang.loading;}}
+			protected static string s70 = " </span></center></div></div></div><div id=\"disabledStatusPop\" class=\"popupSetting\" style=\"display: none;\"><b><span id=\"lblEnableStatus\">Enable Status</span></b><br /><input type=\"checkbox\" name=\"chkEnabled\" onclick=\"allowSubmit(this);\" id=\"chkEnabled\" /><label id=\"agtype\" for=\"chkEnabled\"></label><span id=\"spanChkEnabledDL\"><br /><input type=\"checkbox\" name=\"chkEnabledDL\" id=\"chkEnabledDL\" disabled=\"disabled\" /><label id=\"lbldownline\" for=\"chkEnabledDL\">";
+			protected static string s71{get{return Resources.Lang.downlines;}}
+			protected static string s72 = "</label></span><br /><center><input id=\"btnUpdStatus\" type=\"button\" class=\"btn2\" disabled=\"disabled\" value=\"";
+			protected static string s73{get{return Resources.Lang.update;}}
+			protected static string s74 = "\" />&nbsp;<input type=\"button\" class=\"btn\" onclick=\"closeDivPopup();\" value=\"";
+			protected static string s75{get{return Resources.Lang.cancel;}}
+			protected static string s76 = "\" /></center><input id=\"hdnTypeStatus\" type=\"hidden\" value=\"\" /></div><!--StatusRacingPopup--><div id=\"disabledRacingStatusPop\" class=\"popupSetting\" style=\"display: none;\"><table class=\"tblRacingPopUp\"><tr><th colspan=\"2\">";
+			protected static string s77{get{return Resources.Racing.horseracing;}}
+			protected static string s78 = "</th></tr><tr><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_41\" id=\"chkEnabled_151_41\" /><label for=\"chkEnabled_151_41\">";
 			public string ukirishtote = "{ukirishtote}";
-			protected static string s81 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_41\" id=\"chkEnabledDL_151_41\" /><label for=\"chkEnabledDL_151_41\">";
-			protected static string s82{get{return Resources.Lang.downlines;}}
-			protected static string s83 = "</label></td></tr><tr id=\"row_151_31\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_31\" id=\"chkEnabled_151_31\" /><label for=\"chkEnabled_151_31\">";
-			protected static string s84{get{return Resources.Racing.satote;}}
-			protected static string s85 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_31\" id=\"chkEnabledDL_151_31\" /><label for=\"chkEnabledDL_151_31\">";
-			protected static string s86{get{return Resources.Lang.downlines;}}
-			protected static string s87 = "</label></td></tr><tr id=\"row_151_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_51\" id=\"chkEnabled_151_51\" /><label for=\"chkEnabled_151_51\">";
-			protected static string s88{get{return Resources.Racing.autote;}}
-			protected static string s89 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_51\" id=\"chkEnabledDL_151_51\" /><label for=\"chkEnabledDL_151_51\">";
-			protected static string s90{get{return Resources.Lang.downlines;}}
-			protected static string s91 = "</label></td></tr><tr id=\"row_152_hd\"><th colspan=\"2\">";
-			protected static string s92{get{return Resources.Racing.greyhound;}}
-			protected static string s93 = "</th></tr><tr id=\"row_152_41\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_152_41\" id=\"chkEnabled_152_41\" /><label for=\"chkEnabled_152_41\">";
+			protected static string s79 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_41\" id=\"chkEnabledDL_151_41\" /><label for=\"chkEnabledDL_151_41\">";
+			protected static string s80{get{return Resources.Lang.downlines;}}
+			protected static string s81 = "</label></td></tr><tr id=\"row_151_31\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_31\" id=\"chkEnabled_151_31\" /><label for=\"chkEnabled_151_31\">";
+			protected static string s82{get{return Resources.Racing.satote;}}
+			protected static string s83 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_31\" id=\"chkEnabledDL_151_31\" /><label for=\"chkEnabledDL_151_31\">";
+			protected static string s84{get{return Resources.Lang.downlines;}}
+			protected static string s85 = "</label></td></tr><tr id=\"row_151_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_151_51\" id=\"chkEnabled_151_51\" /><label for=\"chkEnabled_151_51\">";
+			protected static string s86{get{return Resources.Racing.autote;}}
+			protected static string s87 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_151_51\" id=\"chkEnabledDL_151_51\" /><label for=\"chkEnabledDL_151_51\">";
+			protected static string s88{get{return Resources.Lang.downlines;}}
+			protected static string s89 = "</label></td></tr><tr id=\"row_152_hd\"><th colspan=\"2\">";
+			protected static string s90{get{return Resources.Racing.greyhound;}}
+			protected static string s91 = "</th></tr><tr id=\"row_152_41\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_152_41\" id=\"chkEnabled_152_41\" /><label for=\"chkEnabled_152_41\">";
 			protected string t5_ukirishtote;
-			protected static string s94 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_152_41\" id=\"chkEnabledDL_152_41\" /><label for=\"chkEnabledDL_152_41\">";
-			protected static string s95{get{return Resources.Lang.downlines;}}
-			protected static string s96 = "</label></td></tr><tr id=\"row_152_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_152_51\" id=\"chkEnabled_152_51\" /><label for=\"chkEnabled_152_51\">";
-			protected static string s97{get{return Resources.Racing.autote;}}
-			protected static string s98 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_152_51\" id=\"chkEnabledDL_152_51\" /><label for=\"chkEnabledDL_152_51\">";
-			protected static string s99{get{return Resources.Lang.downlines;}}
-			protected static string s100 = "</label></td></tr><tr id=\"row_153_hd\"><th colspan=\"2\">";
-			protected static string s101{get{return Resources.Racing.harness;}}
-			protected static string s102 = "</th></tr><tr id=\"row_153_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_153_51\" id=\"chkEnabled_153_51\" /><label for=\"chkEnabled_153_51\">";
-			protected static string s103{get{return Resources.Racing.autote;}}
-			protected static string s104 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_153_51\" id=\"chkEnabledDL_153_51\" /><label for=\"chkEnabledDL_153_51\">";
-			protected static string s105{get{return Resources.Lang.downlines;}}
-			protected static string s106 = "</label></td></tr></table><center><input accountpermisssion=\"[B]\" id=\"btnUpdRacingStatus\" type=\"button\" class=\"btn2\" disabled=\"disabled\" value=\"";
-			protected static string s107{get{return Resources.Lang.update;}}
-			protected static string s108 = "\" />&nbsp;<input type=\"button\" class=\"btn\" onclick=\"closeDivRacingPopup();\" value=\"";
-			protected static string s109{get{return Resources.Lang.cancel;}}
-			protected static string s110 = "\" /></center></div><!--/StatusRacingPopup-->";
+			protected static string s92 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_152_41\" id=\"chkEnabledDL_152_41\" /><label for=\"chkEnabledDL_152_41\">";
+			protected static string s93{get{return Resources.Lang.downlines;}}
+			protected static string s94 = "</label></td></tr><tr id=\"row_152_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_152_51\" id=\"chkEnabled_152_51\" /><label for=\"chkEnabled_152_51\">";
+			protected static string s95{get{return Resources.Racing.autote;}}
+			protected static string s96 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_152_51\" id=\"chkEnabledDL_152_51\" /><label for=\"chkEnabledDL_152_51\">";
+			protected static string s97{get{return Resources.Lang.downlines;}}
+			protected static string s98 = "</label></td></tr><tr id=\"row_153_hd\"><th colspan=\"2\">";
+			protected static string s99{get{return Resources.Racing.harness;}}
+			protected static string s100 = "</th></tr><tr id=\"row_153_51\"><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabled_153_51\" id=\"chkEnabled_153_51\" /><label for=\"chkEnabled_153_51\">";
+			protected static string s101{get{return Resources.Racing.autote;}}
+			protected static string s102 = "</label></td><td><input accountpermisssion=\"[B]\" type=\"checkbox\" name=\"chkEnabledDL_153_51\" id=\"chkEnabledDL_153_51\" /><label for=\"chkEnabledDL_153_51\">";
+			protected static string s103{get{return Resources.Lang.downlines;}}
+			protected static string s104 = "</label></td></tr></table><center><input accountpermisssion=\"[B]\" id=\"btnUpdRacingStatus\" type=\"button\" class=\"btn2\" disabled=\"disabled\" value=\"";
+			protected static string s105{get{return Resources.Lang.update;}}
+			protected static string s106 = "\" />&nbsp;<input type=\"button\" class=\"btn\" onclick=\"closeDivRacingPopup();\" value=\"";
+			protected static string s107{get{return Resources.Lang.cancel;}}
+			protected static string s108 = "\" /></center></div><!--/StatusRacingPopup-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -248,25 +246,25 @@ namespace Fanex.Agent.UI
 					bd.Append(s51);
 					bd.Append(s52);
 					bd.Append(s53);
+					bd.Append(otherSettings);
 					bd.Append(s54);
 					bd.Append(s55);
-					bd.Append(otherSettings);
 					bd.Append(s56);
+					bd.Append(createDate);
 					bd.Append(s57);
 					bd.Append(s58);
-					bd.Append(createDate);
 					bd.Append(s59);
+					bd.Append(lastLogin);
 					bd.Append(s60);
 					bd.Append(s61);
-					bd.Append(lastLogin);
 					bd.Append(s62);
+					bd.Append(lastTXN);
 					bd.Append(s63);
 					bd.Append(s64);
-					bd.Append(lastTXN);
 					bd.Append(s65);
+					bd.Append(lastLoginIP);
 					bd.Append(s66);
 					bd.Append(s67);
-					bd.Append(lastLoginIP);
 					bd.Append(s68);
 					bd.Append(s69);
 					bd.Append(s70);
@@ -278,9 +276,9 @@ namespace Fanex.Agent.UI
 					bd.Append(s76);
 					bd.Append(s77);
 					bd.Append(s78);
+					bd.Append(ukirishtote);
 					bd.Append(s79);
 					bd.Append(s80);
-					bd.Append(ukirishtote);
 					bd.Append(s81);
 					bd.Append(s82);
 					bd.Append(s83);
@@ -292,9 +290,9 @@ namespace Fanex.Agent.UI
 					bd.Append(s89);
 					bd.Append(s90);
 					bd.Append(s91);
+					bd.Append(ukirishtote);
 					bd.Append(s92);
 					bd.Append(s93);
-					bd.Append(ukirishtote);
 					bd.Append(s94);
 					bd.Append(s95);
 					bd.Append(s96);
@@ -310,8 +308,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s106);
 					bd.Append(s107);
 					bd.Append(s108);
-					bd.Append(s109);
-					bd.Append(s110);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

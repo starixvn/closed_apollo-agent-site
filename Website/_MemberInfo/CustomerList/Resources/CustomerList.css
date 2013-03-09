@@ -20,7 +20,7 @@ body
 #tblCustomerList
 {
 	font-weight: normal;
-	background-color: #716F72;
+	background-color: #B2B2B2;
 	border-collapse: separate;
 	width: 100%;
 	border-spacing: 1px;
@@ -51,8 +51,8 @@ body
 	width: 200px;
 	text-align: center;
 	background-image: none;
-	border: solid 1px #fff;
 	padding: 3px;
+	border-left: 1px solid #F6F8F9;	
 }
 
 #tblCustomerList thead tr th
@@ -61,8 +61,7 @@ body
 	color: #FAFDEB;
 	font-size: 11px;
 	text-align: center;
-	font-weight: normal;
-	border-left: 1px solid #fff;
+	font-weight: normal;	
 	padding: 0 3px;
 }
 
@@ -445,11 +444,11 @@ input[type=text]
 }
 
 .full-link li a {
-    color: #FF9933;
+    color: #1E1EEB;
 }
 
 .full-link li a:hover {
-    color: #B39D74;
+    color: #FF6600;
 }
 
 .line-link {
