@@ -949,12 +949,16 @@ input[type=reset]
     width: 20px;
 }
 
+.top-position {
+    vertical-align: top;
+}
+
 /* treeview */
 .agent-treeview {
     margin-top: 5px;
     width: 175px;
-    display: none;
-    overflow-x: auto;
+    display: block;
+    overflow-x: scroll;   
 }
 
 /*downline title*/
@@ -963,7 +967,7 @@ input[type=reset]
     font-weight: bold;
     width: 175px;
     vertical-align: middle;
-    display: none;
+    display: block;    
 }
 
 #treeview-link{
