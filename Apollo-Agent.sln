@@ -14,11 +14,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-<<<<<<< HEAD
 		ProjectReferences = "{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}|Fanex.Age.Utility.dll;{016F274C-1F76-450B-B80D-E7FB59BE6A2B}|Sunplus.Agent.Utilities.dll;{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}|Sunplus.Shared.ViewLogLib.dll;{A7134F35-65C9-43A6-9386-86CD65F349DD}|Fanex.Age.DTO.dll;{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}|Sunplus.Agent.Model.dll;{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}|Fanex.BetList.Age.dll;{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}|Fanex.BetList.Core.dll;"
-=======
-		ProjectReferences = "{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}|Fanex.Age.Utility.dll;{016F274C-1F76-450B-B80D-E7FB59BE6A2B}|Sunplus.Agent.Utilities.dll;{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}|Sunplus.Shared.ViewLogLib.dll;{A7134F35-65C9-43A6-9386-86CD65F349DD}|Fanex.Age.DTO.dll;{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}|Sunplus.Agent.Model.dll;{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}|Fanex.BetList.Age.dll;{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}|Fanex.BetList.Core.dll;{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}|Fanex.Age.UI.Components.dll;{F5A64151-9580-4878-A3D1-F737E391A702}|Fanex.Age.UI.Forecast.dll;{249C5EE9-5485-49A7-8F50-8D5ABC2EC6B8}|Fanex.Age.UI.Reports.dll;{DFE39BB5-0B6A-4EE0-86BA-FFAC6BEEFA3A}|Sunplus.Agent.UI.ScoreMap.dll;{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}|Fanex.Age.UI.TotalBets.dll;"
->>>>>>> ef29fd4e52298a2147860c689182c52f07ca8175
 		Debug.AspNetCompiler.VirtualPath = "/Website"
 		Debug.AspNetCompiler.PhysicalPath = "Website\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Website\"
@@ -36,10 +32,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{C99
 		VWDPort = "59488"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Age", "..\apollo-betlist\Fanex.BetList.Age\Fanex.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core.TicketHelper", "..\apollo-betlist\Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.TotalBets", "Fanex.Age.UI.TotalBets\Fanex.Age.UI.TotalBets.csproj", "{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.Components", "Fanex.Age.UI.Components\Fanex.Age.UI.Components.csproj", "{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}"
@@ -52,13 +44,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.Business", "Fanex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.Reports", "Fanex.Age.UI.Reports\Fanex.Age.UI.Reports.csproj", "{249C5EE9-5485-49A7-8F50-8D5ABC2EC6B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core", "..\apollo-betlist\Fanex.BetList.Core\Fanex.BetList.Core.csproj", "{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.Forecast", "Fanex.Age.UI.Forecast\Fanex.Age.UI.Forecast.csproj", "{F5A64151-9580-4878-A3D1-F737E391A702}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Agent.UI.ScoreMap", "Sunplus.Agent.UI.ScoreMap\Sunplus.Agent.UI.ScoreMap.csproj", "{DFE39BB5-0B6A-4EE0-86BA-FFAC6BEEFA3A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.Excel", "Fanex.Age.Excel\Fanex.Age.Excel.csproj", "{85998BF3-454B-49BD-B137-F8CCAF973ABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Age", "Fanex.BetList.Age\Fanex.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core", "Fanex.BetList.Core\Fanex.BetList.Core.csproj", "{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core.TicketHelper", "Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,12 +77,6 @@ Global
 		{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}.Release|Any CPU.Build.0 = Release|Any CPU
@@ -105,9 +95,6 @@ Global
 		{249C5EE9-5485-49A7-8F50-8D5ABC2EC6B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{249C5EE9-5485-49A7-8F50-8D5ABC2EC6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{249C5EE9-5485-49A7-8F50-8D5ABC2EC6B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F5A64151-9580-4878-A3D1-F737E391A702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5A64151-9580-4878-A3D1-F737E391A702}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5A64151-9580-4878-A3D1-F737E391A702}.Release|Any CPU.Build.0 = Release|Any CPU
@@ -117,6 +104,18 @@ Global
 		{85998BF3-454B-49BD-B137-F8CCAF973ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{85998BF3-454B-49BD-B137-F8CCAF973ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85998BF3-454B-49BD-B137-F8CCAF973ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
