@@ -17,7 +17,7 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.Utilities;
     using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
-    using Fanex.Age.DTO.Reports.TreeView;
+    using Fanex.Agent.UI._AccountInfo;
     using System.Collections.Generic;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
