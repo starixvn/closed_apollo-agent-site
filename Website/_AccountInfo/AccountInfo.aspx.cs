@@ -8,17 +8,13 @@
 namespace Sunplus.Agent.UI._AccountInfo
 {
     using System;
-    using System.Data;
-    using System.Web;
-    using Fanex.LiveCasinoSetting.Business;
-    using Sunplus.Agent.Model.BL.AccountInfo;
-    using Sunplus.Agent.Model.BL.Definitions;
-    using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Model.Entities.Permission;
-    using Sunplus.Agent.Utilities;
-    using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
-    using Fanex.Agent.UI._AccountInfo;
     using System.Collections.Generic;
+    using System.Data;
+    using Fanex.Age.DTO.Reports.TreeView;
+    using Fanex.Agent.UI._AccountInfo;
+    using Sunplus.Agent.Model.BL.AccountInfo;
+    using Sunplus.Agent.Model.Entities;
+    using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
