@@ -104,15 +104,16 @@ namespace Sunplus.Agent.UI._Menu
             SiteMapNode rootNode = SiteMap.RootNode;
             SiteMapNode contextNode = null;
 
-            if (roleId > 4)
-            {
-                contextNode = rootNode.ChildNodes[0];
-            }
-            else
-            {
-                contextNode = rootNode.ChildNodes[1];
-            }
+            //if (roleId > 4)
+            //{
+            //    contextNode = rootNode.ChildNodes[0];
+            //}
+            //else
+            //{
+            //    contextNode = rootNode.ChildNodes[1];
+            //}
 
+            contextNode = rootNode.ChildNodes[1];
             RenderMenu(contextNode, ref tpl);
         }
 

@@ -181,8 +181,8 @@
   <add url="_MemberInfo/TransferCondition/EditTransferCondition.aspx" role="2-[B],2-[H]" id="6001" fun="Account Information" subfun="Transfer Condition"  />
   <add url="_MemberInfo/CreditBalance/CreditTransfer.aspx" role="2-[B]" id="6008" fun="Account Information" subfun="Credit Transfer" />
   <!--\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/-->
-  <add url="_Transfer/Super/MasterList.aspx" role="2-[H]" id="6008" fun="Member Information" subfun="Master Transfer List" />
-  <add url="_Transfer/Master/AgentList.aspx" role="3-[C]" id="6008" fun="Member Information" subfun="Agent Transfer List" />
+  
+  <add url="_Transfer/AgentList.aspx" role="3-[C]" id="6008" fun="Member Information" subfun="Agent Transfer List" />
   <add url="_Transfer/Agent/MemberList.aspx" role="2-[C]" id="6008" fun="Member Information" subfun="Member Transfer List" />
   <add url="_Transfer/Super/MasterTransfer.aspx" role="4-[B]" id="6008" fun="Member Information" subfun="Master Transfer" />
   <add url="_Transfer/Master/AgentTransfer.aspx" role="3-[B]" id="6008" fun="Member Information" subfun="Agent Transfer" />

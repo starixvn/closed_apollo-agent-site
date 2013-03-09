@@ -434,11 +434,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             this.UserName = Resources.Lang.enterusername;
             this.CustId = this.GetIntRequest("custid", CurrentUserSession.CustId);
-            this.MasterId = this.GetIntRequest("masterid", CurrentUserSession.CustId);
             this.PageSize = this.GetIntRequest("pagesize", this.PageSize);
             this.PageIndex = this.GetIntRequest("pageindex", this.PageIndex);
-            this.Status = this.GetIntRequest("status", this.Status);
-            this.DCommStatus = this.GetIntRequest("dComStatus", this.DCommStatus);
 
             if (this.PageSize > 500)
             {
@@ -448,24 +445,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.UserName = string.IsNullOrEmpty(this.Request["username"]) == false ? this.Request["username"] : this.UserName;
             this.HashTableQueryString.Add("custid", this.CustId.ToString());
             this.HashTableQueryString.Add("username", this.UserName);
-
-            string conditiontime = MemberInfo.GetDataTransferCondition(this.CustId.ToString());
-            char[] arrayTime = conditiontime.ToCharArray();
-            this.isHideTransfer = arrayTime[7].ToString();
-            this.JavaScriptRegister("isHideTransfer", this.isHideTransfer);
-
-            this.row = AccountInfo.Age_CustomerSelStatus(this.CustId).ResultSet.Tables[0].Rows[0];
-
-            if (CurrentUserSession.IsSubAcc && !CurrentUserSession.SubPageAccess.UpdateAccount)
-            {
-                this.TemplateMain.isDisableSuspendedStatus = "true";
-                this.TemplateMain.isDisableAllowOutrightStatus = "true";
-            }
-            else
-            {
-                this.TemplateMain.isDisableSuspendedStatus = Convert.ToBoolean(this.row["Suspend"]).ToString().ToLower();
-                this.TemplateMain.isDisableAllowOutrightStatus = Convert.ToBoolean(this.row["DisableOutright"]).ToString().ToLower();
-            }
         }
 
         public string RenderPageSize(string id, int pagesize)
