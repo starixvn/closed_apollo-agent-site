@@ -110,11 +110,13 @@ namespace Sunplus.Agent.UI
 			protected static string s41{get{return Resources.Lang.search;}}
 			protected static string s42 = "\" border=\"0\" nowap=\"nowap\" src=\"";
 			protected static string s43{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
-			protected static string s44 = "\" /></a></div><div class=\"search-option\"><input type=\"checkbox\" name=\"isMember\" /><label>Member</label></div></form><br /><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
-			protected static string s45{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s46 = "\" name=\"\" /></div><div class=\"errMsg\">";
+			protected static string s44 = "\" /></a></div><div class=\"search-option\"><input type=\"checkbox\" name=\"isMember\" ";
+			public string isChecked = "{isChecked}";
+			protected static string s45 = "/><label>Member</label></div></form><br /><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
+			protected static string s46{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
+			protected static string s47 = "\" name=\"\" /></div><div class=\"errMsg\">";
 			public string errMsg = "{errMsg}";
-			protected static string s47 = "</div></div></div></div>";
+			protected static string s48 = "</div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -137,10 +139,12 @@ namespace Sunplus.Agent.UI
 					bd.Append(s42);
 					bd.Append(s43);
 					bd.Append(s44);
+					bd.Append(isChecked);
 					bd.Append(s45);
 					bd.Append(s46);
-					bd.Append(errMsg);
 					bd.Append(s47);
+					bd.Append(errMsg);
+					bd.Append(s48);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -148,18 +152,18 @@ namespace Sunplus.Agent.UI
 
 		public class AccountInfo_TheRestAcc_Block: Block
 		{
-			protected static string s48 = "<div id=\"clear02\"><img height=\"5\" width=\"1\" alt=\"\" src=\"";
-			protected static string s49{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s50 = "\" name=\"\" /></div>";
+			protected static string s49 = "<div id=\"clear02\"><img height=\"5\" width=\"1\" alt=\"\" src=\"";
+			protected static string s50{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
+			protected static string s51 = "\" name=\"\" /></div>";
 			public string settingBox = "{settingBox}";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s48);
 					bd.Append(s49);
 					bd.Append(s50);
+					bd.Append(s51);
 					bd.Append(settingBox);
 				}
 				if(IsAssigned){bd.Append(Value);}
