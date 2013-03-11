@@ -191,31 +191,15 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_Content_Block: Block
 		{
-<<<<<<< HEAD
-			protected static string s56 = "<tr><td><input type=\"checkbox\" id=\"";
+			protected static string s56 = "<tr><td>";
+			public string id = "{id}";
+			protected static string s57 = "</td><td><input type=\"checkbox\" id=\"";
 			public string chkid = "{chkid}";
-			protected static string s57 = "\" name=\"chkid\" value=\"";
+			protected static string s58 = "\" name=\"chkid\" value=\"";
 			public string chkid_value = "{chkid_value}";
-			protected static string s58 = "\" onclick=\"ItemCheck_OnClick(this);\"/></td><td align=\"center\">";
+			protected static string s59 = "\" onclick=\"ItemCheck_OnClick(this);\"/></td><td align=\"center\">";
 			public string edit_Option = "{edit_Option}";
-			protected static string s59 = "</td><td>";
-			public string id = "{id}";
 			protected static string s60 = "</td><td class=\"l\"><div ";
-=======
-			protected static string s56 = "<tr class=\"";
-			public string color = "{color}";
-			protected static string s57 = "\" id=\"";
-			public string custId = "{custId}";
-			protected static string s58 = "\"><td>";
-			public string id = "{id}";
-			protected static string s59 = "</td><td><input type=\"checkbox\" id=\"";
-			public string chkid = "{chkid}";
-			protected static string s60 = "\" name=\"chkid\" value=\"";
-			public string chkid_value = "{chkid_value}";
-			protected static string s61 = "\" onclick=\"ItemCheck_OnClick(this);\"/></td><td align=\"center\">";
-			public string other_Option = "{other_Option}";
-			protected static string s62 = "</td><td class=\"l\"><div ";
->>>>>>> 1df1ef8599213e2d8f2830eba8dec05d0cfa2eb2
 			public string LnkUserName = "{LnkUserName}";
 			protected static string s61 = ">";
 			public string username = "{username}";
@@ -252,25 +236,14 @@ namespace Fanex.Agent.UI
 				if(RenderChild)
 				{
 					bd.Append(s56);
-					bd.Append(chkid);
+					bd.Append(id);
 					bd.Append(s57);
-					bd.Append(chkid_value);
-					bd.Append(s58);
-<<<<<<< HEAD
-					bd.Append(edit_Option);
-					bd.Append(s59);
-					bd.Append(id);
-					bd.Append(s60);
-=======
-					bd.Append(id);
-					bd.Append(s59);
 					bd.Append(chkid);
-					bd.Append(s60);
+					bd.Append(s58);
 					bd.Append(chkid_value);
-					bd.Append(s61);
-					bd.Append(other_Option);
-					bd.Append(s62);
->>>>>>> 1df1ef8599213e2d8f2830eba8dec05d0cfa2eb2
+					bd.Append(s59);
+					bd.Append(edit_Option);
+					bd.Append(s60);
 					bd.Append(LnkUserName);
 					bd.Append(s61);
 					bd.Append(username);

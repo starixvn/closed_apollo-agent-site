@@ -1,7 +1,13 @@
 ﻿.divOther
 {
-	background:url("Images/Other.png") no-repeat;
-	height:16px;
-	width:16px;
-	cursor:pointer;
+    background: url("Images/Other.png") no-repeat;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+}
+.divDisableOther
+{
+    background: url("Images/Other_disable.png") no-repeat;
+    height: 16px;
+    width: 16px;
 }

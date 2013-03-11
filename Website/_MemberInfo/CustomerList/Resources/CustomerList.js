@@ -120,10 +120,14 @@ function CheckAll_onClick(els) {
 
 function ItemCheck_OnClick(els) {
     var arrChk = document.getElementsByName('chkid');
+    var editIcon = "edit_" + els.id;
+
     if (!els.checked) { // Uncheck
         $("chkAll").checked = false;
-        if ($("edit_" + els.id).hasAttribute("onmouseover") == true) {
-            ChangeAtribute("edit_" + els.id, "_onmouseover", "onmouseover");
+
+        if ($(editIcon).hasAttribute("onmouseover") == true) {
+            ChangeAtribute(editIcon, "_onmouseover", "onmouseover");
+            $(editIcon).setAttribute("class", "divDisableOther");
         }
     }
     else { // Checked
@@ -140,8 +144,9 @@ function ItemCheck_OnClick(els) {
 
         // Change Attribute for control Edit
 
-        if ($("edit_" + els.id).hasAttribute("_onmouseover") == true) {
-            ChangeAtribute("edit_" + els.id, "onmouseover", "_onmouseover");
+        if ($(editIcon).hasAttribute("_onmouseover") == true) {
+            ChangeAtribute(editIcon, "onmouseover", "_onmouseover");
+            $(editIcon).setAttribute("class", "divOther");
         }
 
         for (var i = 0; i < arrChk.length; i++) {
@@ -149,6 +154,7 @@ function ItemCheck_OnClick(els) {
                 var editId = "edit_" + arrChk[i].id;
                 if ($(editId).hasAttribute("_onmouseover") == false) {
                     ChangeAtribute(editId, "_onmouseover", "onmouseover");
+                    $(editId).setAttribute("class", "divDisableOther");
                 }
             }
         }
