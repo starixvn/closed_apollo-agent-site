@@ -1,20 +1,17 @@
 ﻿#tblHeader
 {
-	border: 1px solid #999999;
+	border: 1px solid #B2B2B2;
 	width: 100%;
-	background: url("Images/bg_header04.jpg") repeat-x scroll center top #E8E8E8;
+	background: url("bg_header04.jpg") repeat-x scroll center top #E8E8E8;
 	border-radius: none;
 	margin-top: 10px;
+	height: 20px;
 }
 
 #tblHeader tr
 {
 	/*height: 55px;*/
 	height: 20px;
-}
-#tblHeader td
-{
-	padding: 3px 0;
 }
 
 #tblHeader .bgleft
@@ -40,8 +37,7 @@
 
 #tblHeader .bgcenter
 {
-    /*background: url( "center_table.png" ) repeat-x scroll center bottom transparent;*/
-    padding-top: 2px;    
+    /*background: url( "center_table.png" ) repeat-x scroll center bottom transparent;*/    
 	text-align: center; /*padding-top: 13px;*/	
 }
 
