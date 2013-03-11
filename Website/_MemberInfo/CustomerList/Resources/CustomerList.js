@@ -122,6 +122,9 @@ function ItemCheck_OnClick(els) {
     var arrChk = document.getElementsByName('chkid');
     if (!els.checked) { // Uncheck
         $("chkAll").checked = false;
+        if ($("edit_" + els.id).hasAttribute("onmouseover") == true) {
+            ChangeAtribute("edit_" + els.id, "_onmouseover", "onmouseover");
+        }
     }
     else { // Checked
         var isChecked = true;
@@ -133,6 +136,21 @@ function ItemCheck_OnClick(els) {
         }
         if (isChecked) {
             $("chkAll").checked = true;
+        }
+
+        // Change Attribute for control Edit
+
+        if ($("edit_" + els.id).hasAttribute("_onmouseover") == true) {
+            ChangeAtribute("edit_" + els.id, "onmouseover", "_onmouseover");
+        }
+
+        for (var i = 0; i < arrChk.length; i++) {
+            if (!arrChk[i].checked) {
+                var editId = "edit_" + arrChk[i].id;
+                if ($(editId).hasAttribute("_onmouseover") == false) {
+                    ChangeAtribute(editId, "_onmouseover", "onmouseover");
+                }
+            }
         }
     }
 }
@@ -652,7 +670,7 @@ function EditMenuControl(element, popupId, custId, userName) {
     age.addEvent(div, "mouseout", function () {
         clearTimeout(div.timerID);
         div.timerID = 0;
-        div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 100);
+        div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 50);
     }, true);
 }
 

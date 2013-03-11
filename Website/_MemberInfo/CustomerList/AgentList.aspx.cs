@@ -195,10 +195,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             AgentList_Content_Block tplBlock = e as AgentList_Content_Block;
 
             this.agentId = dr["agentid"].ToString();
-            // tplBlock.LnkUserName = CurrentUserSession.SubPageAccess.ViewReports ? "class='text' onclick=\"viewStatement(" + this.agentId + ",'Agent')\"" : string.Empty;
 
-            tplBlock.custId = this.agentId;
-            tplBlock.chkid = "chkid_" + this.agentId;
+            tplBlock.chkid = this.agentId;
             tplBlock.chkid_value = dr["username"] as string;
 
             tplBlock.id = dr["RowNumber"].ToString();
@@ -229,19 +227,28 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             //// Render Other
             string editMenuControl = "EditMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
-            tplBlock.other_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, string.Empty, editMenuControl);
+            tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, string.Empty, editMenuControl);
 
-            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
-            //{
-            //    tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
-            //}
+            if (Convert.ToInt32(dr["NumberOfAgent"]) > 0)
+            {
+                string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "')";
+                IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, viewAgentDonwlineClick);
+                tplBlock.viewAgentList = viewAgentDownline;
+            }
+            else
+            {
+                tplBlock.viewAgentList = string.Empty;
+            }
 
-            string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "')";
-            IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, viewAgentDonwlineClick);
-            tplBlock.viewAgentList = viewAgentDownline;
-
-            IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "");
-            tplBlock.viewPlayerList = viewPlayerDownline;
+            if (Convert.ToInt32(dr["NumberOfMember"]) > 0)
+            {
+                IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "");
+                tplBlock.viewPlayerList = viewPlayerDownline;
+            }
+            else
+            {
+                tplBlock.viewPlayerList = string.Empty;
+            }
 
             tplBlock.groupA = Formater.FormatNumber4(dr["groupa"], this.langKey);
             tplBlock.groupB = Formater.FormatNumber4(dr["groupb"], this.langKey);
