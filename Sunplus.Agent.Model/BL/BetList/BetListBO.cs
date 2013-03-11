@@ -372,23 +372,24 @@ namespace Sunplus.Agent.Model.BL.BetList
             string language = CurrentSession.LangKey;
             int customerId = CurrentSession.CustId;
 
-            DataTable runningBets = null;
-            if (CurrentSession.IsAgent)
-            {
-                runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_Ag(matchId, customerId, betType, language, liveindicator, betteam);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_MAg(matchId, customerId, betType, language, liveindicator, betteam);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_SAg(matchId, customerId, betType, language, liveindicator, betteam);
-            }
-            else
-            {
-                runningBets = new DataTable();
-            }
+            DataTable runningBets = new DataTable();
+            //if (CurrentSession.IsAgent)
+            //{
+            //    runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_Ag(matchId, customerId, betType, language, liveindicator, betteam);
+            //}
+            //else if (CurrentSession.IsMaster)
+            //{
+            //    runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_MAg(matchId, customerId, betType, language, liveindicator, betteam);
+            //}
+            //else if (CurrentSession.IsSuper)
+            //{
+            //    runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_SAg(matchId, customerId, betType, language, liveindicator, betteam);
+            //}
+            //else
+            //{
+            //    runningBets = new DataTable();
+            //}
+            runningBets = betListDAO.Age_BetList_TotalBet_SelRunningByBettypeMatch(matchId, customerId, betType, language, liveindicator, betteam);
 
             return runningBets;
         }
@@ -409,24 +410,24 @@ namespace Sunplus.Agent.Model.BL.BetList
             string language = CurrentSession.LangKey;
             int customerId = CurrentSession.CustId;
 
-            DataTable runningBets = null;
-            if (CurrentSession.IsAgent)
-            {
-                runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_Ag(matchId, customerId, betType, language, liveindicator, betteam, out outDataTable);
-            }
-            else if (CurrentSession.IsMaster)
-            {
-                runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_MAg(matchId, customerId, betType, language, liveindicator, betteam, out outDataTable);
-            }
-            else if (CurrentSession.IsSuper)
-            {
-                runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_SAg(matchId, customerId, betType, language, liveindicator, betteam, out outDataTable);
-            }
-            else
-            {
-                runningBets = new DataTable();
-                outDataTable = new DataTable();
-            }
+            DataTable runningBets = new DataTable();
+            //if (CurrentSession.IsAgent)
+            //{
+            //}
+            //else if (CurrentSession.IsMaster)
+            //{
+            //    runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_MAg(matchId, customerId, betType, language, liveindicator, betteam, out outDataTable);
+            //}
+            //else if (CurrentSession.IsSuper)
+            //{
+            //    runningBets = betListDAO.Age_BetList_SelRunningByBettypeMatch_SAg(matchId, customerId, betType, language, liveindicator, betteam, out outDataTable);
+            //}
+            //else
+            //{
+            //    runningBets = new DataTable();
+            //    outDataTable = new DataTable();
+            //}
+            runningBets = betListDAO.Age_BetList_TotalBet_SelRunningByBettypeMatch(matchId, customerId, betType, language, liveindicator, betteam, out outDataTable);
 
             return runningBets;
         }

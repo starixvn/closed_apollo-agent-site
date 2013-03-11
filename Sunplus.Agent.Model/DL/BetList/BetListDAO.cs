@@ -661,7 +661,7 @@ namespace Sunplus.Agent.Model.DL.BetList
         /// <param name="betType"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_BetList_SelRunningByBettypeMatch_Ag(int matchId, int custId, int betType, string language, int liveindicator, string betteam)
+        public DataTable Age_BetList_TotalBet_SelRunningByBettypeMatch(int matchId, int custId, int betType, string language, int liveindicator, string betteam)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("custid", custId);
@@ -671,7 +671,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             parameters.Add("liveindicator", liveindicator);
             parameters.Add("betteam", betteam);
 
-            return ExecSpTable("Age_BetList_SelRunningByBettypeMatch_Ag", parameters);
+            return ExecSpTable("Age_BetList_TotalBet_SelRunningByBettypeMatch", parameters);
         }
 
         /// <summary>
@@ -685,7 +685,7 @@ namespace Sunplus.Agent.Model.DL.BetList
         /// <param name="betteam"></param>
         /// <param name="outDataTable"></param>
         /// <returns></returns>
-        public DataTable Age_BetList_SelRunningByBettypeMatch_Ag(int matchId, int custId, int betType, string language, int liveindicator, string betteam, out DataTable outDataTable)
+        public DataTable Age_BetList_TotalBet_SelRunningByBettypeMatch(int matchId, int custId, int betType, string language, int liveindicator, string betteam, out DataTable outDataTable)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("custid", custId);
@@ -695,7 +695,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             parameters.Add("liveindicator", liveindicator);
             parameters.Add("betteam", betteam);
 
-            DataSet result = ExecSpDataset("Age_BetList_SelRunningByBettypeMatch_Ag", parameters);
+            DataSet result = ExecSpDataset("Age_BetList_TotalBet_SelRunningByBettypeMatch", parameters);
 
             // Check exist a DataTable in DataSet
             if (result.Tables.Count > 0)
@@ -706,7 +706,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             else
             {
                 // Throw DataException and log the SP calling
-                DataException error = new DataException("Age_BetList_SelRunningByBettypeMatch_Ag", parameters);
+                DataException error = new DataException("Age_BetList_TotalBet_SelRunningByBettypeMatch", parameters);
                 Sunplus.Agent.Utilities.Logs.Write(error.Message);
                 throw error;
             }

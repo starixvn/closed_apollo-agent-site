@@ -10,7 +10,6 @@ namespace Sunplus.Agent.UI._AccountInfo
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using Fanex.Age.DTO.Reports.TreeView;
     using Fanex.Agent.UI._AccountInfo;
     using Sunplus.Agent.Model.BL.AccountInfo;
     using Sunplus.Agent.Model.Entities;

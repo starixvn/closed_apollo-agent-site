@@ -317,6 +317,7 @@
   <Function Name="Agent-Apollo-TotalBets-BetList">
     <Setting Key="Acc_Betlist_TotalBets_Sel_4_30" SpName="Acc_Betlist_TotalBets_Sel_4_30" DbName="DB05" Plain="0" />
     <Setting Key="Acc_BetList_TotalBets_SelRunningByBettype" SpName="Acc_BetList_TotalBets_SelRunningByBettype" DbName="DB05" Plain="0" />
+    <Setting Key="Age_BetList_TotalBet_SelRunningByBettypeMatch" SpName="Age_BetList_TotalBet_SelRunningByBettypeMatch" DbName="DB05" Plain="0" />
     <Setting Key="Acc_BetList_TotalBet_AgentDetail" SpName="Acc_BetList_TotalBet_AgentDetail" DbName="DB05" Plain="0" />
 
     <Setting Key="Acc_BetList_AgentDetail" SpName="Acc_BetList_AgentDetail" DbName="DB05" Plain="0" />
@@ -326,9 +327,9 @@
   <Function Name="Agent-Apollo-Customer Setting">
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetDownLine" SpName="Age_Customer_GetDownLine" DbName="DB05" Plain="0" />
- 
+
   </Function>
-  
+
   <Function Name="Agent-Apollo-TotalBets">
     <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="DB05" Plain="0" />
     <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="DB05" Plain="0" />
@@ -357,7 +358,7 @@
   </Function>
 
   <Function Name="Agent-Apollo-ScoreMap">
-    <Setting Key="Age_ScoreMap_Result_Ag" SpName="Age_ScoreMap_Result" DbName="DB05" Plain="0" />
+    <Setting Key="Age_ScoreMap_Result" SpName="Age_ScoreMap_Result" DbName="DB05" Plain="0" />
     <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="DB05" Plain="0" />
     <Setting Key="Age_ScoreMap_SelLeague" SpName="Age_ScoreMap_SelLeague" DbName="DB05" Plain="0" />
     <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="DB05" Plain="0" />
