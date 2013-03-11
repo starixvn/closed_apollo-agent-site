@@ -3254,7 +3254,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>This user is not online</value>
   </data>
   <data name="username" xml:space="preserve">
-    <value>User</value>
+    <value>Filter by user</value>
   </data>
   <data name="usernameEdited" xml:space="preserve">
     <value>Username</value>
