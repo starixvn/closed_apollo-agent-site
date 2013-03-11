@@ -28,15 +28,15 @@
                     <!--Header-->
                     <thead>
                         <tr>
+                            <th rowspan="2">
+                                {static:Resources.Lang.no}
+                            </th>
                             <th rowspan="2" {DisplayUpdMulti:} isDirectDownline="1" isShowDCom={isShowDCom}>
                                 {editmult}
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.edit}
-                            </th> 
-                            <th rowspan="2">
-                                {static:Resources.Lang.lblNoList}
-                            </th>
+                            </th>                             
                             <th rowspan="2">
                                 {static:Resources.Lang.username}
                             </th>
@@ -102,15 +102,15 @@
                     <tbody>
                         <!--Content-->
                         <tr class="{color}" id="{custId}" iconhr="{iconhr}" iconcs="{iconcs}" iconbg="{iconbg}" iconp2p="{iconp2p}" isDisabledP2P="{isDisabledP2P}" iconLiveCasino="{iconLiveCasino}" isDisabledLiveCS="{isDisabledLiveCS}" iconVirtualSport="{iconVirtualSport}" isDisabledVS="{isDisabledVS}" iconEdit="{iconEdit:}">
+                            <td>
+                                {id}
+                            </td>
                             <td {DisplayUpdMulti:}>
                                 <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" statuscs="{statusCS}" statusracing="{statusRacing}" statusbingo="{statusBingo}" statusp2p="{statusP2P}" statusLiveCasino="{statusLiveCasino}" statusVirtualSport="{statusVirtualSport}"/>
                             </td>
                             <td align="center">
                                 {other_Option}
-                            </td>
-                            <td>
-                                {id}
-                            </td>                            
+                            </td>                                                        
                             <td class="l">
                                 <div {LnkUserName}>{username}</div>
                             </td>                            

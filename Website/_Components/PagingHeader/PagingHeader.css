@@ -2,7 +2,6 @@
 {
 	border: 0;
 	width: 100%;
-	margin-top: 7px;
 }
 
 #tblHeader tr
@@ -17,7 +16,7 @@
 
 #tblHeader .bgleft
 {
-	background: url( "left_table.jpg" ) no-repeat scroll left bottom transparent;
+	/*background: url( "left_table.jpg" ) no-repeat scroll left bottom transparent;*/
 	text-align: left;
 	width: 159px; /*padding-top: 15px;*/
 }
@@ -38,7 +37,7 @@
 
 #tblHeader .bgcenter
 {
-    background: url( "center_table.png" ) repeat-x scroll center bottom transparent;
+    /*background: url( "center_table.png" ) repeat-x scroll center bottom transparent;*/
     padding-top: 2px;    
 	text-align: center; /*padding-top: 13px;*/
 	
@@ -46,7 +45,7 @@
 
 #tblHeader .bgright
 {
-	background: url( "right_table.jpg" ) no-repeat scroll right bottom transparent;
+	/*background: url( "right_table.jpg" ) no-repeat scroll right bottom transparent;*/
     padding-top: 10px;   
 	width: 159px;
 	text-align: right;

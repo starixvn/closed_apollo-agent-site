@@ -283,12 +283,11 @@ select {
 }
 
 .bg_white {
-    background-color: #fff;    
+    background-color: #fff; 
 }
 
-
-.bg_white td:first-child {
-    border-left: none;      
+.tblRpt .bg_white td {   
+    text-align: center; 
 }
 
 .bg_eb {
