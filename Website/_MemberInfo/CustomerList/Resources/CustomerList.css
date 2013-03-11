@@ -34,8 +34,7 @@ body
 }
 
 #tblCustomerList tfoot tr
-{
-	background: url( "Images/bg_header04.jpg" ) repeat-x scroll center top #E8E8E8;
+{	
 	font-weight: normal;
 	height: 20px;
 	text-align: center;
@@ -115,6 +114,9 @@ body
 	padding: 2px;
 	white-space: nowrap;
 	background: #fff;	
+}
+#tblCustomerList tfoot tr td {
+    background: url("Images/bg_header04.jpg") repeat-x scroll center top #E8E8E8;
 }
 
 #tblCustomerList td,th {
