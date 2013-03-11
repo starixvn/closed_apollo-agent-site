@@ -349,33 +349,19 @@ namespace Sunplus.Agent.UI._AccountInfo
             tpl.usernamesearch = this.userNameRequest;
             tpl.CustInfo.CustomerUsername = userName;
 
-            if (this.isMember)
-            {
-                tpl.isChecked = CHECKED_CHECKBOX;
-            }
-
             if (!bool.Parse(this.dtrCustomerInfo["HasAgentDownLine"].ToString()))
             {
                 tpl.ButtonAgentList.Hide();
-            }
-            else
-            {
-                tpl.ButtonAgentList.agentListLink = string.Format("../_MemberInfo/CustomerList/AgentList.aspx?custId={0}", this.custId);
             }
 
             if (!bool.Parse(this.dtrCustomerInfo["HasPlayerDownLine"].ToString()))
             {
                 tpl.ButtonMemberList.Hide();
             }
-            else
-            {
-                tpl.ButtonMemberList.memberListLink = string.Format("../_MemberInfo/CustomerList/MemberList.aspx?custId={0}", this.custId);
-            }
 
             if (!bool.Parse(this.dtrCustomerInfo["IsMember"].ToString()))
             {
                 tpl.ButtonBetList.Hide();
-                //tpl.ButtonMemberList.memberListLink = string.Format("../_MemberInfo/CustomerList/MemberList.aspx?custId={0}", this.custId);
             }
 
             // tpl.CustInfo.CustomerUsername = this.FormatUsername(userName, string.IsNullOrEmpty(this.dtrCustomerInfo["enabled"].ToString()) ? false : Convert.ToBoolean(this.dtrCustomerInfo["enabled"].ToString()), true); //if string exceed this MaxLength, it will be truncated with tooltip!
