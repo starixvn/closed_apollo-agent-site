@@ -41,6 +41,14 @@ body
 	text-align: center;
 }
 
+#tblCustomerList tfoot tr
+{
+	background: url( "Images/bg_header04.jpg" ) repeat-x scroll center top #E8E8E8;
+	font-weight: normal;
+	height: 20px;
+	text-align: center;
+}
+
 #tblCustomerList thead tr.header th
 {	
 	font-size: 11px;

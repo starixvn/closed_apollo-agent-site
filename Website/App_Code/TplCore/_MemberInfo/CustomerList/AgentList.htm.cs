@@ -105,10 +105,10 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_Header_Block: Block
 		{
-			protected static string s19 = "<thead><tr><th rowspan=\"2\"><input type=\"checkbox\" id=\"chkAll\" name=\"chkAll\" onclick=\"CheckAll_onClick(this);\"/></th><th rowspan=\"2\">";
-			protected static string s20{get{return Resources.Lang.edit;}}
-			protected static string s21 = "</th><th rowspan=\"2\">";
-			protected static string s22{get{return Resources.Lang.lblNoList;}}
+			protected static string s19 = "<thead><tr><th rowspan=\"2\">";
+			protected static string s20{get{return Resources.Lang.no;}}
+			protected static string s21 = "</th><th rowspan=\"2\"><input type=\"checkbox\" id=\"chkAll\" name=\"chkAll\" onclick=\"CheckAll_onClick(this);\"/></th><th rowspan=\"2\">";
+			protected static string s22{get{return Resources.Lang.edit;}}
 			protected static string s23 = "</th><th rowspan=\"2\">";
 			protected static string s24{get{return Resources.Lang.username;}}
 			protected static string s25 = "</th><th rowspan=\"2\">";
@@ -195,14 +195,14 @@ namespace Fanex.Agent.UI
 			public string color = "{color}";
 			protected static string s57 = "\" id=\"";
 			public string custId = "{custId}";
-			protected static string s58 = "\"><td><input type=\"checkbox\" id=\"";
-			public string chkid = "{chkid}";
-			protected static string s59 = "\" name=\"chkid\" value=\"";
-			public string chkid_value = "{chkid_value}";
-			protected static string s60 = "\" onclick=\"ItemCheck_OnClick(this);\"/></td><td align=\"center\">";
-			public string other_Option = "{other_Option}";
-			protected static string s61 = "</td><td>";
+			protected static string s58 = "\"><td>";
 			public string id = "{id}";
+			protected static string s59 = "</td><td><input type=\"checkbox\" id=\"";
+			public string chkid = "{chkid}";
+			protected static string s60 = "\" name=\"chkid\" value=\"";
+			public string chkid_value = "{chkid_value}";
+			protected static string s61 = "\" onclick=\"ItemCheck_OnClick(this);\"/></td><td align=\"center\">";
+			public string other_Option = "{other_Option}";
 			protected static string s62 = "</td><td class=\"l\"><div ";
 			public string LnkUserName = "{LnkUserName}";
 			protected static string s63 = ">";
@@ -244,13 +244,13 @@ namespace Fanex.Agent.UI
 					bd.Append(s57);
 					bd.Append(custId);
 					bd.Append(s58);
-					bd.Append(chkid);
-					bd.Append(s59);
-					bd.Append(chkid_value);
-					bd.Append(s60);
-					bd.Append(other_Option);
-					bd.Append(s61);
 					bd.Append(id);
+					bd.Append(s59);
+					bd.Append(chkid);
+					bd.Append(s60);
+					bd.Append(chkid_value);
+					bd.Append(s61);
+					bd.Append(other_Option);
 					bd.Append(s62);
 					bd.Append(LnkUserName);
 					bd.Append(s63);

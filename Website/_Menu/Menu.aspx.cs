@@ -22,6 +22,7 @@ namespace Sunplus.Agent.UI._Menu
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
+    using Fanex.Agent.UI._Menu;
 
     public partial class Menu_Page : Fanex.Age.UI.TplPage
     {
