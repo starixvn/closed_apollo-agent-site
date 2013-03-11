@@ -236,7 +236,7 @@ function InitExcelFunction() {
 function InitBetList() {
 	var ageWnd = parent.ageWnd;
 	if (typeof ageWnd != 'undefined' && ageWnd.loaded) {
-		ageWnd.setRect(ageWnd.left, 50, 900, 350);  // to fix the popup when click "Bet List" link
+		ageWnd.setRect(ageWnd.left, 50, 900, 720);  // to fix the popup when click "Bet List" link
 		$("exportExcelDiv").style.visibility = "hidden";
 	}
 
