@@ -38,11 +38,11 @@ namespace Sunplus.Agent.UI
 			public string editSportBookLink = "{editSportBookLink}";
 			protected static string s3 = "\">";
 			protected static string s4{get{return Resources.Lang.lblEditSB;}}
-			protected static string s5 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem4\" class=\"b_left\" align=\"right\" onclick=\"menu_select(4);\" target=\"main\"href=\"";
+			protected static string s5 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem4\" class=\"b_left\" align=\"main\" onclick=\"menu_select(4);\" target=\"main\"href=\"";
 			public string editBetSettingLink = "{editBetSettingLink}";
 			protected static string s6 = "\">";
 			protected static string s7{get{return Resources.Lang.lblBetSetting;}}
-			protected static string s8 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem2\" class=\"b_left\" align=\"right\" onclick=\"menu_select(2);\" target=\"main\"href=\"";
+			protected static string s8 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem2\" class=\"b_left\" align=\"main\" onclick=\"menu_select(2);\" target=\"main\"href=\"";
 			public string editCommLink = "{editCommLink}";
 			protected static string s9 = "\">";
 			protected static string s10{get{return Resources.Lang.commission;}}

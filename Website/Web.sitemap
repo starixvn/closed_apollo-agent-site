@@ -70,9 +70,9 @@
       --><!--/Chart-->
       <!--MemberInfo-->
       <siteMapNode title="lblMemberInfo" expand="true">
-        <!--<siteMapNode title="lblNewMember" href="_MemberInfo/SearchAndCopy/MasterPage.aspx"></siteMapNode>-->
-        <!--<siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>-->
+        <!--<siteMapNode title="lblNewMember" href="_MemberInfo/SearchAndCopy/MasterPage.aspx"></siteMapNode>-->        
         <siteMapNode title="customerlist" href="_MemberInfo/CustomerList/Agent/MemberList.aspx"></siteMapNode>
+        <siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>
         <!--<siteMapNode title="creditbalance" href="_MemberInfo/CreditBalance/CreditBalanceList.aspx"></siteMapNode>-->
         <siteMapNode title="lblPositionTaking" href="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
         <!--Casino-PositionTaking--><!--
@@ -84,11 +84,6 @@
         <siteMapNode title="lblMemberCommission" href="_MemberInfo/Commission/MemberCommissionSportbook.aspx"></siteMapNode>
       </siteMapNode>
       <!--/MemberInfo-->
-      <!--UserManagement-->
-      <siteMapNode title="lblUserManagement" expand="true">        
-        <siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>        
-      </siteMapNode>
-      <!--/UserManagement-->
     </siteMapNode>
 
     <siteMapNode title="Master">
@@ -155,9 +150,9 @@
       --><!--/Chart-->
       <!--MemberInfo-->
       <siteMapNode title="lblMemberInfo" expand="true">
-        <!--<siteMapNode title="lblNewAgent" href="_MemberInfo/SearchAndCopy/MasterPage.aspx"></siteMapNode>-->
-        <!--<siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>-->
+        <!--<siteMapNode title="lblNewAgent" href="_MemberInfo/SearchAndCopy/MasterPage.aspx"></siteMapNode>-->        
         <siteMapNode title="lblAgentList" href="_MemberInfo/CustomerList/AgentList.aspx"></siteMapNode>
+        <siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>
         <!--<siteMapNode title="creditbalance" href="_MemberInfo/CreditBalance/CreditBalanceList.aspx"></siteMapNode>-->
         <siteMapNode title="lblPositionTaking" href="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
         <!--Casino-PositionTaking--><!--
@@ -168,12 +163,7 @@
         <!--/Bingo-PositionTaking-->
         <siteMapNode title="lblMemberCommission" href="_MemberInfo/Commission/MemberCommissionSportbook.aspx"></siteMapNode>
       </siteMapNode>
-      <!--/MemberInfo-->
-      <!--UserManagement-->
-      <siteMapNode title="lblUserManagement" expand="true">        
-        <siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>        
-      </siteMapNode>
-      <!--/UserManagement-->
+      <!--/MemberInfo-->      
     </siteMapNode>
 
     <siteMapNode title="Super">
@@ -240,9 +230,9 @@
       --><!--/Chart-->
       <!--MemberInfo-->
       <siteMapNode title="lblMemberInfo" expand="false">
-        <!--<siteMapNode title="lblNewMaster" href="_MemberInfo/SearchAndCopy/MasterPage.aspx"></siteMapNode>-->
-        <!--<siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>-->
+        <!--<siteMapNode title="lblNewMaster" href="_MemberInfo/SearchAndCopy/MasterPage.aspx"></siteMapNode>-->        
         <siteMapNode title="lblMasterList" href="_MemberInfo/CustomerList/Super/MasterList.aspx"></siteMapNode>
+        <siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>
         <!--<siteMapNode title="creditbalance" href="_MemberInfo/CreditBalance/CreditBalanceList.aspx"></siteMapNode>-->
         <siteMapNode title="lblPositionTaking" href="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
         <!--Casino-PositionTaking--><!--
@@ -253,12 +243,7 @@
         <!--/Bingo-PositionTaking-->
         <siteMapNode title="lblMemberCommission" href="_MemberInfo/Commission/MemberCommissionSportbook.aspx"></siteMapNode>
       </siteMapNode>
-      <!--/MemberInfo-->
-      <!--UserManagement-->
-      <siteMapNode title="lblUserManagement" expand="true">        
-        <siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>        
-      </siteMapNode>
-      <!--/UserManagement-->
+      <!--/MemberInfo-->      
     </siteMapNode>
 
     <!--HowToUse-->

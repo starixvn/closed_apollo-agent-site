@@ -40,14 +40,14 @@
                     <thead>
                         <tr>
                             <th rowspan="2">
+                                {static:Resources.Lang.no}
+                            </th>
+                            <th rowspan="2">
                                 <input type="checkbox" id="chkAll" name="chkAll" onclick="CheckAll_onClick(this);"/>
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.edit}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.lblNoList}
-                            </th>
+                            </th>                            
                             <th rowspan="2">
                                 {static:Resources.Lang.username}
                             </th>
@@ -106,14 +106,22 @@
                         <!--Content-->
                         <tr>
                             <td>
+                                {id}
+                            </td>
+                            <td>
                                 <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" onclick="ItemCheck_OnClick(this);"/>
                             </td>
                             <td align="center">
+<<<<<<< HEAD
                                 {edit_Option}
                             </td>
                             <td>
                                 {id}
                             </td>
+=======
+                                {other_Option}
+                            </td>                            
+>>>>>>> 1df1ef8599213e2d8f2830eba8dec05d0cfa2eb2
                             <td class="l">
                                 <div {LnkUserName}>{username}</div>
                             </td>

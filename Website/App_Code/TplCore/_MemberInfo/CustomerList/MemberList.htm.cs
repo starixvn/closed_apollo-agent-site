@@ -71,16 +71,16 @@ namespace Fanex.Agent.UI
 
 		public class MemberList_Header_Block: Block
 		{
-			protected static string s13 = "<thead><tr><th rowspan=\"2\" ";
+			protected static string s13 = "<thead><tr><th rowspan=\"2\">";
+			protected static string s14{get{return Resources.Lang.no;}}
+			protected static string s15 = "</th><th rowspan=\"2\" ";
 			public string DisplayUpdMulti = "";
-			protected static string s14 = " isDirectDownline=\"1\" isShowDCom=";
+			protected static string s16 = " isDirectDownline=\"1\" isShowDCom=";
 			public string isShowDCom = "{isShowDCom}";
-			protected static string s15 = ">";
+			protected static string s17 = ">";
 			public string editmult = "{editmult}";
-			protected static string s16 = "</th><th rowspan=\"2\">";
-			protected static string s17{get{return Resources.Lang.edit;}}
 			protected static string s18 = "</th><th rowspan=\"2\">";
-			protected static string s19{get{return Resources.Lang.lblNoList;}}
+			protected static string s19{get{return Resources.Lang.edit;}}
 			protected static string s20 = "</th><th rowspan=\"2\">";
 			protected static string s21{get{return Resources.Lang.username;}}
 			protected static string s22 = "</th><th rowspan=\"2\">";
@@ -126,13 +126,13 @@ namespace Fanex.Agent.UI
 				if(RenderChild)
 				{
 					bd.Append(s13);
-					bd.Append(DisplayUpdMulti);
 					bd.Append(s14);
-					bd.Append(isShowDCom);
 					bd.Append(s15);
-					bd.Append(editmult);
+					bd.Append(DisplayUpdMulti);
 					bd.Append(s16);
+					bd.Append(isShowDCom);
 					bd.Append(s17);
+					bd.Append(editmult);
 					bd.Append(s18);
 					bd.Append(s19);
 					bd.Append(s20);
@@ -205,28 +205,28 @@ namespace Fanex.Agent.UI
 			public string isDisabledVS = "{isDisabledVS}";
 			protected static string s70 = "\" iconEdit=\"";
 			public string iconEdit = "";
-			protected static string s71 = "\"><td ";
-			public string DisplayUpdMulti = "";
-			protected static string s72 = "><input type=\"checkbox\" id=\"";
-			public string chkid = "{chkid}";
-			protected static string s73 = "\" name=\"chkid\" value=\"";
-			public string chkid_value = "{chkid_value}";
-			protected static string s74 = "\" statuscs=\"";
-			public string statusCS = "{statusCS}";
-			protected static string s75 = "\" statusracing=\"";
-			public string statusRacing = "{statusRacing}";
-			protected static string s76 = "\" statusbingo=\"";
-			public string statusBingo = "{statusBingo}";
-			protected static string s77 = "\" statusp2p=\"";
-			public string statusP2P = "{statusP2P}";
-			protected static string s78 = "\" statusLiveCasino=\"";
-			public string statusLiveCasino = "{statusLiveCasino}";
-			protected static string s79 = "\" statusVirtualSport=\"";
-			public string statusVirtualSport = "{statusVirtualSport}";
-			protected static string s80 = "\"/></td><td align=\"center\">";
-			public string other_Option = "{other_Option}";
-			protected static string s81 = "</td><td>";
+			protected static string s71 = "\"><td>";
 			public string id = "{id}";
+			protected static string s72 = "</td><td ";
+			public string DisplayUpdMulti = "";
+			protected static string s73 = "><input type=\"checkbox\" id=\"";
+			public string chkid = "{chkid}";
+			protected static string s74 = "\" name=\"chkid\" value=\"";
+			public string chkid_value = "{chkid_value}";
+			protected static string s75 = "\" statuscs=\"";
+			public string statusCS = "{statusCS}";
+			protected static string s76 = "\" statusracing=\"";
+			public string statusRacing = "{statusRacing}";
+			protected static string s77 = "\" statusbingo=\"";
+			public string statusBingo = "{statusBingo}";
+			protected static string s78 = "\" statusp2p=\"";
+			public string statusP2P = "{statusP2P}";
+			protected static string s79 = "\" statusLiveCasino=\"";
+			public string statusLiveCasino = "{statusLiveCasino}";
+			protected static string s80 = "\" statusVirtualSport=\"";
+			public string statusVirtualSport = "{statusVirtualSport}";
+			protected static string s81 = "\"/></td><td align=\"center\">";
+			public string other_Option = "{other_Option}";
 			protected static string s82 = "</td><td class=\"l\"><div ";
 			public string LnkUserName = "{LnkUserName}";
 			protected static string s83 = ">";
@@ -292,27 +292,27 @@ namespace Fanex.Agent.UI
 					bd.Append(s70);
 					bd.Append(iconEdit);
 					bd.Append(s71);
-					bd.Append(DisplayUpdMulti);
-					bd.Append(s72);
-					bd.Append(chkid);
-					bd.Append(s73);
-					bd.Append(chkid_value);
-					bd.Append(s74);
-					bd.Append(statusCS);
-					bd.Append(s75);
-					bd.Append(statusRacing);
-					bd.Append(s76);
-					bd.Append(statusBingo);
-					bd.Append(s77);
-					bd.Append(statusP2P);
-					bd.Append(s78);
-					bd.Append(statusLiveCasino);
-					bd.Append(s79);
-					bd.Append(statusVirtualSport);
-					bd.Append(s80);
-					bd.Append(other_Option);
-					bd.Append(s81);
 					bd.Append(id);
+					bd.Append(s72);
+					bd.Append(DisplayUpdMulti);
+					bd.Append(s73);
+					bd.Append(chkid);
+					bd.Append(s74);
+					bd.Append(chkid_value);
+					bd.Append(s75);
+					bd.Append(statusCS);
+					bd.Append(s76);
+					bd.Append(statusRacing);
+					bd.Append(s77);
+					bd.Append(statusBingo);
+					bd.Append(s78);
+					bd.Append(statusP2P);
+					bd.Append(s79);
+					bd.Append(statusLiveCasino);
+					bd.Append(s80);
+					bd.Append(statusVirtualSport);
+					bd.Append(s81);
+					bd.Append(other_Option);
 					bd.Append(s82);
 					bd.Append(LnkUserName);
 					bd.Append(s83);

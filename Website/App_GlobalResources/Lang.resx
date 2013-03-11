@@ -1835,7 +1835,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Member Commission</value>
   </data>
   <data name="lblMemberInfo" xml:space="preserve">
-    <value>Downlines Information</value>
+    <value>Account Information</value>
   </data>
   <data name="lblMemberMax" xml:space="preserve">
     <value>Mem. Max Credit</value>
@@ -2217,7 +2217,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>M.Agent Win Loss</value>
   </data>
   <data name="mainmenu" xml:space="preserve">
-    <value>Main menu</value>
+    <value>Menu</value>
   </data>
   <data name="mar" xml:space="preserve">
     <value>Mar</value>
@@ -4069,10 +4069,10 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Virtual Tennis</value>
   </data>
   <data name="agentList" xml:space="preserve">
-    <value>Agent List</value>
+    <value>Agents</value>
   </data>
   <data name="memberList" xml:space="preserve">
-    <value>Customer List</value>
+    <value>Members</value>
   </data>
   <data name="lblUserManagement" xml:space="preserve">
     <value>User Management</value>
@@ -4124,8 +4124,5 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblMemberCommissionPercent" xml:space="preserve">
     <value>Member Commission (%)</value>
-  </data>
-  <data name="lblNoList" xml:space="preserve">
-    <value>No.</value>
   </data>
 </root>
