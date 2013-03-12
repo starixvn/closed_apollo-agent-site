@@ -358,7 +358,7 @@ select {
 
 .iplink {
     color: #06C;
-    text-decoration: none;
+    text-decoration: none;    
 }
 
 .iplink:hover {

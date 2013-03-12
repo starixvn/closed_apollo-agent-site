@@ -20,6 +20,7 @@ using Fanex.BetList.Core.Utils;
 using Sunplus.Agent.Model.BL.BetList;
 using Sunplus.Agent.Model.BL.Reports;
 using Sunplus.Agent.Model.Entities;
+using Fanex.Agent.UI._BetList;
 
 namespace Sunplus.Agent.UI._BetList
 {
