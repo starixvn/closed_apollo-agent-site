@@ -3254,7 +3254,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>This user is not online</value>
   </data>
   <data name="username" xml:space="preserve">
-    <value>User Name</value>
+    <value>Filter by user</value>
   </data>
   <data name="usernameEdited" xml:space="preserve">
     <value>Username</value>
@@ -4124,5 +4124,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblMemberCommissionPercent" xml:space="preserve">
     <value>Member Commission (%)</value>
+  </data>
+  <data name="lblUser" xml:space="preserve">
+    <value>User</value>
   </data>
 </root>

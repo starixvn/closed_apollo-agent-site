@@ -698,6 +698,13 @@ function showFlashAccInfoMaster() {
     }
 }
 
+function ShowTreeview() {
+    var roleId = getRoleID();
+    if (roleId == 4) {
+        addDivPopup('accinfosup');
+    }
+}
+
 function doViewBetList(matchId, bettype, type) {
     var url = '../BetList/BetList.aspx?matchid=' + matchId + '&bettype=' + bettype + '&type=' + type;
     window.location.href = url;

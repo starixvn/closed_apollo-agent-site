@@ -76,7 +76,7 @@ namespace Fanex.Agent.UI
 			protected static string s12{get{return Resources.Lang.mainmenu;}}
 			protected static string s13 = "</a></div>";
 			public Menu_MenuTab_CheckViewPermission_Block CheckViewPermission = new Menu_MenuTab_CheckViewPermission_Block();
-			protected static string s14 = "<div id=\"tab_menu_L\"><a id=\"lnkAccInfo\" class=\"tab_menu03\" target=\"menu\" onclick=\"ShowFlashAccInfoMaster();\" href=\"../_AccountInfo/AccountInfo.aspx\"></a></div></div>";
+			protected static string s14 = "<div id=\"tab_menu_L\"><a id=\"lnkAccInfo\" class=\"tab_menu03\" target=\"menu\" onclick=\"ShowTreeview();\" href=\"../_AccountInfo/AccountInfo.aspx\"></a></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

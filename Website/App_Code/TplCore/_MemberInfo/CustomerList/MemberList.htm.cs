@@ -76,7 +76,7 @@ namespace Fanex.Agent.UI
 			protected static string s15 = "</th><th rowspan=\"2\"><input type=\"checkbox\" id=\"chkAllItem\" name=\"chkAllItem\" onclick=\"CheckAll_onClick(this);\"/></th><th rowspan=\"2\">";
 			protected static string s16{get{return Resources.Lang.edit;}}
 			protected static string s17 = "</th><th rowspan=\"2\">";
-			protected static string s18{get{return Resources.Lang.username;}}
+			protected static string s18{get{return Resources.Lang.lblUser;}}
 			protected static string s19 = "</th><th rowspan=\"2\">";
 			protected static string s20{get{return Resources.Lang.group;}}
 			protected static string s21 = "</th><th colspan=\"4\" class=\"header_comm\">";
