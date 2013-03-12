@@ -48,7 +48,7 @@
                             <div class="downline-title">Downline List</div>
                             <div class="agent-treeview">
                                 <ul id="fileSystemInfos" class="filetree"></ul><br />
-
+                                <div id="fileSystemInfosControl"> </div>
                             </div>
                         </td>
                     </tr>
@@ -81,13 +81,7 @@
 <script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>
 <script type="text/javascript" src="../_AccountInfo/Resources/jquery.cookie.js"></script>
 <script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.async.js"></script> 
+
 <script type="text/javascript" src="../_AccountInfo/Resources/treeview.js"></script>   
  
-<script type="text/javascript">
-    jQuery(function () {
-        jQuery("#treeview-link").click(function () {
-            jQuery(".downline-title").toggle();
-            jQuery(".agent-treeview").toggle();
-        });
-    })
-</script>

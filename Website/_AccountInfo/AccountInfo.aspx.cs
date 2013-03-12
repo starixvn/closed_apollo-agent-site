@@ -14,6 +14,7 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Sunplus.Agent.Model.BL.AccountInfo;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
+    using Fanex.Age.DTO.Reports.TreeView;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
@@ -37,30 +38,48 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         #endregion Defination
 
-        //[System.Web.Services.WebMethod]
-        //[System.Web.Script.Services.ScriptMethod(UseHttpGet = true)]
-        //public List<TreeViewNode> FileSystemInfos(string root)
-        //{
-        //    int? nodeId = (root == "source") ? (int?)null : Convert.ToInt32(root);
-        //    // IEnumerable<FileSystemInfo> children = FileSystemInfosRepository.GetFileSystemInfos(nodeId);
-        //    AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-        //    this.dataset = bo.Age_Customer_GetDownLine(1);
+        [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod(UseHttpGet = true)]
+        public static List<TreeViewNode> FileSystemInfos(string root)
+        {
+            int? nodeId = (root == "source") ? (int?)null : Convert.ToInt32(root);
+            // IEnumerable<FileSystemInfo> children = FileSystemInfosRepository.GetFileSystemInfos(nodeId);
 
-        //    List<TreeViewNode> nodes = new List<TreeViewNode>();
-        //    foreach (FileSystemInfo child in children)
-        //    {
-        //        bool leaf = child is FileInfo;
-        //        nodes.Add(new TreeViewNode()
-        //        {
-        //            Id = Convert.ToString(FileSystemInfosRepository.GetNodeId(child)),
-        //            Text = child.Name,
-        //            Classes = leaf ? "file" : "folder",
-        //            HasChildren = !leaf
-        //        });
-        //    }
+            //AccountInfo_Page page = new AccountInfo_Page();
+            //AccountInfoBO bo = new AccountInfoBO(page.CurrentUserSession.NetSessionId);
+            //var ds = bo.Age_Customer_GetDownLine(page.CurrentUserSession.CustId);
 
-        //    return nodes;
-        //}
+            //var dtAgentList = ds.Tables[0];
+            //var dtCustList = ds.Tables[1];
+
+            List<TreeViewNode> nodes = new List<TreeViewNode>();
+            //foreach (DataRow row in dtAgentList.Rows)
+            //{
+            //    bool isAgent = true;
+            //    nodes.Add(new TreeViewNode()
+            //    {
+            //        Id = "Agent_" + row["AgentId"].ToString(),
+            //        Text = row["Username"].ToString(),
+            //        Classes = "folder",
+            //        HasChildren = isAgent
+            //    });
+            //}
+
+            //foreach (DataRow row in dtAgentList.Rows)
+            //{
+            //    bool isAgent = false;
+            //    nodes.Add(new TreeViewNode()
+            //    {
+            //        Id = "Agent_" + row["PlayerId"].ToString(),
+            //        Text = row["Username"].ToString(),
+            //        Classes = "file",
+            //        HasChildren = isAgent
+            //    });
+            //}
+
+            return nodes;
+        }
+
 
         #region Override
 
@@ -138,7 +157,6 @@ namespace Sunplus.Agent.UI._AccountInfo
         {
             AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
             this.dataset = bo.GetCustomerInfo(this.userNameRequest, this.isMember);
-
             //Increase user search sugesstion
             if (this.dataset.Tables.Count > 0)
             {
