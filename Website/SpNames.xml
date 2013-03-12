@@ -618,5 +618,20 @@
     <Setting Key="IS_UpdFunctionUsage" SpName="IS_UpdFunctionUsage" DbName="dblog" Plain="0" />
     <Setting Key="WriteLog_UserLog_CasinoAPI" SpName="WriteLog_UserLog_CasinoAPI" DbName="dblog" Plain="0" />
   </Function>
-
+  <Function Name="AgentSetting">
+    <Setting Key="AgentSetting_Acc_Agent_GetDiscountForUpdate" SpName="Acc_Agent_GetDiscountForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_GetBetLimitForUpdate" SpName="Acc_Agent_GetBetLimitForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_GetPositionTakingForUpdate" SpName="Acc_Agent_GetPositionTakingForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_UpdateBetLimit" SpName="Acc_Agent_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_UpdateDiscount" SpName="Acc_Agent_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_UpdatePositionTaking" SpName="Acc_Agent_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
+  </Function>
+  <Function Name="PlayerSetting">
+    <Setting Key="PlayerSetting_Acc_Customer_GetDiscountForUpdate" SpName="Acc_Customer_GetDiscountForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_GetBetLimitForUpdate" SpName="Acc_Customer_GetBetLimitForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_GetPositionTakingForUpdate" SpName="Acc_Customer_GetPositionTakingForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_UpdateBetLimit" SpName="Acc_Customer_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_UpdateDiscount" SpName="Acc_Customer_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_UpdatePositionTaking" SpName="Acc_Customer_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
+  </Function>
 </Functions>

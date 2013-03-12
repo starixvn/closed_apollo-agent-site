@@ -694,6 +694,17 @@ function EditMenuControl(element, popupId, custId, userName) {
         div.timerID = 0;
         div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 50);
     }, true);
+
+    //// Set Attr Edit
+    //OpenEditAgentCommission
+    var urlEditAgentCommission = 'OpenEditAgentCommission(' + custId + ',"' + userName + '")';
+    SetAttributeURL('editCommission', urlEditAgentCommission);
+
+    var urlEditAgentBetLimit = 'OpenEditAgentBetLimit(' + custId + ',"' + userName + '")';
+    SetAttributeURL('editBetSetting', urlEditAgentBetLimit);
+
+    var urlEditAgentPT = 'OpenEditAgentPT(' + custId + ',"' + userName + '")';
+    SetAttributeURL('editPositionTaking', urlEditAgentPT);
 }
 
 function ShowFrmUpdOthers(el, divID, custid, username, actionOn) {
