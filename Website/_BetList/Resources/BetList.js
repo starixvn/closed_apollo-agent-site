@@ -258,8 +258,29 @@ function OpenScoreMap(matchIds, bettype, liveindicator) {
 RegisterStartUp(InitBetList);
 
 var BetList = {
-	viewDetail: function (transId) {
-		var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
-		wnd.open(age.GetBaseUrl() + "_BetList/ViewDetail.aspx?transId=" + transId + "&fromDate=" + _page.fdate + "&toDate=" + _page.tdate + "&isSportsbook=1", 'View detail', 250, 100, 350, 350);
-	}
+    showCommDetail: function (transId, event) {
+        var pnlDetails = $("divDetail");
+        if (pnlDetails != undefined) {
+            pnlDetails.style.display = 'block';
+            pnlDetails.style.top = (event.pageY) + "px";
+
+            var ajaxParameters = "transid=" + transId + "&fromdate=" + _page.fdate + "&toDate=" + _page.tdate + "&isSportsbook=1";
+            var url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx";
+            ajax.Request(url,
+                {
+                    asynchronous: true,
+                    parameters: ajaxParameters,
+                    onComplete: function (data) {
+                        $('detail-content').innerHTML = data.responseText;
+                    }
+                }
+           );
+        }
+    },
+    hideCommDetail: function (transId, event) {
+        var pnlDetails = $("divDetail");
+        if (pnlDetails != undefined) {
+            pnlDetails.style.display = 'none';
+        }
+    }
 };
