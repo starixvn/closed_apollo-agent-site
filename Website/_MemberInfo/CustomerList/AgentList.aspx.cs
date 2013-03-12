@@ -232,8 +232,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             }
             else
             {
-                IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view disable", string.Empty);
-                tplBlock.viewAgentList = viewAgentDownline;
+                //IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view disable", string.Empty);
+                tplBlock.viewAgentList = string.Empty;
             }
 
             if (Convert.ToInt32(dr["NumberOfMember"]) > 0)
@@ -244,8 +244,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             }
             else
             {
-                IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view disable", "");
-                tplBlock.viewPlayerList = viewPlayerDownline;
+                // IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view disable", "");
+                tplBlock.viewPlayerList = string.Empty;
             }
 
             tplBlock.groupA = Formater.FormatNumber4(dr["groupa"], this.langKey);
