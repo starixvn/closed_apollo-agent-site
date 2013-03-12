@@ -1,0 +1,32 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EditAgentPositionTaking.aspx.cs" Inherits="_MemberInfo_CustomerSetting_Pages_EditAgentPositionTaking" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+     <link href="../Resources/Engine/Core.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+     <div id="settingContainer" style="width: 936px;">
+         <div id="ptContainer">
+    </div>
+    </div>
+
+    <script src="../Handlers/GetPositionTakingSetting.ashx?targetCustId=<%=TargetAgentId%>&targetRoleId=2" type="text/javascript"></script>
+    <script src="../Resources/Engine/Languages/en.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/Core.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/PTSetting.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/BetTypeGroup.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/BetType.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/CommissionSetting.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);
+        var settingContainer = document.getElementById('settingContainer');
+        grid1 = new Fanex.CustSetting.PTGrid(positionTakingSetting);
+        var ptContainer = document.getElementById('ptContainer');
+        ptContainer.innerHTML = "";
+        grid1.Render(ptContainer);
+    </script>
+</body>
+</html>
