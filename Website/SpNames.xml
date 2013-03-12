@@ -344,6 +344,7 @@
 
   <Function Name="Agent-Apollo-DownlinesInfo">
     <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="DB05" Plain="0" />
+    <Setting Key="Acc_Player_GetByAgent" SpName="Acc_Player_GetByAgent" DbName="DB05" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-ForeCast">

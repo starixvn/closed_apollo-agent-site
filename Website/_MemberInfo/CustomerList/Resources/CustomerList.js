@@ -91,17 +91,9 @@ function GetCustomer(url) {
 
     url = SetParameterValue("custid", _page.custid, url);
     url = SetParameterValue("username", txtname, url);
-    url = SetParameterValue("status", $('statusFilter').value, url);
 
     //    url = SetParameterValue("pageIndex", $('txt_PagingTop') ? $('txt_PagingTop').value : 1, url);
     url = SetParameterValue("pageSize", $('sel_PagingTop').value, url);
-
-    if (!$('dcommFilter') == false) {
-        url = SetParameterValue("dComStatus", $('dcommFilter').value, url);
-    }
-    else {
-        url = SetParameterValue("dComStatus", '2', url);
-    }
 
     location.href = url;
 }
@@ -111,6 +103,10 @@ function CheckAll_onClick(els) {
     for (var i = 0; i < arrChk.length; i++) {
         if (els.checked && !arrChk[i].checked) {
             arrChk[i].checked = true;
+
+            var editId = "edit_" + arrChk[i].id;
+            ChangeAtribute(editId, "_onmouseover", "onmouseover");
+            ChangeValueAttribute(editId, "class", "divOther");
         }
         else if (!els.checked && arrChk[i].checked) {
             arrChk[i].checked = false;
@@ -121,13 +117,27 @@ function CheckAll_onClick(els) {
 function ItemCheck_OnClick(els) {
     var arrChk = document.getElementsByName('chkid');
     var editIcon = "edit_" + els.id;
-
+    var editId = "";
     if (!els.checked) { // Uncheck
         $("chkAll").checked = false;
 
-        if ($(editIcon).hasAttribute("onmouseover") == true) {
-            ChangeAtribute(editIcon, "_onmouseover", "onmouseover");
-            $(editIcon).setAttribute("class", "divDisableOther");
+        // Change Attribute for control Edit
+        ChangeAtribute(editIcon, "onmouseover", "_onmouseover");
+        ChangeValueAttribute(editIcon, "class", "divDisableOther");
+
+        var isEnable = true;
+        for (var i = 0; i < arrChk.length; i++) {
+            if (arrChk[i].checked) {
+                isEnable = false;
+                break;
+            }
+        }
+        if (isEnable) {
+            for (var i = 0; i < arrChk.length; i++) {
+                editId = "edit_" + arrChk[i].id;
+                ChangeAtribute(editId, "_onmouseover", "onmouseover");
+                ChangeValueAttribute(editId, "class", "divOther");
+            }
         }
     }
     else { // Checked
@@ -144,28 +154,34 @@ function ItemCheck_OnClick(els) {
 
         // Change Attribute for control Edit
 
-        if ($(editIcon).hasAttribute("_onmouseover") == true) {
-            ChangeAtribute(editIcon, "onmouseover", "_onmouseover");
-            $(editIcon).setAttribute("class", "divOther");
-        }
+        ChangeAtribute(editIcon, "_onmouseover", "onmouseover");
+        ChangeValueAttribute(editIcon, "class", "divOther");
 
         for (var i = 0; i < arrChk.length; i++) {
             if (!arrChk[i].checked) {
-                var editId = "edit_" + arrChk[i].id;
-                if ($(editId).hasAttribute("_onmouseover") == false) {
-                    ChangeAtribute(editId, "_onmouseover", "onmouseover");
-                    $(editId).setAttribute("class", "divDisableOther");
-                }
+                editId = "edit_" + arrChk[i].id;
+                if ($(editId).hasAttribute("_onmouseover")) continue;
+                ChangeAtribute(editId, "onmouseover", "_onmouseover");
+                ChangeValueAttribute(editId, "class", "divDisableOther");
             }
         }
     }
 }
 
-function ChangeAtribute(id, attDestinationName, attSourceName) {
+function ChangeValueAttribute(id, attName, attValue) {
+    var Value = $(id).getAttribute(attName);
+    if (Value != attValue) {
+        $(id).setAttribute(attName, attValue);
+    }
+}
+
+function ChangeAtribute(id, fromName, toName) {
     if ($(id)) {
-        var sourceName = $(id).getAttribute(attSourceName);
-        $(id).setAttribute(attDestinationName, sourceName);
-        $(id).removeAttribute(attSourceName);
+        var Value = $(id).getAttribute(fromName);
+        if ($(id).hasAttribute(fromName)) {
+            $(id).removeAttribute(fromName);
+            $(id).setAttribute(toName, Value);
+        }
     }
 }
 

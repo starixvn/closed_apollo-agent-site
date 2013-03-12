@@ -10,10 +10,13 @@
 namespace Sunplus.Agent.Model.Entities
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Reflection;
     using System.Runtime.Serialization;
     using System.Web;
+    using Fanex.Age.DTO.CustomerList;
 
     [Serializable]
     public class UserSessionBase : IUserSession, IDisposable
@@ -23,6 +26,7 @@ namespace Sunplus.Agent.Model.Entities
         // APOLLO CONTRUCTORS
         public const string AGENTLEVEL = "AGENTLEVEL";
         public const string ISUSERMASTER = "ISUSERMASTER";
+        public const string AGENTNAVIGATION = "AGENTNAVIGATION";
         //-------------------
 
         public const string DEFAULT_LANGUAGE = "en-US";
@@ -120,6 +124,20 @@ namespace Sunplus.Agent.Model.Entities
             set
             {
                 this.SetProperty(ISUSERMASTER, value);
+            }
+        }
+
+        public Dictionary<int, Navigation> AgentNavigation
+        {
+            get
+            {
+                object value = this.GetProperty(AGENTNAVIGATION);
+                return (Dictionary<int, Navigation>)value;
+            }
+
+            set
+            {
+                this.SetProperty(AGENTNAVIGATION, value);
             }
         }
 
