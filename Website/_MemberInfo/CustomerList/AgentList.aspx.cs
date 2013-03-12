@@ -65,10 +65,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             this.JavaScriptRegister("custid", this.CustId);
             this.JavaScriptRegister("roleid", CurrentUserSession.RoleId);
-            this.JavaScriptRegister("roleidP2P", CurrentUserSession.RoleId - 1);
-            this.JavaScriptRegister("roleidLiveCasino", CurrentUserSession.RoleId - 1);
-            this.JavaScriptRegister("roleidVirtualSports", CurrentUserSession.RoleId - 1);
-            this.JavaScriptRegister("isAgentLevel", 0);
             this.JavaScriptRegister("usernamedefault", Resources.Lang.enterusername);
 
             // Double Commission
@@ -95,7 +91,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public override object InvokeData(Hashtable p)
         {
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
-            this.MasterId = CurrentUserSession.CustId;
             int totalPage = 0;
             DataTable dtb = bo.GetAgentCollection(this.CustId, (UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
             this.TotalPage = totalPage;
@@ -232,21 +227,24 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             if (Convert.ToInt32(dr["NumberOfAgent"]) > 0)
             {
                 string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "')";
-                IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, viewAgentDonwlineClick);
+                IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view", viewAgentDonwlineClick);
                 tplBlock.viewAgentList = viewAgentDownline;
             }
             else
             {
+                //IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view disable", string.Empty);
                 tplBlock.viewAgentList = string.Empty;
             }
 
             if (Convert.ToInt32(dr["NumberOfMember"]) > 0)
             {
-                IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "");
+                string viewPlayerDonwlineClick = "ViewDownLine('MemberList.aspx?custid=" + this.agentId + "')";
+                IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view", viewPlayerDonwlineClick);
                 tplBlock.viewPlayerList = viewPlayerDownline;
             }
             else
             {
+                // IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view disable", "");
                 tplBlock.viewPlayerList = string.Empty;
             }
 

@@ -910,14 +910,14 @@ namespace Sunplus.Agent.Model.DL.BetList
         /// <param name="betType"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_BetList_SelRunningByBettype_Ag(int custId, int betType, string language)
+        public DataTable Acc_BetList_TotalBets_SelRunningByBettype(int custId, int betType, string language)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
+            parameters.Add("agentid", custId);
             parameters.Add("bettype", betType);
             parameters.Add("language", language);
 
-            return ExecSpTable("Age_BetList_SelRunningByBettype_Ag", parameters);
+            return ExecSpTable("Acc_BetList_TotalBets_SelRunningByBettype", parameters);
         }
 
         /// <summary>

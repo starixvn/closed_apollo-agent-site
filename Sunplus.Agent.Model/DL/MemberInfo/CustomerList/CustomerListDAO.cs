@@ -219,37 +219,16 @@
         /// <param name="enabled"></param>
         /// <param name="totalpages"></param>
         /// <returns></returns>
-        public DataTable Acc_CustomerSelByAg(int custId, string userName, int pageindex, int pagesize, int closed, int suspended, int enabled, int doubleCommStatus, ref int totalpages)
+        public DataTable Acc_Player_GetByAgent(int custId, string userName, int pageindex, int pagesize, ref int totalpages)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("recommend", custId);
-            parameters.Add("isagentsite", 0);
+            parameters.Add("agentid", custId);
             parameters.Add("pageindex", pageindex);
             parameters.Add("totalpages", totalpages);
             parameters.Add("username", userName);
             parameters.Add("pagesize", pagesize);
 
-            if (closed != -1)
-            {
-                parameters.Add("closed", closed);
-            }
-
-            if (suspended != -1)
-            {
-                parameters.Add("suspended", suspended);
-            }
-
-            if (enabled != -1)
-            {
-                parameters.Add("enabled", enabled);
-            }
-
-            if (doubleCommStatus != 2)
-            {
-                parameters.Add("doublecommlosing", doubleCommStatus);
-            }
-
-            DbResult res = ExecSp("Acc_CustomerSelByAg", parameters);
+            DbResult res = ExecSp("Acc_Player_GetByAgent", parameters);
             totalpages = Convert.ToInt32(res.Outputs["totalpages"]);
             return res.ResultSet.Tables[0];
         }

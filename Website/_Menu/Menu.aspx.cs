@@ -18,11 +18,11 @@ namespace Sunplus.Agent.UI._Menu
     using System.Web;
     using System.Web.UI;
     using Fanex.Age.UI;
+    using Fanex.Agent.UI._Menu;
     using Sunplus.Agent.Model.BL;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
-    using Fanex.Agent.UI._Menu;
 
     public partial class Menu_Page : Fanex.Age.UI.TplPage
     {
@@ -105,16 +105,7 @@ namespace Sunplus.Agent.UI._Menu
             SiteMapNode rootNode = SiteMap.RootNode;
             SiteMapNode contextNode = null;
 
-            //if (roleId > 4)
-            //{
-            //    contextNode = rootNode.ChildNodes[0];
-            //}
-            //else
-            //{
-            //    contextNode = rootNode.ChildNodes[1];
-            //}
-
-            contextNode = rootNode.ChildNodes[1];
+            contextNode = rootNode.ChildNodes[0];
             RenderMenu(contextNode, ref tpl);
         }
 
@@ -142,22 +133,6 @@ namespace Sunplus.Agent.UI._Menu
             tpl.SubMenu.Clear();
             for (int i = 0; i < subMenuCount; i++) // Sub-menu loop
             {
-                #region Sub-account permissions filter
-
-                //Total Bets permission
-                if (isSubAcc && (i == TOTALBETS || i == FORECAST) && !pageAccess.ViewTotalBets)
-                    continue;
-
-                // Member information permission
-                if (isSubAcc && i == MEMBERINFO && !pageAccess.ViewMemberInfo)
-                    continue;
-
-                //Reports permission
-                if (isSubAcc && (i == REPORTS || i == CHARTS) && !pageAccess.ViewReports)
-                    continue;
-
-                #endregion Sub-account permissions filter
-
                 SiteMapNode subMenu = node.ChildNodes[i];
                 string expand = subMenu.GetAttribute("expand");
 
@@ -206,7 +181,7 @@ namespace Sunplus.Agent.UI._Menu
                 //if (isSubAcc && itemCount == 8 && (j == PT || j == CSPT || j == BGPT || j == MEMBERCOMM) && !pageAccess.ViewMemberInfo) continue;
 
                 // Authorize AGE permission
-               // if (!authorize.AuthorizeUrl(0, 0, false, item.GetAttribute("href"))) continue;                            
+                // if (!authorize.AuthorizeUrl(0, 0, false, item.GetAttribute("href"))) continue;
 
                 RenderMenuItem(item, ref itemBlock, j, index);
                 subBlock.MenuItem.Append(itemBlock);

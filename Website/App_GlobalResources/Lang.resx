@@ -776,7 +776,7 @@
     <value>Entertainment</value>
   </data>
   <data name="enterusername" xml:space="preserve">
-    <value>User Agent</value>
+    <value>Username</value>
   </data>
   <data name="equestrian" xml:space="preserve">
     <value>Equestrian</value>
@@ -3248,13 +3248,13 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Used Credit</value>
   </data>
   <data name="userinfo" xml:space="preserve">
-    <value>Account Info</value>
+    <value>Account</value>
   </data>
   <data name="userisnotonline" xml:space="preserve">
     <value>This user is not online</value>
   </data>
   <data name="username" xml:space="preserve">
-    <value>Filter by user</value>
+    <value>User Name</value>
   </data>
   <data name="usernameEdited" xml:space="preserve">
     <value>Username</value>
