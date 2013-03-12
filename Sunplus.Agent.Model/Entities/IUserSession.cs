@@ -11,7 +11,6 @@ namespace Sunplus.Agent.Model.Entities
     using System.Collections.Generic;
     using System.Globalization;
     using System.Runtime.Serialization;
-    using Fanex.Age.DTO.CustomerList;
 
     public interface IUserSession : Sunplus.Agent.Model.Entities.Base.IEntity, ISerializable
     {
@@ -24,12 +23,6 @@ namespace Sunplus.Agent.Model.Entities
         }
 
         bool IsUserMaster
-        {
-            get;
-            set;
-        }
-
-        Dictionary<int, Navigation> AgentNavigation
         {
             get;
             set;

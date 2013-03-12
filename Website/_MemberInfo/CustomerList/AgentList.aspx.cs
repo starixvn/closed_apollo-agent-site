@@ -32,7 +32,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     {
         #region Variable
 
-        private static string cssHideUpdateMulti = "class='HideCol'";
         private AgentList_Template template = new AgentList_Template();
         private string langKey = string.Empty;
         private string agentId = string.Empty;
@@ -57,23 +56,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             this.InitJsLang();
             this.InitEditMenuControl();
-            ////this.InitPopupStatus(false);
-            ////this.InitPopupMulti();
-            ////this.InitPopupOther();
 
             this.RequestQueryString = this.HashTableQueryString;
 
             this.JavaScriptRegister("custid", this.CustId);
             this.JavaScriptRegister("roleid", CurrentUserSession.RoleId);
             this.JavaScriptRegister("usernamedefault", Resources.Lang.enterusername);
-
-            // Double Commission
-            this.JavaScriptRegister("strConfirmDisableDoubleComm", Resources.Lang.confirmDisableDoubleComm);
-            this.JavaScriptRegister("lblAlertDisableDoubleCommMember", Resources.Lang.strConfirmDisableDoubleCommMember);
-            this.JavaScriptRegister("strConfirmEnableDoubleComm", Resources.Lang.strConfirmEnableDoubleComm);
-            this.JavaScriptRegister("strConfirmEnableDoubleCommMember", Resources.Lang.strConfirmEnableDoubleCommMember);
-            this.JavaScriptRegister("strAllowed", Resources.Lang.allowed);
-            this.JavaScriptRegister("strDisallowed", Resources.Lang.disallowed);
 
             this.RegisterClientVariables();
 
@@ -126,29 +114,11 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             }
 
             this.template.PagingHeader.button.Hide();
-
-            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
-            //{
-            //    this.template.PagingHeader.selected.Hide();
-            //}
-
-            //this.template.PagingHeader.selected.function_all = "CheckAll_onClick(true);";
-            //this.template.PagingHeader.selected.function_none = "CheckAll_onClick(false);";
         }
 
         public void RenderHeader(TplCore.Element.IElement e)
         {
-            // Render MultiEdit Icon
-            //string renderMulti = "RenderMulti(this,'MultiPopup','','" + this.MasterId + "','0')";
             AgentList_Header_Block tplBlock = e as AgentList_Header_Block;
-            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
-            //{
-            //    tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
-            //}
-
-            //tplBlock.isShowDCom = UserPermission.IsShowDoubleCommission.ToString();
-
-            //tplBlock.editMult = new IcoEditMulti(TemplateMain, "");
         }
 
         public void RenderContentBlock(DataTable dtb, TplCore.Element.IElement e)
@@ -161,12 +131,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 foreach (DataRow dr in dtb.Rows)
                 {
                     this.RenderDetail(dr, tplBlock);
-                    //this.RenderRacing(dr, tplBlock);
-                    // this.RenderCasino(dr, tplBlock);
-                    // this.RenderBingo(dr, tplBlock);
-                    //  this.RenderP2P(dr, tplBlock);
-                    //  this.RenderLiveCasino(dr, tplBlock);
-                    //  this.RenderVirtualSport(dr, tplBlock);
 
                     this.template.Content.Append(tplBlock);
                 }
@@ -175,7 +139,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             {
                 StringBuilder noInfo = new StringBuilder();
                 noInfo.Append("<tr>");
-                noInfo.Append("<td colspan='23'>");
+                noInfo.Append("<td colspan='17'>");
                 noInfo.Append(Resources.Lang.noInfo);
                 noInfo.Append("</td>");
                 noInfo.Append("</tr>");
@@ -197,29 +161,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             tplBlock.id = dr["RowNumber"].ToString();
             tplBlock.username = dr["username"] as string;
 
-            //string editAgent_Single = "EditAgent_Single('" + this.agentId + "','" + dr["username"].ToString() + "', " + this.MasterId + ")";
-            //string renderStatus = "RenderStatus(this,'Popup','" + this.agentId + "'," + isClosed.ToString().ToLower() + "," + isSuspended.ToString().ToLower() + ",0," + disableOutright.ToString().ToLower() + ", '" + tplBlock.chkid + "')";
-            //Dictionary<object, bool> dictStatus = new Dictionary<object, bool>();
-            //string backgroundColor = string.Empty;
-            //dictStatus.Add("Enabled", enable);
-            //dictStatus.Add("Closed", isClosed);
-            //dictStatus.Add("Suspended", isSuspended);
-            //IcoStatus status = new IcoStatus(TemplateMain, dictStatus, ref backgroundColor, editAgent_Single, renderStatus);
-            //tplBlock.color = backgroundColor;
-            //tplBlock.status = status;
-
-            //string setDoubleCommission = string.Format("SetDoubleCommission('{0}',this,true);", this.agentId);
-
-            //if (!UserPermission.IsShowDoubleCommission)
-            //{
-            //    setDoubleCommission = string.Empty;
-            //}
-
-            //bool isDoubleCommission = Convert.ToBoolean(dr["DoubleCommLosing"]);
-
-            //IcoDComm dcomm = new IcoDComm(TemplateMain, isDoubleCommission, setDoubleCommission);
-            //tplBlock.DCom.doublecommission = dcomm;
-
             //// Render Other
             string editMenuControl = "EditMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
             tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, string.Empty, editMenuControl);
@@ -232,7 +173,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             }
             else
             {
-                //IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view disable", string.Empty);
                 tplBlock.viewAgentList = string.Empty;
             }
 
@@ -244,7 +184,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             }
             else
             {
-                // IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view disable", "");
                 tplBlock.viewPlayerList = string.Empty;
             }
 
