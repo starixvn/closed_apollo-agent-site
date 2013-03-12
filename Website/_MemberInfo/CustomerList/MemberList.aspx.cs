@@ -53,17 +53,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             this.InitJsLang();
             this.InitEditMenuControl();
-            //this.InitPopupStatus(false);
-            //this.InitPopupMulti();
-            //this.InitPopupOther_EditMember();
 
             this.RequestQueryString = this.HashTableQueryString;
             this.JavaScriptRegister("custid", this.CustId);
             this.JavaScriptRegister("roleid", CurrentUserSession.RoleId);
-            //this.JavaScriptRegister("roleidP2P", CurrentUserSession.RoleId - 1);
-            //this.JavaScriptRegister("roleidLiveCasino", CurrentUserSession.RoleId - 1);
-            //this.JavaScriptRegister("roleidVirtualSports", CurrentUserSession.RoleId - 1);
-            //this.JavaScriptRegister("isAgentLevel", 1);
             this.JavaScriptRegister("usernamedefault", Resources.Lang.enterusername);
 
             // Double Commission
