@@ -13,7 +13,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Data;
-    using Fanex.Age.DTO.CustomerList;
     using Fanex.Age.UI;
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
@@ -25,7 +24,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         private MasterPage_Template _templateMain = new MasterPage_Template();
         private Hashtable _hashTableQueryString = new Hashtable();
         private Dictionary<string, DataTable> _viewData = new Dictionary<string, DataTable>();
-        private Dictionary<int, Navigation> _nav = new Dictionary<int, Navigation>();
 
         private int _pageSize = Sunplus.Agent.Model.BL.Definitions.AppSettings.PageSize;
         private int _pageIndex = 1;
@@ -64,8 +62,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 return this._hashTableQueryString;
             }
         }
-
-        public Dictionary<int, Navigation> nav { get; set; }
 
         public int ParentId { get; set; }
 
@@ -469,18 +465,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.RenderOtherStatus(this.arrayTextPopupMenu, this.arrayDisabledPopupMenu, this.arrayIdPopupMenu);
         }
 
-        public void InitNavigation(ref Dictionary<int, Navigation> nav)
-        {
-            //if (CurrentUserSession.Navigation == null)
-            //{
-            //}
-        }
-
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
             this.UserName = Resources.Lang.enterusername;
             this.CustId = this.GetIntRequest("custid", CurrentUserSession.CustId);
-            this.ParentId = this.GetIntRequest("parentid", 0);
             this.PageSize = this.GetIntRequest("pagesize", this.PageSize);
             this.PageIndex = this.GetIntRequest("pageindex", this.PageIndex);
 
