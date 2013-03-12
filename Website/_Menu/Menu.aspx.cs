@@ -105,16 +105,7 @@ namespace Sunplus.Agent.UI._Menu
             SiteMapNode rootNode = SiteMap.RootNode;
             SiteMapNode contextNode = null;
 
-            //if (roleId > 4)
-            //{
-            //    contextNode = rootNode.ChildNodes[0];
-            //}
-            //else
-            //{
-            //    contextNode = rootNode.ChildNodes[1];
-            //}
-
-            contextNode = rootNode.ChildNodes[1];
+            contextNode = rootNode.ChildNodes[0];
             RenderMenu(contextNode, ref tpl);
         }
 
@@ -142,22 +133,6 @@ namespace Sunplus.Agent.UI._Menu
             tpl.SubMenu.Clear();
             for (int i = 0; i < subMenuCount; i++) // Sub-menu loop
             {
-                #region Sub-account permissions filter
-
-                //Total Bets permission
-                if (isSubAcc && (i == TOTALBETS || i == FORECAST) && !pageAccess.ViewTotalBets)
-                    continue;
-
-                // Member information permission
-                if (isSubAcc && i == MEMBERINFO && !pageAccess.ViewMemberInfo)
-                    continue;
-
-                //Reports permission
-                if (isSubAcc && (i == REPORTS || i == CHARTS) && !pageAccess.ViewReports)
-                    continue;
-
-                #endregion Sub-account permissions filter
-
                 SiteMapNode subMenu = node.ChildNodes[i];
                 string expand = subMenu.GetAttribute("expand");
 
