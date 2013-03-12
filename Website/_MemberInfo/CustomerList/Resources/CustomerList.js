@@ -119,7 +119,7 @@ function ItemCheck_OnClick(els) {
     var editIcon = "edit_" + els.id;
     var editId = "";
     if (!els.checked) { // Uncheck
-        $("chkAll").checked = false;
+        document.getElementById('chkAllItem').checked = false;
 
         // Change Attribute for control Edit
         ChangeAtribute(editIcon, "onmouseover", "_onmouseover");
@@ -149,7 +149,7 @@ function ItemCheck_OnClick(els) {
             }
         }
         if (isChecked) {
-            $("chkAll").checked = true;
+            document.getElementById('chkAllItem').checked = true;
         }
 
         // Change Attribute for control Edit

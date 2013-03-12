@@ -205,10 +205,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             //bool disableOutright = !Convert.ToBoolean(dr["DisableOutright"]);
             //bool isDisableNumber = dr.Table.Columns.Contains("disablenumber") ? Convert.ToBoolean(dr["disablenumber"]) : true;
 
-            tplBlock.chkid = "chkid_" + dr["custid"];
+            tplBlock.chkid = dr["CustId"].ToString();
             tplBlock.chkid_value = dr["username"] as string;
 
-            this.memberId = dr["custid"].ToString();
+            this.memberId = dr["CustId"].ToString();
             //tplBlock.LnkUserName = CurrentUserSession.SubPageAccess.ViewReports ? "class='text' onclick=\"viewCustOutSt('" + dr["username"].ToString() + "'," + this.memberId + ")\"" : string.Empty;
 
             //tplBlock.custId = this.memberId;

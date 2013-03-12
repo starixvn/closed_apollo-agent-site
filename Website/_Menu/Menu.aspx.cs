@@ -18,11 +18,11 @@ namespace Sunplus.Agent.UI._Menu
     using System.Web;
     using System.Web.UI;
     using Fanex.Age.UI;
+    using Fanex.Agent.UI._Menu;
     using Sunplus.Agent.Model.BL;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
-    using Fanex.Agent.UI._Menu;
 
     public partial class Menu_Page : Fanex.Age.UI.TplPage
     {
@@ -206,7 +206,7 @@ namespace Sunplus.Agent.UI._Menu
                 //if (isSubAcc && itemCount == 8 && (j == PT || j == CSPT || j == BGPT || j == MEMBERCOMM) && !pageAccess.ViewMemberInfo) continue;
 
                 // Authorize AGE permission
-               // if (!authorize.AuthorizeUrl(0, 0, false, item.GetAttribute("href"))) continue;                            
+                // if (!authorize.AuthorizeUrl(0, 0, false, item.GetAttribute("href"))) continue;
 
                 RenderMenuItem(item, ref itemBlock, j, index);
                 subBlock.MenuItem.Append(itemBlock);
