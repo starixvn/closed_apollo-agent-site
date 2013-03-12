@@ -3248,7 +3248,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Used Credit</value>
   </data>
   <data name="userinfo" xml:space="preserve">
-    <value>Account Info</value>
+    <value>Account</value>
   </data>
   <data name="userisnotonline" xml:space="preserve">
     <value>This user is not online</value>

@@ -103,7 +103,7 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCHDPOU_Content_LimitLeagueList_Block: Block
 		{
-			protected static string s25 = "<div id=\"box_header\" style=\"width: 600px\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"height:35px;\"><tr><td>";
+			protected static string s25 = "<div id=\"box_header\" style=\"width: 577px\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"height:35px;\"><tr><td>";
 			protected static string s26{get{return Resources.Lang.league;}}
 			protected static string s27 = "</td><td id=\"selLeague\"><select id='ddlLeague' name='ddlLeague' onchange='GetForecastByLeague();'>";
 			public string LeagueList = "{LeagueList}";
