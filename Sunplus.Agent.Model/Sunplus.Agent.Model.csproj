@@ -241,6 +241,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Age.DTO\Fanex.Age.DTO.csproj">
+      <Project>{A7134F35-65C9-43A6-9386-86CD65F349DD}</Project>
+      <Name>Fanex.Age.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

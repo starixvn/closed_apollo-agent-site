@@ -11,6 +11,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Data;
     using Fanex.Age.UI;
     using Sunplus.Agent.Model.Entities.Permission;
@@ -23,6 +24,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         private MasterPage_Template _templateMain = new MasterPage_Template();
         private Hashtable _hashTableQueryString = new Hashtable();
         private Dictionary<string, DataTable> _viewData = new Dictionary<string, DataTable>();
+
         private int _pageSize = Sunplus.Agent.Model.BL.Definitions.AppSettings.PageSize;
         private int _pageIndex = 1;
         private int _status = -1;
@@ -61,7 +63,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             }
         }
 
-        public int MasterId { get; set; }
+        public int ParentId { get; set; }
 
         public int CustId { get; set; }
 
@@ -153,20 +155,35 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             // Init Div Status's Popup
             this.arrayDisabledPopupMenu = new object[4];
+
             this.arrayTextPopupMenu = new object[4];
+
             this.arrayIdPopupMenu = new object[4];
+
             this.arrayDisabledPopupMenu[0] = 0;
+
             this.arrayTextPopupMenu[0] = Resources.Lang.closed;
+
             this.arrayIdPopupMenu[0] = "chk_closed";
+
             this.arrayDisabledPopupMenu[1] = 0;
+
             this.arrayTextPopupMenu[1] = Resources.Lang.suspended;
+
             this.arrayIdPopupMenu[1] = "chk_suspended";
+
             this.arrayDisabledPopupMenu[2] = isSuper ? 0 : 1;
+
             this.arrayTextPopupMenu[2] = Resources.Lang.allowautopt;
+
             this.arrayIdPopupMenu[2] = "chk_allowAutoPT";
+
             this.arrayDisabledPopupMenu[3] = 0;
+
             this.arrayTextPopupMenu[3] = Resources.Lang.lblenableOutRight;
+
             this.arrayIdPopupMenu[3] = "chk_outright";
+
             this.RenderMenuPopupStatus(this.arrayTextPopupMenu, this.arrayIdPopupMenu, this.arrayDisabledPopupMenu);
         }
 
@@ -177,39 +194,57 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             int multiEditItemNumber = 8;
 
             this.arrayDisabledPopupMenu = new object[multiEditItemNumber];
+
             this.arrayTextPopupMenu = new object[multiEditItemNumber];
+
             this.arrayIdPopupMenu = new object[multiEditItemNumber];
 
             this.arrayDisabledPopupMenu[0] = 0;
+
             this.arrayTextPopupMenu[0] = Resources.Lang.editmultsportbook;
+
             this.arrayIdPopupMenu[0] = "sportBook";
 
             this.arrayDisabledPopupMenu[1] = 0;
+
             this.arrayTextPopupMenu[1] = Resources.Lang.editmulthr;
+
             this.arrayIdPopupMenu[1] = "racing";
 
             this.arrayDisabledPopupMenu[2] = 0;
+
             this.arrayTextPopupMenu[2] = Resources.Lang.editmultcs;
+
             this.arrayIdPopupMenu[2] = "casino";
 
             this.arrayDisabledPopupMenu[3] = 0;
+
             this.arrayTextPopupMenu[3] = Resources.Lang.editmultbingo;
+
             this.arrayIdPopupMenu[3] = "bingo";
 
             this.arrayDisabledPopupMenu[4] = 0;
+
             this.arrayTextPopupMenu[4] = Resources.Lang.editmultp2p;
+
             this.arrayIdPopupMenu[4] = "P2P";
 
             this.arrayDisabledPopupMenu[5] = 0;
+
             this.arrayTextPopupMenu[5] = Resources.Lang.EditLiveCasinoMultiple;
+
             this.arrayIdPopupMenu[5] = "livecasino";
 
             this.arrayDisabledPopupMenu[6] = 0;
+
             this.arrayTextPopupMenu[6] = Resources.Lang.editMultipleVirtualSports;
+
             this.arrayIdPopupMenu[6] = "virtualsports";
 
             this.arrayDisabledPopupMenu[7] = 0;
+
             this.arrayTextPopupMenu[7] = Resources.Lang.editMultipleDoubleComm;
+
             this.arrayIdPopupMenu[7] = "doublecomm";
 
             this.RenderPopupMultiEdit(this.arrayTextPopupMenu, this.arrayDisabledPopupMenu, this.arrayIdPopupMenu);
@@ -445,6 +480,28 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.UserName = string.IsNullOrEmpty(this.Request["username"]) == false ? this.Request["username"] : this.UserName;
             this.HashTableQueryString.Add("custid", this.CustId.ToString());
             this.HashTableQueryString.Add("username", this.UserName);
+
+            //if (this.ParentId == 0)
+            //{
+            //    this.nav.Add(this.CustId, new Navigation { AgentId = this.CustId, AgentName = this.UserName, ParentAgentId = this.ParentId });
+            //    CurrentUserSession.AgentNavigation = this.nav;
+            //}
+            //else
+            //{
+            //    this.nav = CurrentUserSession.AgentNavigation;
+            //    if (!this.nav.ContainsKey(this.CustId))
+            //    {
+            //        this.nav.Add(this.CustId, new Navigation { AgentId = this.CustId, AgentName = this.UserName, ParentAgentId = this.ParentId });
+            //    }
+            //    else
+            //    {
+            //        Dictionary<int, Navigation> dicTemp = new Dictionary<int, Navigation>();
+            //        foreach (int key in this.nav.Keys)
+            //        {
+            //            //dicTemp.Add(key, new Navigation { AgentId = this.nav. });
+            //        }
+            //    }
+            //}
         }
 
         public string RenderPageSize(string id, int pagesize)

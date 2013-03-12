@@ -130,56 +130,11 @@
         /// <param name="status"></param>
         /// <param name="totalPages"></param>
         /// <returns></returns>
-        public DataTable GetMemberCollection(int custId, string userName, int pageIndex, int pageSize, int status, ref int totalPages)
+        public DataTable GetMemberCollection(int custId, string userName, int pageIndex, int pageSize, ref int totalPages)
         {
             CustomerListDAO dao = new CustomerListDAO();
 
-            int closed = -1, suspended = -1, enabled = -1;
-            if (status == 2)
-            {
-                suspended = 1;
-            }
-            else if (status == 4)
-            {
-                enabled = 0;
-            }
-            else if (status == 1 || status == 3)
-            {
-                closed = (status == 1) ? 0 : 1;
-            }
-
-            return dao.Acc_CustomerSelByAg(custId, userName, pageIndex, pageSize, closed, suspended, enabled, ref totalPages);
-        }
-
-        /// <summary>
-        /// Get all members
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="userName"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="status"></param>
-        /// <param name="totalPages"></param>
-        /// <returns></returns>
-        public DataTable GetMemberCollection(int custId, string userName, int pageIndex, int pageSize, int status, int doubleCommStatus, ref int totalPages)
-        {
-            CustomerListDAO dao = new CustomerListDAO();
-
-            int closed = -1, suspended = -1, enabled = -1;
-            if (status == 2)
-            {
-                suspended = 1;
-            }
-            else if (status == 4)
-            {
-                enabled = 0;
-            }
-            else if (status == 1 || status == 3)
-            {
-                closed = (status == 1) ? 0 : 1;
-            }
-
-            return dao.Acc_CustomerSelByAg(custId, userName, pageIndex, pageSize, closed, suspended, enabled, doubleCommStatus, ref totalPages);
+            return dao.Acc_Player_GetByAgent(custId, userName, pageIndex, pageSize, ref totalPages);
         }
     }
 }

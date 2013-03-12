@@ -1,0 +1,34 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EditAgentCommission.aspx.cs" Inherits="_MemberInfo_CustomerSetting_Pages_EditAgentCommission" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../Resources/Engine/Core.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <%--<input id="agentId" type="hidden" value="<%=AgentId%>" />
+    <input id="targetAgentId" type="hidden" value="<%=TargetAgentId%>" />
+    <input id="roleId" type="hidden" value="<%=RoleId%>" />
+    <input id="targetRoleId" type="hidden" value="<%=TargetRoleId%>" />--%>
+
+    <div id="settingContainer" style="width: 936px;">
+        <div id="commissionSettingContainer">
+        </div>
+    </div>
+
+    <script src="../Handlers/GetCommissionSetting.ashx?targetCustId=<%=TargetAgentId%>&targetRoleId=2" type="text/javascript"></script>
+    <script src="../Resources/Engine/Languages/en.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/Core.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/PTSetting.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/CommissionSetting.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);
+        var commissionSetting = new Fanex.CustSetting.CommissionSetting(customerCommission);
+        var commissionSettingContainer = document.getElementById('commissionSettingContainer');
+        commissionSettingContainer.innerHTML = "";
+        commissionSetting.Render(commissionSettingContainer);
+    </script>
+</body>
+</html>

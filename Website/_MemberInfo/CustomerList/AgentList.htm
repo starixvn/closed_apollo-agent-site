@@ -8,15 +8,7 @@
         <td>
             <div id="title_header">
                 <div class="agent-list-title">
-                    {static:Resources.Lang.lblAgentListTitle}
-                </div>
-                <div class="navigation">
-                    <span class="short-link">{navigation}</span>
-                    <ul class="full-link">
-                       <!--fullLink-->
-                       <li>{lineLink}<a href="{urlAgentSite}">{txtAgentSite}</a></li>
-                       <!--/fullLink-->
-                    </ul>
+                    {static:Resources.Lang.lblAgentList}
                 </div>
                 {print}
             </div>
@@ -43,7 +35,7 @@
                                 {static:Resources.Lang.no}
                             </th>
                             <th rowspan="2">
-                                <input type="checkbox" id="chkAll" name="chkAll" onclick="CheckAll_onClick(this);"/>
+                                <input type="checkbox" id="chkAllItem" name="chkAllItem" onclick="CheckAll_onClick(this);"/>
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.edit}
