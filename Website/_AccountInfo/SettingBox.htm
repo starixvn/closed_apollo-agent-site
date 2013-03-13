@@ -7,131 +7,41 @@
 
 <div id="Bleft_Parent02">
     <div id="left_submenu"> 
-        <span class="title-left-menu">Setting</span>
-        <div id="left_line02">
-            <img width="1" height="1" name="" src="../_GlobalResources/Images/dot.gif" alt="">
+        <div id="left_tab">
+            <ul>
+                <li id="custsettings" class="current"><a href="#" onclick="showSection(this.parentNode.id);">
+                    <span>{static:Resources.Lang.setting}</span></a></li>
+                <li id="agentsTab"><a href="#" onclick="showSection(this.parentNode.id);">
+                    <span>{static:Resources.Lang.lblAgents}</span></a></li>
+                <li id="membersTab"><a href="#" onclick="showSection(this.parentNode.id);">
+                    <span>{static:Resources.Lang.lblMembers}</span></a></li>
+            </ul>
         </div>
         <div id="clear0" />
         <div class="Bleft_Sub02">
             <table id="tbl_custsettings">             
                 <tr>
                     <td colspan="2">
-                        <div style="position: relative; left: -3px;" class="settingWidth">
-                            <!--<div class="divStatus" onmousedown="return changeSuspendedStatus(event, this);" title="{SuspendedTooltip}">
-                                <input type="checkbox" id="chkSuspend" {disableSuspend} {checkedSuspended} />
-                                <label for="chkSuspend" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.suspended,9)}
-                                </label>
-                            </div>
-                            <div class="divStatus" onmousedown="return changeClosedStatus(event, this);"  title="{ClosedTooltip}">
-                                <input type="checkbox" id="chkClosed" {disableClosed} {checkedClosed} />
-                                <label for="chkClosed" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblClosed, Sunplus.Agent.Model.Entities.UserSession.Current.LangKey.Equals("KO")?5:9)}
-                                </label>
-                            </div>
-                            <div class="divStatus" onmousedown="return changeOutrightStatus(event, this);" title="{OutrightTooltip}">
-                                <input type="checkbox" id="chkOutright" {disableOutright} {checkedOutright} />
-                                <label for="chkOutright" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblenableOutRight,14)}
-                                </label>                                
-                            </div>-->
-                            <!--StatusAutoPT-->
-                            <!--<div class="divStatus" onmousedown="return changeAutoMPTStatus(event, this);">
-                                <input type="checkbox" id="chkMAutoPT" {disableMasterAutoPT} {checkedMasterAutoPT} />
-                                <label for="chkMAutoPT" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.allowautopt,13)}
-                                </label>
-                            </div>-->
-                            <!--/StatusAutoPT-->
-                            
-                            <!--StatusCasino-->
-                            <!--<div class="divStatus" onmousedown="return changeCasinoStatus(event, this, {hasDownline});">
-                                <label for="chkCasino" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableCS,13)}
-                                </label>
-                                <input type="checkbox" id="chkCasino" {disableCasino} {checkedCasino} />
-                            </div>-->
-                            <!--/StatusCasino-->
-                            <!--StatusBingo-->
-                            <!--<div class="divStatus" onmousedown="return changeBingoStatus(event, this, {hasDownline});">
-                                <label for="chkBingo" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Bingo.lblEnableBingo,13)}
-                                </label>
-                                <input type="checkbox" id="chkBingo" {disableBingo} {checkedBingo} />
-                            </div>-->
-                            <!--/StatusBingo-->
-                            <!--StatusNumberGame-->
-                            <!--<div class="divStatus" onmousedown="return changeNumberGameStatus(event, this, {hasDownline});">
-                                <input type="checkbox" id="chkNumberGame" {disableNumberGame} {checkedNumberGame} />
-                                <label for="chkNumberGame" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.lblEnableNumber,13)}
-                                </label>
-                            </div>-->
-                            <!--/StatusNumberGame-->
-                            <!--StatusRacing-->
-                           <!-- <div class="divStatus" onclick="ShowFrmUpdRacingStatus(this, {hasDownline})">
-                                <label for="chkRacing" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Racing.enableRacing,14)}
-                                </label>   
-                                <span id="chkRacing" class="arrow1">&nbsp;&nbsp;&nbsp;</span>
-                            </div>-->
-                            <!--/StatusRacing-->
-                            <!--StatusLiveCasino-->
-                            <!--<div class="divStatus">
-                                <label for="chkLiveCasino" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.LiveCasino,13)}
-                                </label>
-                                <input onclick="return changeLiveCasinoStatus(event, this)" type="checkbox" id="chkLiveCasino" {disableLiveCasino} {checkedLiveCasino} />
-                            </div>-->
-                            <!--/StatusLiveCasino-->
-                            <!--StatusVirtualSports-->
-                            <!--<div class="divStatus" onmousedown="return changeVirtualSportsStatus(event, {hasDownline})">
-                                <input type="checkbox" id="chkVirtualSports" {disableVirtualSports} {checkedVirtualSports} />
-                                <label for="chkVirtualSports" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.VirtualSports,14)}
-                                </label>
-                            </div>-->
-                            <!--/StatusVirtualSports-->
-                            <!--StatusDoubleComm-->
-                            <!--<div class="divStatus" onmousedown="return changeDoubleCommStatus(event, {hasDownline})">
-                                <input type="checkbox" id="chkDoubleComm" {disableDoubleComm} {checkedDoubleComm} />
-                                <label for="chkDoubleComm" class="text_smal">
-                                    {static:Sunplus.Agent.Utilities.Formater.TruncateWithTip(Resources.Lang.doublecommission,14)}
-                                </label>
-                            </div>-->
-                            <!--/StatusDoubleComm-->
-                        </div>
+                        <div style="position: relative; left: -3px;" class="settingWidth"></div>
                         <div id="overlayBg" class="overlay">
                         </div>
                     </td>
                 </tr>                
                 {otherSettings}                    
             </table>
-            <table id="tbl_logininfo" style="display: none;">
+            <table id="tbl_agentsTab" style="display: none;">
                 <tr>
                     <td>
-                        <span class="text_bold">{static:Resources.Lang.CreatedDate}:</span><br />
-                        {createDate}
+                        Treeview of agent
                     </td>
-                </tr>
+                </tr>                
+            </table>
+            <table id="tbl_membersTab" style="display: none;">
                 <tr>
                     <td>
-                        <span class="text_bold">{static:Resources.Lang.lastlogin}:</span><br />
-                        {lastLogin}
+                        Member list
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="text_bold">{static:Resources.Lang.lasttxn}:</span><br />
-                        {lastTXN}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="text_bold">{static:Resources.Lang.lastloginIP}:</span><br />
-                        {lastLoginIP}
-                    </td>
-                </tr>
+                </tr>                
             </table>
             <center>
                 <span id="tbl_onlinelist" style="display: none;">
@@ -141,115 +51,6 @@
         </div>
     </div>
 </div>
-
-<div id="disabledStatusPop" class="popupSetting" style="display: none;">
-    <b><span id="lblEnableStatus">Enable Status</span></b><br />
-    <input type="checkbox" name="chkEnabled" onclick="allowSubmit(this);" id="chkEnabled" />
-    <label id="agtype" for="chkEnabled">
-    </label>
-    <span id="spanChkEnabledDL">
-        <br />
-        <input type="checkbox" name="chkEnabledDL" id="chkEnabledDL" disabled="disabled" />
-        <label id="lbldownline" for="chkEnabledDL">
-            {static:Resources.Lang.downlines}</label>
-    </span>
-    <br />
-    <center>
-        <input id="btnUpdStatus" type="button" class="btn2" disabled="disabled" value="{static:Resources.Lang.update}" />&nbsp;
-        <input type="button" class="btn" onclick="closeDivPopup();" value="{static:Resources.Lang.cancel}" />
-    </center>
-    <input id="hdnTypeStatus" type="hidden" value="" />
-</div>
-
-<!--StatusRacingPopup-->
-
-<div id="disabledRacingStatusPop" class="popupSetting" style="display: none;">
-    <table class="tblRacingPopUp">
-
-        <tr>
-            <th colspan="2">
-                {static:Resources.Racing.horseracing}
-            </th>
-        </tr>
-  
-        <tr>
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabled_151_41" id="chkEnabled_151_41" /><label for="chkEnabled_151_41">{ukirishtote}</label>
-            </td>
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabledDL_151_41" id="chkEnabledDL_151_41" /><label for="chkEnabledDL_151_41">{static:Resources.Lang.downlines}</label>
-            </td>
-        </tr>
-        
-        <tr id="row_151_31">
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabled_151_31" id="chkEnabled_151_31" /><label for="chkEnabled_151_31">{static:Resources.Racing.satote}</label>
-            </td>
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabledDL_151_31" id="chkEnabledDL_151_31" /><label for="chkEnabledDL_151_31">{static:Resources.Lang.downlines}</label>
-            </td>
-        </tr>
-        
-        <tr id="row_151_51">
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabled_151_51" id="chkEnabled_151_51" /><label for="chkEnabled_151_51">{static:Resources.Racing.autote}</label>
-            </td>
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabledDL_151_51" id="chkEnabledDL_151_51" /><label for="chkEnabledDL_151_51">{static:Resources.Lang.downlines}</label>
-            </td>
-        </tr>
-        
-        <tr id="row_152_hd">
-            <th colspan="2">
-                {static:Resources.Racing.greyhound}
-            </th>
-        </tr>
-        
-        <tr id="row_152_41">
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabled_152_41" id="chkEnabled_152_41" /><label for="chkEnabled_152_41">{ukirishtote}</label>
-            </td>
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabledDL_152_41" id="chkEnabledDL_152_41" /><label for="chkEnabledDL_152_41">{static:Resources.Lang.downlines}</label>
-            </td>
-        </tr>
-        
-        <tr id="row_152_51">
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabled_152_51" id="chkEnabled_152_51" /><label for="chkEnabled_152_51">{static:Resources.Racing.autote}</label>
-            </td>
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabledDL_152_51" id="chkEnabledDL_152_51" /><label for="chkEnabledDL_152_51">{static:Resources.Lang.downlines}</label>
-            </td>
-        </tr>
-        
-        <tr id="row_153_hd">
-            <th colspan="2">
-                {static:Resources.Racing.harness}
-            </th>
-        </tr>     
-        
-        <tr id="row_153_51">
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabled_153_51" id="chkEnabled_153_51" /><label for="chkEnabled_153_51">{static:Resources.Racing.autote}</label>
-            </td>
-            <td>
-                <input accountpermisssion="[B]" type="checkbox" name="chkEnabledDL_153_51" id="chkEnabledDL_153_51" /><label for="chkEnabledDL_153_51">{static:Resources.Lang.downlines}</label>
-            </td>
-        </tr>
-        
-    </table>
-
-    
-    <center>
-        <input accountpermisssion="[B]" id="btnUpdRacingStatus" type="button" class="btn2" disabled="disabled" value="{static:Resources.Lang.update}" />&nbsp;
-        <input type="button" class="btn" onclick="closeDivRacingPopup();" value="{static:Resources.Lang.cancel}" />
-    </center>
-</div>
-
-<!--/StatusRacingPopup-->
-
-
 
 <!--HiddenBlock-->
 </body>
