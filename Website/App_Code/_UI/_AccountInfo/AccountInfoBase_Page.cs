@@ -223,10 +223,10 @@
             bool isClosed = GetDBBooleanValue(dtrCustomerInfo["closed"]);
             bool isSuspend = GetDBBooleanValue(dtrCustomerInfo["suspended"]);
 
-            tpl.checkedClosed = isClosed ? CHECKED_CHECKBOX : string.Empty;
-            tpl.checkedSuspended = isSuspend ? CHECKED_CHECKBOX : string.Empty;
+            //tpl.checkedClosed = isClosed ? CHECKED_CHECKBOX : string.Empty;
+            //tpl.checkedSuspended = isSuspend ? CHECKED_CHECKBOX : string.Empty;
 
-            tpl.checkedOutright = isEnabledOutright ? CHECKED_CHECKBOX : string.Empty;
+            //tpl.checkedOutright = isEnabledOutright ? CHECKED_CHECKBOX : string.Empty;
             /*
             tpl.StatusAutoPT.checkedMasterAutoPT = isEnabledAutoPT ? CHECKED_CHECKBOX : string.Empty;
             tpl.StatusCasino.checkedCasino = isEnabledCS ? CHECKED_CHECKBOX : string.Empty;
@@ -257,9 +257,9 @@
             bool isUplineDoubleCommLosing = (UserPermission.IsShowDoubleCommission && dtrCustomerInfo.Table.Columns.Contains("DoubleCommLosing")) ? GetDBBooleanValue(dtrCustomerInfo["uplineDoubleCommLosing"]) : true;
 
             bool subAccountPermission = !CurrentUserSession.IsSubAcc || CurrentUserSession.SubPageAccess.UpdateAccount;
-            tpl.disableSuspend = isUplineSuspend || !subAccountPermission ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
-            tpl.disableClosed = isUplineClosed || !subAccountPermission ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
-            tpl.disableOutright = isUplineDisableOutright || !subAccountPermission ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
+            //tpl.disableSuspend = isUplineSuspend || !subAccountPermission ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
+            //tpl.disableClosed = isUplineClosed || !subAccountPermission ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
+            //tpl.disableOutright = isUplineDisableOutright || !subAccountPermission ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
             //tpl.StatusCasino.disableCasino = isUplineDisabledCS || !subAccountPermission || !IsDirectDownline(this.custRoleId) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
             //tpl.StatusBingo.disableBingo = isUplineDisabledBingo || !subAccountPermission || !IsDirectDownline(this.custRoleId) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
             //tpl.StatusBingo.checkedBingo = isEnabledBingo ? CHECKED_CHECKBOX : string.Empty;
@@ -270,9 +270,9 @@
             //tpl.StatusDoubleComm.disableDoubleComm = (!isUplineDoubleCommLosing || !subAccountPermission || !IsDirectDownline(this.custRoleId)) ? DISABLE_HTML_ELEMENT : ENABLE_HTML_ELEMENT;
 
             // Render tooltip
-            tpl.SuspendedTooltip = isUplineSuspend ? Resources.Lang.UplineHasSuspended : string.Empty;
-            tpl.ClosedTooltip = isUplineClosed ? Resources.Lang.UplineHasClosed : string.Empty;
-            tpl.OutrightTooltip = isUplineDisableOutright ? Resources.Lang.OutrightDisabledUpline : string.Empty;
+            //tpl.SuspendedTooltip = isUplineSuspend ? Resources.Lang.UplineHasSuspended : string.Empty;
+            //tpl.ClosedTooltip = isUplineClosed ? Resources.Lang.UplineHasClosed : string.Empty;
+            //tpl.OutrightTooltip = isUplineDisableOutright ? Resources.Lang.OutrightDisabledUpline : string.Empty;
         }
 
         /// <summary>
@@ -307,10 +307,10 @@
             string lastIp = this.GetDBStringValue(dtrCustomerInfo["lastloginip"]);
             string lastTxn = this.custRoleId < 4 ? this.GetDBStringValue(dtrBalanceInfo["lastTxn"]) : string.Empty;
 
-            tpl.createDate = createDate + " " + createDateTime;
-            tpl.lastLogin = lastLoginDate + " " + lastLoginTime;
-            tpl.lastTXN = lastTxn;
-            tpl.lastLoginIP = Sunplus.Agent.Model.Common.AgentIPFormat.FormatIP(lastIp);
+            //tpl.createDate = createDate + " " + createDateTime;
+            //tpl.lastLogin = lastLoginDate + " " + lastLoginTime;
+            //tpl.lastTXN = lastTxn;
+            //tpl.lastLoginIP = Sunplus.Agent.Model.Common.AgentIPFormat.FormatIP(lastIp);
         }
 
         /// <summary>

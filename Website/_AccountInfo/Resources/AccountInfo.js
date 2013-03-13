@@ -307,25 +307,28 @@ function showDownlineList(isShow) {
 }
 //Show/hide customer settings tab
 
-function showSection(sectionID) {
+function showSection(sectionID) {   
     switch (sectionID) {
         case "custsettings":
-            $("logininfo").className = "";
-            $("onlinelist").className = "";
-            $("tbl_logininfo").style.display = "none";
-            $("tbl_onlinelist").style.display = "none";
+            $("agentsTab").className = "";
+            $("membersTab").className = "";
+            $("tbl_agentsTab").style.display = "none";
+            $("tbl_membersTab").style.display = "none";
             break;
-        case "logininfo":
+        case "agentsTab":
             $("custsettings").className = "";
-            $("onlinelist").className = "";
+            $("membersTab").className = "";
             $("tbl_custsettings").style.display = "none";
-            $("tbl_onlinelist").style.display = "none";
+            $("tbl_membersTab").style.display = "none";
+            $("tbl_agentsTab").style.display = "block";
             break;
-        case "onlinelist":
+        case "membersTab":
             $("custsettings").className = "";
-            $("logininfo").className = "";
+            $("agentsTab").className = "";
+            $("tbl_agentsTab").style.display = "none";
             $("tbl_custsettings").style.display = "none";
-            $("tbl_logininfo").style.display = "none";
+            $("tbl_membersTab").style.display = "none";
+            /*
             ajax.Request('OnlineList.aspx', {
                 asynchronous: true,
                 parameters: 'custId=' + _page.UserId,
@@ -333,6 +336,7 @@ function showSection(sectionID) {
                     $("tbl_onlinelist").innerHTML = data.responseText;
                 }
             });
+            */
             break;
     }
     $(sectionID).className = "current";
