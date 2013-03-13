@@ -95,6 +95,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 }
                 this.template.nav_link.Append(nav_link_Block);
             }
+            this.template.AgentName = this.QueryUserName;
+            string editMenuControl = "EditMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
+            this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
         }
 
         /// <summary>

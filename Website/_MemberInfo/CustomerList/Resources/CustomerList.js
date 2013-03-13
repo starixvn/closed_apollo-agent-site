@@ -677,7 +677,7 @@ function EditMenuControl(element, popupId, custId, userName) {
 
     element.style.position = 'relative';
     var pos = GetPosition(element);
-    div.style.top = (pos.offsetTop - 35) + 'px';
+    div.style.top = (pos.offsetTop - 15) + 'px';
     div.style.left = (pos.offsetLeft + 17) + 'px';
 
     div.style.display = 'block';
