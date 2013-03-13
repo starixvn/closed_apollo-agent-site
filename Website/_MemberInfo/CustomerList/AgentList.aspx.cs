@@ -49,6 +49,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             {
                 CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
                 CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
+                this.template.IconEditSetting = string.Empty;
             }
             else
             {
@@ -71,6 +72,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     }
                     this.NavUserName = new Dictionary<object, object>();
                 }
+                string editMenuControl = "EditMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
+                this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
             }
 
             AgentList_nav_link_Block nav_link_Block = new AgentList_nav_link_Block();
@@ -96,8 +99,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 this.template.nav_link.Append(nav_link_Block);
             }
             this.template.AgentName = this.QueryUserName;
-            string editMenuControl = "EditMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
-            this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
+            this.template.urlMemberList = "MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
+            this.template.urlShadowList = "#";
         }
 
         /// <summary>
