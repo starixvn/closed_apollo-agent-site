@@ -253,7 +253,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             tplBlock.OULive = Formater.DecFormat(dr["OU_Soccer_PT_Live"], 2);
 
             tplBlock.createdate = Formater.FormatDateTimeEn12(dr["createdate"]);
-            tplBlock.lastLoginIp = Sunplus.Agent.Model.Common.AgentIPFormat.FormatIP(dr["iplogin"].ToString());
+            //tplBlock.lastLoginIp = Sunplus.Agent.Model.Common.AgentIPFormat.FormatIP(dr["iplogin"].ToString());
         }
 
         //private void RenderRacing(DataRow dr, TplCore.Element.IElement e)
