@@ -51,6 +51,7 @@
     /*background: url( "right_table.jpg" ) no-repeat scroll right bottom transparent;*/
     width: 159px;
     text-align: right;
+    padding-right: 3px;
 }
 
 #tblHeader .btnSubmit

@@ -1,9 +1,8 @@
-﻿jQuery(document).ready(function () {
-    // fourth example
-    jQuery("#browser").treeview({
-        control: "#treecontrol",
-        persist: "cookie",
-        cookieId: "treeview-black"
-    });
+﻿//jQuery(document).ready(function () {
 
-});
+//    jQuery("#treeview-link").click(function () {
+//        jQuery(".downline-title").toggle();
+//        jQuery(".agent-treeview").toggle();
+//    });
+//});
+
