@@ -13,17 +13,19 @@ namespace Fanex.Agent.UI
 	{
 		public class DownLineTreeView_Template : Template
 		{
-			protected static string s0 = "<html><head></head><body><div ID=\"Content3\"><ul id=\"treeview_list\"></ul></div></body></html><link href=\"";
+			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><script type=\"text/javascript\" src=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
-			protected static string s4 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s5{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.css", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body class=\"downlineTreview-bg\"><ul id=\"treeview_list\"></ul></body></html><script type=\"text/javascript\" src=\"";
+			protected static string s5{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
 			protected static string s6 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s7{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
+			protected static string s7{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
 			protected static string s8 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s9{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.async.js");}}
-			protected static string s10 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});});</script>";
+			protected static string s9{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
+			protected static string s10 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s11{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.async.js");}}
+			protected static string s12 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});});</script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -40,6 +42,8 @@ namespace Fanex.Agent.UI
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
+					bd.Append(s11);
+					bd.Append(s12);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

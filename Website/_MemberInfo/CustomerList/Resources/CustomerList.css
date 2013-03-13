@@ -136,8 +136,15 @@ body
     min-width: 650px;
     padding-left: 15px;
     text-transform: uppercase;
+    position: relative;
 }
-
+#title_header .fullpath {
+    float: left;
+    background: url( "Images/icon-view-full-path.png" ) no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
 #tblHeader
 {
     border: 0;
@@ -420,30 +427,11 @@ input[type=text]
     display: none;
 }
 
-/*navigation*/
-.title_header
-{
-    position: relative;
-}
-
-.agent-list-title
-{
+/* Show full path */
+.agent-list-title {
     float: left;
 }
-
-.navigation
-{
-    float: left;
-    cursor: pointer;
-    margin-left: 5px;
-}
-
-.navigation:hover .full-link
-{
-    display: inline;
-}
-
-.full-link
+.full-path
 {
     display: none;
     position: absolute;
@@ -455,19 +443,19 @@ input[type=text]
     border: 1px solid #B2B2B2;
 }
 
-.full-link li
+.full-path li
 {
     list-style: none;
-    display: inline;
+    display: block;
     line-height: 20px;
 }
 
-.full-link li a
+.full-path li a
 {
     color: #1E1EEB;
 }
 
-.full-link li a:hover
+.full-path li a:hover
 {
     color: #FF6600;
 }
