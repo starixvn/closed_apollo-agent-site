@@ -4146,4 +4146,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="txtViewFullPath" xml:space="preserve">
     <value>View full path</value>
   </data>
+  <data name="lblCustomerOf" xml:space="preserve">
+    <value>Customer List Of</value>
+  </data>
 </root>
