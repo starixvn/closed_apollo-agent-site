@@ -855,3 +855,13 @@ function MultiEditDComm() {
 }
 
 RegisterStartUp("InitTagSuggestion()");
+
+/* Show full path*/
+function showFullPath() {
+    var fullPath = $("show-full-path");
+    if (fullPath.style.display == "none") {
+        fullPath.style.display = "block";
+    } else {
+        fullPath.style.display = "none";
+    }
+}

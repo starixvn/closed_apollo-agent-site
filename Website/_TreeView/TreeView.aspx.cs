@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Sunplus.Agent.UI._TreeView;
+using Fanex.Agent.UI._TreeView;
 
 public partial class _TreeView_TreeView : Fanex.Age.UI.TplPage
 {
@@ -29,7 +29,7 @@ public partial class _TreeView_TreeView : Fanex.Age.UI.TplPage
     public override void RenderContent(HtmlTextWriter writer)
     {
         TreeView_Template tpl = new TreeView_Template();
-        string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:95%;height:450px;'></iframe>";
+        string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;min-height:500px;'></iframe>";
 
         tpl.TreeViewDownLineFrame = string.Format(htmlFrame, CurrentUserSession.CustId);
 

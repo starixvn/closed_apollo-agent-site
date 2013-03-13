@@ -16,8 +16,8 @@ namespace Fanex.Agent.UI
 			protected static string s0 = "<table><tr><td>";
 			protected static string s1{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
 			protected static string s2 = "</td></tr><tr><td><div id=\"title_header\"><div class=\"agent-list-title\">";
-			protected static string s3{get{return Resources.Lang.lblAgentList;}}
-			protected static string s4 = "</div>";
+			protected static string s3{get{return Resources.Lang.lblAgentListOf;}}
+			protected static string s4 = "[AgentName]</div>";
 			public string print = "{print}";
 			protected static string s5 = "</div></td></tr><tr><td><div id=\"box_header\" style=\"width:100%\">";
 			public string searchControl = "{searchControl}";
