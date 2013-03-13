@@ -2,25 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>TreeView</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../_AccountInfo/Resources/AccountInfo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="leftpanewrapper">
         <!--MenuTab-->
         <div id="tab_menu">
             <div id="tab_menu_m">
-                <a class="tab_menu01" target="menu" href="../_Menu/Menu.aspx">{static:Resources.Lang.mainmenu}</a>
-            </div>
+                <a class="tab_menu01" target="menu" href="../_Menu/Menu.aspx">{static:Resources.Lang.mainmenu}</a></div>
             <!--CheckViewPermission-->
-            <div id="tab_menu_a">
-                <a id="lnkAccInfo" class="tab_menu02" target="menu" onclick="ShowFlashAccInfoMaster();" href="../_AccountInfo/AccountInfo.aspx"><span id="lblAccInfo">{static:Resources.Lang.userinfo}</span></a>
+            <div id="tab_menu_m">
+                <a id="lnkAccInfo" class="tab_menu02" target="menu" onclick="ShowFlashAccInfoMaster();"
+                    href="../_AccountInfo/AccountInfo.aspx"><span id="lblAccInfo">{static:Resources.Lang.userinfo}</span></a>
             </div>
             <!--/CheckViewPermission-->
-            <div id="tab_menu_t">
-                <a id="lnkTree" class="tab_menu03" style="cursor: default;"></a>
+            <div id="tab_menu_L">
+                <a id="lnkTree" class="tab_menu03AC" target="treeview" style="cursor: default;">
+                </a>
             </div>
         </div>
-        
-        <div id="leftpane">
+        <div id="leftpane" class="pnlTreeview">
             {TreeViewDownLineFrame}
         </div>
     </div>

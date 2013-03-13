@@ -38,6 +38,68 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         #endregion Variable
 
+        public override void ProcessRequest(HttpContext context)
+        {
+            base.ProcessRequest(context);
+        }
+
+        public void RenderNavigation()
+        {
+            if (this.CustId == CurrentUserSession.CustId)
+            {
+                CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
+                CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
+            }
+            else
+            {
+                if (!CurrentUserSession.NavigateUserName.ContainsKey(this.CustId))
+                {
+                    CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
+                }
+                else
+                {
+                    this.NavUserName = CurrentUserSession.NavigateUserName;
+                    CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
+                    foreach (object key in this.NavUserName.Keys)
+                    {
+                        if ((int)key == this.CustId)
+                        {
+                            CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
+                            break;
+                        }
+                        CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
+                    }
+                    this.NavUserName = new Dictionary<object, object>();
+                }
+            }
+
+            AgentList_nav_link_Block nav_link_Block = new AgentList_nav_link_Block();
+
+            StringBuilder nav = new StringBuilder();
+            this.template.nav_link.Clear();
+            string url = "AgentList.aspx?custid={0}&us={1}";
+            int counter = CurrentUserSession.NavigateUserName.Count;
+            foreach (object key in CurrentUserSession.NavigateUserName.Keys)
+            {
+                counter--;
+                string navusername = CurrentUserSession.NavigateUserName[key].ToString();
+                nav_link_Block.navigateName = navusername;
+                nav_link_Block.url = string.Format(url, key, navusername);
+                if (counter == 0)
+                {
+                    nav_link_Block.SetValue(navusername);
+                }
+                else
+                {
+                    nav_link_Block.narrow = " ->";
+                }
+                this.template.nav_link.Append(nav_link_Block);
+            }
+            this.template.AgentName = this.QueryUserName;
+            string editMenuControl = "EditMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
+            this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
+        }
+
         /// <summary>
         /// Render Content
         /// </summary>
@@ -59,7 +121,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.RenderHeader(this.template.Header);
             this.RenderContentBlock(customerData, this.template.Content);
             this.RenderSearchControl();
-
+            RenderNavigation();
             TemplateMain.content = this.template;
             writer.Write(this.TemplateMain);
         }
@@ -68,7 +130,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
             int totalPage = 0;
-            DataTable dtb = bo.GetAgentCollection(this.CustId, (this.UserName == Resources.Lang.enterusername || this.UserName == CurrentUserSession.UserName) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
+            DataTable dtb = bo.GetAgentCollection(this.CustId, (this.UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
             this.TotalPage = totalPage;
             this.ViewData.Add("CustomerData", dtb);
             return this.ViewData;
@@ -76,13 +138,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         public void RenderSearchControl()
         {
-            // Printer
-            string printClick = "getPrint('page_main')";
-            this.template.print = new PrintControl(this.template, printClick);
-
             // Searching
             string getCustomer = "GetCustomer('AgentList.aspx')";
-            this.template.searchControl = new DoubleCommissionSearchUserName(TemplateMain, (this.UserName == Resources.Lang.enterusername || this.UserName == CurrentUserSession.UserName) ? Resources.Lang.enterusername : UserName, Status, DCommStatus, getCustomer);
+            this.template.searchControl = new DoubleCommissionSearchUserName(TemplateMain, this.UserName, Status, DCommStatus, getCustomer);
 
             string pagingControlName_top = "_PagingTop";
             string pagingControlName_bottom = "MemberList" + CurrentUserSession.SiteName + "_PagingBottom";
@@ -155,7 +213,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             if (Convert.ToInt32(dr["NumberOfAgent"]) > 0)
             {
-                string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "&username=" + dr["username"].ToString() + "')";
+                string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "&us=" + dr["username"].ToString() + "')";
                 IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view", viewAgentDonwlineClick);
                 tplBlock.viewAgentList = viewAgentDownline;
             }
@@ -166,7 +224,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             if (Convert.ToInt32(dr["NumberOfMember"]) > 0)
             {
-                string viewPlayerDonwlineClick = "ViewDownLine('MemberList.aspx?custid=" + this.agentId + "')";
+                string viewPlayerDonwlineClick = "ViewDownLine('MemberList.aspx?custid=" + this.agentId + "&us=" + dr["username"].ToString() + "')";
                 IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view", viewPlayerDonwlineClick);
                 tplBlock.viewPlayerList = viewPlayerDownline;
             }

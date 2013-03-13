@@ -25,6 +25,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         private Hashtable _hashTableQueryString = new Hashtable();
         private Dictionary<string, DataTable> _viewData = new Dictionary<string, DataTable>();
 
+        private Dictionary<object, object> _navUserName = new Dictionary<object, object>();
+
         private int _pageSize = Sunplus.Agent.Model.BL.Definitions.AppSettings.PageSize;
         private int _pageIndex = 1;
         private int _status = -1;
@@ -61,6 +63,22 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             {
                 return this._hashTableQueryString;
             }
+            set
+            {
+                this._hashTableQueryString = value;
+            }
+        }
+
+        public Dictionary<object, object> NavUserName
+        {
+            get
+            {
+                return this._navUserName;
+            }
+            set
+            {
+                this._navUserName = value;
+            }
         }
 
         public int ParentId { get; set; }
@@ -70,6 +88,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public int TotalPage { get; set; }
 
         public string UserName { get; set; }
+
+        public string QueryUserName { get; set; }
 
         public Dictionary<string, DataTable> ViewData
         {
@@ -468,7 +488,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
             this.CustId = this.GetIntRequest("custid", CurrentUserSession.CustId);
-            this.UserName = this.GetStringRequest("username", CurrentUserSession.UserName);
+
+            this.UserName = this.GetStringRequest("username", Resources.Lang.enterusername);
+            this.QueryUserName = this.GetStringRequest("us", CurrentUserSession.UserName);
             this.PageSize = this.GetIntRequest("pagesize", this.PageSize);
             this.PageIndex = this.GetIntRequest("pageindex", this.PageIndex);
 
@@ -476,32 +498,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             {
                 this.PageSize = 500;
             }
-
-           // this.UserName = string.IsNullOrEmpty(this.Request["username"]) == false ? this.Request["username"] : CurrentUserSession.UserName;
-            this.HashTableQueryString.Add("custid", this.CustId.ToString());
-            this.HashTableQueryString.Add("username", this.UserName);
-
-            //if (this.ParentId == 0)
-            //{
-            //    this.nav.Add(this.CustId, new Navigation { AgentId = this.CustId, AgentName = this.UserName, ParentAgentId = this.ParentId });
-            //    CurrentUserSession.AgentNavigation = this.nav;
-            //}
-            //else
-            //{
-            //    this.nav = CurrentUserSession.AgentNavigation;
-            //    if (!this.nav.ContainsKey(this.CustId))
-            //    {
-            //        this.nav.Add(this.CustId, new Navigation { AgentId = this.CustId, AgentName = this.UserName, ParentAgentId = this.ParentId });
-            //    }
-            //    else
-            //    {
-            //        Dictionary<int, Navigation> dicTemp = new Dictionary<int, Navigation>();
-            //        foreach (int key in this.nav.Keys)
-            //        {
-            //            //dicTemp.Add(key, new Navigation { AgentId = this.nav. });
-            //        }
-            //    }
-            //}
         }
 
         public string RenderPageSize(string id, int pagesize)

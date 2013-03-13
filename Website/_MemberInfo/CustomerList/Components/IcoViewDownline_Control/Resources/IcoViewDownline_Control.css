@@ -1,17 +1,8 @@
 ﻿.view
 {
-	width: 40px;
-	height: 18px;
-	text-align: center;
-	padding-right: 11px;
-	background: url("Images/info.gif") no-repeat scroll right center transparent;
-	display: block;
-	line-height: 18px;
-	color: #FF9933;
-}
-
-a.disable {
-    background: url("Images/info_disable.gif") no-repeat scroll right center transparent;
-    color: #B5B5B5;
-    cursor: default;
+    height: 18px;
+    text-align: center;
+    display: block;
+    line-height: 18px;
+    color: #FF9933;
 }
