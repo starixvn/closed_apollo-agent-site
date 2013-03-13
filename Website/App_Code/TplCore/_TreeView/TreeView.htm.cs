@@ -13,23 +13,15 @@ namespace Fanex.Agent.UI
 	{
 		public class TreeView_Template : Template
 		{
-<<<<<<< HEAD
-			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>TreeView</title></head><body><div id=\"leftpanewrapper\"><!--MenuTab--><div id=\"tab_menu\"><div id=\"tab_menu_m\"><a class=\"tab_menu01\" target=\"menu\" href=\"../_Menu/Menu.aspx\">";
-			protected static string s1{get{return Resources.Lang.mainmenu;}}
-			protected static string s2 = "</a></div><!--CheckViewPermission--><div id=\"tab_menu_a\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" onclick=\"ShowFlashAccInfoMaster();\"href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
-			protected static string s3{get{return Resources.Lang.userinfo;}}
-			protected static string s4 = "</span></a></div><!--/CheckViewPermission--><div id=\"tab_menu_t\"><a id=\"lnkTree\" class=\"tab_menu03\" style=\"cursor: default;\"></a></div></div><div id=\"leftpane\">";
-=======
 			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>TreeView</title><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.css", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"leftpanewrapper\"><!--MenuTab--><div id=\"tab_menu\"><div id=\"tab_menu_m\"><a class=\"tab_menu01\" target=\"menu\" href=\"../_Menu/Menu.aspx\">";
 			protected static string s5{get{return Resources.Lang.mainmenu;}}
-			protected static string s6 = "</a></div><!--CheckViewPermission--><div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" onclick=\"ShowFlashAccInfoMaster();\" href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
+			protected static string s6 = "</a></div><!--CheckViewPermission--><div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" onclick=\"ShowFlashAccInfoMaster();\"href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
 			protected static string s7{get{return Resources.Lang.userinfo;}}
 			protected static string s8 = "</span></a></div><!--/CheckViewPermission--><div id=\"tab_menu_L\"><a id=\"lnkTree\" class=\"tab_menu03AC\" target=\"treeview\" style=\"cursor: default;\"></a></div></div><div id=\"leftpane\" class=\"pnlTreeview\">";
->>>>>>> c58e712a16ec278474eda614535dd37884ef4e01
 			public string TreeViewDownLineFrame = "{TreeViewDownLineFrame}";
 			protected static string s9 = "</div></div></body></html>";
 			public override void ToString(ref StringBuilder bd)
@@ -42,17 +34,12 @@ namespace Fanex.Agent.UI
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
-<<<<<<< HEAD
-					bd.Append(TreeViewDownLineFrame);
-					bd.Append(s5);
-=======
 					bd.Append(s5);
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
 					bd.Append(TreeViewDownLineFrame);
 					bd.Append(s9);
->>>>>>> c58e712a16ec278474eda614535dd37884ef4e01
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
