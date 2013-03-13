@@ -114,10 +114,12 @@ div.match + div.league {
     text-align: right;
     background: #fff;
 }
+
 #hor-minimalist-a tbody tr:hover td {
     color: #009;
-    background-color: #FFFF00;
+    background-color: #FBF0B9;
 }
+
 #hor-minimalist-a tbody tr#tr_footer:hover td {
     color: #000000;
     background-color: #E8DFCA;
@@ -228,7 +230,30 @@ a {
     cursor: pointer;
     color: #1E1EEB;
     font-size: 11px;
+    position: relative;
 }
+
+/* detail popup */
+
+.detail-popup {
+    position: absolute;
+    right: 38px;
+    width: auto;    
+    height: auto;
+    z-index: 1020;
+    background: url("Images/bg_conts.jpg") repeat-x fixed center top #F5F6F8;
+    border: 1px solid #000000;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    display: none;   
+}
+
+.detail-popup #hor-minimalist-a {
+    margin-top: 0;
+}
+
+/* end */
 .div_horline {
     height: 1px;
     background: #b7b7b7;

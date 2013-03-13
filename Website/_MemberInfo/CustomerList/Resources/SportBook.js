@@ -1,4 +1,25 @@
-﻿function OpenEditMinMax(custid, username) {
+﻿function OpenEditAgentCommission(custId, userName) {
+    if (custId) {
+        var url = "../../../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custid=" + custId + "&username=" + userName;
+        var popW = 960, popH = 180;
+        //url, title, left, top, width, height
+        ageWnd.open(url, '', 0, 10, popW, popH); 
+    }
+}
+
+function OpenEditAgentBetLimit(targetAgentId) {
+    if (targetAgentId) {
+
+    }
+}
+
+function OpenEditAgentPT(targetAgentId) {
+    if (targetAgentId) {
+
+    }
+}
+
+function OpenEditMinMax(custid, username) {
     //var url = "../../../UserSuper/EditMinPT.aspx?custid=" + custid + "&username=" + username;
     var url = "";
     if (_page.roleid == 4) {

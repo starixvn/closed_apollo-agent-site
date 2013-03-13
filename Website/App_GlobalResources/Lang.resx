@@ -776,7 +776,7 @@
     <value>Entertainment</value>
   </data>
   <data name="enterusername" xml:space="preserve">
-    <value>User Agent</value>
+    <value>Username</value>
   </data>
   <data name="equestrian" xml:space="preserve">
     <value>Equestrian</value>
@@ -4124,5 +4124,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblMemberCommissionPercent" xml:space="preserve">
     <value>Member Commission (%)</value>
+  </data>
+  <data name="lblUser" xml:space="preserve">
+    <value>User</value>
   </data>
 </root>
