@@ -7,8 +7,27 @@ using System.Web.UI.WebControls;
 using Sunplus.Agent.Model.DL.AccountInfo;
 using System.Data;
 
-public partial class _AccountInfo_TreeList : System.Web.UI.Page
+public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 {
+    public override void ProcessRequest(ref System.Collections.Hashtable p)
+    {
+    }
+
+    public override object ValidateRequest(System.Collections.Hashtable p)
+    {
+        return null;
+    }
+
+    public override object InvokeData(System.Collections.Hashtable p)
+    {
+        return null;
+    }
+
+    public override void RenderContent(HtmlTextWriter writer)
+    {
+        
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -33,8 +52,8 @@ public partial class _AccountInfo_TreeList : System.Web.UI.Page
 
         if (root == "source") //for the first time the JQuery tree will send the root param value as "source"
         {
-            var ds = dao.Age_Customer_GetDownLine(0);
-            GenerateTree(ds.Tables[0], 0);
+            var ds = dao.Age_Customer_GetDownLine(CurrentUserSession.CustId);
+            GenerateTree(ds.Tables[0], CurrentUserSession.CustId);
         }
         else if (int.TryParse(root, out parentID)) //subsequent requests will send the ID
         {
