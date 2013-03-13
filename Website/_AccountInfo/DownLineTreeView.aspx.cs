@@ -1,6 +1,7 @@
 ﻿using System;
-using Sunplus.Agent.UI._AccountInfo;
+using Fanex.Agent.UI._AccountInfo;
 using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
+
 
 public partial class _AccountInfo_DownLineTreeView : AccountInfoBase_Page
 {

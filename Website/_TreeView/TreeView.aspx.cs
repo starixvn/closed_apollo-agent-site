@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Sunplus.Agent.UI._TreeView;
+using Fanex.Agent.UI._TreeView;
 
 public partial class _TreeView_TreeView : Fanex.Age.UI.TplPage
 {

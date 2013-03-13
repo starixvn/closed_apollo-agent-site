@@ -33,27 +33,25 @@
                 <tbody>
                     <tr>
                         <td class="top-position">
-                            <!--{lblCustomerUsername}:-->
                             {lblUsername}:
                         </td>
                         <td align="right" class="text_org">                            
                             {CustomerUsername}
-                            <a href="javascript:void(0)" id="treeview-link">
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td class="top-position">
+                            {lblParentname}:
+                        </td>
+                        <td align="right" class="text_org">                            
+                            {ParentUsername}
+                            <a href="javascript:void(0)" id="agentDownlineLink">
                                 <img height="15" width="15" alt="Treeview" src="../_AccountInfo/Resources/Images/treeview.png" title="Treeview"/>
                             </a>
                         </td>
-                    </tr>                    
-                    <tr>
-                        <td colspan="2">
-                            <div class="downline-title">Downline List</div>
-                            <div class="agent-treeview">
-                                <!--<ul id="fileSystemInfos" class="filetree"></ul><br />
-                                <div id="fileSystemInfosControl"> </div>-->
-                                
-                                {TreeViewDownLineFrame}
-                            </div>
-                        </td>
                     </tr>
+                    <tr id="agent-downline">
+                    </tr>                    
                 </tbody>
             </table>
             <!--/CustInfo-->
@@ -82,18 +80,15 @@
 <!--insert jquery and treeview javascript-->
 <link href="Resources/treeview.css" rel="stylesheet" type="text/css" />
 
-<!-- <script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>
-<script type="text/javascript" src="../_AccountInfo/Resources/jquery.cookie.js"></script>
-<script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.js"></script>
-<script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.async.js"></script> 
+<script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        $("#treeview_list").treeview({
-            url: "DownLineTreeView.aspx/AsyncTree"
+        jQuery("#agentDownlineLink").click(function () {
+            jQuery("#agent-downline").append("<a href='#'> Test 1.2.3.3 </a> </br>");
         });
 
     });
-</script>-->
+</script>
 
 
  

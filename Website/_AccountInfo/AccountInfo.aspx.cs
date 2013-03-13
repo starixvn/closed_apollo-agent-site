@@ -7,14 +7,11 @@
 
 namespace Sunplus.Agent.UI._AccountInfo
 {
-    using System;
-    using System.Collections.Generic;
     using System.Data;
     using Fanex.Agent.UI._AccountInfo;
     using Sunplus.Agent.Model.BL.AccountInfo;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
-    using Fanex.Age.DTO.Reports.TreeView;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
@@ -366,10 +363,14 @@ namespace Sunplus.Agent.UI._AccountInfo
             tpl.classStyle = "text_f";
             tpl.usernamesearch = this.userNameRequest;
             tpl.CustInfo.CustomerUsername = userName;
-            if (custId > 0)
-            {
-                tpl.CustInfo.TreeViewDownLineFrame = string.Format(htmlFrame, this.custId);
-            }
+
+            tpl.CustInfo.lblParentname = "Parent";
+            tpl.CustInfo.ParentUsername = this.dtrCustomerInfo["ParentName"].ToString();
+
+            //if (custId > 0)
+            //{
+            //    tpl.CustInfo.TreeViewDownLineFrame = string.Format(htmlFrame, this.custId);
+            //}
 
             
 
@@ -453,25 +454,25 @@ namespace Sunplus.Agent.UI._AccountInfo
             }
             else
             {
-
-                switch (this.agentLevel)
-                {
-                    case 0:
-                        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel0;
-                        break;
-                    case 1:
-                        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel1;
-                        break;
-                    case 2:
-                        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel2;
-                        break;
-                    case 3:
-                        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel3;
-                        break;
-                    default:
-                        tpl.CustInfo.lblUsername = Resources.Lang.agent;
-                        break;
-                }
+                tpl.CustInfo.lblUsername = Resources.Lang.agent;
+                //switch (this.agentLevel)
+                //{
+                //    case 0:
+                //        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel0;
+                //        break;
+                //    case 1:
+                //        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel1;
+                //        break;
+                //    case 2:
+                //        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel2;
+                //        break;
+                //    case 3:
+                //        tpl.CustInfo.lblUsername = Resources.Lang.AgentLevel3;
+                //        break;
+                //    default:
+                //        tpl.CustInfo.lblUsername = Resources.Lang.agent;
+                //        break;
+                //}
             }
 
 
