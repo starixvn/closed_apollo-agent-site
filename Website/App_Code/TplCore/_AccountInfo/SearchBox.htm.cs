@@ -188,11 +188,11 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonBetList_Block: Block
 		{
-			protected static string s47 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s47 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string memberlistlink = "{memberlistlink}";
 			protected static string s48 = "\">";
 			protected static string s49{get{return Resources.Lang.BetList;}}
-			protected static string s50 = "</a></div>-->";
+			protected static string s50 = "</a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
