@@ -310,6 +310,7 @@ a.tab_menu03:hover
 	height: 18px;
 	margin-bottom: 10px;
 	width: 85px;
+	margin: 0 2px;
 }
 #b_serachL
 {
@@ -357,6 +358,11 @@ a.tab_menu03:hover
 	padding: 5px;
 	width: 179px;	
 }
+
+.Bleft_Sub02 * {
+    vertical-align: middle;
+}
+
 .divStatus
 {
 	/*float: left;*/
@@ -1025,6 +1031,7 @@ a.btnList:hover {
 }
 
 /* Tab treeview */
+
 #frmDownlineList {
     border: none;
 }
@@ -1040,4 +1047,11 @@ a.btnList:hover {
 
 .treeview .hitarea {
     margin-top: 2px;
+}
+
+/* Account tab */
+
+.option-search {
+    float: left;
+    height: 20px;
 }
