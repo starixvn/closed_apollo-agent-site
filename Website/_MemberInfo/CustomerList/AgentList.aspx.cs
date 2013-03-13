@@ -148,9 +148,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             tplBlock.id = dr["RowNumber"].ToString();
             tplBlock.username = dr["username"] as string;
-
+            
             //// Render Other
-            string editMenuControl = "EditMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
+            string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
             tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, string.Empty, editMenuControl);
 
             if (Convert.ToInt32(dr["NumberOfAgent"]) > 0)
