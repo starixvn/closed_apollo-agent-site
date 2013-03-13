@@ -236,10 +236,11 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             tplBlock.username = dr["username"] as string;
 
             // Render Other menu
-            string editMenuControl = "EditMenuControl(this,'editControl', '" + this.memberId + "', '" + dr["username"].ToString() + "')";
+            string userGroup = dr["ugroup"] as string;
+            string editMenuControl = "EditMemberMenuControl(this,'editControl', '" + this.memberId + "', '" + dr["username"].ToString() + "','" + userGroup + "')";
             tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.memberId, string.Empty, editMenuControl);
 
-            tplBlock.group = dr["ugroup"].ToString();
+            tplBlock.group = userGroup;
 
             tplBlock.groupAgent = Formater.FormatNumber4(dr["agentgroup"], this.langKey);
             tplBlock.oneXtwoAgent = Formater.FormatNumber4(dr["agentdiscount1x2"], this.langKey);

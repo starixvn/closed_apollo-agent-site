@@ -341,7 +341,7 @@ pt-groupset2
 	padding: 0;
 	text-align: right;
 	vertical-align: middle;
-	width: 90px;
+	width: 90px !important;
 }
 
 .betting-limit-textbox4

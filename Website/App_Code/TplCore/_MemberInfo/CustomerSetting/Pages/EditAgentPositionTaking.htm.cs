@@ -13,23 +13,29 @@ namespace Fanex.Agent.UI
 	{
 		public class EditAgentPositionTaking_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head runat=\"server\"><title></title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.css", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"settingContainer\" style=\"width: 936px;\"><div id=\"ptContainer\"></div></div><script src='../Handlers/GetPositionTakingSetting.ashx?targetCustId=";
+			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head runat=\"server\"><title></title><link href=\"";
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s3{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.css", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s5{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CoreOverride.css", TplSettings.Question);}}
+			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"settingContainer\" style=\"width: 936px;\"><div id=\"ptContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\">";
+			public string actionName = "{actionName}";
+			protected static string s7 = "</button></div><script src='../Handlers/GetPositionTakingSetting.ashx?targetCustId=";
 			public string TargetAgentId = "{TargetAgentId}";
-			protected static string s3 = "&targetRoleId=2' type=\"text/javascript\"></script><script src=\"";
-			protected static string s4{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Languages/en.js", TplSettings.Question);}}
-			protected static string s5 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s6{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
-			protected static string s7 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s8{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
-			protected static string s9 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s10{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetTypeGroup.js", TplSettings.Question);}}
-			protected static string s11 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s12{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetType.js", TplSettings.Question);}}
-			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s14{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
-			protected static string s15 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\">Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);var settingContainer = document.getElementById('settingContainer');grid1 = new Fanex.CustSetting.PTGrid(positionTakingSetting);var ptContainer = document.getElementById('ptContainer');ptContainer.innerHTML = \"\";grid1.Render(ptContainer);</script></body></html>";
+			protected static string s8 = "&targetRoleId=2' type=\"text/javascript\"></script><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Languages/en.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s11{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
+			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s13{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
+			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s15{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetTypeGroup.js", TplSettings.Question);}}
+			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s17{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetType.js", TplSettings.Question);}}
+			protected static string s18 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s19{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
+			protected static string s20 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\">Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);var settingContainer = document.getElementById('settingContainer');grid1 = new Fanex.CustSetting.PTGrid(positionTakingSetting);var ptContainer = document.getElementById('ptContainer');ptContainer.innerHTML = \"\";grid1.Render(ptContainer);</script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -38,12 +44,13 @@ namespace Fanex.Agent.UI
 					bd.Append(s0);
 					bd.Append(s1);
 					bd.Append(s2);
-					bd.Append(TargetAgentId);
 					bd.Append(s3);
 					bd.Append(s4);
 					bd.Append(s5);
 					bd.Append(s6);
+					bd.Append(actionName);
 					bd.Append(s7);
+					bd.Append(TargetAgentId);
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
@@ -52,6 +59,11 @@ namespace Fanex.Agent.UI
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
+					bd.Append(s16);
+					bd.Append(s17);
+					bd.Append(s18);
+					bd.Append(s19);
+					bd.Append(s20);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
