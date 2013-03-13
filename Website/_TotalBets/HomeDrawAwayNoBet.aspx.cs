@@ -149,19 +149,19 @@ namespace Fanex.Age.UI.TotalBets
         private void RenderHNBTotal(HomeDrawAwayNoBet_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr)
         {
             // Draw/no draw Total
-            //if (Convert.ToInt16(dr["betcount_HNB"]) != 0)
-            //{
-            //}
-            //else
-            //{
-            //    matchBlock.HomeNoBetValue.Hide();
-            //}
-            decimal HNBTotal = (decimal)(dr["home_odds_HNB"]) - (decimal)(dr["away_odds_HNB"]);
-            matchBlock.HomeNoBetValue.HomeNoBetValue = Formater.DecFormat(HNBTotal, 0);
-            matchBlock.HomeNoBetValue.MatchId = dr["matchid"].ToString();
-            matchBlock.HomeNoBetValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+            if (Convert.ToInt16(dr["betcount_HNB"]) != 0)
+            {
+                decimal HNBTotal = (decimal)(dr["home_odds_HNB"]) - (decimal)(dr["away_odds_HNB"]);
+                matchBlock.HomeNoBetValue.HomeNoBetValue = Formater.DecFormat(HNBTotal, 0);
+                matchBlock.HomeNoBetValue.MatchId = dr["matchid"].ToString();
+                matchBlock.HomeNoBetValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
 
-            matchBlock.HomeNoBetValue.Show();
+                matchBlock.HomeNoBetValue.Show();
+            }
+            else
+            {
+                matchBlock.HomeNoBetValue.Hide();
+            }
         }
 
         /// <summary>

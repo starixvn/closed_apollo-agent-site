@@ -53,6 +53,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             {
                 CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
                 CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
+                this.tempate.IconEditSetting = string.Empty;
             }
             else
             {
@@ -75,6 +76,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     }
                     this.NavUserName = new Dictionary<object, object>();
                 }
+                string editMenuControl = "EditMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
+                this.tempate.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
             }
 
             AgentList_nav_link_Block nav_link_Block = new AgentList_nav_link_Block();
@@ -100,8 +103,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 this.tempate.nav_link.Append(nav_link_Block);
             }
             this.tempate.AgentName = this.QueryUserName;
-            string editMenuControl = "EditMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
-            this.tempate.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
+            this.tempate.urlAgentList = "AgentList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
+            this.tempate.urlShadowList = "#";
         }
 
         #endregion Properties
