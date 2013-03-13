@@ -12,7 +12,9 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditAgentCommission : Fan
     public override void RenderContent(HtmlTextWriter writer)
     {
         var template = new EditAgentCommission_Template();
+        template.actionName = Resources.Lang.update;
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
+
         writer.Write(template);
     }
 

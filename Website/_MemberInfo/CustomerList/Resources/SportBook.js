@@ -1,7 +1,7 @@
 ﻿function OpenEditAgentCommission(custId, userName) {
     if (custId) {
         var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custid=" + custId + "&username=" + userName;
-        var popW = 960, popH = 180;
+        var popW = 960, popH = 200;
         //url, title, left, top, width, height
         ageWnd.open(url, '', 0, 10, popW, popH); 
     }
@@ -10,7 +10,7 @@
 function OpenEditAgentBetLimit(custId, userName) {
     if (custId) {
         var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custid=" + custId + "&username=" + userName;
-        var popW = 960, popH = 450;
+        var popW = 960, popH = 470;
         //url, title, left, top, width, height
         ageWnd.open(url, '', 0, 10, popW, popH);
     }
@@ -28,7 +28,7 @@ function OpenEditAgentPT(custId, userName) {
 function OpenEditMemberCommission(custId, userName, ugroup) {
     if (custId) {
         var url = "../../_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custid=" + custId + "&username=" + userName + "&ugroup=" + ugroup;
-        var popW = 960, popH = 270;
+        var popW = 960, popH = 290;
         //url, title, left, top, width, height
         ageWnd.open(url, '', 0, 10, popW, popH);
     }
@@ -37,7 +37,7 @@ function OpenEditMemberCommission(custId, userName, ugroup) {
 function OpenEditMemberBetLimit(custId, userName, ugroup) {
     if (custId) {
         var url = "../../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custid=" + custId + "&username=" + userName + "&ugroup=" + ugroup;
-        var popW = 960, popH = 450;
+        var popW = 960, popH = 470;
         //url, title, left, top, width, height
         ageWnd.open(url, '', 0, 10, popW, popH);
     }

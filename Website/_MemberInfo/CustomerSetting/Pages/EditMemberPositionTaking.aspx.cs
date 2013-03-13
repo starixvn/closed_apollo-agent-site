@@ -11,6 +11,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditMemberPositionTaking 
     public override void RenderContent(HtmlTextWriter writer)
     {
         var template = new EditMemberPositionTaking_Template();
+        template.actionName = Resources.Lang.update;
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
         template.UGroup = Context.Request.QueryString["ugroup"].ToString();
         writer.Write(template);
