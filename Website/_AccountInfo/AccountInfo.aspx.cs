@@ -566,7 +566,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             }
             else
             {
-                tpl.GroupStatement.Hide();
+                //tpl.GroupStatement.Hide();
             }
 
             #endregion Group Statement
