@@ -1,13 +1,10 @@
 ﻿html, body
 {
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hiden;
 	cursor: default;
 	padding: 0;
-}
-
-html
-{
-
+	height: 100%;
 }
 
 ::-webkit-scrollbar
@@ -555,11 +552,29 @@ font.positive
 	float: left;
 	width: 215px;
 }
+#leftpanewrapper-treeview
+{
+	background: url(../../_GlobalResources/Images/bg_conts.jpg) repeat-x top;
+	padding-left: 5px;
+	padding-top: 5px;
+	background-attachment: fixed;
+	float: left;
+	width: 215px;
+	height: 99%;
+}
 #leftpane
 {
 	width: 202px;
 	background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
 }
+
+#leftpane-treeview
+{
+	width: 202px;
+	background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
+	height: 97%;
+}
+
 #top_left
 {
 	width: 210px;
@@ -1042,7 +1057,7 @@ a.btnList:hover {
 }
 
 .treeview {
-    margin: 10px;
+    padding: 10px;
 }
 
 .treeview .hitarea {

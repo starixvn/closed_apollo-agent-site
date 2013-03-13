@@ -29,7 +29,7 @@ public partial class _TreeView_TreeView : Fanex.Age.UI.TplPage
     public override void RenderContent(HtmlTextWriter writer)
     {
         TreeView_Template tpl = new TreeView_Template();
-        string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;min-height:500px;'></iframe>";
+        string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height:100%;'></iframe>";
 
         tpl.TreeViewDownLineFrame = string.Format(htmlFrame, CurrentUserSession.CustId);
 
