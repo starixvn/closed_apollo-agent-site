@@ -366,6 +366,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
             tpl.CustInfo.lblParentname = "Parent";
             tpl.CustInfo.ParentUsername = this.dtrCustomerInfo["ParentName"].ToString();
+            tpl.CustInfo.ParentID = this.dtrCustomerInfo["ParentId"].ToString();
 
             //if (custId > 0)
             //{

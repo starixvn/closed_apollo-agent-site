@@ -397,6 +397,7 @@ RegisterStartUp('initHeader()');
 function initHeader() {
     initAutoComplete('txtUsername', 'Handlers/QueryUserName.ashx');
     $('leftpanewrapper').style.display = 'block';
+ 
 }
 // Menu2 & Acc Info (Common.js)----------------------
 var currentItem = 0;
@@ -484,3 +485,16 @@ function changeLiveCasinoStatus(evt, objDiv) {
         }
     }
 }
+
+function bindAgentDownLine(agentID) {
+    ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
+        alert(result.Agent.length);
+        var data = result.Agent;
+        $("agent-downline").innerHTML = "";
+        for (var i = 0; i < data.length; ++i) {
+            $("agent-downline").innerHTML = $("agent-downline").innerHTML + "<a href='#'> " + data[i][1] + "</a> </br>";
+        }
+    });
+}
+
+

@@ -45,9 +45,13 @@ namespace Fanex.Agent.UI
 			public SearchBox_GroupStatement_Block GroupStatement = new SearchBox_GroupStatement_Block();
 			protected static string s22 = "<!--insert jquery and treeview javascript--><link href=\"";
 			protected static string s23{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
-			protected static string s24 = "\" rel=\"stylesheet\" type=\"text/css\" /><script type=\"text/javascript\" src=\"";
-			protected static string s25{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
-			protected static string s26 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {jQuery(\"#agentDownlineLink\").click(function () {jQuery(\"#agent-downline\").append(\"<a href='#'> Test 1.2.3.3 </a> </br>\");});});</script>";
+			protected static string s24 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src=\"";
+			protected static string s25{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s26 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s27{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
+			protected static string s28 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s29{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js");}}
+			protected static string s30 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {jQuery(\"#agentDownlineLink\").click(function () {var parentID = jQuery(\"#parentid-value\").val();bindAgentDownLine(parentID);});});</script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -88,6 +92,10 @@ namespace Fanex.Agent.UI
 					bd.Append(s24);
 					bd.Append(s25);
 					bd.Append(s26);
+					bd.Append(s27);
+					bd.Append(s28);
+					bd.Append(s29);
+					bd.Append(s30);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -102,33 +110,37 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_CustInfo_Block: Block
 		{
-			protected static string s27 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td class=\"top-position\">";
+			protected static string s31 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td class=\"top-position\">";
 			public string lblUsername = "{lblUsername}";
-			protected static string s28 = ":</td><td align=\"right\" class=\"text_org\">";
+			protected static string s32 = ":</td><td align=\"right\" class=\"text_org\">";
 			public string CustomerUsername = "{CustomerUsername}";
-			protected static string s29 = "</td></tr><tr><td class=\"top-position\">";
+			protected static string s33 = "</td></tr><tr><td class=\"top-position\">";
 			public string lblParentname = "{lblParentname}";
-			protected static string s30 = ":</td><td align=\"right\" class=\"text_org\">";
+			protected static string s34 = ":</td><td align=\"right\" class=\"text_org\">";
 			public string ParentUsername = "{ParentUsername}";
-			protected static string s31 = "<a href=\"javascript:void(0)\" id=\"agentDownlineLink\"><img height=\"15\" width=\"15\" alt=\"Treeview\" src=\"";
-			protected static string s32{get{return AbsoluteUrl("_AccountInfo/Resources/Images/treeview.png");}}
-			protected static string s33 = "\" title=\"Treeview\"/></a></td></tr><tr id=\"agent-downline\"></tr></tbody></table>";
+			protected static string s35 = "<a href=\"javascript:void(0)\" id=\"agentDownlineLink\"><img height=\"15\" width=\"15\" alt=\"Treeview\" src=\"";
+			protected static string s36{get{return AbsoluteUrl("_AccountInfo/Resources/Images/treeview.png");}}
+			protected static string s37 = "\" title=\"Treeview\"/></a><input type=\"hidden\" value=\"";
+			public string ParentID = "{ParentID}";
+			protected static string s38 = "\" id=\"parentid-value\"/></td></tr><tr id=\"agent-downline\"></tr></tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s27);
-					bd.Append(lblUsername);
-					bd.Append(s28);
-					bd.Append(CustomerUsername);
-					bd.Append(s29);
-					bd.Append(lblParentname);
-					bd.Append(s30);
-					bd.Append(ParentUsername);
 					bd.Append(s31);
+					bd.Append(lblUsername);
 					bd.Append(s32);
+					bd.Append(CustomerUsername);
 					bd.Append(s33);
+					bd.Append(lblParentname);
+					bd.Append(s34);
+					bd.Append(ParentUsername);
+					bd.Append(s35);
+					bd.Append(s36);
+					bd.Append(s37);
+					bd.Append(ParentID);
+					bd.Append(s38);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -136,17 +148,17 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonAgentList_Block: Block
 		{
-			protected static string s34 = "<a href=\"";
+			protected static string s39 = "<a href=\"";
 			public string agentListLink = "{agentListLink}";
-			protected static string s35 = "\" class=\"btnList\" target=\"main\">Agent List</a>";
+			protected static string s40 = "\" class=\"btnList\" target=\"main\">Agent List</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s34);
+					bd.Append(s39);
 					bd.Append(agentListLink);
-					bd.Append(s35);
+					bd.Append(s40);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -154,17 +166,17 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonMemberList_Block: Block
 		{
-			protected static string s36 = "<a href=\"";
+			protected static string s41 = "<a href=\"";
 			public string memberListLink = "{memberListLink}";
-			protected static string s37 = "\" class=\"btnList\" target=\"main\">Member List</a>";
+			protected static string s42 = "\" class=\"btnList\" target=\"main\">Member List</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s36);
+					bd.Append(s41);
 					bd.Append(memberListLink);
-					bd.Append(s37);
+					bd.Append(s42);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -172,17 +184,17 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonBetList_Block: Block
 		{
-			protected static string s38 = "<a href=\"";
+			protected static string s43 = "<a href=\"";
 			public string betListLink = "{betListLink}";
-			protected static string s39 = "\" class=\"btnList\" target=\"main\">Bet List</a>";
+			protected static string s44 = "\" class=\"btnList\" target=\"main\">Bet List</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s38);
+					bd.Append(s43);
 					bd.Append(betListLink);
-					bd.Append(s39);
+					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -190,21 +202,21 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_GroupStatement_Block: Block
 		{
-			protected static string s40 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s45 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string statementlink = "{statementlink}";
-			protected static string s41 = "\">";
-			protected static string s42{get{return Resources.Lang.lblStatement;}}
-			protected static string s43 = "</a></div>-->";
+			protected static string s46 = "\">";
+			protected static string s47{get{return Resources.Lang.lblStatement;}}
+			protected static string s48 = "</a></div>-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s40);
+					bd.Append(s45);
 					bd.Append(statementlink);
-					bd.Append(s41);
-					bd.Append(s42);
-					bd.Append(s43);
+					bd.Append(s46);
+					bd.Append(s47);
+					bd.Append(s48);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
