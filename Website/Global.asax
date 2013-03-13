@@ -84,11 +84,11 @@
             || executeFileName.EndsWith("ProcessAfterLogin.ashx")
             || executeFileName.EndsWith("Captcha.ashx")
             || executeFileName.EndsWith("ChartImg.axd");
-        //if (UserSession.Current.CustId == 0 && !isNewSession)
-        //{
-        //    Response.Redirect("~/_Authorization/SignIn.aspx", true);
-        //    return;
-        //}
+        if (UserSession.Current.CustId == 0 && !isNewSession)
+        {
+            Response.Redirect("~/_Authorization/SignIn.aspx", true);
+            return;
+        }
 
         // Validate url and request parameters
         //int custId = 0; long transId = 0;

@@ -11,11 +11,15 @@ using Sunplus.Agent.Model.Entities;
 using Newtonsoft.Json.Serialization;
 using Fanex.CustSetting.ViewData;
 using Fanex.CustSetting.Service;
+using Sunplus.Agent.Model.BL;
+using System.Web.SessionState;
 
-
-public class GetBetLimit : IHttpHandler {
+public class GetBetLimit : IHttpHandler, IReadOnlySessionState
+{
     
     public void ProcessRequest (HttpContext context) {
+        
+        IUserSession session = UserSessionService.GetUserSessionInstance(context.Session.SessionID);
         //context.Response.ContentType = "text/plain";
         //context.Response.Write("Hello World");
         CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");

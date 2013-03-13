@@ -9,12 +9,16 @@ using Sunplus.Agent.Model.Entities;
 using Newtonsoft.Json.Serialization;
 using Fanex.CustSetting.ViewData;
 using Fanex.CustSetting.Service;
+using Sunplus.Agent.Model.BL;
+using System.Web.SessionState;
 
-public class GetCommissionSetting : IHttpHandler {
+public class GetCommissionSetting : IHttpHandler, IReadOnlySessionState
+{
     
     public void ProcessRequest (HttpContext context) {
         //context.Response.ContentType = "text/plain";
         //context.Response.Write("Hello World");
+       IUserSession userSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
        CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
         //Thread.CurrentThread.CurrentUICulture = new CultureInfo(UserSession.Current.Language);
         //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(UserSession.Current.Language);
