@@ -476,3 +476,15 @@ input[type=text]
 {
     margin: 0 3px;
 }
+.boxNavigation
+{
+    background: url( "../../_GlobalResources/Images/bg_boxTop.jpg" ) repeat-x scroll center top #E7E7E7;
+    border: 1px solid #CACACA;
+    margin-top: 5px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.boxNavigation a:link
+{
+    margin-left: 5px;
+}
