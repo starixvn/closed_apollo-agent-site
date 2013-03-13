@@ -92,7 +92,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
             int totalPage = 0;
-            DataTable dtb = bo.GetMemberCollection(this.CustId, (UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
+            DataTable dtb = bo.GetMemberCollection(this.CustId, (this.UserName == Resources.Lang.enterusername || this.UserName == CurrentUserSession.UserName) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
             this.TotalPage = totalPage;
             this.ViewData.Add("CustomerData", dtb);
             return this.ViewData;
@@ -110,7 +110,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 {Resources.Lang.doublecommissionOFF, 0}
             };
 
-            DoubleCommissionSearchUserName dcomControl = new DoubleCommissionSearchUserName(TemplateMain, UserName, Status, DCommStatus, "GetCustomer('MemberList.aspx')", dcommFilterDict);
+            DoubleCommissionSearchUserName dcomControl = new DoubleCommissionSearchUserName(TemplateMain, (this.UserName == Resources.Lang.enterusername || this.UserName == CurrentUserSession.UserName) ? Resources.Lang.enterusername : UserName, Status, DCommStatus, "GetCustomer('MemberList.aspx')", dcommFilterDict);
             this.tempate.searchControl = dcomControl;
 
             string pagingControlName_top = "_PagingTop";

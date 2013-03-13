@@ -692,7 +692,7 @@ function EditMenuControl(element, popupId, custId, userName) {
     age.addEvent(div, "mouseout", function () {
         clearTimeout(div.timerID);
         div.timerID = 0;
-        div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 50);
+        div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 1);
     }, true);
 
     //// Set Attr Edit

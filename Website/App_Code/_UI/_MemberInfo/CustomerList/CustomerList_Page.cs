@@ -467,8 +467,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
-            this.UserName = Resources.Lang.enterusername;
             this.CustId = this.GetIntRequest("custid", CurrentUserSession.CustId);
+            this.UserName = this.GetStringRequest("username", CurrentUserSession.UserName);
             this.PageSize = this.GetIntRequest("pagesize", this.PageSize);
             this.PageIndex = this.GetIntRequest("pageindex", this.PageIndex);
 
@@ -477,7 +477,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 this.PageSize = 500;
             }
 
-            this.UserName = string.IsNullOrEmpty(this.Request["username"]) == false ? this.Request["username"] : this.UserName;
+           // this.UserName = string.IsNullOrEmpty(this.Request["username"]) == false ? this.Request["username"] : CurrentUserSession.UserName;
             this.HashTableQueryString.Add("custid", this.CustId.ToString());
             this.HashTableQueryString.Add("username", this.UserName);
 

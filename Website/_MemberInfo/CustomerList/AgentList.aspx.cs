@@ -38,16 +38,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         #endregion Variable
 
-        #region Properties
-
-        private Hashtable RequestQueryString
-        {
-            get { return HttpContext.Current.Session["RequestQueryString"] == null ? new Hashtable() : (Hashtable)HttpContext.Current.Session["RequestQueryString"]; }
-            set { HttpContext.Current.Session["RequestQueryString"] = value; }
-        }
-
-        #endregion Properties
-
         /// <summary>
         /// Render Content
         /// </summary>
@@ -56,8 +46,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             this.InitJsLang();
             this.InitEditMenuControl();
-
-            this.RequestQueryString = this.HashTableQueryString;
 
             this.JavaScriptRegister("custid", this.CustId);
             this.JavaScriptRegister("roleid", CurrentUserSession.RoleId);
@@ -80,7 +68,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
             int totalPage = 0;
-            DataTable dtb = bo.GetAgentCollection(this.CustId, (UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
+            DataTable dtb = bo.GetAgentCollection(this.CustId, (this.UserName == Resources.Lang.enterusername || this.UserName == CurrentUserSession.UserName) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
             this.TotalPage = totalPage;
             this.ViewData.Add("CustomerData", dtb);
             return this.ViewData;
@@ -94,7 +82,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             // Searching
             string getCustomer = "GetCustomer('AgentList.aspx')";
-            this.template.searchControl = new DoubleCommissionSearchUserName(TemplateMain, UserName, Status, DCommStatus, getCustomer);
+            this.template.searchControl = new DoubleCommissionSearchUserName(TemplateMain, (this.UserName == Resources.Lang.enterusername || this.UserName == CurrentUserSession.UserName) ? Resources.Lang.enterusername : UserName, Status, DCommStatus, getCustomer);
 
             string pagingControlName_top = "_PagingTop";
             string pagingControlName_bottom = "MemberList" + CurrentUserSession.SiteName + "_PagingBottom";
@@ -167,7 +155,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             if (Convert.ToInt32(dr["NumberOfAgent"]) > 0)
             {
-                string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "')";
+                string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "&username=" + dr["username"].ToString() + "')";
                 IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view", viewAgentDonwlineClick);
                 tplBlock.viewAgentList = viewAgentDownline;
             }
