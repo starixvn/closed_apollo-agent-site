@@ -4140,6 +4140,9 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblExchangeRate" xml:space="preserve">
     <value>Exchange Rate</value>
   </data>
+  <data name="lblMember" xml:space="preserve">
+    <value>Member</value>
+  </data>
   <data name="lblMembers" xml:space="preserve">
     <value>Members</value>
   </data>
