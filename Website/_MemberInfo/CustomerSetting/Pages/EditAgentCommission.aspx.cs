@@ -5,17 +5,33 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Fanex.Common;
-public partial class _MemberInfo_CustomerSetting_Pages_EditAgentCommission : System.Web.UI.Page
-{
-    public int AgentId { get; set; }
-    public int RoleId { get; set; }
-    public int TargetAgentId { get; set; }
-    public int TargetRoleId { get; set; }
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        TargetAgentId = Converter.ToInt(Context.Request.QueryString["custid"]);
-        RoleId = (int)Fanex.CustSetting.ViewData.Role.Agent;
-        TargetRoleId = (int)Fanex.CustSetting.ViewData.Role.Agent;
+using Fanex.Agent.UI._MemberInfo.CustomerSetting.Pages;
 
+public partial class _MemberInfo_CustomerSetting_Pages_EditAgentCommission : Fanex.Age.UI.TplPage
+{
+    public override void RenderContent(HtmlTextWriter writer)
+    {
+        var template = new EditAgentCommission_Template();
+        template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
+        writer.Write(template);
+    }
+
+    public override void ProcessRequest(ref System.Collections.Hashtable p)
+    {
+    }
+
+    public override object ValidateRequest(System.Collections.Hashtable p)
+    {
+        return null;
+    }
+
+    public override object InvokeData(System.Collections.Hashtable p)
+    {
+        return null;
+    }
+
+    private object RenderNoInfo()
+    {
+        return new Fanex.Age.UI.Components.ErrorPage_Page(Resources.Lang.noInfo);
     }
 }

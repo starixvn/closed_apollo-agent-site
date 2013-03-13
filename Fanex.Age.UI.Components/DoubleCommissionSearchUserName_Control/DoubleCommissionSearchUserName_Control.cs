@@ -1,24 +1,23 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Collections;
-
 using Fanex.Age.UI;
-using TplCore.Element;
 using Sunplus.Agent.Model.Entities.Permission;
+using TplCore.Element;
 
 namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
 {
     public class DoubleCommissionSearchUserName : IComponent
     {
-        Dictionary<object, int> statusFilterDict = new Dictionary<object, int>() { 
+        Dictionary<object, int> statusFilterDict = new Dictionary<object, int>() {
             {Resources.Lang.all, 0},{Resources.Lang.open, 1},
             {Resources.Lang.suspended, 2},{Resources.Lang.closed, 3},
             {Resources.Lang.disabled, 4}
         };
 
-        Dictionary<object, int> dcommFilterDict = new Dictionary<object, int>() { 
+        Dictionary<object, int> dcommFilterDict = new Dictionary<object, int>() {
             {Resources.Lang.all, 2},{Resources.Lang.allowed, 1},
             {Resources.Lang.disallowed, 0}
         };
@@ -34,16 +33,7 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
             //tpl.status = Resources.Lang.status;
             tpl.enterusername = Resources.Lang.enterusername;
             tpl.submit = Resources.Lang.submit;
-            /*
-            if (!UserPermission.IsShowDoubleCommission)
-            {
-                tpl.DCom.Hide();
-            }
-            else
-            {
-                tpl.DCom.doublecommission = Resources.Lang.doublecommission;
-            }
-            */
+
             tpl.onClick_function = onclickFunction;
             if (textValue.ToLower() == Resources.Lang.enterusername.ToLower())
             {
@@ -70,7 +60,7 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
             }
         }
 
-        public DoubleCommissionSearchUserName(IElement parent, string textValue, int indexOption, int dcommIndexOption, string onclickFunction, Dictionary<object,int> dcommOptions, bool isFilter = false, bool isChecked = false)
+        public DoubleCommissionSearchUserName(IElement parent, string textValue, int indexOption, int dcommIndexOption, string onclickFunction, Dictionary<object, int> dcommOptions, bool isFilter = false, bool isChecked = false)
         {
             if (parent != null) parent.RegisterComponent("SearchUserName_Control", this);
 
@@ -141,24 +131,24 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
 
         private void CreateDcommFilterOption(int index)
         {
-           /* DoubleCommissionSearchUserName_Control_DCom_dCommOption_Block tplOption = new DoubleCommissionSearchUserName_Control_DCom_dCommOption_Block();
-            tpl.DCom.dCommOption.Clear();
-            foreach (object key in dcommFilterDict.Keys)
-            {
-                if (index == dcommFilterDict[key])
-                {
-                    tplOption.selected = "selected";
-                }
-                else
-                {
-                    tplOption.selected = string.Empty;
-                }
+            /* DoubleCommissionSearchUserName_Control_DCom_dCommOption_Block tplOption = new DoubleCommissionSearchUserName_Control_DCom_dCommOption_Block();
+             tpl.DCom.dCommOption.Clear();
+             foreach (object key in dcommFilterDict.Keys)
+             {
+                 if (index == dcommFilterDict[key])
+                 {
+                     tplOption.selected = "selected";
+                 }
+                 else
+                 {
+                     tplOption.selected = string.Empty;
+                 }
 
-                tplOption.optionText = key as string;
-                tplOption.optionValue = dcommFilterDict[key].ToString();
-                tpl.DCom.dCommOption.Append(tplOption);
-            }
-           */
+                 tplOption.optionText = key as string;
+                 tplOption.optionValue = dcommFilterDict[key].ToString();
+                 tpl.DCom.dCommOption.Append(tplOption);
+             }
+            */
         }
 
         private string usernamOld()
@@ -188,6 +178,6 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
             {
                 this.dcommFilterDict.Add(e.Key, e.Value);
             }
-        }       
+        }
     }
 }
