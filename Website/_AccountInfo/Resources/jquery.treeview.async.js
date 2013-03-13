@@ -2,7 +2,6 @@
 * Async Treeview 0.1 - Lazy-loading extension for Treeview
 * 
 * http://bassistance.de/jquery-plugins/jquery-plugin-treeview/
-* Modified by Tomasz Pęczek to work with ASP.NET PageMethods
 *
 * Copyright (c) 2007 Jörn Zaefferer
 *
@@ -17,39 +16,32 @@
 ; (function ($) {
 
     function load(settings, root, child, container) {
-        $.ajax({
-            type: "POST",
-            url: settings.url,
-            contentType: 'application/json; charset=utf-8',
-            data: '{"root": "' + root + '"}',
-            dataType: 'json',
-            success: function (response) {
-                function createNode(parent) {
-                    var current = $("<li/>").attr("id", this.id || "").html("<span>" + this.text + "</span>").appendTo(parent);
-                    if (this.classes) {
-                        current.children("span").addClass(this.classes);
+        $.getJSON(settings.url, { root: root }, function (response) {
+            function createNode(parent) {
+                var current = $("<li/>").attr("id", this.id || "").html("<span>" + this.text + "</span>").appendTo(parent);
+                if (this.classes) {
+                    current.children("span").addClass(this.classes);
+                }
+                if (this.expanded) {
+                    current.addClass("open");
+                }
+                if (this.hasChildren || this.children && this.children.length) {
+                    var branch = $("<ul/>").appendTo(current);
+                    if (this.hasChildren) {
+                        current.addClass("hasChildren");
+                        createNode.call({
+                            text: "placeholder",
+                            id: "placeholder",
+                            children: []
+                        }, branch);
                     }
-                    if (this.expanded) {
-                        current.addClass("open");
-                    }
-                    if (this.hasChildren || this.children && this.children.length) {
-                        var branch = $("<ul/>").appendTo(current);
-                        if (this.hasChildren) {
-                            current.addClass("hasChildren");
-                            createNode.call({
-                                text: "placeholder",
-                                id: "placeholder",
-                                children: []
-                            }, branch);
-                        }
-                        if (this.children && this.children.length) {
-                            $.each(this.children, createNode, [branch])
-                        }
+                    if (this.children && this.children.length) {
+                        $.each(this.children, createNode, [branch])
                     }
                 }
-                $.each(response.d, createNode, [child]);
-                $(container).treeview({ add: child });
             }
+            $.each(response, createNode, [child]);
+            $(container).treeview({ add: child });
         });
     }
 

@@ -38,47 +38,47 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         #endregion Defination
 
-        [System.Web.Services.WebMethod]
-        [System.Web.Script.Services.ScriptMethod(UseHttpGet = true)]
-        public static List<TreeViewNode> FileSystemInfos(string root)
-        {
-            int? nodeId = (root == "source") ? (int?)null : Convert.ToInt32(root);
-            // IEnumerable<FileSystemInfo> children = FileSystemInfosRepository.GetFileSystemInfos(nodeId);
+        //[System.Web.Services.WebMethod]
+        //[System.Web.Script.Services.ScriptMethod(UseHttpGet = true)]
+        //public static List<TreeViewNode> FileSystemInfos(string root)
+        //{
+        //    int? nodeId = (root == "source") ? (int?)null : Convert.ToInt32(root);
+        //    // IEnumerable<FileSystemInfo> children = FileSystemInfosRepository.GetFileSystemInfos(nodeId);
 
-            //AccountInfo_Page page = new AccountInfo_Page();
-            //AccountInfoBO bo = new AccountInfoBO(page.CurrentUserSession.NetSessionId);
-            //var ds = bo.Age_Customer_GetDownLine(page.CurrentUserSession.CustId);
+        //    //AccountInfo_Page page = new AccountInfo_Page();
+        //    //AccountInfoBO bo = new AccountInfoBO(page.CurrentUserSession.NetSessionId);
+        //    //var ds = bo.Age_Customer_GetDownLine(page.CurrentUserSession.CustId);
 
-            //var dtAgentList = ds.Tables[0];
-            //var dtCustList = ds.Tables[1];
+        //    //var dtAgentList = ds.Tables[0];
+        //    //var dtCustList = ds.Tables[1];
 
-            List<TreeViewNode> nodes = new List<TreeViewNode>();
-            //foreach (DataRow row in dtAgentList.Rows)
-            //{
-            //    bool isAgent = true;
-            //    nodes.Add(new TreeViewNode()
-            //    {
-            //        Id = "Agent_" + row["AgentId"].ToString(),
-            //        Text = row["Username"].ToString(),
-            //        Classes = "folder",
-            //        HasChildren = isAgent
-            //    });
-            //}
+        //    List<TreeViewNode> nodes = new List<TreeViewNode>();
+        //    //foreach (DataRow row in dtAgentList.Rows)
+        //    //{
+        //    //    bool isAgent = true;
+        //    //    nodes.Add(new TreeViewNode()
+        //    //    {
+        //    //        Id = "Agent_" + row["AgentId"].ToString(),
+        //    //        Text = row["Username"].ToString(),
+        //    //        Classes = "folder",
+        //    //        HasChildren = isAgent
+        //    //    });
+        //    //}
 
-            //foreach (DataRow row in dtAgentList.Rows)
-            //{
-            //    bool isAgent = false;
-            //    nodes.Add(new TreeViewNode()
-            //    {
-            //        Id = "Agent_" + row["PlayerId"].ToString(),
-            //        Text = row["Username"].ToString(),
-            //        Classes = "file",
-            //        HasChildren = isAgent
-            //    });
-            //}
+        //    //foreach (DataRow row in dtAgentList.Rows)
+        //    //{
+        //    //    bool isAgent = false;
+        //    //    nodes.Add(new TreeViewNode()
+        //    //    {
+        //    //        Id = "Agent_" + row["PlayerId"].ToString(),
+        //    //        Text = row["Username"].ToString(),
+        //    //        Classes = "file",
+        //    //        HasChildren = isAgent
+        //    //    });
+        //    //}
 
-            return nodes;
-        }
+        //    return nodes;
+        //}
 
 
         #region Override
@@ -352,6 +352,7 @@ namespace Sunplus.Agent.UI._AccountInfo
         {
             // Use DataRow row1, row2.
             SearchBox_Template tpl = new SearchBox_Template();
+            string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='DownLineTreeView.aspx?root={0}' style='width:95%;height:100px;'></iframe>";
 
             #region Set Basic Information: Name, Phone, mobile, Fax
 
@@ -365,6 +366,12 @@ namespace Sunplus.Agent.UI._AccountInfo
             tpl.classStyle = "text_f";
             tpl.usernamesearch = this.userNameRequest;
             tpl.CustInfo.CustomerUsername = userName;
+            if (custId > 0)
+            {
+                tpl.CustInfo.TreeViewDownLineFrame = string.Format(htmlFrame, this.custId);
+            }
+
+            
 
             if (!bool.Parse(this.dtrCustomerInfo["HasAgentDownLine"].ToString()))
             {
