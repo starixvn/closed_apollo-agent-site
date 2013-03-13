@@ -18,13 +18,13 @@ namespace Fanex.Agent.UI
 			protected static string s2 = "</td></tr><tr><td><div id=\"title_header\"><div class=\"agent-list-title\">";
 			protected static string s3{get{return Resources.Lang.lblAgentListOf;}}
 			public string AgentName = "{AgentName}";
-			protected static string s4 = "</div><div style=\"float:left; margin-left:5px;\">|</div><div style=\"float:left; margin-left:5px;\"><a href=\"";
-			public string urlMemberList = "{urlMemberList}";
-			protected static string s5 = "\">Member List</a></div><div style=\"float:left; margin-left:5px;\">|</div><div style=\"float:left; margin-left:5px;\"><a href=\"";
-			public string urlShadowList = "{urlShadowList}";
-			protected static string s6 = "\">Shadow List</a></div><div style=\"float:left; margin-left:5px;\">";
+			protected static string s4 = "</div><div style=\"float:left; margin-left:5px;\">";
 			public string IconEditSetting = "{IconEditSetting}";
-			protected static string s7 = "</div></div></td></tr><tr><td><div id=\"box_header\" style=\"width:100%\">";
+			protected static string s5 = "</div><div style=\"float:left; margin-left:5px;\"><a href=\"";
+			public string urlMemberList = "{urlMemberList}";
+			protected static string s6 = "\">Member List</a></div><div style=\"float:left; margin-left:5px;\">|</div><div style=\"float:left; margin-left:5px;\"><a href=\"";
+			public string urlShadowList = "{urlShadowList}";
+			protected static string s7 = "\">Shadow List</a></div></div></td></tr><tr><td><div id=\"box_header\" style=\"width:100%\">";
 			public string searchControl = "{searchControl}";
 			protected static string s8 = "</div></td></tr><tr><td><div id=\"divnavigation\" class=\"boxNavigation\">";
 			public AgentList_nav_link_Block nav_link = new AgentList_nav_link_Block();
@@ -51,11 +51,11 @@ namespace Fanex.Agent.UI
 					bd.Append(s3);
 					bd.Append(AgentName);
 					bd.Append(s4);
-					bd.Append(urlMemberList);
-					bd.Append(s5);
-					bd.Append(urlShadowList);
-					bd.Append(s6);
 					bd.Append(IconEditSetting);
+					bd.Append(s5);
+					bd.Append(urlMemberList);
+					bd.Append(s6);
+					bd.Append(urlShadowList);
 					bd.Append(s7);
 					bd.Append(searchControl);
 					bd.Append(s8);
