@@ -80,7 +80,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             StringBuilder nav = new StringBuilder();
             this.template.nav_link.Clear();
-            string url = "AgentList.aspx?custid={0}&us={1}";
+            string url = "AgentList.aspx?custid={0}&us={1}&username=" + this.UserName;
             int counter = CurrentUserSession.NavigateUserName.Count;
             foreach (object key in CurrentUserSession.NavigateUserName.Keys)
             {
@@ -99,7 +99,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 this.template.nav_link.Append(nav_link_Block);
             }
             this.template.AgentName = this.QueryUserName;
-            this.template.urlMemberList = "MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
+            this.template.urlMemberList = "MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName + "&username=" + this.UserName;
             this.template.urlShadowList = "#";
         }
 
