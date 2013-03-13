@@ -14,18 +14,36 @@ namespace Fanex.Agent.UI
 		public class EditAgentCommission_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head runat=\"server\"><title></title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.css", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"settingContainer\" style=\"width: 936px;\"><div id=\"commissionSettingContainer\"></div></div><script src='../Handlers/GetCommissionSetting.ashx?targetCustId=";
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s3{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.css", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s5{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CoreOverride.css", TplSettings.Question);}}
+			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s7{get{return AbsoluteUrl("_Components/ErrorMsg/ErrorMsg.css", TplSettings.Question);}}
+			protected static string s8 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body>";
+			protected static string s9{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
+			protected static string s10 = "<div id=\"settingContainer\" style=\"width: 936px;\"><div id=\"commissionSettingContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"editCommission.UpdateCommissionSetting();\">";
+			public string actionName = "{actionName}";
+			protected static string s11 = "</button></div><script src=\"";
+			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/jx.js", TplSettings.Question);}}
+			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s16{get{return AbsoluteUrl("_Components/ErrorMsg/ErrorMsg.js", TplSettings.Question);}}
+			protected static string s17 = "\" type=\"text/javascript\"></script><script src='../Handlers/GetCommissionSetting.ashx?targetCustId=";
 			public string TargetAgentId = "{TargetAgentId}";
-			protected static string s3 = "&targetRoleId=2' type=\"text/javascript\"></script><script src=\"";
-			protected static string s4{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Languages/en.js", TplSettings.Question);}}
-			protected static string s5 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s6{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
-			protected static string s7 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s8{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
-			protected static string s9 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s10{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
-			protected static string s11 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\">Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);var commissionSetting = new Fanex.CustSetting.CommissionSetting(customerCommission);var commissionSettingContainer = document.getElementById('commissionSettingContainer');commissionSettingContainer.innerHTML = \"\";commissionSetting.Render(commissionSettingContainer);</script></body></html>";
+			protected static string s18 = "&targetRoleId=2' type=\"text/javascript\"></script><script src=\"";
+			protected static string s19{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Languages/en.js", TplSettings.Question);}}
+			protected static string s20 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s21{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
+			protected static string s22 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s23{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
+			protected static string s24 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s25{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
+			protected static string s26 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s27{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditCommission.js", TplSettings.Question);}}
+			protected static string s28 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -34,7 +52,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s0);
 					bd.Append(s1);
 					bd.Append(s2);
-					bd.Append(TargetAgentId);
 					bd.Append(s3);
 					bd.Append(s4);
 					bd.Append(s5);
@@ -43,7 +60,26 @@ namespace Fanex.Agent.UI
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
+					bd.Append(actionName);
 					bd.Append(s11);
+					bd.Append(s12);
+					bd.Append(s13);
+					bd.Append(s14);
+					bd.Append(s15);
+					bd.Append(s16);
+					bd.Append(s17);
+					bd.Append(TargetAgentId);
+					bd.Append(s18);
+					bd.Append(s19);
+					bd.Append(s20);
+					bd.Append(s21);
+					bd.Append(s22);
+					bd.Append(s23);
+					bd.Append(s24);
+					bd.Append(s25);
+					bd.Append(s26);
+					bd.Append(s27);
+					bd.Append(s28);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

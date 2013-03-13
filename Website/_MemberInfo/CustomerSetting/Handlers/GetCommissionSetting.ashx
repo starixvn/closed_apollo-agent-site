@@ -51,16 +51,10 @@ public class GetCommissionSetting : IHttpHandler, IReadOnlySessionState
             TargetRoleId = targetRoleId
         };
         ICustomerSettingService customerService = new CustomerSettingService();
-        CommissionSetting commissionSetting = null;
-        switch (targetRoleId)
+        CommissionSetting commissionSetting = customerService.GetCommissionSettingForUpdating(settingContext);
+        if (targetRoleId == (int)Role.Player)
         {
-            case (int)Role.Agent:
-                commissionSetting = customerService.GetCommissionSettingForUpdating(settingContext);
-                break;
-                
-            case (int)Role.Player:
-                commissionSetting = customerService.GetCommissionSettingForUpdating(settingContext, context.Request["ugroup"].ToString());
-                break;
+            commissionSetting.UserGroup = context.Request.QueryString["ugroup"].ToString();
         }
 
         // Set language on PT Object

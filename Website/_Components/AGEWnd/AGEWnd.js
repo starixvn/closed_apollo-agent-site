@@ -199,7 +199,7 @@ AGEWnd.prototype.setRect = function(left, top, width, height) {
 
     this.width = (width < 30) ? 30 : width;
     this.height = (height < 30) ? 30 : height;
-    this.height = (height > (window.innerHeight - 50)) ? (window.innerHeight - 50) : height;    
+    this.height = (height > (window.innerHeight - 30)) ? (window.innerHeight - 30) : height;    
 
     this.calculateViewport();
 

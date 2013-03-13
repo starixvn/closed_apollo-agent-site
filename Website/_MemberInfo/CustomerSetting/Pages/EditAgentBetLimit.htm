@@ -2,25 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
+       <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
     <link href="../Resources/Engine/Core.css" rel="stylesheet" type="text/css" />
     <link href="../Resources/Engine/CoreOverride.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Components/ErrorMsg/ErrorMsg.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-     <div id="settingContainer" style="width: 936px;">
-      <div id="bettingLimitContainer">
+    {static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
+       <div id="settingContainer" style="width: 936px;">
+        <div id="bettingLimitContainer">
+        </div>
     </div>
+    <div class="btnLeft">
+        <button id="btnSubmitFooter" class="btnMain" onclick="memberBetLimit.UpdateMemberBetLimit();">
+            {actionName}</button>
     </div>
-    
+       <script src="../../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="../../../_GlobalResources/Js/jx.js" type="text/javascript"></script>
+    <script src="../../../_Components/ErrorMsg/ErrorMsg.js" type="text/javascript"></script>
     <script src='../Handlers/GetBetLimit.ashx?targetCustId={TargetAgentId}&targetRoleId=2' type="text/javascript"></script>
     <script src="../Resources/Engine/Languages/en.js" type="text/javascript"></script>
     <script src="../Resources/Engine/Core.js" type="text/javascript"></script>
     <script src="../Resources/Engine/PTSetting.js" type="text/javascript"></script>
     <script src="../Resources/Engine/BettingLimit.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        bettingLimit1 = new Fanex.CustSetting.BettingLimit(betLimits);
-        var bettingLimitContainer = document.getElementById('bettingLimitContainer');
-        bettingLimitContainer.innerHTML = "";
-        bettingLimit1.Render(bettingLimitContainer);
-    </script>
+    <script src="../Resources/EditBetLimit.js" type="text/javascript"></script>
 </body>
 </html>

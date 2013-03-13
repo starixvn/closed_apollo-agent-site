@@ -671,13 +671,13 @@ function ChangedIcon(Id, Icon) {
     }
 }
 
-function EditMenuControl(element, popupId, custId, userName) {
+function EditAgentMenuControl(element, popupId, custId, userName) {
     var div = $(popupId);
     if (!div) return false;
 
     element.style.position = 'relative';
     var pos = GetPosition(element);
-    div.style.top = (pos.offsetTop - 35) + 'px';
+    div.style.top = (pos.offsetTop - 15) + 'px';
     div.style.left = (pos.offsetLeft + 17) + 'px';
 
     div.style.display = 'block';
@@ -705,6 +705,42 @@ function EditMenuControl(element, popupId, custId, userName) {
 
     var urlEditAgentPT = 'OpenEditAgentPT(' + custId + ',"' + userName + '")';
     SetAttributeURL('editPositionTaking', urlEditAgentPT);
+}
+
+function EditMemberMenuControl(element, popupId, custId, userName, uGroup) {
+    var div = $(popupId);
+    if (!div) return false;
+
+    element.style.position = 'relative';
+    var pos = GetPosition(element);
+    div.style.top = (pos.offsetTop - 35) + 'px';
+    div.style.left = (pos.offsetLeft + 17) + 'px';
+
+    div.style.display = 'block';
+    clearTimeout(div.timerID);
+    div.timerID = 0;
+    div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 2000);
+    age.addEvent(div, "mouseover", function () {
+        clearTimeout(div.timerID);
+        div.timerID = 0;
+    }, true);
+
+    age.addEvent(div, "mouseout", function () {
+        clearTimeout(div.timerID);
+        div.timerID = 0;
+        div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 1);
+    }, true);
+
+    //// Set Attr Edit
+    //OpenEditAgentCommission
+    var urlEditMemberCommission = 'OpenEditMemberCommission(' + custId + ',"' + userName + '","' + uGroup + '")';
+    SetAttributeURL('editCommission', urlEditMemberCommission);
+
+    var urlEditMemberBetLimit = 'OpenEditMemberBetLimit(' + custId + ',"' + userName + '","' + uGroup + '")';
+    SetAttributeURL('editBetSetting', urlEditMemberBetLimit);
+
+    var urlEditMemberPT = 'OpenEditMemberPT(' + custId + ',"' + userName + '","' + uGroup + '")';
+    SetAttributeURL('editPositionTaking', urlEditMemberPT);
 }
 
 function ShowFrmUpdOthers(el, divID, custid, username, actionOn) {

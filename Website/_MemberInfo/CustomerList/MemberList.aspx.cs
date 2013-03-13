@@ -47,6 +47,66 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             set { HttpContext.Current.Session["RequestQueryString"] = value; }
         }
 
+        public void RenderNavigation()
+        {
+            if (this.CustId == CurrentUserSession.CustId)
+            {
+                CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
+                CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
+                this.tempate.IconEditSetting = string.Empty;
+            }
+            else
+            {
+                if (!CurrentUserSession.NavigateUserName.ContainsKey(this.CustId))
+                {
+                    CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
+                }
+                else
+                {
+                    this.NavUserName = CurrentUserSession.NavigateUserName;
+                    CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
+                    foreach (object key in this.NavUserName.Keys)
+                    {
+                        if ((int)key == this.CustId)
+                        {
+                            CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
+                            break;
+                        }
+                        CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
+                    }
+                    this.NavUserName = new Dictionary<object, object>();
+                }
+                string editMenuControl = "EditMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
+                this.tempate.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
+            }
+
+            AgentList_nav_link_Block nav_link_Block = new AgentList_nav_link_Block();
+
+            StringBuilder nav = new StringBuilder();
+            this.tempate.nav_link.Clear();
+            string url = "AgentList.aspx?custid={0}&us={1}";
+            int counter = CurrentUserSession.NavigateUserName.Count;
+            foreach (object key in CurrentUserSession.NavigateUserName.Keys)
+            {
+                counter--;
+                string navusername = CurrentUserSession.NavigateUserName[key].ToString();
+                nav_link_Block.navigateName = navusername;
+                nav_link_Block.url = string.Format(url, key, navusername);
+                if (counter == 0)
+                {
+                    nav_link_Block.SetValue(navusername);
+                }
+                else
+                {
+                    nav_link_Block.narrow = " ->";
+                }
+                this.tempate.nav_link.Append(nav_link_Block);
+            }
+            this.tempate.AgentName = this.QueryUserName;
+            this.tempate.urlAgentList = "AgentList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
+            this.tempate.urlShadowList = "#";
+        }
+
         #endregion Properties
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -75,7 +135,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.RenderHeader(this.tempate.Header);
             this.RenderContentBlock(customerData, this.tempate.Content);
             this.RenderSearchControl();
-
+            RenderNavigation();
             TemplateMain.content = this.tempate;
             writer.Write(this.TemplateMain);
         }
@@ -83,16 +143,13 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public override void ProcessRequest(HttpContext context)
         {
             base.ProcessRequest(context);
-            //HashTableQueryString.Add("AgentId", agentId.ToString());
-            //HashTableQueryString.Add("FromAccount", string.Empty);
-            //HashTableQueryString.Add("ParentForm", "CustomerList/Agent/MemberList.aspx");
         }
 
         public override object InvokeData(Hashtable p)
         {
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
             int totalPage = 0;
-            DataTable dtb = bo.GetMemberCollection(this.CustId, (this.UserName == Resources.Lang.enterusername || this.UserName == CurrentUserSession.UserName) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
+            DataTable dtb = bo.GetMemberCollection(this.CustId, (this.UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
             this.TotalPage = totalPage;
             this.ViewData.Add("CustomerData", dtb);
             return this.ViewData;
@@ -100,17 +157,13 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         public void RenderSearchControl()
         {
-            // Printer
-            string printClick = "getPrint('page_main')";
-            this.tempate.print = new PrintControl(this.tempate, printClick);
-
             // Searching
             Dictionary<object, int> dcommFilterDict = new Dictionary<object, int>() {
                 {Resources.Lang.all, 2},{Resources.Lang.doublecommissionON, 1},
                 {Resources.Lang.doublecommissionOFF, 0}
             };
 
-            DoubleCommissionSearchUserName dcomControl = new DoubleCommissionSearchUserName(TemplateMain, (this.UserName == Resources.Lang.enterusername || this.UserName == CurrentUserSession.UserName) ? Resources.Lang.enterusername : UserName, Status, DCommStatus, "GetCustomer('MemberList.aspx')", dcommFilterDict);
+            DoubleCommissionSearchUserName dcomControl = new DoubleCommissionSearchUserName(TemplateMain, this.UserName, Status, DCommStatus, "GetCustomer('MemberList.aspx')", dcommFilterDict);
             this.tempate.searchControl = dcomControl;
 
             string pagingControlName_top = "_PagingTop";
@@ -135,25 +188,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             {
                 this.tempate.PagingHeader.selected.Hide();
             }
-
-            //this.tempate.PagingHeader.selected.function_all = "CheckAll_onClick(true);";
-            //this.tempate.PagingHeader.selected.function_none = "CheckAll_onClick(false);";
         }
 
         public void RenderHeader(TplCore.Element.IElement e)
         {
             // Render MultiEdit Icon
             MemberList_Header_Block tplBlock = e as MemberList_Header_Block;
-
-            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
-            //{
-            //    tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
-            //}
-
-            //tplBlock.isShowDCom = UserPermission.IsShowDoubleCommission.ToString();
-
-            //string renderMulti = "RenderMulti(this,'MultiPopup','Agent','" + this.agentId + "','" + MasterId.ToString() + "')";
-            //tplBlock.editmult = new IcoEditMulti(TemplateMain, renderMulti);
         }
 
         public void RenderContentBlock(DataTable dtb, TplCore.Element.IElement e)
@@ -165,13 +205,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 foreach (DataRow dr in dtb.Rows)
                 {
                     this.RenderDetail(dr, tplBlock);
-                    //this.RenderRacing(dr, tplBlock);
-                    //this.RenderCasino(dr, tplBlock);
-                    //this.RenderBingo(dr, tplBlock);
-                    //this.RenderP2P(dr, tplBlock);
-                    //this.RenderLiveCasino(dr, tplBlock);
-                    //this.RenderVirtualSport(dr, tplBlock);
-
                     this.tempate.Content.Append(tplBlock);
                 }
             }
@@ -192,50 +225,22 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public void RenderDetail(DataRow dr, TplCore.Element.IElement e)
         {
             MemberList_Content_Block tplBlock = e as MemberList_Content_Block;
-            //bool enable = Convert.ToBoolean(dr["enabled"]);
-            //bool isClosed = Convert.ToBoolean(dr["closed"]);
-            //bool isSuspended = Convert.ToBoolean(dr["suspended"]);
-            //bool disableOutright = !Convert.ToBoolean(dr["DisableOutright"]);
-            //bool isDisableNumber = dr.Table.Columns.Contains("disablenumber") ? Convert.ToBoolean(dr["disablenumber"]) : true;
 
             tplBlock.chkid = dr["CustId"].ToString();
             tplBlock.chkid_value = dr["username"] as string;
 
             this.memberId = dr["CustId"].ToString();
-            //tplBlock.LnkUserName = CurrentUserSession.SubPageAccess.ViewReports ? "class='text' onclick=\"viewCustOutSt('" + dr["username"].ToString() + "'," + this.memberId + ")\"" : string.Empty;
 
             //tplBlock.custId = this.memberId;
             tplBlock.id = dr["RowNumber"].ToString();
             tplBlock.username = dr["username"] as string;
 
-            //string editMember_Single = "EditMember_Single('" + this.memberId + "','" + dr["username"].ToString() + "', " + this.agentId + ", '" + "Agent" + "')";
-            //string renderStatus = "RenderStatus(this,'Popup','" + this.memberId + "'," + isClosed.ToString().ToLower() + "," + isSuspended.ToString().ToLower() + ",0," + disableOutright.ToString().ToLower() + ", '" + tplBlock.chkid + "')";
-            //Dictionary<object, bool> dictStatus = new Dictionary<object, bool>();
-            //string backgroundColor = string.Empty;
-
-            //dictStatus.Add("Enabled", enable);
-            //dictStatus.Add("Closed", isClosed);
-            //dictStatus.Add("Suspended", isSuspended);
-            //IcoStatus status = new IcoStatus(TemplateMain, dictStatus, ref backgroundColor, editMember_Single, renderStatus);
-            //tplBlock.color = backgroundColor;
-            ////tplBlock.status = status;
-
-            //string setDoubleCommission = string.Format("SetDoubleCommission('{0}',this);", this.memberId);
-            //if (!UserPermission.IsShowDoubleCommission)
-            //{
-            //    setDoubleCommission = string.Empty;
-            //}
-
-            // bool isDoubleCommission = Convert.ToBoolean(dr["DoubleCommLosing"]);
-
-            // MemberIcoDComm dcomm = new MemberIcoDComm(TemplateMain, isDoubleCommission, setDoubleCommission);
-            //tplBlock.DCom.doublecommission = dcomm;
-
             // Render Other menu
-            string editMenuControl = "EditMenuControl(this,'editControl', '" + this.memberId + "', '" + dr["username"].ToString() + "')";
+            string userGroup = dr["ugroup"] as string;
+            string editMenuControl = "EditMemberMenuControl(this,'editControl', '" + this.memberId + "', '" + dr["username"].ToString() + "','" + userGroup + "')";
             tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.memberId, string.Empty, editMenuControl);
 
-            tplBlock.group = dr["ugroup"] as string;
+            tplBlock.group = userGroup;
 
             tplBlock.groupAgent = Formater.FormatNumber4(dr["agentgroup"], this.langKey);
             tplBlock.oneXtwoAgent = Formater.FormatNumber4(dr["agentdiscount1x2"], this.langKey);

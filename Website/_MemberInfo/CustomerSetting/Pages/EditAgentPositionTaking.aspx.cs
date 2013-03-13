@@ -12,6 +12,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditAgentPositionTaking :
     public override void RenderContent(HtmlTextWriter writer)
     {
         var template = new EditAgentPositionTaking_Template();
+        template.actionName = Resources.Lang.update;
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
         writer.Write(template);
     }

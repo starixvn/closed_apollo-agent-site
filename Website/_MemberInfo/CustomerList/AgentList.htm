@@ -9,10 +9,13 @@
             <div id="title_header">
                 <div class="agent-list-title">
                     {static:Resources.Lang.lblAgentListOf}
-                    [AgentName]
+                    {AgentName}
                 </div>
-                
-                {print}
+                <div style="float:left; margin-left:5px;">{IconEditSetting}</div>
+                <div style="float:left; margin-left:5px;"><a href="{urlMemberList}">Member List</a></div>
+                <div style="float:left; margin-left:5px;">|</div>
+                <div style="float:left; margin-left:5px;"><a href="{urlShadowList}">Shadow List</a></div>
+
             </div>
         </td>
     </tr>
@@ -21,6 +24,20 @@
             <div id="box_header" style="width:100%">
             {searchControl}
             </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            <div id="divnavigation" class="boxNavigation">
+                <!--nav_link-->
+                <a href="{url}">
+                    {navigateName}
+                </a>
+                {narrow}
+                <!--/nav_link-->
+            </div>
+
         </td>
     </tr>
     <tr>
@@ -36,7 +53,7 @@
                             <th rowspan="2">
                                 {static:Resources.Lang.no}
                             </th>
-                            <th rowspan="2">
+                            <th rowspan="2" style="display:none">
                                 <input type="checkbox" id="chkAllItem" name="chkAllItem" onclick="CheckAll_onClick(this);"/>
                             </th>
                             <th rowspan="2">
@@ -102,7 +119,7 @@
                             <td>
                                 {id}
                             </td>
-                            <td>
+                            <td style="display:none">
                                 <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" onclick="ItemCheck_OnClick(this);"/>
                             </td>
                             <td align="center">

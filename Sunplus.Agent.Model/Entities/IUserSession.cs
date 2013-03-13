@@ -28,6 +28,12 @@ namespace Sunplus.Agent.Model.Entities
             set;
         }
 
+        Dictionary<object, object> NavigateUserName
+        {
+            set;
+            get;
+        }
+
         #endregion Apollo-Session
 
         #region Misc
