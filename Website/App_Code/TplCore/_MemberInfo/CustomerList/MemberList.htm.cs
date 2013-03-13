@@ -203,9 +203,7 @@ namespace Fanex.Agent.UI
 			public string HDPLive = "{HDPLive}";
 			protected static string s72 = "</td><td>";
 			public string OULive = "{OULive}";
-			protected static string s73 = "</td><td class=\"bl_time\">";
-			public string createdate = "{createdate}";
-			protected static string s74 = "</td></tr>";
+			protected static string s73 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -250,8 +248,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s72);
 					bd.Append(OULive);
 					bd.Append(s73);
-					bd.Append(createdate);
-					bd.Append(s74);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
