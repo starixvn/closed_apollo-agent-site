@@ -21,33 +21,31 @@ namespace Fanex.Agent.UI
 			protected static string s5{get{return AbsoluteUrl("_AccountInfo/Resources/styles.css", TplSettings.Question);}}
 			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"leftpanewrapper\" style=\"display: none\"><div id=\"tab_menu\"><div id=\"tab_menu_m\"><a class=\"tab_menu01\" target=\"menu\" href=\"../_Menu/Menu.aspx\">";
 			protected static string s7{get{return Resources.Lang.mainmenu;}}
-			protected static string s8 = "</a></div><div id=\"tab_menu_L\"><a class=\"tab_menu02AC\" style=\"cursor: default;\">";
+			protected static string s8 = "</a></div><div id=\"tab_menu_m\"><a class=\"tab_menu02AC\" style=\"cursor: default;\">";
 			protected static string s9{get{return Resources.Lang.userinfo;}}
-			protected static string s10 = "</a></div><div id=\"tab_menu_L\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" onclick=\"ShowFlashAccInfoMaster();\" href=\"../_AccountInfo/AccountInfo.aspx\"><img alt=\"Treeview\" title=\"Treeview\" width=\"25\" height=\"16\" src=\"";
-			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Images/icon-treeview-1.png");}}
-			protected static string s12 = "\" /></a></div></div><div id=\"clear0\" /><div id=\"leftpane02\"><div id=\"button_left02\">";
+			protected static string s10 = "</a></div><div id=\"tab_menu_L\"><a id=\"lnkAccInfo\" class=\"tab_menu03\" target=\"menu\" onclick=\"ShowFlashAccInfoMaster();\" href=\"../_AccountInfo/AccountInfo.aspx\"></a></div></div><div id=\"clear0\" /><div id=\"leftpane02\"><div id=\"button_left02\">";
 			public AccountInfo_NoData_Block NoData = new AccountInfo_NoData_Block();
 			public string searchBox = "{searchBox}";
 			public AccountInfo_TheRestAcc_Block TheRestAcc = new AccountInfo_TheRestAcc_Block();
-			protected static string s13 = "</div><br /></div><div class=\"shadow\" id=\"shadow\" /><div class=\"output\" id=\"output\" /></div></body><script src=\"";
-			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s11 = "</div><br /></div><div class=\"shadow\" id=\"shadow\" /><div class=\"output\" id=\"output\" /></div></body><script src=\"";
+			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s14{get{return AbsoluteUrl("_AccountInfo/Resources/autocomplete.js", TplSettings.Question);}}
 			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s16{get{return AbsoluteUrl("_AccountInfo/Resources/autocomplete.js", TplSettings.Question);}}
+			protected static string s16{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js", TplSettings.Question);}}
 			protected static string s17 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s18{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js", TplSettings.Question);}}
+			protected static string s18{get{return AbsoluteUrl("_AccountInfo/Resources/Racing.js", TplSettings.Question);}}
 			protected static string s19 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s20{get{return AbsoluteUrl("_AccountInfo/Resources/Racing.js", TplSettings.Question);}}
+			protected static string s20{get{return AbsoluteUrl("_AccountInfo/Resources/NumberGame.js", TplSettings.Question);}}
 			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s22{get{return AbsoluteUrl("_AccountInfo/Resources/NumberGame.js", TplSettings.Question);}}
+			protected static string s22{get{return AbsoluteUrl("_AccountInfo/Resources/Bingo.js", TplSettings.Question);}}
 			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s24{get{return AbsoluteUrl("_AccountInfo/Resources/Bingo.js", TplSettings.Question);}}
+			protected static string s24{get{return AbsoluteUrl("_AccountInfo/Resources/Casino.js", TplSettings.Question);}}
 			protected static string s25 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s26{get{return AbsoluteUrl("_AccountInfo/Resources/Casino.js", TplSettings.Question);}}
+			protected static string s26{get{return AbsoluteUrl("_AccountInfo/Resources/VirtualSports.js", TplSettings.Question);}}
 			protected static string s27 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s28{get{return AbsoluteUrl("_AccountInfo/Resources/VirtualSports.js", TplSettings.Question);}}
-			protected static string s29 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s30{get{return AbsoluteUrl("_AccountInfo/Resources/DoubleCommission.js", TplSettings.Question);}}
-			protected static string s31 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s28{get{return AbsoluteUrl("_AccountInfo/Resources/DoubleCommission.js", TplSettings.Question);}}
+			protected static string s29 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -64,11 +62,11 @@ namespace Fanex.Agent.UI
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
-					bd.Append(s11);
-					bd.Append(s12);
 					if(null != NoData) NoData.ToString(ref bd);
 					bd.Append(searchBox);
 					if(null != TheRestAcc) TheRestAcc.ToString(ref bd);
+					bd.Append(s11);
+					bd.Append(s12);
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
@@ -86,8 +84,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
-					bd.Append(s30);
-					bd.Append(s31);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -102,34 +98,36 @@ namespace Fanex.Agent.UI
 
 		public class AccountInfo_NoData_Block: Block
 		{
-			protected static string s32 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div id=\"left_line02\"><img height=\"1\" width=\"1\" alt=\"\" src=\"";
-			protected static string s33{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s34 = "\" name=\"\" /></div><div class=\"Bleft_Sub02\"><form name=\"frmAgent\" id=\"frmAgent\" method=\"get\" action=\"\" target=\"menu\" style=\"float:left;\"><div id=\"from_tab\"><input maxlength=\"50\" id=\"txtUsername\" type=\"text\" onkeydown=\"onclickUser('";
+			protected static string s30 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div id=\"left_line02\"><img height=\"1\" width=\"1\" alt=\"\" src=\"";
+			protected static string s31{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
+			protected static string s32 = "\" name=\"\" /></div><div class=\"Bleft_Sub02\"><form name=\"frmAgent\" id=\"frmAgent\" method=\"get\" action=\"\" target=\"menu\" style=\"float:left;\"><div id=\"from_tab\"><input maxlength=\"50\" id=\"txtUsername\" type=\"text\" onkeydown=\"onclickUser('";
+			protected static string s33{get{return Resources.Lang.enterusername;}}
+			protected static string s34 = "')\" onclick=\"onclickUser('";
 			protected static string s35{get{return Resources.Lang.enterusername;}}
-			protected static string s36 = "')\" onclick=\"onclickUser('";
+			protected static string s36 = "')\" onblur=\"onblurUser('";
 			protected static string s37{get{return Resources.Lang.enterusername;}}
-			protected static string s38 = "')\" onblur=\"onblurUser('";
-			protected static string s39{get{return Resources.Lang.enterusername;}}
-			protected static string s40 = "')\" value=\"";
+			protected static string s38 = "')\" value=\"";
 			public string usernamesearch = "{usernamesearch}";
-			protected static string s41 = "\" style=\"width: 78px;\" class=\"";
+			protected static string s39 = "\" style=\"width: 78px;\" class=\"";
 			public string classStyle = "{classStyle}";
-			protected static string s42 = "\" name=\"txtUsername\" /></div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink img\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
-			protected static string s43{get{return Resources.Lang.search;}}
-			protected static string s44 = "\" border=\"0\" nowap=\"nowap\" src=\"";
-			protected static string s45{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
-			protected static string s46 = "\" /></a></div><div class=\"search-option\"><input type=\"checkbox\" name=\"isMember\" ";
+			protected static string s40 = "\" name=\"txtUsername\" /></div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink img\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
+			protected static string s41{get{return Resources.Lang.search;}}
+			protected static string s42 = "\" border=\"0\" nowap=\"nowap\" src=\"";
+			protected static string s43{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
+			protected static string s44 = "\" /></a></div><div class=\"search-option\"><input type=\"checkbox\" name=\"isMember\" ";
 			public string isChecked = "{isChecked}";
-			protected static string s47 = "/><label>Member</label></div></form><br /><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
-			protected static string s48{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s49 = "\" name=\"\" /></div><div class=\"errMsg\">";
+			protected static string s45 = "/><label>Member</label></div></form><br /><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
+			protected static string s46{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
+			protected static string s47 = "\" name=\"\" /></div><div class=\"errMsg\">";
 			public string errMsg = "{errMsg}";
-			protected static string s50 = "</div></div></div></div>";
+			protected static string s48 = "</div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s30);
+					bd.Append(s31);
 					bd.Append(s32);
 					bd.Append(s33);
 					bd.Append(s34);
@@ -137,22 +135,20 @@ namespace Fanex.Agent.UI
 					bd.Append(s36);
 					bd.Append(s37);
 					bd.Append(s38);
-					bd.Append(s39);
-					bd.Append(s40);
 					bd.Append(usernamesearch);
-					bd.Append(s41);
+					bd.Append(s39);
 					bd.Append(classStyle);
+					bd.Append(s40);
+					bd.Append(s41);
 					bd.Append(s42);
 					bd.Append(s43);
 					bd.Append(s44);
+					bd.Append(isChecked);
 					bd.Append(s45);
 					bd.Append(s46);
-					bd.Append(isChecked);
 					bd.Append(s47);
-					bd.Append(s48);
-					bd.Append(s49);
 					bd.Append(errMsg);
-					bd.Append(s50);
+					bd.Append(s48);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -160,18 +156,18 @@ namespace Fanex.Agent.UI
 
 		public class AccountInfo_TheRestAcc_Block: Block
 		{
-			protected static string s51 = "<div id=\"clear02\"><img height=\"5\" width=\"1\" alt=\"\" src=\"";
-			protected static string s52{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s53 = "\" name=\"\" /></div>";
+			protected static string s49 = "<div id=\"clear02\"><img height=\"5\" width=\"1\" alt=\"\" src=\"";
+			protected static string s50{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
+			protected static string s51 = "\" name=\"\" /></div>";
 			public string settingBox = "{settingBox}";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s49);
+					bd.Append(s50);
 					bd.Append(s51);
-					bd.Append(s52);
-					bd.Append(s53);
 					bd.Append(settingBox);
 				}
 				if(IsAssigned){bd.Append(Value);}

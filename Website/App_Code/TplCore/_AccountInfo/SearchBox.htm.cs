@@ -42,15 +42,17 @@ namespace Sunplus.Agent.UI
 			public SearchBox_ButtonBetList_Block ButtonBetList = new SearchBox_ButtonBetList_Block();
 			protected static string s21 = "</div>";
 			public SearchBox_GroupStatement_Block GroupStatement = new SearchBox_GroupStatement_Block();
-			protected static string s22 = "<!--insert jquery and treeview javascript--><script type=\"text/javascript\" src=\"";
-			protected static string s23{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
-			protected static string s24 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s25{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
+			protected static string s22 = "<!--insert jquery and treeview javascript--><link href=\"";
+			protected static string s23{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
+			protected static string s24 = "\" rel=\"stylesheet\" type=\"text/css\" /><!-- <script type=\"text/javascript\" src=\"";
+			protected static string s25{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
 			protected static string s26 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s27{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
+			protected static string s27{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
 			protected static string s28 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s29{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.js");}}
-			protected static string s30 = "\"></script><script type=\"text/javascript\">jQuery(function () {jQuery(\"#treeview-link\").click(function () {jQuery(\".downline-title\").toggle();jQuery(\".agent-treeview\").toggle();});})</script>";
+			protected static string s29{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
+			protected static string s30 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s31{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.async.js");}}
+			protected static string s32 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"DownLineTreeView.aspx/AsyncTree\"});});</script>-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -93,6 +95,8 @@ namespace Sunplus.Agent.UI
 				bd.Append(s28);
 				bd.Append(s29);
 				bd.Append(s30);
+				bd.Append(s31);
+				bd.Append(s32);
 				bd.Append(Value);
 			}
 			public string ToString()
@@ -106,29 +110,33 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_CustInfo_Block: Block
 		{
-			protected static string s31 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td class=\"top-position\"><!--";
+			protected static string s33 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td class=\"top-position\"><!--";
 			public string lblCustomerUsername = "{lblCustomerUsername}";
-			protected static string s32 = ":-->";
+			protected static string s34 = ":-->";
 			public string lblUsername = "{lblUsername}";
-			protected static string s33 = ":</td><td align=\"right\" class=\"text_org\">";
+			protected static string s35 = ":</td><td align=\"right\" class=\"text_org\">";
 			public string CustomerUsername = "{CustomerUsername}";
-			protected static string s34 = "<a href=\"javascript:void(0)\" id=\"treeview-link\"><img height=\"15\" width=\"15\" alt=\"Treeview\" src=\"";
-			protected static string s35{get{return AbsoluteUrl("_AccountInfo/Resources/Images/treeview.png");}}
-			protected static string s36 = "\" title=\"Treeview\"/></a></td></tr><tr><td colspan=\"2\"><div class=\"downline-title\">Downline List</div><div class=\"agent-treeview\"><ul id=\"fileSystemInfos\" class=\"filetree\"></ul><br /></div></td></tr></tbody></table>";
+			protected static string s36 = "<a href=\"javascript:void(0)\" id=\"treeview-link\"><img height=\"15\" width=\"15\" alt=\"Treeview\" src=\"";
+			protected static string s37{get{return AbsoluteUrl("_AccountInfo/Resources/Images/treeview.png");}}
+			protected static string s38 = "\" title=\"Treeview\"/></a></td></tr><tr><td colspan=\"2\"><div class=\"downline-title\">Downline List</div><div class=\"agent-treeview\"><!--<ul id=\"fileSystemInfos\" class=\"filetree\"></ul><br /><div id=\"fileSystemInfosControl\"> </div>-->";
+			public string TreeViewDownLineFrame = "{TreeViewDownLineFrame}";
+			protected static string s39 = "</div></td></tr></tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s31);
-					bd.Append(lblCustomerUsername);
-					bd.Append(s32);
-					bd.Append(lblUsername);
 					bd.Append(s33);
-					bd.Append(CustomerUsername);
+					bd.Append(lblCustomerUsername);
 					bd.Append(s34);
+					bd.Append(lblUsername);
 					bd.Append(s35);
+					bd.Append(CustomerUsername);
 					bd.Append(s36);
+					bd.Append(s37);
+					bd.Append(s38);
+					bd.Append(TreeViewDownLineFrame);
+					bd.Append(s39);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -136,17 +144,17 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_ButtonAgentList_Block: Block
 		{
-			protected static string s37 = "<a href=\"";
+			protected static string s40 = "<a href=\"";
 			public string agentListLink = "{agentListLink}";
-			protected static string s38 = "\" class=\"btnList\" target=\"main\">Agent List</a>";
+			protected static string s41 = "\" class=\"btnList\" target=\"main\">Agent List</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s37);
+					bd.Append(s40);
 					bd.Append(agentListLink);
-					bd.Append(s38);
+					bd.Append(s41);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -154,17 +162,17 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_ButtonMemberList_Block: Block
 		{
-			protected static string s39 = "<a href=\"";
+			protected static string s42 = "<a href=\"";
 			public string memberListLink = "{memberListLink}";
-			protected static string s40 = "\" class=\"btnList\" target=\"main\">Member List</a>";
+			protected static string s43 = "\" class=\"btnList\" target=\"main\">Member List</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s39);
+					bd.Append(s42);
 					bd.Append(memberListLink);
-					bd.Append(s40);
+					bd.Append(s43);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -172,17 +180,17 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_ButtonBetList_Block: Block
 		{
-			protected static string s41 = "<a href=\"";
+			protected static string s44 = "<a href=\"";
 			public string betListLink = "{betListLink}";
-			protected static string s42 = "\" class=\"btnList\" target=\"main\">Bet List</a>";
+			protected static string s45 = "\" class=\"btnList\" target=\"main\">Bet List</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s41);
+					bd.Append(s44);
 					bd.Append(betListLink);
-					bd.Append(s42);
+					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -190,21 +198,21 @@ namespace Sunplus.Agent.UI
 
 		public class SearchBox_GroupStatement_Block: Block
 		{
-			protected static string s43 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s46 = "<!--<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string statementlink = "{statementlink}";
-			protected static string s44 = "\">";
-			protected static string s45{get{return Resources.Lang.lblStatement;}}
-			protected static string s46 = "</a></div>-->";
+			protected static string s47 = "\">";
+			protected static string s48{get{return Resources.Lang.lblStatement;}}
+			protected static string s49 = "</a></div>-->";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s43);
-					bd.Append(statementlink);
-					bd.Append(s44);
-					bd.Append(s45);
 					bd.Append(s46);
+					bd.Append(statementlink);
+					bd.Append(s47);
+					bd.Append(s48);
+					bd.Append(s49);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

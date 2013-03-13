@@ -1,0 +1,24 @@
+﻿
+<html><head>
+  
+</head>
+<body>
+<div ID="Content3">
+ <ul id="treeview_list">
+ </ul>
+ </div>
+ </body>
+ </html>
+<link href="Resources/treeview.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/jquery.cookie.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.async.js"></script> 
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $("#treeview_list").treeview({
+            url: "TreeList.aspx"
+        });
+
+    });
+</script>
