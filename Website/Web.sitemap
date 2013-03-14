@@ -54,7 +54,7 @@
       </siteMapNode>
       <!--/MemberInfo-->
       <!--Admin-->
-      <siteMapNode title="lblAdmin" expand="true">
+      <siteMapNode title="lblAdmin">
           <siteMapNode title="lblExchangeRate" href="#"></siteMapNode>            
       </siteMapNode>
       <!--/Admin-->

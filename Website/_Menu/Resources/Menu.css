@@ -47,12 +47,12 @@ td
 .tab_menu01AC
 {
 	/*background: transparent url(../../_GlobalResources/Images/menutop_OV.jpg) no-repeat scroll right top;*/
-	background: transparent url(../../_GlobalResources/Images/menu_bg.png) no-repeat 0 -26px scroll;
+	background: url(../../_GlobalResources/Images/menu_bg.png) #EEEEEE no-repeat 0 -26px scroll;
 	color: #B39D74;
 	display: block;	
-	padding-left: 10px;
 	text-decoration: none;
-	margin-top: 2px;
+	height: 22px;
+	padding-top: 1px;
 }
 a.tab_menu02
 {
