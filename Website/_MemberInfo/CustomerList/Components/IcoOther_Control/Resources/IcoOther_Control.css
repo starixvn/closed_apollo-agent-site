@@ -11,3 +11,12 @@
     height: 16px;
     width: 16px;
 }
+
+.icon-edit {
+	background:url("Images/icon-edit-setting.png") no-repeat;
+	height:16px;
+	width:16px;
+	cursor:pointer;
+	float: left;
+	margin: 3px 0 0 3px;
+}

@@ -427,52 +427,55 @@ input[type=text]
     display: none;
 }
 
-/* Show full path */
+/* breadcrumb */
+#page_main {
+    margin-top: 10px;
+}
+
 .agent-list-title {
     float: left;
 }
-.full-path
-{
-    display: none;
+
+.boxNavigation {	
+    line-height: 23px;
+    padding-left: 13px;
+	background: #D4D4D4;
+	border: 1px solid #999999;
+	border-bottom: none;
+}
+
+.list {
+    position: relative;
+}
+
+.container-sub-nav {
     position: absolute;
-    top: 0;
-    left: 90px;
-    background: #fff;
-    z-index: 100;
-    padding: 5px 10px;
-    border: 1px solid #B2B2B2;
+    left: 2px;
+    top: -21px;
+    z-index: 10;
 }
 
-.full-path li
-{
-    list-style: none;
-    display: block;
-    line-height: 20px;
+.sub-nav {
+	margin: 0 0 0 5px;
+	padding: 0;
 }
 
-.full-path li a
-{
-    color: #1E1EEB;
+.sub-nav li {
+	list-style: none;
+	float: left;
+	color: #6A6969;
 }
 
-.full-path li a:hover
-{
-    color: #FF6600;
+.sub-nav li  a {
+	font-size: 11px;		
+	padding-right: 5px;
+	font-weight: bold;
+	color: #4B483C;
 }
 
-.line-link
-{
-    margin: 0 3px;
-}
-.boxNavigation
-{
-    background: url( "../../_GlobalResources/Images/bg_boxTop.jpg" ) repeat-x scroll center top #E7E7E7;
-    border: 1px solid #CACACA;
-    margin-top: 5px;
-    line-height: 30px;
-    padding-left: 10px;
-}
-.boxNavigation a:link
-{
-    margin-left: 5px;
+.sub-nav li  a:hover {
+	font-size: 11px;	
+	color: #FF9933;
+	padding-right: 5px;
+	
 }

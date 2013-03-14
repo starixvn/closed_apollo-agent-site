@@ -77,30 +77,30 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     this.NavUserName = new Dictionary<object, object>();
                 }
                 string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
-                this.tempate.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
+                this.tempate.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, "icon-edit", string.Empty, editMenuControl);
             }
 
-            AgentList_nav_link_Block nav_link_Block = new AgentList_nav_link_Block();
+            MemberList_nav_link_container_Block nav_link_Block = new MemberList_nav_link_container_Block();
 
             StringBuilder nav = new StringBuilder();
-            this.tempate.nav_link.Clear();
+            this.tempate.nav_link_container.nav_link.Clear();
             string url = "AgentList.aspx?custid={0}&us={1}";
             int counter = CurrentUserSession.NavigateUserName.Count;
             foreach (object key in CurrentUserSession.NavigateUserName.Keys)
             {
                 counter--;
                 string navusername = CurrentUserSession.NavigateUserName[key].ToString();
-                nav_link_Block.navigateName = navusername;
-                nav_link_Block.url = string.Format(url, key, navusername);
+                nav_link_Block.nav_link.navigateName = navusername;
+                nav_link_Block.nav_link.url = string.Format(url, key, navusername);
                 if (counter == 0)
                 {
-                    nav_link_Block.SetValue(navusername);
+                    nav_link_Block.nav_link.SetValue(navusername);
                 }
                 else
                 {
-                    nav_link_Block.narrow = " ->";
+                    nav_link_Block.nav_link.narrow = " / ";
                 }
-                this.tempate.nav_link.Append(nav_link_Block);
+                this.tempate.nav_link_container.nav_link.Append(nav_link_Block.nav_link);
             }
             this.tempate.AgentName = this.QueryUserName;
             this.tempate.urlAgentList = "AgentList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
@@ -238,7 +238,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             // Render Other menu
             string userGroup = dr["ugroup"] as string;
             string editMenuControl = "EditMemberMenuControl(this,'editControl', '" + this.memberId + "', '" + dr["username"].ToString() + "','" + userGroup + "')";
-            tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.memberId, string.Empty, editMenuControl);
+            tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.memberId, "divOther", string.Empty, editMenuControl);
 
             tplBlock.group = userGroup;
 

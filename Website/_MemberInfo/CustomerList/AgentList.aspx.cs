@@ -50,6 +50,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
                 CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
                 this.template.IconEditSetting = string.Empty;
+                this.template.nav_link_container.SetValue(string.Empty);
             }
             else
             {
@@ -73,30 +74,29 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     this.NavUserName = new Dictionary<object, object>();
                 }
                 string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
-                this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
+                this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, "icon-edit", string.Empty, editMenuControl);
             }
 
-            AgentList_nav_link_Block nav_link_Block = new AgentList_nav_link_Block();
-
+            AgentList_nav_link_container_Block nav_link_Block = new AgentList_nav_link_container_Block();
             StringBuilder nav = new StringBuilder();
-            this.template.nav_link.Clear();
+            this.template.nav_link_container.nav_link.Clear();
             string url = "AgentList.aspx?custid={0}&us={1}&username=" + this.UserName;
             int counter = CurrentUserSession.NavigateUserName.Count;
             foreach (object key in CurrentUserSession.NavigateUserName.Keys)
             {
                 counter--;
                 string navusername = CurrentUserSession.NavigateUserName[key].ToString();
-                nav_link_Block.navigateName = navusername;
-                nav_link_Block.url = string.Format(url, key, navusername);
+                nav_link_Block.nav_link.navigateName = navusername;
+                nav_link_Block.nav_link.url = string.Format(url, key, navusername);
                 if (counter == 0)
                 {
-                    nav_link_Block.SetValue(navusername);
+                    nav_link_Block.nav_link.SetValue(navusername);
                 }
                 else
                 {
-                    nav_link_Block.narrow = " ->";
+                    nav_link_Block.nav_link.narrow = " / ";
                 }
-                this.template.nav_link.Append(nav_link_Block);
+                this.template.nav_link_container.nav_link.Append(nav_link_Block.nav_link);
             }
             this.template.AgentName = this.QueryUserName;
             this.template.urlMemberList = "MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName + "&username=" + this.UserName;

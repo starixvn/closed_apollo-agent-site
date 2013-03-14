@@ -18,11 +18,13 @@ namespace Fanex.Agent.UI
 			public string menuSettingId = "{menuSettingId}";
 			protected static string s1 = "\" title=\"";
 			public string Edit = "{Edit}";
-			protected static string s2 = "\" class=\"divOther\" onclick=\"";
+			protected static string s2 = "\" class=\"";
+			public string classEditMenuControl = "{classEditMenuControl}";
+			protected static string s3 = "\" onclick=\"";
 			public string onClick = "{onClick}";
-			protected static string s3 = ";\" onmouseover=\"";
+			protected static string s4 = ";\" onmouseover=\"";
 			public string onMouseOver = "{onMouseOver}";
-			protected static string s4 = ";\"></div>";
+			protected static string s5 = ";\"></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -34,10 +36,12 @@ namespace Fanex.Agent.UI
 					bd.Append(s1);
 					bd.Append(Edit);
 					bd.Append(s2);
-					bd.Append(onClick);
+					bd.Append(classEditMenuControl);
 					bd.Append(s3);
-					bd.Append(onMouseOver);
+					bd.Append(onClick);
 					bd.Append(s4);
+					bd.Append(onMouseOver);
+					bd.Append(s5);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

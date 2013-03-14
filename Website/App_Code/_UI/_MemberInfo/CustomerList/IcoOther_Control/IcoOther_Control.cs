@@ -17,11 +17,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Components
     {
         IcoOther_Control_Template tpl = new IcoOther_Control_Template();
 
-        public IcoOther(IElement parent, string id, string onClick, string onMouseOver)
+        public IcoOther(IElement parent, string id, string classEditMenuControl, string onClick, string onMouseOver)
         {
             if (parent != null) parent.RegisterComponent("IcoOther_Control", this);
             tpl.onClick = onClick;
             tpl.menuSettingId = id;
+            tpl.classEditMenuControl = classEditMenuControl;
             tpl.onMouseOver = onMouseOver;
             tpl.Edit = Resources.Lang.edit;
         }
