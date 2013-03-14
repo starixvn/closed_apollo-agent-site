@@ -649,11 +649,11 @@
             if (isMember)
             {
                 //Page.ResolveUrl("~/
-                tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
             }
             else
             {
-                tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
             }
 
             if (isMember)
@@ -674,6 +674,17 @@
             {
                 tplAgent.ForDirectDownline.editBetSettingLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
             }
+
+            if (isMember)
+            {
+                //Page.ResolveUrl("~/
+                tplAgent.ForDirectDownline.editPTLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+            }
+            else
+            {
+                tplAgent.ForDirectDownline.editPTLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+            }
+
 
             return tplAgent.ToString();
         }
