@@ -6,6 +6,7 @@
     background: url("bg_header04.jpg") repeat-x scroll center top #E8E8E8;
     border-radius: none;    
     height: 20px;
+    margin-top: 10px;
 }
 
 #tblHeader tr

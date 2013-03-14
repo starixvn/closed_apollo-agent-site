@@ -94,7 +94,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 }
                 else
                 {
-                    nav_link_Block.nav_link.narrow = " / ";
+                    nav_link_Block.nav_link.narrow = "<img height=\"12\" width=\"12\" src=\"Resources/Images/breadcrumb.gif\"/>";
                 }
                 this.template.nav_link_container.nav_link.Append(nav_link_Block.nav_link);
             }

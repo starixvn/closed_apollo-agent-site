@@ -32,7 +32,7 @@ namespace Fanex.Agent.UI
 			protected Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template _PagingHeader;
 			protected static string s11 = "<div class=\"list\"><div class=\"container-sub-nav\"><ul class=\"sub-nav\"><li><a href=\"";
 			public string urlAgentList = "{urlAgentList}";
-			protected static string s12 = "\">Agent List</a></li><li>| <a href=\"";
+			protected static string s12 = "\">Agent List</a></li><li class=\"active\"><span class=\"line\">|</span>Member List</li><li><span class=\"line\">|</span><a href=\"";
 			public string urlShadowList = "{urlShadowList}";
 			protected static string s13 = "\">Shadow List</a></li></ul></div><table id=\"tblCustomerList\">";
 			public MemberList_Header_Block Header = new MemberList_Header_Block();

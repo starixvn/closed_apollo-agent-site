@@ -437,11 +437,18 @@ input[type=text]
 }
 
 .boxNavigation {	
-    line-height: 23px;
-    padding-left: 13px;
-	background: #D4D4D4;
-	border: 1px solid #999999;
+    line-height: 18px;
+    padding-left: 6px;	
+	border-left: 5px solid #878787;
 	border-bottom: none;
+}
+
+.boxNavigation img {
+    vertical-align: middle;
+}
+
+.boxNavigation img {
+    margin: 0 5px;
 }
 
 .list {
@@ -462,20 +469,27 @@ input[type=text]
 
 .sub-nav li {
 	list-style: none;
-	float: left;
-	color: #6A6969;
+	float: left;	
 }
 
 .sub-nav li  a {
 	font-size: 11px;		
-	padding-right: 5px;
-	font-weight: bold;
-	color: #4B483C;
+	padding-right: 5px;			
 }
 
 .sub-nav li  a:hover {
 	font-size: 11px;	
 	color: #FF9933;
-	padding-right: 5px;
-	
+	padding-right: 5px;	
+}
+
+.sub-nav li.active {
+	font-size: 11px;		
+	padding-right: 5px;	
+	color: #4B483C;	
+	font-weight: bold;
+}
+
+.line {
+    margin: 0 5px;
 }

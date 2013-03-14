@@ -29,9 +29,9 @@ namespace Fanex.Agent.UI
 			protected static string s9 = "\" rel=\"stylesheet\" type=\"text/css\"media=\"print\" />";
 			public Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader{get {return _PagingHeader != null ? _PagingHeader : _PagingHeader =  new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template();}}
 			protected Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template _PagingHeader;
-			protected static string s10 = "<div class=\"list\"><div class=\"container-sub-nav\"><ul class=\"sub-nav\"><li><a href=\"";
+			protected static string s10 = "<div class=\"list\"><div class=\"container-sub-nav\"><ul class=\"sub-nav\"><li class=\"active\">Agent List</li><li><span class=\"line\">|</span><a href=\"";
 			public string urlMemberList = "{urlMemberList}";
-			protected static string s11 = "\">Member List</a></li><li>| <a href=\"";
+			protected static string s11 = "\">Member List</a></li><li><span class=\"line\">|</span><a href=\"";
 			public string urlShadowList = "{urlShadowList}";
 			protected static string s12 = "\">Shadow List</a></li></ul></div><table id=\"tblCustomerList\">";
 			public AgentList_Header_Block Header = new AgentList_Header_Block();
