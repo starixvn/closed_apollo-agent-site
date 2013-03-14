@@ -47,7 +47,8 @@ public class GetCommissionSetting : IHttpHandler, IReadOnlySessionState
             TargetCustId = targetCustId,
             ActorCustId = custId,
             RoleId = (int)Role.Agent,
-            TargetRoleId = targetRoleId
+            TargetRoleId = targetRoleId,
+            FormSetting = (int)FormSettingType.Commission
         };
         
         ICustomerSettingService customerService = new CustomerSettingService();

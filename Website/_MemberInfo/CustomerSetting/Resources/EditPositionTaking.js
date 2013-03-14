@@ -36,9 +36,8 @@ var editPositionTaking =
             ageMsg.Show(errMsg, 1);
             window.scroll(0, 0);
             setTimeout(function () {
-                AddPopupHeight(0);
-                location.reload();
-            }, 3000);
+                parent.window.location.reload();
+            }, 1000);
 
             return;
         }
@@ -54,5 +53,4 @@ var editPositionTaking =
 
 ////
 editPositionTaking.Init(settingContext, positionTakingSetting);
-age.UnLock();
 

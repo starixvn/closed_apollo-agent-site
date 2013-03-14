@@ -9,8 +9,10 @@ using Sunplus.Agent.Model.Entities;
 using Newtonsoft.Json.Serialization;
 using Fanex.CustSetting.ViewData;
 using Fanex.CustSetting.Service;
+using System.Web.SessionState;
 
-public class GetPositionTakingSetting : IHttpHandler {
+public class GetPositionTakingSetting : IHttpHandler, IReadOnlySessionState
+{
     
     public void ProcessRequest (HttpContext context) {
         IUserSession userSession = UserSession.Current;
@@ -43,7 +45,8 @@ public class GetPositionTakingSetting : IHttpHandler {
             TargetCustId = targetCustId,
             ActorCustId = custId,
             RoleId = (int)Role.Agent,
-            TargetRoleId = targetRoleId
+            TargetRoleId = targetRoleId,
+            FormSetting = (int)FormSettingType.BetLimit
         };
         
         

@@ -3233,7 +3233,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Update Positon Taking</value>
   </data>
   <data name="updatesuccessfull" xml:space="preserve">
-    <value>Updated successfully</value>
+    <value>Updated successfully!</value>
   </data>
   <data name="updCustSettingFailed" xml:space="preserve">
     <value>Update customer setting failed!</value>

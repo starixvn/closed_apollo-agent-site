@@ -48,7 +48,8 @@ public class GetBetLimit : IHttpHandler, IReadOnlySessionState
             TargetCustId = targetCustId,
             ActorCustId = custId,
             RoleId = (int)Role.Agent,
-            TargetRoleId = targetRoleId
+            TargetRoleId = targetRoleId,
+            FormSetting = (int)FormSettingType.BetLimit
         };
         ICustomerSettingService customerService = new CustomerSettingService();
         IList<BettingLimit> betLimits = customerService.GetBettingLimitSettingForUpdating(settingContext);
