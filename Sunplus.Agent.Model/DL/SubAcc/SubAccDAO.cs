@@ -1,8 +1,8 @@
 /*
  * Created 20091224@Lee - Data access object of sub-account function
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.DL.SubAcc
@@ -18,12 +18,12 @@ namespace Sunplus.Agent.Model.DL.SubAcc
         /// </summary>
         /// <param name="custId">Main account id</param>
         /// <returns>Return a DataTable if succeeded, otherwise throw System.Data.SqlClient.SqlException or Sunplus.Agent.Model.DL.DataException.</returns>
-        public DataTable Age_CustSubSel(int custId)
+        public DataTable Acc_AgentUser_GetByAgent(int custId)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
+            parameters.Add("agentid", custId);
 
-            DataTable result = ExecSpTable("Age_CustSubSel", parameters);
+            DataTable result = ExecSpTable("Acc_AgentUser_GetByAgent", parameters);
 
             return result;
         }
