@@ -12,6 +12,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditMemberPositionTaking 
     {
         var template = new EditMemberPositionTaking_Template();
         template.actionName = Resources.Lang.update;
+        template.title = string.Format("{0} - {1} - {2}", Resources.Lang.lblEditMember, this.Request.QueryString["username"], Resources.Lang.positiontaking);
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
         template.UGroup = Context.Request.QueryString["ugroup"].ToString();
         writer.Write(template);

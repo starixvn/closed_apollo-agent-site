@@ -195,7 +195,7 @@ select {
 .tblRpt {
     background-color: #B2B2B2;;
     margin-top: 10px;
-    border-spacing: 1px;    
+    border-spacing: 1px;
 }
 
 .RptSubTitle {
@@ -217,10 +217,10 @@ select {
     font-size: 12px !important;
     font-weight: 400 !important;
     height: 22px;
-    text-align: center   
+    text-align: center
 }
 
-.RptHeader td {    
+.RptHeader td {
     border-spacing: 0;
 }
 
@@ -233,7 +233,7 @@ select {
     border-spacing: 0;
 }
 
-.RptHeader02 td {    
+.RptHeader02 td {
     border-spacing: 0;
     border-left: 1px solid #F6F8F9;
 }
@@ -283,11 +283,11 @@ select {
 }
 
 .bg_white {
-    background-color: #fff; 
+    background-color: #fff;
 }
 
-.tblRpt .bg_white td {   
-    text-align: center; 
+.tblRpt .bg_white td {
+    text-align: center;
 }
 
 .bg_eb {
@@ -343,7 +343,7 @@ select {
     min-width: 650px;
     padding-left: 15px;
     text-transform: uppercase;
-    width: 97%;    
+    width: 97%;
 }
 
 .positive {
@@ -358,7 +358,7 @@ select {
 
 .iplink {
     color: #06C;
-    text-decoration: none;    
+    text-decoration: none;
 }
 
 .iplink:hover {
@@ -382,7 +382,7 @@ select {
 }
 
 .warning ul {
-    color: #6A686B;    
+    color: #6A686B;
     list-style: none;
     margin-left: 2px;
     padding-left: 2px;
@@ -589,6 +589,7 @@ input[type=text], input[type=password] {
     line-height: 22px;
     padding-left: 2px;
     padding-right: 2px;
+    width: 140px;
 }
 .successWarning {
     background-image: url("../../../_GlobalResources/Images/tick.png");

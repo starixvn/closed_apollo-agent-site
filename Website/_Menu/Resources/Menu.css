@@ -45,33 +45,28 @@ td
 	width: 27px;	
 }
 .tab_menu01AC
-{
-	/*background: transparent url(../../_GlobalResources/Images/menutop_OV.jpg) no-repeat scroll right top;*/
-	background: transparent url(../../_GlobalResources/Images/menu_bg.png) no-repeat 0 -26px scroll;
+{	
+	background: url(../../_GlobalResources/Images/menu_bg.png) #EEEEEE no-repeat 0 -26px scroll;
 	color: #B39D74;
 	display: block;	
-	padding-left: 10px;
 	text-decoration: none;
-	margin-top: 2px;
+	height: 22px;
+	padding-top: 1px;
 }
 a.tab_menu02
-{
-	/*background: transparent url(../../_GlobalResources/Images/menutop_none.jpg) no-repeat scroll left top;*/
+{	
 	background: transparent url(../../_GlobalResources/Images/info_bg.png) no-repeat scroll left top;
 	color: white;
-	display: block;
-	padding-right: 6px;
+	display: block;	
 	text-decoration: none;
 }
 a.tab_menu02:hover
-{
-	/*background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;*/
+{	
 	background: transparent url(../../_GlobalResources/Images/info_bg.png) no-repeat 0 -26px scroll;
 	color: #B39D74;
 }
 a.tab_menu03
-{
-	/*background: transparent url(../../_GlobalResources/Images/menutop_none.jpg) no-repeat scroll left top;*/
+{	
 	background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll left top;
 	color: white;
 	display: block;
@@ -80,8 +75,7 @@ a.tab_menu03
 	height: 21px;
 }
 a.tab_menu03:hover
-{
-	/*background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;*/
+{	
 	background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat 0 -26px scroll;
 	color: #B39D74;
 }
@@ -89,8 +83,7 @@ a.tab_menu02 img {
     margin-top: 2px;
 }
 .tab_menu02AC
-{
-	/*background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;*/
+{	
 	ackground: transparent url(../../_GlobalResources/Images/menutop_OV2_1.jpg) no-repeat scroll left top;
 	color: #B39D74;
 	display: block;

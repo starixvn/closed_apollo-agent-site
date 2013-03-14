@@ -11,10 +11,7 @@
                     {static:Resources.Lang.lblAgentListOf}
                     {AgentName}
                 </div>
-                <div style="float:left; margin-left:5px;">{IconEditSetting}</div>
-                <div style="float:left; margin-left:5px;"><a href="{urlMemberList}">Member List</a></div>
-                <div style="float:left; margin-left:5px;">|</div>
-                <div style="float:left; margin-left:5px;"><a href="{urlShadowList}">Shadow List</a></div>
+                <div class="edit-setting">{IconEditSetting}</div>                
 
             </div>
         </td>
@@ -25,28 +22,31 @@
             {searchControl}
             </div>
         </td>
-    </tr>
-    <tr>
-        <td>
-
-            <div id="divnavigation" class="boxNavigation">
-                <!--nav_link-->
-                <a href="{url}">
-                    {navigateName}
-                </a>
-                {narrow}
-                <!--/nav_link-->
-            </div>
-
-        </td>
-    </tr>
+    </tr>    
     <tr>
         <td>
             <div id="page_main">
+                <!--nav_link-container-->
+                <div class="boxNavigation" id="divnavigation">
+                    <!--nav_link-->
+                    <a href="{url}">
+                        {navigateName}
+                    </a>
+                    {narrow}
+                    <!--/nav_link-->			      
+		        </div>    
+                <!--/nav_link-container-->           
                 <link href="Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
                     media="print" />
                 {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
-                <table id="tblCustomerList">
+                <div class="list">
+                    <div class="container-sub-nav">
+                        <ul class="sub-nav">
+					        <li><a href="{urlMemberList}">Member List</a></li>
+					        <li>| <a href="{urlShadowList}">Shadow List</a></li>
+				        </ul>
+                    </div>
+                    <table id="tblCustomerList">
                     <!--Header-->
                     <thead>
                         <tr>
@@ -134,20 +134,7 @@
                             </td>
                             <td>
                                 {viewPlayerList}
-                            </td>
-
-                            <td>
-                                {HDP}
-                            </td>
-                            <td>
-                                {OU}
-                            </td>
-                            <td>
-                                {HDPLive}
-                            </td>
-                            <td>
-                                {OULive}
-                            </td>
+                            </td>                           
                             <td>
                                 {groupA}
                             </td>
@@ -169,6 +156,18 @@
                             <td>
                                 {game}
                             </td>
+                             <td>
+                                {HDP}
+                            </td>
+                            <td>
+                                {OU}
+                            </td>
+                            <td>
+                                {HDPLive}
+                            </td>
+                            <td>
+                                {OULive}
+                            </td>
                         </tr>
                         <!--/Content-->
                     </tbody>
@@ -180,6 +179,8 @@
                     </tr>
                 </tfoot>
             </table>
+                </div>
+                
             </div>
         </td>
     </tr>

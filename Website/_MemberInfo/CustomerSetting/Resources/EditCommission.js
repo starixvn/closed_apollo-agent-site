@@ -21,7 +21,7 @@ var editCommission =
                          "&commissionSetting=" + JSON.stringify(editCommission.CommissionSettingElement.Save());
             var submitUrl = "../../CustomerSetting/Handlers/UpdateCommissionSetting.ashx";
             var onCompleteCallback = null;
-            age.ReloadPage(3000);
+            age.ReloadPage(600000);
             ajax.PostJSON(
         				submitUrl,
         				params,
@@ -35,6 +35,10 @@ var editCommission =
             AddPopupHeight(50);
             ageMsg.Show(errMsg, 1);
             window.scroll(0, 0);
+            setTimeout(function () {
+                parent.window.location.reload();
+            }, 1000);
+
             return;
         }
         else {

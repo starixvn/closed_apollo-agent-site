@@ -9,17 +9,18 @@ using Sunplus.Agent.Model.Entities;
 using Newtonsoft.Json.Serialization;
 using Fanex.CustSetting.ViewData;
 using Fanex.CustSetting.Service;
+using System.Web.SessionState;
 
-public class GetPositionTakingSetting : IHttpHandler {
+public class GetPositionTakingSetting : IHttpHandler, IReadOnlySessionState
+{
     
     public void ProcessRequest (HttpContext context) {
-        //context.Response.ContentType = "text/plain";
-        //context.Response.Write("Hello World");
+        IUserSession userSession = UserSession.Current;
         CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
-        //Thread.CurrentThread.CurrentUICulture = new CultureInfo(UserSession.Current.Language);
-        //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(UserSession.Current.Language);
-        //Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
-        //Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
+        Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+        Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
 
         context.Response.ContentType = "text/javascript";
         context.Response.Cache.SetNoStore();
@@ -28,10 +29,9 @@ public class GetPositionTakingSetting : IHttpHandler {
         settings.NullValueHandling = NullValueHandling.Ignore;
         settings.Formatting = Formatting.Indented;
 
-        //IUserSession userSession = UserSession.Current;
 
-        //string currentUserName = userSession.UserName;
-        //int custId = userSession.CustId;
+        string currentUserName = userSession.UserName;
+        int custId = userSession.CustId;
         int targetCustId = 0;
         int targetRoleId = 0;
         //int formType = 0;
@@ -41,11 +41,15 @@ public class GetPositionTakingSetting : IHttpHandler {
 
         SettingContext settingContext = new SettingContext
         {
-            CustId = 1,
+            CustId = custId,
             TargetCustId = targetCustId,
+            ActorCustId = custId,
             RoleId = (int)Role.Agent,
-            TargetRoleId = targetRoleId
+            TargetRoleId = targetRoleId,
+            FormSetting = (int)FormSettingType.BetLimit
         };
+        
+        
         ICustomerSettingService customerService = new CustomerSettingService();
         PositionTakingSetting positionTakingSetting = customerService.GetPositionTakingSettingForUpdating(settingContext);
 

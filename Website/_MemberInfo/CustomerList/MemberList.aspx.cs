@@ -54,6 +54,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
                 CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
                 this.tempate.IconEditSetting = string.Empty;
+                this.tempate.nav_link_container.SetValue(string.Empty);
             }
             else
             {
@@ -77,30 +78,30 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     this.NavUserName = new Dictionary<object, object>();
                 }
                 string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
-                this.tempate.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
+                this.tempate.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, "icon-edit", string.Empty, editMenuControl);
             }
 
-            AgentList_nav_link_Block nav_link_Block = new AgentList_nav_link_Block();
+            MemberList_nav_link_container_Block nav_link_Block = new MemberList_nav_link_container_Block();
 
             StringBuilder nav = new StringBuilder();
-            this.tempate.nav_link.Clear();
+            this.tempate.nav_link_container.nav_link.Clear();
             string url = "AgentList.aspx?custid={0}&us={1}";
             int counter = CurrentUserSession.NavigateUserName.Count;
             foreach (object key in CurrentUserSession.NavigateUserName.Keys)
             {
                 counter--;
                 string navusername = CurrentUserSession.NavigateUserName[key].ToString();
-                nav_link_Block.navigateName = navusername;
-                nav_link_Block.url = string.Format(url, key, navusername);
+                nav_link_Block.nav_link.navigateName = navusername;
+                nav_link_Block.nav_link.url = string.Format(url, key, navusername);
                 if (counter == 0)
                 {
-                    nav_link_Block.SetValue(navusername);
+                    nav_link_Block.nav_link.SetValue(navusername);
                 }
                 else
                 {
-                    nav_link_Block.narrow = " ->";
+                    nav_link_Block.nav_link.narrow = " / ";
                 }
-                this.tempate.nav_link.Append(nav_link_Block);
+                this.tempate.nav_link_container.nav_link.Append(nav_link_Block.nav_link);
             }
             this.tempate.AgentName = this.QueryUserName;
             this.tempate.urlAgentList = "AgentList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
@@ -238,24 +239,25 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             // Render Other menu
             string userGroup = dr["ugroup"] as string;
             string editMenuControl = "EditMemberMenuControl(this,'editControl', '" + this.memberId + "', '" + dr["username"].ToString() + "','" + userGroup + "')";
-            tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.memberId, string.Empty, editMenuControl);
+            string onClickEvent = "EditMemberSetting(this,'" + this.memberId + "', '" + dr["username"].ToString() + "')";
+            tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.memberId, "divOther", onClickEvent, editMenuControl);
 
             tplBlock.group = userGroup;
 
-            tplBlock.groupAgent = Formater.FormatNumber4(dr["agentgroup"], this.langKey);
-            tplBlock.oneXtwoAgent = Formater.FormatNumber4(dr["agentdiscount1x2"], this.langKey);
-            tplBlock.otherAgent = Formater.FormatNumber4(dr["agentdiscountother"], this.langKey);
-            tplBlock.gameAgent = Formater.FormatNumber4(dr["agentdiscountnumbergame"], this.langKey);
+            tplBlock.groupAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentgroup"]) * 100), this.langKey); 
+            tplBlock.oneXtwoAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscount1x2"]) * 100), this.langKey); 
+            tplBlock.otherAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscountother"]) * 100), this.langKey); 
+            tplBlock.gameAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscountnumbergame"]) * 100), this.langKey); 
 
-            tplBlock.groupMember = Formater.FormatNumber4(dr["CustGroup"], this.langKey);
-            tplBlock.oneXtwoMember = Formater.FormatNumber4(dr["CustDiscount1x2"], this.langKey);
-            tplBlock.otherMember = Formater.FormatNumber4(dr["CustDiscountOther"], this.langKey);
-            tplBlock.gameMember = Formater.FormatNumber4(dr["CustDiscountNumberGame"], this.langKey);
+            tplBlock.groupMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustGroup"]) * 100), this.langKey); 
+            tplBlock.oneXtwoMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscount1x2"]) * 100), this.langKey); 
+            tplBlock.otherMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscountOther"]) * 100), this.langKey); 
+            tplBlock.gameMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscountNumberGame"]) * 100), this.langKey);
 
-            tplBlock.HDP = Formater.DecFormat(dr["HDP_Soccer_PT"], 2);
-            tplBlock.OU = Formater.DecFormat(dr["OU_Soccer_PT"], 2);
-            tplBlock.HDPLive = Formater.DecFormat(dr["HDP_Soccer_PT_Live"], 2);
-            tplBlock.OULive = Formater.DecFormat(dr["OU_Soccer_PT_Live"], 2);
+            tplBlock.HDP = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_Soccer_PT"]) / 100), this.langKey); 
+            tplBlock.OU = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_Soccer_PT"]) / 100), this.langKey);
+            tplBlock.HDPLive = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_Soccer_PT_Live"]) / 100), this.langKey); 
+            tplBlock.OULive = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_Soccer_PT_Live"]) / 100), this.langKey); 
         }
     }
 }

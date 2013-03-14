@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>{title}</title>
+    <link href="../../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/Engine/Core.css" rel="stylesheet" type="text/css" />
+    <link href="../Resources/Engine/CoreOverride.css" rel="stylesheet" type="text/css" />
+    <link href="../../../_Components/ErrorMsg/ErrorMsg.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    {static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
+    <div class="btnLeft">
+        <button id="Button1" class="btnMain" onclick="editSetting.SaveSetting();">
+            {actionName}</button>
+    </div>
+    <div id="settingContainer" style="width: 936px;">
+        <div id="commissionSettingContainer">
+        </div>
+        <div id="bettingLimitContainer">
+        </div>
+        <div id="ptContainer">
+        </div>
+    </div>
+    <div class="btnLeft">
+        <button id="btnSubmitFooter" class="btnMain" onclick="editSetting.SaveSetting();">
+            {actionName}</button>
+    </div>
+    <script src="../../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="../../../_GlobalResources/Js/jx.js" type="text/javascript"></script>
+    <script src="../../../_Components/ErrorMsg/ErrorMsg.js" type="text/javascript"></script>
+    <script src='../Handlers/GetPositionTakingSetting.ashx?targetCustId={TargetAgentId}&targetRoleId=1&ugroup={UGroup}'
+        type="text/javascript"></script>
+    <script src='../Handlers/GetBetLimit.ashx?targetCustId={TargetAgentId}&targetRoleId=1&ugroup={UGroup}'
+        type="text/javascript"></script>
+    <script src='../Handlers/GetCommissionSetting.ashx?targetCustId={TargetAgentId}&targetRoleId=1&ugroup={UGroup}'
+        type="text/javascript"></script>
+    <script src="../Resources/Engine/Languages/en.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/Core.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/PTSetting.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/BetTypeGroup.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/BetType.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/CommissionSetting.js" type="text/javascript"></script>
+    <script src="../Resources/Engine/BettingLimit.js" type="text/javascript"></script>
+    <script src="../Resources/EditPositionTaking.js" type="text/javascript"></script>
+    <script src="../Resources/EditBetLimit.js" type="text/javascript"></script>
+    <script src="../Resources/EditCommission.js" type="text/javascript"></script>
+    <script src="../Resources/EditSetting.js" type="text/javascript"></script>
+</body>
+</html>

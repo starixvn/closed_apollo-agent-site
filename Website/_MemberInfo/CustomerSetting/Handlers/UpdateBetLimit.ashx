@@ -62,13 +62,13 @@ public class UpdateBetLimit : Fanex.Age.UI.TplHandler
 
             result = customerService.UpdateBettingLimitSetting(settingContext, betLimits);
 
-            if (result.ErrCode != 0 && result.ErrCode != 1500)
+            if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFUALT)
             {
                 return new Fanex.Age.UI.Result(ErrorType.Unknown, result.ErrMsg);
             }
             else
             {
-                return new Fanex.Age.UI.Result(ErrorType.Success, "Update Success!");
+                return new Fanex.Age.UI.Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
             }
         }
 
