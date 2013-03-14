@@ -492,7 +492,6 @@ function changeLiveCasinoStatus(evt, objDiv) {
 
 function bindAgentDownLine(agentID) {
     ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
-        alert(result.Agent.length);
         var data = result.Agent;
         $("agent-downline").innerHTML = "";
         for (var i = 0; i < data.length; ++i) {
