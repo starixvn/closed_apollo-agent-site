@@ -213,8 +213,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             //// Render Other
             string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
             string onClickEvent = "EditAgentSetting(this,'" + this.agentId + "', '" + dr["username"].ToString() + "')";
-            tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, onClickEvent, editMenuControl);
-
+            tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, "divOther", onClickEvent, editMenuControl);
             
 
             if (Convert.ToInt32(dr["NumberOfAgent"]) > 0)
