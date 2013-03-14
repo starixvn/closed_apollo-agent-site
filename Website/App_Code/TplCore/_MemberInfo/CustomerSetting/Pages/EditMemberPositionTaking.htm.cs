@@ -33,7 +33,7 @@ namespace Fanex.Agent.UI
 			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/jx.js", TplSettings.Question);}}
 			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s17{get{return AbsoluteUrl("_Components/ErrorMsg/ErrorMsg.js", TplSettings.Question);}}
-			protected static string s18 = "\" type=\"text/javascript\"></script><script src='../Handlers/GetPositionTakingSetting.ashx?targetCustId=";
+			protected static string s18 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\">age.ReloadPage(600000);</script><script src='../Handlers/GetPositionTakingSetting.ashx?targetCustId=";
 			public string TargetAgentId = "{TargetAgentId}";
 			protected static string s19 = "&targetRoleId=1&ugroup=";
 			public string UGroup = "{UGroup}";

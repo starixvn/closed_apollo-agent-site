@@ -18,15 +18,12 @@ public class GetBetLimit : IHttpHandler, IReadOnlySessionState
 {
     
     public void ProcessRequest (HttpContext context) {
-        
-        IUserSession session = UserSessionService.GetUserSessionInstance(context.Session.SessionID);
-        //context.Response.ContentType = "text/plain";
-        //context.Response.Write("Hello World");
+        IUserSession userSession = UserSession.Current;
         CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
-        //Thread.CurrentThread.CurrentUICulture = new CultureInfo(UserSession.Current.Language);
-        //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(UserSession.Current.Language);
-        //Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
-        //Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
+        Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+        Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
 
         context.Response.ContentType = "text/javascript";
         context.Response.Cache.SetNoStore();
@@ -35,10 +32,9 @@ public class GetBetLimit : IHttpHandler, IReadOnlySessionState
         settings.NullValueHandling = NullValueHandling.Ignore;
         settings.Formatting = Formatting.Indented;
 
-        //IUserSession userSession = UserSession.Current;
 
-        //string currentUserName = userSession.UserName;
-        //int custId = userSession.CustId;
+        string currentUserName = userSession.UserName;
+        int custId = userSession.CustId;
         int targetCustId = 0;
         int targetRoleId = 0;
         //int formType = 0;
@@ -48,8 +44,9 @@ public class GetBetLimit : IHttpHandler, IReadOnlySessionState
 
         SettingContext settingContext = new SettingContext
         {
-            CustId = 1,
+            CustId = custId,
             TargetCustId = targetCustId,
+            ActorCustId = custId,
             RoleId = (int)Role.Agent,
             TargetRoleId = targetRoleId
         };
