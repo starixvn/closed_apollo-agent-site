@@ -54,6 +54,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
                 CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
                 this.tempate.IconEditSetting = string.Empty;
+                this.tempate.nav_link_container.SetValue(string.Empty);
             }
             else
             {
