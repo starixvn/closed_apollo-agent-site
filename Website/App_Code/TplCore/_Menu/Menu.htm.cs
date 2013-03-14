@@ -94,7 +94,7 @@ namespace Fanex.Agent.UI
 
 		public class Menu_MenuTab_CheckViewPermission_Block: Block
 		{
-			protected static string s15 = "<div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" onclick=\"ShowFlashAccInfoMaster();\" href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
+			protected static string s15 = "<div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
 			protected static string s16{get{return Resources.Lang.userinfo;}}
 			protected static string s17 = "</span></a></div>";
 			public override void ToString(ref StringBuilder bd)

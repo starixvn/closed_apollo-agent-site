@@ -13,7 +13,7 @@
             <div id="tab_menu_m">
                 <a class="tab_menu02AC" style="cursor: default;">{static:Resources.Lang.userinfo}</a></div>
             <div id="tab_menu_L">
-                <a id="lnkTree" class="tab_menu03" target="menu" onclick="ShowTreeview();" href="../_TreeView/TreeView.aspx"></a>
+                <a id="lnkTree" class="tab_menu03" target="menu" href="../_TreeView/TreeView.aspx"></a>
             </div>
         </div>
         <div id="clear0" />
@@ -26,9 +26,9 @@
                             <img height="1" width="1" alt="" src="../_GlobalResources/Images/dot.gif" name="" /></div>
                         <div class="Bleft_Sub02">
                             <form name="frmAgent" id="frmAgent" method="get" action="" target="menu" style="float:left;">   
-                                <select class="option-search">
-                                    <option value="0">{static:Resources.Lang.lblAgent}</option>
-                                    <option value="1">{static:Resources.Lang.lblMember}</option>
+                                <select id="isMember" name="IsMember" class="option-search">
+                                    <option value="0" {IsAgent}>{static:Resources.Lang.lblAgent}</option>
+                                    <option value="1" {IsMember}>{static:Resources.Lang.lblMember}</option>
                                 </select>
                                 <div id="from_tab">                            
                                     <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" style="width: 80px;" class="{classStyle}" name="txtUsername" />

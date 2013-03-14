@@ -16,13 +16,14 @@ namespace Sunplus.Agent.UI._AccountInfo
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
         #region Defination
-
+        
         const int MAXLENGTH = 15;
         const string SESSION_MEMBERUSERNAME = "MEMBERUSERNAME";
         const string SESSION_MEMBERROLEID = "SESSION_MEMBERROLEID";
         const string DISABLE_HTML_ELEMENT = "disabled='disabled'";
         const string ENABLE_HTML_ELEMENT = "style='cursor:pointer;'";
         const string CHECKED_CHECKBOX = "checked='checked'";
+        const string SELECTED_DROPDOWN = "selected";
         const string CLASS_NAME = "b_nleft";
         private int custId = -1; // custRoleId = -1;
         private int agentLevel = -1;
@@ -84,7 +85,7 @@ namespace Sunplus.Agent.UI._AccountInfo
         {
             this.userNameRequest = Request.QueryString["username"];
 
-            this.isMember = Request.QueryString["isMember"] == "on" ? true : false;
+            this.isMember = Request.QueryString["isMember"] == "1" ? true : false;
             
             if (!string.IsNullOrEmpty(this.userNameRequest))
             {
@@ -194,6 +195,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             }
             else
             {
+                
                 this.custId = (int)this.dtrCustomerInfo["ObjectId"];
                 this.agentLevel = string.IsNullOrEmpty(this.dtrCustomerInfo["AgentLevel"].ToString()) ? 0 : int.Parse(this.dtrCustomerInfo["AgentLevel"].ToString());
                 // this.custRoleId = (byte)this.dtrCustomerInfo["roleid"];
@@ -347,30 +349,25 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         public string RenderSearchBox()
         {
-            // Use DataRow row1, row2.
             SearchBox_Template tpl = new SearchBox_Template();
-            string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='DownLineTreeView.aspx?root={0}' style='width:95%;height:100px;'></iframe>";
+            //string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='DownLineTreeView.aspx?root={0}' style='width:95%;height:100px;'></iframe>";
 
             #region Set Basic Information: Name, Phone, mobile, Fax
 
             string userName = this.dtrCustomerInfo["username"].ToString();
-            /*
-            string fullName = this.dtrCustomerInfo["firstname"].ToString() + " " + this.dtrCustomerInfo["lastname"].ToString();
-            string phone = this.dtrCustomerInfo["phone"].ToString();
-            string mobilephone = this.dtrCustomerInfo["mobilephone"].ToString();
-            string fax = this.dtrCustomerInfo["fax"].ToString();
-            */
+
             tpl.classStyle = "text_f";
             tpl.usernamesearch = this.userNameRequest;
             tpl.CustInfo.CustomerUsername = userName;
 
-            tpl.CustInfo.lblParentname = "Parent";
             tpl.CustInfo.ParentUsername = this.dtrCustomerInfo["ParentName"].ToString();
-            tpl.CustInfo.ParentID = this.dtrCustomerInfo["ParentId"].ToString();
+            
+
+            //tpl.CustInfo.RootName = CurrentUserSession.AdminName;
 
             //if (custId > 0)
             //{
-            //    tpl.CustInfo.TreeViewDownLineFrame = string.Format(htmlFrame, this.custId);
+                //tpl.CustInfo.TreeViewDownLineFrame = string.Format(htmlFrame, this.custId);
             //}
 
             
@@ -385,68 +382,24 @@ namespace Sunplus.Agent.UI._AccountInfo
                 tpl.ButtonMemberList.Hide();
             }
 
-            if (!bool.Parse(this.dtrCustomerInfo["IsMember"].ToString()))
+            if (!this.isMember)
             {
+                tpl.CustInfo.AgentID = this.custId.ToString();
+                tpl.CustInfo.lblParentname = "Parent";
                 tpl.ButtonBetList.Hide();
+                tpl.IsAgent = SELECTED_DROPDOWN;
+                tpl.IsMember = string.Empty;
+            }
+            else
+            {
+                tpl.CustInfo.AgentID = this.dtrCustomerInfo["ParentId"].ToString();
+                tpl.CustInfo.lblParentname = Resources.Lang.agent;
+                tpl.IsAgent = string.Empty;
+                tpl.IsMember = SELECTED_DROPDOWN;
             }
 
-            // tpl.CustInfo.CustomerUsername = this.FormatUsername(userName, string.IsNullOrEmpty(this.dtrCustomerInfo["enabled"].ToString()) ? false : Convert.ToBoolean(this.dtrCustomerInfo["enabled"].ToString()), true); //if string exceed this MaxLength, it will be truncated with tooltip!
-            /*
-           if ((CurrentUserSession.RoleId - int.Parse(this.dtrCustomerInfo["roleid"].ToString())) == 1)
-           {
-               string nickName = this.dtrCustomerInfo["username2"].ToString();
-               
-               if (string.IsNullOrEmpty(nickName))
-               {
-                   tpl.CustInfo.blCustomerNickname = null;
-               }
-               else
-               {
-                   tpl.CustInfo.blCustomerNickname.CustomerNickname = Formater.TruncateWithTip(nickName, MAXLENGTH);
-               }
-                 
-           }
-           else
-           {
-               tpl.CustInfo.blCustomerNickname = null;
-           }
-           
-           if (string.IsNullOrEmpty(fullName.Trim()))
-           {
-               tpl.CustInfo.blCustomerFullName = null;
-           }
-           else
-           {
-               tpl.CustInfo.blCustomerFullName.CustomerFullName = Formater.TruncateWithTip(fullName, MAXLENGTH);
-           }
-
-           if (string.IsNullOrEmpty(phone))
-           {
-               tpl.CustInfo.blCustomerPhone = null;
-           }
-           else
-           {
-               tpl.CustInfo.blCustomerPhone.CustomerPhone = Formater.TruncateWithTip(phone, MAXLENGTH);
-           }
-            
-           if (string.IsNullOrEmpty(mobilephone))
-           {
-               tpl.CustInfo.blCustomerMobile = null;
-           }
-           else
-           {
-               tpl.CustInfo.blCustomerMobile.CustomerMobile = Formater.TruncateWithTip(mobilephone, MAXLENGTH);
-           }
-
-           if (string.IsNullOrEmpty(fax))
-           {
-               tpl.CustInfo.blCustomerFax = null;
-           }
-           else
-           {
-               tpl.CustInfo.blCustomerFax.CustomerFax = Formater.TruncateWithTip(fax, MAXLENGTH);
-           }
-           */
+          
+       
             #endregion Set Basic Information: Name, Phone, mobile, Fax
 
             if (this.isMember)
