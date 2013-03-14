@@ -76,7 +76,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     }
                     this.NavUserName = new Dictionary<object, object>();
                 }
-                string editMenuControl = "EditMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
+                string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
                 this.tempate.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
             }
 
