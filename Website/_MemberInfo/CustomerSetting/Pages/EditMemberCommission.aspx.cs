@@ -12,6 +12,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditMemberCommission : Fa
     {
         var template = new EditMemberCommission_Template();
         template.actionName = Resources.Lang.update;
+        template.title = string.Format("{0} - {1} - {2}", Resources.Lang.lblEditMember, this.Request.QueryString["username"], Resources.Lang.commission);
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
         template.UGroup = Context.Request.QueryString["ugroup"].ToString();
         writer.Write(template);

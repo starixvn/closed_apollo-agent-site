@@ -4152,4 +4152,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblCustomerOf" xml:space="preserve">
     <value>Customer List Of</value>
   </data>
+  <data name="betlimit" xml:space="preserve">
+    <value>Bet Limit</value>
+  </data>
 </root>
