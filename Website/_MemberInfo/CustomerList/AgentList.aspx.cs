@@ -72,7 +72,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     }
                     this.NavUserName = new Dictionary<object, object>();
                 }
-                string editMenuControl = "EditMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
+                string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
                 this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, string.Empty, editMenuControl);
             }
 
@@ -209,7 +209,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             tplBlock.id = dr["RowNumber"].ToString();
             tplBlock.username = dr["username"] as string;
-            
+
             //// Render Other
             string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
             tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, string.Empty, editMenuControl);
