@@ -307,7 +307,7 @@ function showDownlineList(isShow) {
 }
 //Show/hide customer settings tab
 
-function showSection(sectionID) {   
+function showSection(sectionID, agentId) {   
     switch (sectionID) {
         case "custsettings":
             $("agentsTab").className = "";
@@ -321,6 +321,7 @@ function showSection(sectionID) {
             $("tbl_custsettings").style.display = "none";
             $("tbl_membersTab").style.display = "none";
             $("tbl_agentsTab").style.display = "block";
+            bindAgentsList(agentId);
             break;
         case "membersTab":
             $("custsettings").className = "";
@@ -328,13 +329,15 @@ function showSection(sectionID) {
             $("tbl_agentsTab").style.display = "none";
             $("tbl_custsettings").style.display = "none";
             $("tbl_membersTab").style.display = "none";
+            bindMembersList(agentId);
+
             /*
             ajax.Request('OnlineList.aspx', {
-                asynchronous: true,
-                parameters: 'custId=' + _page.UserId,
-                onComplete: function(data) {
-                    $("tbl_onlinelist").innerHTML = data.responseText;
-                }
+            asynchronous: true,
+            parameters: 'custId=' + _page.UserId,
+            onComplete: function(data) {
+            $("tbl_onlinelist").innerHTML = data.responseText;
+            }
             });
             */
             break;
@@ -401,6 +404,7 @@ RegisterStartUp('initHeader()');
 function initHeader() {
     initAutoComplete('txtUsername', 'Handlers/QueryUserName.ashx');
     $('leftpanewrapper').style.display = 'block';
+ 
 }
 // Menu2 & Acc Info (Common.js)----------------------
 var currentItem = 0;
@@ -487,4 +491,44 @@ function changeLiveCasinoStatus(evt, objDiv) {
             alert(_page.updateFailed);            
         }
     }
+}
+
+function bindAgentDownLine(agentID) {
+    var contentId = document.getElementById("agent-downline");
+    if (contentId.style.display == "none") {
+        ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
+            var data = result.Agents;
+            var text = "";
+            $("agent-downline").innerHTML = "";
+            $("agent-downline").innerHTML = $("agent-downline").innerHTML + "<span class='root-agent'>" + data[0][1] + "</span> </br>";
+            for (var i = 1; i < data.length; ++i) {
+                text = text + "<a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a> </br>";
+            }
+
+            $("agent-downline").innerHTML = $("agent-downline").innerHTML + text;
+            contentId.style.display = "block";
+        });
+        
+    }
+    else { 
+        contentId.style.display = "none";
+    }
+}
+
+function bindMembersList(agentID) {
+    ajax.PostJSON('../_AccountInfo/Handlers/GetMemberList.ashx', 'root=' + agentID, function (result) {
+        var data = result.Members;
+        var text = "";
+        $("members-list").innerHTML = "";
+        for (var i = 0; i < data.length; ++i) {
+            text = text + ("<a href='#'> " + data[i][1] + "</a> </br>");
+        }
+     
+        $("members-list").innerHTML = text;
+    });
+}
+
+function bindAgentsList(agentId) {
+    
+   
 }

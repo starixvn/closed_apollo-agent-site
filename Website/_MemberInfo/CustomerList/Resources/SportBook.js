@@ -1,4 +1,12 @@
-﻿function EditAgentSetting(element, custId, userName) {
+﻿function EditMemberSetting(element, custId, userName) {
+    if (custId) {
+        var url = "../../_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custid=" + custId + "&username=" + userName;
+        var popW = 960, popH = 900;
+        //url, title, left, top, width, height
+        ageWnd.open(url, '', 0, 10, popW, popH);
+    }
+}
+function EditAgentSetting(element, custId, userName) {
     if (custId) {
         var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custid=" + custId + "&username=" + userName;
         var popW = 960, popH = 900;

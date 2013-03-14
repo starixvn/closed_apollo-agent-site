@@ -214,7 +214,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
             string onClickEvent = "EditAgentSetting(this,'" + this.agentId + "', '" + dr["username"].ToString() + "')";
             tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, "divOther", onClickEvent, editMenuControl);
-            
 
             if (Convert.ToInt32(dr["NumberOfAgent"]) > 0)
             {
@@ -238,18 +237,18 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 tplBlock.viewPlayerList = string.Empty;
             }
 
-            tplBlock.groupA = Formater.FormatNumber4(dr["groupa"], this.langKey);
-            tplBlock.groupB = Formater.FormatNumber4(dr["groupb"], this.langKey);
-            tplBlock.groupC = Formater.FormatNumber4(dr["groupc"], this.langKey);
-            tplBlock.groupD = Formater.FormatNumber4(dr["groupd"], this.langKey);
-            tplBlock.other = Formater.FormatNumber4(dr["DiscountOther"], this.langKey);
-            tplBlock.onextwo = Formater.FormatNumber4(dr["Discount1x2"], this.langKey);
-            tplBlock.game = Formater.FormatNumber4(dr["DiscountNumberGame"], this.langKey);
+            tplBlock.groupA = Formater.FormatNumber4((Convert.ToDecimal(dr["groupa"]) * 100), this.langKey);
+            tplBlock.groupB = Formater.FormatNumber4((Convert.ToDecimal(dr["groupb"]) * 100), this.langKey);
+            tplBlock.groupC = Formater.FormatNumber4((Convert.ToDecimal(dr["groupc"]) * 100), this.langKey);
+            tplBlock.groupD = Formater.FormatNumber4((Convert.ToDecimal(dr["groupd"]) * 100), this.langKey);
+            tplBlock.other = Formater.FormatNumber4((Convert.ToDecimal(dr["DiscountOther"]) * 100), this.langKey);
+            tplBlock.onextwo = Formater.FormatNumber4((Convert.ToDecimal(dr["Discount1x2"]) * 100), this.langKey); 
+            tplBlock.game = Formater.FormatNumber4((Convert.ToDecimal(dr["DiscountNumberGame"]) * 100), this.langKey);
 
-            tplBlock.HDP = dr["HDP_PositionTaking"].ToString();
-            tplBlock.OU = dr["OU_PositionTaking"].ToString();
-            tplBlock.HDPLive = dr["HDP_PositionTaking_Live"].ToString();
-            tplBlock.OULive = dr["OU_PositionTaking_Live"].ToString();
+            tplBlock.HDP = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_PositionTaking"]) / 100), this.langKey);
+            tplBlock.OU = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking"]) / 100), this.langKey); 
+            tplBlock.HDPLive = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_PositionTaking_Live"]) / 100), this.langKey); 
+            tplBlock.OULive = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking_Live"]) / 100), this.langKey); 
         }
     }
 }

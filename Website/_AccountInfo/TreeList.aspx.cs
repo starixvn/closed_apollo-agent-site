@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Sunplus.Agent.Model.DL.AccountInfo;
 using System.Data;
+using System.Web.UI;
+using Sunplus.Agent.Model.BL.AccountInfo;
 
 public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 {
@@ -45,21 +41,20 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
         string root = Request.Params["root"];
         int parentID = 0;
 
-        AccountInfoDAO dao = new AccountInfoDAO();
-        //AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-
+        AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
         string scontent = string.Empty;
 
         if (root == "source") //for the first time the JQuery tree will send the root param value as "source"
         {
-            var ds = dao.Age_Customer_GetDownLine(CurrentUserSession.CustId);
-            GenerateTree(ds.Tables[0], CurrentUserSession.CustId);
+            parentID = Fanex.Age.DTO.Reports.TreeView.TreeViewNode._SearchingID;
+            var ds = bo.Age_Customer_GetDownLine(parentID);
+            GenerateTree(ds.Tables[0], parentID);
         }
         else if (int.TryParse(root, out parentID)) //subsequent requests will send the ID
         {
             if (parentID > 0)
             {
-                var ds = dao.Age_Customer_GetDownLine(parentID);
+                var ds = bo.Age_Customer_GetDownLine(parentID);
                 GenerateTree(ds.Tables[0], parentID);
             }
         }
@@ -73,8 +68,6 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 
         DataView dv = new DataView(dtParent);
 
-        dv.RowFilter = string.Format("ParentId = {0}", parentID);
-
         tree.Append("[");
         //loop through each leaf
         for (int i = 0; i < dv.Count; i++)
@@ -82,12 +75,7 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
             tree.Append("{");
             tree.Append("\"text\": \"").Append(dv[i]["Username"]).Append("\",");
             tree.Append("\"id\": \"").Append(dv[i]["AgentId"]).Append("\",");
-
-            //check whether this node has child nodes
-            DataView dvChild = new DataView(dtParent);
-            dvChild.RowFilter = string.Format("ParentId = {0}", dv[i]["ParentId"]);
-            if (dvChild.Count > 0) //if so mark it in the return node array
-                tree.Append("\"hasChildren\": true");
+            tree.Append("\"hasChildren\": true");
             tree.Append("},");
         }
 
@@ -101,6 +89,5 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
         //put the result in Response and end the Response
         Response.Write(tree.ToString());
         Response.End();
-        //return tree.ToString();
     }
 }

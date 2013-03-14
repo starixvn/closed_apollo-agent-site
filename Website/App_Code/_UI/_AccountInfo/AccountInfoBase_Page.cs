@@ -15,6 +15,7 @@
     public abstract class AccountInfoBase_Page : TplPage
     {
         #region Variable
+        
         private int custId = -1, custRoleId = -1;
         private bool isMember = false;
         const string CLASS_NAME = "b_nleft";
@@ -173,9 +174,28 @@
             this.custId = (int)dtrCustomerInfo["ObjectId"];
             this.isMember = string.IsNullOrEmpty(dtrCustomerInfo["IsMember"].ToString()) ? true : bool.Parse(dtrCustomerInfo["IsMember"].ToString());
             //this.custRoleId = (byte)dtrCustomerInfo["roleid"];
+            string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height:100%;'></iframe>";
 
+            Fanex.Age.DTO.Reports.TreeView.TreeViewNode._SearchingID = (int)dtrCustomerInfo["ObjectId"];
             // Use DataRow row1, row2, row3.
             SettingBox_Template tpl = new SettingBox_Template();
+
+            if (this.isMember)
+            {
+                tpl.HiddenBlockHeaderTabAgent.Hide();
+                tpl.HiddenBlockHeaderTabMember.Hide();
+                tpl.HiddenBlockTabAgent.Hide();
+                tpl.HiddenBlockTabMember.Hide();
+            }
+            else
+            {
+                //tpl.HiddenBlockTabMember.MemberList = "<a href='#'> member 1.1.1.2 </a>";
+                //tpl.HiddenBlockTabAgent.AgentList = "Agent";
+                tpl.HiddenBlockHeaderTabAgent.AgentID = this.custId.ToString();
+                tpl.HiddenBlockHeaderTabMember.AgentID = this.custId.ToString();
+                tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(htmlFrame, this.custId.ToString()); ;
+            }
+
             //bool isUpdaterDisableCasino = GetDBBooleanValue(dtrUpdaterInfo["DisableCasino"]);
             //bool isUpdaterDisableBingo = dtrUpdaterInfo.Table.Columns.Contains("DisableBingo") ? GetDBBooleanValue(dtrUpdaterInfo["DisableBingo"]) : true;
             //bool isUpdaterNumber = dtrUpdaterInfo.Table.Columns.Contains("DisableNumber") ? GetDBBooleanValue(dtrUpdaterInfo["DisableNumber"]) : true;
@@ -194,6 +214,7 @@
             //this.RenderSettingBoxHasDownline(tpl);
 
             //this.HideDisabledSettingBox(tpl, isUpdaterDisableCasino, isSyncCasino, isUpdaterDisableBingo, isSyncBingo, isUpdaterNumber);
+
 
             this.RenderSettingBoxEditLink(tpl, dtrCustomerInfo);
 

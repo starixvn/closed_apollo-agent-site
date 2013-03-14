@@ -13,6 +13,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditAgentBetLimit : Fanex
     {
         var template = new EditAgentBetLimit_Template();
         template.actionName = Resources.Lang.update;
+        template.title = string.Format("{0} - {1} - {2}", Resources.Lang.lblEditAgent, this.Request.QueryString["username"], "");
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
         writer.Write(template);
     }

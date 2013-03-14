@@ -9,12 +9,17 @@
     <div id="left_submenu"> 
         <div id="left_tab">
             <ul>
-                <li id="custsettings" class="current"><a href="#" onclick="showSection(this.parentNode.id);">
+                
+                <li id="custsettings" class="current"><a href="#" onclick="showSection(this.parentNode.id, null);">
                     <span>{static:Resources.Lang.setting}</span></a></li>
-                <li id="agentsTab"><a href="#" onclick="showSection(this.parentNode.id);">
+                <!--HiddenBlockHeaderTabAgent-->
+                <li id="agentsTab"><a href="#" onclick="showSection(this.parentNode.id, {AgentID});">
                     <span>{static:Resources.Lang.lblAgents}</span></a></li>
-                <li id="membersTab"><a href="#" onclick="showSection(this.parentNode.id);">
+                <!--/HiddenBlockHeaderTabAgent-->
+                <!--HiddenBlockHeaderTabMember-->
+                <li id="membersTab"><a href="#" onclick="showSection(this.parentNode.id, {AgentID});">
                     <span>{static:Resources.Lang.lblMembers}</span></a></li>
+                <!--/HiddenBlockHeaderTabMember-->
             </ul>
         </div>
         <div id="clear0" />
@@ -29,20 +34,26 @@
                 </tr>                
                 {otherSettings}                    
             </table>
+            
+            <!--HiddenBlockTabAgent-->
             <table id="tbl_agentsTab" style="display: none;">
                 <tr>
                     <td>
-                        Treeview of agent
+                         {TreeViewDownLineFrame} 
                     </td>
                 </tr>                
             </table>
+            <!--/HiddenBlockTabAgent-->
+
+            <!--HiddenBlockTabMember-->
             <table id="tbl_membersTab" style="display: none;">
                 <tr>
-                    <td>
-                        Member list
+                    <td id="members-list">
+                        
                     </td>
                 </tr>                
             </table>
+            <!--/HiddenBlockTabMember-->
             <center>
                 <span id="tbl_onlinelist" style="display: none;">
                     <img src="../_GlobalResources/Images/ajax-loader.gif" alt="loading" />

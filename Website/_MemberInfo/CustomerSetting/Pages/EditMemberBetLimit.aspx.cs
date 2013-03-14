@@ -12,7 +12,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditMemberBetLimit : Fane
     {
         var template = new EditMemberBetLimit_Template();
         template.actionName = Resources.Lang.update;
-        //template.Title = string.Format("{0} - {1}", Resources.Lang.lblEditAgent, this.Request.QueryString["USER"]);
+        template.title = string.Format("{0} - {1} - {2}", Resources.Lang.lblEditMember, this.Request.QueryString["username"], "");
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
         template.UGroup = Context.Request.QueryString["ugroup"].ToString();
         writer.Write(template);

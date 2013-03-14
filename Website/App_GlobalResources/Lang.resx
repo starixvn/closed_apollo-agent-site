@@ -4152,4 +4152,25 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblCustomerOf" xml:space="preserve">
     <value>Customer List Of</value>
   </data>
+  <data name="betlimit" xml:space="preserve">
+    <value>Bet Limit</value>
+  </data>
+  <data name="lblAccountSetting" xml:space="preserve">
+    <value>Account Setting</value>
+  </data>
+  <data name="lblHost" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="lblRead" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="lblShadowList" xml:space="preserve">
+    <value>Shadow List</value>
+  </data>
+  <data name="lblShadowManagement" xml:space="preserve">
+    <value>Shadow Management</value>
+  </data>
+  <data name="lblShadowName" xml:space="preserve">
+    <value>Shadow Name</value>
+  </data>
 </root>
