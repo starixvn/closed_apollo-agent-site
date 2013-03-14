@@ -21,7 +21,7 @@ var memberBetLimit =
                          "&betLimits=" + JSON.stringify(memberBetLimit.BetLimitElement.Save());
             var submitUrl = "../../CustomerSetting/Handlers/UpdateBetLimit.ashx";
             var onCompleteCallback = null;
-            age.ReloadPage(3000);
+            age.ReloadPage(600000);
             ajax.PostJSON(
         				submitUrl,
         				params,
@@ -36,6 +36,11 @@ var memberBetLimit =
             AddPopupHeight(50);
             ageMsg.Show(errMsg, 1);
             window.scroll(0, 0);
+            setTimeout(function () {
+                AddPopupHeight(0);
+                location.reload();
+            }, 3000);
+
             return;
         }
         else {
@@ -44,7 +49,7 @@ var memberBetLimit =
             ageMsg.Show(errMsg);
             window.scroll(0, 0);
             return;
-        } 
+        }
     }
 };
 
