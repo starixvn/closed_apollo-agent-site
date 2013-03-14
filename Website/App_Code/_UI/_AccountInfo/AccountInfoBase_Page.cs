@@ -391,7 +391,7 @@
             //}
             //else
             //{
-                tplMember.ForDirectDownline.editPTLink = editPTLink[0];
+                
                 //tplMember.ForDirectDownline.LnkResetPassword.resetPasswordLink = string.Format("../_AccountInfo/ResetPassword.aspx?custid={0}&usn={1}&nobackground=1&isSyncCasino={2}", this.custId, this.userNameRequest, isSyncCasino);
                 tplMember.ForDirectDownline.editRacingLink = string.Format("../_MemberInfo/RaceBook/{1}/EditMember.aspx?custid={0}&popup=false", this.custId, ((UserTypes)CurrentUserSession.RoleId).ToString());
                 /*
@@ -444,15 +444,38 @@
                     tplMember.ForDirectDownline.ForVirtualSports.Clear();
                 }
                 */
-                string[] editCommLink = { string.Format("../_MemberInfo/EditCommission/EditMemberCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest),
-                              string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
-                              string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
-                              string.Empty
-                            };
-
-                tplMember.ForDirectDownline.editCommLink = editCommLink[this.custRoleId - 1];
+                //string[] editCommLink = { string.Format("../_MemberInfo/EditCommission/EditMemberCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest),
+                //              string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
+                //              string.Format("../_MemberInfo/EditCommission/EditCommission.aspx?custId={0}&username={1}&roleId={2}", this.custId, this.userNameRequest, this.custRoleId),
+                //              string.Empty
+                //            };
+                if (isMember)
+                {
+                    tplMember.ForDirectDownline.editPTLink = string.Format("../../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                }
+                else
+                {
+                    tplMember.ForDirectDownline.editPTLink = string.Format("../../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                }
+                 
+            if (isMember)
+                {
+                    tplMember.ForDirectDownline.editCommLink = string.Format("../../_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                }
+                else
+                {
+                    tplMember.ForDirectDownline.editCommLink = string.Format("../../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                }
+                 
                 //tplMember.ForDirectDownline.editInfoLink = string.Format("EditCustomerInfo.aspx?custId={0}&username={1}&isSyncCasino={2}&isSyncBingo={3}", this.custId, this.userNameRequest, isSyncCasino ? "1" : "0", isSyncBingo ? "1" : "0");
-                tplMember.ForDirectDownline.betSettingLink = string.Format("../_MemberInfo/BetSetting/EditBetSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                if (isMember)
+                {
+                    tplMember.ForDirectDownline.betSettingLink = string.Format("../../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                }
+                else
+                {
+                    tplMember.ForDirectDownline.betSettingLink = string.Format("../../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                }
             //}
 
             if (CurrentUserSession.RoleId == (int)UserTypes.Agent)
@@ -621,7 +644,36 @@
             //    tplAgent.ForAgent.tranferCondLink = string.Format("../_MemberInfo/TransferCondition/EditTransferCondition.aspx?custid={0}&username={1}", this.custId, this.userNameRequest);
             //}
 
-            tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/BetSetting/EditBetSetting.aspx?custid={0}&username={1}", this.custId, this.userNameRequest);
+            //tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/BetSetting/EditBetSetting.aspx?custid={0}&username={1}", this.custId, this.userNameRequest);
+
+            if (isMember)
+            {
+                //Page.ResolveUrl("~/
+                tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+            }
+            else
+            {
+                tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+            }
+
+            if (isMember)
+            {
+                tplAgent.ForDirectDownline.editCommLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+            }
+            else
+            {
+                tplAgent.ForDirectDownline.editCommLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+            }
+
+            //tplMember.ForDirectDownline.editInfoLink = string.Format("EditCustomerInfo.aspx?custId={0}&username={1}&isSyncCasino={2}&isSyncBingo={3}", this.custId, this.userNameRequest, isSyncCasino ? "1" : "0", isSyncBingo ? "1" : "0");
+            if (isMember)
+            {
+                tplAgent.ForDirectDownline.editBetSettingLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+            }
+            else
+            {
+                tplAgent.ForDirectDownline.editBetSettingLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+            }
 
             return tplAgent.ToString();
         }
