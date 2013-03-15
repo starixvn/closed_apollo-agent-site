@@ -21,13 +21,13 @@ Fanex.CustSetting.CommissionSetting = function (source) {
             this.items[0].DiscountB = this.spinBoxItems[1].getValue();
             this.items[0].DiscountC = this.spinBoxItems[2].getValue();
             this.items[0].DiscountD = this.spinBoxItems[3].getValue();
-            this.items[1].DiscountA = this.spinBoxItems[4].getValue();
-            this.items[2].DiscountA = this.spinBoxItems[5].getValue();
+            this.items[1].DiscountA = this.spinBoxItems[5].getValue();
+            this.items[2].DiscountA = this.spinBoxItems[4].getValue();
             this.items[3].DiscountA = this.spinBoxItems[6].getValue();
         } else {
             this.items[0].Discount = this.spinBoxItems[0].getValue();
-            this.items[1].Discount = this.spinBoxItems[1].getValue();
-            this.items[2].Discount = this.spinBoxItems[2].getValue();
+            this.items[1].Discount = this.spinBoxItems[2].getValue();
+            this.items[2].Discount = this.spinBoxItems[1].getValue();
             this.items[3].Discount = this.spinBoxItems[3].getValue();
             this.currentGroup = this.groupSelect.value;
         }
@@ -152,8 +152,8 @@ Fanex.CustSetting.CommissionSetting = function (source) {
             this.RenderAgentCom(trBox, Language.GROUP_D, groupCom.DiscountD, groupCom.Upline.DiscountD)
             box.appendChild(trBox);
             trBox = document.createElement("TR");
-            var group1X2 = this.items[1];
-            var groupOther = this.items[2];
+            var group1X2 = this.items[2];
+            var groupOther = this.items[1];
             var groupNumberGame = this.items[3];
             this.RenderAgentCom(trBox, Language._1X2, group1X2.DiscountA, group1X2.Upline.DiscountA);
             this.RenderAgentCom(trBox, Language.OTHERS_COM, groupOther.DiscountA, groupOther.Upline.DiscountA);
@@ -237,8 +237,8 @@ Fanex.CustSetting.CommissionSetting = function (source) {
             box.appendChild(trGroup);
 
             //// Other Com
-            box.appendChild(this.RenderPlayerCom(Language._1X2, this.items[1].Discount, this.items[1].Upline.DiscountA));
-            box.appendChild(this.RenderPlayerCom(Language.OTHERS_COM, this.items[2].Discount, this.items[2].Upline.DiscountA));
+            box.appendChild(this.RenderPlayerCom(Language._1X2, this.items[2].Discount, this.items[2].Upline.DiscountA));
+            box.appendChild(this.RenderPlayerCom(Language.OTHERS_COM, this.items[1].Discount, this.items[1].Upline.DiscountA));
             box.appendChild(this.RenderPlayerCom(Language.NUMBER_GAME, this.items[3].Discount, this.items[3].Upline.DiscountA));
 
             container.appendChild(bodyContainer);

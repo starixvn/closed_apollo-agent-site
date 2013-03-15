@@ -26,6 +26,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
     using Sunplus.Agent.Utilities;
+    using Sunplus.Agent.Model.Entities;
 
     public partial class MemberList_Page : CustomerList_Page
     {

@@ -326,8 +326,8 @@
 
   <Function Name="Agent-Apollo-Customer Setting">
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="DB05" Plain="0" />
-    <Setting Key="Age_Customer_GetDownLine" SpName="Age_Customer_GetDownLine" DbName="DB05" Plain="0" />
-    <Setting Key="Age_Customer_GetDownLinePath" SpName="Age_Customer_GetDownLinePath" DbName="DB05" Plain="0" />
+    <Setting Key="Age_Customer_GetAgentDownLine" SpName="Age_Customer_GetAgentDownLine" DbName="DB05" Plain="0" />
+    <Setting Key="Age_Customer_GetAgentDownLinePath" SpName="Age_Customer_GetAgentDownLinePath" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetMembersDownLine" SpName="Age_Customer_GetMembersDownLine" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="DB05" Plain="0" />
     
@@ -346,9 +346,9 @@
   </Function>
 
   <Function Name="Agent-Apollo-DownlinesInfo">
-    <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="DB05" Plain="0" />
-    <Setting Key="Acc_Player_GetByAgent" SpName="Acc_Player_GetByAgent" DbName="DB05" Plain="0" />
-    <Setting Key="Acc_AgentUser_GetByAgent" SpName="Acc_AgentUser_GetByAgent" DbName="DB05" Plain="0" />
+    <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="CustDB" Plain="0" />
+    <Setting Key="Acc_Player_GetByAgent" SpName="Acc_Player_GetByAgent" DbName="CustDB" Plain="0" />
+    <Setting Key="Acc_AgentUser_GetByAgent" SpName="Acc_AgentUser_GetByAgent" DbName="CustDB" Plain="0" />
 
   </Function>
 
