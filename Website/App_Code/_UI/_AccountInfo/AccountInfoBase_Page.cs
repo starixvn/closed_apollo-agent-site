@@ -38,7 +38,6 @@
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-
             return null;
         }
 
@@ -182,14 +181,20 @@
             {
                 tpl.HiddenBlockHeaderTabAgent.AgentID = this.custId.ToString();
                 tpl.HiddenBlockHeaderTabMember.AgentID = this.custId.ToString();
-                tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, this.custId.ToString()); ;
+
+                if (!bool.Parse(dtrCustomerInfo["HasAgentDownLine"].ToString()))
+                {
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = "<span> No data <span>";
+                }
+                else
+                {
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, this.custId.ToString()); 
+                }
             }
 
             this.RenderSettingBoxEditLink(tpl, dtrCustomerInfo);
-
             return tpl.ToString();
         }
-
 
         /// <summary>
         /// Render edit link in settting box

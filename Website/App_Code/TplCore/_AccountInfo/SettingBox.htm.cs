@@ -116,7 +116,7 @@ namespace Fanex.Agent.UI
 
 		public class SettingBox_HiddenBlockTabMember_Block: Block
 		{
-			protected static string s16 = "<table id=\"tbl_membersTab\" class=\"member-tab\"><tr><td><ul id=\"members-list\" class=\"member-tab-list\"></ul></td></tr></table>";
+			protected static string s16 = "<table id=\"tbl_membersTab\" class=\"member-tab\"><tr><td><ul id=\"members-list\" class=\"member-tab-list\"><span> No data </span></ul></td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
