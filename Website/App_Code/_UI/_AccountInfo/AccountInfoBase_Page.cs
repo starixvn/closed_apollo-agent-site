@@ -1,15 +1,8 @@
 ﻿namespace Sunplus.Agent.UI._AccountInfo.AccountInfoBase
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Data;
     using Fanex.Age.UI;
-    using Sunplus.Agent.Model.Entities.Permission;
-    using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
-    using Sunplus.Agent.Model.BL.Definitions;
-    using Fanex.LiveCasinoSetting.Business;
-    using Sunplus.Agent.Utilities;
     using Fanex.Agent.UI._AccountInfo;
 
     public abstract class AccountInfoBase_Page : TplPage

@@ -126,7 +126,7 @@ namespace Fanex.Agent.UI
 			public string AgentID = "{AgentID}";
 			protected static string s38 = ");\"><img height=\"16\" width=\"16\" alt=\"Treeview\" src=\"";
 			protected static string s39{get{return AbsoluteUrl("_AccountInfo/Resources/Images/icon-view-info.png");}}
-			protected static string s40 = "\" title=\"Treeview\"/></a></td></tr><tr><td colspan=\"2\"><ul id=\"agent-downline\" class=\"agent-downline-list\"></ul></td></tr></tbody></table>";
+			protected static string s40 = "\" title=\"Treeview\"/></a></td></tr><tr><td colspan=\"2\"><ul id=\"agent-downline\" class=\"agent-downline-list\" style=\"display:none;\"></ul></td></tr></tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
