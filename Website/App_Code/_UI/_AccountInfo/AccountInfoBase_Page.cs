@@ -177,6 +177,7 @@
             string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height:100%;'></iframe>";
 
             Fanex.Age.DTO.Reports.TreeView.TreeViewNode._SearchingID = (int)dtrCustomerInfo["ObjectId"];
+            Fanex.Age.DTO.Reports.TreeView.TreeViewNode._Type = 1; //1: tree in tab account
             // Use DataRow row1, row2, row3.
             SettingBox_Template tpl = new SettingBox_Template();
 

@@ -521,7 +521,7 @@ function bindMembersList(agentID) {
         var text = "";
         $("members-list").innerHTML = "";
         for (var i = 0; i < data.length; ++i) {
-            text = text + ("<a href='#'> " + data[i][1] + "</a> </br>");
+            text = text + ("<a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a> </br>");
         }
      
         $("members-list").innerHTML = text;

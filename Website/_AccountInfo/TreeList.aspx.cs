@@ -68,12 +68,27 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 
         DataView dv = new DataView(dtParent);
 
+        string url = string.Empty;
+        string target = string.Empty;
+
         tree.Append("[");
         //loop through each leaf
         for (int i = 0; i < dv.Count; i++)
         {
+            if (Fanex.Age.DTO.Reports.TreeView.TreeViewNode._Type == 1)
+            {
+                url = "../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + dv[i]["Username"];
+                target = "target='menu'";
+            }
+            else
+            {
+                url = "../_MemberInfo/MemberList.aspx";
+                target = "target='main'";
+            }
+
             tree.Append("{");
-            tree.Append("\"text\": \"").Append(dv[i]["Username"]).Append("\",");
+            //tree.Append("\"text\": \"").Append("<a href='../_MemberInfo/MemberList.aspx' target='main'>" + dv[i]["Username"] + "</a>").Append("\",");
+            tree.Append("\"text\": \"").Append("<a href='" + url + "' " + target  + ">" + dv[i]["Username"] + "</a>").Append("\",");
             tree.Append("\"id\": \"").Append(dv[i]["AgentId"]).Append("\",");
             tree.Append("\"hasChildren\": true");
             tree.Append("},");

@@ -83,7 +83,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
-            this.userNameRequest = Request.QueryString["username"];
+            this.userNameRequest = Request.QueryString["txtUsername"];
 
             this.isMember = Request.QueryString["isMember"] == "1" ? true : false;
             
@@ -103,6 +103,7 @@ namespace Sunplus.Agent.UI._AccountInfo
                 }
 
                 Session[SESSION_MEMBERUSERNAME] = this.userNameRequest;
+                Session["SESSION_ISMEMBER"] = this.isMember;
             }
             else
             {
@@ -129,6 +130,7 @@ namespace Sunplus.Agent.UI._AccountInfo
                     if (Session[SESSION_MEMBERUSERNAME] != null)
                     {
                         this.userNameRequest = Session[SESSION_MEMBERUSERNAME].ToString().Trim();
+                        this.isMember = bool.Parse(Session["SESSION_ISMEMBER"].ToString());
                     }
 
                     if (string.IsNullOrEmpty(this.userNameRequest))
