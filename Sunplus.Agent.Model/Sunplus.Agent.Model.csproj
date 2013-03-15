@@ -149,6 +149,7 @@
     <Compile Include="BL\MemberInfo\SearchAndCopy\SearchAndCopyBO.cs" />
     <Compile Include="BL\MemberInfo\SetNickname\SetNicknameBO.cs" />
     <Compile Include="BL\MemberInfo\TransferCondition\TransferConditionBO.cs" />
+    <Compile Include="BL\SubAcc\SubAccBO.cs" />
     <Compile Include="BL\Transfer\TransferBO.cs" />
     <Compile Include="Common\AgentIPFormat.cs" />
     <Compile Include="DL\BetSetting\BetSettingDAO.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Entities\ExtObject.cs" />
     <Compile Include="Entities\IExtObject.cs" />
     <Compile Include="Entities\PageAccess.cs" />
+    <Compile Include="Entities\ShadowAccount.cs" />
     <Compile Include="Entities\SubAccount.cs" />
     <Compile Include="Security\HttpFrequenceRule.cs" />
     <Compile Include="Services\DeviceService.cs" />
@@ -246,9 +248,7 @@
       <Name>Fanex.Age.DTO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BL\SubAcc\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
