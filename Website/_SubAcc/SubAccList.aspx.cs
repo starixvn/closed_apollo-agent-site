@@ -100,8 +100,8 @@ namespace Sunplus.Agent.UI._SubAcc
 
             tpl.Content.Clear();
             SubAccList_Content_Block rowContent = new SubAccList_Content_Block();
-
-            rowContent.overcolor = Fanex.Age.UI.Common.RowBgOver;
+            rowContent.overcolor = "#f8ff8d";
+            rowContent.color = "#faf9ee";
 
             for (int i = 0; i < c; i++)
             {
@@ -117,7 +117,67 @@ namespace Sunplus.Agent.UI._SubAcc
         {
             rowContent.no_value = (i + 1).ToString();
             rowContent.shadow_value = HttpUtility.HtmlEncode(subAcc.Username);
-            rowContent.id_value = subAcc.AgentUserId.ToString();
+            rowContent.agentuserid_value = subAcc.AgentUserId.ToString();
+            rowContent.agentid_value = this.AgentId.ToString();
+            string[] permissions = subAcc.PageAccess.Split("-".ToCharArray());
+
+            rowContent.totalbet_forecast_checked =
+            rowContent.report_checked =
+            rowContent.accountsetting_checked_host =
+            rowContent.accountsetting_checked_read =
+            rowContent.shadowmanagement_checked_host =
+            rowContent.shadowmanagement_checked_read =
+            rowContent.admin_checked_host =
+            rowContent.admin_checked_read =
+            string.Empty;
+
+            foreach (string item in permissions)
+            {
+                if (item.Contains(ShadowAccess.TotalBet_ForeCast))
+                {
+                    rowContent.totalbet_forecast_checked = "Checked=true";
+                }
+                else if (item.Contains(ShadowAccess.Report))
+                {
+                    rowContent.report_checked = "Checked=true";
+                }
+                else if (item.Contains(ShadowAccess.AccountSeting))
+                {
+                    if (item.Contains(ShadowAccess.Host))
+                    {
+                        rowContent.accountsetting_checked_host = "Checked=true";
+                        rowContent.accountsetting_checked_read = "Checked=true disabled=true ";
+                    }
+                    else
+                    {
+                        rowContent.accountsetting_checked_read = "Checked=true";
+                    }
+                }
+                else if (item.Contains(ShadowAccess.ShadowManagement))
+                {
+                    if (item.Contains(ShadowAccess.Host))
+                    {
+                        rowContent.shadowmanagement_checked_host = "Checked=true";
+                        rowContent.shadowmanagement_checked_read = "Checked=true disabled=true ";
+                    }
+                    else
+                    {
+                        rowContent.shadowmanagement_checked_read = "Checked=true";
+                    }
+                }
+                else
+                {
+                    if (item.Contains(ShadowAccess.Host))
+                    {
+                        rowContent.admin_checked_host = "Checked=true";
+                        rowContent.admin_checked_read = "Checked=true  disabled=true";
+                    }
+                    else
+                    {
+                        rowContent.admin_checked_read = "Checked=true";
+                    }
+                }
+            }
         }
     }
 }

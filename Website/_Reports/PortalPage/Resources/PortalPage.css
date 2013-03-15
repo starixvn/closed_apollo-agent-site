@@ -261,7 +261,6 @@ ul
 }
 .padding-top-right
 {
-    padding-top: 15px;
     padding-right: 15px;
 }
 .paging
@@ -320,7 +319,7 @@ ul
     background-repeat: no-repeat;
     text-indent: 24px;
     font-weight: bold;
-    color: #a21c1c;
+    color: #4B483C;
     padding-top: 4px;
     padding-bottom: 4px;
 }

@@ -78,7 +78,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
 
             //outputs.Add("subaccname", isSubAcc ? userName.ToUpperInvariant() : string.Empty);
 
-            PageAccess pageAccess;
+            // PageAccess pageAccess;
             if (!isSubAcc)
             {
                 if (!outputs.Contains("username"))
@@ -87,8 +87,8 @@ namespace Sunplus.Agent.Model.BL.Authorization
                 }
 
                 outputs.Add("subaccid", 0);
-                pageAccess = new PageAccess();
-                outputs["subpageaccess"] = pageAccess;
+                //pageAccess = new PageAccess();
+                //outputs["subpageaccess"] = pageAccess;
             }
 
             //string currency = outputs["currency"] as string;
@@ -277,44 +277,6 @@ namespace Sunplus.Agent.Model.BL.Authorization
             return this.dao.Acc_ReCheckin(CurrentSession.CustId, CurrentSession.OnUserId, out errMsg);
         }
 
-        /// <summary>
-        /// Change password of current login user.
-        /// </summary>
-        /// <param name="newPassword"></param>
-        /// <param name="oldPassword"></param>
-        /// <param name="ip"></param>
-        /// <param name="errMsg"></param>
-        /// <returns></returns>
-        public int ChangePassword(string newPassword, string oldPassword, string ip, out string errMsg)
-        {
-            int errCode = 0;
-            if (CurrentSession.IsSubAcc)
-            {
-                SubAccBO bo = new SubAccBO(NetSessionId);
-                errCode = bo.ChangePassword(newPassword, oldPassword, ip, out errMsg);
-            }
-            else
-            {
-                ChangePasswordBO bo = new ChangePasswordBO(NetSessionId);
-                errCode = bo.ChangePassword(newPassword, oldPassword, ip, out errMsg);
-            }
-
-            if (errCode == 0)
-            {
-                // Update is first login status
-                CurrentSession.IsLogged = true;
-
-                // Change password to Casino System
-                if (CurrentSession.IsCasinoSync)
-                {
-                    CasinoBO casinoBO = new CasinoBO(NetSessionId);
-                    bool result = casinoBO.Customer.UpdateCustPwd(CurrentSession.CustId, Encryption.CfsEnCode(newPassword), ip, CurrentSession.UserId, CurrentSession.UserName, CasinoBO.AGENT_SYSTEM);
-                }
-            }
-
-            return errCode;
-        }
-
         #region Checking Permission
 
         /// <summary>
@@ -426,10 +388,10 @@ namespace Sunplus.Agent.Model.BL.Authorization
             }
 
             // Check Role and PageAccess
-            PageAccess pageAccess = CurrentSession.SubPageAccess;
+            //PageAccess pageAccess = CurrentSession.SubPageAccess;
             byte currentRoleId = CurrentSession.RoleId;
 
-            string pageAccessString = (pageAccess == null) ? string.Empty : (string)pageAccess;
+            string pageAccessString = string.Empty; //(pageAccess == null) ? string.Empty : (string)pageAccess;
             bool isSubAcc = CurrentSession.IsSubAcc;
 
             PageFunction pageFunction = PageFunctionCollection.GetPageFunctionByUrl(url);

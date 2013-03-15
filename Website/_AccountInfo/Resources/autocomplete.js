@@ -39,7 +39,13 @@ function setVisible(visi) {
     var x = $("shadow");
     x.style.position = 'absolute';
     x.style.top = (findPosY(txtObj) + 3) + "px";
-    x.style.left = (findPosX(txtObj) + 2) + "px";
+    //x.style.left = (findPosX(txtObj) + 2) + "px";
+    x.style.left = "40px";
+    if (visi == "hidden") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
     x.style.visibility = visi;
 }
 
@@ -186,7 +192,7 @@ function getWord(beginning) {
     var content;
     if (suggestions) {
         for (var i = 0; i < suggestions.length; ++i)
-            words[words.length] = suggestions[i][0];  //+ "<br/><span class='opSpan'>" + suggestions[i][1] + ' ' + suggestions[i][2] + '</span>';
+            words[words.length] = suggestions[i][0] + "</br>";  //+ "<br/><span class='opSpan'>" + suggestions[i][1] + ' ' + suggestions[i][2] + '</span>';
     }
     return words;
 }

@@ -17,7 +17,7 @@ namespace Fanex.Agent.UI
 			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div id=\"left_line02\"><img height=\"1\" width=\"1\" alt=\"\" src=\"";
 			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s4 = "\" name=\"\" /></div><div class=\"Bleft_Sub02\"><form name=\"frmAgent\" id=\"frmAgent\" method=\"get\" action=\"\" target=\"menu\" style=\"float:left;\"><select id=\"isMember\" name=\"IsMember\" class=\"option-search\"><option value=\"0\" ";
+			protected static string s4 = "\" name=\"\" /></div><div class=\"Bleft_Sub02\"><form name=\"frmAgent\" id=\"frmAgent\" method=\"get\" action=\"\" target=\"menu\" style=\"float:left;\" class=\"frmSearch\"><select id=\"isMember\" name=\"IsMember\" class=\"option-search\"><option value=\"0\" ";
 			public string IsAgent = "{IsAgent}";
 			protected static string s5 = ">";
 			protected static string s6{get{return Resources.Lang.lblAgent;}}
@@ -39,23 +39,21 @@ namespace Fanex.Agent.UI
 			protected static string s19{get{return Resources.Lang.search;}}
 			protected static string s20 = "\" border=\"0\" nowap=\"nowap\" src=\"";
 			protected static string s21{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
-			protected static string s22 = "\" /></a></div></form><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
-			protected static string s23{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s24 = "\" name=\"\" /></div>";
+			protected static string s22 = "\" /></a></div></form>";
 			public SearchBox_CustInfo_Block CustInfo = new SearchBox_CustInfo_Block();
-			protected static string s25 = "</div></div></div>";
+			protected static string s23 = "</div></div></div>";
 			public SearchBox_ButtonAgentList_Block ButtonAgentList = new SearchBox_ButtonAgentList_Block();
 			public SearchBox_ButtonMemberList_Block ButtonMemberList = new SearchBox_ButtonMemberList_Block();
 			public SearchBox_ButtonBetList_Block ButtonBetList = new SearchBox_ButtonBetList_Block();
-			protected static string s26 = "<!--insert jquery and treeview javascript--><link href=\"";
-			protected static string s27{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
-			protected static string s28 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src=\"";
-			protected static string s29{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s30 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s31{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
-			protected static string s32 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s33{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js");}}
-			protected static string s34 = "\"></script>";
+			protected static string s24 = "<!--insert jquery and treeview javascript--><link href=\"";
+			protected static string s25{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
+			protected static string s26 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src=\"";
+			protected static string s27{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s28 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s29{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
+			protected static string s30 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s31{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js");}}
+			protected static string s32 = "\"></script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -88,13 +86,13 @@ namespace Fanex.Agent.UI
 					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);
-					bd.Append(s23);
-					bd.Append(s24);
 					if(null != CustInfo) CustInfo.ToString(ref bd);
-					bd.Append(s25);
+					bd.Append(s23);
 					if(null != ButtonAgentList) ButtonAgentList.ToString(ref bd);
 					if(null != ButtonMemberList) ButtonMemberList.ToString(ref bd);
 					if(null != ButtonBetList) ButtonBetList.ToString(ref bd);
+					bd.Append(s24);
+					bd.Append(s25);
 					bd.Append(s26);
 					bd.Append(s27);
 					bd.Append(s28);
@@ -102,8 +100,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s30);
 					bd.Append(s31);
 					bd.Append(s32);
-					bd.Append(s33);
-					bd.Append(s34);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -118,37 +114,37 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_CustInfo_Block: Block
 		{
-			protected static string s35 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td class=\"top-position\">";
+			protected static string s33 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td class=\"top-position\">";
 			public string lblUsername = "{lblUsername}";
-			protected static string s36 = ":</td><td align=\"right\" class=\"text_org\">";
+			protected static string s34 = ":</td><td align=\"right\" class=\"text_org\">";
 			public string CustomerUsername = "{CustomerUsername}";
-			protected static string s37 = "</td></tr><tr><td class=\"top-position\">";
+			protected static string s35 = "</td></tr><tr><td class=\"top-position\">";
 			public string lblParentname = "{lblParentname}";
-			protected static string s38 = ":</td><td align=\"right\" class=\"text_org\">";
+			protected static string s36 = ":</td><td align=\"right\" class=\"text_org\">";
 			public string ParentUsername = "{ParentUsername}";
-			protected static string s39 = "<a href=\"javascript:void(0)\" id=\"agentDownlineLink\" onclick=\"bindAgentDownLine(";
+			protected static string s37 = "<a href=\"javascript:void(0)\" id=\"agentDownlineLink\" class=\"view-agent-downline\" onclick=\"bindAgentDownLine(";
 			public string AgentID = "{AgentID}";
-			protected static string s40 = ");\"><img height=\"15\" width=\"15\" alt=\"Treeview\" src=\"";
-			protected static string s41{get{return AbsoluteUrl("_AccountInfo/Resources/Images/treeview.png");}}
-			protected static string s42 = "\" title=\"Treeview\"/></a></td></tr><tr><td></td></tr><tr id=\"agent-downline\" style=\"display:none;\"></tr></tbody></table>";
+			protected static string s38 = ");\"><img height=\"16\" width=\"16\" alt=\"Treeview\" src=\"";
+			protected static string s39{get{return AbsoluteUrl("_AccountInfo/Resources/Images/icon-view-info.png");}}
+			protected static string s40 = "\" title=\"Treeview\"/></a></td></tr><tr><td colspan=\"2\"><ul id=\"agent-downline\" class=\"agent-downline-list\" style=\"display:none;\"></ul></td></tr></tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s35);
+					bd.Append(s33);
 					bd.Append(lblUsername);
-					bd.Append(s36);
+					bd.Append(s34);
 					bd.Append(CustomerUsername);
-					bd.Append(s37);
+					bd.Append(s35);
 					bd.Append(lblParentname);
-					bd.Append(s38);
+					bd.Append(s36);
 					bd.Append(ParentUsername);
-					bd.Append(s39);
+					bd.Append(s37);
 					bd.Append(AgentID);
+					bd.Append(s38);
+					bd.Append(s39);
 					bd.Append(s40);
-					bd.Append(s41);
-					bd.Append(s42);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -156,21 +152,21 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonAgentList_Block: Block
 		{
-			protected static string s43 = "<div id=\"button_nLeft01\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s41 = "<div id=\"button_nLeft01\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string agentlistlink = "{agentlistlink}";
-			protected static string s44 = "\">";
-			protected static string s45{get{return Resources.Lang.lblAgentList;}}
-			protected static string s46 = "</a></div>";
+			protected static string s42 = "\">";
+			protected static string s43{get{return Resources.Lang.lblAgentList;}}
+			protected static string s44 = "</a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s43);
+					bd.Append(s41);
 					bd.Append(agentlistlink);
+					bd.Append(s42);
+					bd.Append(s43);
 					bd.Append(s44);
-					bd.Append(s45);
-					bd.Append(s46);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -178,21 +174,21 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonMemberList_Block: Block
 		{
-			protected static string s47 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s45 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string memberlistlink = "{memberlistlink}";
-			protected static string s48 = "\">";
-			protected static string s49{get{return Resources.Lang.lblPlayerList;}}
-			protected static string s50 = "</a></div>";
+			protected static string s46 = "\">";
+			protected static string s47{get{return Resources.Lang.lblPlayerList;}}
+			protected static string s48 = "</a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s47);
+					bd.Append(s45);
 					bd.Append(memberlistlink);
+					bd.Append(s46);
+					bd.Append(s47);
 					bd.Append(s48);
-					bd.Append(s49);
-					bd.Append(s50);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -200,21 +196,21 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonBetList_Block: Block
 		{
-			protected static string s51 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s49 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string memberlistlink = "{memberlistlink}";
-			protected static string s52 = "\">";
-			protected static string s53{get{return Resources.Lang.BetList;}}
-			protected static string s54 = "</a></div>";
+			protected static string s50 = "\">";
+			protected static string s51{get{return Resources.Lang.BetList;}}
+			protected static string s52 = "</a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s51);
+					bd.Append(s49);
 					bd.Append(memberlistlink);
+					bd.Append(s50);
+					bd.Append(s51);
 					bd.Append(s52);
-					bd.Append(s53);
-					bd.Append(s54);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

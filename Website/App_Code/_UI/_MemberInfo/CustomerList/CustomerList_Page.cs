@@ -37,7 +37,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         private object[] arrayIdPopupMenu = null;
         private string isHideTransfer = string.Empty;
         private Hashtable hashTableVars = new Hashtable();
-        private List<object> pageSizeView = new List<object>(new object[] { 10, 50, 100, 500 });
+        private List<object> pageSizeView = new List<object>(new object[] { 10, 20, 50, 100, 200, 500 });
         private DataRow row = null;
         private bool disabledEdit = false;
 
