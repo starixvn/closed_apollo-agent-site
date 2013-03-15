@@ -349,7 +349,8 @@
     <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="CustDB" Plain="0" />
     <Setting Key="Acc_Player_GetByAgent" SpName="Acc_Player_GetByAgent" DbName="CustDB" Plain="0" />
     <Setting Key="Acc_AgentUser_GetByAgent" SpName="Acc_AgentUser_GetByAgent" DbName="CustDB" Plain="0" />
-
+    <Setting Key="Acc_AgentUser_UpdatePermission" SpName="Acc_AgentUser_UpdatePermission" DbName="CustDB" Plain="0" />
+    
   </Function>
 
   <Function Name="Agent-Apollo-ForeCast">
