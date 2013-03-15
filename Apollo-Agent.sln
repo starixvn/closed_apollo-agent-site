@@ -14,7 +14,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}|Fanex.Age.Utility.dll;{016F274C-1F76-450B-B80D-E7FB59BE6A2B}|Sunplus.Agent.Utilities.dll;{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}|Sunplus.Shared.ViewLogLib.dll;{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}|Sunplus.Agent.Model.dll;{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}|Fanex.BetList.Age.dll;{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}|Fanex.BetList.Core.dll;{A7134F35-65C9-43A6-9386-86CD65F349DD}|Fanex.Age.DTO.dll;{5384E9C5-8CF1-42F8-8D12-8089EA725351}|Fanex.BetList.Core.TicketHelper.dll;{5024C3EB-BEB3-4096-8365-FFE2E34DC237}|Fanex.Age.Business.dll;{249C5EE9-5485-49A7-8F50-8D5ABC2EC6B8}|Fanex.Age.UI.Reports.dll;{F5A64151-9580-4878-A3D1-F737E391A702}|Fanex.Age.UI.Forecast.dll;{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}|Fanex.Age.UI.Components.dll;{DFE39BB5-0B6A-4EE0-86BA-FFAC6BEEFA3A}|Sunplus.Agent.UI.ScoreMap.dll;{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}|Fanex.Age.UI.TotalBets.dll;{7B69AA93-6722-41B5-8A17-5E83539E4095}|Fanex.Age.Security.dll;{85998BF3-454B-49BD-B137-F8CCAF973ABF}|Fanex.Age.Excel.dll;{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}|Fanex.Age.UI.dll;"
+		ProjectReferences = "{5024C3EB-BEB3-4096-8365-FFE2E34DC237}|Fanex.Age.Business.dll;{A7134F35-65C9-43A6-9386-86CD65F349DD}|Fanex.Age.DTO.dll;{85998BF3-454B-49BD-B137-F8CCAF973ABF}|Fanex.Age.Excel.dll;{7B69AA93-6722-41B5-8A17-5E83539E4095}|Fanex.Age.Security.dll;{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}|Fanex.Age.UI.dll;{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}|Fanex.Age.UI.Components.dll;{F5A64151-9580-4878-A3D1-F737E391A702}|Fanex.Age.UI.Forecast.dll;{249C5EE9-5485-49A7-8F50-8D5ABC2EC6B8}|Fanex.Age.UI.Reports.dll;{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}|Fanex.Age.UI.TotalBets.dll;{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}|Fanex.Age.Utility.dll;{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}|Fanex.BetList.Age.dll;{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}|Fanex.BetList.Core.dll;{5384E9C5-8CF1-42F8-8D12-8089EA725351}|Fanex.BetList.Core.TicketHelper.dll;{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}|Sunplus.Agent.Model.dll;{DFE39BB5-0B6A-4EE0-86BA-FFAC6BEEFA3A}|Sunplus.Agent.UI.ScoreMap.dll;{016F274C-1F76-450B-B80D-E7FB59BE6A2B}|Sunplus.Agent.Utilities.dll;{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}|Sunplus.Shared.ViewLogLib.dll;{1BCB2913-352A-49D2-99C6-1F8EACE6B49C}|Fanex.Age.UI.Admin.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Website"
 		Debug.AspNetCompiler.PhysicalPath = "Website\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Website\"
@@ -55,6 +55,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Agent.UI.ScoreMap", "Sunplus.Agent.UI.ScoreMap\Sunplus.Agent.UI.ScoreMap.csproj", "{DFE39BB5-0B6A-4EE0-86BA-FFAC6BEEFA3A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.Excel", "Fanex.Age.Excel\Fanex.Age.Excel.csproj", "{85998BF3-454B-49BD-B137-F8CCAF973ABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.Admin", "Fanex.Age.UI.Admin\Fanex.Age.UI.Admin.csproj", "{1BCB2913-352A-49D2-99C6-1F8EACE6B49C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +115,10 @@ Global
 		{85998BF3-454B-49BD-B137-F8CCAF973ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{85998BF3-454B-49BD-B137-F8CCAF973ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85998BF3-454B-49BD-B137-F8CCAF973ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BCB2913-352A-49D2-99C6-1F8EACE6B49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BCB2913-352A-49D2-99C6-1F8EACE6B49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BCB2913-352A-49D2-99C6-1F8EACE6B49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BCB2913-352A-49D2-99C6-1F8EACE6B49C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
