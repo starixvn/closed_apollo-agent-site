@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Web;
 using System.Web.Security;
 
-using Sunplus.Agent.Model.Common;
+//using Sunplus.Agent.Model.Common;
 
 /*
  * Created 20091224@Lee - Validating definitions
@@ -87,7 +87,8 @@ namespace Fanex.Age.UI
         /// <returns></returns>
         public static bool CheckValidLanguage(string culture)
         {
-            return Sunplus.Agent.Model.Common.Language.IsValidLanguage(culture);
+            return true;
+           // return Sunplus.Agent.Model.Common.Language.IsValidLanguage(culture);
         }
     }
 

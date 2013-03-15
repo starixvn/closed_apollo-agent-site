@@ -1,14 +1,13 @@
 ﻿namespace Sunplus.Agent.UI._AccountInfo.AccountInfoBase
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Data;
     using Fanex.Age.UI;
+
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
     using Sunplus.Agent.Model.BL.Definitions;
-    using Fanex.LiveCasinoSetting.Business;
+    //using Fanex.LiveCasinoSetting.Business;
     using Sunplus.Agent.Utilities;
     using Fanex.Agent.UI._AccountInfo;
 
@@ -19,7 +18,7 @@
         private int custId = -1;
         private bool isMember = false;
         private string userGroup = string.Empty;
-        const string HTML_IFRAME = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height:100%;'></iframe>";
+        const string HTML_IFRAME = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height: 560px'></iframe>";
         const string CLASS_NAME = "b_nleft";
         const string DISABLE_HTML_ELEMENT = "disabled='disabled'";
         const string ENABLE_HTML_ELEMENT = "style='cursor:pointer;'";
@@ -39,7 +38,6 @@
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-
             return null;
         }
 
@@ -183,14 +181,20 @@
             {
                 tpl.HiddenBlockHeaderTabAgent.AgentID = this.custId.ToString();
                 tpl.HiddenBlockHeaderTabMember.AgentID = this.custId.ToString();
-                tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, this.custId.ToString()); ;
+
+                if (!bool.Parse(dtrCustomerInfo["HasAgentDownLine"].ToString()))
+                {
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = "<span> No data <span>";
+                }
+                else
+                {
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, this.custId.ToString()); 
+                }
             }
 
             this.RenderSettingBoxEditLink(tpl, dtrCustomerInfo);
-
             return tpl.ToString();
         }
-
 
         /// <summary>
         /// Render edit link in settting box
