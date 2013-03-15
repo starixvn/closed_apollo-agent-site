@@ -38,7 +38,7 @@ public class GetPositionTakingSetting : IHttpHandler, IReadOnlySessionState
         int.TryParse(context.Request["targetCustId"], out targetCustId);
         int.TryParse(context.Request["targetRoleId"], out targetRoleId);
         //int.TryParse(context.Request["formType"], out formType);
-
+        
         SettingContext settingContext = new SettingContext
         {
             CustId = custId,

@@ -12,8 +12,18 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditMemberCommission : Fa
     {
         var template = new EditMemberCommission_Template();
         template.actionName = Resources.Lang.update;
-        template.title = string.Format("{0} - {1} - {2}", Resources.Lang.lblEditMember, this.Request.QueryString["username"], Resources.Lang.commission);
+        template.title = string.Format("{0} - {1}", Resources.Lang.lblEditMember, this.Request.QueryString["username"]);
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
+        if (this.Request.QueryString["showheader"] == "1")
+        {
+            template.headerText = string.Format("<div class='margin-top-12' id='header_main'>{0} {1}</div>", Resources.Lang.lbleditcomm, this.Request.QueryString["username"]);
+            template.isReloadParent = "0";
+        }
+        else
+        {
+            template.headerText = string.Empty;
+            template.isReloadParent = "1";
+        }
         template.UGroup = Context.Request.QueryString["ugroup"].ToString();
         writer.Write(template);
     }

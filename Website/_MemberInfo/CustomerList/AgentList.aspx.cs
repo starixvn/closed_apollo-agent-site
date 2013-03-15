@@ -74,7 +74,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     this.NavUserName = new Dictionary<object, object>();
                 }
                 string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
-                this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, "icon-edit", string.Empty, editMenuControl);
+                string onClickEvent = "EditAgentSetting(this,'" + this.CustId + "', '" + this.QueryUserName + "')";
+                this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, "icon-edit", onClickEvent, editMenuControl);
             }
 
             AgentList_nav_link_container_Block nav_link_Block = new AgentList_nav_link_container_Block();

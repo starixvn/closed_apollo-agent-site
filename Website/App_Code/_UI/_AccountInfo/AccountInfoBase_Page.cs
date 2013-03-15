@@ -650,40 +650,40 @@
             if (isMember)
             {
                 //Page.ResolveUrl("~/
-                tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId={0}&username={1}&showheader=1", this.custId, this.userNameRequest));
             }
             else
             {
-                tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}&showheader=1", this.custId, this.userNameRequest));
             }
 
             if (isMember)
             {
-                tplAgent.ForDirectDownline.editCommLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId={0}&username={1}&showheader=1", this.custId, this.userNameRequest));
             }
             else
             {
-                tplAgent.ForDirectDownline.editCommLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={0}&username={1}&showheader=1", this.custId, this.userNameRequest));
             }
 
             //tplMember.ForDirectDownline.editInfoLink = string.Format("EditCustomerInfo.aspx?custId={0}&username={1}&isSyncCasino={2}&isSyncBingo={3}", this.custId, this.userNameRequest, isSyncCasino ? "1" : "0", isSyncBingo ? "1" : "0");
             if (isMember)
             {
-                tplAgent.ForDirectDownline.editBetSettingLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId={0}&username={1}&showheader=1", this.custId, this.userNameRequest));
             }
             else
             {
-                tplAgent.ForDirectDownline.editBetSettingLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}&showheader=1", this.custId, this.userNameRequest));
             }
 
             if (isMember)
             {
                 //Page.ResolveUrl("~/
-                tplAgent.ForDirectDownline.editPTLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={0}&username={1}&showheader=1", this.custId, this.userNameRequest));
             }
             else
             {
-                tplAgent.ForDirectDownline.editPTLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}&showheader=1", this.custId, this.userNameRequest));
             }
 
 
