@@ -16,8 +16,9 @@
     {
         #region Variable
 
-        private int custId = -1, custRoleId = -1;
+        private int custId = -1;
         private bool isMember = false;
+        private string userGroup = string.Empty;
         const string HTML_IFRAME = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height:100%;'></iframe>";
         const string CLASS_NAME = "b_nleft";
         const string DISABLE_HTML_ELEMENT = "disabled='disabled'";
@@ -164,7 +165,7 @@
         {
             this.custId = (int)dtrCustomerInfo["ObjectId"];
             this.isMember = string.IsNullOrEmpty(dtrCustomerInfo["IsMember"].ToString()) ? true : bool.Parse(dtrCustomerInfo["IsMember"].ToString());
-            
+            this.userGroup = dtrCustomerInfo["UGroup"].ToString();
 
             Fanex.Age.DTO.Reports.TreeView.TreeViewNode.SearchingID = (int)dtrCustomerInfo["ObjectId"];
             Fanex.Age.DTO.Reports.TreeView.TreeViewNode.Type = 1; //1: tree in tab account
