@@ -953,7 +953,7 @@ input[type=reset]
 
 .expandable 
 {
-    width: 152px !important;    
+    width: auto;    
 }
 
 .title-left-menu {
@@ -986,14 +986,6 @@ input[type=reset]
 
 .top-position {
     vertical-align: top;
-}
-
-/* treeview */
-.agent-treeview {
-    margin-top: 5px;
-    width: 175px;
-    display: block;
-    overflow-x: scroll;   
 }
 
 /*downline title*/
@@ -1031,6 +1023,13 @@ a.btnList:hover {
 
 /* Tab treeview */
 
+.agent-treeview {
+    margin-top: 5px;
+    width: 175px;
+    display: block;
+    overflow-x: scroll;   
+}
+
 #frmDownlineList {
     border: none;
 }
@@ -1049,8 +1048,90 @@ a.btnList:hover {
 }
 
 /* Account tab */
-
+.frmSearch {
+    margin-bottom: 5px;
+}
 .option-search {
     float: left;
     height: 20px;
+}
+
+.view-agent-downline * {
+    vertical-align: middle;
+}
+
+.view-agent-downline img {
+    margin: -3px 3px;
+}
+
+.agent-downline-list {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+.agent-downline-list li {
+    list-style: none;
+}
+
+.agent-downline-list .root-agent {
+    color: #4B483C;
+    background: url(Images/icon-root.png) left no-repeat;
+    padding-left: 17px;   
+}
+
+.agent-downline-list a {
+    color: #2678C5;
+    text-decoration: none;   
+    display: block;
+    margin-left: 10px;
+}
+
+.agent-downline-list a:hover {
+    color: #FF9000;
+}
+
+.treeview li a {
+    color: #2678C5;
+}
+
+/* agent tab */
+
+.agent-tab {
+    display: none;
+    min-height: 200px;
+    overflow: auto;
+    width: 100%;
+}
+
+
+/* Member tab */
+.member-tab {
+    height: 560px;
+    overflow: auto;
+    width: 100%;
+    display: none;
+}
+
+.member-tab-list {
+    margin: 0 0 0 5px;
+    padding: 0;    
+}
+
+.member-tab-list li * {
+    vertical-align: middle;
+}
+
+.member-tab-list li {
+    list-style: none;    
+}
+
+.member-tab-list li a {
+    list-style: none;
+    color: #2678C5;
+    text-decoration: none;
+}
+
+.member-tab-list li a:hover {
+   color: #FF9000;
 }
