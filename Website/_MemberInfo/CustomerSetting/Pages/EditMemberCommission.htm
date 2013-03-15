@@ -11,6 +11,7 @@
 </head>
 <body>
     {static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
+    {headerText}
     <div id="settingContainer" style="width: 936px;">
         <div id="commissionSettingContainer">
         </div>
@@ -19,6 +20,9 @@
         <button id="btnSubmitFooter" class="btnMain" onclick="editCommission.UpdateCommissionSetting();">
             {actionName}</button>
     </div>
+     <script type="text/javascript">
+        var isReloadParent = {isReloadParent};
+    </script>
      <script src="../../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
     <script src="../../../_GlobalResources/Js/jx.js" type="text/javascript"></script>
     <script src="../../../_Components/ErrorMsg/ErrorMsg.js" type="text/javascript"></script>
