@@ -46,20 +46,18 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 
         if (root == "source") //for the first time the JQuery tree will send the root param value as "source"
         {
-            parentID = Fanex.Age.DTO.Reports.TreeView.TreeViewNode._SearchingID;
-            var ds = bo.Age_Customer_GetDownLine(parentID);
+            parentID = Fanex.Age.DTO.Reports.TreeView.TreeViewNode.SearchingID;
+            var ds = bo.Age_Customer_GetAgentDownLine(parentID);
             GenerateTree(ds.Tables[0], parentID);
         }
         else if (int.TryParse(root, out parentID)) //subsequent requests will send the ID
         {
             if (parentID > 0)
             {
-                var ds = bo.Age_Customer_GetDownLine(parentID);
+                var ds = bo.Age_Customer_GetAgentDownLine(parentID);
                 GenerateTree(ds.Tables[0], parentID);
             }
         }
-
-        //return scontent;
     }
 
     private void GenerateTree(DataTable dtParent, int parentID)
@@ -75,19 +73,18 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
         //loop through each leaf
         for (int i = 0; i < dv.Count; i++)
         {
-            if (Fanex.Age.DTO.Reports.TreeView.TreeViewNode._Type == 1)
+            if (Fanex.Age.DTO.Reports.TreeView.TreeViewNode.Type == 1)
             {
                 url = "../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + dv[i]["Username"];
                 target = "target='menu'";
             }
             else
             {
-                url = "../_MemberInfo/MemberList.aspx";
+                url = "../_MemberInfo/CustomerList/MemberList.aspx?custid=" + dv[i]["AgentId"] + "&us=" + dv[i]["Username"];
                 target = "target='main'";
             }
 
             tree.Append("{");
-            //tree.Append("\"text\": \"").Append("<a href='../_MemberInfo/MemberList.aspx' target='main'>" + dv[i]["Username"] + "</a>").Append("\",");
             tree.Append("\"text\": \"").Append("<a href='" + url + "' " + target  + ">" + dv[i]["Username"] + "</a>").Append("\",");
             tree.Append("\"id\": \"").Append(dv[i]["AgentId"]).Append("\",");
             tree.Append("\"hasChildren\": true");

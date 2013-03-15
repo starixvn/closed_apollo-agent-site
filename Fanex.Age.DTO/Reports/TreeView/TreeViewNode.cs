@@ -7,9 +7,9 @@ namespace Fanex.Age.DTO.Reports.TreeView
 {
     public class TreeViewNode
     {
-        public static int _SearchingID = 0;
+        public static int SearchingID = 0;
 
-        public static int _Type = 0;
+        public static int Type = 0;
 
         #region Properties
         /// <summary>
