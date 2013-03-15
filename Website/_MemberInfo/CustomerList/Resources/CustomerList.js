@@ -91,17 +91,9 @@ function GetCustomer(url) {
 
     url = SetParameterValue("custid", _page.custid, url);
     url = SetParameterValue("username", txtname, url);
-    url = SetParameterValue("status", $('statusFilter').value, url);
 
     //    url = SetParameterValue("pageIndex", $('txt_PagingTop') ? $('txt_PagingTop').value : 1, url);
     url = SetParameterValue("pageSize", $('sel_PagingTop').value, url);
-
-    if (!$('dcommFilter') == false) {
-        url = SetParameterValue("dComStatus", $('dcommFilter').value, url);
-    }
-    else {
-        url = SetParameterValue("dComStatus", '2', url);
-    }
 
     location.href = url;
 }
@@ -111,6 +103,10 @@ function CheckAll_onClick(els) {
     for (var i = 0; i < arrChk.length; i++) {
         if (els.checked && !arrChk[i].checked) {
             arrChk[i].checked = true;
+
+            var editId = "edit_" + arrChk[i].id;
+            ChangeAtribute(editId, "_onmouseover", "onmouseover");
+            ChangeValueAttribute(editId, "class", "divOther");
         }
         else if (!els.checked && arrChk[i].checked) {
             arrChk[i].checked = false;
@@ -120,8 +116,29 @@ function CheckAll_onClick(els) {
 
 function ItemCheck_OnClick(els) {
     var arrChk = document.getElementsByName('chkid');
+    var editIcon = "edit_" + els.id;
+    var editId = "";
     if (!els.checked) { // Uncheck
-        $("chkAll").checked = false;
+        document.getElementById('chkAllItem').checked = false;
+
+        // Change Attribute for control Edit
+        ChangeAtribute(editIcon, "onmouseover", "_onmouseover");
+        ChangeValueAttribute(editIcon, "class", "divDisableOther");
+
+        var isEnable = true;
+        for (var i = 0; i < arrChk.length; i++) {
+            if (arrChk[i].checked) {
+                isEnable = false;
+                break;
+            }
+        }
+        if (isEnable) {
+            for (var i = 0; i < arrChk.length; i++) {
+                editId = "edit_" + arrChk[i].id;
+                ChangeAtribute(editId, "_onmouseover", "onmouseover");
+                ChangeValueAttribute(editId, "class", "divOther");
+            }
+        }
     }
     else { // Checked
         var isChecked = true;
@@ -132,16 +149,39 @@ function ItemCheck_OnClick(els) {
             }
         }
         if (isChecked) {
-            $("chkAll").checked = true;
+            document.getElementById('chkAllItem').checked = true;
+        }
+
+        // Change Attribute for control Edit
+
+        ChangeAtribute(editIcon, "_onmouseover", "onmouseover");
+        ChangeValueAttribute(editIcon, "class", "divOther");
+
+        for (var i = 0; i < arrChk.length; i++) {
+            if (!arrChk[i].checked) {
+                editId = "edit_" + arrChk[i].id;
+                if ($(editId).hasAttribute("_onmouseover")) continue;
+                ChangeAtribute(editId, "onmouseover", "_onmouseover");
+                ChangeValueAttribute(editId, "class", "divDisableOther");
+            }
         }
     }
 }
 
-function ChangeAtribute(id, attDestinationName, attSourceName) {
+function ChangeValueAttribute(id, attName, attValue) {
+    var Value = $(id).getAttribute(attName);
+    if (Value != attValue) {
+        $(id).setAttribute(attName, attValue);
+    }
+}
+
+function ChangeAtribute(id, fromName, toName) {
     if ($(id)) {
-        var sourceName = $(id).getAttribute(attSourceName);
-        $(id).setAttribute(attDestinationName, sourceName);
-        $(id).removeAttribute(attSourceName);
+        var Value = $(id).getAttribute(fromName);
+        if ($(id).hasAttribute(fromName)) {
+            $(id).removeAttribute(fromName);
+            $(id).setAttribute(toName, Value);
+        }
     }
 }
 
@@ -631,7 +671,43 @@ function ChangedIcon(Id, Icon) {
     }
 }
 
-function EditMenuControl(element, popupId, custId, userName) {
+function EditAgentMenuControl(element, popupId, custId, userName) {
+    var div = $(popupId);
+    if (!div) return false;
+
+    element.style.position = 'relative';
+    var pos = GetPosition(element);
+    div.style.top = (pos.offsetTop - 15) + 'px';
+    div.style.left = (pos.offsetLeft + 17) + 'px';
+
+    div.style.display = 'block';
+    clearTimeout(div.timerID);
+    div.timerID = 0;
+    div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 2000);
+    age.addEvent(div, "mouseover", function () {
+        clearTimeout(div.timerID);
+        div.timerID = 0;
+    }, true);
+
+    age.addEvent(div, "mouseout", function () {
+        clearTimeout(div.timerID);
+        div.timerID = 0;
+        div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 1);
+    }, true);
+
+    //// Set Attr Edit
+    //OpenEditAgentCommission
+    var urlEditAgentCommission = 'OpenEditAgentCommission(' + custId + ',"' + userName + '")';
+    SetAttributeURL('editCommission', urlEditAgentCommission);
+
+    var urlEditAgentBetLimit = 'OpenEditAgentBetLimit(' + custId + ',"' + userName + '")';
+    SetAttributeURL('editBetSetting', urlEditAgentBetLimit);
+
+    var urlEditAgentPT = 'OpenEditAgentPT(' + custId + ',"' + userName + '")';
+    SetAttributeURL('editPositionTaking', urlEditAgentPT);
+}
+
+function EditMemberMenuControl(element, popupId, custId, userName, uGroup) {
     var div = $(popupId);
     if (!div) return false;
 
@@ -652,8 +728,19 @@ function EditMenuControl(element, popupId, custId, userName) {
     age.addEvent(div, "mouseout", function () {
         clearTimeout(div.timerID);
         div.timerID = 0;
-        div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 100);
+        div.timerID = setTimeout("HidePopupGeneral('" + popupId + "');", 1);
     }, true);
+
+    //// Set Attr Edit
+    //OpenEditAgentCommission
+    var urlEditMemberCommission = 'OpenEditMemberCommission(' + custId + ',"' + userName + '","' + uGroup + '")';
+    SetAttributeURL('editCommission', urlEditMemberCommission);
+
+    var urlEditMemberBetLimit = 'OpenEditMemberBetLimit(' + custId + ',"' + userName + '","' + uGroup + '")';
+    SetAttributeURL('editBetSetting', urlEditMemberBetLimit);
+
+    var urlEditMemberPT = 'OpenEditMemberPT(' + custId + ',"' + userName + '","' + uGroup + '")';
+    SetAttributeURL('editPositionTaking', urlEditMemberPT);
 }
 
 function ShowFrmUpdOthers(el, divID, custid, username, actionOn) {
@@ -804,3 +891,13 @@ function MultiEditDComm() {
 }
 
 RegisterStartUp("InitTagSuggestion()");
+
+/* Show full path*/
+function showFullPath() {
+    var fullPath = $("show-full-path");
+    if (fullPath.style.display == "none") {
+        fullPath.style.display = "block";
+    } else {
+        fullPath.style.display = "none";
+    }
+}

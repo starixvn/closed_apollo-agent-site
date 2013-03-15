@@ -31,7 +31,7 @@ namespace Fanex.Age.UI.TotalBets
             DataTable oddEventOneXTwo = View as DataTable;
 
             HomeDrawAwayNoBet_Template tpl = new HomeDrawAwayNoBet_Template();
-            
+
             tpl.Contents.LeagueContents.Clear();
 
             if (oddEventOneXTwo.Rows.Count > 0)
@@ -92,7 +92,8 @@ namespace Fanex.Age.UI.TotalBets
         {
             return _TotalBetsBO.GetHomeDrawAwayNoBet();
         }
-        #endregion
+
+        #endregion Override
 
         #region Utility
 
@@ -129,7 +130,7 @@ namespace Fanex.Age.UI.TotalBets
             }
             matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
 
-            // Event 
+            // Event
             matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + (Convert.ToBoolean(dr["isNeutral"]) ? Resources.Lang.IsNeutral : string.Empty);
             matchBlock.Away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
             matchBlock.No = rowIndex.ToString();
@@ -162,6 +163,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.HomeNoBetValue.Hide();
             }
         }
+
         /// <summary>
         /// Render draw/no draw under total column
         /// </summary>
@@ -184,6 +186,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.DrawNoBetValue.Hide();
             }
         }
+
         /// <summary>
         /// Render draw/no draw under total column
         /// </summary>
@@ -206,6 +209,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.AwayNoBetValue.Hide();
             }
         }
+
         /// <summary>
         /// Round color for negative number
         /// </summary>
@@ -217,6 +221,7 @@ namespace Fanex.Age.UI.TotalBets
 
             return (num < 0) ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
         }
-        #endregion
+
+        #endregion Utility
     }
 }

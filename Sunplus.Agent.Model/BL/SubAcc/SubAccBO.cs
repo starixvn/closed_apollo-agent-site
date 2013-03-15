@@ -1,12 +1,13 @@
 ﻿/*
  * Created 20091224@Lee - Business class of sub-account function
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.BL.SubAcc
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
@@ -18,7 +19,7 @@ namespace Sunplus.Agent.Model.BL.SubAcc
     {
         public SubAccBO(string netSessionId)
             : base(netSessionId)
-        { 
+        {
         }
 
         /// <summary>
@@ -26,20 +27,28 @@ namespace Sunplus.Agent.Model.BL.SubAcc
         /// </summary>
         /// <param name="count">Number of records</param>
         /// <returns>Return a List of SubAccount if succeeded or raise an exception.</returns>
-        public List<SubAccount> GetSubAccountList()
+        public List<ShadowAccount> GetSubAccountList(int CustId)
         {
             SubAccDAO dao = new SubAccDAO();
 
-            DataTable dataTable = dao.Age_CustSubSel(CurrentSession.CustId);
+            DataTable dataTable = dao.Acc_AgentUser_GetByAgent(CustId);
 
-            IEnumerable<IEntity> enumerable = dataTable.AsEnumerable(typeof(SubAccount));
-            List<SubAccount> subAccList = new List<SubAccount>();
+            List<ShadowAccount> subAccList = new List<ShadowAccount>();
 
-            foreach (IEntity entity in enumerable)
+            foreach (DataRow dr in dataTable.Rows)
             {
-                subAccList.Add(entity as SubAccount);
+                subAccList.Add(new ShadowAccount
+                {
+                    AgentUserId = (int)dr["AgentUserId"],
+                    Username = dr["UserName"].ToString(),
+                    PageAccess = dr["PageAccess"].ToString(),
+                    IsMaster = (bool)dr["IsMaster"],
+                    Closed = (bool)dr["Closed"],
+                    CreateDate = (DateTime)dr["CreateDate"],
+                    Creator = (int)dr["Creator"],
+                    LoginCount = (int)dr["LoginCount"]
+                });
             }
-
             return subAccList;
         }
 

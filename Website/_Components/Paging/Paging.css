@@ -55,8 +55,7 @@ input.pagingCurrent
 
 div.pagingContainer
 {
-	text-align: center;
-	padding-top:3px;
+	text-align: center;	
 }
 
 div.pagingHiden

@@ -90,6 +90,7 @@
     <Compile Include="Reports\Result\SportMatch2.cs" />
     <Compile Include="Reports\Result\SportMatch3.cs" />
     <Compile Include="Reports\Result\TennisMatch.cs" />
+    <Compile Include="Reports\TreeView\TreeViewNode.cs" />
     <Compile Include="Reports\WinlossAnalysis\WinlossAnalysisAgentItem.cs" />
     <Compile Include="Reports\WinlossAnalysis\WinlossAnalysisMasterItem.cs" />
     <Compile Include="Reports\WinlossAnalysis\WinlossAnalysisSuperItem.cs" />

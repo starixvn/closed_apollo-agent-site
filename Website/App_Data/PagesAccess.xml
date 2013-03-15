@@ -195,5 +195,7 @@
   <!--\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/-->
   <add url="_MemberInfo/VirtualSports/EditSingle.aspx" role="4-[B],3-[B],2-[B]" id="6012" fun="Virtual Sports" subfun="Edit Single Settings" />
   <add url="_MemberInfo/VirtualSports/EditMultiple.aspx" role="4-[B],3-[B],2-[B]" id="6013" fun="Virtual Sports" subfun="Edit Multiple Settings" />
-
+  
+  <!--\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/-->
+  <add url="_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Agent" fun="Member Info" />
 </page>

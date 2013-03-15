@@ -1,13 +1,10 @@
 ﻿html, body
 {
-	overflow-x: hidden;
 	overflow-y: auto;
+	overflow-x: hiden;
 	cursor: default;
-}
-
-html
-{
-
+	padding: 0;
+	height: 100%;
 }
 
 ::-webkit-scrollbar
@@ -148,60 +145,75 @@ td
 #tab_menu_m
 {
 	float: left;
-	height: 23px;
-	width: 99px;
+	height: 22px;
+	width: 87px;	
 }
 #tab_menu_L
 {
-	float: right;
-	height: 23px;
-	width: 101px;
+	float: left;
+	height: 22px;
+	width: 27px;	
 }
 .tab_menu01AC
-{
-	background: transparent url(../../_GlobalResources/Images/menutop_OV.jpg) no-repeat scroll right top;
+{	
+	background: transparent url(../../_GlobalResources/Images/menutop_OV_1.jpg) no-repeat scroll right top;
 	color: red;
-	display: block;
-	margin-top: 2px;
-	padding-left: 10px;
+	display: block;		
 	text-decoration: none;
 }
 .tab_menu02
-{
-	background: transparent url(../../_GlobalResources/Images/menutop_none.jpg) no-repeat scroll left top;
+{	
+	background: transparent url(../../_GlobalResources/Images/info_bg.png) no-repeat scroll;
 	color: white;
-	display: block;
-	padding-right: 10px;
+	display: block;	
 	text-decoration: none;
+	height: 21px;
 }
 .tab_menu02:hover
-{
-	background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;
-	color: red;
-	margin-top: 2px;
+{	
+	background: transparent url(../../_GlobalResources/Images/info_bg.png) no-repeat 0 -26px scroll;
+	color: #B39D74;
 }
 .tab_menu02AC
-{
-	background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;
+{	
+	background: url(../../_GlobalResources/Images/info_bg.png) #EEEEEE no-repeat 0 -26px scroll;
 	color: #B39D74;
 	display: block;
-	margin-top: 2px;
-	padding-right: 10px;
 	text-decoration: none;
+	height: 22px;
+	padding-top: 1px;
+}
+a.tab_menu03
+{	
+	background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll left top;	
+	display: block;	
+	text-decoration: none;
+	height: 21px;
+}
+a.tab_menu03:hover
+{	
+	background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat 0 -26px scroll;
+	color: #B39D74;
+}
+.tab_menu03AC
+{	
+	background: url(../../_GlobalResources/Images/treeview_bg.png) #D5D5D5 no-repeat 0 -26px scroll;
+	display: block;	
+	text-decoration: none;
+	height: 23px;
 }
 .tab_menu01:hover
-{
-	background: transparent url(../../_GlobalResources/Images/menutop_OV.jpg) no-repeat scroll right top;
-	color: #B39D74;
-	margin-top: 2px;
+{	
+	background: transparent url(../../_GlobalResources/Images/menu_bg.png) no-repeat 0 -26px scroll;
+	color: #B39D74;	
 }
 .tab_menu01
-{
-	background: transparent url(../../_GlobalResources/Images/menutop_none.jpg) no-repeat scroll right top;
+{	
+	background: transparent url(../../_GlobalResources/Images/menu_bg.png) no-repeat scroll;
 	color: white;
 	display: block;
-	padding-left: 10px;
 	text-decoration: none;
+	height: 21px;	
 }
 .tab_menu02Blink
 {
@@ -279,6 +291,7 @@ td
 	height: 18px;
 	margin-bottom: 10px;
 	width: 85px;
+	margin: 0 2px;
 }
 #b_serachL
 {
@@ -326,6 +339,11 @@ td
 	padding: 5px;
 	width: 179px;	
 }
+
+.Bleft_Sub02 * {
+    vertical-align: middle;
+}
+
 .divStatus
 {
 	/*float: left;*/
@@ -419,8 +437,7 @@ font.positive
 	font-size: 11px;
 	font-weight: bold;
 	line-height: 18px;
-	width: 190px;
-	display: none;
+	width: 190px;	
 }
 #left_tab ul
 {
@@ -519,11 +536,29 @@ font.positive
 	float: left;
 	width: 215px;
 }
+#leftpanewrapper-treeview
+{
+	background: url(../../_GlobalResources/Images/bg_conts.jpg) repeat-x top;
+	padding-left: 5px;
+	padding-top: 5px;
+	background-attachment: fixed;
+	float: left;
+	width: 215px;
+	height: 99%;
+}
 #leftpane
 {
 	width: 202px;
 	background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
 }
+
+#leftpane-treeview
+{
+	width: 202px;
+	background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
+	height: 97%;
+}
+
 #top_left
 {
 	width: 210px;
@@ -918,7 +953,7 @@ input[type=reset]
 
 .expandable 
 {
-    width: 182px !important;    
+    width: 152px !important;    
 }
 
 .title-left-menu {
@@ -949,12 +984,16 @@ input[type=reset]
     width: 20px;
 }
 
+.top-position {
+    vertical-align: top;
+}
+
 /* treeview */
 .agent-treeview {
     margin-top: 5px;
     width: 175px;
-    display: none;
-    overflow-x: auto;
+    display: block;
+    overflow-x: scroll;   
 }
 
 /*downline title*/
@@ -963,7 +1002,7 @@ input[type=reset]
     font-weight: bold;
     width: 175px;
     vertical-align: middle;
-    display: none;
+    display: block;    
 }
 
 #treeview-link{
@@ -988,4 +1027,30 @@ a.btnList {
 
 a.btnList:hover {
     background: #F2F2F2;
+}
+
+/* Tab treeview */
+
+#frmDownlineList {
+    border: none;
+}
+
+.downlineTreview-bg {
+    background: none;
+    overflow: visible;
+}
+
+.treeview {
+    padding: 10px;
+}
+
+.treeview .hitarea {
+    margin-top: 2px;
+}
+
+/* Account tab */
+
+.option-search {
+    float: left;
+    height: 20px;
 }

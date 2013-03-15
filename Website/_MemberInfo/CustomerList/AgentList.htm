@@ -8,17 +8,11 @@
         <td>
             <div id="title_header">
                 <div class="agent-list-title">
-                    {static:Resources.Lang.lblAgentListTitle}
+                    {static:Resources.Lang.lblAgentListOf}
+                    {AgentName}
                 </div>
-                <div class="navigation">
-                    <span class="short-link">{navigation}</span>
-                    <ul class="full-link">
-                       <!--fullLink-->
-                       <li>{lineLink}<a href="{urlAgentSite}">{txtAgentSite}</a></li>
-                       <!--/fullLink-->
-                    </ul>
-                </div>
-                {print}
+                <div class="edit-setting">{IconEditSetting}</div>                
+
             </div>
         </td>
     </tr>
@@ -28,28 +22,46 @@
             {searchControl}
             </div>
         </td>
-    </tr>
+    </tr>    
     <tr>
         <td>
             <div id="page_main">
+                <!--nav_link-container-->
+                <div class="boxNavigation" id="divnavigation">
+                    <!--nav_link-->
+                    <a href="{url}">
+                        {navigateName}
+                    </a>
+                    {narrow}
+                    <!--/nav_link-->			      
+		        </div>    
+                <!--/nav_link-container-->           
                 <link href="Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
                     media="print" />
                 {load:Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template()}
-                <table id="tblCustomerList">
+                <div class="list">
+                    <div class="container-sub-nav">
+                        <ul class="sub-nav">
+                            <li class="active">Agent List</li>
+					        <li><span class="line">|</span><a href="{urlMemberList}">Member List</a></li>
+					        <li><span class="line">|</span><a href="{urlShadowList}">Shadow List</a></li>
+				        </ul>
+                    </div>
+                    <table id="tblCustomerList">
                     <!--Header-->
                     <thead>
                         <tr>
                             <th rowspan="2">
-                                <input type="checkbox" id="chkAll" name="chkAll" onclick="CheckAll_onClick(this);"/>
+                                {static:Resources.Lang.no}
+                            </th>
+                            <th rowspan="2" style="display:none">
+                                <input type="checkbox" id="chkAllItem" name="chkAllItem" onclick="CheckAll_onClick(this);"/>
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.edit}
                             </th>
                             <th rowspan="2">
-                                {static:Resources.Lang.lblNoList}
-                            </th>
-                            <th rowspan="2">
-                                {static:Resources.Lang.username}
+                                {static:Resources.Lang.lblUser}
                             </th>
                             <th rowspan="2">
                                 {static:Resources.Lang.agentList}
@@ -62,7 +74,7 @@
                             </th>
                             <th colspan="4" class="header_comm">
                                 {static:Resources.Lang.lblSoccerPT}
-                            </th>                            
+                            </th>
                         </tr>
                         <tr class="header">
                             <th>
@@ -104,16 +116,17 @@
                     <!--/Header-->
                     <tbody>
                         <!--Content-->
-                        <tr class="{color}" id="{custId}">
-                            <td>
-                                <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" onclick="ItemCheck_OnClick(this);"/>
-                            </td>
-                            <td align="center">
-                                {other_Option}
-                            </td>
+                        <tr>
                             <td>
                                 {id}
                             </td>
+                            <td style="display:none">
+                                <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" onclick="ItemCheck_OnClick(this);"/>
+                            </td>
+                            <td align="center">
+                                {edit_Option}
+                            </td>
+
                             <td class="l">
                                 <div {LnkUserName}>{username}</div>
                             </td>
@@ -122,20 +135,7 @@
                             </td>
                             <td>
                                 {viewPlayerList}
-                            </td>
-
-                            <td>
-                                {HDP}
-                            </td>
-                            <td>
-                                {OU}
-                            </td>
-                            <td>
-                                {HDPLive}
-                            </td>
-                            <td>
-                                {OULive}
-                            </td>
+                            </td>                           
                             <td>
                                 {groupA}
                             </td>
@@ -157,6 +157,18 @@
                             <td>
                                 {game}
                             </td>
+                             <td>
+                                {HDP}
+                            </td>
+                            <td>
+                                {OU}
+                            </td>
+                            <td>
+                                {HDPLive}
+                            </td>
+                            <td>
+                                {OULive}
+                            </td>
                         </tr>
                         <!--/Content-->
                     </tbody>
@@ -168,6 +180,8 @@
                     </tr>
                 </tfoot>
             </table>
+                </div>
+                
             </div>
         </td>
     </tr>

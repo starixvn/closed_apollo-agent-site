@@ -92,7 +92,7 @@ body {
     border: 1px solid #CACACA;
     margin-bottom: 7px;
     margin-top: 7px;
-    padding: 0;   
+    padding: 0 10px;   
 }
 .btnInfo {
     background: url( "../../_GlobalResources/Images/icon_add.jpg" ) no-repeat scroll center top transparent;

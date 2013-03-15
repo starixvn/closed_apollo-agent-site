@@ -86,7 +86,7 @@ namespace Fanex.Age.UI.Forecast
 
             // Table width
             tpl.Content.TableWidth = _isPopup ? "100%" : "600px";
-            tpl.Content.LimitLeagueList.TableWidth = _isPopup ? "100%" : "600px";
+            tpl.Content.LimitLeagueList.TableWidth = _isPopup ? "100%" : "577px";
             //// Response
             if (_fullMode)
             {

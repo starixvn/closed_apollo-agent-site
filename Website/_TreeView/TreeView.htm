@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TreeView</title>
+    <link href="../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
+    <link href="../_AccountInfo/Resources/AccountInfo.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="leftpanewrapper-treeview">
+        <!--MenuTab-->
+        <div id="tab_menu">
+            <div id="tab_menu_m">
+                <a class="tab_menu01" target="menu" href="../_Menu/Menu.aspx">{static:Resources.Lang.mainmenu}</a></div>
+            <!--CheckViewPermission-->
+            <div id="tab_menu_m">
+                <a id="lnkAccInfo" class="tab_menu02" target="menu"
+                    href="../_AccountInfo/AccountInfo.aspx"><span id="lblAccInfo">{static:Resources.Lang.userinfo}</span></a>
+            </div>
+            <!--/CheckViewPermission-->
+            <div id="tab_menu_L">
+                <a id="lnkTree" class="tab_menu03AC" target="treeview" style="cursor: default;">
+                </a>
+            </div>
+        </div>
+        <div id="leftpane-treeview" class="pnlTreeview">
+            {TreeViewDownLineFrame}
+        </div>
+    </div>
+</body>
+</html>

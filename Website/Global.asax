@@ -84,8 +84,6 @@
             || executeFileName.EndsWith("ProcessAfterLogin.ashx")
             || executeFileName.EndsWith("Captcha.ashx")
             || executeFileName.EndsWith("ChartImg.axd");
-        ;
-
         if (UserSession.Current.CustId == 0 && !isNewSession)
         {
             Response.Redirect("~/_Authorization/SignIn.aspx", true);
@@ -93,8 +91,8 @@
         }
 
         // Validate url and request parameters
-        int custId = 0; long transId = 0;
-        int masterId = 0;
+        //int custId = 0; long transId = 0;
+        //int masterId = 0;
 
         //bool isDataWarehouse;
         //string url;

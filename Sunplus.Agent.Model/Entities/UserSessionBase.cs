@@ -10,6 +10,8 @@
 namespace Sunplus.Agent.Model.Entities
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Reflection;
     using System.Runtime.Serialization;
@@ -23,6 +25,7 @@ namespace Sunplus.Agent.Model.Entities
         // APOLLO CONTRUCTORS
         public const string AGENTLEVEL = "AGENTLEVEL";
         public const string ISUSERMASTER = "ISUSERMASTER";
+        public const string NAVIGATEUSERNAME = "NAVIGATEUSERNAME";
         //-------------------
 
         public const string DEFAULT_LANGUAGE = "en-US";
@@ -120,6 +123,18 @@ namespace Sunplus.Agent.Model.Entities
             set
             {
                 this.SetProperty(ISUSERMASTER, value);
+            }
+        }
+
+        public Dictionary<object, object> NavigateUserName
+        {
+            get
+            {
+                return (Dictionary<object, object>)this.GetProperty(NAVIGATEUSERNAME);
+            }
+            set
+            {
+                this.SetProperty(NAVIGATEUSERNAME, value);
             }
         }
 

@@ -7,6 +7,8 @@
 
 namespace Sunplus.Agent.Model.Entities
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Runtime.Serialization;
 
@@ -24,6 +26,12 @@ namespace Sunplus.Agent.Model.Entities
         {
             get;
             set;
+        }
+
+        Dictionary<object, object> NavigateUserName
+        {
+            set;
+            get;
         }
 
         #endregion Apollo-Session

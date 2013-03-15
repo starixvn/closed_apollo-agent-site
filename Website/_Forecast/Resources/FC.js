@@ -79,7 +79,7 @@ function initFC() {
     if (typeof ageWnd == 'undefined') {
         return;
     }
-    var h = 222;
+    var h = 232;
     var w = 600;
 
     if (ageWnd.loaded) {

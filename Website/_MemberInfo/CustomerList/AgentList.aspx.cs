@@ -32,22 +32,77 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     {
         #region Variable
 
-        private static string cssHideUpdateMulti = "class='HideCol'";
         private AgentList_Template template = new AgentList_Template();
         private string langKey = string.Empty;
         private string agentId = string.Empty;
 
         #endregion Variable
 
-        #region Properties
-
-        private Hashtable RequestQueryString
+        public override void ProcessRequest(HttpContext context)
         {
-            get { return HttpContext.Current.Session["RequestQueryString"] == null ? new Hashtable() : (Hashtable)HttpContext.Current.Session["RequestQueryString"]; }
-            set { HttpContext.Current.Session["RequestQueryString"] = value; }
+            base.ProcessRequest(context);
         }
 
-        #endregion Properties
+        public void RenderNavigation()
+        {
+            if (this.CustId == CurrentUserSession.CustId)
+            {
+                CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
+                CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
+                this.template.IconEditSetting = string.Empty;
+                this.template.nav_link_container.SetValue(string.Empty);
+            }
+            else
+            {
+                if (!CurrentUserSession.NavigateUserName.ContainsKey(this.CustId))
+                {
+                    CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
+                }
+                else
+                {
+                    this.NavUserName = CurrentUserSession.NavigateUserName;
+                    CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
+                    foreach (object key in this.NavUserName.Keys)
+                    {
+                        if ((int)key == this.CustId)
+                        {
+                            CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
+                            break;
+                        }
+                        CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
+                    }
+                    this.NavUserName = new Dictionary<object, object>();
+                }
+                string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
+                string onClickEvent = "EditAgentSetting(this,'" + this.CustId + "', '" + this.QueryUserName + "')";
+                this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, "icon-edit", onClickEvent, editMenuControl);
+            }
+
+            AgentList_nav_link_container_Block nav_link_Block = new AgentList_nav_link_container_Block();
+            StringBuilder nav = new StringBuilder();
+            this.template.nav_link_container.nav_link.Clear();
+            string url = "AgentList.aspx?custid={0}&us={1}&username=" + this.UserName;
+            int counter = CurrentUserSession.NavigateUserName.Count;
+            foreach (object key in CurrentUserSession.NavigateUserName.Keys)
+            {
+                counter--;
+                string navusername = CurrentUserSession.NavigateUserName[key].ToString();
+                nav_link_Block.nav_link.navigateName = navusername;
+                nav_link_Block.nav_link.url = string.Format(url, key, navusername);
+                if (counter == 0)
+                {
+                    nav_link_Block.nav_link.SetValue(navusername);
+                }
+                else
+                {
+                    nav_link_Block.nav_link.narrow = "<img height=\"12\" width=\"12\" src=\"Resources/Images/breadcrumb.gif\"/>";
+                }
+                this.template.nav_link_container.nav_link.Append(nav_link_Block.nav_link);
+            }
+            this.template.AgentName = this.QueryUserName;
+            this.template.urlMemberList = "MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName + "&username=" + this.UserName;
+            this.template.urlShadowList = "#";
+        }
 
         /// <summary>
         /// Render Content
@@ -57,27 +112,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             this.InitJsLang();
             this.InitEditMenuControl();
-            ////this.InitPopupStatus(false);
-            ////this.InitPopupMulti();
-            ////this.InitPopupOther();
-
-            this.RequestQueryString = this.HashTableQueryString;
 
             this.JavaScriptRegister("custid", this.CustId);
             this.JavaScriptRegister("roleid", CurrentUserSession.RoleId);
-            this.JavaScriptRegister("roleidP2P", CurrentUserSession.RoleId - 1);
-            this.JavaScriptRegister("roleidLiveCasino", CurrentUserSession.RoleId - 1);
-            this.JavaScriptRegister("roleidVirtualSports", CurrentUserSession.RoleId - 1);
-            this.JavaScriptRegister("isAgentLevel", 0);
             this.JavaScriptRegister("usernamedefault", Resources.Lang.enterusername);
-
-            // Double Commission
-            this.JavaScriptRegister("strConfirmDisableDoubleComm", Resources.Lang.confirmDisableDoubleComm);
-            this.JavaScriptRegister("lblAlertDisableDoubleCommMember", Resources.Lang.strConfirmDisableDoubleCommMember);
-            this.JavaScriptRegister("strConfirmEnableDoubleComm", Resources.Lang.strConfirmEnableDoubleComm);
-            this.JavaScriptRegister("strConfirmEnableDoubleCommMember", Resources.Lang.strConfirmEnableDoubleCommMember);
-            this.JavaScriptRegister("strAllowed", Resources.Lang.allowed);
-            this.JavaScriptRegister("strDisallowed", Resources.Lang.disallowed);
 
             this.RegisterClientVariables();
 
@@ -87,7 +125,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.RenderHeader(this.template.Header);
             this.RenderContentBlock(customerData, this.template.Content);
             this.RenderSearchControl();
-
+            RenderNavigation();
             TemplateMain.content = this.template;
             writer.Write(this.TemplateMain);
         }
@@ -95,9 +133,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public override object InvokeData(Hashtable p)
         {
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
-            this.MasterId = CurrentUserSession.CustId;
             int totalPage = 0;
-            DataTable dtb = bo.GetAgentCollection(this.CustId, (UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
+            DataTable dtb = bo.GetAgentCollection(this.CustId, (this.UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
             this.TotalPage = totalPage;
             this.ViewData.Add("CustomerData", dtb);
             return this.ViewData;
@@ -105,13 +142,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         public void RenderSearchControl()
         {
-            // Printer
-            string printClick = "getPrint('page_main')";
-            this.template.print = new PrintControl(this.template, printClick);
-
             // Searching
             string getCustomer = "GetCustomer('AgentList.aspx')";
-            this.template.searchControl = new DoubleCommissionSearchUserName(TemplateMain, UserName, Status, DCommStatus, getCustomer);
+            this.template.searchControl = new DoubleCommissionSearchUserName(TemplateMain, this.UserName, Status, DCommStatus, getCustomer);
 
             string pagingControlName_top = "_PagingTop";
             string pagingControlName_bottom = "MemberList" + CurrentUserSession.SiteName + "_PagingBottom";
@@ -131,29 +164,11 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             }
 
             this.template.PagingHeader.button.Hide();
-
-            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
-            //{
-            //    this.template.PagingHeader.selected.Hide();
-            //}
-
-            //this.template.PagingHeader.selected.function_all = "CheckAll_onClick(true);";
-            //this.template.PagingHeader.selected.function_none = "CheckAll_onClick(false);";
         }
 
         public void RenderHeader(TplCore.Element.IElement e)
         {
-            // Render MultiEdit Icon
-            //string renderMulti = "RenderMulti(this,'MultiPopup','','" + this.MasterId + "','0')";
             AgentList_Header_Block tplBlock = e as AgentList_Header_Block;
-            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
-            //{
-            //    tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
-            //}
-
-            //tplBlock.isShowDCom = UserPermission.IsShowDoubleCommission.ToString();
-
-            //tplBlock.editMult = new IcoEditMulti(TemplateMain, "");
         }
 
         public void RenderContentBlock(DataTable dtb, TplCore.Element.IElement e)
@@ -166,12 +181,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 foreach (DataRow dr in dtb.Rows)
                 {
                     this.RenderDetail(dr, tplBlock);
-                    //this.RenderRacing(dr, tplBlock);
-                    // this.RenderCasino(dr, tplBlock);
-                    // this.RenderBingo(dr, tplBlock);
-                    //  this.RenderP2P(dr, tplBlock);
-                    //  this.RenderLiveCasino(dr, tplBlock);
-                    //  this.RenderVirtualSport(dr, tplBlock);
 
                     this.template.Content.Append(tplBlock);
                 }
@@ -180,7 +189,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             {
                 StringBuilder noInfo = new StringBuilder();
                 noInfo.Append("<tr>");
-                noInfo.Append("<td colspan='23'>");
+                noInfo.Append("<td colspan='17'>");
                 noInfo.Append(Resources.Lang.noInfo);
                 noInfo.Append("</td>");
                 noInfo.Append("</tr>");
@@ -195,66 +204,52 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             AgentList_Content_Block tplBlock = e as AgentList_Content_Block;
 
             this.agentId = dr["agentid"].ToString();
-            // tplBlock.LnkUserName = CurrentUserSession.SubPageAccess.ViewReports ? "class='text' onclick=\"viewStatement(" + this.agentId + ",'Agent')\"" : string.Empty;
 
-            tplBlock.custId = this.agentId;
-            tplBlock.chkid = "chkid_" + this.agentId;
+            tplBlock.chkid = this.agentId;
             tplBlock.chkid_value = dr["username"] as string;
 
             tplBlock.id = dr["RowNumber"].ToString();
             tplBlock.username = dr["username"] as string;
 
-            //string editAgent_Single = "EditAgent_Single('" + this.agentId + "','" + dr["username"].ToString() + "', " + this.MasterId + ")";
-            //string renderStatus = "RenderStatus(this,'Popup','" + this.agentId + "'," + isClosed.ToString().ToLower() + "," + isSuspended.ToString().ToLower() + ",0," + disableOutright.ToString().ToLower() + ", '" + tplBlock.chkid + "')";
-            //Dictionary<object, bool> dictStatus = new Dictionary<object, bool>();
-            //string backgroundColor = string.Empty;
-            //dictStatus.Add("Enabled", enable);
-            //dictStatus.Add("Closed", isClosed);
-            //dictStatus.Add("Suspended", isSuspended);
-            //IcoStatus status = new IcoStatus(TemplateMain, dictStatus, ref backgroundColor, editAgent_Single, renderStatus);
-            //tplBlock.color = backgroundColor;
-            //tplBlock.status = status;
-
-            //string setDoubleCommission = string.Format("SetDoubleCommission('{0}',this,true);", this.agentId);
-
-            //if (!UserPermission.IsShowDoubleCommission)
-            //{
-            //    setDoubleCommission = string.Empty;
-            //}
-
-            //bool isDoubleCommission = Convert.ToBoolean(dr["DoubleCommLosing"]);
-
-            //IcoDComm dcomm = new IcoDComm(TemplateMain, isDoubleCommission, setDoubleCommission);
-            //tplBlock.DCom.doublecommission = dcomm;
-
             //// Render Other
-            string editMenuControl = "EditMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
-            tplBlock.other_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, string.Empty, editMenuControl);
+            string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
+            string onClickEvent = "EditAgentSetting(this,'" + this.agentId + "', '" + dr["username"].ToString() + "')";
+            tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, "divOther", onClickEvent, editMenuControl);
 
-            //if (!CurrentUserSession.SubPageAccess.UpdateAccount)
-            //{
-            //    tplBlock.DisplayUpdMulti = cssHideUpdateMulti;
-            //}
+            if (Convert.ToInt32(dr["NumberOfAgent"]) > 0)
+            {
+                string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "&us=" + dr["username"].ToString() + "')";
+                IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view", viewAgentDonwlineClick);
+                tplBlock.viewAgentList = viewAgentDownline;
+            }
+            else
+            {
+                tplBlock.viewAgentList = string.Empty;
+            }
 
-            string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "')";
-            IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, viewAgentDonwlineClick);
-            tplBlock.viewAgentList = viewAgentDownline;
+            if (Convert.ToInt32(dr["NumberOfMember"]) > 0)
+            {
+                string viewPlayerDonwlineClick = "ViewDownLine('MemberList.aspx?custid=" + this.agentId + "&us=" + dr["username"].ToString() + "')";
+                IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view", viewPlayerDonwlineClick);
+                tplBlock.viewPlayerList = viewPlayerDownline;
+            }
+            else
+            {
+                tplBlock.viewPlayerList = string.Empty;
+            }
 
-            IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "");
-            tplBlock.viewPlayerList = viewPlayerDownline;
+            tplBlock.groupA = Formater.FormatNumber4((Convert.ToDecimal(dr["groupa"]) * 100), this.langKey);
+            tplBlock.groupB = Formater.FormatNumber4((Convert.ToDecimal(dr["groupb"]) * 100), this.langKey);
+            tplBlock.groupC = Formater.FormatNumber4((Convert.ToDecimal(dr["groupc"]) * 100), this.langKey);
+            tplBlock.groupD = Formater.FormatNumber4((Convert.ToDecimal(dr["groupd"]) * 100), this.langKey);
+            tplBlock.other = Formater.FormatNumber4((Convert.ToDecimal(dr["DiscountOther"]) * 100), this.langKey);
+            tplBlock.onextwo = Formater.FormatNumber4((Convert.ToDecimal(dr["Discount1x2"]) * 100), this.langKey); 
+            tplBlock.game = Formater.FormatNumber4((Convert.ToDecimal(dr["DiscountNumberGame"]) * 100), this.langKey);
 
-            tplBlock.groupA = Formater.FormatNumber4(dr["groupa"], this.langKey);
-            tplBlock.groupB = Formater.FormatNumber4(dr["groupb"], this.langKey);
-            tplBlock.groupC = Formater.FormatNumber4(dr["groupc"], this.langKey);
-            tplBlock.groupD = Formater.FormatNumber4(dr["groupd"], this.langKey);
-            tplBlock.other = Formater.FormatNumber4(dr["DiscountOther"], this.langKey);
-            tplBlock.onextwo = Formater.FormatNumber4(dr["Discount1x2"], this.langKey);
-            tplBlock.game = Formater.FormatNumber4(dr["DiscountNumberGame"], this.langKey);
-
-            tplBlock.HDP = dr["HDP_PositionTaking"].ToString();
-            tplBlock.OU = dr["OU_PositionTaking"].ToString();
-            tplBlock.HDPLive = dr["HDP_PositionTaking_Live"].ToString();
-            tplBlock.OULive = dr["OU_PositionTaking_Live"].ToString();
+            tplBlock.HDP = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_PositionTaking"]) / 100), this.langKey);
+            tplBlock.OU = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking"]) / 100), this.langKey); 
+            tplBlock.HDPLive = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_PositionTaking_Live"]) / 100), this.langKey); 
+            tplBlock.OULive = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking_Live"]) / 100), this.langKey); 
         }
     }
 }

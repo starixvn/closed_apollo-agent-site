@@ -18,7 +18,7 @@ namespace Fanex.Age.UI.Components
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><table id=\"tblHeader\" cellspacing=\"0\" cellpadding=\"0\"><tr><td class=\"bgleft\">";
 			public PagingHeader_selected_Block selected = new PagingHeader_selected_Block();
 			public PagingHeader_button_Block button = new PagingHeader_button_Block();
-			protected static string s3 = "</td><td class=\"bgcenter\">&nbsp;";
+			protected static string s3 = "</td><td class=\"bgcenter\">";
 			public string pagingControl = "{pagingControl}";
 			protected static string s4 = "</td><td class=\"bgright\">";
 			public string selPageSize = "{selPageSize}";

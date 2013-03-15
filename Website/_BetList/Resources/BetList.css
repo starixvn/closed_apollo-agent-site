@@ -92,11 +92,11 @@ div.match + div.league {
 
 #hor-minimalist-a {
     font-size: 12px;
-    background: #716F72;
-    border-collapse: collapse;
+    background: #B2B2B2;    
     text-align: left;
     width: 100%;
-    margin-top: 10px;   
+    margin-top: 10px;
+    border-spacing: 1px;   
 }
 #hor-minimalist-a th {
     font-weight: normal;
@@ -105,25 +105,21 @@ div.match + div.league {
     background: #3D3C3E;
     padding: 2px 5px;    
     text-align: center;
-    border-left: 1px solid #fff;
-}
-
-#hor-minimalist-a th:first {
-    border-left: none;
 }
 
 #hor-minimalist-a td {
     color: #000;
     vertical-align: top;
-    padding: 2px 5px;
-    border: solid 1px #716F72;
+    padding: 2px 5px;    
     text-align: right;
     background: #fff;
 }
+
 #hor-minimalist-a tbody tr:hover td {
     color: #009;
-    background-color: #FFFF00;
+    background-color: #FBF0B9;
 }
+
 #hor-minimalist-a tbody tr#tr_footer:hover td {
     color: #000000;
     background-color: #E8DFCA;
@@ -234,7 +230,30 @@ a {
     cursor: pointer;
     color: #1E1EEB;
     font-size: 11px;
+    position: relative;
 }
+
+/* detail popup */
+
+.detail-popup {
+    position: absolute;
+    right: 38px;
+    width: auto;    
+    height: auto;
+    z-index: 1020;
+    background: url("Images/bg_conts.jpg") repeat-x fixed center top #F5F6F8;
+    border: 1px solid #000000;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    display: none;   
+}
+
+.detail-popup #hor-minimalist-a {
+    margin-top: 0;
+}
+
+/* end */
 .div_horline {
     height: 1px;
     background: #b7b7b7;
