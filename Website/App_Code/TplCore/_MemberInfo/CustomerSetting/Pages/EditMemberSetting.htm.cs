@@ -50,29 +50,27 @@ namespace Fanex.Agent.UI
 			protected string t3_TargetAgentId;
 			protected static string s25 = "&targetRoleId=1&ugroup=";
 			protected string t4_UGroup;
-			protected static string s26 = "'type=\"text/javascript\"></script><script src=\"";
-			protected static string s27{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Languages/en.js", TplSettings.Question);}}
+			protected static string s26 = "'type=\"text/javascript\"></script><script src='../Handlers/Language.ashx' type=\"text/javascript\"></script><script src=\"";
+			protected static string s27{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
 			protected static string s28 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s29{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
+			protected static string s29{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
 			protected static string s30 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s31{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
+			protected static string s31{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetTypeGroup.js", TplSettings.Question);}}
 			protected static string s32 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s33{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetTypeGroup.js", TplSettings.Question);}}
+			protected static string s33{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetType.js", TplSettings.Question);}}
 			protected static string s34 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s35{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetType.js", TplSettings.Question);}}
+			protected static string s35{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
 			protected static string s36 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s37{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
+			protected static string s37{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BettingLimit.js", TplSettings.Question);}}
 			protected static string s38 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s39{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BettingLimit.js", TplSettings.Question);}}
+			protected static string s39{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditPositionTaking.js", TplSettings.Question);}}
 			protected static string s40 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s41{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditPositionTaking.js", TplSettings.Question);}}
+			protected static string s41{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditBetLimit.js", TplSettings.Question);}}
 			protected static string s42 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s43{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditBetLimit.js", TplSettings.Question);}}
+			protected static string s43{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditCommission.js", TplSettings.Question);}}
 			protected static string s44 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s45{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditCommission.js", TplSettings.Question);}}
-			protected static string s46 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s47{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditSetting.js", TplSettings.Question);}}
-			protected static string s48 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s45{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditSetting.js", TplSettings.Question);}}
+			protected static string s46 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -136,8 +134,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s44);
 					bd.Append(s45);
 					bd.Append(s46);
-					bd.Append(s47);
-					bd.Append(s48);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
