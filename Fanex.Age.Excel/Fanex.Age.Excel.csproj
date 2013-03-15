@@ -44,16 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Age.Business">
-      <HintPath>..\Dependencies\Fanex.Age.Business.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.UI">
-      <HintPath>..\Dependencies\Fanex.Age.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.Age.Utility.dll</HintPath>
-    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\Dependencies\Ionic.Zip.dll</HintPath>
     </Reference>
@@ -182,9 +172,21 @@
       <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
       <Name>Fanex.BetList.Age</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Age.Business\Fanex.Age.Business.csproj">
+      <Project>{5024C3EB-BEB3-4096-8365-FFE2E34DC237}</Project>
+      <Name>Fanex.Age.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.DTO\Fanex.Age.DTO.csproj">
       <Project>{A7134F35-65C9-43A6-9386-86CD65F349DD}</Project>
       <Name>Fanex.Age.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
+      <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
+      <Name>Fanex.Age.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
+      <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
+      <Name>Fanex.Age.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
       <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
