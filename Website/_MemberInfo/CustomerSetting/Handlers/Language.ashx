@@ -86,7 +86,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             //language.AppendLine(this.SetValue("REQUIRE_VALIDATION_CODE", Resources.Lang.errRequireValidationCode));
             language.AppendLine(this.SetValue("BASKETBALL", Resources.Lang.Basketball));
             language.AppendLine(this.SetValue("SOCCER", Resources.Lang.soccer));
-            language.AppendLine(this.SetValue("POSITION_SETTING_HEADER", Resources.Lang.positiontaking));
+            language.AppendLine(this.SetValue("POSITION_SETTING_HEADER", Resources.Lang.lblPositionTaking));
             language.AppendLine(this.SetValue("BET_SETTING_HEADER", Resources.Lang.lblBetSetting));
             language.AppendLine(this.SetValue("COMMISSION_SETTING_HEADER", Resources.Lang.commission));
             language.AppendLine(this.SetValue("GROUP_A", Resources.Lang.lblGroupa));
