@@ -459,7 +459,7 @@ namespace Sunplus.Agent.Model.BL.Reports
         private bool CheckConstraintMoveBetsDay(DateTime fromDate)
         {
             // isIgnoredBettrans=true : ignored constraint
-            return IGNOREED_BETTRANS || DateTime.Compare(fromDate, MoveBetsDate) <= 0;
+            return IGNOREED_BETTRANS;// || DateTime.Compare(fromDate, MoveBetsDate) <= 0;
         }
         #endregion
 
