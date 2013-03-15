@@ -7,52 +7,109 @@
 
     public class ShadowAccount
     {
+        private int _AgentUserId;
+        private string _UserName;
+        private bool _IsMaster;
+        private string _PageAccess;
+        private DateTime _CreateDate;
+        private bool _Closed;
+        private int _Creator;
+        private int _LoginCount;
+
         public int AgentUserId
         {
-            set;
-            get;
+            set
+            {
+                _AgentUserId = (int)value;
+            }
+            get
+            {
+                return _AgentUserId;
+            }
         }
 
         public string Username
         {
-            get;
-            set;
+            set
+            {
+                _UserName = value;
+            }
+            get
+            {
+                return _UserName;
+            }
         }
 
         public bool IsMaster
         {
-            get;
-            set;
+            set
+            {
+                _IsMaster = (bool)value;
+            }
+            get
+            {
+                return _IsMaster;
+            }
         }
 
         public string PageAccess
         {
-            get;
-            set;
+            set
+            {
+                _PageAccess = value;
+            }
+            get
+            {
+                return _PageAccess;
+            }
         }
 
         public DateTime CreateDate
         {
-            get;
-            set;
+            set
+            {
+                _CreateDate = (DateTime)value;
+            }
+            get
+            {
+                return _CreateDate;
+            }
         }
 
         public bool Closed
         {
-            get;
-            set;
+            set
+            {
+                _Closed = (bool)value;
+            }
+            get
+            {
+                return _Closed;
+            }
         }
 
         public int Creator
         {
-            get;
-            set;
+            set
+            {
+                _Creator = (int)value;
+            }
+            get
+            {
+                return _Creator;
+            }
         }
 
         public int LoginCount
         {
-            get;
-            set;
+            set
+            {
+                _LoginCount = (int)value;
+            }
+            get
+            {
+                return _LoginCount;
+            }
         }
     }
 }

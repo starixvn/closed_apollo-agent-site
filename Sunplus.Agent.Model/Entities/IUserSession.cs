@@ -216,10 +216,10 @@ namespace Sunplus.Agent.Model.Entities
         /// Logged-in sub-account access.
         /// If logged-in account is main, return null.
         /// </summary>
-        PageAccess SubPageAccess
-        {
-            get;
-        }
+        //PageAccess SubPageAccess
+        //{
+        //    get;
+        //}
 
         /// <summary>
         /// User name of logged-in sub-account.

@@ -46,94 +46,10 @@ namespace Sunplus.Agent.Model.BL.SubAcc
                     Closed = (bool)dr["Closed"],
                     CreateDate = (DateTime)dr["CreateDate"],
                     Creator = (int)dr["Creator"],
-                    LoginCount = (int)dr["LoginCount"]
+                    LoginCount = 0
                 });
             }
             return subAccList;
-        }
-
-        /// <summary>
-        /// Get informations of a sub-account.
-        /// </summary>
-        /// <param name="custId">Main account id</param>
-        /// <param name="subAccId">Sub-account id</param>
-        /// <returns>Return a SubAccount if succeeded or raise an exception.</returns>
-        public SubAccount GetSubAccount(int subAccId)
-        {
-            SubAccDAO dao = new SubAccDAO();
-
-            DataTable dataTable = dao.Age_CustSubSelInfo(CurrentSession.CustId, subAccId);
-
-            SubAccount subAccount = new SubAccount(dataTable.Rows[0], false);
-
-            return subAccount;
-        }
-
-        /// <summary>
-        /// Insert a sub-account.
-        /// </summary>
-        /// <param name="subAccount">Sub-account object. If insert failed, sub-account object will have id = 0</param>
-        /// <param name="ip">User ip address</param>
-        /// <param name="errMsg">Output error message</param>
-        /// <returns>Return true if succeeded or false if failed.</returns>
-        public int InsertSubAccount(
-            ref SubAccount subAccount,
-            string ip,
-            out string errMsg)
-        {
-            SubAccDAO dao = new SubAccDAO();
-
-            int subAccId = 0;
-            int errCode = -1;
-
-            bool isSuccess = dao.Age_CustSubIns(
-                out subAccId,
-                CurrentSession.CustId,
-                subAccount.UserName,
-                subAccount.PassWord,
-                subAccount.FirstName,
-                subAccount.LastName,
-                subAccount.PageAccess,
-                CurrentSession.SubAccId,
-                CurrentSession.UserId,
-                out errCode,
-                CurrentSession.LangKey,
-                ip,
-                out errMsg);
-
-            if (isSuccess)
-            {
-                subAccount.Id = subAccId;
-                errCode = 0;
-            }
-
-            return errCode;
-        }
-
-        /// <summary>
-        /// Update a sub-account.
-        /// </summary>
-        /// <param name="ip">User ip address</param>
-        /// <param name="errMsg">Output error message</param>
-        /// <returns>Return error code or raise an exception.</returns>
-        public int UpdateSubAccount(
-            SubAccount subAccount,
-            string ip,
-            out string errMsg)
-        {
-            SubAccDAO dao = new SubAccDAO();
-
-            return dao.Age_CustSubUpdInfo(
-                subAccount.Id,
-                CurrentSession.CustId,
-                subAccount.FirstName,
-                subAccount.LastName,
-                subAccount.IsClosed,
-                CurrentSession.SubAccId,
-                CurrentSession.UserId,
-                CurrentSession.LangKey,
-                ip,
-                out errMsg);
         }
 
         /// <summary>
@@ -146,21 +62,17 @@ namespace Sunplus.Agent.Model.BL.SubAcc
         /// <param name="errMsg">Output error message</param>
         /// <returns>Return error code or raise an exception.</returns>
         public int UpdateSubAccountPermission(
-            int subAccId,
-            string updPageAccess,
-            string ip,
+            int agentId,
+            int agentUserId,
+            string pageAccess,
             out string errMsg)
         {
             SubAccDAO dao = new SubAccDAO();
 
-            return dao.Age_CustSubUpdPageAccess(
-                CurrentSession.CustId,
-                subAccId,
-                updPageAccess,
-                CurrentSession.SubAccId,
-                CurrentSession.UserId,
-                CurrentSession.LangKey,
-                ip,
+            return dao.Acc_AgentUser_UpdatePermission(
+                agentId,
+                agentUserId,
+                pageAccess,
                 out errMsg);
         }
 
@@ -188,24 +100,6 @@ namespace Sunplus.Agent.Model.BL.SubAcc
                 CurrentSession.SubAccId,
                 CurrentSession.UserId,
                 ip,
-                out errMsg);
-        }
-
-        /// <summary>
-        /// Change password of current sub-account.
-        /// </summary>
-        /// <returns></returns>
-        public int ChangePassword(string newPassword, string oldPassword, string ip, out string errMsg)
-        {
-            SubAccDAO dao = new SubAccDAO();
-
-            return dao.Age_CustSubPwdUpd2(
-                CurrentSession.CustId,
-                newPassword,
-                oldPassword,
-                CurrentSession.LangKey,
-                ip,
-                CurrentSession.SubAccId,
                 out errMsg);
         }
     }

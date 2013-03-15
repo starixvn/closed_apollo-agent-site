@@ -100,8 +100,8 @@ namespace Sunplus.Agent.UI._SubAcc
 
             tpl.Content.Clear();
             SubAccList_Content_Block rowContent = new SubAccList_Content_Block();
-
-            rowContent.overcolor = Fanex.Age.UI.Common.RowBgOver;
+            rowContent.overcolor = "#f8ff8d";
+            rowContent.color = "#faf9ee";
 
             for (int i = 0; i < c; i++)
             {
@@ -117,7 +117,8 @@ namespace Sunplus.Agent.UI._SubAcc
         {
             rowContent.no_value = (i + 1).ToString();
             rowContent.shadow_value = HttpUtility.HtmlEncode(subAcc.Username);
-            rowContent.id_value = subAcc.AgentUserId.ToString();
+            rowContent.agentuserid_value = subAcc.AgentUserId.ToString();
+            rowContent.agentid_value = this.AgentId.ToString();
         }
     }
 }

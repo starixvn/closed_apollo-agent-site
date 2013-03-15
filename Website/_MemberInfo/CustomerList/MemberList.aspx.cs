@@ -26,6 +26,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
     using Sunplus.Agent.Utilities;
+    using Sunplus.Agent.Model.Entities;
 
     public partial class MemberList_Page : CustomerList_Page
     {
@@ -240,7 +241,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             // Render Other menu
             string userGroup = dr["ugroup"] as string;
             string editMenuControl = "EditMemberMenuControl(this,'editControl', '" + this.memberId + "', '" + dr["username"].ToString() + "','" + userGroup + "')";
-            string onClickEvent = "EditMemberSetting(this,'" + this.memberId + "', '" + dr["username"].ToString() + "')";
+            string onClickEvent = "EditMemberSetting(this,'" + this.memberId + "', '" + dr["username"].ToString() + "','" + userGroup + "')";
             tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.memberId, "divOther", onClickEvent, editMenuControl);
 
             tplBlock.group = userGroup;

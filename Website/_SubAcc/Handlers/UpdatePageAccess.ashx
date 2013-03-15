@@ -18,14 +18,16 @@ namespace Sunplus.Agent.UI._SubAcc
 {
     public class UpdatePageAccess_Handler : Fanex.Age.UI.TplHandler
     {
-        int subAccId = 0;
-        string updPageAccess = string.Empty;
+        int agentId = 0;
+        int agentUserId = 0;
+        string PageAccess = string.Empty;
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
             p.AddHttpParameters(new string[] {
-                "SubAccId",
-                "updPageAccess" // Value of page access [A][B]....
+                "agentId",
+                "agentUserId",
+                "PageAccess" // Value of page access [A][B]....
             }, Request);
         }
 
@@ -38,22 +40,24 @@ namespace Sunplus.Agent.UI._SubAcc
             }
 
             // Validate sub-account id in case user try to put an invalid sub-account id
-            subAccId = int.Parse(p["SubAccId"] as string);
-            if (subAccId <= 0)
+            agentId = int.Parse(p["agentId"] as string);
+            agentUserId = int.Parse(p["agentUserId"] as string);
+            if (agentId <= 0 || agentUserId <= 0)
             {
                 return new Result(ErrorType.AccessDenied, Resources.Lang.strNotAccessPage);
             }
 
             // Value of page access [A][B]....
-            updPageAccess = p["updPageAccess"] as string;
-            string[] arrPageAccess = updPageAccess.Split(']');
-            for (int i = 0; i < arrPageAccess.Length - 1; i++)
-            {
-                if (!PageAccessType.IsValidType(arrPageAccess[i] + "]"))
-                {
-                    return new Result(ErrorType.AccessDenied, Resources.Lang.strNotAccessPage);
-                }
-            }
+            PageAccess = p["PageAccess"] as string;
+
+            //string[] arrPageAccess = updPageAccess.Split(']');
+            //for (int i = 0; i < arrPageAccess.Length - 1; i++)
+            //{
+            //    if (!PageAccessType.IsValidType(arrPageAccess[i] + "]"))
+            //    {
+            //        return new Result(ErrorType.AccessDenied, Resources.Lang.strNotAccessPage);
+            //    }
+            //}
 
             return null;
         }
@@ -64,9 +68,8 @@ namespace Sunplus.Agent.UI._SubAcc
 
             string errMsg;
             int errCode = bo.UpdateSubAccountPermission(
-                subAccId,
-                updPageAccess,
-                Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(),
+                agentId, agentUserId,
+                PageAccess,
                 out errMsg
                 );
 

@@ -24,7 +24,6 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditMemberBetLimit : Fane
             template.headerText = string.Empty;
             template.isReloadParent = "1";
         }
-        template.UGroup = Context.Request.QueryString["ugroup"].ToString();
         writer.Write(template);
     }
 
