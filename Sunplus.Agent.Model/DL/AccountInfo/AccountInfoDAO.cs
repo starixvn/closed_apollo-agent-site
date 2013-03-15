@@ -17,17 +17,14 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
         /// <param name="custId"></param>
         /// <param name="query">UserName, First Name, Last Name</param>
         /// <returns></returns>
-        public DataTable Age_CustomerSelUserSearch(int userId, string query, int issubaccount, int excludemember, int directdownline, int isaccinfo, bool isInternal)
+        public DataTable Age_Customer_GetUserSearch(int userId, string userName, bool isMember)
         {
             Hashtable param = new Hashtable();
-            param.Add("custid", userId);
-            param.Add("username", query);
-            param.Add("issubaccount", issubaccount);
-            param.Add("excludemember", excludemember);
-            param.Add("directdownline", directdownline);
-            param.Add("isaccinfo", isaccinfo);
-            param.Add("isinternalagent", isInternal);
-            return ExecSpTable("Age_CustomerSelUserSearch", param);
+            param.Add("agentid", userId);
+            param.Add("username", userName);
+            param.Add("ismember", isMember);
+            
+            return ExecSpTable("Age_Customer_GetUserSearch", param);
         }
 
         public DataTable Acc_CustomerSelList(int custId, int pageSize, int pageIndex, ref int totalPages)

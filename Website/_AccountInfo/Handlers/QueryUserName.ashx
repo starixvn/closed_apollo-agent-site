@@ -12,6 +12,9 @@ namespace Sunplus.Agent.UI._AccountInfo
 
     public class QueryUserName_Handler : Fanex.Age.UI.TplHandler,System.Web.SessionState.IReadOnlySessionState
     {
+        string query = string.Empty;
+        bool isMember = false;
+        
         public QueryUserName_Handler()
         {
             IsValidateRequest = false;
@@ -28,17 +31,18 @@ namespace Sunplus.Agent.UI._AccountInfo
             
             for (int i = 0; i < count; i++)
             {
-                suggessions[i] = new object[]{HttpUtility.HtmlEncode(rows[i]["username"].ToString()), HttpUtility.HtmlEncode(rows[i]["firstname"].ToString()), HttpUtility.HtmlEncode(rows[i]["lastname"].ToString())};
+                suggessions[i] = new object[]{HttpUtility.HtmlEncode(rows[i]["username"].ToString())};
             }
 
             data.Add("query", query);
             data.Add("suggestions", suggessions);
         }
 
-        string query = string.Empty;
+        
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
-            query = Request["query"];
+            query = Request.QueryString["query"];
+            isMember = Request.QueryString["isMember"] == "0" ? false : true; 
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
@@ -54,7 +58,7 @@ namespace Sunplus.Agent.UI._AccountInfo
         public override object InvokeData(System.Collections.Hashtable p)
         {
             AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-            return bo.SearchCustomer(query);
+            return bo.Age_Customer_GetUserSearch(query, isMember);
         }
     }
 

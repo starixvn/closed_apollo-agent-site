@@ -9,6 +9,8 @@ namespace Fanex.Age.DTO.Reports.TreeView
     {
         public static int _SearchingID = 0;
 
+        public static int _Type = 0;
+
         #region Properties
         /// <summary>
         /// Gets or sets the node identifier

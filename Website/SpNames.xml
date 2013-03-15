@@ -329,7 +329,8 @@
     <Setting Key="Age_Customer_GetDownLine" SpName="Age_Customer_GetDownLine" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetDownLinePath" SpName="Age_Customer_GetDownLinePath" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetMembersDownLine" SpName="Age_Customer_GetMembersDownLine" DbName="DB05" Plain="0" />
-
+    <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="DB05" Plain="0" />
+    
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets">
