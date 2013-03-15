@@ -23,10 +23,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     using Fanex.Agent.UI._MemberInfo.CustomerList;
     using Fanex.PTVirtualSports.Extension;
     using Sunplus.Agent.Model.BL.MemberInfo.CustomerList;
+    using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
     using Sunplus.Agent.Utilities;
-    using Sunplus.Agent.Model.Entities;
 
     public partial class MemberList_Page : CustomerList_Page
     {
@@ -166,7 +166,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 {Resources.Lang.doublecommissionOFF, 0}
             };
 
-            DoubleCommissionSearchUserName dcomControl = new DoubleCommissionSearchUserName(TemplateMain, this.UserName, Status, DCommStatus, "GetCustomer('MemberList.aspx')", dcommFilterDict);
+            DoubleCommissionSearchUserName dcomControl = new DoubleCommissionSearchUserName(TemplateMain, this.UserName, Status, DCommStatus, "GetCustomer('MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName + "')", dcommFilterDict);
             this.tempate.searchControl = dcomControl;
 
             string pagingControlName_top = "_PagingTop";
@@ -246,20 +246,20 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             tplBlock.group = userGroup;
 
-            tplBlock.groupAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentgroup"]) * 100), this.langKey); 
-            tplBlock.oneXtwoAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscount1x2"]) * 100), this.langKey); 
-            tplBlock.otherAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscountother"]) * 100), this.langKey); 
-            tplBlock.gameAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscountnumbergame"]) * 100), this.langKey); 
+            tplBlock.groupAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentgroup"]) * 100), this.langKey);
+            tplBlock.oneXtwoAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscount1x2"]) * 100), this.langKey);
+            tplBlock.otherAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscountother"]) * 100), this.langKey);
+            tplBlock.gameAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscountnumbergame"]) * 100), this.langKey);
 
-            tplBlock.groupMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustGroup"]) * 100), this.langKey); 
-            tplBlock.oneXtwoMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscount1x2"]) * 100), this.langKey); 
-            tplBlock.otherMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscountOther"]) * 100), this.langKey); 
+            tplBlock.groupMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustGroup"]) * 100), this.langKey);
+            tplBlock.oneXtwoMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscount1x2"]) * 100), this.langKey);
+            tplBlock.otherMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscountOther"]) * 100), this.langKey);
             tplBlock.gameMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscountNumberGame"]) * 100), this.langKey);
 
-            tplBlock.HDP = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_Soccer_PT"]) / 100), this.langKey); 
+            tplBlock.HDP = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_Soccer_PT"]) / 100), this.langKey);
             tplBlock.OU = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_Soccer_PT"]) / 100), this.langKey);
-            tplBlock.HDPLive = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_Soccer_PT_Live"]) / 100), this.langKey); 
-            tplBlock.OULive = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_Soccer_PT_Live"]) / 100), this.langKey); 
+            tplBlock.HDPLive = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_Soccer_PT_Live"]) / 100), this.langKey);
+            tplBlock.OULive = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_Soccer_PT_Live"]) / 100), this.langKey);
         }
     }
 }

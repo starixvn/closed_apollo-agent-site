@@ -167,8 +167,8 @@
     <Compile Include="Entities\ExtObject.cs" />
     <Compile Include="Entities\IExtObject.cs" />
     <Compile Include="Entities\PageAccess.cs" />
+    <Compile Include="Entities\ShadowAccess.cs" />
     <Compile Include="Entities\ShadowAccount.cs" />
-    <Compile Include="Entities\SubAccount.cs" />
     <Compile Include="Security\HttpFrequenceRule.cs" />
     <Compile Include="Services\DeviceService.cs" />
     <Compile Include="Services\LiveDataService.cs" />

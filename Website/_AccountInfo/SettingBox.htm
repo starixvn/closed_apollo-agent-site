@@ -8,8 +8,7 @@
 <div id="Bleft_Parent02">
     <div id="left_submenu"> 
         <div id="left_tab">
-            <ul>
-                
+            <ul>                
                 <li id="custsettings" class="current"><a href="#" onclick="showSection(this.parentNode.id, null);">
                     <span>{static:Resources.Lang.setting}</span></a></li>
                 <!--HiddenBlockHeaderTabAgent-->
@@ -36,7 +35,7 @@
             </table>
             
             <!--HiddenBlockTabAgent-->
-            <table id="tbl_agentsTab" style="display: none;">
+            <table id="tbl_agentsTab" class="agent-tab">
                 <tr>
                     <td>
                          {TreeViewDownLineFrame} 
@@ -46,19 +45,15 @@
             <!--/HiddenBlockTabAgent-->
 
             <!--HiddenBlockTabMember-->
-            <table id="tbl_membersTab" style="display: none;">
+            <table id="tbl_membersTab" class="member-tab">
                 <tr>
-                    <td id="members-list">
-                        
+                    <td>
+                        <ul id="members-list" class="member-tab-list">                        
+                        </ul>
                     </td>
                 </tr>                
             </table>
-            <!--/HiddenBlockTabMember-->
-            <center>
-                <span id="tbl_onlinelist" style="display: none;">
-                    <img src="../_GlobalResources/Images/ajax-loader.gif" alt="loading" />
-                    {static:Resources.Lang.loading} </span>
-            </center>
+            <!--/HiddenBlockTabMember-->            
         </div>
     </div>
 </div>

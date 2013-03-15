@@ -1,17 +1,17 @@
 ﻿/*
  * Created 20111227@Andy - Render sub-account permissions page
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 using System.Collections.Generic;
-using Resources;
+using System.Text;
 using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
-using Sunplus.Agent.UI._SubAcc;
-using System.Text;
+using Resources;
 using Sunplus.Agent.Model.Entities;
+using Sunplus.Agent.UI._SubAcc;
 
 namespace Sunplus.Agent.UI._SubAcc
 {
@@ -34,7 +34,6 @@ namespace Sunplus.Agent.UI._SubAcc
 
         public SubAccPermissionPage()
         {
-
         }
 
         public override void RenderContent(System.Web.UI.HtmlTextWriter writer)
@@ -45,31 +44,30 @@ namespace Sunplus.Agent.UI._SubAcc
             RegisterJavascriptObject("CallBack", Parameters["CallBack"]);
 
             var checkBoxes = new List<string>();
-            SubAccPermission_Template perm = null;
 
             var numBreak = 0;
 
-            foreach (IExtObject<string, string> data in FunctionNames)
-            {
-                perm = new SubAccPermission_Template();
+            //foreach (IExtObject<string, string> data in FunctionNames)
+            //{
+            //    perm = new SubAccPermission_Template();
 
-                perm.chkID = data.Key;
-                perm.FunctionName = data.Value;
+            //    perm.chkID = data.Key;
+            //    perm.FunctionName = data.Value;
 
-                _permissions.Append(perm);
-                
-                checkBoxes.Add(data.Key);
+            //    _permissions.Append(perm);
 
-                if (numBreak == 3)
-                {
-                    _permissions.Append("<br />");
+            //    checkBoxes.Add(data.Key);
 
-                    numBreak = 0;
-                    continue;
-                }                
+            //    if (numBreak == 3)
+            //    {
+            //        _permissions.Append("<br />");
 
-                numBreak++;
-            }
+            //        numBreak = 0;
+            //        continue;
+            //    }
+
+            //    numBreak++;
+            //}
 
             RegisterJavascriptObject("checkBoxes", checkBoxes.ToArray());
         }

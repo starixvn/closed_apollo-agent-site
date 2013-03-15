@@ -160,28 +160,20 @@ namespace Sunplus.Agent.Model.DL.SubAcc
         /// <param name="ip">Login ip address</param>
         /// <param name="errMsg">Output error message</param>
         /// <returns>Return error code, otherwise throw System.Data.SqlClient.SqlException or Sunplus.Agent.Model.DL.DataException.</returns>
-        public int Age_CustSubUpdPageAccess(
-            int custId,
-            int subAccId,
-            string updPageAccess,
-            int loginSubAccId,
-            int userId,
-            string language,
-            string ip,
+        public int Acc_AgentUser_UpdatePermission(
+            int agentId,
+            int agentUserId,
+            string PageAccess,
             out string errMsg)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("subaccid", subAccId);
-            parameters.Add("custid", custId);
-            parameters.Add("updpageaccess", updPageAccess);
-            parameters.Add("loginsubaccid", loginSubAccId);
-            parameters.Add("userid", userId);
+            parameters.Add("agentid", agentId);
+            parameters.Add("agentuserid", agentUserId);
+            parameters.Add("pageaccess", PageAccess);
             parameters.Add("errcode", 0);
-            parameters.Add("language", language);
-            parameters.Add("loginip", ip);
             parameters.Add("errmsg", string.Empty);
 
-            Hashtable outputs = ExecSpHashtable("Age_CustSubUpdPageAccess", parameters);
+            Hashtable outputs = ExecSpHashtable("Acc_AgentUser_UpdatePermission", parameters);
 
             errMsg = outputs["errmsg"] as string;
 

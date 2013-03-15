@@ -43,13 +43,14 @@ namespace Sunplus.Agent.UI._MemberInfo.ChangePassword
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            AuthorizationBO bo = new AuthorizationBO(CurrentUserSession.NetSessionId);
+            //AuthorizationBO bo = new AuthorizationBO(CurrentUserSession.NetSessionId);
 
-            int errCode = 0;
-            string errMsg = string.Empty;
+            //int errCode = 0;
+            //string errMsg = string.Empty;
 
-            errCode = bo.ChangePassword(newPwd, oldPwd, Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), out errMsg);
-            return new Result(errCode, errMsg);
+            //errCode = bo.ChangePassword(newPwd, oldPwd, Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), out errMsg);
+            //return new Result(errCode, errMsg);
+            return null;
         }
     }
 }

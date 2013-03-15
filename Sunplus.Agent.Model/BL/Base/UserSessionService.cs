@@ -114,11 +114,11 @@ namespace Sunplus.Agent.Model.BL
             session.IsLogged = true;
 
             //session.SubUserName = values["subaccname"] as string;
-            session.SubPageAccess = (PageAccess)(values["subpageaccess"] as string);
-            if (!session.IsSubAcc)
-            {
-                session.SubPageAccess.SetFullPermission();
-            }
+            // session.SubPageAccess = (PageAccess)(values["subpageaccess"] as string);
+            //if (!session.IsSubAcc)
+            //{
+            //    session.SubPageAccess.SetFullPermission();
+            //}
 
             //session.SiteName = values["sitename"] as string;
             //session.Site = values["site"] as string;
