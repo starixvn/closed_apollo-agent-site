@@ -23,11 +23,13 @@ namespace Fanex.Age.UI.Admin
 			public string actionForm = "{actionForm}";
 			protected static string s7 = "><div id=\"page_main\"><div id=\"header_main\" style=\"width:740px;\"><span style=\"float:left\">";
 			protected static string s8{get{return Resources.Lang.Exchange_Rate;}}
-			protected static string s9 = "</span></div></div></form></body><script src=\"";
-			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s11 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s12{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s13 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s9 = "</span></div></div>";
+			public ExchangeRate_ExcelContents_Block ExcelContents = new ExchangeRate_ExcelContents_Block();
+			protected static string s10 = "</form><script src=\"";
+			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s13{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
+			protected static string s14 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -44,10 +46,12 @@ namespace Fanex.Age.UI.Admin
 					bd.Append(s7);
 					bd.Append(s8);
 					bd.Append(s9);
+					if(null != ExcelContents) ExcelContents.ToString(ref bd);
 					bd.Append(s10);
 					bd.Append(s11);
 					bd.Append(s12);
 					bd.Append(s13);
+					bd.Append(s14);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -58,6 +62,66 @@ namespace Fanex.Age.UI.Admin
 				return bd.ToString();
 			}
 
+		}
+
+		public class ExchangeRate_ExcelContents_Block: Block
+		{
+			protected static string s15 = "<table class=\"tblRpt\" cellpadding=\"0\" cellspacing=\"1\" id=\"tbl-rpt\"><tr id=\"rowTitle\" class=\"RptTitle\"><td id=\"content_title\" colspan=\"10\">memberwinloss</td></tr><tr class=\"RptHeader\"><td>Currency</td><td>BaseRate</td><td>MinBet</td><td>MinBetLive</td><td>Description</td><td>Edit</td></tr>";
+			public ExchangeRate_ExcelContents_Content_Block Content = new ExchangeRate_ExcelContents_Content_Block();
+			protected static string s16 = "</table>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s15);
+					if(null != Content) Content.ToString(ref bd);
+					bd.Append(s16);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class ExchangeRate_ExcelContents_Content_Block: Block
+		{
+			protected static string s17 = "<tr bgcolor=\"";
+			public string ColorClass = "{ColorClass}";
+			protected static string s18 = "\" onmouseover=\"\" onmouseout=\"this.style.backgroundColor='";
+			protected string t0_ColorClass;
+			protected static string s19 = "'\"><td>";
+			public string Currency = "{Currency}";
+			protected static string s20 = "</td><td>";
+			public string BaseRate = "{BaseRate}";
+			protected static string s21 = "</td><td>";
+			public string MinBet = "{MinBet}";
+			protected static string s22 = "</td><td>";
+			public string MinBetLive = "{MinBetLive}";
+			protected static string s23 = "</td><td>";
+			public string Description = "{Description}";
+			protected static string s24 = "</td></tr>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s17);
+					bd.Append(ColorClass);
+					bd.Append(s18);
+					bd.Append(ColorClass);
+					bd.Append(s19);
+					bd.Append(Currency);
+					bd.Append(s20);
+					bd.Append(BaseRate);
+					bd.Append(s21);
+					bd.Append(MinBet);
+					bd.Append(s22);
+					bd.Append(MinBetLive);
+					bd.Append(s23);
+					bd.Append(Description);
+					bd.Append(s24);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
 		}
 
 	}

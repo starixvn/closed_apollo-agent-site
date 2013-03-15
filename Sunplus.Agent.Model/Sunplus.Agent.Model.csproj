@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Admin\AdminBO.cs" />
     <Compile Include="BL\BetSetting\BetSettingBO.cs" />
     <Compile Include="BL\BetSummary\BetSummaryBO.cs" />
     <Compile Include="BL\Bingo\BingoBO.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="BL\SubAcc\SubAccBO.cs" />
     <Compile Include="BL\Transfer\TransferBO.cs" />
     <Compile Include="Common\AgentIPFormat.cs" />
+    <Compile Include="DL\Admin\AdminDAO.cs" />
     <Compile Include="DL\BetSetting\BetSettingDAO.cs" />
     <Compile Include="DL\BetSummary\BetSummaryDAO.cs" />
     <Compile Include="DL\Charts\ChartsDAO.cs" />
