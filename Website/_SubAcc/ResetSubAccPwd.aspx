@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="ResetSubAccPwd.aspx.cs" Inherits="Sunplus.Agent.UI._SubAcc.ResetSubAccPwd_Page" %>

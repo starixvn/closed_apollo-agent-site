@@ -67,37 +67,38 @@
             <!--/Header-->
             <!--Content-->
             <tr align="center" bgcolor="{color}" onmouseover="bgColor='{overcolor}'" onmouseout="bgColor='{color}'">
-                <td class="w-order">
+                <td class="w-order c">
                     {no_value}
                 </td>
                 <td class="l">
                     {shadow_value}
                 </td>
-                <td class="l">
-                    <input type="checkbox" id="chk{id_value}[TF][R][H]" />
+                <td class="c" width="100px">
+                    <input type="checkbox" id="chk{agentuserid_value}[TF][R][H]" value="[TF][R][H]" {totalbet_forecast_checked} />
                 </td>
-                <td class="l">
-                    <input type="checkbox" id="chk{id_value}[RP][R][H]" />
+                <td class="c" width="80px">
+                    <input type="checkbox" id="chk{agentuserid_value}[RP][R][H]" value="[RP][R][H]" {totalbet_forecast_checked} />
                 </td>
-                <td>
-                    <input type="checkbox" id="chk{id_value}[AC][R]" />
+                <td class="c" width="80px">
+                    <input type="checkbox" id="chk{agentuserid_value}[AC][R]" value="[AC][R]" {accountsetting_checked_read} />
                 </td>
-                <td>
-                    <input type="checkbox" id="chk{id_value}[AC][H]" />
+                <td class="c" width="80px">
+                    <input type="checkbox" id="chk{agentuserid_value}[AC][H]" value="[AC][H]" {accountsetting_checked_host} />
                 </td>
-                <td>
-                    <input type="checkbox" id="chk{id_value}[SM][R]" />
+                <td class="c" width="80px">
+                    <input type="checkbox" id="chk{agentuserid_value}[SM][R]" value="[SM][R]" {shadowmanagement_checked_read} />
                 </td>
-                <td>
-                    <input type="checkbox" id="chk{id_value}[SM][H]" />
+                <td class="c" width="80px">
+                    <input type="checkbox" id="chk{agentuserid_value}[SM][H]" value="[SM][H]" {shadowmanagement_checked_host}/>
                 </td>
-                <td>
-                    <input type="checkbox" id="chk{id_value}[AD][R]" />
+                <td class="c" width="80px">
+                    <input type="checkbox" id="chk{agentuserid_value}[AD][R]" value="[AD][R]" {admin_checked_read} />
                 </td>
-                <td>
-                    <input type="checkbox" id="chk{id_value}[AD][H]" />
+                <td class="c" width="80px">
+                    <input type="checkbox" id="chk{agentuserid_value}[AD][H]" value="[AD][H]" {admin_checked_host}  />
                 </td>
-                <td>
+                <td class="c" width="80px">
+                    <a href="#" onclick="UpdatePermission({agentuserid_value},{agentid_value});">Update</a>
                 </td>
             </tr>
             <!--/Content-->
@@ -110,5 +111,6 @@
             <!--/NoInfo-->
         </table>
 </body>
+<script src="../_GlobalResources/Js/Core.js" type="text/javascript"></script>
 <script src="Resources/SubAcc.js" type="text/javascript"></script>
 </html>
