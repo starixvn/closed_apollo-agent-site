@@ -143,7 +143,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public void RenderSearchControl()
         {
             // Searching
-            string getCustomer = "GetCustomer('AgentList.aspx')";
+            string getCustomer = "GetCustomer('AgentList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName + "')";
             this.template.searchControl = new DoubleCommissionSearchUserName(TemplateMain, this.UserName, Status, DCommStatus, getCustomer);
 
             string pagingControlName_top = "_PagingTop";
@@ -243,13 +243,13 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             tplBlock.groupC = Formater.FormatNumber4((Convert.ToDecimal(dr["groupc"]) * 100), this.langKey);
             tplBlock.groupD = Formater.FormatNumber4((Convert.ToDecimal(dr["groupd"]) * 100), this.langKey);
             tplBlock.other = Formater.FormatNumber4((Convert.ToDecimal(dr["DiscountOther"]) * 100), this.langKey);
-            tplBlock.onextwo = Formater.FormatNumber4((Convert.ToDecimal(dr["Discount1x2"]) * 100), this.langKey); 
+            tplBlock.onextwo = Formater.FormatNumber4((Convert.ToDecimal(dr["Discount1x2"]) * 100), this.langKey);
             tplBlock.game = Formater.FormatNumber4((Convert.ToDecimal(dr["DiscountNumberGame"]) * 100), this.langKey);
 
             tplBlock.HDP = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_PositionTaking"]) / 100), this.langKey);
-            tplBlock.OU = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking"]) / 100), this.langKey); 
-            tplBlock.HDPLive = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_PositionTaking_Live"]) / 100), this.langKey); 
-            tplBlock.OULive = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking_Live"]) / 100), this.langKey); 
+            tplBlock.OU = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking"]) / 100), this.langKey);
+            tplBlock.HDPLive = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_PositionTaking_Live"]) / 100), this.langKey);
+            tplBlock.OULive = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking_Live"]) / 100), this.langKey);
         }
     }
 }
