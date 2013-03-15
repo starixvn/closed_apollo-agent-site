@@ -184,7 +184,7 @@
 
                 if (!bool.Parse(dtrCustomerInfo["HasAgentDownLine"].ToString()))
                 {
-                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = "<span> No data <span>";
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = "<span class=\"no-data\"> " + Resources.Lang.noInfo + "<span>";
                 }
                 else
                 {

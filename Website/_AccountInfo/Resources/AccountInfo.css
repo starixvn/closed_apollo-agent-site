@@ -1095,13 +1095,14 @@ a.btnList:hover {
 
 .treeview li a {
     color: #2678C5;
+    text-decoration: none;
 }
 
 /* agent tab */
 
 .agent-tab {
     display: none;
-    min-height: 200px;
+    height: 560px;
     overflow: auto;
     width: 100%;
 }
@@ -1136,4 +1137,9 @@ a.btnList:hover {
 
 .member-tab-list li a:hover {
    color: #FF9000;
+}
+
+.no-data {
+    text-align: center;
+    margin: auto;
 }
