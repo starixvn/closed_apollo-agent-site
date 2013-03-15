@@ -346,9 +346,9 @@
   </Function>
 
   <Function Name="Agent-Apollo-DownlinesInfo">
-    <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="DB05" Plain="0" />
-    <Setting Key="Acc_Player_GetByAgent" SpName="Acc_Player_GetByAgent" DbName="DB05" Plain="0" />
-    <Setting Key="Acc_AgentUser_GetByAgent" SpName="Acc_AgentUser_GetByAgent" DbName="DB05" Plain="0" />
+    <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="CustDB" Plain="0" />
+    <Setting Key="Acc_Player_GetByAgent" SpName="Acc_Player_GetByAgent" DbName="CustDB" Plain="0" />
+    <Setting Key="Acc_AgentUser_GetByAgent" SpName="Acc_AgentUser_GetByAgent" DbName="CustDB" Plain="0" />
 
   </Function>
 
