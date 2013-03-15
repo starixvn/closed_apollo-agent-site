@@ -3,7 +3,7 @@ function UpdatePermission(agentUserId, agentId) {
     function OnComplete(result) {
         var errCode = result.errCode;
         if (errCode == 0) {
-            alert("successfull");
+            alert("Update permission successfully!!");
         }
     }
 
@@ -44,4 +44,21 @@ function UpdatePermission(agentUserId, agentId) {
         params,
         OnComplete
     );
+}
+
+function onClick_ChangePermission(els) {
+    var id = '';
+    if (els.id.indexOf("[R]") != -1) {//Read
+        id = els.id.replace('[R]', '[H]');
+        $(id).disabled = !els.checked;
+        if ($(id).checked) {
+            $(id).checked = false;
+        }
+    }
+    else //Host
+    {
+        id = els.id.replace('[H]', '[R]');
+        $(id).disabled = els.checked;
+        $(id).checked = els.checked;
+    }
 }

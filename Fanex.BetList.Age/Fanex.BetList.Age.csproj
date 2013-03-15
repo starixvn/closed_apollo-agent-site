@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.BetList.Age</RootNamespace>
+    <AssemblyName>Fanex.BetList.Age</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.Age.UI">
+      <HintPath>..\..\apollo-agent\Dependencies\Fanex.Age.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data">
+      <HintPath>..\..\apollo-agent\Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\apollo-agent\Dependencies\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Utilities, Version=1.0.4734.26154, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TplCore">
+      <HintPath>..\..\apollo-agent\Dependencies\TplCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\BetList.designer.cs">
+      <DependentUpon>BetList.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.Designer.cs">
+      <DependentUpon>Lang.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Racing.designer.cs">
+      <DependentUpon>Racing.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="BetListCmd\BetListFactory.cs" />
+    <Compile Include="BetListCmd\BettypeCmd.cs" />
+    <Compile Include="BetListCmd\BettypeMatchCmd.cs" />
+    <Compile Include="BetListCmd\BLDailySTCmd.cs" />
+    <Compile Include="BetListCmd\CancelBetListCmd.cs" />
+    <Compile Include="BetListCmd\CombMixParlayBetListCmd.cs" />
+    <Compile Include="BetListCmd\CombMixParlayBetListDetailCmd.cs" />
+    <Compile Include="BetListCmd\CorrectScoreCmd.cs" />
+    <Compile Include="BetListCmd\MixParlayBetListCmd.cs" />
+    <Compile Include="BetListCmd\MixParlayByMatchCmd.cs" />
+    <Compile Include="BetListCmd\MixParlayCmd.cs" />
+    <Compile Include="BetListCmd\RacingBettypeMatchCmd.cs" />
+    <Compile Include="BetListCmd\RunningBettypeMatchCmd.cs" />
+    <Compile Include="BetListCmd\WLByBettypeMatchCmd.cs" />
+    <Compile Include="BetListCmd\WLByDateCmd.cs" />
+    <Compile Include="BetListExcelBuilderExt\BetListExcelBuilderExt.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\AgentComm1.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\IAgentComm.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentPTBuilder\AgentPT1.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentPTBuilder\AgentPT1233.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentPTBuilder\AgentPT33.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentPTBuilder\IAgentPT.cs" />
+    <Compile Include="BetListHTMLBuilderExt\BetListHTMLBuilderExt.cs" />
+    <Compile Include="BetListHTMLBuilderExt\FooterBuilder\BlankFooter.cs" />
+    <Compile Include="BetListHTMLBuilderExt\FooterBuilder\Footer0.cs" />
+    <Compile Include="BetListHTMLBuilderExt\FooterBuilder\Footer1.cs" />
+    <Compile Include="BetListHTMLBuilderExt\FooterBuilder\IFooter.cs" />
+    <Compile Include="BetListHTMLBuilderExt\NoBuilder\INo.cs" />
+    <Compile Include="BetListHTMLBuilderExt\NoBuilder\No1.cs" />
+    <Compile Include="BetListHTMLBuilderExt\WinLostBuilder\IWinLost.cs" />
+    <Compile Include="BetListHTMLBuilderExt\WinLostBuilder\WinLost1.cs" />
+    <Compile Include="BetListCmd\BetListCmd.cs" />
+    <Compile Include="Definition\BetListType.cs" />
+    <Compile Include="BetListCmd\IBetListCmd.cs" />
+    <Compile Include="DTO\TicketMapper.cs" />
+    <Compile Include="DTO\TicketDataMapper.cs" />
+    <Compile Include="DTO\TicketDataTransformer.cs" />
+    <Compile Include="DTO\TicketTransformer.cs" />
+    <Compile Include="ExtTemplate\AgentComm.htm.cs" />
+    <Compile Include="ExtTemplate\AgentPT.htm.cs" />
+    <Compile Include="ExtTemplate\BetList.htm.cs" />
+    <Compile Include="ExtTemplate\BetListTemplate.cs" />
+    <Compile Include="ExtTemplate\Footer0.htm.cs" />
+    <Compile Include="ExtTemplate\Footer1.htm.cs" />
+    <Compile Include="ExtTemplate\Header1.htm.cs" />
+    <Compile Include="ExtTemplate\HeaderViewDetail.htm.cs" />
+    <Compile Include="ExtTemplate\No.htm.cs" />
+    <Compile Include="ExtTemplate\OpenBetList.htm.cs" />
+    <Compile Include="ExtTemplate\Status.htm.cs" />
+    <Compile Include="ExtTemplate\Trans.htm.cs" />
+    <Compile Include="ExtTemplate\WinLoss.htm.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExtTemplate\AgentComm.htm" />
+    <Content Include="ExtTemplate\BetList.htm" />
+    <Content Include="ExtTemplate\AgentPT.htm" />
+    <Content Include="ExtTemplate\Footer1.htm" />
+    <Content Include="ExtTemplate\Footer0.htm" />
+    <Content Include="ExtTemplate\HeaderViewDetail.htm" />
+    <Content Include="ExtTemplate\OpenBetList.htm" />
+    <Content Include="ExtTemplate\Header1.htm" />
+    <Content Include="ExtTemplate\No.htm" />
+    <Content Include="ExtTemplate\Status.htm" />
+    <Content Include="ExtTemplate\Trans.htm" />
+    <Content Include="ExtTemplate\WinLoss.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\BetList.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>BetList.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\apollo-agent\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
+      <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
+      <Name>Fanex.Age.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
+      <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
+      <Name>Fanex.BetList.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\apollo-agent\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
+      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
+      <Name>Sunplus.Agent.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Lang.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Racing.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Racing.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,50 @@
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="IChoice.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Marc.Bui" date="2012.11.16">Create</change>
+// </history>
+// ---------------------------------------------------------------------------------
+
+namespace Fanex.BetList.Core.Builder.ChoiceBuilder
+{
+    using System.Collections.Generic;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Templates;
+    using NPOI.SS.UserModel;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public interface IChoice
+    {
+        /// <summary>
+        /// Gets or sets the template.
+        /// </summary>
+        /// <value>The template.</value>
+        Choice_Template Template { get; set; }
+
+        /// <summary>
+        /// Renders the specified ticket.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
+        /// <returns>Choice_Template.</returns>
+        Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap);
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>List<IRichTextString></returns>
+        List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, RTFHelper rtfHelper);
+    }
+}

@@ -4,7 +4,7 @@ using Fanex.Age.UI;
 using System.Collections;
 using Fanex.Age.UI.Components;
 using Sunplus.Agent.Model.BL.UserMessage;
-using Sunplus.Agent.UI._MemberInfo.CreditBalance;
+
 using Sunplus.Agent.Model.BL.MemberInfo.CreditBalance;
 using System.Data;
 using System.Threading;

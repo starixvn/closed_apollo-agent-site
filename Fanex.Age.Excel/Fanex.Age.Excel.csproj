@@ -168,7 +168,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\apollo-betlist\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
+    <ProjectReference Include="..\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
       <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
       <Name>Fanex.BetList.Age</Name>
     </ProjectReference>

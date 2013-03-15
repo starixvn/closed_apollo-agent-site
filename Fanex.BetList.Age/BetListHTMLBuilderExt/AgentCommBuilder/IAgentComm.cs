@@ -1,0 +1,27 @@
+﻿namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder
+{
+    using Fanex.BetList.Age.ExtTemplate;
+    using Fanex.BetList.Core.Entities;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public interface IAgentComm
+    {
+        /// <summary>
+        /// Gets or sets the template.
+        /// </summary>
+        /// <value>
+        /// The template.
+        /// </value>
+        AgentComm_Template Template { get; set; }
+
+        /// <summary>
+        /// Renders the specified ticket.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <returns></returns>
+        AgentComm_Template Render(ITicket ticket, System.Collections.Generic.List<ITicketData> ticketData, bool hideDetail);
+    }
+}
