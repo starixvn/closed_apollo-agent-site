@@ -123,8 +123,7 @@ namespace Sunplus.Agent.UI._SubAcc
             rowContent.totalbet_forecast_checked = rowContent.report_checked = rowContent.accountsetting_checked_read = rowContent.shadowmanagement_checked_read = rowContent.admin_checked_read = string.Empty;
             rowContent.shadowmanagement_checked_host = rowContent.accountsetting_checked_host = rowContent.admin_checked_host = "disabled=true";
 
-
-            if (subAcc.PageAccess != "")
+            if (string.IsNullOrEmpty(subAcc.PageAccess))
             {
                 string[] permissions = subAcc.PageAccess.Split("-".ToCharArray());
                 foreach (string item in permissions)
