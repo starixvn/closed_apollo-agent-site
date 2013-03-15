@@ -65,12 +65,6 @@ public class UpdateGivenCredit : IHttpHandler, IRequiresSessionState {
             string str = ex.Message;
             str = Common.NotAuthorized(str);
             context.Response.Write("<script type='text/javascript'>alert('" + str.Replace("'", "\\'") + "');</script>");
-        }
-        catch
-        {
-            #if DEBUG
-                throw;
-            #endif
         }            
     }
  
