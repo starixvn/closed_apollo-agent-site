@@ -447,19 +447,19 @@ namespace Sunplus.Agent.Model.Entities
         /// Logged-in sub-account access.
         /// If logged-in account is main, return empty object.
         /// </summary>
-        //public PageAccess SubPageAccess
-        //{
-        //    get
-        //    {
-        //        PageAccess value = this.GetProperty(SUBPAGEACCESS) as PageAccess;
-        //        return value ?? new PageAccess();
-        //    }
+        public PageAccess SubPageAccess
+        {
+            get
+            {
+                PageAccess value = this.GetProperty(SUBPAGEACCESS) as PageAccess;
+                return value ?? new PageAccess();
+            }
 
-        //    set
-        //    {
-        //        this.SetProperty(SUBPAGEACCESS, value);
-        //    }
-        //}
+            set
+            {
+                this.SetProperty(SUBPAGEACCESS, value);
+            }
+        }
 
         /// <summary>
         /// User name of logged-in sub-account.

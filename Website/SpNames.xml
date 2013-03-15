@@ -325,12 +325,21 @@
   </Function>
 
   <Function Name="Agent-Apollo-Customer Setting">
+<<<<<<< HEAD
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetAgentDownLine" SpName="Age_Customer_GetAgentDownLine" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetAgentDownLinePath" SpName="Age_Customer_GetAgentDownLinePath" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetMembersDownLine" SpName="Age_Customer_GetMembersDownLine" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="DB05" Plain="0" />
 
+=======
+    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetAgentDownLine" SpName="Age_Customer_GetAgentDownLine" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetAgentDownLinePath" SpName="Age_Customer_GetAgentDownLinePath" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetMembersDownLine" SpName="Age_Customer_GetMembersDownLine" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="CUSTDB" Plain="0" />
+    
+>>>>>>> 617f684233d58da863019344e48f43472afd80d7
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets">
