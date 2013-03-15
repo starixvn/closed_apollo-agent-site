@@ -48,13 +48,13 @@
       <siteMapNode title="lblMemberInfo">
         <siteMapNode title="lblAgentList" href="_MemberInfo/CustomerList/AgentList.aspx"></siteMapNode>
         <siteMapNode title="lblPlayerList" href="_MemberInfo/CustomerList/MemberList.aspx"></siteMapNode>
-        <siteMapNode description="subacc" title="subaccount" href="_SubAcc/SubAccList.aspx"></siteMapNode>
         <siteMapNode title="lblPositionTaking" href="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
         <siteMapNode title="lblMemberCommission" href="_MemberInfo/Commission/MemberCommissionSportbook.aspx"></siteMapNode>
+        <siteMapNode description="subacc" title="lblShadowList" href="_SubAcc/SubAccList.aspx"></siteMapNode>
       </siteMapNode>
       <!--/MemberInfo-->
       <!--Admin-->
-      <siteMapNode title="lblAdmin" expand="true">
+      <siteMapNode title="lblAdmin">
           <siteMapNode title="lblExchangeRate" href="_Admin/ExchangeRate/ExchangeRate.aspx"></siteMapNode>
       </siteMapNode>
       <!--/Admin-->

@@ -150,3 +150,11 @@
     background: none repeat scroll 0 0 #7C796E;
     border: 1px solid #7C796E;
 }
+
+.margin-top-12 {
+	margin-top: 5px;
+}
+
+#settingContainer {
+	margin-top: 5px;
+}

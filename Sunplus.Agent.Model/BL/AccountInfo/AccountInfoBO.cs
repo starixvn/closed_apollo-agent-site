@@ -29,14 +29,15 @@
         /// </summary>
         /// <param name="query">UserName, First Name, Last Name</param>
         /// <returns></returns>
-        public DataTable SearchCustomer(string query)
+        public DataTable Age_Customer_GetUserSearch(string userName, bool isMember)
         {
-            return this.accountInfoDAO.Age_CustomerSelUserSearch(CurrentSession.CustId, query, 0, 0, 0, 1, CurrentSession.IsInternal);
+            return this.accountInfoDAO.Age_Customer_GetUserSearch(CurrentSession.CustId, userName, isMember);
         }
 
         public DataTable SearchCustomer(int custId, string query, int isSubAccount, int excludeMember, int directDownline, int isAccInfo)
         {
-            return this.accountInfoDAO.Age_CustomerSelUserSearch(custId, query, isSubAccount, excludeMember, directDownline, isAccInfo, CurrentSession.IsInternal);
+            //return this.accountInfoDAO.Age_CustomerSelUserSearch(custId, query, isSubAccount, excludeMember, directDownline, isAccInfo, CurrentSession.IsInternal);
+            return null;
         }
 
         public Hashtable UpdateUserSearch(string search, string firstName, string lastName)
@@ -58,6 +59,16 @@
         public DataSet Age_Customer_GetDownLine(int agentID)
         {
             return this.accountInfoDAO.Age_Customer_GetDownLine(agentID);
+        }
+
+        public DataSet Age_Customer_GetDownLinePath(int agentID)
+        {
+            return this.accountInfoDAO.Age_Customer_GetDownLinePath(this.CurrentSession.CustId, agentID);
+        }
+
+        public DataSet Age_Customer_GetMembersDownLine(int agentID)
+        {
+            return this.accountInfoDAO.Age_Customer_GetMembersDownLine(agentID);
         }
 
         public DataTable CustomerSelOnline(int custId)

@@ -36,10 +36,15 @@ var memberBetLimit =
             AddPopupHeight(50);
             ageMsg.Show(errMsg, 1);
             window.scroll(0, 0);
+
             setTimeout(function () {
-                AddPopupHeight(0);
-                location.reload();
-            }, 3000);
+                if (isReloadParent > 0) {
+                    parent.window.location.reload();
+                }
+                else {
+                    window.location.reload();
+                }
+            }, 1000);
 
             return;
         }

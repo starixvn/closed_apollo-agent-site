@@ -76,7 +76,7 @@ namespace Fanex.Agent.UI
 			protected static string s12{get{return Resources.Lang.mainmenu;}}
 			protected static string s13 = "</a></div>";
 			public Menu_MenuTab_CheckViewPermission_Block CheckViewPermission = new Menu_MenuTab_CheckViewPermission_Block();
-			protected static string s14 = "<div id=\"tab_menu_L\"><a id=\"lnkTree\" class=\"tab_menu03\" target=\"menu\" onclick=\"ShowTreeview();\" href=\"../_TreeView/TreeView.aspx\"></a></div></div>";
+			protected static string s14 = "<div id=\"tab_menu_L\"><a id=\"lnkTree\" class=\"tab_menu03\" target=\"menu\" href=\"../_TreeView/TreeView.aspx\"></a></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -94,7 +94,7 @@ namespace Fanex.Agent.UI
 
 		public class Menu_MenuTab_CheckViewPermission_Block: Block
 		{
-			protected static string s15 = "<div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" onclick=\"ShowFlashAccInfoMaster();\" href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
+			protected static string s15 = "<div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
 			protected static string s16{get{return Resources.Lang.userinfo;}}
 			protected static string s17 = "</span></a></div>";
 			public override void ToString(ref StringBuilder bd)

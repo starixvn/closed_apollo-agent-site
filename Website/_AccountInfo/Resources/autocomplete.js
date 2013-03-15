@@ -44,7 +44,7 @@ function setVisible(visi) {
 }
 
 function initAutoComplete(id, queryUrl) {
-
+    
     initCaching();
 
     txtObj = $(id);
@@ -125,7 +125,7 @@ function getSuggestions() {
 }
 
 function lookAt(data) {
-
+    
     if (typeof data == 'object') {
         eval('suggestions = ' + data.responseText + '.suggestions');
     }
@@ -186,7 +186,7 @@ function getWord(beginning) {
     var content;
     if (suggestions) {
         for (var i = 0; i < suggestions.length; ++i)
-            words[words.length] = suggestions[i][0] + "<br/><span class='opSpan'>" + suggestions[i][1] + ' ' + suggestions[i][2] + '</span>';
+            words[words.length] = suggestions[i][0];  //+ "<br/><span class='opSpan'>" + suggestions[i][1] + ' ' + suggestions[i][2] + '</span>';
     }
     return words;
 }
@@ -198,6 +198,22 @@ function keygetter(event) {
 }
 
 function keyHandler(event) {
+    if ($("isMember").value == 1) {
+        if (url.indexOf("isMember") > 0) {
+            url = url.replace("isMember=0", "isMember=1");
+        }
+        else {
+            url = url + "?isMember=1";
+        }
+    }
+    else {
+        if (url.indexOf("isMember") > 0) {
+            url = url.replace("isMember=1", "isMember=0");
+        }
+        else {
+            url = url + "?isMember=0";
+        }
+    }
 
     if ($("shadow").style.visibility == "visible") {
         if (key == 40) { //Key down

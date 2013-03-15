@@ -327,7 +327,10 @@
   <Function Name="Agent-Apollo-Customer Setting">
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="DB05" Plain="0" />
     <Setting Key="Age_Customer_GetDownLine" SpName="Age_Customer_GetDownLine" DbName="DB05" Plain="0" />
-
+    <Setting Key="Age_Customer_GetDownLinePath" SpName="Age_Customer_GetDownLinePath" DbName="DB05" Plain="0" />
+    <Setting Key="Age_Customer_GetMembersDownLine" SpName="Age_Customer_GetMembersDownLine" DbName="DB05" Plain="0" />
+    <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="DB05" Plain="0" />
+    
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets">
@@ -345,6 +348,8 @@
   <Function Name="Agent-Apollo-DownlinesInfo">
     <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="DB05" Plain="0" />
     <Setting Key="Acc_Player_GetByAgent" SpName="Acc_Player_GetByAgent" DbName="DB05" Plain="0" />
+    <Setting Key="Acc_AgentUser_GetByAgent" SpName="Acc_AgentUser_GetByAgent" DbName="DB05" Plain="0" />
+
   </Function>
 
   <Function Name="Agent-Apollo-ForeCast">
@@ -625,6 +630,7 @@
     <Setting Key="AgentSetting_Acc_Agent_UpdateBetLimit" SpName="Acc_Agent_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="AgentSetting_Acc_Agent_UpdateDiscount" SpName="Acc_Agent_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="AgentSetting_Acc_Agent_UpdatePositionTaking" SpName="Acc_Agent_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_UpdateSetting" SpName="Acc_Agent_UpdateSetting" DbName="CUSTDB"  TimeOut="600"/>
   </Function>
   <Function Name="PlayerSetting">
     <Setting Key="PlayerSetting_Acc_Customer_GetDiscountForUpdate" SpName="Acc_Customer_GetDiscountForUpdate" DbName="CUSTDB"   TimeOut="600"/>
@@ -633,5 +639,6 @@
     <Setting Key="PlayerSetting_Acc_Customer_UpdateBetLimit" SpName="Acc_Customer_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Acc_Customer_UpdateDiscount" SpName="Acc_Customer_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Acc_Customer_UpdatePositionTaking" SpName="Acc_Customer_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_UpdateSetting" SpName="Acc_Customer_UpdateSetting" DbName="CUSTDB" TimeOut="600"/>
   </Function>
 </Functions>
