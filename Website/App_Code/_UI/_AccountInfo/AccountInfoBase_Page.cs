@@ -653,7 +653,7 @@
             }
             else
             {
-                tplAgent.ForDirectDownline.editSportBookLink = string.Format("../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest);
+                tplAgent.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}", this.custId, this.userNameRequest));
             }
 
             if (isMember)
