@@ -525,7 +525,7 @@ function bindMembersList(agentID) {
         }
 
         if (text.length > 0) {
-           // $("members-list").innerHTML = text;
+            $("members-list").innerHTML = text;
         }
     });
 }
