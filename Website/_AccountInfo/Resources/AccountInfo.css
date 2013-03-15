@@ -1142,4 +1142,12 @@ a.btnList:hover {
 .no-data {
     text-align: center;
     margin: auto;
+    padding-left: 19px;
+}
+
+.no-data-agent {
+    text-align: center;
+    margin: auto;
+    padding-left: 24px;
+    padding-top: 31px;
 }
