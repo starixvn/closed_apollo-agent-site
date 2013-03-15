@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="DownlineListInfo.aspx.cs" Inherits="Sunplus.Agent.UI._AccountInfo.DownlineListInfo_Page" %>

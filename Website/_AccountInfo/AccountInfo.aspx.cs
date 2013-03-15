@@ -301,9 +301,11 @@ namespace Sunplus.Agent.UI._AccountInfo
             {
                 tpl.CustInfo.AgentID = this.custId.ToString();
                 tpl.CustInfo.lblParentname = "Parent";
-                tpl.ButtonBetList.Hide();
+                
                 tpl.IsAgent = SELECTED_DROPDOWN;
                 tpl.IsMember = string.Empty;
+
+                tpl.ButtonBetList.Hide();
 
                 if (!bool.Parse(this.dtrCustomerInfo["HasAgentDownLine"].ToString()))
                 {
@@ -325,6 +327,8 @@ namespace Sunplus.Agent.UI._AccountInfo
             }
             else
             {
+                tpl.ButtonAgentList.Hide();
+                tpl.ButtonMemberList.Hide();
                 tpl.CustInfo.AgentID = this.dtrCustomerInfo["ParentId"].ToString();
                 tpl.CustInfo.lblParentname = Resources.Lang.agent;
                 tpl.IsAgent = string.Empty;

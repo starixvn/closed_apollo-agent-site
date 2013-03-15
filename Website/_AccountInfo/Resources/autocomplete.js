@@ -186,7 +186,7 @@ function getWord(beginning) {
     var content;
     if (suggestions) {
         for (var i = 0; i < suggestions.length; ++i)
-            words[words.length] = suggestions[i][0];  //+ "<br/><span class='opSpan'>" + suggestions[i][1] + ' ' + suggestions[i][2] + '</span>';
+            words[words.length] = suggestions[i][0] + "</br>";  //+ "<br/><span class='opSpan'>" + suggestions[i][1] + ' ' + suggestions[i][2] + '</span>';
     }
     return words;
 }
