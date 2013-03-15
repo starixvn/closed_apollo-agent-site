@@ -39,11 +39,11 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
             return rs.ResultSet.Tables[0];
         }
 
-        public DataSet Age_Customer_GetDownLine(int agentID)
+        public DataSet Age_Customer_GetAgentDownLine(int agentID)
         {
             Hashtable param = new Hashtable();
             param.Add("agentid", agentID);
-            return ExecSpDataset("Age_Customer_GetDownLine", param);
+            return ExecSpDataset("Age_Customer_GetAgentDownLine", param);
         }
 
         public DataSet Age_Customer_GetMembersDownLine(int agentID)
@@ -53,12 +53,12 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
             return ExecSpDataset("Age_Customer_GetMembersDownLine", param);
         }
 
-        public DataSet Age_Customer_GetDownLinePath(int custID,int agentID)
+        public DataSet Age_Customer_GetAgentDownLinePath(int custID, int agentID)
         {
             Hashtable param = new Hashtable();
             param.Add("custid", custID);
             param.Add("agentid", agentID);
-            return ExecSpDataset("Age_Customer_GetDownLinePath", param);
+            return ExecSpDataset("Age_Customer_GetAgentDownLinePath", param);
         }
 
         public DataSet Age_CustomerSelAllInfo(int currentAgentId, string userName, bool isMember)

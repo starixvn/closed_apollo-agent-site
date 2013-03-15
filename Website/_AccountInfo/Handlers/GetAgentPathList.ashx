@@ -52,7 +52,7 @@ public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState
     public override object InvokeData(System.Collections.Hashtable p)
     {
         AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-        return bo.Age_Customer_GetDownLinePath(int.Parse(this.agentId)).Tables[0];
+        return bo.Age_Customer_GetAgentDownLinePath(int.Parse(this.agentId)).Tables[0];
     }
 
 }

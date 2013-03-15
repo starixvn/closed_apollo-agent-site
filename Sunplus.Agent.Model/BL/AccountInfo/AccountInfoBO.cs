@@ -56,14 +56,14 @@
             return this.accountInfoDAO.Age_CustomerSelAllInfo(this.CurrentSession.CustId, userName, isMember);
         }
 
-        public DataSet Age_Customer_GetDownLine(int agentID)
+        public DataSet Age_Customer_GetAgentDownLine(int agentID)
         {
-            return this.accountInfoDAO.Age_Customer_GetDownLine(agentID);
+            return this.accountInfoDAO.Age_Customer_GetAgentDownLine(agentID);
         }
 
-        public DataSet Age_Customer_GetDownLinePath(int agentID)
+        public DataSet Age_Customer_GetAgentDownLinePath(int agentID)
         {
-            return this.accountInfoDAO.Age_Customer_GetDownLinePath(this.CurrentSession.CustId, agentID);
+            return this.accountInfoDAO.Age_Customer_GetAgentDownLinePath(this.CurrentSession.CustId, agentID);
         }
 
         public DataSet Age_Customer_GetMembersDownLine(int agentID)
