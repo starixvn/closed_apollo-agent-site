@@ -496,14 +496,13 @@ function changeLiveCasinoStatus(evt, objDiv) {
 function bindAgentDownLine(agentID) {
     var contentId = document.getElementById("agent-downline");
     if (contentId.style.display == "none") {
-        contentId.style.display = "block";
         ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
             var data = result.Agents;
-            var text = "";           
+            var text = "";
             $("agent-downline").innerHTML = "";
-            $("agent-downline").innerHTML = $("agent-downline").innerHTML + "<li class='root-agent'>" + data[0][1] + "</li>";
+            $("agent-downline").innerHTML = $("agent-downline").innerHTML + "<span class='root-agent'>" + data[0][1] + "</span> </br>";
             for (var i = 1; i < data.length; ++i) {
-                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";               
+                text = text + "<a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a> </br>";
             }
 
             $("agent-downline").innerHTML = $("agent-downline").innerHTML + text;
@@ -520,16 +519,13 @@ function bindMembersList(agentID) {
     ajax.PostJSON('../_AccountInfo/Handlers/GetMemberList.ashx', 'root=' + agentID, function (result) {
         var data = result.Members;
         var text = "";
-        $("members-list").innerHTML = "";
+        //$("members-list").innerHTML = "";
         for (var i = 0; i < data.length; ++i) {
-            text = text + ("<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a></li>");
+            text = text + ("<a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a> </br>");
         }
-     
-        $("members-list").innerHTML = text;
-    });
-}
 
-function bindAgentsList(agentId) {
-    
-   
+        if (text.length > 0) {
+            $("members-list").innerHTML = text;
+        }
+    });
 }

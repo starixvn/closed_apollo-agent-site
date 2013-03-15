@@ -176,7 +176,25 @@
             {
                 tpl.HiddenBlockHeaderTabAgent.AgentID = this.custId.ToString();
                 tpl.HiddenBlockHeaderTabMember.AgentID = this.custId.ToString();
-                tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, this.custId.ToString()); ;
+
+                if (!bool.Parse(dtrCustomerInfo["HasAgentDownLine"].ToString()))
+                {
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = "<span class='c'> No data <span>";
+                }
+                else
+                {
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, this.custId.ToString()); 
+                }
+
+                //if (!bool.Parse(this.dtrCustomerInfo["HasPlayerDownLine"].ToString()))
+                //{
+                //    tpl.ButtonMemberList.Hide();
+                //}
+                //else
+                //{
+                //    tpl.ButtonMemberList.memberlistlink = "../_MemberInfo/CustomerList/MemberList.aspx?custid=" + this.custId + "&us=" + userName;
+                //}
+                
             }
 
             this.RenderSettingBoxEditLink(tpl, dtrCustomerInfo);
