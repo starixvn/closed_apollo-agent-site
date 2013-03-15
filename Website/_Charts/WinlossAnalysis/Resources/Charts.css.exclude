@@ -1,0 +1,29 @@
+﻿#box_header
+{
+    background: url("../../../_GlobalResources/Images/bg_boxTop.jpg") repeat-x scroll center top #E7E7E7;
+    border: 1px solid #CACACA;
+    margin-bottom: 7px;
+    margin-top: 0;
+    padding: 0;
+    
+	-moz-border-radius: 3px; /* Firefox */
+	-webkit-border-radius: 3px; /* Safari and Chrome */
+	border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */ 
+}
+.boldrow
+{
+    font-weight: bold;
+}
+.altercol
+{
+    text-align: right;
+}
+.toolTipTurnover {font-family: Tahoma,Arial,helvetica,sans-serif;font-size: 12px; color: #ffffff; font-weight:bold; BORDER-RIGHT: darkgray 1px outset; BORDER-TOP: darkgray 1px outset; BORDER-LEFT: darkgray 1px outset; WIDTH: auto; BORDER-BOTTOM: darkgray 2px outset; HEIGHT: auto; background-color: #56ACFC; MARGIN: 3px 3px; padding: 6px 6px; borderBottomWidth: 3px 3px 3px 3px }
+.toolTipWinloss {font-family: Tahoma,Arial,helvetica,sans-serif;font-size: 12px; color: #000000; font-weight:bold; BORDER-RIGHT: darkgray 1px outset; BORDER-TOP: darkgray 1px outset; BORDER-LEFT: darkgray 1px outset; WIDTH: auto; BORDER-BOTTOM: darkgray 2px outset; HEIGHT: auto; background-color: lemonchiffon; MARGIN: 3px 3px; padding: 6px 6px; borderBottomWidth: 3px 3px 3px 3px }
+.no_info
+{
+	text-align: center;
+	background-color: #FFFFFF;
+	font-weight: normal;
+	text-align: center;
+}

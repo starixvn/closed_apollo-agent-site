@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="MonthlyAgent_Chart.aspx.cs" Inherits="Sunplus.Agent.UI._Charts.WinlossAnalysis.MonthlyAgent_Chart" %>
