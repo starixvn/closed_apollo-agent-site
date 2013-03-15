@@ -25,24 +25,11 @@ namespace Fanex.Agent.UI
 			protected static string s9{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
 			protected static string s10 = "</div><table class=\"tblRpt\" width=\"100%\" cellspacing=\"1\" cellpadding=\"0\" border=\"0\">";
 			public SubAccList_Header_Block Header = new SubAccList_Header_Block();
-			protected static string s11 = "<tr class=\"RptHeader\"><td>";
-			protected static string s12{get{return Resources.Lang.lblRead;}}
-			protected static string s13 = "</td><td>";
-			protected static string s14{get{return Resources.Lang.lblHost;}}
-			protected static string s15 = "</td><td>";
-			protected static string s16{get{return Resources.Lang.lblRead;}}
-			protected static string s17 = "</td><td>";
-			protected static string s18{get{return Resources.Lang.lblHost;}}
-			protected static string s19 = "</td><td>";
-			protected static string s20{get{return Resources.Lang.lblRead;}}
-			protected static string s21 = "</td><td>";
-			protected static string s22{get{return Resources.Lang.lblHost;}}
-			protected static string s23 = "</td></tr>";
 			public SubAccList_Content_Block Content = new SubAccList_Content_Block();
 			public SubAccList_NoInfo_Block NoInfo = new SubAccList_NoInfo_Block();
-			protected static string s24 = "</table></body><script src=\"";
-			protected static string s25{get{return AbsoluteUrl("_SubAcc/Resources/SubAcc.js", TplSettings.Question);}}
-			protected static string s26 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s11 = "</table></body><script src=\"";
+			protected static string s12{get{return AbsoluteUrl("_SubAcc/Resources/SubAcc.js", TplSettings.Question);}}
+			protected static string s13 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -60,24 +47,11 @@ namespace Fanex.Agent.UI
 					bd.Append(s9);
 					bd.Append(s10);
 					if(null != Header) Header.ToString(ref bd);
+					if(null != Content) Content.ToString(ref bd);
+					if(null != NoInfo) NoInfo.ToString(ref bd);
 					bd.Append(s11);
 					bd.Append(s12);
 					bd.Append(s13);
-					bd.Append(s14);
-					bd.Append(s15);
-					bd.Append(s16);
-					bd.Append(s17);
-					bd.Append(s18);
-					bd.Append(s19);
-					bd.Append(s20);
-					bd.Append(s21);
-					bd.Append(s22);
-					bd.Append(s23);
-					if(null != Content) Content.ToString(ref bd);
-					if(null != NoInfo) NoInfo.ToString(ref bd);
-					bd.Append(s24);
-					bd.Append(s25);
-					bd.Append(s26);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -92,30 +66,55 @@ namespace Fanex.Agent.UI
 
 		public class SubAccList_Header_Block: Block
 		{
-			protected static string s27 = "<tr class=\"RptHeader\"><td rowspan=\"2\">";
-			protected static string s28{get{return Resources.Lang.no;}}
-			protected static string s29 = "</td><td rowspan=\"2\">";
-			protected static string s30{get{return Resources.Lang.lblShadowName;}}
-			protected static string s31 = "</td><td rowspan=\"2\">";
-			protected static string s32{get{return Resources.Lang.totalbets;}}
-			protected static string s33 = "/";
-			protected static string s34{get{return Resources.Lang.lblForecast;}}
-			protected static string s35 = "</td><td rowspan=\"2\">";
-			protected static string s36{get{return Resources.Lang.reports;}}
-			protected static string s37 = "</td><td colspan=\"2\">";
-			protected static string s38{get{return Resources.Lang.lblAccountSetting;}}
-			protected static string s39 = "</td><td colspan=\"2\">";
-			protected static string s40{get{return Resources.Lang.lblShadowManagement;}}
-			protected static string s41 = "</td><td colspan=\"2\">";
-			protected static string s42{get{return Resources.Lang.admin;}}
-			protected static string s43 = "</td><td rowspan=\"2\">";
-			protected static string s44{get{return Resources.Lang.edit;}}
-			protected static string s45 = "</td></tr>";
+			protected static string s14 = "<tr class=\"RptHeader\"><td rowspan=\"2\">";
+			protected static string s15{get{return Resources.Lang.no;}}
+			protected static string s16 = "</td><td rowspan=\"2\">";
+			protected static string s17{get{return Resources.Lang.lblShadowName;}}
+			protected static string s18 = "</td><td rowspan=\"2\">";
+			protected static string s19{get{return Resources.Lang.totalbets;}}
+			protected static string s20 = "/";
+			protected static string s21{get{return Resources.Lang.lblForecast;}}
+			protected static string s22 = "</td><td rowspan=\"2\">";
+			protected static string s23{get{return Resources.Lang.reports;}}
+			protected static string s24 = "</td><td colspan=\"2\">";
+			protected static string s25{get{return Resources.Lang.lblAccountSetting;}}
+			protected static string s26 = "</td><td colspan=\"2\">";
+			protected static string s27{get{return Resources.Lang.lblShadowManagement;}}
+			protected static string s28 = "</td><td colspan=\"2\">";
+			protected static string s29{get{return Resources.Lang.admin;}}
+			protected static string s30 = "</td><td rowspan=\"2\">";
+			protected static string s31{get{return Resources.Lang.edit;}}
+			protected static string s32 = "</td></tr><tr class=\"RptHeader\"><td>";
+			protected static string s33{get{return Resources.Lang.lblRead;}}
+			protected static string s34 = "</td><td>";
+			protected static string s35{get{return Resources.Lang.lblHost;}}
+			protected static string s36 = "</td><td>";
+			protected static string s37{get{return Resources.Lang.lblRead;}}
+			protected static string s38 = "</td><td>";
+			protected static string s39{get{return Resources.Lang.lblHost;}}
+			protected static string s40 = "</td><td>";
+			protected static string s41{get{return Resources.Lang.lblRead;}}
+			protected static string s42 = "</td><td>";
+			protected static string s43{get{return Resources.Lang.lblHost;}}
+			protected static string s44 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s14);
+					bd.Append(s15);
+					bd.Append(s16);
+					bd.Append(s17);
+					bd.Append(s18);
+					bd.Append(s19);
+					bd.Append(s20);
+					bd.Append(s21);
+					bd.Append(s22);
+					bd.Append(s23);
+					bd.Append(s24);
+					bd.Append(s25);
+					bd.Append(s26);
 					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
@@ -134,7 +133,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s42);
 					bd.Append(s43);
 					bd.Append(s44);
-					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -142,48 +140,50 @@ namespace Fanex.Agent.UI
 
 		public class SubAccList_Content_Block: Block
 		{
-			protected static string s46 = "<tr align=\"center\" bgcolor=\"";
+			protected static string s45 = "<tr align=\"center\" bgcolor=\"";
 			public string color = "{color}";
-			protected static string s47 = "\" onmouseover=\"bgColor='";
+			protected static string s46 = "\" onmouseover=\"bgColor='";
 			public string overcolor = "{overcolor}";
-			protected static string s48 = "'\" onmouseout=\"bgColor='";
+			protected static string s47 = "'\" onmouseout=\"bgColor='";
 			protected string t0_color;
-			protected static string s49 = "'\"><td class=\"w-order\">";
+			protected static string s48 = "'\"><td class=\"w-order\">";
 			public string no_value = "{no_value}";
-			protected static string s50 = "</td><td class=\"l\">";
+			protected static string s49 = "</td><td class=\"l\">";
 			public string shadow_value = "{shadow_value}";
-			protected static string s51 = "</td><td class=\"l\"><input type=\"checkbox\" id=\"chk";
+			protected static string s50 = "</td><td class=\"l\"><input type=\"checkbox\" id=\"chk";
 			public string id_value = "{id_value}";
-			protected static string s52 = "[TF]\" /></td><td class=\"l\"><input type=\"checkbox\" id=\"chk";
+			protected static string s51 = "[TF][R][H]\" /></td><td class=\"l\"><input type=\"checkbox\" id=\"chk";
 			protected string t1_id_value;
-			protected static string s53 = "[RP]\" /></td><td><input type=\"checkbox\" id=\"chk";
+			protected static string s52 = "[RP][R][H]\" /></td><td><input type=\"checkbox\" id=\"chk";
 			protected string t2_id_value;
-			protected static string s54 = "[AC][R]\" /></td><td><input type=\"checkbox\" id=\"chk";
+			protected static string s53 = "[AC][R]\" /></td><td><input type=\"checkbox\" id=\"chk";
 			protected string t3_id_value;
-			protected static string s55 = "[AC][H]\" /></td><td><input type=\"checkbox\" id=\"chk";
+			protected static string s54 = "[AC][H]\" /></td><td><input type=\"checkbox\" id=\"chk";
 			protected string t4_id_value;
-			protected static string s56 = "[SM][R]\" /></td><td><input type=\"checkbox\" id=\"chk";
+			protected static string s55 = "[SM][R]\" /></td><td><input type=\"checkbox\" id=\"chk";
 			protected string t5_id_value;
-			protected static string s57 = "[SM][H]\" /></td><td><input type=\"checkbox\" id=\"chk";
+			protected static string s56 = "[SM][H]\" /></td><td><input type=\"checkbox\" id=\"chk";
 			protected string t6_id_value;
-			protected static string s58 = "[A][R]\" /></td><td><input type=\"checkbox\" id=\"chk";
+			protected static string s57 = "[AD][R]\" /></td><td><input type=\"checkbox\" id=\"chk";
 			protected string t7_id_value;
-			protected static string s59 = "[A][H]\" /></td><td></td></tr>";
+			protected static string s58 = "[AD][H]\" /></td><td></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s45);
+					bd.Append(color);
 					bd.Append(s46);
-					bd.Append(color);
-					bd.Append(s47);
 					bd.Append(overcolor);
-					bd.Append(s48);
+					bd.Append(s47);
 					bd.Append(color);
-					bd.Append(s49);
+					bd.Append(s48);
 					bd.Append(no_value);
-					bd.Append(s50);
+					bd.Append(s49);
 					bd.Append(shadow_value);
+					bd.Append(s50);
+					bd.Append(id_value);
 					bd.Append(s51);
 					bd.Append(id_value);
 					bd.Append(s52);
@@ -199,8 +199,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s57);
 					bd.Append(id_value);
 					bd.Append(s58);
-					bd.Append(id_value);
-					bd.Append(s59);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -208,17 +206,17 @@ namespace Fanex.Agent.UI
 
 		public class SubAccList_NoInfo_Block: Block
 		{
-			protected static string s60 = "<tr class=\"bg_white c\"><td class=\"w-order\" colspan=\"11\">";
-			protected static string s61{get{return Resources.Lang.noInfo;}}
-			protected static string s62 = "</td></tr>";
+			protected static string s59 = "<tr class=\"bg_white c\"><td class=\"w-order\" colspan=\"11\">";
+			protected static string s60{get{return Resources.Lang.noInfo;}}
+			protected static string s61 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s59);
 					bd.Append(s60);
 					bd.Append(s61);
-					bd.Append(s62);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
