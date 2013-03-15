@@ -8,7 +8,7 @@
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
     using Sunplus.Agent.Model.BL.Definitions;
-    using Fanex.LiveCasinoSetting.Business;
+    //using Fanex.LiveCasinoSetting.Business;
     using Sunplus.Agent.Utilities;
     using Fanex.Agent.UI._AccountInfo;    
 

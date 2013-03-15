@@ -271,14 +271,14 @@ namespace Sunplus.Agent.UI._MemberInfo.SearchAndCopy
         /// <returns></returns>
         public bool IsChangedData(int custIdOld)
         {
-            var ptService = new Fanex.LiveCasinoSetting.Business.SettingService();
-            var model = ptService.GetMemberSetting(custIdOld, Sunplus.Agent.Model.Entities.UserSession.Current.CustId);
-            var settingPT = model.PTSetting as Fanex.LiveCasinoSetting.Model.PTSetting;
+            //var ptService = new Fanex.LiveCasinoSetting.Business.SettingService();
+            //var model = ptService.GetMemberSetting(custIdOld, Sunplus.Agent.Model.Entities.UserSession.Current.CustId);
+            //var settingPT = model.PTSetting as Fanex.LiveCasinoSetting.Model.PTSetting;
 
-            if (Convert.ToDouble(settingPT.Upline.PresetPT) > Convert.ToDouble(settingPT.Upline.MaxPT))
-            {
-                return true;
-            }
+            //if (Convert.ToDouble(settingPT.Upline.PresetPT) > Convert.ToDouble(settingPT.Upline.MaxPT))
+            //{
+            //    return true;
+            //}
 
             return false;
         }

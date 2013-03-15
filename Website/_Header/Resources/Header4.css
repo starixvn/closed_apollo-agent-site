@@ -1,14 +1,1 @@
-﻿body
-{
-	/*background: url(../../_GlobalResources/Images/bgtop_f4.jpg) repeat-x top;*/	
-}
-
-#logo
-{
-	/*background: url(../../_GlobalResources/Images/icon_user4.gif) no-repeat top left;	*/
-}
-#logo .userName{font-weight:bold; color:#CC000B}
-#banner
-{
-	/*background: url(../../_GlobalResources/Images/bg_banner4.jpg) no-repeat top left;*/
-}
+﻿#logo .userName{font-weight:bold; color:#CC000B}

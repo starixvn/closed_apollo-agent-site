@@ -65,7 +65,7 @@ namespace Fanex.BetList.Age.DTO
 
                                 prop.SetValue(t, value, null);
                             }
-                            catch (Exception ex)
+                            catch // (Exception ex)
                             {
                             }
                         }

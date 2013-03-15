@@ -51,10 +51,6 @@
     <Reference Include="RemotingRef">
       <HintPath>..\Dependencies\RemotingRef.dll</HintPath>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model, Version=1.0.4820.16325, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Sunplus.Agent.Model\bin\Debug\Sunplus.Agent.Model.dll</HintPath>
-    </Reference>
     <Reference Include="Sunplus.Agent.Utilities">
       <HintPath>..\Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
     </Reference>
@@ -265,6 +261,12 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Bingo.designer.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
+      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
+      <Name>Sunplus.Agent.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

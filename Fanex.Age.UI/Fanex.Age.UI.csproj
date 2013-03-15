@@ -42,9 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Sunplus.Agent.Model, Version=1.0.4820.16325, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Sunplus.Agent.Model\bin\Debug\Sunplus.Agent.Model.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model">
+      <HintPath>..\Dependencies\Sunplus.Agent.Model.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />

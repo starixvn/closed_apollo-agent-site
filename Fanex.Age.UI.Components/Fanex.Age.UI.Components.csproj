@@ -41,9 +41,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Age.UI">
-      <HintPath>..\Dependencies\Fanex.Age.UI.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Sunplus.Agent.Utilities">
       <HintPath>..\Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
@@ -204,6 +201,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
+      <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
+      <Name>Fanex.Age.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
       <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
       <Name>Sunplus.Agent.Model</Name>

@@ -43,9 +43,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Sunplus.Agent.Utilities">
-      <HintPath>..\Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -144,6 +141,10 @@
     <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
       <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
       <Name>Sunplus.Agent.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj">
+      <Project>{016F274C-1F76-450B-B80D-E7FB59BE6A2B}</Project>
+      <Name>Sunplus.Agent.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
