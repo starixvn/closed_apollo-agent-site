@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="Menu.aspx.cs" Inherits="Sunplus.Agent.UI._UserGuide.Master.UserGuide_CT.Menu_Page" %>

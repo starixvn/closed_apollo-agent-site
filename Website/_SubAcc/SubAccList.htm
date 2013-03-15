@@ -80,22 +80,22 @@
                     <input type="checkbox" id="chk{agentuserid_value}[RP][R][H]" value="[RP][R][H]" {report_checked} />
                 </td>
                 <td class="c" width="80px">
-                    <input type="checkbox" id="chk{agentuserid_value}[AC][R]" value="[AC][R]" {accountsetting_checked_read} />
+                    <input type="checkbox" id="chk{agentuserid_value}[AC][R]" value="[AC][R]" {accountsetting_checked_read} onclick="onClick_ChangePermission(this)" />
                 </td>
                 <td class="c" width="80px">
-                    <input type="checkbox" id="chk{agentuserid_value}[AC][H]" value="[AC][H]" {accountsetting_checked_host} />
+                    <input type="checkbox" id="chk{agentuserid_value}[AC][H]" value="[AC][H]" {accountsetting_checked_host} onclick="onClick_ChangePermission(this)" />
                 </td>
                 <td class="c" width="80px">
-                    <input type="checkbox" id="chk{agentuserid_value}[SM][R]" value="[SM][R]" {shadowmanagement_checked_read} />
+                    <input type="checkbox" id="chk{agentuserid_value}[SM][R]" value="[SM][R]" {shadowmanagement_checked_read} onclick="onClick_ChangePermission(this)" />
                 </td>
                 <td class="c" width="80px">
-                    <input type="checkbox" id="chk{agentuserid_value}[SM][H]" value="[SM][H]" {shadowmanagement_checked_host}/>
+                    <input type="checkbox" id="chk{agentuserid_value}[SM][H]" value="[SM][H]" {shadowmanagement_checked_host} onclick="onClick_ChangePermission(this)"/>
                 </td>
                 <td class="c" width="80px">
-                    <input type="checkbox" id="chk{agentuserid_value}[AD][R]" value="[AD][R]" {admin_checked_read} />
+                    <input type="checkbox" id="chk{agentuserid_value}[AD][R]" value="[AD][R]" {admin_checked_read} onclick="onClick_ChangePermission(this)" />
                 </td>
                 <td class="c" width="80px">
-                    <input type="checkbox" id="chk{agentuserid_value}[AD][H]" value="[AD][H]" {admin_checked_host}  />
+                    <input type="checkbox" id="chk{agentuserid_value}[AD][H]" value="[AD][H]" {admin_checked_host} onclick="onClick_ChangePermission(this)"  />
                 </td>
                 <td class="c" width="80px">
                     <a href="#" onclick="UpdatePermission({agentuserid_value},{agentid_value});">Update</a>

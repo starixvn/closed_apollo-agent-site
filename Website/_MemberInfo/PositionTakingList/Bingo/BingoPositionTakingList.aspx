@@ -1,2 +1,0 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="BingoPositionTakingList.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.PositionTakingList.Bingo.BingoPositionTakingList_Page" %>
-<%@ OutputCache Location="None"%>

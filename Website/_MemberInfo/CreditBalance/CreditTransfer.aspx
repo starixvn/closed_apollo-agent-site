@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="CreditTransfer.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.CreditBalance.CreditTransfer_Page" %>
