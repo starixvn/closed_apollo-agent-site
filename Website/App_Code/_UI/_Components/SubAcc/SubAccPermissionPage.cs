@@ -47,27 +47,27 @@ namespace Sunplus.Agent.UI._SubAcc
 
             var numBreak = 0;
 
-            foreach (IExtObject<string, string> data in FunctionNames)
-            {
-                //perm = new SubAccPermission_Template();
+            //foreach (IExtObject<string, string> data in FunctionNames)
+            //{
+            //    perm = new SubAccPermission_Template();
 
-                //perm.chkID = data.Key;
-                //perm.FunctionName = data.Value;
+            //    perm.chkID = data.Key;
+            //    perm.FunctionName = data.Value;
 
-                //_permissions.Append(perm);
+            //    _permissions.Append(perm);
 
-                //checkBoxes.Add(data.Key);
+            //    checkBoxes.Add(data.Key);
 
-                //if (numBreak == 3)
-                //{
-                //    _permissions.Append("<br />");
+            //    if (numBreak == 3)
+            //    {
+            //        _permissions.Append("<br />");
 
-                //    numBreak = 0;
-                //    continue;
-                //}
+            //        numBreak = 0;
+            //        continue;
+            //    }
 
-                //numBreak++;
-            }
+            //    numBreak++;
+            //}
 
             RegisterJavascriptObject("checkBoxes", checkBoxes.ToArray());
         }
