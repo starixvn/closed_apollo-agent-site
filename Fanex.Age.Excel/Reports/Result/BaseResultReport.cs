@@ -3,7 +3,7 @@
     using Fanex.Age.Utility.NPOI;
     using NPOI.SS.UserModel;
     using Sunplus.Agent.Model.BL.Cache;
-    using Sunplus.Agent.Utilities;
+    using Fanex.Age.Utility;
 
     public abstract class BaseResultReport : TemplateReport
     {

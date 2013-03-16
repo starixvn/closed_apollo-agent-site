@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Fanex.Age.Utility.DateTime
+namespace Fanex.Age.Utility
 {
     public enum eConvertType
     {

@@ -25,7 +25,7 @@ namespace Fanex.Age.Utility
         /// </summary>
         /// <param name="value"></param>
         /// <returns>Decimal</returns> 
-        public static Decimal AsDecimal(object value)
+        public static decimal AsDecimal(object value)
         {
             return AsDecimal(value, 0, CultureInfo.CurrentCulture);
         }
@@ -36,7 +36,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <returns>Decimal</returns> 
-        public static Decimal AsDecimal(object value, Decimal defaultValue)
+        public static decimal AsDecimal(object value, Decimal defaultValue)
         {
             return AsDecimal(value, defaultValue, CultureInfo.CurrentCulture);
         }
@@ -47,7 +47,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="provider">Instance of IFormatProvider</param>
         /// <returns>Decimal</returns> 
-        public static Decimal AsDecimal(object value, IFormatProvider provider)
+        public static decimal AsDecimal(object value, IFormatProvider provider)
         {
             return AsDecimal(value, 0, provider);
         }
@@ -59,7 +59,7 @@ namespace Fanex.Age.Utility
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <param name="provider">Instance of IFormatProvider</param>
         /// <returns>Decimal</returns> 
-        public static Decimal AsDecimal(object value, Decimal defaultValue, IFormatProvider provider)
+        public static decimal AsDecimal(object value, Decimal defaultValue, IFormatProvider provider)
         {
             if (value == null || value == System.DBNull.Value)
                 return defaultValue;
@@ -90,7 +90,7 @@ namespace Fanex.Age.Utility
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Decimal AsDecimalInvariant(object value)
+        public static decimal AsDecimalInvariant(object value)
         {
             return AsDecimal(value, 0, CultureInfo.InvariantCulture);
         }
@@ -101,7 +101,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static Decimal AsDecimalInvariant(object value, Decimal defaultValue)
+        public static decimal AsDecimalInvariant(object value, Decimal defaultValue)
         {
             return AsDecimal(value, defaultValue, CultureInfo.InvariantCulture);
         }

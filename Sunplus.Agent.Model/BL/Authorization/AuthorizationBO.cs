@@ -16,7 +16,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
     using Sunplus.Agent.Model.BL.SubAcc;
     using Sunplus.Agent.Model.DL.Authorization;
     using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Utilities;
+    using Fanex.Age.Utility;
 
     public class AuthorizationBO : Sunplus.Agent.Model.BL.Base.BOBase
     {

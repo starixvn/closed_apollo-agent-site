@@ -13,6 +13,7 @@ namespace Sunplus.Agent.Model.DL.BetList
     using System.Collections;
     using System.Collections.Generic;
     using Fanex.Data.DNAide;
+    using Fanex.Age.Utility;
 
     public class BetListDAO : Sunplus.Agent.Model.DL.Base.DAOBase
     {
@@ -56,7 +57,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelWinLossByDate_Mem", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Fanex.Age.Utility.Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -97,7 +98,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelWinLossByDate_Mem_Old", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -210,7 +211,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelWinlossHR_Ag", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -252,7 +253,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelWinlossHR_MAg", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -294,7 +295,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelWinlossHR_SAg", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -334,7 +335,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelWinlossByBettypeMatch_Ag", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -370,7 +371,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelWinlossByBettypeMatch_MAg", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -406,7 +407,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelWinlossByBettypeMatch_SAg", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -443,7 +444,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelRunningByDate_Mem", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -480,7 +481,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelAllByDate_Mem", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -532,7 +533,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelDeleted", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -572,7 +573,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelAllByDateHR_Ag", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -608,7 +609,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelAllByDateHR_MAg", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -644,7 +645,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelAllByDateHR_SAg", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -707,7 +708,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_TotalBet_SelRunningByBettypeMatch", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -766,7 +767,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelRunningByBettypeMatch_MAg", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -824,7 +825,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelRunningByBettypeMatch_SAg", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -862,7 +863,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelByDayAll_Mem", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -894,7 +895,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException("Age_BetList_SelByDayAll_Mem_Old", parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }

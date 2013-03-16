@@ -6,7 +6,7 @@ using Fanex.Age.Utility.NPOI;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using Sunplus.Agent.Model.Entities.Permission;
-using Sunplus.Agent.Utilities;
+using Fanex.Age.Utility;
 
 namespace Fanex.Age.Excel.Reports.Commission
 {

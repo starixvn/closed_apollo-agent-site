@@ -43,6 +43,9 @@
     <Reference Include="DNAide">
       <HintPath>..\Dependencies\DNAide.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Logging">
+      <HintPath>..\Dependencies\Fanex.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\Dependencies\NPOI.dll</HintPath>
     </Reference>
@@ -60,8 +63,17 @@
     <Compile Include="CaptchaUtil\CaptchaInfo.cs" />
     <Compile Include="CaptchaUtil\CaptchaLogging.cs" />
     <Compile Include="CaptchaUtil\Enums.cs" />
+    <Compile Include="Cast\ConvertBoolean.cs" />
+    <Compile Include="Cast\ConvertDateTime.cs" />
+    <Compile Include="Cast\ConvertDecimal.cs" />
+    <Compile Include="Cast\ConvertDouble.cs" />
+    <Compile Include="Cast\ConvertInt32.cs" />
+    <Compile Include="Cast\ConvertString.cs" />
     <Compile Include="Data\DataExtension.cs" />
     <Compile Include="DateTime\DateTimeExtension.cs" />
+    <Compile Include="Formater.cs" />
+    <Compile Include="HtmlGenerator.cs" />
+    <Compile Include="Logs.cs" />
     <Compile Include="NPOI\ITextFormat.cs" />
     <Compile Include="NPOI\NPOIExtension.cs" />
     <Compile Include="NPOI\RtfFontFormatter.cs" />
@@ -73,6 +85,7 @@
     <Compile Include="ResourceUtil\CardImages.cs" />
     <Compile Include="String\MiscExtension.cs" />
     <Compile Include="String\NullableConvert.cs" />
+    <Compile Include="UrlProcessor.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
