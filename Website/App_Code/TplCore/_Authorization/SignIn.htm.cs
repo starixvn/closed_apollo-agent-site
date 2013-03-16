@@ -6,7 +6,7 @@ using System.Text;
 using TplCore;
 using TplCore.Element;
 #pragma warning disable
-namespace Sunplus.Agent.UI
+namespace Fanex.Agent.UI
 {
 	using _Authorization;
 	namespace _Authorization
@@ -22,27 +22,34 @@ namespace Sunplus.Agent.UI
 			protected static string s4 = "\" id=\"txtCaptcha\" name=\"txtCaptcha\" type=\"text\" maxlength=\"4\" autocomplete=\"off\" onkeydown=\"age.DoEnter(event, 'DoLogin()')\" /></td></tr><tr><td></td><td colspan=\"2\"><input id=\"btnLogin\" type=\"button\" class=\"buttonsite\" value=\"Login\" onclick=\"return DoLogin()\" /></td></tr></table><div id=\"divBrowser\" class=\"text_browser\">Recommended Browsers</div><div style=\"padding-top:23px\">";
 			public string VersionMobile = "{VersionMobile}";
 			protected static string s5 = "</div></form></div></center></body><script src=\"";
-			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s7 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s8{get{return AbsoluteUrl("_Authorization/Resources/SignIn.js", TplSettings.Question);}}
-			protected static string s9 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s8{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s9 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s10{get{return AbsoluteUrl("_Authorization/Resources/SignIn.js", TplSettings.Question);}}
+			protected static string s11 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
-				bd.Append(s0);
-				bd.Append(s1);
-				bd.Append(s2);
-				bd.Append(username_value);
-				bd.Append(s3);
-				bd.Append(captcha_value);
-				bd.Append(s4);
-				bd.Append(VersionMobile);
-				bd.Append(s5);
-				bd.Append(s6);
-				bd.Append(s7);
-				bd.Append(s8);
-				bd.Append(s9);
-				bd.Append(Value);
+				if(RenderChild)
+				{
+					bd.Append(s0);
+					bd.Append(s1);
+					bd.Append(s2);
+					bd.Append(username_value);
+					bd.Append(s3);
+					bd.Append(captcha_value);
+					bd.Append(s4);
+					bd.Append(VersionMobile);
+					bd.Append(s5);
+					bd.Append(s6);
+					bd.Append(s7);
+					bd.Append(s8);
+					bd.Append(s9);
+					bd.Append(s10);
+					bd.Append(s11);
+				}
+				if(IsAssigned){bd.Append(Value);}
 			}
 			public string ToString()
 			{

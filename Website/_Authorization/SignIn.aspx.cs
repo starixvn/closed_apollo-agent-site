@@ -16,6 +16,7 @@ namespace Sunplus.Agent.UI._Authorization
     using Sunplus.Agent.Model.BL.Authorization;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
+    using Fanex.Agent.UI._Authorization;
 
     public partial class SignIn_Page : Fanex.Age.UI.TplPage2
     {
