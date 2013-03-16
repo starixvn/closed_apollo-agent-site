@@ -6,8 +6,8 @@
 
 function ChangePassword() {
     // Validate password
-    var txtPwd = $('password');
-    var txtConfirmPwd = $('confirmPassword');
+    var txtPwd = document.getElementById('password');
+    var txtConfirmPwd = document.getElementById('confirmPassword');
 
     var errMsg = null;
 
@@ -61,16 +61,16 @@ function ChangePassword() {
 }
 
 function Reset() {
-    $('password').value = '';
-    $('confirmPassword').value = '';
-     $('password').focus();
+    document.getElementById('password').value = '';
+    document.getElementById('confirmPassword').value = '';
+     document.getElementById('password').focus();
 }
 
 
 // Check pass call in keyup event
 function CheckPass(pwdElement, iconElementId) {
     var isPwd = IsPassword(pwdElement.value);
-    var iconElement = $(iconElementId);
+    var iconElement = document.getElementById(iconElementId);
 
     if (!iconElement) return false;
 
@@ -94,7 +94,7 @@ function ValidatePassword(str) {
 
 function ChangePasswordOnLoad() {
     if (_page.isPopup == true) {
-        $('header_main').style.display = 'none';
+        document.getElementById('header_main').style.display = 'none';
     }
 }
 

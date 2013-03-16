@@ -1,8 +1,8 @@
 ﻿function changeDoubleCommStatus(evt, hasDownLine) {
-    if ($('chkDoubleComm').disabled) return _stopEvent(evt);
+    if (document.getElementById('chkDoubleComm').disabled) return _stopEvent(evt);
 
     var isOpenPopup = false;
-    var isDisabled = $('chkDoubleComm').checked;
+    var isDisabled = document.getElementById('chkDoubleComm').checked;
     if (isDisabled) {
         if (typeof hasDownLine != 'undefined' && hasDownLine) { //for agent
             if (!confirm(_page.strConfirmDisableDoubleComm)) {
@@ -34,7 +34,7 @@
 
         function onComplete(result) {
             if (result.errCode == 0) {
-                $('chkDoubleComm').checked = doubleCommLosing;
+                document.getElementById('chkDoubleComm').checked = doubleCommLosing;
             } else alert(result.errMsg);
             if (isOpenPopup) closeDivPopup();
         }
@@ -46,10 +46,10 @@
 function MultiUpdateDComm() {
     var newStatus = null;
 
-    if ($('dcomAllow').checked == true) {
+    if (document.getElementById('dcomAllow').checked == true) {
         newStatus = 1;
     }
-    else if ($('dcomDisallow').checked == true) {
+    else if (document.getElementById('dcomDisallow').checked == true) {
         newStatus = 0;
     }
 

@@ -36,7 +36,7 @@ var url = null;
 var txtObj = null;
 
 function setVisible(visi) {
-    var x = $("shadow");
+    var x = document.getElementById("shadow");
     x.style.position = 'absolute';
     x.style.top = (findPosY(txtObj) + 3) + "px";
     //x.style.left = (findPosX(txtObj) + 2) + "px";
@@ -53,13 +53,13 @@ function initAutoComplete(id, queryUrl) {
     
     initCaching();
 
-    txtObj = $(id);
+    txtObj = document.getElementById(id);
     url = queryUrl;
     txtObj.setAttribute('autocomplete', 'off');
     age.addEvent(txtObj, 'blur', function() {
         setTimeout('setVisible("hidden")', 500);
     });
-    outp = $("output");
+    outp = document.getElementById("output");
     setVisible("hidden");
 
     age.addEvent(txtObj, 'keydown', keygetter); //needed for Opera...
@@ -204,7 +204,7 @@ function keygetter(event) {
 }
 
 function keyHandler(event) {
-    if ($("isMember").value == 1) {
+    if (document.getElementById("isMember").value == 1) {
         if (url.indexOf("isMember") > 0) {
             url = url.replace("isMember=0", "isMember=1");
         }
@@ -221,7 +221,7 @@ function keyHandler(event) {
         }
     }
 
-    if ($("shadow").style.visibility == "visible") {
+    if (document.getElementById("shadow").style.visibility == "visible") {
         if (key == 40) { //Key down
             if (words.length > 0 && posi < words.length - 1) {
                 if (posi >= 0) {

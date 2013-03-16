@@ -1,9 +1,9 @@
 ﻿function DisableButton() {
-    var dSubmit = $('dSubmit');
-    var dToday = $('dToday');
-    var dYesterday = $('dYesterday');
-    var dSelLeague = $('dSelLeague');
-    var btResultType = $('btResultType');
+    var dSubmit = document.getElementById('dSubmit');
+    var dToday = document.getElementById('dToday');
+    var dYesterday = document.getElementById('dYesterday');
+    var dSelLeague = document.getElementById('dSelLeague');
+    var btResultType = document.getElementById('btResultType');
 
     dSubmit.disabled = true;
     if (!HasClassName(dSubmit, 'hidden')) dSubmit.className = 'btn2';
@@ -27,16 +27,16 @@
         btResultType.disabled = true;
         btResultType.className = 'btn2';
     }
-    var loading = $("loading");
+    var loading = document.getElementById("loading");
     if (loading) loading.className = "loading";
 }
 
 function EnableButton() {
-    var dSubmit = $('dSubmit');
-    var dToday = $('dToday');
-    var dYesterday = $('dYesterday');
-    var dSelLeague = $('dSelLeague');
-    var btResultType = $('btResultType');
+    var dSubmit = document.getElementById('dSubmit');
+    var dToday = document.getElementById('dToday');
+    var dYesterday = document.getElementById('dYesterday');
+    var dSelLeague = document.getElementById('dSelLeague');
+    var btResultType = document.getElementById('btResultType');
 
     dSubmit.disabled = false;
     if (!HasClassName(dSubmit, 'hidden')) dSubmit.className = 'btn';
@@ -60,12 +60,12 @@ function EnableButton() {
         btResultType.disabled = false;
         btResultType.className = 'btn';
     }
-    var loading = $("loading");
+    var loading = document.getElementById("loading");
     if (loading) loading.className = "";
 }
 
 function ChangeMonth() {
-    var value = $("ddlMonth").value;
+    var value = document.getElementById("ddlMonth").value;
     var dateFromObj = ClearOptions("ddlDateFrom");
     var dateToObj = ClearOptions("ddlDateTo");
     var selectedMonth = new Date(value);
@@ -93,9 +93,9 @@ function ChangeMonth() {
     ChangeDateTo();
 }
 function ChangeDateFrom() {
-    var value = $("ddlDateFrom").value;
+    var value = document.getElementById("ddlDateFrom").value;
     var dateFromInput = document.getElementById('fdate');
-    var selectedMonth = new Date($('lblSelectedMonth').title);
+    var selectedMonth = new Date(document.getElementById('lblSelectedMonth').title);
 
     selectedMonth.setDate(value);
     var month = selectedMonth.getMonth() + 1;
@@ -105,9 +105,9 @@ function ChangeDateFrom() {
 }
 
 function ChangeDateTo() {
-    var value = $("ddlDateTo").value;
+    var value = document.getElementById("ddlDateTo").value;
     var dateToInput = document.getElementById('tdate');
-    var selectedMonth = new Date($('lblSelectedMonth').title);
+    var selectedMonth = new Date(document.getElementById('lblSelectedMonth').title);
 
     selectedMonth.setDate(value);
     var month = selectedMonth.getMonth() + 1;
@@ -176,14 +176,14 @@ function GetParameterValue(name, url) {
 }
 
 function SearchByDate() {
-    var form = $("frmmain");
+    var form = document.getElementById("frmmain");
     if (form) {
         form.method = "get";
         form.submit();
     }
 }
 function SearchOneDay(value) {
-    var form = $("frmmain");
+    var form = document.getElementById("frmmain");
 
     if (form) {
         var fdate = document.getElementById('fdate');
@@ -198,11 +198,11 @@ function SearchOneDay(value) {
 //Add control monthly and handle the events on here
 //Hide form Nick Name
 function HideForm(seconds) {
-    timeoutID = setTimeout("if($('monthPickerDropDown')) $('monthPickerDropDown').style.display ='none'", seconds); //Set delay
+    timeoutID = setTimeout("if(document.getElementById('monthPickerDropDown')) document.getElementById('monthPickerDropDown').style.display ='none'", seconds); //Set delay
 }
 
 function HideFormV2(seconds, id) {
-    timeoutID = setTimeout("if($('" + id + "')) $('" + id + "').style.display ='none'", seconds); //Set delay
+    timeoutID = setTimeout("if(document.getElementById('" + id + "')) document.getElementById('" + id + "').style.display ='none'", seconds); //Set delay
 }
 
 function StopTimer() {
@@ -210,42 +210,42 @@ function StopTimer() {
 }
 //Display or Hide div list month when click on here
 function ShowMonth() {
-    if ($('monthPickerDropDown').style.display == "none" || $('monthPickerDropDown').style.display == "") {
-        $('monthPickerDropDown').style.display = "block";
-        $('monthPickerDropDown').onmouseover = function () { StopTimer(); }
-        $('monthPickerDropDown').onmouseout = function () { HideForm(1000); }
-        $('btnPrevMonth').onmouseout = function () { HideForm(1000); }
-        $('btnNextMonth').onmouseout = function () { HideForm(1000); }
+    if (document.getElementById('monthPickerDropDown').style.display == "none" || document.getElementById('monthPickerDropDown').style.display == "") {
+        document.getElementById('monthPickerDropDown').style.display = "block";
+        document.getElementById('monthPickerDropDown').onmouseover = function () { StopTimer(); }
+        document.getElementById('monthPickerDropDown').onmouseout = function () { HideForm(1000); }
+        document.getElementById('btnPrevMonth').onmouseout = function () { HideForm(1000); }
+        document.getElementById('btnNextMonth').onmouseout = function () { HideForm(1000); }
     } else {
-        $('monthPickerDropDown').style.display = "none";
+        document.getElementById('monthPickerDropDown').style.display = "none";
     }
     StopTimer();
 }
 
 function ShowMonthV2(id, btnPre, btnNext) {
-    if ($(id).style.display == "none" || $(id).style.display == "") {
+    if (document.getElementById(id).style.display == "none" || document.getElementById(id).style.display == "") {
         if (id.indexOf('2') > 0) {
-            $('monthPickerDropDown').style.display = "none";
-            $(id).style.display = "block";
+            document.getElementById('monthPickerDropDown').style.display = "none";
+            document.getElementById(id).style.display = "block";
         }
         else {
-            $('monthPickerDropDown2').style.display = "none";
-            $(id).style.display = "block";
+            document.getElementById('monthPickerDropDown2').style.display = "none";
+            document.getElementById(id).style.display = "block";
         }
 
-        $(id).onmouseover = function () { StopTimer(); }
-        $(id).onmouseout = function () { HideFormV2(1000, id); }
-        $(btnPre).onmouseout = function () { HideFormV2(1000, id); }
-        $(btnNext).onmouseout = function () { HideFormV2(1000, id); }
+        document.getElementById(id).onmouseover = function () { StopTimer(); }
+        document.getElementById(id).onmouseout = function () { HideFormV2(1000, id); }
+        document.getElementById(btnPre).onmouseout = function () { HideFormV2(1000, id); }
+        document.getElementById(btnNext).onmouseout = function () { HideFormV2(1000, id); }
     } else {
-        $('monthPickerDropDown2').style.display = "none";
-        $('monthPickerDropDown').style.display = "none";
+        document.getElementById('monthPickerDropDown2').style.display = "none";
+        document.getElementById('monthPickerDropDown').style.display = "none";
     }
     StopTimer();
 }
 //Event Expand list month when click  on year.
 function SelectedYear(year, calendarPos) {
-    var listYear = $('listYear').value.split('-');
+    var listYear = document.getElementById('listYear').value.split('-');
     var part_num = 0;
     while (part_num < listYear.length) {
         if (listYear[part_num] == year) {
@@ -265,32 +265,32 @@ function ExpandMonth(year, displayNone, calendarPos) {
     var ID = "ID" + tmp + "_";
 
     if (displayNone != null) {
-        $(ID + year).className = "";
+        document.getElementById(ID + year).className = "";
         for (i = 1; i < 13; i++) {
-            if ($(LI + year + "_" + i) != null) {
-                $(LI + year + "_" + i).style.display = "none";
+            if (document.getElementById(LI + year + "_" + i) != null) {
+                document.getElementById(LI + year + "_" + i).style.display = "none";
             }
         }
     }
     else {
-        if ($(ID + year).className == "")
-            $(ID + year).className = "selected";
+        if (document.getElementById(ID + year).className == "")
+            document.getElementById(ID + year).className = "selected";
         else
-            $(ID + year).className = "";
+            document.getElementById(ID + year).className = "";
 
         for (i = 1; i < 13; i++) {
-            if ($(LI + year + "_" + i) != null && $(LI + year + "_" + i).style.display == "none") {
-                $(LI + year + "_" + i).style.display = "block";
+            if (document.getElementById(LI + year + "_" + i) != null && document.getElementById(LI + year + "_" + i).style.display == "none") {
+                document.getElementById(LI + year + "_" + i).style.display = "block";
             }
-            else if ($(LI + year + "_" + i) != null) {
-                $(LI + year + "_" + i).style.display = "none";
+            else if (document.getElementById(LI + year + "_" + i) != null) {
+                document.getElementById(LI + year + "_" + i).style.display = "none";
             }
         }
     }
 }
 
 function SetSelectedMonth(value, isClick) {
-    $('lblSelectedMonth').title = value;
+    document.getElementById('lblSelectedMonth').title = value;
     var dateFromObj = ClearOptions("ddlDateFrom");
     var dateToObj = ClearOptions("ddlDateTo");
     var selectedMonth = new Date(value);
@@ -316,7 +316,7 @@ function SetSelectedMonth(value, isClick) {
 
     ChangeDateFrom();
     ChangeDateTo();
-    HideDivMonthAndSelectedValue(value, $(value).title, year, isClick);
+    HideDivMonthAndSelectedValue(value, document.getElementById(value).title, year, isClick);
     SetClassNameSelected(month, year);
     CheckBoundary(value);
 }
@@ -332,7 +332,7 @@ function SetSelectedMonthV2(value, isClick, lblId, dtId) {
         value = value.replace('13/', '1/').replace(value.split('/')[2], year);
     }
 
-    $(lblId).title = value;
+    document.getElementById(lblId).title = value;
 
     var selectedMonth = new Date(value);
     var year = selectedMonth.getFullYear();
@@ -356,14 +356,14 @@ function SetSelectedMonthV2(value, isClick, lblId, dtId) {
     }
 
     if (lblId.indexOf('2') > 0) {
-        $('tdate').value = value;
+        document.getElementById('tdate').value = value;
     }
     else {
-        $('fdate').value = value;
+        document.getElementById('fdate').value = value;
     }
 
-    if ($(value + tmp)) {
-        HideDivMonthAndSelectedValueV2(value, $(value + tmp).title, year, isClick, lblId, dtId);
+    if (document.getElementById(value + tmp)) {
+        HideDivMonthAndSelectedValueV2(value, document.getElementById(value + tmp).title, year, isClick, lblId, dtId);
     }
 
     SetClassNameSelected(month, year, lblId.indexOf('2') > 0 ? 2 : null);
@@ -384,25 +384,25 @@ function SetSelectedMonthV2(value, isClick, lblId, dtId) {
 }
 
 function HideDivMonthAndSelectedValue(id, month, year, isClick) {
-    $('lblSelectedMonth').innerHTML = month + " - " + year;
-    if (isClick) $('monthPickerDropDown').style.display = "none";
-    $(id).className = "selected";
+    document.getElementById('lblSelectedMonth').innerHTML = month + " - " + year;
+    if (isClick) document.getElementById('monthPickerDropDown').style.display = "none";
+    document.getElementById(id).className = "selected";
 }
 
 function HideDivMonthAndSelectedValueV2(id, month, year, isClick, lblId, dtId) {
-    $(lblId).innerHTML = month + " - " + year;
+    document.getElementById(lblId).innerHTML = month + " - " + year;
 
     if (isClick) {
-        $('monthPickerDropDown2').style.display = "none";
-        $('monthPickerDropDown').style.display = "none";
+        document.getElementById('monthPickerDropDown2').style.display = "none";
+        document.getElementById('monthPickerDropDown').style.display = "none";
     }
 
     var tmp = lblId.indexOf('2') > 0 ? '_LI2' : '';
-    $(id + tmp).className = "selected";
+    document.getElementById(id + tmp).className = "selected";
 }
 
 function SetClassNameSelected(month, year, calendarPos) {
-    var listYear = $('listYear').value.split('-');
+    var listYear = document.getElementById('listYear').value.split('-');
     var part_num = 0;
     var tmp = calendarPos == null ? '' : calendarPos;
     var subID = calendarPos == null ? '' : "_LI" + calendarPos;
@@ -413,11 +413,11 @@ function SetClassNameSelected(month, year, calendarPos) {
     while (part_num < listYear.length) {
         //Expland icon year when have selected month
         if (listYear[part_num] == year) {
-            if ($(IDS + year).className == "") {
-                $(IDS + year).className = "selected";
+            if (document.getElementById(IDS + year).className == "") {
+                document.getElementById(IDS + year).className = "selected";
             }
             for (var i = 1; i < 13; i++) {
-                if ($(LI + year + "_" + i) != null) {
+                if (document.getElementById(LI + year + "_" + i) != null) {
                     var id = i + '/1/' + year + subID;
 
                     if (tmp != '') {
@@ -430,25 +430,25 @@ function SetClassNameSelected(month, year, calendarPos) {
                     }
 
                     if (month == i) {
-                        if ($(id)) {
-                            $(id).className = "selected";
+                        if (document.getElementById(id)) {
+                            document.getElementById(id).className = "selected";
                         }
                     }
                     else {
-                        if ($(id)) {
-                            $(id).className = "";
+                        if (document.getElementById(id)) {
+                            document.getElementById(id).className = "";
                         }
                     }
 
-                    if ($(LI + year + "_" + i).style.display == "none")
-                        $(LI + year + "_" + i).style.display = "";
+                    if (document.getElementById(LI + year + "_" + i).style.display == "none")
+                        document.getElementById(LI + year + "_" + i).style.display = "";
                 }
             }
         }
         else { //Hide icon year when haven't selected month
-            $(IDS + listYear[part_num]).className = "";
+            document.getElementById(IDS + listYear[part_num]).className = "";
             for (var i = 1; i < 13; i++) {
-                if ($(LI + listYear[part_num] + "_" + i) != null) {
+                if (document.getElementById(LI + listYear[part_num] + "_" + i) != null) {
                     var id = i + '/1/' + listYear[part_num] + subID;
 
                     if (tmp != '') {
@@ -462,11 +462,11 @@ function SetClassNameSelected(month, year, calendarPos) {
                         id = i + '/' + day + '/' + listYear[part_num] + subID;
                     }
 
-                    if ($(id)) {
-                        $(id).className = "";
+                    if (document.getElementById(id)) {
+                        document.getElementById(id).className = "";
                     }
 
-                    $(LI + listYear[part_num] + "_" + i).style.display = "none";
+                    document.getElementById(LI + listYear[part_num] + "_" + i).style.display = "none";
                 }
             }
         }
@@ -475,13 +475,13 @@ function SetClassNameSelected(month, year, calendarPos) {
 }
 
 function CheckBoundary(dateToGo) {
-    var maxDate = Date.parse($('maxDate').value);
-    var minDate = Date.parse($('minDate').value);
+    var maxDate = Date.parse(document.getElementById('maxDate').value);
+    var minDate = Date.parse(document.getElementById('minDate').value);
 
     dateToGo = Date.parse(dateToGo);
 
-    var next = $('btnNextMonth');
-    var prev = $('btnPrevMonth');
+    var next = document.getElementById('btnNextMonth');
+    var prev = document.getElementById('btnPrevMonth');
     if (dateToGo >= maxDate) {
         AddClassName(next, "disabled");
     } else {
@@ -496,18 +496,18 @@ function CheckBoundary(dateToGo) {
 };
 
 function CheckBoundaryV2(dateToGo, btnPreId, btnNextId) {
-    var maxDate = Date.parse($('maxDateTo').value);
-    var minDate = Date.parse($('minDateTo').value);
+    var maxDate = Date.parse(document.getElementById('maxDateTo').value);
+    var minDate = Date.parse(document.getElementById('minDateTo').value);
 
     if (dateToGo.indexOf('/1/') > 0) {
-        maxDate = Date.parse($('maxDate').value);
-        minDate = Date.parse($('minDate').value);
+        maxDate = Date.parse(document.getElementById('maxDate').value);
+        minDate = Date.parse(document.getElementById('minDate').value);
     }
 
     dateToGo = Date.parse(dateToGo);
 
-    var next = $(btnNextId);
-    var prev = $(btnPreId);
+    var next = document.getElementById(btnNextId);
+    var prev = document.getElementById(btnPreId);
     if (dateToGo >= maxDate) {
         AddClassName(next, "disabled");
     } else {
@@ -523,9 +523,9 @@ function CheckBoundaryV2(dateToGo, btnPreId, btnNextId) {
 
 function PrevMonth() {
     StopTimer();
-    if (HasClassName($('btnPrevMonth'), 'disabled')) return;
+    if (HasClassName(document.getElementById('btnPrevMonth'), 'disabled')) return;
 
-    var currentDate = new Date($('lblSelectedMonth').title);
+    var currentDate = new Date(document.getElementById('lblSelectedMonth').title);
     currentDate.setMonth(currentDate.getMonth() - 1);
     currentDate = (currentDate.getMonth() + 1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
     SetSelectedMonth(currentDate, false);
@@ -533,9 +533,9 @@ function PrevMonth() {
 
 function NextMonth() {
     StopTimer();
-    if (HasClassName($('btnNextMonth'), 'disabled')) return;
+    if (HasClassName(document.getElementById('btnNextMonth'), 'disabled')) return;
 
-    var currentDate = new Date($('lblSelectedMonth').title);
+    var currentDate = new Date(document.getElementById('lblSelectedMonth').title);
     currentDate.setMonth(currentDate.getMonth() + 1);
     currentDate = (currentDate.getMonth() + 1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
     SetSelectedMonth(currentDate, false);
@@ -543,9 +543,9 @@ function NextMonth() {
 
 function PrevMonthV2(id, lblId, dtId) {
     StopTimer();
-    if (HasClassName($(id), 'disabled')) return;
+    if (HasClassName(document.getElementById(id), 'disabled')) return;
 
-    var currentDate = new Date($(lblId).title);
+    var currentDate = new Date(document.getElementById(lblId).title);
 
     var day = 1;
 
@@ -562,9 +562,9 @@ function PrevMonthV2(id, lblId, dtId) {
 
 function NextMonthV2(id, lblId, dtId) {
     StopTimer();
-    if (HasClassName($(id), 'disabled')) return;
+    if (HasClassName(document.getElementById(id), 'disabled')) return;
 
-    var currentDate = new Date($(lblId).title);
+    var currentDate = new Date(document.getElementById(lblId).title);
 
     var day = 1;
 

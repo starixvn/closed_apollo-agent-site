@@ -1,4 +1,6 @@
 // http://www.vonloesch.de/node/18
+/// <reference path="../../_GlobalResources/Js/jquery.js" />
+
 var suggestions = null;
 
 if(typeof top.cachePage == 'undefined')
@@ -45,20 +47,20 @@ function _addEvent(el, evname, func) {
     }
 }
 
-function setVisible(visi){
-	var x = $("shadow");
+function setVisible(visi) {   
+    var x = document.getElementById("shadow");    
 	x.style.position = 'absolute';
 	x.style.top =  (findPosY(txtObj)+3)+"px";
 	x.style.left = (findPosX(txtObj)+2)+"px";
 	x.style.visibility = visi;
 }
 
-function initAutoComplete(id, queryUrl){
-    txtObj = $(id);
+function initAutoComplete(id, queryUrl){  
+    txtObj = document.getElementById(id);
     url = queryUrl;
     txtObj.setAttribute('autocomplete', 'off');
     _addEvent(txtObj, 'blur', function () { setTimeout('setVisible("hidden")', 500); });
-	outp = $("output");
+    outp = document.getElementById("output");
 	setVisible("hidden");
 
 	_addEvent(txtObj, 'keydown', keygetter); //needed for Opera...
@@ -207,7 +209,7 @@ function keygetter(event){
 	
 function keyHandler(event){
 
-	if ($("shadow").style.visibility == "visible"){
+    if (document.getElementById("shadow").style.visibility == "visible") {
 	    if (key == 40){ //Key down
 		    if (words.length > 0 && posi < words.length-1){
 		        if (posi >= 0) {

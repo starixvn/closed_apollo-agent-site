@@ -1,7 +1,7 @@
 ﻿function ShowFrmUpdRacingStatus(obj, hasDownLine) {
     // Show div pop up to update 6 statuses
     showDivRacingPopup(obj);
-    show_hide_column(1, hasDownLine, $('disabledRacingStatusPop').firstChild);
+    show_hide_column(1, hasDownLine, document.getElementById('disabledRacingStatusPop').firstChild);
 
     function show_hide_column(col_no, do_show, tbl) {
         var stl;
@@ -27,33 +27,33 @@ var popupOffsetRowHeight = 23;
 
 function checkDisableBetTypes() {
     if (!_page.IsShowRacing_151_31) {
-        $('row_151_31').style.display = 'none';
+        document.getElementById('row_151_31').style.display = 'none';
         popupOffsetHeight -= popupOffsetRowHeight;
     }
 
     if (!_page.IsShowRacing_151_51) {
-        $('row_151_51').style.display = 'none';
+        document.getElementById('row_151_51').style.display = 'none';
         popupOffsetHeight -= popupOffsetRowHeight;
     }
 
     if (!_page.IsShowRacing_152_41) {
-        $('row_152_41').style.display = 'none';
+        document.getElementById('row_152_41').style.display = 'none';
         popupOffsetHeight -= popupOffsetRowHeight;
     }
 
     if (!_page.IsShowRacing_152_51) {
-        $('row_152_51').style.display = 'none';
+        document.getElementById('row_152_51').style.display = 'none';
         popupOffsetHeight -= popupOffsetRowHeight;
     }
 
     if (!_page.IsShowRacing_152_41 && !_page.IsShowRacing_152_51) {
-        $('row_152_hd').style.display = 'none';
+        document.getElementById('row_152_hd').style.display = 'none';
         popupOffsetHeight -= popupOffsetRowHeight;
     }
 
     if (!_page.IsShowRacing_153_51) {
-        $('row_153_51').style.display = 'none';
-        $('row_153_hd').style.display = 'none';
+        document.getElementById('row_153_51').style.display = 'none';
+        document.getElementById('row_153_hd').style.display = 'none';
         popupOffsetHeight -= 2 * popupOffsetRowHeight;
     }    
 }
@@ -79,43 +79,43 @@ function refreshFrmUpdRacing() {
             var isDirectDL = (_page.RoleId - _page.CustRoleId) == 1;
             
             for (var i = 0; i < LENGTHS; i++) {
-                $(chkEnableds[i]).checked = eval('!window.resultRacing.Disable' + Ids[i]);
-                $(chkEnabledDLs[i]).checked = eval('!window.resultRacing.DisableDownlines' + Ids[i]);
+                document.getElementById(chkEnableds[i]).checked = eval('!window.resultRacing.Disable' + Ids[i]);
+                document.getElementById(chkEnabledDLs[i]).checked = eval('!window.resultRacing.DisableDownlines' + Ids[i]);
 
                 var checkPermisssionSubAccount = true;
-                var permissionDetailRC = $(chkEnableds[i]).getAttribute('AccountPermisssion');
+                var permissionDetailRC = document.getElementById(chkEnableds[i]).getAttribute('AccountPermisssion');
                 if (permissionDetailRC != null) {
                     if (permissionDetailRC.length != 0) {
                         if (top.AGE.PERMISSIONS.indexOf(permissionDetailRC) == -1) {
-                            $(chkEnableds[i]).disabled = true;
-                            $(chkEnabledDLs[i]).disabled = true;
+                            document.getElementById(chkEnableds[i]).disabled = true;
+                            document.getElementById(chkEnabledDLs[i]).disabled = true;
                             checkPermisssionSubAccount = false;
                         }
                     }
                 }
 
                 if (checkPermisssionSubAccount) {
-                    $(chkEnableds[i]).disabled = !isDirectDL || eval('window.resultRacing.DisableUplines' + Ids[i]);
-                    $(chkEnabledDLs[i]).disabled = true;
+                    document.getElementById(chkEnableds[i]).disabled = !isDirectDL || eval('window.resultRacing.DisableUplines' + Ids[i]);
+                    document.getElementById(chkEnabledDLs[i]).disabled = true;
                 }
             }
         }
     }
 
-    $('btnUpdRacingStatus').disabled = true;
+    document.getElementById('btnUpdRacingStatus').disabled = true;
 }
 
 function initFrmUpdRacing() {
 
-    age.addEvent($('disabledRacingStatusPop'), "click", checkBtnUpdRacingStatus, true);
-    age.addEvent($('btnUpdRacingStatus'), 'click', function() {
+    age.addEvent(document.getElementById('disabledRacingStatusPop'), "click", checkBtnUpdRacingStatus, true);
+    age.addEvent(document.getElementById('btnUpdRacingStatus'), 'click', function() {
         var params = ajax.CreateParams2(chkEnableds.concat(chkEnabledDLs));
 
         var updatedisables = new Array();
         for (var i = 0; i < LENGTHS; i++) {
         
-            var isChanged = ($(chkEnableds[i]).checked == eval('window.resultRacing.Disable' + Ids[i]));
-            isChanged = isChanged || ($(chkEnabledDLs[i]).checked == eval('window.resultRacing.DisableDownlines' + Ids[i]));
+            var isChanged = (document.getElementById(chkEnableds[i]).checked == eval('window.resultRacing.Disable' + Ids[i]));
+            isChanged = isChanged || (document.getElementById(chkEnabledDLs[i]).checked == eval('window.resultRacing.DisableDownlines' + Ids[i]));
             
             updatedisables.push('updatedisable' + Ids[i] + '=' + isChanged);
         }
@@ -124,7 +124,7 @@ function initFrmUpdRacing() {
 
         var confirmed = true;
         for (var i = 0; i < LENGTHS; i++) {
-            if (!$(chkEnableds[i]).checked && eval('!window.resultRacing.Disable' + Ids[i])) {
+            if (!document.getElementById(chkEnableds[i]).checked && eval('!window.resultRacing.Disable' + Ids[i])) {
                 confirmed = confirm(_page.alertUpdRacingStatus);
                 break;
             }
@@ -134,7 +134,7 @@ function initFrmUpdRacing() {
             return;
         }
 
-        $('btnUpdRacingStatus').disabled = true;
+        document.getElementById('btnUpdRacingStatus').disabled = true;
 
         ajax.PostJSON('Handlers/UpdateRacingStatus.ashx?custid=' + _page.UserId, params, onUpdateComplete);
     }, true);
@@ -164,7 +164,7 @@ function initFrmUpdRacing() {
 
     // Check disable downlines check box
     for (var i = 0; i < LENGTHS; i++) {
-        age.addEvent($(chkEnableds[i]), 'click', function() {
+        age.addEvent(document.getElementById(chkEnableds[i]), 'click', function() {
 
             var j = 0
             for (j = 0; j < LENGTHS; j++) {
@@ -172,13 +172,13 @@ function initFrmUpdRacing() {
                     break;
             }
 
-            if (!$(chkEnableds[j]).checked) {
-                $(chkEnabledDLs[j]).disabled = true;
-                $(chkEnabledDLs[j]).checked = false;
+            if (!document.getElementById(chkEnableds[j]).checked) {
+                document.getElementById(chkEnabledDLs[j]).disabled = true;
+                document.getElementById(chkEnabledDLs[j]).checked = false;
             }
             else {
-                $(chkEnabledDLs[j]).disabled = eval('!window.resultRacing.Disable' + Ids[j]);
-                $(chkEnabledDLs[j]).checked = eval('!window.resultRacing.DisableDownlines' + Ids[j]);
+                document.getElementById(chkEnabledDLs[j]).disabled = eval('!window.resultRacing.Disable' + Ids[j]);
+                document.getElementById(chkEnabledDLs[j]).checked = eval('!window.resultRacing.DisableDownlines' + Ids[j]);
             }
 
         }, true);
@@ -191,14 +191,14 @@ function checkBtnUpdRacingStatus() {
     if (window.resultRacing) {
         for (var i = 0; i < LENGTHS; i++) {
         
-            isChanged = isChanged || ($(chkEnableds[i]).checked == eval('window.resultRacing.Disable' + Ids[i]));
+            isChanged = isChanged || (document.getElementById(chkEnableds[i]).checked == eval('window.resultRacing.Disable' + Ids[i]));
             if (_page.roleid != 1) {
-                isChanged = isChanged || ($(chkEnabledDLs[i]).checked == eval('window.resultRacing.DisableDownlines' + Ids[i]));
+                isChanged = isChanged || (document.getElementById(chkEnabledDLs[i]).checked == eval('window.resultRacing.DisableDownlines' + Ids[i]));
             }
         }
     }
     
-    $('btnUpdRacingStatus').disabled = !isChanged;
+    document.getElementById('btnUpdRacingStatus').disabled = !isChanged;
 }
 
 function showDivRacingPopup(obj) {
@@ -220,12 +220,12 @@ function showDivRacingPopup(obj) {
     }
     curTop -= popupOffsetHeight;
     
-    $('disabledRacingStatusPop').style.top = curTop + 'px';
-    $('disabledRacingStatusPop').style.display = 'block'; //show popup
-    $('overlayBg').style.display = 'block'; //show overlay    
+    document.getElementById('disabledRacingStatusPop').style.top = curTop + 'px';
+    document.getElementById('disabledRacingStatusPop').style.display = 'block'; //show popup
+    document.getElementById('overlayBg').style.display = 'block'; //show overlay    
 }
 
 function closeDivRacingPopup() {
-    if ($('disabledRacingStatusPop')) $('disabledRacingStatusPop').style.display = 'none';
-    $('overlayBg').style.display = 'none';
+    if (document.getElementById('disabledRacingStatusPop')) document.getElementById('disabledRacingStatusPop').style.display = 'none';
+    document.getElementById('overlayBg').style.display = 'none';
 }
