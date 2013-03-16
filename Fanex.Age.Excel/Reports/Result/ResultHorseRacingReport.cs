@@ -5,7 +5,7 @@ using System.Text;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using Fanex.Age.DTO.Reports.Result;
-using Sunplus.Agent.Utilities;
+using Fanex.Age.Utility;
 using System.Web;
 using System.Resources;
 using NPOI.HSSF.Util;

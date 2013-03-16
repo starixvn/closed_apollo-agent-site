@@ -5,12 +5,7 @@ using Microsoft.VisualBasic;
 using System.Security.Cryptography;
 using System.IO;
 
-/*
- * Created 20100330@Lee - Encryption functions
- * Revision:
- * ?@? - ... 
- * 
- */
+
 
 namespace Fanex.Age.Utility
 {

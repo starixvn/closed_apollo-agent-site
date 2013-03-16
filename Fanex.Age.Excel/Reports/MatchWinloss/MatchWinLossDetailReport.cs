@@ -7,7 +7,7 @@
     using Fanex.Age.Utility.NPOI;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
-    using Sunplus.Agent.Utilities;
+    using Fanex.Age.Utility;
 
     internal class MatchWinLossDetailReport : TemplateReport, IReportBuilder
     {

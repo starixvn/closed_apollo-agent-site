@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Text;
-using Sunplus.Agent.Utilities;
 using Sunplus.Agent.UI.ScoreMap.UI;
 namespace Sunplus.Agent.UI.ScoreMap.Factories
 {

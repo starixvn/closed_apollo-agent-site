@@ -155,10 +155,48 @@ namespace Fanex.Age.Utility
 
             builder.Append("\">");
 
-            int c = (int)(Math.Round((max - min) / step));
+            var hasSelected = false;
+            var maxEqualMin = false;
 
+            if (min <= max)
+            {
 
-            if (selectedValue > max)
+                if (max == min)
+                    maxEqualMin = true;
+
+                var tmp = max == min ? min + step : max;
+
+                int c = (int)(Math.Round((tmp - min) / step));
+
+                for (int i = c; i >= 0; i--)
+                {
+                    double f = min + (i * step);
+
+                    if (maxEqualMin)
+                    {
+                        f = max + (i * step) - step;
+                    }
+
+                    if (f < 0 || f < min)
+                        break;
+
+                    builder.Append("<option value=\"");
+                    builder.Append(f);
+                    builder.Append("\"");
+
+                    if (Math.Abs(selectedValue - f) < 0.000000001)
+                    {
+                        builder.Append(" selected");
+                        hasSelected = true;
+                    }
+
+                    builder.Append(">");
+                    builder.Append(f);
+                    builder.Append("</option>");
+                }
+            }
+
+            if (selectedValue > max || !hasSelected)
             {
                 builder.Append("<option value=\"");
                 builder.Append(selectedValue);
@@ -166,24 +204,6 @@ namespace Fanex.Age.Utility
                 builder.Append(" selected");
                 builder.Append(">");
                 builder.Append(selectedValue);
-                builder.Append("</option>");
-            }
-
-            for (int i = c; i >= 0; i--)
-            {
-                double f = min + (i * step);
-
-                builder.Append("<option value=\"");
-                builder.Append(f);
-                builder.Append("\"");
-
-                if (Math.Abs(selectedValue - f) < 0.000000001)
-                {
-                    builder.Append(" selected");
-                }
-
-                builder.Append(">");
-                builder.Append(f);
                 builder.Append("</option>");
             }
 

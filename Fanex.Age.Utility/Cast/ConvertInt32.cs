@@ -23,7 +23,7 @@ namespace Fanex.Age.Utility
         /// </summary>
         /// <param name="value"></param>
         /// <returns>Int32</returns> 
-        public static Int32 AsInt32(object value)
+        public static int AsInt32(object value)
         {
             return AsInt32(value, 0, CultureInfo.CurrentCulture);
         }
@@ -34,7 +34,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <returns>Int32</returns> 
-        public static Int32 AsInt32(object value, Int32 defaultValue)
+        public static int AsInt32(object value, Int32 defaultValue)
         {
             return AsInt32(value, defaultValue, CultureInfo.CurrentCulture);
         }
@@ -45,7 +45,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="provider">Instance of IFormatProvider</param>
         /// <returns>Int32</returns> 
-        public static Int32 AsInt32(object value, IFormatProvider provider)
+        public static int AsInt32(object value, IFormatProvider provider)
         {
             return AsInt32(value, 0, provider);
         }
@@ -57,7 +57,7 @@ namespace Fanex.Age.Utility
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <param name="provider">Instance of IFormatProvider</param>
         /// <returns>Int32</returns> 
-        public static Int32 AsInt32(object value, Int32 defaultValue, IFormatProvider provider)
+        public static int AsInt32(object value, Int32 defaultValue, IFormatProvider provider)
         {
             if (value == null || value == System.DBNull.Value)
                 return defaultValue;
@@ -87,7 +87,7 @@ namespace Fanex.Age.Utility
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Int32 AsInt32Invariant(object value)
+        public static int AsInt32Invariant(object value)
         {
             return AsInt32(value, 0, CultureInfo.InvariantCulture);
         }
@@ -98,7 +98,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static Int32 AsInt32Invariant(object value, Int32 defaultValue)
+        public static int AsInt32Invariant(object value, Int32 defaultValue)
         {
             return AsInt32(value, defaultValue, CultureInfo.InvariantCulture);
         }

@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Text;
-using System.Web;
-using System.Web.Security;
-using Fanex.Age.UI;
-using Fanex.Age.UI.Components;
-using Fanex.Agent.UI._SubAcc;
-using Sunplus.Agent.Model.BL.Base;
-using Sunplus.Agent.Model.BL.Definitions;
-using Sunplus.Agent.Model.BL.SubAcc;
-using Sunplus.Agent.Model.Entities;
-
-/*
- * Created 20091224@Lee - Render sub-account listing page
- * Revision:
- * ?@? - ...
- *
- */
-
-namespace Sunplus.Agent.UI._SubAcc
+﻿namespace Sunplus.Agent.UI._SubAcc
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Web;
+    using Fanex.Age.UI.Components;
+    using Fanex.Agent.UI._SubAcc;
+    using Sunplus.Agent.Model.BL.SubAcc;
+    using Sunplus.Agent.Model.Entities;
+
+    /*
+     * Created 20091224@Lee - Render sub-account listing page
+     * Revision:
+     * ?@? - ...
+     *
+     */
+
     public partial class SubAccList_Page : Fanex.Age.UI.TplPage
     {
         private int _AgentId = 0;
