@@ -28,7 +28,7 @@
     font-weight: bold;
     height: 27px;
     line-height: 27px;
-    text-align: left;
+    text-align: center;
     padding-left:9px;
 }
 .pt-sport-label
@@ -341,7 +341,7 @@ pt-groupset2
 	padding: 0;
 	text-align: right;
 	vertical-align: middle;
-	width: 90px;
+	width: 90px !important;
 }
 
 .betting-limit-textbox4
