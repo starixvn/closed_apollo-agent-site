@@ -158,11 +158,11 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             };
             if (typeof (item.Pt) == 'object') {
                 this.pt = item.Pt;
-                this.oldPt = item.Pt.cloneObject();
+                this.oldPt = Fanex.CloneObject(item.Pt);
             }
             this.isLive = item.IsLive; // Live! or Deadball
             this.suffixId = this.sportId + "$" + this.id + "$" + (this.isLive ? "1" : "0");
-            this.context = Fanex.CustSetting.CURRENT_CONTEXT.cloneObject();
+            this.context = Fanex.CloneObject(Fanex.CustSetting.CURRENT_CONTEXT);
             // Will be removed
             if (this.context.FormId == Fanex.CustSetting.FormTypes.ADD) { // Use the same implementation for Edit PT / Add New
                 this.context.FormId = Fanex.CustSetting.FormTypes.EDIT_PT;
@@ -210,7 +210,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.showGroupLabel = true; // Master Preset, Super Preset...
             this.isLive = betTypeGroup.IsLive;
             this.sportId = betTypeGroup.SportId;
-            this.context = Fanex.CustSetting.CURRENT_CONTEXT.cloneObject();
+            this.context = Fanex.CloneObject(Fanex.CustSetting.CURRENT_CONTEXT);
             if (this.context.FormId == Fanex.CustSetting.FormTypes.ADD) { // Use the same implementation for Edit PT / Add New
                 this.context.FormId = Fanex.CustSetting.FormTypes.EDIT_PT;
             }
@@ -261,13 +261,13 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.Save = function () { // Get data for each bet types
                 var count = this.items.length;
                 var result = [];
-                var copiedItem = (this.copiedItem == null) ? null : this.copiedItem.cloneObject(); // Avoid changing copiedItem by reference
+                var copiedItem = (this.copiedItem == null) ? null : Fanex.CloneObject(this.copiedItem); // Avoid changing copiedItem by reference
                 // Find PT of copied item
                 var grid = this.parent.parent; // Parent grid object
                 var item = grid.Find(copiedItem);
                 if (item != null && item instanceof Fanex.CustSetting.BetType) {
                     item.Save();
-                    copiedItem.pt = item.pt.cloneObject();
+                    copiedItem.pt = Fanex.CloneObject(item.pt);
                     copiedItem.sportId = this.sportId; // Do not copy sport type id
                 }
                 for (var i = 0; i < count; i++) {
@@ -282,7 +282,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     } else {
                         var ptResult = this.items[i].Save();
                         if (ptResult) {
-                            result.push(ptResult.cloneObject());
+                            result.push(Fanex.CloneObject(ptResult));
                         }
                     };
                 };
@@ -647,7 +647,12 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 hint = hint + '</ul></div>';
                 top = top + 40;
                 // Show tooltip
-                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 10, -top - 54, top + 20, top, 30000);
+                //Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 10, -top - 54, top + 20, top, 30000);
+                //show: function (elementInput, message, xPos, pointerXPos, yPos, pointerYPos, height, timeout) {
+                if (this.copiedItem.sportId == 2) {
+                    top += 20;
+                }
+                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 50, top - 130, -10, top, 80000, true);
             },
             this.Render = function (owner) {
                 var box = null;
@@ -757,7 +762,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         }
                         for (var i = 0; i < count; i++) {
                             if (cloneFromSoccer.firstChild.checked) {
-                                items[i].Inactive(copiedItemSoccer.cloneObject());
+                                items[i].Inactive(Fanex.CloneObject(copiedItemSoccer));
                             } else {
                                 items[i].Active();
                                 cloneFromSoccer.parent.copiedItem = null;
@@ -798,7 +803,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         }
                         for (var i = 2; i < count; i++) {
                             if (cloneFromBasketball.firstChild.checked) {
-                                items[i].Inactive(copiedItemBasketball.cloneObject());
+                                items[i].Inactive(Fanex.CloneObject(copiedItemBasketball));
                                 if (i > 2) {
                                     items[i].cloneObjectButton.className = "pt-sport-edit";
                                 }
@@ -934,15 +939,17 @@ Fanex.CustSetting.Spinner.prototype = {
         var decimalLength = this.options.decimals - fractional.length;
         for (var i = 0; i < decimalLength; i++) {
             fractional = '0' + fractional;
-//            if (fractional.length > 0) {
-//                while (fractional[fractional.length - 1] != '0') {
-//                    fractional
-//                }
-//            }
+        }
+
+
+        if (fractional.length > 0) {
+            while (fractional[fractional.length - 1] == '0') {
+                fractional = fractional.substring(0, fractional.length - 1);
+            }
         }
 
         // set the value
-        this.input.value = sign + integer + (this.options.decimals > 0 ? '.' + fractional : '') + (this.lastLetter != null ? this.lastLetter : '');
+        this.input.value = sign + integer + ((this.options.decimals > 0 && fractional.length > 0 ) ? '.' + fractional : '') + (this.lastLetter != null ? this.lastLetter : '');
     },
     addEventListener: function (node, event, listener, parameters, allowDefault) {
 
