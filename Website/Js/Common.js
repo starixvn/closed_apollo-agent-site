@@ -6,9 +6,9 @@ var newClassName = 'Bleft_Sub_2';
 function menu_select(order) {
     clearTopMenu();
 
-    $('menuitem' + order).className = newClassName;
+    document.getElementById('menuitem' + order).className = newClassName;
     if (currentItem != order) {
-        var item = $('menuitem' + currentItem);
+        var item = document.getElementById('menuitem' + currentItem);
         if (item) item.className = oldClassName;
     }
     currentItem = order;
@@ -21,7 +21,7 @@ function clearTopMenu() {
 }
 
 function ClearCurrentLeftMenu() {
-    var item = $('menuitem' + currentItem);
+    var item = document.getElementById('menuitem' + currentItem);
     if (item) item.className = oldClassName;
 }
 
@@ -39,12 +39,12 @@ function OpenIPInfo(ip) {
 function slide_down() { }
 
 function menu_toggle(menu_id) {
-    if ($('menu-' + menu_id).className == 'Bleft_Parent') {
-        $('menu-' + menu_id).className = 'Bleft_ParentAc';
-        $('div-' + menu_id).style.display = '';
+    if (document.getElementById('menu-' + menu_id).className == 'Bleft_Parent') {
+        document.getElementById('menu-' + menu_id).className = 'Bleft_ParentAc';
+        document.getElementById('div-' + menu_id).style.display = '';
     } else {
-        $('menu-' + menu_id).className = 'Bleft_Parent';
-        $('div-' + menu_id).style.display = 'none';
+        document.getElementById('menu-' + menu_id).className = 'Bleft_Parent';
+        document.getElementById('div-' + menu_id).style.display = 'none';
     }
 }
 
@@ -61,9 +61,9 @@ function CheckAll() {
     if (!checkID) {
         checkID = document.getElementsByName('chkid');
     }
-    var isDisableCS = $("isDisableCS");
+    var isDisableCS = document.getElementById("isDisableCS");
     if (!checkall) {
-        checkall = $("chkall");
+        checkall = document.getElementById("chkall");
     }
 
     //checkall.
@@ -80,7 +80,7 @@ function chkChecked(t) {
     }
 
     if (!checkall) {
-        checkall = $('chkall');
+        checkall = document.getElementById('chkall');
     }
 
     if (!checkall.No) {
@@ -117,16 +117,16 @@ function GenDataCancelBet(custid, roleid) {
         method: 'get',
         parameters: param,
         onComplete: function (data) {
-            $('spData').innerHTML = data.responseText;
-            if ($('tbl2')) $('tbl2').style.display = window.attachEvent ? 'block' : 'table';
-            var loading = $("loading");
+            document.getElementById('spData').innerHTML = data.responseText;
+            if (document.getElementById('tbl2')) document.getElementById('tbl2').style.display = window.attachEvent ? 'block' : 'table';
+            var loading = document.getElementById("loading");
             if (loading) loading.className = "loading";
         }
     });
 }
 
 function selected_Option_master(e) {
-    var loading = $("loading");
+    var loading = document.getElementById("loading");
     if (loading) loading.className = "loading1";
     var param = '?custid=' + e.value + '&roleid=2'
     Ajax.Request("../Handlers/GetOption_CancelBet.ashx", {
@@ -134,20 +134,20 @@ function selected_Option_master(e) {
         method: 'get',
         parameters: param,
         onComplete: function (data) {
-            $('optmember').className = "hidden";
-            $('optagent').innerHTML = data.responseText;
+            document.getElementById('optmember').className = "hidden";
+            document.getElementById('optagent').innerHTML = data.responseText;
             GenDataCancelBet(e.value, 3);
         }
     });
 }
 
 function selected_Option_agent(e) {
-    var loading = $("loading");
+    var loading = document.getElementById("loading");
     if (loading) loading.className = "loading1";
     var param = "";
     if (e.value == "-1") {
-        $('optmember').className = "hidden";
-        GenDataCancelBet($('selmaster').value, 3);
+        document.getElementById('optmember').className = "hidden";
+        GenDataCancelBet(document.getElementById('selmaster').value, 3);
     } else {
         param = '?custid=' + e.value + '&roleid=1'
         Ajax.Request("../Handlers/GetOption_CancelBet.ashx", {
@@ -155,8 +155,8 @@ function selected_Option_agent(e) {
             method: 'get',
             parameters: param,
             onComplete: function (data) {
-                $('optmember').className = "";
-                $('optmember').innerHTML = data.responseText;
+                document.getElementById('optmember').className = "";
+                document.getElementById('optmember').innerHTML = data.responseText;
                 GenDataCancelBet(e.value, 2);
             }
         });
@@ -164,20 +164,20 @@ function selected_Option_agent(e) {
 }
 
 function select_Option_member(e) {
-    var loading = $("loading");
+    var loading = document.getElementById("loading");
     if (loading) loading.className = "loading1";
     if (e.value == "-1") {
-        GenDataCancelBet($('selagent').value, 2);
+        GenDataCancelBet(document.getElementById('selagent').value, 2);
     } else {
         GenDataCancelBet(e.value, 1);
     }
 }
 
 function ShowBalloonMsg(id, strMsg) {
-    var _e1 = $(id);
+    var _e1 = document.getElementById(id);
     _e1.style.postion = "relative";
 
-    var pathTooltip = $('pathTooltip') ? $('pathTooltip').value : '';
+    var pathTooltip = document.getElementById('pathTooltip') ? document.getElementById('pathTooltip').value : '';
 
     var x = 0;
     var y = 0;
@@ -207,7 +207,7 @@ function UnShowBalloonMsg() {
 }
 
 function ShowBalloonMsg_ForLogin(id, strMsg, txtWidth, dir) {
-    var e1 = $(id);
+    var e1 = document.getElementById(id);
     e1.style.postion = "relative";
 
     var x = 0;
@@ -239,39 +239,39 @@ var arrPanel = ["", "panelSoccer", "panelBasket", "panelFootball", "panelTennis"
 
 function ShowError(errMsg, placeHolder) {
     flag = false;
-    var isEdit = ($("hidEdit") != null ? true : false);
+    var isEdit = (document.getElementById("hidEdit") != null ? true : false);
 
     for (var i = 0; i < arrPlaceHolder.length; i++) {
         if (placeHolder == arrPlaceHolder[i]) {
             if (i != 0) {
                 if (arrPanel[i] != null && arrPanel[i] != "") {
-                    if ($(arrPanel[i]) != null) $(arrPanel[i]).style.display = "";
+                    if (document.getElementById(arrPanel[i]) != null) document.getElementById(arrPanel[i]).style.display = "";
                 }
             } else {
-                if (null != $(arrPlaceHolder[i])) {
+                if (null != document.getElementById(arrPlaceHolder[i])) {
                     alert_error(errMsg, placeHolder);
-                    if ($('div' + placeHolder)) $('div' + placeHolder).style.display = "";
+                    if (document.getElementById('div' + placeHolder)) document.getElementById('div' + placeHolder).style.display = "";
                 }
                 continue;
             }
         } else {
-            if ($(arrPlaceHolder[i])) $(arrPlaceHolder[i]).innerHTML = "";
-            if ($('div' + arrPlaceHolder[i])) $('div' + arrPlaceHolder[i]).style.display = "none";
+            if (document.getElementById(arrPlaceHolder[i])) document.getElementById(arrPlaceHolder[i]).innerHTML = "";
+            if (document.getElementById('div' + arrPlaceHolder[i])) document.getElementById('div' + arrPlaceHolder[i]).style.display = "none";
         }
     }
     if (isEdit) {
-        if ($("btnSubmit")) $("btnSubmit").disabled = false;
+        if (document.getElementById("btnSubmit")) document.getElementById("btnSubmit").disabled = false;
     } else {
-        if ($("btnAdd")) $("btnAdd").disabled = false;
+        if (document.getElementById("btnAdd")) document.getElementById("btnAdd").disabled = false;
     }
 }
 
 function ClearAllMsg() {
-    if ($('diverr')) {
-        $('diverr').style.display = 'none';
+    if (document.getElementById('diverr')) {
+        document.getElementById('diverr').style.display = 'none';
     }
     for (var i = 0; i < arrPlaceHolder.length; i++) {
-        if (null != $(arrPlaceHolder[i])) $(arrPlaceHolder[i]).innerHTML = "";
+        if (null != document.getElementById(arrPlaceHolder[i])) document.getElementById(arrPlaceHolder[i]).innerHTML = "";
     }
 }
 
@@ -296,8 +296,8 @@ function createCheck(id) {
 }
 
 function ResetCheckPass(tdid) {
-    var td = $(tdid);
-    var img = $("pass_" + tdid);
+    var td = document.getElementById(tdid);
+    var img = document.getElementById("pass_" + tdid);
     td.removeChild(img);
 }
 
@@ -305,8 +305,8 @@ function checkpass(obj, tdid) {
     if (!tdid) tdid = 'td_pass';
     var bol = false;
     var pass = obj.value;
-    var t = $("pass_" + tdid);
-    var td = $(tdid);
+    var t = document.getElementById("pass_" + tdid);
+    var td = document.getElementById(tdid);
     if (pass.length < 6) {
         if (!t) {
             t = createCheck("pass_" + tdid);
@@ -316,21 +316,21 @@ function checkpass(obj, tdid) {
         }
         if (typeof (lblPasswordRequire) != 'undefined' && typeof (err) != 'undefined') {
             ShowError(lblPasswordRequire, "err");
-            $('diverr').style.display = '';
+            document.getElementById('diverr').style.display = '';
         }
     } else {
         bol = check(pass);
         if (bol) {
             if (!t) {
-                td = $(tdid);
+                td = document.getElementById(tdid);
                 t = createCheck("pass_" + tdid);
                 td.appendChild(t);
             }
             t.src = "../../App_Themes/t1.gif";
 
-            if ($('err')) {
-                $('err').innerHTML = '';
-                $('diverr').style.display = 'none';
+            if (document.getElementById('err')) {
+                document.getElementById('err').innerHTML = '';
+                document.getElementById('diverr').style.display = 'none';
             }
         }
     }
@@ -339,11 +339,11 @@ function checkpass(obj, tdid) {
 
 //check Numeric input field by id , return value
 function isNumericSpan(id) {
-    if (!$(id)) {
+    if (!document.getElementById(id)) {
         alert(id + ' does not exists.');
         return;
     }
-    return parseFloat(ReplaceAll($(id).innerHTML, ',', ''));
+    return parseFloat(ReplaceAll(document.getElementById(id).innerHTML, ',', ''));
 }
 
 function CheckTime() {
@@ -354,8 +354,8 @@ function CheckTime() {
     if (strConfirm) {
         var chkCount = 0;
         var isSelect = false;
-        if ($("rdWeekly").checked) {
-            var elements = $("alldays").getElementsByTagName("input");
+        if (document.getElementById("rdWeekly").checked) {
+            var elements = document.getElementById("alldays").getElementsByTagName("input");
             for (var i = 1; i < elements.length; i++) {
                 if (elements[i].checked) {
                     isSelect = true;
@@ -376,15 +376,15 @@ function CheckTime() {
 
 function ChooseDate() {
     var chkCount = 0;
-    if ($("rdWeekly").checked) {
-        var elements = $("alldays").getElementsByTagName("input");
+    if (document.getElementById("rdWeekly").checked) {
+        var elements = document.getElementById("alldays").getElementsByTagName("input");
         for (var i = 1; i < elements.length; i++) {
             if (elements[i].checked) {
                 isSelect = true;
                 chkCount++;
                 if (chkCount == 7) {
                     ShowError(lblChooseDaily, "err");
-                    $('diverr').style.display = '';
+                    document.getElementById('diverr').style.display = '';
                     window.scroll(0, 0);
                     parent.scroll(0, 0);
                     return false;
@@ -396,7 +396,7 @@ function ChooseDate() {
 }
 
 function togglePTmenu(id) {
-    $(id).className = $(id).className == 'md2' ? 'md2_on' : 'md2';
+    document.getElementById(id).className = document.getElementById(id).className == 'md2' ? 'md2_on' : 'md2';
 }
 
 function UpdateErr(strErr) {
@@ -407,9 +407,9 @@ function UpdateErr(strErr) {
 }
 
 function enabledBtn(enable) {
-    if ($('tblBtn')) $('tblBtn').onmouseover = enable ? 'this.className=\'mainBtnHover\'' : '';
-    if ($('tblBtn')) $('tblBtn').onmouseout = enable ? 'this.className=\'BtnHover\'' : '';
-    if ($('tblBtn')) $('tblBtn').className = enable ? 'mainBtn' : 'mainBtnDisabled';
+    if (document.getElementById('tblBtn')) document.getElementById('tblBtn').onmouseover = enable ? 'this.className=\'mainBtnHover\'' : '';
+    if (document.getElementById('tblBtn')) document.getElementById('tblBtn').onmouseout = enable ? 'this.className=\'BtnHover\'' : '';
+    if (document.getElementById('tblBtn')) document.getElementById('tblBtn').className = enable ? 'mainBtn' : 'mainBtnDisabled';
 }
 
 function boldTable(isBold) {
@@ -423,16 +423,16 @@ function boldTable(isBold) {
 }
 
 function ViewHistory(RoleID) {
-    var custid = $('hdcus').value;
+    var custid = document.getElementById('hdcus').value;
     var fdate = '',
         tdate = '';
-    var month = ($('month')) ? $('month').value : '';
-    var IsHistoryReport = $('IsHistoryReport').value;
+    var month = (document.getElementById('month')) ? document.getElementById('month').value : '';
+    var IsHistoryReport = document.getElementById('IsHistoryReport').value;
     IsHistoryReport = (IsHistoryReport == '1') ? '0' : '1';
 
-    if ($('fdate')) {
-        fdate = ($('fdate').value.split('/').length > 1) ? $('fdate').value.split('/')[1] : $('fdate').value;
-        tdate = ($('tdate').value.split('/').length > 1) ? $('tdate').value.split('/')[1] : $('tdate').value;
+    if (document.getElementById('fdate')) {
+        fdate = (document.getElementById('fdate').value.split('/').length > 1) ? document.getElementById('fdate').value.split('/')[1] : document.getElementById('fdate').value;
+        tdate = (document.getElementById('tdate').value.split('/').length > 1) ? document.getElementById('tdate').value.split('/')[1] : document.getElementById('tdate').value;
     }
 
     var url = '';
@@ -470,8 +470,8 @@ function ViewHistory(RoleID) {
 
 function ChangeMonth(month) {
     var param = '?month=' + month;
-    param += '&fdate=' + $('fdate').value;
-    param += '&tdate=' + $('tdate').value;
+    param += '&fdate=' + document.getElementById('fdate').value;
+    param += '&tdate=' + document.getElementById('tdate').value;
     Ajax.Request("../Handlers/GetData.ashx?mode=2", {
         asynchronous: true,
         method: 'get',
@@ -481,14 +481,14 @@ function ChangeMonth(month) {
             var fdate = str[0];
             var tdate = str[1];
 
-            $('spfdate').innerHTML = fdate;
-            $('sptdate').innerHTML = tdate;
+            document.getElementById('spfdate').innerHTML = fdate;
+            document.getElementById('sptdate').innerHTML = tdate;
         }
     });
 }
 
 function HideWLData() {
-    $('divContent').style.display = 'none';
+    document.getElementById('divContent').style.display = 'none';
 }
 
 //do not allow enter text on numberic field
@@ -502,58 +502,58 @@ function DisableHR(idchkHR, ischkHRDownline) {
     var idUplinesOld = idchkHR.replace('chk', 'hd') + '_Old';
     var idDownlinesOld = ischkHRDownline.replace('chk', 'hd') + '_Old';
 
-    if ($(idUplinesOld).value == '0' && $(idDownlinesOld).value == '0') {
-        if ($(ischkHRDownline)) $(ischkHRDownline).checked = $(idchkHR).checked;
-    } else if ($(idUplinesOld).value == '1' && $(idDownlinesOld).value == '1') {
-        if ($(ischkHRDownline)) {
-            $(ischkHRDownline).disabled = !$(idchkHR).checked;
-            if ($(idchkHR).checked == false) $(ischkHRDownline).checked = false;
+    if (document.getElementById(idUplinesOld).value == '0' && document.getElementById(idDownlinesOld).value == '0') {
+        if (document.getElementById(ischkHRDownline)) document.getElementById(ischkHRDownline).checked = document.getElementById(idchkHR).checked;
+    } else if (document.getElementById(idUplinesOld).value == '1' && document.getElementById(idDownlinesOld).value == '1') {
+        if (document.getElementById(ischkHRDownline)) {
+            document.getElementById(ischkHRDownline).disabled = !document.getElementById(idchkHR).checked;
+            if (document.getElementById(idchkHR).checked == false) document.getElementById(ischkHRDownline).checked = false;
         }
-    } else if ($(idUplinesOld).value == '0' && $(idDownlinesOld).value == '1') {
-        if ($(ischkHRDownline)) $(ischkHRDownline).disabled = true;
+    } else if (document.getElementById(idUplinesOld).value == '0' && document.getElementById(idDownlinesOld).value == '1') {
+        if (document.getElementById(ischkHRDownline)) document.getElementById(ischkHRDownline).disabled = true;
     } else {
-        if ($(ischkHRDownline)) $(ischkHRDownline).checked = $(idchkHR).checked;
+        if (document.getElementById(ischkHRDownline)) document.getElementById(ischkHRDownline).checked = document.getElementById(idchkHR).checked;
     }
-    $(idUplines).value = $(idchkHR).checked ? '0' : '1';
-    if ($(ischkHRDownline)) {
-        $(idDownlines).value = $(ischkHRDownline).checked ? '0' : '1';
+    document.getElementById(idUplines).value = document.getElementById(idchkHR).checked ? '0' : '1';
+    if (document.getElementById(ischkHRDownline)) {
+        document.getElementById(idDownlines).value = document.getElementById(ischkHRDownline).checked ? '0' : '1';
     }
 }
 
 function DisableFI(idchkFI, ischkFIDownline) {
-    if ($('hdDisabledFI_Old').value == '0' && $('hdDisabledFIDownline_Old').value == '0') {
-        if ($(ischkFIDownline)) $(ischkFIDownline).checked = $(idchkFI).checked;
-    } else if ($('hdDisabledFI_Old').value == '1' && $('hdDisabledFIDownline_Old').value == '1') {
-        if ($(ischkFIDownline)) {
-            $(ischkFIDownline).disabled = !$(idchkFI).checked;
-            if ($(idchkFI).checked == false) $(ischkFIDownline).checked = false;
+    if (document.getElementById('hdDisabledFI_Old').value == '0' && document.getElementById('hdDisabledFIDownline_Old').value == '0') {
+        if (document.getElementById(ischkFIDownline)) document.getElementById(ischkFIDownline).checked = document.getElementById(idchkFI).checked;
+    } else if (document.getElementById('hdDisabledFI_Old').value == '1' && document.getElementById('hdDisabledFIDownline_Old').value == '1') {
+        if (document.getElementById(ischkFIDownline)) {
+            document.getElementById(ischkFIDownline).disabled = !document.getElementById(idchkFI).checked;
+            if (document.getElementById(idchkFI).checked == false) document.getElementById(ischkFIDownline).checked = false;
         }
-    } else if ($('hdDisabledFI_Old').value == '0' && $('hdDisabledFIDownline_Old').value == '1') {
-        if ($(ischkFIDownline)) $(ischkFIDownline).disabled = true;
+    } else if (document.getElementById('hdDisabledFI_Old').value == '0' && document.getElementById('hdDisabledFIDownline_Old').value == '1') {
+        if (document.getElementById(ischkFIDownline)) document.getElementById(ischkFIDownline).disabled = true;
     } else {
-        if ($(ischkFIDownline)) $(ischkFIDownline).checked = $(idchkFI).checked;
+        if (document.getElementById(ischkFIDownline)) document.getElementById(ischkFIDownline).checked = document.getElementById(idchkFI).checked;
     }
 
-    $('hdDisabledFI').value = $(idchkFI).checked ? '0' : '1';
-    if ($(ischkFIDownline)) {
-        $('hdDisabledFIDownline').value = $(ischkFIDownline).checked ? '0' : '1';
+    document.getElementById('hdDisabledFI').value = document.getElementById(idchkFI).checked ? '0' : '1';
+    if (document.getElementById(ischkFIDownline)) {
+        document.getElementById('hdDisabledFIDownline').value = document.getElementById(ischkFIDownline).checked ? '0' : '1';
     }
 }
 
 function showEnrichMsg(msg, type) {
     if (typeof type == 'undefined') type = 0;
-    $('diverr').style.display = window.attachEvent ? 'block' : 'table';
-    $('err').innerHTML = msg;
-    $('err').className = (type == 1) ? "EnrichScc" : "Enrich";
+    document.getElementById('diverr').style.display = window.attachEvent ? 'block' : 'table';
+    document.getElementById('err').innerHTML = msg;
+    document.getElementById('err').className = (type == 1) ? "EnrichScc" : "Enrich";
     var cname = (type == 1) ? "succ" : "emsg";
-    $('1_1').className = cname + "_1_1";
-    $('1_2').className = cname + "_1_2";
-    $('1_3').className = cname + "_1_3";
-    $('2_1').className = cname + "_2_1";
-    $('2_2').className = cname + "_2_2";
-    $('3_1').className = cname + "_3_1";
-    $('3_2').className = cname + "_3_2";
-    $('3_3').className = cname + "_3_3";
+    document.getElementById('1_1').className = cname + "_1_1";
+    document.getElementById('1_2').className = cname + "_1_2";
+    document.getElementById('1_3').className = cname + "_1_3";
+    document.getElementById('2_1').className = cname + "_2_1";
+    document.getElementById('2_2').className = cname + "_2_2";
+    document.getElementById('3_1').className = cname + "_3_1";
+    document.getElementById('3_2').className = cname + "_3_2";
+    document.getElementById('3_3').className = cname + "_3_3";
     HideLoadingDiv();
 }
 //nqminh - 16Feb09 - show error/info message from error template App_Templates/ErrorMsg.html
@@ -562,26 +562,26 @@ function showEnrichMsg(msg, type) {
 //     = 1 : info message
 function showErrMsg(msg, type) {
     if (typeof type == 'undefined') type = 0;
-    var objMsgDiv = $('diverrmsg');
-    var objMsgText = $('spmsgerr');
+    var objMsgDiv = document.getElementById('diverrmsg');
+    var objMsgText = document.getElementById('spmsgerr');
 
     if (objMsgDiv == null) { //is Enrich Msg
-        objMsgDiv = $('diverr');
-        objMsgText = $('err');
+        objMsgDiv = document.getElementById('diverr');
+        objMsgText = document.getElementById('err');
         objMsgText.className = 'msgerr';
     }
     objMsgDiv.style.display = window.attachEvent ? 'block' : 'table';
     objMsgText.innerHTML = msg;
     objMsgText.className = (type == 1) ? 'msgscc' : 'msgerr';
     var cname = (type == 1) ? "succ" : "emsg";
-    $('1_1').className = cname + "_1_1";
-    $('1_2').className = cname + "_1_2";
-    $('1_3').className = cname + "_1_3";
-    $('2_1').className = cname + "_2_1";
-    $('2_2').className = cname + "_2_2";
-    $('3_1').className = cname + "_3_1";
-    $('3_2').className = cname + "_3_2";
-    $('3_3').className = cname + "_3_3";
+    document.getElementById('1_1').className = cname + "_1_1";
+    document.getElementById('1_2').className = cname + "_1_2";
+    document.getElementById('1_3').className = cname + "_1_3";
+    document.getElementById('2_1').className = cname + "_2_1";
+    document.getElementById('2_2').className = cname + "_2_2";
+    document.getElementById('3_1').className = cname + "_3_1";
+    document.getElementById('3_2').className = cname + "_3_2";
+    document.getElementById('3_3').className = cname + "_3_3";
     HideLoadingDiv();
 }
 
@@ -610,37 +610,37 @@ function showDivPopup(popupName) {
     if (top.main) {
         if (top.main.location.href.toLowerCase().indexOf('info/creditbalance.aspx') >= 0) {
             if (typeof top.main.alertDivPopup == 'function') {
-                if (!top.main.$('accinfomas') || top.main.$('accinfomas').style.display == 'none') top.main.alertDivPopup(popupName);
+                if (!top.main.document.getElementById('accinfomas') || top.main.document.getElementById('accinfomas').style.display == 'none') top.main.alertDivPopup(popupName);
             }
         }
     }
 }
 
 function alertDivPopup(popupName) {
-    if ($(popupName)) {
-        if ($('container') == null || $('container').style.visibility == 'hidden') { //if have no MinPT popup!
-            $(popupName).style.display = '';
+    if (document.getElementById(popupName)) {
+        if (document.getElementById('container') == null || document.getElementById('container').style.visibility == 'hidden') { //if have no MinPT popup!
+            document.getElementById(popupName).style.display = '';
         }
     }
 }
 
 function getUserID() {
     if (top.frHeader && top.frHeader.loaded) {
-        return top.frHeader.$('userid').value;
+        return top.frHeader.document.getElementById('userid').value;
     }
     return 0;
 }
 
 function getSubAccID() {
     if (top.frHeader && top.frHeader.loaded) {
-        return top.frHeader.$('subaccid').value;
+        return top.frHeader.document.getElementById('subaccid').value;
     }
     return 0;
 }
 
 function getRoleID() {
     if (top.frHeader && top.frHeader.loaded) {
-        return top.frHeader.$('roleid').value;
+        return top.frHeader.document.getElementById('roleid').value;
     }
     return 0;
 }
@@ -670,19 +670,19 @@ function addDivPopup(divContentId) {
     if (!hasCookieName(divContentId)) {
         //check other popup existed?
         if (top.main.location.href.toLowerCase().indexOf('info/creditbalance.aspx') >= 0) {
-            if (top.main.$('divPopupLetter')) top.main.$('divPopupLetter').style.display = 'none';
+            if (top.main.document.getElementById('divPopupLetter')) top.main.document.getElementById('divPopupLetter').style.display = 'none';
         }
         //check this popup existed?
         if (!top.main || !top.main.loaded) return;
-        var divPopupExist = top.main.$(divContentId);
+        var divPopupExist = top.main.document.getElementById(divContentId);
         if (!top.frHeader || !top.frHeader.loaded) return;
-        var hdnShowFlashAccInfo = top.frHeader.$("showFlashAccInfo");
+        var hdnShowFlashAccInfo = top.frHeader.document.getElementById("showFlashAccInfo");
         if (!divPopupExist && hdnShowFlashAccInfo.value == "1") {
             hdnShowFlashAccInfo.value = "0";
             var divPopup = top.main.document.createElement("div");
             divPopup.id = divContentId;
             divPopup.className = 'divPopupAd';
-            var divTemplate = top.frHeader.$(divContentId);
+            var divTemplate = top.frHeader.document.getElementById(divContentId);
             divPopup.style.width = divTemplate.style.width;
             divPopup.style.height = divTemplate.style.height;
             divPopup.innerHTML = divTemplate.innerHTML;
@@ -739,9 +739,9 @@ function EditMember_Single(cid, user, agentid, Customer) {
     var popH = 950,
         popW = 1024;
 
-    if ($("arrayCustID")) {
-        $("arrayCustID").value = "";
-        $("arrayUserName").value = "";
+    if (document.getElementById("arrayCustID")) {
+        document.getElementById("arrayCustID").value = "";
+        document.getElementById("arrayUserName").value = "";
     }
 
     //url, title, left, top, width, height

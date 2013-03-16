@@ -53,24 +53,24 @@ function Language(val)
         SetValue('ko-KR','사용자 이름','비밀번호','로그인', 'Recommended Browsers');
         flagBgX = flagWidth*1;
     }
-    $('language').style.backgroundPosition = flagBgX + 'px 0px';
-    //$("errmsg").innerHTML = ' ';        
+    document.getElementById('language').style.backgroundPosition = flagBgX + 'px 0px';
+    //document.getElementById("errmsg").innerHTML = ' ';        
 }
 
 function SetValue(newLang, uname, pwd, log, brows)
 {
     lang=newLang;
-	$('username').innerHTML=uname;
-	$('password').innerHTML=pwd			
-	$('login').value =log;
-	$('brows').innerHTML = brows;
+	document.getElementById('username').innerHTML=uname;
+	document.getElementById('password').innerHTML=pwd			
+	document.getElementById('login').value =log;
+	document.getElementById('brows').innerHTML = brows;
 	
-	$('txtusername').focus();
+	document.getElementById('txtusername').focus();
 }
 
 function GetObjectMsg()
 {
-    var lang = parseInt($("select").value);
+    var lang = parseInt(document.getElementById("select").value);
     switch(lang)
     {
         case 1:
@@ -92,35 +92,35 @@ function GetObjectMsg()
 function ExcLogin()
 {
     var errObj = GetObjectMsg();
-    if($('txtusername').value=="")
+    if(document.getElementById('txtusername').value=="")
     {        
-        $("errmsg").innerHTML=errObj.errUserName;
+        document.getElementById("errmsg").innerHTML=errObj.errUserName;
         return false;
     } 
-    if($('txtpassword').value=="")
+    if(document.getElementById('txtpassword').value=="")
     {        
-        $("errmsg").innerHTML=errObj.errUserName;
+        document.getElementById("errmsg").innerHTML=errObj.errUserName;
         return false;
     }
-    if($('txtcaptcha').value =="")
+    if(document.getElementById('txtcaptcha').value =="")
     {     
-        $("errmsg").innerHTML=errObj.errValidCode;
+        document.getElementById("errmsg").innerHTML=errObj.errValidCode;
         return false;
     }
-    $('lang').value=lang;
+    document.getElementById('lang').value=lang;
     document.fLogin.submit();
-    $('login').disabled = true;
-    $('login').className = 'buttondisable';
+    document.getElementById('login').disabled = true;
+    document.getElementById('login').className = 'buttondisable';
     return false;
 }
 function AlertMsg(msgerr)
 {             
     var err=msgerr.split(';');
-    $("errmsg").innerHTML=err[0];   
-    $("txtusername").value=err[1];
-    $('validatecode').src ='Authorization/LoginCaptcha.ashx?t=' + new Date();
-    $('txtcaptcha').value = '';
-    $('login').disabled = false;
+    document.getElementById("errmsg").innerHTML=err[0];   
+    document.getElementById("txtusername").value=err[1];
+    document.getElementById('validatecode').src ='Authorization/LoginCaptcha.ashx?t=' + new Date();
+    document.getElementById('txtcaptcha').value = '';
+    document.getElementById('login').disabled = false;
 }
 function PreLogin(e)
 {        
@@ -152,7 +152,7 @@ function onExcLogin(e){
 
 function GetValidateImage() {
     var objDate = new Date();
-    $("validatecode").src = "Authorization/LoginCaptcha.ashx?code=" + objDate.getMilliseconds();
+    document.getElementById("validatecode").src = "Authorization/LoginCaptcha.ashx?code=" + objDate.getMilliseconds();
 }
 setInterval("GetValidateImage();", 150001);
 var MsgEng = {

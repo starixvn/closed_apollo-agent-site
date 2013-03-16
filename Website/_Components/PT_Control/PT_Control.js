@@ -1,6 +1,6 @@
 ﻿function PT_Reduce(id, f)
 {
-    var combo = $(id);
+    var combo = document.getElementById(id);
     if(combo.disabled) return;
     
     var selectedIndex = combo.selectedIndex;
@@ -15,7 +15,7 @@
 
 function PT_Increase(id, f)
 {
-    var combo = $(id);
+    var combo = document.getElementById(id);
     if(combo.disabled) return;
     
     var selectedIndex = combo.selectedIndex;
