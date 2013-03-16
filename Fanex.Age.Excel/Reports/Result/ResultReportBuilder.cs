@@ -9,7 +9,7 @@ using NPOI.SS.UserModel;
 using System.Web;
 using System.Resources;
 using Fanex.Age.DTO.Reports.Result;
-using Sunplus.Agent.Utilities;
+using Fanex.Age.Utility;
 using Fanex.Age.Business.Reports.Result;
 
 /*

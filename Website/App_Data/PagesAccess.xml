@@ -197,5 +197,13 @@
   <add url="_MemberInfo/VirtualSports/EditMultiple.aspx" role="4-[B],3-[B],2-[B]" id="6013" fun="Virtual Sports" subfun="Edit Multiple Settings" />
   
   <!--\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/-->
-  <add url="_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Agent" fun="Member Info" />
+  <add url="_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Agent Bet Limit" fun="Member Info" />
+  <add url="_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Agent Commission" fun="Member Info" />
+  <add url="_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Agent Position Taking" fun="Member Info" />
+  <add url="_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Agent Setting" fun="Member Info" />
+  <add url="_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Member Bet Limit" fun="Member Info" />
+  <add url="_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Member Commission" fun="Member Info" />
+  <add url="_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Member Position Taking" fun="Member Info" />
+  <add url="_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx" role="2-[A],2-[B],2-[H]" id="4302" subfun="Agent Edit Member Setting" fun="Member Info" />
+ 
 </page>

@@ -630,12 +630,24 @@ button[disabled]:active, button[disabled], input[type="reset"][disabled]:active,
     cursor: pointer;
 }
 
-/*hide element*/
+/* Hide element */
+
 .hide {
     display: none;
 }
 
-/*default padding, margin for tblRpt*/
+/* Default padding, margin for tblRpt */
+
 .default-tbl {
     margin: 0;
+}
+
+/* Padding for shadow list */
+
+.tblRpt td.shadow-name {
+    padding-left: 5px;
+}
+
+.update {
+    color: #1E1EEB;
 }

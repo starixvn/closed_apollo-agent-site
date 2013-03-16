@@ -23,7 +23,7 @@ namespace Fanex.Age.Utility
         /// </summary>
         /// <param name="value"></param>
         /// <returns>string</returns> 
-        public static String AsString(object value)
+        public static string AsString(object value)
         {
             return AsString(value, string.Empty, CultureInfo.CurrentCulture);
         }
@@ -34,7 +34,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <returns>string</returns>
-        public static String AsString(object value, string defaultValue)
+        public static string AsString(object value, string defaultValue)
         {
             return AsString(value, defaultValue, CultureInfo.CurrentCulture);
         }
@@ -45,7 +45,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="provider">Instance of IFormatProvider</param>
         /// <returns></returns>
-        public static String AsString(object value, IFormatProvider provider)
+        public static string AsString(object value, IFormatProvider provider)
         {
             return AsString(value, string.Empty, provider);
         }
@@ -57,7 +57,7 @@ namespace Fanex.Age.Utility
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <param name="provider">Instance of IFormatProvider</param>
         /// <returns>string</returns> 
-        public static String AsString(object value, string defaultValue, IFormatProvider provider)
+        public static string AsString(object value, string defaultValue, IFormatProvider provider)
         {
             if (value == null || value == System.DBNull.Value)
                 return defaultValue;
@@ -65,7 +65,7 @@ namespace Fanex.Age.Utility
             if (provider == null)
                 provider = CultureInfo.CurrentCulture;
 
-            String retval;
+            string retval;
 
             try
             {
@@ -83,7 +83,7 @@ namespace Fanex.Age.Utility
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static String AsStringInvariant(object value)
+        public static string AsStringInvariant(object value)
         {
             return AsString(value, string.Empty, CultureInfo.InvariantCulture);
         }
@@ -94,7 +94,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static String AsStringInvariant(object value, string defaultValue)
+        public static string AsStringInvariant(object value, string defaultValue)
         {
             return AsString(value, defaultValue, CultureInfo.InvariantCulture);
         }

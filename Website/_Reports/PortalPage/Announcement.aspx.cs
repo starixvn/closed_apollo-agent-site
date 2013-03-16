@@ -12,7 +12,7 @@
     using Resources;
     using Sunplus.Agent.Model.BL.UserMessage;
     using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Utilities;
+  
 
     public partial class Announcement : TplPage
     {
@@ -209,7 +209,7 @@
             }
             catch (Exception ex)
             {
-                Logs.Error("Can't get data", ex);
+                Fanex.Age.Utility.Logs.Error("Can't get data", ex);
                 return null;
             }
         }

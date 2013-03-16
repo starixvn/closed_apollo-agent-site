@@ -18,7 +18,7 @@
         private int custId = -1;
         private bool isMember = false;
         private string userGroup = string.Empty;
-        const string HTML_IFRAME = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height: 560px'></iframe>";
+        const string HTML_IFRAME = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height: 543px'></iframe>";
         const string CLASS_NAME = "b_nleft";
         const string DISABLE_HTML_ELEMENT = "disabled='disabled'";
         const string ENABLE_HTML_ELEMENT = "style='cursor:pointer;'";

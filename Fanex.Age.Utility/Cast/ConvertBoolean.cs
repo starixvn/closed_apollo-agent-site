@@ -23,7 +23,7 @@ namespace Fanex.Age.Utility
         /// </summary>
         /// <param name="value"></param>
         /// <returns>Boolean</returns> 
-        public static Boolean AsBooleanFromInt(object value)
+        public static bool AsBooleanFromInt(object value)
         {
             return AsBooleanFromInt(value, false, CultureInfo.CurrentCulture);
         }
@@ -34,7 +34,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <returns>Boolean</returns>
-        public static Boolean AsBooleanFromInt(object value, Boolean defaultValue)
+        public static bool AsBooleanFromInt(object value, Boolean defaultValue)
         {
             return AsBooleanFromInt(value, defaultValue, CultureInfo.CurrentCulture);
         }
@@ -45,7 +45,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="provider">Instance of IFormatProvider</param>
         /// <returns></returns>
-        public static Boolean AsBooleanFromInt(object value, IFormatProvider provider)
+        public static bool AsBooleanFromInt(object value, IFormatProvider provider)
         {
             return AsBooleanFromInt(value, false, provider);
         }
@@ -57,7 +57,7 @@ namespace Fanex.Age.Utility
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <param name="provider">Instance of IFormatProvider</param>
         /// <returns>Boolean</returns> 
-        public static Boolean AsBooleanFromInt(object value, Boolean defaultValue, IFormatProvider provider)
+        public static bool AsBooleanFromInt(object value, Boolean defaultValue, IFormatProvider provider)
         {
             if (value == null || value == System.DBNull.Value)
                 return defaultValue;
@@ -87,8 +87,11 @@ namespace Fanex.Age.Utility
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Boolean AsBooleanInvariant(object value)
+        public static bool AsBooleanInvariant(object value)
         {
+            if (value == null || false.Equals(value)) return false;
+            if (true.Equals(value)) return true;
+            
             return AsBooleanFromInt(value, false, CultureInfo.InvariantCulture);
         }
 
@@ -98,7 +101,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static Boolean AsBooleanInvariant(object value, Boolean defaultValue)
+        public static bool AsBooleanInvariant(object value, Boolean defaultValue)
         {
             return AsBooleanFromInt(value, defaultValue, CultureInfo.InvariantCulture);
         }
@@ -109,7 +112,7 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <returns>Boolean</returns>
-        public static Boolean AsBooleanFromString(object value, Boolean defaultValue)
+        public static bool AsBooleanFromString(object value, Boolean defaultValue)
         {
             return AsBooleanFromString(value, defaultValue, CultureInfo.CurrentCulture);
         }
@@ -121,7 +124,7 @@ namespace Fanex.Age.Utility
         /// <param name="defaultValue">Value returned if cast fails</param>
         /// <param name="provider">Instance of IFormatProvider</param>
         /// <returns>Boolean</returns> 
-        public static Boolean AsBooleanFromString(object value, Boolean defaultValue, IFormatProvider provider)
+        public static bool AsBooleanFromString(object value, Boolean defaultValue, IFormatProvider provider)
         {
             if (value == null || value == System.DBNull.Value)
                 return defaultValue;
@@ -132,7 +135,7 @@ namespace Fanex.Age.Utility
             Boolean retval;
             try
             {
-                value = value.ToString().Equals("True") ? "true" : "false";
+                value = value.ToString().ToLower().Equals("true") ? "true" : "false";
                 retval = Convert.ToBoolean(value, provider);
             }
             catch (InvalidCastException)

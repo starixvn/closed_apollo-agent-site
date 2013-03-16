@@ -320,8 +320,7 @@ function showSection(sectionID, agentId) {
             $("membersTab").className = "";
             $("tbl_custsettings").style.display = "none";
             $("tbl_membersTab").style.display = "none";
-            $("tbl_agentsTab").style.display = "block";
-            bindAgentsList(agentId);
+            $("tbl_agentsTab").style.display = "block";           
             break;
         case "membersTab":
             $("custsettings").className = "";
@@ -342,6 +341,7 @@ function showSection(sectionID, agentId) {
             */
             break;
     }
+    
     $(sectionID).className = "current";
     $("tbl_" + sectionID).style.display = "block";
 }
@@ -502,7 +502,7 @@ function bindAgentDownLine(agentID) {
             $("agent-downline").innerHTML = "";
             $("agent-downline").innerHTML = $("agent-downline").innerHTML + "<span class='root-agent'>" + data[0][1] + "</span> </br>";
             for (var i = 1; i < data.length; ++i) {
-                text = text + "<a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a> </br>";
+                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
             }
 
             $("agent-downline").innerHTML = $("agent-downline").innerHTML + text;
@@ -521,7 +521,7 @@ function bindMembersList(agentID) {
         var text = "";
         //$("members-list").innerHTML = "";
         for (var i = 0; i < data.length; ++i) {
-            text = text + ("<a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a> </br>");
+            text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a></li>";
         }
 
         if (text.length > 0) {

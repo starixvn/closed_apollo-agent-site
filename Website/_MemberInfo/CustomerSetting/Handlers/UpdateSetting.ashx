@@ -62,10 +62,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
-            if (!CurrentUserSession.SubPageAccess.CreateAccount || CurrentUserSession.IsInternal)
-            {
-                return new Fanex.Age.UI.Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
-            }
+            //if (!CurrentUserSession.SubPageAccess.CreateAccount || CurrentUserSession.IsInternal)
+            //{
+            //    return new Fanex.Age.UI.Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            //}
 
             return null;
         }

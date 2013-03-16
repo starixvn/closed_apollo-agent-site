@@ -8,7 +8,7 @@ namespace Sunplus.Agent.Model.DL.MemberInfo.ChangePassword
 {
     using System.Collections;
     using Sunplus.Agent.Model.DL.Base;
-    using Sunplus.Agent.Utilities;
+    using Fanex.Age.Utility;
 
     public class ChangePasswordDAO : DAOBase
     {
@@ -42,8 +42,8 @@ namespace Sunplus.Agent.Model.DL.MemberInfo.ChangePassword
             parameters.Add("discasino", isDisabledCasino);
 
             parameters.Add("language", language);
-            parameters.Add("userpwd", Encryption.CfsEnCode(newPassword));
-            parameters.Add("oldpwd", Encryption.CfsEnCode(oldPassword));
+            //parameters.Add("userpwd", Encryption.CfsEnCode(newPassword));
+            //parameters.Add("oldpwd", Encryption.CfsEnCode(oldPassword));
             parameters.Add("errcode", 0);
             parameters.Add("loginip", ip);
             parameters.Add("errmsg", string.Empty);
