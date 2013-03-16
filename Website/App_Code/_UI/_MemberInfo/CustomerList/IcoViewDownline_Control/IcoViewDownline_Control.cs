@@ -17,11 +17,11 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Components
     {
         IcoViewDownline_Control_Template tpl = new IcoViewDownline_Control_Template();
 
-        public IcoViewDownline(IElement parent, string viewClassName, string onClick)
+        public IcoViewDownline(IElement parent, string viewClassName, string onClick, string text = null)
         {
             if (parent != null) parent.RegisterComponent("IcoViewDownline_Control", this);
             tpl.onClick = onClick;
-            tpl.text = Resources.Lang.view;
+            tpl.text = string.IsNullOrEmpty(text) ? Resources.Lang.view : text;
             tpl.viewClassName = viewClassName;
         }
 

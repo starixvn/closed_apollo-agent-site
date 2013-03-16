@@ -216,26 +216,29 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             string onClickEvent = "EditAgentSetting(this,'" + this.agentId + "', '" + dr["username"].ToString() + "')";
             tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, "divOther", onClickEvent, editMenuControl);
 
-            if (Convert.ToInt32(dr["NumberOfAgent"]) > 0)
+            int totalSubAgents = Convert.ToInt32(dr["NumberOfAgent"]);
+
+            if (totalSubAgents > 0)
             {
                 string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "&us=" + dr["username"].ToString() + "')";
-                IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view", viewAgentDonwlineClick);
+                IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view", viewAgentDonwlineClick, totalSubAgents.ToString());
                 tplBlock.viewAgentList = viewAgentDownline;
             }
             else
             {
-                tplBlock.viewAgentList = string.Empty;
+                tplBlock.viewAgentList = "0";
             }
 
-            if (Convert.ToInt32(dr["NumberOfMember"]) > 0)
+            int totalMembers = Convert.ToInt32(dr["NumberOfMember"]);
+            if (totalMembers > 0)
             {
                 string viewPlayerDonwlineClick = "ViewDownLine('MemberList.aspx?custid=" + this.agentId + "&us=" + dr["username"].ToString() + "')";
-                IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view", viewPlayerDonwlineClick);
+                IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view", viewPlayerDonwlineClick, totalMembers.ToString());
                 tplBlock.viewPlayerList = viewPlayerDownline;
             }
             else
             {
-                tplBlock.viewPlayerList = string.Empty;
+                tplBlock.viewPlayerList = "0";
             }
 
             tplBlock.groupA = Formater.FormatNumber4((Convert.ToDecimal(dr["groupa"]) * 100), this.langKey);

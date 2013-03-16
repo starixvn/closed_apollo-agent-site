@@ -94,6 +94,7 @@ body
 {
     text-align: center;
     border: solid 1px #999;
+    line-height: 25px;
 }
 
 #tblCustomerList tbody tr:hover td
