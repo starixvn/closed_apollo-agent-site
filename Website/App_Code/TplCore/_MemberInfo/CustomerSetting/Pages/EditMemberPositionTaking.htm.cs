@@ -42,21 +42,19 @@ namespace Fanex.Agent.UI
 			public string TargetAgentId = "{TargetAgentId}";
 			protected static string s21 = "&targetRoleId=1&ugroup=";
 			public string UGroup = "{UGroup}";
-			protected static string s22 = "'type=\"text/javascript\"></script><script src=\"";
-			protected static string s23{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Languages/en.js", TplSettings.Question);}}
+			protected static string s22 = "'type=\"text/javascript\"></script><script src='../Handlers/Language.ashx' type=\"text/javascript\"></script><script src=\"";
+			protected static string s23{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
 			protected static string s24 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s25{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
+			protected static string s25{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
 			protected static string s26 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s27{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
+			protected static string s27{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetTypeGroup.js", TplSettings.Question);}}
 			protected static string s28 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s29{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetTypeGroup.js", TplSettings.Question);}}
+			protected static string s29{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetType.js", TplSettings.Question);}}
 			protected static string s30 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s31{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetType.js", TplSettings.Question);}}
+			protected static string s31{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
 			protected static string s32 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s33{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
-			protected static string s34 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s35{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditPositionTaking.js", TplSettings.Question);}}
-			protected static string s36 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s33{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditPositionTaking.js", TplSettings.Question);}}
+			protected static string s34 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -104,8 +102,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s32);
 					bd.Append(s33);
 					bd.Append(s34);
-					bd.Append(s35);
-					bd.Append(s36);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

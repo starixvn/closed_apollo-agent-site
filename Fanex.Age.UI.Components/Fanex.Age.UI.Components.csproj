@@ -121,7 +121,7 @@
     <Content Include="ErrorPage\ErrorPage.htm" />
     <Content Include="MatchByLeague\MatchByLeague.htm" />
     <Content Include="PagingHeader\PagingHeader.htm" />
-    <Content Include="MatchByLeague\Paging\Paging.htm" />
+    <Content Include="PagingHeader\Paging\Paging.htm" />
     <Content Include="PopupAd\FlashAd.htm" />
     <Content Include="PopupAd\PopupAd.htm" />
     <Content Include="PopupAd\PopupIntroduction.htm" />
@@ -164,8 +164,8 @@
     <Compile Include="ErrorPage\ErrorPage.htm.cs" />
     <Compile Include="MatchByLeague\MatchByLeague.htm.cs" />
     <Compile Include="PagingHeader\PagingHeader.htm.cs" />
-    <Compile Include="MatchByLeague\Paging\Paging.htm.cs" />
-    <Compile Include="MatchByLeague\Paging\Paging_Control.cs" />
+    <Compile Include="PagingHeader\Paging\Paging.htm.cs" />
+    <Compile Include="PagingHeader\Paging\Paging_Control.cs" />
     <Compile Include="PopupAd\FlashAd.htm.cs" />
     <Compile Include="PopupAd\PopupAd.htm.cs" />
     <Compile Include="PopupAd\PopupIntroduction.htm.cs" />
