@@ -10,7 +10,6 @@
         public const string TotalBet_ForeCast = "[TF]";
         public const string Report = "[RP]";
         public const string AccountSeting = "[AC]";
-        public const string ShadowManagement = "[SM]";
         public const string Admin = "[AD]";
         public const string Read = "[R]";
         public const string Host = "[H]";

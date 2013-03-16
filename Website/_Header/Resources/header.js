@@ -9,10 +9,10 @@ AGE.prototype.ApplyScroller = function () {
     this.scroller_left = -100;
     this.scroller_width = 0;
 
-    var text_news = $('text_news');
+    var text_news = document.getElementById('text_news');
 
-    this.scroller = $('scroller');
-    this.topnews = $('topnews');
+    this.scroller = document.getElementById('scroller');
+    this.topnews = document.getElementById('topnews');
 
     this.topnews.onmouseover = function () {
         this.scrollerPaused = true;
@@ -107,7 +107,7 @@ function Change2Menu(url) {
 }
 
 function SetCurrentLanguage() {
-    $('selLanguage').value = _page.Language;
+    document.getElementById('selLanguage').value = _page.Language;
 }
 
 function ClearActiveTab() {
@@ -134,22 +134,22 @@ function SelectTopMenu(url) {
 
     switch (name) {
         case 'PortalPage.aspx':
-            currentTab = $("balance");
+            currentTab = document.getElementById("balance");
             break;
         case 'MemberList.aspx':
-            currentTab = $("transfer");
+            currentTab = document.getElementById("transfer");
             break;
         case 'AgentList.aspx':
-            currentTab = $("transfer");
+            currentTab = document.getElementById("transfer");
             break;
         case 'MasterList.aspx':
-            currentTab = $("transfer");
+            currentTab = document.getElementById("transfer");
             break;
         case 'ChangePassword.aspx':
-            currentTab = $("changepass");
+            currentTab = document.getElementById("changepass");
             break;
         case 'LogCustomerSetting.aspx':
-            currentTab = $("viewlog");
+            currentTab = document.getElementById("viewlog");
             break;
         default:
             currentTab = null;
@@ -222,7 +222,7 @@ function ClockTick() {
     var months = eval(_page.Months);
 
     var str = strhrs + ":" + strmin + ":" + strsec + " " + stra + " " + months[_page.month - 1] + " " + _page.day + ", " + _page.year + " GMT-4";
-    $("clock").innerHTML = str;
+    document.getElementById("clock").innerHTML = str;
 
     setTimeout(ClockTick, 1000);
 }
@@ -234,7 +234,7 @@ function PrivateMsgLink(url) {
     Change2Menu(url);
     var open = "(",
         close = ")";
-    var countText = $('privateMsgLnk').innerHTML;
+    var countText = document.getElementById('privateMsgLnk').innerHTML;
     var countPrivateMsg = countText.substring(countText.indexOf(open) + 1, countText.indexOf(close));
     if (parseInt(countPrivateMsg) > 0) {
         UpdateCountPrivateMsg();
@@ -246,8 +246,8 @@ function UpdateCountPrivateMsg() {
         if (data.errCode == 0) {
             var open = "(",
                 noMsg = "0";
-            var countText = $('privateMsgLnk').innerHTML;
-            $('privateMsgLnk').innerHTML = countText.substring(0, countText.indexOf(open) + 1) + noMsg + ")";
+            var countText = document.getElementById('privateMsgLnk').innerHTML;
+            document.getElementById('privateMsgLnk').innerHTML = countText.substring(0, countText.indexOf(open) + 1) + noMsg + ")";
         }
     }
 
@@ -271,8 +271,8 @@ function GetMessages() {
             var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
 
             //Update count of private messages
-            var countText = $('privateMsgLnk').innerHTML;
-            $('privateMsgLnk').innerHTML = countText.substring(0, countText.indexOf("(") + 1) + unreadPriMsgCount + ")";
+            var countText = document.getElementById('privateMsgLnk').innerHTML;
+            document.getElementById('privateMsgLnk').innerHTML = countText.substring(0, countText.indexOf("(") + 1) + unreadPriMsgCount + ")";
 
             var MSGID = 0,
                 MSGCONTENT = 1,
@@ -285,8 +285,8 @@ function GetMessages() {
             url += publicMessage[MSGTYPE];
 
             if ((publicMessage[MSGID] != null) && (publicMessageId != publicMessage[MSGID])) {
-                $('topnews').innerHTML = publicMessage[MSGCONTENT];
-                $('text_news_out').onclick = new Function("Change2Menu('" + url + "')"); //Work with FF, IE6-7
+                document.getElementById('topnews').innerHTML = publicMessage[MSGCONTENT];
+                document.getElementById('text_news_out').onclick = new Function("Change2Menu('" + url + "')"); //Work with FF, IE6-7
                 if (publicMessageId > 0) {
                     balloonPopupContent = publicMessage[MSGCONTENT];
                 }
@@ -295,7 +295,7 @@ function GetMessages() {
 
             //Process Private Message: show new private message
             if ((privateMessage[MSGID] != null) && (privateMessageId != privateMessage[MSGID])) {
-                $('topnews').innerHTML += ". <font color=\"green\">Private message:" + privateMessage[MSGCONTENT] + "</font>";
+                document.getElementById('topnews').innerHTML += ". <font color=\"green\">Private message:" + privateMessage[MSGCONTENT] + "</font>";
                 if (privateMessageId > 0) {
                     balloonPopupContent = privateMessage[MSGCONTENT];
                 }
@@ -334,12 +334,13 @@ function ReplaceAll(source, stringToFind, stringToReplace) {
 var msgIndex = 0;
 function ShowHotMsg(msgs) {
     if (msgs.length == 0) {
-        $("Popup_top").style.display = 'none';
+        document.getElementById("Popup_top").style.display = 'none';
+        
         return;
     }
 
-    var Popup_contents1 = $('Popup_contents');
-    var Popup_contents2 = $('Popup_contents2');
+    var Popup_contents1 = document.getElementById('Popup_contents');
+    var Popup_contents2 = document.getElementById('Popup_contents2');
 
     Popup_contents1.innerHTML = msgs[msgIndex];
     if (msgs.length > 1) {
@@ -348,7 +349,7 @@ function ShowHotMsg(msgs) {
 
     ShowPopupTop(true);
 
-    $("Popup_top").style.height = Popup_contents1.clientHeight + 'px';
+    document.getElementById("Popup_top").style.height = Popup_contents1.clientHeight + 'px';
 
     var height = 0;
     var marginTop = 0;
@@ -367,7 +368,7 @@ function ShowHotMsg(msgs) {
             Popup_contents1.style.marginTop = marginTop + "px";
             Popup_contents2.style.marginTop = marginTop + "px";
 
-            $("Popup_top").style.height = Popup_contents1.clientHeight + 'px';
+            document.getElementById("Popup_top").style.height = Popup_contents1.clientHeight + 'px';
 
             return;
         }
@@ -392,20 +393,20 @@ function ShowHotMsg(msgs) {
 
 function ShowPopupTop(show) {
     if (!show) {
-        $("Popup_top").style.display = "none";
+        document.getElementById("Popup_top").style.display = "none";
     } else {
-        $("Popup_top").style.display = "block";
+        document.getElementById("Popup_top").style.display = "block";
     }
     return false;
 }
 
 function SetContentPopupTop(content) {
-    $("Popup_contents").innerHTML = content;
+    document.getElementById("Popup_contents").innerHTML = content;
 }
 
 // Hide Tooltip after 5s
 function HideTooltipIntroNickname() {
-    if ($('tooltip_box') != null) setTimeout("$('tooltip_box').style.display ='none'", 10000);
+    if (document.getElementById('tooltip_box') != null) setTimeout("document.getElementById('tooltip_box').style.display ='none'", 10000);
 }
 
 // Start up

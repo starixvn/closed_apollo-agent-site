@@ -11,8 +11,8 @@ function ClearCurrentLeftMenu() {
 }
 
 function ClearMainMenu() {
-    if ($('b0') != null) $('b0').className = 'Bleft_ParentNew';
-    if ($('b1') != null) $('b1').className = 'Bleft_ParentNew';
+    if (document.getElementById('b0') != null) document.getElementById('b0').className = 'Bleft_ParentNew';
+    if (document.getElementById('b1') != null) document.getElementById('b1').className = 'Bleft_ParentNew';
 }
 
 function MenuItemSelect(index) {
@@ -25,7 +25,7 @@ function MenuItemSelect(index) {
         }
     }
     
-    var menuItem = $('menuitem' + index);
+    var menuItem = document.getElementById('menuitem' + index);
     menuItem.className = 'Bleft_Sub_2';
     currentMenuItem = menuItem;
 
@@ -33,21 +33,21 @@ function MenuItemSelect(index) {
 }
 
 function MenuToggle(index) {
-    var subMenu = $('div' + index);
+    var subMenu = document.getElementById('div' + index);
     subMenu.style.display = (subMenu.style.display == 'none') ? 'block' : 'none';
-    var aMenu = $('a' + index);
+    var aMenu = document.getElementById('a' + index);
     aMenu.className = (aMenu.className == 'Bleft_Parent') ? 'Bleft_ParentAc' : 'Bleft_Parent';
 }
 
 function MenuClick(index) {
     if (index == 'b0' || index == 'b1') {
         if (index == 'b0') {
-            if ($('b1') != null) $('b1').className = 'Bleft_ParentNew';
+            if (document.getElementById('b1') != null) document.getElementById('b1').className = 'Bleft_ParentNew';
         }
         else {
-            if ($('b0') != null) $('b0').className = 'Bleft_ParentNew';
+            if (document.getElementById('b0') != null) document.getElementById('b0').className = 'Bleft_ParentNew';
         }
-        $(index).className = ($(index).className == 'Bleft_ParentNew') ? 'Bleft_ParentAcNew' : 'Bleft_ParentNew';
+        document.getElementById(index).className = (document.getElementById(index).className == 'Bleft_ParentNew') ? 'Bleft_ParentAcNew' : 'Bleft_ParentNew';
         ClearCurrentLeftMenu();
     }
     else {

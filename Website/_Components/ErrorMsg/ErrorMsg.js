@@ -12,62 +12,62 @@ AGEMsg = function () {
 
 AGEMsg.prototype.Show = function (msg, success) {
     if (success) {
-        $('spmsgerr').className = 'msgscc';
-        $('msg_1_1').className = "succ_1_1";
-        $('msg_1_2').className = "succ_1_2";
-        $('msg_1_3').className = "succ_1_3";
-        $('msg_2_1').className = "succ_2_1";
-        $('msg_2_2').className = "succ_2_2";
-        $('msg_3_1').className = "succ_3_1";
-        $('msg_3_2').className = "succ_3_2";
-        $('msg_3_3').className = "succ_3_3";
+        document.getElementById('spmsgerr').className = 'msgscc';
+        document.getElementById('msg_1_1').className = "succ_1_1";
+        document.getElementById('msg_1_2').className = "succ_1_2";
+        document.getElementById('msg_1_3').className = "succ_1_3";
+        document.getElementById('msg_2_1').className = "succ_2_1";
+        document.getElementById('msg_2_2').className = "succ_2_2";
+        document.getElementById('msg_3_1').className = "succ_3_1";
+        document.getElementById('msg_3_2').className = "succ_3_2";
+        document.getElementById('msg_3_3').className = "succ_3_3";
     }
     else {
-        $('spmsgerr').className = 'msgerr';
-        $('msg_1_1').className = "emsg_1_1";
-        $('msg_1_2').className = "emsg_1_2";
-        $('msg_1_3').className = "emsg_1_3";
-        $('msg_2_1').className = "emsg_2_1";
-        $('msg_2_2').className = "emsg_2_2";
-        $('msg_3_1').className = "emsg_3_1";
-        $('msg_3_2').className = "emsg_3_2";
-        $('msg_3_3').className = "emsg_3_3";
+        document.getElementById('spmsgerr').className = 'msgerr';
+        document.getElementById('msg_1_1').className = "emsg_1_1";
+        document.getElementById('msg_1_2').className = "emsg_1_2";
+        document.getElementById('msg_1_3').className = "emsg_1_3";
+        document.getElementById('msg_2_1').className = "emsg_2_1";
+        document.getElementById('msg_2_2').className = "emsg_2_2";
+        document.getElementById('msg_3_1').className = "emsg_3_1";
+        document.getElementById('msg_3_2').className = "emsg_3_2";
+        document.getElementById('msg_3_3').className = "emsg_3_3";
     }
 
-    $(this.spmsgerr).innerHTML = msg;
-    $(this.diverrmsg).style.display = IE ? 'block' : 'table';
+    document.getElementById(this.spmsgerr).innerHTML = msg;
+    document.getElementById(this.diverrmsg).style.display = IE ? 'block' : 'table';
 }
 
 AGEMsg.prototype.ShowMsgs = function (msg, success) {
     if (success) {
-        $('spmsgerr').className = 'msgscc';
-        $('msg_1_1').className = "succ_1_1";
-        $('msg_1_2').className = "succ_1_2";
-        $('msg_1_3').className = "succ_1_3";
-        $('msg_2_1').className = "succ_2_1";
-        $('msg_2_2').className = "succ_2_2";
-        $('msg_3_1').className = "succ_3_1";
-        $('msg_3_2').className = "succ_3_2";
-        $('msg_3_3').className = "succ_3_3";
+        document.getElementById('spmsgerr').className = 'msgscc';
+        document.getElementById('msg_1_1').className = "succ_1_1";
+        document.getElementById('msg_1_2').className = "succ_1_2";
+        document.getElementById('msg_1_3').className = "succ_1_3";
+        document.getElementById('msg_2_1').className = "succ_2_1";
+        document.getElementById('msg_2_2').className = "succ_2_2";
+        document.getElementById('msg_3_1').className = "succ_3_1";
+        document.getElementById('msg_3_2').className = "succ_3_2";
+        document.getElementById('msg_3_3').className = "succ_3_3";
     }
     else {
-        $('spmsgerr').className = 'Enrich';
-        $('msg_1_1').className = "emsg_1_1";
-        $('msg_1_2').className = "emsg_1_2";
-        $('msg_1_3').className = "emsg_1_3";
-        $('msg_2_1').className = "emsg_2_1";
-        $('msg_2_2').className = "emsg_2_2";
-        $('msg_3_1').className = "emsg_3_1";
-        $('msg_3_2').className = "emsg_3_2";
-        $('msg_3_3').className = "emsg_3_3";
+        document.getElementById('spmsgerr').className = 'Enrich';
+        document.getElementById('msg_1_1').className = "emsg_1_1";
+        document.getElementById('msg_1_2').className = "emsg_1_2";
+        document.getElementById('msg_1_3').className = "emsg_1_3";
+        document.getElementById('msg_2_1').className = "emsg_2_1";
+        document.getElementById('msg_2_2').className = "emsg_2_2";
+        document.getElementById('msg_3_1').className = "emsg_3_1";
+        document.getElementById('msg_3_2').className = "emsg_3_2";
+        document.getElementById('msg_3_3').className = "emsg_3_3";
     }
 
-    $(this.spmsgerr).innerHTML = msg;
-    $(this.diverrmsg).style.display = IE ? 'block' : 'table';
+    document.getElementById(this.spmsgerr).innerHTML = msg;
+    document.getElementById(this.diverrmsg).style.display = IE ? 'block' : 'table';
 }
 
 AGEMsg.prototype.Hide = function () {
-    $(this.diverrmsg).style.display = 'none';
+    document.getElementById(this.diverrmsg).style.display = 'none';
 }
 
 AGEMsg.prototype.InsertRow = function (tableId, classname, message) {

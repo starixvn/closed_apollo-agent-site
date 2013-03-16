@@ -1,7 +1,7 @@
 ﻿
 function SearchByDate()
 {
-    var url='MatchWinLossAgent.aspx?fdate=' + $('fdate').value +'&tdate=' + $('tdate').value;        
+    var url='MatchWinLossAgent.aspx?fdate=' + document.getElementById('fdate').value +'&tdate=' + document.getElementById('tdate').value;        
     _submit();
     location.href=url;
 }

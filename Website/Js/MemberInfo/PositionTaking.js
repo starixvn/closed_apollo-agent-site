@@ -11,7 +11,7 @@
 function alertSize() 
 {
 	  var myHeight = 0; 
-	  var rowcount = parseFloat($('rowcount').value);
+	  var rowcount = parseFloat(document.getElementById('rowcount').value);
 	  if( typeof( window.innerWidth ) == 'number' ) 
 	  {
 	        //Non-IE
@@ -25,21 +25,21 @@ function alertSize()
 	        {
 		        if(myHeight > 100)
 		        {
-			        $("divParent").style.height = myHeight - 10;			
-			        $("tbdContent").style.height = myHeight-25;
+			        document.getElementById("divParent").style.height = myHeight - 10;			
+			        document.getElementById("tbdContent").style.height = myHeight-25;
 		        }
 		        else
 		        {
-			        $("divParent").style.height = myHeight;
-			        $("tbdContent").style.height = 70;    			
+			        document.getElementById("divParent").style.height = myHeight;
+			        document.getElementById("tbdContent").style.height = 70;    			
 		        }
 		    }
 		    else
 		    {
 		       if(myHeight > 100)
-		            $("divParent").style.height = myHeight - 40;		
+		            document.getElementById("divParent").style.height = myHeight - 40;		
 		        else
-		            $("divParent").style.height = myHeight;
+		            document.getElementById("divParent").style.height = myHeight;
 		    }
 	  } 
 	  else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) 
@@ -51,21 +51,21 @@ function alertSize()
 	        {
 		        if(myHeight > 100)
 		        {
-			        $("divParent").style.height = myHeight - 10;			
-			        $("tbdContent").style.height = myHeight-25;
+			        document.getElementById("divParent").style.height = myHeight - 10;			
+			        document.getElementById("tbdContent").style.height = myHeight-25;
 		        }
 		        else
 		        {
-			        $("divParent").style.height = myHeight;
-			        $("tbdContent").style.height = 70;    			
+			        document.getElementById("divParent").style.height = myHeight;
+			        document.getElementById("tbdContent").style.height = 70;    			
 		        }
 		    }
 		    else
 		    {
 		       if(myHeight > 100)
-		            $("divParent").style.height = myHeight - 20;		
+		            document.getElementById("divParent").style.height = myHeight - 20;		
 		        else
-		            $("divParent").style.height = myHeight;
+		            document.getElementById("divParent").style.height = myHeight;
 		    }
 	  }
 }	

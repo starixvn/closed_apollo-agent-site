@@ -122,10 +122,10 @@
             rowContent.agentuserid_value = subAcc.AgentUserId.ToString();
             rowContent.agentid_value = this.AgentId.ToString();
 
-            rowContent.totalbet_forecast_checked = rowContent.report_checked = rowContent.accountsetting_checked_read = rowContent.shadowmanagement_checked_read = rowContent.admin_checked_read = string.Empty;
-            rowContent.shadowmanagement_checked_host = rowContent.accountsetting_checked_host = rowContent.admin_checked_host = "disabled=true";
+            rowContent.totalbet_forecast_checked = rowContent.report_checked = rowContent.accountsetting_checked_read = rowContent.admin_checked_read = string.Empty;
+            rowContent.accountsetting_checked_host = rowContent.admin_checked_host = "disabled=true";
 
-            if (string.IsNullOrEmpty(subAcc.PageAccess))
+            if (!string.IsNullOrEmpty(subAcc.PageAccess))
             {
                 string[] permissions = subAcc.PageAccess.Split("-".ToCharArray());
                 foreach (string item in permissions)
@@ -148,18 +148,7 @@
                         else
                         {
                             rowContent.accountsetting_checked_read = "Checked=true";
-                        }
-                    }
-                    else if (item.Contains(AgentUserAccess.ShadowManagement))
-                    {
-                        if (item.Contains(AgentUserAccess.Host))
-                        {
-                            rowContent.shadowmanagement_checked_host = "Checked=true";
-                            rowContent.shadowmanagement_checked_read = "Checked=true disabled=true ";
-                        }
-                        else
-                        {
-                            rowContent.shadowmanagement_checked_read = "Checked=true";
+                            rowContent.accountsetting_checked_host = string.Empty;
                         }
                     }
                     else
@@ -172,6 +161,7 @@
                         else
                         {
                             rowContent.admin_checked_read = "Checked=true";
+                            rowContent.admin_checked_host = string.Empty;
                         }
                     }
                 }

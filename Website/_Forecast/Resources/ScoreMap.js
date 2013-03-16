@@ -8,50 +8,50 @@ function initScoreMap() {
     try {
         eCol();
 
-        if ($('page_main') != null && $('page_main') != undefined) {
-            $("page_main").onclick = function () {
+        if (document.getElementById('page_main') != null && document.getElementById('page_main') != undefined) {
+            document.getElementById("page_main").onclick = function () {
                 setVisibleBoxMatch();
             }
         }
 
-        if ($('RefreshLeagues') != null && $('RefreshLeagues') != undefined) {
-            $("RefreshLeagues").onclick = function () {
+        if (document.getElementById('RefreshLeagues') != null && document.getElementById('RefreshLeagues') != undefined) {
+            document.getElementById("RefreshLeagues").onclick = function () {
                 RefreshLeague();
             }
         }
 
-        if ($('dSelMatch') != null && $('dSelMatch') != undefined) {
-            $("dSelMatch").onclick = function () {
+        if (document.getElementById('dSelMatch') != null && document.getElementById('dSelMatch') != undefined) {
+            document.getElementById("dSelMatch").onclick = function () {
                 SelectMatch();
             }
         }
 
-        if ($('closeBoxMatch') != null && $('closeBoxMatch') != undefined) {
-            $("closeBoxMatch").onclick = function () {
+        if (document.getElementById('closeBoxMatch') != null && document.getElementById('closeBoxMatch') != undefined) {
+            document.getElementById("closeBoxMatch").onclick = function () {
                 CloseBoxMatch();
             }
         }
 
-        if ($('dSubmit') != null && $('dSubmit') != undefined) {
-            $("dSubmit").onclick = function () {
+        if (document.getElementById('dSubmit') != null && document.getElementById('dSubmit') != undefined) {
+            document.getElementById("dSubmit").onclick = function () {
                 LoadScoreMap();
             }
         }
 
-        if ($('dSubmitInMatch') != null && $('dSubmitInMatch') != undefined) {
-            $("dSubmitInMatch").onclick = function () {
+        if (document.getElementById('dSubmitInMatch') != null && document.getElementById('dSubmitInMatch') != undefined) {
+            document.getElementById("dSubmitInMatch").onclick = function () {
                 hiddenBoxMatch();
             }
         }
 
-        if ($('chkAllL') != null && $('chkAllL') != undefined) {
-            $("chkAllL").onclick = function () {
+        if (document.getElementById('chkAllL') != null && document.getElementById('chkAllL') != undefined) {
+            document.getElementById("chkAllL").onclick = function () {
                 CheckAllBetType('L');
             }
         }
 
-        if ($('chkAllD') != null && $('chkAllD') != undefined) {
-            $("chkAllD").onclick = function () {
+        if (document.getElementById('chkAllD') != null && document.getElementById('chkAllD') != undefined) {
+            document.getElementById("chkAllD").onclick = function () {
                 CheckAllBetType('D');
             }
         }
@@ -60,38 +60,38 @@ function initScoreMap() {
 }
 
 function hideBoxMatch() {
-    $("BoxMatchWL").style.display = "none";
-    $('tblMsgMatch').style.display = "none";
-    $('dSelMatch').value = _page.selectMatch;
+    document.getElementById("BoxMatchWL").style.display = "none";
+    document.getElementById('tblMsgMatch').style.display = "none";
+    document.getElementById('dSelMatch').value = _page.selectMatch;
 }
 
 function ShowHideLiveDead(result) {
-    $("tblLiveDead").style.display = result;
-    $('mainContent').style.display = result;
+    document.getElementById("tblLiveDead").style.display = result;
+    document.getElementById('mainContent').style.display = result;
     if (result == "none")
-        $('mainContent').innerHTML = "";
+        document.getElementById('mainContent').innerHTML = "";
 }
 
 function hiddenBoxMatch() {
-    if ($('MatchIds').value != '-1') {
+    if (document.getElementById('MatchIds').value != '-1') {
         hideBoxMatch();
         ShowHideLiveDead("");
     }
     else{
-        $('msgMatchErr').innerHTML = _page.plsChooseMatch;
-        $('tblMsgMatch').style.display = "";
+        document.getElementById('msgMatchErr').innerHTML = _page.plsChooseMatch;
+        document.getElementById('tblMsgMatch').style.display = "";
     }
 }
 
 function CloseBoxMatch() {
     hideBoxMatch();
-    if ($('MatchIds').value != '-1') {
+    if (document.getElementById('MatchIds').value != '-1') {
         ShowHideLiveDead("");
     }
     else {
         ShowHideLiveDead("none");
     }
-    $('dSelMatch').value = _page.selectMatch;
+    document.getElementById('dSelMatch').value = _page.selectMatch;
 }
 
 function CommonLoadData(MatchId) {
@@ -102,22 +102,22 @@ function CommonLoadData(MatchId) {
 }
 
 function DisableBtnSubmit() {
-    var dSubmit = $('dSubmit');
+    var dSubmit = document.getElementById('dSubmit');
 
     dSubmit.disabled = true;
     if (!HasClassName(dSubmit, 'hidden')) dSubmit.className = 'btn2';
 
-    var loading = $("loadingSubmit");
+    var loading = document.getElementById("loadingSubmit");
     if (loading) loading.className = "loading";
 }
 
 function EnableBtnSubmit() {
-    var dSubmit = $('dSubmit');
+    var dSubmit = document.getElementById('dSubmit');
 
     dSubmit.disabled = false;
     if (!HasClassName(dSubmit, 'hidden')) dSubmit.className = 'btn';
 
-    var loading = $("loadingSubmit");
+    var loading = document.getElementById("loadingSubmit");
     if (loading) loading.className = "";
 }
 
@@ -128,18 +128,18 @@ function LoadScoreMap() {
     }
     isCalling = true;
 
-    if ($('MatchIds').value != '-1') {
-        CommonLoadData($('MatchIds').value);
-        if ($('strValueL').value == '-1' && $('strValueD').value == '-1') {
-            $('mainContent').innerHTML = "";
-            $('spmsgerr').innerHTML = _page.plsChooseBetType;
-            $('diverrmsg').style.display = "";
-            LoadingRefresh($('MatchIds').value, lnkRefresh);
+    if (document.getElementById('MatchIds').value != '-1') {
+        CommonLoadData(document.getElementById('MatchIds').value);
+        if (document.getElementById('strValueL').value == '-1' && document.getElementById('strValueD').value == '-1') {
+            document.getElementById('mainContent').innerHTML = "";
+            document.getElementById('spmsgerr').innerHTML = _page.plsChooseBetType;
+            document.getElementById('diverrmsg').style.display = "";
+            LoadingRefresh(document.getElementById('MatchIds').value, lnkRefresh);
         }
         else {
-            $('diverrmsg').style.display = "none";
+            document.getElementById('diverrmsg').style.display = "none";
             DisableBtnSubmit();
-            var paras = "isRefresh=false" + "&leagueid=0&matchIds=" + $('MatchIds').value + "&bettypes_live=" + $('strValueL').value + "&bettypes_dead=" + $('strValueD').value;
+            var paras = "isRefresh=false" + "&leagueid=0&matchIds=" + document.getElementById('MatchIds').value + "&bettypes_live=" + document.getElementById('strValueL').value + "&bettypes_dead=" + document.getElementById('strValueD').value;
             http = jx.request(
             '../_Forecast/ScoreMapProcess.aspx', onComplete, 'POST'
                 , paras
@@ -156,8 +156,8 @@ function LoadScoreMap() {
         }
 
         if (typeof rs == 'object') {
-            $('mainContent').innerHTML = rs.responseText;
-            LoadingRefresh($('MatchIds').value, lnkRefresh);
+            document.getElementById('mainContent').innerHTML = rs.responseText;
+            LoadingRefresh(document.getElementById('MatchIds').value, lnkRefresh);
             EnableBtnSubmit();
             eCol();
         }
@@ -167,13 +167,13 @@ function LoadScoreMap() {
 }
 
 function GroupScoreMap(GroupMatchId) {
-    if ($(GroupMatchId).style.display != "") {
-        $(GroupMatchId).style.display = "";
-        $('lnkGroup' + GroupMatchId).className = "lnkGroup";
+    if (document.getElementById(GroupMatchId).style.display != "") {
+        document.getElementById(GroupMatchId).style.display = "";
+        document.getElementById('lnkGroup' + GroupMatchId).className = "lnkGroup";
     }
     else {
-        $(GroupMatchId).style.display = "none";
-        $('lnkGroup' + GroupMatchId).className = "lnkGroupClick";
+        document.getElementById(GroupMatchId).style.display = "none";
+        document.getElementById('lnkGroup' + GroupMatchId).className = "lnkGroupClick";
     }
 }
 
@@ -185,7 +185,7 @@ function RefreshScoreMap(MatchId) {
     isCalling = true;
 
     CommonLoadData(MatchId);
-    var paras = "isRefresh=true" + "&leagueid=0&matchIds=" + MatchId + "&bettypes_live=" + $('strValueL').value + "&bettypes_dead=" + $('strValueD').value;
+    var paras = "isRefresh=true" + "&leagueid=0&matchIds=" + MatchId + "&bettypes_live=" + document.getElementById('strValueL').value + "&bettypes_dead=" + document.getElementById('strValueD').value;
     http = jx.request(
     '../_Forecast/ScoreMapProcess.aspx', onComplete, 'POST'
         , paras
@@ -197,7 +197,7 @@ function RefreshScoreMap(MatchId) {
         }
 
         if (typeof rs == 'object') {
-            $('RefreshContent' + MatchId).innerHTML = rs.responseText;
+            document.getElementById('RefreshContent' + MatchId).innerHTML = rs.responseText;
             LoadingRefresh(MatchId, lnkRefresh);
             eCol();
         }
@@ -209,21 +209,21 @@ function RefreshScoreMap(MatchId) {
 function LoadingRefresh(Matchs, cName) {
     var arrMatchs = Matchs.split(',');
     for (var i = 0; i < arrMatchs.length; i++) {
-        if ($('lnkRefresh' + arrMatchs[i]) != null && $('lnkRefresh' + arrMatchs[i]) != undefined) {
-            $('lnkRefresh' + arrMatchs[i]).className = cName;
+        if (document.getElementById('lnkRefresh' + arrMatchs[i]) != null && document.getElementById('lnkRefresh' + arrMatchs[i]) != undefined) {
+            document.getElementById('lnkRefresh' + arrMatchs[i]).className = cName;
         }
     }
 }
 
 function ChangeLeague() {
-    $('MatchIds').value = "-1";
+    document.getElementById('MatchIds').value = "-1";
     hideBoxMatch();
     ShowHideLiveDead("none");
 }
 
 function RefreshLeague() {
     DisableButton();
-    var LeagueID = $('ddlLeague') ? $('ddlLeague').value : '0';
+    var LeagueID = document.getElementById('ddlLeague') ? document.getElementById('ddlLeague').value : '0';
     http = jx.request(
     '../_Forecast/RefreshLeague.aspx', onComplete, 'POST'
         , 'LeagueID=' + LeagueID
@@ -231,9 +231,9 @@ function RefreshLeague() {
 
     function onComplete(rs) {
         if (typeof rs == 'object') {
-            $('selLeague').innerHTML = rs.responseText;
-            $('isChanged').value = $('isChanged').value != 0 ? 0 : 1;
-            $('MatchIds').value = "-1";
+            document.getElementById('selLeague').innerHTML = rs.responseText;
+            document.getElementById('isChanged').value = document.getElementById('isChanged').value != 0 ? 0 : 1;
+            document.getElementById('MatchIds').value = "-1";
             hideBoxMatch();
             EnableButton();
         }
@@ -244,28 +244,28 @@ function RefreshLeague() {
 function isAllBetType(Type, curBetType) {
     var strChkBetType = "bt" + Type;
     var strChkAllBetType = "chkAll" + Type;
-    if ($(curBetType).checked) {
+    if (document.getElementById(curBetType).checked) {
         var isCheckAll = true;
         var ids = document.getElementsByTagName("input");
         for (var i = 0; i < ids.length; i++) {
             if (ids[i].type == "checkbox" && ids[i].id.substring(0, 3) == strChkBetType) {
                 if (ids[i].id == strChkAllBetType) continue;
-                if (!$(ids[i].id).checked) {
+                if (!document.getElementById(ids[i].id).checked) {
                     isCheckAll = false;
                     break;
                 }
             }
         }
-        if ($(strChkAllBetType) != null) $(strChkAllBetType).checked = isCheckAll;
+        if (document.getElementById(strChkAllBetType) != null) document.getElementById(strChkAllBetType).checked = isCheckAll;
     }
     else {
-        if ($(strChkAllBetType) != null) $(strChkAllBetType).checked = false;
+        if (document.getElementById(strChkAllBetType) != null) document.getElementById(strChkAllBetType).checked = false;
     }
 }
 
 function CheckAllBetType(Type) {
     var strChkBetType = "bt" + Type;
-    var bolAll = $('chkAll' + Type).checked;
+    var bolAll = document.getElementById('chkAll' + Type).checked;
     var ids = document.getElementsByTagName("input");
     for (var i = 0; i < ids.length; i++) {
         if (ids[i].type == "checkbox" && ids[i].id.substring(0, 3) == strChkBetType) {
@@ -285,7 +285,7 @@ function setBetTypes(Type) {
             }
         }
     }
-    $('strValue' + Type).value = (BetTypes == '' ? '-1' : BetTypes);
+    document.getElementById('strValue' + Type).value = (BetTypes == '' ? '-1' : BetTypes);
 }
 /* END: For Box Bet Types */
 
@@ -308,8 +308,8 @@ function lCol(tblMatchId, n) {
     }
 }
 function eCol() {
-    if ($('MatchIds').value != -1) {
-        var arrMatchIds = $('MatchIds').value.split(',');
+    if (document.getElementById('MatchIds').value != -1) {
+        var arrMatchIds = document.getElementById('MatchIds').value.split(',');
         for (k = 0; k < arrMatchIds.length; k++) {
             var tblMatchId = 'tblSM' + arrMatchIds[k];
             var tTab = document.getElementById(tblMatchId);

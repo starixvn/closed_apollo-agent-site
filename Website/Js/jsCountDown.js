@@ -1,5 +1,5 @@
-﻿var btnRefresh = $('ucCountDown_btnRefresh');
-var pnlMinDown = $('ucCountDown_PanelDown');
+﻿var btnRefresh = document.getElementById('ucCountDown_btnRefresh');
+var pnlMinDown = document.getElementById('ucCountDown_PanelDown');
 var curCountDown = initCountDown;
 var ckiName = "ibcCountDown" + custId + countDownId;
 
@@ -39,7 +39,7 @@ function updateData(handler, placeHolder) {
                         method: 'get',
                         parameters: '',
                         onComplete: function bindData(rs) {
-                            $(placeHolder).innerHTML = rs.responseText;                            
+                            document.getElementById(placeHolder).innerHTML = rs.responseText;                            
                         }
                     }
                 );
@@ -47,7 +47,7 @@ function updateData(handler, placeHolder) {
 
 function saveMinutes(idNewMinute) {    
     pnlMinDown.style.display = 'none';
-    var txtMins = $(idNewMinute).innerHTML;
+    var txtMins = document.getElementById(idNewMinute).innerHTML;
     initCountDown = parseInt(txtMins);
     doCheckMenu();
     createCookie(ckiName, initCountDown, 35);
@@ -67,14 +67,14 @@ function doCheckMenu() {
 }
 
 function doRefresh() {
-    var pnlDown = $('ucCountDown_PanelDown');
+    var pnlDown = document.getElementById('ucCountDown_PanelDown');
     if (pnlDown.style.display == '')
         pnlDown.style.display = 'none';
     return ucCountDown_refresh();
 }
 
 function doOpenPnlOption(btnDown) {
-    var pnlDown = $('ucCountDown_PanelDown');
+    var pnlDown = document.getElementById('ucCountDown_PanelDown');
     var arrBtnPos = findPosition(btnDown.parentNode);
     if (pnlDown.style.display == 'none') {
         pnlDown.style.left = arrBtnPos[0] + 'px';

@@ -209,7 +209,7 @@
             }
             catch (Exception ex)
             {
-                Fanex.Age.Utility.Logs.Error("Can't get data", ex);
+                Logs.Error("Can't get data", ex);
                 return null;
             }
         }

@@ -49,23 +49,23 @@ function Language(val)
         flagSrc=flagSrc.replace('{lang}','ko');
     }
 
-    $('flag').style.backgroundImage=flagSrc;
+    document.getElementById('flag').style.backgroundImage=flagSrc;
 }
 
 function SetValue(newLang, uname, pwd, log, brows)
 {
     lang=newLang;
-	$('username').innerHTML=uname;
-	$('password').innerHTML=pwd
-	$('login').value =log;
-	$('brows').innerHTML = brows;
+	document.getElementById('username').innerHTML=uname;
+	document.getElementById('password').innerHTML=pwd
+	document.getElementById('login').value =log;
+	document.getElementById('brows').innerHTML = brows;
 
-	$('txtusername').focus();
+	document.getElementById('txtusername').focus();
 }
 
 function GetObjectMsg()
 {
-    var lang = parseInt($("select").value);
+    var lang = parseInt(document.getElementById("select").value);
     switch(lang)
     {
         case 1:
@@ -93,36 +93,36 @@ function GetObjectMsg()
 function ExcLogin()
 {
     var errObj = GetObjectMsg();
-    if($('txtusername').value=="")
+    if(document.getElementById('txtusername').value=="")
     {
-        $("errmsg").innerHTML=errObj.errUserName;
+        document.getElementById("errmsg").innerHTML=errObj.errUserName;
         return false;
     }
-    if($('txtpassword').value=="")
+    if(document.getElementById('txtpassword').value=="")
     {
-        $("errmsg").innerHTML=errObj.errUserName;
+        document.getElementById("errmsg").innerHTML=errObj.errUserName;
         return false;
     }
-    if($('txtcaptcha').value =="")
+    if(document.getElementById('txtcaptcha').value =="")
     {
-        $("errmsg").innerHTML=errObj.errValidCode;
+        document.getElementById("errmsg").innerHTML=errObj.errValidCode;
         return false;
     }
-    $('alerterror').innerHTML="<img alt='' src='../App_Themes/LogIn/ajax-loader2.gif' />";
-    $('lang').value=lang;
+    document.getElementById('alerterror').innerHTML="<img alt='' src='../App_Themes/LogIn/ajax-loader2.gif' />";
+    document.getElementById('lang').value=lang;
     document.fLogin.submit();
 
     return false;
 }
 function AlertMsg(msgerr)
 {
-    $('alerterror').innerHTML='';
+    document.getElementById('alerterror').innerHTML='';
 
     var err=msgerr.split(';');
-    $("errmsg").innerHTML=err[0];
-    $("txtusername").value=err[1];
-    $('validatecode').src ='Authorization/LoginCaptcha.ashx?t=' + new Date();
-    $('txtcaptcha').value='';
+    document.getElementById("errmsg").innerHTML=err[0];
+    document.getElementById("txtusername").value=err[1];
+    document.getElementById('validatecode').src ='Authorization/LoginCaptcha.ashx?t=' + new Date();
+    document.getElementById('txtcaptcha').value='';
 }
 function PreLogin(e)
 {
@@ -156,5 +156,5 @@ AGE.addEvent(window, "load", SetFocus);
 
 function SetFocus()
 {
-   $('txtusername').focus();
+   document.getElementById('txtusername').focus();
 }

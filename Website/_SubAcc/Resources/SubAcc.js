@@ -8,28 +8,28 @@ function UpdatePermission(agentUserId, agentId) {
     }
 
     var value = '';
-    if ($("chk" + agentUserId + "[TF][R][H]").checked) {
+    if (document.getElementById("chk" + agentUserId + "[TF][R][H]").checked) {
         value += "[TF][R][H]-";
     }
-    if ($("chk" + agentUserId + "[RP][R][H]").checked) {
+    if (document.getElementById("chk" + agentUserId + "[RP][R][H]").checked) {
         value += "[RP][R][H]-";
     }
-    if ($("chk" + agentUserId + "[AC][R]").checked) {
+    if (document.getElementById("chk" + agentUserId + "[AC][R]").checked) {
         value += "[AC][R]-";
     }
-    if ($("chk" + agentUserId + "[AC][H]").checked) {
+    if (document.getElementById("chk" + agentUserId + "[AC][H]").checked) {
         value += "[AC][H]-";
     }
-    if ($("chk" + agentUserId + "[SM][R]").checked) {
+    if (document.getElementById("chk" + agentUserId + "[SM][R]").checked) {
         value += "[SM][R]-";
     }
-    if ($("chk" + agentUserId + "[SM][H]").checked) {
+    if (document.getElementById("chk" + agentUserId + "[SM][H]").checked) {
         value += "[SM][H]-";
     }
-    if ($("chk" + agentUserId + "[AD][R]").checked) {
+    if (document.getElementById("chk" + agentUserId + "[AD][R]").checked) {
         value += "[AD][R]-";
     }
-    if ($("chk" + agentUserId + "[AD][H]").checked) {
+    if (document.getElementById("chk" + agentUserId + "[AD][H]").checked) {
         value += "[AD][H]-";
     }
     if (value != '') {
@@ -50,15 +50,15 @@ function onClick_ChangePermission(els) {
     var id = '';
     if (els.id.indexOf("[R]") != -1) {//Read
         id = els.id.replace('[R]', '[H]');
-        $(id).disabled = !els.checked;
-        if ($(id).checked) {
-            $(id).checked = false;
+        document.getElementById(id).disabled = !els.checked;
+        if (document.getElementById(id).checked) {
+            document.getElementById(id).checked = false;
         }
     }
     else //Host
     {
         id = els.id.replace('[H]', '[R]');
-        $(id).disabled = els.checked;
-        $(id).checked = els.checked;
+        document.getElementById(id).disabled = els.checked;
+        document.getElementById(id).checked = els.checked;
     }
 }
