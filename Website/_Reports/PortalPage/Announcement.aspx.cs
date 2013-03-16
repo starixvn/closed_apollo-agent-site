@@ -12,7 +12,7 @@
     using Resources;
     using Sunplus.Agent.Model.BL.UserMessage;
     using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Utilities;
+  
 
     public partial class Announcement : TplPage
     {
