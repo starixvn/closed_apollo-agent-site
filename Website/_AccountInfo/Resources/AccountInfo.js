@@ -526,6 +526,7 @@ function bindMembersList(agentID) {
 
         if (text.length > 0) {
             document.getElementById("members-list").innerHTML = text;
-        }
+        }       
+
     });
 }

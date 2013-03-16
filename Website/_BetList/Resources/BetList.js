@@ -268,6 +268,7 @@ function getOffset(el) {
 }
 var BetList = {
     showCommDetail: function (transId, event) {
+        console.log(transId);
         var pnlDetails = document.getElementById("divDetail");
         if (pnlDetails != undefined) {
             pnlDetails.style.display = 'block';

@@ -1,14 +1,4 @@
-﻿/*
-* Created 20091224@Lee - Core javascript functions and classes
-*
-* !!!CAUTION: ANY REVISION MUST BE APPROVED BEFORE PROCEEDING!!!
-* Revision ?@? - ...
-*
-*/
-function $(id) {
-    return document.getElementById(id);
-}
-// Returns the string with all the beginning
+﻿// Returns the string with all the beginning
 // and ending whitespace removed
 String.prototype.trim = function () {
     return this.replace(/^\s+/, '').replace(/\s+$/, '');
