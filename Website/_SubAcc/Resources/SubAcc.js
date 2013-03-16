@@ -20,12 +20,6 @@ function UpdatePermission(agentUserId, agentId) {
     if ($("chk" + agentUserId + "[AC][H]").checked) {
         value += "[AC][H]-";
     }
-    if ($("chk" + agentUserId + "[SM][R]").checked) {
-        value += "[SM][R]-";
-    }
-    if ($("chk" + agentUserId + "[SM][H]").checked) {
-        value += "[SM][H]-";
-    }
     if ($("chk" + agentUserId + "[AD][R]").checked) {
         value += "[AD][R]-";
     }
@@ -58,7 +52,18 @@ function onClick_ChangePermission(els) {
     else //Host
     {
         id = els.id.replace('[H]', '[R]');
-        $(id).disabled = els.checked;
-        $(id).checked = els.checked;
+        if (els.checked) {
+            $(id).disabled = true;
+            $(id).checked = true;
+        }
+        else {
+            if ($(id).checked) {
+                els.disabled = false;
+            }
+            else {
+                els.disabled = true;
+            }
+            $(id).disabled = false;
+        }
     }
 }
