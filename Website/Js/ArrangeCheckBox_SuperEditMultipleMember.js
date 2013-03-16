@@ -7,7 +7,7 @@ var chkUpdPT = ["chkUpd_1", "chkUpd_2", "chkUpd_3", "chkUpd_5", "chkUpd_8", "chk
 
 function InitDisableControl() {
 
-    if ($('isMult').value == 1) {
+    if (document.getElementById('isMult').value == 1) {
         for (var i = 0; i < ArrSportTypes.length; i++) {
             window.ArrDisableCotrol = new Array();
 
@@ -20,7 +20,7 @@ function InitDisableControl() {
 }
 
 function GetElement(elmName, parentElmName) {
-    var Elements = $(parentElmName).getElementsByTagName(elmName);
+    var Elements = document.getElementById(parentElmName).getElementsByTagName(elmName);
     for (var k = 0; k < Elements.length; k++) {
         var elm = Elements[k];
         if (!elm.disabled) {
@@ -112,19 +112,19 @@ function getElementDiv(chkObj, sportType) {
             }
     }
 
-    if ($("divUpdPT" + sportType)) { // PT Div is available
-        var elements = $("divUpdPT" + sportType).getElementsByTagName("input");
-        if ($("chkUpd_" + sportType).disabled) { // chkPT is disabled. all  control's childs is disabled
+    if (document.getElementById("divUpdPT" + sportType)) { // PT Div is available
+        var elements = document.getElementById("divUpdPT" + sportType).getElementsByTagName("input");
+        if (document.getElementById("chkUpd_" + sportType).disabled) { // chkPT is disabled. all  control's childs is disabled
             for (var j = 0; j < elements.length; j++) {
                 elements[j].disabled = true;
             }
-            var elm = $("divUpdPT" + sportType).getElementsByTagName("select");
+            var elm = document.getElementById("divUpdPT" + sportType).getElementsByTagName("select");
             for (var i = 0; i < elm.length; i++) {
                 elm[i].disabled = true;
             }
         }
         else { // chkPT is Enabled
-            if ($('chkUpd_' + sportType).checked) { // chkPT is checked
+            if (document.getElementById('chkUpd_' + sportType).checked) { // chkPT is checked
                 for (var j = 0; j < elements.length; j++) {
                     var id = elements[j].id;
                     var chkcopy = "chkCopy" + sportType + "Hdp";
@@ -134,7 +134,7 @@ function getElementDiv(chkObj, sportType) {
                             CheckCopyPT(elements[j], arrSuper);
                             var chkAuto = "chkAuto" + sportType + "Hdp";
                             var chkAutoHdp = document.getElementById(chkAuto);
-                            $(chkAuto).disabled = false;
+                            document.getElementById(chkAuto).disabled = false;
                             CheckAutoPreset(chkAutoHdp);
                             return;
                         }
@@ -149,7 +149,7 @@ function getElementDiv(chkObj, sportType) {
                 for (var j = 0; j < elements.length; j++) {
                     elements[j].disabled = true;
                 }
-                var elm = $("divUpdPT" + sportType).getElementsByTagName("select");
+                var elm = document.getElementById("divUpdPT" + sportType).getElementsByTagName("select");
                 for (var i = 0; i < elm.length; i++) {
                     elm[i].disabled = true;
                 }
@@ -159,20 +159,20 @@ function getElementDiv(chkObj, sportType) {
 }
 
 function getElementDivforBasketball() {
-    if ($("divUpdPT2")) {
-        var elements = $("divUpdPT2").getElementsByTagName("input");
-        var elm = $("divUpdPT2").getElementsByTagName("select"); // all select controls init is disabled
+    if (document.getElementById("divUpdPT2")) {
+        var elements = document.getElementById("divUpdPT2").getElementsByTagName("input");
+        var elm = document.getElementById("divUpdPT2").getElementsByTagName("select"); // all select controls init is disabled
         for (var i = 0; i < elm.length; i++) {
             elm[i].disabled = true;
         }
-        if ($('chkUpd_2').disabled) {
+        if (document.getElementById('chkUpd_2').disabled) {
             for (var j = 0; j < elements.length; j++) {
                 elements[j].disabled = true;
             }
         }
         else {
-            if ($('chkUpd_2').checked) { // chkPT is checked     
-                if ($('chkCopyBasket').checked) { // chkCopyAllBK is checked
+            if (document.getElementById('chkUpd_2').checked) { // chkPT is checked     
+                if (document.getElementById('chkCopyBasket').checked) { // chkCopyAllBK is checked
                     for (var j = 0; j < elements.length; j++) {
                         if (elements[j].id == "chkAuto2Hdp") {
                             elements[j].disabled = false;
@@ -182,8 +182,8 @@ function getElementDivforBasketball() {
                             elements[j].disabled = true;
                         }
                     }
-                    if (!$("listS2Hdp")) {
-                        $("chkCopy2Hdp").disabled = true;
+                    if (!document.getElementById("listS2Hdp")) {
+                        document.getElementById("chkCopy2Hdp").disabled = true;
                     }
                 }
                 else { // chkCopyAllBK is unchecked
@@ -192,7 +192,7 @@ function getElementDivforBasketball() {
                         if (elements[j].id == "chkCopy2Hdp") continue;
                         CheckAutoPreset(elements[j]);
                     }
-                    CheckCopyPT($("chkCopy2Hdp"), arrSuper2);
+                    CheckCopyPT(document.getElementById("chkCopy2Hdp"), arrSuper2);
                 }
             }
             else { // chkPT is unchecked . consist of two case chkCopyAllBK is checked or unchecked
@@ -205,21 +205,21 @@ function getElementDivforBasketball() {
 }
 
 function getElementDivforSoccer() {
-    if ($("divUpdPT1")) {
-        elements = $("divUpdPT1").getElementsByTagName("input");
-        var elm = $("divUpdPT1").getElementsByTagName("select"); // all select controls init is disabled
+    if (document.getElementById("divUpdPT1")) {
+        elements = document.getElementById("divUpdPT1").getElementsByTagName("input");
+        var elm = document.getElementById("divUpdPT1").getElementsByTagName("select"); // all select controls init is disabled
         for (var i = 0; i < elm.length; i++) {
             elm[i].disabled = true;
         }
 
-        if ($('chkUpd_1').disabled) {
+        if (document.getElementById('chkUpd_1').disabled) {
             for (var j = 0; j < elements.length; j++) {
                 elements[j].disabled = true;
             }
         }
         else {
-            if ($('chkUpd_1').checked) {
-                if ($('chkCopyAll').checked) {
+            if (document.getElementById('chkUpd_1').checked) {
+                if (document.getElementById('chkCopyAll').checked) {
                     for (var j = 0; j < elements.length; j++) {
                         if (elements[j].id == "chkAuto1HdpD") {
                             elements[j].disabled = false;
@@ -231,25 +231,25 @@ function getElementDivforSoccer() {
                     }
                 }
                 else {
-                    if ($("listS1HdpD")) {
-                        $("chkCopy1HdpDeadball").disabled = false;
+                    if (document.getElementById("listS1HdpD")) {
+                        document.getElementById("chkCopy1HdpDeadball").disabled = false;
                     }
                     else {
-                        $("chkCopy1HdpDeadball").disabled = true;
+                        document.getElementById("chkCopy1HdpDeadball").disabled = true;
                     }
 
-                    if ($("listS11x2")) {
-                        $("chkCopy11x2").disabled = false;
+                    if (document.getElementById("listS11x2")) {
+                        document.getElementById("chkCopy11x2").disabled = false;
                     }
                     else {
-                        $("chkCopy11x2").disabled = true;
+                        document.getElementById("chkCopy11x2").disabled = true;
                     }
 
-                    if ($("listS1HdpL")) {
-                        $("chkCopy1HdpLive").disabled = false;
+                    if (document.getElementById("listS1HdpL")) {
+                        document.getElementById("chkCopy1HdpLive").disabled = false;
                     }
                     else {
-                        $("chkCopy1HdpLive").disabled = true;
+                        document.getElementById("chkCopy1HdpLive").disabled = true;
                     }
 
                     for (var j = 0; j < elements.length; j++) {
@@ -258,9 +258,9 @@ function getElementDivforSoccer() {
                         elements[j].disabled = false;
                         CheckAutoPreset(elements[j]);
                     }
-                    CheckCopyPT($("chkCopy1HdpDeadball"), arr1Super1);
-                    CheckCopyPT($("chkCopy11x2"), arr2Super1);
-                    CheckCopyPT($("chkCopy1HdpLive"), arr3Super1);
+                    CheckCopyPT(document.getElementById("chkCopy1HdpDeadball"), arr1Super1);
+                    CheckCopyPT(document.getElementById("chkCopy11x2"), arr2Super1);
+                    CheckCopyPT(document.getElementById("chkCopy1HdpLive"), arr3Super1);
                 }
             }
             else {

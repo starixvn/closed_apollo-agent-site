@@ -1,13 +1,13 @@
 ﻿function onclickUser(username) {
-    if ($('txtUserName').value == username) {
-        $('txtUserName').className = 'text_normal';
-        $('txtUserName').value = '';
+    if (document.getElementById('txtUserName').value == username) {
+        document.getElementById('txtUserName').className = 'text_normal';
+        document.getElementById('txtUserName').value = '';
     }
 }
 function onblurUser(username) {
-    if ($('txtUserName').value == '') {
-        $('txtUserName').className = 'text_italic';
-        $('txtUserName').value = username;
+    if (document.getElementById('txtUserName').value == '') {
+        document.getElementById('txtUserName').className = 'text_italic';
+        document.getElementById('txtUserName').value = username;
     }
 }
 
@@ -15,7 +15,7 @@ function onKeyPressUser(submitID,event) {
     if (!event) event = window.event;
     var key = (event.keyCode) ? event.keyCode : event.which;
     if (key == 13) {
-        $(submitID).click();
+        document.getElementById(submitID).click();
         return false;
     }
 }

@@ -84,7 +84,7 @@ function ViewDownLine(url) {
 }
 
 function GetCustomer(url) {
-    var txtname = $('txtUserName').value;
+    var txtname = document.getElementById('txtUserName').value;
     if (txtname == _page.usernamedefault) {
         txtname = '';
     }
@@ -92,8 +92,8 @@ function GetCustomer(url) {
     url = SetParameterValue("custid", _page.custid, url);
     url = SetParameterValue("username", txtname, url);
 
-    //    url = SetParameterValue("pageIndex", $('txt_PagingTop') ? $('txt_PagingTop').value : 1, url);
-    url = SetParameterValue("pageSize", $('sel_PagingTop').value, url);
+    //    url = SetParameterValue("pageIndex", document.getElementById('txt_PagingTop') ? document.getElementById('txt_PagingTop').value : 1, url);
+    url = SetParameterValue("pageSize", document.getElementById('sel_PagingTop').value, url);
 
     location.href = url;
 }
@@ -160,7 +160,7 @@ function ItemCheck_OnClick(els) {
         for (var i = 0; i < arrChk.length; i++) {
             if (!arrChk[i].checked) {
                 editId = "edit_" + arrChk[i].id;
-                if ($(editId).hasAttribute("_onmouseover")) continue;
+                if (document.getElementById(editId).hasAttribute("_onmouseover")) continue;
                 ChangeAtribute(editId, "onmouseover", "_onmouseover");
                 ChangeValueAttribute(editId, "class", "divDisableOther");
             }
@@ -169,29 +169,29 @@ function ItemCheck_OnClick(els) {
 }
 
 function ChangeValueAttribute(id, attName, attValue) {
-    var Value = $(id).getAttribute(attName);
+    var Value = document.getElementById(id).getAttribute(attName);
     if (Value != attValue) {
-        $(id).setAttribute(attName, attValue);
+        document.getElementById(id).setAttribute(attName, attValue);
     }
 }
 
 function ChangeAtribute(id, fromName, toName) {
-    if ($(id)) {
-        var Value = $(id).getAttribute(fromName);
-        if ($(id).hasAttribute(fromName)) {
-            $(id).removeAttribute(fromName);
-            $(id).setAttribute(toName, Value);
+    if (document.getElementById(id)) {
+        var Value = document.getElementById(id).getAttribute(fromName);
+        if (document.getElementById(id).hasAttribute(fromName)) {
+            document.getElementById(id).removeAttribute(fromName);
+            document.getElementById(id).setAttribute(toName, Value);
         }
     }
 }
 
 // Render Popup Status
 function RenderStatus(el, divID, custId, closed, suspended, allowAutoPT, outright, id) {
-    var div = $(divID);
-    var chk_closed = $('chk_closed');
-    var chk_suspended = $('chk_suspended');
-    var chk_autoPT = $('chk_allowAutoPT');
-    var chk_outright = $('chk_outright');
+    var div = document.getElementById(divID);
+    var chk_closed = document.getElementById('chk_closed');
+    var chk_suspended = document.getElementById('chk_suspended');
+    var chk_autoPT = document.getElementById('chk_allowAutoPT');
+    var chk_outright = document.getElementById('chk_outright');
 
     if (chk_closed.value == '1') {
         chk_closed.parentNode.style.display = 'none';
@@ -214,13 +214,13 @@ function RenderStatus(el, divID, custId, closed, suspended, allowAutoPT, outrigh
     div.isOutright = div.isOutright1 = outright;
     div.isCancelSubmit = false;
 
-    div.isSync = $(id).getAttribute('statuscs');
+    div.isSync = document.getElementById(id).getAttribute('statuscs');
 
     chk_closed.checked = closed ? 'checked' : null;
 
     chk_suspended.disabled = null;
     chk_suspended.checked = suspended ? 'checked' : null;
-    if ($('isDisableSuspendedStatus').value == 'true') {
+    if (document.getElementById('isDisableSuspendedStatus').value == 'true') {
         chk_suspended.disabled = 'disable';
     } else chk_suspended.disabled = null;
 
@@ -228,7 +228,7 @@ function RenderStatus(el, divID, custId, closed, suspended, allowAutoPT, outrigh
 
     chk_outright.disabled = null;
     chk_outright.checked = outright ? 'checked' : null;
-    if ($('isDisableAllowOutrightStatus').value == 'true') {
+    if (document.getElementById('isDisableAllowOutrightStatus').value == 'true') {
         chk_outright.disabled = 'disable';
     } else chk_outright.disabled = null;
 
@@ -270,7 +270,7 @@ function RenderStatus(el, divID, custId, closed, suspended, allowAutoPT, outrigh
 }
 
 function HidePopupStatus(divID) {
-    var div = $(divID);
+    var div = document.getElementById(divID);
     if (!div) return false;
     div.style.display = 'none';
 
@@ -336,7 +336,7 @@ function UpdateCustomerStatus(custId, isClosed, isSuspended, isAllowAutoMPT, isO
 }
 
 function RenderMulti(el, divID, custLevel, upline_id, masterid) {
-    var div = $(divID);
+    var div = document.getElementById(divID);
     var ArrChkId = document.getElementsByName("chkid");
     var ischecked = false;
 
@@ -367,13 +367,13 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
     var isLiveCS = false;
     var isVirtualSports = false;
 
-    var racing = $('racing');
-    var casino = $('casino');
-    var bingo = $('bingo');
-    var p2p = $('P2P');
-    var liveCasino = $('livecasino');
-    var virtualSports = $('virtualsports');
-    var doubleComm = $('doublecomm');
+    var racing = document.getElementById('racing');
+    var casino = document.getElementById('casino');
+    var bingo = document.getElementById('bingo');
+    var p2p = document.getElementById('P2P');
+    var liveCasino = document.getElementById('livecasino');
+    var virtualSports = document.getElementById('virtualsports');
+    var doubleComm = document.getElementById('doublecomm');
 
     for (var j = 0; j < ArrChkId.length; j++) {
         if (ArrChkId[j].checked) {
@@ -472,7 +472,7 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
         }, true);
 
         // Link to edit SportBook
-        var hrefSport = $('sportBook');
+        var hrefSport = document.getElementById('sportBook');
         if (_page.roleid == 4) {
             if (custLevel == "Super" || custLevel == "Master") hrefSport.href = 'javascript:EditMember_Multi(' + upline_id + ',"' + custLevel + '",' + masterid + ')';
             else hrefSport.href = 'javascript:EditMaster_Multi(' + upline_id + ')';
@@ -483,7 +483,7 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
 
         // Link to edit Racing
         if (racing.getAttribute('value') != '0') {
-            $('tr_racing').style.display = 'none';
+            document.getElementById('tr_racing').style.display = 'none';
         } else {
             racing.style.display = '';
             var ismult = 0;
@@ -508,10 +508,10 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
 
         //Link to edit Casino
         if (casino.getAttribute('value') != '0') {
-            $('tr_casino').style.display = 'none';
+            document.getElementById('tr_casino').style.display = 'none';
         } else {
             if (!isCasino) // RemoveAttribute("MultiPopup", "tr_casino");
-                $('tr_casino').style.display = 'none';
+                document.getElementById('tr_casino').style.display = 'none';
             else casino.style.display = '';
             if (counterCS > 1) casino.href = 'javascript:EditMulti("","' + status + '",1,1)';
             else casino.href = 'javascript:EditMulti(' + custidCS + ',0,"' + status + '",1)';
@@ -519,10 +519,10 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
 
         //Link to edit Bingo
         if (bingo.getAttribute('value') != '0') {
-            $('tr_bingo').style.display = 'none';
+            document.getElementById('tr_bingo').style.display = 'none';
         } else {
             if (!isBingo) // RemoveAttribute("MultiPopup", "tr_casino");
-                $('tr_bingo').style.display = 'none';
+                document.getElementById('tr_bingo').style.display = 'none';
             else bingo.style.display = '';
             if (counterBG > 1) bingo.href = 'javascript:EditMulti("","' + statusBingo + '",1,2)';
             else bingo.href = 'javascript:EditMulti(' + custidBG + ',0,"' + statusBingo + '",2)';
@@ -530,10 +530,10 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
 
         //Link to edit P2P
         if (p2p.getAttribute('value') != '0') {
-            $('tr_P2P').style.display = 'none';
+            document.getElementById('tr_P2P').style.display = 'none';
         } else {
             if (!isP2P) // RemoveAttribute("MultiPopup", "tr_casino");
-                $('tr_P2P').style.display = 'none';
+                document.getElementById('tr_P2P').style.display = 'none';
             else p2p.style.display = '';
             if (counterP2P > 1) p2p.href = 'javascript:EditMulti("","' + statusP2P + '",1,3)';
             else p2p.href = 'javascript:EditMulti(' + custidP2P + ',0,"' + statusP2P + '",3)';
@@ -541,10 +541,10 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
 
         //Link to edit liveCasino
         if (liveCasino.getAttribute('value') != '0') {
-            $('tr_livecasino').style.display = 'none';
+            document.getElementById('tr_livecasino').style.display = 'none';
         } else {
             if (!isLiveCS) // RemoveAttribute("MultiPopup", "tr_livecasino");
-                $('tr_livecasino').style.display = 'none';
+                document.getElementById('tr_livecasino').style.display = 'none';
             else liveCasino.style.display = '';
             if (counterLiveCS > 1) {
                 if (_page.roleid == 4 && _page.roleidLiveCasino == 3) {
@@ -570,11 +570,11 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
 
         //Link to edit VirtualSports
         if (virtualSports.getAttribute('value') != '0') {
-            $('tr_virtualsports').style.display = 'none';
+            document.getElementById('tr_virtualsports').style.display = 'none';
         }
         else {
             if (!isVirtualSports) {
-                $('tr_virtualsports').style.display = 'none';
+                document.getElementById('tr_virtualsports').style.display = 'none';
             }
             else {
                 virtualSports.style.display = '';
@@ -583,8 +583,8 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
         }
 
         //Link to edit DoubleComm
-        var isShowDCom = $('EdiMulti').parentNode.attributes.getNamedItem('isshowdcom');
-        var isDirectDownline = $('EdiMulti').parentNode.attributes.getNamedItem('isdirectdownline');
+        var isShowDCom = document.getElementById('EdiMulti').parentNode.attributes.getNamedItem('isshowdcom');
+        var isDirectDownline = document.getElementById('EdiMulti').parentNode.attributes.getNamedItem('isdirectdownline');
 
         // Check permission first
         if (!isShowDCom == false && isShowDCom.value == 'True') {
@@ -611,7 +611,7 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
 
 // using hide popup of editMulti and Other
 function HidePopupGeneral(divID) {
-    var div = $(divID);
+    var div = document.getElementById(divID);
     if (!div) return false;
     div.style.display = 'none';
 }
@@ -626,23 +626,23 @@ function GetCustID(CheckedID) {
 
     if (Count == 0) return;
     if (Count == 1) {
-        $("arrayCustID").value = "";
-        $("arrayUserName").value = "";
+        document.getElementById("arrayCustID").value = "";
+        document.getElementById("arrayUserName").value = "";
     } else if (Count > 1) {
-        $("arrayCustID").value = selectCusId;
-        $("arrayUserName").value = selectUser;
+        document.getElementById("arrayCustID").value = selectCusId;
+        document.getElementById("arrayUserName").value = selectUser;
     }
     return selectCusId.substring(0, selectCusId.indexOf("^"));
 }
 
 function SetAttributeURL(Id, url) {
-    var elm = $(Id);
+    var elm = document.getElementById(Id);
     if (elm) elm.href = 'javascript:' + url;
 }
 
 function ChangedIcon(Id, Icon) {
     if (Icon == "0") {
-        $("tr_" + Id).style.display = 'none';
+        document.getElementById("tr_" + Id).style.display = 'none';
         return;
     }
     var className = "LinkPopup";
@@ -672,7 +672,7 @@ function ChangedIcon(Id, Icon) {
 }
 
 function EditAgentMenuControl(element, popupId, custId, userName) {
-    var div = $(popupId);
+    var div = document.getElementById(popupId);
     if (!div) return false;
 
     element.style.position = 'relative';
@@ -708,7 +708,7 @@ function EditAgentMenuControl(element, popupId, custId, userName) {
 }
 
 function EditMemberMenuControl(element, popupId, custId, userName, uGroup) {
-    var div = $(popupId);
+    var div = document.getElementById(popupId);
     if (!div) return false;
 
     element.style.position = 'relative';
@@ -744,7 +744,7 @@ function EditMemberMenuControl(element, popupId, custId, userName, uGroup) {
 }
 
 function ShowFrmUpdOthers(el, divID, custid, username, actionOn) {
-    var div = $(divID);
+    var div = document.getElementById(divID);
     if (!div) return false;
 
     var isEdit = "";
@@ -775,7 +775,7 @@ function ShowFrmUpdOthers(el, divID, custid, username, actionOn) {
             SetAttributeURL('transfer', urlTransfer);
         }
         else {
-            $("tr_transfer").style.display = 'none';
+            document.getElementById("tr_transfer").style.display = 'none';
         }
     }
 
@@ -831,7 +831,7 @@ function DelayReloadPage(time) {
 }
 
 function getPrint(print_area) {
-    var printContent = $(print_area);
+    var printContent = document.getElementById(print_area);
     var printWindow = window.open('', '', 'left=500,top=400,width=200,height=5');
     printWindow.document.write("<html>");
     printWindow.document.write("<head>");
@@ -894,7 +894,7 @@ RegisterStartUp("InitTagSuggestion()");
 
 /* Show full path*/
 function showFullPath() {
-    var fullPath = $("show-full-path");
+    var fullPath = document.getElementById("show-full-path");
     if (fullPath.style.display == "none") {
         fullPath.style.display = "block";
     } else {

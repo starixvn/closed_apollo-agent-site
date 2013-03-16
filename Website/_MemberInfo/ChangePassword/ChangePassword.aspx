@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="ChangePassword.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.ChangePassword.ChangePassword_Page" %>

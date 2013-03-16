@@ -9,10 +9,10 @@ var timeoutAnnouncement = 0, timeoutAnnouncementNext = 0;
 
 function GetAnnoucementCookieName() {
     try {
-        if (!$("popUpId")) return null;
-        if (parseInt($("popUpId").value) > 0) return null;
+        if (!document.getElementById("popUpId")) return null;
+        if (parseInt(document.getElementById("popUpId").value) > 0) return null;
 
-        return $("popUpId").value + $("announcementCookiesId").value;
+        return document.getElementById("popUpId").value + document.getElementById("announcementCookiesId").value;
     }
     catch (e) {
         return null;
@@ -72,7 +72,7 @@ function ProcessAnnouncement(result) {
     div.setAttribute('id', 'AnnouncementId');
     document.body.appendChild(div);
 
-    var id = $('popUpId').value;
+    var id = document.getElementById('popUpId').value;
 
     if (!CheckShowedMessage(id)) {
         ShowedMessageIds.push(id);
@@ -85,24 +85,24 @@ function ProcessAnnouncement(result) {
         return;
     }
 
-    if (id > 0 && $("popup_panel")) {
-        $("popup_panel").style.display = 'none';
+    if (id > 0 && document.getElementById("popup_panel")) {
+        document.getElementById("popup_panel").style.display = 'none';
     }
 
-    if ($('popup_container_text') == null) {
-        div.style.top = $('popup_container').style.top;
-        div.style.left = $('popup_container').style.left;
+    if (document.getElementById('popup_container_text') == null) {
+        div.style.top = document.getElementById('popup_container').style.top;
+        div.style.left = document.getElementById('popup_container').style.left;
     }
     else {
-        div.style.top = $('popup_container_text').style.top;
-        div.style.left = $('popup_container_text').style.left;
+        div.style.top = document.getElementById('popup_container_text').style.top;
+        div.style.left = document.getElementById('popup_container_text').style.left;
     }
 
-    setTimeout(function () { $('AnnouncementId').style.display = 'block'; }, 2000);
+    setTimeout(function () { document.getElementById('AnnouncementId').style.display = 'block'; }, 2000);
 }
 
 function RemoveAnnouncement(timeout) {
-    var AnnouncementId = $('AnnouncementId');
+    var AnnouncementId = document.getElementById('AnnouncementId');
     if (AnnouncementId != null) {
         AnnouncementId.parentNode.removeChild(AnnouncementId);
         clearTimeout(timeoutAnnouncement);

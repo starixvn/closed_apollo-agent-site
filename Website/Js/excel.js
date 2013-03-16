@@ -1,17 +1,17 @@
 ﻿AGE.addEvent(window, "load", function(){
     // make format excel
-    if($("exporttoexcel"))
+    if(document.getElementById("exporttoexcel"))
     {
-        $("exporttoexcel").onmousedown = function()
+        document.getElementById("exporttoexcel").onmousedown = function()
         {
             if(document.forms[0])
             {
                 if(document.forms[0].method == 'get')
                 {
                     document.forms[0].method = 'post';
-                    $("exporttoexcel").onblur = function()
+                    document.getElementById("exporttoexcel").onblur = function()
                     {
-                        var loading = $("loading");
+                        var loading = document.getElementById("loading");
                         if (loading) loading.className = "none";
 
                         document.forms[0].method = 'get';

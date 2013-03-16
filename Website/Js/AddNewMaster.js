@@ -29,7 +29,7 @@ function clearOptions(select){
 }
 			
 function changeCommHDP(value){				
-	var select = $("ddrCommissionH_OU_OE");
+	var select = document.getElementById("ddrCommissionH_OU_OE");
 	clearOptions(select);					
 	
 	value = value * 10000 ; 
@@ -58,29 +58,29 @@ function checkinput(e){
 		
 function CopyCheck(obj){
 	if(obj.id == "chkDeadball")	{					
-		$("ddl2").disabled = obj.checked;
-		$("ddl3").disabled = obj.checked;
-		$("ddl4").disabled = obj.checked;
-		$("ddl5").disabled = obj.checked;				
+		document.getElementById("ddl2").disabled = obj.checked;
+		document.getElementById("ddl3").disabled = obj.checked;
+		document.getElementById("ddl4").disabled = obj.checked;
+		document.getElementById("ddl5").disabled = obj.checked;				
 	}
 	
 	if(obj.id == "chkDeadballOther"){
-		$("ddl7").disabled = obj.checked;
-		$("ddl6").disabled = obj.checked;
-		$("ddl9").disabled = obj.checked;
-		$("ddl19").disabled = obj.checked;
+		document.getElementById("ddl7").disabled = obj.checked;
+		document.getElementById("ddl6").disabled = obj.checked;
+		document.getElementById("ddl9").disabled = obj.checked;
+		document.getElementById("ddl19").disabled = obj.checked;
 		
 	}
 	
 	if(obj.id == "chkLive"){
-		$("ddl11").disabled = obj.checked;
-		$("ddl12").disabled = obj.checked;
-		$("ddl13").disabled = obj.checked;
+		document.getElementById("ddl11").disabled = obj.checked;
+		document.getElementById("ddl12").disabled = obj.checked;
+		document.getElementById("ddl13").disabled = obj.checked;
 	}
 	
 	if(obj.id == "chkBasketball"){
-		$("ddl15").disabled = obj.checked;		
-		$("ddl18").disabled = obj.checked;
+		document.getElementById("ddl15").disabled = obj.checked;		
+		document.getElementById("ddl18").disabled = obj.checked;
 	}
 }
 //*************function checkvalue input **************//
@@ -91,7 +91,7 @@ function setValueCommission(form, vcom)
 function updateCommission(form)
 {
 	
-	var ug = $('ddlUGruop');
+	var ug = document.getElementById('ddlUGruop');
 
 	if ((ug.options[ug.selectedIndex].text == "a") || (ug.options[ug.selectedIndex].text == "hka") || (ug.options[ug.selectedIndex].text == "indoa") || (ug.options[ug.selectedIndex].text == "dea"))
 	{
@@ -128,7 +128,7 @@ function ReplaceAll(str, regexp, newstr)
 }
 function checkvalue(form)
 {
-	var maxcredit=$("membermaxcredit");
+	var maxcredit=document.getElementById("membermaxcredit");
 	if(maxcredit)
 	{				
 		if (maxcredit.value == '' || isNaN(maxcredit.value))
@@ -139,7 +139,7 @@ function checkvalue(form)
 			return false;
 		}
 	}
-	var pass = $("password");
+	var pass = document.getElementById("password");
 	if (pass)
 	{
 		if (pass.value.length < 6)
@@ -253,93 +253,93 @@ function checkvalue(form)
 	var strDeadball = new String();
     if (document.form.chkDeadball.checked == true)
 	{
-		var objDeadball = $('ddl1');
+		var objDeadball = document.getElementById('ddl1');
 		if(objDeadball)
 		{
-			if(objDeadball.value > $('ddl2').options[0].value || objDeadball.value > $('ddl3').options[0].value || objDeadball.value > $('ddl4').options[0].value || objDeadball.value > $('ddl5').options[0].value)
+			if(objDeadball.value > document.getElementById('ddl2').options[0].value || objDeadball.value > document.getElementById('ddl3').options[0].value || objDeadball.value > document.getElementById('ddl4').options[0].value || objDeadball.value > document.getElementById('ddl5').options[0].value)
 			{
-				strDeadball += "-" + $("lblSoccerPositionTaking").innerHTML + " " + $("lblDeadball").innerHTML + "\n";
+				strDeadball += "-" + document.getElementById("lblSoccerPositionTaking").innerHTML + " " + document.getElementById("lblDeadball").innerHTML + "\n";
 			}
-			if(objDeadball.value > $('ddl2').options[0].value)
+			if(objDeadball.value > document.getElementById('ddl2').options[0].value)
 			{
-				strDeadball += "......." + $("lblOverUnder").innerHTML + " " + strAlertMaxIs + " " + $('ddl2').options[0].text + "\n";
+				strDeadball += "......." + document.getElementById("lblOverUnder").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl2').options[0].text + "\n";
 			}
-			if(objDeadball.value > $('ddl3').options[0].value)
+			if(objDeadball.value > document.getElementById('ddl3').options[0].value)
 			{
-				strDeadball += "......." + $("lbl1stHdp").innerHTML + " " + strAlertMaxIs + " " + $('ddl3').options[0].text + "'\n";
+				strDeadball += "......." + document.getElementById("lbl1stHdp").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl3').options[0].text + "'\n";
 			}
-			if(objDeadball.value > $('ddl4').options[0].value)
+			if(objDeadball.value > document.getElementById('ddl4').options[0].value)
 			{
-				strDeadball += "......." + $("lbl1stOU").innerHTML + " " + strAlertMaxIs + " " + $('ddl4').options[0].text +  "'\n";
+				strDeadball += "......." + document.getElementById("lbl1stOU").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl4').options[0].text +  "'\n";
 			}
-			if(objDeadball.value > $('ddl5').options[0].value)
+			if(objDeadball.value > document.getElementById('ddl5').options[0].value)
 			{
-				strDeadball += "......." + $("lblOddEven").innerHTML + " " + strAlertMaxIs + " " + $('ddl5').options[0].text + "'\n";
+				strDeadball += "......." + document.getElementById("lblOddEven").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl5').options[0].text + "'\n";
 			}
 		}
 	}
 	if (document.form.chkDeadballOther.checked == true)
 	{
-		var objDeadballOther = $('ddl8');
+		var objDeadballOther = document.getElementById('ddl8');
 		if(objDeadballOther)
 		{
-			if(objDeadballOther.value > $('ddl7').options[0].value)
+			if(objDeadballOther.value > document.getElementById('ddl7').options[0].value)
 			{
-				strDeadball += "......." + $("lblMixParlay").innerHTML + " " + strAlertMaxIs + " " + $('ddl7').options[0].text + "'\n";
+				strDeadball += "......." + document.getElementById("lblMixParlay").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl7').options[0].text + "'\n";
 			}
-			if(objDeadballOther.value > $('ddl6').options[0].value)
+			if(objDeadballOther.value > document.getElementById('ddl6').options[0].value)
 			{
-				strDeadball += "......." + $("lblCorrectScore").innerHTML + " " + strAlertMaxIs + " " + $('ddl6').options[0].text + "'\n";
+				strDeadball += "......." + document.getElementById("lblCorrectScore").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl6').options[0].text + "'\n";
 			}
-			if(objDeadballOther.value > $('ddl9').options[0].value)
+			if(objDeadballOther.value > document.getElementById('ddl9').options[0].value)
 			{
-				strDeadball += "......." + $("lblTotalGoal").innerHTML + " " + strAlertMaxIs + " " + $('ddl9').options[0].text + "'\n";
+				strDeadball += "......." + document.getElementById("lblTotalGoal").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl9').options[0].text + "'\n";
 			}
-			if(objDeadballOther.value > $('ddl19').options[0].value)
+			if(objDeadballOther.value > document.getElementById('ddl19').options[0].value)
 			{
-				strDeadball += "......." + $("lblOutRight").innerHTML + " " + strAlertMaxIs + " "+ $('ddl19').options[0].text + "'\n";
+				strDeadball += "......." + document.getElementById("lblOutRight").innerHTML + " " + strAlertMaxIs + " "+ document.getElementById('ddl19').options[0].text + "'\n";
 			}
 		}
 	}
 	if (document.form.chkLive.checked == true)
 	{
-		var objLive = $('ddl10');
+		var objLive = document.getElementById('ddl10');
 		if(objLive)
 		{
-			if(objLive.value > $('ddl11').options[0].value || objLive.value > $('ddl12').options[0].value || objLive.value > $('ddl13').options[0].value)
+			if(objLive.value > document.getElementById('ddl11').options[0].value || objLive.value > document.getElementById('ddl12').options[0].value || objLive.value > document.getElementById('ddl13').options[0].value)
 			{
-				strDeadball += "-" + $("lblSoccerPositionTaking").innerHTML + " " + $("lblLive").innerHTML + "\n";
+				strDeadball += "-" + document.getElementById("lblSoccerPositionTaking").innerHTML + " " + document.getElementById("lblLive").innerHTML + "\n";
 			}
-			if(objLive.value > $('ddl11').options[0].value)
+			if(objLive.value > document.getElementById('ddl11').options[0].value)
 			{
-				strDeadball += "......." + $("lblOddEven").innerHTML + " " + strAlertMaxIs + " " + $('ddl11').options[0].text + "'\n";
+				strDeadball += "......." + document.getElementById("lblOddEven").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl11').options[0].text + "'\n";
 			}
-			if(objLive.value > $('ddl12').options[0].value)
+			if(objLive.value > document.getElementById('ddl12').options[0].value)
 			{
-				strDeadball += "......." + $("lbl1stHdp").innerHTML + " " + strAlertMaxIs + " " + $('ddl12').options[0].text + "'\n";
+				strDeadball += "......." + document.getElementById("lbl1stHdp").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl12').options[0].text + "'\n";
 			}
-			if(objLive.value > $('ddl13').options[0].value)
+			if(objLive.value > document.getElementById('ddl13').options[0].value)
 			{
-				strDeadball += "......." + $("lbl1stOU").innerHTML + " " + strAlertMaxIs + " " + $('ddl13').options[0].text + "\n";
+				strDeadball += "......." + document.getElementById("lbl1stOU").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl13').options[0].text + "\n";
 			}
 		}
 	}
 	if (document.form.chkBasketball.checked == true)
 	{
-		var objBasketball = $('ddl14');
+		var objBasketball = document.getElementById('ddl14');
 		if(objLive)
 		{
-			if(objBasketball.value > $('ddl15').options[0].value || objBasketball.value > $('ddl18').options[0].value)
+			if(objBasketball.value > document.getElementById('ddl15').options[0].value || objBasketball.value > document.getElementById('ddl18').options[0].value)
 			{
-				strDeadball += "-" + $("lblBasketballPositionTaking").innerHTML + "\n";
+				strDeadball += "-" + document.getElementById("lblBasketballPositionTaking").innerHTML + "\n";
 			}
-			if(objBasketball.value > $('ddl15').options[0].value)
+			if(objBasketball.value > document.getElementById('ddl15').options[0].value)
 			{
-				strDeadball += "......." + $("lblOverUnder").innerHTML + " " + strAlertMaxIs + " "  + $('ddl15').options[0].text + "\n";
+				strDeadball += "......." + document.getElementById("lblOverUnder").innerHTML + " " + strAlertMaxIs + " "  + document.getElementById('ddl15').options[0].text + "\n";
 			}						
-			if(objBasketball.value > $('ddl18').options[0].value)
+			if(objBasketball.value > document.getElementById('ddl18').options[0].value)
 			{
-				strDeadball += "......." + $("lblOddEven").innerHTML + " " + strAlertMaxIs + " " + $('ddl18').options[0].text + "\n";
+				strDeadball += "......." + document.getElementById("lblOddEven").innerHTML + " " + strAlertMaxIs + " " + document.getElementById('ddl18').options[0].text + "\n";
 			}
 		}
 	}

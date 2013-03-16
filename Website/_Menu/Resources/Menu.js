@@ -22,16 +22,16 @@ function MenuItemSelect(index) {
         }
     }
     
-    var menuItem = $('menuitem' + index);
+    var menuItem = document.getElementById('menuitem' + index);
     if(!menuItem) return;
     menuItem.className = 'Bleft_Sub_2';
     currentMenuItem = menuItem;
 }
 
 function MenuToggle(index) {
-    var subMenu = $('div' + index);
+    var subMenu = document.getElementById('div' + index);
     subMenu.style.display = (subMenu.style.display == 'none') ? 'block' : 'none';
-    var aMenu = $('a' + index);
+    var aMenu = document.getElementById('a' + index);
     aMenu.className = (aMenu.className == 'Bleft_Parent') ? 'Bleft_ParentAc' : 'Bleft_Parent';
 }
 
@@ -52,7 +52,7 @@ function OpenPage(url, width, height) {
 
 function AddIconNew() {
     var imageNew = "&nbsp;&nbsp;<img border='0' src='Resources/Images/new3.gif' />";
-    if ($("menu3")) $("menu3").innerHTML += imageNew;
+    if (document.getElementById("menu3")) document.getElementById("menu3").innerHTML += imageNew;
 }
 
 function iniMenu() {
@@ -61,10 +61,10 @@ function iniMenu() {
 }
 
 function SetiPhoneAdGifLinkUrl() {
-    var ParentElement = $('leftpane');
-    if ($('linkToMobileSiteID')) {
+    var ParentElement = document.getElementById('leftpane');
+    if (document.getElementById('linkToMobileSiteID')) {
         var currentDomain= document.domain.replace("agt.","");
-        $('linkToMobileSiteID').href = "http://m."+ currentDomain;        
+        document.getElementById('linkToMobileSiteID').href = "http://m."+ currentDomain;        
     }
 }
 

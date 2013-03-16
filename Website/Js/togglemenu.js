@@ -1,4 +1,0 @@
-﻿function CreateToggleMenu(url)
-{
-    
-}

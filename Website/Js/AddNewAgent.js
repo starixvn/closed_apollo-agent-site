@@ -1,14 +1,14 @@
 var flag = false;
 var gisCopyAll = false;
 function BtnOnClick() {
-    var isEdit = ($("hidEdit") != null ? true : false);
+    var isEdit = (document.getElementById("hidEdit") != null ? true : false);
     var arrAcc;
     var arrPAcc;
     var arrMin;
     if (!flag) {
         if (!CheckInfoValue(isEdit)) return false;
         if (!isEdit) {
-            var isDirect = $("dirMaster") != null ? $("dirMaster").value : "0";
+            var isDirect = document.getElementById("dirMaster") != null ? document.getElementById("dirMaster").value : "0";
             if (isDirect == "1") // if Direct Master case is call CheckTime function
             {
                 if (!CheckTime()) return false;
@@ -20,17 +20,17 @@ function BtnOnClick() {
         if (!CheckLimitMinMaxBet(1)) return false;
         //-----end----
         var isMult = 0;
-        if ($("isMult") && $("isMult").value == "1")
+        if (document.getElementById("isMult") && document.getElementById("isMult").value == "1")
             isMult = 1;
         
         
-        if (isMult || !$("chkCopyAll").checked) {
+        if (isMult || !document.getElementById("chkCopyAll").checked) {
             //check info for Basketball
             if (!CheckLimitMinMaxBet(2)) return false;
             //-----end----
-            if (isMult || !$("chkCopyBasket").checked) {
+            if (isMult || !document.getElementById("chkCopyBasket").checked) {
             
-               if($('txtMaxPerBall'))
+               if(document.getElementById('txtMaxPerBall'))
 		        {
 		            if(!CheckLimitMaxPerBall()) return false;
 		        }
@@ -50,7 +50,7 @@ function BtnOnClick() {
                 if (!CheckLimitMinMaxBet(11)) return false;
                 //-----end----	
                 //check info for MotoSports				
-                if ($('txtMinbet201') || $('txtMaxbet201') || $('txtMaxPerMatch201')) {
+                if (document.getElementById('txtMinbet201') || document.getElementById('txtMaxbet201') || document.getElementById('txtMaxPerMatch201')) {
                     if (!CheckLimitMinMaxBet(201)) return false;
                 }
                 //-----end----
@@ -61,24 +61,24 @@ function BtnOnClick() {
                 if (!CheckLimitMinMaxBet('99_M')) return false;
                 //-----end----
                 //check info for Horse Racing
-                if ($("chkDisabledHR")) {
+                if (document.getElementById("chkDisabledHR")) {
                     if (!CheckLimitMinMaxBet(151)) return false;
                 }
                 //-----end----
             }
         }
-        if ($('txtMinbet161') || $('txtMaxbet161') || $('txtMaxPerMatch161')) {
+        if (document.getElementById('txtMinbet161') || document.getElementById('txtMaxbet161') || document.getElementById('txtMaxPerMatch161')) {
             if (!CheckLimitMinMaxBet(161)) return false;
         }
         if (!isEdit) {
-            $("btnAdd").disabled = true;
+            document.getElementById("btnAdd").disabled = true;
             flag = true;
             DelayReloadPage(null, 300000);
             enabledBtn(false);
             document.form.submit();
         }
         else {            
-            $("btnSubmit").disabled = true;
+            document.getElementById("btnSubmit").disabled = true;
             var isPT = CheckPotionTakingAgent();
             if (!isPT) return false;
             document.form.submit();
@@ -92,7 +92,7 @@ function CheckPotionTakingAgent() {
     //var IsChaneAuto = false;
     if (IsChaneAuto) {
         //member maximum position taking		
-        $("maxMemberPT").value = parseFloat($('maxM1HdpD').value) - parseFloat($("listM1HdpD").value);
+        document.getElementById("maxMemberPT").value = parseFloat(document.getElementById('maxM1HdpD').value) - parseFloat(document.getElementById("listM1HdpD").value);
         if (!flag) {
             DisableControls();
             ageWnd.open('ConfirmEditAgent.aspx', '', 300, 300, 500, 200);
@@ -101,8 +101,8 @@ function CheckPotionTakingAgent() {
         return false;
     }
     else {
-        $("memberPT").value = 0;
-        $("isUpdateMember").value = 0;
+        document.getElementById("memberPT").value = 0;
+        document.getElementById("isUpdateMember").value = 0;
         if (!flag) {
             flag = true;
             DelayReloadPage(null, 300000);
@@ -112,21 +112,21 @@ function CheckPotionTakingAgent() {
 }
 function CheckChangeAutoAgent() {
     
-    var elements = $("divUpdPT1").getElementsByTagName("input");
+    var elements = document.getElementById("divUpdPT1").getElementsByTagName("input");
     //this script for Multiple Edit and allow update PT				
-    var isMult = ($("isMult").value == "1" ? true : false);
+    var isMult = (document.getElementById("isMult").value == "1" ? true : false);
     if (isMult) {
         var sportId = ["1", "2", "3", "5", "8", "10", "11", "201", "99","161","99_M"];
         var isUpd;
         for (var i = 0; i < sportId.length; i++) {
-            if ($("chkUpdPT" + sportId[i])) {
-                if ($("chkUpdPT" + sportId[i]).checked) {
+            if (document.getElementById("chkUpdPT" + sportId[i])) {
+                if (document.getElementById("chkUpdPT" + sportId[i]).checked) {
                     isUpd = true;
                     break;
                 }
             }
         }
-        if (isUpd && $("isDisableAutoMpt").value == "0") return true;
+        if (isUpd && document.getElementById("isDisableAutoMpt").value == "0") return true;
     }
 
     //----------------------------
@@ -139,7 +139,7 @@ function CheckChangeAutoAgent() {
         }
 
         var isAutoId = id.replace("chkAuto", "isAuto");
-        var isAuto = $(isAutoId).value == "1";
+        var isAuto = document.getElementById(isAutoId).value == "1";
         if (isAuto && !elements[i].checked) {
             return true;
         }
@@ -148,20 +148,20 @@ function CheckChangeAutoAgent() {
     //this script to check for All Sporttype (except Soccer)
     sportId = ["2", "3", "5", "8", "10", "11", "201", "99", "161", "99_M"];
     for (var j = 0; j < sportId.length; j++) {
-        if ($("divUpdPT" + sportId[j])) {
-            elements = $("divUpdPT" + sportId[j]).getElementsByTagName("input");
+        if (document.getElementById("divUpdPT" + sportId[j])) {
+            elements = document.getElementById("divUpdPT" + sportId[j]).getElementsByTagName("input");
             for (var i = 0; i < elements.length; i++) {
 
                 var isAutoId = elements[i].id.replace("chkAuto", "isAuto");
                 
-                var isAuto = $(isAutoId).value == "1";
+                var isAuto = document.getElementById(isAutoId).value == "1";
                 //this script for Copy from Handicap is checked		
                 //if(elements[i].id=="chkCopy" + sportId[j] + "Hdp") continue;	
 
-                if ($("chkCopy" + sportId[j] + "Hdp") && $("chkCopy" + sportId[j] + "Hdp").checked == true) {
+                if (document.getElementById("chkCopy" + sportId[j] + "Hdp") && document.getElementById("chkCopy" + sportId[j] + "Hdp").checked == true) {
                     isNewAuto = elements[1].checked;
                 }
-                else if ((!$("chkCopy" + sportId[j] + "Hdp")) || ($("chkCopy" + sportId[j] + "Hdp") && $("chkCopy" + sportId[j] + "Hdp").checked == false)) {
+                else if ((!document.getElementById("chkCopy" + sportId[j] + "Hdp")) || (document.getElementById("chkCopy" + sportId[j] + "Hdp") && document.getElementById("chkCopy" + sportId[j] + "Hdp").checked == false)) {
                     isNewAuto = elements[i].checked;
                 }
                 if (isAuto && !isNewAuto) {
@@ -179,7 +179,7 @@ function CheckAutoPreset(chkAutoId, chkCopy) {
     if (chkAutoId) {
         isChk = chkAutoId.checked;
     }    
-    var isCopy = (chkCopy != null ? $(chkCopy).checked : false);
+    var isCopy = (chkCopy != null ? document.getElementById(chkCopy).checked : false);
     var objPreset;
     var objAuto;
     var objMaster = '';
@@ -200,19 +200,19 @@ function CheckAutoPreset(chkAutoId, chkCopy) {
             chkAutoId.disabled = (isCopy ? isCopy : isChk);
         }
     }
-    if ($("chkCopyAll") != null) {
-        if (!$("chkCopyAll").checked && !isCopy)	//this script for Copy All PT checkbox is checked
+    if (document.getElementById("chkCopyAll") != null) {
+        if (!document.getElementById("chkCopyAll").checked && !isCopy)	//this script for Copy All PT checkbox is checked
         {
-            if ($(objMaster)) {
-                $(objMaster).disabled = false;
+            if (document.getElementById(objMaster)) {
+                document.getElementById(objMaster).disabled = false;
             }
         }
     }
-    if ($(objPreset)) {
-        $(objPreset).disabled = (isCopy ? isCopy : isChk);
+    if (document.getElementById(objPreset)) {
+        document.getElementById(objPreset).disabled = (isCopy ? isCopy : isChk);
     }
-    if ($(objAuto)) {
-        $(objAuto).disabled = (isCopy ? isCopy : !isChk);
+    if (document.getElementById(objAuto)) {
+        document.getElementById(objAuto).disabled = (isCopy ? isCopy : !isChk);
     }
 
     //******** may be this function is make IE slow *************		
@@ -226,40 +226,40 @@ function PresetValuePT(chkAutoId) {
     var isAuto = chkAutoId.checked;
     var masterId = chkAutoId.id.replace("chkAuto", "listM");
     var maxMasterId = chkAutoId.id.replace("chkAuto", "maxA");
-    var curMaster = $(masterId).value;
+    var curMaster = document.getElementById(masterId).value;
 
-    var minMaster = $(masterId).options[$(masterId).length - 1].value;
+    var minMaster = document.getElementById(masterId).options[document.getElementById(masterId).length - 1].value;
 
     minMaster = parseInt(round(minMaster * 100));
-    var maxMaster = $(maxMasterId).value;
+    var maxMaster = document.getElementById(maxMasterId).value;
     maxMaster = parseInt(round(maxMaster * 100));
 
     if (!isAuto) {
         var superId = chkAutoId.id.replace("chkAuto", "listS");
         var maxMSId = chkAutoId.id.replace("chkAuto", "maxM");
-        var curSuper = parseFloat($(superId).value);
-        var maxMS = parseFloat($(maxMSId).value);
+        var curSuper = parseFloat(document.getElementById(superId).value);
+        var maxMS = parseFloat(document.getElementById(maxMSId).value);
         var msVal = maxMS - curSuper;
         msVal = parseInt(round(msVal * 100));
         maxMaster = (maxMaster > msVal ? msVal : maxMaster);
         var tmp = parseFloat(curSuper) + parseFloat(curMaster);
         if (tmp > maxMS) curMaster = round((maxMS - curSuper));
     }
-    $(masterId).length = 0;
+    document.getElementById(masterId).length = 0;
     var isRange = true;
 
     if ((curMaster * 100) > maxMaster) {
         isRange = false;
-        $(masterId).options.add(new Option(curMaster, curMaster));
+        document.getElementById(masterId).options.add(new Option(curMaster, curMaster));
     }
     while (maxMaster >= minMaster) {
         var val = maxMaster / 100;
-        $(masterId).options.add(new Option(val, val));
+        document.getElementById(masterId).options.add(new Option(val, val));
         maxMaster -= 1;
     }
 
     if (isRange) {
-        $(masterId).value = curMaster;
+        document.getElementById(masterId).value = curMaster;
     }
 }
 
@@ -267,10 +267,10 @@ function ActiveSuperPreset(isCopyBasket) {
     var arrId1 = "";
     var isUpdPT1 = "";
     var isMult = "";
-    if ($("divUpdPT1"))
-        arrId1 = $("divUpdPT1").getElementsByTagName("input");    
-    isUpdPT1 = ($("chkUpdPT1") != null ? $("chkUpdPT1").checked : true);    
-    isMult = ($("isMult") != null ? $("isMult").value == "1" : false);
+    if (document.getElementById("divUpdPT1"))
+        arrId1 = document.getElementById("divUpdPT1").getElementsByTagName("input");    
+    isUpdPT1 = (document.getElementById("chkUpdPT1") != null ? document.getElementById("chkUpdPT1").checked : true);    
+    isMult = (document.getElementById("isMult") != null ? document.getElementById("isMult").value == "1" : false);
     
     var chkCopyId;
     //this case for Enable or disable control of Soccer
@@ -313,16 +313,16 @@ function ActiveSuperPreset(isCopyBasket) {
                             break;
                         }
                 }
-                $("chkCopy1HdpDeadball").disabled = false;
-                $("chkCopy11x2").disabled = false;
-                $("chkCopy1HdpLive").disabled = false;
+                document.getElementById("chkCopy1HdpDeadball").disabled = false;
+                document.getElementById("chkCopy11x2").disabled = false;
+                document.getElementById("chkCopy1HdpLive").disabled = false;
             }
         }
         gisCopyAll = false;
     }
 
-    if ($("divUpdPT161")) {
-        var arrId161 = $("divUpdPT161").getElementsByTagName("input");
+    if (document.getElementById("divUpdPT161")) {
+        var arrId161 = document.getElementById("divUpdPT161").getElementsByTagName("input");
         for (var i = 0; i < arrId161.length; i++) {
 
             if (arrId161[i].id.indexOf("chkCopy") > -1 || arrId161[i].id.indexOf("chkUpd") > -1) continue;
@@ -349,14 +349,14 @@ function ActiveSuperPreset(isCopyBasket) {
                         break;
                     }
             }
-            $("chkCopy1611stOUD").disabled = false;
-            $("chkCopy161OUL").disabled = false;
+            document.getElementById("chkCopy1611stOUD").disabled = false;
+            document.getElementById("chkCopy161OUL").disabled = false;
         }
     }
 
 
-    if ($("divUpdPT99_M")) {
-        var arrId99_M = $("divUpdPT99_M").getElementsByTagName("input");
+    if (document.getElementById("divUpdPT99_M")) {
+        var arrId99_M = document.getElementById("divUpdPT99_M").getElementsByTagName("input");
         for (var i = 0; i < arrId99_M.length; i++) {
             switch (arrId99_M[i].id) {
                 case "chkAuto99_M":
@@ -373,15 +373,15 @@ function ActiveSuperPreset(isCopyBasket) {
     var sportId = ["2", "3", "5", "8", "10", "11", "201", "99", "TO", "FO"];
     for (var i = 0; i < sportId.length; i++) {
         //this script to check PositionTaking checkbox is check or not
-        isUpdPT1 = ($("chkUpdPT" + sportId[i]) != null ? $("chkUpdPT" + sportId[i]).checked : true);
+        isUpdPT1 = (document.getElementById("chkUpdPT" + sportId[i]) != null ? document.getElementById("chkUpdPT" + sportId[i]).checked : true);
         if (!isUpdPT1) continue;
         //--------------------------
         var pre = "Hdp";
         if (i == 6) pre = "OU";
         if (i == 8 || i == 9) pre = "Win";       
         
-        if ($("divUpdPT" + sportId[i])) {
-            var arrId2 = $("divUpdPT" + sportId[i]).getElementsByTagName("input");
+        if (document.getElementById("divUpdPT" + sportId[i])) {
+            var arrId2 = document.getElementById("divUpdPT" + sportId[i]).getElementsByTagName("input");
 
             for (var j = 0; j < arrId2.length; j++) {
                 if (arrId2[j].id.indexOf("chkCopy") > -1 || arrId2[j].id.indexOf("chkUpd") > -1) continue;
@@ -391,16 +391,16 @@ function ActiveSuperPreset(isCopyBasket) {
                 }
                 else {
                     gisCopyAll = true;
-                    if ($("chkCopy" + sportId[i] + pre))
+                    if (document.getElementById("chkCopy" + sportId[i] + pre))
                         CheckAutoPreset(arrId2[j], "chkCopy" + sportId[i] + pre);
                     else
                         CheckAutoPreset(arrId2[j]);
                 }
-                if ($("chkCopy" + sportId[i] + pre)) {
-                    $("chkCopy" + sportId[i] + pre).disabled = false;
+                if (document.getElementById("chkCopy" + sportId[i] + pre)) {
+                    document.getElementById("chkCopy" + sportId[i] + pre).disabled = false;
                 }
-                if ($("chkCopy" + sportId[i] + "Preset")) {
-                    $("chkCopy" + sportId[i] + "Preset").disabled = false;
+                if (document.getElementById("chkCopy" + sportId[i] + "Preset")) {
+                    document.getElementById("chkCopy" + sportId[i] + "Preset").disabled = false;
                 }
             }
         }

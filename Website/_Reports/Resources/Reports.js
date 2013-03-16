@@ -5,7 +5,7 @@ age = new AGE();
 function boldTable(isBold) {
     var bold = isBold ? "1" : "0";
 
-    var table1 = $("tbl-rpt");
+    var table1 = document.getElementById("tbl-rpt");
 
     if (isBold) {
         if (table1) AddClassName(table1, "boldrow");
@@ -31,15 +31,15 @@ function doViewBetList(leagueId, matchId, bettype, viewType, race, islive) {
     var url = age.GetBaseUrl() + "_BetList/BetList.aspx?";
     if (parseInt(race) > 0) {
         url = SetParameterValue("leagueid", leagueId, url);
-        url = SetParameterValue("fdate", $("fdate").value, url);
-        url = SetParameterValue("tdate", $("tdate").value, url);
+        url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+        url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
         url = SetParameterValue("race", race, url);
     }
     else {
         url = SetParameterValue("matchid", matchId, url);
         if (bettype == 10) { // Outright bet type
-            url = SetParameterValue("fdate", $("fdate").value, url);
-            url = SetParameterValue("tdate", $("tdate").value, url);
+            url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+            url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
         }
     }
     url = SetParameterValue("bettype", bettype, url);
@@ -61,8 +61,8 @@ function doViewMPBetList(dateFrom, dateTo, betType, viewType) {
 function viewHRBetList(custid, username)//ViewBetList HorseRacing
 {
     var url = age.GetBaseUrl() + "_BetList/BetList.aspx";
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("custid", custid, url);
     url = SetParameterValue("username", username, url);
     url = SetParameterValue("type", "WLByDate", url);
@@ -128,9 +128,9 @@ function viewCasinoBetList(custid, username) {
 
     url = SetParameterValue("ibccustid", custid, url);
     url = SetParameterValue("uname", username, url);
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
-    url = SetParameterValue("ACustID", $("custid").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
+    url = SetParameterValue("ACustID", document.getElementById("custid").value, url);
 
     window.location.href = url;
 }
@@ -140,9 +140,9 @@ function viewBingoBetList(custid, username) {
 
     url = SetParameterValue("ibccustid", custid, url);
     url = SetParameterValue("uname", username, url);
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
-    url = SetParameterValue("ACustID", $("custid").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
+    url = SetParameterValue("ACustID", document.getElementById("custid").value, url);
 
     window.location.href = url;
 }
@@ -164,8 +164,8 @@ function viewCommissionDownLine(custid, roleid) {
 
     url = SetParameterValue("custid", custid, url);
     url = SetParameterValue("roleid", roleid, url);
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
 
@@ -176,8 +176,8 @@ function viewFinanceCommissionDownline(custid, roleid) {
 
     url = SetParameterValue("custid", custid, url);
     url = SetParameterValue("roleid", roleid, url);
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
 
@@ -188,8 +188,8 @@ function viewHRCommissionDownline(custid, roleid) {
     var url = "HRCommission.aspx";
     url = SetParameterValue("custid", custid, url);
     url = SetParameterValue("roleid", roleid, url);
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
 
@@ -202,8 +202,8 @@ function doViewCSWinlossDownline(custid, currentRole) {
     if (currentRole == "master") url = "CSWinlossAgent.aspx";
     if (url != "") {
         url = SetParameterValue("custid", custid, url);
-        url = SetParameterValue("fdate", $("fdate").value, url);
-        url = SetParameterValue("tdate", $("tdate").value, url);
+        url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+        url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
         url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
         url = SetParameterValue("sortingup", _page.SortingUp, url);
 
@@ -215,8 +215,8 @@ function doViewCSWinlossDownline(custid, currentRole) {
 /* Casino detail */
 function ViewSuperCasinoDetail(bettype) {
     var url = age.GetBaseUrl() + "_Reports/CasinoWinloss/CSWinlossDetailSuper.aspx";
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("btype", bettype, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
@@ -225,8 +225,8 @@ function ViewSuperCasinoDetail(bettype) {
 }
 function ViewMasterCasinoDetail(bettype) {
     var url = age.GetBaseUrl() + "_Reports/CasinoWinloss/CSWinlossDetailMaster.aspx";
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("btype", bettype, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
@@ -244,8 +244,8 @@ function ViewAgentCasinoDetail(bettype) {
     }
 
     var url = age.GetBaseUrl() + "_Reports/CasinoWinloss/CSWinlossDetailAgent.aspx";
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("btype", bettype, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
@@ -271,8 +271,8 @@ function ViewCasinoDetail(bettype) {
 /* Bingo detail */
 function ViewSuperBingoDetail() {
     var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailSuper.aspx";
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
 
@@ -280,8 +280,8 @@ function ViewSuperBingoDetail() {
 }
 function ViewMasterBingoDetail(bettype) {
     var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailMaster.aspx";
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
 
@@ -290,8 +290,8 @@ function ViewMasterBingoDetail(bettype) {
 
 function ViewAgentBingoDetail(bettype) {
     var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailAgent.aspx";
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
 
@@ -316,8 +316,8 @@ function doViewBingoWinlossDownline(custid, currentRole) {
     if (currentRole == "master") url = "BingoWinlossAgent.aspx";
     if (url != "") {
         url = SetParameterValue("custid", custid, url);
-        url = SetParameterValue("fdate", $("fdate").value, url);
-        url = SetParameterValue("tdate", $("tdate").value, url);
+        url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+        url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
         url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
         url = SetParameterValue("sortingup", _page.SortingUp, url);
 
@@ -328,30 +328,30 @@ function doViewBingoWinlossDownline(custid, currentRole) {
 
 /* Result page */
 function Result_ChangeSport() {
-    $("ddlLeague").selectedIndex = 0;
-    $("changeSportType").value = 1;
-    $("frmmain").method = "get";
-    $("frmmain").submit();
+    document.getElementById("ddlLeague").selectedIndex = 0;
+    document.getElementById("changeSportType").value = 1;
+    document.getElementById("frmmain").method = "get";
+    document.getElementById("frmmain").submit();
 }
 function Result_ChangeLeague() {
-    $("changeSportType").value = 1;
-    $("frmmain").method = "get";
-    $("frmmain").submit();
+    document.getElementById("changeSportType").value = 1;
+    document.getElementById("frmmain").method = "get";
+    document.getElementById("frmmain").submit();
 }
 function Result_ToggleResultType() {
     var url = "Result.aspx";
-    var isOutright = $("is_outright").value == "0" ? "1" : "0";
+    var isOutright = document.getElementById("is_outright").value == "0" ? "1" : "0";
     url = SetParameterValue("is_outright", isOutright, url);
 
     location.href = url;
 }
 function Result_SearchByDate() {
     var url = "Result.aspx";
-    var tdate = $("tdate") != null ? $("tdate").value : $("fdate").value;
+    var tdate = document.getElementById("tdate") != null ? document.getElementById("tdate").value : document.getElementById("fdate").value;
     url = SetParameterValue("ddlSport", "0", url);
     url = SetParameterValue("ddlLeague", "0", url);
-    url = SetParameterValue("is_outright", $("is_outright").value, url);
-    url = SetParameterValue("fdate", $("fdate").value, url);
+    url = SetParameterValue("is_outright", document.getElementById("is_outright").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
     url = SetParameterValue("tdate", tdate, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
     url = SetParameterValue("sortingup", _page.SortingUp, url);
@@ -362,7 +362,7 @@ function Result_SearchOneDay(value) {
     var url = "Result.aspx?ddlSport=0&ddlLeague=0";
     url = SetParameterValue("ddlSport", "0", url);
     url = SetParameterValue("ddlLeague", "0", url);
-    url = SetParameterValue("is_outright", $("is_outright").value, url);
+    url = SetParameterValue("is_outright", document.getElementById("is_outright").value, url);
     url = SetParameterValue("fdate", value, url)
     url = SetParameterValue("tdate", value, url);
     url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
@@ -391,7 +391,7 @@ function initReport() {
 }
 
 function InitExcelFunction() {
-    var exportExcelImg = $("exporttoexcel");
+    var exportExcelImg = document.getElementById("exporttoexcel");
     var mainForm = document.forms[0];
     if (exportExcelImg && mainForm) {
         function exportExcelImg_OnClick(ev) {
@@ -412,10 +412,10 @@ function InitExcelFunction() {
         age.addEvent(exportExcelImg, 'click', exportExcelImg_OnClick);
 
         exportExcelImg.onblur = function() {
-            $("exporttoexcel").focused = false;
+            document.getElementById("exporttoexcel").focused = false;
         }
         exportExcelImg.onfocus = function() {
-            $("exporttoexcel").focused = true;
+            document.getElementById("exporttoexcel").focused = true;
         }
 
         mainForm.onkeypress = function(evt) {
@@ -423,7 +423,7 @@ function InitExcelFunction() {
             if (keyPressEvent.keyCode == 13) {
                 var src = keyPressEvent.srcElement || keyPressEvent.target;
                 if (!src || (src.tagName.toLowerCase() != "textarea")) {
-                    if (!$("exporttoexcel").focused) {
+                    if (!document.getElementById("exporttoexcel").focused) {
                         if (keyPressEvent.stopPropagation) keyPressEvent.stopPropagation();
                         return false;
                     }
@@ -435,13 +435,13 @@ function InitExcelFunction() {
 }
 
 function RestoreFormState() {
-    if ($("dSubmit")) $("dSubmit").disabled = false;
-    if ($("dToday")) $("dToday").disabled = false
-    if ($("dYesterday")) $("dYesterday").disabled = false;
+    if (document.getElementById("dSubmit")) document.getElementById("dSubmit").disabled = false;
+    if (document.getElementById("dToday")) document.getElementById("dToday").disabled = false
+    if (document.getElementById("dYesterday")) document.getElementById("dYesterday").disabled = false;
 
-    if ($("CustId") && null != _page.CustId) $("CustId").value = _page.CustId;
+    if (document.getElementById("CustId") && null != _page.CustId) document.getElementById("CustId").value = _page.CustId;
 
-    if ($("IsSwitch")) $("IsSwitch").value = 0;
+    if (document.getElementById("IsSwitch")) document.getElementById("IsSwitch").value = 0;
     RestoreObjectState("IsHistoryReport", "0");
     RestoreObjectState("OldView", "0");
 }
@@ -462,11 +462,11 @@ function RestoreObjectState(name, defaultValue) {
 
 function CheckAll() {
     var arrayOptionItem = _page.FilterCollection;
-    if ($(arrayOptionItem[0]) != null) {
-        var allStatus = $(arrayOptionItem[0]).checked;
+    if (document.getElementById(arrayOptionItem[0]) != null) {
+        var allStatus = document.getElementById(arrayOptionItem[0]).checked;
         for (var i = 1; i < arrayOptionItem.length; i++) {
-            if ($(arrayOptionItem[i]) != null) {
-                $(arrayOptionItem[i]).checked = allStatus;
+            if (document.getElementById(arrayOptionItem[i]) != null) {
+                document.getElementById(arrayOptionItem[i]).checked = allStatus;
             }
         }
     }
@@ -476,9 +476,9 @@ function IsCheck() {
     var arrayOptionItem = _page.FilterCollection;
     var isUncheck = true;
     var item;
-    if ($(arrayOptionItem[0]) != null) {
+    if (document.getElementById(arrayOptionItem[0]) != null) {
         for (var i = 1; i < arrayOptionItem.length; i++) {
-            item = $(arrayOptionItem[i]);
+            item = document.getElementById(arrayOptionItem[i]);
             if (item != undefined && item != null) {
                 if (item.checked == false) {
                     isUncheck = false;
@@ -486,13 +486,13 @@ function IsCheck() {
                 }
             }
         }
-        $(arrayOptionItem[0]).checked = isUncheck;
+        document.getElementById(arrayOptionItem[0]).checked = isUncheck;
     }
 }
 
 /* Search by date win loss*/
 function MatchResultEntered_GetSubmitPageUrl() {
-    var roleId = $("roleid").value;
+    var roleId = document.getElementById("roleid").value;
 
     var url = age.GetBaseUrl() + "_Reports/Winloss/WinlossAgent.aspx";
     if (roleId == 4) url = age.GetBaseUrl() + "_Reports/Winloss/WinlossSuper.aspx";
@@ -501,22 +501,22 @@ function MatchResultEntered_GetSubmitPageUrl() {
 }
 function MatchResultEntered_ViewHistory() {
     var url = MatchResultEntered_GetSubmitPageUrl();
-    url = SetParameterValue("custid", $("custid").value, url);
+    url = SetParameterValue("custid", document.getElementById("custid").value, url);
     url = SetParameterValue("IsHistoryReport", 1, url)
     url = SetParameterValue("IsSwitch", 1, url); ;
     window.location.href = url;
 }
 function MatchResultEntered_SearchByDate() {
     var url = MatchResultEntered_GetSubmitPageUrl();
-    url = SetParameterValue("custid", $("custid").value, url);
-    url = SetParameterValue("fdate", $("fdate").value, url);
-    url = SetParameterValue("tdate", $("tdate").value, url);
+    url = SetParameterValue("custid", document.getElementById("custid").value, url);
+    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
 
     window.location.href = url;
 }
 function MatchResultEntered_SearchOneDay(value) {
     var url = MatchResultEntered_GetSubmitPageUrl();
-    url = SetParameterValue("custid", $("custid").value, url);
+    url = SetParameterValue("custid", document.getElementById("custid").value, url);
     url = SetParameterValue("fdate", value, url);
     url = SetParameterValue("tdate", value, url);
     url = SetParameterValue("IsHistoryReport", "0", url)
@@ -527,19 +527,19 @@ function MatchResultEntered_SearchOneDay(value) {
 
 function Winloss_SearchByDate(fdate, tdate, targetCustId, actionPage) {
     if (targetCustId != null && actionPage != null) {
-        $("CustId").value = targetCustId;
+        document.getElementById("CustId").value = targetCustId;
 
-        var url = $("frmmain").action;
+        var url = document.getElementById("frmmain").action;
         url = url.substring(0, url.lastIndexOf("/", 0)) + actionPage;
-        $("frmmain").action = url;
+        document.getElementById("frmmain").action = url;
     }
 
     if (fdate != null && tdate != null) {
-        $("fdate").value = fdate;
-        $("tdate").value = tdate;
+        document.getElementById("fdate").value = fdate;
+        document.getElementById("tdate").value = tdate;
     }
 
-    $("frmmain").submit();
+    document.getElementById("frmmain").submit();
 }
 function Winloss_SearchOneDay(objButton) {
     Winloss_SearchByDate(objButton.value, objButton.value, null, null);
@@ -548,14 +548,14 @@ function Winloss_SearchOneDay(objButton) {
 function ViewDownlineWLReport(fdate, tdate, targetCustId, actionPage, username) {
     // Begin - Turn back to match bet list hasn't redesigned
     // Pls remove this block from the function when bet list has redesigned.
-//    if ($('WorkOnOldBetList') != null) {
-//        if ($('WorkOnOldBetList').value == '1') {
+//    if (document.getElementById('WorkOnOldBetList') != null) {
+//        if (document.getElementById('WorkOnOldBetList').value == '1') {
 //            var url = actionPage;
 //            url = SetParameterValue("custid", targetCustId, url);
 //            url = SetParameterValue("fdate", fdate, url);
 //            url = SetParameterValue("tdate", tdate, url);
-//            url = SetParameterValue("type", $('Type').value, url);
-//            url = SetParameterValue("IsHistoryReport", $('IsHistoryReport').value, url);
+//            url = SetParameterValue("type", document.getElementById('Type').value, url);
+//            url = SetParameterValue("IsHistoryReport", document.getElementById('IsHistoryReport').value, url);
 //            url = SetParameterValue("username", username, url);
 //            url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
 //            url = SetParameterValue("sortingup", _page.SortingUp, url);
@@ -566,7 +566,7 @@ function ViewDownlineWLReport(fdate, tdate, targetCustId, actionPage, username) 
 //            if (arrayOptionItem != null) {
 //                for (var i = 1; i < arrayOptionItem.length; i++) {
 //                    paramName = arrayOptionItem[i].substring(4);
-//                    item = $(arrayOptionItem[i]);
+//                    item = document.getElementById(arrayOptionItem[i]);
 //                    if (item != undefined && item != null) {
 //                        url = SetParameterValue(paramName, (item.checked ? "1" : "0"), url);
 //                    }
@@ -583,32 +583,32 @@ function ViewDownlineWLReport(fdate, tdate, targetCustId, actionPage, username) 
 //    }
     // End - Turn back to match bet list hasn't redesigned
 
-    if (ProcessDownlineForWinlossOnly(fdate, tdate, targetCustId, actionPage, username, $('Type').value ) == true) {
+    if (ProcessDownlineForWinlossOnly(fdate, tdate, targetCustId, actionPage, username, document.getElementById('Type').value ) == true) {
         return;
     }
 
     if (targetCustId != null && actionPage != null) {
-        $("CustId").value = targetCustId;
+        document.getElementById("CustId").value = targetCustId;
 
-        $("frmmain").action = actionPage;
+        document.getElementById("frmmain").action = actionPage;
     }
 
     if (username != null && username != "") {
-        $("UserName").value = username;
+        document.getElementById("UserName").value = username;
     }
 
-    $("frmmain").submit();
+    document.getElementById("frmmain").submit();
 }
 function ViewHistory() {
-    $("IsHistoryReport").value = ($("IsHistoryReport").value == "1" ? "0" : "1");
-    $("IsSwitch").value = "1";
+    document.getElementById("IsHistoryReport").value = (document.getElementById("IsHistoryReport").value == "1" ? "0" : "1");
+    document.getElementById("IsSwitch").value = "1";
 
-    $("frmmain").submit();
+    document.getElementById("frmmain").submit();
 }
 function ChangeView() {
-    $("OldView").value = ($("OldView").value == "1" ? "0" : "1");
+    document.getElementById("OldView").value = (document.getElementById("OldView").value == "1" ? "0" : "1");
 
-    $("frmmain").submit();
+    document.getElementById("frmmain").submit();
 }
 
 function ElementExisted(name) {
@@ -636,7 +636,7 @@ function SaveSortingParametersAsHiddenField() {
         var name = nvPair[0];
         var value = nvPair[1];
         if (ElementExisted(name) == false) {
-            createHiddenInput($("frmmain"), name, value);
+            createHiddenInput(document.getElementById("frmmain"), name, value);
         }
     }
 }
@@ -666,17 +666,17 @@ function SortData(obj) {
     else _page.SortingUp = "true";
 
     SaveSortingParametersAsHiddenField();
-    $("sortingcolumn").value = sortingColumn;
-    $("sortingup").value = _page.SortingUp;
+    document.getElementById("sortingcolumn").value = sortingColumn;
+    document.getElementById("sortingup").value = _page.SortingUp;
 
-    $("frmmain").submit();
+    document.getElementById("frmmain").submit();
 }
 
 function InitSortingHeader() {
     // Does not sort if there is paging control and page count > 1
     var sortingEnabled = true;
     var currentUrl = window.location.href;
-    var reportTable = $("tbl-rpt");
+    var reportTable = document.getElementById("tbl-rpt");
 
     if (!reportTable) return;
 
@@ -686,8 +686,8 @@ function InitSortingHeader() {
     if (sortingEnabled) {
         if (_page.SortingColumn == '') _page.SortingColumn = 'username';
 
-        createHiddenInput($("frmmain"), "sortingcolumn", _page.SortingColumn);
-        createHiddenInput($("frmmain"), "sortingup", _page.SortingUp);
+        createHiddenInput(document.getElementById("frmmain"), "sortingcolumn", _page.SortingColumn);
+        createHiddenInput(document.getElementById("frmmain"), "sortingup", _page.SortingUp);
 
         var reportTableBody = reportTable.childNodes[0];
         for (var i = 0, rowCount = reportTableBody.childNodes.length; i < rowCount && i < 3; i++) {
@@ -728,7 +728,7 @@ function ProcessDownlineForWinlossOnly(fdate, tdate, targetCustId, actionPage, u
     var arrayStatusItem = _page.FilterStatusCollection;
     if (arrayOptionItem != null) {
         for (var i = 1; i < arrayOptionItem.length; i++) {
-            item = $(arrayOptionItem[i]);
+            item = document.getElementById(arrayOptionItem[i]);
             if (item == undefined || item == null) {
                 if (arrayStatusItem[i] == "on") {
                     filterParams += "&" + arrayOptionItem[i] + "=" + arrayStatusItem[i];
@@ -743,7 +743,7 @@ function ProcessDownlineForWinlossOnly(fdate, tdate, targetCustId, actionPage, u
         url = SetParameterValue("custid", targetCustId, url);
         url = SetParameterValue("fdate", fdate, url);
         url = SetParameterValue("tdate", tdate, url);
-        url = SetParameterValue("IsHistoryReport", $('IsHistoryReport').value, url);
+        url = SetParameterValue("IsHistoryReport", document.getElementById('IsHistoryReport').value, url);
         url = SetParameterValue("FilterPostback", "postback", url);
         url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
         url = SetParameterValue("sortingup", _page.SortingUp, url);

@@ -19,7 +19,7 @@ function CountDownRefresh() {
 
     ajax.Request(window.location.href, {asynchronous: true, parameters: 'full_mode=0'
                             , onComplete: function(data) {
-                                $('sContent').innerHTML = data.responseText;
+                                document.getElementById('sContent').innerHTML = data.responseText;
                                 RefreshCountDown_Init();
                             }
     });
@@ -29,8 +29,8 @@ function CountDownRefresh() {
 
 
 function CountDownRefresh_SaveOption(idNewOption) {
-    $('CountDownMenu').style.display = 'none';
-    var txtNewOption = $(idNewOption).innerHTML;
+    document.getElementById('CountDownMenu').style.display = 'none';
+    var txtNewOption = document.getElementById(idNewOption).innerHTML;
     initCountDown = parseInt(txtNewOption);
     CountDownRefresh_DoCheckMenu();
     setCookie(ckiName, initCountDown, 35);
@@ -39,7 +39,7 @@ function CountDownRefresh_SaveOption(idNewOption) {
 
 
 function CountDownRefresh_DoCheckMenu() {
-    var menus = $('CountDownMenu').getElementsByTagName("div");
+    var menus = document.getElementById('CountDownMenu').getElementsByTagName("div");
     for (i = 0; i < menus.length; i++) {
         if (parseInt(menus[i].innerHTML) == initCountDown) {
             AddClassName(menus[i].id, "menuitemcheck");
@@ -50,14 +50,14 @@ function CountDownRefresh_DoCheckMenu() {
 }
 
 function CountDownRefresh_Refresh() {
-    var pnlDown = $('CountDownMenu');
+    var pnlDown = document.getElementById('CountDownMenu');
     if (pnlDown.style.display == '')
         pnlDown.style.display = 'none';
     eval(countDownRefreshFunc);
 }
 
 function CountDownRefresh_DoOpenOption(btnDown) {
-    var pnlDown = $('CountDownMenu');
+    var pnlDown = document.getElementById('CountDownMenu');
     var arrBtnPos = FindPosition(btnDown.parentNode);
     if (pnlDown.style.display == 'none') {
         pnlDown.style.left = arrBtnPos[0] + 'px';

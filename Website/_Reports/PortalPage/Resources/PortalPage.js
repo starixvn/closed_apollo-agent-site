@@ -1,18 +1,26 @@
-﻿/*
-Author: Andy.Nguyen
-Revision: 2011-05-31
-Description: Adds new functions for Portal Page requirements
-*/
+﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
+
 
 var PortalPage_Paging = null;
 var PortalPage_Paging_OL = null;
 var count = 0;
 
 function displayBlocks(style) {
-    $('balanceInfo').style.display = style;
-    $('statistic').style.display = style;
-    if (_page.RemoveOnlineList == false) $('onlineList').style.display = style;
-    $('announcement').style.display = style;
+    
+
+//    $('balanceInfo').style.display = style;
+//    $('statistic').style.display = style;
+
+//    if (_page.RemoveOnlineList == false) {
+//        $('onlineList').style.display = style;
+//    }
+
+    //    $('announcement').style.display = style;
+
+    $('#balanceInfo').css("display", style);
+    $('#statistic').css("display", style);
+    $('#announcement').css("display", style);  
+    
 }
 
 function loadBalanceInfo() {

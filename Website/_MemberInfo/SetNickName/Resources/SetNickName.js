@@ -1,6 +1,6 @@
 ﻿//Hide form Nick Name
 function HideForm(seconds) {
-    timeoutID = setTimeout("if($('idnickname')) $('idnickname').style.display ='none'", seconds); //Set delay
+    timeoutID = setTimeout("if(document.getElementById('idnickname')) document.getElementById('idnickname').style.display ='none'", seconds); //Set delay
 }
 
 function StopTimer() {
@@ -9,26 +9,26 @@ function StopTimer() {
 
 //Show From Set Nick Name
 function DisplayForm() {
-    var state = $('idnickname').style.display;
+    var state = document.getElementById('idnickname').style.display;
     if (state != null && state == "none")
     {
-        $('idnickname').style.display = "block";
-        $('idnickname').style.position = "absolute";
-        $('msgError').innerHTML = "";
-        $('textNickName').focus();
-        $('idnickname').onmouseover = function(){StopTimer();}
+        document.getElementById('idnickname').style.display = "block";
+        document.getElementById('idnickname').style.position = "absolute";
+        document.getElementById('msgError').innerHTML = "";
+        document.getElementById('textNickName').focus();
+        document.getElementById('idnickname').onmouseover = function(){StopTimer();}
         HideForm(6000);
     }
     else {
-        $('idnickname').style.display = "none";
+        document.getElementById('idnickname').style.display = "none";
         window.clearTimeout(timeoutID);
     }
 }
 
 var oldLanguage="";
 function ShowSetNickName() {
-    if(top.frHeader.$('tooltip_box')!=null) top.frHeader.$('tooltip_box').style.display="none";
-    if ($('idnickname') == null || oldLanguage != getCookie('ibclang')) {
+    if(top.frHeader.document.getElementById('tooltip_box')!=null) top.frHeader.document.getElementById('tooltip_box').style.display="none";
+    if (document.getElementById('idnickname') == null || oldLanguage != getCookie('ibclang')) {
         RemoveDiv("idMainForm");
         oldLanguage = getCookie('ibclang');
         CreateDiv("imgLoading","", "loading", 140 , 22,"absolute")
@@ -46,7 +46,7 @@ function ShowSetNickName() {
     }
     else {
         DisplayForm();
-        $('msgError').style.display = "none";
+        document.getElementById('msgError').style.display = "none";
     }
 }
 
@@ -57,37 +57,37 @@ function CloseFormNickName() {
 //Set text nickname is new value and auto hide Popup Nickname when update successful.
 function SetNewValueAndHidePopup(nickname)
 {
-    top.frHeader.$('iconSetNickname').style.display = "";
-    top.frHeader.$('labelNickname').innerHTML = nickname.toUpperCase();
-    top.frHeader.$('linkNickNameID').className = "linkNickName";
-    if(top.frHeader.$('spanNickNameID')!=null) top.frHeader.$('spanNickNameID').innerHTML ="";
+    top.frHeader.document.getElementById('iconSetNickname').style.display = "";
+    top.frHeader.document.getElementById('labelNickname').innerHTML = nickname.toUpperCase();
+    top.frHeader.document.getElementById('linkNickNameID').className = "linkNickName";
+    if(top.frHeader.document.getElementById('spanNickNameID')!=null) top.frHeader.document.getElementById('spanNickNameID').innerHTML ="";
     setTimeout("RemoveDiv('idMainForm')", 3000);
 }
 // If the element's string matches the regular expression it is numbers and letters
 function ValidNickName(helperMsg) {
-    $('msgError').style.display = "none";
-    var str = $('textNickName').value;
-    var status = $('chkNickName').checked;
+    document.getElementById('msgError').style.display = "none";
+    var str = document.getElementById('textNickName').value;
+    var status = document.getElementById('chkNickName').checked;
     var alphaExp = /^[0-9a-zA-Z]+$/;
     if (str.match(alphaExp) && (str.length>=5) && (str.length < 16)) {
         //Save nick name
-        $('loading').style.display = "";
+        document.getElementById('loading').style.display = "";
         var params = 'nickname=' + str + '&status=' + status;
         function OnComplete(result) {
             var errCode = result.errCode;
             if (errCode == 0) {
-                $('loading').style.display = "none";
-                $('msgError').style.display = "";
-                $('msgError').innerHTML = result.errMsg;
-                $('msgError').className = "success";
-                if(result.errMsg!="") SetNewValueAndHidePopup($('textNickName').value);
+                document.getElementById('loading').style.display = "none";
+                document.getElementById('msgError').style.display = "";
+                document.getElementById('msgError').innerHTML = result.errMsg;
+                document.getElementById('msgError').className = "success";
+                if(result.errMsg!="") SetNewValueAndHidePopup(document.getElementById('textNickName').value);
                 return false;
             }
             else {
-                $('loading').style.display = "none";
-                $('msgError').style.display = "";
-                $('msgError').innerHTML = result.errMsg;
-                $('textNickName').focus();
+                document.getElementById('loading').style.display = "none";
+                document.getElementById('msgError').style.display = "";
+                document.getElementById('msgError').innerHTML = result.errMsg;
+                document.getElementById('textNickName').focus();
                 return false;
             }
         }    
@@ -99,9 +99,9 @@ function ValidNickName(helperMsg) {
         return false;
     }
     else {
-        $('msgError').style.display = "";
-        $('msgError').innerHTML = helperMsg;
-        $('textNickName').focus();
+        document.getElementById('msgError').style.display = "";
+        document.getElementById('msgError').innerHTML = helperMsg;
+        document.getElementById('textNickName').focus();
         return false;
     }
 }
