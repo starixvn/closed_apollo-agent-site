@@ -88,7 +88,7 @@ namespace Fanex.Agent.UI
 			protected static string s31{get{return Resources.Lang.admin;}}
 			protected static string s32 = "</td><td rowspan=\"2\">";
 			protected static string s33{get{return Resources.Lang.edit;}}
-			protected static string s34 = "</td></tr><tr class=\"RptHeader\"><td>";
+			protected static string s34 = "</td></tr><tr class=\"RptHeader02\"><td>";
 			protected static string s35{get{return Resources.Lang.lblRead;}}
 			protected static string s36 = "</td><td>";
 			protected static string s37{get{return Resources.Lang.lblHost;}}
@@ -152,7 +152,7 @@ namespace Fanex.Agent.UI
 			protected string t0_color;
 			protected static string s50 = "'\"><td class=\"w-order c\">";
 			public string no_value = "{no_value}";
-			protected static string s51 = "</td><td class=\"l\">";
+			protected static string s51 = "</td><td class=\"l shadow-name\">";
 			public string shadow_value = "{shadow_value}";
 			protected static string s52 = "</td><td class=\"c\" width=\"100px\"><input type=\"checkbox\" id=\"chk";
 			public string agentuserid_value = "{agentuserid_value}";
@@ -186,7 +186,7 @@ namespace Fanex.Agent.UI
 			protected string t7_agentuserid_value;
 			protected static string s67 = "[AD][H]\" value=\"[AD][H]\" ";
 			public string admin_checked_host = "{admin_checked_host}";
-			protected static string s68 = " onclick=\"onClick_ChangePermission(this)\"/></td><td class=\"c\" width=\"80px\"><a href=\"#\" onclick=\"UpdatePermission(";
+			protected static string s68 = " onclick=\"onClick_ChangePermission(this)\"/></td><td class=\"c\" width=\"80px\"><a class=\"update\" href=\"#\" onclick=\"UpdatePermission(";
 			protected string t8_agentuserid_value;
 			protected static string s69 = ",";
 			public string agentid_value = "{agentid_value}";

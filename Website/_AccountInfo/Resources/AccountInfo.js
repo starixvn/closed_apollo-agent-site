@@ -320,8 +320,7 @@ function showSection(sectionID, agentId) {
             $("membersTab").className = "";
             $("tbl_custsettings").style.display = "none";
             $("tbl_membersTab").style.display = "none";
-            $("tbl_agentsTab").style.display = "block";
-            bindAgentsList(agentId);
+            $("tbl_agentsTab").style.display = "block";           
             break;
         case "membersTab":
             $("custsettings").className = "";
@@ -342,6 +341,7 @@ function showSection(sectionID, agentId) {
             */
             break;
     }
+    
     $(sectionID).className = "current";
     $("tbl_" + sectionID).style.display = "block";
 }

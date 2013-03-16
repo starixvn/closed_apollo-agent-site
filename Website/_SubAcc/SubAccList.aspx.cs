@@ -100,11 +100,18 @@ namespace Sunplus.Agent.UI._SubAcc
 
             tpl.Content.Clear();
             SubAccList_Content_Block rowContent = new SubAccList_Content_Block();
-            rowContent.overcolor = "#f8ff8d";
-            rowContent.color = "#faf9ee";
+            rowContent.overcolor = "#FBF0B9";            
 
             for (int i = 0; i < c; i++)
             {
+                if (i % 2 == 0)
+                {
+                    rowContent.color = "#F6F8F9";
+                }
+                else
+                {
+                    rowContent.color = "#faf9ee";
+                }
                 ShadowAccount subAcc = subAccList[i];
                 RenderSubAccount(rowContent, i, subAcc);
                 tpl.Content.Append(rowContent);
