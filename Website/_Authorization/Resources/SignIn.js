@@ -105,11 +105,11 @@ function DoLogin() {
         document.getElementById('txtPassWord').focus();
         return false;
     }
-    if (document.getElementById('txtCaptcha').value == "") {
-        document.getElementById("errmsg").innerHTML = errObj.errValidCode;
-        document.getElementById('txtCaptcha').focus();
-        return false;
-    }
+//    if (document.getElementById('txtCaptcha').value == "") {
+//        document.getElementById("errmsg").innerHTML = errObj.errValidCode;
+//        document.getElementById('txtCaptcha').focus();
+//        return false;
+//    }
     
 
     document.getElementById('btnLogin').disabled = true;
@@ -138,12 +138,12 @@ function InitLogin() {
     
     setTimeout(GetValidateImage, 120000);
 
-    if (typeof _page.errCode != 'undefined' && _page.errCode != 0) {
-        document.getElementById("errmsg").innerHTML = _page.errMsg;
-        if (_page.errCode == 101) {
-            document.getElementById('txtCaptcha').focus();
-        }
-    }
+//    if (typeof _page.errCode != 'undefined' && _page.errCode != 0) {
+//        document.getElementById("errmsg").innerHTML = _page.errMsg;
+//        if (_page.errCode == 101) {
+//            document.getElementById('txtCaptcha').focus();
+//        }
+//    }
 }
 //Script check HTML 5 for devices mobile
 if(document.getElementById("mobileId")!=undefined)

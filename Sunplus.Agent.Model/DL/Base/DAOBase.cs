@@ -9,12 +9,10 @@ using System.Data;
 
 namespace Sunplus.Agent.Model.DL.Base
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using Fanex.Data.Configuration;
     using Fanex.Data.DNAide;
-    using Sunplus.Agent.Configurations;
     using Sunplus.Agent.Model.DL.Definitions;
     using Sunplus.Agent.Model.Services;
     using Fanex.PTEngine.BusinessObjects;

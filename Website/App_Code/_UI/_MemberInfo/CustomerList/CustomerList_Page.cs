@@ -16,6 +16,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     using Fanex.Age.UI;
     using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
+    using Fanex.Agent.UI._MemberInfo.CustomerList;
 
     public abstract class CustomerList_Page : TplPage
     {

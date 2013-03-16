@@ -208,8 +208,8 @@
                 return dt;
             }
             catch (Exception ex)
-            {
-                Logs.Error("Can't get data", ex);
+            {                
+                //Logs.Error("Can't get data", ex);
                 return null;
             }
         }
