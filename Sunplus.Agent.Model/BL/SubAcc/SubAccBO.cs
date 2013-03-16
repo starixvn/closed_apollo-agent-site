@@ -27,17 +27,17 @@ namespace Sunplus.Agent.Model.BL.SubAcc
         /// </summary>
         /// <param name="count">Number of records</param>
         /// <returns>Return a List of SubAccount if succeeded or raise an exception.</returns>
-        public List<ShadowAccount> GetSubAccountList(int CustId)
+        public List<AgentUserAccount> GetSubAccountList(int CustId)
         {
             SubAccDAO dao = new SubAccDAO();
 
             DataTable dataTable = dao.Acc_AgentUser_GetByAgent(CustId);
 
-            List<ShadowAccount> subAccList = new List<ShadowAccount>();
+            List<AgentUserAccount> subAccList = new List<AgentUserAccount>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                subAccList.Add(new ShadowAccount
+                subAccList.Add(new AgentUserAccount
                 {
                     AgentUserId = (int)dr["AgentUserId"],
                     Username = dr["UserName"].ToString(),
