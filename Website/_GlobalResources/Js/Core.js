@@ -681,13 +681,6 @@ age = null;
 ajax = null;
 
 function _startup() {
-    // $ function
-    window.$ = $;
-    if (typeof window.parent.$ == 'undefined') {
-        window.parent.$ = function (id) {
-            return this.document.getElementById(id);
-        }
-    }
     age = new AGE();
     ajax = new AJAX();
     // Focus at startup
