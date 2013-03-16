@@ -134,7 +134,7 @@
         {
             CustomerListDAO dao = new CustomerListDAO();
 
-            return dao.Acc_Player_GetByAgent(custId, userName, pageIndex, pageSize, ref totalPages);
+            return dao.Acc_Customer_GetByAgent(custId, userName, pageIndex, pageSize, ref totalPages);
         }
     }
 }
