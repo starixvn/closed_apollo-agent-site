@@ -35,9 +35,6 @@
                     {static:Resources.Lang.lblAccountSetting}
                 </td>
                 <td colspan="2">
-                    {static:Resources.Lang.lblShadowManagement}
-                </td>
-                <td colspan="2">
                     {static:Resources.Lang.admin}
                 </td>
                 <td rowspan="2">
@@ -45,12 +42,6 @@
                 </td>
             </tr>
             <tr class="RptHeader02">
-                <td>
-                    {static:Resources.Lang.lblRead}
-                </td>
-                <td>
-                    {static:Resources.Lang.lblHost}
-                </td>
                 <td>
                     {static:Resources.Lang.lblRead}
                 </td>
@@ -84,12 +75,6 @@
                 </td>
                 <td class="c" width="80px">
                     <input type="checkbox" id="chk{agentuserid_value}[AC][H]" value="[AC][H]" {accountsetting_checked_host} onclick="onClick_ChangePermission(this)" />
-                </td>
-                <td class="c" width="80px">
-                    <input type="checkbox" id="chk{agentuserid_value}[SM][R]" value="[SM][R]" {shadowmanagement_checked_read} onclick="onClick_ChangePermission(this)" />
-                </td>
-                <td class="c" width="80px">
-                    <input type="checkbox" id="chk{agentuserid_value}[SM][H]" value="[SM][H]" {shadowmanagement_checked_host} onclick="onClick_ChangePermission(this)"/>
                 </td>
                 <td class="c" width="80px">
                     <input type="checkbox" id="chk{agentuserid_value}[AD][R]" value="[AD][R]" {admin_checked_read} onclick="onClick_ChangePermission(this)" />

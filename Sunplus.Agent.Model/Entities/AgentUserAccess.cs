@@ -5,13 +5,12 @@
     using System.Linq;
     using System.Text;
 
-    public class ShadowAccess
+    public class AgentUserAccess
     {
         public const string TotalBet_ForeCast = "[TF]";
         public const string Report = "[RP]";
         public const string AccountSeting = "[AC]";
-        public const string ShadowManagement = "[SM]";
-        public const string Admin = "[Ad]";
+        public const string Admin = "[AD]";
         public const string Read = "[R]";
         public const string Host = "[H]";
     }
