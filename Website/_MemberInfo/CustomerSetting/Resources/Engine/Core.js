@@ -1,16 +1,26 @@
 ﻿if (typeof (Fanex) == 'undefined') { // Require Fanex namespace
     Fanex = {};
-    Object.prototype.cloneObject = function () {
-        var newObj = (this instanceof Array) ? [] : {};
-        for (i in this) {
-            if (i == 'clone') continue;
-            if (this[i] && typeof this[i] == "object") {
-                newObj[i] = this[i].cloneObject();
-            } else {
-                newObj[i] = this[i];
-            }
+//    Object.prototype.doCloneObject = function () {
+//        var newObj = (this instanceof Array) ? [] : {};
+//        for (i in this) {
+//            if (i == 'clone') continue;
+//            if (this[i] && typeof this[i] == "object") {
+//                newObj[i] = this[i].doCloneObject();
+//            } else {
+//                newObj[i] = this[i];
+//            }
+//        }
+//        return newObj;
+//    };
+    Fanex.CloneObject = function (obj) {
+        var clone = {};
+        for (var i in obj) {
+            if (typeof (obj[i]) == "object")
+                clone[i] = Fanex.CloneObject(obj[i]);
+            else
+                clone[i] = obj[i];
         }
-        return newObj;
+        return clone;
     };
     String.Empty = ""; // Extend static string
     String.prototype.Format = function (args) {
@@ -164,7 +174,7 @@ var Validators = {
         // Validate with expr
         // Show message and animate background color
     },
-    show: function (elementInput, message, xPos, pointerXPos, yPos, pointerYPos, height, timeout) {
+    show: function (elementInput, message, xPos, pointerXPos, yPos, pointerYPos, height, timeout, isDown) {
         // <span class="hint"><span>This is the message.<span><span class="hint-pointer">&nbsp;</span></span>
         var hint = document.getElementById('fHint');
         var hintPointer = null;
@@ -175,6 +185,10 @@ var Validators = {
             hint.appendChild(hintMsg);
             hintPointer = document.createElement("SPAN");
             hintPointer.className = 'hint-pointer';
+            if (isDown) {
+                hintPointer.className = 'hint-pointer-down';
+            }
+            
             hint.appendChild(hintPointer);
             hint.id = 'fHint';
             hint.style.top = '10px';
