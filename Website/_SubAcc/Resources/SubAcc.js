@@ -20,12 +20,6 @@ function UpdatePermission(agentUserId, agentId) {
     if (document.getElementById("chk" + agentUserId + "[AC][H]").checked) {
         value += "[AC][H]-";
     }
-    if (document.getElementById("chk" + agentUserId + "[SM][R]").checked) {
-        value += "[SM][R]-";
-    }
-    if (document.getElementById("chk" + agentUserId + "[SM][H]").checked) {
-        value += "[SM][H]-";
-    }
     if (document.getElementById("chk" + agentUserId + "[AD][R]").checked) {
         value += "[AD][R]-";
     }
@@ -58,7 +52,12 @@ function onClick_ChangePermission(els) {
     else //Host
     {
         id = els.id.replace('[H]', '[R]');
-        document.getElementById(id).disabled = els.checked;
-        document.getElementById(id).checked = els.checked;
+        if (els.checked) {
+            document.getElementById(id).checked = true;
+            document.getElementById(id).disabled = true;
+        }
+        else {
+            document.getElementById(id).disabled = els.checked;
+        }
     }
 }
