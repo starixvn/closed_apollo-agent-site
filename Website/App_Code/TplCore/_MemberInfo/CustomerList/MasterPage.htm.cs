@@ -13,7 +13,7 @@ namespace Fanex.Agent.UI
 	{
 		public class MasterPage_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><link href=\"";
+			protected static string s0 = "<!DOCTYPE HTML><html><head><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_MemberInfo/CustomerList/Resources/CustomerList.css", TplSettings.Question);}}
@@ -44,9 +44,7 @@ namespace Fanex.Agent.UI
 			protected static string s24{get{return AbsoluteUrl("_MemberInfo/CustomerList/Resources/CustomerList.js", TplSettings.Question);}}
 			protected static string s25 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s26{get{return AbsoluteUrl("_MemberInfo/CustomerList/Resources/SportBook.js", TplSettings.Question);}}
-			protected static string s27 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s28{get{return AbsoluteUrl("_MemberInfo/CustomerList/Resources/Racing.js", TplSettings.Question);}}
-			protected static string s29 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s27 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -84,8 +82,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s25);
 					bd.Append(s26);
 					bd.Append(s27);
-					bd.Append(s28);
-					bd.Append(s29);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

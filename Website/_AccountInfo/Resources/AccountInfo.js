@@ -502,7 +502,7 @@ function bindAgentDownLine(agentID) {
             document.getElementById("agent-downline").innerHTML = "";
             document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + "<span class='root-agent'>" + data[0][1] + "</span> </br>";
             for (var i = 1; i < data.length; ++i) {
-                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
+                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
             }
 
             document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + text;
@@ -519,14 +519,25 @@ function bindMembersList(agentID) {
     ajax.PostJSON('../_AccountInfo/Handlers/GetMemberList.ashx', 'root=' + agentID, function (result) {
         var data = result.Members;
         var text = "";
-        //document.getElementById("members-list").innerHTML = "";
         for (var i = 0; i < data.length; ++i) {
-            text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a></li>";
+            text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a></li>";
         }
 
+        var contentId = document.getElementById("members-list");
         if (text.length > 0) {
-            document.getElementById("members-list").innerHTML = text;
-        }       
-
+            contentId.innerHTML = text;
+        }
+        /*$('#members-list').slimscroll({
+            width: '161px',
+            height: '520px',
+            railVisible: true,
+            allowPageScroll: true,
+            touchScrollStep: 1000,
+            railDraggable: true
+        }).parent().css({
+            "width": '198px',
+            "height": "560px"
+        });*/
+        contentId.style.display = "block";
     });
 }

@@ -37,6 +37,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
+            this.custId = string.IsNullOrEmpty(Request.QueryString["custid"]) ? -1 : int.Parse(Request.QueryString["custid"].ToString());
             this.userNameRequest = Request.QueryString["txtUsername"];
 
             this.isMember = Request.QueryString["isMember"] == "1" ? true : false;
@@ -110,7 +111,7 @@ namespace Sunplus.Agent.UI._AccountInfo
         public override object InvokeData(System.Collections.Hashtable p)
         {
             AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-            this.dataset = bo.GetCustomerInfo(this.userNameRequest, this.isMember);
+            this.dataset = bo.Age_CustomerSelAllInfo(this.custId, this.userNameRequest, this.isMember);
             //Increase user search sugesstion
             if (this.dataset.Tables.Count > 0)
             {

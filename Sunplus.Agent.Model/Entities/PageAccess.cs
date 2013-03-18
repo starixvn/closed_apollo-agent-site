@@ -2,11 +2,11 @@
  * Created 20091224@Lee
  * Revision 20091224@Lee - Initializing
  * Revision 20111227@Andy - Add 3 permissions: [F], [G], [H] - related to all members - methods
- * 
+ *
  * !!!CAUTION: THIS IS GLOBAL DEFINITIONS, ANY REVISION MUST BE APPROVED BEFORE PROCEEDING!!!
  * Please refer to <document url> for more details
- * 
- * 
+ *
+ *
  */
 
 namespace Sunplus.Agent.Model.Entities
@@ -26,13 +26,10 @@ namespace Sunplus.Agent.Model.Entities
 
         public static bool IsValidType(string type)
         {
-            return type == CreateAccount ||
-                type == UpdateAccount ||
-                type == Transfer ||
-                type == ViewTotalBets ||
-                type == ViewReports ||
-                type == ViewLog ||
-                type == ViewMemberInfo;
+            return ((type.Contains(AgentUserAccess.TotalBet_ForeCast) && type.Contains(AgentUserAccess.Read)) || (type.Contains(AgentUserAccess.TotalBet_ForeCast) && type.Contains(AgentUserAccess.Host)))
+                || ((type.Contains(AgentUserAccess.Report) && type.Contains(AgentUserAccess.Read)) || (type.Contains(AgentUserAccess.Report) && type.Contains(AgentUserAccess.Host)))
+                || ((type.Contains(AgentUserAccess.AccountSeting) && type.Contains(AgentUserAccess.Read)) || (type.Contains(AgentUserAccess.AccountSeting) && type.Contains(AgentUserAccess.Host)))
+                || ((type.Contains(AgentUserAccess.Admin) && type.Contains(AgentUserAccess.Read)) || (type.Contains(AgentUserAccess.Admin) && type.Contains(AgentUserAccess.Host)));
         }
     }
 
@@ -264,6 +261,6 @@ namespace Sunplus.Agent.Model.Entities
             info.AddValue("_viewMemberInfo", this.isViewMemberInfo);
         }
 
-        #endregion
+        #endregion ISerializable Members
     }
 }

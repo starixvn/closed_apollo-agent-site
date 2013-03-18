@@ -27,7 +27,7 @@ namespace Sunplus.Agent.UI._SubAcc
             p.AddHttpParameters(new string[] {
                 "agentId",
                 "agentUserId",
-                "PageAccess" // Value of page access [A][B]....
+                "PageAccess"
             }, Request);
         }
 
@@ -50,14 +50,14 @@ namespace Sunplus.Agent.UI._SubAcc
             // Value of page access [A][B]....
             PageAccess = p["PageAccess"] as string;
 
-            //string[] arrPageAccess = updPageAccess.Split(']');
-            //for (int i = 0; i < arrPageAccess.Length - 1; i++)
-            //{
-            //    if (!PageAccessType.IsValidType(arrPageAccess[i] + "]"))
-            //    {
-            //        return new Result(ErrorType.AccessDenied, Resources.Lang.strNotAccessPage);
-            //    }
-            //}
+            string[] arrPageAccess = PageAccess.Split("-".ToCharArray());
+            for (int i = 0; i < arrPageAccess.Length - 1; i++)
+            {
+                if (!PageAccessType.IsValidType(arrPageAccess[i]))
+                {
+                    return new Result(ErrorType.AccessDenied, Resources.Lang.strNotAccessPage);
+                }
+            }
 
             return null;
         }

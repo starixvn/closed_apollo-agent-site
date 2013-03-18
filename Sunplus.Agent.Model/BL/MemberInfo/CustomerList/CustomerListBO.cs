@@ -136,5 +136,17 @@
 
             return dao.Acc_Customer_GetByAgent(custId, userName, pageIndex, pageSize, ref totalPages);
         }
+
+        /// <summary>
+        /// Get All Downline From AgentId
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <param name="agentId"></param>
+        /// <returns></returns>
+        public DataTable GetAgentDownlinePath(int parentId, int agentId)
+        {
+            CustomerListDAO dao = new CustomerListDAO();
+            return dao.Age_Customer_GetAgentDownLinePath(parentId, agentId);
+        }
     }
 }

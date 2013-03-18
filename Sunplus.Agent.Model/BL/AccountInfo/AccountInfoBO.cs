@@ -51,9 +51,9 @@
             return this.accountInfoDAO.Acc_CustomerSelList(custId, pageSize, pageIndex, ref totalPages);
         }
 
-        public DataSet GetCustomerInfo(string userName, bool isMember)
+        public DataSet Age_CustomerSelAllInfo(int custId, string userName, bool isMember)
         {
-            return this.accountInfoDAO.Age_CustomerSelAllInfo(this.CurrentSession.CustId, userName, isMember);
+            return this.accountInfoDAO.Age_CustomerSelAllInfo(this.CurrentSession.CustId, custId, userName, isMember);
         }
 
         public DataSet Age_Customer_GetAgentDownLine(int agentID)
@@ -66,9 +66,9 @@
             return this.accountInfoDAO.Age_Customer_GetAgentDownLinePath(this.CurrentSession.CustId, agentID);
         }
 
-        public DataSet Age_Customer_GetMembersDownLine(int agentID)
+        public DataSet Age_Customer_GetMemberDownLine(int agentID)
         {
-            return this.accountInfoDAO.Age_Customer_GetMembersDownLine(agentID);
+            return this.accountInfoDAO.Age_Customer_GetMemberDownLine(agentID);
         }
 
         public DataTable CustomerSelOnline(int custId)

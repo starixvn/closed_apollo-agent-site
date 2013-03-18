@@ -52,7 +52,7 @@ public class GetMemberList : Fanex.Age.UI.TplHandler, System.Web.SessionState.IR
     public override object InvokeData(System.Collections.Hashtable p)
     {
         AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-        return bo.Age_Customer_GetMembersDownLine(int.Parse(this.agentId)).Tables[0];
+        return bo.Age_Customer_GetMemberDownLine(int.Parse(this.agentId)).Tables[0];
     }
 
 }

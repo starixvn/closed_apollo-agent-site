@@ -13,7 +13,7 @@ namespace Fanex.Agent.UI
 	{
 		public class EditAgentCommission_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head runat=\"server\"><title>";
+			protected static string s0 = "<!DOCTYPE HTML><html><head runat=\"server\"><title>";
 			public string title = "{title}";
 			protected static string s1 = "</title><link href=\"";
 			protected static string s2{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}

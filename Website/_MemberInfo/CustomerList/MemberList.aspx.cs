@@ -33,7 +33,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         #region Variable
 
         private static string cssHideUpdateMulti = "class='HideCol'";
-        private MemberList_Template tempate = new MemberList_Template();
+        private MemberList_Template template = new MemberList_Template();
         private string langKey = string.Empty;
         private string agentId = string.Empty;
         private string memberId = string.Empty;
@@ -50,64 +50,48 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         public void RenderNavigation()
         {
-            if (this.CustId == CurrentUserSession.CustId)
+            // Get data
+            CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
+            DataTable dtbNavigation = bo.GetAgentDownlinePath(CurrentUserSession.CustId, this.CustId);
+
+            // Init template
+            MemberList_nav_link_container_Block nav_link_Block = new MemberList_nav_link_container_Block();
+            this.template.nav_link_container.nav_link.Clear();
+            string url = "AgentList.aspx?custid={0}&username=" + this.UserName + "&us={1}";
+            int counter = dtbNavigation.Rows.Count;
+            if (counter > 0)
             {
-                CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
-                CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
-                this.tempate.IconEditSetting = string.Empty;
-                this.tempate.nav_link_container.SetValue(string.Empty);
+                foreach (DataRow dr in dtbNavigation.Rows)
+                {
+                    counter--;
+                    string us = dr["username"].ToString();
+                    nav_link_Block.nav_link.navigateName = us;
+                    nav_link_Block.nav_link.url = string.Format(url, dr["agentid"], us);
+                    if (counter == 0)
+                    {
+                        nav_link_Block.nav_link.SetValue(us);
+                    }
+                    else
+                    {
+                        nav_link_Block.nav_link.narrow = "<img height=\"12\" width=\"12\" src=\"Resources/Images/breadcrumb.gif\"/>";
+                    }
+                    this.template.nav_link_container.nav_link.Append(nav_link_Block.nav_link);
+                }
+            }
+            if (CurrentUserSession.CustId == this.CustId)
+            {
+                this.template.IconEditSetting = string.Empty;
             }
             else
             {
-                if (!CurrentUserSession.NavigateUserName.ContainsKey(this.CustId))
-                {
-                    CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
-                }
-                else
-                {
-                    this.NavUserName = CurrentUserSession.NavigateUserName;
-                    CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
-                    foreach (object key in this.NavUserName.Keys)
-                    {
-                        if ((int)key == this.CustId)
-                        {
-                            CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
-                            break;
-                        }
-                        CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
-                    }
-                    this.NavUserName = new Dictionary<object, object>();
-                }
                 string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
                 string onClickEvent = "EditAgentSetting(this,'" + this.CustId + "', '" + this.QueryUserName + "')";
-                this.tempate.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, "icon-edit", onClickEvent, editMenuControl);
+                this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, "icon-edit", onClickEvent, editMenuControl);
             }
 
-            MemberList_nav_link_container_Block nav_link_Block = new MemberList_nav_link_container_Block();
-
-            StringBuilder nav = new StringBuilder();
-            this.tempate.nav_link_container.nav_link.Clear();
-            string url = "AgentList.aspx?custid={0}&us={1}";
-            int counter = CurrentUserSession.NavigateUserName.Count;
-            foreach (object key in CurrentUserSession.NavigateUserName.Keys)
-            {
-                counter--;
-                string navusername = CurrentUserSession.NavigateUserName[key].ToString();
-                nav_link_Block.nav_link.navigateName = navusername;
-                nav_link_Block.nav_link.url = string.Format(url, key, navusername);
-                if (counter == 0)
-                {
-                    nav_link_Block.nav_link.SetValue(navusername);
-                }
-                else
-                {
-                    nav_link_Block.nav_link.narrow = "<img height=\"12\" width=\"12\" src=\"Resources/Images/breadcrumb.gif\"/>";
-                }
-                this.tempate.nav_link_container.nav_link.Append(nav_link_Block.nav_link);
-            }
-            this.tempate.AgentName = this.QueryUserName;
-            this.tempate.urlAgentList = "AgentList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
-            this.tempate.urlShadowList = "#";
+            this.template.AgentName = this.QueryUserName;
+            this.template.urlAgentList = "AgentList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
+            this.template.urlShadowList = "#";
         }
 
         #endregion Properties
@@ -135,11 +119,11 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.langKey = CurrentUserSession.LangKey;
             DataTable customerData = (View as Dictionary<string, DataTable>)["CustomerData"];
 
-            this.RenderHeader(this.tempate.Header);
-            this.RenderContentBlock(customerData, this.tempate.Content);
+            this.RenderHeader(this.template.Header);
+            this.RenderContentBlock(customerData, this.template.Content);
             this.RenderSearchControl();
             RenderNavigation();
-            TemplateMain.content = this.tempate;
+            TemplateMain.content = this.template;
             writer.Write(this.TemplateMain);
         }
 
@@ -167,29 +151,29 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             };
 
             DoubleCommissionSearchUserName dcomControl = new DoubleCommissionSearchUserName(TemplateMain, this.UserName, Status, DCommStatus, "GetCustomer('MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName + "')", dcommFilterDict);
-            this.tempate.searchControl = dcomControl;
+            this.template.searchControl = dcomControl;
 
             string pagingControlName_top = "_PagingTop";
             string pagingControlName_bottom = "MemberList" + CurrentUserSession.SiteName + "_PagingBottom";
 
             // Paging on Top
-            this.tempate.PagingHeader.pagingControl = new Paging_Control(TemplateMain, pagingControlName_top, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
-            this.tempate.PagingHeader.selPageSize = this.RenderPageSize(pagingControlName_top, this.PageSize);
+            this.template.PagingHeader.pagingControl = new Paging_Control(TemplateMain, pagingControlName_top, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
+            this.template.PagingHeader.selPageSize = this.RenderPageSize(pagingControlName_top, this.PageSize);
 
             if (this.TotalPage == 0)
             {
-                this.tempate.pagingControl = string.Empty;
+                this.template.pagingControl = string.Empty;
             }
             else
             {
-                this.tempate.pagingControl = new Paging_Control(TemplateMain, pagingControlName_bottom, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
+                this.template.pagingControl = new Paging_Control(TemplateMain, pagingControlName_bottom, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
             }
 
-            this.tempate.PagingHeader.button.Hide();
+            this.template.PagingHeader.button.Hide();
 
             if (!CurrentUserSession.SubPageAccess.UpdateAccount)
             {
-                this.tempate.PagingHeader.selected.Hide();
+                this.template.PagingHeader.selected.Hide();
             }
         }
 
@@ -204,11 +188,11 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             if (dtb.Rows.Count > 0)
             {
                 MemberList_Content_Block tplBlock = new MemberList_Content_Block();
-                this.tempate.Content.Clear();
+                this.template.Content.Clear();
                 foreach (DataRow dr in dtb.Rows)
                 {
                     this.RenderDetail(dr, tplBlock);
-                    this.tempate.Content.Append(tplBlock);
+                    this.template.Content.Append(tplBlock);
                 }
             }
             else
@@ -220,8 +204,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                 noInfo.Append("</td>");
                 noInfo.Append("</tr>");
 
-                this.tempate.Content.Clear();
-                this.tempate.Content.Append(noInfo.ToString());
+                this.template.Content.Clear();
+                this.template.Content.Append(noInfo.ToString());
             }
         }
 

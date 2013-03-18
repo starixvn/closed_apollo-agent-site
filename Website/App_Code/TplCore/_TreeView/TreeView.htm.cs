@@ -13,11 +13,11 @@ namespace Fanex.Agent.UI
 	{
 		public class TreeView_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>TreeView</title><link href=\"";
+			protected static string s0 = "<!DOCTYPE HTML><!--[if lt IE 7 ]> <html class=\"ie6\"> <![endif]--><!--[if IE 7 ]> <html class=\"ie7\"> <![endif]--><!--[if IE 8 ]> <html class=\"ie8\"> <![endif]--><!--[if IE 9 ]> <html class=\"ie9\"> <![endif]--><!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]--><head><title>TreeView</title><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"leftpanewrapper-treeview\"><!--MenuTab--><div id=\"tab_menu\"><div id=\"tab_menu_m\"><a class=\"tab_menu01\" target=\"menu\" href=\"../_Menu/Menu.aspx\">";
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div class=\"leftpanewrapper-treeview\"><!--MenuTab--><div id=\"tab_menu\"><div id=\"tab_menu_m\"><a class=\"tab_menu01\" target=\"menu\" href=\"../_Menu/Menu.aspx\">";
 			protected static string s5{get{return Resources.Lang.mainmenu;}}
 			protected static string s6 = "</a></div><div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\"href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
 			protected static string s7{get{return Resources.Lang.userinfo;}}

@@ -9,6 +9,7 @@
     using Sunplus.Agent.UI._MemberCommision;
     using Sunplus.Agent.UI._MemberInfo.Commission;
     using Sunplus.Agent.Utilities;
+    using Fanex.Agent.UI._MemberInfo.Commission;
 
     public partial class MemberCommissionP2P_Page : MemberCommision_Page
     {

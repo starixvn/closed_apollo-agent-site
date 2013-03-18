@@ -3,12 +3,10 @@
     using System;
     using System.Data;
     using System.Text;
-    using Fanex.Age.UI;
+    using Fanex.Agent.UI._MemberInfo.Commission;
     using Resources;
     using Sunplus.Agent.Model.BL.MemberInfo.MemberCommission;
-    using Sunplus.Agent.Model.Entities.Permission;
     using Sunplus.Agent.UI._MemberCommision;
-    using Sunplus.Agent.UI._MemberInfo.Commission;
     using Sunplus.Agent.Utilities;
 
     public partial class MemberCommissionLiveCasino_Page : MemberCommision_Page

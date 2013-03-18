@@ -3,16 +3,19 @@ function UpdatePermission(agentUserId, agentId) {
     function OnComplete(result) {
         var errCode = result.errCode;
         if (errCode == 0) {
-            alert("Update permission successfully!!");
+            age.DelayReloadPage();
+        }
+        else {
+            ageMsg.Show(result.errMsg);
         }
     }
 
     var value = '';
     if (document.getElementById("chk" + agentUserId + "[TF][R][H]").checked) {
-        value += "[TF][R][H]-";
+        value += "[TF][R]-[TF][H]-";
     }
     if (document.getElementById("chk" + agentUserId + "[RP][R][H]").checked) {
-        value += "[RP][R][H]-";
+        value += "[RP][R]-[RP][H]-";
     }
     if (document.getElementById("chk" + agentUserId + "[AC][R]").checked) {
         value += "[AC][R]-";

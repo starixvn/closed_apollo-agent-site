@@ -536,7 +536,7 @@ font.positive
 	float: left;
 	width: 215px;
 }
-#leftpanewrapper-treeview
+.leftpanewrapper-treeview
 {
 	background: url(../../_GlobalResources/Images/bg_conts.jpg) repeat-x top;
 	padding-left: 5px;
@@ -544,21 +544,24 @@ font.positive
 	background-attachment: fixed;
 	float: left;
 	width: 215px;
-	height: 99%;
+	height: 98%;
 }
 #leftpane
 {
 	width: 202px;
 	background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
 }
-
-#leftpane-treeview
+.pnlTreeview
 {
 	width: 202px;
 	background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
 	height: 97%;
 }
 
+.ie9 .pnlTreeview
+{	
+	height: 96%;
+}
 #top_left
 {
 	width: 210px;
@@ -1109,9 +1112,8 @@ a.btnList:hover {
 
 
 /* Member tab */
-.member-tab {
-    height: 560px;
-    overflow: auto;
+.member-tab {    
+    /*overflow: auto;*/
     width: 100%;
     display: none;
 }
@@ -1119,6 +1121,7 @@ a.btnList:hover {
 .member-tab-list {
     margin: 0 0 0 5px;
     padding: 0;    
+    height: 560px;
 }
 
 .member-tab-list li * {
@@ -1150,4 +1153,8 @@ a.btnList:hover {
     margin: auto;
     padding-left: 24px;
     padding-top: 31px;
+}
+
+#treeview_list > li:last-child {
+    margin-bottom: 20px;
 }

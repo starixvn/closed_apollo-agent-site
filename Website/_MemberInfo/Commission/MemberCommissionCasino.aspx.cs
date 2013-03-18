@@ -5,10 +5,10 @@
     using System.Data;
     using System.Text;
     using CasinoLibrary.SBAgent;
+    using Fanex.Agent.UI._MemberInfo.Commission;
     using Resources;
     using Sunplus.Agent.Model.BL.MemberInfo.MemberCommission;
     using Sunplus.Agent.UI._MemberCommision;
-    using Sunplus.Agent.UI._MemberInfo.Commission;
     using Sunplus.Agent.Utilities;
 
     public partial class MemberCommissionCasino_Page : MemberCommision_Page
