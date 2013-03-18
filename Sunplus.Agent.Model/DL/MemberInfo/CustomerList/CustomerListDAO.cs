@@ -232,5 +232,20 @@
             totalpages = Convert.ToInt32(res.Outputs["totalpages"]);
             return res.ResultSet.Tables[0];
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="custID"></param>
+        /// <param name="agentID"></param>
+        /// <returns></returns>
+        public DataTable Age_Customer_GetAgentDownLinePath(int parentId, int agentId)
+        {
+            Hashtable parameters = new Hashtable();
+            parameters.Add("parentid", parentId);
+            parameters.Add("agentid", agentId);
+            DbResult res = ExecSp("Age_Customer_GetAgentDownLinePath", parameters);
+            return res.ResultSet.Tables[0];
+        }
     }
 }
