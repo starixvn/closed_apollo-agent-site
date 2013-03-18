@@ -13,13 +13,13 @@ namespace Fanex.BetList.Age
 	{
 		public class BetList_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>Bet List</title><link href=\"";
+			protected static string s0 = "<!DOCTYPE HTML><html><head><title>Bet List</title><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_BetList/Resources/BetList.css", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div class=\"bl_title\">";
 			public string title = "{title}";
-			protected static string s5 = "<div id=\"exportExcelDiv\" class=\"divBoxRight\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"Excel\"nofocus=\"true\" src=\"";
+			protected static string s5 = "<div id=\"exportExcelDiv\" class=\"divBoxRight\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"Excel\" nofocus=\"true\"src=\"";
 			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
 			protected static string s7 = "\" title=\"Excel\" class=\"hand\" /></div></div><div id=\"spData\">";
 			public string content = "{content}";

@@ -13,7 +13,7 @@ namespace Fanex.Agent.UI
 	{
 		public class DownLineTreeView_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><link href=\"";
+			protected static string s0 = "<!DOCTYPE HTML><html><head><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.css", TplSettings.Question);}}
@@ -29,7 +29,7 @@ namespace Fanex.Agent.UI
 			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js");}}
 			protected static string s14 = "\"></script><script type=\"text/javascript\" src=\"";
 			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/slimScroll.js");}}
-			protected static string s16 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});$('#treeview_list').slimscroll({width: '161px',height: '700px',railVisible: true,allowPageScroll: true,touchScrollStep: 1000,railDraggable: true}).parent().css({\"width\": '198px',\"height\": \"738px\"});$('#treeview_list').css({\"overflow-x\": 'visible'});});</script>";
+			protected static string s16 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});$('#treeview_list').slimscroll({width: '161px',height: '700px',railVisible: true,allowPageScroll: true,touchScrollStep: 1000,railDraggable: true}).parent().css({\"width\": '198px',\"height\": \"715px\"});$('#treeview_list').css({\"overflow-x\": 'visible'});});</script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

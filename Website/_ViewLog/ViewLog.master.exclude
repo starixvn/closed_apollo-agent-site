@@ -1,8 +1,8 @@
 ﻿<%@ Master Language="C#" EnableViewState="false" AutoEventWireup="false" CodeFile="ViewLog.master.cs" Inherits="Sunplus.Agent.UI._ViewLog.ViewLog_Page" %>
 
 <%@ Import Namespace="Sunplus.Agent.UI" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html>
 <head id="Head1">
     <title>View log</title>
     <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
