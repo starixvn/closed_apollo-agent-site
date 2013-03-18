@@ -16,19 +16,19 @@
         <div style="width: 1050px">
             {static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
         </div>
-        <table class="tblRpt" width="100%" cellspacing="1" cellpadding="0" border="0">
+        <table class="tblRpt" width="80%" cellspacing="1" cellpadding="0" border="0">
             <!--Header-->
             <tr class="RptHeader">
-                <td rowspan="2">
+                <td rowspan="2" width="50px">
                     {static:Resources.Lang.no}
                 </td>
                 <td rowspan="2">
                     {static:Resources.Lang.lblShadowName}
                 </td>
-                <td rowspan="2">
+                <td rowspan="2" width="100px">
                     {static:Resources.Lang.totalbets}/{static:Resources.Lang.lblForecast}
                 </td>
-                <td rowspan="2">
+                <td rowspan="2" width="80px">
                     {static:Resources.Lang.reports}
                 </td>
                 <td colspan="2">
@@ -37,21 +37,21 @@
                 <td colspan="2">
                     {static:Resources.Lang.admin}
                 </td>
-                <td rowspan="2">
+                <td rowspan="2" width="80px">
                     {static:Resources.Lang.edit}
                 </td>
             </tr>
             <tr class="RptHeader02">
-                <td>
+                <td width="80px">
                     {static:Resources.Lang.lblRead}
                 </td>
-                <td>
+                <td width="80px">
                     {static:Resources.Lang.lblHost}
                 </td>
-                <td>
+                <td width="80px">
                     {static:Resources.Lang.lblRead}
                 </td>
-                <td>
+                <td width="80px">
                     {static:Resources.Lang.lblHost}
                 </td>
             </tr>
@@ -64,25 +64,25 @@
                 <td class="l shadow-name">
                     {shadow_value}
                 </td>
-                <td class="c" width="100px">
+                <td class="c">
                     <input type="checkbox" id="chk{agentuserid_value}[TF][R][H]" value="[TF][R][H]" {totalbet_forecast_checked} />
                 </td>
-                <td class="c" width="80px">
+                <td class="c">
                     <input type="checkbox" id="chk{agentuserid_value}[RP][R][H]" value="[RP][R][H]" {report_checked} />
                 </td>
-                <td class="c" width="80px">
+                <td class="c">
                     <input type="checkbox" id="chk{agentuserid_value}[AC][R]" value="[AC][R]" {accountsetting_checked_read} onclick="onClick_ChangePermission(this)" />
                 </td>
-                <td class="c" width="80px">
+                <td class="c">
                     <input type="checkbox" id="chk{agentuserid_value}[AC][H]" value="[AC][H]" {accountsetting_checked_host} onclick="onClick_ChangePermission(this)" />
                 </td>
-                <td class="c" width="80px">
+                <td class="c">
                     <input type="checkbox" id="chk{agentuserid_value}[AD][R]" value="[AD][R]" {admin_checked_read} onclick="onClick_ChangePermission(this)" />
                 </td>
-                <td class="c" width="80px">
+                <td class="c">
                     <input type="checkbox" id="chk{agentuserid_value}[AD][H]" value="[AD][H]" {admin_checked_host} onclick="onClick_ChangePermission(this)"  />
                 </td>
-                <td class="c" width="80px">
+                <td class="c">
                     <a class="update" href="#" onclick="UpdatePermission({agentuserid_value},{agentid_value});">Update</a>
                 </td>
             </tr>
