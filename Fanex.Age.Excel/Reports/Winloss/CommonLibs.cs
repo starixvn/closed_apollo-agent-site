@@ -10,18 +10,18 @@
             string casinoType = string.Empty;
             switch (betType)
             {
-                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Casino_Games:  // 71
-                    casinoType = "Casino";
-                    break;
+                //case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Casino_Games:  // 71
+                //    casinoType = "Casino";
+                //    break;
 
-                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.P2P: // 1000
-                    betTypeName = Resources.Lang.P2P;
-                    casinoType = "P2P";
-                    break;
+                //case (int)Sunplus.Agent.Model.BL.Definitions.BetType.P2P: // 1000
+                //    betTypeName = Resources.Lang.P2P;
+                //    casinoType = "P2P";
+                //    break;
 
-                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Bingo: // 73
+                //case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Bingo: // 73
 
-                    break;
+                //    break;
 
                 case (int)Sunplus.Agent.Model.BL.Definitions.BetType.N_Over_Under: // Number game Over/Under
                     betTypeName = Resources.Lang.next + " " + betTypeName + " (" + Resources.Lang.numbergame + ")";
@@ -39,10 +39,10 @@
                 //// For Live Casino
                 case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Baccarat: // 1101
                 case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Roulette: // 1102
-                case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Sicbo: // 1103
-                    if (UserPermission.IsShowLiveCasino)
-                    {
-                    }
+                //case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Sicbo: // 1103
+                //    if (UserPermission.IsShowLiveCasino)
+                //    {
+                //    }
 
                     break;
                 // For Virtual Sports
