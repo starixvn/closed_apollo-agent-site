@@ -13,7 +13,7 @@ namespace Fanex.Agent.UI
 	{
 		public class TreeView_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE HTML><html><head><title>TreeView</title><link href=\"";
+			protected static string s0 = "<!DOCTYPE HTML><!--[if lt IE 7 ]> <html class=\"ie6\"> <![endif]--><!--[if IE 7 ]> <html class=\"ie7\"> <![endif]--><!--[if IE 8 ]> <html class=\"ie8\"> <![endif]--><!--[if IE 9 ]> <html class=\"ie9\"> <![endif]--><!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]--><head><title>TreeView</title><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.css", TplSettings.Question);}}

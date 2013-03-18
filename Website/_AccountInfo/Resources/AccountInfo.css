@@ -544,7 +544,7 @@ font.positive
 	background-attachment: fixed;
 	float: left;
 	width: 215px;
-	height: 96%;
+	height: 98%;
 }
 #leftpane
 {
@@ -558,7 +558,10 @@ font.positive
 	height: 97%;
 }
 
-
+.ie9 .pnlTreeview
+{	
+	height: 96%;
+}
 #top_left
 {
 	width: 210px;
