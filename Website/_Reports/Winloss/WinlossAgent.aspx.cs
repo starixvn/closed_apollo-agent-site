@@ -88,9 +88,7 @@ namespace Fanex.Age.UI.Reports.Winloss
 
         #endregion
 
-
-
-        #region Helper
+        #region Helpers
 
         /// <summary>
         /// Render Report Header
@@ -111,6 +109,7 @@ namespace Fanex.Age.UI.Reports.Winloss
                 template.BoldExportExcel.BoldExportExcel.Checked = this.BoldChecked;
             }
         }
+
         /// <summary>
         /// Render report content header
         /// Assign DateFrom, DateTo, Title
@@ -122,6 +121,7 @@ namespace Fanex.Age.UI.Reports.Winloss
             excelBlock.DateFrom = Formater.ShortDateFormat(_dateFrom);
             excelBlock.DateTo = Formater.ShortDateFormat(_dateTo);
         }
+
         /// <summary>
         /// Render Report Content
         /// </summary>
@@ -216,7 +216,6 @@ namespace Fanex.Age.UI.Reports.Winloss
                 contentBlock.ColorClass = CLOSED_ROW_CLASS;
             }
         }
-
 
         #endregion
     }

@@ -17,19 +17,21 @@ namespace Fanex.Agent.UI
 			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body class=\"downlineTreview-bg\"><ul id=\"treeview_list\"></ul></body></html><script type=\"text/javascript\" src=\"";
-			protected static string s5{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
-			protected static string s6 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s7{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
-			protected static string s8 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s9{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
-			protected static string s10 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s11{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.async.js");}}
-			protected static string s12 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js");}}
-			protected static string s14 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/slimScroll.js");}}
-			protected static string s16 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});$('#treeview_list').slimscroll({width: '161px',height: '700px',railVisible: true,allowPageScroll: true,touchScrollStep: 1000,railDraggable: true}).parent().css({\"width\": '198px',\"height\": \"715px\"});$('#treeview_list').css({\"overflow-x\": 'visible'});});</script>";
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body class=\"downlineTreview-bg\"><ul id=\"treeview_list\" class=\"";
+			public string TreeClass = "{TreeClass}";
+			protected static string s5 = "\"></ul></body></html><script type=\"text/javascript\" src=\"";
+			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
+			protected static string s7 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s8{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
+			protected static string s9 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s10{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
+			protected static string s11 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s12{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.async.js");}}
+			protected static string s13 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js");}}
+			protected static string s15 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/slimScroll.js");}}
+			protected static string s17 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});$('#treeview_list').slimscroll({width: '161px',height: '700px',railVisible: true,allowPageScroll: true,touchScrollStep: 1000,railDraggable: true}).parent().css({\"width\": '198px',\"height\": \"715px\"});$('#treeview_list').css({\"overflow-x\": 'visible'});});</script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -40,6 +42,7 @@ namespace Fanex.Agent.UI
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
+					bd.Append(TreeClass);
 					bd.Append(s5);
 					bd.Append(s6);
 					bd.Append(s7);
@@ -52,6 +55,7 @@ namespace Fanex.Agent.UI
 					bd.Append(s14);
 					bd.Append(s15);
 					bd.Append(s16);
+					bd.Append(s17);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
