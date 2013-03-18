@@ -899,18 +899,18 @@ namespace Sunplus.Agent.Model.BL.Reports
             string language = CurrentSession.Language;
 
             // Racing
-            if (sportId == 151)
-            {
-                if (!AppSettings.Disable151_31 && CurrentSession.IsAllowHRCurrency)
-                {
-                    return reportDAO.Age_Result_LeagueSelByDate(date, sportId, language);
-                }
-                else
-                {
-                    return new DataTable();
-                }
-            }
-            else
+            //if (sportId == 151)
+            //{
+            //    //if (!AppSettings.Disable151_31 && CurrentSession.IsAllowHRCurrency)
+            //    //{
+            //    //    return reportDAO.Age_Result_LeagueSelByDate(date, sportId, language);
+            //    //}
+            //    //else
+            //    {
+            //        return new DataTable();
+            //    }
+            //}
+            //else
             {
                 return reportDAO.Age_Result_LeagueSelByDate(date, sportId, language);
             }

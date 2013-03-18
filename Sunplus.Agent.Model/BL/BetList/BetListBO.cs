@@ -301,34 +301,36 @@ namespace Sunplus.Agent.Model.BL.BetList
         /// <returns></returns>
         public DataTable GetAllRacingByMatch(int betType, int matchId, out DataTable outDataTable)
         {
-            BetListDAO betListDAO = new BetListDAO();
+            //BetListDAO betListDAO = new BetListDAO();
 
-            string language = CurrentSession.LangKey;
-            int customerId = CurrentSession.CustId;
+            //string language = CurrentSession.LangKey;
+            //int customerId = CurrentSession.CustId;
 
-            DataTable racingBets = null;
+            //DataTable racingBets = null;
 
-            bool enableRacing = Entities.Permission.UserPermission.IsShowRacing;
+            //bool enableRacing = Entities.Permission.UserPermission.IsShowRacing;
 
-            if (enableRacing && CurrentSession.IsAgent)
-            {
-                racingBets = betListDAO.Age_BetList_SelAllByDateHR_Ag(customerId, betType, matchId, language, out outDataTable);
-            }
-            else if (enableRacing && CurrentSession.IsMaster)
-            {
-                racingBets = betListDAO.Age_BetList_SelAllByDateHR_MAg(customerId, betType, matchId, language, out outDataTable);
-            }
-            else if (enableRacing && CurrentSession.IsSuper)
-            {
-                racingBets = betListDAO.Age_BetList_SelAllByDateHR_SAg(customerId, betType, matchId, language, out outDataTable);
-            }
-            else
-            {
-                racingBets = new DataTable();
-                outDataTable = new DataTable();
-            }
+            //if (enableRacing && CurrentSession.IsAgent)
+            //{
+            //    racingBets = betListDAO.Age_BetList_SelAllByDateHR_Ag(customerId, betType, matchId, language, out outDataTable);
+            //}
+            //else if (enableRacing && CurrentSession.IsMaster)
+            //{
+            //    racingBets = betListDAO.Age_BetList_SelAllByDateHR_MAg(customerId, betType, matchId, language, out outDataTable);
+            //}
+            //else if (enableRacing && CurrentSession.IsSuper)
+            //{
+            //    racingBets = betListDAO.Age_BetList_SelAllByDateHR_SAg(customerId, betType, matchId, language, out outDataTable);
+            //}
+            //else
+            //{
+            //    racingBets = new DataTable();
+            //    outDataTable = new DataTable();
+            //}
 
-            return racingBets;
+            //return racingBets;
+
+            throw new NotImplementedException();
         }
 
         #endregion All Racing By Date

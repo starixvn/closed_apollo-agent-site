@@ -40,22 +40,22 @@ namespace Fanex.Age.Excel.Reports.Commission
             // header
             short totalColumn = 37;
             short totalRemoveColumn = 0;
-            if (!UserPermission.IsShowCasino)
-            {
-                totalRemoveColumn++;
-            }
-            if (!UserPermission.IsShowLiveCasino)
-            {
-                totalRemoveColumn++;
-            }
+            //if (!UserPermission.IsShowCasino)
+            //{
+            //    totalRemoveColumn++;
+            //}
+            //if (!UserPermission.IsShowLiveCasino)
+            //{
+            //    totalRemoveColumn++;
+            //}
             if (!UserPermission.IsShowNumberGame)
             {
                 totalRemoveColumn++;
             }
-            if (!(UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission))
-            {
-                totalRemoveColumn++;
-            }
+            //if (!(UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission))
+            //{
+            //    totalRemoveColumn++;
+            //}
             if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
             {
                 totalRemoveColumn++;
@@ -117,22 +117,22 @@ namespace Fanex.Age.Excel.Reports.Commission
                 string.Empty
             };
 
-            if (UserPermission.IsShowCasino)
-            {
-                values.Add(Resources.Lang.casino);
-            }
-            if (UserPermission.IsShowLiveCasino)
-            {
-                values.Add(Resources.Lang.LiveCasino);
-            }
+            //if (UserPermission.IsShowCasino)
+            //{
+            //    values.Add(Resources.Lang.casino);
+            //}
+            //if (UserPermission.IsShowLiveCasino)
+            //{
+            //    values.Add(Resources.Lang.LiveCasino);
+            //}
             if (UserPermission.IsShowNumberGame)
             {
                 values.Add(Resources.Lang.numbergame);
             }
-            if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-            {
-                values.Add(Resources.Lang.bingo);
-            }
+            //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
+            //{
+            //    values.Add(Resources.Lang.bingo);
+            //}
             if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
             {
                 values.Add(Resources.Lang.P2P);
@@ -166,26 +166,26 @@ namespace Fanex.Age.Excel.Reports.Commission
                         item.OddEven, item.CSheet, item.DChance, item.DNB, item.HNB, item.ANB, item.DND, item.BON, item.TWinTNill, item.ThirdWayHdp, item.Total1,
                         item.FirstCS, item.OneXTwo, item.CorrectScore, item.TotalGoal, item.MixParlay, item.CombinationMixParlay, item.Outright,
                         item.FGLG, item.HTFT, item.MoneyLineFullTime, item.MoneyLineHalfTime, item.Total2, item.First1X2Comm, item.OneXTwoComm, item.Others};
-                    if (UserPermission.IsShowCasino)
-                    {
-                        values.Add(item.Casino);
-                        sumGame += item.Casino;
-                    }
-                    if (UserPermission.IsShowLiveCasino)
-                    {
-                        values.Add(item.LiveCasino);
-                        sumGame += item.LiveCasino;
-                    }
+                    //if (UserPermission.IsShowCasino)
+                    //{
+                    //    values.Add(item.Casino);
+                    //    sumGame += item.Casino;
+                    //}
+                    //if (UserPermission.IsShowLiveCasino)
+                    //{
+                    //    values.Add(item.LiveCasino);
+                    //    sumGame += item.LiveCasino;
+                    //}
                     if (UserPermission.IsShowNumberGame)
                     {
                         values.Add(item.NumberGame);
                         sumGame += item.NumberGame;
                     }
-                    if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-                    {
-                        values.Add(item.Bingo);
-                        sumGame += item.Bingo;
-                    }
+                    //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
+                    //{
+                    //    values.Add(item.Bingo);
+                    //    sumGame += item.Bingo;
+                    //}
                     if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
                     {
                         values.Add(item.P2P);
@@ -218,22 +218,22 @@ namespace Fanex.Age.Excel.Reports.Commission
                 values.Add(data.Sum(p => p.First1X2Comm));
                 values.Add(data.Sum(p => p.Others));
 
-                if (UserPermission.IsShowCasino)
-                {
-                    values.Add(data.Sum(p => p.Casino));
-                }
-                if (UserPermission.IsShowLiveCasino)
-                {
-                    values.Add(data.Sum(p => p.LiveCasino));
-                }
+                //if (UserPermission.IsShowCasino)
+                //{
+                //    values.Add(data.Sum(p => p.Casino));
+                //}
+                //if (UserPermission.IsShowLiveCasino)
+                //{
+                //    values.Add(data.Sum(p => p.LiveCasino));
+                //}
                 if (UserPermission.IsShowNumberGame)
                 {
                     values.Add(data.Sum(p => p.NumberGame));
                 }
-                if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-                {
-                    values.Add(data.Sum(p => p.Bingo));
-                }
+                //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
+                //{
+                //    values.Add(data.Sum(p => p.Bingo));
+                //}
                 if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
                 {
                     values.Add(data.Sum(p => p.P2P));

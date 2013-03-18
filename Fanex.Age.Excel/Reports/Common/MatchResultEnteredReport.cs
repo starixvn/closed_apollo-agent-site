@@ -59,10 +59,10 @@ namespace Fanex.Age.Excel.Reports.Common
             {
                 foreach (var item in data)
                 {
-                    if (item.SportType == (int)Sunplus.Agent.Model.BL.Definitions.SportType.VirtualSports && !UserPermission.IsShowVirtualSports)
-                    {
-                        continue;
-                    }
+                    //if (item.SportType == (int)Sunplus.Agent.Model.BL.Definitions.SportType.VirtualSports && !UserPermission.IsShowVirtualSports)
+                    //{
+                    //    continue;
+                    //}
 
                     if (id % 2 == 0)
                     {

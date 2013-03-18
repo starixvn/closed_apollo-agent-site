@@ -57,10 +57,10 @@ namespace Fanex.BetList.Age.BetListCmd
                 case 41:
                 case 42:
                 case 43:
-                    if (!UserPermission.IsShowRacing)
-                    {
-                        return new DataTable();
-                    }
+                    //if (!UserPermission.IsShowRacing)
+                    //{
+                    //    return new DataTable();
+                    //}
 
                     this.result = this.betList.GetAllRacingByMatch(this.betType, this.matchId, out this.outDataTable);
                     break;
