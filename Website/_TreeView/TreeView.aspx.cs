@@ -8,8 +8,6 @@ using Fanex.Agent.UI._TreeView;
 
 public partial class _TreeView_TreeView : Fanex.Age.UI.TplPage
 {
-    private int custId = -1; 
-
     public override void ProcessRequest(ref System.Collections.Hashtable p)
     {
     }
