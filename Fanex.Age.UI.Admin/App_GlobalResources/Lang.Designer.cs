@@ -68,5 +68,14 @@ namespace Resources {
                 return ResourceManager.GetString("Exchange_Rate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export to Excel.
+        /// </summary>
+        internal static string exporttoexcel {
+            get {
+                return ResourceManager.GetString("exporttoexcel", resourceCulture);
+            }
+        }
     }
 }

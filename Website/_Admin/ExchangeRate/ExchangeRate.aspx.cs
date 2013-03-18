@@ -43,6 +43,8 @@ public partial class _Admin_ExchangeRate_ExchangeRate : TplPage
             actionForm = string.Format("action='{0}?{1}'", _fileName, Request.QueryString.ToString())
         };
 
+        RenderReportContent(tpl.ExcelContents);
+
         writer.Write(tpl);
     }
 
