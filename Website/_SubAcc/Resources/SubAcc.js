@@ -3,7 +3,10 @@ function UpdatePermission(agentUserId, agentId) {
     function OnComplete(result) {
         var errCode = result.errCode;
         if (errCode == 0) {
-            alert("Update permission successfully!!");
+            age.DelayReloadPage();
+        }
+        else {
+            ageMsg.Show(result.errMsg);
         }
     }
 
