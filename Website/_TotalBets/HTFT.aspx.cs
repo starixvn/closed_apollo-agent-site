@@ -3,26 +3,21 @@ using System.Collections.Generic;
 using System.Data;
 using System.Web;
 using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-using Sunplus.Agent.Model.BL.Definitions;
-
 using Fanex.Age.UI;
-
 using Fanex.Age.UI.Components;
-
+using Sunplus.Agent.Model.BL.Definitions;
+using Sunplus.Agent.Model.BL.TotalBets;
 using Sunplus.Agent.Utilities;
-
 
 /*
  * Created 20100507@Jacob - Render HTFT page
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
+
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class HTFT_Page : TotalBets_Page
     {
         #region Override
@@ -80,9 +75,9 @@ namespace Fanex.Age.UI.TotalBets
             else
             {
                 writer.Write(tpl.Contents);
-            }   
+            }
         }
-        
+
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
             return null;
@@ -92,7 +87,8 @@ namespace Fanex.Age.UI.TotalBets
         {
             return _TotalBetsBO.GetHTFT();
         }
-        #endregion
+
+        #endregion Override
 
         #region Utility
 
@@ -106,7 +102,7 @@ namespace Fanex.Age.UI.TotalBets
             decimal num = Convert.ToDecimal(number);
             return (num > 0) ? "<font color='red'>" + Formater.FormatNumber2(num, CurrentUserSession.Language) + "</font>" : Formater.FormatNumber2(num, CurrentUserSession.Language);
         }
-        #endregion
-    }
 
+        #endregion Utility
+    }
 }

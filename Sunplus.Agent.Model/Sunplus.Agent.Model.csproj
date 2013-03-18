@@ -166,7 +166,6 @@
     <Compile Include="Entities\ExtObject.cs" />
     <Compile Include="Entities\IExtObject.cs" />
     <Compile Include="Entities\PageAccess.cs" />
-    <Compile Include="Entities\AgentUserAccess.cs" />
     <Compile Include="Entities\AgentUserAccount.cs" />
     <Compile Include="Security\HttpFrequenceRule.cs" />
     <Compile Include="Services\DeviceService.cs" />
