@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using Fanex.Agent.UI._IPInfo;
 using Sunplus.Core.Common.IPs;
 using Sunplus.Core.Common.IPs.DAL;
 

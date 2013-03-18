@@ -1,9 +1,5 @@
-﻿using System.Web;
-using System.Web.UI;
-using Sunplus.Agent.Model.BL.Definitions;
-using Sunplus.Agent.Model.Entities;
-using Fanex.Age.UI;
-
+﻿using System.Web.UI;
+using Fanex.Agent.UI._HowToUse;
 
 /*
  * Created 20100610@Lee - Render left menu page

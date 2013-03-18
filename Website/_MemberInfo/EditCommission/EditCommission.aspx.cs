@@ -1,12 +1,7 @@
 ﻿namespace Sunplus.Agent.UI._MemberInfo.EditCommission
 {
-
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using System.Web.UI;
-    using System.Web.UI.WebControls;
+    using Fanex.Agent.UI._MemberInfo.EditCommission;
 
     public partial class EditCommission_Page : Fanex.Age.UI.TplPage
     {

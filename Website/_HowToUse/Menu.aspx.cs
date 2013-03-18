@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using System.Web.UI;
 using Fanex.Age.UI;
+using Fanex.Agent.UI._HowToUse;
 using Sunplus.Agent.Model.BL.Definitions;
 using Sunplus.Agent.Model.Entities;
 

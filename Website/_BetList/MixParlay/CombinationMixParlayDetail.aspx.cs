@@ -16,6 +16,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using System.Data;
     using System.Web.UI;
     using Fanex.Age.UI;
+    using Fanex.Agent.UI._BetList.MixParlay;
     using Fanex.BetList.Age.BetListCmd;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
