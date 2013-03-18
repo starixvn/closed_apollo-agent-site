@@ -48,11 +48,11 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
             return ExecSpDataset("Age_Customer_GetAgentDownLine", param);
         }
 
-        public DataSet Age_Customer_GetMembersDownLine(int agentID)
+        public DataSet Age_Customer_GetMemberDownLine(int agentID)
         {
             Hashtable param = new Hashtable();
             param.Add("agentid", agentID);
-            return ExecSpDataset("Age_Customer_GetMembersDownLine", param);
+            return ExecSpDataset("Age_Customer_GetMemberDownLine", param);
         }
 
         public DataSet Age_Customer_GetAgentDownLinePath(int custID, int agentID)
