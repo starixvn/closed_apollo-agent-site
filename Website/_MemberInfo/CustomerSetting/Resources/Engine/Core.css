@@ -643,6 +643,15 @@ pt-groupset2
 	background: url(Images/pointer.png) left top no-repeat;
 }
 
+.hint .hint-pointer-down {
+    background: url("Images/pointerDown.png") no-repeat scroll left top transparent;
+    height: 19px;
+    left: 10px;
+    position: absolute;
+    top: 38px;
+    width: 20px;
+}
+
 .hint ul
 {
 	margin: 5px 0px 0px 0px;

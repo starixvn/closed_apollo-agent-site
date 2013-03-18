@@ -4,26 +4,26 @@
 //    var url = '';
 //    var showSB, showCasino, showP2P, showRB, showFI, showNG, showBI;
 
-//    if ($('chk_SB') != null) {
-//        if ($('chk_SB').checked == true) showSB = 1; else showSB = 0;
+//    if (document.getElementById('chk_SB') != null) {
+//        if (document.getElementById('chk_SB').checked == true) showSB = 1; else showSB = 0;
 //    }
-//    if ($('chk_Casino') != null) {
-//        if ($('chk_Casino').checked == true) showCasino = 1; else showCasino = 0;
+//    if (document.getElementById('chk_Casino') != null) {
+//        if (document.getElementById('chk_Casino').checked == true) showCasino = 1; else showCasino = 0;
 //    }
-//    if ($('chk_P2P') != null) {
-//        if ($('chk_P2P').checked == true) showP2P = 1; else showP2P = 0;
+//    if (document.getElementById('chk_P2P') != null) {
+//        if (document.getElementById('chk_P2P').checked == true) showP2P = 1; else showP2P = 0;
 //    }
-//    if ($('chk_HR') != null) {
-//        if ($('chk_HR').checked == true) showRB = 1; else showRB = 0;
+//    if (document.getElementById('chk_HR') != null) {
+//        if (document.getElementById('chk_HR').checked == true) showRB = 1; else showRB = 0;
 //    }
-//    if ($('chk_FI') != null) {
-//        if ($('chk_FI').checked == true) showFI = 1; else showFI = 0;
+//    if (document.getElementById('chk_FI') != null) {
+//        if (document.getElementById('chk_FI').checked == true) showFI = 1; else showFI = 0;
 //    }
-//    if ($('chk_NG') != null) {
-//        if ($('chk_NG').checked == true) showNG = 1; else showNG = 0;
+//    if (document.getElementById('chk_NG') != null) {
+//        if (document.getElementById('chk_NG').checked == true) showNG = 1; else showNG = 0;
 //    }
-//    if ($('chk_BI') != null) {
-//        if ($('chk_BI').checked == true) showBI = 1; else showBI = 0;
+//    if (document.getElementById('chk_BI') != null) {
+//        if (document.getElementById('chk_BI').checked == true) showBI = 1; else showBI = 0;
 //    }
 //    url += '&showSB=' + showSB + '&showCasino=' + showCasino + '&showP2P=' + showP2P + '&showRB=' + showRB + '&showFI=' + showFI + '&showNG=' + showNG + '&showBI=' + showBI;
 //    return url;
@@ -34,29 +34,29 @@
         var url = '';
         var all, showSB, showCasino, showP2P, showRB, showFI, showNG, showBI;
         
-        if ($('chk_all') != null) {
-            if ($('chk_all').value == 'on') all = "on"; else all = "off";
+        if (document.getElementById('chk_all') != null) {
+            if (document.getElementById('chk_all').value == 'on') all = "on"; else all = "off";
         }
-        if ($('chk_showsb') != null) {
-            if ($('chk_showsb').value == 'on') showSB = "on"; else showSB = "off";
+        if (document.getElementById('chk_showsb') != null) {
+            if (document.getElementById('chk_showsb').value == 'on') showSB = "on"; else showSB = "off";
         }
-        if ($('chk_showcasino') != null) {
-            if ($('chk_showcasino').value == 'on') showCasino = "on"; else showCasino = "off";
+        if (document.getElementById('chk_showcasino') != null) {
+            if (document.getElementById('chk_showcasino').value == 'on') showCasino = "on"; else showCasino = "off";
         }
-        if ($('chk_showp2p') != null) {
-            if ($('chk_showp2p').value == 'on') showP2P = "on"; else showP2P = "off";
+        if (document.getElementById('chk_showp2p') != null) {
+            if (document.getElementById('chk_showp2p').value == 'on') showP2P = "on"; else showP2P = "off";
         }
-        if ($('chk_showrb') != null) {
-            if ($('chk_showrb').value == 'on') showRB = "on"; else showRB = "off";
+        if (document.getElementById('chk_showrb') != null) {
+            if (document.getElementById('chk_showrb').value == 'on') showRB = "on"; else showRB = "off";
         }
-        if ($('chk_showfi') != null) {
-            if ($('chk_showfi').value == 'on') showFI = "on"; else showFI = "off";
+        if (document.getElementById('chk_showfi') != null) {
+            if (document.getElementById('chk_showfi').value == 'on') showFI = "on"; else showFI = "off";
         }
-        if ($('chk_showng') != null) {
-            if ($('chk_showng').value == 'on') showNG = "on"; else showNG = "off";            
+        if (document.getElementById('chk_showng') != null) {
+            if (document.getElementById('chk_showng').value == 'on') showNG = "on"; else showNG = "off";            
         }
-        if ($('chk_showbi') != null) {
-            if ($('chk_showbi').value == 'on') showBI = "on"; else showBI = "off";            
+        if (document.getElementById('chk_showbi') != null) {
+            if (document.getElementById('chk_showbi').value == 'on') showBI = "on"; else showBI = "off";            
         }    
         url += '&chk_all=' + all + '&chk_showsb=' + showSB + '&chk_showcasino=' + showCasino + '&chk_showp2p=' + showP2P + '&chk_showrb=' + showRB + '&chk_showfi=' + showFI + '&chk_showng=' + showNG + '&chk_showbi=' + showBI;
         return url;
@@ -67,32 +67,32 @@ function urlDLFiltering() {
     var showSB, showCasino, showP2P, showRB, showFI, showNG, showBI;
     var count = 0;
 
-    if ($('chk_SB') != null) {
-        if ($('chk_SB').checked == true) showSB = 1; else showSB = 0;
+    if (document.getElementById('chk_SB') != null) {
+        if (document.getElementById('chk_SB').checked == true) showSB = 1; else showSB = 0;
         count++;
     }
-    if ($('chk_Casino') != null) {
-        if ($('chk_Casino').checked == true) showCasino = 1; else showCasino = 0;
+    if (document.getElementById('chk_Casino') != null) {
+        if (document.getElementById('chk_Casino').checked == true) showCasino = 1; else showCasino = 0;
         count++;
     }
-    if ($('chk_P2P') != null) {
-        if ($('chk_P2P').checked == true) showP2P = 1; else showP2P = 0;
+    if (document.getElementById('chk_P2P') != null) {
+        if (document.getElementById('chk_P2P').checked == true) showP2P = 1; else showP2P = 0;
         count++;
     }
-    if ($('chk_HR') != null) {
-        if ($('chk_HR').checked == true) showRB = 1; else showRB = 0;
+    if (document.getElementById('chk_HR') != null) {
+        if (document.getElementById('chk_HR').checked == true) showRB = 1; else showRB = 0;
         count++;
     }
-    if ($('chk_FI') != null) {
-        if ($('chk_FI').checked == true) showFI = 1; else showFI = 0;
+    if (document.getElementById('chk_FI') != null) {
+        if (document.getElementById('chk_FI').checked == true) showFI = 1; else showFI = 0;
         count++;
     }
-    if ($('chk_NG') != null) {
-        if ($('chk_NG').checked == true) showNG = 1; else showNG = 0;
+    if (document.getElementById('chk_NG') != null) {
+        if (document.getElementById('chk_NG').checked == true) showNG = 1; else showNG = 0;
         count++;
     }
-    if ($('chk_BI') != null) {
-        if ($('chk_BI').checked == true) showBI = 1; else showBI = 0;
+    if (document.getElementById('chk_BI') != null) {
+        if (document.getElementById('chk_BI').checked == true) showBI = 1; else showBI = 0;
         count++;
     }
 
@@ -100,7 +100,7 @@ function urlDLFiltering() {
         url += '&showSB=' + showSB + '&showCasino=' + showCasino + '&showP2P=' + showP2P + '&showRB=' + showRB + '&showFI=' + showFI + '&showNG=' + showNG + '&showBI=' + showBI;
     }
     else {
-        url += '&showSB=' + $('hdSB').value + '&showCasino=' + $('hdCasino').value + '&showP2P=' + '&showRB=' + $('hdHR').value + '&showFI=' + $('hdFI').value + '&showNG=' + $('hdNG').value + '&showBI=' + $('hdBI').value;
+        url += '&showSB=' + document.getElementById('hdSB').value + '&showCasino=' + document.getElementById('hdCasino').value + '&showP2P=' + '&showRB=' + document.getElementById('hdHR').value + '&showFI=' + document.getElementById('hdFI').value + '&showNG=' + document.getElementById('hdNG').value + '&showBI=' + document.getElementById('hdBI').value;
     }
 
     return url;
@@ -120,11 +120,11 @@ function InitOptionItems() {
 }
 function CheckAll() {
     var arrayOptionItem = InitOptionItems();
-    if ($(arrayOptionItem[0]) != null) {
-        var allStatus = $(arrayOptionItem[0]).checked;
+    if (document.getElementById(arrayOptionItem[0]) != null) {
+        var allStatus = document.getElementById(arrayOptionItem[0]).checked;
         for (var i = 1; i < arrayOptionItem.length; i++) {
-            if ($(arrayOptionItem[i]) != null) {
-                $(arrayOptionItem[i]).checked = allStatus;
+            if (document.getElementById(arrayOptionItem[i]) != null) {
+                document.getElementById(arrayOptionItem[i]).checked = allStatus;
             }
         }
     }
@@ -133,9 +133,9 @@ function IsCheck() {
     var arrayOptionItem = InitOptionItems();
     var isUncheck = true;
     var item;
-    if ($(arrayOptionItem[0]) != null) {
+    if (document.getElementById(arrayOptionItem[0]) != null) {
         for (var i = 1; i < arrayOptionItem.length; i++) {
-            item = $(arrayOptionItem[i]);
+            item = document.getElementById(arrayOptionItem[i]);
             if (item != undefined && item != null) {
                 if (item.checked == false) {
                     isUncheck = false;
@@ -143,22 +143,22 @@ function IsCheck() {
                 }
             }
         }
-        $(arrayOptionItem[0]).checked = isUncheck;
+        document.getElementById(arrayOptionItem[0]).checked = isUncheck;
     }
 }
 function SearchByDate2(pageUrl) {    
-    var url = pageUrl + '?' + 'custid=' + $('hdcus').value + '&fdate=' + $("fdate").value + '&tdate=' + $("tdate").value;
-    url += '&IsHistoryReport=' + $('IsHistoryReport').value;
-    if ($('IsHistoryReport').value == '1' && $('ddlMonth')) {
-        url += '&month=' + $('ddlMonth').value.split('^')[0];
-        url += '&year=' + $('ddlMonth').value.split('^')[1];
+    var url = pageUrl + '?' + 'custid=' + document.getElementById('hdcus').value + '&fdate=' + document.getElementById("fdate").value + '&tdate=' + document.getElementById("tdate").value;
+    url += '&IsHistoryReport=' + document.getElementById('IsHistoryReport').value;
+    if (document.getElementById('IsHistoryReport').value == '1' && document.getElementById('ddlMonth')) {
+        url += '&month=' + document.getElementById('ddlMonth').value.split('^')[0];
+        url += '&year=' + document.getElementById('ddlMonth').value.split('^')[1];
     }
     url += urlFiltering();
     _submit();    
     location.href = url;
 }
 function SearchOneDay2(pageUrl, value) {
-    var url = pageUrl + '?' + 'custid=' + $('hdcus').value + '&isdate=' + value;
+    var url = pageUrl + '?' + 'custid=' + document.getElementById('hdcus').value + '&isdate=' + value;
     url += urlFiltering();
     _submit();
     location.href = url;
@@ -171,24 +171,24 @@ function urlBLFiltering() {
     var showSB, showCasino, showP2P, showRB, showFI;
     var count = 0;
 
-    if ($('chk_SB') != null) {
-        if ($('chk_SB').checked == true) showSB = 1; else showSB = 0;
+    if (document.getElementById('chk_SB') != null) {
+        if (document.getElementById('chk_SB').checked == true) showSB = 1; else showSB = 0;
         count++;
     }
-    if ($('chk_Casino') != null) {
-        if ($('chk_Casino').checked == true) showCasino = 1; else showCasino = 0;
+    if (document.getElementById('chk_Casino') != null) {
+        if (document.getElementById('chk_Casino').checked == true) showCasino = 1; else showCasino = 0;
         count++;
     }
-    if ($('chk_P2P') != null) {
-        if ($('chk_P2P').checked == true) showP2P = 1; else showP2P = 0;
+    if (document.getElementById('chk_P2P') != null) {
+        if (document.getElementById('chk_P2P').checked == true) showP2P = 1; else showP2P = 0;
         count++;
     }
-    if ($('chk_HR') != null) {
-        if ($('chk_HR').checked == true) showRB = 1; else showRB = 0;
+    if (document.getElementById('chk_HR') != null) {
+        if (document.getElementById('chk_HR').checked == true) showRB = 1; else showRB = 0;
         count++;
     }
-    if ($('chk_FI') != null) {
-        if ($('chk_FI').checked == true) showFI = 1; else showFI = 0;
+    if (document.getElementById('chk_FI') != null) {
+        if (document.getElementById('chk_FI').checked == true) showFI = 1; else showFI = 0;
         count++;
     }
 
@@ -196,18 +196,18 @@ function urlBLFiltering() {
         url += '&showSB=' + showSB + '&showCasino=' + showCasino + '&showP2P=' + showP2P + '&showRB=' + showRB + '&showFI=' + showFI;
     }
     else {
-        url += '&showSB=' + $('hdSB').value + '&showCasino=' + $('hdCasino').value + '&showP2P=' + '&showRB=' + $('hdHR').value + '&showFI=' + $('hdFI').value;
+        url += '&showSB=' + document.getElementById('hdSB').value + '&showCasino=' + document.getElementById('hdCasino').value + '&showP2P=' + '&showRB=' + document.getElementById('hdHR').value + '&showFI=' + document.getElementById('hdFI').value;
     }
 
     return url;
 }
 function doViewDownline2(pageURL, custid) {
-    var url = pageURL + '?' + 'custid=' + custid + '&fdate=' + $('txtFdate').value + '&tdate=' + $('txtTdate').value;
-    url += '&IsHistoryReport=' + $('IsHistoryReport').value;
+    var url = pageURL + '?' + 'custid=' + custid + '&fdate=' + document.getElementById('txtFdate').value + '&tdate=' + document.getElementById('txtTdate').value;
+    url += '&IsHistoryReport=' + document.getElementById('IsHistoryReport').value;
     url += '&IsVDL=1';
-    if ($('IsHistoryReport').value == '1' && $('ddlMonth')) {
-        url += '&month=' + $('ddlMonth').value.split('^')[0];
-        url += '&year=' + $('ddlMonth').value.split('^')[1];
+    if (document.getElementById('IsHistoryReport').value == '1' && document.getElementById('ddlMonth')) {
+        url += '&month=' + document.getElementById('ddlMonth').value.split('^')[0];
+        url += '&year=' + document.getElementById('ddlMonth').value.split('^')[1];
     }
     //url += urlFiltering();
     url += urlDLFiltering();
@@ -218,16 +218,16 @@ function doViewDownline2(pageURL, custid) {
 // -- Win Loss Detail: --
 function doViewDownlineDetail2(pageURL, custid) {
     var url = pageURL + '?' + 'custid=' + custid;
-    url += '&IsHistoryReport=' + $('IsHistoryReport').value;
-    if ($('IsHistoryReport').value == '1' && $('ddlMonth')) {
-        url += '&month=' + $('ddlMonth').value.split('^')[0];
-        url += '&year=' + $('ddlMonth').value.split('^')[1];
-        url += '&fdate=' + $('txtFdate').value.split('/')[1];
-        url += '&tdate=' + $('txtTdate').value.split('/')[1];
+    url += '&IsHistoryReport=' + document.getElementById('IsHistoryReport').value;
+    if (document.getElementById('IsHistoryReport').value == '1' && document.getElementById('ddlMonth')) {
+        url += '&month=' + document.getElementById('ddlMonth').value.split('^')[0];
+        url += '&year=' + document.getElementById('ddlMonth').value.split('^')[1];
+        url += '&fdate=' + document.getElementById('txtFdate').value.split('/')[1];
+        url += '&tdate=' + document.getElementById('txtTdate').value.split('/')[1];
     }
     else {
-        url += '&fdate=' + $('txtFdate').value;
-        url += '&tdate=' + $('txtTdate').value;
+        url += '&fdate=' + document.getElementById('txtFdate').value;
+        url += '&tdate=' + document.getElementById('txtTdate').value;
     }
     //url += urlFiltering();
     url += urlDLFiltering();
@@ -239,11 +239,11 @@ function ChangeView(flag) {
         f = 1;
     else f = 0;
 
-    var url = 'WinLossDetailMaster.aspx?fdate=' + $('fdate').value + '&tdate=' + $('tdate').value + '&custid=' + $('hdcus').value;
-    url += '&IsHistoryReport=' + $('IsHistoryReport').value + '&oldView=' + f;
-    if ($('IsHistoryReport').value == '1' && $('ddlMonth')) {
-        url += '&month=' + $('ddlMonth').value.split('^')[0];
-        url += '&year=' + $('ddlMonth').value.split('^')[1];
+    var url = 'WinLossDetailMaster.aspx?fdate=' + document.getElementById('fdate').value + '&tdate=' + document.getElementById('tdate').value + '&custid=' + document.getElementById('hdcus').value;
+    url += '&IsHistoryReport=' + document.getElementById('IsHistoryReport').value + '&oldView=' + f;
+    if (document.getElementById('IsHistoryReport').value == '1' && document.getElementById('ddlMonth')) {
+        url += '&month=' + document.getElementById('ddlMonth').value.split('^')[0];
+        url += '&year=' + document.getElementById('ddlMonth').value.split('^')[1];
     }
     url += urlFiltering();
     window.location.href = url;

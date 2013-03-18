@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Text;
-using Sunplus.Agent.Utilities;
 using System.Data;
+using Fanex.Age.Utility;
 
 namespace Sunplus.Agent.UI.ScoreMap.UI
 {

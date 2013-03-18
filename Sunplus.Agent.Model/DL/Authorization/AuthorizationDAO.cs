@@ -11,7 +11,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
     using System.Collections;
     using System.Data;
     using Fanex.Data.DNAide;
-    using Sunplus.Agent.Utilities;
+    using Fanex.Age.Utility;
 
     public class AuthorizationDAO : Sunplus.Agent.Model.DL.Base.DAOBase
     {
@@ -43,7 +43,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
             Hashtable parameters = new Hashtable();
 
             parameters.Add("custid", custId);
-            parameters.Add("userpwd", Encryption.CfsEnCode(password));
+            //parameters.Add("userpwd", Encryption.CfsEnCode(password));
             parameters.Add("username", string.Empty);
             parameters.Add("nickname", nickname);
             parameters.Add("isnickname", isNickname);
@@ -165,7 +165,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("username", userName);
-            parameters.Add("userpwd", Encryption.CfsEnCode(password));
+            //parameters.Add("userpwd", Encryption.CfsEnCode(password));
             parameters.Add("custid", 0);
             parameters.Add("subaccid", 0);
             parameters.Add("serverid", 0);
@@ -629,7 +629,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
 
             parameters.Add("username", string.Empty);
             parameters.Add("subusername", userName);
-            parameters.Add("userpwd", Encryption.CfsEnCode(password));
+            //parameters.Add("userpwd", Encryption.CfsEnCode(password));
             parameters.Add("language", language);
             parameters.Add("roleid", 0);
             parameters.Add("custid", 0);
@@ -672,7 +672,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
             Hashtable parameters = new Hashtable();
 
             parameters.Add("username", userName);
-            parameters.Add("userpwd", Encryption.CfsEnCode(password));
+            //parameters.Add("userpwd", Encryption.CfsEnCode(password));
             parameters.Add("language", language);
             parameters.Add("roleid", 0);
             parameters.Add("custid", 0);

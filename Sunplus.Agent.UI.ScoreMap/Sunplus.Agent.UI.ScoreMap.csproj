@@ -42,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Common">
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -65,10 +68,6 @@
     <Content Include="bin\CasinoLibrary.dll" />
     <Content Include="bin\CasinoSetting.dll" />
     <Content Include="bin\CasinoUtility.dll" />
-    <Content Include="bin\Debug\Sunplus.Agent.Model.dll" />
-    <Content Include="bin\Debug\Sunplus.Agent.UI.ScoreMap.dll" />
-    <Content Include="bin\Debug\Sunplus.Agent.UI.ScoreMap.pdb" />
-    <Content Include="bin\Debug\TplCore.dll" />
     <Content Include="bin\Enyim.Caching.dll" />
     <Content Include="bin\HandHistoryLibrary.dll" />
     <Content Include="bin\IBCCrypt.dll" />
@@ -127,10 +126,7 @@
     <Compile Include="UI\ScoreMap.cs" />
     <Compile Include="UI\ScoreMapBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Release\" />
-    <Folder Include="obj\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="App_GlobalResources\Lang.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
@@ -138,13 +134,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
+      <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
+      <Name>Fanex.Age.Utility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
       <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
       <Name>Sunplus.Agent.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj">
-      <Project>{016F274C-1F76-450B-B80D-E7FB59BE6A2B}</Project>
-      <Name>Sunplus.Agent.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

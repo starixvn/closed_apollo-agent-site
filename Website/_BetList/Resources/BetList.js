@@ -131,7 +131,7 @@ function ViewCasinoResult(refno, bettype, uname) {
 function ViewBingoResult(refno, uname) {
     var params = '?ibcrefno=' + refno + '&uname=' + uname;
     //include hidden fields for returning back
-    if ($('_type') != null) {
+    if (document.getElementById('_type') != null) {
         var arrayStatusItem = _page.FilterStatusCollection;
 
         params = SetParameterValue('type', _page.type, params);
@@ -152,7 +152,7 @@ function ViewBingoResult(refno, uname) {
 }
 
 function showMP(transid) {
-    var divEvent = $('divEvent_' + transid);
+    var divEvent = document.getElementById('divEvent_' + transid);
     if (divEvent.style.display == 'none') {
         if (divEvent.innerHTML == "") {
             ajax.Request(age.GetBaseUrl() + "_BetList/MixParlay/MixParlay.aspx", { method: 'get', parameters: 'transid=' + transid,
@@ -172,7 +172,7 @@ function showMP(transid) {
 }
 
 function showCombMP(transid, orderID) {
-    var divEvent = $('divEvent_' + transid + orderID);
+    var divEvent = document.getElementById('divEvent_' + transid + orderID);
     if (divEvent.style.display == 'none') {
         if (divEvent.innerHTML == "") {
             ajax.Request(age.GetBaseUrl() + "_BetList/MixParlay/CombinationMixParlay.aspx", { method: 'get', parameters: 'transid=' + transid,
@@ -205,7 +205,7 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid) {
 }
 
 function InitExcelFunction() {
-    var exportExcelImg = $("exporttoexcel");
+    var exportExcelImg = document.getElementById("exporttoexcel");
     if (exportExcelImg) {
         function exportExcelImg_OnClick(ev) {
             var url = location.href;
@@ -225,10 +225,10 @@ function InitExcelFunction() {
         age.addEvent(exportExcelImg, 'click', exportExcelImg_OnClick);
 
         exportExcelImg.onblur = function () {
-            $("exporttoexcel").focused = false;
+            document.getElementById("exporttoexcel").focused = false;
         }
         exportExcelImg.onfocus = function () {
-            $("exporttoexcel").focused = true;
+            document.getElementById("exporttoexcel").focused = true;
         }
     }
 }
@@ -237,7 +237,7 @@ function InitBetList() {
     var ageWnd = parent.ageWnd;
     if (typeof ageWnd != 'undefined' && ageWnd.loaded) {
         ageWnd.setRect(ageWnd.left, 50, 900, 720);  // to fix the popup when click "Bet List" link
-        $("exportExcelDiv").style.visibility = "hidden";
+        document.getElementById("exportExcelDiv").style.visibility = "hidden";
     }
 
     InitExcelFunction();
@@ -268,10 +268,11 @@ function getOffset(el) {
 }
 var BetList = {
     showCommDetail: function (transId, event) {
-        var pnlDetails = $("divDetail");
+        console.log(transId);
+        var pnlDetails = document.getElementById("divDetail");
         if (pnlDetails != undefined) {
             pnlDetails.style.display = 'block';
-            var tableMain = $("hor-minimalist-a");
+            var tableMain = document.getElementById("hor-minimalist-a");
             if (tableMain != undefined) {
                 var lastRowIndex = tableMain.rows.length - 1;
                 if (event.pageY > getOffset(tableMain.rows[lastRowIndex]).top) {
@@ -291,14 +292,14 @@ var BetList = {
                     asynchronous: true,
                     parameters: ajaxParameters,
                     onComplete: function (data) {
-                        $('detail-content').innerHTML = data.responseText;
+                        document.getElementById('detail-content').innerHTML = data.responseText;
                     }
                 }
            );
         }
     },
     hideCommDetail: function (transId, event) {
-        var pnlDetails = $("divDetail");
+        var pnlDetails = document.getElementById("divDetail");
         if (pnlDetails != undefined) {
             pnlDetails.style.display = 'none';
         }

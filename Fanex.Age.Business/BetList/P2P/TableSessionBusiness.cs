@@ -2,7 +2,7 @@
 {
     using System;
     using Fanex.Age.DTO.BetList.P2P;
-    using Sunplus.Agent.Utilities;
+    using Fanex.Age.Utility;
 
     /// <summary>
     /// TableSessionBusiness

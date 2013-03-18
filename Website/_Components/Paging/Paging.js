@@ -164,7 +164,7 @@ function Paging_SetDisableStyle(id)
 // Library functions
 
 function HasClassName(element, className) {
-    if (typeof element == 'string') element = $(element);
+    if (typeof element == 'string') element =  document.getElementById(element);
     var elementClassName = element.className;
     if (typeof elementClassName == 'undefined') return false;
     return (elementClassName.length > 0 && (elementClassName == className ||
@@ -172,14 +172,14 @@ function HasClassName(element, className) {
 }
 
 function AddClassName(element, className) {
-    if (typeof element == 'string') element = $(element);
+    if (typeof element == 'string') element =  document.getElementById(element);
     if (!HasClassName(element, className))
         element.className += (element.className ? ' ' : '') + className;
     return element;
 }
 
 function RemoveClassName(element, className) {
-    if (typeof element == 'string') element = $(element);
+    if (typeof element == 'string') element = document.getElementById(element);
     var elementClassName = element.className;
     if (typeof elementClassName == 'undefined') return false;
     element.className = element.className.replace(

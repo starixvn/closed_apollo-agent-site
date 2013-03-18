@@ -8,6 +8,7 @@
     <link href="../../../_Components/ErrorMsg/ErrorMsg.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+
     {static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
     {headerText}
     <div id="settingContainer" style="width: 936px;">
@@ -26,7 +27,7 @@
     <script src="../../../_Components/ErrorMsg/ErrorMsg.js" type="text/javascript"></script>
     <script src='../Handlers/GetBetLimit.ashx?targetCustId={TargetAgentId}&targetRoleId=2'
         type="text/javascript"></script>
-    <script src="../Resources/Engine/Languages/en.js" type="text/javascript"></script>
+    <script src='../Handlers/Language.ashx' type="text/javascript"></script>
     <script src="../Resources/Engine/Core.js" type="text/javascript"></script>
     <script src="../Resources/Engine/PTSetting.js" type="text/javascript"></script>
     <script src="../Resources/Engine/BettingLimit.js" type="text/javascript"></script>

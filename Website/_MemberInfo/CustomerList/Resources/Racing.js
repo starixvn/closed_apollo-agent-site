@@ -15,8 +15,8 @@ function CustomerEditHR(custid, actionOn, isMult) {
                 else {
                     url += "EditMaster.aspx?custid=" + custid;
                 }
-                $("arrayCustID").value = custid;
-                $("arrayUserName").value = "";
+                document.getElementById("arrayCustID").value = custid;
+                document.getElementById("arrayUserName").value = "";
             }
             else {
                 custid = GetCustID("chkid");
@@ -37,8 +37,8 @@ function CustomerEditHR(custid, actionOn, isMult) {
                 else {
                     url += "EditAgent.aspx?custid=" + custid;
                 }
-                $("arrayCustID").value = custid;
-                $("arrayUserName").value = "";
+                document.getElementById("arrayCustID").value = custid;
+                document.getElementById("arrayUserName").value = "";
             }
             else {
                 custid = GetCustID("chkid");
@@ -54,8 +54,8 @@ function CustomerEditHR(custid, actionOn, isMult) {
             url += "../../RaceBook/Agent/";
             if (isMult == 0) {
                 url += "EditMember.aspx?custid=" + custid;
-                $("arrayCustID").value = custid;
-                $("arrayUserName").value = "";
+                document.getElementById("arrayCustID").value = custid;
+                document.getElementById("arrayUserName").value = "";
             }
             else {
                 custid = GetCustID("chkid");
@@ -79,7 +79,7 @@ function OpenEditMinMaxHR(custid, username) {
     }
 
     url += '?custid=' + custid;
-    $("arrayCustID").value = custid;
+    document.getElementById("arrayCustID").value = custid;
     var popW = 800, popH = 900;
 
     //url, title, left, top, width, height

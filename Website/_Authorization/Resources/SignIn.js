@@ -77,43 +77,43 @@ function SelectLanguage(value) {
         flagBgX = flagWidth * 1;
     }
 
-    $('spnLanguage').style.backgroundPosition = flagBgX + 'px 0px';
-    $("errmsg").innerHTML = '';
+    document.getElementById('spnLanguage').style.backgroundPosition = flagBgX + 'px 0px';
+    document.getElementById("errmsg").innerHTML = '';
 }
 
 function SetValue(language, username, pwd, login, browser) {
-    $('hidLanguage').value = Languages[language];
-    $('spnUserName').innerHTML = username;
-    $('spnPassWord').innerHTML = pwd;
-    $('btnLogin').value = login;
-    $('divBrowser').innerHTML = browser;
-    $('txtUserName').focus();
-    $('selLanguage').value = language;
+    document.getElementById('hidLanguage').value = Languages[language];
+    document.getElementById('spnUserName').innerHTML = username;
+    document.getElementById('spnPassWord').innerHTML = pwd;
+    document.getElementById('btnLogin').value = login;
+    document.getElementById('divBrowser').innerHTML = browser;
+    document.getElementById('txtUserName').focus();
+    document.getElementById('selLanguage').value = language;
     setCookie('LANGUAGE', language, 30);
     CurrentLanguageId = language;
 }
 
 function DoLogin() {
     var errObj = LanguageMessages[CurrentLanguageId];
-    if ($('txtUserName').value == "") {
-        $("errmsg").innerHTML = errObj.errUserName;
-        $('txtUserName').focus();
+    if (document.getElementById('txtUserName').value == "") {
+        document.getElementById("errmsg").innerHTML = errObj.errUserName;
+        document.getElementById('txtUserName').focus();
         return false;
     }
-    if ($('txtPassWord').value == "") {
-        $("errmsg").innerHTML = errObj.errUserName;
-        $('txtPassWord').focus();
+    if (document.getElementById('txtPassWord').value == "") {
+        document.getElementById("errmsg").innerHTML = errObj.errUserName;
+        document.getElementById('txtPassWord').focus();
         return false;
     }
-    if ($('txtCaptcha').value == "") {
-        $("errmsg").innerHTML = errObj.errValidCode;
-        $('txtCaptcha').focus();
-        return false;
-    }
+//    if (document.getElementById('txtCaptcha').value == "") {
+//        document.getElementById("errmsg").innerHTML = errObj.errValidCode;
+//        document.getElementById('txtCaptcha').focus();
+//        return false;
+//    }
     
 
-    $('btnLogin').disabled = true;
-    $('btnLogin').className = 'buttondisable';
+    document.getElementById('btnLogin').disabled = true;
+    document.getElementById('btnLogin').className = 'buttondisable';
 
     document.fLogin.submit();
 
@@ -122,7 +122,7 @@ function DoLogin() {
 
 function GetValidateImage() {
     var objDate = new Date();
-    $("imgCode").src = "Handlers/Captcha.ashx?code=" + objDate.getMilliseconds();
+    document.getElementById("imgCode").src = "Handlers/Captcha.ashx?code=" + objDate.getMilliseconds();
 }
 
 function InitLogin() {
@@ -138,12 +138,12 @@ function InitLogin() {
     
     setTimeout(GetValidateImage, 120000);
 
-    if (typeof _page.errCode != 'undefined' && _page.errCode != 0) {
-        $("errmsg").innerHTML = _page.errMsg;
-        if (_page.errCode == 101) {
-            $('txtCaptcha').focus();
-        }
-    }
+//    if (typeof _page.errCode != 'undefined' && _page.errCode != 0) {
+//        document.getElementById("errmsg").innerHTML = _page.errMsg;
+//        if (_page.errCode == 101) {
+//            document.getElementById('txtCaptcha').focus();
+//        }
+//    }
 }
 //Script check HTML 5 for devices mobile
 if(document.getElementById("mobileId")!=undefined)

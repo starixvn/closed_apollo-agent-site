@@ -24,21 +24,21 @@ function CheckAll() {
         var arrAmt = checkID[i].value.split('_');
 
         if (arrAmt[0] != 0) {
-            checkID[i].checked = $("chkall").checked;
+            checkID[i].checked = document.getElementById("chkall").checked;
         }
     }
 }
 function ShowTransYesBalance(amt, custid, username) {
     var popH = 120, popW = 400;
-    ageWnd.open('../Popup/TransYesBalance.aspx?amt=' + amt + '&custid=' + custid + '&usn=' + username + '&status=' + $('statusFilter').value, '', 350, 100, popW, popH);
+    ageWnd.open('../Popup/TransYesBalance.aspx?amt=' + amt + '&custid=' + custid + '&usn=' + username + '&status=' + document.getElementById('statusFilter').value, '', 350, 100, popW, popH);
 }
 function showTransYesBalanceForAg(custid) {
     var popH = 420, popW = 450;
-    ageWnd.open('../Popup/TransYesBalanceForAgent.aspx?custid=' + custid + '&status=' + $('statusFilter').value, '', 50, 100, popW, popH);
+    ageWnd.open('../Popup/TransYesBalanceForAgent.aspx?custid=' + custid + '&status=' + document.getElementById('statusFilter').value, '', 50, 100, popW, popH);
 }
 function TransMulti() {
-    if ($('hdisInternalSite').value == 'True') {
-        alert($('hdNotAuthorized').value);
+    if (document.getElementById('hdisInternalSite').value == 'True') {
+        alert(document.getElementById('hdNotAuthorized').value);
         return;
     }
 
@@ -64,35 +64,35 @@ function TransMulti() {
     }
 
     if (custidmulti.length > 0) {
-        $('btntransfer2').disabled = true;
-        $('btntransfer').disabled = true;
+        document.getElementById('btntransfer2').disabled = true;
+        document.getElementById('btntransfer').disabled = true;
         custidmulti = custidmulti.substring(0, custidmulti.length - 1);
         var _arr = custidmulti.split('_');
 
         var isSelectedUserName = false;
-        if ($('txtUserName').value != null && $('txtUserName').value != 'Username or First/Last Name')
+        if (document.getElementById('txtUserName').value != null && document.getElementById('txtUserName').value != 'Username or First/Last Name')
             isSelectedUserName = true;
 
-        if (!$("chkall").checked || isSelectedUserName) {
-            if (confirm($('wrntransfer').value)) {
+        if (!document.getElementById("chkall").checked || isSelectedUserName) {
+            if (confirm(document.getElementById('wrntransfer').value)) {
                 DelayPage();
                 for (var i = 0; i < _arr.length; i++) {
                     ajax.Request('../Handlers/UpdateMultiTransferYesBalance.ashx', {
                         method: 'post',
-                        parameters: 'custid=' + _arr[i] + '&amount=0&ischeck=' + ($("chkall").checked && !isSelectedUserName) + '&isstatus=' + $('statusFilter').value + '&arrId=' + _arr,
+                        parameters: 'custid=' + _arr[i] + '&amount=0&ischeck=' + (document.getElementById("chkall").checked && !isSelectedUserName) + '&isstatus=' + document.getElementById('statusFilter').value + '&arrId=' + _arr,
                         asynchronous: false,
                         onSuccess: function (res) {
                             if (res.responseText == 'Ok') {
                                 issucc = true;
                             }
                             else if (res.responseText == '106') {
-                                $('btntransfer2').disabled = false;
-                                $('btntransfer').disabled = false;
-                                showErrMsg($('hdConfirmCloseSubdAcc').value, 0);
+                                document.getElementById('btntransfer2').disabled = false;
+                                document.getElementById('btntransfer').disabled = false;
+                                showErrMsg(document.getElementById('hdConfirmCloseSubdAcc').value, 0);
                             }
                             else if (res.responseText == '105') // kick out
                             {
-                                alert($('hdConfirmClosedAcc').value);
+                                alert(document.getElementById('hdConfirmClosedAcc').value);
                                 location.href = '../Authorization/Logout.ashx';
                             }
                             else {
@@ -104,7 +104,7 @@ function TransMulti() {
                                 mulError += '- ' + errarr[0] + '\n';
                             }
                             custidmulti = '';
-                            $("chkall").checked = false;
+                            document.getElementById("chkall").checked = false;
                             for (var i = 0; i < checkID.length; i++) {
                                 if (checkID[i].checked == true) {
                                     checkID[i].checked = false;
@@ -115,8 +115,8 @@ function TransMulti() {
                 }
 
                 if (mulError != '') {
-                    $('btntransfer2').disabled = false;
-                    $('btntransfer').disabled = false;
+                    document.getElementById('btntransfer2').disabled = false;
+                    document.getElementById('btntransfer').disabled = false;
                     alert(mulError);
                 }
                 if (issucc == true) {
@@ -124,29 +124,29 @@ function TransMulti() {
                 }
             }
             else {
-                $('btntransfer2').disabled = false;
-                $('btntransfer').disabled = false;
+                document.getElementById('btntransfer2').disabled = false;
+                document.getElementById('btntransfer').disabled = false;
             }
         }
         else {
-            if (confirm($('wrntransfer').value)) {
+            if (confirm(document.getElementById('wrntransfer').value)) {
                 DelayPage();
                 ajax.Request('../Handlers/UpdateMultiTransferYesBalance.ashx', {
                     method: 'post',
-                    parameters: 'custid=0&amount=0&ischeck=' + ($("chkall").checked && !isSelectedUserName) + '&isstatus=' + $('statusFilter').value + '&arrId=' + _arr,
+                    parameters: 'custid=0&amount=0&ischeck=' + (document.getElementById("chkall").checked && !isSelectedUserName) + '&isstatus=' + document.getElementById('statusFilter').value + '&arrId=' + _arr,
                     asynchronous: true,
                     onComplete: function (res) {
                         if (res.responseText == 'Ok') {
                             setTimeout("location = location.href", 2000);
                         }
                         else if (res.responseText == '106') {
-                            $('btntransfer2').disabled = false;
-                            $('btntransfer').disabled = false;
-                            showErrMsg($('hdConfirmCloseSubdAcc').value, 0);
+                            document.getElementById('btntransfer2').disabled = false;
+                            document.getElementById('btntransfer').disabled = false;
+                            showErrMsg(document.getElementById('hdConfirmCloseSubdAcc').value, 0);
                         }
                         else if (res.responseText == '105') // kick out
                         {
-                            alert($('hdConfirmClosedAcc').value);
+                            alert(document.getElementById('hdConfirmClosedAcc').value);
                             location.href = '../Authorization/Logout.ashx';
                         }
                         else {
@@ -156,13 +156,13 @@ function TransMulti() {
                                 setTimeout("location = location.href", 2000);
                             }
                             else {
-                                $('btntransfer2').disabled = false;
-                                $('btntransfer').disabled = false;
+                                document.getElementById('btntransfer2').disabled = false;
+                                document.getElementById('btntransfer').disabled = false;
                             }
                         }
 
                         custidmulti = "";
-                        $("chkall").checked = false;
+                        document.getElementById("chkall").checked = false;
                         for (var i = 0; i < checkID.length; i++) {
                             if (checkID[i].checked == true) {
                                 checkID[i].checked = false;
@@ -172,19 +172,19 @@ function TransMulti() {
                 });
             }
             else {
-                $('btntransfer2').disabled = false;
-                $('btntransfer').disabled = false;
+                document.getElementById('btntransfer2').disabled = false;
+                document.getElementById('btntransfer').disabled = false;
             }
         }
     }
     else {
-        Err($('errchooseitem').value);
+        Err(document.getElementById('errchooseitem').value);
     }
 }
 
 function Err(msg) {
-    $('spmsgerr').innerHTML = msg;
-    $('diverrmsg').style.display = window.attachEvent ? 'block' : 'table';
+    document.getElementById('spmsgerr').innerHTML = msg;
+    document.getElementById('diverrmsg').style.display = window.attachEvent ? 'block' : 'table';
 }
 
 function IsCheck() {
@@ -203,10 +203,10 @@ function IsCheck() {
     }
 
     if (isuncheck == true) {
-        $('chkall').checked = false;
+        document.getElementById('chkall').checked = false;
     }
     else {
-        $('chkall').checked = true;
+        document.getElementById('chkall').checked = true;
     }
 }
 
@@ -221,9 +221,9 @@ function GotoPageNext(url, site) {
 
 function searchByUsername(requestedPage, site, custId) {
     var status = "", username = "", allYesBal = "no";
-    status = $('statusFilter').value;
-    username = $('txtUserName').value;
-    allYesBal = ($('chkAllYesBal').checked ? "yes" : "no");
+    status = document.getElementById('statusFilter').value;
+    username = document.getElementById('txtUserName').value;
+    allYesBal = (document.getElementById('chkAllYesBal').checked ? "yes" : "no");
     var url = requestedPage + "?status=" + status + "&username=" + username + "&custId=" + custId + "&allYesBal=" + allYesBal;
     NavigatePage(1, url, site);
 }
@@ -232,15 +232,15 @@ function InitTagSuggestion() {
     initAutoComplete('txtUserName', '../_GlobalResources/Handlers/QueryUserName.ashx?isdir=1');
 }
 function onclickUser(username) {
-    if ($('txtUserName').value == username) {
-        $('txtUserName').className = 'text_f';
-        $('txtUserName').value = '';
+    if (document.getElementById('txtUserName').value == username) {
+        document.getElementById('txtUserName').className = 'text_f';
+        document.getElementById('txtUserName').value = '';
     }
 }
 function onblurUser(username) {
-    if ($('txtUserName').value == '') {
-        $('txtUserName').className = 'text_f1';
-        $('txtUserName').value = username;
+    if (document.getElementById('txtUserName').value == '') {
+        document.getElementById('txtUserName').className = 'text_f1';
+        document.getElementById('txtUserName').value = username;
     }
 }
 

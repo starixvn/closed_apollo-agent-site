@@ -16,6 +16,7 @@ namespace Sunplus.Agent.UI._Authorization
     using Sunplus.Agent.Model.BL.Authorization;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
+    using Fanex.Agent.UI._Authorization;
 
     public partial class SignIn_Page : Fanex.Age.UI.TplPage2
     {
@@ -97,22 +98,22 @@ namespace Sunplus.Agent.UI._Authorization
                 return;
             }
 
-            string code = Request["txtCaptcha"];
+          //  string code = Request["txtCaptcha"];
             _userName = userName;
 
-            if (code != session.CaptchaCode)
-            {
-                // if IsAllowAutomationCaptchaCode = true
-                // then allow selenium testing
-                if (!IsAllowAutomationCaptchaCode)
-                {
-                    // Create new code
-                    session.CaptchaCode = Encryption.RandomNumberString(4).ToUpperInvariant();
-                    // Return error
-                    RegisterJSONError(101, Resources.Lang.errInvalidCaptcha);
-                    return;
-                }
-            }
+          ////  if (code != session.CaptchaCode)
+          //  {
+          //      // if IsAllowAutomationCaptchaCode = true
+          //      // then allow selenium testing
+          //      if (!IsAllowAutomationCaptchaCode)
+          //      {
+          //          // Create new code
+          //          //session.CaptchaCode = Encryption.RandomNumberString(4).ToUpperInvariant();
+          //          // Return error
+          //          RegisterJSONError(101, Resources.Lang.errInvalidCaptcha);
+          //          return;
+          //      }
+          //  }
 
             AuthorizationBO bo = new AuthorizationBO(Session.SessionID);
 
@@ -226,14 +227,14 @@ namespace Sunplus.Agent.UI._Authorization
 
             // if allow automation test
             // pass a dummy value to by pass check javascript validation
-            if (IsAllowAutomationCaptchaCode)
-            {
-                tpl.captcha_value = "8799";
-            }
-            else
-            {
-                tpl.captcha_value = string.Empty;
-            }
+            //if (IsAllowAutomationCaptchaCode)
+            //{
+            //    tpl.captcha_value = "8799";
+            //}
+            //else
+            //{
+            //    tpl.captcha_value = string.Empty;
+            //}
 
             //Mobile Device Browser
             if (this.isMobileBrowser())

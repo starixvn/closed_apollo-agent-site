@@ -9,7 +9,7 @@ namespace Sunplus.Agent.Model.DL.SubAcc
 {
     using System.Collections;
     using System.Data;
-    using Sunplus.Agent.Utilities;
+    using Fanex.Age.Utility;
 
     public class SubAccDAO : Sunplus.Agent.Model.DL.Base.DAOBase
     {
@@ -79,7 +79,7 @@ namespace Sunplus.Agent.Model.DL.SubAcc
             parameters.Add("subaccid", 0);
             parameters.Add("custid", custId); // Current main account id
             parameters.Add("username", userName);
-            parameters.Add("userpwd", Encryption.CfsEnCode(userPwd));
+            //parameters.Add("userpwd", Encryption.CfsEnCode(userPwd));
             parameters.Add("firstname", firstName);
             parameters.Add("lastname", lastName);
             parameters.Add("pageaccess", pageAccess);
@@ -206,7 +206,7 @@ namespace Sunplus.Agent.Model.DL.SubAcc
             parameters.Add("subaccid", subAccId);
             parameters.Add("custid", custId);
             parameters.Add("language", language);
-            parameters.Add("userpwd", Encryption.CfsEnCode(userPwd));
+            //parameters.Add("userpwd", Encryption.CfsEnCode(userPwd));
             parameters.Add("loginsubaccid", loginSubAccId);
             parameters.Add("userid", userId);
             parameters.Add("errcode", 0);
@@ -244,8 +244,8 @@ namespace Sunplus.Agent.Model.DL.SubAcc
             parameters.Add("subaccid", subAccId);
             parameters.Add("custid", custId);
             parameters.Add("language", language);
-            parameters.Add("userpwd", Encryption.CfsEnCode(newPassword));
-            parameters.Add("oldpwd", Encryption.CfsEnCode(oldPassword));
+            //parameters.Add("userpwd", Encryption.CfsEnCode(newPassword));
+            //parameters.Add("oldpwd", Encryption.CfsEnCode(oldPassword));
             parameters.Add("errcode", 0);
             parameters.Add("loginip", ip);
             parameters.Add("errmsg", string.Empty);

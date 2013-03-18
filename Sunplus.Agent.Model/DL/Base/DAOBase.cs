@@ -9,16 +9,15 @@ using System.Data;
 
 namespace Sunplus.Agent.Model.DL.Base
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using Fanex.Data.Configuration;
     using Fanex.Data.DNAide;
-    using Sunplus.Agent.Configurations;
     using Sunplus.Agent.Model.DL.Definitions;
     using Sunplus.Agent.Model.Services;
     using Fanex.PTEngine.BusinessObjects;
     using Fanex.Data;
+    using Fanex.Age.Utility;
 
     public class DAOBase
     {
@@ -196,7 +195,7 @@ namespace Sunplus.Agent.Model.DL.Base
                 {
                     // Throw DataException and log the SP calling
                     DataException error = new DataException(name, parameters);
-                    Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                    Logs.Write(error.Message);
                     throw error;
                 }
                 else
@@ -242,7 +241,7 @@ namespace Sunplus.Agent.Model.DL.Base
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException(name, parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }
@@ -319,7 +318,7 @@ namespace Sunplus.Agent.Model.DL.Base
             {
                 // Throw DataException and log the SP calling
                 DataException error = new DataException(name, parameters);
-                Sunplus.Agent.Utilities.Logs.Write(error.Message);
+                Logs.Write(error.Message);
                 throw error;
             }
         }

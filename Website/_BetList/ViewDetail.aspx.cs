@@ -136,8 +136,16 @@ namespace Sunplus.Agent.UI._BetList
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
-            return bo.GetAgentPTComm(transID, agentID, fromDate, toDate, ReportsBO.MoveBetsDate, true, false);
+            try
+            {
+                BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
+                return bo.GetAgentPTComm(transID, agentID, fromDate, toDate, ReportsBO.MoveBetsDate, true, false);
+            }
+            catch (Exception ex) { 
+                //writelog
+            }
+
+            return null;
         }
 
         private object RenderNoInfo()

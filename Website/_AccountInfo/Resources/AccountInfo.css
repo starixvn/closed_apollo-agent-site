@@ -363,7 +363,7 @@ a.tab_menu03:hover
 .divLinkSetting
 {
 	/*float: left;*/
-	width: 91px;
+	width: 175px;
 	text-align: left;
 }
 .divLinkSetting2
@@ -1061,13 +1061,15 @@ a.btnList:hover {
 }
 
 .view-agent-downline img {
-    margin: -3px 3px;
+    margin: -3px -3px 0 3px;
 }
 
 .agent-downline-list {
     display: none;
     margin: 0;
-    padding: 0;
+    padding: 10px 5px;
+    background: #fff;
+    border: 1px solid #E2E2E2;
 }
 
 .agent-downline-list li {
@@ -1093,13 +1095,14 @@ a.btnList:hover {
 
 .treeview li a {
     color: #2678C5;
+    text-decoration: none;
 }
 
 /* agent tab */
 
 .agent-tab {
     display: none;
-    min-height: 200px;
+    height: 560px;
     overflow: auto;
     width: 100%;
 }
@@ -1134,4 +1137,17 @@ a.btnList:hover {
 
 .member-tab-list li a:hover {
    color: #FF9000;
+}
+
+.no-data {
+    text-align: center;
+    margin: auto;
+    padding-left: 19px;
+}
+
+.no-data-agent {
+    text-align: center;
+    margin: auto;
+    padding-left: 24px;
+    padding-top: 31px;
 }

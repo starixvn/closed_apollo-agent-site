@@ -5,7 +5,7 @@ function GetFCAH(matchId, score, bettype) {
         method: 'post',
         parameters: 'matchid=' + matchId + '&score=' + score + "&b=" + bettype + "&full_mode=0",
         onComplete: function(rs) {
-            $('sContent').innerHTML = rs.responseText;
+            document.getElementById('sContent').innerHTML = rs.responseText;
         }
     });
 }
@@ -26,7 +26,7 @@ function RefreshFC() {
     document.getElementById('CountDownRefresh').innerHTML = loadingTxt;
 
     
-    var leagueid = $('ddlLeague') ? $('ddlLeague').value : null;
+    var leagueid = document.getElementById('ddlLeague') ? document.getElementById('ddlLeague').value : null;
     // Get href
 
     var href = window.location.href;
@@ -47,7 +47,7 @@ function RefreshFC() {
     var ajaxParameters = leagueid != null ? 'full_mode=0&leagueid=' + leagueid : 'full_mode=0';
     ajax.Request(href, { asynchronous: true, parameters: ajaxParameters
                             , onComplete: function(data) {
-                                $('sContent').innerHTML = data.responseText;
+                                document.getElementById('sContent').innerHTML = data.responseText;
                                 RefreshCountDown_Init();
                             }
     });
@@ -57,8 +57,8 @@ function RefreshFC() {
 
 function GetForecastByLeague() {
     var leagueid = null;
-    if ($('ddlLeague')) {
-        leagueid = $('ddlLeague').value;
+    if (document.getElementById('ddlLeague')) {
+        leagueid = document.getElementById('ddlLeague').value;
     }
     if (leagueid) {
         ajax.Request(location.href, {
@@ -66,7 +66,7 @@ function GetForecastByLeague() {
             method: 'post',
             parameters: 'full_mode=0&leagueid=' + leagueid,
             onComplete: function(rs) {
-                $('sContent').innerHTML = rs.responseText;
+                document.getElementById('sContent').innerHTML = rs.responseText;
             }
         });
     }

@@ -1,12 +1,12 @@
 ﻿function updateCustomerInfo(custId) {
     //    custid, firstName, lastName, phone, mobilePhone, email, fax
-    //    var div = $(divId);
-    var txtFName = $('txtFName');
-    var txtLName = $('txtLName');
-    var txtPhone = $('txtPhone');
-    var txtMobile = $('txtMobile');
-    var txtEmail = $('txtEmail');
-    var txtFax = $('txtFax');
+    //    var div = document.getElementById(divId);
+    var txtFName = document.getElementById('txtFName');
+    var txtLName = document.getElementById('txtLName');
+    var txtPhone = document.getElementById('txtPhone');
+    var txtMobile = document.getElementById('txtMobile');
+    var txtEmail = document.getElementById('txtEmail');
+    var txtFax = document.getElementById('txtFax');
     var isSyncCS = _page.isSync;
     var errMsg = CheckValidateEmail(txtEmail.value);
 
@@ -51,17 +51,17 @@ function validateEmail(email) {
 }
 
 function Reset() {
-    $('txtFName').value = '';
-    $('txtLName').value = '';
-    $('txtPhone').value = '';
-    $('txtMobile').value = '';
-    $('txtEmail').value = '';
-    $('txtFax').value = '';
+    document.getElementById('txtFName').value = '';
+    document.getElementById('txtLName').value = '';
+    document.getElementById('txtPhone').value = '';
+    document.getElementById('txtMobile').value = '';
+    document.getElementById('txtEmail').value = '';
+    document.getElementById('txtFax').value = '';
 }
 
 function CustomerInfoOnLoad() {
-    if ((parent.ageWnd != null) && (typeof ($('title_header')) != 'undefined')) {
-        $('title_header').style.display = 'none';
+    if ((parent.ageWnd != null) && (typeof (document.getElementById('title_header')) != 'undefined')) {
+        document.getElementById('title_header').style.display = 'none';
     }
 }
 

@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Text;
-using System.Web;
-using System.Web.Security;
-using Fanex.Age.UI;
-using Fanex.Age.UI.Components;
-using Fanex.Agent.UI._SubAcc;
-using Sunplus.Agent.Model.BL.Base;
-using Sunplus.Agent.Model.BL.Definitions;
-using Sunplus.Agent.Model.BL.SubAcc;
-using Sunplus.Agent.Model.Entities;
-
-/*
- * Created 20091224@Lee - Render sub-account listing page
- * Revision:
- * ?@? - ...
- *
- */
-
-namespace Sunplus.Agent.UI._SubAcc
+﻿namespace Sunplus.Agent.UI._SubAcc
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Web;
+    using Fanex.Age.UI.Components;
+    using Fanex.Agent.UI._SubAcc;
+    using Sunplus.Agent.Model.BL.SubAcc;
+    using Sunplus.Agent.Model.Entities;
+
+    /*
+     * Created 20091224@Lee - Render sub-account listing page
+     * Revision:
+     * ?@? - ...
+     *
+     */
+
     public partial class SubAccList_Page : Fanex.Age.UI.TplPage
     {
         private int _AgentId = 0;
@@ -75,7 +68,7 @@ namespace Sunplus.Agent.UI._SubAcc
             RegisterJavascriptObject("NonePM", Resources.Lang.none);
 
             SubAccList_Template tpl = new SubAccList_Template();
-            List<ShadowAccount> subAccList = View as List<ShadowAccount>;
+            List<AgentUserAccount> subAccList = View as List<AgentUserAccount>;
 
             // Render html from data and template
 
@@ -100,12 +93,21 @@ namespace Sunplus.Agent.UI._SubAcc
 
             tpl.Content.Clear();
             SubAccList_Content_Block rowContent = new SubAccList_Content_Block();
-            rowContent.overcolor = "#f8ff8d";
-            rowContent.color = "#faf9ee";
+            rowContent.overcolor = "#FBF0B9";
 
             for (int i = 0; i < c; i++)
             {
-                ShadowAccount subAcc = subAccList[i];
+                AgentUserAccount subAcc = subAccList[i];
+
+                if (i % 2 == 0)
+                {
+                    rowContent.color = "#F6F8F9";
+                }
+                else
+                {
+                    rowContent.color = "#faf9ee";
+                }
+
                 RenderSubAccount(rowContent, i, subAcc);
                 tpl.Content.Append(rowContent);
             }
@@ -113,33 +115,32 @@ namespace Sunplus.Agent.UI._SubAcc
             writer.Write(tpl);
         }
 
-        private void RenderSubAccount(SubAccList_Content_Block rowContent, int i, ShadowAccount subAcc)
+        private void RenderSubAccount(SubAccList_Content_Block rowContent, int i, AgentUserAccount subAcc)
         {
             rowContent.no_value = (i + 1).ToString();
             rowContent.shadow_value = HttpUtility.HtmlEncode(subAcc.Username);
             rowContent.agentuserid_value = subAcc.AgentUserId.ToString();
             rowContent.agentid_value = this.AgentId.ToString();
 
-            rowContent.totalbet_forecast_checked = rowContent.report_checked = rowContent.accountsetting_checked_read = rowContent.shadowmanagement_checked_read = rowContent.admin_checked_read = string.Empty;
-            rowContent.shadowmanagement_checked_host = rowContent.accountsetting_checked_host = rowContent.admin_checked_host = "disabled=true";
+            rowContent.totalbet_forecast_checked = rowContent.report_checked = rowContent.accountsetting_checked_read = rowContent.admin_checked_read = string.Empty;
+            rowContent.accountsetting_checked_host = rowContent.admin_checked_host = "disabled=true";
 
-
-            if (subAcc.PageAccess != "")
+            if (!string.IsNullOrEmpty(subAcc.PageAccess))
             {
                 string[] permissions = subAcc.PageAccess.Split("-".ToCharArray());
                 foreach (string item in permissions)
                 {
-                    if (item.Contains(ShadowAccess.TotalBet_ForeCast))
+                    if (item.Contains(AgentUserAccess.TotalBet_ForeCast))
                     {
                         rowContent.totalbet_forecast_checked = "Checked=true";
                     }
-                    else if (item.Contains(ShadowAccess.Report))
+                    else if (item.Contains(AgentUserAccess.Report))
                     {
                         rowContent.report_checked = "Checked=true";
                     }
-                    else if (item.Contains(ShadowAccess.AccountSeting))
+                    else if (item.Contains(AgentUserAccess.AccountSeting))
                     {
-                        if (item.Contains(ShadowAccess.Host))
+                        if (item.Contains(AgentUserAccess.Host))
                         {
                             rowContent.accountsetting_checked_host = "Checked=true";
                             rowContent.accountsetting_checked_read = "Checked=true disabled=true ";
@@ -147,23 +148,12 @@ namespace Sunplus.Agent.UI._SubAcc
                         else
                         {
                             rowContent.accountsetting_checked_read = "Checked=true";
-                        }
-                    }
-                    else if (item.Contains(ShadowAccess.ShadowManagement))
-                    {
-                        if (item.Contains(ShadowAccess.Host))
-                        {
-                            rowContent.shadowmanagement_checked_host = "Checked=true";
-                            rowContent.shadowmanagement_checked_read = "Checked=true disabled=true ";
-                        }
-                        else
-                        {
-                            rowContent.shadowmanagement_checked_read = "Checked=true";
+                            rowContent.accountsetting_checked_host = string.Empty;
                         }
                     }
                     else
                     {
-                        if (item.Contains(ShadowAccess.Host))
+                        if (item.Contains(AgentUserAccess.Host))
                         {
                             rowContent.admin_checked_host = "Checked=true";
                             rowContent.admin_checked_read = "Checked=true disabled=true";
@@ -171,6 +161,7 @@ namespace Sunplus.Agent.UI._SubAcc
                         else
                         {
                             rowContent.admin_checked_read = "Checked=true";
+                            rowContent.admin_checked_host = string.Empty;
                         }
                     }
                 }

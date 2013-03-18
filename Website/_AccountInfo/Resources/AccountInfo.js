@@ -4,7 +4,7 @@ var oldClassName = 'b_left';
 var newClassName = 'b_left_hover';
 
 function checkAndSubmitUI() {
-    if ($('txtUsername').value == '') {
+    if (document.getElementById('txtUsername').value == '') {
         alert(_page.usernamerequired);
         return;
     }
@@ -21,7 +21,7 @@ function checkKeyPress(e, textboxCredit) {
             return false;
         }
         if (key == 13) {
-            var givencredit = replaceAll($(textboxCredit).value, ",", "");
+            var givencredit = replaceAll(document.getElementById(textboxCredit).value, ",", "");
             if (!isNumeric(givencredit)) {
                 alert(_page.invalidvalue);
                 return false;
@@ -35,7 +35,7 @@ function checkKeyPress(e, textboxCredit) {
 
     function onComplete(result) {
         if (result.errCode == 0) {
-            $("spantxtGivenCredit").innerHTML = result.amount.toString();
+            document.getElementById("spantxtGivenCredit").innerHTML = result.amount.toString();
             changeCredit(false, textboxCredit);
         }
         else alert(result.errMsg);
@@ -44,19 +44,19 @@ function checkKeyPress(e, textboxCredit) {
 
 function changeCredit(ischanging, textboxCredit) {
     try {
-        var spanGC = $('span' + textboxCredit);
-        var txtGC = $(textboxCredit);
+        var spanGC = document.getElementById('span' + textboxCredit);
+        var txtGC = document.getElementById(textboxCredit);
         if (typeof ischanging != 'undefined' && ischanging) {
-            if ($('tdMemMaxCredit')) $('tdMemMaxCredit').innerHTML = _page.lblMemberMax; //for nice GUI
-            if ($('tdAgOutstand')) $('tdAgOutstand').innerHTML = _page.lblAgOutst; //for nice GUI
+            if (document.getElementById('tdMemMaxCredit')) document.getElementById('tdMemMaxCredit').innerHTML = _page.lblMemberMax; //for nice GUI
+            if (document.getElementById('tdAgOutstand')) document.getElementById('tdAgOutstand').innerHTML = _page.lblAgOutst; //for nice GUI
             txtGC.value = replaceAll(spanGC.innerHTML, ",", "");
             spanGC.style.display = 'none';
             txtGC.style.display = ''
             txtGC.focus();
         }
         else {
-            if ($('tdMemMaxCredit')) $('tdMemMaxCredit').innerHTML = _page.lblMemberMaxCredit;
-            if ($('tdAgOutstand')) $('tdAgOutstand').innerHTML = _page.lblAgentOutstanding;
+            if (document.getElementById('tdMemMaxCredit')) document.getElementById('tdMemMaxCredit').innerHTML = _page.lblMemberMaxCredit;
+            if (document.getElementById('tdAgOutstand')) document.getElementById('tdAgOutstand').innerHTML = _page.lblAgentOutstanding;
             spanGC.style.display = '';
             txtGC.style.display = 'none';
         }
@@ -74,8 +74,8 @@ function changeSuspendedStatus(evt, objDiv) {
     if (objDiv.childNodes[1].disabled) {
         return _stopEvent(evt);
     }
-    var isSuspended = $('chkSuspend').checked ? false : true;
-    $('hdnTypeStatus').value = 'NO_POP'; //type popup: No popup
+    var isSuspended = document.getElementById('chkSuspend').checked ? false : true;
+    document.getElementById('hdnTypeStatus').value = 'NO_POP'; //type popup: No popup
     if (isSuspended) {
         if (!confirm(_page.confirmSuspendDownline)) {
             return _stopEvent(evt);
@@ -88,7 +88,7 @@ function changeSuspendedStatus(evt, objDiv) {
 
     function onComplete(result) {
         if (result.errCode == 0) {
-            $('chkSuspend').checked = isSuspended;
+            document.getElementById('chkSuspend').checked = isSuspended;
         }
         else {
             alert(result.errMsg);
@@ -98,7 +98,7 @@ function changeSuspendedStatus(evt, objDiv) {
 
 function changeClosedStatus(evt, objDiv) {
     if (objDiv.childNodes[1].disabled) return _stopEvent(evt);
-    var isClosed = $('chkClosed').checked ? false : true;
+    var isClosed = document.getElementById('chkClosed').checked ? false : true;
     var isClearAllCredit = false;
     if (isClosed) { //do close
         showClosedPopup();
@@ -108,21 +108,21 @@ function changeClosedStatus(evt, objDiv) {
         if (!confirm(_page.confirmOpenMem)) {
             return;
         }
-        $('hdnTypeStatus').value = 'NO_POP'; //type popup
+        document.getElementById('hdnTypeStatus').value = 'NO_POP'; //type popup
         updateCloseStatus(isClosed, false);
     }
 
     function showClosedPopup() {
-        $('agtype').innerHTML = _page.closedStatus;
-        $('chkEnabled').checked = true;
-        $('chkEnabled').disabled = true;
-        $('hdnTypeStatus').value = 'Closed'; //type popup
-        $('lblEnableStatus').innerHTML = _page.titleclose; //title popup
-        $('lbldownline').innerHTML = _page.lblclearallcredit;
-        $('chkEnabledDL').disabled = true; // False
-        $('chkEnabledDL').checked = false; // True
-        $('btnUpdStatus').disabled = false;
-        $('btnUpdStatus').onclick = function() {
+        document.getElementById('agtype').innerHTML = _page.closedStatus;
+        document.getElementById('chkEnabled').checked = true;
+        document.getElementById('chkEnabled').disabled = true;
+        document.getElementById('hdnTypeStatus').value = 'Closed'; //type popup
+        document.getElementById('lblEnableStatus').innerHTML = _page.titleclose; //title popup
+        document.getElementById('lbldownline').innerHTML = _page.lblclearallcredit;
+        document.getElementById('chkEnabledDL').disabled = true; // False
+        document.getElementById('chkEnabledDL').checked = false; // True
+        document.getElementById('btnUpdStatus').disabled = false;
+        document.getElementById('btnUpdStatus').onclick = function() {
             var confirmMsg = _page.CustRoleId == 1 ? _page.confirmCloseMem : _page.alertCloseCustDownline;
             if (!confirm(confirmMsg)) {
                 closeDivPopup();
@@ -140,7 +140,7 @@ function changeClosedStatus(evt, objDiv) {
 
         function onComplete(result) {
             if (result.errCode == 0) {
-                $('chkClosed').checked = isClosed;
+                document.getElementById('chkClosed').checked = isClosed;
                 if (isClearAllCredit) resetGivenCredit();
             }
             else alert(result.errMsg);
@@ -151,15 +151,15 @@ function changeClosedStatus(evt, objDiv) {
 
 function changeOutrightStatus(evt, objDiv) {
     if (objDiv.childNodes[1].disabled) return _stopEvent(evt);
-    var isDisabled = $('chkOutright').checked;
-    $('hdnTypeStatus').value = 'NO_POP'; //type popup: No popup
+    var isDisabled = document.getElementById('chkOutright').checked;
+    document.getElementById('hdnTypeStatus').value = 'NO_POP'; //type popup: No popup
     var confirmMessage = isDisabled ? _page.confirmDisableOutright_Member : _page.confirmAllowOutright;
     if (!confirm(confirmMessage)) return _stopEvent(evt);
     ajax.PostJSON('Handlers/UpdateOutrightStatus.ashx', 'custid=' + _page.UserId + '&isdisabled=' + isDisabled, onComplete);
 
     function onComplete(result) {
         if (result.errCode == 0) {
-            $('chkOutright').checked = !isDisabled;
+            document.getElementById('chkOutright').checked = !isDisabled;
         }
         else alert(result.errMsg);
     }
@@ -167,8 +167,8 @@ function changeOutrightStatus(evt, objDiv) {
 
 function changeAutoMPTStatus(evt, objDiv) {
     if (objDiv.childNodes[1].disabled) return _stopEvent(evt);
-    var isDisabled = $('chkMAutoPT').checked;
-    $('hdnTypeStatus').value = 'NO_POP'; //No popup
+    var isDisabled = document.getElementById('chkMAutoPT').checked;
+    document.getElementById('hdnTypeStatus').value = 'NO_POP'; //No popup
     if (!confirm((isDisabled) ? _page.confirmDisableMAutoPT : _page.confirmEnableMAutoPT)) {
         return _stopEvent(evt);
     }
@@ -176,7 +176,7 @@ function changeAutoMPTStatus(evt, objDiv) {
 
     function onComplete(result) {
         if (result.errCode == 0) {
-            $('chkMAutoPT').checked = !isDisabled;
+            document.getElementById('chkMAutoPT').checked = !isDisabled;
         }
         else alert(result.errMsg);
     }
@@ -185,43 +185,43 @@ function changeAutoMPTStatus(evt, objDiv) {
 function allowSubmit(chkDisablePop) {
     //check agent status has changed to enable button submit
     if (!chkDisablePop.checked) {
-        $('btnUpdStatus').disabled = true;
-        $('btnUpdStatus').className = "btn2";
+        document.getElementById('btnUpdStatus').disabled = true;
+        document.getElementById('btnUpdStatus').className = "btn2";
     }
     else {
-        $('btnUpdStatus').disabled = false;
-        $('btnUpdStatus').className = "btn";
+        document.getElementById('btnUpdStatus').disabled = false;
+        document.getElementById('btnUpdStatus').className = "btn";
     }
     //control downline status when change agent status
     if (chkDisablePop.checked == false) { //disable
-        $('chkEnabledDL').checked = false;
-        $('chkEnabledDL').disabled = true;
-        $('spanChkEnabledDL').style.display = 'none';
+        document.getElementById('chkEnabledDL').checked = false;
+        document.getElementById('chkEnabledDL').disabled = true;
+        document.getElementById('spanChkEnabledDL').style.display = 'none';
     }
     else { //enable
-        $('chkEnabledDL').checked = false;
-        $('chkEnabledDL').disabled = false;
-        $('spanChkEnabledDL').style.display = '';
+        document.getElementById('chkEnabledDL').checked = false;
+        document.getElementById('chkEnabledDL').disabled = false;
+        document.getElementById('spanChkEnabledDL').style.display = '';
     }
 }
 
 function resetGivenCredit() {
-    $('spantxtGivenCredit').innerHTML = '0.00';
+    document.getElementById('spantxtGivenCredit').innerHTML = '0.00';
 }
 
 function assignDefaultPopupValue() {
-    $('btnUpdStatus').className = "btn2";
-    $('agtype').innerHTML = _page.agenttype;
-    $('btnUpdStatus').disabled = true;
-    $('chkEnabled').checked = false;
-    $('chkEnabled').disabled = false;
-    $('chkEnabledDL').checked = false;
-    $('chkEnabledDL').disabled = true;
-    $('spanChkEnabledDL').style.display = 'none';
+    document.getElementById('btnUpdStatus').className = "btn2";
+    document.getElementById('agtype').innerHTML = _page.agenttype;
+    document.getElementById('btnUpdStatus').disabled = true;
+    document.getElementById('chkEnabled').checked = false;
+    document.getElementById('chkEnabled').disabled = false;
+    document.getElementById('chkEnabledDL').checked = false;
+    document.getElementById('chkEnabledDL').disabled = true;
+    document.getElementById('spanChkEnabledDL').style.display = 'none';
 }
 
 function showDivPopup(idCheckBox) {
-    var obj = $(idCheckBox);
+    var obj = document.getElementById(idCheckBox);
     var curtop = 0;
     if (obj.offsetParent) {
         do {
@@ -229,30 +229,30 @@ function showDivPopup(idCheckBox) {
         } while (obj = obj.offsetParent);
     }
     curtop += 16;
-    $('disabledStatusPop').style.top = curtop + 'px';
-    $('disabledStatusPop').style.display = 'block'; //show popup
-    $('overlayBg').style.display = 'block'; //show overlay
+    document.getElementById('disabledStatusPop').style.top = curtop + 'px';
+    document.getElementById('disabledStatusPop').style.display = 'block'; //show popup
+    document.getElementById('overlayBg').style.display = 'block'; //show overlay
 }
 
 function closeDivPopup() {
-    if ($('disabledStatusPop')) $('disabledStatusPop').style.display = 'none';
-    $('overlayBg').style.display = 'none';
+    if (document.getElementById('disabledStatusPop')) document.getElementById('disabledStatusPop').style.display = 'none';
+    document.getElementById('overlayBg').style.display = 'none';
 }
 
 function toggleCheckBox(chkId) {
-    $(chkId).checked = !$(chkId).checked;
+    document.getElementById(chkId).checked = !document.getElementById(chkId).checked;
 }
 
 function loadCustDownlineList(downlineList) {
-    $("tabdownline").innerHTML = downlineList;
+    document.getElementById("tabdownline").innerHTML = downlineList;
 }
 
 function showEditPage(isShow) {
-    $('spPage').style.display = (isShow == 1) ? 'none' : '';
-    $('txtPage').style.display = (isShow == 1) ? '' : 'none';
+    document.getElementById('spPage').style.display = (isShow == 1) ? 'none' : '';
+    document.getElementById('txtPage').style.display = (isShow == 1) ? '' : 'none';
     if (isShow) {
-        $('txtPage').value = $('spPage').innerHTML;
-        $('txtPage').focus();
+        document.getElementById('txtPage').value = document.getElementById('spPage').innerHTML;
+        document.getElementById('txtPage').focus();
     }
 }
 
@@ -268,8 +268,8 @@ function checkDownlinePageKeyPress(e, textbox) {
         if (key == 13) {
             var fr = self.frames['frmDownlineList'];
             if (typeof fr != 'undefined' && fr) {
-                var pageIdx = parseInt($('txtPage').value);
-                var totalPage = parseInt($('hdnTotalPage').value);
+                var pageIdx = parseInt(document.getElementById('txtPage').value);
+                var totalPage = parseInt(document.getElementById('hdnTotalPage').value);
                 if (pageIdx < 1 || pageIdx > totalPage) return false;
                 showLoadingDownline(1);
                 fr.location.href = 'DownlineListInfo.aspx?custid=' + _page.UserId + '&pageidx=' + pageIdx + '&totalpages=' + totalPage;
@@ -284,25 +284,25 @@ function checkDownlinePageKeyPress(e, textbox) {
 }
 
 function showLoadingDownline(isShow) {
-    $('ploading').style.display = (isShow == 1) ? "" : "none";
+    document.getElementById('ploading').style.display = (isShow == 1) ? "" : "none";
 }
 
 function loadCustOnlineList(onlineList) {
-    $("tbl_onlinelist").innerHTML = onlineList;
+    document.getElementById("tbl_onlinelist").innerHTML = onlineList;
 }
 
 function showDownlineList(isShow) {
     if (isShow == 1) {
-        $('tabbalance').style.display = 'none';
-        $('tabdownline').style.display = '';
-        //$('balinfo').className = "";
-        //$('userdownline').className = "current";
+        document.getElementById('tabbalance').style.display = 'none';
+        document.getElementById('tabdownline').style.display = '';
+        //document.getElementById('balinfo').className = "";
+        //document.getElementById('userdownline').className = "current";
     }
     else {
-        $('tabbalance').style.display = '';
-        $('tabdownline').style.display = 'none';
-        $('balinfo').className = "current";
-        $('userdownline').className = "";
+        document.getElementById('tabbalance').style.display = '';
+        document.getElementById('tabdownline').style.display = 'none';
+        document.getElementById('balinfo').className = "current";
+        document.getElementById('userdownline').className = "";
     }
 }
 //Show/hide customer settings tab
@@ -310,25 +310,24 @@ function showDownlineList(isShow) {
 function showSection(sectionID, agentId) {   
     switch (sectionID) {
         case "custsettings":
-            $("agentsTab").className = "";
-            $("membersTab").className = "";
-            $("tbl_agentsTab").style.display = "none";
-            $("tbl_membersTab").style.display = "none";
+            document.getElementById("agentsTab").className = "";
+            document.getElementById("membersTab").className = "";
+            document.getElementById("tbl_agentsTab").style.display = "none";
+            document.getElementById("tbl_membersTab").style.display = "none";
             break;
         case "agentsTab":
-            $("custsettings").className = "";
-            $("membersTab").className = "";
-            $("tbl_custsettings").style.display = "none";
-            $("tbl_membersTab").style.display = "none";
-            $("tbl_agentsTab").style.display = "block";
-            bindAgentsList(agentId);
+            document.getElementById("custsettings").className = "";
+            document.getElementById("membersTab").className = "";
+            document.getElementById("tbl_custsettings").style.display = "none";
+            document.getElementById("tbl_membersTab").style.display = "none";
+            document.getElementById("tbl_agentsTab").style.display = "block";           
             break;
         case "membersTab":
-            $("custsettings").className = "";
-            $("agentsTab").className = "";
-            $("tbl_agentsTab").style.display = "none";
-            $("tbl_custsettings").style.display = "none";
-            $("tbl_membersTab").style.display = "none";
+            document.getElementById("custsettings").className = "";
+            document.getElementById("agentsTab").className = "";
+            document.getElementById("tbl_agentsTab").style.display = "none";
+            document.getElementById("tbl_custsettings").style.display = "none";
+            document.getElementById("tbl_membersTab").style.display = "none";
             bindMembersList(agentId);
 
             /*
@@ -336,14 +335,15 @@ function showSection(sectionID, agentId) {
             asynchronous: true,
             parameters: 'custId=' + _page.UserId,
             onComplete: function(data) {
-            $("tbl_onlinelist").innerHTML = data.responseText;
+            document.getElementById("tbl_onlinelist").innerHTML = data.responseText;
             }
             });
             */
             break;
     }
-    $(sectionID).className = "current";
-    $("tbl_" + sectionID).style.display = "block";
+    
+    document.getElementById(sectionID).className = "current";
+    document.getElementById("tbl_" + sectionID).style.display = "block";
 }
 
 function replaceAll(text, strA, strB) {
@@ -387,23 +387,23 @@ function OpenIPInfo(ip) {
 }
 
 function onclickUser(username) {
-    if ($('txtUsername').value == username) {
-        $('txtUsername').className = 'text_f';
-        $('txtUsername').value = '';
+    if (document.getElementById('txtUsername').value == username) {
+        document.getElementById('txtUsername').className = 'text_f';
+        document.getElementById('txtUsername').value = '';
     }
 }
 
 function onblurUser(username) {
-    if ($('txtUsername').value == '') {
-        $('txtUsername').className = 'text_f1';
-        $('txtUsername').value = username;
+    if (document.getElementById('txtUsername').value == '') {
+        document.getElementById('txtUsername').className = 'text_f1';
+        document.getElementById('txtUsername').value = username;
     }
 }
 RegisterStartUp('initHeader()');
 
 function initHeader() {
     initAutoComplete('txtUsername', 'Handlers/QueryUserName.ashx');
-    $('leftpanewrapper').style.display = 'block';
+    document.getElementById('leftpanewrapper').style.display = 'block';
  
 }
 // Menu2 & Acc Info (Common.js)----------------------
@@ -413,9 +413,9 @@ var newClassName = 'b_left_hover';
 
 function menu_select(order) {
     clearTopMenu();
-    $('menuitem' + order).className = newClassName;
+    document.getElementById('menuitem' + order).className = newClassName;
     if (currentItem != order) {
-        var item = $('menuitem' + currentItem);
+        var item = document.getElementById('menuitem' + currentItem);
         if (item) item.className = oldClassName;
     }
     currentItem = order;
@@ -441,7 +441,7 @@ function _stopEvent(ev) {
 
 function updateCustomerInfo(custId) {
     //    custid, firstName, lastName, phone, mobilePhone, email, fax
-    //    var div = $(divId);
+    //    var div = document.getElementById(divId);
     var firstName = document.getElementById('txtFName').value;
     var lastName = document.getElementById('txtLName').value;
     var phone = document.getElementById('txtPhone').value;
@@ -470,7 +470,7 @@ function updateCustomerInfo(custId) {
 }
 
 function changeLiveCasinoStatus(evt, objDiv) {
-    var isEnabled = $('chkLiveCasino').checked ? true : false;
+    var isEnabled = document.getElementById('chkLiveCasino').checked ? true : false;
     if (isEnabled) {
         if (!confirm(_page.confirmEnableLiveCasino)) {
             return _stopEvent(evt);
@@ -484,10 +484,10 @@ function changeLiveCasinoStatus(evt, objDiv) {
 
     function onComplete(result) {
         if (result.errCode == 0) {
-            $('chkLiveCasino').checked = isEnabled;
+            document.getElementById('chkLiveCasino').checked = isEnabled;
         }
         else {
-            $('chkLiveCasino').checked = !isEnabled;
+            document.getElementById('chkLiveCasino').checked = !isEnabled;
             alert(_page.updateFailed);            
         }
     }
@@ -496,17 +496,16 @@ function changeLiveCasinoStatus(evt, objDiv) {
 function bindAgentDownLine(agentID) {
     var contentId = document.getElementById("agent-downline");
     if (contentId.style.display == "none") {
-        contentId.style.display = "block";
         ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
             var data = result.Agents;
-            var text = "";           
-            $("agent-downline").innerHTML = "";
-            $("agent-downline").innerHTML = $("agent-downline").innerHTML + "<li class='root-agent'>" + data[0][1] + "</li>";
+            var text = "";
+            document.getElementById("agent-downline").innerHTML = "";
+            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + "<span class='root-agent'>" + data[0][1] + "</span> </br>";
             for (var i = 1; i < data.length; ++i) {
-                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";               
+                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
             }
 
-            $("agent-downline").innerHTML = $("agent-downline").innerHTML + text;
+            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + text;
             contentId.style.display = "block";
         });
         
@@ -520,16 +519,14 @@ function bindMembersList(agentID) {
     ajax.PostJSON('../_AccountInfo/Handlers/GetMemberList.ashx', 'root=' + agentID, function (result) {
         var data = result.Members;
         var text = "";
-        $("members-list").innerHTML = "";
+        //document.getElementById("members-list").innerHTML = "";
         for (var i = 0; i < data.length; ++i) {
-            text = text + ("<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a></li>");
+            text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a></li>";
         }
-     
-        $("members-list").innerHTML = text;
-    });
-}
 
-function bindAgentsList(agentId) {
-    
-   
+        if (text.length > 0) {
+            document.getElementById("members-list").innerHTML = text;
+        }       
+
+    });
 }

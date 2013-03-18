@@ -103,8 +103,8 @@ function OpenEditMemberPT(custId, userName, ugroup) {
 //		URL += "&USER=" + selectUser.replace("^", "");
 //		var popH = 950,
 //            popW = 890;
-//		$("arrayCustID").value = "";
-//		$("arrayUserName").value = "";
+//		document.getElementById("arrayCustID").value = "";
+//		document.getElementById("arrayUserName").value = "";
 //	} else if (Count > 1) {
 //        var URL = "../../PositionTaking/Agent/EditMultipleMembers.aspx?";
 
@@ -115,8 +115,8 @@ function OpenEditMemberPT(custId, userName, ugroup) {
 //		URL += "&custid=" + selectCusId.split('^')[0];
 //		URL += "&USER=" + selectUser.split('^')[0];
 
-//		$("arrayCustID").value = selectCusId;
-//		$("arrayUserName").value = selectUser;
+//		document.getElementById("arrayCustID").value = selectCusId;
+//		document.getElementById("arrayUserName").value = selectUser;
 //		var popH = 950,
 //            popW = 884;
 //	}
@@ -167,16 +167,16 @@ function OpenEditMemberPT(custId, userName, ugroup) {
 //		var popH = 950, popW = 890;
 //		URL += "&custid=" + selectCusId.replace("^", "");
 //		URL += "&USER=" + selectUser.replace("^", "");
-//		$("arrayCustID").value = "";
-//		$("arrayUserName").value = "";
+//		document.getElementById("arrayCustID").value = "";
+//		document.getElementById("arrayUserName").value = "";
 //	} else if (Count > 1) {
 //        var URL = "../../PositionTaking/Master/EditMultipleAgents.aspx?";
 //        URL += "m=1";
 //        URL += "&custid=" + selectCusId.split('^')[0];
 //        URL += "&USER=" + selectUser.split('^')[0];
 //		var popH = 950, popW = 884;
-//		$("arrayCustID").value = selectCusId;
-//		$("arrayUserName").value = selectUser;
+//		document.getElementById("arrayCustID").value = selectCusId;
+//		document.getElementById("arrayUserName").value = selectUser;
 //	}
 
 //	URL += '&masterid=' + masterid;
@@ -187,8 +187,8 @@ function OpenEditMemberPT(custId, userName, ugroup) {
 
 ////this function is used when master edit agent that from agent list -- edit single
 //function EditAgent_Single(id, us, masterid) {
-//	$("arrayCustID").value = "";
-//	$("arrayUserName").value = "";
+//	document.getElementById("arrayCustID").value = "";
+//	document.getElementById("arrayUserName").value = "";
 //	var url = "../../PositionTaking/Master/EditAgent.aspx?m=0&custid=" + id + "&USER=" + us + '&masterid=' + masterid; //V1
 //	var popH = 950, popW = 890;
 

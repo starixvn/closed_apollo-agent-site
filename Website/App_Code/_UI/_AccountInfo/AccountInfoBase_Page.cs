@@ -18,7 +18,7 @@
         private int custId = -1;
         private bool isMember = false;
         private string userGroup = string.Empty;
-        const string HTML_IFRAME = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height: 560px'></iframe>";
+        const string HTML_IFRAME = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height: 543px'></iframe>";
         const string CLASS_NAME = "b_nleft";
         const string DISABLE_HTML_ELEMENT = "disabled='disabled'";
         const string ENABLE_HTML_ELEMENT = "style='cursor:pointer;'";
@@ -38,7 +38,6 @@
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-
             return null;
         }
 
@@ -182,14 +181,20 @@
             {
                 tpl.HiddenBlockHeaderTabAgent.AgentID = this.custId.ToString();
                 tpl.HiddenBlockHeaderTabMember.AgentID = this.custId.ToString();
-                tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, this.custId.ToString()); ;
+
+                if (!bool.Parse(dtrCustomerInfo["HasAgentDownLine"].ToString()))
+                {
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = "<span class=\"no-data-agent\"> " + Resources.Lang.noInfo + "<span>";
+                }
+                else
+                {
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, this.custId.ToString()); 
+                }
             }
 
             this.RenderSettingBoxEditLink(tpl, dtrCustomerInfo);
-
             return tpl.ToString();
         }
-
 
         /// <summary>
         /// Render edit link in settting box

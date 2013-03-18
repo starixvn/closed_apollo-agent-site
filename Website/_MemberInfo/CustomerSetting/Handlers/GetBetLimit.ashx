@@ -1,73 +1,103 @@
-﻿<%@ WebHandler Language="C#" Class="GetBetLimit" %>
-
-using System;
-using System.Web;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading;
-using Newtonsoft.Json;
-using Sunplus.Agent.Model.Entities;
-using Newtonsoft.Json.Serialization;
-using Fanex.CustSetting.ViewData;
-using Fanex.CustSetting.Service;
-using Sunplus.Agent.Model.BL;
-using System.Web.SessionState;
-
-public class GetBetLimit : IHttpHandler, IReadOnlySessionState
+﻿<%@ WebHandler Language="C#" Class="Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers.GetBetLimit" %>
+namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 {
-    
-    public void ProcessRequest (HttpContext context) {
-        IUserSession userSession = UserSession.Current;
-        CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
-        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
-        Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
-        Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+    using System;
+    using System.Web;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading;
+    using Newtonsoft.Json;
+    using Sunplus.Agent.Model.Entities;
+    using Newtonsoft.Json.Serialization;
+    using Fanex.CustSetting.ViewData;
+    using Fanex.CustSetting.Service;
+    using Sunplus.Agent.Model.BL;
+    using System.Web.SessionState;
+    using System.Resources;
 
-        context.Response.ContentType = "text/javascript";
-        context.Response.Cache.SetNoStore();
+    public class GetBetLimit : IHttpHandler, IReadOnlySessionState
+    {
 
-        JsonSerializerSettings settings = new JsonSerializerSettings();
-        settings.NullValueHandling = NullValueHandling.Ignore;
-        settings.Formatting = Formatting.Indented;
-
-
-        string currentUserName = userSession.UserName;
-        int custId = userSession.CustId;
-        int targetCustId = 0;
-        int targetRoleId = 0;
-        //int formType = 0;
-        int.TryParse(context.Request["targetCustId"], out targetCustId);
-        int.TryParse(context.Request["targetRoleId"], out targetRoleId);
-        //int.TryParse(context.Request["formType"], out formType);
-
-        SettingContext settingContext = new SettingContext
+        public void ProcessRequest(HttpContext context)
         {
-            CustId = custId,
-            TargetCustId = targetCustId,
-            ActorCustId = custId,
-            RoleId = (int)Role.Agent,
-            TargetRoleId = targetRoleId,
-            FormSetting = (int)FormSettingType.BetLimit
-        };
-        ICustomerSettingService customerService = new CustomerSettingService();
-        IList<BettingLimit> betLimits = customerService.GetBettingLimitSettingForUpdating(settingContext);
+            IUserSession userSession = UserSession.Current;
+            CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+            Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
 
-        // Set language on PT Object
+            context.Response.ContentType = "text/javascript";
+            context.Response.Cache.SetNoStore();
 
-        context.Response.Write("var betLimits = ");
-        context.Response.Write(JsonConvert.SerializeObject(betLimits, settings));
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.Formatting = Formatting.Indented;
 
-        context.Response.Write(";\n");
-        context.Response.Write("var settingContext = ");
-        context.Response.Write(JsonConvert.SerializeObject(settingContext, settings));
-    }
- 
-    public bool IsReusable {
-        get {
-            return false;
+
+            string currentUserName = userSession.UserName;
+            int custId = userSession.CustId;
+            int targetCustId = 0;
+            int targetRoleId = 0;
+            //int formType = 0;
+            int.TryParse(context.Request["targetCustId"], out targetCustId);
+            int.TryParse(context.Request["targetRoleId"], out targetRoleId);
+            //int.TryParse(context.Request["formType"], out formType);
+
+            SettingContext settingContext = new SettingContext
+            {
+                CustId = custId,
+                TargetCustId = targetCustId,
+                ActorCustId = custId,
+                RoleId = (int)Role.Agent,
+                TargetRoleId = targetRoleId,
+                FormSetting = (int)FormSettingType.BetLimit
+            };
+            ICustomerSettingService customerService = new CustomerSettingService();
+            IList<BettingLimit> betLimits = customerService.GetBettingLimitSettingForUpdating(settingContext);
+
+            // Set language
+            SetBetLimitLanguage(settingContext, betLimits);
+
+            context.Response.Write("var betLimits = ");
+            context.Response.Write(JsonConvert.SerializeObject(betLimits, settings));
+
+            context.Response.Write(";\n");
+            context.Response.Write("var settingContext = ");
+            context.Response.Write(JsonConvert.SerializeObject(settingContext, settings));
+        }
+
+        public bool IsReusable
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public static void SetBetLimitLanguage(SettingContext settingContext, IList<BettingLimit> betLimits)
+        {
+            foreach (Fanex.CustSetting.ViewData.BettingLimit bettingLimitItem in betLimits)
+            {
+                bettingLimitItem.Name = GetResourceData(bettingLimitItem.ResourceKey);
+            }
+        }
+
+        public static string GetResourceData(string key)
+        {
+            return _Internal.ResourceManager.GetString(key) ?? string.Empty;
+        }
+
+        static class _Internal
+        {
+            public static ResourceManager ResourceManager = null;
+
+            static _Internal()
+            {
+                ResourceManager = new ResourceManager(typeof(Resources.Lang));
+                ResourceManager.IgnoreCase = true;
+            }
         }
     }
-
 }

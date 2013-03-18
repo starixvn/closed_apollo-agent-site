@@ -1,6 +1,6 @@
 ﻿var bettingLimit = null;
 bettingLimit = new Fanex.PTEngine.BettingLimit(betting);
-var bettingLimitContainer = $('bettingLimitContainer');
+var bettingLimitContainer = document.getElementById('bettingLimitContainer');
 bettingLimit.Render(bettingLimitContainer);
 
 var BetSettingModel = function () {
@@ -9,7 +9,7 @@ var BetSettingModel = function () {
 		if (bettingLimit) {
 			betting = bettingLimit.Save();
 			var text = JSON.stringify(betting);
-			$("txtCustomerObject").value = text;
+			document.getElementById("txtCustomerObject").value = text;
 			var params = ajax.CreateParams('txtCustomerObject');
 
 			function OnComplete(result) {

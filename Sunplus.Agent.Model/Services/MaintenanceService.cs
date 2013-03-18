@@ -10,7 +10,7 @@ namespace Sunplus.Agent.Model.Services
 {
     using System;
     using Sunplus.Agent.Model.BL.Definitions;
-    using Sunplus.Agent.Utilities;
+    using Fanex.Age.Utility;
     using Sunplus.UMControllerLibrary;
 
     public class MaintenanceService

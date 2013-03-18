@@ -10,6 +10,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
     using System;
     using System.Collections.Generic;
     using System.Xml;
+    using Fanex.Age.Utility;
 
     public class RolePermissionPair
     {
@@ -119,7 +120,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
                 }
                 catch (Exception e)
                 {
-                    Sunplus.Agent.Utilities.Logs.Write(e + "\r\n" + node.Attributes["url"].Value);
+                    Logs.Write(e + "\r\n" + node.Attributes["url"].Value);
                 }
             }
         }

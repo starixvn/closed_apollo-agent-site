@@ -12,7 +12,7 @@
     using Resources;
     using Sunplus.Agent.Model.BL.UserMessage;
     using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Utilities;
+  
 
     public partial class Announcement : TplPage
     {
@@ -208,8 +208,8 @@
                 return dt;
             }
             catch (Exception ex)
-            {
-                Logs.Error("Can't get data", ex);
+            {                
+                //Logs.Error("Can't get data", ex);
                 return null;
             }
         }

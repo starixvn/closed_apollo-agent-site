@@ -71,7 +71,7 @@ Fanex.Customer = {
     CheckPassword: function (pwdElement, iconElementId) {
         if (pwdElement == null) return true;
         var isPwd = IsPassword(pwdElement.value);
-        var iconElement = $(iconElementId);
+        var iconElement = document.getElementById(iconElementId);
 
         if (!iconElement) return false;
 
@@ -80,7 +80,7 @@ Fanex.Customer = {
             iconElement.className = 'PwdSuccess';
         }
         else {
-            this.ValidateMessage($("password"), Language.ALERT_PASSWORD_REQUIRE, -315, 320, true);
+            this.ValidateMessage(document.getElementById("password"), Language.ALERT_PASSWORD_REQUIRE, -315, 320, true);
             iconElement.className = 'PwdError';
         }
 
@@ -89,47 +89,47 @@ Fanex.Customer = {
 
     // Check values input: Password and Max Credit
     CheckInfoValue: function () {
-        if (!this.CheckPassword($("password"), "spnNewPwdIcon")) {
+        if (!this.CheckPassword(document.getElementById("password"), "spnNewPwdIcon")) {
             return false;
         }
 
-        if ($("credit").value == "") {
-            this.ValidateMessage($("credit"), Language.ALERT_INCORRECT_MASTER_CREDIT);
+        if (document.getElementById("credit").value == "") {
+            this.ValidateMessage(document.getElementById("credit"), Language.ALERT_INCORRECT_MASTER_CREDIT);
             return false;
         }
 
-        if ($("credit") && validateExpr.test($("credit").value) == false) {
-            this.ValidateMessage($("credit"), Language.ALERT_CREDIT_INCORRECT);
+        if (document.getElementById("credit") && validateExpr.test(document.getElementById("credit").value) == false) {
+            this.ValidateMessage(document.getElementById("credit"), Language.ALERT_CREDIT_INCORRECT);
             return false;
         }
 
-        if ((parseFloat($("credit").value, true) < parseFloat($("minCredit").innerHTML, true))
-			|| (parseFloat($("credit").value, true) > parseFloat($("maxCredit").innerHTML, true))) {
-            var valMin = $("minCredit") ? $("minCredit").innerHTML : 0;
+        if ((parseFloat(document.getElementById("credit").value, true) < parseFloat(document.getElementById("minCredit").innerHTML, true))
+			|| (parseFloat(document.getElementById("credit").value, true) > parseFloat(document.getElementById("maxCredit").innerHTML, true))) {
+            var valMin = document.getElementById("minCredit") ? document.getElementById("minCredit").innerHTML : 0;
             var str = Language.ALERT_CREDIT_INVALID.replace("{1}", valMin);
-            str = str.replace("{2}", $("maxCredit").innerHTML);
-            this.ValidateMessage($("credit"), str);
+            str = str.replace("{2}", document.getElementById("maxCredit").innerHTML);
+            this.ValidateMessage(document.getElementById("credit"), str);
             return false;
         }
 
-        if ($("memberMaxCredit")) {
-            if (validateExpr.test($("memberMaxCredit").value) == false) {
-                this.ValidateMessage($("memberMaxCredit"), Language.ALERT_INCORRECT_MEMBER_MAX_CREDIT);
+        if (document.getElementById("memberMaxCredit")) {
+            if (validateExpr.test(document.getElementById("memberMaxCredit").value) == false) {
+                this.ValidateMessage(document.getElementById("memberMaxCredit"), Language.ALERT_INCORRECT_MEMBER_MAX_CREDIT);
                 return false;
             }
 
-            if (parseFloat($("memberMaxCredit").value, true) > 0
-				&& (parseFloat($("memberMaxCredit").value, true) > parseFloat($("lblMemberMaxCredit").innerHTML, true))
-				|| parseFloat($("memberMaxCredit").value, true) < parseFloat($("lblMinCredit").innerHTML, true)) {
-                var str = Language.ALERT_MEMBER_CREDIT_INVALID.replace("{1}", $("lblMinCredit") ? $("lblMinCredit").innerHTML : 0);
-                str = str.replace("{2}", $("lblMemberMaxCredit").innerHTML);
-                this.ValidateMessage($("memberMaxCredit"), str);
+            if (parseFloat(document.getElementById("memberMaxCredit").value, true) > 0
+				&& (parseFloat(document.getElementById("memberMaxCredit").value, true) > parseFloat(document.getElementById("lblMemberMaxCredit").innerHTML, true))
+				|| parseFloat(document.getElementById("memberMaxCredit").value, true) < parseFloat(document.getElementById("lblMinCredit").innerHTML, true)) {
+                var str = Language.ALERT_MEMBER_CREDIT_INVALID.replace("{1}", document.getElementById("lblMinCredit") ? document.getElementById("lblMinCredit").innerHTML : 0);
+                str = str.replace("{2}", document.getElementById("lblMemberMaxCredit").innerHTML);
+                this.ValidateMessage(document.getElementById("memberMaxCredit"), str);
                 return false;
             }
         }
         // Only show when add new 20 Member within 1 minute
-        if ($("textBoxCaptcha") && $("textBoxCaptcha").value == "") {
-            this.ValidateMessage($("textBoxCaptcha"), Language.REQUIRE_VALIDATION_CODE);
+        if (document.getElementById("textBoxCaptcha") && document.getElementById("textBoxCaptcha").value == "") {
+            this.ValidateMessage(document.getElementById("textBoxCaptcha"), Language.REQUIRE_VALIDATION_CODE);
             return false;
         }
 
@@ -142,8 +142,8 @@ Fanex.Customer = {
     ValidationTransferCondition: function () {
         var transferConditionId = document.getElementsByName("transferCondition");
         if (transferConditionId != 'undefined' && transferConditionId.length > 0) {
-            if ($("rdWeekly").checked) {
-                var elements = $("alldays").getElementsByTagName("input");
+            if (document.getElementById("rdWeekly").checked) {
+                var elements = document.getElementById("alldays").getElementsByTagName("input");
                 var isSelect = false;
                 for (var i = 1; i < elements.length; i++) {
                     if (elements[i].checked) {
@@ -152,7 +152,7 @@ Fanex.Customer = {
                     }
                 }
                 if (!isSelect) {
-                    this.ValidateMessage($("chkMon"), Language.ALERT_CHOOSE_ONE_DAY);
+                    this.ValidateMessage(document.getElementById("chkMon"), Language.ALERT_CHOOSE_ONE_DAY);
                     return false;
                 }
             }
@@ -161,14 +161,14 @@ Fanex.Customer = {
     },
     ChooseDate: function () {
         var chkCount = 0;
-        if ($("rdWeekly").checked) {
-            var elements = $("alldays").getElementsByTagName("input");
+        if (document.getElementById("rdWeekly").checked) {
+            var elements = document.getElementById("alldays").getElementsByTagName("input");
             for (var i = 1; i < elements.length; i++) {
                 if (elements[i].checked) {
                     isSelect = true;
                     chkCount++;
                     if (chkCount == 7) {
-                        this.ValidateMessage($("rdDaily"), Language.ALERT_CHOOSE_DAILY);
+                        this.ValidateMessage(document.getElementById("rdDaily"), Language.ALERT_CHOOSE_DAILY);
                         return false;
                     }
                 }
@@ -179,9 +179,9 @@ Fanex.Customer = {
 
     // This function is used to disable day checkboxs to edit transfer time
     SelectTransferTime: function () {
-        if ($("isTransferOption") == "0" || !$("alldays")) return;
-        var elements = $("alldays").getElementsByTagName("input");
-        var isDaily = $("rdDaily").checked;
+        if (document.getElementById("isTransferOption") == "0" || !document.getElementById("alldays")) return;
+        var elements = document.getElementById("alldays").getElementsByTagName("input");
+        var isDaily = document.getElementById("rdDaily").checked;
         for (var i = 1; i < elements.length; i++) {
             elements[i].disabled = isDaily;
         }
@@ -189,27 +189,27 @@ Fanex.Customer = {
 
     // Set Label value for min Credit Member
     AutoChangeMaxCredit: function (currentId, id) {
-        if ($(id)) {
-            if ($(currentId).value == '') {
-                $(id).innerHTML = 0;
-                $(currentId).value = 0;
+        if (document.getElementById(id)) {
+            if (document.getElementById(currentId).value == '') {
+                document.getElementById(id).innerHTML = 0;
+                document.getElementById(currentId).value = 0;
             }
             else {
                 // If credit number have a dot at last. We need remove that dot.
-                var dotPosition = $(currentId).value.indexOf(".");
-                if (dotPosition > 0 && ($(currentId).value.length - 1 === dotPosition)) {
-                    $(id).innerHTML = $(currentId).value = $(currentId).value.substring(0, dotPosition);
+                var dotPosition = document.getElementById(currentId).value.indexOf(".");
+                if (dotPosition > 0 && (document.getElementById(currentId).value.length - 1 === dotPosition)) {
+                    document.getElementById(id).innerHTML = document.getElementById(currentId).value = document.getElementById(currentId).value.substring(0, dotPosition);
                 }
                 else {
-                    $(id).innerHTML = $(currentId).value;
+                    document.getElementById(id).innerHTML = document.getElementById(currentId).value;
                 }
             }
         }
         else {
             // If credit number have a dot at last. We need remove that dot.
-            var dotPosition = $(currentId).value.indexOf(".");
-            if (dotPosition > 0 && ($(currentId).value.length - 1 === dotPosition)) {
-                $(currentId).value = $(currentId).value.substring(0, dotPosition);
+            var dotPosition = document.getElementById(currentId).value.indexOf(".");
+            if (dotPosition > 0 && (document.getElementById(currentId).value.length - 1 === dotPosition)) {
+                document.getElementById(currentId).value = document.getElementById(currentId).value.substring(0, dotPosition);
             }
         }
     },
@@ -249,9 +249,9 @@ Fanex.Customer = {
 
     //Set next to userName
     SetAutoUserName: function () {
-        var selectedOne = $("selectedOne");
-        var selectedTwo = $("selectedTwo");
-        var selectedThree = $("selectedThree");
+        var selectedOne = document.getElementById("selectedOne");
+        var selectedTwo = document.getElementById("selectedTwo");
+        var selectedThree = document.getElementById("selectedThree");
 
         if (typeof (selectedThree) != 'undefined' && selectedThree != null) {
             return selectedOne.value + selectedTwo.value + selectedThree.value;
@@ -264,36 +264,36 @@ Fanex.Customer = {
 
     // Set new value commission to Object JSON
     SetValueCommissionSettings: function (commissionSettings) {
-        commissionSettings.groupA = $("groupA").value;
-        commissionSettings.groupB = $("groupB").value;
-        commissionSettings.groupC = $("groupC").value;
-        commissionSettings.groupD = $("groupD").value;
-        commissionSettings.discount1x2 = $("discount1x2").value;
-        commissionSettings.discountCS = $("discountCS").value;
-        commissionSettings.discountNumber = $("discountNumber").value;
+        commissionSettings.groupA = document.getElementById("groupA").value;
+        commissionSettings.groupB = document.getElementById("groupB").value;
+        commissionSettings.groupC = document.getElementById("groupC").value;
+        commissionSettings.groupD = document.getElementById("groupD").value;
+        commissionSettings.discount1x2 = document.getElementById("discount1x2").value;
+        commissionSettings.discountCS = document.getElementById("discountCS").value;
+        commissionSettings.discountNumber = document.getElementById("discountNumber").value;
         return commissionSettings;
     },
 
     // Hide Title on top page, when open Popup.
     HideTitle: function () {
-        if ((parent.ageWnd != null) && (typeof ($('header_main')) != 'undefined')) {
-            $('header_main').style.display = 'none';
+        if ((parent.ageWnd != null) && (typeof (document.getElementById('header_main')) != 'undefined')) {
+            document.getElementById('header_main').style.display = 'none';
         }
     },
 
     // Check available username
     CheckUser: function (username, selectId, select, select2, select3, msgId) {
-        if ($(selectId)) {
-            $(selectId).onchange = function () {
-                $(msgId).className = 'loading2';
+        if (document.getElementById(selectId)) {
+            document.getElementById(selectId).onchange = function () {
+                document.getElementById(msgId).className = 'loading2';
 
                 var user = username;
 
                 if (select && select2 && select3) {
-                    user += $(select).value + $(select2).value + $(select3).value;
+                    user += document.getElementById(select).value + document.getElementById(select2).value + document.getElementById(select3).value;
                 }
                 else if (select && select2) {
-                    user += $(select).value + $(select2).value;
+                    user += document.getElementById(select).value + document.getElementById(select2).value;
                 }
 
                 ajax.PostJSON(
@@ -301,10 +301,10 @@ Fanex.Customer = {
                     '',
                     function (result) {
                         if (result.errCode == 101) {
-                            $(msgId).className = 'successWarning';
+                            document.getElementById(msgId).className = 'successWarning';
                         }
                         else {
-                            $(msgId).className = 'errorWarning';
+                            document.getElementById(msgId).className = 'errorWarning';
                         }
                     }
                 );
@@ -394,15 +394,15 @@ if (typeof (Fanex) != 'undefined' && typeof (Fanex.PTEngine) != 'undefined') { /
 }
 
 RegisterStartUp(function () {
-    age.addEvent($('credit'), 'blur', function () {
+    age.addEvent(document.getElementById('credit'), 'blur', function () {
         Fanex.Customer.AutoChangeMaxCredit('credit', 'lblMemberMaxCredit');
     });
 
-    age.addEvent($('credit'), 'keyup', function () {
+    age.addEvent(document.getElementById('credit'), 'keyup', function () {
         Fanex.FormatNumber(arguments[0], true);
     });
 
-    age.addEvent($('memberMaxCredit'), 'keyup', function () {
+    age.addEvent(document.getElementById('memberMaxCredit'), 'keyup', function () {
         Fanex.FormatNumber(arguments[0], true);
     });
 });

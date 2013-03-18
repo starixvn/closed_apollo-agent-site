@@ -1,18 +1,18 @@
 ﻿function getData_MemberCommission_Agent()
 {     
-    var url='MemberCommissionSportbook.aspx?idMaster=' + $('selmaster').value + '&idAgent=' + $('selmaster').value;
+    var url='MemberCommissionSportbook.aspx?idMaster=' + document.getElementById('selmaster').value + '&idAgent=' + document.getElementById('selmaster').value;
     age.DelayReloadPage(url, 1);
 }
 
 function show_data_com()
 {
-    if($('selmaster') && $('selmaster') != 'undefined') 
+    if(document.getElementById('selmaster') && document.getElementById('selmaster') != 'undefined') 
     {
-        var url = 'MemberCommissionSportbook.aspx?idMaster=' + $('selmaster').value + '&idAgent=' + $('selAg').value;
+        var url = 'MemberCommissionSportbook.aspx?idMaster=' + document.getElementById('selmaster').value + '&idAgent=' + document.getElementById('selAg').value;
     }
     else
     {
-        var url = 'MemberCommissionSportbook.aspx?idAgent=' + $('selAg').value;
+        var url = 'MemberCommissionSportbook.aspx?idAgent=' + document.getElementById('selAg').value;
     }
     age.DelayReloadPage(url, 1);
 }

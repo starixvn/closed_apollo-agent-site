@@ -45,15 +45,7 @@
                     <td colspan="2">
                         <input class="tb" id="txtPassWord" name="txtPassWord" type="password" />
                     </td>
-                </tr>
-                <tr>
-                    <td onclick="GetValidateImage()">
-                        <img src='Handlers/Captcha.ashx' id="imgCode" alt="" />
-                    </td>
-                    <td colspan="2">
-                        <input class="tb" value="{captcha_value}" id="txtCaptcha" name="txtCaptcha" type="text" maxlength="4" autocomplete="off" onkeydown="age.DoEnter(event, 'DoLogin()')" />
-                    </td>
-                </tr>
+                </tr>               
                 <tr>
                     <td>
                     </td>
@@ -68,6 +60,7 @@
         </div>
     </center>
 </body>
+<script src="../../_GlobalResources/Js/jquery.js" type="text/javascript"></script>
 <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
 <script src="Resources/SignIn.js" type="text/javascript"></script>
 </html>

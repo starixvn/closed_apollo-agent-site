@@ -1,15 +1,15 @@
 ﻿function changeVirtualSportsStatus(evt, hasDownLine) {
-    if ($('chkVirtualSports').disabled) return _stopEvent(evt);
+    if (document.getElementById('chkVirtualSports').disabled) return _stopEvent(evt);
 
     var isOpenPopup = false;
-    var isDisabled = $('chkVirtualSports').checked;
+    var isDisabled = document.getElementById('chkVirtualSports').checked;
     if (isDisabled) {
         if (typeof hasDownLine != 'undefined' && hasDownLine) { //for agent
             if (!confirm(_page.strConfirmDisableVirtualSports)) {
                 return _stopEvent(evt);
             }
-            $('chkEnabled').checked = false;
-            $('chkEnabledDL').checked = false;
+            document.getElementById('chkEnabled').checked = false;
+            document.getElementById('chkEnabledDL').checked = false;
             updateVirtualSportsStatus(true, true);
         } else { //for member
             if (!confirm(_page.lblAlertDisableVirtualSportsMember)) {
@@ -32,12 +32,12 @@
     function showVirtualSportsPopup() {
         // fill data for popup
         assignDefaultPopupValue();
-        $('hdnTypeStatus').value = 'VirtualSports'; //type popup
-        $('lblEnableStatus').innerHTML = _page.lblEnableVirtualSports; //title popup
-        $('lbldownline').innerHTML = _page.VirtualSportsDownlines;
-        $('btnUpdStatus').onclick = function () {
-            var isDisabled = !$('chkEnabled').checked; // chkEnabled = true => isDisabled    =false;
-            var isDisableDownline = !$('chkEnabledDL').checked; //chkEnabledDL = true => isDisableDownline =false
+        document.getElementById('hdnTypeStatus').value = 'VirtualSports'; //type popup
+        document.getElementById('lblEnableStatus').innerHTML = _page.lblEnableVirtualSports; //title popup
+        document.getElementById('lbldownline').innerHTML = _page.VirtualSportsDownlines;
+        document.getElementById('btnUpdStatus').onclick = function () {
+            var isDisabled = !document.getElementById('chkEnabled').checked; // chkEnabled = true => isDisabled    =false;
+            var isDisableDownline = !document.getElementById('chkEnabledDL').checked; //chkEnabledDL = true => isDisableDownline =false
             updateVirtualSportsStatus(isDisabled, isDisableDownline);
         };
         isOpenPopup = true;
@@ -49,7 +49,7 @@
 
         function onComplete(result) {
             if (result.errCode == 0) {
-                $('chkVirtualSports').checked = !isDisabled;
+                document.getElementById('chkVirtualSports').checked = !isDisabled;
             } else alert(result.errMsg);
             if (isOpenPopup) closeDivPopup();
         }

@@ -2,13 +2,6 @@
 using System.Web;
 using System.Globalization;
 
-/*
- * Created 20100428@Lee - Formater functions
- * Revision:
- * ?@? - ... 
- * 
- */
-
 
 namespace Fanex.Age.Utility
 {
@@ -56,7 +49,11 @@ namespace Fanex.Age.Utility
         }
         public static string DecFormat(object value, byte decDigits)
         {
-            return DecFormat(Convert.ToDecimal(value), decDigits);
+            return DecFormat(value, decDigits, "0");
+        }
+        public static string DecFormat(object value, byte decDigits, string numberDefault)
+        {
+            return (Convert.IsDBNull(value) || value == null) ? numberDefault : DecFormat(Convert.ToDecimal(value), decDigits);
         }
         public static string DecFormat(decimal value, byte decDigits, bool chop)
         {
@@ -274,7 +271,7 @@ namespace Fanex.Age.Utility
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
             return string.Format(cult, "{0:MM/dd/yyyy<br/>hh:mm:ss tt}", dt);
         }
-        public static String FullDateFormat2Line(object obj)
+        public static string FullDateFormat2Line(object obj)
         {
             return FullDateFormat2Ln(obj);
         }
@@ -287,7 +284,7 @@ namespace Fanex.Age.Utility
         public static string FormatDateTime22(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
-                return "";
+                return string.Empty;
             try
             {
                 return Convert.ToDateTime(dt).ToString("MM/dd hh:mm");
@@ -300,7 +297,7 @@ namespace Fanex.Age.Utility
         public static string FormatDateTime22DDMM(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
-                return "";
+                return string.Empty;
             try
             {
                 return Convert.ToDateTime(dt).ToString("dd/MM hh:mm");
@@ -313,7 +310,7 @@ namespace Fanex.Age.Utility
         public static string FormatTimeMiliSec(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
-                return "";
+                return string.Empty;
             try
             {
                 return Convert.ToDateTime(dt).ToString(TIME_FORMAT_MILISEC);
@@ -326,7 +323,7 @@ namespace Fanex.Age.Utility
         public static string FormatDateEn(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
-                return "";
+                return string.Empty;
             try
             {
                 return Convert.ToDateTime(dt).ToString("MM/dd/yyyy");
@@ -339,7 +336,7 @@ namespace Fanex.Age.Utility
         public static string FormatDateVi(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
-                return "";
+                return string.Empty;
             try
             {
                 return Convert.ToDateTime(dt).ToString("dd/MM/yyyy");
@@ -352,7 +349,7 @@ namespace Fanex.Age.Utility
         public static string FormatDateTimeEn12(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
-                return "";
+                return string.Empty;
             try
             {
                 return Convert.ToDateTime(dt).ToString("MM/dd/yyyy hh:mm:ss tt");
@@ -365,7 +362,7 @@ namespace Fanex.Age.Utility
         public static string FormatDateTimeEn12NoSec(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
-                return "";
+                return string.Empty;
             try
             {
                 return Convert.ToDateTime(dt).ToString("MM/dd/yyyy hh:mm tt");
@@ -378,7 +375,7 @@ namespace Fanex.Age.Utility
         public static string FormatDateTimeEn24(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
-                return "";
+                return string.Empty;
             try
             {
                 return Convert.ToDateTime(dt).ToString("MM/dd/yyyy HH:mm:ss");
@@ -396,7 +393,7 @@ namespace Fanex.Age.Utility
         public static string FormatDateOptionalTime(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
-                return "";
+                return string.Empty;
             try
             {
                 DateTime dt2 = Convert.ToDateTime(dt);
@@ -429,20 +426,21 @@ namespace Fanex.Age.Utility
         /// <param name="value"></param>
         /// <param name="maxLength"></param>
         /// <returns></returns>
-        public static String TruncateWithTip(String value, Int32 maxLength, bool hasSpanReturn)
+        public static string TruncateWithTip(string value, Int32 maxLength, bool hasSpanReturn)
         {
             if (value.Length > maxLength)
             {
-                value = String.Format("<span title='{0}'>{1}...</span>", value.Replace("'", "&#39;"), HttpUtility.HtmlEncode(value.Substring(0, maxLength - 3)));
+                value = string.Format("<span title='{0}'>{1}...</span>", value.Replace("'", "&#39;"), HttpUtility.HtmlEncode(value.Substring(0, maxLength - 3)));
             }
             else
             {
                 if (hasSpanReturn)
-                    value = String.Format("<span>{0}</span>", HttpUtility.HtmlEncode(value));
+                    value = string.Format("<span>{0}</span>", HttpUtility.HtmlEncode(value));
             }
+
             return value;
         }
-        public static String TruncateWithTip(String value, Int32 maxLength)
+        public static string TruncateWithTip(string value, Int32 maxLength)
         {
             return TruncateWithTip(value, maxLength, false);
         }

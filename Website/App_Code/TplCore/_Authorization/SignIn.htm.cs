@@ -6,7 +6,7 @@ using System.Text;
 using TplCore;
 using TplCore.Element;
 #pragma warning disable
-namespace Sunplus.Agent.UI
+namespace Fanex.Agent.UI
 {
 	using _Authorization;
 	namespace _Authorization
@@ -17,32 +17,35 @@ namespace Sunplus.Agent.UI
 			protected static string s1{get{return AbsoluteUrl("_Authorization/Resources/SignIn.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><center><div id=\"cpanel\"><form method=\"post\" name=\"fLogin\"><div id=\"errmsg\" class=\"errmsg\" style=\"text-align: center; margin-left: 122px; margin-right:15px;\"></div><table align=\"center\" class=\"tblMain\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td class=\"tdBlank\"></td><td class=\"tdLangSpan\"><span id=\"spnLanguage\" class=\"language\"></span></td><td class=\"tdLangOpt\"><select id=\"selLanguage\" onchange=\"SelectLanguage(this.value)\" style=\"height: 20px; width: 85px;\"><option value=\"0\">English</option><option value=\"1\">繁體中文</option><option value=\"4\">简体中文</option><option value=\"2\">日本語</option><option value=\"3\">ภาษาไทย</option><option value=\"5\">한국어</option><option value=\"6\">Tiếng Việt</option></select><input type=\"hidden\" value=\"en-US\" id=\"hidLanguage\" name=\"hidLanguage\" /></td></tr><tr><td><span id=\"spnUserName\" style=\"font-weight: bold;\">Username</span></td><td colspan=\"2\"><input class=\"tb\" id=\"txtUserName\" name=\"txtUserName\" type=\"text\" value=\"";
 			public string username_value = "{username_value}";
-			protected static string s3 = "\" /></td></tr><tr><td><span id=\"spnPassWord\" style=\"font-weight: bold;\">Password</span></td><td colspan=\"2\"><input class=\"tb\" id=\"txtPassWord\" name=\"txtPassWord\" type=\"password\" /></td></tr><tr><td onclick=\"GetValidateImage()\"><img src='Handlers/Captcha.ashx' id=\"imgCode\" alt=\"\" /></td><td colspan=\"2\"><input class=\"tb\" value=\"";
-			public string captcha_value = "{captcha_value}";
-			protected static string s4 = "\" id=\"txtCaptcha\" name=\"txtCaptcha\" type=\"text\" maxlength=\"4\" autocomplete=\"off\" onkeydown=\"age.DoEnter(event, 'DoLogin()')\" /></td></tr><tr><td></td><td colspan=\"2\"><input id=\"btnLogin\" type=\"button\" class=\"buttonsite\" value=\"Login\" onclick=\"return DoLogin()\" /></td></tr></table><div id=\"divBrowser\" class=\"text_browser\">Recommended Browsers</div><div style=\"padding-top:23px\">";
+			protected static string s3 = "\" /></td></tr><tr><td><span id=\"spnPassWord\" style=\"font-weight: bold;\">Password</span></td><td colspan=\"2\"><input class=\"tb\" id=\"txtPassWord\" name=\"txtPassWord\" type=\"password\" /></td></tr><tr><td></td><td colspan=\"2\"><input id=\"btnLogin\" type=\"button\" class=\"buttonsite\" value=\"Login\" onclick=\"return DoLogin()\" /></td></tr></table><div id=\"divBrowser\" class=\"text_browser\">Recommended Browsers</div><div style=\"padding-top:23px\">";
 			public string VersionMobile = "{VersionMobile}";
-			protected static string s5 = "</div></form></div></center></body><script src=\"";
-			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s7 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s8{get{return AbsoluteUrl("_Authorization/Resources/SignIn.js", TplSettings.Question);}}
-			protected static string s9 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s4 = "</div></form></div></center></body><script src=\"";
+			protected static string s5{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
+			protected static string s6 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("_Authorization/Resources/SignIn.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
-				bd.Append(s0);
-				bd.Append(s1);
-				bd.Append(s2);
-				bd.Append(username_value);
-				bd.Append(s3);
-				bd.Append(captcha_value);
-				bd.Append(s4);
-				bd.Append(VersionMobile);
-				bd.Append(s5);
-				bd.Append(s6);
-				bd.Append(s7);
-				bd.Append(s8);
-				bd.Append(s9);
-				bd.Append(Value);
+				if(RenderChild)
+				{
+					bd.Append(s0);
+					bd.Append(s1);
+					bd.Append(s2);
+					bd.Append(username_value);
+					bd.Append(s3);
+					bd.Append(VersionMobile);
+					bd.Append(s4);
+					bd.Append(s5);
+					bd.Append(s6);
+					bd.Append(s7);
+					bd.Append(s8);
+					bd.Append(s9);
+					bd.Append(s10);
+				}
+				if(IsAssigned){bd.Append(Value);}
 			}
 			public string ToString()
 			{

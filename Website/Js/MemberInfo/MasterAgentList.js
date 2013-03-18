@@ -25,7 +25,7 @@ function UpdateCustomerStatus(custid, isClosed, isSuspended, isAllowAutoMPT, isO
     var isClearCredit = false;
     var isDownLineNumberGame = false;
     if (isClosed) {
-        isClearCredit = $('cbxCredit1').checked;
+        isClearCredit = document.getElementById('cbxCredit1').checked;
     }
     if (isClosed == 1) {
         if (!confirm(confirmCloseMem)) return;
@@ -43,7 +43,7 @@ function UpdateCustomerStatus(custid, isClosed, isSuspended, isAllowAutoMPT, isO
         if (!confirm(confirmDisableNumberGameDownline)) return;
     }
     else if (isAllowNumber == 1) {
-        isDownLineNumberGame = $('cbxCredit5').checked;
+        isDownLineNumberGame = document.getElementById('cbxCredit5').checked;
     }
 
     ageWnd.open('../Handlers/DownlineList.ashx?custid=' + custid + '&isClosed=' + isClosed + '&isSuspended=' + isSuspended + '&isAllowAutoMPT=' + isAllowAutoMPT + '&isOutright=' + isOutright + '&isClearCredit=' + isClearCredit + '&issync=' + isSync + '&isAllowNumberGame=' + isAllowNumber + "&isDownLineNumberGame=" + isDownLineNumberGame,
@@ -77,21 +77,21 @@ function GetPosition(element) {
 
 // currentStatus: Open, Closed, Suspended
 function ShowFrmUpdStatus(el, custid, isClosed, isSuspended, isAllowNumber, isAllowAutoMPT, isOutright, username) {
-    var div = $('divUpd');
+    var div = document.getElementById('divUpd');
     if (!div) return false;
 
-    var td1 = $('td1');
-    var td2 = $('td2');
-    var td4 = $('td4');
+    var td1 = document.getElementById('td1');
+    var td2 = document.getElementById('td2');
+    var td4 = document.getElementById('td4');
 
-    var cbxSt1 = $('cbxSt1');
-    var cbxSt2 = $('cbxSt2');
-    var cbxSt4 = $('cbxSt4');
-    var spCredit1 = $('spCredit1');
+    var cbxSt1 = document.getElementById('cbxSt1');
+    var cbxSt2 = document.getElementById('cbxSt2');
+    var cbxSt4 = document.getElementById('cbxSt4');
+    var spCredit1 = document.getElementById('spCredit1');
 
-    td1.innerHTML = $('txtClosed').innerHTML;
-    td2.innerHTML = $('txtSuspended').innerHTML;
-    td4.innerHTML = $('txtOutright').innerHTML;
+    td1.innerHTML = document.getElementById('txtClosed').innerHTML;
+    td2.innerHTML = document.getElementById('txtSuspended').innerHTML;
+    td4.innerHTML = document.getElementById('txtOutright').innerHTML;
     // Old status
     div.custid = custid;
     div.isClosed = div.isClosed1 = isClosed;
@@ -130,23 +130,23 @@ function ShowFrmUpdStatus(el, custid, isClosed, isSuspended, isAllowNumber, isAl
     AGE.addEvent(cbxSt2, "click", function() { div.isSuspended = cbxSt2.checked ? true : false; }, true);
     AGE.addEvent(cbxSt4, "click", function() { div.isOutright = cbxSt4.checked ? true : false; }, true);
 
-    if (($('roleid') && $('roleid').value == 4) && ($('hdlevel') && $('hdlevel').value == 'Super')) {
-        var td3 = $('td3');
-        var cbxSt3 = $('cbxSt3');
-        td3.innerHTML = $('txtAllowAutoPT').innerHTML;
+    if ((document.getElementById('roleid') && document.getElementById('roleid').value == 4) && (document.getElementById('hdlevel') && document.getElementById('hdlevel').value == 'Super')) {
+        var td3 = document.getElementById('td3');
+        var cbxSt3 = document.getElementById('cbxSt3');
+        td3.innerHTML = document.getElementById('txtAllowAutoPT').innerHTML;
         div.isAllowAutoMPT = div.isAllowAutoMPT1 = isAllowAutoMPT;
         cbxSt3.checked = isAllowAutoMPT ? 'checked' : null;
         AGE.addEvent(cbxSt3, "click", function() { div.isAllowAutoMPT = cbxSt3.checked ? true : false; }, true);
     }
 
     //NumberGame
-    if ($('isDisableNumberGameStatus').value == 'false') {
-        var td5 = $('td5');
-        var spCredit5 = $('spCredit5');
-        var cbxSt5 = $('cbxSt5');
+    if (document.getElementById('isDisableNumberGameStatus').value == 'false') {
+        var td5 = document.getElementById('td5');
+        var spCredit5 = document.getElementById('spCredit5');
+        var cbxSt5 = document.getElementById('cbxSt5');
         div.isAllowNumber = div.isAllowNumber5 = isAllowNumber;
 
-        td5.innerHTML = $('txtAllowNumberGame').innerHTML;
+        td5.innerHTML = document.getElementById('txtAllowNumberGame').innerHTML;
         cbxSt5.checked = isAllowNumber ? 'checked' : null;
         spCredit5.style.display = 'none';
         AGE.addEvent(cbxSt5, "click", function() { div.isAllowNumber = cbxSt5.checked ? true : false; }, true);
@@ -156,7 +156,7 @@ function ShowFrmUpdStatus(el, custid, isClosed, isSuspended, isAllowNumber, isAl
 }
 
 function HideFrmUpdStatus() {
-    var div = $('divUpd');
+    var div = document.getElementById('divUpd');
     if (!div) return false;
     div.style.display = 'none';
 
@@ -176,7 +176,7 @@ function HideFrmUpdStatus() {
         return;
     }
 
-    //    if ($('cbxSt1').checked && $('cbxCredit1').checked) {
+    //    if (document.getElementById('cbxSt1').checked && document.getElementById('cbxCredit1').checked) {
     //        var strConfirm = lblConfirmClearCredit.replace("{username}", div.strUsername);
     //        if (!window.confirm(strConfirm)) {
     //            return;
@@ -188,13 +188,13 @@ function HideFrmUpdStatus() {
 
 function CheckStatusClick(number) {
     if (number == 1) { //closed click!
-        var div = $('divUpd');
+        var div = document.getElementById('divUpd');
         if (!div) return false;
         //var isClosed = (div.isClosed != div.isClosed1) ? div.isClosed : '-1';
         if (!div.isClosed1) { //if original 'close' status is false
-            var chkStatus = $("cbxSt" + number);
-            var spCredit = $("spCredit" + number);
-            var chkCredit = $("cbxCredit" + number);
+            var chkStatus = document.getElementById("cbxSt" + number);
+            var spCredit = document.getElementById("spCredit" + number);
+            var chkCredit = document.getElementById("cbxCredit" + number);
             chkCredit.checked = false; //default is unchecked clear credit
             //spCredit.style.display = (chkStatus.checked) ? "" : "none";
             spCredit.style.display = "none";
@@ -202,12 +202,12 @@ function CheckStatusClick(number) {
     }
 
     if (number == 5) { //Disbale NumberGame click!
-        var div = $('divUpd');
+        var div = document.getElementById('divUpd');
         if (!div) return false;
         if (!div.isAllowNumber5) { //if original 'allow number game' status is false
-            var chkStatus = $("cbxSt" + number);
-            var spCredit = $("spCredit" + number);
-            var chkCredit = $("cbxCredit" + number);
+            var chkStatus = document.getElementById("cbxSt" + number);
+            var spCredit = document.getElementById("spCredit" + number);
+            var chkCredit = document.getElementById("cbxCredit" + number);
             chkCredit.checked = false; //default is unchecked clear credit
             spCredit.style.display = (chkStatus.checked && droleid != 1) ? "" : "none";
         }
@@ -215,7 +215,7 @@ function CheckStatusClick(number) {
 }
 
 function OnClearCredit() {
-    var div = $('divUpd');
+    var div = document.getElementById('divUpd');
     if (!div) return false;
     var strConfirm = lblConfirmClearCredit.replace("{username}", div.strUsername);
     if (!window.confirm(strConfirm)) {
@@ -224,7 +224,7 @@ function OnClearCredit() {
 }
 
 function OnAllowDownline() {
-    var div = $('divUpd');
+    var div = document.getElementById('divUpd');
     if (!div) return false;
     var strConfirm = lblConfirmAllowDownline.replace("{username}", div.strUsername);
     if (!window.confirm(strConfirm)) {
@@ -256,7 +256,7 @@ function GenerateTRStatus(number) {
 }
 
 function InitFrmUpdStatus() {
-    var div = $('divUpd');
+    var div = document.getElementById('divUpd');
     var disableAutoMPT = "";
     if (div) return false;
     var strDivHeader = '<div id="divUpd" style="display:none; border: solid 1px #ccdddd; position: absolute; background-color: #eeeeee; white-space: nowrap; padding-right: 5px; font-weight:normal; color:#171717">'
@@ -265,25 +265,25 @@ function InitFrmUpdStatus() {
     var strDivContent = '';
     strDivContent += GenerateTRStatus(1); //closed
     strDivContent += GenerateTRStatus(2); //suspend
-    if (($('roleid') && $('roleid').value == 4) && ($('hdlevel') && $('hdlevel').value == 'Super')) {
+    if ((document.getElementById('roleid') && document.getElementById('roleid').value == 4) && (document.getElementById('hdlevel') && document.getElementById('hdlevel').value == 'Super')) {
         strDivContent += GenerateTRStatus(3); //autoMPT
     }
     strDivContent += GenerateTRStatus(4); //outRight
 
-    if ($('isDisableNumberGameStatus').value == 'false') {
+    if (document.getElementById('isDisableNumberGameStatus').value == 'false') {
         strDivContent += GenerateTRStatus(5); //NumberGame
     }
-    $('FrmUpd').innerHTML += strDivHeader + strDivContent + strDivFooter;
+    document.getElementById('FrmUpd').innerHTML += strDivHeader + strDivContent + strDivFooter;
     return true;
 }
 
 function ShowErrMsg(msg) {
     clearTimeout(window.timerErr); window.timerErr = 0;
 
-    window.diverr = $('diverr');
+    window.diverr = document.getElementById('diverr');
     if (!window.diverr) return false;
 
-    window.err = $('err');
+    window.err = document.getElementById('err');
     if (!window.err) return false;
 
     window.err.innerHTML = msg;
@@ -294,7 +294,7 @@ function ShowErrMsg(msg) {
 
 // Init floating div
 function InitFrmUpdMult() {
-    var div = $('divUpdMult');
+    var div = document.getElementById('divUpdMult');
     if (div) return false;
     var strDiv = '<div id="divUpdMult" style="display:none; border: solid 1px #ccdddd; position: absolute; background-color: #eeeeee; white-space:nowrap; padding-right: 5px; font-weight:normal;">'
     strDiv += '<table border="0" cellspacing="2" cellpadding="1"><tr><td></td></tr>'
@@ -302,14 +302,14 @@ function InitFrmUpdMult() {
     strDiv += '<td>'
     strDiv += '<a class="b_left" id="updMultSpBook" href="javascript:;"></a>'
     strDiv += '</td></tr>'
-    if ($('isDisableFI').value != 1) {
+    if (document.getElementById('isDisableFI').value != 1) {
         strDiv += '<tr>'
         strDiv += '<td>'
         strDiv += '<a class="b_left" id="updMultFI" href="javascript:;"></a>'
         strDiv += '</td>'
         strDiv += '</tr>'
     }
-    if ($('isDisableHR').value != 1) {
+    if (document.getElementById('isDisableHR').value != 1) {
         strDiv += '<tr>'
         strDiv += '<td>'
         strDiv += '<a class="b_left" id="updMultHR" href="javascript:;"></a>'
@@ -317,7 +317,7 @@ function InitFrmUpdMult() {
         strDiv += '</tr>'
     }
 
-    if ($('isDisableCS').value != 1) {
+    if (document.getElementById('isDisableCS').value != 1) {
         strDiv += '<tr id="tr_updMultCS">'
         strDiv += '<td>'
         strDiv += '<a class="b_left" id="updMultCS" href="javascript:;"></a>'
@@ -325,7 +325,7 @@ function InitFrmUpdMult() {
     }
 
     //For P2P
-    if ($('isDisableP2P').value != 1) {
+    if (document.getElementById('isDisableP2P').value != 1) {
         strDiv += '<tr id="tr_updMultP2P">'
         strDiv += '<td>'
         strDiv += '<a class="b_left" id="updMultP2P" href="javascript:;"></a>'
@@ -333,9 +333,9 @@ function InitFrmUpdMult() {
     }
 
     // Hide bingo
-//    $('isDisableBG').value = 1;
+//    document.getElementById('isDisableBG').value = 1;
 
-    if ($('isDisableBG').value != 1) {
+    if (document.getElementById('isDisableBG').value != 1) {
         strDiv += '<tr id="tr_updMultBG">'
         strDiv += '<td>'
         strDiv += '<a class="b_left" id="updMultBG" href="javascript:;"></a>'
@@ -345,7 +345,7 @@ function InitFrmUpdMult() {
     strDiv += '<tr><td></td></tr></table>'
     strDiv += '</div>';
 
-    $('FrmUpd').innerHTML += strDiv;
+    document.getElementById('FrmUpd').innerHTML += strDiv;
     return true;
 }
 var username = '';
@@ -369,7 +369,7 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
 
     for (var j = 0; j < ArrChkId.length; j++) {
         if (ArrChkId[j].checked) {
-            if ($('isDisableCS').value != 1) {
+            if (document.getElementById('isDisableCS').value != 1) {
                 var strStatus = ArrChkId[j].getAttribute('statuscs');
                 status += strStatus + ';';
 
@@ -381,7 +381,7 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
                 }
             }
 
-            if ($('isDisableBG').value != 1) {
+            if (document.getElementById('isDisableBG').value != 1) {
                 var strStatus = ArrChkId[j].getAttribute('statusbg');
                 statusBingo += strStatus + ';';
 
@@ -393,7 +393,7 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
                 }
             }
 
-            if ($('isDisableP2P').value != 1) {
+            if (document.getElementById('isDisableP2P').value != 1) {
                 var strStatus = ArrChkId[j].getAttribute('statusp2p');
                 statusP2P += strStatus + ';';
 
@@ -430,7 +430,7 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
     }
 
     if (ischecked) {
-        var div = $('divUpdMult');
+        var div = document.getElementById('divUpdMult');
         if (!div) return false;
 
         el.style.position = 'relative';
@@ -442,15 +442,15 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
         div.timerID = setTimeout(HideFrmUpdMult, 2000);
         AGE.addEvent(div, "mouseover", function() { clearTimeout(div.timerID); div.timerID = 0; }, true);
 
-        var td1 = $('updMultSpBook');
-        td1.innerHTML = $("txtSpBookMult").innerHTML;
-        if ($("roleid").value == "4") {
+        var td1 = document.getElementById('updMultSpBook');
+        td1.innerHTML = document.getElementById("txtSpBookMult").innerHTML;
+        if (document.getElementById("roleid").value == "4") {
             if (custLevel == "Super" || custLevel == "Master")
                 td1.href = 'javascript:EditMember_Multi(' + upline_id + ',"' + custLevel + '",' + masterid + ')';
             else
                 td1.href = 'javascript:EditMaster_Multi(' + upline_id + ')';
         }
-        else if ($("roleid").value == "3") {
+        else if (document.getElementById("roleid").value == "3") {
             if (custLevel == "Super" || custLevel == "Master")
                 td1.href = 'javascript:EditMember_Multi(' + upline_id + ',"' + custLevel + '",' + masterid + ')';
             else
@@ -459,22 +459,22 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
         else
             td1.href = 'javascript:EditMember_Multi(' + upline_id + ',"' + custLevel + '",' + masterid + ')';
 
-        if ($('isDisableFI').value != 1) {
-            var td3 = $('updMultFI');
-            td3.innerHTML = $("txtFIMult").innerHTML;
+        if (document.getElementById('isDisableFI').value != 1) {
+            var td3 = document.getElementById('updMultFI');
+            td3.innerHTML = document.getElementById("txtFIMult").innerHTML;
             if (counter > 1)
                 td3.href = 'javascript:OpenEditFinance("","' + custLevel + '",' + upline_id + ',1)';
             else
                 td3.href = 'javascript:OpenEditFinance(' + custid + ',"' + custLevel + '",' + upline_id + ',0)';
         }
-        if ($('isDisableHR').value != 1) {
-            var td4 = $('updMultHR');
-            td4.innerHTML = $("txtHRMult").innerHTML;
+        if (document.getElementById('isDisableHR').value != 1) {
+            var td4 = document.getElementById('updMultHR');
+            td4.innerHTML = document.getElementById("txtHRMult").innerHTML;
             var ismult = 0;
             if (counter > 1)
                 ismult = 1;
 
-            if ($("roleid").value == "4") {
+            if (document.getElementById("roleid").value == "4") {
                 if (custLevel == "Super") {
                     td4.href = 'javascript:CustomerEditHR("' + custid + '",4,"Member",' + ismult + ')';
                 }
@@ -482,7 +482,7 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
                     td4.href = 'javascript:CustomerEditHR("' + custid + '",4,"Master",' + ismult + ')';
                 }
             }
-            else if ($("roleid").value == "3") {
+            else if (document.getElementById("roleid").value == "3") {
                 if (custLevel == "Master") {
                     td4.href = 'javascript:CustomerEditHR("' + custid + '",3,"Member",' + ismult + ')';
                 }
@@ -496,13 +496,13 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
         }
 
         // For casino
-        if ($('isDisableCS').value != 1) {
-            var trUpdCS = $('tr_updMultCS');
+        if (document.getElementById('isDisableCS').value != 1) {
+            var trUpdCS = document.getElementById('tr_updMultCS');
             if (!isCasino) trUpdCS.style.display = 'none';
             else trUpdCS.style.display = '';
 
-            var updCS = $('updMultCS');
-            updCS.innerHTML = $("txtCSMultEdit").innerHTML;
+            var updCS = document.getElementById('updMultCS');
+            updCS.innerHTML = document.getElementById("txtCSMultEdit").innerHTML;
 
             if (counterCS > 1)
                 updCS.href = 'javascript:EditMulti("","' + status + '",1,1)';
@@ -511,12 +511,12 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
         }
 
         // For Bingo
-        if ($('isDisableBG').value != 1) {
-            var trUpdBG = $('tr_updMultBG');
+        if (document.getElementById('isDisableBG').value != 1) {
+            var trUpdBG = document.getElementById('tr_updMultBG');
             if (!isBingo) trUpdBG.style.display = 'none';
             else trUpdBG.style.display = '';
-            var updBG = $('updMultBG');
-            updBG.innerHTML = $("txtBGMultEdit").innerHTML;
+            var updBG = document.getElementById('updMultBG');
+            updBG.innerHTML = document.getElementById("txtBGMultEdit").innerHTML;
 
             if (counterBG > 1)
                 updBG.href = 'javascript:EditMulti("","' + statusBingo + '",1,2)';
@@ -525,13 +525,13 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
         }
 
         // For P2P
-        if ($('isDisableP2P').value != 1) {
-            var trUpdP2P = $('tr_updMultP2P');
+        if (document.getElementById('isDisableP2P').value != 1) {
+            var trUpdP2P = document.getElementById('tr_updMultP2P');
             if (!isP2P) trUpdP2P.style.display = 'none';
             else trUpdP2P.style.display = '';
 
-            var updP2P = $('updMultP2P');
-            updP2P.innerHTML = $("txtP2PMultEdit").innerHTML;
+            var updP2P = document.getElementById('updMultP2P');
+            updP2P.innerHTML = document.getElementById("txtP2PMultEdit").innerHTML;
 
             if (counterP2P > 1)
                 updP2P.href = 'javascript:EditMulti("","' + statusP2P + '",1,3)';
@@ -544,13 +544,13 @@ function ShowFrmUpdMult(el, custLevel, upline_id, masterid) {
     }
 }
 function HideFrmUpdMult() {
-    var div = $('divUpdMult');
+    var div = document.getElementById('divUpdMult');
     if (!div) return false;
     div.style.display = 'none';
 }
 
 function InitFrmUpdOthersFunction() {
-    var div = $('divUpdOthers');
+    var div = document.getElementById('divUpdOthers');
     if (div) return false;
     var strDiv = '<div id="divUpdOthers" style="display:none; border: solid 1px #ccdddd; position: absolute; background-color: #eeeeee; white-space: nowrap; padding-right: 5px; font-weight:normal;">'
     strDiv += '<table cellspacing="2" cellpadding="1">'
@@ -559,19 +559,19 @@ function InitFrmUpdOthersFunction() {
     strDiv += '<a class="b_left" id="updMinPT" href="javascript:;"></a>'
     strDiv += '</td></tr>'
 
-    if ($("isTransfer") != null && $('isDisableFI').value != 1) {
+    if (document.getElementById("isTransfer") != null && document.getElementById('isDisableFI').value != 1) {
         strDiv += '<tr>'
         strDiv += '<td>'
         strDiv += '<a class="b_left" id="updFIMinPT" href="javascript:;"></a>'
         strDiv += '</td></tr>'
     }
-    if ($('isDisableHR').value != 1) {
+    if (document.getElementById('isDisableHR').value != 1) {
         strDiv += '<tr>'
         strDiv += '<td>'
         strDiv += '<a class="b_left" id="updHRMinPT" href="javascript:;"></a>'
         strDiv += '</td></tr>'
     }
-    if ($("isTransfer") != null && $("isTransfer").value == "1") {
+    if (document.getElementById("isTransfer") != null && document.getElementById("isTransfer").value == "1") {
         strDiv += '<tr><td align="left"><a class="b_left" id="updTransferCon" href="javascript:;"></a>'
         strDiv += '</td>'
         strDiv += '</tr>'
@@ -585,17 +585,17 @@ function InitFrmUpdOthersFunction() {
     strDiv += '</table>'
     strDiv += '</div>';
 
-    $('FrmUpd').innerHTML += strDiv;
+    document.getElementById('FrmUpd').innerHTML += strDiv;
     return true;
 }
 function ShowFrmUpdOthers(el, custid, username) {
-    var div = $('divUpdOthers');
+    var div = document.getElementById('divUpdOthers');
     if (!div) return false;
 
-    var td1 = $('updMinPT');
-    td1.innerHTML = $("txtMinPT").innerHTML;
-    var td3 = $('updPwd');
-    td3.innerHTML = $("txtPassword").innerHTML;
+    var td1 = document.getElementById('updMinPT');
+    td1.innerHTML = document.getElementById("txtMinPT").innerHTML;
+    var td3 = document.getElementById('updPwd');
+    td3.innerHTML = document.getElementById("txtPassword").innerHTML;
     // Get isSync for Casino
     var isSync = el.parentNode.parentNode.cells[3].firstChild.getAttribute('statuscs');
     //--
@@ -612,24 +612,24 @@ function ShowFrmUpdOthers(el, custid, username) {
     td3.href = 'javascript:showReset(' + custid + ',"' + username + '",' + isSync + ')';
     AGE.addEvent(div, "mouseout", function() { clearTimeout(div.timerID); div.timerID = 0; div.timerID = setTimeout(HideFrmUpdOthers, 100); }, true);
 
-    if ($("isTransfer") != null && $("isTransfer").value == "1") {
-        var td2 = $('updTransferCon');
-        td2.innerHTML = $("txtTransfer").innerHTML;
+    if (document.getElementById("isTransfer") != null && document.getElementById("isTransfer").value == "1") {
+        var td2 = document.getElementById('updTransferCon');
+        td2.innerHTML = document.getElementById("txtTransfer").innerHTML;
         td2.href = 'javascript:showTransferCondition(' + custid + ')';
     }
-    if ($("isTransfer") != null && $('isDisableFI').value != 1) {
-        var td4 = $('updFIMinPT');
-        td4.innerHTML = $("txtFIMinPT").innerHTML;
+    if (document.getElementById("isTransfer") != null && document.getElementById('isDisableFI').value != 1) {
+        var td4 = document.getElementById('updFIMinPT');
+        td4.innerHTML = document.getElementById("txtFIMinPT").innerHTML;
         td4.href = 'javascript:OpenEditMinMaxFI(' + custid + ',"' + username + '")';
     }
-    if ($('isDisableHR').value != 1) {
-        var td5 = $('updHRMinPT');
-        td5.innerHTML = $("txtHRMinPT").innerHTML;
+    if (document.getElementById('isDisableHR').value != 1) {
+        var td5 = document.getElementById('updHRMinPT');
+        td5.innerHTML = document.getElementById("txtHRMinPT").innerHTML;
         td5.href = 'javascript:OpenEditMinMaxHR(' + custid + ',"' + username + '")';
     }
 }
 function HideFrmUpdOthers() {
-    var div = $('divUpdOthers');
+    var div = document.getElementById('divUpdOthers');
     if (!div) return false;
     div.style.display = 'none';
 }
@@ -769,17 +769,17 @@ function EditMulti(custid, status, isMult, page) {
 
         if (intCount == 0) return;
         if (intCount == 1) {
-            $("arrayCustID").value = "";
-            $("arrayUserName").value = "";
+            document.getElementById("arrayCustID").value = "";
+            document.getElementById("arrayUserName").value = "";
             if (page == 3)
                 URL += "custids=" + SelCID + "&custnames=" + SelUser + "&isMult=0&roleid=" + droleid;
             else
                 URL += "custid=" + firstSynCustId + "&isMult=0";
         }
         else if (intCount > 1) {
-            $("arrayCustID").value = SelCID;
-            $("arrayUserName").value = SelUser;
-            $("arrayStatus").value = SelStatus;
+            document.getElementById("arrayCustID").value = SelCID;
+            document.getElementById("arrayUserName").value = SelUser;
+            document.getElementById("arrayStatus").value = SelStatus;
             if (page == 3)
                 URL += "custids=" + SelCID + "&custnames=" + SelUser + "&isMult=1&roleid=" + droleid;
             else
@@ -787,9 +787,9 @@ function EditMulti(custid, status, isMult, page) {
         }
     }
     else {
-        $("arrayCustID").value = "";
-        $("arrayUserName").value = "";
-        $("arrayStatus").value = "";
+        document.getElementById("arrayCustID").value = "";
+        document.getElementById("arrayUserName").value = "";
+        document.getElementById("arrayStatus").value = "";
         if (page == 3)
             URL += "custids=" + custid + "&username=" + username + "&isMult=0&roleid=" + droleid;
         else
@@ -819,12 +819,12 @@ function OpenEditFinance(custid, custLevel, upline_id, isMult) {
 
         if (intCount == 0) return;
         if (intCount == 1) {
-            $("arrayCustID").value = "";
-            $("arrayUserName").value = "";
+            document.getElementById("arrayCustID").value = "";
+            document.getElementById("arrayUserName").value = "";
         }
         else if (intCount > 1) {
-            $("arrayCustID").value = SelCID;
-            $("arrayUserName").value = SelUser;
+            document.getElementById("arrayCustID").value = SelCID;
+            document.getElementById("arrayUserName").value = SelUser;
         }
         if (custLevel == "Super" || custLevel == "Master") {
             popH = 550;
@@ -833,8 +833,8 @@ function OpenEditFinance(custid, custLevel, upline_id, isMult) {
         }
     }
     else {
-        $("arrayCustID").value = "";
-        $("arrayUserName").value = "";
+        document.getElementById("arrayCustID").value = "";
+        document.getElementById("arrayUserName").value = "";
         URL += "custId=" + custid + "&isMult=0";
 
         if (custLevel == "Super" || custLevel == "Master") {
@@ -847,7 +847,7 @@ function OpenEditFinance(custid, custLevel, upline_id, isMult) {
 }
 
 function EditP2P(custid, roleid, username) {
-    var URL = '../_MemberInfo/P2P/P2P_Page.aspx?custids=' + custid + '&roleid=' + roleid + '&username=' + username + '&disable=' + $('isDisableP2P').value;
+    var URL = '../_MemberInfo/P2P/P2P_Page.aspx?custids=' + custid + '&roleid=' + roleid + '&username=' + username + '&disable=' + document.getElementById('isDisableP2P').value;
     var popH = 550, popW = 950;
     ageWnd.open(URL, '', 0, 10, popW, popH);
 }
@@ -869,12 +869,12 @@ function GetCustID(CheckedID) {
 
     if (intCount == 0) return;
     if (intCount == 1) {
-        $("arrayCustID").value = "";
-        $("arrayUserName").value = "";
+        document.getElementById("arrayCustID").value = "";
+        document.getElementById("arrayUserName").value = "";
     }
     else if (intCount > 1) {
-        $("arrayCustID").value = SelCID;
-        $("arrayUserName").value = SelUser;
+        document.getElementById("arrayCustID").value = SelCID;
+        document.getElementById("arrayUserName").value = SelUser;
     }
     return SelCID.substring(0, SelCID.indexOf("^"));
 }
@@ -895,8 +895,8 @@ function CustomerEditHR(custid, roleid, actionOn, isMult) {
                 else {
                     url += "EditMaster.aspx?custid=" + custid;
                 }
-                $("arrayCustID").value = custid;
-                $("arrayUserName").value = "";
+                document.getElementById("arrayCustID").value = custid;
+                document.getElementById("arrayUserName").value = "";
             }
             else {
                 custid = GetCustID("chkid");
@@ -917,8 +917,8 @@ function CustomerEditHR(custid, roleid, actionOn, isMult) {
                 else {
                     url += "EditAgent.aspx?custid=" + custid;
                 }
-                $("arrayCustID").value = custid;
-                $("arrayUserName").value = "";
+                document.getElementById("arrayCustID").value = custid;
+                document.getElementById("arrayUserName").value = "";
             }
             else {
                 custid = GetCustID("chkid");
@@ -934,8 +934,8 @@ function CustomerEditHR(custid, roleid, actionOn, isMult) {
             url += "../_MemberInfo/RaceBook/Agent/";
             if (isMult == 0) {
                 url += "EditMember.aspx?custid=" + custid;
-                $("arrayCustID").value = custid;
-                $("arrayUserName").value = "";
+                document.getElementById("arrayCustID").value = custid;
+                document.getElementById("arrayUserName").value = "";
             }
             else {
                 custid = GetCustID("chkid");
@@ -968,12 +968,12 @@ function EditHR(custid, custLevel, upline_id, isMult) {
 
         if (intCount == 0) return;
         if (intCount == 1) {
-            $("arrayCustID").value = "";
-            $("arrayUserName").value = "";
+            document.getElementById("arrayCustID").value = "";
+            document.getElementById("arrayUserName").value = "";
         }
         else if (intCount > 1) {
-            $("arrayCustID").value = SelCID;
-            $("arrayUserName").value = SelUser;
+            document.getElementById("arrayCustID").value = SelCID;
+            document.getElementById("arrayUserName").value = SelUser;
         }
         if (custLevel == "Super" || custLevel == "Master") {
             popH = 750;
@@ -982,8 +982,8 @@ function EditHR(custid, custLevel, upline_id, isMult) {
         }
     }
     else {
-        $("arrayCustID").value = "";
-        $("arrayUserName").value = "";
+        document.getElementById("arrayCustID").value = "";
+        document.getElementById("arrayUserName").value = "";
         URL += "custId=" + custid + "&isMult=0";
 
         if (custLevel == "Super") {
@@ -1006,8 +1006,8 @@ function EditHR(custid, custLevel, upline_id, isMult) {
 }
 
 function EditMaster_Single(cid, cname, superid) {
-    $("arrayCustID").value = "";
-    $("arrayUserName").value = "";
+    document.getElementById("arrayCustID").value = "";
+    document.getElementById("arrayUserName").value = "";
     var URL = "../../_MemberInfo/PositionTaking/Super/EditMaster.aspx?"; //V1
 
     URL += "m=0";
@@ -1044,14 +1044,14 @@ function EditMaster_Multi(superid) {
         var popH = 950, popW = 1024;
         URL += "&custid=" + SelCID.replace("^", "");
         URL += "&USER=" + SelUser.replace("^", "");
-        $("arrayCustID").value = "";
-        $("arrayUserName").value = "";
+        document.getElementById("arrayCustID").value = "";
+        document.getElementById("arrayUserName").value = "";
     } else if (intCount > 1) {
         var URL = "../UserSuper/EditMaster.aspx?";
         URL += "m=1";
         var popH = 950, popW = 1024;
-        $("arrayCustID").value = SelCID;
-        $("arrayUserName").value = SelUser;
+        document.getElementById("arrayCustID").value = SelCID;
+        document.getElementById("arrayUserName").value = SelUser;
     }
 
     URL += '&superid=' + superid;
@@ -1061,8 +1061,8 @@ function EditMaster_Multi(superid) {
 
 //this function is used when master edit agent that from agent list -- edit single
 function EditAgent_Single(id, us, masterid) {
-    $("arrayCustID").value = "";
-    $("arrayUserName").value = "";
+    document.getElementById("arrayCustID").value = "";
+    document.getElementById("arrayUserName").value = "";
     var url = "../../_MemberInfo/PositionTaking/Master/EditAgent.aspx.aspx?m=0&custid=" + id + "&USER=" + us + '&masterid=' + masterid; //V1
     var popH = 950, popW = 1024;
 
@@ -1092,14 +1092,14 @@ function EditAgent_Multi(masterid) {
         var popH = 950, popW = 1024;
         URL += "&custid=" + SelCID.replace("^", "");
         URL += "&USER=" + SelUser.replace("^", "");
-        $("arrayCustID").value = "";
-        $("arrayUserName").value = "";
+        document.getElementById("arrayCustID").value = "";
+        document.getElementById("arrayUserName").value = "";
     } else if (intCount > 1) {
         var URL = "../UserMaster/EditAgent.aspx?";
         URL += "m=1";
         var popH = 950, popW = 1024;
-        $("arrayCustID").value = SelCID;
-        $("arrayUserName").value = SelUser;
+        document.getElementById("arrayCustID").value = SelCID;
+        document.getElementById("arrayUserName").value = SelUser;
     }
 
     URL += '&masterid=' + masterid;
@@ -1131,15 +1131,15 @@ function EditMember_Multi(agentid, Customer, masterid) {
         URL += "&custid=" + SelCID.replace("^", "");
         URL += "&USER=" + SelUser.replace("^", "");
         var popH = 950, popW = 1024;
-        $("arrayCustID").value = "";
-        $("arrayUserName").value = "";
+        document.getElementById("arrayCustID").value = "";
+        document.getElementById("arrayUserName").value = "";
     } else if (intCount > 1) {
         var URL = "../UserAgent/EditMember.aspx?";
         if (Customer == 'Super') URL = "../UserSuper/EditMember.aspx?";
         if (Customer == 'Master') URL = "../UserMaster/EditMember.aspx?";
         URL += "m=1";
-        $("arrayCustID").value = SelCID;
-        $("arrayUserName").value = SelUser;
+        document.getElementById("arrayCustID").value = SelCID;
+        document.getElementById("arrayUserName").value = SelUser;
         var popH = 950, popW = 1024;
     }
 
@@ -1166,7 +1166,7 @@ function OpenEditMinMaxFI(custid, username) {
 function OpenEditMinMaxHR(custid, username) {
     // var url = "../MemberInfo/EditMinHR.aspx?custid=" + custid + "&username=" + username;
     var url = '';
-    if ($('roleid').value == 4) {
+    if (document.getElementById('roleid').value == 4) {
         url = '../_MemberInfo/RaceBook/Super/EditMinPT.aspx';
     }
     else {
@@ -1174,7 +1174,7 @@ function OpenEditMinMaxHR(custid, username) {
     }
 
     url += '?custid=' + custid;
-    $("arrayCustID").value = custid;
+    document.getElementById("arrayCustID").value = custid;
     var popW = 800, popH = 900;
 
     //url, title, left, top, width, height
@@ -1186,10 +1186,10 @@ function ChangeIcon(id, isDis) {
 
     for (var i = 0; i < custid.length - 1; i++) {
         if (isDis == "0") {
-            $(custid[i]).className = "divEdit";
+            document.getElementById(custid[i]).className = "divEdit";
         }
         else {
-            $(custid[i]).className = "divEditDisabled";
+            document.getElementById(custid[i]).className = "divEditDisabled";
         }
     }
     HideLoadingDiv();
@@ -1208,8 +1208,8 @@ function DelayReloadIcon(Id, isDis, time) {
     window.loadingT = setTimeout("ChangeIcon('" + Id + "','" + isDis + "')", delay);
 }
 function SetChangeICon(id, isDis) {
-    $('HdCustid').value = id;
-    $('HdStatus').value = isDis;
+    document.getElementById('HdCustid').value = id;
+    document.getElementById('HdStatus').value = isDis;
 }
 
 // User in multiple update case
@@ -1236,14 +1236,14 @@ function GetSelectedCustomer() {
 }
 
 function onclickUser(username) {
-    if ($('txtUserName').value == username) {
-        $('txtUserName').className = 'text_f';
-        $('txtUserName').value = '';
+    if (document.getElementById('txtUserName').value == username) {
+        document.getElementById('txtUserName').className = 'text_f';
+        document.getElementById('txtUserName').value = '';
     }
 }
 function onblurUser(username) {
-    if ($('txtUserName').value == '') {
-        $('txtUserName').className = 'text_f1';
-        $('txtUserName').value = username;
+    if (document.getElementById('txtUserName').value == '') {
+        document.getElementById('txtUserName').className = 'text_f1';
+        document.getElementById('txtUserName').value = username;
     }
 }

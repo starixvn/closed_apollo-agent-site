@@ -7,7 +7,9 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
     using CasinoLibrary.SBAgent;
     using Fanex.Data.DNAide;
     using Sunplus.Agent.Model.DL.Base;
-    using Sunplus.Agent.Utilities;
+    using Fanex.Age.Utility;
+    
+    
 
     public class AccountInfoDAO : DAOBase
     {
@@ -772,7 +774,7 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
         {
             Hashtable param = new Hashtable();
             param.Add("custid", custId);
-            param.Add("userpwd", Encryption.CfsEnCode(newPassword));
+            //param.Add("userpwd", Encryption.CfsEnCode(newPassword));
             param.Add("discasino", Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledCasino);
             param.Add("userid", Sunplus.Agent.Model.Entities.UserSession.Current.UserId);
             param.Add("language", Sunplus.Agent.Model.Entities.UserSession.Current.LangKey);

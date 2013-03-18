@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Resources;
 using Fanex.Age.DTO;
-using Fanex.Age.Utility.DateTime;
+using Fanex.Age.Utility;
 
 /*
  * Created 20120220@Leo
@@ -19,7 +19,7 @@ namespace Fanex.Age.Excel.Reports
     {
         public static string GetHeaderTitle(eReportType reportType)
         {
-            string title = "";
+            string title = string.Empty;
             switch (reportType)
             {
                 case eReportType.Daily:
@@ -40,7 +40,7 @@ namespace Fanex.Age.Excel.Reports
 
         public static string GetBreakDownTitle(eReportType reportType)
         {
-            string title = "";
+            string title = string.Empty;
             switch (reportType)
             {
                 case eReportType.Daily:
@@ -61,7 +61,7 @@ namespace Fanex.Age.Excel.Reports
 
         public static string GetBreakDownText(int breakDown, eReportType reportType)
         {
-            string text = "";
+            string text = string.Empty;
             switch (reportType)
             {
                 case eReportType.Daily:
@@ -86,7 +86,7 @@ namespace Fanex.Age.Excel.Reports
 
         public static string GetResourceNameBySportId(int sportId)
         {
-            string resourceName = "";
+            string resourceName = string.Empty;
             switch (sportId)
             {
                 case 0:
