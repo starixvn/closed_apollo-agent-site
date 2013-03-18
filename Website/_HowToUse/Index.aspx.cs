@@ -7,6 +7,8 @@
 
 namespace Sunplus.Agent.UI._HowToUse
 {
+    using Fanex.Agent.UI._HowToUse;
+
     public partial class Index_Page : Fanex.Age.UI.TplPage
     {
         string MainSource = string.Empty;

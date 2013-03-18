@@ -8,9 +8,7 @@
 namespace Sunplus.Agent.UI._AccountInfo
 {
     using System;
-    using Sunplus.Agent.Model.BL.AccountInfo;
-    using Sunplus.Agent.Utilities;
-    using System.Collections.Generic;
+    using Fanex.Agent.UI._AccountInfo;
 
     public partial class ResetPassword_Page : Fanex.Age.UI.TplPage
     {

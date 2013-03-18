@@ -1,7 +1,7 @@
 ﻿namespace Sunplus.Agent.UI._MemberInfo.BetSetting
 {
     using System.Web.UI;
-    using Sunplus.Agent.UI._MemberInfo.BetSetting;
+    using Fanex.Agent.UI._MemberInfo.BetSetting;
 
     public partial class EditBetSetting_Page : Fanex.Age.UI.TplPage
     {

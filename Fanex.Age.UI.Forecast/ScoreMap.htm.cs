@@ -11,7 +11,7 @@ namespace Fanex.Age.UI.Forecast
 	//{
 		public class ScoreMap_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>";
+			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.lblScoreMap;}}
 			protected static string s2 = "</title><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
