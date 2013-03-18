@@ -4194,4 +4194,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="MultipliedBy" xml:space="preserve">
     <value>Multiplied By</value>
   </data>
+  <data name="ExchangeRate" xml:space="preserve">
+    <value>Exchange Rate</value>
+  </data>
 </root>

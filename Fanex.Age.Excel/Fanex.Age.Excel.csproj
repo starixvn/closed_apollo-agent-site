@@ -68,6 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ExchangeRate\ExchangeRateDataBuilder.cs" />
+    <Compile Include="Admin\ExchangeRate\ExchangeRateList.cs" />
     <Compile Include="App_GlobalResources\Lang.designer.cs">
       <DependentUpon>Lang.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -160,9 +162,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
       <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>

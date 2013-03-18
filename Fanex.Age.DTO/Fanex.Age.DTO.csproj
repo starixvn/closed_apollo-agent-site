@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ExchangeRate\ExchRate.cs" />
     <Compile Include="BetList\P2P\IdName.cs" />
     <Compile Include="BetList\P2P\SessionCurrency.cs" />
     <Compile Include="BetList\P2P\SessionItem.cs" />

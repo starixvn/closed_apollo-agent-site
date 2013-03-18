@@ -960,6 +960,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base Rate.
+        /// </summary>
+        internal static string BaseRate {
+            get {
+                return ResourceManager.GetString("BaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basketball.
         /// </summary>
         internal static string Basketball {
@@ -2103,6 +2112,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DH.
         /// </summary>
         internal static string dh {
@@ -2576,6 +2594,15 @@ namespace Resources {
         internal static string eway {
             get {
                 return ResourceManager.GetString("eway", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exchange Rate.
+        /// </summary>
+        internal static string ExchangeRate {
+            get {
+                return ResourceManager.GetString("ExchangeRate", resourceCulture);
             }
         }
         
@@ -7820,6 +7847,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Min Bet.
+        /// </summary>
+        internal static string MinBet {
+            get {
+                return ResourceManager.GetString("MinBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Bet Live.
+        /// </summary>
+        internal static string MinBetLive {
+            get {
+                return ResourceManager.GetString("MinBetLive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} - The Min Bet should be less than or equal to Max Bet.
         /// </summary>
         internal static string minBetShouldBeLessThanOrEqualToMaxBet {
@@ -8106,6 +8151,15 @@ namespace Resources {
         internal static string multipletransfer {
             get {
                 return ResourceManager.GetString("multipletransfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiplied By.
+        /// </summary>
+        internal static string MultipliedBy {
+            get {
+                return ResourceManager.GetString("MultipliedBy", resourceCulture);
             }
         }
         

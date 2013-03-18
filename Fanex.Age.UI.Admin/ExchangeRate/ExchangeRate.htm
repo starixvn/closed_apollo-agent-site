@@ -50,11 +50,12 @@
                     <input src="../../_globalresources/images/icon-add-doc.png"
                         title="Add New Exchange Rate"
                         alt="Add New"
-                        type="image" id="btn-add-new" name="btn-add-new" />
+                        type="image" id="btn-add-new" />
+
                     <input src="../../_globalresources/images/excel.gif"
                         title="{static:Resources.Lang.exporttoexcel}"
                         alt="{static:Resources.Lang.exporttoexcel}"
-                        type="image" id="exporttoexcel" name="exporttoexcel" />
+                        type="image" id="btn-excel" name="ExportExcel" />
                 </div>
             <!--/ExportExcel-->
             </td>
@@ -123,7 +124,6 @@
                     $('#tbl-rpt .btn-edit').click(function () {
                         var $this = $(this),
                             exchId = $this.attr('eid');
-                        alert('Im about to edit' + exchId);
                     });
                 }
             };

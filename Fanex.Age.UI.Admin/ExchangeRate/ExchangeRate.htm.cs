@@ -27,7 +27,7 @@ namespace Fanex.Age.UI.Admin
 			protected static string s9{get{return AbsoluteUrl("_globalresources/js/jquery.js", TplSettings.Question);}}
 			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s11{get{return AbsoluteUrl("_globalresources/js/core.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\">var ExchRate = function ($) {return {init: function () {$('#tbl-rpt .btn-edit').click(function () {var $this = $(this),exchId = $this.attr('eid');alert('Im about to edit' + exchId);});}};} (jQuery);jQuery(document).ready(function () {ExchRate.init();});</script></body></html>";
+			protected static string s12 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\">var ExchRate = function ($) {return {init: function () {$('#tbl-rpt .btn-edit').click(function () {var $this = $(this),exchId = $this.attr('eid');});}};} (jQuery);jQuery(document).ready(function () {ExchRate.init();});</script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -114,13 +114,13 @@ namespace Fanex.Age.UI.Admin
 		{
 			protected static string s30 = "<div class=\"export-excel\"><input src=\"";
 			protected static string s31{get{return AbsoluteUrl("_globalresources/images/icon-add-doc.png");}}
-			protected static string s32 = "\"title=\"Add New Exchange Rate\"alt=\"Add New\"type=\"image\" id=\"btn-add-new\" name=\"btn-add-new\" /><input src=\"";
+			protected static string s32 = "\"title=\"Add New Exchange Rate\"alt=\"Add New\"type=\"image\" id=\"btn-add-new\" /><input src=\"";
 			protected static string s33{get{return AbsoluteUrl("_globalresources/images/excel.gif");}}
 			protected static string s34 = "\"title=\"";
 			protected static string s35{get{return Resources.Lang.exporttoexcel;}}
 			protected static string s36 = "\"alt=\"";
 			protected static string s37{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s38 = "\"type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" /></div>";
+			protected static string s38 = "\"type=\"image\" id=\"btn-excel\" name=\"ExportExcel\" /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
