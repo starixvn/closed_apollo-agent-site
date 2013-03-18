@@ -75,19 +75,19 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
         {
             if (Fanex.Age.DTO.Reports.TreeView.TreeViewNode.Type == 1)
             {
-                url = "../_AccountInfo/AccountInfo.aspx?IsMember=0&txtUsername=" + dv[i]["Username"];
+                url = "../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + dv[i]["AgentId"] + "&txtUsername=" + dv[i]["Username"];
                 target = "target='menu'";
             }
             else
             {
-                url = "../_MemberInfo/CustomerList/MemberList.aspx?custid=" + dv[i]["AgentId"] + "&us=" + dv[i]["Username"];
+                url = "../_MemberInfo/CustomerList/AgentList.aspx?custid=" + dv[i]["AgentId"] + "&us=" + dv[i]["Username"];
                 target = "target='main'";
             }
 
             tree.Append("{");
             tree.Append("\"text\": \"").Append("<a href='" + url + "' " + target  + ">" + dv[i]["Username"] + "</a>").Append("\",");
             tree.Append("\"id\": \"").Append(dv[i]["AgentId"]).Append("\",");
-            tree.Append("\"hasChildren\": true");
+            tree.Append("\"hasChildren\": " + dv[i]["hasChildren"]);
             tree.Append("},");
         }
 
