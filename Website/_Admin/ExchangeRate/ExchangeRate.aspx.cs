@@ -17,10 +17,10 @@ using Sunplus.Agent.Model.BL.Admin;
 
 public partial class _Admin_ExchangeRate_ExchangeRate : TplPage
 {
-    protected const string EVEN_ROW_CLASS = Fanex.Age.UI.Common.RowBgEven;
-    protected const string ODD_ROW_CLASS = Fanex.Age.UI.Common.RowBgOdd;
-
     private string _fileName = "ExchangeRate.aspx";
+
+    protected const string EVEN_ROW_CLASS = "even";
+    protected const string ODD_ROW_CLASS = "odd";
 
     private AdminBO _adminBO;
     protected AdminBO AdminBO
@@ -61,10 +61,11 @@ public partial class _Admin_ExchangeRate_ExchangeRate : TplPage
 
             foreach (DataRow exRate in data.Rows)
             {
-                contentBlock.ColorClass = (numRow % 2) == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
-                numRow--;
+                contentBlock.rowClass = (numRow % 2) == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
 
+                contentBlock.ExchangeId = exRate["ExchangeId"].ToString();
                 contentBlock.Currency = exRate["Code"].ToString();
+                contentBlock.MultipliedBy = exRate["MultipliedBy"].ToString();
                 contentBlock.BaseRate = exRate["ActualRate"].ToString();
                 contentBlock.MinBet = exRate["MinBet"].ToString();
                 contentBlock.MinBetLive = exRate["MinBetLive"].ToString();
@@ -86,6 +87,8 @@ public partial class _Admin_ExchangeRate_ExchangeRate : TplPage
                 //contentBlock.company = Formater.DecFormat(row["company"], 2);
 
                 excelBlock.Content.Append(contentBlock);
+
+                numRow--;
             }
         }
     }

@@ -61,6 +61,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base Rate.
+        /// </summary>
+        internal static string BaseRate {
+            get {
+                return ResourceManager.GetString("BaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string currency {
+            get {
+                return ResourceManager.GetString("currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string description {
+            get {
+                return ResourceManager.GetString("description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string edit {
+            get {
+                return ResourceManager.GetString("edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exchange Rate.
         /// </summary>
         internal static string Exchange_Rate {
@@ -75,6 +111,33 @@ namespace Resources {
         internal static string exporttoexcel {
             get {
                 return ResourceManager.GetString("exporttoexcel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Bet.
+        /// </summary>
+        internal static string MinBet {
+            get {
+                return ResourceManager.GetString("MinBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Bet Live.
+        /// </summary>
+        internal static string MinBetLive {
+            get {
+                return ResourceManager.GetString("MinBetLive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiplied By.
+        /// </summary>
+        internal static string MultipliedBy {
+            get {
+                return ResourceManager.GetString("MultipliedBy", resourceCulture);
             }
         }
     }
