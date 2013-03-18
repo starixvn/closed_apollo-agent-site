@@ -6,17 +6,35 @@
 </head>
 <body class="downlineTreview-bg">   
     <ul id="treeview_list">
-    </ul>           
+    </ul>       
 </body>
 </html>
 <script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>
 <script type="text/javascript" src="../_AccountInfo/Resources/jquery.cookie.js"></script>
 <script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.js"></script>
 <script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.async.js"></script> 
+<script type="text/javascript" src="../_GlobalResources/Js/jquery-ui.js"></script>
+<script type="text/javascript" src="../_GlobalResources/Js/slimScroll.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
         $("#treeview_list").treeview({
             url: "TreeList.aspx"
+        });
+
+        $('#treeview_list').slimscroll({
+            width: '161px',
+            height: '700px',
+            railVisible: true,
+            allowPageScroll: true,
+            touchScrollStep: 1000,
+            railDraggable: true
+        }).parent().css({
+            "width": '198px',
+            "height": "738px"
+        });
+
+        $('#treeview_list').css({
+            "overflow-x": 'visible'            
         });
     });
 </script>

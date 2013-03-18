@@ -45,60 +45,45 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         public void RenderNavigation()
         {
-            if (this.CustId == CurrentUserSession.CustId)
+            // Get data
+            CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
+            DataTable dtbNavigation = bo.GetAgentDownlinePath(CurrentUserSession.CustId, this.CustId);
+
+            // Init template
+            AgentList_nav_link_container_Block nav_link_Block = new AgentList_nav_link_container_Block();
+            this.template.nav_link_container.nav_link.Clear();
+            string url = "AgentList.aspx?custid={0}&username=" + this.UserName + "&us={1}";
+            int counter = dtbNavigation.Rows.Count;
+            if (counter > 0)
             {
-                CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
-                CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
+                foreach (DataRow dr in dtbNavigation.Rows)
+                {
+                    counter--;
+                    string us = dr["username"].ToString();
+                    nav_link_Block.nav_link.navigateName = us;
+                    nav_link_Block.nav_link.url = string.Format(url, dr["agentid"], us);
+                    if (counter == 0)
+                    {
+                        nav_link_Block.nav_link.SetValue(us);
+                    }
+                    else
+                    {
+                        nav_link_Block.nav_link.narrow = "<img height=\"12\" width=\"12\" src=\"Resources/Images/breadcrumb.gif\"/>";
+                    }
+                    this.template.nav_link_container.nav_link.Append(nav_link_Block.nav_link);
+                }
+            }
+            if (CurrentUserSession.CustId == this.CustId)
+            {
                 this.template.IconEditSetting = string.Empty;
-                this.template.nav_link_container.SetValue(string.Empty);
             }
             else
             {
-                if (!CurrentUserSession.NavigateUserName.ContainsKey(this.CustId))
-                {
-                    CurrentUserSession.NavigateUserName.Add(this.CustId, this.QueryUserName);
-                }
-                else
-                {
-                    this.NavUserName = CurrentUserSession.NavigateUserName;
-                    CurrentUserSession.NavigateUserName = new Dictionary<object, object>();
-                    foreach (object key in this.NavUserName.Keys)
-                    {
-                        if ((int)key == this.CustId)
-                        {
-                            CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
-                            break;
-                        }
-                        CurrentUserSession.NavigateUserName.Add(key, this.NavUserName[key]);
-                    }
-                    this.NavUserName = new Dictionary<object, object>();
-                }
                 string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.CustId + "', '" + this.QueryUserName + "')";
                 string onClickEvent = "EditAgentSetting(this,'" + this.CustId + "', '" + this.QueryUserName + "')";
                 this.template.IconEditSetting = new IcoOther(TemplateMain, "edit_" + this.CustId, "icon-edit", onClickEvent, editMenuControl);
             }
 
-            AgentList_nav_link_container_Block nav_link_Block = new AgentList_nav_link_container_Block();
-            StringBuilder nav = new StringBuilder();
-            this.template.nav_link_container.nav_link.Clear();
-            string url = "AgentList.aspx?custid={0}&us={1}&username=" + this.UserName;
-            int counter = CurrentUserSession.NavigateUserName.Count;
-            foreach (object key in CurrentUserSession.NavigateUserName.Keys)
-            {
-                counter--;
-                string navusername = CurrentUserSession.NavigateUserName[key].ToString();
-                nav_link_Block.nav_link.navigateName = navusername;
-                nav_link_Block.nav_link.url = string.Format(url, key, navusername);
-                if (counter == 0)
-                {
-                    nav_link_Block.nav_link.SetValue(navusername);
-                }
-                else
-                {
-                    nav_link_Block.nav_link.narrow = "<img height=\"12\" width=\"12\" src=\"Resources/Images/breadcrumb.gif\"/>";
-                }
-                this.template.nav_link_container.nav_link.Append(nav_link_Block.nav_link);
-            }
             this.template.AgentName = this.QueryUserName;
             this.template.urlMemberList = "MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName + "&username=" + this.UserName;
             this.template.urlShadowList = "#";
