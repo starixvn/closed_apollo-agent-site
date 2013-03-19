@@ -116,7 +116,7 @@ namespace Fanex.Agent.UI
 			protected static string s43{get{return Resources.Lang.enterusername;}}
 			protected static string s44 = "')\" value=\"";
 			public string usernamesearch = "{usernamesearch}";
-			protected static string s45 = "\" style=\"width: 80px;\" class=\"";
+			protected static string s45 = "\" style=\"width: 76px;\" class=\"";
 			public string classStyle = "{classStyle}";
 			protected static string s46 = "\" name=\"txtUsername\" /></div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink img\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
 			protected static string s47{get{return Resources.Lang.search;}}

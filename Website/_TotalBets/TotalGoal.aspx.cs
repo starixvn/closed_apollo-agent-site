@@ -1,35 +1,29 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
-
+using System.Data;
 using System.Web;
 using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-
-using Sunplus.Agent.Model.BL.Definitions;
 using Fanex.Age.UI;
-
 using Fanex.Age.UI.Components;
+using Sunplus.Agent.Model.BL.Definitions;
+using Sunplus.Agent.Model.BL.TotalBets;
 using Sunplus.Agent.Utilities;
 
 /*
  * Created 20100507@Jacob - Render TotalGoal page
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
+
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class TotalGoal_Page : TotalBets_Page
     {
-
         #region Override
 
         public override void RenderContent(HtmlTextWriter writer)
         {
-
             DataTable totalGoalList = View as DataTable;
 
             TotalGoal_Template tpl = new TotalGoal_Template();
@@ -78,7 +72,7 @@ namespace Fanex.Age.UI.TotalBets
             else
             {
                 writer.Write(tpl.Contents);
-            }   
+            }
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
@@ -90,9 +84,11 @@ namespace Fanex.Age.UI.TotalBets
         {
             return _TotalBetsBO.GetTotalGoal();
         }
-        #endregion
+
+        #endregion Override
 
         #region Utility
+
         /// <summary>
         /// Round color for total goal
         /// </summary>
@@ -102,9 +98,9 @@ namespace Fanex.Age.UI.TotalBets
         {
             decimal num = Convert.ToDecimal(number);
 
-            return num > 0 ? "<font color='red'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
+            return Math.Round(num) > 0 ? "<font color='red'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
         }
-        #endregion
-    }
 
+        #endregion Utility
+    }
 }

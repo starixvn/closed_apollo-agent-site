@@ -18,20 +18,13 @@
 
     public partial class SubAccList_Page : Fanex.Age.UI.TplPage
     {
-        private int _AgentId = 0;
         const string CHECKED = Fanex.Age.UI.Common.CHECKED;
         const string DISABLED = Fanex.Age.UI.Common.DISABLED;
 
         private int AgentId
         {
-            get
-            {
-                return _AgentId;
-            }
-            set
-            {
-                _AgentId = value;
-            }
+            get;
+            set;
         }
 
         public override void ProcessRequest(ref Hashtable p)
@@ -130,17 +123,17 @@
                 string[] permissions = subAcc.PageAccess.Split("-".ToCharArray());
                 foreach (string item in permissions)
                 {
-                    if (item.Contains(AgentUserAccess.TotalBet_ForeCast))
+                    if (item.Contains(PageAccessType.TotalBet_ForeCast))
                     {
                         rowContent.totalbet_forecast_checked = "Checked=true";
                     }
-                    else if (item.Contains(AgentUserAccess.Report))
+                    else if (item.Contains(PageAccessType.Report))
                     {
                         rowContent.report_checked = "Checked=true";
                     }
-                    else if (item.Contains(AgentUserAccess.AccountSeting))
+                    else if (item.Contains(PageAccessType.AccountSeting))
                     {
-                        if (item.Contains(AgentUserAccess.Host))
+                        if (item.Contains(PageAccessType.Host))
                         {
                             rowContent.accountsetting_checked_host = "Checked=true";
                             rowContent.accountsetting_checked_read = "Checked=true disabled=true ";
@@ -153,7 +146,7 @@
                     }
                     else
                     {
-                        if (item.Contains(AgentUserAccess.Host))
+                        if (item.Contains(PageAccessType.Host))
                         {
                             rowContent.admin_checked_host = "Checked=true";
                             rowContent.admin_checked_read = "Checked=true disabled=true";

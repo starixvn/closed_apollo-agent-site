@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" EnableSessionState="ReadOnly" CodeFile="ComfirmMultiEditDoubleComm.aspx.cs" Inherits="Sunplus.Agent.UI._AccountInfo.ComfirmMultiEditDoubleComm_Page" %>

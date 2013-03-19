@@ -24,12 +24,20 @@ namespace Sunplus.Agent.Model.Entities
         public const string ViewLog = "[G]";
         public const string ViewMemberInfo = "[H]";
 
+        //Apollo Agent User Access
+        public const string TotalBet_ForeCast = "[TF]";
+        public const string Report = "[RP]";
+        public const string AccountSeting = "[AC]";
+        public const string Admin = "[AD]";
+        public const string Read = "[R]";
+        public const string Host = "[H]";
+
         public static bool IsValidType(string type)
         {
-            return ((type.Contains(AgentUserAccess.TotalBet_ForeCast) && type.Contains(AgentUserAccess.Read)) || (type.Contains(AgentUserAccess.TotalBet_ForeCast) && type.Contains(AgentUserAccess.Host)))
-                || ((type.Contains(AgentUserAccess.Report) && type.Contains(AgentUserAccess.Read)) || (type.Contains(AgentUserAccess.Report) && type.Contains(AgentUserAccess.Host)))
-                || ((type.Contains(AgentUserAccess.AccountSeting) && type.Contains(AgentUserAccess.Read)) || (type.Contains(AgentUserAccess.AccountSeting) && type.Contains(AgentUserAccess.Host)))
-                || ((type.Contains(AgentUserAccess.Admin) && type.Contains(AgentUserAccess.Read)) || (type.Contains(AgentUserAccess.Admin) && type.Contains(AgentUserAccess.Host)));
+            return ((type.Contains(TotalBet_ForeCast) && type.Contains(Read)) || (type.Contains(TotalBet_ForeCast) && type.Contains(Host)))
+                || ((type.Contains(Report) && type.Contains(Read)) || (type.Contains(Report) && type.Contains(Host)))
+                || ((type.Contains(AccountSeting) && type.Contains(Read)) || (type.Contains(AccountSeting) && type.Contains(Host)))
+                || ((type.Contains(Admin) && type.Contains(Read)) || (type.Contains(Admin) && type.Contains(Host)));
         }
     }
 

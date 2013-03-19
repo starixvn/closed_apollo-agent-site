@@ -24,6 +24,8 @@
     <Setting Key="Age_MessageSelAll" SpName="Age_MessageSelAll" DbName="on_user" Plain="0" />
     <Setting Key="Age_MessageSelByType" SpName="Age_MessageSelByType" DbName="on_user" Plain="0" />
     <Setting Key="Age_MessageSelOne" SpName="Age_MessageSelOne" DbName="on_user" Plain="0" />
+    <Setting Key="Acc_Msg_GetTopPubMessage" SpName="Acc_Msg_GetTopPubMessage" DbName="MessageDB" Plain="0" />
+    <Setting Key="Age_CustomerSelMessages" SpName="Age_CustomerSelMessages" DbName="MessageDB" Plain="0" />
   </Function>
 
   <Function Name="Agent - BetList">
@@ -138,6 +140,10 @@
     <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="DB05" Plain="0" />
     <Setting Key="Age_ScoreMap_SelLeague" SpName="Age_ScoreMap_SelLeague" DbName="DB05" Plain="0" />
     <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="DB05" Plain="0" />
+  </Function>
+
+  <Function Name="Agent-Apollo-Admin">
+    <Setting Key="Age_Exchange_GetAll" SpName="Age_Exchange_GetAll" DbName="DB05" Plain="0" />
   </Function>
 
   <Function Name="AgentSetting">

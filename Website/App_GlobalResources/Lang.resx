@@ -4179,4 +4179,22 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblEditPositionTalking" xml:space="preserve">
     <value>Edit Position Taking</value>
   </data>
+  <data name="BaseRate" xml:space="preserve">
+    <value>Base Rate</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="MinBet" xml:space="preserve">
+    <value>Min Bet</value>
+  </data>
+  <data name="MinBetLive" xml:space="preserve">
+    <value>Min Bet Live</value>
+  </data>
+  <data name="MultipliedBy" xml:space="preserve">
+    <value>Multiplied By</value>
+  </data>
+  <data name="ExchangeRate" xml:space="preserve">
+    <value>Exchange Rate</value>
+  </data>
 </root>
