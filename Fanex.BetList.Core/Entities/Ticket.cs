@@ -68,7 +68,7 @@ namespace Fanex.BetList.Core.Entities
 
         public decimal Comm { get; set; }
 
-        public decimal TComm { get; set; }
+        public decimal AComm { get; set; }
 
         public int AgentLevel { get; set; }
 
@@ -76,7 +76,7 @@ namespace Fanex.BetList.Core.Entities
 
         public decimal SuperComm { get; set; }
 
-        public decimal TPositionTaking { get; set; }
+        public decimal APositionTaking { get; set; }
 
         public decimal MasterPositionTaking { get; set; }
 

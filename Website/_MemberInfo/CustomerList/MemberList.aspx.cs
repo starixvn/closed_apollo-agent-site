@@ -57,7 +57,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             // Init template
             MemberList_nav_link_container_Block nav_link_Block = new MemberList_nav_link_container_Block();
             this.template.nav_link_container.nav_link.Clear();
-            string url = "AgentList.aspx?custid={0}&username=" + this.UserName + "&us={1}";
+            string url = "AgentList.aspx?custid={0}&us={1}";
             int counter = dtbNavigation.Rows.Count;
             if (counter > 0)
             {

@@ -1,6 +1,6 @@
 ﻿var APOLLO = {}; // Global namespace for common functions
 
-if (jQuery) {
+if (typeof jQuery != 'undefined') {
     // functions in this namespace require jquery, and may be jquery-ui
     var APOLLO = function ($) {
         return {
