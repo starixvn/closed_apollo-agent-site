@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ExchangeRate\ExchangeRateBusiness.cs" />
     <Compile Include="BetList\P2P\BaseBusiness.cs" />
     <Compile Include="BetList\P2P\TableSessionBusiness.cs" />
     <Compile Include="BetList\P2P\WebServiceHandle.cs" />

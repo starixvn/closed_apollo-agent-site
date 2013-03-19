@@ -10,13 +10,13 @@ namespace Sunplus.Agent.Model.BL.Authorization
     using System;
     using System.Collections;
     using System.Data;
+    using Fanex.Age.Utility;
     using Sunplus.Agent.Model.BL.Casino;
     using Sunplus.Agent.Model.BL.MemberInfo.ChangePassword;
     using Sunplus.Agent.Model.BL.Racing;
     using Sunplus.Agent.Model.BL.SubAcc;
     using Sunplus.Agent.Model.DL.Authorization;
     using Sunplus.Agent.Model.Entities;
-    using Fanex.Age.Utility;
 
     public class AuthorizationBO : Sunplus.Agent.Model.BL.Base.BOBase
     {
@@ -78,7 +78,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
 
             //outputs.Add("subaccname", isSubAcc ? userName.ToUpperInvariant() : string.Empty);
 
-            // PageAccess pageAccess;
+            PageAccess pageAccess;
             if (!isSubAcc)
             {
                 if (!outputs.Contains("username"))
@@ -87,8 +87,8 @@ namespace Sunplus.Agent.Model.BL.Authorization
                 }
 
                 outputs.Add("subaccid", 0);
-                //pageAccess = new PageAccess();
-                //outputs["subpageaccess"] = pageAccess;
+                pageAccess = new PageAccess();
+                outputs["subpageaccess"] = pageAccess;
             }
 
             //string currency = outputs["currency"] as string;

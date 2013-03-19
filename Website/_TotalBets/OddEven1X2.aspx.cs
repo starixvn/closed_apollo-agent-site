@@ -3,28 +3,23 @@ using System.Collections.Generic;
 using System.Data;
 using System.Web;
 using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-using Sunplus.Agent.Model.BL.Definitions;
-
 using Fanex.Age.UI;
-
 using Fanex.Age.UI.Components;
-
+using Sunplus.Agent.Model.BL.Definitions;
+using Sunplus.Agent.Model.BL.TotalBets;
 using Sunplus.Agent.Utilities;
 
 /*
  * Created 20100507@Jacob - Render OddEven1x2 page
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
+
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class OddEven1x2_Page : TotalBets_Page
     {
-
         #region Override
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -80,9 +75,9 @@ namespace Fanex.Age.UI.TotalBets
             else
             {
                 writer.Write(tpl.Contents);
-            }   
+            }
         }
-        
+
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
             return null;
@@ -92,7 +87,8 @@ namespace Fanex.Age.UI.TotalBets
         {
             return _TotalBetsBO.GetOddEventOneXTwo();
         }
-        #endregion
+
+        #endregion Override
 
         #region Utility
 
@@ -129,7 +125,7 @@ namespace Fanex.Age.UI.TotalBets
             }
             matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
 
-            // Event 
+            // Event
             matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + (Convert.ToBoolean(dr["isNeutral"]) ? Resources.Lang.IsNeutral : string.Empty);
             matchBlock.Away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
             matchBlock.No = rowIndex.ToString();
@@ -189,6 +185,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OneXTwoButton.Hide();
             }
         }
+
         /// <summary>
         /// Render draw/no draw under total column
         /// </summary>
@@ -211,6 +208,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.DNDValue.Hide();
             }
         }
+
         /// <summary>
         /// Render odd event first half column
         /// </summary>
@@ -233,6 +231,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OddEvenFirstHalfValue.Hide();
             }
         }
+
         /// <summary>
         /// Render one x two under first half column
         /// </summary>
@@ -258,6 +257,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OneXTwoFirstHalfButton.Hide();
             }
         }
+
         /// <summary>
         /// Round color for negative number
         /// </summary>
@@ -269,7 +269,7 @@ namespace Fanex.Age.UI.TotalBets
 
             return (num < 0) ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
         }
-        #endregion
-    }
 
+        #endregion Utility
+    }
 }

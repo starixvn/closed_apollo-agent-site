@@ -16,18 +16,18 @@ namespace Fanex.Age.UI.Admin
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.Exchange_Rate;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("Resources/Reports.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" ";
+			protected static string s3{get{return AbsoluteUrl("_globalresources/css/agent.css", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><style type=\"text/css\">#content_title {background-color: #FFEFDE;}#content_title .export-excel {float: right;padding: 0;}#content_title .export-excel input[type=image] {cursor: pointer;outline: none;margin-left: 10px;}#tbl-rpt tr.even {background-color: #FAF9EE;}#tbl-rpt tr.odd {background-color: #F6F8F9;}#tbl-rpt tr.even:hover, #tbl-rpt tr.odd:hover {background-color: #FBF0B9;}#tbl-rpt td {padding: 4px 8px;}.btn-edit {cursor: pointer;}</style></head><body><form id=\"frmmain\" method=\"get\" ";
 			public string actionForm = "{actionForm}";
-			protected static string s7 = "><div id=\"page_main\"><div id=\"header_main\" style=\"width:740px;\"><span style=\"float:left\">";
-			protected static string s8{get{return Resources.Lang.Exchange_Rate;}}
-			protected static string s9 = "</span></div></div></form></body><script src=\"";
-			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s11 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s12{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s13 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s5 = "><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s6{get{return Resources.Lang.Exchange_Rate;}}
+			protected static string s7 = "</div></div>";
+			public ExchangeRate_ExcelContents_Block ExcelContents = new ExchangeRate_ExcelContents_Block();
+			protected static string s8 = "</form><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("_globalresources/js/jquery.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s11{get{return AbsoluteUrl("_globalresources/js/core.js", TplSettings.Question);}}
+			protected static string s12 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\">var ExchRate = function ($) {return {init: function () {$('#tbl-rpt .btn-edit').click(function () {var $this = $(this),exchId = $this.attr('eid');});}};} (jQuery);jQuery(document).ready(function () {ExchRate.init();});</script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -38,16 +38,16 @@ namespace Fanex.Age.UI.Admin
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
+					bd.Append(actionForm);
 					bd.Append(s5);
 					bd.Append(s6);
-					bd.Append(actionForm);
 					bd.Append(s7);
+					if(null != ExcelContents) ExcelContents.ToString(ref bd);
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
 					bd.Append(s11);
 					bd.Append(s12);
-					bd.Append(s13);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -58,6 +58,140 @@ namespace Fanex.Age.UI.Admin
 				return bd.ToString();
 			}
 
+		}
+
+		public class ExchangeRate_ExcelContents_Block: Block
+		{
+			protected static string s13 = "<table id=\"tbl-rpt\" class=\"tblRpt\" cellspacing=\"1\"><tr id=\"rowTitle\" class=\"RptTitle\"><td id=\"content_title\" colspan=\"7\">";
+			public ExchangeRate_ExcelContents_ExportExcel_Block ExportExcel = new ExchangeRate_ExcelContents_ExportExcel_Block();
+			protected static string s14 = "</td></tr><tr class=\"RptHeader\"><td>";
+			protected static string s15{get{return Resources.Lang.currency;}}
+			protected static string s16 = "</td><td>";
+			protected static string s17{get{return Resources.Lang.MultipliedBy;}}
+			protected static string s18 = "</td><td>";
+			protected static string s19{get{return Resources.Lang.BaseRate;}}
+			protected static string s20 = "</td><td>";
+			protected static string s21{get{return Resources.Lang.MinBet;}}
+			protected static string s22 = "</td><td>";
+			protected static string s23{get{return Resources.Lang.MinBetLive;}}
+			protected static string s24 = "</td><td>";
+			protected static string s25{get{return Resources.Lang.description;}}
+			protected static string s26 = "</td><td>";
+			protected static string s27{get{return Resources.Lang.edit;}}
+			protected static string s28 = "</td></tr>";
+			public ExchangeRate_ExcelContents_Content_Block Content = new ExchangeRate_ExcelContents_Content_Block();
+			protected static string s29 = "</table>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s13);
+					if(null != ExportExcel) ExportExcel.ToString(ref bd);
+					bd.Append(s14);
+					bd.Append(s15);
+					bd.Append(s16);
+					bd.Append(s17);
+					bd.Append(s18);
+					bd.Append(s19);
+					bd.Append(s20);
+					bd.Append(s21);
+					bd.Append(s22);
+					bd.Append(s23);
+					bd.Append(s24);
+					bd.Append(s25);
+					bd.Append(s26);
+					bd.Append(s27);
+					bd.Append(s28);
+					if(null != Content) Content.ToString(ref bd);
+					bd.Append(s29);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class ExchangeRate_ExcelContents_ExportExcel_Block: Block
+		{
+			protected static string s30 = "<div class=\"export-excel\"><input src=\"";
+			protected static string s31{get{return AbsoluteUrl("_globalresources/images/icon-add-doc.png");}}
+			protected static string s32 = "\"title=\"Add New Exchange Rate\"alt=\"Add New\"type=\"image\" id=\"btn-add-new\" /><input src=\"";
+			protected static string s33{get{return AbsoluteUrl("_globalresources/images/excel.gif");}}
+			protected static string s34 = "\"title=\"";
+			protected static string s35{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s36 = "\"alt=\"";
+			protected static string s37{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s38 = "\"type=\"image\" id=\"btn-excel\" name=\"ExportExcel\" /></div>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s30);
+					bd.Append(s31);
+					bd.Append(s32);
+					bd.Append(s33);
+					bd.Append(s34);
+					bd.Append(s35);
+					bd.Append(s36);
+					bd.Append(s37);
+					bd.Append(s38);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class ExchangeRate_ExcelContents_Content_Block: Block
+		{
+			protected static string s39 = "<tr class=\"tbl-data ";
+			public string rowClass = "{rowClass}";
+			protected static string s40 = "\"><td class=\"c\">";
+			public string Currency = "{Currency}";
+			protected static string s41 = "</td><td class=\"r\">";
+			public string MultipliedBy = "{MultipliedBy}";
+			protected static string s42 = "</td><td class=\"r\">";
+			public string BaseRate = "{BaseRate}";
+			protected static string s43 = "</td><td class=\"r\">";
+			public string MinBet = "{MinBet}";
+			protected static string s44 = "</td><td class=\"r\">";
+			public string MinBetLive = "{MinBetLive}";
+			protected static string s45 = "</td><td>";
+			public string Description = "{Description}";
+			protected static string s46 = "</td><td class=\"c\"><img eid=\"";
+			public string ExchangeId = "{ExchangeId}";
+			protected static string s47 = "\" class=\"btn-edit\" alt=\"Edit\" title=\"Edit ";
+			protected string t0_Currency;
+			protected static string s48 = "\"src=\"";
+			protected static string s49{get{return AbsoluteUrl("_globalresources/images/icon_edit.png");}}
+			protected static string s50 = "\" /></td></tr>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s39);
+					bd.Append(rowClass);
+					bd.Append(s40);
+					bd.Append(Currency);
+					bd.Append(s41);
+					bd.Append(MultipliedBy);
+					bd.Append(s42);
+					bd.Append(BaseRate);
+					bd.Append(s43);
+					bd.Append(MinBet);
+					bd.Append(s44);
+					bd.Append(MinBetLive);
+					bd.Append(s45);
+					bd.Append(Description);
+					bd.Append(s46);
+					bd.Append(ExchangeId);
+					bd.Append(s47);
+					bd.Append(Currency);
+					bd.Append(s48);
+					bd.Append(s49);
+					bd.Append(s50);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
 		}
 
 	}
