@@ -31,7 +31,7 @@ namespace Fanex.Agent.UI
 			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js");}}
 			protected static string s15 = "\"></script><script type=\"text/javascript\" src=\"";
 			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/slimScroll.js");}}
-			protected static string s17 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});$('#treeview_list').slimscroll({width: '161px',height: '700px',railVisible: true,allowPageScroll: true,touchScrollStep: 1000,railDraggable: true}).parent().css({\"width\": '198px',\"height\": \"715px\"});$('#treeview_list').css({\"overflow-x\": 'visible'});});</script>";
+			protected static string s17 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});if ($(\"#treeview_list\").hasClass('tree-tab')) {$(\"#treeview_list\").slimscroll({width: \"161px\",height: \"700px\",railVisible: true,allowPageScroll: true,touchScrollStep: 1000,railDraggable: true}).parent().css({\"width\": \"167px\",\"height\": \"715px\"});}if ($(\"#treeview_list\").hasClass('tree-sub')) {$(\"#treeview_list\").slimscroll({width: \"161px\",height: \"500px\",railVisible: true,allowPageScroll: true,touchScrollStep: 1000,railDraggable: true}).parent().css({\"width\": \"168px\",\"height\": \"526px\"});}$(\"#treeview_list\").css({\"overflow-x\": \"visible\"});});</script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

@@ -4,32 +4,6 @@ String.prototype.trim = function () {
     return this.replace(/^\s+/, '').replace(/\s+$/, '');
 };
 
-Object.prototype.clone = function () {
-    var newObj;
-    if (this instanceof Array) {
-        newObj = [];
-    }
-    else if (typeof this == 'string') {
-        newObj = this + String.Empty;
-    }
-    else if (typeof this == 'number') {
-        newObj = this + 0;
-    }
-    else {
-        newObj = {};
-    }
-
-    for (i in this) {
-        if (i == 'clone') continue;
-        if (this[i] && typeof this[i] == "object") {
-            newObj[i] = this[i].clone();
-        } else {
-            newObj[i] = this[i];
-        }
-    }
-    return newObj;
-};
-
 function SetParameterValue(name, value, url) {
     var newParameter = (value != null) ? (name + "=" + value) : null;
     if (!url.contains("?")) {
