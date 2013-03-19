@@ -11,8 +11,11 @@ namespace Sunplus.Agent.Model.Entities
     using System.Collections.Generic;
     using System.Globalization;
     using System.Runtime.Serialization;
-
-    public interface IUserSession : Sunplus.Agent.Model.Entities.Base.IEntity, ISerializable
+    using Sunplus.Agent.Model.Entities.Base;
+using Apollo.Age.Entities;
+    
+    
+    public interface IUserSession : IEntity, ISerializable
     {
         #region Apollo-Session
 
@@ -27,6 +30,10 @@ namespace Sunplus.Agent.Model.Entities
             get;
             set;
         }
+
+        User CurrentUser { get; set; }
+        
+    
 
         #endregion Apollo-Session
 
