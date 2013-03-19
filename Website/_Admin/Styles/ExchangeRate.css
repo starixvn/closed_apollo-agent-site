@@ -1,0 +1,27 @@
+﻿#content_title {
+    background-color: #FFEFDE;
+}
+#content_title .export-excel {
+    float: right;
+    padding: 0;
+}
+#content_title .export-excel input[type=image] {
+    cursor: pointer;
+    outline: none;
+    margin-left: 10px;
+}
+#tbl-rpt tr.even {
+    background-color: #FAF9EE;
+}
+#tbl-rpt tr.odd {
+    background-color: #F6F8F9;
+}
+#tbl-rpt tr.even:hover, #tbl-rpt tr.odd:hover {
+    background-color: #FBF0B9;
+}
+#tbl-rpt td {
+    padding: 4px 8px;
+}
+.btn-edit {
+    cursor: pointer;
+}
