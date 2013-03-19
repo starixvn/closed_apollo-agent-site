@@ -17,6 +17,7 @@ namespace Sunplus.Agent.Model.Entities
     using System.Runtime.Serialization;
     using System.Web;
     using Apollo.Age.Entities;
+    using Fanex.Common;
 
     [Serializable]
     public class UserSessionBase : IUserSession, IDisposable
@@ -125,6 +126,15 @@ namespace Sunplus.Agent.Model.Entities
                 this.SetProperty(ISUSERMASTER, value);
             }
         }
+
+        //public int UserId
+        //{
+        //    get
+        //    {
+        //        object value = this.GetProperty("UserId");
+        //        return Converter.ToInt(value);
+        //    }
+        //}
 
         #endregion Apollo-Session
 
@@ -277,7 +287,7 @@ namespace Sunplus.Agent.Model.Entities
             get
             {
                 object value = this.GetProperty(CUSTID);
-                return (null == value) ? 0 : (int)value;
+                return (null == value) ? -1 : (int)value;
             }
 
             set

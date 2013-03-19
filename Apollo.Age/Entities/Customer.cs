@@ -28,7 +28,7 @@ namespace Apollo.Age.Entities
 
         public bool DoubleCommLosing { get; set; }
 
-        public int Currency { get; set; }
+        public byte Currency { get; set; }
 
         public Agent Agent { get; set; }
     }

@@ -67,13 +67,13 @@ namespace Fanex.BetList.Age.DTO
 
             {"Comm","comm"},
 
-            {"TComm","tcomm"},
+            {"AComm","acomm"},
 
             {"AgentLevel","agentlevel"},
 
             {"SuperComm","scomm"},
 
-            {"TPositionTaking","tpositiontaking"},
+            {"APositionTaking","apositiontaking"},
 
             {"MasterPositionTaking","mpositiontaking"},
 
