@@ -14,7 +14,7 @@ namespace Apollo.Age.Repositories.Interface
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Apollo.Age.Models;
+    using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

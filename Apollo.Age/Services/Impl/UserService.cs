@@ -12,7 +12,7 @@ namespace Apollo.Age.Services.Impl
     using System.Text;
     using Apollo.Age.Services.Interface;
     using Fanex.Common.Helper;
-    using Apollo.Age.Models;
+    using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Repositories.Impl;
 
