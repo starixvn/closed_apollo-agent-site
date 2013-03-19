@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="Member.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="User.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,7 +7,7 @@
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
 // </history>
 
-namespace Apollo.Age.Models
+namespace Apollo.Age.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -15,10 +15,11 @@ namespace Apollo.Age.Models
     using System.Text;
 
     /// <summary>
-    /// Customer
+    /// Shadow account
     /// </summary>
-    public class Member : Customer
-    {       
-        public string Group { get; set; }
+    public class User : EntityBase
+    {
+        public bool IsMaster { get; set; }
+        public Agent Agent { get; set; }
     }
 }

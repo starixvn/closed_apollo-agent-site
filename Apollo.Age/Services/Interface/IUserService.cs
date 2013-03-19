@@ -14,7 +14,7 @@ namespace Apollo.Age.Services.Interface
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Apollo.Age.Models;
+    using Apollo.Age.Entities;
 
     /// <summary>
     /// TODO: Update summary.

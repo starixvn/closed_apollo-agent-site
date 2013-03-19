@@ -130,11 +130,11 @@
         /// <param name="status"></param>
         /// <param name="totalPages"></param>
         /// <returns></returns>
-        public DataTable GetMemberCollection(int custId, string userName, int pageIndex, int pageSize, ref int totalPages)
+        public DataTable GetMemberCollection(int custId, int currentAgentId, string userName, int pageIndex, int pageSize, ref int totalPages)
         {
             CustomerListDAO dao = new CustomerListDAO();
 
-            return dao.Acc_Customer_GetByAgent(custId, userName, pageIndex, pageSize, ref totalPages);
+            return dao.Acc_Customer_GetByAgent(custId, currentAgentId, userName, pageIndex, pageSize, ref totalPages);
         }
 
         /// <summary>

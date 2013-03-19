@@ -79,12 +79,6 @@
     <Content Include="BetList\CancelBetList.htm" />
     <Content Include="BetList\DailyStatement.htm" />
     <Content Include="BetList\OutstandingDetail.htm" />
-    <Content Include="BingoWinloss\BingoWinlossAgent.htm" />
-    <Content Include="BingoWinloss\BingoWinlossDetailAgent.htm" />
-    <Content Include="BingoWinloss\BingoWinlossDetailMaster.htm" />
-    <Content Include="BingoWinloss\BingoWinlossDetailSuper.htm" />
-    <Content Include="BingoWinloss\BingoWinlossMaster.htm" />
-    <Content Include="BingoWinloss\BingoWinlossSuper.htm" />
     <Content Include="CasinoWinloss\CSWinlossAgent.htm" />
     <Content Include="CasinoWinloss\CSWinlossDetailAgent.htm" />
     <Content Include="CasinoWinloss\CSWinlossDetailMaster.htm" />
@@ -170,12 +164,6 @@
     <Compile Include="BetList\CancelBetList.htm.cs" />
     <Compile Include="BetList\DailyStatement.htm.cs" />
     <Compile Include="BetList\OutstandingDetail.htm.cs" />
-    <Compile Include="BingoWinloss\BingoWinlossAgent.htm.cs" />
-    <Compile Include="BingoWinloss\BingoWinlossDetailAgent.htm.cs" />
-    <Compile Include="BingoWinloss\BingoWinlossDetailMaster.htm.cs" />
-    <Compile Include="BingoWinloss\BingoWinlossDetailSuper.htm.cs" />
-    <Compile Include="BingoWinloss\BingoWinlossMaster.htm.cs" />
-    <Compile Include="BingoWinloss\BingoWinlossSuper.htm.cs" />
     <Compile Include="CasinoWinloss\CSWinlossAgent.htm.cs" />
     <Compile Include="CasinoWinloss\CSWinlossDetailAgent.htm.cs" />
     <Compile Include="CasinoWinloss\CSWinlossDetailMaster.htm.cs" />
