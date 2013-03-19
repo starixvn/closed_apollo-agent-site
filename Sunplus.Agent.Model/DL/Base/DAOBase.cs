@@ -3,21 +3,21 @@ using System.Data;
 /*
  * Created 20100115@Lee - Data access base class
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Model.DL.Base
 {
     using System.Collections;
     using System.Collections.Generic;
+    using Fanex.Age.Utility;
+    using Fanex.Data;
     using Fanex.Data.Configuration;
     using Fanex.Data.DNAide;
+    using Fanex.PTEngine.BusinessObjects;
     using Sunplus.Agent.Model.DL.Definitions;
     using Sunplus.Agent.Model.Services;
-    using Fanex.PTEngine.BusinessObjects;
-    using Fanex.Data;
-    using Fanex.Age.Utility;
 
     public class DAOBase
     {
@@ -39,7 +39,7 @@ namespace Sunplus.Agent.Model.DL.Base
 
             for (int i = 0; i < parameters.Count; i++)
             {
-                results.Add(DbHelper.ExecuteDbResult(name, parameters[i], DEFAULT_TIME_OUT));    
+                results.Add(DbHelper.ExecuteDbResult(name, parameters[i], DEFAULT_TIME_OUT));
             }
 
             return results;
@@ -51,7 +51,7 @@ namespace Sunplus.Agent.Model.DL.Base
 
             for (int i = 0; i < names.Count; i++)
             {
-                results.Add(DbHelper.ExecuteDbResult(names[i], parameters[i], DEFAULT_TIME_OUT));    
+                results.Add(DbHelper.ExecuteDbResult(names[i], parameters[i], DEFAULT_TIME_OUT));
             }
 
             return results;
@@ -63,7 +63,7 @@ namespace Sunplus.Agent.Model.DL.Base
 
             for (int i = 0; i < parameters.Count; i++)
             {
-                results.Add(DbHelper.ExecuteDbResult(name, parameters[i], DEFAULT_TIME_OUT));    
+                results.Add(DbHelper.ExecuteDbResult(name, parameters[i], DEFAULT_TIME_OUT));
             }
 
             return results;
@@ -75,7 +75,7 @@ namespace Sunplus.Agent.Model.DL.Base
 
             for (int i = 0; i < names.Count; i++)
             {
-                results.Add(DbHelper.ExecuteDbResult(names[i], parameters[i], DEFAULT_TIME_OUT));    
+                results.Add(DbHelper.ExecuteDbResult(names[i], parameters[i], DEFAULT_TIME_OUT));
             }
 
             return results;
@@ -144,9 +144,10 @@ namespace Sunplus.Agent.Model.DL.Base
             return ExecSp(name, parameters, DEFAULT_TIME_OUT);
         }
 
-        #endregion
+        #endregion ExecSp to DbResult
 
         #region ExecSp to DataTable
+
         /// <summary>
         /// Execute use store procedure Return data table
         /// </summary>
@@ -205,9 +206,10 @@ namespace Sunplus.Agent.Model.DL.Base
             }
         }
 
-        #endregion
+        #endregion ExecSp to DataTable
 
         #region ExecSp To DataSet
+
         /// <summary>
         /// Execute use store procedure Return dataset
         /// </summary>
@@ -281,7 +283,7 @@ namespace Sunplus.Agent.Model.DL.Base
             return dataSet;
         }
 
-        #endregion
+        #endregion ExecSp To DataSet
 
         #region ExecSp To Hashtable
 
@@ -323,6 +325,6 @@ namespace Sunplus.Agent.Model.DL.Base
             }
         }
 
-        #endregion
+        #endregion ExecSp To Hashtable
     }
 }

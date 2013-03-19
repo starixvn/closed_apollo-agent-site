@@ -210,17 +210,8 @@ namespace Fanex.Age.UI.TotalBets
             }
         }
 
-        /// <summary>
-        /// Round color for negative number
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        private static string NegativeNumberRoundColor(object number)
-        {
-            decimal num = Convert.ToDecimal(number);
-
-            return (num < 0) ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
-        }
+     
+       
 
         #endregion Utility
     }

@@ -3,20 +3,137 @@
 <html>
 <head>
     <title>{static:Resources.Lang.Exchange_Rate}</title>
-    <link href="../../_GlobalResources/Css/Agent.css" rel="stylesheet" type="text/css" />
-    <link href="../Resources/Reports.css" rel="stylesheet" type="text/css" />
+    
+    <link href="../../_globalresources/css/agent.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        #content_title {
+             background-color: #FFEFDE;
+        }
+        #content_title .export-excel {
+            float: right;
+            padding: 0;
+        }
+        #content_title .export-excel input[type=image] {
+            cursor: pointer;
+            outline: none;
+            margin-left: 10px;
+        }
+        #tbl-rpt tr.even {
+            background-color: #FAF9EE;
+        }
+        #tbl-rpt tr.odd {
+            background-color: #F6F8F9;
+        }
+        #tbl-rpt tr.even:hover, #tbl-rpt tr.odd:hover {
+            background-color: #FBF0B9;
+        }
+        #tbl-rpt td {
+            padding: 4px 8px;
+        }
+        .btn-edit {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <form id="frmmain" method="get" {actionForm}>
     <div id="page_main">
-        <div id="header_main" style="width:740px;">
-            <span style="float:left">{static:Resources.Lang.Exchange_Rate}</span>
-        </div>
+        <div id="header_main">{static:Resources.Lang.Exchange_Rate}</div>
     </div>
+    <!--ExcelContents-->
+    <table id="tbl-rpt" class="tblRpt" cellspacing="1">
+        <tr id="rowTitle" class="RptTitle">
+            <td id="content_title" colspan="7">
+            <!--ExportExcel-->
+                <div class="export-excel">
+                    <input src="../../_globalresources/images/icon-add-doc.png"
+                        title="Add New Exchange Rate"
+                        alt="Add New"
+                        type="image" id="btn-add-new" />
+
+                    <input src="../../_globalresources/images/excel.gif"
+                        title="{static:Resources.Lang.exporttoexcel}"
+                        alt="{static:Resources.Lang.exporttoexcel}"
+                        type="image" id="btn-excel" name="ExportExcel" />
+                </div>
+            <!--/ExportExcel-->
+            </td>
+        </tr>
+        <tr class="RptHeader">
+            <td>
+                {static:Resources.Lang.currency}
+            </td>
+            <td>
+                {static:Resources.Lang.MultipliedBy}
+            </td>
+            <td>
+                {static:Resources.Lang.BaseRate}
+            </td>
+            <td>
+                {static:Resources.Lang.MinBet}
+            </td>
+            <td>
+                {static:Resources.Lang.MinBetLive}
+            </td>
+            <td>
+                {static:Resources.Lang.description}
+            </td>
+            <td>
+                {static:Resources.Lang.edit}
+            </td>
+        </tr>
+        <!--Content-->
+        <tr class="tbl-data {rowClass}">
+            <td class="c">
+                {Currency}
+            </td>
+            <td class="r">
+                {MultipliedBy}
+            </td>
+            <td class="r">
+                {BaseRate}
+            </td>
+            <td class="r">
+                {MinBet}
+            </td>
+            <td class="r">
+                {MinBetLive}
+            </td>
+            <td>
+                {Description}
+            </td>
+            <td class="c">
+                <img eid="{ExchangeId}" class="btn-edit" alt="Edit" title="Edit {Currency}"
+                    src="../../_globalresources/images/icon_edit.png" />
+            </td>
+        </tr>
+        <!--/Content-->
+    </table>
+    <!--/ExcelContents-->
     </form>
+
+    <script src="../../_globalresources/js/jquery.js" type="text/javascript"></script>
+    <script src="../../_globalresources/js/core.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        var ExchRate = function ($) {
+            return {
+                init: function () {
+                    $('#tbl-rpt .btn-edit').click(function () {
+                        var $this = $(this),
+                            exchId = $this.attr('eid');
+                    });
+                }
+            };
+        } (jQuery);
+
+        jQuery(document).ready(function () {
+            ExchRate.init();
+        });
+
+    </script>
+
 </body>
-
-<script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
-<script src="../Resources/Reports.js" type="text/javascript"></script>
-
 </html>

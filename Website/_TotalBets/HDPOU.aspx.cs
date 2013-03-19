@@ -223,7 +223,7 @@ namespace Fanex.Age.UI.TotalBets
             if (Convert.ToInt16(dr["BetCount_HTOU"]) != 0)
             {
                 decimal OUHT = Convert.ToDecimal(dr["home_odds_HTOU"]) - Convert.ToDecimal(dr["away_odds_HTOU"]);
-
+                
                 matchBlock.OverUnderFirstHalfValue.OverUnderFirstHalfValue = NegativeNumberRoundColor(OUHT);
                 matchBlock.OverUnderFirstHalfValue.MatchId = dr["matchid"].ToString();
                 matchBlock.OverUnderFirstHalfValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
@@ -243,11 +243,9 @@ namespace Fanex.Age.UI.TotalBets
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        private static string NegativeNumberRoundColor(object number)
+        private static string NegativeNumberRoundColor(decimal number)
         {
-            decimal num = Convert.ToDecimal(number);
-
-            return num < 0 ? "<font color='#eb6003'>" + Formater.DecFormat(num, 0) + "</font>" : Formater.DecFormat(num, 0);
+            return Math.Round(number) < 0 ? "<font color='#eb6003'>" + Formater.DecFormat(number, 0) + "</font>" : Formater.DecFormat(number, 0);
 
         }
         #endregion
