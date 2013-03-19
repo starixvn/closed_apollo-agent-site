@@ -266,7 +266,7 @@ a.tab_menu03:hover
 {
 	color: #F60;
 	font-size: 11px;
-	vertical-align: middle;
+	height: 14px;
 }
 .text_f1
 {
@@ -290,8 +290,11 @@ a.tab_menu03:hover
 	float: left;
 	height: 18px;
 	margin-bottom: 10px;
-	width: 85px;
+	width: 81px;
 	margin: 0 2px;
+}
+#from_tab * {
+    vertical-align: top;
 }
 #b_serachL
 {
@@ -338,10 +341,6 @@ a.tab_menu03:hover
 	margin-bottom: 1px;
 	padding: 5px;
 	width: 179px;	
-}
-
-.Bleft_Sub02 * {
-    vertical-align: middle;
 }
 
 .divStatus
@@ -546,11 +545,18 @@ font.positive
 	width: 215px;
 	height: 98%;
 }
+
+.ie9 .leftpanewrapper-treeview
+{	
+	height: 98%;
+}
+
 #leftpane
 {
 	width: 202px;
 	background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
 }
+
 .pnlTreeview
 {
 	width: 202px;
@@ -560,8 +566,9 @@ font.positive
 
 .ie9 .pnlTreeview
 {	
-	height: 96%;
+	height: 94%;
 }
+
 #top_left
 {
 	width: 210px;
@@ -1054,6 +1061,7 @@ a.btnList:hover {
 .frmSearch {
     margin-bottom: 5px;
 }
+
 .option-search {
     float: left;
     height: 20px;
@@ -1120,8 +1128,7 @@ a.btnList:hover {
 
 .member-tab-list {
     margin: 0 0 0 5px;
-    padding: 0;    
-    height: 560px;
+    padding: 0;       
 }
 
 .member-tab-list li * {

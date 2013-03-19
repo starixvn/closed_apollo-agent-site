@@ -527,17 +527,17 @@ function bindMembersList(agentID) {
         if (text.length > 0) {
             contentId.innerHTML = text;
         }
-        /*$('#members-list').slimscroll({
+        $('#members-list').slimscroll({
             width: '161px',
-            height: '520px',
+            height: '546px',
             railVisible: true,
             allowPageScroll: true,
             touchScrollStep: 1000,
             railDraggable: true
         }).parent().css({
-            "width": '198px',
-            "height": "560px"
-        });*/
+            "width": "179px",
+            "height": "554px"
+        });        
         contentId.style.display = "block";
     });
 }

@@ -20,21 +20,38 @@
         $("#treeview_list").treeview({
             url: "TreeList.aspx"
         });
+       
+        if ($("#treeview_list").hasClass('tree-tab')) {            
+            $("#treeview_list").slimscroll({
+                width: "161px",
+                height: "700px",
+                railVisible: true,
+                allowPageScroll: true,
+                touchScrollStep: 1000,
+                railDraggable: true
+            }).parent().css({
+                "width": "167px",
+                "height": "715px"
+            });
+        }
+       
+        if ($("#treeview_list").hasClass('tree-sub')) {
+            $("#treeview_list").slimscroll({
+                width: "161px",
+                height: "500px",
+                railVisible: true,
+                allowPageScroll: true,
+                touchScrollStep: 1000,
+                railDraggable: true
+            }).parent().css({
+                "width": "168px",
+                "height": "526px"
+            });
+        }
 
-        $('#treeview_list').slimscroll({
-            width: '161px',
-            height: '700px',
-            railVisible: true,
-            allowPageScroll: true,
-            touchScrollStep: 1000,
-            railDraggable: true
-        }).parent().css({
-            "width": '198px',
-            "height": "715px"
+        $("#treeview_list").css({
+            "overflow-x": "visible"
         });
 
-        $('#treeview_list').css({
-            "overflow-x": 'visible'            
-        });
     });
 </script>

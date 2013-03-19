@@ -33,7 +33,7 @@ namespace Fanex.Agent.UI
 			protected static string s15{get{return Resources.Lang.enterusername;}}
 			protected static string s16 = "')\" value=\"";
 			public string usernamesearch = "{usernamesearch}";
-			protected static string s17 = "\" style=\"width: 80px;\" class=\"";
+			protected static string s17 = "\" style=\"width: 76px;\" class=\"";
 			public string classStyle = "{classStyle}";
 			protected static string s18 = "\" name=\"txtUsername\" /></div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
 			protected static string s19{get{return Resources.Lang.search;}}
@@ -47,15 +47,15 @@ namespace Fanex.Agent.UI
 			public SearchBox_ButtonBetList_Block ButtonBetList = new SearchBox_ButtonBetList_Block();
 			protected static string s24 = "<!--insert jquery and treeview javascript--><link href=\"";
 			protected static string s25{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
-			protected static string s26 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src=\"";
-			protected static string s27{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s28 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s29{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
+			protected static string s26 = "\" rel=\"stylesheet\" type=\"text/css\" /><script type=\"text/javascript\" src=\"";
+			protected static string s27{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
+			protected static string s28 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s29{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js");}}
 			protected static string s30 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s31{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js");}}
-			protected static string s32 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s33{get{return AbsoluteUrl("_GlobalResources/Js/slimScroll.js");}}
-			protected static string s34 = "\"></script><script type=\"text/javascript\" src=\"";
+			protected static string s31{get{return AbsoluteUrl("_GlobalResources/Js/slimScroll.js");}}
+			protected static string s32 = "\"></script><script src=\"";
+			protected static string s33{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s34 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\" src=\"";
 			protected static string s35{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js");}}
 			protected static string s36 = "\"></script>";
 			public override void ToString(ref StringBuilder bd)
