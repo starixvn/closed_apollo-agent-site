@@ -276,7 +276,7 @@ namespace Sunplus.Agent.Model.Entities
             get
             {
                 object value = this.GetProperty(CUSTID);
-                return (null == value) ? 0 : (int)value;
+                return (null == value) ? -1 : (int)value;
             }
 
             set
