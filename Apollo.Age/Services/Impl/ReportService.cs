@@ -15,7 +15,7 @@ namespace Apollo.Age.Services.Impl
     using System.Text;
     using Apollo.Age.Services.Interface;
     using Fanex.NAP.Framework.Data;
-    using Apollo.Age.DTO.Reports.Winloss;
+    using Apollo.Age.DTO.Reports;
 
     /// <summary>
     /// TODO: Update summary.
