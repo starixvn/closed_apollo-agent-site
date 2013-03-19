@@ -1,14 +1,12 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="IEntity.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="EntityBase.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
 // </history>
-
-
-namespace Apollo.Age.Models
+namespace Apollo.Age.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -18,9 +16,10 @@ namespace Apollo.Age.Models
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public interface IEntity<TId, TName>
+    public abstract class EntityBase : IEntity<int, string>
     {
-        TId Id { get; set; }
-        TName Username { get; set; }        
+        public int Id { get; set; }
+
+        public string Username { get; set; }
     }
 }

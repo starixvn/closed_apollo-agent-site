@@ -1,5 +1,5 @@
 ﻿
-namespace Apollo.Age.Models
+namespace Apollo.Age.Entities
 {
     using System;
     using System.Collections.Generic;

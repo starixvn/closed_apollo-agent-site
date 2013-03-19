@@ -1,12 +1,14 @@
 ﻿<%@ WebHandler Language="C#" Class="GetMemberList" %>
 
 using System;
+using System.Collections;
 using System.Web;
+using System.Web.SessionState;
 using System.Data;
 using Fanex.Age.UI;
 using Sunplus.Agent.Model.BL.AccountInfo;
 
-public class GetMemberList : Fanex.Age.UI.TplHandler, System.Web.SessionState.IReadOnlySessionState
+public class GetMemberList : TplHandler, IReadOnlySessionState
 {
     string agentId = string.Empty;
     
@@ -34,7 +36,7 @@ public class GetMemberList : Fanex.Age.UI.TplHandler, System.Web.SessionState.IR
     }
 
 
-    public override void ProcessRequest(ref System.Collections.Hashtable p)
+    public override void ProcessRequest(ref Hashtable p)
     {
         this.agentId = Request["root"];
     }
