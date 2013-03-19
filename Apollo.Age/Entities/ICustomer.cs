@@ -11,7 +11,7 @@ namespace Apollo.Age.Entities
     /// </summary>
     public interface ICustomer : IEntity<int, string>
     {
-        int Currency { get; set; }
+        byte Currency { get; set; }
 
         decimal MatchLimit { get; set; }
 

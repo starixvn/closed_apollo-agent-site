@@ -28,8 +28,11 @@ namespace Apollo.Age.Services.Impl
 
             try
             {
-                reportData = this.GetReportData<AgentWinlossDTO>(criteria);
-                // Do not forget create sum dto
+                if (criteria.IsValid())
+                {
+                    reportData = this.GetReportData<AgentWinlossDTO>(criteria);
+                    // Do not forget create sum dto
+                }
             }
             catch (Exception ex)
             {
@@ -40,6 +43,11 @@ namespace Apollo.Age.Services.Impl
         }
 
         public List<MemberWinlossDTO> GetMemberWilossDetail(ICriteria criteria)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<WinLossByBetTypeDTO> GetWinLossByBetType(ICriteria crteria)
         {
             throw new NotImplementedException();
         }

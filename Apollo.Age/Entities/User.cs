@@ -17,6 +17,7 @@ namespace Apollo.Age.Entities
     /// <summary>
     /// Shadow account
     /// </summary>
+    [Serializable]
     public class User : EntityBase
     {
         public bool IsMaster { get; set; }

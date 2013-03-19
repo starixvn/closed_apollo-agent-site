@@ -22,6 +22,9 @@ namespace Apollo.Age.Services.Interface
     public interface IReportService
     {
         List<AgentWinlossDTO> GetAgentWinloss(ICriteria criteria);
+
         List<MemberWinlossDTO> GetMemberWilossDetail(ICriteria criteria);
+
+        List<WinLossByBetTypeDTO> GetWinLossByBetType(ICriteria criteria);
     }
 }
