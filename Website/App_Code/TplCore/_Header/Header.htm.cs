@@ -35,9 +35,9 @@ namespace Fanex.Agent.UI
 			public Header_SetUserName_Block SetUserName = new Header_SetUserName_Block();
 			protected static string s13 = "</span>(<a href=\"javascript:top.age.SignOut()\">";
 			protected static string s14{get{return Resources.Lang.ImgLogOut;}}
-			protected static string s15 = "</a>)</div></div></div></div><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"99%\"><tr><td style=\"width: 99%\"><div id=\"text_news_out\" onclick=\"Change2Menu('Info/NewMessageForm.aspx?pageQuery=";
+			protected static string s15 = "</a>)</div></div></div></div><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"99%\" class=\"tbl-news\"><tr><td style=\"width: 99%\"><div id=\"text_news_out\" onclick=\"Change2Menu('Info/NewMessageForm.aspx?pageQuery=";
 			public string issticky = "{issticky}";
-			protected static string s16 = "', this)\"><div id=\"text_news\" style=\"overflow: hidden; position: relative\"><div id=\"scroller\" style=\"position: absolute; white-space: nowrap; left: 1000px\"><a id=\"topnews\" style=\"overflow: hidden; position: relative\" href=\"javascript:;\">";
+			protected static string s16 = "', this)\"><div id=\"text_news\" style=\"overflow: hidden; position: relative\"><div id=\"scroller\" class=\"news-scroller\"><a id=\"topnews\" style=\"overflow: hidden; position: relative\" href=\"javascript:;\">";
 			public string scrollMessage = "{scrollMessage}";
 			protected static string s17 = "</a></div></div></div></td><td><div id=\"button_top\"><a id=\"privateMsgLnk\" class=\"b_top\" href=\"javascript:PrivateMsgLink('Info/NewMessageForm.aspx?pageQuery=private')\">&nbsp;&nbsp;";
 			public string priMsgCount = "{priMsgCount}";

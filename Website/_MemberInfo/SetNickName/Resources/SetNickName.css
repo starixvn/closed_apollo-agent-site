@@ -10,6 +10,7 @@ body{overflow:hidden;}
 .header
 {
 	height: 128px;
+	background: #3D3C3E;
 }
 .content
 {
