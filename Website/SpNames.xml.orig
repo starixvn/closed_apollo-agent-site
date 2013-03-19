@@ -5,6 +5,7 @@
         <Setting Key="Agent_Login" SpName="Agent_Login" DbName="CUSTDB" Plain="0" />
     </Function>
 
+<<<<<<< HEAD
     <Function Name="Login">
         <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBTXN.BODB02" Plain="0" />
         <Setting Key="Age_LoginVerifyDownline" SpName="Age_LoginVerifyDownline" DbName="DBTXN.BODB02" Plain="0" />
@@ -170,6 +171,28 @@
         <Setting Key="Age_MessageSelByType" SpName="Age_MessageSelByType" DbName="on_user" Plain="0" />
         <Setting Key="Age_MessageSelOne" SpName="Age_MessageSelOne" DbName="on_user" Plain="0" />
     </Function>
+=======
+  <Function Name="Agent - Message">
+    <Setting Key="Dot_Msg_GetPrivateMessage" SpName="Dot_Msg_GetPrivateMessage" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_GetPublicMessage" SpName="Dot_Msg_GetPublicMessage" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_GetNotSpecialMessage" SpName="Dot_Msg_GetNotSpecialMessage" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_GetSpecialMessage" SpName="Dot_Msg_GetSpecialMessage" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_GetMessage" SpName="Dot_Msg_GetMessage" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_GetMessage_Simple" SpName="Dot_Msg_GetMessage_Simple" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_GetPriMsgCount" SpName="Dot_Msg_GetPriMsgCount" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_GetTopPriMessage24" SpName="Dot_Msg_GetTopPriMessage24" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_GetTopPubMessage" SpName="Dot_Msg_GetTopPubMessage" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_HasPriMessage24" SpName="Dot_Msg_HasPriMessage24" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_SetMessage" SpName="Dot_Msg_SetMessage" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_SetPriMsgRead" SpName="Dot_Msg_SetPriMsgRead" DbName="MessageDB" Plain="0" />
+    <Setting Key="Dot_Msg_SetUsrMessage" SpName="Dot_Msg_SetUsrMessage" DbName="MessageDB" Plain="0" />
+    <Setting Key="Age_MessageNoticeSelByCustID" SpName="Age_MessageNoticeSelByCustID" DbName="on_user" Plain="0" />
+    <Setting Key="Age_MessageNoticeUpdStatus" SpName="Age_MessageNoticeUpdStatus" DbName="on_user" Plain="0" />
+    <Setting Key="Age_MessageSelAll" SpName="Age_MessageSelAll" DbName="on_user" Plain="0" />
+    <Setting Key="Age_MessageSelByType" SpName="Age_MessageSelByType" DbName="on_user" Plain="0" />
+    <Setting Key="Age_MessageSelOne" SpName="Age_MessageSelOne" DbName="on_user" Plain="0" />
+  </Function>
+>>>>>>> 95df7a34df64bf198d56316ae8c38b03eb4f4da8
 
     <Function Name="Agent - BetList">
 
@@ -214,6 +237,7 @@
         <Setting Key="Age_BettransSelBetSlip_Old" SpName="Age_BettransSelBetSlip_Old" DbName="archive06" Plain="0" />
     </Function>
 
+<<<<<<< HEAD
     <Function Name="Agent - Charting reports">
         <Setting Key="Age_Chart_WinlossAnalysis_Ag" SpName="Age_Chart_WinlossAnalysis_Ag" DbName="DBAGE.BODB02" Plain="0" />
         <Setting Key="Age_Chart_WinlossAnalysis_MAg" SpName="Age_Chart_WinlossAnalysis_MAg" DbName="DBAGE.BODB02" Plain="0" />
@@ -313,6 +337,21 @@
         <Setting Key="Age_Forecast1x2_SelByLeague_MAg" SpName="Age_Forecast1x2_SelByLeague_MAg" DbName="archive" Plain="0" />
         <Setting Key="Age_Forecast1x2_SelByLeague_SAg" SpName="Age_Forecast1x2_SelByLeague_SAg" DbName="archive" Plain="0" />
     </Function>
+=======
+  <Function Name="Agent - Forecast">
+    <Setting Key="Age_Forecast_OddsSelTopByMatch" SpName="Age_Forecast_OddsSelTopByMatch" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_Sel1X2" SpName="Age_Forecast_Sel1X2" DbName="archive" Plain="0" />
+    <!--<Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="archive" Plain="0" />-->
+    <Setting Key="Age_Forecast_SelByLeague_Ag" SpName="Age_Forecast_SelByLeague_Ag" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_SelByLeague_MAg" SpName="Age_Forecast_SelByLeague_MAg" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_SelByLeague_SAg" SpName="Age_Forecast_SelByLeague_SAg" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_SelHDP" SpName="Age_Forecast_SelHDP" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast_SelOU" SpName="Age_Forecast_SelOU" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast1x2_SelByLeague_Ag" SpName="Age_Forecast1x2_SelByLeague_Ag" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast1x2_SelByLeague_MAg" SpName="Age_Forecast1x2_SelByLeague_MAg" DbName="archive" Plain="0" />
+    <Setting Key="Age_Forecast1x2_SelByLeague_SAg" SpName="Age_Forecast1x2_SelByLeague_SAg" DbName="archive" Plain="0" />
+  </Function>
+>>>>>>> 95df7a34df64bf198d56316ae8c38b03eb4f4da8
 
     <Function Name="Agent-Apollo-TotalBets-BetList">
         <Setting Key="Acc_Betlist_TotalBets_Sel_4_30" SpName="Acc_Betlist_TotalBets_Sel_4_30" DbName="DB05" Plain="0" />
@@ -324,28 +363,16 @@
 
     </Function>
 
-<<<<<<< HEAD
     <Function Name="Agent-Apollo-Customer Setting">
-        <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="DB05" Plain="0" />
-        <Setting Key="Age_Customer_GetDownLine" SpName="Age_Customer_GetDownLine" DbName="DB05" Plain="0" />
-        <Setting Key="Age_Customer_GetDownLinePath" SpName="Age_Customer_GetDownLinePath" DbName="DB05" Plain="0" />
-        <Setting Key="Age_Customer_GetMembersDownLine" SpName="Age_Customer_GetMembersDownLine" DbName="DB05" Plain="0" />
-        <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="DB05" Plain="0" />
-=======
-  <Function Name="Agent-Apollo-Customer Setting">
 
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="CUSTDB" Plain="0" />
     <Setting Key="Age_Customer_GetAgentDownLine" SpName="Age_Customer_GetAgentDownLine" DbName="CUSTDB" Plain="0" />
     <Setting Key="Age_Customer_GetAgentDownLinePath" SpName="Age_Customer_GetAgentDownLinePath" DbName="CUSTDB" Plain="0" />
-    <Setting Key="Age_Customer_GetMembersDownLine" SpName="Age_Customer_GetMembersDownLine" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetMemberDownLine" SpName="Age_Customer_GetMemberDownLine" DbName="CUSTDB" Plain="0" />
     <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="CUSTDB" Plain="0" />
-
-  </Function>
->>>>>>> ebee687815054a67a88253c67f4afd81b55e41ba
 
     </Function>
 
-<<<<<<< HEAD
     <Function Name="Agent-Apollo-TotalBets">
         <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="DB05" Plain="0" />
         <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="DB05" Plain="0" />
@@ -359,18 +386,10 @@
     </Function>
 
     <Function Name="Agent-Apollo-DownlinesInfo">
-        <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="DB05" Plain="0" />
-        <Setting Key="Acc_Player_GetByAgent" SpName="Acc_Player_GetByAgent" DbName="DB05" Plain="0" />
-        <Setting Key="Acc_AgentUser_GetByAgent" SpName="Acc_AgentUser_GetByAgent" DbName="DB05" Plain="0" />
-=======
-  <Function Name="Agent-Apollo-DownlinesInfo">
     <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="CustDB" Plain="0" />
-    <Setting Key="Acc_Player_GetByAgent" SpName="Acc_Player_GetByAgent" DbName="CustDB" Plain="0" />
+    <Setting Key="Acc_Customer_GetByAgent" SpName="Acc_Customer_GetByAgent" DbName="CustDB" Plain="0" />
     <Setting Key="Acc_AgentUser_GetByAgent" SpName="Acc_AgentUser_GetByAgent" DbName="CustDB" Plain="0" />
     <Setting Key="Acc_AgentUser_UpdatePermission" SpName="Acc_AgentUser_UpdatePermission" DbName="CustDB" Plain="0" />
-  </Function>
->>>>>>> ebee687815054a67a88253c67f4afd81b55e41ba
-
     </Function>
 
     <Function Name="Agent-Apollo-ForeCast">
@@ -391,6 +410,7 @@
         <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="DB05" Plain="0" />
     </Function>
 
+<<<<<<< HEAD
     <Function Name="Agent - Monitoring Betlist">
         <Setting Key="Age_Monitor_BetlistSel_Ag_AllBettypes" SpName="Age_Monitor_BetlistSel_Ag_AllBettypes" DbName="archive052" Plain="0" />
         <Setting Key="Age_Monitor_BetlistSel_Ag_HDP" SpName="Age_Monitor_BetlistSel_Ag_HDP" DbName="archive052" Plain="0" />
@@ -666,4 +686,24 @@
         <Setting Key="PlayerSetting_Acc_Customer_UpdatePositionTaking" SpName="Acc_Customer_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Acc_Customer_UpdateSetting" SpName="Acc_Customer_UpdateSetting" DbName="CUSTDB" TimeOut="600"/>
     </Function>
+=======
+  <Function Name="AgentSetting">
+    <Setting Key="AgentSetting_Acc_Agent_GetDiscountForUpdate" SpName="Acc_Agent_GetDiscountForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_GetBetLimitForUpdate" SpName="Acc_Agent_GetBetLimitForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_GetPositionTakingForUpdate" SpName="Acc_Agent_GetPositionTakingForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_UpdateBetLimit" SpName="Acc_Agent_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_UpdateDiscount" SpName="Acc_Agent_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_UpdatePositionTaking" SpName="Acc_Agent_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_UpdateSetting" SpName="Acc_Agent_UpdateSetting" DbName="CUSTDB"  TimeOut="600"/>
+  </Function>
+  <Function Name="PlayerSetting">
+    <Setting Key="PlayerSetting_Acc_Customer_GetDiscountForUpdate" SpName="Acc_Customer_GetDiscountForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_GetBetLimitForUpdate" SpName="Acc_Customer_GetBetLimitForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_GetPositionTakingForUpdate" SpName="Acc_Customer_GetPositionTakingForUpdate" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_UpdateBetLimit" SpName="Acc_Customer_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_UpdateDiscount" SpName="Acc_Customer_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_UpdatePositionTaking" SpName="Acc_Customer_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Acc_Customer_UpdateSetting" SpName="Acc_Customer_UpdateSetting" DbName="CUSTDB" TimeOut="600"/>
+  </Function>
+>>>>>>> 95df7a34df64bf198d56316ae8c38b03eb4f4da8
 </Functions>

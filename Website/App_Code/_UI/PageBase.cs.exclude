@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using Sunplus.Agent.Model.Entities;
+using System.Globalization;
+using System.Threading;
+
+/// <summary>
+/// Summary description for PageBase
+/// </summary>
+public class PageBase : Page
+{
+	public PageBase()
+	{
+		//
+		// TODO: Add constructor logic here
+		//
+	}
+
+    public virtual string GetCurrentLanguage()
+    {
+        return CurrentUserSession.Language;
+    }
+
+    public IUserSession CurrentUserSession
+    {
+        get
+        {
+            
+            return UserSession.Current;
+        }
+    }
+
+    #region Override InitializeCulture
+    protected override void InitializeCulture()
+    {
+        var currentLanguage = GetCurrentLanguage();
+        var specificCul = CultureInfo.CreateSpecificCulture("en-US");
+
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(currentLanguage);
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(currentLanguage);
+
+        Thread.CurrentThread.CurrentCulture.DateTimeFormat = specificCul.DateTimeFormat;
+
+        base.InitializeCulture();
+    }
+    #endregion
+}

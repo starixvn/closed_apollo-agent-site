@@ -1,4 +1,24 @@
-﻿// Returns the string with all the beginning
+﻿var APOLLO = {}; // Global namespace for common functions
+
+if (typeof jQuery != 'undefined') {
+    // functions in this namespace require jquery, and may be jquery-ui
+    var APOLLO = function ($) {
+        return {
+            dialogOpt: {
+                position: { my: "top+20%", at: "center top", of: window },
+                modal: true
+            },
+            openDialog: function (target, title, options) {
+                options = options || {};
+                if (title) options.title = title;
+
+                target.dialog($.extend({}, APOLLO.dialogOpt, options));
+            }
+        };
+    } (jQuery);
+}
+
+// Returns the string with all the beginning
 // and ending whitespace removed
 String.prototype.trim = function () {
     return this.replace(/^\s+/, '').replace(/\s+$/, '');
