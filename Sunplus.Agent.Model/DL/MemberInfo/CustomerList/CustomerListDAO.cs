@@ -219,10 +219,11 @@
         /// <param name="enabled"></param>
         /// <param name="totalpages"></param>
         /// <returns></returns>
-        public DataTable Acc_Customer_GetByAgent(int custId, string userName, int pageindex, int pagesize, ref int totalpages)
+        public DataTable Acc_Customer_GetByAgent(int custId, int currentAgentId, string userName, int pageindex, int pagesize, ref int totalpages)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("agentid", custId);
+            parameters.Add("currentagentid", currentAgentId);
             parameters.Add("pageindex", pageindex);
             parameters.Add("totalpages", totalpages);
             parameters.Add("username", userName);

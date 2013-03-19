@@ -136,7 +136,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         {
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
             int totalPage = 0;
-            DataTable dtb = bo.GetMemberCollection(this.CustId, (this.UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
+            DataTable dtb = bo.GetMemberCollection(this.CustId, CurrentUserSession.CustId, (this.UserName == Resources.Lang.enterusername) ? string.Empty : UserName, PageIndex, PageSize, ref totalPage);
             this.TotalPage = totalPage;
             this.ViewData.Add("CustomerData", dtb);
             return this.ViewData;
