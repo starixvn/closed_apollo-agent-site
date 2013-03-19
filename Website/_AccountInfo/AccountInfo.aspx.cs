@@ -40,7 +40,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             this.custId = string.IsNullOrEmpty(Request.QueryString["custid"]) ? -1 : int.Parse(Request.QueryString["custid"].ToString());
             this.userNameRequest = Request.QueryString["txtUsername"];
 
-            this.isMember = Request.QueryString["isMember"] == "1" ? true : false;
+            this.isMember = Request.QueryString["isMember"] == "1";
 
             if (!string.IsNullOrEmpty(this.userNameRequest))
             {
