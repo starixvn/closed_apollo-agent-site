@@ -13,7 +13,7 @@ if (typeof jQuery != 'undefined') {
                 options = options || {};
                 if (title) options.title = title;
 
-                target.dialog($.extend({}, APOLLO.dialogOpt, options));
+                return target.dialog($.extend({}, APOLLO.dialogOpt, options));
             },
             closeDialog: function (target) {
                 target.dialog("close");

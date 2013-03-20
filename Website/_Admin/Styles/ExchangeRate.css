@@ -26,6 +26,10 @@
     cursor: pointer;
 }
 
+#dialog-edit.loading {
+    background: url(img/loading.gif) no-repeat center 2px;
+}
+
 #dialog-edit table {
     border-collapse: collapse;
     margin-top: 10px;

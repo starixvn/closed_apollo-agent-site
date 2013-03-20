@@ -10,14 +10,6 @@ using Sunplus.Agent.Model.Common;
 
 public class UpdateExchangeRate : TplHandler, IRequiresSessionState
 {
-    //private AdminBO _adminBO = new AdminBO(HttpRequest);
-
-    //public void ProcessRequest (HttpContext context) {
-    //    context.Response.ContentType = "text/plain";
-
-    //    context.Response.Write("OK");
-    //}
-
     private int custId = 0;
     private string ip = string.Empty;
 
@@ -30,12 +22,12 @@ public class UpdateExchangeRate : TplHandler, IRequiresSessionState
 
     public override object ValidateRequest(Hashtable p)
     {
-        //custId = Convert.ToInt32(p["custId"]);
+        custId = Convert.ToInt32(p["custId"]);
 
-        //if (custId <= 0 || (!CurrentUserSession.SubPageAccess.UpdateAccount || CurrentUserSession.IsInternal))
-        //{
-        //    return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
-        //}
+        if (custId <= 0 || (!CurrentUserSession.SubPageAccess.UpdateAccount || CurrentUserSession.IsInternal))
+        {
+            return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+        }
 
         return null;
     }
@@ -43,6 +35,7 @@ public class UpdateExchangeRate : TplHandler, IRequiresSessionState
     public override void ProcessRequest(ref Hashtable p)
     {
         p.AddHttpParameters(new string[]{
+                "custId",
                 "exchangeId",
                 "description",
                 "multipliedBy",
@@ -59,25 +52,28 @@ public class UpdateExchangeRate : TplHandler, IRequiresSessionState
         int errCode = 0;
         string errMsg = string.Empty;
 
-        p.Add("ip", AgentIPFormat.GetClientIP());
-        ip = p["ip"].ToString();
+        exchangeId = Convert.ToInt32(p["exchangeId"]);
+        var exchangeRate = adminBO.GetExchangeRateById(exchangeId);
 
-        // todo: validates params
-
-        exchangeId = Convert.ToInt32(p["ExchangeId"]);
-        description = HttpUtility.HtmlDecode(p["description"].ToString());
+        if (exchangeRate == null)
+        {
+            return new Result(10,
+                string.Format(Resources.Lang.EntityDoesNotExistTpl, Resources.Lang.Exchange_Rate));
+        }
+        
         multipliedBy = Convert.ToDouble(p["multipliedBy"]);
         baseRate = Convert.ToDouble(p["baseRate"]);
         minBet = Convert.ToDouble(p["minBet"]);
         minBetLive = Convert.ToDouble(p["minBetLive"]);
+        description = p["description"] == null ? string.Empty : HttpUtility.HtmlDecode(p["description"].ToString());
 
-        //adminBO.UpdateExchangeRate(custId, ip,
-        //    exchangeId, description, multipliedBy, baseRate, minBet, minBetLive,
-        //    ref errCode, ref errMsg);
-
-        errCode = 1;
-        errMsg = "Sample error message";
+        p.Add("ip", AgentIPFormat.GetClientIP());
+        ip = p["ip"].ToString();
         
+        adminBO.UpdateExchangeRate(custId, ip,
+            exchangeId, description, multipliedBy, baseRate, minBet, minBetLive,
+            ref errCode, ref errMsg);
+
         return new Result(errCode, errMsg);
     }
 

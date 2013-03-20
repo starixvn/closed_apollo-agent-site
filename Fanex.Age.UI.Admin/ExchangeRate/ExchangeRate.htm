@@ -82,6 +82,7 @@
         </tr>
         <!--/Content-->
     </table>
+    <input type="hidden" name="CustId" id="CustId" value="{CustId}" />
     <!--/ExcelContents-->
     </div>
     </form>
@@ -91,7 +92,10 @@
             <thead>
                 <tr>
                     <th>
-                        <label for="editor-desc">{static:Resources.Lang.description}</label>            
+                        <label for="editor-desc">{static:Resources.Lang.currency}</label>
+                    </th>
+                    <th>
+                        <label for="editor-desc">{static:Resources.Lang.description}</label>
                     </th>
                     <th>
                         <label for="editor-mult">{static:Resources.Lang.MultipliedBy}</label>
@@ -109,6 +113,7 @@
             </thead>
             <tbody>
                 <tr>
+                    <td><input type="text" id="editor-curr" /></td>
                     <td><input type="text" id="editor-desc" /></td>
                     <td><input type="number" id="editor-mult" /></td>
                     <td><input type="number" id="editor-base" /></td>
