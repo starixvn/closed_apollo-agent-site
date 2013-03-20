@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string cancel {
+            get {
+                return ResourceManager.GetString("cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency.
         /// </summary>
         internal static string currency {
@@ -138,6 +147,15 @@ namespace Resources {
         internal static string MultipliedBy {
             get {
                 return ResourceManager.GetString("MultipliedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        internal static string submit {
+            get {
+                return ResourceManager.GetString("submit", resourceCulture);
             }
         }
     }

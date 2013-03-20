@@ -29,5 +29,16 @@ namespace Sunplus.Agent.Model.BL.Admin
         {
             return _adminDAO.GetAllExchangeRates();
         }
+
+        public void UpdateExchangeRate(int custId, string ip,
+            int exchangeId, string description, double multipliedBy,
+            double baseRate, double minBet, double minBetLive,
+            ref int errCode, ref string errMsg)
+        {
+            _adminDAO.UpdateExchangeRate(custId, ip,
+                exchangeId, description, multipliedBy,
+                baseRate, minBet, minBetLive,
+                ref errCode, ref errMsg);
+        }
     }
 }

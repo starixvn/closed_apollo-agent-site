@@ -25,3 +25,26 @@
 .btn-edit {
     cursor: pointer;
 }
+
+#dialog-edit table {
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+#dialog-edit table label { cursor: pointer }
+#dialog-edit input[type=text],
+#dialog-edit input[type=number] {
+    width: 80px;
+    height: 18px;
+    margin-right: 5px;
+    padding: 2px;
+}
+#dialog-edit #editor-desc { width: 160px }
+#dialog-edit .submit-area {
+    margin-top: 10px;
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+}
+
+.input-validation-error {
+    border: 1px solid red;
+}
