@@ -16,40 +16,61 @@ namespace Fanex.Age.UI
 {
     public static class JSON
     {
+        private const string NULL = "null";
+
         /// <summary>
         /// Convert a list of DictionaryEntry to JSON format.
         /// </summary>
         /// <param name="d"></param>
         /// <returns></returns>
-        public static string Render(JSONData d)
+        public static string Render(JSONData data)
         {
-            if (null == d) return "null";
-            int c = d.Count;
+            if (data == null) return NULL;
 
-            StringBuilder builder = new StringBuilder();
+            int count = data.Count;
+            var builder = new StringBuilder();
+
             builder.Append('{');
 
-
-            for (int i = 0; i < c; i++)
+            for (int i = 0; i < count; i++)
             {
-                builder.Append(ObjectToJSON(d[i].Key, d[i].Value));
-                if (i < c - 1) builder.Append(',');
+                builder.Append(ObjectToJSON(data[i].Key, data[i].Value));
+                if (i < count - 1) builder.Append(',');
             }
 
             builder.Append('}');
+
             return builder.ToString();
+
+            #region old code
+            //if (null == d) return "null";
+            //int c = d.Count;
+
+            //StringBuilder builder = new StringBuilder();
+            //builder.Append('{');
+
+
+            //for (int i = 0; i < c; i++)
+            //{
+            //    builder.Append(ObjectToJSON(d[i].Key, d[i].Value));
+            //    if (i < c - 1) builder.Append(',');
+            //}
+
+            //builder.Append('}');
+            //return builder.ToString(); 
+            #endregion
         }
 
         /// <summary>
-        /// Declare an object as JSON format.
+        /// Declares an object as JSON format.
         /// </summary>
         /// <param name="name"></param>
         /// <param name="value"></param>
         /// <returns></returns>
         private static string ObjectToJSON(object name, object value)
         {
-            if (null == name) return null;
-            return "'" + name + "':" + ToJSON(value);
+            return name == null ? null
+                : string.Format("\"{0}\":{1}", name, ToJSON(value));
         }
 
         /// <summary>
@@ -59,23 +80,23 @@ namespace Fanex.Age.UI
         /// <returns></returns>
         private static string ToJSON(object value)
         {
-            if (null == value) return "null";
+            if (value == null) return NULL;
 
             string text = value.ToString();
 
             if (value is string)
-                return FormatString(text);
+                return string.Format("\"{0}\"", text.Replace("\"", "\\\""));
             else if (value is JSONData)
                 return Render((JSONData)(value));
             else if (value is bool)
                 return text.ToLower();
             else if (value is Array)
                 return ArrayToJSON((object[])(value));
-            
-            // Return default ToString() method
+
             return text;
         }
 
+        [Obsolete]
         private static string FormatString(string text)
         {
             return "'" + text.Replace("\'", "\\\'") + "'";
@@ -83,19 +104,21 @@ namespace Fanex.Age.UI
 
         private static string ArrayToJSON(object[] values)
         {
-            if (null == values) return "null";
-            int c = values.Length;
+            if (values == null) return NULL;
 
-            StringBuilder builder = new StringBuilder();
+            int count = values.Length;
+            var builder = new StringBuilder();
+
             builder.Append('[');
 
-            for (int i = 0; i < c; i++)
+            for (int i = 0; i < count; i++)
             {
                 builder.Append(ToJSON(values[i]));
-                if (i < c - 1) builder.Append(',');
+                if (i < count - 1) builder.Append(',');
             }
 
             builder.Append(']');
+
             return builder.ToString();
         }
     }
@@ -105,10 +128,7 @@ namespace Fanex.Age.UI
     /// </summary>
     public class JSONData : List<DictionaryEntry>
     {
-        public JSONData()
-        { 
-
-        }
+        public JSONData() { }
 
         public JSONData(int capacity)
         {
@@ -127,9 +147,9 @@ namespace Fanex.Age.UI
         /// <param name="errMsg"></param>
         public void AsError(int errCode, string errMsg)
         {
-            Clear();
-            Add(new DictionaryEntry(JSONError.ERROR_CODE, errCode));
-            Add(new DictionaryEntry(JSONError.ERROR_MSG, errMsg));
+            this.Clear();
+            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, errCode));
+            this.Add(new DictionaryEntry(JSONError.ERROR_MSG, errMsg));
         }
 
         /// <summary>
@@ -139,22 +159,23 @@ namespace Fanex.Age.UI
         /// <param name="errMsg"></param>
         public void AsError(ErrorType errType, string errMsg)
         {
-            Clear();
-            Add(new DictionaryEntry(JSONError.ERROR_CODE, (int)(errType)));
-            Add(new DictionaryEntry(JSONError.ERROR_MSG, errMsg));
+            this.Clear();
+            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, (int)(errType)));
+            this.Add(new DictionaryEntry(JSONError.ERROR_MSG, errMsg));
         }
 
         /// <summary>
         /// Return a result.
         /// </summary>
         /// <param name="result"></param>
-        public void AsResult(Result r)
+        public void AsResult(Result result)
         {
-            Clear();
-            Add(new DictionaryEntry(JSONError.ERROR_CODE, r.ErrCode));
-            if (r.ErrCode != 0)
+            this.Clear();
+            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, result.ErrCode));
+
+            if (result.ErrCode != 0)
             {
-                Add(new DictionaryEntry(JSONError.ERROR_MSG, r.ErrMsg));
+                Add(new DictionaryEntry(JSONError.ERROR_MSG, result.ErrMsg));
             }
         }
 
@@ -162,13 +183,14 @@ namespace Fanex.Age.UI
         /// Return a result.
         /// </summary>
         /// <param name="result"></param>
-        public void AsResult(Result r, bool isMsgSuccess)
+        public void AsResult(Result result, bool isMsgSuccess)
         {
-            Clear();
-            Add(new DictionaryEntry(JSONError.ERROR_CODE, r.ErrCode));
+            this.Clear();
+            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, result.ErrCode));
+
             if (isMsgSuccess)
             {
-                Add(new DictionaryEntry(JSONError.ERROR_MSG, r.ErrMsg));
+                this.Add(new DictionaryEntry(JSONError.ERROR_MSG, result.ErrMsg));
             }
         }
 
@@ -177,8 +199,8 @@ namespace Fanex.Age.UI
         /// </summary>
         public void AsSuccessResult()
         {
-            Clear();
-            Add(new DictionaryEntry(JSONError.ERROR_CODE, (int)(ErrorType.Success)));
+            this.Clear();
+            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, (int)(ErrorType.Success)));
         }
     }
 }

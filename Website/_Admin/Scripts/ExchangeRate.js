@@ -76,17 +76,17 @@ var ExchRate = function ($) {
 
                                 $.ajax({
                                     url: url,
+                                    dataType: "json",
                                     beforeSend: function () {
 
                                     }
                                 }).done(function (data) {
-                                    data = APOLLO.parseJSON(data);
-
                                     if (data.errCode == 0) {
                                         alert('Your changes were saved!');
                                         window.location.reload();
                                     } else {
-                                        APOLLO.alertGeneralError();
+                                        alert(data.errMsg);
+                                        //APOLLO.alertGeneralError();
                                     }
                                 }).fail(function (jqXHR, textStatus, errorThrown) {
                                     APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);

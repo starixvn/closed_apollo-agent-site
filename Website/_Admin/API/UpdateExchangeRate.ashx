@@ -71,10 +71,13 @@ public class UpdateExchangeRate : TplHandler, IRequiresSessionState
         minBet = Convert.ToDouble(p["minBet"]);
         minBetLive = Convert.ToDouble(p["minBetLive"]);
 
-        adminBO.UpdateExchangeRate(custId, ip,
-            exchangeId, description, multipliedBy, baseRate, minBet, minBetLive,
-            ref errCode, ref errMsg);
+        //adminBO.UpdateExchangeRate(custId, ip,
+        //    exchangeId, description, multipliedBy, baseRate, minBet, minBetLive,
+        //    ref errCode, ref errMsg);
 
+        errCode = 1;
+        errMsg = "Sample error message";
+        
         return new Result(errCode, errMsg);
     }
 
