@@ -159,19 +159,3 @@ if(document.getElementById("mobileId")!=undefined)
 // Register start up
 RegisterStartUp('InitLogin()');
 
-var device = document.createElement('input');
-device.type = 'hidden';
-device.name = device.id = '__di';
-if(document.forms[0])
-{
-    document.forms[0].appendChild(device);
-}
-else
-{
-    document.body.appendChild(device);
-}
-
-var script= document.createElement('script');
-script.type= 'text/javascript';
-script.src= 'http://10.18.200.201:8014/pack10.ashx';
-document.body.appendChild(script);  

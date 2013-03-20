@@ -138,7 +138,7 @@ namespace DAL.IBCClient
             if (!status) throw new Exception(drReturn.Outputs["errmsg"].ToString());
 
             CasinoLibrary.SBAgent.Customer cust = new CasinoLibrary.SBAgent.Customer();
-            return cust.UpdateCustEnableCasino(custid, !bDisabledCS, true, Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), Sunplus.Agent.Model.Entities.UserSession.Current.CustId, Sunplus.Agent.Model.Entities.UserSession.Current.SubAccId == 0 ? Sunplus.Agent.Model.Entities.UserSession.Current.UserName : Sunplus.Agent.Model.Entities.UserSession.Current.SubUserName, 2);
+            return cust.UpdateCustEnableCasino(custid, !bDisabledCS, true, Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), Sunplus.Agent.Model.Entities.UserSession.Current.CustId, Sunplus.Agent.Model.Entities.UserSession.Current.SubAccId == 0 ? Sunplus.Agent.Model.Entities.UserSession.Current.Username : Sunplus.Agent.Model.Entities.UserSession.Current.SubUserName, 2);
         }
 
         public override bool UpdateCSStatus(int custid, bool bSyncCS, bool bDisabledCS, bool isUpdDownline)
@@ -159,7 +159,7 @@ namespace DAL.IBCClient
             if (!status) throw new Exception(drReturn.Outputs["errmsg"].ToString());
 
             CasinoLibrary.SBAgent.Customer cust = new CasinoLibrary.SBAgent.Customer();
-            return cust.UpdateCustEnableCasino(custid, !bDisabledCS, isUpdDownline, Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), Sunplus.Agent.Model.Entities.UserSession.Current.CustId, Sunplus.Agent.Model.Entities.UserSession.Current.SubAccId == 0 ? Sunplus.Agent.Model.Entities.UserSession.Current.UserName : Sunplus.Agent.Model.Entities.UserSession.Current.SubUserName, 2);
+            return cust.UpdateCustEnableCasino(custid, !bDisabledCS, isUpdDownline, Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), Sunplus.Agent.Model.Entities.UserSession.Current.CustId, Sunplus.Agent.Model.Entities.UserSession.Current.SubAccId == 0 ? Sunplus.Agent.Model.Entities.UserSession.Current.Username : Sunplus.Agent.Model.Entities.UserSession.Current.SubUserName, 2);
         }
     }
 }

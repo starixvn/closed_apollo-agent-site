@@ -116,12 +116,12 @@ namespace Sunplus.Agent.UI._BetList
                 {
                     reportTitle = string.Join(null, new string[]{Resources.Lang.lblMixParlay,
                                                          "&nbsp;|&nbsp; ",
-                                                         "<a href=\"BetList.aspx?type=CombinationMixParlay\">",
+                                                         "<a href=\"BetList.aspx?type=CombMixParlayBetList\">",
                                                          Resources.Lang.lblSystemParlay,
                                                          "</a>"});
                 }
             }
-            else if (type.Equals("CombinationMixParlay"))
+            else if (type.Equals("CombMixParlayBetList"))
             {
                 if (exportExcel) reportTitle = Resources.Lang.lblSystemParlay;
                 else
@@ -324,7 +324,7 @@ namespace Sunplus.Agent.UI._BetList
                     hash.Add("bettype", 9);
                 }
                 //Combination MP list
-                else if (type.Equals("CombinationMixParlay"))
+                else if (type.Equals("CombMixParlayBetList"))
                 {
                     hash.Add("bettype", 29);
                 }

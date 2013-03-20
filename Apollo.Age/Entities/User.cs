@@ -22,5 +22,6 @@ namespace Apollo.Age.Entities
     {
         public bool IsMaster { get; set; }
         public Agent Agent { get; set; }
+        public string PageAcess { get; set; }
     }
 }

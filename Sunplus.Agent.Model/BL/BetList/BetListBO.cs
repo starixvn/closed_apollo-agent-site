@@ -749,7 +749,7 @@ namespace Sunplus.Agent.Model.BL.BetList
 
         # region Agent Viewdetail
 
-        public DataTable GetAgentPTComm(long transId, long agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, bool showSB, bool showNG)
+        public DataTable GetAgentPTComm(long transId)
         {
             BetListDAO dao = new BetListDAO();
             DataTable ptComm = new DataTable();

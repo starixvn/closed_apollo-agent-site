@@ -1204,3 +1204,38 @@ ul.tree-sub {
 iframe {
     overflow: hidden;
 }
+
+.member-list
+{
+    background:none;
+    }
+    
+.member-list #btnFirstPagingControl
+{
+    margin:0px;
+    }
+    
+.member-list #btnPrevPagingControl
+{
+    margin:0px;
+    }
+.member-list #txtPagingControl
+{
+    width: 28px;
+    }
+.member-list #btnNextPagingControl
+{
+    margin:0px;
+    padding: 0px;
+    }
+.member-list #btnLastPagingControl
+{
+    margin:0px;
+    padding: 0px;
+    }
+
+.member-list #members-list
+{
+    overflow:auto;
+    height:490px;
+    }

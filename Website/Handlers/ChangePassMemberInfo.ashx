@@ -49,7 +49,7 @@ public class ChangePassMemberInfo : IHttpHandler, IRequiresSessionState
 
             try // Casino cheat
             {
-                cust.UpdateCustPwd(int.Parse(custid), Encryption.CfsEnCode(userpass), Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), UserSession.Current.CustId, UserSession.Current.SubAccId == 0 ? UserSession.Current.UserName : UserSession.Current.SubUserName, 2);
+                cust.UpdateCustPwd(int.Parse(custid), Encryption.CfsEnCode(userpass), Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), UserSession.Current.CustId, UserSession.Current.SubAccId == 0 ? UserSession.Current.Username : UserSession.Current.SubUserName, 2);
             }
             catch { }
         }

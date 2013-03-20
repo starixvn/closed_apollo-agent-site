@@ -66,9 +66,9 @@
             return this.accountInfoDAO.Age_Customer_GetAgentDownLinePath(this.CurrentSession.CustId, agentID);
         }
 
-        public DataSet Age_Customer_GetMemberDownLine(int agentID)
+        public DataSet Age_Customer_GetMemberDownLine(int agentID, int pageIndex, int pageSize, ref int totalPages)
         {
-            return this.accountInfoDAO.Age_Customer_GetMemberDownLine(agentID);
+            return this.accountInfoDAO.Age_Customer_GetMemberDownLine(agentID, pageIndex, pageSize, ref totalPages);
         }
 
         public DataTable CustomerSelOnline(int custId)
@@ -160,7 +160,7 @@
             if (errorCode == 0 && isSynCasino)
             {
                 CasinoBO casinoBO = new CasinoBO(CurrentSession.NetSessionId);
-                casinoBO.Customer.UpdateCustClosed(custId, isClosed, ip, CurrentSession.UserId, CurrentSession.UserName, CasinoBO.AGENT_SYSTEM);
+                casinoBO.Customer.UpdateCustClosed(custId, isClosed, ip, CurrentSession.UserId, CurrentSession.Username, CasinoBO.AGENT_SYSTEM);
             }
 
             return errorCode;
@@ -181,7 +181,7 @@
             if (errorCode == 0 && isSynCasino)
             {
                 CasinoBO casinoBO = new CasinoBO(CurrentSession.NetSessionId);
-                casinoBO.Customer.UpdateCustSuspend(custId, isSuspended, ip, CurrentSession.UserId, CurrentSession.UserName, CasinoBO.AGENT_SYSTEM);
+                casinoBO.Customer.UpdateCustSuspend(custId, isSuspended, ip, CurrentSession.UserId, CurrentSession.Username, CasinoBO.AGENT_SYSTEM);
             }
 
             return errorCode;
@@ -326,7 +326,7 @@
             if (success)
             {
                 CasinoBO casinoBO = new CasinoBO(CurrentSession.NetSessionId);
-                casinoBO.Customer.UpdateCustEnableCasino(custId, !disabledCasino, isUpdateDownline, ip, CurrentSession.UserId, CurrentSession.UserName, CasinoBO.AGENT_SYSTEM);
+                casinoBO.Customer.UpdateCustEnableCasino(custId, !disabledCasino, isUpdateDownline, ip, CurrentSession.UserId, CurrentSession.Username, CasinoBO.AGENT_SYSTEM);
             }
 
             return success ? 0 : 1;
@@ -347,7 +347,7 @@
             if (errCode == 0)
             {
                 CasinoBO casinoBO = new CasinoBO(CurrentSession.NetSessionId);
-                casinoBO.Customer.UpdateCustEnableCasino(custId, !disabledCasino, isUpdateDownline, ip, CurrentSession.UserId, CurrentSession.UserName, CasinoBO.AGENT_SYSTEM);
+                casinoBO.Customer.UpdateCustEnableCasino(custId, !disabledCasino, isUpdateDownline, ip, CurrentSession.UserId, CurrentSession.Username, CasinoBO.AGENT_SYSTEM);
             }
 
             return errCode;
