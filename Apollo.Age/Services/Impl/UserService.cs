@@ -15,6 +15,7 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Repositories.Impl;
+    using Apollo.Age.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -36,8 +37,22 @@ namespace Apollo.Age.Services.Impl
 
         public User GetUserByUsername(string username)
         {
+            User user = null;
             Check.Argument.IsNotNull(username, "username");
-            return new User();
+
+            try
+            {
+                user = _userRepository.Get(new UserGetByUsernameCriteria
+                     {
+                         Username = username
+                     });
+            }
+            catch (Exception ex)
+            { 
+                //writelog
+            }
+
+            return user;
         }
     }
 }

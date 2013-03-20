@@ -56,7 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
-    <Compile Include="DTO\Reports\AgentWinlossDTO.cs" />
+    <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
+    <Compile Include="DTO\Reports\WinlossAgentDTO.cs" />
+    <Compile Include="DTO\Reports\WinLossByBetTypeDTO.cs" />
     <Compile Include="Entities\Agent.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\EntityBase.cs" />

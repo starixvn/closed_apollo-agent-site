@@ -19,7 +19,7 @@ namespace Apollo.Age.Entities
     /// </summary>
     public class Agent : Customer
     {
-        public int Level { get; set; }
+        public short Level { get; set; }
 
         /// <summary>
         ///  alias of Agent property

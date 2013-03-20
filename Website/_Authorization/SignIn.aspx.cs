@@ -17,6 +17,8 @@ namespace Sunplus.Agent.UI._Authorization
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
     using Fanex.Agent.UI._Authorization;
+    using Apollo.Age.Services.Interface;
+    using Apollo.Age.Services.Impl;
 
     public partial class SignIn_Page : Fanex.Age.UI.TplPage2
     {
@@ -26,7 +28,13 @@ namespace Sunplus.Agent.UI._Authorization
         /// This Appsetting variable has to set to False on live enviroment
         /// </summary>
         private readonly bool IsAllowAutomationCaptchaCode = Convert.ToBoolean(Convert.ToInt32(ConfigurationManager.AppSettings["AllowAutomationCaptchaCode"]));
+        private readonly IUserService _userService;
         string _userName = string.Empty;
+
+        public SignIn_Page()
+        {
+            _userService = new UserService();
+        }
 
         #region Define Properties
 
@@ -98,22 +106,31 @@ namespace Sunplus.Agent.UI._Authorization
                 return;
             }
 
-          //  string code = Request["txtCaptcha"];
+            //  string code = Request["txtCaptcha"];
             _userName = userName;
 
-          ////  if (code != session.CaptchaCode)
-          //  {
-          //      // if IsAllowAutomationCaptchaCode = true
-          //      // then allow selenium testing
-          //      if (!IsAllowAutomationCaptchaCode)
-          //      {
-          //          // Create new code
-          //          //session.CaptchaCode = Encryption.RandomNumberString(4).ToUpperInvariant();
-          //          // Return error
-          //          RegisterJSONError(101, Resources.Lang.errInvalidCaptcha);
-          //          return;
-          //      }
-          //  }
+            //Apollo.Age.Entities.User user = _userService.GetUserByUsername(userName);
+
+            //if (user != null)
+            //{
+            //    session.CurrentUser = user;
+            //    FormsAuthentication.RedirectFromLoginPage(user.Username, false);
+            //}
+            //else
+            //{
+            //    PreviousLoginFailedTime = DateTime.Now;
+            //    LoginFailedCount++;
+            //    if (LoginFailedCount > 5)
+            //    {
+            //        RegisterJSONError(1, Resources.Lang.loginWrong5Times);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        // Return error
+            //        RegisterJSONError(16, "Login failed");
+            //    }
+            //}
 
             AuthorizationBO bo = new AuthorizationBO(Session.SessionID);
 

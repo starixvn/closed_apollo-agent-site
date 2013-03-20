@@ -165,7 +165,8 @@ namespace Sunplus.Agent.UI._Header
 
             if (session.IsSubAcc)
             {
-                tpl.SetUserName.SetValue(HttpUtility.HtmlEncode(session.UserName));
+                tpl.SetUserName.SetValue(HttpUtility.HtmlEncode(session.CurrentUser.Username));
+                tpl.SetUserName.AgentUsername = HttpUtility.HtmlEncode(session.CurrentUser.Agent.Username);
                 //tpl.addAccName = Resources.Lang.subacc + space + HttpUtility.HtmlEncode(session.SubUserName);
                 //tpl.Tooltip = null;
                 //tpl.SetNickName = null;
