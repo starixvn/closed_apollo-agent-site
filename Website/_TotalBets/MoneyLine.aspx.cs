@@ -121,14 +121,14 @@ namespace Fanex.Age.UI.TotalBets
             matchBlock.TimeValue = dr["showtime"].ToString();
             matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isneutral"] ? Resources.Lang.IsNeutral : string.Empty);
             matchBlock.Away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
-            matchBlock.TotalHomeFullTime = Formater.FormatNumber2(dr["home_odds"], CurrentUserSession.Language);
-            matchBlock.TotalAwayFullTime = Formater.FormatNumber2(dr["away_odds"], CurrentUserSession.Language);
-            matchBlock.ForecastHomeFullTime = RoundPositiveColor(dr["winlost_home"]);
-            matchBlock.ForecastAwayFullTime = RoundPositiveColor(dr["winlost_away"]);
-            matchBlock.TotalHomeHalfTime = Formater.FormatNumber2(dr["home_odds_HT"], CurrentUserSession.Language);
-            matchBlock.TotalAwayHalfTime = Formater.FormatNumber2(dr["away_odds_HT"], CurrentUserSession.Language);
-            matchBlock.ForecastHomeHalfTime = RoundPositiveColor(dr["winlost_home_HT"]);
-            matchBlock.ForecastAwayHalfTime = RoundPositiveColor(dr["winlost_away_HT"]);
+            matchBlock.TotalHomeFullTime = Convert.ToInt16(dr["BetCount_Home"]) == 0 ? string.Empty : Formater.FormatNumber2(dr["home_odds"], CurrentUserSession.Language);
+            matchBlock.TotalAwayFullTime = Convert.ToInt16(dr["BetCount_Away"]) == 0 ? string.Empty : Formater.FormatNumber2(dr["away_odds"], CurrentUserSession.Language);
+            matchBlock.ForecastHomeFullTime = Convert.ToInt16(dr["BetCount_Home"]) == 0 ? string.Empty : RoundPositiveColor(dr["winlost_home"]);
+            matchBlock.ForecastAwayFullTime = Convert.ToInt16(dr["BetCount_Away"]) == 0 ? string.Empty : RoundPositiveColor(dr["winlost_away"]);
+            matchBlock.TotalHomeHalfTime = Convert.ToInt16(dr["BetCount_Home_HT"]) == 0 ? string.Empty : Formater.FormatNumber2(dr["home_odds_HT"], CurrentUserSession.Language);
+            matchBlock.TotalAwayHalfTime = Convert.ToInt16(dr["BetCount_Away_HT"]) == 0 ? string.Empty : Formater.FormatNumber2(dr["away_odds_HT"], CurrentUserSession.Language);
+            matchBlock.ForecastHomeHalfTime = Convert.ToInt16(dr["BetCount_Home_HT"]) == 0 ? string.Empty : RoundPositiveColor(dr["winlost_home_HT"]);
+            matchBlock.ForecastAwayHalfTime = Convert.ToInt16(dr["BetCount_Away_HT"]) == 0 ? string.Empty : RoundPositiveColor(dr["winlost_away_HT"]);
             matchBlock.MatchId = dr["matchid"].ToString();
             matchBlock.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
         }
