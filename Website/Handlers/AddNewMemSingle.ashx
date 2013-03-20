@@ -43,7 +43,7 @@ public class AddNewMem_Single : IHttpHandler, IRequiresSessionState
         Hashtable hsParam = new Hashtable();
         try
         {
-            username = Sunplus.Agent.Model.Entities.UserSession.Current.UserName + context.Request["Number1"].Trim() + context.Request["Number2"].Trim() + context.Request["Number3"].Trim();
+            username = Sunplus.Agent.Model.Entities.UserSession.Current.Username + context.Request["Number1"].Trim() + context.Request["Number2"].Trim() + context.Request["Number3"].Trim();
 
             hsParam.Add("firstname", context.Request["txtFName"]);
             hsParam.Add("lastname", context.Request["txtLName"]);

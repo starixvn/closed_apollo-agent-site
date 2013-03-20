@@ -116,7 +116,7 @@ namespace Sunplus.Agent.Model.BL.UserMessage
         /// <returns></returns>
         public int CountUnreadPriMessage()
         {
-            return this.userMessageDAO.Dot_Msg_GetPriMsgCount(CurrentSession.CustId, CurrentSession.UserName);
+            return this.userMessageDAO.Dot_Msg_GetPriMsgCount(CurrentSession.CustId, CurrentSession.Username);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Sunplus.Agent.Model.BL.UserMessage
         /// <param name="userName"></param>
         public bool SetReadPriMessage()
         {
-            return this.userMessageDAO.Dot_Msg_SetPriMsgRead(CurrentSession.CustId, CurrentSession.UserName);
+            return this.userMessageDAO.Dot_Msg_SetPriMsgRead(CurrentSession.CustId, CurrentSession.Username);
         }
 
         #endregion High-light and balloon messages
@@ -198,7 +198,7 @@ namespace Sunplus.Agent.Model.BL.UserMessage
             }
 
             UserMessageDAO dao = new UserMessageDAO();
-            return dao.Dot_Msg_SetMessage(content_en, content_ch, content_cs, content_jp, content_it, content_th, content_ko, content_es, msgType, isSticky, CurrentSession.UserId, CurrentSession.UserName, AppSettings.LocalTest, matchId, isBatch);
+            return dao.Dot_Msg_SetMessage(content_en, content_ch, content_cs, content_jp, content_it, content_th, content_ko, content_es, msgType, isSticky, CurrentSession.UserId, CurrentSession.Username, AppSettings.LocalTest, matchId, isBatch);
         }
 
         /// <summary>

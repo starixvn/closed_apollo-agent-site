@@ -134,7 +134,7 @@ namespace Sunplus.Agent.UI._MemberInfo.Announcement
             {
                 if (dt.Rows.Count > 0)
                 {
-                    userMessageBO.InsPersonalMsgTarget((decimal)dt.Rows[0]["messageId"], CurrentUserSession.UserId, CurrentUserSession.UserName, false, "0");
+                    userMessageBO.InsPersonalMsgTarget((decimal)dt.Rows[0]["messageId"], CurrentUserSession.UserId, CurrentUserSession.Username, false, "0");
                     userMessageBO.UpdateViewedPTMessage(true);
                 }
             }
@@ -164,7 +164,7 @@ namespace Sunplus.Agent.UI._MemberInfo.Announcement
             {
                 if (dt.Rows.Count > 0)
                 {
-                    userMessageBo.InsPersonalMsgTarget((decimal)dt.Rows[0]["messageId"], CurrentUserSession.UserId, CurrentUserSession.UserName, false, "0");
+                    userMessageBo.InsPersonalMsgTarget((decimal)dt.Rows[0]["messageId"], CurrentUserSession.UserId, CurrentUserSession.Username, false, "0");
                     userMessageBo.UpdateViewedPTMessage(true);
                 }
             }
@@ -194,7 +194,7 @@ namespace Sunplus.Agent.UI._MemberInfo.Announcement
             {
                 if (dt.Rows.Count > 0)
                 {
-                    userMessageBo.InsPersonalMsgTarget((decimal)dt.Rows[0]["messageId"], CurrentUserSession.UserId, CurrentUserSession.UserName, false, "0");
+                    userMessageBo.InsPersonalMsgTarget((decimal)dt.Rows[0]["messageId"], CurrentUserSession.UserId, CurrentUserSession.Username, false, "0");
                     userMessageBo.UpdateViewedPTMessage(true);
                 }
             }

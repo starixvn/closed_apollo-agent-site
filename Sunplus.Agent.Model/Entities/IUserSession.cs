@@ -7,33 +7,39 @@
 
 namespace Sunplus.Agent.Model.Entities
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Runtime.Serialization;
     using Sunplus.Agent.Model.Entities.Base;
-using Apollo.Age.Entities;
-    
-    
+    using Apollo.Age.Entities;
+
+
     public interface IUserSession : IEntity, ISerializable
     {
         #region Apollo-Session
+     
+        int AgentId { get; set; }
 
-        short AgentLevel
-        {
-            get;
-            set;
-        }
+        short AgentLevel { get; set; }
 
-        bool IsUserMaster
-        {
-            get;
-            set;
-        }
+        string AgentName { get; set; }
 
-        User CurrentUser { get; set; }
-        
-    
+        byte CurrencyId { get; set; }
+
+        int UserId { get; set; }   
+
+        string Username { get; set; }         
+
+        bool IsUserMaster { get; set; }
+
+        decimal MatchLimit { get; set; }
+
+        decimal VirtualMultiplier { get; set; }
+
+        bool DoubleCommLosing { get; set; }
+
 
         #endregion Apollo-Session
 
@@ -104,6 +110,8 @@ using Apollo.Age.Entities;
         /// Id of main logged-in account.
         /// Return 0 if it is not available.
         /// </summary>
+
+        [Obsolete("use agentId instead")]
         int CustId
         {
             get;
@@ -127,13 +135,13 @@ using Apollo.Age.Entities;
             get;
         }
 
-        /// <summary>
-        /// User name of main logged-in account.
-        /// </summary>
-        string UserName
-        {
-            get;
-        }
+        ///// <summary>
+        ///// User name of main logged-in account.
+        ///// </summary>
+        //string Username
+        //{
+        //    get;
+        //}
 
         /// <summary>
         /// Nick name of main logged-in account.
@@ -242,10 +250,10 @@ using Apollo.Age.Entities;
         /// <summary>
         /// User is using system: AdminId if logged-in user is administrator, otherwise is CustId.
         /// </summary>
-        int UserId
-        {
-            get;
-        }
+        //int UserId
+        //{
+        //    get;
+        //}
 
         /// <summary>
         /// Current currency name.
@@ -255,13 +263,13 @@ using Apollo.Age.Entities;
             get;
         }
 
-        /// <summary>
-        /// Current currency id.
-        /// </summary>
-        int CurrencyId
-        {
-            get;
-        }
+        ///// <summary>
+        ///// Current currency id.
+        ///// </summary>
+        //int CurrencyId
+        //{
+        //    get;
+        //}
 
         /// <summary>
         /// False that mean first logged-in time.

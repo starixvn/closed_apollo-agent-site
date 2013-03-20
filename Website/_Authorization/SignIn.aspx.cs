@@ -19,6 +19,7 @@ namespace Sunplus.Agent.UI._Authorization
     using Fanex.Agent.UI._Authorization;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Services.Impl;
+    using Sunplus.Agent.Model.BL;
 
     public partial class SignIn_Page : Fanex.Age.UI.TplPage2
     {
@@ -109,52 +110,13 @@ namespace Sunplus.Agent.UI._Authorization
             //  string code = Request["txtCaptcha"];
             _userName = userName;
 
-            //Apollo.Age.Entities.User user = _userService.GetUserByUsername(userName);
+            Apollo.Age.Entities.User user = _userService.GetUserByUsername(userName);
 
-            //if (user != null)
-            //{
-            //    session.CurrentUser = user;
-            //    FormsAuthentication.RedirectFromLoginPage(user.Username, false);
-            //}
-            //else
-            //{
-            //    PreviousLoginFailedTime = DateTime.Now;
-            //    LoginFailedCount++;
-            //    if (LoginFailedCount > 5)
-            //    {
-            //        RegisterJSONError(1, Resources.Lang.loginWrong5Times);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        // Return error
-            //        RegisterJSONError(16, "Login failed");
-            //    }
-            //}
-
-            AuthorizationBO bo = new AuthorizationBO(Session.SessionID);
-
-            int errCode;
-            string errMsg = null;
-            string nickName = string.Empty;
-
-            // Do sign-in
-            bool isAuthenticated = bo.SignIn(
-                userName,
-                passWord,
-                requestInfo,
-                out errCode,
-                out errMsg,
-                ref session);
-
-            if (isAuthenticated)
+            if (user != null)
             {
-                LoginFailedCount = 0;
-
-                // FPS.Client.Service fps = new FPS.Client.Service();
-                // fps.add_event(userName, Request["__di"], "Login", "Agency", Request.UserHostAddress);
-
-                FormsAuthentication.RedirectFromLoginPage(session.UserName, false);
+                UserSessionService.SetUserSessionValues(session, user);
+                //session.CurrentUser = user;
+                FormsAuthentication.RedirectFromLoginPage(user.Username, false);
             }
             else
             {
@@ -168,9 +130,49 @@ namespace Sunplus.Agent.UI._Authorization
                 else
                 {
                     // Return error
-                    RegisterJSONError(errCode, errMsg);
+                    RegisterJSONError(16, "Login failed");
                 }
             }
+
+            //AuthorizationBO bo = new AuthorizationBO(Session.SessionID);
+
+            //int errCode;
+            //string errMsg = null;
+            //string nickName = string.Empty;
+
+            //// Do sign-in
+            //bool isAuthenticated = bo.SignIn(
+            //    userName,
+            //    passWord,
+            //    requestInfo,
+            //    out errCode,
+            //    out errMsg,
+            //    ref session);
+
+            //if (isAuthenticated)
+            //{
+            //    LoginFailedCount = 0;
+
+            //    // FPS.Client.Service fps = new FPS.Client.Service();
+            //    // fps.add_event(userName, Request["__di"], "Login", "Agency", Request.UserHostAddress);
+
+            //    FormsAuthentication.RedirectFromLoginPage(session.UserName, false);
+            //}
+            //else
+            //{
+            //    PreviousLoginFailedTime = DateTime.Now;
+            //    LoginFailedCount++;
+            //    if (LoginFailedCount > 5)
+            //    {
+            //        RegisterJSONError(1, Resources.Lang.loginWrong5Times);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        // Return error
+            //        RegisterJSONError(errCode, errMsg);
+            //    }
+            //}
         }
 
         #endregion Event check login

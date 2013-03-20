@@ -39,7 +39,7 @@ namespace Sunplus.Agent.UI._Authorization
         private void RedirectToDefaultPage()
         {
             Request.Cookies.Remove(CookieCurrentURLKey);
-            FormsAuthentication.RedirectFromLoginPage(CurrentUserSession.UserName, false);
+            FormsAuthentication.RedirectFromLoginPage(CurrentUserSession.Username, false);
         }
 
         public string CookieCurrentURLKey

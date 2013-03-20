@@ -49,7 +49,7 @@ public class ResetMaxTransfer : IHttpHandler, IRequiresSessionState
 
         try
         {
-            string strUserName = Sunplus.Agent.Model.Entities.UserSession.Current.SubAccId == 0 ? Sunplus.Agent.Model.Entities.UserSession.Current.UserName : Sunplus.Agent.Model.Entities.UserSession.Current.SubUserName;
+            string strUserName = Sunplus.Agent.Model.Entities.UserSession.Current.SubAccId == 0 ? Sunplus.Agent.Model.Entities.UserSession.Current.Username : Sunplus.Agent.Model.Entities.UserSession.Current.SubUserName;
             if (!IsMultiple)
             {
                 bStatus = csCustomer.ResetMaxTransfer(int.Parse(r["custid"]), Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(),

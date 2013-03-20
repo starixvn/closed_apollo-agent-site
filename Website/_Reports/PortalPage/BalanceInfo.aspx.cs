@@ -55,7 +55,7 @@ namespace Fanex.Age.UI.Reports
             {
                 var row = dt.Rows[0];
 
-                tpl.AgentName_vl = UserSession.Current.UserName;
+                tpl.AgentName_vl = UserSession.Current.Username;
                 tpl.CashBalance_vl = this.ConvertToDecimal(row["cashBalance"]);
                 tpl.YesterdayBalance_vl = this.ConvertToDecimal(row["yesterday_CashBalance"]);
                 tpl.TotalBalance_vl = this.ConvertToDecimal(row["totalBalance"]);

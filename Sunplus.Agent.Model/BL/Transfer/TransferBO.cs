@@ -24,7 +24,7 @@
             {
                 return dao.Age_Transfer_Ins_Ag(
                        custId,
-                       CurrentSession.UserName,
+                       CurrentSession.Username,
                        CurrentSession.CustId,
                        CurrentSession.SubAccId,
                        ip,

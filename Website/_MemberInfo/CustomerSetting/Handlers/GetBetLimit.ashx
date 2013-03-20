@@ -36,7 +36,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             settings.Formatting = Formatting.Indented;
 
 
-            string currentUserName = userSession.UserName;
+            string currentUserName = userSession.Username;
             int custId = userSession.CustId;
             int targetCustId = 0;
             int targetRoleId = 0;
