@@ -5,6 +5,7 @@
 {agentComm_value}<br />
 <!--/AgentCommValue-->
 <!--ViewDetail-->
-<div class="iplink" onclick="BetList.viewDetail({transId});">
-    Detail</div>
+<div class="iplink" onmouseover="BetList.showCommDetail({transId},event);" onmouseout="BetList.hideCommDetail({transId},event);">
+    {static:Resources.Lang.lblDetails}      
+</div>
 <!--/ViewDetail-->

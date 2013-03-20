@@ -66,9 +66,9 @@
             return this.accountInfoDAO.Age_Customer_GetAgentDownLinePath(this.CurrentSession.CustId, agentID);
         }
 
-        public DataSet Age_Customer_GetMemberDownLine(int agentID)
+        public DataSet Age_Customer_GetMemberDownLine(int agentID, int pageIndex, int pageSize, ref int totalPages)
         {
-            return this.accountInfoDAO.Age_Customer_GetMemberDownLine(agentID);
+            return this.accountInfoDAO.Age_Customer_GetMemberDownLine(agentID, pageIndex, pageSize, ref totalPages);
         }
 
         public DataTable CustomerSelOnline(int custId)

@@ -139,7 +139,7 @@ namespace Sunplus.Agent.UI._BetList
             try
             {
                 BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
-                return bo.GetAgentPTComm(transID, agentID, fromDate, toDate, ReportsBO.MoveBetsDate, true, false);
+                return bo.GetAgentPTComm(transID);
             }
             catch (Exception ex)
             {

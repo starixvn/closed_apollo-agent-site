@@ -48,11 +48,18 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
             return ExecSpDataset("Age_Customer_GetAgentDownLine", param);
         }
 
-        public DataSet Age_Customer_GetMemberDownLine(int agentID)
+        public DataSet Age_Customer_GetMemberDownLine(int agentID, int pageIndex, int pageSize, ref int totalPages)
         {
             Hashtable param = new Hashtable();
             param.Add("agentid", agentID);
-            return ExecSpDataset("Age_Customer_GetMemberDownLine", param);
+            param.Add("pageindex", pageIndex);
+            param.Add("pagesize", pageSize);
+            param.Add("totalpages", totalPages);
+
+            DbResult res = ExecSp("Age_Customer_GetMemberDownLine", param);
+            totalPages = Convert.ToInt32(res.Outputs["totalpages"]);
+
+            return res.ResultSet;
         }
 
         public DataSet Age_Customer_GetAgentDownLinePath(int custID, int agentID)
