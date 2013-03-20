@@ -1,0 +1,25 @@
+﻿<!DOCTYPE HTML>
+<head>
+    <link href="Resources/AccountInfo.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/styles.css" rel="stylesheet" type="text/css" />
+    <link href="../../_Components/Paging/Paging.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="member-list">
+    <ul id="members-list" class="member-tab-list">
+        <!--Content-->
+        <li>
+            <a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&custid={CustID}&txtUsername={UserName}'> {MemberUserName} </a>
+        </li>
+        <!--/Content-->
+
+        <!--NoInfoBlock-->
+        <li>
+            <span class="no-data">{static:Resources.Lang.noInfo}</span>
+        </li>
+        <!--/NoInfoBlock-->
+    </ul>
+    </br>
+    <!--PagingControlBlock-->
+    {pagingControl}
+    <!--/PagingControlBlock-->
+</body>

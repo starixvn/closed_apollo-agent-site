@@ -3,18 +3,11 @@
     using System;
     using System.Data;
     using Fanex.Age.UI;
-
-    using Sunplus.Agent.Model.Entities.Permission;
-    using Sunplus.Agent.UI._MemberInfo.CustomerList.Components;
-    using Sunplus.Agent.Model.BL.Definitions;
-    //using Fanex.LiveCasinoSetting.Business;
-    using Sunplus.Agent.Utilities;
     using Fanex.Agent.UI._AccountInfo;
 
     public abstract class AccountInfoBase_Page : TplPage
     {
         #region Variable
-
         private int custId = -1;
         private bool isMember = false;
         private string userGroup = string.Empty;
@@ -162,6 +155,7 @@
         public string RenderSettingBox(DataRow dtrCustomerInfo)
         {
             this.custId = (int)dtrCustomerInfo["ObjectId"];
+            this.userNameRequest = dtrCustomerInfo["Username"].ToString();
             this.isMember = string.IsNullOrEmpty(dtrCustomerInfo["IsMember"].ToString()) ? true : bool.Parse(dtrCustomerInfo["IsMember"].ToString());
             this.userGroup = dtrCustomerInfo["UGroup"].ToString();
 
