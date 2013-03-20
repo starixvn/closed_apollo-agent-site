@@ -648,6 +648,14 @@ button[disabled]:active, button[disabled], input[type="reset"][disabled]:active,
     padding-left: 5px;
 }
 
-.update {
-    color: #1E1EEB;
+a.update {
+    background: url("../../_GlobalResources/Images/BGb_top.jpg") repeat-x scroll 0 0 #C9C8C8;
+    border: 1px solid #C9C8C8;
+    color: #414140;
+    cursor: pointer;
+    padding: 2px 4px;
+    text-decoration: none;
+}
+a.update:hover {
+   background: none repeat scroll 0 0 #F2F2F2;
 }
