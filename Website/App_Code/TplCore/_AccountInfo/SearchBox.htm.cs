@@ -120,7 +120,7 @@ namespace Fanex.Agent.UI
 			public string CustomerUsername = "{CustomerUsername}";
 			protected static string s35 = "</td></tr><tr><td class=\"top-position\">";
 			public string lblParentname = "{lblParentname}";
-			protected static string s36 = ":</td><td align=\"right\" class=\"text_org\"><a href=\"#\">";
+			protected static string s36 = ":</td><td align=\"right\" class=\"text_org\"><a href=\"#\" class=\"link-text\">";
 			public string ParentUsername = "{ParentUsername}";
 			protected static string s37 = "</a><a href=\"javascript:void(0)\" id=\"agentDownlineLink\" class=\"view-agent-downline\" aid=\"";
 			public string AgentID = "{AgentID}";

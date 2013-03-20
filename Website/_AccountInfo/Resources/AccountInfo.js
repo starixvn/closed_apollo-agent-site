@@ -593,7 +593,7 @@ function bindMembersList(agentID) {
 
 if (typeof jQuery != 'undefined') {
     $(function () {
-        $(".view-agent-downline").click(function (e) {
+        $(".view-agent-downline").click(function (event) {
             var $this = $(this),
             agentID = $this.attr('aid'),
             contentId = $("#agent-downline");
@@ -610,11 +610,15 @@ if (typeof jQuery != 'undefined') {
                     contentId.html(contentId.html() + text);
                 });
             });
+            event.stopPropagation();
         });
 
         $('body, html').on('click', function () {
             if ($("#agent-downline-list") != undefined) {
-                $("#agent-downline-list").hide();
+                $("#agent-downline-list").hide();                
+                
+                    $("#agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info.png");
+                
             }
         });
     });

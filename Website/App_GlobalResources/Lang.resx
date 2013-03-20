@@ -4200,12 +4200,10 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblDetails" xml:space="preserve">
     <value>Details</value>
   </data>
-<<<<<<< HEAD
-  <data name="txtShowUpline" xml:space="preserve">
+    <data name="txtShowUpline" xml:space="preserve">
     <value>Show Upline</value>
-=======
+  </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerBall" xml:space="preserve">
     <value>{0} - The Min Bet should be less than or equal to Max Per Ball</value>
->>>>>>> c24fbb46703f471dd15f66917309af3ced083f9c
   </data>
 </root>
