@@ -16,11 +16,7 @@ namespace Sunplus.Agent.UI._AccountInfo
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
         #region Defination
-
-       // const int MAXLENGTH = 15;
         const string SESSION_MEMBERUSERNAME = "MEMBERUSERNAME";
-        //const string DISABLE_HTML_ELEMENT = "disabled='disabled'";
-        //const string ENABLE_HTML_ELEMENT = "style='cursor:pointer;'";
         const string CHECKED_CHECKBOX = "checked='checked'";
         const string SELECTED_DROPDOWN = "selected";
         const string CLASS_NAME = "b_nleft";

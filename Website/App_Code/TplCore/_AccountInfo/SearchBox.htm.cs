@@ -57,7 +57,7 @@ namespace Fanex.Agent.UI
 			protected static string s33{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s34 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\" src=\"";
 			protected static string s35{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js");}}
-			protected static string s36 = "\"></script>";
+			protected static string s36 = "\"></script><script type=\"text/javascript\" >$(\"#\").scroll(function () {//if ($(window).scrollTop() == $(document).height() - $(window).height()) {//lastPostFunc();//}console.log(\"aaaa\");});</script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
