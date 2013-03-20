@@ -34,7 +34,7 @@ namespace Fanex.Age.UI.Components
             get { return _PageCount; }
         }
 
-        protected int PageSize = 500; // Default
+        protected int PageSize = 50; // Default
         protected List<object> PAGE_SIZES = new List<object>(new object[] { 10, 20, 50, 100, 200, 500 });
 
         #endregion Definition
