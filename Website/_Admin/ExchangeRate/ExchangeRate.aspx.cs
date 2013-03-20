@@ -45,26 +45,22 @@ public partial class _Admin_ExchangeRate_ExchangeRate : AdminBasePage
                 excelStream.Dispose();
                 return;
             }
-
-            //// Need to render report content only
-            //tpl.ExcelContents.BoldRow = string.Empty;
-            //tpl.BoldExportExcel.Hide();
-            //RenderReportContent(tpl.ExcelContents);
-            //ExportToExcel(Response, tpl.ExcelContents.ToString(), "WinlossAgent");
         }
         else
         {
-            RenderReportContent(tpl.ExcelContents);
+            RenderContent(tpl.ExcelContents);
         }
 
         writer.Write(tpl);
     }
 
-    private void RenderReportContent(ExchangeRate_ExcelContents_Block excelBlock)
+    private void RenderContent(ExchangeRate_ExcelContents_Block excelBlock)
     {
         var data = GetInvokedData();
 
         excelBlock.Content.Clear();
+        excelBlock.CustId = CurrentUserSession.CustId.ToString();
+        
         int numRow = data.Rows.Count;
 
         if (numRow > 0)
