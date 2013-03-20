@@ -19,7 +19,7 @@ namespace Fanex.Agent.UI
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.css", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body class=\"downlineTreview-bg\"><ul id=\"treeview_list\" class=\"";
 			public string TreeClass = "{TreeClass}";
-			protected static string s5 = "\"></ul></body></html><script type=\"text/javascript\" src=\"";
+			protected static string s5 = "\"></ul><script type=\"text/javascript\" src=\"";
 			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
 			protected static string s7 = "\"></script><script type=\"text/javascript\" src=\"";
 			protected static string s8{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
@@ -27,11 +27,7 @@ namespace Fanex.Agent.UI
 			protected static string s10{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
 			protected static string s11 = "\"></script><script type=\"text/javascript\" src=\"";
 			protected static string s12{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.async.js");}}
-			protected static string s13 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js");}}
-			protected static string s15 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/slimScroll.js");}}
-			protected static string s17 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});if ($(\"#treeview_list\").hasClass('tree-tab')) {$(\"#treeview_list\").slimscroll({width: \"161px\",height: \"700px\",railVisible: true,allowPageScroll: true,touchScrollStep: 1000,railDraggable: true}).parent().css({\"width\": \"167px\",\"height\": \"715px\"});}if ($(\"#treeview_list\").hasClass('tree-sub')) {$(\"#treeview_list\").slimscroll({width: \"161px\",height: \"500px\",railVisible: true,allowPageScroll: true,touchScrollStep: 1000,railDraggable: true}).parent().css({\"width\": \"168px\",\"height\": \"526px\"});}$(\"#treeview_list\").css({\"overflow-x\": \"visible\"});});</script>";
+			protected static string s13 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});});</script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -52,10 +48,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s11);
 					bd.Append(s12);
 					bd.Append(s13);
-					bd.Append(s14);
-					bd.Append(s15);
-					bd.Append(s16);
-					bd.Append(s17);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
