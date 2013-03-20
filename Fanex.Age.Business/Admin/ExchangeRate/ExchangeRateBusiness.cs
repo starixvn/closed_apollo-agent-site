@@ -8,7 +8,6 @@ namespace Fanex.Age.Business.Admin.ExchangeRate
 {
     using System.Collections.Generic;
     using System.Data;
-    using System.Linq;
     using Fanex.Age.DTO.Admin.ExchangeRate;
 
     public class ExchangeRateBusiness
@@ -35,18 +34,6 @@ namespace Fanex.Age.Business.Admin.ExchangeRate
             }
 
             return result;
-
-            //return (from e in data.AsEnumerable()
-            //        select new ExchRate
-            //        {
-            //            ExchangeId = e.Field<int>("ExchangeId"),
-            //            Currency = e.Field<string>("Currency"),
-            //            MultipliedBy = e.Field<int>("MultipliedBy"),
-            //            BaseRate = e.Field<float>("ActualRate"),
-            //            MinBet = e.Field<float>("MinBet"),
-            //            MinBetLive = e.Field<float>("MinBetLive"),
-            //            Description = e.Field<string>("Description")
-            //        }).ToList();
         }
     }
 }
