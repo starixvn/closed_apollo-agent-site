@@ -12,8 +12,8 @@ namespace Sunplus.Agent.Model.DL.BetList
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Fanex.Data.DNAide;
     using Fanex.Age.Utility;
+    using Fanex.Data.DNAide;
 
     public class BetListDAO : Sunplus.Agent.Model.DL.Base.DAOBase
     {
@@ -665,7 +665,7 @@ namespace Sunplus.Agent.Model.DL.BetList
         public DataTable Age_BetList_TotalBet_SelRunningByBettypeMatch(int matchId, int custId, int betType, string language, int liveindicator, string betteam)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
+            parameters.Add("agentid", custId);
             parameters.Add("matchid", matchId);
             parameters.Add("bettype", betType);
             parameters.Add("language", language);
@@ -689,7 +689,7 @@ namespace Sunplus.Agent.Model.DL.BetList
         public DataTable Age_BetList_TotalBet_SelRunningByBettypeMatch(int matchId, int custId, int betType, string language, int liveindicator, string betteam, out DataTable outDataTable)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
+            parameters.Add("agentid", custId);
             parameters.Add("matchid", matchId);
             parameters.Add("bettype", betType);
             parameters.Add("language", language);
