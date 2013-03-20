@@ -12,8 +12,8 @@ namespace Sunplus.Agent.Model.DL.BetList
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Fanex.Data.DNAide;
     using Fanex.Age.Utility;
+    using Fanex.Data.DNAide;
 
     public class BetListDAO : Sunplus.Agent.Model.DL.Base.DAOBase
     {

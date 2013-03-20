@@ -327,7 +327,7 @@ function showSection(sectionID, agentId) {
             document.getElementById("agentsTab").className = "";
             document.getElementById("tbl_agentsTab").style.display = "none";
             document.getElementById("tbl_custsettings").style.display = "none";
-            document.getElementById("tbl_membersTab").style.display = "none";
+            document.getElementById("tbl_membersTab").style.display = "block";
             bindMembersList(agentId);
 
             /*
@@ -533,7 +533,20 @@ function bindAgentDownLine(agentID) {
 }
 
 function bindMembersList(agentID) {
-    ajax.PostJSON('../_AccountInfo/Handlers/GetMemberList.ashx', 'root=' + agentID, function (result) {
+    var link = "../_AccountInfo/DownlineMemberList.aspx?custid=" + agentID;
+    var iframe = document.createElement('iframe');
+    iframe.frameBorder = 0;
+    iframe.width = "100%";
+    iframe.height = "548px";
+    iframe.id = "randomid";
+    iframe.setAttribute("src", link);
+
+    var contentId = document.getElementById("iframe-content");
+    contentId.innerHTML = "";
+    contentId.appendChild(iframe);
+
+    /*
+    ajax.PostJSON('../_AccountInfo/Handlers/GetMemberList.ashx', 'root=' + agentID + "&pagesize=20&pageindex=1", function (result) {
         var data = result.Members;
         var text = "";
         for (var i = 0; i < data.length; ++i) {
@@ -541,11 +554,41 @@ function bindMembersList(agentID) {
         }
 
         var contentId = document.getElementById("members-list");
+        text = "";
         if (text.length > 0) {
             contentId.innerHTML = text;
+<<<<<<< HEAD
+            //$("#paging-member").show();
+        }
+        else {
+            // $("#paging-member").hide();
+            var link = "../_AccountInfo/DownLineTreeView.aspx?root=2";
+            var iframe = document.createElement('iframe');
+            iframe.frameBorder = 0;
+            iframe.width = "300px";
+            iframe.height = "250px";
+            iframe.id = "randomid";
+            iframe.setAttribute("src", link);
+            document.getElementById("iframe-content").appendChild(iframe);
+        }
+
+        $('#members-list').slimscroll({
+            width: '161px',
+            height: '546px',
+            railVisible: true,
+            allowPageScroll: true,
+            touchScrollStep: 1000,
+            railDraggable: true
+        }).parent().css({
+            "width": "179px",
+            "height": "554px"
+        });
+=======
         }           
+>>>>>>> 59ff0497058bdc1abe2ecf3d67082ec678412e0e
         contentId.style.display = "block";
     });
+    */
 }
 
 if (typeof jQuery != 'undefined') {

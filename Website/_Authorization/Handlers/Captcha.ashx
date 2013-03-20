@@ -32,7 +32,7 @@ public class LoginCaptcha : IHttpHandler, IRequiresSessionState
         string code = "";
         string value = "";
         string ip = Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP();
-        var captchaUtil = new CaptchaImage(ip, session.UserName, CaptchaType.Text);
+        var captchaUtil = new CaptchaImage(ip, session.Username, CaptchaType.Text);
         var bitmap = captchaUtil.Generate(out code, out value);
 
         session.CaptchaCode = value;

@@ -22,11 +22,22 @@ namespace Sunplus.Agent.Model.Entities
     [Serializable]
     public class UserSessionBase : IUserSession, IDisposable
     {
-        #region Contructors
+        // APOLLO SESSION KEYS
+        private const string AgentIdSessionKey = "Apollo-AgentId";
+        private const string AgentLevelSessionKey = "Apollo-AgentLevel";
+        private const string AgentNameSessionKey = "Apollo-AgentName";
+        private const string CurrencyIdSessionKey = "Apollo-CurrencyId";
+        private const string UserIdSessionKey = "Apollo-AgentUserId";
+        private const string UsernameSessionKey = "Apollo-AgentUsername";
+        private const string IsUserMasterSessionKey = "Apollo-IsUserMaster";
+        private const string MatchLimitSessionKey = "Apollo-MatchLimit";
+        private const string VirtualMultiplierSessionKey = "Apollo-VirtualMultiplier";
+        private const string DoubleCommLosingSessionKey = "Apollo-DoubleCommLosing";
+        private const string PageAcessSessionKey = "Apollo-PageAccess";
 
-        // APOLLO CONTRUCTORS
-        public const string AGENTLEVEL = "AGENTLEVEL";
-        public const string ISUSERMASTER = "ISUSERMASTER";
+        #region Contructors
+        
+
         //-------------------
 
         public const string DEFAULT_LANGUAGE = "en-US";
@@ -104,12 +115,12 @@ namespace Sunplus.Agent.Model.Entities
         {
             get
             {
-                object value = this.GetProperty(AGENTLEVEL);
+                object value = this.GetProperty(AgentLevelSessionKey);
                 return (null == value) ? (short)0 : (short)value;
             }
             set
             {
-                this.SetProperty(AGENTLEVEL, value);
+                this.SetProperty(AgentLevelSessionKey, value);
             }
         }
 
@@ -117,13 +128,108 @@ namespace Sunplus.Agent.Model.Entities
         {
             get
             {
-                object value = this.GetProperty(ISUSERMASTER);
+                object value = this.GetProperty(IsUserMasterSessionKey);
                 return (null == value) ? false : (bool)value;
             }
-
             set
             {
-                this.SetProperty(ISUSERMASTER, value);
+                this.SetProperty(IsUserMasterSessionKey, value);
+            }
+        }
+
+        public int AgentId
+        {
+            get
+            {
+                return Converter.ToInt(this.GetProperty(AgentIdSessionKey));
+            }
+            set
+            {
+                this.SetProperty(AgentIdSessionKey, value);
+            }
+        }
+
+        public string AgentName
+        {
+            get
+            {
+                return Converter.ToString2(this.GetProperty(AgentNameSessionKey));
+            }
+            set
+            {
+                this.SetProperty(AgentNameSessionKey, value);
+            }
+        }
+
+        public byte CurrencyId
+        {
+            get
+            {
+                return Converter.To<byte>(this.GetProperty(CurrencyIdSessionKey));
+            }
+            set
+            {
+                this.SetProperty(CurrencyIdSessionKey, value);
+            }
+        }
+
+        public int UserId
+        {
+            get
+            {
+                return Converter.ToInt(this.GetProperty(UserIdSessionKey));
+            }
+            set
+            {
+                this.SetProperty(UserIdSessionKey, value);
+            }
+        }
+
+        public string Username
+        {
+            get
+            {
+                return Converter.ToString2(this.GetProperty(UsernameSessionKey));
+            }
+            set
+            {
+                this.SetProperty(UsernameSessionKey, value);
+            }
+        }
+
+        public decimal MatchLimit
+        {
+            get
+            {
+                return Converter.ToDecimal(this.GetProperty(MatchLimitSessionKey));
+            }
+            set
+            {
+                this.SetProperty(MatchLimitSessionKey, value);
+            }
+        }
+
+        public decimal VirtualMultiplier
+        {
+            get
+            {
+                return Converter.ToDecimal(this.GetProperty(VirtualMultiplierSessionKey));
+            }
+            set
+            {
+                this.SetProperty(VirtualMultiplierSessionKey, value);
+            }
+        }
+
+        public bool DoubleCommLosing
+        {
+            get
+            {
+                return Converter.ToBool(this.GetProperty(DoubleCommLosingSessionKey));
+            }
+            set
+            {
+                this.SetProperty(DoubleCommLosingSessionKey, value);
             }
         }
 
@@ -142,15 +248,70 @@ namespace Sunplus.Agent.Model.Entities
 
         public UserSessionBase(SerializationInfo info, StreamingContext context)
         {
-            Type type = GetType();
-            FieldInfo[] f = type.GetFields(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
+            //Type type = GetType();
+            //FieldInfo[] f = type.GetFields(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
 
-            int c = f.Length;
-            for (int i = 0; i < c; i++)
-            {
-                f[i].SetValue(this, info.GetValue(f[i].Name, f[i].FieldType));
-            }
+            //int c = f.Length;
+            //for (int i = 0; i < c; i++)
+            //{
+            //    f[i].SetValue(this, info.GetValue(f[i].Name, f[i].FieldType));
+            //}
+
+            if (ReferenceEquals(null, info))
+                throw new ArgumentNullException("info");
+
+            AgentId = info.GetInt32("AgentId");
+            AgentLevel = info.GetInt16("AgentLevel");
+            AgentName = info.GetString("AgentName");
+            CurrencyId = info.GetByte("CurrencyId");
+            UserId = info.GetInt32("UserId");
+            Username = info.GetString("Username");
+            IsUserMaster = info.GetBoolean("IsUserMaster");
+            MatchLimit = info.GetDecimal("MatchLimit");
+            VirtualMultiplier = info.GetDecimal("VirtualMultiplier");
+            DoubleCommLosing = info.GetBoolean("DoubleCommLosing");
+            SubPageAccess = (PageAccess)info.GetValue("SubPageAccess", typeof(PageAccess));
+
+            Language = info.GetString("Language");
+            LangKey = info.GetString("LangKey");
+            IsLogged = info.GetBoolean("IsLogged");
+
         }
+
+     
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            //Type type = GetType();
+            //FieldInfo[] f = type.GetFields(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
+
+            //int c = f.Length;
+            //for (int i = 0; i < c; i++)
+            //{
+            //    info.AddValue(f[i].Name, f[i].GetValue(this));
+            //}
+
+            if (info == null)
+                throw new ArgumentNullException("info");
+
+            info.AddValue("AgentId", AgentId);
+            info.AddValue("AgentLevel", AgentLevel);
+            info.AddValue("AgentName", AgentName);
+            info.AddValue("CurrencyId", CurrencyId);
+            info.AddValue("UserId", UserId);
+            info.AddValue("Username", Username);
+            info.AddValue("IsUserMaster", IsUserMaster);
+            info.AddValue("MatchLimit", MatchLimit);
+            info.AddValue("VirtualMultiplier", VirtualMultiplier);
+            info.AddValue("DoubleCommLosing", DoubleCommLosing);
+            info.AddValue("SubPageAccess", SubPageAccess);
+
+            info.AddValue("Language", Language);
+            info.AddValue("LangKey", LangKey);
+            info.AddValue("IsLogged", IsLogged);
+        }
+
+        
 
         public UserSessionBase(string netSessionId)
         {
@@ -286,13 +447,15 @@ namespace Sunplus.Agent.Model.Entities
         {
             get
             {
-                object value = this.GetProperty(CUSTID);
-                return (null == value) ? -1 : (int)value;
+                //object value = this.GetProperty(CUSTID);
+                //return (null == value) ? -1 : (int)value;
+                return this.AgentId;
             }
 
             set
             {
-                this.SetProperty(CUSTID, value);
+                //this.SetProperty(CUSTID, value);
+                this.AgentId = value;
             }
         }
 
@@ -332,22 +495,24 @@ namespace Sunplus.Agent.Model.Entities
             }
         }
 
-        /// <summary>
-        /// User name of main logged-in account.
-        /// </summary>
-        public string UserName
-        {
-            get
-            {
-                object value = this.GetProperty(USERNAME);
-                return (null == value) ? null : value as string;
-            }
+        ///// <summary>
+        ///// User name of main logged-in account.
+        ///// </summary>
+        //[Obsolete("Please use Username instead")]
+        //public string Username
+        //{
+        //    get
+        //    {
+        //        //object value = this.GetProperty(USERNAME);
+        //        //return (null == value) ? null : value as string;
+        //        return this.Username;
+        //    }
 
-            set
-            {
-                this.SetProperty(USERNAME, value);
-            }
-        }
+        //    set
+        //    {
+        //        this.Username = value;
+        //    }
+        //}
 
         /// <summary>
         /// Nick name of main logged-in account.
@@ -511,23 +676,23 @@ namespace Sunplus.Agent.Model.Entities
             }
         }
 
-        /// <summary>
-        /// User are using system.
-        /// </summary>
-        public int UserId
-        {
-            get
-            {
-                if (this.IsInternal)
-                {
-                    return this.AdminId;
-                }
-                else
-                {
-                    return this.CustId;
-                }
-            }
-        }
+        ///// <summary>
+        ///// User are using system.
+        ///// </summary>
+        //public int UserId
+        //{
+        //    get
+        //    {
+        //        if (this.IsInternal)
+        //        {
+        //            return this.AdminId;
+        //        }
+        //        else
+        //        {
+        //            return this.CustId;
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Current currency name.
@@ -549,19 +714,19 @@ namespace Sunplus.Agent.Model.Entities
         /// <summary>
         /// Current currency id.
         /// </summary>
-        public int CurrencyId
-        {
-            get
-            {
-                object value = this.GetProperty(CURRENCYID);
-                return (null == value) ? 0 : (int)value;
-            }
+        //public int CurrencyId
+        //{
+        //    get
+        //    {
+        //        object value = this.GetProperty(CURRENCYID);
+        //        return (null == value) ? 0 : (int)value;
+        //    }
 
-            set
-            {
-                this.SetProperty(CURRENCYID, value);
-            }
-        }
+        //    set
+        //    {
+        //        this.SetProperty(CURRENCYID, value);
+        //    }
+        //}
 
         /// <summary>
         /// False that mean first logged-in time.
@@ -1120,21 +1285,7 @@ namespace Sunplus.Agent.Model.Entities
             get { return this.asNetSessionId; }
         }
 
-        #region ISerializable Members
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            Type type = GetType();
-            FieldInfo[] f = type.GetFields(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
-
-            int c = f.Length;
-            for (int i = 0; i < c; i++)
-            {
-                info.AddValue(f[i].Name, f[i].GetValue(this));
-            }
-        }
-
-        #endregion ISerializable Members
+       
 
         #region IDisposable Members
 
@@ -1152,7 +1303,7 @@ namespace Sunplus.Agent.Model.Entities
 
         #endregion IDisposable Members
 
-        #region Controller
+        #region Session GET/SET
 
         private object GetProperty(string name)
         {
@@ -1164,19 +1315,7 @@ namespace Sunplus.Agent.Model.Entities
             HttpContext.Current.Session[this.asNetSessionId + HYPHEN + name] = value;
         }
 
-        #endregion Controller
-
-
-        public Apollo.Age.Entities.User CurrentUser
-        {
-            get
-            {
-                return (HttpContext.Current.Session["Agent-Currentuser"] as User);
-            }
-            set
-            {
-                HttpContext.Current.Session["Agent-Currentuser"] = value;
-            }
-        }
+        #endregion Controller    
+              
     }
 }

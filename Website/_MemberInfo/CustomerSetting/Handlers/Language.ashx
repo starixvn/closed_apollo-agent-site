@@ -76,8 +76,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             language.AppendLine(this.SetValue("COPY_ALL_BETTING_LIMIT_FROM", Resources.Lang.copyAllBetSettingFromExcludingNG));
             language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_BET", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet));
             language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall));
             language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
-
+            
             // Set language to validation value on form.
             //IUserSession userSession = UserSession.Current;
 

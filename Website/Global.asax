@@ -81,10 +81,10 @@
         string executeFileName = Request.AppRelativeCurrentExecutionFilePath;
         bool isNewSession = executeFileName.EndsWith("SignIn.aspx")
             || executeFileName.EndsWith("ProcessAdminLogin.ashx")
-            || executeFileName.EndsWith("ProcessAfterLogin.ashx")
+            || executeFileName.EndsWith("ProcessAfterLogin.ashx")            
             || executeFileName.EndsWith("Captcha.ashx")
             || executeFileName.EndsWith("ChartImg.axd");
-        if (UserSession.Current.CustId < 0 && !isNewSession)
+        if (UserSession.Current.UserId <= 0 && !isNewSession)
         {
             Response.Redirect("~/_Authorization/SignIn.aspx", true);
             return;

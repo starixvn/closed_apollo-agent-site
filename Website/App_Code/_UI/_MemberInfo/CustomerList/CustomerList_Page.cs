@@ -491,7 +491,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.CustId = this.GetIntRequest("custid", CurrentUserSession.CustId);
 
             this.UserName = this.GetStringRequest("username", Resources.Lang.enterusername);
-            this.QueryUserName = this.GetStringRequest("us", CurrentUserSession.UserName);
+            this.QueryUserName = this.GetStringRequest("us", CurrentUserSession.Username);
             this.PageSize = this.GetIntRequest("pagesize", this.PageSize);
             this.PageIndex = this.GetIntRequest("pageindex", this.PageIndex);
 

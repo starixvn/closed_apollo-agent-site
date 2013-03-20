@@ -85,7 +85,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             }
 
             this.template.AgentName = this.QueryUserName;
-            this.template.urlMemberList = "MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName + "&username=" + this.UserName;
+            this.template.urlMemberList = "MemberList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
             this.template.urlShadowList = "#";
         }
 

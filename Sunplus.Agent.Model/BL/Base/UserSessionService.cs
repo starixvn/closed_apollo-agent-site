@@ -9,6 +9,7 @@ namespace Sunplus.Agent.Model.BL
 {
     using System.Collections;
     using Sunplus.Agent.Model.Entities;
+    using Apollo.Age.Entities;
 
     public sealed class UserSessionService
     {
@@ -53,11 +54,11 @@ namespace Sunplus.Agent.Model.BL
         /// <param name="values"></param>
         /// <param name="netSessionId"></param>
         /// <returns></returns>
-        internal static IUserSession CreateUserSessionInstance(Hashtable values, string netSessionId)
+        internal static IUserSession CreateUserSessionInstance(User user, string netSessionId)
         {
             UserSessionBase session = new UserSessionBase(netSessionId);
 
-            SetUserSessionValues(session, values);
+            SetUserSessionValues(session, user);
 
             return session as IUserSession;
         }
@@ -96,29 +97,46 @@ namespace Sunplus.Agent.Model.BL
         /// </summary>
         /// <param name="userSession"></param>
         /// <param name="values"></param>
-        internal static void SetUserSessionValues(IUserSession userSession, Hashtable values)
+        public static void SetUserSessionValues(IUserSession userSession, User authenticatedUser)
         {
-            if (null == userSession)
+            if (ReferenceEquals(userSession, null) || ReferenceEquals(authenticatedUser, null))
             {
                 return;
             }
 
             UserSessionBase session = userSession as UserSessionBase;
 
-            session.CustId = (int)values["agentid"];
-            session.UserName = (values["username"] as string).ToUpperInvariant().Trim();
-            session.Currency = values["currency"] as string;
-            session.AgentLevel = (short)values["agentlevel"];
-            session.IsUserMaster = (bool)values["ismaster"];
-            session.RoleId = (byte)(short)values["agentlevel"];
+            session.AgentId = authenticatedUser.Agent.Id;
+            session.AgentLevel = authenticatedUser.Agent.Level;
+            session.AgentName = authenticatedUser.Agent.Username;
+            session.CurrencyId = authenticatedUser.Agent.Currency;
+            session.UserId = authenticatedUser.Id;
+            session.Username = authenticatedUser.Username;
+            session.IsUserMaster = authenticatedUser.IsMaster;
+            session.MatchLimit = authenticatedUser.Agent.MatchLimit;
+            session.VirtualMultiplier = authenticatedUser.Agent.VirtualMultiplier;
+            session.DoubleCommLosing = authenticatedUser.Agent.DoubleCommLosing;
+            session.SubPageAccess = (PageAccess)(authenticatedUser.PageAcess as string);
             session.IsLogged = true;
 
-            //session.SubUserName = values["subaccname"] as string;
-            session.SubPageAccess = (PageAccess)(values["PageAccess"] as string);
-            if (!session.IsSubAcc)
-            {
-                session.SubPageAccess.SetFullPermission();
-            }
+            // temporarily use when permission checking is pending
+            session.SubPageAccess.SetFullPermission();
+
+
+            //session.CustId = (int)values["agentid"];
+            //session.UserName = (values["username"] as string).ToUpperInvariant().Trim();
+            //session.Currency = values["currency"] as string;
+            //session.AgentLevel = (short)values["agentlevel"];
+            //session.IsUserMaster = (bool)values["ismaster"];
+            //session.RoleId = (byte)(short)values["agentlevel"];
+            //session.IsLogged = true;
+
+            ////session.SubUserName = values["subaccname"] as string;
+            //session.SubPageAccess = (PageAccess)(values["PageAccess"] as string);
+            //if (!session.IsSubAcc)
+            //{
+            //    session.SubPageAccess.SetFullPermission();
+            //}
 
             //session.SiteName = values["sitename"] as string;
             //session.Site = values["site"] as string;
