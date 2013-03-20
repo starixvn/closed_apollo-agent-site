@@ -36,7 +36,7 @@ namespace Sunplus.Agent.UI._MemberInfo.BetSetting
 
             IUserSession userSession = UserSession.Current;
 
-            string currentUserName = userSession.UserName;
+            string currentUserName = userSession.Username;
             int custId = userSession.CustId;
             int targetCustId = 0;
             int.TryParse(context.Request["targetCustId"], out targetCustId);

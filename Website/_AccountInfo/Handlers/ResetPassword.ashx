@@ -55,7 +55,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
                 try // Casino cheat
                 {
-                    cust.UpdateCustPwd(int.Parse(custId), Encryption.CfsEnCode(newPassword), Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), UserSession.Current.CustId, UserSession.Current.SubAccId == 0 ? UserSession.Current.UserName : UserSession.Current.SubUserName, 2);
+                    cust.UpdateCustPwd(int.Parse(custId), Encryption.CfsEnCode(newPassword), Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), UserSession.Current.CustId, UserSession.Current.SubAccId == 0 ? UserSession.Current.Username : UserSession.Current.SubUserName, 2);
                 }
                 catch { }
             }

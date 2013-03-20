@@ -31,7 +31,7 @@ namespace Sunplus.Agent.UI._MemberInfo.EditCommission
             context.Response.Cache.SetNoStore();
 
             IUserSession CurrentUserSession = UserSession.Current;
-            string currentUserName = CurrentUserSession.UserName;
+            string currentUserName = CurrentUserSession.Username;
             int custId = CurrentUserSession.CustId;
             int targetCustId = 0;
             int targetRoleId = 0;

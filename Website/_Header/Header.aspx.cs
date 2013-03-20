@@ -77,21 +77,21 @@ namespace Sunplus.Agent.UI._Header
 
             #region Css filter for Super, Master, Agent
 
-            if (session.RoleId == (int)(UserTypes.Agent))
-            {
-                tpl.CssMaster = null;
-                tpl.CssSuper = null;
-            }
-            else if (session.RoleId == (int)(UserTypes.Master))
-            {
-                tpl.CssAgent = null;
-                tpl.CssSuper = null;
-            }
-            else if (session.RoleId == (int)(UserTypes.Super))
-            {
-                tpl.CssAgent = null;
-                tpl.CssMaster = null;
-            }
+            //if (session.RoleId == (int)(UserTypes.Agent))
+            //{
+            //    tpl.CssMaster = null;
+            //    tpl.CssSuper = null;
+            //}
+            //else if (session.RoleId == (int)(UserTypes.Master))
+            //{
+            //    tpl.CssAgent = null;
+            //    tpl.CssSuper = null;
+            //}
+            //else if (session.RoleId == (int)(UserTypes.Super))
+            //{
+            //    tpl.CssAgent = null;
+            //    tpl.CssMaster = null;
+            //}
 
             #endregion Css filter for Super, Master, Agent
 
@@ -116,23 +116,23 @@ namespace Sunplus.Agent.UI._Header
 
             #region Tab filter for sub-account
 
-            if (session.IsSubAcc)
-            {
-                PageAccess pageAccess = session.SubPageAccess;
-                /*
-                // Transfer tab
-                if (!pageAccess.Transfer)
-                {
-                    tpl.Transfer = null;
-                }
+            //if (session.IsSubAcc)
+            //{
+            //    PageAccess pageAccess = session.SubPageAccess;
+            //    /*
+            //    // Transfer tab
+            //    if (!pageAccess.Transfer)
+            //    {
+            //        tpl.Transfer = null;
+            //    }
 
-                // View log tab
-                if (!pageAccess.ViewLog)
-                {
-                    tpl.Viewlog = null;
-                }
-                */
-            }
+            //    // View log tab
+            //    if (!pageAccess.ViewLog)
+            //    {
+            //        tpl.Viewlog = null;
+            //    }
+            //    */
+            //}
 
             #endregion Tab filter for sub-account
             /*
@@ -161,54 +161,58 @@ namespace Sunplus.Agent.UI._Header
             tpl.cdate = DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8");
             tpl.ctime = DateTime.Now.AddHours(12).ToString("H-m-s-tt");
 
-            string space = " ";
+           // string space = " ";
 
-            if (session.IsSubAcc)
-            {
-                tpl.SetUserName.SetValue(HttpUtility.HtmlEncode(session.CurrentUser.Username));
-                tpl.SetUserName.AgentUsername = HttpUtility.HtmlEncode(session.CurrentUser.Agent.Username);
-                //tpl.addAccName = Resources.Lang.subacc + space + HttpUtility.HtmlEncode(session.SubUserName);
-                //tpl.Tooltip = null;
-                //tpl.SetNickName = null;
-            }
-            else if (session.IsInternal)
-            {
-                tpl.SetUserName.SetValue(HttpUtility.HtmlEncode(session.UserName));
-                //tpl.addAccName = Resources.Lang.admin + space + HttpUtility.HtmlEncode(session.AdminName);
-                //tpl.Tooltip = null;
-                //tpl.SetNickName = null;
-            }
-            else
-            {
-                //tpl.addAccName = null;
+            //if (session.IsSubAcc)
+            //{
+            //    tpl.SetUserName.mainAccName = HttpUtility.HtmlEncode(session.Username);
+            //    tpl.SetUserName.AgentUsername = HttpUtility.HtmlEncode(session.AgentName);
+            //    //tpl.addAccName = Resources.Lang.subacc + space + HttpUtility.HtmlEncode(session.SubUserName);
+            //    //tpl.Tooltip = null;
+            //    //tpl.SetNickName = null;
+            //}
+            //else if (session.IsInternal)
+            //{
+            //    tpl.SetUserName.SetValue(HttpUtility.HtmlEncode(session.UserName));
+            //    //tpl.addAccName = Resources.Lang.admin + space + HttpUtility.HtmlEncode(session.AdminName);
+            //    //tpl.Tooltip = null;
+            //    //tpl.SetNickName = null;
+            //}
+            //else
+            //{
+            //    //tpl.addAccName = null;
 
-                #region Check counter display Tooltip
+            //    #region Check counter display Tooltip
 
-                if (session.NickName != null && session.NickName != "")
-                {
-                    //tpl.SetNickName.nickname = session.NickName;
-                    //tpl.Tooltip = null;
-                    //tpl.SetNickName.IconSetNickName.IsShowIcon = null;
-                    //tpl.SetNickName.LabelNickName = null;
-                    //tpl.SetNickName.SetLinkConfigNow = "linkNickName";
-                }
-                else
-                {
-                    if (CountNickNameToolTip > 3)
-                    {
-                        //tpl.Tooltip = null;
-                    }
-                    else
-                        CountNickNameToolTip++;
-                    //tpl.SetNickName.nickname = Resources.Lang.configNow;
-                    //tpl.SetNickName.IconSetNickName.IsShowIcon = "none";
-                    //tpl.SetNickName.SetLinkConfigNow = "linkConfigNow";
-                }
+            //    if (session.NickName != null && session.NickName != "")
+            //    {
+            //        //tpl.SetNickName.nickname = session.NickName;
+            //        //tpl.Tooltip = null;
+            //        //tpl.SetNickName.IconSetNickName.IsShowIcon = null;
+            //        //tpl.SetNickName.LabelNickName = null;
+            //        //tpl.SetNickName.SetLinkConfigNow = "linkNickName";
+            //    }
+            //    else
+            //    {
+            //        if (CountNickNameToolTip > 3)
+            //        {
+            //            //tpl.Tooltip = null;
+            //        }
+            //        else
+            //            CountNickNameToolTip++;
+            //        //tpl.SetNickName.nickname = Resources.Lang.configNow;
+            //        //tpl.SetNickName.IconSetNickName.IsShowIcon = "none";
+            //        //tpl.SetNickName.SetLinkConfigNow = "linkConfigNow";
+            //    }
 
-                #endregion Check counter display Tooltip
+            //    #endregion Check counter display Tooltip
 
-                tpl.SetUserName.mainAccName = session.UserName;
-            }
+            //    tpl.SetUserName.mainAccName = HttpUtility.HtmlEncode(session.Username);
+            //    tpl.SetUserName.AgentUsername = HttpUtility.HtmlEncode(session.AgentName);
+            //}
+
+            tpl.SetUserName.mainAccName = HttpUtility.HtmlEncode(session.Username);
+            tpl.SetUserName.AgentUsername = HttpUtility.HtmlEncode(session.AgentName);
 
             #region User Message
 

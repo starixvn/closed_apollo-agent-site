@@ -760,7 +760,7 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
                     Customer cust = new Customer();
                     try
                     {
-                        cust.UpdateCustInfoSimpleNoStatus(custId, firstName, lastName, phone, mobilePhone, fax, email, Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), Sunplus.Agent.Model.Entities.UserSession.Current.CustId, Sunplus.Agent.Model.Entities.UserSession.Current.SubAccId == 0 ? Sunplus.Agent.Model.Entities.UserSession.Current.UserName : Sunplus.Agent.Model.Entities.UserSession.Current.SubUserName, 2);
+                        cust.UpdateCustInfoSimpleNoStatus(custId, firstName, lastName, phone, mobilePhone, fax, email, Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP(), Sunplus.Agent.Model.Entities.UserSession.Current.CustId, Sunplus.Agent.Model.Entities.UserSession.Current.SubAccId == 0 ? Sunplus.Agent.Model.Entities.UserSession.Current.Username : Sunplus.Agent.Model.Entities.UserSession.Current.SubUserName, 2);
                     }
                     catch
                     {

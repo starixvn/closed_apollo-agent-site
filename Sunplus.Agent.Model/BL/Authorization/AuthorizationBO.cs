@@ -62,6 +62,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
                 out errMsg,
                 ref outputs,
                 out isSubAcc);
+            
 
             //int custId = (int)outputs["custid"]; // Equal zero if log-in failed
 
@@ -105,7 +106,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
 
             //outputs.Add("adminid", 0);
 
-            UserSessionService.SetUserSessionValues(CurrentSession, outputs);
+            //UserSessionService.SetUserSessionValues(CurrentSession, outputs);
 
             return result;
         }
@@ -174,7 +175,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
 
             outputs.Add("adminid", 0);
 
-            UserSessionService.SetUserSessionValues(CurrentSession, outputs);
+            //UserSessionService.SetUserSessionValues(CurrentSession, outputs);
 
             return errCode == 0;
         }
@@ -252,7 +253,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
 
             outputs.Add("adminid", adminId);
 
-            UserSessionService.SetUserSessionValues(CurrentSession, outputs);
+          //  UserSessionService.SetUserSessionValues(CurrentSession, outputs);
 
             return errCode == 0;
         }
@@ -262,7 +263,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
         /// </summary>
         public void SignOut()
         {
-            this.dao.Acc_CheckOut(CurrentSession.OnUserId, CurrentSession.UserName, CurrentSession.IsNickname ? CurrentSession.NickName : string.Empty, CurrentSession.RoleId, CurrentSession.ServerId);
+            this.dao.Acc_CheckOut(CurrentSession.OnUserId, CurrentSession.Username, CurrentSession.IsNickname ? CurrentSession.NickName : string.Empty, CurrentSession.RoleId, CurrentSession.ServerId);
 
             UserSessionService.RemoveUserSession(CurrentSession);
         }
