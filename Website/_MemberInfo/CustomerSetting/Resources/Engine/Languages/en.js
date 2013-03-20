@@ -25,6 +25,7 @@
     INCORRECT_MAX_PER_BALL: "Incorrect Max Per Ball",
     MIN_BET_LOWER_THAN_MIN_MAX_BET: "{0} - The Min Bet should be less than or equal to Max Bet",
     MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "{0} - The Min Bet should be less than or equal to Max Per Match",
+    MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL: "{0} - The Min Bet should be less than or equal to Max Per Ball",
     MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "{0} - The Max Bet should be less than or equal to Max Per Match",
     MIN_BET_GREATER_THAN_MIN_MIN_BET: "Min Bet must be greater than or equal to {0}",
     MAX_BET_LOWER_THAN_MAX_MAX_BET: "Max Bet must be less than or equal to {0}",

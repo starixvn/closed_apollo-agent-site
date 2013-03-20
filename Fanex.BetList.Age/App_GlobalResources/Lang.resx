@@ -3764,4 +3764,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="Roulette" xml:space="preserve">
     <value>Roulette</value>
   </data>
+  <data name="lblDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
 </root>

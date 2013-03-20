@@ -494,25 +494,42 @@ function changeLiveCasinoStatus(evt, objDiv) {
 }
 
 function bindAgentDownLine(agentID) {
-    var contentId = document.getElementById("agent-downline");
-    if (contentId.style.display == "none") {
-        ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
-            var data = result.Agents;
-            var text = "";
-            document.getElementById("agent-downline").innerHTML = "";
-            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + "<span class='root-agent'>" + data[0][1] + "</span> </br>";
-            for (var i = 1; i < data.length; ++i) {
-                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
-            }
+    
+//    var contentId = document.getElementById("agent-downline");
+//    var container = document.getElementById("agent-downline-list");
+//    if (container.style.display == "none") {
+//        ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
+//            var data = result.Agents;
+//            var text = "";
+//            document.getElementById("agent-downline").innerHTML = "";
+//            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + "<span class='root-agent'>" + data[0][1] + "</span> </br>";
+//            for (var i = 1; i < data.length; ++i) {
+//                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
+//            }
 
-            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + text;
-            contentId.style.display = "block";
-        });
-        
-    }
-    else { 
-        contentId.style.display = "none";
-    }
+//            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + text;
+//            container.style.display = "block";
+//        });
+//        
+//    }
+//    else {
+//        container.style.display = "none";
+    //    }
+
+//    var contentId = $("#agent-downline");
+
+//    $("#agent-downline-list").toggle('fast', function() {
+//        ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
+//            var data = result.Agents;
+//            var text = "";
+//            contentId.html("");
+//            contentId.html(contentId.html() + "<span class='root-agent'>" + data[0][1] + "</span> </br>");
+//            for (var i = 1; i < data.length; ++i) {
+//                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
+//            }
+//            contentId.html(contentId.html() + text);
+//        });
+//    });  
 }
 
 function bindMembersList(agentID) {
@@ -540,6 +557,7 @@ function bindMembersList(agentID) {
         text = "";
         if (text.length > 0) {
             contentId.innerHTML = text;
+<<<<<<< HEAD
             //$("#paging-member").show();
         }
         else {
@@ -565,7 +583,37 @@ function bindMembersList(agentID) {
             "width": "179px",
             "height": "554px"
         });
+=======
+        }           
+>>>>>>> 59ff0497058bdc1abe2ecf3d67082ec678412e0e
         contentId.style.display = "block";
     });
     */
+}
+
+if (typeof jQuery != 'undefined') {
+    $(function () {
+        $(".view-agent-downline").click(function (e) {
+            var $this = $(this),
+            agentID = $this.attr('aid'),
+            contentId = $("#agent-downline");
+
+            $("#agent-downline-list").show('fast', function () {
+                ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
+                    var data = result.Agents;
+                    var text = "";
+                    contentId.html("");
+                    contentId.html(contentId.html() + "<span class='root-agent'>" + data[0][1] + "</span> </br>");
+                    for (var i = 1; i < data.length; ++i) {
+                        text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
+                    }
+                    contentId.html(contentId.html() + text);
+                });
+            });
+        });
+
+        $('body, html').on('click', function () {
+            $("#agent-downline-list").hide();
+        });
+    });
 }

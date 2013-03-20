@@ -16,6 +16,7 @@ namespace Apollo.Age.Repositories.Impl
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
+    using Fanex.Data;
 
     /// <summary>
     /// TODO: Update summary.
@@ -59,7 +60,26 @@ namespace Apollo.Age.Repositories.Impl
 
         public User Get(ICriteria criteria)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var user = objectDb.QueryEntity<User, Agent, User>(
+                            (u, ag) => {
+                                u.Agent = ag;
+                                return u;
+                            },
+                            splitOn: "AgentId",
+                            parameters: criteria.GetSpParams()
+                        );
+
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public User Get(int id)

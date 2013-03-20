@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Fanex.Age.UI.Components;
+using Fanex.Agent.UI._BetList;
 using Fanex.BetList.Age.BetListCmd;
 using Fanex.BetList.Age.BetListHTMLBuilderExt;
 using Fanex.BetList.Age.Definition;
@@ -20,7 +21,6 @@ using Fanex.BetList.Core.Utils;
 using Sunplus.Agent.Model.BL.BetList;
 using Sunplus.Agent.Model.BL.Reports;
 using Sunplus.Agent.Model.Entities;
-using Fanex.Agent.UI._BetList;
 
 namespace Sunplus.Agent.UI._BetList
 {
@@ -92,8 +92,8 @@ namespace Sunplus.Agent.UI._BetList
                 #region Total ticket
 
                 totalTicket.Comm += ticket.Comm;
-                totalTicket.TComm += ticket.TComm;
-                totalTicket.TPositionTaking += ticket.TPositionTaking;
+                totalTicket.AComm += ticket.AComm;
+                totalTicket.APositionTaking += ticket.APositionTaking;
                 totalTicket.AgentWinlost += ticket.AgentWinlost;
                 totalTicket.Status = ticket.Status;
 
@@ -139,9 +139,10 @@ namespace Sunplus.Agent.UI._BetList
             try
             {
                 BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
-                return bo.GetAgentPTComm(transID, agentID, fromDate, toDate, ReportsBO.MoveBetsDate, true, false);
+                return bo.GetAgentPTComm(transID);
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 //writelog
             }
 

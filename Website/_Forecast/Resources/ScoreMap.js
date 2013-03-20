@@ -77,7 +77,7 @@ function hiddenBoxMatch() {
         hideBoxMatch();
         ShowHideLiveDead("");
     }
-    else{
+    else {
         document.getElementById('msgMatchErr').innerHTML = _page.plsChooseMatch;
         document.getElementById('tblMsgMatch').style.display = "";
     }
@@ -95,7 +95,7 @@ function CloseBoxMatch() {
 }
 
 function CommonLoadData(MatchId) {
-    hiddenBoxMatch();    
+    hiddenBoxMatch();
     LoadingRefresh(MatchId, lnkRefreshClick);
     setBetTypes('L');
     setBetTypes('D');
@@ -122,7 +122,7 @@ function EnableBtnSubmit() {
 }
 
 function LoadScoreMap() {
-    if (isCalling) {
+    if (isCalling && typeof (http) != 'undefined') {
         http.abort();
         isCalling = false;
     }
@@ -150,7 +150,7 @@ function LoadScoreMap() {
         SelectMatch();
     }
 
-    function onComplete(rs) {        
+    function onComplete(rs) {
         if (!isCalling) {
             return;
         }
@@ -178,7 +178,7 @@ function GroupScoreMap(GroupMatchId) {
 }
 
 function RefreshScoreMap(MatchId) {
-    if (isCalling) {
+    if (isCalling && typeof (http) != 'undefined') {
         http.abort();
         isCalling = false;
     }
@@ -271,13 +271,13 @@ function CheckAllBetType(Type) {
         if (ids[i].type == "checkbox" && ids[i].id.substring(0, 3) == strChkBetType) {
             ids[i].checked = bolAll;
         }
-    }    
+    }
 }
 
 function setBetTypes(Type) {
     var strChkBetType = "bt" + Type;
     var BetTypes = '';
-    var ids = document.getElementsByTagName("input");    
+    var ids = document.getElementsByTagName("input");
     for (var i = 0; i < ids.length; i++) {
         if (ids[i].type == "checkbox" && ids[i].id.substring(0, 3) == strChkBetType) {
             if (ids[i].checked && ids[i].id != 'chLAll') {
@@ -288,8 +288,6 @@ function setBetTypes(Type) {
     document.getElementById('strValue' + Type).value = (BetTypes == '' ? '-1' : BetTypes);
 }
 /* END: For Box Bet Types */
-
-
 
 function hCol(tblMatchId, n) {
     n = n - 1;

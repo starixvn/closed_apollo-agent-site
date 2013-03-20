@@ -3,6 +3,17 @@
 
   <Function Name="Apollo-Login">
     <Setting Key="Agent_Login" SpName="Agent_Login" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Agent_GetByUserName" SpName="Agent_GetByUserName" DbName="CUSTDB" Plain="0" >
+      <Mapping DataField="AgentUserId" ObjectProperty="Id"/>
+      <Mapping DataField="Username" ObjectProperty="Username"/>
+      <Mapping DataField="AgentId" ObjectProperty="Id"/>
+      <Mapping DataField="AgentLevel" ObjectProperty="Level"/>
+      <Mapping DataField="AgentName" ObjectProperty="Username"/>
+      <Mapping DataField="Currency" ObjectProperty="Currency"/>
+      <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
+      <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
+    </Setting>
+
   </Function>
 
   <Function Name="Agent - Message">
@@ -144,6 +155,7 @@
 
   <Function Name="Agent-Apollo-Admin">
     <Setting Key="Age_Exchange_GetAll" SpName="Age_Exchange_GetAll" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Exchange_UpdateRate" SpName="Age_Exchange_UpdateRate" DbName="REPDB" Plain="0" />
   </Function>
 
   <Function Name="AgentSetting">
@@ -155,6 +167,7 @@
     <Setting Key="AgentSetting_Acc_Agent_UpdatePositionTaking" SpName="Acc_Agent_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="AgentSetting_Acc_Agent_UpdateSetting" SpName="Acc_Agent_UpdateSetting" DbName="CUSTDB"  TimeOut="600"/>
   </Function>
+
   <Function Name="PlayerSetting">
     <Setting Key="PlayerSetting_Acc_Customer_GetDiscountForUpdate" SpName="Acc_Customer_GetDiscountForUpdate" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Acc_Customer_GetBetLimitForUpdate" SpName="Acc_Customer_GetBetLimitForUpdate" DbName="CUSTDB"   TimeOut="600"/>
@@ -163,5 +176,9 @@
     <Setting Key="PlayerSetting_Acc_Customer_UpdateDiscount" SpName="Acc_Customer_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Acc_Customer_UpdatePositionTaking" SpName="Acc_Customer_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Acc_Customer_UpdateSetting" SpName="Acc_Customer_UpdateSetting" DbName="CUSTDB" TimeOut="600"/>
+  </Function>
+
+  <Function Name="Agent-Apollo-BalanceUpDay">
+    <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="REPDB" TimeOut="600"/>
   </Function>
 </Functions>

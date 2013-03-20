@@ -27,4 +27,4 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 *.vssscc
 $tf*/
-/Dependencies/Sunplus.Agent.Model.dll
+Sunplus.Agent.Model.dll

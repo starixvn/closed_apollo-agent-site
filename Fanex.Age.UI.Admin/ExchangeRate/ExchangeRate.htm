@@ -4,43 +4,14 @@
 <head>
     <title>{static:Resources.Lang.Exchange_Rate}</title>
     
+    <link href="../../_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link href="../../_globalresources/css/agent.css" rel="stylesheet" type="text/css" />
-
-    <style type="text/css">
-        #content_title {
-             background-color: #FFEFDE;
-        }
-        #content_title .export-excel {
-            float: right;
-            padding: 0;
-        }
-        #content_title .export-excel input[type=image] {
-            cursor: pointer;
-            outline: none;
-            margin-left: 10px;
-        }
-        #tbl-rpt tr.even {
-            background-color: #FAF9EE;
-        }
-        #tbl-rpt tr.odd {
-            background-color: #F6F8F9;
-        }
-        #tbl-rpt tr.even:hover, #tbl-rpt tr.odd:hover {
-            background-color: #FBF0B9;
-        }
-        #tbl-rpt td {
-            padding: 4px 8px;
-        }
-        .btn-edit {
-            cursor: pointer;
-        }
-    </style>
+    <link href="../styles/exchangerate.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="frmmain" method="get" {actionForm}>
     <div id="page_main">
         <div id="header_main">{static:Resources.Lang.Exchange_Rate}</div>
-    </div>
     <!--ExcelContents-->
     <table id="tbl-rpt" class="tblRpt" cellspacing="1">
         <tr id="rowTitle" class="RptTitle">
@@ -104,36 +75,55 @@
                 {Description}
             </td>
             <td class="c">
-                <img eid="{ExchangeId}" class="btn-edit" alt="Edit" title="Edit {Currency}"
+                <img eid="{ExchangeId}" class="btn-edit"
+                    alt="Edit" title="Edit {Currency}"
                     src="../../_globalresources/images/icon_edit.png" />
             </td>
         </tr>
         <!--/Content-->
     </table>
     <!--/ExcelContents-->
+    </div>
     </form>
 
-    <script src="../../_globalresources/js/jquery.js" type="text/javascript"></script>
+    <div id="dialog-edit" style="display: none">
+        <table id="editor-wrp">
+            <thead>
+                <tr>
+                    <th>
+                        <label for="editor-desc">{static:Resources.Lang.description}</label>            
+                    </th>
+                    <th>
+                        <label for="editor-mult">{static:Resources.Lang.MultipliedBy}</label>
+                    </th>
+                    <th>
+                        <label for="editor-base">{static:Resources.Lang.BaseRate}</label>
+                    </th>
+                    <th>
+                        <label for="editor-minb">{static:Resources.Lang.MinBet}</label>
+                    </th>
+                    <th>
+                        <label for="editor-minbl">{static:Resources.Lang.MinBetLive}</label>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" id="editor-desc" /></td>
+                    <td><input type="number" id="editor-mult" /></td>
+                    <td><input type="number" id="editor-base" /></td>
+                    <td><input type="number" id="editor-minb" /></td>
+                    <td><input type="number" id="editor-minbl" /></td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+
+    <script src="../../_globalresources/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="../../_globalresources/js/jquery-ui-1.10.2/dialog.min.js" type="text/javascript"></script>
     <script src="../../_globalresources/js/core.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-
-        var ExchRate = function ($) {
-            return {
-                init: function () {
-                    $('#tbl-rpt .btn-edit').click(function () {
-                        var $this = $(this),
-                            exchId = $this.attr('eid');
-                    });
-                }
-            };
-        } (jQuery);
-
-        jQuery(document).ready(function () {
-            ExchRate.init();
-        });
-
-    </script>
+    <script src="../scripts/exchangerate.js" type="text/javascript"></script>
 
 </body>
 </html>

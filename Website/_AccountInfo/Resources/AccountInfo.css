@@ -1,6 +1,6 @@
 ﻿html, body
 {
-	overflow-y: auto;
+	/*overflow-y: auto;*/
 	overflow-x: hiden;
 	cursor: default;
 	padding: 0;
@@ -183,14 +183,14 @@ td
 	height: 22px;
 	padding-top: 1px;
 }
-a.tab_menu03
+.tab_menu03
 {	
 	background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll left top;	
 	display: block;	
 	text-decoration: none;
 	height: 21px;
 }
-a.tab_menu03:hover
+.tab_menu03:hover
 {	
 	background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat 0 -26px scroll;
 	color: #B39D74;
@@ -274,6 +274,7 @@ a.tab_menu03:hover
 	font-style: italic;
 	font-size: 11px;
 	vertical-align: top;
+	height: 14px;
 }
 .textDisabled
 {
@@ -284,6 +285,10 @@ a.tab_menu03:hover
 {
 	font-family: Tahoma,Verdana;
 	font-size: 8pt;
+}
+
+#frmAgent * {
+    vertical-align: top;
 }
 #from_tab
 {
@@ -546,11 +551,6 @@ font.positive
 	height: 98%;
 }
 
-.ie9 .leftpanewrapper-treeview
-{	
-	height: 98%;
-}
-
 #leftpane
 {
 	width: 202px;
@@ -741,11 +741,12 @@ select.commission
 	width: 62px;
 }
 
-.b_left:hover
+.divLinkSetting .b_left:hover
 {
 	color: #F60;
 }
-.b_left
+
+.divLinkSetting .b_left
 {
 	background: transparent url(../../_GlobalResources/Images/icon_bleft.gif) no-repeat scroll left center;
 	color: #2678C5;
@@ -1045,12 +1046,13 @@ a.btnList:hover {
 }
 
 .downlineTreview-bg {
-    background: none;
-    overflow: visible;
+    background: none;    
 }
 
 .treeview {
     padding: 10px;
+    height: 700px;
+    width: 161px;
 }
 
 .treeview .hitarea {
@@ -1073,34 +1075,64 @@ a.btnList:hover {
 
 .view-agent-downline img {
     margin: -3px -3px 0 3px;
+    border: none;
+    outline: none;
 }
-
-.agent-downline-list {
+.agent-tooltip {
+    position: relative;
+}
+.agent-downline-list-container {
     display: none;
-    margin: 0;
-    padding: 10px 5px;
-    background: #fff;
-    border: 1px solid #E2E2E2;
+    margin: 0;     
+    min-height: 50px;
+    width: 190px;
+    position: absolute;
+    top: -13px;
+    z-index: 200;
+    left: 0;
 }
 
-.agent-downline-list li {
+.agent-downline-list-container .top {
+   background: url(Images/bg-tooltip-top.png) left top no-repeat;
+   height: 18px;
+   width: 100%;
+ }
+ 
+ .agent-downline-list-container .middle {
+   background: url(Images/bg-tooltip-middle.png) left top repeat-y;
+   min-height: 24px;
+   width: 100%;
+ }
+ 
+ .agent-downline-list-container .bottom {
+   background: url(Images/bg-tooltip-bottom.png) left top no-repeat;
+   height: 35px;
+   width: 100%;
+ }
+
+.agent-list {
+    margin: 0;
+    padding: 0 10px;
+}
+
+.agent-list  li {
     list-style: none;
 }
 
-.agent-downline-list .root-agent {
+.agent-list .root-agent {
     color: #4B483C;
     background: url(Images/icon-root.png) left no-repeat;
     padding-left: 17px;   
 }
 
-.agent-downline-list a {
+.agent-list a {
     color: #2678C5;
     text-decoration: none;   
     display: block;
     margin-left: 10px;
 }
 
-.agent-downline-list a:hover {
+.agent-list a:hover {
     color: #FF9000;
 }
 
@@ -1120,15 +1152,17 @@ a.btnList:hover {
 
 
 /* Member tab */
-.member-tab {    
-    /*overflow: auto;*/
+.member-tab {
     width: 100%;
-    display: none;
+    display: none;    
 }
 
-.member-tab-list {
+.member-tab .member-tab-list {
     margin: 0 0 0 5px;
-    padding: 0;       
+    padding: 0;     
+    overflow: auto;  
+    height: 556px;
+    width: 174px;
 }
 
 .member-tab-list li * {
@@ -1162,8 +1196,13 @@ a.btnList:hover {
     padding-top: 31px;
 }
 
-#treeview_list > li:last-child {
-    margin-bottom: 20px;
+ul.tree-sub {
+    height: 495px;
+    width: 147px;
+}
+
+iframe {
+    overflow: hidden;
 }
 
 .member-list

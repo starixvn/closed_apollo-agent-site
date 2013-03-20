@@ -1,4 +1,73 @@
-﻿// Returns the string with all the beginning
+﻿var APOLLO = {}; // Global namespace for common functions
+
+if (typeof jQuery != 'undefined') {
+    // functions in this namespace require jquery, and may be jquery-ui
+    var APOLLO = function ($) {
+        return {
+            dialogOpt: {
+                position: { my: "top+20%", at: "center top", of: window },
+                modal: true,
+                width: 'auto'
+            },
+            openDialog: function (target, title, options) {
+                options = options || {};
+                if (title) options.title = title;
+
+                target.dialog($.extend({}, APOLLO.dialogOpt, options));
+            },
+            closeDialog: function (target) {
+                target.dialog("close");
+            },
+
+            alertGeneralError: function () {
+                alert('Your request is temporarily cannot be processed, please try again later!');
+            },
+            handleAjaxError: function (jqXHR, textStatus, errorThrown) {
+                APOLLO.alertGeneralError();
+            },
+
+            parseJSON: function (value) {
+                return $.parseJSON(value.replaceAll("'","\""));
+            }
+        };
+    } (jQuery);
+}
+
+/**
+* ReplaceAll by Fagner Brack (MIT Licensed)
+* Replaces all occurrences of a substring in a string
+*/
+String.prototype.replaceAll = function (token, newToken, ignoreCase) {
+    var _token;
+    var str = this + "";
+    var i = -1;
+
+    if (typeof token === "string") {
+
+        if (ignoreCase) {
+
+            _token = token.toLowerCase();
+
+            while ((
+                i = str.toLowerCase().indexOf(
+                    token, i >= 0 ? i + newToken.length : 0
+                )) !== -1
+            ) {
+                str = str.substring(0, i) +
+                    newToken +
+                    str.substring(i + token.length);
+            }
+
+        } else {
+            return this.split(token).join(newToken);
+        }
+
+    }
+
+    return str;
+};
+
+// Returns the string with all the beginning
 // and ending whitespace removed
 String.prototype.trim = function () {
     return this.replace(/^\s+/, '').replace(/\s+$/, '');

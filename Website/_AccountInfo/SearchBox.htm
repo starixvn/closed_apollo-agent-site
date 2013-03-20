@@ -40,21 +40,24 @@
                         </td>
                         <td align="right" class="text_org">         
                             {ParentUsername}
-                            <a href="javascript:void(0)" id="agentDownlineLink" class="view-agent-downline" onclick="bindAgentDownLine({AgentID});">
+                            <a href="javascript:void(0)" id="agentDownlineLink" class="view-agent-downline" aid="{AgentID}">
                                 <img height="16" width="16" alt="Treeview" src="../_AccountInfo/Resources/Images/icon-view-info.png" title="Treeview"/>
                             </a>
                         </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <ul id="agent-downline" class="agent-downline-list" style="display:none;" on>                            
-                            </ul>
-                        </td>
-                    </tr>                    
+                    </tr>                                     
                 </tbody>
             </table>
-            <!--/CustInfo-->
-            
+            <!--/CustInfo-->           
+        </div>
+        <div class="agent-tooltip">
+            <div class="agent-downline-list-container" id="agent-downline-list">
+                <div class="top"></div>
+                <div class="middle">
+                    <ul id="agent-downline" class="agent-list">                            
+                    </ul>
+                </div>
+                <div class="bottom"></div>
+            </div>
         </div>        
     </div>    
 </div> 
@@ -72,8 +75,6 @@
 <!--insert jquery and treeview javascript-->
 <link href="Resources/treeview.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>
-<script type="text/javascript" src="../_GlobalResources/Js/jquery-ui.js"></script>
-<script type="text/javascript" src="../_GlobalResources/Js/slimScroll.js"></script>
 <script src="../_GlobalResources/Js/Core.js" type="text/javascript"></script>
 <script type="text/javascript" src="Resources/AccountInfo.js"></script>
 

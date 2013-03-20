@@ -69,6 +69,9 @@
     <Reference Include="Fanex.Caching">
       <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Common, Version=1.0.404.98, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data">
       <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
     </Reference>
@@ -240,6 +243,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
+      <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
+      <Name>Apollo.Age</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.DTO\Fanex.Age.DTO.csproj">
       <Project>{A7134F35-65C9-43A6-9386-86CD65F349DD}</Project>
       <Name>Fanex.Age.DTO</Name>
