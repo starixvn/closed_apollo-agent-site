@@ -49,23 +49,11 @@ namespace Fanex.Agent.UI
 			protected static string s25{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
 			protected static string s26 = "\" rel=\"stylesheet\" type=\"text/css\" /><script type=\"text/javascript\" src=\"";
 			protected static string s27{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
-<<<<<<< HEAD
-			protected static string s28 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s29{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js");}}
-			protected static string s30 = "\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s31{get{return AbsoluteUrl("_GlobalResources/Js/slimScroll.js");}}
-			protected static string s32 = "\"></script><script src=\"";
-			protected static string s33{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s34 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s35{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js");}}
-			protected static string s36 = "\"></script><script type=\"text/javascript\" >$(\"#\").scroll(function () {//if ($(window).scrollTop() == $(document).height() - $(window).height()) {//lastPostFunc();//}console.log(\"aaaa\");});</script>";
-=======
 			protected static string s28 = "\"></script><script src=\"";
 			protected static string s29{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s30 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\" src=\"";
 			protected static string s31{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js");}}
 			protected static string s32 = "\"></script>";
->>>>>>> 59ff0497058bdc1abe2ecf3d67082ec678412e0e
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
