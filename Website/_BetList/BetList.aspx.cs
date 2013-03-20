@@ -299,7 +299,8 @@ namespace Sunplus.Agent.UI._BetList
                 content.Append("</tbody></table>");
 
                 tpl.content = content.ToString();
-                tpl.ToString(writer);
+                //tpl.ToString(writer);
+                writer.Write(tpl);
 
                 RegisterJavascriptObject("type", type);
                 RegisterJavascriptObject("fdate", dateFrom.ToShortDateString());

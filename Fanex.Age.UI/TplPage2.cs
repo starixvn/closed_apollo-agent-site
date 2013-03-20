@@ -57,31 +57,22 @@ namespace Fanex.Age.UI
             object error = ValidateRequest(Parameters);
 
             // Remove end html tag at the end and render later to fix bug xml is not welformed in Opera browser
-            TplHtmlTextWriter writer2 = new TplHtmlTextWriter(writer);
-            bool removedEndHtmlTag = false;
 
             if (null != error)
             {
-                writer2.Write(error);
+                writer.Write(error);
             }
             else
             {
                 _View = InvokeData(Parameters);
 
-                RenderContent(writer2);
-                removedEndHtmlTag = writer2.RemovedEndHtmlTag;
+                RenderContent(writer);
             }
 
             if (_JsData.Count > 0)
             {
                 // Render javascript variables
-                WriteJavascriptObjects(writer2);
-            }
-
-            if (removedEndHtmlTag)
-            {
-                // Render end html tag
-                writer2.Write(TplHtmlTextWriter.END_HTML_TAG);
+                WriteJavascriptObjects(writer);
             }
         }
     }

@@ -256,52 +256,82 @@ function OpenScoreMap(matchIds, bettype, liveindicator) {
 }
 
 RegisterStartUp(InitBetList);
-function getOffset(el) {
-    var _x = 0;
-    var _y = 0;
-    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
-        _x += el.offsetLeft - el.scrollLeft;
-        _y += el.offsetTop - el.scrollTop;
-        el = el.offsetParent;
-    }
-    return { top: _y, left: _x };
-}
-var BetList = {
-    showCommDetail: function (transId, event) {
-        // console.log(transId);
-        var pnlDetails = document.getElementById("divDetail");
-        if (pnlDetails != undefined) {
-            pnlDetails.style.display = 'block';
-            var tableMain = document.getElementById("hor-minimalist-a");
-            if (tableMain != undefined) {
-                var lastRowIndex = tableMain.rows.length - 1;
-                if (event.pageY > getOffset(tableMain.rows[lastRowIndex]).top) {
-                    pnlDetails.style.top = (event.pageY - 100) + "px";
-                }
-                else {
-                    pnlDetails.style.top = (event.pageY) + "px";
-                }
-            }
-            else {
-                pnlDetails.style.top = (event.pageY) + "px";
-            }
-            var ajaxParameters = "transid=" + transId + "&fromdate=" + _page.fdate + "&toDate=" + _page.tdate + "&isSportsbook=1";
-            var url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx";
-            ajax.Request(url,
-                {
-                    asynchronous: true,
-                    parameters: ajaxParameters,
-                    onComplete: function (data) {
-                        document.getElementById('detail-content').innerHTML = data.responseText;
+//function getOffset(el) {
+//    var _x = 0;
+//    var _y = 0;
+//    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+//        _x += el.offsetLeft - el.scrollLeft;
+//        _y += el.offsetTop - el.scrollTop;
+//        el = el.offsetParent;
+//    }
+//    return { top: _y, left: _x };
+//}
+//var BetList = {
+//    showCommDetail: function (transId, event) {
+//        // console.log(transId);
+//        var pnlDetails = document.getElementById("divDetail");
+//        if (pnlDetails != undefined) {
+//            pnlDetails.style.display = 'block';
+//            var tableMain = document.getElementById("hor-minimalist-a");
+//            if (tableMain != undefined) {
+//                var lastRowIndex = tableMain.rows.length - 1;
+//                if (event.pageY > getOffset(tableMain.rows[lastRowIndex]).top) {
+//                    pnlDetails.style.top = (event.pageY - 100) + "px";
+//                }
+//                else {
+//                    pnlDetails.style.top = (event.pageY) + "px";
+//                }
+//            }
+//            else {
+//                pnlDetails.style.top = (event.pageY) + "px";
+//            }
+//            var ajaxParameters = "transid=" + transId + "&fromdate=" + _page.fdate + "&toDate=" + _page.tdate + "&isSportsbook=1";
+//            var url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx";
+//            ajax.Request(url,
+//                {
+//                    asynchronous: true,
+//                    parameters: ajaxParameters,
+//                    onComplete: function (data) {
+//                        document.getElementById('detail-content').innerHTML = data.responseText;
+//                    }
+//                }
+//           );
+//        }
+//    },
+//    hideCommDetail: function (transId, event) {
+//        var pnlDetails = document.getElementById("divDetail");
+//        if (pnlDetails != undefined) {
+//            pnlDetails.style.display = 'none';
+//        }
+//    }
+//};
+
+if (typeof jQuery != "undefined") {
+    $(function () {
+        if ($("div .view-detail") != undefined) {
+            $("div .view-detail").click(function (event) {
+                var transId = $("div .view-detail").attr("id");
+                var pnlDetails = $("#divDetail");
+                var ajaxParameters = "transid=" + transId + "&fromdate=" + _page.fdate + "&toDate=" + _page.tdate + "&isSportsbook=1";
+                var url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx";
+
+                ajax.Request(url,
+                    {
+                        asynchronous: true,
+                        parameters: ajaxParameters,
+                        onComplete: function (data) {
+                            $('#divDetail').html(data.responseText);
+                        }
                     }
-                }
-           );
+                );
+
+                APOLLO.openDialog(pnlDetails, "View detail", { modal: false });
+                event.stopPropagation();
+            });
         }
-    },
-    hideCommDetail: function (transId, event) {
-        var pnlDetails = document.getElementById("divDetail");
-        if (pnlDetails != undefined) {
-            pnlDetails.style.display = 'none';
-        }
-    }
-};
+        $("body, html").on("click", function () {
+            $("#divDetail").dialog("close");
+        });
+
+    });
+}

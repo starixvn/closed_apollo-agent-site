@@ -554,7 +554,7 @@ if (typeof jQuery != 'undefined') {
             var $this = $(this),
             agentID = $this.attr('aid'),
             contentId = $("#agent-downline");
-
+            $("#agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info-hover.png");
             $("#agent-downline-list").show('fast', function () {
                 ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
                     var data = result.Agents;
@@ -570,7 +570,9 @@ if (typeof jQuery != 'undefined') {
         });
 
         $('body, html').on('click', function () {
-            $("#agent-downline-list").hide();
+            if ($("#agent-downline-list") != undefined) {
+                $("#agent-downline-list").hide();
+            }
         });
     });
 }

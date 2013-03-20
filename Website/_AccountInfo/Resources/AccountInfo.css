@@ -146,7 +146,8 @@ td
 {
 	float: left;
 	height: 22px;
-	width: 87px;	
+	width: 84px;
+	margin-right: 2px;	
 }
 #tab_menu_L
 {
@@ -167,7 +168,8 @@ td
 	color: white;
 	display: block;	
 	text-decoration: none;
-	height: 21px;
+	height: 19px;
+	padding-top: 2px;
 }
 .tab_menu02:hover
 {	
@@ -181,7 +183,7 @@ td
 	display: block;
 	text-decoration: none;
 	height: 22px;
-	padding-top: 1px;
+	padding-top: 3px;
 }
 .tab_menu03
 {	
@@ -213,7 +215,8 @@ td
 	color: white;
 	display: block;
 	text-decoration: none;
-	height: 21px;	
+	height: 19px;	
+	padding-top: 2px;
 }
 .tab_menu02Blink
 {
@@ -1077,6 +1080,7 @@ a.btnList:hover {
     margin: -3px -3px 0 3px;
     border: none;
     outline: none;
+    z-index: 9999;
 }
 .agent-tooltip {
     position: relative;
@@ -1087,9 +1091,9 @@ a.btnList:hover {
     min-height: 50px;
     width: 190px;
     position: absolute;
-    top: -13px;
+    top: -15px;
     z-index: 200;
-    left: 0;
+    left: 15px;
 }
 
 .agent-downline-list-container .top {
@@ -1105,8 +1109,8 @@ a.btnList:hover {
  }
  
  .agent-downline-list-container .bottom {
-   background: url(Images/bg-tooltip-bottom.png) left top no-repeat;
-   height: 35px;
+   background: url(Images/bg-tooltip-bottom.png) left bottom no-repeat;
+   height: 16px;
    width: 100%;
  }
 
@@ -1158,7 +1162,7 @@ a.btnList:hover {
 }
 
 .member-tab .member-tab-list {
-    margin: 0 0 0 5px;
+    margin: 0;
     padding: 0;     
     overflow: auto;  
     height: 556px;
@@ -1166,13 +1170,16 @@ a.btnList:hover {
 }
 
 .member-tab-list li * {
-    vertical-align: middle;
+    /*vertical-align: middle;*/
 }
 
 .member-tab-list li {
     list-style: none;    
 }
 
+.member-tab-list li:first-child {
+    margin-top: -5px;
+}
 .member-tab-list li a {
     list-style: none;
     color: #2678C5;
@@ -1198,7 +1205,9 @@ a.btnList:hover {
 
 ul.tree-sub {
     height: 495px;
-    width: 147px;
+    width: 168px;
+    margin: 0;
+    padding: 0;
 }
 
 iframe {

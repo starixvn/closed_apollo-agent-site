@@ -70,13 +70,11 @@ namespace Fanex.BetList.Age
 
 		public class AgentComm_ViewDetail_Block: Block
 		{
-			protected static string s2 = "<div class=\"iplink\" onmouseover=\"BetList.showCommDetail(";
+			protected static string s2 = "<div class=\"iplink view-detail\" id=\"";
 			public string transId = "{transId}";
-			protected static string s3 = ",event);\" onmouseout=\"BetList.hideCommDetail(";
-			protected string t0_transId;
-			protected static string s4 = ",event);\">";
-			protected static string s5{get{return Resources.Lang.lblDetails;}}
-			protected static string s6 = "</div>";
+			protected static string s3 = "\">";
+			protected static string s4{get{return Resources.Lang.lblDetails;}}
+			protected static string s5 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -85,10 +83,8 @@ namespace Fanex.BetList.Age
 					bd.Append(s2);
 					bd.Append(transId);
 					bd.Append(s3);
-					bd.Append(transId);
 					bd.Append(s4);
 					bd.Append(s5);
-					bd.Append(s6);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

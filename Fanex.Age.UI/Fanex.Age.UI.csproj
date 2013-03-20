@@ -84,7 +84,6 @@
     <Compile Include="TplHandler.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TplHtmlTextWriter.cs" />
     <Compile Include="TplPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

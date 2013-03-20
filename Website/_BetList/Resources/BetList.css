@@ -98,6 +98,10 @@ div.match + div.league {
     margin-top: 10px;
     border-spacing: 1px;   
 }
+
+.detail-popup #hor-minimalist-a {
+    margin-bottom: 10px;
+}
 #hor-minimalist-a th {
     font-weight: normal;
     color: #fff;
@@ -233,27 +237,6 @@ a {
     position: relative;
 }
 
-/* detail popup */
-
-.detail-popup {
-    position: absolute;
-    right: 38px;
-    width: auto;    
-    height: auto;
-    z-index: 1020;
-    background: url("Images/bg_conts.jpg") repeat-x fixed center top #F5F6F8;
-    border: 1px solid #000000;
-    border-collapse: collapse;
-    margin: 0;
-    padding: 0;
-    display: none;   
-}
-
-.detail-popup #hor-minimalist-a {
-    margin-top: 0;
-}
-
-/* end */
 .div_horline {
     height: 1px;
     background: #b7b7b7;
