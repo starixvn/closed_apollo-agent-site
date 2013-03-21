@@ -81,8 +81,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                 }
                 var maxPerBall = parseFloat(item.maxPerBallElement.value, true);
 
-                if (maxBet > maxPerBall) {
-                    this.ValidateMessage(item.maxPerBallElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL.Format(item.Name), -180, 200);
+                if (minBet > maxPerBall) {
+                    this.ValidateMessage(item.minBetElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL.Format(item.Name));
                     return false;
                 }
                 // Check maxperball_min < maxperball < maxperball_max

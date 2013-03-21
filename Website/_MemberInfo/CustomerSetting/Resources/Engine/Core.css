@@ -694,6 +694,8 @@ pt-groupset2
 }
 .commission-setting-table tr td.commission-text {
 	text-align:right;
+	vertical-align: middle;
+	
 }
 
 .commission-setting-table tr td.commission-select, .commission-setting-table-player tr td.commission-select 
@@ -804,7 +806,7 @@ pt-groupset2
 }
 
 .spinBoxUp{
-  top                     :4px;
+  top                     :5px;
   /*border-top-right-radius : 0.25em;*/
 }
 

@@ -31,6 +31,7 @@
     MAX_BET_LOWER_THAN_MAX_MAX_BET: "Max Bet must be less than or equal to {0}",
     MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET: "Max Per Match must be less than or equal to {0}",
     MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET: "Max Per Ball must be less than or equal to {0}",
+    MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL: "{0} - The Min Bet should be less than or equal to Max Per Ball",
     //	WANT_TO_UPDATE_ALL_MEMBER_POSITION_TAKING: "Do you want to update all member's position taking to:",
     YES: "Yes",
     NO: "No",

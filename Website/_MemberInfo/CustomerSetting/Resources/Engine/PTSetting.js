@@ -1062,6 +1062,10 @@ Fanex.CustSetting.Spinner.prototype = {
         this.update();
     },
     stop: function () {
+        //// Check valid input
+        var value = this.getValue();
+        if (isNaN(value)) this.setValue(0);
+        
         if (this.input.disabled == true) return;
         // clear the timeout if it exists
         if (this.timeout) window.clearTimeout(this.timeout);

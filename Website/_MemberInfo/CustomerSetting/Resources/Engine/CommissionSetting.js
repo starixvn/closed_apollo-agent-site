@@ -43,6 +43,7 @@ Fanex.CustSetting.CommissionSetting = function (source) {
             if (currentComValue > uplineDiscount) {
                 spinBoxElement.setValue(uplineDiscount);
             }
+            spinBoxElement.setValue(currentComValue);
         };
     };
     this.GetUplineGroupDiscountForMember = function (group) {
