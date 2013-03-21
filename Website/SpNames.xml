@@ -97,12 +97,11 @@
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets-BetList">
-    <Setting Key="Acc_Betlist_TotalBets_Sel_4_30" SpName="Acc_Betlist_TotalBets_Sel_4_30" DbName="REPDB" Plain="0" />
-    <Setting Key="Acc_BetList_TotalBets_SelRunningByBettype" SpName="Acc_BetList_TotalBets_SelRunningByBettype" DbName="REPDB" Plain="0" />
-    <Setting Key="Age_BetList_TotalBet_SelRunningByBettypeMatch" SpName="Age_BetList_TotalBet_SelRunningByBettypeMatch" DbName="REPDB" Plain="0" />
-    <Setting Key="Acc_BetList_TotalBet_AgentDetail" SpName="Acc_BetList_TotalBet_AgentDetail" DbName="REPDB" Plain="0" />
-
-    <Setting Key="Acc_BetList_AgentDetail" SpName="Acc_BetList_AgentDetail" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Betlist_TotalBets_Sel_4_30" SpName="Age_Betlist_TotalBets_Sel_4_30" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_BetList_TotalBets_SelRunningByBettype" SpName="Age_BetList_TotalBets_SelRunningByBettype" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_BetList_TotalBets_SelRunningByBettypeMatch" SpName="Age_BetList_TotalBets_SelRunningByBettypeMatch" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_BetList_TotalBets_AgentDetail" SpName="Age_BetList_TotalBets_AgentDetail" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_BetList_AgentDetail" SpName="Age_BetList_AgentDetail" DbName="REPDB" Plain="0" />
 
   </Function>
 
@@ -154,11 +153,11 @@
   </Function>
 
   <Function Name="Agent-Apollo-Admin">
-        <Setting Key="Age_Exchange_GetById" SpName="Age_Exchange_GetById" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_Exchange_GetByCurrency" SpName="Age_Exchange_GetByCurrency" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Exchange_GetById" SpName="Age_Exchange_GetById" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Exchange_GetByCurrency" SpName="Age_Exchange_GetByCurrency" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Exchange_GetAll" SpName="Age_Exchange_GetAll" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_Exchange_InsertRate" SpName="Age_Exchange_InsertRate" DbName="PRODB" Plain="0" />
-        <Setting Key="Age_Exchange_UpdateRate" SpName="Age_Exchange_UpdateRate" DbName="PRODB" Plain="0" />
+    <Setting Key="Age_Exchange_InsertRate" SpName="Age_Exchange_InsertRate" DbName="PRODB" Plain="0" />
+    <Setting Key="Age_Exchange_UpdateRate" SpName="Age_Exchange_UpdateRate" DbName="PRODB" Plain="0" />
   </Function>
 
   <Function Name="AgentSetting">
