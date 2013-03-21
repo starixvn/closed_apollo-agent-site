@@ -101,7 +101,7 @@ div.messageBlock {
 }
 .username {
     color: #B39D74;
-    margin: 0 3px;
+    margin: 0 10px;
 }
 .login-info a {
     color: #B39D74;
@@ -121,7 +121,7 @@ div.messageBlock {
 #button {
     height: 57px;
     margin-right: 10px; /*background: url(../../_GlobalResources/Images/bg_button.jpg) repeat-x top;*/
-    width: 400px;
+    width: 438px;
     margin: auto;
     padding-top: 25px;
 }

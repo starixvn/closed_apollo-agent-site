@@ -31,31 +31,39 @@ namespace Fanex.Agent.UI
 			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Images/icon_close.jpg");}}
 			protected static string s11 = "\" width=\"14px\" height=\"14px\" border=\"0\" title=\"Close\" /></a></div><div style=\"height: 60px; width: auto;\"><div id=\"Popup_contents\" class=\"messageBlock\">";
 			public string hotMsg = "";
-			protected static string s12 = "</div><div id=\"Popup_contents2\" class=\"messageBlock\"></div></div></div><div class=\"hotline\">Hotline: </div><ul class=\"phone\"><li>(63) 99917 88888</li><li>(63) 91542 22222</li></ul><div class=\"login-info\">Webhost Login:<span class=\"username\">";
+			protected static string s12 = "</div><div id=\"Popup_contents2\" class=\"messageBlock\"></div></div></div><div class=\"hotline\">";
+			protected static string s13{get{return Resources.Lang.lblHotLine;}}
+			protected static string s14 = "</div><ul class=\"phone\"><li>";
+			protected static string s15{get{return Resources.Lang.lblPhone1;}}
+			protected static string s16 = "</li><li>";
+			protected static string s17{get{return Resources.Lang.lblPhone2;}}
+			protected static string s18 = "</li></ul><div class=\"login-info\">";
+			protected static string s19{get{return Resources.Lang.lblWebHostLogin;}}
+			protected static string s20 = "<span class=\"username\">";
 			public Header_SetUserName_Block SetUserName = new Header_SetUserName_Block();
-			protected static string s13 = "</span><a href=\"javascript:top.age.SignOut()\">";
-			protected static string s14{get{return Resources.Lang.ImgLogOut;}}
-			protected static string s15 = "</a></div></div></div></div><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"99%\"><tr><td style=\"width: 99%\"><div id=\"text_news_out\" onclick=\"Change2Menu('Info/NewMessageForm.aspx?pageQuery=";
+			protected static string s21 = "</span><a href=\"javascript:top.age.SignOut()\">";
+			protected static string s22{get{return Resources.Lang.ImgLogOut;}}
+			protected static string s23 = "</a></div></div></div></div><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"99%\"><tr><td style=\"width: 99%\"><div id=\"text_news_out\" onclick=\"Change2Menu('Info/NewMessageForm.aspx?pageQuery=";
 			public string issticky = "{issticky}";
-			protected static string s16 = "', this)\"><div id=\"text_news\" id=\"text_news\" style=\"overflow: hidden; position: relative\"><div id=\"scroller\" class=\"news-scroller\"><a id=\"topnews\" style=\"overflow: hidden; position: relative\" href=\"javascript:;\">";
+			protected static string s24 = "', this)\"><div id=\"text_news\" id=\"text_news\" style=\"overflow: hidden; position: relative\"><div id=\"scroller\" class=\"news-scroller\"><a id=\"topnews\" style=\"overflow: hidden; position: relative\" href=\"javascript:;\">";
 			public string scrollMessage = "{scrollMessage}";
-			protected static string s17 = "</a></div></div></div></td><td><div id=\"button_top\"><a id=\"privateMsgLnk\" class=\"b_top\" href=\"javascript:PrivateMsgLink('Info/NewMessageForm.aspx?pageQuery=private')\">&nbsp;&nbsp;";
+			protected static string s25 = "</a></div></div></div></td><td><div id=\"button_top\"><a id=\"privateMsgLnk\" class=\"b_top\" href=\"javascript:PrivateMsgLink('Info/NewMessageForm.aspx?pageQuery=private')\">&nbsp;&nbsp;";
 			public string priMsgCount = "{priMsgCount}";
-			protected static string s18 = "</a></div></td></tr></table></div></div><input type=\"hidden\" id=\"showFlashAccInfo\" value=\"1\" /><input type=\"hidden\" id=\"ctime\" value=\"";
+			protected static string s26 = "</a></div></td></tr></table></div></div><input type=\"hidden\" id=\"showFlashAccInfo\" value=\"1\" /><input type=\"hidden\" id=\"ctime\" value=\"";
 			public string ctime = "{ctime}";
-			protected static string s19 = "\" /><input type=\"hidden\" id=\"cdate\" value=\"";
+			protected static string s27 = "\" /><input type=\"hidden\" id=\"cdate\" value=\"";
 			public string cdate = "{cdate}";
-			protected static string s20 = "\" /><input type=\"hidden\" id=\"userid\" value=\"";
+			protected static string s28 = "\" /><input type=\"hidden\" id=\"userid\" value=\"";
 			public string userid = "{userid}";
-			protected static string s21 = "\" /><input type=\"hidden\" id=\"subaccid\" value=\"";
+			protected static string s29 = "\" /><input type=\"hidden\" id=\"subaccid\" value=\"";
 			public string subaccid = "{subaccid}";
-			protected static string s22 = "\" /><input type=\"hidden\" id=\"roleid\" value=\"";
+			protected static string s30 = "\" /><input type=\"hidden\" id=\"roleid\" value=\"";
 			public string roleid = "{roleid}";
-			protected static string s23 = "\" /><div id=\"divPopupAd\" style=\"display: none\">Temporary need this tag for other pages work</div><script src=\"";
-			protected static string s24{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s25 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s26{get{return AbsoluteUrl("_Header/Resources/header.js", TplSettings.Question);}}
-			protected static string s27 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s31 = "\" /><div id=\"divPopupAd\" style=\"display: none\">Temporary need this tag for other pages work</div><script src=\"";
+			protected static string s32{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s33 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s34{get{return AbsoluteUrl("_Header/Resources/header.js", TplSettings.Question);}}
+			protected static string s35 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -80,30 +88,38 @@ namespace Fanex.Agent.UI
 					bd.Append(s11);
 					bd.Append(hotMsg);
 					bd.Append(s12);
-					if(null != SetUserName) SetUserName.ToString(ref bd);
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
-					bd.Append(issticky);
 					bd.Append(s16);
-					bd.Append(scrollMessage);
 					bd.Append(s17);
-					bd.Append(priMsgCount);
 					bd.Append(s18);
-					bd.Append(ctime);
 					bd.Append(s19);
-					bd.Append(cdate);
 					bd.Append(s20);
-					bd.Append(userid);
+					if(null != SetUserName) SetUserName.ToString(ref bd);
 					bd.Append(s21);
-					bd.Append(subaccid);
 					bd.Append(s22);
-					bd.Append(roleid);
 					bd.Append(s23);
+					bd.Append(issticky);
 					bd.Append(s24);
+					bd.Append(scrollMessage);
 					bd.Append(s25);
+					bd.Append(priMsgCount);
 					bd.Append(s26);
+					bd.Append(ctime);
 					bd.Append(s27);
+					bd.Append(cdate);
+					bd.Append(s28);
+					bd.Append(userid);
+					bd.Append(s29);
+					bd.Append(subaccid);
+					bd.Append(s30);
+					bd.Append(roleid);
+					bd.Append(s31);
+					bd.Append(s32);
+					bd.Append(s33);
+					bd.Append(s34);
+					bd.Append(s35);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -118,17 +134,17 @@ namespace Fanex.Agent.UI
 
 		public class Header_CssSuper_Block: Block
 		{
-			protected static string s28 = "<link href=\"";
-			protected static string s29{get{return AbsoluteUrl("_Header/Resources/Header4.css", TplSettings.Question);}}
-			protected static string s30 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s36 = "<link href=\"";
+			protected static string s37{get{return AbsoluteUrl("_Header/Resources/Header4.css", TplSettings.Question);}}
+			protected static string s38 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s28);
-					bd.Append(s29);
-					bd.Append(s30);
+					bd.Append(s36);
+					bd.Append(s37);
+					bd.Append(s38);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -136,17 +152,17 @@ namespace Fanex.Agent.UI
 
 		public class Header_CssMaster_Block: Block
 		{
-			protected static string s31 = "<link href=\"";
-			protected static string s32{get{return AbsoluteUrl("_Header/Resources/Header3.css", TplSettings.Question);}}
-			protected static string s33 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s39 = "<link href=\"";
+			protected static string s40{get{return AbsoluteUrl("_Header/Resources/Header3.css", TplSettings.Question);}}
+			protected static string s41 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s31);
-					bd.Append(s32);
-					bd.Append(s33);
+					bd.Append(s39);
+					bd.Append(s40);
+					bd.Append(s41);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -154,17 +170,17 @@ namespace Fanex.Agent.UI
 
 		public class Header_CssAgent_Block: Block
 		{
-			protected static string s34 = "<link href=\"";
-			protected static string s35{get{return AbsoluteUrl("_Header/Resources/Header2.css", TplSettings.Question);}}
-			protected static string s36 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s42 = "<link href=\"";
+			protected static string s43{get{return AbsoluteUrl("_Header/Resources/Header2.css", TplSettings.Question);}}
+			protected static string s44 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s34);
-					bd.Append(s35);
-					bd.Append(s36);
+					bd.Append(s42);
+					bd.Append(s43);
+					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -173,18 +189,18 @@ namespace Fanex.Agent.UI
 		public class Header_SetUserName_Block: Block
 		{
 			public string mainAccName = "{mainAccName}";
-			protected static string s37 = "<span>(";
+			protected static string s45 = "<span>(";
 			public string AgentUsername = "{AgentUsername}";
-			protected static string s38 = ")</span>";
+			protected static string s46 = ")</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(mainAccName);
-					bd.Append(s37);
+					bd.Append(s45);
 					bd.Append(AgentUsername);
-					bd.Append(s38);
+					bd.Append(s46);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
