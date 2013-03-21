@@ -593,12 +593,13 @@ function bindMembersList(agentID) {
 
 if (typeof jQuery != 'undefined') {
     $(function () {
-        $(".view-agent-downline").click(function (event) {
+        $("div .view-agent-downline").click(function (event) {
             var $this = $(this),
             agentID = $this.attr('aid'),
             contentId = $("#agent-downline");
-            $("#agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info-hover.png");
-            $("#agent-downline-list").show('fast', function () {
+            $("div #agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info-hover.png");
+
+            $("div .agent-tooltip").show('fast', function () {
                 ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
                     var data = result.Agents;
                     var text = "";
@@ -610,15 +611,13 @@ if (typeof jQuery != 'undefined') {
                     contentId.html(contentId.html() + text);
                 });
             });
-            event.stopPropagation();
+            event.stopPropagation();           
         });
 
         $('body, html').on('click', function () {
-            if ($("#agent-downline-list") != undefined) {
-                $("#agent-downline-list").hide();                
-                
-                    $("#agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info.png");
-                
+            if ($("div .view-agent-downline") != undefined) {
+                $("div .agent-tooltip").hide();
+                $("div #agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info.png");
             }
         });
     });
