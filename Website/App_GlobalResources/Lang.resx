@@ -4200,10 +4200,31 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblDetails" xml:space="preserve">
     <value>Details</value>
   </data>
-    <data name="txtShowUpline" xml:space="preserve">
+  <data name="txtShowUpline" xml:space="preserve">
     <value>Show Upline</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerBall" xml:space="preserve">
     <value>{0} - The Min Bet should be less than or equal to Max Per Ball</value>
+  </data>
+  <data name="lblHotLine" xml:space="preserve">
+    <value>Hotline:</value>
+  </data>
+  <data name="lblPhone1" xml:space="preserve">
+    <value>(63) 99917 88888</value>
+  </data>
+  <data name="lblPhone2" xml:space="preserve">
+    <value>(63) 91542 22222</value>
+  </data>
+  <data name="lblWebHostLogin" xml:space="preserve">
+    <value>Webhost Login:</value>
+  </data>
+  <data name="EntityDoesNotExistTpl" xml:space="preserve">
+    <value>{0} does not exist</value>
+  </data>
+  <data name="FieldIsRequiredTpl" xml:space="preserve">
+    <value>'{0}' is required</value>
+  </data>
+  <data name="NameExistedTpl" xml:space="preserve">
+    <value>'{0}' existed</value>
   </data>
 </root>
