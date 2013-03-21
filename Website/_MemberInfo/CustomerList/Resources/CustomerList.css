@@ -494,3 +494,9 @@ input[type=text]
 .line {
     margin: 0 5px;
 }
+
+.people-icon {
+    background:url('Images/people-icon.png') no-repeat top right;
+    padding-right: 23px;
+    float: left;
+}

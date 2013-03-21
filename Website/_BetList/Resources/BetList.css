@@ -96,7 +96,8 @@ div.match + div.league {
     text-align: left;
     width: 100%;
     margin-top: 10px;
-    border-spacing: 1px;   
+    border-spacing: 1px; 
+    margin-bottom: 20px;  
 }
 
 .detail-popup #hor-minimalist-a {
