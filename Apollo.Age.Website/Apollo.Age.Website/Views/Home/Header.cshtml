@@ -1,1 +1,27 @@
-﻿<h2>Header</h2>
+﻿@section styles
+{
+    <link href="~/content/header.less" rel="stylesheet" type="text/css" />
+}
+<div class="logo">
+    <img src="@Href("~/Content/img/logo-agent.png")"/>
+</div>
+<div class="info">
+    <div class="hotline pull-left">Hotline:</div>
+    <ul class="phone pull-left">
+        <li>(63) 99917 88888</li>
+        <li>(63) 91542 22222</li>
+    </ul>
+    <div class="login-info pull-left">
+        Webhost Login:
+        <span class="username">apl_1<span>(testcs-2-3)</span></span>
+        <a href="#">Log Out</a>
+    </div>
+</div>
+<div class="news_main">    
+    <div id="button_top" class="btn btn-small pull-right">
+        <a href="javascript:PrivateMsgLink('Info/NewMessageForm.aspx?pageQuery=private')" class="b_top" id="privateMsgLnk">Personal Msg(0)</a>
+    </div>       
+    <div class="news-scroller pull-right" id="scroller">
+        <marquee behavior="scroll" direction="left">Your scrolling text goes here</marquee>      
+    </div>
+</div>
