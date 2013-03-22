@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Apollo.Age.Website.Controllers
 {
@@ -10,22 +6,21 @@ namespace Apollo.Age.Website.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Header()
         {
-            ViewBag.Message = "Your app description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Sidebar()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        public ActionResult Content()
+        {
             return View();
         }
     }
