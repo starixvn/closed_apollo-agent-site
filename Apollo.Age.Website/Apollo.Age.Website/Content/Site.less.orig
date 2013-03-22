@@ -1,0 +1,101 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import "bootstrap/bootstrap.less";
+@import "variables.less";
+@import "mixins.less";
+
+/********************************************************/
+/*                     UTILITY CLASSES                  */
+/********************************************************/
+
+/* Floating elements */
+.clear			{ .clearfix }
+.relative		{ position: relative !important }
+
+/* Border */
+.nbt			{ border-top: 0 !important }
+.nbr			{ border-right: 0 !important }
+.nbb			{ border-bottom: 0 !important }
+.nbl			{ border-left: 0 !important }
+
+/* Width */
+.width-auto		{ width: auto !important }
+
+/* Text */
+.bold			{ font-weight: bold !important }
+
+/********************************************************/
+/*                       COMMON                         */
+/********************************************************/
+
+html {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	-webkit-tap-highlight-color: rgba(0,0,0,0); // http://css-tricks.com/snippets/css/remove-gray-highlight-when-tapping-links-in-mobile-safari/
+	tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    background: none;
+}
+
+input, select, a {
+	outline: 0;
+	&:focus { outline: 0 }
+}
+
+p, ul, ol, dl {
+	list-style-type: none;
+}
+
+::selection { // http://css-tricks.com/overriding-the-default-text-selection-color-with-css/
+	background: lighten(@primaryColor, 15%); /* Safari */
+}
+::-moz-selection {
+	//background: lighten(@primaryColor, 15%); /* Firefox */
+	background: @gray;
+	color: @white;
+}
+
+iframe { border: 0 }
+
+/********************************************************/
+/*                      MAIN STYLES                     */
+/********************************************************/
+
+#header, #sidebar, #content { position: fixed }
+
+#header {
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+<<<<<<< HEAD
+	height: @headerHeight;
+}
+
+#sidebar {
+	top: @headerHeight;
+=======
+	height: 112px;
+	background: url(img/bg-header.png) repeat-x;
+}
+
+#sidebar {
+	top: 112px;
+>>>>>>> 8e05afef83169d64a620f575845c12047c6091dd
+	bottom: 0;
+	left: 0;
+	width: @sidebarWidth;
+}
+
+#content {
+<<<<<<< HEAD
+	top: @headerHeight;
+=======
+	top: 112px;
+>>>>>>> 8e05afef83169d64a620f575845c12047c6091dd
+	bottom: 0;
+	left: @sidebarWidth;
+	right: 0;
+}

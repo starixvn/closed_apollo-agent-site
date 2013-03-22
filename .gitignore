@@ -1,2 +1,6 @@
 bin/
 *.dll
+obj/
+*.dll
+*.pdb
+Apollo.Age.Website/Apollo.Age.Website/obj/Debug/Apollo.Age.Website.pdb
