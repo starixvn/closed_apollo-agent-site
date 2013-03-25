@@ -16,28 +16,26 @@ namespace Fanex.Age.UI.Reports
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.lblStatement;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("Resources/Reports.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
-			protected static string s7{get{return AbsoluteUrl2("Common/Statement.aspx");}}
-			protected static string s8 = "\"><div id=\"page_main\"><div id=\"header_main\"><div style=\"width: 640px;\">";
-			protected static string s9{get{return Resources.Lang.lblStatement;}}
+			protected static string s3{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s5{get{return AbsoluteUrl2("Common/Statement.aspx");}}
+			protected static string s6 = "\"><div id=\"page_main\"><div id=\"header_main\"><div style=\"width: 640px;\">";
+			protected static string s7{get{return Resources.Lang.lblStatement;}}
 			public Statement_SuperHeader_Block SuperHeader = new Statement_SuperHeader_Block();
-			protected static string s10 = "</div></div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">";
+			protected static string s8 = "</div></div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">";
 			public Statement_AgentHeader_Block AgentHeader = new Statement_AgentHeader_Block();
-			protected static string s11 = "<tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
+			protected static string s9 = "<tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
 			public Statement_ExcelContents_Block ExcelContents = new Statement_ExcelContents_Block();
 			public string PagingControl = "{PagingControl}";
-			protected static string s12 = "</div></div></td></tr></table></div><input type=\"hidden\" id=\"custid\" name=\"custid\" value=\"";
+			protected static string s10 = "</div></div></td></tr></table></div><input type=\"hidden\" id=\"custid\" name=\"custid\" value=\"";
 			public string CustId = "{CustId}";
-			protected static string s13 = "\" /><input type=\"hidden\" id=\"roleid\" name=\"roleid\" value=\"";
+			protected static string s11 = "\" /><input type=\"hidden\" id=\"roleid\" name=\"roleid\" value=\"";
 			public string RoleId = "{RoleId}";
-			protected static string s14 = "\" /></form><script src=\"";
-			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s17{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s18 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s12 = "\" /></form><script src=\"";
+			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s15{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
+			protected static string s16 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -51,23 +49,21 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s5);
 					bd.Append(s6);
 					bd.Append(s7);
-					bd.Append(s8);
-					bd.Append(s9);
 					if(null != SuperHeader) SuperHeader.ToString(ref bd);
-					bd.Append(s10);
+					bd.Append(s8);
 					if(null != AgentHeader) AgentHeader.ToString(ref bd);
-					bd.Append(s11);
+					bd.Append(s9);
 					if(null != ExcelContents) ExcelContents.ToString(ref bd);
 					bd.Append(PagingControl);
-					bd.Append(s12);
+					bd.Append(s10);
 					bd.Append(CustId);
-					bd.Append(s13);
+					bd.Append(s11);
 					bd.Append(RoleId);
+					bd.Append(s12);
+					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
 					bd.Append(s16);
-					bd.Append(s17);
-					bd.Append(s18);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -82,25 +78,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class Statement_SuperHeader_Block: Block
 		{
-			protected static string s19 = "<div class=\"right_box\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
-			protected static string s20{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s21 = "\"nofocus=\"true\" src=\"";
-			protected static string s22{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
-			protected static string s23 = "\" title=\"";
-			protected static string s24{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s25 = "\"class=\"hand\" /></div>";
+			protected static string s17 = "<div class=\"right_box\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
+			protected static string s18{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s19 = "\"nofocus=\"true\" src=\"";
+			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
+			protected static string s21 = "\" title=\"";
+			protected static string s22{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s23 = "\"class=\"hand\" /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s17);
+					bd.Append(s18);
 					bd.Append(s19);
 					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);
 					bd.Append(s23);
-					bd.Append(s24);
-					bd.Append(s25);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -108,30 +104,30 @@ namespace Fanex.Age.UI.Reports
 
 		public class Statement_AgentHeader_Block: Block
 		{
-			protected static string s26 = "<tr><td><div id=\"box_header\"><table style=\"width: 100%\"><tr><td>";
+			protected static string s24 = "<tr><td><div id=\"box_header\"><table style=\"width: 100%\"><tr><td>";
 			public Fanex.Age.UI.Components.DateRangeSelect_Control DateRangeSelect{get {return _DateRangeSelect != null ? _DateRangeSelect : _DateRangeSelect = new Fanex.Age.UI.Components.DateRangeSelect_Control(this, true, DateTime.Now, DateTime.Now.AddDays(7), DateTime.MinValue, DateTime.Now.AddDays(7));}}
 			protected Fanex.Age.UI.Components.DateRangeSelect_Control _DateRangeSelect;
-			protected static string s27 = "</td><td align=\"right\"><div class=\"right_box\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
-			protected static string s28{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s29 = "\"nofocus=\"true\" src=\"";
-			protected static string s30{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
-			protected static string s31 = "\" title=\"";
-			protected static string s32{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s33 = "\"class=\"hand\" /></td></tr></table></div></td></tr>";
+			protected static string s25 = "</td><td align=\"right\"><div class=\"right_box\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
+			protected static string s26{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s27 = "\"nofocus=\"true\" src=\"";
+			protected static string s28{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
+			protected static string s29 = "\" title=\"";
+			protected static string s30{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s31 = "\"class=\"hand\" /></td></tr></table></div></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s26);
+					bd.Append(s24);
 					bd.Append(DateRangeSelect);
+					bd.Append(s25);
+					bd.Append(s26);
 					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
 					bd.Append(s30);
 					bd.Append(s31);
-					bd.Append(s32);
-					bd.Append(s33);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -139,39 +135,39 @@ namespace Fanex.Age.UI.Reports
 
 		public class Statement_ExcelContents_Block: Block
 		{
-			protected static string s34 = "<table class=\"tblRpt\" width=\"650px;\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\"><tr class=\"RptHeader\"><td style=\"width: 20px;\">";
-			protected static string s35{get{return Resources.Lang.no;}}
-			protected static string s36 = "</td><td style=\"width: 115px;\">";
-			protected static string s37{get{return Resources.Lang.date;}}
-			protected static string s38 = "</td><td>";
-			protected static string s39{get{return Resources.Lang.remark;}}
-			protected static string s40 = "</td>";
+			protected static string s32 = "<table class=\"tblRpt\" width=\"650px;\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\"><tr class=\"RptHeader\"><td style=\"width: 20px;\">";
+			protected static string s33{get{return Resources.Lang.no;}}
+			protected static string s34 = "</td><td style=\"width: 115px;\">";
+			protected static string s35{get{return Resources.Lang.date;}}
+			protected static string s36 = "</td><td>";
+			protected static string s37{get{return Resources.Lang.remark;}}
+			protected static string s38 = "</td>";
 			public Statement_ExcelContents_TotalAMTHeader_Block TotalAMTHeader = new Statement_ExcelContents_TotalAMTHeader_Block();
-			protected static string s41 = "<td>";
-			protected static string s42{get{return Resources.Lang.total;}}
-			protected static string s43 = "</td></tr>";
+			protected static string s39 = "<td>";
+			protected static string s40{get{return Resources.Lang.total;}}
+			protected static string s41 = "</td></tr>";
 			public Statement_ExcelContents_ContentRow_Block ContentRow = new Statement_ExcelContents_ContentRow_Block();
 			public Statement_ExcelContents_NoInfo_Block NoInfo = new Statement_ExcelContents_NoInfo_Block();
-			protected static string s44 = "</table>";
+			protected static string s42 = "</table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s32);
+					bd.Append(s33);
 					bd.Append(s34);
 					bd.Append(s35);
 					bd.Append(s36);
 					bd.Append(s37);
 					bd.Append(s38);
+					if(null != TotalAMTHeader) TotalAMTHeader.ToString(ref bd);
 					bd.Append(s39);
 					bd.Append(s40);
-					if(null != TotalAMTHeader) TotalAMTHeader.ToString(ref bd);
 					bd.Append(s41);
-					bd.Append(s42);
-					bd.Append(s43);
 					if(null != ContentRow) ContentRow.ToString(ref bd);
 					if(null != NoInfo) NoInfo.ToString(ref bd);
-					bd.Append(s44);
+					bd.Append(s42);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -179,17 +175,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class Statement_ExcelContents_TotalAMTHeader_Block: Block
 		{
-			protected static string s45 = "<td>";
-			protected static string s46{get{return Resources.Lang.totalamt;}}
-			protected static string s47 = "</td>";
+			protected static string s43 = "<td>";
+			protected static string s44{get{return Resources.Lang.totalamt;}}
+			protected static string s45 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s43);
+					bd.Append(s44);
 					bd.Append(s45);
-					bd.Append(s46);
-					bd.Append(s47);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -197,49 +193,49 @@ namespace Fanex.Age.UI.Reports
 
 		public class Statement_ExcelContents_ContentRow_Block: Block
 		{
-			protected static string s48 = "<tr bgcolor=\"";
+			protected static string s46 = "<tr bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s49 = "\" onmouseover=\"this.style.backgroundColor='";
-			protected static string s50{get{return Fanex.Age.UI.Common.RowBgOver;}}
-			protected static string s51 = "'\" onmouseout=\"this.style.backgroundColor='";
+			protected static string s47 = "\" onmouseover=\"this.style.backgroundColor='";
+			protected static string s48{get{return Fanex.Age.UI.Common.RowBgOver;}}
+			protected static string s49 = "'\" onmouseout=\"this.style.backgroundColor='";
 			protected string t0_ColorClass;
-			protected static string s52 = "'\"><td class=\"w-order\">";
+			protected static string s50 = "'\"><td class=\"w-order\">";
 			public string NoValue = "{NoValue}";
-			protected static string s53 = "</td><td class=\"bl_time\">";
+			protected static string s51 = "</td><td class=\"bl_time\">";
 			public string DateValue = "{DateValue}";
-			protected static string s54 = "</td><td class=\"left_normal\" style=\"font-weight: bold;\">";
+			protected static string s52 = "</td><td class=\"left_normal\" style=\"font-weight: bold;\">";
 			public string TypeValue = "{TypeValue}";
-			protected static string s55 = "<br />- ";
+			protected static string s53 = "<br />- ";
 			public string RemarkValue = "{RemarkValue}";
-			protected static string s56 = "</td>";
+			protected static string s54 = "</td>";
 			public Statement_ExcelContents_ContentRow_TotalAMTContent_Block TotalAMTContent = new Statement_ExcelContents_ContentRow_TotalAMTContent_Block();
-			protected static string s57 = "<td>";
+			protected static string s55 = "<td>";
 			public string TotalValue = "{TotalValue}";
-			protected static string s58 = "</td></tr>";
+			protected static string s56 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s46);
+					bd.Append(ColorClass);
+					bd.Append(s47);
 					bd.Append(s48);
-					bd.Append(ColorClass);
 					bd.Append(s49);
-					bd.Append(s50);
-					bd.Append(s51);
 					bd.Append(ColorClass);
-					bd.Append(s52);
+					bd.Append(s50);
 					bd.Append(NoValue);
-					bd.Append(s53);
+					bd.Append(s51);
 					bd.Append(DateValue);
-					bd.Append(s54);
+					bd.Append(s52);
 					bd.Append(TypeValue);
-					bd.Append(s55);
+					bd.Append(s53);
 					bd.Append(RemarkValue);
-					bd.Append(s56);
+					bd.Append(s54);
 					if(null != TotalAMTContent) TotalAMTContent.ToString(ref bd);
-					bd.Append(s57);
+					bd.Append(s55);
 					bd.Append(TotalValue);
-					bd.Append(s58);
+					bd.Append(s56);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -247,17 +243,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class Statement_ExcelContents_ContentRow_TotalAMTContent_Block: Block
 		{
-			protected static string s59 = "<td>";
+			protected static string s57 = "<td>";
 			public string TotalAMTValue = "{TotalAMTValue}";
-			protected static string s60 = "</td>";
+			protected static string s58 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s59);
+					bd.Append(s57);
 					bd.Append(TotalAMTValue);
-					bd.Append(s60);
+					bd.Append(s58);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

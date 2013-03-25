@@ -1,8 +1,12 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Web.UI;
+using Apollo.Age.Criterias.Accounts;
+using Apollo.Age.DTO.Accounts;
+using Apollo.Age.Services.Impl;
+using Apollo.Age.Services.Interface;
 using Fanex.Age.UI.Components;
 using Fanex.Agent.UI._AccountInfo;
-using Sunplus.Agent.Model.BL.AccountInfo;
 
 public partial class _AccountInfo_DownlineMemberList : Fanex.Age.UI.TplPage
 {
@@ -10,7 +14,7 @@ public partial class _AccountInfo_DownlineMemberList : Fanex.Age.UI.TplPage
     private int pageSize = 50;
     private int pageIndex = 1;
     private int totalPage = 1;
-    private DataSet dataset = null;
+    private List<CustomerDownline> membersList = null;
 
     public override void ProcessRequest(ref System.Collections.Hashtable p)
     {
@@ -26,46 +30,40 @@ public partial class _AccountInfo_DownlineMemberList : Fanex.Age.UI.TplPage
 
     public override object InvokeData(System.Collections.Hashtable p)
     {
-        AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-        this.dataset = bo.Age_Customer_GetMemberDownLine(this.custId, pageIndex, pageSize, ref totalPage);
+        IAccountInfoService service = new AccountInfoService();
 
-        return this.dataset;
+        MemberDownlineCriteria criteria = new MemberDownlineCriteria()
+        {
+            AgentId = this.custId,
+            PageIndex = this.pageIndex,
+            PageSize = this.pageSize,
+            TotalPages = this.totalPage
+        };
+
+        membersList = service.GetMemberDownline(ref criteria);
+
+        this.totalPage = criteria.TotalPages;
+        return membersList;
     }
 
     public override void RenderContent(HtmlTextWriter writer)
     {
         DownlineMemberList_Template tpl = new DownlineMemberList_Template();
-        DataTable dt = new DataTable();
-        if (dataset != null)
+
+        if (membersList != null)
         {
-            if (dataset.Tables[0] != null)
+            DownlineMemberList_Content_Block tplContent = new DownlineMemberList_Content_Block();
+            tpl.Content.Clear();
+
+            foreach (var downLine in membersList)
             {
-                dt = dataset.Tables[0];
+                RenderContent(tplContent, downLine);
+                tpl.Content.Append(tplContent);
             }
-        }
 
-        if (dt != null)
-        {
-            if (dt.Rows.Count > 0)
-            {
-                DownlineMemberList_Content_Block tplContent = new DownlineMemberList_Content_Block();
-                tpl.Content.Clear();
+            tpl.NoInfoBlock.Hide();
 
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    RenderContent(tplContent, dt.Rows[i]);
-                    tpl.Content.Append(tplContent);
-                }
-
-                tpl.NoInfoBlock.Hide();
-
-                tpl.PagingControlBlock.pagingControl = new Paging_Control(null, "PagingControl", pageSize, Request.Url.AbsoluteUri, totalPage * pageSize, false);
-            }
-            else
-            {
-                tpl.Content.Hide();
-                tpl.PagingControlBlock.Hide();
-            }
+            tpl.PagingControlBlock.pagingControl = new Paging_Control(null, "PagingControl", pageSize, Request.Url.AbsoluteUri, totalPage * pageSize, false);
         }
         else
         {
@@ -76,10 +74,10 @@ public partial class _AccountInfo_DownlineMemberList : Fanex.Age.UI.TplPage
         writer.Write(tpl);
     }
 
-    private void RenderContent(DownlineMemberList_Content_Block tplContent, DataRow row)
+    private void RenderContent(DownlineMemberList_Content_Block tplContent, CustomerDownline downLine)
     {
-        tplContent.CustID = row["CustId"].ToString();
-        tplContent.UserName = row["Username"].ToString();
-        tplContent.MemberUserName = row["Username"].ToString();
+        tplContent.CustID = downLine.Id.ToString();
+        tplContent.UserName = downLine.UserName;
+        tplContent.MemberUserName = downLine.UserName;
     }
 }

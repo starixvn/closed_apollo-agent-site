@@ -13,8 +13,8 @@ using TplCore.Element;
  */
 
 namespace Fanex.Age.UI.Components
-{
-    using Paging;
+{   
+    using Fanex.Age.UI.Components.PagingHeader.Paging;
 
     public class Paging_Control : TplCore.Element.IComponent
     {

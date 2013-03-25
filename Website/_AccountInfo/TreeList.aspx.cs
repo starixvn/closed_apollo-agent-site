@@ -1,6 +1,10 @@
 ﻿using System;
-using System.Data;
+using System.Collections.Generic;
 using System.Web.UI;
+using Apollo.Age.Criterias.Accounts;
+using Apollo.Age.DTO.Accounts;
+using Apollo.Age.Services.Impl;
+using Apollo.Age.Services.Interface;
 using Sunplus.Agent.Model.BL.AccountInfo;
 
 public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
@@ -41,53 +45,51 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
         string root = Request.Params["root"];
         int parentID = 0;
 
+        IAccountInfoService service = new AccountInfoService();
+        AgentDownlineCriteria criteria = null;
+
+
         AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
         string scontent = string.Empty;
 
         if (root == "source") //for the first time the JQuery tree will send the root param value as "source"
         {
-            parentID = Fanex.Age.DTO.Reports.TreeView.TreeViewNode.SearchingID;
-            var ds = bo.Age_Customer_GetAgentDownLine(parentID);
-            GenerateTree(ds.Tables[0], parentID);
+            criteria = new AgentDownlineCriteria()
+            {
+                AgentId = TreeViewNodeDTO.Root
+            };
+
+            var lstNodes = service.GetTreeViewNode(criteria);
+
+            GenerateTree(lstNodes);
         }
         else if (int.TryParse(root, out parentID)) //subsequent requests will send the ID
         {
             if (parentID > 0)
             {
-                var ds = bo.Age_Customer_GetAgentDownLine(parentID);
-                GenerateTree(ds.Tables[0], parentID);
+                criteria = new AgentDownlineCriteria()
+                {
+                    AgentId = parentID
+                };
+
+                var lstNodes = service.GetTreeViewNode(criteria);
+
+                GenerateTree(lstNodes);
             }
         }
     }
 
-    private void GenerateTree(DataTable dtParent, int parentID)
+    private void GenerateTree(List<TreeViewNodeDTO> lstNodes)
     {
         System.Text.StringBuilder tree = new System.Text.StringBuilder();
-
-        DataView dv = new DataView(dtParent);
-
-        string url = string.Empty;
-        string target = string.Empty;
-
         tree.Append("[");
-        //loop through each leaf
-        for (int i = 0; i < dv.Count; i++)
-        {
-            if (Fanex.Age.DTO.Reports.TreeView.TreeViewNode.Type == 1)
-            {
-                url = "../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + dv[i]["AgentId"] + "&txtUsername=" + dv[i]["Username"];
-                target = "target='menu'";
-            }
-            else
-            {
-                url = "../_MemberInfo/CustomerList/AgentList.aspx?custid=" + dv[i]["AgentId"] + "&us=" + dv[i]["Username"];
-                target = "target='main'";
-            }
 
+        foreach (var node in lstNodes)
+        {
             tree.Append("{");
-            tree.Append("\"text\": \"").Append("<a href='" + url + "' " + target  + ">" + dv[i]["Username"] + "</a>").Append("\",");
-            tree.Append("\"id\": \"").Append(dv[i]["AgentId"]).Append("\",");
-            tree.Append("\"hasChildren\": " + dv[i]["hasChildren"]);
+            tree.Append("\"Text\": \"").Append(node.Text).Append("\",");
+            tree.Append("\"Id\": \"").Append(node.Id).Append("\",");
+            tree.Append("\"HasChildren\": " + (node.HasChildren ? "true" : "false"));
             tree.Append("},");
         }
 

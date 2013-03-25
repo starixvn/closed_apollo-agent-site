@@ -14,7 +14,7 @@ namespace Fanex.Agent.UI
 		public class DownlineMemberList_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><head><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.css", TplSettings.Question);}}
+			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.less", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/styles.css", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
@@ -60,7 +60,7 @@ namespace Fanex.Agent.UI
 			public string CustID = "{CustID}";
 			protected static string s10 = "&txtUsername=";
 			public string UserName = "{UserName}";
-			protected static string s11 = "'> ";
+			protected static string s11 = "' target='menu'> ";
 			public string MemberUserName = "{MemberUserName}";
 			protected static string s12 = " </a></li>";
 			public override void ToString(ref StringBuilder bd)

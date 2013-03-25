@@ -16,37 +16,35 @@ namespace Fanex.Agent.UI
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.lblMemberCommission;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s3{get{return AbsoluteUrl("_Reports/Resources/Reports.less", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("_Reports/Resources/Reports.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s7{get{return AbsoluteUrl("_MemberInfo/PositionTakingList/Resources/PositionTakingList.css", TplSettings.Question);}}
-			protected static string s8 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\"><div>";
-			protected static string s9{get{return Resources.Lang.lblMemberCommission;}}
-			protected static string s10 = "</div></div><div id=\"tbl-container\"><div id=\"boderRight\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td><table id=\"box_header\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%;padding-left:3px\"><tr><td width=\"400\">";
+			protected static string s5{get{return AbsoluteUrl("_MemberInfo/PositionTakingList/Resources/PositionTakingList.css", TplSettings.Question);}}
+			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\"><div>";
+			protected static string s7{get{return Resources.Lang.lblMemberCommission;}}
+			protected static string s8 = "</div></div><div id=\"tbl-container\"><div id=\"boderRight\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td><table id=\"box_header\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%;padding-left:3px\"><tr><td width=\"400\">";
 			public string CommonGroup = "{CommonGroup}";
-			protected static string s11 = "</td>";
+			protected static string s9 = "</td>";
 			public MemberCommissionCasino_GroupAgent_Block GroupAgent = new MemberCommissionCasino_GroupAgent_Block();
-			protected static string s12 = "</tr><tr><td style=\"text-align: left\" colspan=\"4\" class=\"warning\"><ul><li>";
+			protected static string s10 = "</tr><tr><td style=\"text-align: left\" colspan=\"4\" class=\"warning\"><ul><li>";
 			public string CommToAllTypes = "{CommToAllTypes}";
-			protected static string s13 = "</li></ul></td></tr></table></td></tr><tr><td><table id=\"tblMain\" border=\"1\" cellpadding=\"2\" cellspacing=\"0\" style=\"width:100%;\"><thead><tr class=\"RptHeader nowrap\"><td colspan=\"3\">&nbsp;</td>";
+			protected static string s11 = "</li></ul></td></tr></table></td></tr><tr><td><table id=\"tblMain\" border=\"1\" cellpadding=\"2\" cellspacing=\"0\" style=\"width:100%;\"><thead><tr class=\"RptHeader nowrap\"><td colspan=\"3\">&nbsp;</td>";
 			public MemberCommissionCasino_GameKind_Block GameKind = new MemberCommissionCasino_GameKind_Block();
-			protected static string s14 = "<td colspan=\"2\">&nbsp;</td></tr><tr><td class=\"RptHeader02\">#</td><td class=\"RptHeader02\">";
-			protected static string s15{get{return Resources.Lang.username;}}
-			protected static string s16 = "</td>";
+			protected static string s12 = "<td colspan=\"2\">&nbsp;</td></tr><tr><td class=\"RptHeader02\">#</td><td class=\"RptHeader02\">";
+			protected static string s13{get{return Resources.Lang.username;}}
+			protected static string s14 = "</td>";
 			public MemberCommissionCasino_AdditionalRow_Block AdditionalRow = new MemberCommissionCasino_AdditionalRow_Block();
 			public MemberCommissionCasino_GameType_Block GameType = new MemberCommissionCasino_GameType_Block();
 			public MemberCommissionCasino_AdditionalRow1_Block AdditionalRow1 = new MemberCommissionCasino_AdditionalRow1_Block();
-			protected static string s17 = "<td class=\"RptHeader02\">";
-			protected static string s18{get{return Resources.Lang.username;}}
-			protected static string s19 = "</td></tr></thead><tbody>";
+			protected static string s15 = "<td class=\"RptHeader02\">";
+			protected static string s16{get{return Resources.Lang.username;}}
+			protected static string s17 = "</td></tr></thead><tbody>";
 			public MemberCommissionCasino_NoRowInfo_Block NoRowInfo = new MemberCommissionCasino_NoRowInfo_Block();
 			public MemberCommissionCasino_Rows_Block Rows = new MemberCommissionCasino_Rows_Block();
-			protected static string s20 = "</tbody></table></td></tr></table></div></div></div><script src=\"";
-			protected static string s21{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s22 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s23{get{return AbsoluteUrl("_MemberInfo/Commission/Resources/MemberCommissionCasino.js", TplSettings.Question);}}
-			protected static string s24 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s18 = "</tbody></table></td></tr></table></div></div></div><script src=\"";
+			protected static string s19{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s20 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s21{get{return AbsoluteUrl("_MemberInfo/Commission/Resources/MemberCommissionCasino.js", TplSettings.Question);}}
+			protected static string s22 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -61,31 +59,29 @@ namespace Fanex.Agent.UI
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
-					bd.Append(s9);
-					bd.Append(s10);
 					bd.Append(CommonGroup);
-					bd.Append(s11);
+					bd.Append(s9);
 					if(null != GroupAgent) GroupAgent.ToString(ref bd);
-					bd.Append(s12);
+					bd.Append(s10);
 					bd.Append(CommToAllTypes);
-					bd.Append(s13);
+					bd.Append(s11);
 					if(null != GameKind) GameKind.ToString(ref bd);
+					bd.Append(s12);
+					bd.Append(s13);
 					bd.Append(s14);
-					bd.Append(s15);
-					bd.Append(s16);
 					if(null != AdditionalRow) AdditionalRow.ToString(ref bd);
 					if(null != GameType) GameType.ToString(ref bd);
 					if(null != AdditionalRow1) AdditionalRow1.ToString(ref bd);
+					bd.Append(s15);
+					bd.Append(s16);
 					bd.Append(s17);
-					bd.Append(s18);
-					bd.Append(s19);
 					if(null != NoRowInfo) NoRowInfo.ToString(ref bd);
 					if(null != Rows) Rows.ToString(ref bd);
+					bd.Append(s18);
+					bd.Append(s19);
 					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);
-					bd.Append(s23);
-					bd.Append(s24);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -101,22 +97,22 @@ namespace Fanex.Agent.UI
 		public class MemberCommissionCasino_GroupAgent_Block: Block
 		{
 			public MemberCommissionCasino_GroupAgent_GroupMaster_Block GroupMaster = new MemberCommissionCasino_GroupAgent_GroupMaster_Block();
-			protected static string s25 = "<td width=\"100\" class=\"r\">";
-			protected static string s26{get{return Resources.Lang.selectagent;}}
-			protected static string s27 = "</td><td width=\"140\" id=\"selagent\" name=\"selagent\" ><select id=\"selAg\" name=\"selAg\" onchange=\"show_data_com();\">";
+			protected static string s23 = "<td width=\"100\" class=\"r\">";
+			protected static string s24{get{return Resources.Lang.selectagent;}}
+			protected static string s25 = "</td><td width=\"140\" id=\"selagent\" name=\"selagent\" ><select id=\"selAg\" name=\"selAg\" onchange=\"show_data_com();\">";
 			public string ComboAgent = "{ComboAgent}";
-			protected static string s28 = "</select></td><td></td>";
+			protected static string s26 = "</select></td><td></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != GroupMaster) GroupMaster.ToString(ref bd);
+					bd.Append(s23);
+					bd.Append(s24);
 					bd.Append(s25);
-					bd.Append(s26);
-					bd.Append(s27);
 					bd.Append(ComboAgent);
-					bd.Append(s28);
+					bd.Append(s26);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -124,21 +120,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_GroupAgent_GroupMaster_Block: Block
 		{
-			protected static string s29 = "<td width=\"110\" class=\"r\">";
-			protected static string s30{get{return Resources.Lang.selectmaster;}}
-			protected static string s31 = "</td><td width=\"120\" ><select id=\"selmaster\" name=\"selmaster\" onchange=\"getData_MemberCommission_Agent();\">";
+			protected static string s27 = "<td width=\"110\" class=\"r\">";
+			protected static string s28{get{return Resources.Lang.selectmaster;}}
+			protected static string s29 = "</td><td width=\"120\" ><select id=\"selmaster\" name=\"selmaster\" onchange=\"getData_MemberCommission_Agent();\">";
 			public string ComboMaster = "{ComboMaster}";
-			protected static string s32 = "</select></td>";
+			protected static string s30 = "</select></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s27);
+					bd.Append(s28);
 					bd.Append(s29);
-					bd.Append(s30);
-					bd.Append(s31);
 					bd.Append(ComboMaster);
-					bd.Append(s32);
+					bd.Append(s30);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -146,21 +142,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_GameKind_Block: Block
 		{
-			protected static string s33 = "<td ";
+			protected static string s31 = "<td ";
 			public string GameKindColSpan = "{GameKindColSpan}";
-			protected static string s34 = ">";
+			protected static string s32 = ">";
 			public string lblGameKind = "{lblGameKind}";
-			protected static string s35 = "</td>";
+			protected static string s33 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s33);
+					bd.Append(s31);
 					bd.Append(GameKindColSpan);
-					bd.Append(s34);
+					bd.Append(s32);
 					bd.Append(lblGameKind);
-					bd.Append(s35);
+					bd.Append(s33);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -168,13 +164,13 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_AdditionalRow_Block: Block
 		{
-			protected static string s36 = "<td class=\"RptHeader02\">&nbsp;</td>";
+			protected static string s34 = "<td class=\"RptHeader02\">&nbsp;</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s36);
+					bd.Append(s34);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -182,21 +178,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_GameType_Block: Block
 		{
-			protected static string s37 = "<td ";
+			protected static string s35 = "<td ";
 			public string GameTypeClass = "{GameTypeClass}";
-			protected static string s38 = ">";
+			protected static string s36 = ">";
 			public string lblGameType = "{lblGameType}";
-			protected static string s39 = "</td>";
+			protected static string s37 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s37);
+					bd.Append(s35);
 					bd.Append(GameTypeClass);
-					bd.Append(s38);
+					bd.Append(s36);
 					bd.Append(lblGameType);
-					bd.Append(s39);
+					bd.Append(s37);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -204,13 +200,13 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_AdditionalRow1_Block: Block
 		{
-			protected static string s40 = "<td class=\"RptHeader02\">&nbsp;</td>";
+			protected static string s38 = "<td class=\"RptHeader02\">&nbsp;</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s40);
+					bd.Append(s38);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -218,21 +214,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_NoRowInfo_Block: Block
 		{
-			protected static string s41 = "<tr class=\"bg_white\"><td colspan=\"";
+			protected static string s39 = "<tr class=\"bg_white\"><td colspan=\"";
 			public string NoInfoColspan = "{NoInfoColspan}";
-			protected static string s42 = "\" class=\"c nobold\">";
+			protected static string s40 = "\" class=\"c nobold\">";
 			public string NoInfo = "{NoInfo}";
-			protected static string s43 = "</td></tr>";
+			protected static string s41 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s41);
+					bd.Append(s39);
 					bd.Append(NoInfoColspan);
-					bd.Append(s42);
+					bd.Append(s40);
 					bd.Append(NoInfo);
-					bd.Append(s43);
+					bd.Append(s41);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -240,29 +236,29 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_Rows_Block: Block
 		{
-			protected static string s44 = "<tr class=\"";
+			protected static string s42 = "<tr class=\"";
 			public string BgRow = "{BgRow}";
-			protected static string s45 = "\">";
+			protected static string s43 = "\">";
 			public MemberCommissionCasino_Rows_NonRepeat_Block NonRepeat = new MemberCommissionCasino_Rows_NonRepeat_Block();
 			public MemberCommissionCasino_Rows_Role_Block Role = new MemberCommissionCasino_Rows_Role_Block();
 			public MemberCommissionCasino_Rows_RowData_Block RowData = new MemberCommissionCasino_Rows_RowData_Block();
 			public MemberCommissionCasino_Rows_Role1_Block Role1 = new MemberCommissionCasino_Rows_Role1_Block();
 			public MemberCommissionCasino_Rows_NonRepeat1_Block NonRepeat1 = new MemberCommissionCasino_Rows_NonRepeat1_Block();
-			protected static string s46 = "</tr>";
+			protected static string s44 = "</tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s44);
+					bd.Append(s42);
 					bd.Append(BgRow);
-					bd.Append(s45);
+					bd.Append(s43);
 					if(null != NonRepeat) NonRepeat.ToString(ref bd);
 					if(null != Role) Role.ToString(ref bd);
 					if(null != RowData) RowData.ToString(ref bd);
 					if(null != Role1) Role1.ToString(ref bd);
 					if(null != NonRepeat1) NonRepeat1.ToString(ref bd);
-					bd.Append(s46);
+					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -270,29 +266,29 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_Rows_NonRepeat_Block: Block
 		{
-			protected static string s47 = "<td class=\"w-order\" ";
+			protected static string s45 = "<td class=\"w-order\" ";
 			public string RowSpan = "{RowSpan}";
-			protected static string s48 = ">";
+			protected static string s46 = ">";
 			public string No = "{No}";
-			protected static string s49 = "</td><td ";
+			protected static string s47 = "</td><td ";
 			protected string t0_RowSpan;
-			protected static string s50 = " class=\"l\"><a>";
+			protected static string s48 = " class=\"l\"><a>";
 			public string UserName = "{UserName}";
-			protected static string s51 = "</a></td>";
+			protected static string s49 = "</a></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s45);
+					bd.Append(RowSpan);
+					bd.Append(s46);
+					bd.Append(No);
 					bd.Append(s47);
 					bd.Append(RowSpan);
 					bd.Append(s48);
-					bd.Append(No);
-					bd.Append(s49);
-					bd.Append(RowSpan);
-					bd.Append(s50);
 					bd.Append(UserName);
-					bd.Append(s51);
+					bd.Append(s49);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -300,17 +296,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_Rows_Role_Block: Block
 		{
-			protected static string s52 = "<td class=\"firstCol\">";
+			protected static string s50 = "<td class=\"firstCol\">";
 			public string Role = "{Role}";
-			protected static string s53 = "</td>";
+			protected static string s51 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s52);
+					bd.Append(s50);
 					bd.Append(Role);
-					bd.Append(s53);
+					bd.Append(s51);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -318,17 +314,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_Rows_RowData_Block: Block
 		{
-			protected static string s54 = "<td style=\"color:#424242\" >";
+			protected static string s52 = "<td style=\"color:#424242\" >";
 			public string RowData = "{RowData}";
-			protected static string s55 = "</td>";
+			protected static string s53 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s54);
+					bd.Append(s52);
 					bd.Append(RowData);
-					bd.Append(s55);
+					bd.Append(s53);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -336,17 +332,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_Rows_Role1_Block: Block
 		{
-			protected static string s56 = "<td class=\"firstCol\">";
+			protected static string s54 = "<td class=\"firstCol\">";
 			public string Role = "{Role}";
-			protected static string s57 = "</td>";
+			protected static string s55 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s56);
+					bd.Append(s54);
 					bd.Append(Role);
-					bd.Append(s57);
+					bd.Append(s55);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -354,21 +350,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionCasino_Rows_NonRepeat1_Block: Block
 		{
-			protected static string s58 = "<td ";
+			protected static string s56 = "<td ";
 			public string RowSpan = "{RowSpan}";
-			protected static string s59 = " class=\"l\"><a>";
+			protected static string s57 = " class=\"l\"><a>";
 			public string UserName = "{UserName}";
-			protected static string s60 = "</a></td>";
+			protected static string s58 = "</a></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s58);
+					bd.Append(s56);
 					bd.Append(RowSpan);
-					bd.Append(s59);
+					bd.Append(s57);
 					bd.Append(UserName);
-					bd.Append(s60);
+					bd.Append(s58);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

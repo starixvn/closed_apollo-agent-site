@@ -12,23 +12,21 @@ namespace Fanex.Age.UI.TotalBets
 		public class HDPOU_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>TotalBets</title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("Resources/TotalBets.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
-			protected static string s5{get{return Resources.Lang.lblHOUL;}}
-			protected static string s6 = "</div>";
+			protected static string s1{get{return AbsoluteUrl("Resources/TotalBets.less", TplSettings.Question);}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s3{get{return Resources.Lang.lblHOUL;}}
+			protected static string s4 = "</div>";
 			public Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown{get {return _RefreshCountDown != null ? _RefreshCountDown : _RefreshCountDown =  new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"HDPOU");}}
 			protected Fanex.Age.UI.Components.RefreshCountDown_Control _RefreshCountDown;
-			protected static string s7 = "<div id=\"sContent\">";
+			protected static string s5 = "<div id=\"sContent\">";
 			public HDPOU_Contents_Block Contents = new HDPOU_Contents_Block();
-			protected static string s8 = "</div></div><script src=\"";
-			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s6 = "</div></div><script src=\"";
+			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("Resources/TotalBets.js", TplSettings.Question);}}
 			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("Resources/TotalBets.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s14 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s11{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s12 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -39,18 +37,16 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
-					bd.Append(s5);
-					bd.Append(s6);
 					bd.Append(RefreshCountDown);
-					bd.Append(s7);
+					bd.Append(s5);
 					if(null != Contents) Contents.ToString(ref bd);
+					bd.Append(s6);
+					bd.Append(s7);
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
 					bd.Append(s11);
 					bd.Append(s12);
-					bd.Append(s13);
-					bd.Append(s14);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -65,31 +61,33 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_Block: Block
 		{
-			protected static string s15 = "<table cellpadding=\"0\" cellspacing=\"1\" class=\"tblRpt\" style=\"width: 100%;\"><tr class=\"RptHeader\"><td rowspan=\"2\" style=\"width: 20px;\">#</td><td rowspan=\"2\" style=\"width: 110px;\">";
-			protected static string s16{get{return Resources.Lang.time;}}
-			protected static string s17 = "</td><td rowspan=\"2\">";
-			protected static string s18{get{return Resources.Lang.events;}}
+			protected static string s13 = "<table cellpadding=\"0\" cellspacing=\"1\" class=\"tblRpt\" style=\"width: 100%;\"><tr class=\"RptHeader\"><td rowspan=\"2\" style=\"width: 20px;\">#</td><td rowspan=\"2\" style=\"width: 110px;\">";
+			protected static string s14{get{return Resources.Lang.time;}}
+			protected static string s15 = "</td><td rowspan=\"2\">";
+			protected static string s16{get{return Resources.Lang.events;}}
+			protected static string s17 = "</td><td colspan=\"4\">";
+			protected static string s18{get{return Resources.Lang.fulltime;}}
 			protected static string s19 = "</td><td colspan=\"4\">";
-			protected static string s20{get{return Resources.Lang.fulltime;}}
-			protected static string s21 = "</td><td colspan=\"4\">";
-			protected static string s22{get{return Resources.Lang.lbl1sthalf;}}
-			protected static string s23 = "</td></tr><tr class=\"RptHeader02\"><td colspan=\"2\" style=\"text-align: center;\">";
-			protected static string s24{get{return Resources.Lang.lblHandicapFC;}}
+			protected static string s20{get{return Resources.Lang.lbl1sthalf;}}
+			protected static string s21 = "</td></tr><tr class=\"RptHeader02\"><td colspan=\"2\" style=\"text-align: center;\">";
+			protected static string s22{get{return Resources.Lang.lblHandicapFC;}}
+			protected static string s23 = "</td><td colspan=\"2\" style=\"text-align: center;\">";
+			protected static string s24{get{return Resources.Lang.lblOverUnder;}}
 			protected static string s25 = "</td><td colspan=\"2\" style=\"text-align: center;\">";
-			protected static string s26{get{return Resources.Lang.lblOverUnder;}}
+			protected static string s26{get{return Resources.Lang.lblHandicapFC;}}
 			protected static string s27 = "</td><td colspan=\"2\" style=\"text-align: center;\">";
-			protected static string s28{get{return Resources.Lang.lblHandicapFC;}}
-			protected static string s29 = "</td><td colspan=\"2\" style=\"text-align: center;\">";
-			protected static string s30{get{return Resources.Lang.lblOverUnder;}}
-			protected static string s31 = "</td></tr>";
+			protected static string s28{get{return Resources.Lang.lblOverUnder;}}
+			protected static string s29 = "</td></tr>";
 			public HDPOU_Contents_LeagueContents_Block LeagueContents = new HDPOU_Contents_LeagueContents_Block();
 			public HDPOU_Contents_NotFoundContent_Block NotFoundContent = new HDPOU_Contents_NotFoundContent_Block();
-			protected static string s32 = "</table>";
+			protected static string s30 = "</table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s13);
+					bd.Append(s14);
 					bd.Append(s15);
 					bd.Append(s16);
 					bd.Append(s17);
@@ -105,11 +103,9 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
-					bd.Append(s30);
-					bd.Append(s31);
 					if(null != LeagueContents) LeagueContents.ToString(ref bd);
 					if(null != NotFoundContent) NotFoundContent.ToString(ref bd);
-					bd.Append(s32);
+					bd.Append(s30);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -117,18 +113,18 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_LeagueContents_Block: Block
 		{
-			protected static string s33 = "<tr class=\"c\"><td colspan=\"11\" class=\"league\" style=\"padding-left: 20px;\">";
+			protected static string s31 = "<tr class=\"c\"><td colspan=\"11\" class=\"league\" style=\"padding-left: 20px;\">";
 			public string LeagueName = "{LeagueName}";
-			protected static string s34 = "</td></tr>";
+			protected static string s32 = "</td></tr>";
 			public HDPOU_Contents_LeagueContents_MatchContents_Block MatchContents = new HDPOU_Contents_LeagueContents_MatchContents_Block();
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s33);
+					bd.Append(s31);
 					bd.Append(LeagueName);
-					bd.Append(s34);
+					bd.Append(s32);
 					if(null != MatchContents) MatchContents.ToString(ref bd);
 				}
 				if(IsAssigned){bd.Append(Value);}
@@ -137,75 +133,75 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_LeagueContents_MatchContents_Block: Block
 		{
-			protected static string s35 = "<tr bgcolor=\"";
+			protected static string s33 = "<tr bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s36 = "\" onmouseover=\"bgColor='";
+			protected static string s34 = "\" onmouseover=\"bgColor='";
 			public string ColorOver = "{ColorOver}";
-			protected static string s37 = "'\" onmouseout=\"bgColor='";
+			protected static string s35 = "'\" onmouseout=\"bgColor='";
 			protected string t0_ColorClass;
-			protected static string s38 = "'\"><td class=\"w-order\">";
+			protected static string s36 = "'\"><td class=\"w-order\">";
 			public string No = "{No}";
-			protected static string s39 = "</td><td class=\"c bl_time\">";
+			protected static string s37 = "</td><td class=\"c bl_time\">";
 			public string TimeValue = "{TimeValue}";
 			public HDPOU_Contents_LeagueContents_MatchContents_LiveNotice_Block LiveNotice = new HDPOU_Contents_LeagueContents_MatchContents_LiveNotice_Block();
-			protected static string s40 = "</td><td style=\"white-space: nowrap;\">";
+			protected static string s38 = "</td><td style=\"white-space: nowrap;\">";
 			public string Home = "{Home}";
-			protected static string s41 = " -vs- ";
+			protected static string s39 = " -vs- ";
 			public string Away = "{Away}";
-			protected static string s42 = "</td><td style=\"width: 90px;\" class=\"r\">";
+			protected static string s40 = "</td><td style=\"width: 90px;\" class=\"r\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalValue_Block HandicapTotalValue = new HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalValue_Block();
-			protected static string s43 = "</td><td align=\"center\" class=\"fcbtn\" style=\"width: 16px\">";
+			protected static string s41 = "</td><td align=\"center\" class=\"fcbtn\" style=\"width: 16px\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalButton_Block HandicapTotalButton = new HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalButton_Block();
-			protected static string s44 = "</td><td style=\"width: 90px;\" class=\"r\">";
+			protected static string s42 = "</td><td style=\"width: 90px;\" class=\"r\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalValue_Block OverUnderTotalValue = new HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalValue_Block();
-			protected static string s45 = "</td><td class=\"fcbtn\" align=\"center\" style=\"width: 16px\">";
+			protected static string s43 = "</td><td class=\"fcbtn\" align=\"center\" style=\"width: 16px\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalButton_Block OverUnderTotalButton = new HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalButton_Block();
-			protected static string s46 = "</td><td style=\"width: 90px;\" class=\"r\">";
+			protected static string s44 = "</td><td style=\"width: 90px;\" class=\"r\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfValue_Block HandicapFirstHalfValue = new HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfValue_Block();
-			protected static string s47 = "</td><td class=\"fcbtn\" align=\"center\" style=\"width: 16px\">";
+			protected static string s45 = "</td><td class=\"fcbtn\" align=\"center\" style=\"width: 16px\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfButton_Block HandicapFirstHalfButton = new HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfButton_Block();
-			protected static string s48 = "</td><td style=\"width: 90px;\" class=\"r\">";
+			protected static string s46 = "</td><td style=\"width: 90px;\" class=\"r\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfValue_Block OverUnderFirstHalfValue = new HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfValue_Block();
-			protected static string s49 = "</td><td class=\"fcbtn\" align=\"center\" style=\"width: 16px\">";
+			protected static string s47 = "</td><td class=\"fcbtn\" align=\"center\" style=\"width: 16px\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfButton_Block OverUnderFirstHalfButton = new HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfButton_Block();
-			protected static string s50 = "</td></tr>";
+			protected static string s48 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s33);
+					bd.Append(ColorClass);
+					bd.Append(s34);
+					bd.Append(ColorOver);
 					bd.Append(s35);
 					bd.Append(ColorClass);
 					bd.Append(s36);
-					bd.Append(ColorOver);
-					bd.Append(s37);
-					bd.Append(ColorClass);
-					bd.Append(s38);
 					bd.Append(No);
-					bd.Append(s39);
+					bd.Append(s37);
 					bd.Append(TimeValue);
 					if(null != LiveNotice) LiveNotice.ToString(ref bd);
-					bd.Append(s40);
+					bd.Append(s38);
 					bd.Append(Home);
-					bd.Append(s41);
+					bd.Append(s39);
 					bd.Append(Away);
-					bd.Append(s42);
+					bd.Append(s40);
 					if(null != HandicapTotalValue) HandicapTotalValue.ToString(ref bd);
-					bd.Append(s43);
+					bd.Append(s41);
 					if(null != HandicapTotalButton) HandicapTotalButton.ToString(ref bd);
-					bd.Append(s44);
+					bd.Append(s42);
 					if(null != OverUnderTotalValue) OverUnderTotalValue.ToString(ref bd);
-					bd.Append(s45);
+					bd.Append(s43);
 					if(null != OverUnderTotalButton) OverUnderTotalButton.ToString(ref bd);
-					bd.Append(s46);
+					bd.Append(s44);
 					if(null != HandicapFirstHalfValue) HandicapFirstHalfValue.ToString(ref bd);
-					bd.Append(s47);
+					bd.Append(s45);
 					if(null != HandicapFirstHalfButton) HandicapFirstHalfButton.ToString(ref bd);
-					bd.Append(s48);
+					bd.Append(s46);
 					if(null != OverUnderFirstHalfValue) OverUnderFirstHalfValue.ToString(ref bd);
-					bd.Append(s49);
+					bd.Append(s47);
 					if(null != OverUnderFirstHalfButton) OverUnderFirstHalfButton.ToString(ref bd);
-					bd.Append(s50);
+					bd.Append(s48);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -213,17 +209,17 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_LeagueContents_MatchContents_LiveNotice_Block: Block
 		{
-			protected static string s51 = "<br /><font color=\"red\"><i>";
-			protected static string s52{get{return Resources.Lang.lblLive;}}
-			protected static string s53 = "</i></font>";
+			protected static string s49 = "<br /><font color=\"red\"><i>";
+			protected static string s50{get{return Resources.Lang.lblLive;}}
+			protected static string s51 = "</i></font>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s49);
+					bd.Append(s50);
 					bd.Append(s51);
-					bd.Append(s52);
-					bd.Append(s53);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -231,25 +227,25 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalValue_Block: Block
 		{
-			protected static string s54 = "<a class=\"fcnum\" href=\"javascript:doViewBetList(";
+			protected static string s52 = "<a class=\"fcnum\" href=\"javascript:doViewBetList(";
 			public string MatchId = "{MatchId}";
-			protected static string s55 = ",1,'";
+			protected static string s53 = ",1,'";
 			public string BetType = "{BetType}";
-			protected static string s56 = "');\">";
+			protected static string s54 = "');\">";
 			public string HandicapTotalValue = "{HandicapTotalValue}";
-			protected static string s57 = "</a>";
+			protected static string s55 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s54);
+					bd.Append(s52);
 					bd.Append(MatchId);
-					bd.Append(s55);
+					bd.Append(s53);
 					bd.Append(BetType);
-					bd.Append(s56);
+					bd.Append(s54);
 					bd.Append(HandicapTotalValue);
-					bd.Append(s57);
+					bd.Append(s55);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -257,9 +253,31 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalButton_Block: Block
 		{
-			protected static string s58 = "<a href=\"javascript:openForecast('";
+			protected static string s56 = "<a href=\"javascript:openForecast('";
 			public string MatchId = "{MatchId}";
-			protected static string s59 = "','1')\" class=\"btnInfo\">&nbsp;</a>";
+			protected static string s57 = "','1')\" class=\"btnInfo\">&nbsp;</a>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s56);
+					bd.Append(MatchId);
+					bd.Append(s57);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalValue_Block: Block
+		{
+			protected static string s58 = "<a class=\"fcnum\" href=\"javascript:doViewBetList(";
+			public string MatchId = "{MatchId}";
+			protected static string s59 = ",3,'";
+			public string BetType = "{BetType}";
+			protected static string s60 = "');\">";
+			public string OverUnderTotalValue = "{OverUnderTotalValue}";
+			protected static string s61 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -268,32 +286,10 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s58);
 					bd.Append(MatchId);
 					bd.Append(s59);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalValue_Block: Block
-		{
-			protected static string s60 = "<a class=\"fcnum\" href=\"javascript:doViewBetList(";
-			public string MatchId = "{MatchId}";
-			protected static string s61 = ",3,'";
-			public string BetType = "{BetType}";
-			protected static string s62 = "');\">";
-			public string OverUnderTotalValue = "{OverUnderTotalValue}";
-			protected static string s63 = "</a>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s60);
-					bd.Append(MatchId);
-					bd.Append(s61);
 					bd.Append(BetType);
-					bd.Append(s62);
+					bd.Append(s60);
 					bd.Append(OverUnderTotalValue);
-					bd.Append(s63);
+					bd.Append(s61);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -301,9 +297,31 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalButton_Block: Block
 		{
-			protected static string s64 = "<a href=\"javascript:openForecast('";
+			protected static string s62 = "<a href=\"javascript:openForecast('";
 			public string MatchId = "{MatchId}";
-			protected static string s65 = "','3')\" class=\"btnInfo\">&nbsp;</a>";
+			protected static string s63 = "','3')\" class=\"btnInfo\">&nbsp;</a>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s62);
+					bd.Append(MatchId);
+					bd.Append(s63);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfValue_Block: Block
+		{
+			protected static string s64 = "<a class=\"fcnum\" href=\"javascript:doViewBetList(";
+			public string MatchId = "{MatchId}";
+			protected static string s65 = ",7,'";
+			public string BetType = "{BetType}";
+			protected static string s66 = "');\">";
+			public string HandicapFirstHalfValue = "{HandicapFirstHalfValue}";
+			protected static string s67 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -312,32 +330,10 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s64);
 					bd.Append(MatchId);
 					bd.Append(s65);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfValue_Block: Block
-		{
-			protected static string s66 = "<a class=\"fcnum\" href=\"javascript:doViewBetList(";
-			public string MatchId = "{MatchId}";
-			protected static string s67 = ",7,'";
-			public string BetType = "{BetType}";
-			protected static string s68 = "');\">";
-			public string HandicapFirstHalfValue = "{HandicapFirstHalfValue}";
-			protected static string s69 = "</a>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s66);
-					bd.Append(MatchId);
-					bd.Append(s67);
 					bd.Append(BetType);
-					bd.Append(s68);
+					bd.Append(s66);
 					bd.Append(HandicapFirstHalfValue);
-					bd.Append(s69);
+					bd.Append(s67);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -345,9 +341,31 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfButton_Block: Block
 		{
-			protected static string s70 = "<a href=\"javascript:openForecast('";
+			protected static string s68 = "<a href=\"javascript:openForecast('";
 			public string MatchId = "{MatchId}";
-			protected static string s71 = "','7')\" class=\"btnInfo\">&nbsp;</a>";
+			protected static string s69 = "','7')\" class=\"btnInfo\">&nbsp;</a>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s68);
+					bd.Append(MatchId);
+					bd.Append(s69);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfValue_Block: Block
+		{
+			protected static string s70 = "<a class=\"fcnum\" href=\"javascript:doViewBetList(";
+			public string MatchId = "{MatchId}";
+			protected static string s71 = ",8,'";
+			public string BetType = "{BetType}";
+			protected static string s72 = "');\">";
+			public string OverUnderFirstHalfValue = "{OverUnderFirstHalfValue}";
+			protected static string s73 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -356,32 +374,10 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s70);
 					bd.Append(MatchId);
 					bd.Append(s71);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfValue_Block: Block
-		{
-			protected static string s72 = "<a class=\"fcnum\" href=\"javascript:doViewBetList(";
-			public string MatchId = "{MatchId}";
-			protected static string s73 = ",8,'";
-			public string BetType = "{BetType}";
-			protected static string s74 = "');\">";
-			public string OverUnderFirstHalfValue = "{OverUnderFirstHalfValue}";
-			protected static string s75 = "</a>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s72);
-					bd.Append(MatchId);
-					bd.Append(s73);
 					bd.Append(BetType);
-					bd.Append(s74);
+					bd.Append(s72);
 					bd.Append(OverUnderFirstHalfValue);
-					bd.Append(s75);
+					bd.Append(s73);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -389,17 +385,17 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfButton_Block: Block
 		{
-			protected static string s76 = "<a href=\"javascript:openForecast('";
+			protected static string s74 = "<a href=\"javascript:openForecast('";
 			public string MatchId = "{MatchId}";
-			protected static string s77 = "','8')\" class=\"btnInfo\">&nbsp;</a>";
+			protected static string s75 = "','8')\" class=\"btnInfo\">&nbsp;</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s76);
+					bd.Append(s74);
 					bd.Append(MatchId);
-					bd.Append(s77);
+					bd.Append(s75);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -407,17 +403,17 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_NotFoundContent_Block: Block
 		{
-			protected static string s78 = "<tr class=\"bg_white\"><td colspan=\"11\" class=\"c nobold\">";
-			protected static string s79{get{return Resources.Lang.noInfo;}}
-			protected static string s80 = "</td></tr>";
+			protected static string s76 = "<tr class=\"bg_white\"><td colspan=\"11\" class=\"c nobold\">";
+			protected static string s77{get{return Resources.Lang.noInfo;}}
+			protected static string s78 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s76);
+					bd.Append(s77);
 					bd.Append(s78);
-					bd.Append(s79);
-					bd.Append(s80);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

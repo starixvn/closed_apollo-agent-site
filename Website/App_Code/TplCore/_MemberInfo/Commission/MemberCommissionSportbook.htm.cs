@@ -16,75 +16,73 @@ namespace Fanex.Agent.UI
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.lblMemberCommission;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s3{get{return AbsoluteUrl("_Reports/Resources/Reports.less", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("_Reports/Resources/Reports.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s7{get{return AbsoluteUrl("_MemberInfo/PositionTakingList/Resources/PositionTakingList.css", TplSettings.Question);}}
-			protected static string s8 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\"><div>";
-			protected static string s9{get{return Resources.Lang.lblMemberCommission;}}
-			protected static string s10 = "</div></div><div id=\"tbl-container\"><div id=\"boderRight\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td><table id=\"box_header\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%;padding-left:3px\"><tr><td width=\"400\">";
+			protected static string s5{get{return AbsoluteUrl("_MemberInfo/PositionTakingList/Resources/PositionTakingList.css", TplSettings.Question);}}
+			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\"><div>";
+			protected static string s7{get{return Resources.Lang.lblMemberCommission;}}
+			protected static string s8 = "</div></div><div id=\"tbl-container\"><div id=\"boderRight\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td><table id=\"box_header\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%;padding-left:3px\"><tr><td width=\"400\">";
 			public string CommonGroup = "{CommonGroup}";
-			protected static string s11 = "</td>";
+			protected static string s9 = "</td>";
 			public MemberCommissionSportbook_GroupAgent_Block GroupAgent = new MemberCommissionSportbook_GroupAgent_Block();
-			protected static string s12 = "</tr><tr><td style=\"text-align: left\" colspan=\"4\" class=\"warning\"><ul>";
+			protected static string s10 = "</tr><tr><td style=\"text-align: left\" colspan=\"4\" class=\"warning\"><ul>";
 			public string CommToAllTypes = "{CommToAllTypes}";
-			protected static string s13 = "</ul></td></tr></table></td></tr><tr><td><table id=\"tblMain\" class=\"tblBingo\" border=\"1\" cellpadding=\"2\" cellspacing=\"0\" style=\"width:100%;\"><thead><tr class=\"RptHeader\"><td colspan=\"5\"></td>";
+			protected static string s11 = "</ul></td></tr></table></td></tr><tr><td><table id=\"tblMain\" class=\"tblBingo\" border=\"1\" cellpadding=\"2\" cellspacing=\"0\" style=\"width:100%;\"><thead><tr class=\"RptHeader\"><td colspan=\"5\"></td>";
 			public MemberCommissionSportbook_DCom_Block DCom = new MemberCommissionSportbook_DCom_Block();
-			protected static string s14 = "<td colspan=\"";
+			protected static string s12 = "<td colspan=\"";
 			public string colspancomm = "{colspancomm}";
-			protected static string s15 = "\">";
-			protected static string s16{get{return Resources.Lang.com;}}
-			protected static string s17 = " 1(%)</td><td colspan=\"";
+			protected static string s13 = "\">";
+			protected static string s14{get{return Resources.Lang.com;}}
+			protected static string s15 = " 1(%)</td><td colspan=\"";
 			protected string t0_colspancomm;
-			protected static string s18 = "\">";
-			protected static string s19{get{return Resources.Lang.com;}}
-			protected static string s20 = " 2(%)</td><td colspan=\"";
+			protected static string s16 = "\">";
+			protected static string s17{get{return Resources.Lang.com;}}
+			protected static string s18 = " 2(%)</td><td colspan=\"";
 			protected string t1_colspancomm;
-			protected static string s21 = "\">";
-			protected static string s22{get{return Resources.Lang.com;}}
-			protected static string s23 = " 3(%)</td>";
+			protected static string s19 = "\">";
+			protected static string s20{get{return Resources.Lang.com;}}
+			protected static string s21 = " 3(%)</td>";
 			public MemberCommissionSportbook_NumberComm_Block NumberComm = new MemberCommissionSportbook_NumberComm_Block();
-			protected static string s24 = "<td colspan=\"2\"></td></tr><tr class=\"c\"><td class=\"RptHeader02\" style=\"width: 25px;\">#</td><td class=\"RptHeader02\">";
-			protected static string s25{get{return Resources.Lang.username;}}
+			protected static string s22 = "<td colspan=\"2\"></td></tr><tr class=\"c\"><td class=\"RptHeader02\" style=\"width: 25px;\">#</td><td class=\"RptHeader02\">";
+			protected static string s23{get{return Resources.Lang.username;}}
+			protected static string s24 = "</td><td class=\"RptHeader02\">";
+			protected static string s25{get{return Resources.Lang.firstname;}}
 			protected static string s26 = "</td><td class=\"RptHeader02\">";
-			protected static string s27{get{return Resources.Lang.firstname;}}
+			protected static string s27{get{return Resources.Lang.lastname;}}
 			protected static string s28 = "</td><td class=\"RptHeader02\">";
-			protected static string s29{get{return Resources.Lang.lastname;}}
-			protected static string s30 = "</td><td class=\"RptHeader02\">";
-			protected static string s31{get{return Resources.Lang.group;}}
-			protected static string s32 = "</td>";
+			protected static string s29{get{return Resources.Lang.group;}}
+			protected static string s30 = "</td>";
 			public MemberCommissionSportbook_MasterCom1_Block MasterCom1 = new MemberCommissionSportbook_MasterCom1_Block();
-			protected static string s33 = "<td class=\"colHdr2\" title=\"";
-			protected static string s34{get{return Resources.Lang.agent;}}
-			protected static string s35 = "\">A</td><td class=\"colHdr2\" title=\"";
-			protected static string s36{get{return Resources.Lang.member;}}
-			protected static string s37 = "\">P</td>";
+			protected static string s31 = "<td class=\"colHdr2\" title=\"";
+			protected static string s32{get{return Resources.Lang.agent;}}
+			protected static string s33 = "\">A</td><td class=\"colHdr2\" title=\"";
+			protected static string s34{get{return Resources.Lang.member;}}
+			protected static string s35 = "\">P</td>";
 			public MemberCommissionSportbook_MasterCom2_Block MasterCom2 = new MemberCommissionSportbook_MasterCom2_Block();
-			protected static string s38 = "<td class=\"colHdr\" title=\"";
-			protected static string s39{get{return Resources.Lang.agent;}}
-			protected static string s40 = "\">A</td><td class=\"colHdr\" title=\"";
-			protected static string s41{get{return Resources.Lang.member;}}
-			protected static string s42 = "\">P</td>";
+			protected static string s36 = "<td class=\"colHdr\" title=\"";
+			protected static string s37{get{return Resources.Lang.agent;}}
+			protected static string s38 = "\">A</td><td class=\"colHdr\" title=\"";
+			protected static string s39{get{return Resources.Lang.member;}}
+			protected static string s40 = "\">P</td>";
 			public MemberCommissionSportbook_MasterCom3_Block MasterCom3 = new MemberCommissionSportbook_MasterCom3_Block();
-			protected static string s43 = "<td class=\"colHdr2\" title=\"";
-			protected static string s44{get{return Resources.Lang.agent;}}
-			protected static string s45 = "\">A</td><td class=\"colHdr2\" title=\"";
-			protected static string s46{get{return Resources.Lang.member;}}
-			protected static string s47 = "\">P</td>";
+			protected static string s41 = "<td class=\"colHdr2\" title=\"";
+			protected static string s42{get{return Resources.Lang.agent;}}
+			protected static string s43 = "\">A</td><td class=\"colHdr2\" title=\"";
+			protected static string s44{get{return Resources.Lang.member;}}
+			protected static string s45 = "\">P</td>";
 			public MemberCommissionSportbook_NumberComm1_Block NumberComm1 = new MemberCommissionSportbook_NumberComm1_Block();
-			protected static string s48 = "<td class=\"RptHeader02\">";
-			protected static string s49{get{return Resources.Lang.credit;}}
-			protected static string s50 = "</td><td class=\"RptHeader02\">";
-			protected static string s51{get{return Resources.Lang.username;}}
-			protected static string s52 = "</td></tr></thead><tbody>";
+			protected static string s46 = "<td class=\"RptHeader02\">";
+			protected static string s47{get{return Resources.Lang.credit;}}
+			protected static string s48 = "</td><td class=\"RptHeader02\">";
+			protected static string s49{get{return Resources.Lang.username;}}
+			protected static string s50 = "</td></tr></thead><tbody>";
 			public MemberCommissionSportbook_NoRowInfo_Block NoRowInfo = new MemberCommissionSportbook_NoRowInfo_Block();
 			public MemberCommissionSportbook_Rows_Block Rows = new MemberCommissionSportbook_Rows_Block();
-			protected static string s53 = "</tbody></table></td></tr></table></div></div></div><script src=\"";
-			protected static string s54{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s55 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s56{get{return AbsoluteUrl("_MemberInfo/Commission/Resources/MemberCommissionSportbook.js", TplSettings.Question);}}
-			protected static string s57 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s51 = "</tbody></table></td></tr></table></div></div></div><script src=\"";
+			protected static string s52{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s53 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s54{get{return AbsoluteUrl("_MemberInfo/Commission/Resources/MemberCommissionSportbook.js", TplSettings.Question);}}
+			protected static string s55 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -99,29 +97,29 @@ namespace Fanex.Agent.UI
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
-					bd.Append(s9);
-					bd.Append(s10);
 					bd.Append(CommonGroup);
-					bd.Append(s11);
+					bd.Append(s9);
 					if(null != GroupAgent) GroupAgent.ToString(ref bd);
-					bd.Append(s12);
+					bd.Append(s10);
 					bd.Append(CommToAllTypes);
-					bd.Append(s13);
+					bd.Append(s11);
 					if(null != DCom) DCom.ToString(ref bd);
-					bd.Append(s14);
+					bd.Append(s12);
 					bd.Append(colspancomm);
+					bd.Append(s13);
+					bd.Append(s14);
 					bd.Append(s15);
+					bd.Append(colspancomm);
 					bd.Append(s16);
 					bd.Append(s17);
-					bd.Append(colspancomm);
 					bd.Append(s18);
+					bd.Append(colspancomm);
 					bd.Append(s19);
 					bd.Append(s20);
-					bd.Append(colspancomm);
 					bd.Append(s21);
+					if(null != NumberComm) NumberComm.ToString(ref bd);
 					bd.Append(s22);
 					bd.Append(s23);
-					if(null != NumberComm) NumberComm.ToString(ref bd);
 					bd.Append(s24);
 					bd.Append(s25);
 					bd.Append(s26);
@@ -129,39 +127,37 @@ namespace Fanex.Agent.UI
 					bd.Append(s28);
 					bd.Append(s29);
 					bd.Append(s30);
+					if(null != MasterCom1) MasterCom1.ToString(ref bd);
 					bd.Append(s31);
 					bd.Append(s32);
-					if(null != MasterCom1) MasterCom1.ToString(ref bd);
 					bd.Append(s33);
 					bd.Append(s34);
 					bd.Append(s35);
+					if(null != MasterCom2) MasterCom2.ToString(ref bd);
 					bd.Append(s36);
 					bd.Append(s37);
-					if(null != MasterCom2) MasterCom2.ToString(ref bd);
 					bd.Append(s38);
 					bd.Append(s39);
 					bd.Append(s40);
+					if(null != MasterCom3) MasterCom3.ToString(ref bd);
 					bd.Append(s41);
 					bd.Append(s42);
-					if(null != MasterCom3) MasterCom3.ToString(ref bd);
 					bd.Append(s43);
 					bd.Append(s44);
 					bd.Append(s45);
+					if(null != NumberComm1) NumberComm1.ToString(ref bd);
 					bd.Append(s46);
 					bd.Append(s47);
-					if(null != NumberComm1) NumberComm1.ToString(ref bd);
 					bd.Append(s48);
 					bd.Append(s49);
 					bd.Append(s50);
-					bd.Append(s51);
-					bd.Append(s52);
 					if(null != NoRowInfo) NoRowInfo.ToString(ref bd);
 					if(null != Rows) Rows.ToString(ref bd);
+					bd.Append(s51);
+					bd.Append(s52);
 					bd.Append(s53);
 					bd.Append(s54);
 					bd.Append(s55);
-					bd.Append(s56);
-					bd.Append(s57);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -177,22 +173,22 @@ namespace Fanex.Agent.UI
 		public class MemberCommissionSportbook_GroupAgent_Block: Block
 		{
 			public MemberCommissionSportbook_GroupAgent_GroupMaster_Block GroupMaster = new MemberCommissionSportbook_GroupAgent_GroupMaster_Block();
-			protected static string s58 = "<td width=\"100\" class=\"r\">";
-			protected static string s59{get{return Resources.Lang.selectagent;}}
-			protected static string s60 = "</td><td width=\"140\" id=\"selagent\" name=\"selagent\" ><select id=\"selAg\" name=\"selAg\" onchange=\"show_data_com();\">";
+			protected static string s56 = "<td width=\"100\" class=\"r\">";
+			protected static string s57{get{return Resources.Lang.selectagent;}}
+			protected static string s58 = "</td><td width=\"140\" id=\"selagent\" name=\"selagent\" ><select id=\"selAg\" name=\"selAg\" onchange=\"show_data_com();\">";
 			public string ComboAgent = "{ComboAgent}";
-			protected static string s61 = "</select></td><td></td>";
+			protected static string s59 = "</select></td><td></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != GroupMaster) GroupMaster.ToString(ref bd);
+					bd.Append(s56);
+					bd.Append(s57);
 					bd.Append(s58);
-					bd.Append(s59);
-					bd.Append(s60);
 					bd.Append(ComboAgent);
-					bd.Append(s61);
+					bd.Append(s59);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -200,21 +196,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_GroupAgent_GroupMaster_Block: Block
 		{
-			protected static string s62 = "<td width=\"110\" class=\"r\">";
-			protected static string s63{get{return Resources.Lang.selectmaster;}}
-			protected static string s64 = "</td><td width=\"120\" ><select id=\"selmaster\" name=\"selmaster\" onchange=\"getData_MemberCommission_Agent();\">";
+			protected static string s60 = "<td width=\"110\" class=\"r\">";
+			protected static string s61{get{return Resources.Lang.selectmaster;}}
+			protected static string s62 = "</td><td width=\"120\" ><select id=\"selmaster\" name=\"selmaster\" onchange=\"getData_MemberCommission_Agent();\">";
 			public string ComboMaster = "{ComboMaster}";
-			protected static string s65 = "</select></td>";
+			protected static string s63 = "</select></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s60);
+					bd.Append(s61);
 					bd.Append(s62);
-					bd.Append(s63);
-					bd.Append(s64);
 					bd.Append(ComboMaster);
-					bd.Append(s65);
+					bd.Append(s63);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -222,17 +218,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_DCom_Block: Block
 		{
-			protected static string s66 = "<td rowspan=\"2\">";
-			protected static string s67{get{return Resources.Lang.doublecommission;}}
-			protected static string s68 = "</td>";
+			protected static string s64 = "<td rowspan=\"2\">";
+			protected static string s65{get{return Resources.Lang.doublecommission;}}
+			protected static string s66 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s64);
+					bd.Append(s65);
 					bd.Append(s66);
-					bd.Append(s67);
-					bd.Append(s68);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -240,21 +236,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_NumberComm_Block: Block
 		{
-			protected static string s69 = "<td colspan=\"";
+			protected static string s67 = "<td colspan=\"";
 			public string colspancomm = "{colspancomm}";
-			protected static string s70 = "\">";
-			protected static string s71{get{return Resources.Lang.numbergamecomm;}}
-			protected static string s72 = "(%)</td>";
+			protected static string s68 = "\">";
+			protected static string s69{get{return Resources.Lang.numbergamecomm;}}
+			protected static string s70 = "(%)</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s69);
+					bd.Append(s67);
 					bd.Append(colspancomm);
+					bd.Append(s68);
+					bd.Append(s69);
 					bd.Append(s70);
-					bd.Append(s71);
-					bd.Append(s72);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -262,17 +258,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_MasterCom1_Block: Block
 		{
-			protected static string s73 = "<td class=\"colHdr2\" title=\"";
-			protected static string s74{get{return Resources.Lang.master;}}
-			protected static string s75 = "\">M</td>";
+			protected static string s71 = "<td class=\"colHdr2\" title=\"";
+			protected static string s72{get{return Resources.Lang.master;}}
+			protected static string s73 = "\">M</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s71);
+					bd.Append(s72);
 					bd.Append(s73);
-					bd.Append(s74);
-					bd.Append(s75);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -280,17 +276,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_MasterCom2_Block: Block
 		{
-			protected static string s76 = "<td class=\"colHdr\" title=\"";
-			protected static string s77{get{return Resources.Lang.master;}}
-			protected static string s78 = "\">M</td>";
+			protected static string s74 = "<td class=\"colHdr\" title=\"";
+			protected static string s75{get{return Resources.Lang.master;}}
+			protected static string s76 = "\">M</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s74);
+					bd.Append(s75);
 					bd.Append(s76);
-					bd.Append(s77);
-					bd.Append(s78);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -298,17 +294,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_MasterCom3_Block: Block
 		{
-			protected static string s79 = "<td class=\"colHdr2\" title=\"";
-			protected static string s80{get{return Resources.Lang.master;}}
-			protected static string s81 = "\">M</td>";
+			protected static string s77 = "<td class=\"colHdr2\" title=\"";
+			protected static string s78{get{return Resources.Lang.master;}}
+			protected static string s79 = "\">M</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s77);
+					bd.Append(s78);
 					bd.Append(s79);
-					bd.Append(s80);
-					bd.Append(s81);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -317,22 +313,22 @@ namespace Fanex.Agent.UI
 		public class MemberCommissionSportbook_NumberComm1_Block: Block
 		{
 			public MemberCommissionSportbook_NumberComm1_MasterCom_Block MasterCom = new MemberCommissionSportbook_NumberComm1_MasterCom_Block();
-			protected static string s82 = "<td class=\"colHdr\" title=\"";
-			protected static string s83{get{return Resources.Lang.agent;}}
-			protected static string s84 = "\">A</td><td class=\"colHdr\" title=\"";
-			protected static string s85{get{return Resources.Lang.member;}}
-			protected static string s86 = "\">P</td>";
+			protected static string s80 = "<td class=\"colHdr\" title=\"";
+			protected static string s81{get{return Resources.Lang.agent;}}
+			protected static string s82 = "\">A</td><td class=\"colHdr\" title=\"";
+			protected static string s83{get{return Resources.Lang.member;}}
+			protected static string s84 = "\">P</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != MasterCom) MasterCom.ToString(ref bd);
+					bd.Append(s80);
+					bd.Append(s81);
 					bd.Append(s82);
 					bd.Append(s83);
 					bd.Append(s84);
-					bd.Append(s85);
-					bd.Append(s86);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -340,17 +336,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_NumberComm1_MasterCom_Block: Block
 		{
-			protected static string s87 = "<td class=\"colHdr\" title=\"";
-			protected static string s88{get{return Resources.Lang.master;}}
-			protected static string s89 = "\">M</td>";
+			protected static string s85 = "<td class=\"colHdr\" title=\"";
+			protected static string s86{get{return Resources.Lang.master;}}
+			protected static string s87 = "\">M</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s85);
+					bd.Append(s86);
 					bd.Append(s87);
-					bd.Append(s88);
-					bd.Append(s89);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -358,21 +354,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_NoRowInfo_Block: Block
 		{
-			protected static string s90 = "<tr class=\"bg_white\"><td colspan=\"";
+			protected static string s88 = "<tr class=\"bg_white\"><td colspan=\"";
 			public string NoInfoColspan = "{NoInfoColspan}";
-			protected static string s91 = "\" class=\"c nobold\">";
+			protected static string s89 = "\" class=\"c nobold\">";
 			public string NoInfo = "{NoInfo}";
-			protected static string s92 = "</td></tr>";
+			protected static string s90 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s90);
+					bd.Append(s88);
 					bd.Append(NoInfoColspan);
-					bd.Append(s91);
+					bd.Append(s89);
 					bd.Append(NoInfo);
-					bd.Append(s92);
+					bd.Append(s90);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -380,87 +376,87 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_Rows_Block: Block
 		{
-			protected static string s93 = "<tr class=\"";
+			protected static string s91 = "<tr class=\"";
 			public string BgRow = "{BgRow}";
-			protected static string s94 = "\"><td class=\"w-order\">";
+			protected static string s92 = "\"><td class=\"w-order\">";
 			public string No = "{No}";
-			protected static string s95 = "</td><td class=\"l\">";
+			protected static string s93 = "</td><td class=\"l\">";
 			public string UserName = "{UserName}";
-			protected static string s96 = "</td><td class=\"l\">";
+			protected static string s94 = "</td><td class=\"l\">";
 			public string FirstName = "{FirstName}";
-			protected static string s97 = "</td><td class=\"l\">";
+			protected static string s95 = "</td><td class=\"l\">";
 			public string LastName = "{LastName}";
-			protected static string s98 = "</td><td>";
+			protected static string s96 = "</td><td>";
 			public string Group = "{Group}";
-			protected static string s99 = "</td>";
+			protected static string s97 = "</td>";
 			public MemberCommissionSportbook_Rows_DCom_Block DCom = new MemberCommissionSportbook_Rows_DCom_Block();
 			public MemberCommissionSportbook_Rows_ADiscount_Block ADiscount = new MemberCommissionSportbook_Rows_ADiscount_Block();
-			protected static string s100 = "<td class=\"colHdr2\">";
+			protected static string s98 = "<td class=\"colHdr2\">";
 			public string Discount = "{Discount}";
-			protected static string s101 = "</td><td class=\"colHdr2\">";
+			protected static string s99 = "</td><td class=\"colHdr2\">";
 			public string PlayerDiscount = "{PlayerDiscount}";
-			protected static string s102 = "</td>";
+			protected static string s100 = "</td>";
 			public MemberCommissionSportbook_Rows_ADiscount1x2_Block ADiscount1x2 = new MemberCommissionSportbook_Rows_ADiscount1x2_Block();
-			protected static string s103 = "<td>";
+			protected static string s101 = "<td>";
 			public string Discount1x2 = "{Discount1x2}";
-			protected static string s104 = "</td><td>";
+			protected static string s102 = "</td><td>";
 			public string PlayerDiscount1x2 = "{PlayerDiscount1x2}";
-			protected static string s105 = "</td>";
+			protected static string s103 = "</td>";
 			public MemberCommissionSportbook_Rows_ADiscountCs_Block ADiscountCs = new MemberCommissionSportbook_Rows_ADiscountCs_Block();
-			protected static string s106 = "<td class=\"colHdr2\">";
+			protected static string s104 = "<td class=\"colHdr2\">";
 			public string DiscountCs = "{DiscountCs}";
-			protected static string s107 = "</td><td class=\"colHdr2\">";
+			protected static string s105 = "</td><td class=\"colHdr2\">";
 			public string PlayerDiscountCs = "{PlayerDiscountCs}";
-			protected static string s108 = "</td>";
+			protected static string s106 = "</td>";
 			public MemberCommissionSportbook_Rows_NumberComm_Block NumberComm = new MemberCommissionSportbook_Rows_NumberComm_Block();
-			protected static string s109 = "<td class=\"r\">";
+			protected static string s107 = "<td class=\"r\">";
 			public string Credit = "{Credit}";
-			protected static string s110 = "</td><td class=\"l\">";
+			protected static string s108 = "</td><td class=\"l\">";
 			protected string t2_UserName;
-			protected static string s111 = "</td></tr>";
+			protected static string s109 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s93);
+					bd.Append(s91);
 					bd.Append(BgRow);
-					bd.Append(s94);
+					bd.Append(s92);
 					bd.Append(No);
-					bd.Append(s95);
+					bd.Append(s93);
 					bd.Append(UserName);
-					bd.Append(s96);
+					bd.Append(s94);
 					bd.Append(FirstName);
-					bd.Append(s97);
+					bd.Append(s95);
 					bd.Append(LastName);
-					bd.Append(s98);
+					bd.Append(s96);
 					bd.Append(Group);
-					bd.Append(s99);
+					bd.Append(s97);
 					if(null != DCom) DCom.ToString(ref bd);
 					if(null != ADiscount) ADiscount.ToString(ref bd);
-					bd.Append(s100);
+					bd.Append(s98);
 					bd.Append(Discount);
-					bd.Append(s101);
+					bd.Append(s99);
 					bd.Append(PlayerDiscount);
-					bd.Append(s102);
+					bd.Append(s100);
 					if(null != ADiscount1x2) ADiscount1x2.ToString(ref bd);
-					bd.Append(s103);
+					bd.Append(s101);
 					bd.Append(Discount1x2);
-					bd.Append(s104);
+					bd.Append(s102);
 					bd.Append(PlayerDiscount1x2);
-					bd.Append(s105);
+					bd.Append(s103);
 					if(null != ADiscountCs) ADiscountCs.ToString(ref bd);
-					bd.Append(s106);
+					bd.Append(s104);
 					bd.Append(DiscountCs);
-					bd.Append(s107);
+					bd.Append(s105);
 					bd.Append(PlayerDiscountCs);
-					bd.Append(s108);
+					bd.Append(s106);
 					if(null != NumberComm) NumberComm.ToString(ref bd);
-					bd.Append(s109);
+					bd.Append(s107);
 					bd.Append(Credit);
-					bd.Append(s110);
+					bd.Append(s108);
 					bd.Append(UserName);
-					bd.Append(s111);
+					bd.Append(s109);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -468,17 +464,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_Rows_DCom_Block: Block
 		{
-			protected static string s112 = "<td ";
+			protected static string s110 = "<td ";
 			public string DoubleCommLosing = "{DoubleCommLosing}";
-			protected static string s113 = "></td>";
+			protected static string s111 = "></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s112);
+					bd.Append(s110);
 					bd.Append(DoubleCommLosing);
-					bd.Append(s113);
+					bd.Append(s111);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -486,17 +482,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_Rows_ADiscount_Block: Block
 		{
-			protected static string s114 = "<td class=\"colHdr2\">";
+			protected static string s112 = "<td class=\"colHdr2\">";
 			public string ADiscount = "{ADiscount}";
-			protected static string s115 = "</td>";
+			protected static string s113 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s114);
+					bd.Append(s112);
 					bd.Append(ADiscount);
-					bd.Append(s115);
+					bd.Append(s113);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -504,17 +500,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_Rows_ADiscount1x2_Block: Block
 		{
-			protected static string s116 = "<td>";
+			protected static string s114 = "<td>";
 			public string ADiscount1x2 = "{ADiscount1x2}";
-			protected static string s117 = "</td>";
+			protected static string s115 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s116);
+					bd.Append(s114);
 					bd.Append(ADiscount1x2);
-					bd.Append(s117);
+					bd.Append(s115);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -522,17 +518,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_Rows_ADiscountCs_Block: Block
 		{
-			protected static string s118 = "<td class=\"colHdr2\">";
+			protected static string s116 = "<td class=\"colHdr2\">";
 			public string ADiscountCs = "{ADiscountCs}";
-			protected static string s119 = "</td>";
+			protected static string s117 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s118);
+					bd.Append(s116);
 					bd.Append(ADiscountCs);
-					bd.Append(s119);
+					bd.Append(s117);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -541,22 +537,22 @@ namespace Fanex.Agent.UI
 		public class MemberCommissionSportbook_Rows_NumberComm_Block: Block
 		{
 			public MemberCommissionSportbook_Rows_NumberComm_ADiscountNumberGame_Block ADiscountNumberGame = new MemberCommissionSportbook_Rows_NumberComm_ADiscountNumberGame_Block();
-			protected static string s120 = "<td>";
+			protected static string s118 = "<td>";
 			public string DiscountNumberGame = "{DiscountNumberGame}";
-			protected static string s121 = "</td><td>";
+			protected static string s119 = "</td><td>";
 			public string PlayerDiscountNumberGame = "{PlayerDiscountNumberGame}";
-			protected static string s122 = "</td>";
+			protected static string s120 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != ADiscountNumberGame) ADiscountNumberGame.ToString(ref bd);
-					bd.Append(s120);
+					bd.Append(s118);
 					bd.Append(DiscountNumberGame);
-					bd.Append(s121);
+					bd.Append(s119);
 					bd.Append(PlayerDiscountNumberGame);
-					bd.Append(s122);
+					bd.Append(s120);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -564,17 +560,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionSportbook_Rows_NumberComm_ADiscountNumberGame_Block: Block
 		{
-			protected static string s123 = "<td>";
+			protected static string s121 = "<td>";
 			public string ADiscountNumberGame = "{ADiscountNumberGame}";
-			protected static string s124 = "</td>";
+			protected static string s122 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s123);
+					bd.Append(s121);
 					bd.Append(ADiscountNumberGame);
-					bd.Append(s124);
+					bd.Append(s122);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

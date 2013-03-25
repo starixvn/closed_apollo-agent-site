@@ -16,44 +16,42 @@ namespace Fanex.Age.UI.Reports
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			public string MemberOutStanding = "{MemberOutStanding}";
 			protected static string s1 = "</title><link href=\"";
-			protected static string s2{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s4{get{return AbsoluteUrl("Resources/Reports.css", TplSettings.Question);}}
-			protected static string s5 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
-			protected static string s6{get{return AbsoluteUrl2("Common/Outstanding.aspx");}}
-			protected static string s7 = "\"><div id=\"page_main\"><div id=\"header_main\"><div style=\"width: 690px\"><span style=\"float:left\">";
+			protected static string s2{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
+			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s4{get{return AbsoluteUrl2("Common/Outstanding.aspx");}}
+			protected static string s5 = "\"><div id=\"page_main\"><div id=\"header_main\"><div style=\"width: 690px\"><span style=\"float:left\">";
 			protected string t0_MemberOutStanding;
-			protected static string s8 = "</span><span class=\"right_box\"><input type=\"checkbox\" id=\"chk_rpt_bold\" ";
+			protected static string s6 = "</span><span class=\"right_box\"><input type=\"checkbox\" id=\"chk_rpt_bold\" ";
 			public string BoldChecked = "{BoldChecked}";
-			protected static string s9 = " onclick=\"boldTable(this.checked);\" /><label for=\"chk_rpt_bold\" style=\"color: #999; text-transform: none;font-weight:bold;line-height:18px;\">";
-			protected static string s10{get{return Resources.Lang.lblBold;}}
-			protected static string s11 = "</label>&nbsp;</span></div></div><div style=\"width: 100%; padding: 5px 0px;\"><div id=\"tbl-container\"><div id=\"boderRight\"><table class=\"tblRpt ";
+			protected static string s7 = " onclick=\"boldTable(this.checked);\" /><label for=\"chk_rpt_bold\" style=\"color: #999; text-transform: none;font-weight:bold;line-height:18px;\">";
+			protected static string s8{get{return Resources.Lang.lblBold;}}
+			protected static string s9 = "</label>&nbsp;</span></div></div><div style=\"width: 100%; padding: 5px 0px;\"><div id=\"tbl-container\"><div id=\"boderRight\"><table class=\"tblRpt ";
 			public string BoldRow = "{BoldRow}";
-			protected static string s12 = "\" width=\"700\" style=\"display:none\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\"><tr class=\"RptHeader\"><td width=\"100px\" rowspan=\"2\" columnname=\"UserName\">";
-			protected static string s13{get{return Resources.Lang.username;}}
-			protected static string s14 = "</td><td colspan=\"2\">";
+			protected static string s10 = "\" width=\"700\" style=\"display:none\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\"><tr class=\"RptHeader\"><td width=\"100px\" rowspan=\"2\" columnname=\"UserName\">";
+			protected static string s11{get{return Resources.Lang.username;}}
+			protected static string s12 = "</td><td colspan=\"2\">";
 			public string SportBookTitle = "{SportBookTitle}";
-			protected static string s15 = "</td>";
+			protected static string s13 = "</td>";
 			public Outstanding_Bingo1_Block Bingo1 = new Outstanding_Bingo1_Block();
 			public Outstanding_Casino1_Block Casino1 = new Outstanding_Casino1_Block();
 			public Outstanding_P2P1_Block P2P1 = new Outstanding_P2P1_Block();
-			protected static string s16 = "</tr><tr class=\"RptHeader02\"><td width=\"120px\" columnname=\"outstanding\">";
-			protected static string s17{get{return Resources.Lang.outstanding;}}
-			protected static string s18 = "</td><td width=\"120px\" columnname=\"positiontaking\">";
+			protected static string s14 = "</tr><tr class=\"RptHeader02\"><td width=\"120px\" columnname=\"outstanding\">";
+			protected static string s15{get{return Resources.Lang.outstanding;}}
+			protected static string s16 = "</td><td width=\"120px\" columnname=\"positiontaking\">";
 			public string AgentPosition = "{AgentPosition}";
-			protected static string s19 = "</td>";
+			protected static string s17 = "</td>";
 			public Outstanding_Bingo2_Block Bingo2 = new Outstanding_Bingo2_Block();
 			public Outstanding_Casino2_Block Casino2 = new Outstanding_Casino2_Block();
 			public Outstanding_P2P2_Block P2P2 = new Outstanding_P2P2_Block();
-			protected static string s20 = "</tr>";
+			protected static string s18 = "</tr>";
 			public Outstanding_ContentRow_Block ContentRow = new Outstanding_ContentRow_Block();
 			public Outstanding_NotFoundContent_Block NotFoundContent = new Outstanding_NotFoundContent_Block();
 			public Outstanding_TotalContent_Block TotalContent = new Outstanding_TotalContent_Block();
-			protected static string s21 = "</table></div></div></div></div></form><script src=\"";
-			protected static string s22{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s24{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s25 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s19 = "</table></div></div></div></div></form><script src=\"";
+			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s22{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
+			protected static string s23 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -66,40 +64,38 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s3);
 					bd.Append(s4);
 					bd.Append(s5);
-					bd.Append(s6);
-					bd.Append(s7);
 					bd.Append(MemberOutStanding);
-					bd.Append(s8);
+					bd.Append(s6);
 					bd.Append(BoldChecked);
+					bd.Append(s7);
+					bd.Append(s8);
 					bd.Append(s9);
+					bd.Append(BoldRow);
 					bd.Append(s10);
 					bd.Append(s11);
-					bd.Append(BoldRow);
 					bd.Append(s12);
-					bd.Append(s13);
-					bd.Append(s14);
 					bd.Append(SportBookTitle);
-					bd.Append(s15);
+					bd.Append(s13);
 					if(null != Bingo1) Bingo1.ToString(ref bd);
 					if(null != Casino1) Casino1.ToString(ref bd);
 					if(null != P2P1) P2P1.ToString(ref bd);
+					bd.Append(s14);
+					bd.Append(s15);
 					bd.Append(s16);
-					bd.Append(s17);
-					bd.Append(s18);
 					bd.Append(AgentPosition);
-					bd.Append(s19);
+					bd.Append(s17);
 					if(null != Bingo2) Bingo2.ToString(ref bd);
 					if(null != Casino2) Casino2.ToString(ref bd);
 					if(null != P2P2) P2P2.ToString(ref bd);
-					bd.Append(s20);
+					bd.Append(s18);
 					if(null != ContentRow) ContentRow.ToString(ref bd);
 					if(null != NotFoundContent) NotFoundContent.ToString(ref bd);
 					if(null != TotalContent) TotalContent.ToString(ref bd);
+					bd.Append(s19);
+					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);
 					bd.Append(s23);
-					bd.Append(s24);
-					bd.Append(s25);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -114,17 +110,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_Bingo1_Block: Block
 		{
-			protected static string s26 = "<td colspan=\"2\">";
-			protected static string s27{get{return Resources.Bingo.bingo;}}
-			protected static string s28 = "</td>";
+			protected static string s24 = "<td colspan=\"2\">";
+			protected static string s25{get{return Resources.Bingo.bingo;}}
+			protected static string s26 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s24);
+					bd.Append(s25);
 					bd.Append(s26);
-					bd.Append(s27);
-					bd.Append(s28);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -132,17 +128,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_Casino1_Block: Block
 		{
-			protected static string s29 = "<td colspan=\"2\">";
-			protected static string s30{get{return Resources.Lang.casino;}}
-			protected static string s31 = "</td>";
+			protected static string s27 = "<td colspan=\"2\">";
+			protected static string s28{get{return Resources.Lang.casino;}}
+			protected static string s29 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s27);
+					bd.Append(s28);
 					bd.Append(s29);
-					bd.Append(s30);
-					bd.Append(s31);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -150,17 +146,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_P2P1_Block: Block
 		{
-			protected static string s32 = "<td colspan=\"2\">";
-			protected static string s33{get{return Resources.Lang.P2P;}}
-			protected static string s34 = "</td>";
+			protected static string s30 = "<td colspan=\"2\">";
+			protected static string s31{get{return Resources.Lang.P2P;}}
+			protected static string s32 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s30);
+					bd.Append(s31);
 					bd.Append(s32);
-					bd.Append(s33);
-					bd.Append(s34);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -168,21 +164,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_Bingo2_Block: Block
 		{
-			protected static string s35 = "<td width=\"120px\" columnname=\"BingoTransfer\">";
-			protected static string s36{get{return Resources.Lang.transfer;}}
-			protected static string s37 = "</td><td width=\"120px\" columnname=\"BingoOutstanding\">";
-			protected static string s38{get{return Resources.Lang.outstanding;}}
-			protected static string s39 = "</td>";
+			protected static string s33 = "<td width=\"120px\" columnname=\"BingoTransfer\">";
+			protected static string s34{get{return Resources.Lang.transfer;}}
+			protected static string s35 = "</td><td width=\"120px\" columnname=\"BingoOutstanding\">";
+			protected static string s36{get{return Resources.Lang.outstanding;}}
+			protected static string s37 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s33);
+					bd.Append(s34);
 					bd.Append(s35);
 					bd.Append(s36);
 					bd.Append(s37);
-					bd.Append(s38);
-					bd.Append(s39);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -190,21 +186,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_Casino2_Block: Block
 		{
-			protected static string s40 = "<td width=\"120px\" columnname=\"CasinoTransfer\">";
-			protected static string s41{get{return Resources.Lang.transfer;}}
-			protected static string s42 = "</td><td width=\"120px\" columnname=\"CasinoOutstanding\">";
-			protected static string s43{get{return Resources.Lang.outstanding;}}
-			protected static string s44 = "</td>";
+			protected static string s38 = "<td width=\"120px\" columnname=\"CasinoTransfer\">";
+			protected static string s39{get{return Resources.Lang.transfer;}}
+			protected static string s40 = "</td><td width=\"120px\" columnname=\"CasinoOutstanding\">";
+			protected static string s41{get{return Resources.Lang.outstanding;}}
+			protected static string s42 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s38);
+					bd.Append(s39);
 					bd.Append(s40);
 					bd.Append(s41);
 					bd.Append(s42);
-					bd.Append(s43);
-					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -212,21 +208,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_P2P2_Block: Block
 		{
-			protected static string s45 = "<td width=\"120px\" columnname=\"P2PTransfer\">";
-			protected static string s46{get{return Resources.Lang.transfer;}}
-			protected static string s47 = "</td><td width=\"120px\" columnname=\"P2POutstanding\">";
-			protected static string s48{get{return Resources.Lang.outstanding;}}
-			protected static string s49 = "</td>";
+			protected static string s43 = "<td width=\"120px\" columnname=\"P2PTransfer\">";
+			protected static string s44{get{return Resources.Lang.transfer;}}
+			protected static string s45 = "</td><td width=\"120px\" columnname=\"P2POutstanding\">";
+			protected static string s46{get{return Resources.Lang.outstanding;}}
+			protected static string s47 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s43);
+					bd.Append(s44);
 					bd.Append(s45);
 					bd.Append(s46);
 					bd.Append(s47);
-					bd.Append(s48);
-					bd.Append(s49);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -234,45 +230,45 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_ContentRow_Block: Block
 		{
-			protected static string s50 = "<tr bgcolor=\"";
+			protected static string s48 = "<tr bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s51 = "\" onmouseover=\"this.style.backgroundColor='";
-			protected static string s52{get{return Fanex.Age.UI.Common.RowBgOver;}}
-			protected static string s53 = "'\" onmouseout=\"this.style.backgroundColor='";
+			protected static string s49 = "\" onmouseover=\"this.style.backgroundColor='";
+			protected static string s50{get{return Fanex.Age.UI.Common.RowBgOver;}}
+			protected static string s51 = "'\" onmouseout=\"this.style.backgroundColor='";
 			protected string t1_ColorClass;
-			protected static string s54 = "'\"><td class=\"left_normal\">";
+			protected static string s52 = "'\"><td class=\"left_normal\">";
 			public Outstanding_ContentRow_UserNameLink_Block UserNameLink = new Outstanding_ContentRow_UserNameLink_Block();
-			protected static string s55 = "</td><td>";
+			protected static string s53 = "</td><td>";
 			public Outstanding_ContentRow_OutstandingLink_Block OutstandingLink = new Outstanding_ContentRow_OutstandingLink_Block();
-			protected static string s56 = "</td><td>";
+			protected static string s54 = "</td><td>";
 			public string PositionValue = "{PositionValue}";
-			protected static string s57 = "</td>";
+			protected static string s55 = "</td>";
 			public Outstanding_ContentRow_Bingo_Block Bingo = new Outstanding_ContentRow_Bingo_Block();
 			public Outstanding_ContentRow_Casino_Block Casino = new Outstanding_ContentRow_Casino_Block();
 			public Outstanding_ContentRow_P2P_Block P2P = new Outstanding_ContentRow_P2P_Block();
-			protected static string s58 = "</tr>";
+			protected static string s56 = "</tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s48);
+					bd.Append(ColorClass);
+					bd.Append(s49);
 					bd.Append(s50);
-					bd.Append(ColorClass);
 					bd.Append(s51);
-					bd.Append(s52);
-					bd.Append(s53);
 					bd.Append(ColorClass);
-					bd.Append(s54);
+					bd.Append(s52);
 					if(null != UserNameLink) UserNameLink.ToString(ref bd);
-					bd.Append(s55);
+					bd.Append(s53);
 					if(null != OutstandingLink) OutstandingLink.ToString(ref bd);
-					bd.Append(s56);
+					bd.Append(s54);
 					bd.Append(PositionValue);
-					bd.Append(s57);
+					bd.Append(s55);
 					if(null != Bingo) Bingo.ToString(ref bd);
 					if(null != Casino) Casino.ToString(ref bd);
 					if(null != P2P) P2P.ToString(ref bd);
-					bd.Append(s58);
+					bd.Append(s56);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -280,25 +276,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_ContentRow_UserNameLink_Block: Block
 		{
-			protected static string s59 = "<span class=\"downline_link\" onclick=\"doViewOutstandingDownline('";
+			protected static string s57 = "<span class=\"downline_link\" onclick=\"doViewOutstandingDownline('";
 			public string CustId = "{CustId}";
-			protected static string s60 = "','";
+			protected static string s58 = "','";
 			public string RoleId = "{RoleId}";
-			protected static string s61 = "')\">";
+			protected static string s59 = "')\">";
 			public string UserNameValue = "{UserNameValue}";
-			protected static string s62 = "</span>";
+			protected static string s60 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s59);
+					bd.Append(s57);
 					bd.Append(CustId);
-					bd.Append(s60);
+					bd.Append(s58);
 					bd.Append(RoleId);
-					bd.Append(s61);
+					bd.Append(s59);
 					bd.Append(UserNameValue);
-					bd.Append(s62);
+					bd.Append(s60);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -306,29 +302,29 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_ContentRow_OutstandingLink_Block: Block
 		{
-			protected static string s63 = "<span class=\"downline_link\" onclick=\"viewSBBetList('";
+			protected static string s61 = "<span class=\"downline_link\" onclick=\"viewSBBetList('";
 			public string CustId = "{CustId}";
-			protected static string s64 = "','";
+			protected static string s62 = "','";
 			public string UserNameValue = "{UserNameValue}";
-			protected static string s65 = "','";
+			protected static string s63 = "','";
 			public string BetType = "{BetType}";
-			protected static string s66 = "')\">";
+			protected static string s64 = "')\">";
 			public string OutstandingValue = "{OutstandingValue}";
-			protected static string s67 = "</span>";
+			protected static string s65 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s63);
+					bd.Append(s61);
 					bd.Append(CustId);
-					bd.Append(s64);
+					bd.Append(s62);
 					bd.Append(UserNameValue);
-					bd.Append(s65);
+					bd.Append(s63);
 					bd.Append(BetType);
-					bd.Append(s66);
+					bd.Append(s64);
 					bd.Append(OutstandingValue);
-					bd.Append(s67);
+					bd.Append(s65);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -336,21 +332,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_ContentRow_Bingo_Block: Block
 		{
-			protected static string s68 = "<td>";
+			protected static string s66 = "<td>";
 			public string TransferValue = "{TransferValue}";
-			protected static string s69 = "</td><td>";
+			protected static string s67 = "</td><td>";
 			public Outstanding_ContentRow_Bingo_OutstandingLink_Block OutstandingLink = new Outstanding_ContentRow_Bingo_OutstandingLink_Block();
-			protected static string s70 = "</td>";
+			protected static string s68 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s68);
+					bd.Append(s66);
 					bd.Append(TransferValue);
-					bd.Append(s69);
+					bd.Append(s67);
 					if(null != OutstandingLink) OutstandingLink.ToString(ref bd);
-					bd.Append(s70);
+					bd.Append(s68);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -358,33 +354,33 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_ContentRow_Bingo_OutstandingLink_Block: Block
 		{
-			protected static string s71 = "<span class=\"downline_link\" onclick=\"viewBingoOutstandingBetList('";
+			protected static string s69 = "<span class=\"downline_link\" onclick=\"viewBingoOutstandingBetList('";
 			public string CustId = "{CustId}";
-			protected static string s72 = "','";
+			protected static string s70 = "','";
 			public string UserNameValue = "{UserNameValue}";
-			protected static string s73 = "','";
+			protected static string s71 = "','";
 			public string BetType = "{BetType}";
-			protected static string s74 = "',";
+			protected static string s72 = "',";
 			public string RoleId = "{RoleId}";
-			protected static string s75 = ")\">";
+			protected static string s73 = ")\">";
 			public string OutstandingValue = "{OutstandingValue}";
-			protected static string s76 = "</span>";
+			protected static string s74 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s71);
+					bd.Append(s69);
 					bd.Append(CustId);
-					bd.Append(s72);
+					bd.Append(s70);
 					bd.Append(UserNameValue);
-					bd.Append(s73);
+					bd.Append(s71);
 					bd.Append(BetType);
-					bd.Append(s74);
+					bd.Append(s72);
 					bd.Append(RoleId);
-					bd.Append(s75);
+					bd.Append(s73);
 					bd.Append(OutstandingValue);
-					bd.Append(s76);
+					bd.Append(s74);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -392,21 +388,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_ContentRow_Casino_Block: Block
 		{
-			protected static string s77 = "<td>";
+			protected static string s75 = "<td>";
 			public string TransferValue = "{TransferValue}";
-			protected static string s78 = "</td><td>";
+			protected static string s76 = "</td><td>";
 			public Outstanding_ContentRow_Casino_OutstandingLink_Block OutstandingLink = new Outstanding_ContentRow_Casino_OutstandingLink_Block();
-			protected static string s79 = "</td>";
+			protected static string s77 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s77);
+					bd.Append(s75);
 					bd.Append(TransferValue);
-					bd.Append(s78);
+					bd.Append(s76);
 					if(null != OutstandingLink) OutstandingLink.ToString(ref bd);
-					bd.Append(s79);
+					bd.Append(s77);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -414,33 +410,33 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_ContentRow_Casino_OutstandingLink_Block: Block
 		{
-			protected static string s80 = "<span class=\"downline_link\" onclick=\"viewCasinoOutstandingBetList('";
+			protected static string s78 = "<span class=\"downline_link\" onclick=\"viewCasinoOutstandingBetList('";
 			public string CustId = "{CustId}";
-			protected static string s81 = "','";
+			protected static string s79 = "','";
 			public string UserNameValue = "{UserNameValue}";
-			protected static string s82 = "','";
+			protected static string s80 = "','";
 			public string BetType = "{BetType}";
-			protected static string s83 = "',";
+			protected static string s81 = "',";
 			public string RoleId = "{RoleId}";
-			protected static string s84 = ")\">";
+			protected static string s82 = ")\">";
 			public string OutstandingValue = "{OutstandingValue}";
-			protected static string s85 = "</span>";
+			protected static string s83 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s80);
+					bd.Append(s78);
 					bd.Append(CustId);
-					bd.Append(s81);
+					bd.Append(s79);
 					bd.Append(UserNameValue);
-					bd.Append(s82);
+					bd.Append(s80);
 					bd.Append(BetType);
-					bd.Append(s83);
+					bd.Append(s81);
 					bd.Append(RoleId);
-					bd.Append(s84);
+					bd.Append(s82);
 					bd.Append(OutstandingValue);
-					bd.Append(s85);
+					bd.Append(s83);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -448,21 +444,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_ContentRow_P2P_Block: Block
 		{
-			protected static string s86 = "<td>";
+			protected static string s84 = "<td>";
 			public string TransferValue = "{TransferValue}";
-			protected static string s87 = "</td><td><span>";
+			protected static string s85 = "</td><td><span>";
 			public string OutstandingValue = "{OutstandingValue}";
-			protected static string s88 = "</span></td>";
+			protected static string s86 = "</span></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s86);
+					bd.Append(s84);
 					bd.Append(TransferValue);
-					bd.Append(s87);
+					bd.Append(s85);
 					bd.Append(OutstandingValue);
-					bd.Append(s88);
+					bd.Append(s86);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -485,33 +481,33 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_TotalContent_Block: Block
 		{
-			protected static string s89 = "<tr class=\"RptFooter\"><td class=\"l\">";
-			protected static string s90{get{return Resources.Lang.total;}}
-			protected static string s91 = "</td><td>";
+			protected static string s87 = "<tr class=\"RptFooter\"><td class=\"l\">";
+			protected static string s88{get{return Resources.Lang.total;}}
+			protected static string s89 = "</td><td>";
 			public string Outstanding = "{Outstanding}";
-			protected static string s92 = "</td><td>";
+			protected static string s90 = "</td><td>";
 			public string AgentPosition = "{AgentPosition}";
-			protected static string s93 = "</td>";
+			protected static string s91 = "</td>";
 			public Outstanding_TotalContent_Bingo_Block Bingo = new Outstanding_TotalContent_Bingo_Block();
 			public Outstanding_TotalContent_Casino_Block Casino = new Outstanding_TotalContent_Casino_Block();
 			public Outstanding_TotalContent_P2P_Block P2P = new Outstanding_TotalContent_P2P_Block();
-			protected static string s94 = "</tr>";
+			protected static string s92 = "</tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s87);
+					bd.Append(s88);
 					bd.Append(s89);
-					bd.Append(s90);
-					bd.Append(s91);
 					bd.Append(Outstanding);
-					bd.Append(s92);
+					bd.Append(s90);
 					bd.Append(AgentPosition);
-					bd.Append(s93);
+					bd.Append(s91);
 					if(null != Bingo) Bingo.ToString(ref bd);
 					if(null != Casino) Casino.ToString(ref bd);
 					if(null != P2P) P2P.ToString(ref bd);
-					bd.Append(s94);
+					bd.Append(s92);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -519,21 +515,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_TotalContent_Bingo_Block: Block
 		{
-			protected static string s95 = "<td>";
+			protected static string s93 = "<td>";
 			public string Transfer = "{Transfer}";
-			protected static string s96 = "</td><td>";
+			protected static string s94 = "</td><td>";
 			public string Outstanding = "{Outstanding}";
-			protected static string s97 = "</td>";
+			protected static string s95 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s95);
+					bd.Append(s93);
 					bd.Append(Transfer);
-					bd.Append(s96);
+					bd.Append(s94);
 					bd.Append(Outstanding);
-					bd.Append(s97);
+					bd.Append(s95);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -541,21 +537,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_TotalContent_Casino_Block: Block
 		{
-			protected static string s98 = "<td>";
+			protected static string s96 = "<td>";
 			public string Transfer = "{Transfer}";
-			protected static string s99 = "</td><td>";
+			protected static string s97 = "</td><td>";
 			public string Outstanding = "{Outstanding}";
-			protected static string s100 = "</td>";
+			protected static string s98 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s98);
+					bd.Append(s96);
 					bd.Append(Transfer);
-					bd.Append(s99);
+					bd.Append(s97);
 					bd.Append(Outstanding);
-					bd.Append(s100);
+					bd.Append(s98);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -563,21 +559,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class Outstanding_TotalContent_P2P_Block: Block
 		{
-			protected static string s101 = "<td>";
+			protected static string s99 = "<td>";
 			public string Transfer = "{Transfer}";
-			protected static string s102 = "</td><td>";
+			protected static string s100 = "</td><td>";
 			public string Outstanding = "{Outstanding}";
-			protected static string s103 = "</td>";
+			protected static string s101 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s101);
+					bd.Append(s99);
 					bd.Append(Transfer);
-					bd.Append(s102);
+					bd.Append(s100);
 					bd.Append(Outstanding);
-					bd.Append(s103);
+					bd.Append(s101);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

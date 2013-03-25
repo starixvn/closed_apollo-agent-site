@@ -108,13 +108,19 @@
   <Function Name="Agent-Apollo-Customer Setting">
 
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="CUSTDB" Plain="0" />
-    <Setting Key="Age_Customer_GetAgentDownLine" SpName="Age_Customer_GetAgentDownLine" DbName="CUSTDB" Plain="0" />
-    <Setting Key="Age_Customer_GetAgentDownLinePath" SpName="Age_Customer_GetAgentDownLinePath" DbName="CUSTDB" Plain="0" />
-    <Setting Key="Age_Customer_GetMemberDownLine" SpName="Age_Customer_GetMemberDownLine" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetAgentDownline" SpName="Age_Customer_GetAgentDownline" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetAgentDownlinePath" SpName="Age_Customer_GetAgentDownlinePath" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetMemberDownline" SpName="Age_Customer_GetMemberDownline" DbName="CUSTDB" Plain="0" />
     <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="CUSTDB" Plain="0" />
 
   </Function>
 
+  <Function Name="Agent-Apollo-Report">
+    <Setting Key="Report_Quinn_Test" SpName="Report_Quinn_Test" DbName="RepDB" Plain="0" >
+      <Mapping DataField="BetAmount" ObjectProperty="MemberBetAmount" />
+    </Setting>
+  </Function>
+  
   <Function Name="Agent-Apollo-TotalBets">
     <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="REPDB" Plain="0" />
     <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="REPDB" Plain="0" />

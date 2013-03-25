@@ -14,21 +14,19 @@ namespace Fanex.Age.UI.TotalBets
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.numbergame;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("Resources/TotalBets.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
-			protected static string s7{get{return Resources.Lang.numbergame;}}
-			protected static string s8 = "</div>";
+			protected static string s3{get{return AbsoluteUrl("Resources/TotalBets.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s5{get{return Resources.Lang.numbergame;}}
+			protected static string s6 = "</div>";
 			public Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown{get {return _RefreshCountDown != null ? _RefreshCountDown : _RefreshCountDown =  new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"MoneyLine");}}
 			protected Fanex.Age.UI.Components.RefreshCountDown_Control _RefreshCountDown;
-			protected static string s9 = "<div id=\"sContent\">";
+			protected static string s7 = "<div id=\"sContent\">";
 			public NumberGame_Contents_Block Contents = new NumberGame_Contents_Block();
-			protected static string s10 = "</div></div><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("Resources/TotalBets.js", TplSettings.Question);}}
-			protected static string s14 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s8 = "</div></div><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s11{get{return AbsoluteUrl("Resources/TotalBets.js", TplSettings.Question);}}
+			protected static string s12 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -41,16 +39,14 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s4);
 					bd.Append(s5);
 					bd.Append(s6);
-					bd.Append(s7);
-					bd.Append(s8);
 					bd.Append(RefreshCountDown);
-					bd.Append(s9);
+					bd.Append(s7);
 					if(null != Contents) Contents.ToString(ref bd);
+					bd.Append(s8);
+					bd.Append(s9);
 					bd.Append(s10);
 					bd.Append(s11);
 					bd.Append(s12);
-					bd.Append(s13);
-					bd.Append(s14);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -65,85 +61,87 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class NumberGame_Contents_Block: Block
 		{
-			protected static string s15 = "<table cellpadding=\"0\" cellspacing=\"1\" border=\"0\" class=\"tblRpt c\" style=\"width: 100%\"><tr class=\"RptHeader\"><td rowspan=\"2\">";
-			protected static string s16{get{return Resources.Lang.no;}}
-			protected static string s17 = "</td><td rowspan=\"2\">";
-			protected static string s18{get{return Resources.Lang.events;}}
+			protected static string s13 = "<table cellpadding=\"0\" cellspacing=\"1\" border=\"0\" class=\"tblRpt c\" style=\"width: 100%\"><tr class=\"RptHeader\"><td rowspan=\"2\">";
+			protected static string s14{get{return Resources.Lang.no;}}
+			protected static string s15 = "</td><td rowspan=\"2\">";
+			protected static string s16{get{return Resources.Lang.events;}}
+			protected static string s17 = "</td><td colspan=\"2\">";
+			protected static string s18{get{return Resources.Lang.warrior;}}
 			protected static string s19 = "</td><td colspan=\"2\">";
-			protected static string s20{get{return Resources.Lang.warrior;}}
+			protected static string s20{get{return Resources.Lang.lbl1stBall;}}
 			protected static string s21 = "</td><td colspan=\"2\">";
-			protected static string s22{get{return Resources.Lang.lbl1stBall;}}
-			protected static string s23 = "</td><td colspan=\"2\">";
-			protected static string s24{get{return Resources.Lang.lastball;}}
-			protected static string s25 = "</td><td colspan=\"3\">";
-			protected static string s26{get{return Resources.Lang.nextBall;}}
-			protected static string s27 = "</td><td colspan=\"4\">";
-			protected static string s28{get{return Resources.Lang.nextcombo;}}
-			protected static string s29 = "</td><td rowspan=\"2\" title=\"";
-			protected static string s30{get{return Resources.Lang.lblFTOddEven;}}
-			protected static string s31 = "\">";
-			protected static string s32{get{return Resources.Lang.lblFTOE;}}
-			protected static string s33 = "</td><td colspan=\"2\">";
-			protected static string s34{get{return Resources.Lang.numberGroup;}}
-			protected static string s35 = "</td></tr><tr class=\"RptHeader02\"><td>";
-			protected static string s36{get{return Resources.Lang.warrior2ndBall;}}
-			protected static string s37 = "</td><td>";
-			protected static string s38{get{return Resources.Lang.warrior3rdBall;}}
-			protected static string s39 = "</td><td title=\"";
-			protected static string s40{get{return Resources.Lang.lblOverUnder;}}
-			protected static string s41 = "\">";
-			protected static string s42{get{return Resources.Lang.lblOU;}}
-			protected static string s43 = "</td><td title=\"";
-			protected static string s44{get{return Resources.Lang.lblOddEven;}}
-			protected static string s45 = "\">";
-			protected static string s46{get{return Resources.Lang.lblOE;}}
-			protected static string s47 = "</td><td title=\"";
-			protected static string s48{get{return Resources.Lang.lblOverUnder;}}
-			protected static string s49 = "\">";
-			protected static string s50{get{return Resources.Lang.lblOU;}}
-			protected static string s51 = "</td><td title=\"";
-			protected static string s52{get{return Resources.Lang.lblOddEven;}}
-			protected static string s53 = "\">";
-			protected static string s54{get{return Resources.Lang.lblOE;}}
-			protected static string s55 = "</td><td title=\"";
-			protected static string s56{get{return Resources.Lang.lblOverUnder;}}
-			protected static string s57 = "\">";
-			protected static string s58{get{return Resources.Lang.lblOU;}}
-			protected static string s59 = "</td><td title=\"";
-			protected static string s60{get{return Resources.Lang.lblOddEven;}}
-			protected static string s61 = "\">";
-			protected static string s62{get{return Resources.Lang.lblOE;}}
-			protected static string s63 = "</td><td>";
-			protected static string s64{get{return Resources.Lang.highlow;}}
-			protected static string s65 = "</td><td title=\"";
-			protected static string s66{get{return Resources.Lang.lblOverOdd;}}
-			protected static string s67 = "\">";
-			protected static string s68{get{return Resources.Lang.lblOO;}}
-			protected static string s69 = "</td><td title=\"";
-			protected static string s70{get{return Resources.Lang.lblUnderOdd;}}
-			protected static string s71 = "\">";
-			protected static string s72{get{return Resources.Lang.lblUO;}}
-			protected static string s73 = "</td><td title=\"";
-			protected static string s74{get{return Resources.Lang.lblOverEven;}}
-			protected static string s75 = "\">";
-			protected static string s76{get{return Resources.Lang.lblOvE;}}
-			protected static string s77 = "</td><td title=\"";
-			protected static string s78{get{return Resources.Lang.lblUnderEven;}}
-			protected static string s79 = "\">";
-			protected static string s80{get{return Resources.Lang.lblUE;}}
+			protected static string s22{get{return Resources.Lang.lastball;}}
+			protected static string s23 = "</td><td colspan=\"3\">";
+			protected static string s24{get{return Resources.Lang.nextBall;}}
+			protected static string s25 = "</td><td colspan=\"4\">";
+			protected static string s26{get{return Resources.Lang.nextcombo;}}
+			protected static string s27 = "</td><td rowspan=\"2\" title=\"";
+			protected static string s28{get{return Resources.Lang.lblFTOddEven;}}
+			protected static string s29 = "\">";
+			protected static string s30{get{return Resources.Lang.lblFTOE;}}
+			protected static string s31 = "</td><td colspan=\"2\">";
+			protected static string s32{get{return Resources.Lang.numberGroup;}}
+			protected static string s33 = "</td></tr><tr class=\"RptHeader02\"><td>";
+			protected static string s34{get{return Resources.Lang.warrior2ndBall;}}
+			protected static string s35 = "</td><td>";
+			protected static string s36{get{return Resources.Lang.warrior3rdBall;}}
+			protected static string s37 = "</td><td title=\"";
+			protected static string s38{get{return Resources.Lang.lblOverUnder;}}
+			protected static string s39 = "\">";
+			protected static string s40{get{return Resources.Lang.lblOU;}}
+			protected static string s41 = "</td><td title=\"";
+			protected static string s42{get{return Resources.Lang.lblOddEven;}}
+			protected static string s43 = "\">";
+			protected static string s44{get{return Resources.Lang.lblOE;}}
+			protected static string s45 = "</td><td title=\"";
+			protected static string s46{get{return Resources.Lang.lblOverUnder;}}
+			protected static string s47 = "\">";
+			protected static string s48{get{return Resources.Lang.lblOU;}}
+			protected static string s49 = "</td><td title=\"";
+			protected static string s50{get{return Resources.Lang.lblOddEven;}}
+			protected static string s51 = "\">";
+			protected static string s52{get{return Resources.Lang.lblOE;}}
+			protected static string s53 = "</td><td title=\"";
+			protected static string s54{get{return Resources.Lang.lblOverUnder;}}
+			protected static string s55 = "\">";
+			protected static string s56{get{return Resources.Lang.lblOU;}}
+			protected static string s57 = "</td><td title=\"";
+			protected static string s58{get{return Resources.Lang.lblOddEven;}}
+			protected static string s59 = "\">";
+			protected static string s60{get{return Resources.Lang.lblOE;}}
+			protected static string s61 = "</td><td>";
+			protected static string s62{get{return Resources.Lang.highlow;}}
+			protected static string s63 = "</td><td title=\"";
+			protected static string s64{get{return Resources.Lang.lblOverOdd;}}
+			protected static string s65 = "\">";
+			protected static string s66{get{return Resources.Lang.lblOO;}}
+			protected static string s67 = "</td><td title=\"";
+			protected static string s68{get{return Resources.Lang.lblUnderOdd;}}
+			protected static string s69 = "\">";
+			protected static string s70{get{return Resources.Lang.lblUO;}}
+			protected static string s71 = "</td><td title=\"";
+			protected static string s72{get{return Resources.Lang.lblOverEven;}}
+			protected static string s73 = "\">";
+			protected static string s74{get{return Resources.Lang.lblOvE;}}
+			protected static string s75 = "</td><td title=\"";
+			protected static string s76{get{return Resources.Lang.lblUnderEven;}}
+			protected static string s77 = "\">";
+			protected static string s78{get{return Resources.Lang.lblUE;}}
+			protected static string s79 = "</td><td>";
+			protected static string s80{get{return Resources.Lang.LiveGame;}}
 			protected static string s81 = "</td><td>";
-			protected static string s82{get{return Resources.Lang.LiveGame;}}
-			protected static string s83 = "</td><td>";
-			protected static string s84{get{return Resources.Lang.PreGame;}}
-			protected static string s85 = "</td></tr>";
+			protected static string s82{get{return Resources.Lang.PreGame;}}
+			protected static string s83 = "</td></tr>";
 			public NumberGame_Contents_LeagueContents_Block LeagueContents = new NumberGame_Contents_LeagueContents_Block();
 			public NumberGame_Contents_NotFound_Block NotFound = new NumberGame_Contents_NotFound_Block();
-			protected static string s86 = "</table>";
+			protected static string s84 = "</table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s13);
+					bd.Append(s14);
 					bd.Append(s15);
 					bd.Append(s16);
 					bd.Append(s17);
@@ -213,11 +211,9 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s81);
 					bd.Append(s82);
 					bd.Append(s83);
-					bd.Append(s84);
-					bd.Append(s85);
 					if(null != LeagueContents) LeagueContents.ToString(ref bd);
 					if(null != NotFound) NotFound.ToString(ref bd);
-					bd.Append(s86);
+					bd.Append(s84);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -225,18 +221,18 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class NumberGame_Contents_LeagueContents_Block: Block
 		{
-			protected static string s87 = "<tr class=\"league\"><td colspan=\"18\" style=\"padding-left: 20px;\">";
+			protected static string s85 = "<tr class=\"league\"><td colspan=\"18\" style=\"padding-left: 20px;\">";
 			public string LeagueName = "{LeagueName}";
-			protected static string s88 = "</td></tr>";
+			protected static string s86 = "</td></tr>";
 			public NumberGame_Contents_LeagueContents_MatchContents_Block MatchContents = new NumberGame_Contents_LeagueContents_MatchContents_Block();
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s87);
+					bd.Append(s85);
 					bd.Append(LeagueName);
-					bd.Append(s88);
+					bd.Append(s86);
 					if(null != MatchContents) MatchContents.ToString(ref bd);
 				}
 				if(IsAssigned){bd.Append(Value);}
@@ -245,229 +241,229 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class NumberGame_Contents_LeagueContents_MatchContents_Block: Block
 		{
-			protected static string s89 = "<tr class=\"r\" bgcolor=\"";
+			protected static string s87 = "<tr class=\"r\" bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s90 = "\" onmouseover=\"bgColor='";
+			protected static string s88 = "\" onmouseover=\"bgColor='";
 			public string ColorOver = "{ColorOver}";
-			protected static string s91 = "'\" onmouseout=\"bgColor='";
+			protected static string s89 = "'\" onmouseout=\"bgColor='";
 			protected string t0_ColorClass;
-			protected static string s92 = "'\"><td class=\"w-order\">";
+			protected static string s90 = "'\"><td class=\"w-order\">";
 			public string NoValue = "{NoValue}";
-			protected static string s93 = "</td><td class=\"l\">";
-			protected static string s94{get{return Resources.Lang.numbergameno;}}
-			protected static string s95 = "&nbsp;";
+			protected static string s91 = "</td><td class=\"l\">";
+			protected static string s92{get{return Resources.Lang.numbergameno;}}
+			protected static string s93 = "&nbsp;";
 			public string GameNo = "{GameNo}";
-			protected static string s96 = "</td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
+			protected static string s94 = "</td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
 			public string MatchId = "{MatchId}";
-			protected static string s97 = ", 88, '";
-			protected static string s98{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s99 = "',0,'h')\">";
+			protected static string s95 = ", 88, '";
+			protected static string s96{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s97 = "',0,'h')\">";
 			public string Warrior_2ndBall = "{Warrior_2ndBall}";
-			protected static string s100 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
+			protected static string s98 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
 			protected string t1_MatchId;
-			protected static string s101 = ", 88, '";
-			protected static string s102{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s103 = "',0,'a')\">";
+			protected static string s99 = ", 88, '";
+			protected static string s100{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s101 = "',0,'a')\">";
 			public string Warrior_3rdBall = "{Warrior_3rdBall}";
-			protected static string s104 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s102 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t2_MatchId;
-			protected static string s105 = ", 81, '";
-			protected static string s106{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s107 = "',0)\">";
+			protected static string s103 = ", 81, '";
+			protected static string s104{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s105 = "',0)\">";
 			public string OverUnderFirstBall = "{OverUnderFirstBall}";
-			protected static string s108 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s106 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t3_MatchId;
-			protected static string s109 = ", 83, '";
-			protected static string s110{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s111 = "',0)\">";
+			protected static string s107 = ", 83, '";
+			protected static string s108{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s109 = "',0)\">";
 			public string OddEvenFirstBall = "{OddEvenFirstBall}";
-			protected static string s112 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s110 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t4_MatchId;
-			protected static string s113 = ", 82, '";
-			protected static string s114{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s115 = "',0)\">";
+			protected static string s111 = ", 82, '";
+			protected static string s112{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s113 = "',0)\">";
 			public string OverUnderLastBall = "{OverUnderLastBall}";
-			protected static string s116 = "</a></td><td class=\"fcnum\"><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s114 = "</a></td><td class=\"fcnum\"><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t5_MatchId;
-			protected static string s117 = ", 84, '";
-			protected static string s118{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s119 = "',0)\">";
+			protected static string s115 = ", 84, '";
+			protected static string s116{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s117 = "',0)\">";
 			public string OddEvenLastBall = "{OddEvenLastBall}";
-			protected static string s120 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s118 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t6_MatchId;
-			protected static string s121 = ", 85, '";
-			protected static string s122{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s123 = "',1)\">";
+			protected static string s119 = ", 85, '";
+			protected static string s120{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s121 = "',1)\">";
 			public string OverUnderNext = "{OverUnderNext}";
-			protected static string s124 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s122 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t7_MatchId;
-			protected static string s125 = ", 86, '";
-			protected static string s126{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s127 = "',1)\">";
+			protected static string s123 = ", 86, '";
+			protected static string s124{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s125 = "',1)\">";
 			public string OddEvenNext = "{OddEvenNext}";
-			protected static string s128 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s126 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t8_MatchId;
-			protected static string s129 = ", 87, '";
-			protected static string s130{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s131 = "',1)\">";
+			protected static string s127 = ", 87, '";
+			protected static string s128{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s129 = "',1)\">";
 			public string HighLow = "{HighLow}";
-			protected static string s132 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
+			protected static string s130 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
 			protected string t9_MatchId;
-			protected static string s133 = ", 89, '";
-			protected static string s134{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s135 = "',1,'1:1')\">";
+			protected static string s131 = ", 89, '";
+			protected static string s132{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s133 = "',1,'1:1')\">";
 			public string NextCombo_OverOdd = "{NextCombo_OverOdd}";
-			protected static string s136 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
+			protected static string s134 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
 			protected string t10_MatchId;
-			protected static string s137 = ", 89, '";
-			protected static string s138{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s139 = "',1,'2:1')\">";
+			protected static string s135 = ", 89, '";
+			protected static string s136{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s137 = "',1,'2:1')\">";
 			public string NextCombo_UnderOdd = "{NextCombo_UnderOdd}";
-			protected static string s140 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
+			protected static string s138 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
 			protected string t11_MatchId;
-			protected static string s141 = ", 89, '";
-			protected static string s142{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s143 = "',1,'1:2')\">";
+			protected static string s139 = ", 89, '";
+			protected static string s140{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s141 = "',1,'1:2')\">";
 			public string NextCombo_OverEven = "{NextCombo_OverEven}";
-			protected static string s144 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
+			protected static string s142 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListNewGames(";
 			protected string t12_MatchId;
-			protected static string s145 = ", 89, '";
-			protected static string s146{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s147 = "',1,'2:2')\">";
+			protected static string s143 = ", 89, '";
+			protected static string s144{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s145 = "',1,'2:2')\">";
 			public string NextCombo_UnderEven = "{NextCombo_UnderEven}";
-			protected static string s148 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s146 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t13_MatchId;
-			protected static string s149 = ", 86, '";
-			protected static string s150{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s151 = "',0)\">";
+			protected static string s147 = ", 86, '";
+			protected static string s148{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s149 = "',0)\">";
 			public string OddEvenFullTime = "{OddEvenFullTime}";
-			protected static string s152 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s150 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t14_MatchId;
-			protected static string s153 = ", 90, '";
-			protected static string s154{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s155 = "',1)\">";
+			protected static string s151 = ", 90, '";
+			protected static string s152{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s153 = "',1)\">";
 			public string NumberGroupLive = "{NumberGroupLive}";
-			protected static string s156 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
+			protected static string s154 = "</a></td><td><a class=\"fcnum\" href=\"javascript:doViewBetListGame(";
 			protected string t15_MatchId;
-			protected static string s157 = ", 90, '";
-			protected static string s158{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
-			protected static string s159 = "',0)\">";
+			protected static string s155 = ", 90, '";
+			protected static string s156{get{return Fanex.Age.UI.Common.BetListByBetTypeMatch;}}
+			protected static string s157 = "',0)\">";
 			public string NumberGroupPre = "{NumberGroupPre}";
-			protected static string s160 = "</a></td></tr>";
+			protected static string s158 = "</a></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s87);
+					bd.Append(ColorClass);
+					bd.Append(s88);
+					bd.Append(ColorOver);
 					bd.Append(s89);
 					bd.Append(ColorClass);
 					bd.Append(s90);
-					bd.Append(ColorOver);
-					bd.Append(s91);
-					bd.Append(ColorClass);
-					bd.Append(s92);
 					bd.Append(NoValue);
+					bd.Append(s91);
+					bd.Append(s92);
 					bd.Append(s93);
-					bd.Append(s94);
-					bd.Append(s95);
 					bd.Append(GameNo);
+					bd.Append(s94);
+					bd.Append(MatchId);
+					bd.Append(s95);
 					bd.Append(s96);
-					bd.Append(MatchId);
 					bd.Append(s97);
-					bd.Append(s98);
-					bd.Append(s99);
 					bd.Append(Warrior_2ndBall);
+					bd.Append(s98);
+					bd.Append(MatchId);
+					bd.Append(s99);
 					bd.Append(s100);
-					bd.Append(MatchId);
 					bd.Append(s101);
-					bd.Append(s102);
-					bd.Append(s103);
 					bd.Append(Warrior_3rdBall);
+					bd.Append(s102);
+					bd.Append(MatchId);
+					bd.Append(s103);
 					bd.Append(s104);
-					bd.Append(MatchId);
 					bd.Append(s105);
-					bd.Append(s106);
-					bd.Append(s107);
 					bd.Append(OverUnderFirstBall);
+					bd.Append(s106);
+					bd.Append(MatchId);
+					bd.Append(s107);
 					bd.Append(s108);
-					bd.Append(MatchId);
 					bd.Append(s109);
-					bd.Append(s110);
-					bd.Append(s111);
 					bd.Append(OddEvenFirstBall);
+					bd.Append(s110);
+					bd.Append(MatchId);
+					bd.Append(s111);
 					bd.Append(s112);
-					bd.Append(MatchId);
 					bd.Append(s113);
-					bd.Append(s114);
-					bd.Append(s115);
 					bd.Append(OverUnderLastBall);
+					bd.Append(s114);
+					bd.Append(MatchId);
+					bd.Append(s115);
 					bd.Append(s116);
-					bd.Append(MatchId);
 					bd.Append(s117);
-					bd.Append(s118);
-					bd.Append(s119);
 					bd.Append(OddEvenLastBall);
+					bd.Append(s118);
+					bd.Append(MatchId);
+					bd.Append(s119);
 					bd.Append(s120);
-					bd.Append(MatchId);
 					bd.Append(s121);
-					bd.Append(s122);
-					bd.Append(s123);
 					bd.Append(OverUnderNext);
+					bd.Append(s122);
+					bd.Append(MatchId);
+					bd.Append(s123);
 					bd.Append(s124);
-					bd.Append(MatchId);
 					bd.Append(s125);
-					bd.Append(s126);
-					bd.Append(s127);
 					bd.Append(OddEvenNext);
+					bd.Append(s126);
+					bd.Append(MatchId);
+					bd.Append(s127);
 					bd.Append(s128);
-					bd.Append(MatchId);
 					bd.Append(s129);
-					bd.Append(s130);
-					bd.Append(s131);
 					bd.Append(HighLow);
+					bd.Append(s130);
+					bd.Append(MatchId);
+					bd.Append(s131);
 					bd.Append(s132);
-					bd.Append(MatchId);
 					bd.Append(s133);
-					bd.Append(s134);
-					bd.Append(s135);
 					bd.Append(NextCombo_OverOdd);
+					bd.Append(s134);
+					bd.Append(MatchId);
+					bd.Append(s135);
 					bd.Append(s136);
-					bd.Append(MatchId);
 					bd.Append(s137);
-					bd.Append(s138);
-					bd.Append(s139);
 					bd.Append(NextCombo_UnderOdd);
+					bd.Append(s138);
+					bd.Append(MatchId);
+					bd.Append(s139);
 					bd.Append(s140);
-					bd.Append(MatchId);
 					bd.Append(s141);
-					bd.Append(s142);
-					bd.Append(s143);
 					bd.Append(NextCombo_OverEven);
+					bd.Append(s142);
+					bd.Append(MatchId);
+					bd.Append(s143);
 					bd.Append(s144);
-					bd.Append(MatchId);
 					bd.Append(s145);
-					bd.Append(s146);
-					bd.Append(s147);
 					bd.Append(NextCombo_UnderEven);
+					bd.Append(s146);
+					bd.Append(MatchId);
+					bd.Append(s147);
 					bd.Append(s148);
-					bd.Append(MatchId);
 					bd.Append(s149);
-					bd.Append(s150);
-					bd.Append(s151);
 					bd.Append(OddEvenFullTime);
+					bd.Append(s150);
+					bd.Append(MatchId);
+					bd.Append(s151);
 					bd.Append(s152);
-					bd.Append(MatchId);
 					bd.Append(s153);
-					bd.Append(s154);
-					bd.Append(s155);
 					bd.Append(NumberGroupLive);
-					bd.Append(s156);
+					bd.Append(s154);
 					bd.Append(MatchId);
+					bd.Append(s155);
+					bd.Append(s156);
 					bd.Append(s157);
-					bd.Append(s158);
-					bd.Append(s159);
 					bd.Append(NumberGroupPre);
-					bd.Append(s160);
+					bd.Append(s158);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -475,17 +471,17 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class NumberGame_Contents_NotFound_Block: Block
 		{
-			protected static string s161 = "<tr class=\"bg_white\"><td colspan=\"18\" class=\"c nobold\">";
-			protected static string s162{get{return Resources.Lang.noInfo;}}
-			protected static string s163 = "</td></tr>";
+			protected static string s159 = "<tr class=\"bg_white\"><td colspan=\"18\" class=\"c nobold\">";
+			protected static string s160{get{return Resources.Lang.noInfo;}}
+			protected static string s161 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s159);
+					bd.Append(s160);
 					bd.Append(s161);
-					bd.Append(s162);
-					bd.Append(s163);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

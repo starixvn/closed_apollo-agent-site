@@ -14,9 +14,9 @@ namespace Fanex.Agent.UI
 		public class Header_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE html><html><head><title>Header</title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.less", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_Header/Resources/header.css", TplSettings.Question);}}
+			protected static string s3{get{return AbsoluteUrl("_Header/Resources/header.less", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public Header_CssSuper_Block CssSuper = new Header_CssSuper_Block();
 			public Header_CssMaster_Block CssMaster = new Header_CssMaster_Block();
@@ -135,7 +135,7 @@ namespace Fanex.Agent.UI
 		public class Header_CssSuper_Block: Block
 		{
 			protected static string s36 = "<link href=\"";
-			protected static string s37{get{return AbsoluteUrl("_Header/Resources/Header4.css", TplSettings.Question);}}
+			protected static string s37{get{return AbsoluteUrl("_Header/Resources/Header4.less", TplSettings.Question);}}
 			protected static string s38 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -153,7 +153,7 @@ namespace Fanex.Agent.UI
 		public class Header_CssMaster_Block: Block
 		{
 			protected static string s39 = "<link href=\"";
-			protected static string s40{get{return AbsoluteUrl("_Header/Resources/Header3.css", TplSettings.Question);}}
+			protected static string s40{get{return AbsoluteUrl("_Header/Resources/Header3.less", TplSettings.Question);}}
 			protected static string s41 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -171,7 +171,7 @@ namespace Fanex.Agent.UI
 		public class Header_CssAgent_Block: Block
 		{
 			protected static string s42 = "<link href=\"";
-			protected static string s43{get{return AbsoluteUrl("_Header/Resources/Header2.css", TplSettings.Question);}}
+			protected static string s43{get{return AbsoluteUrl("_Header/Resources/Header2.less", TplSettings.Question);}}
 			protected static string s44 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{

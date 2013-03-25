@@ -30,22 +30,20 @@ namespace Fanex.Agent.UI
 			protected static string s12 = "?targetCustId=";
 			public string targetCustId = "{targetCustId}";
 			protected static string s13 = "' type=\"text/javascript\"></script><link href=\"";
-			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s15 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s16{get{return AbsoluteUrl("_MemberInfo/Resources/MemberInfo.css", TplSettings.Question);}}
-			protected static string s17 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form action='";
+			protected static string s14{get{return AbsoluteUrl("_MemberInfo/Resources/MemberInfo.less", TplSettings.Question);}}
+			protected static string s15 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form action='";
 			public string actionForm = "{actionForm}";
-			protected static string s18 = "' method=\"post\"><div id=\"header_main\" class=\"pt7\">";
+			protected static string s16 = "' method=\"post\"><div id=\"header_main\" class=\"pt7\">";
 			public string lbleditbetsetting = "{lbleditbetsetting}";
-			protected static string s19 = "</div><div class=\"minWidthCustomer pt3\">";
-			protected static string s20{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
-			protected static string s21 = "<input type=\"hidden\" name=\"txtCustomerObject\" id=\"txtCustomerObject\" /><div class=\"headerBetSetting\">";
-			protected static string s22{get{return Resources.Lang.lblBetSetting;}}
-			protected static string s23 = "</div><div id=\"bettingLimitContainer\"></div><div class=\"clearBlock\"></div><div class=\"pt7\"><div class=\"btnLeft\"><button accountpermisssion=\"[B]\" data-bind='click: saveCustomer' id=\"btnSubmit\" class=\"btnMain\">";
+			protected static string s17 = "</div><div class=\"minWidthCustomer pt3\">";
+			protected static string s18{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
+			protected static string s19 = "<input type=\"hidden\" name=\"txtCustomerObject\" id=\"txtCustomerObject\" /><div class=\"headerBetSetting\">";
+			protected static string s20{get{return Resources.Lang.lblBetSetting;}}
+			protected static string s21 = "</div><div id=\"bettingLimitContainer\"></div><div class=\"clearBlock\"></div><div class=\"pt7\"><div class=\"btnLeft\"><button accountpermisssion=\"[B]\" data-bind='click: saveCustomer' id=\"btnSubmit\" class=\"btnMain\">";
 			public string actionName = "{actionName}";
-			protected static string s24 = "</button></div></div></div></form>";
+			protected static string s22 = "</button></div></div></div></form>";
 			public EditBetSetting_ScriptBlock_Block ScriptBlock = new EditBetSetting_ScriptBlock_Block();
-			protected static string s25 = "</body></html>";
+			protected static string s23 = "</body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -70,20 +68,18 @@ namespace Fanex.Agent.UI
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
-					bd.Append(s16);
-					bd.Append(s17);
 					bd.Append(actionForm);
-					bd.Append(s18);
+					bd.Append(s16);
 					bd.Append(lbleditbetsetting);
+					bd.Append(s17);
+					bd.Append(s18);
 					bd.Append(s19);
 					bd.Append(s20);
 					bd.Append(s21);
-					bd.Append(s22);
-					bd.Append(s23);
 					bd.Append(actionName);
-					bd.Append(s24);
+					bd.Append(s22);
 					if(null != ScriptBlock) ScriptBlock.ToString(ref bd);
-					bd.Append(s25);
+					bd.Append(s23);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

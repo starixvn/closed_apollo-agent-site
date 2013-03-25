@@ -14,9 +14,9 @@ namespace Fanex.Agent.UI
 		public class SubAccList_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>Shadown List</title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.less", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_MemberInfo/CustomerList/Components/MenuPopup_Control/Resources/MenuPopup_Control.css", TplSettings.Question);}}
+			protected static string s3{get{return AbsoluteUrl("_MemberInfo/CustomerList/Components/MenuPopup_Control/Resources/MenuPopup_Control.less", TplSettings.Question);}}
 			protected static string s4 = "\"rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div class=\"divHeader\">";
 			protected static string s5{get{return Resources.Lang.lblShadowList;}}
 			protected static string s6 = " &nbsp;<input type=\"button\" onclick=\"AddSubAccPopup();\" value=\"";

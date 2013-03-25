@@ -9,9 +9,9 @@ using TplCore.Element;
 /// </summary>
 /// 
 namespace Sunplus.Agent.UI._MemberInfo.CustomerList.Components
-{
-    using MenuPopup_Control;
+{   
     using Sunplus.Agent.Model.Entities;
+    using Fanex.Agent.UI._MemberInfo.CustomerList.Components.MenuPopup_Control;
     public class MenuPopup:IComponent 
     {
         MenuPopup_Control_Template tpl = new MenuPopup_Control_Template();

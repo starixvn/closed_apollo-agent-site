@@ -7,7 +7,6 @@
 //   <change who="Anders.Le" date="2013.3.19">Created</change>
 // </history>
 
-
 namespace Apollo.Age.DTO.Reports
 {
     using System;
@@ -15,16 +14,21 @@ namespace Apollo.Age.DTO.Reports
     using System.Linq;
     using System.Text;
 
-    public class AgentWinlossDTO
+    public class BaseInfo
     {
-        public int AgentId { get; set; }
+        public int ObjectId { get; set; }
 
-        public string User { get; set; }
+        public string UserName { get; set; }
 
-        public decimal MemberBetAmmount { get; set; }
+        public decimal MemberBetAmount { get; set; }
+
+        public bool IsAgent { get; set; }
 
         public decimal GrossComm { get; set; }
+    }
 
+    public class AgentWinlossDTO : BaseInfo
+    {
         public WinlossComm Agent { get; set; }
     }
 
@@ -39,12 +43,6 @@ namespace Apollo.Age.DTO.Reports
 
         public decimal Comm { get; set; }
 
-        public decimal Total
-        {
-            get
-            {
-                return Winloss + Comm;
-            }
-        }
+        public decimal Total { get; set; }
     }
 }

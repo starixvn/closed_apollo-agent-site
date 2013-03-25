@@ -16,20 +16,18 @@ namespace Fanex.Agent.UI
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			public string title = "{title}";
 			protected static string s1 = "</title><link href=\"";
-			protected static string s2{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s2{get{return AbsoluteUrl("_Reports/Resources/Reports.less", TplSettings.Question);}}
 			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s4{get{return AbsoluteUrl("_Reports/Resources/Reports.css", TplSettings.Question);}}
-			protected static string s5 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s6{get{return AbsoluteUrl("_BetList/Resources/BetList.css", TplSettings.Question);}}
-			protected static string s7 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
-			protected static string s8{get{return AbsoluteUrl2("_BetList/MixParlay/CombinationMixParlayDetail.aspx");}}
-			protected static string s9 = "\"><div id=\"page_main\">";
+			protected static string s4{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
+			protected static string s5 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s6{get{return AbsoluteUrl2("_BetList/MixParlay/CombinationMixParlayDetail.aspx");}}
+			protected static string s7 = "\"><div id=\"page_main\">";
 			public CombinationMixParlayDetail_Content_Block Content = new CombinationMixParlayDetail_Content_Block();
-			protected static string s10 = "</div></form><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("_Reports/Resources/Reports.js", TplSettings.Question);}}
-			protected static string s14 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s8 = "</div></form><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s11{get{return AbsoluteUrl("_Reports/Resources/Reports.js", TplSettings.Question);}}
+			protected static string s12 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -44,14 +42,12 @@ namespace Fanex.Agent.UI
 					bd.Append(s5);
 					bd.Append(s6);
 					bd.Append(s7);
+					if(null != Content) Content.ToString(ref bd);
 					bd.Append(s8);
 					bd.Append(s9);
-					if(null != Content) Content.ToString(ref bd);
 					bd.Append(s10);
 					bd.Append(s11);
 					bd.Append(s12);
-					bd.Append(s13);
-					bd.Append(s14);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

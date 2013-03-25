@@ -16,28 +16,26 @@ namespace Fanex.Age.UI.Reports
 			protected static string s0 = "<!DOCTYPE HTML><html><head><!--<title>";
 			protected static string s1{get{return Resources.Lang.masterwinloss;}}
 			protected static string s2 = "</title>--><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s3{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("Resources/Reports.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s7{get{return AbsoluteUrl("_BetList/Resources/BetList.css", TplSettings.Question);}}
-			protected static string s8 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\"><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s5{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
+			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\"><div id=\"page_main\"><div id=\"header_main\">";
 			public string title = "{title}";
-			protected static string s9 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td>";
+			protected static string s7 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td>";
 			public string SearchPanel = "{SearchPanel}";
-			protected static string s10 = "</td></tr><tr><td>";
+			protected static string s8 = "</td></tr><tr><td>";
 			public string content = "{content}";
-			protected static string s11 = "</td></tr></table></div></form></body><script src=\"";
-			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s9 = "</td></tr></table></div></form></body><script src=\"";
+			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s11 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s12{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
 			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s14{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s14{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
 			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s16{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
+			protected static string s16{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
 			protected static string s17 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s18{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s19 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s20{get{return AbsoluteUrl("BetList/Resources/OutstandingDetail.js", TplSettings.Question);}}
-			protected static string s21 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s18{get{return AbsoluteUrl("BetList/Resources/OutstandingDetail.js", TplSettings.Question);}}
+			protected static string s19 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -50,13 +48,13 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s4);
 					bd.Append(s5);
 					bd.Append(s6);
-					bd.Append(s7);
-					bd.Append(s8);
 					bd.Append(title);
-					bd.Append(s9);
+					bd.Append(s7);
 					bd.Append(SearchPanel);
-					bd.Append(s10);
+					bd.Append(s8);
 					bd.Append(content);
+					bd.Append(s9);
+					bd.Append(s10);
 					bd.Append(s11);
 					bd.Append(s12);
 					bd.Append(s13);
@@ -66,8 +64,6 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s17);
 					bd.Append(s18);
 					bd.Append(s19);
-					bd.Append(s20);
-					bd.Append(s21);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

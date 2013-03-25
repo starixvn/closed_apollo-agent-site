@@ -12,21 +12,19 @@ namespace Fanex.Age.UI.TotalBets
 		public class Racing_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>TotalBets</title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("Resources/TotalBets.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
-			protected static string s5{get{return Resources.Lang.hr;}}
-			protected static string s6 = "</div>";
+			protected static string s1{get{return AbsoluteUrl("Resources/TotalBets.less", TplSettings.Question);}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s3{get{return Resources.Lang.hr;}}
+			protected static string s4 = "</div>";
 			public Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown{get {return _RefreshCountDown != null ? _RefreshCountDown : _RefreshCountDown =  new Fanex.Age.UI.Components.RefreshCountDown_Control(this,30,"HorseRacing");}}
 			protected Fanex.Age.UI.Components.RefreshCountDown_Control _RefreshCountDown;
-			protected static string s7 = "<div id=\"sContent\">";
+			protected static string s5 = "<div id=\"sContent\">";
 			public Racing_Contents_Block Contents = new Racing_Contents_Block();
-			protected static string s8 = "</div></div><script src=\"";
-			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("Resources/TotalBets.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s6 = "</div></div><script src=\"";
+			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("Resources/TotalBets.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -37,16 +35,14 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
-					bd.Append(s5);
-					bd.Append(s6);
 					bd.Append(RefreshCountDown);
-					bd.Append(s7);
+					bd.Append(s5);
 					if(null != Contents) Contents.ToString(ref bd);
+					bd.Append(s6);
+					bd.Append(s7);
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
-					bd.Append(s11);
-					bd.Append(s12);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -61,42 +57,44 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class Racing_Contents_Block: Block
 		{
-			protected static string s13 = "<table class=\"tblRpt\" cellpading=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 80%\"><tr class=\"RptHeader\"><td rowspan=\"3\" style=\"width: 7%;\">";
-			protected static string s14{get{return Resources.Lang.lblRace;}}
-			protected static string s15 = "</td><td rowspan=\"3\" style=\"width: 6%;\" class=\"nowrap\">";
-			protected static string s16{get{return Resources.Lang.noHR;}}
-			protected static string s17 = "</td><td rowspan=\"3\" style=\"width: 21%;\">";
-			protected static string s18{get{return Resources.Lang.runner;}}
-			protected static string s19 = "</td><td colspan=\"6\">";
-			protected static string s20{get{return Resources.Lang.tote;}}
-			protected static string s21 = "</td></tr><tr class=\"RptHeader\"><td colspan=\"2\">";
-			protected static string s22{get{return Resources.Lang.WinHR;}}
+			protected static string s11 = "<table class=\"tblRpt\" cellpading=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 80%\"><tr class=\"RptHeader\"><td rowspan=\"3\" style=\"width: 7%;\">";
+			protected static string s12{get{return Resources.Lang.lblRace;}}
+			protected static string s13 = "</td><td rowspan=\"3\" style=\"width: 6%;\" class=\"nowrap\">";
+			protected static string s14{get{return Resources.Lang.noHR;}}
+			protected static string s15 = "</td><td rowspan=\"3\" style=\"width: 21%;\">";
+			protected static string s16{get{return Resources.Lang.runner;}}
+			protected static string s17 = "</td><td colspan=\"6\">";
+			protected static string s18{get{return Resources.Lang.tote;}}
+			protected static string s19 = "</td></tr><tr class=\"RptHeader\"><td colspan=\"2\">";
+			protected static string s20{get{return Resources.Lang.WinHR;}}
+			protected static string s21 = "</td><td colspan=\"2\">";
+			protected static string s22{get{return Resources.Lang.Place;}}
 			protected static string s23 = "</td><td colspan=\"2\">";
-			protected static string s24{get{return Resources.Lang.Place;}}
-			protected static string s25 = "</td><td colspan=\"2\">";
-			protected static string s26{get{return Resources.Lang.EachWay;}}
-			protected static string s27 = "</td></tr><tr class=\"RptHeader02\"><td class=\"nowrap\" style=\"width: 5%\">";
-			protected static string s28{get{return Resources.Lang.total;}}
-			protected static string s29 = "</td><td class=\"nowrap\" style=\"width: 6%\">";
-			protected static string s30{get{return Resources.Lang.lblWinLoss;}}
-			protected static string s31 = "</td><td class=\"nowrap\" style=\"width: 5%\">";
-			protected static string s32{get{return Resources.Lang.total;}}
-			protected static string s33 = "</td><td class=\"nowrap\" style=\"width: 6%\">";
-			protected static string s34{get{return Resources.Lang.lblWinLoss;}}
-			protected static string s35 = "</td><td class=\"nowrap\" style=\"width: 5%\">";
-			protected static string s36{get{return Resources.Lang.total;}}
-			protected static string s37 = "</td><td class=\"nowrap\" style=\"width: 6%\">";
-			protected static string s38{get{return Resources.Lang.lblWinLoss;}}
-			protected static string s39 = "</td></tr>";
+			protected static string s24{get{return Resources.Lang.EachWay;}}
+			protected static string s25 = "</td></tr><tr class=\"RptHeader02\"><td class=\"nowrap\" style=\"width: 5%\">";
+			protected static string s26{get{return Resources.Lang.total;}}
+			protected static string s27 = "</td><td class=\"nowrap\" style=\"width: 6%\">";
+			protected static string s28{get{return Resources.Lang.lblWinLoss;}}
+			protected static string s29 = "</td><td class=\"nowrap\" style=\"width: 5%\">";
+			protected static string s30{get{return Resources.Lang.total;}}
+			protected static string s31 = "</td><td class=\"nowrap\" style=\"width: 6%\">";
+			protected static string s32{get{return Resources.Lang.lblWinLoss;}}
+			protected static string s33 = "</td><td class=\"nowrap\" style=\"width: 5%\">";
+			protected static string s34{get{return Resources.Lang.total;}}
+			protected static string s35 = "</td><td class=\"nowrap\" style=\"width: 6%\">";
+			protected static string s36{get{return Resources.Lang.lblWinLoss;}}
+			protected static string s37 = "</td></tr>";
 			public Racing_Contents_LeagueContents_Block LeagueContents = new Racing_Contents_LeagueContents_Block();
 			public Racing_Contents_TotalContents_Block TotalContents = new Racing_Contents_TotalContents_Block();
 			public Racing_Contents_NotFoundContent_Block NotFoundContent = new Racing_Contents_NotFoundContent_Block();
-			protected static string s40 = "</table>";
+			protected static string s38 = "</table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s11);
+					bd.Append(s12);
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
@@ -122,12 +120,10 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s35);
 					bd.Append(s36);
 					bd.Append(s37);
-					bd.Append(s38);
-					bd.Append(s39);
 					if(null != LeagueContents) LeagueContents.ToString(ref bd);
 					if(null != TotalContents) TotalContents.ToString(ref bd);
 					if(null != NotFoundContent) NotFoundContent.ToString(ref bd);
-					bd.Append(s40);
+					bd.Append(s38);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -135,22 +131,22 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class Racing_Contents_LeagueContents_Block: Block
 		{
-			protected static string s41 = "<tr align=\"center\"><td colspan=\"";
+			protected static string s39 = "<tr align=\"center\"><td colspan=\"";
 			public string TotalCols = "{TotalCols}";
-			protected static string s42 = "\" style=\"padding-left: 20px;\" class=\"league\">";
+			protected static string s40 = "\" style=\"padding-left: 20px;\" class=\"league\">";
 			public string LeagueName = "{LeagueName}";
-			protected static string s43 = "</td></tr>";
+			protected static string s41 = "</td></tr>";
 			public Racing_Contents_LeagueContents_MatchContents_Block MatchContents = new Racing_Contents_LeagueContents_MatchContents_Block();
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s41);
+					bd.Append(s39);
 					bd.Append(TotalCols);
-					bd.Append(s42);
+					bd.Append(s40);
 					bd.Append(LeagueName);
-					bd.Append(s43);
+					bd.Append(s41);
 					if(null != MatchContents) MatchContents.ToString(ref bd);
 				}
 				if(IsAssigned){bd.Append(Value);}
@@ -159,67 +155,67 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class Racing_Contents_LeagueContents_MatchContents_Block: Block
 		{
-			protected static string s44 = "<tr class=\"r\" bgcolor=\"";
+			protected static string s42 = "<tr class=\"r\" bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s45 = "\" onmouseover=\"bgColor='";
+			protected static string s43 = "\" onmouseover=\"bgColor='";
 			public string ColorOver = "{ColorOver}";
-			protected static string s46 = "'\" onmouseout=\"bgColor='";
+			protected static string s44 = "'\" onmouseout=\"bgColor='";
 			protected string t0_ColorClass;
-			protected static string s47 = "'\">";
+			protected static string s45 = "'\">";
 			public Racing_Contents_LeagueContents_MatchContents_RaceTime_Block RaceTime = new Racing_Contents_LeagueContents_MatchContents_RaceTime_Block();
-			protected static string s48 = "<td class=\"c b\">";
+			protected static string s46 = "<td class=\"c b\">";
 			public string No = "{No}";
-			protected static string s49 = "</td><td class=\"l\">";
+			protected static string s47 = "</td><td class=\"l\">";
 			public string Horse = "{Horse}";
-			protected static string s50 = "</td><td class=\"b\">";
+			protected static string s48 = "</td><td class=\"b\">";
 			public Racing_Contents_LeagueContents_MatchContents_WinTote_Block WinTote = new Racing_Contents_LeagueContents_MatchContents_WinTote_Block();
 			public Racing_Contents_LeagueContents_MatchContents_WinToteValue_Block WinToteValue = new Racing_Contents_LeagueContents_MatchContents_WinToteValue_Block();
-			protected static string s51 = "</td><td class=\"b\">";
+			protected static string s49 = "</td><td class=\"b\">";
 			public string WinToteWinloss = "{WinToteWinloss}";
-			protected static string s52 = "</td><td class=\"b\">";
+			protected static string s50 = "</td><td class=\"b\">";
 			public Racing_Contents_LeagueContents_MatchContents_PlaceTote_Block PlaceTote = new Racing_Contents_LeagueContents_MatchContents_PlaceTote_Block();
 			public Racing_Contents_LeagueContents_MatchContents_PlaceToteValue_Block PlaceToteValue = new Racing_Contents_LeagueContents_MatchContents_PlaceToteValue_Block();
-			protected static string s53 = "</td><td class=\"b\">";
+			protected static string s51 = "</td><td class=\"b\">";
 			public string PlaceToteWinloss = "{PlaceToteWinloss}";
-			protected static string s54 = "</td><td class=\"b\">";
+			protected static string s52 = "</td><td class=\"b\">";
 			public Racing_Contents_LeagueContents_MatchContents_WinplaceTote_Block WinplaceTote = new Racing_Contents_LeagueContents_MatchContents_WinplaceTote_Block();
 			public Racing_Contents_LeagueContents_MatchContents_WinplaceToteValue_Block WinplaceToteValue = new Racing_Contents_LeagueContents_MatchContents_WinplaceToteValue_Block();
-			protected static string s55 = "</td><td class=\"b\">";
+			protected static string s53 = "</td><td class=\"b\">";
 			public string WinplaceToteWinloss = "{WinplaceToteWinloss}";
-			protected static string s56 = "</td></tr>";
+			protected static string s54 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s42);
+					bd.Append(ColorClass);
+					bd.Append(s43);
+					bd.Append(ColorOver);
 					bd.Append(s44);
 					bd.Append(ColorClass);
 					bd.Append(s45);
-					bd.Append(ColorOver);
-					bd.Append(s46);
-					bd.Append(ColorClass);
-					bd.Append(s47);
 					if(null != RaceTime) RaceTime.ToString(ref bd);
-					bd.Append(s48);
+					bd.Append(s46);
 					bd.Append(No);
-					bd.Append(s49);
+					bd.Append(s47);
 					bd.Append(Horse);
-					bd.Append(s50);
+					bd.Append(s48);
 					if(null != WinTote) WinTote.ToString(ref bd);
 					if(null != WinToteValue) WinToteValue.ToString(ref bd);
-					bd.Append(s51);
+					bd.Append(s49);
 					bd.Append(WinToteWinloss);
-					bd.Append(s52);
+					bd.Append(s50);
 					if(null != PlaceTote) PlaceTote.ToString(ref bd);
 					if(null != PlaceToteValue) PlaceToteValue.ToString(ref bd);
-					bd.Append(s53);
+					bd.Append(s51);
 					bd.Append(PlaceToteWinloss);
-					bd.Append(s54);
+					bd.Append(s52);
 					if(null != WinplaceTote) WinplaceTote.ToString(ref bd);
 					if(null != WinplaceToteValue) WinplaceToteValue.ToString(ref bd);
-					bd.Append(s55);
+					bd.Append(s53);
 					bd.Append(WinplaceToteWinloss);
-					bd.Append(s56);
+					bd.Append(s54);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -227,45 +223,45 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class Racing_Contents_LeagueContents_MatchContents_RaceTime_Block: Block
 		{
-			protected static string s57 = "<td class=\"c b\" title=\"";
+			protected static string s55 = "<td class=\"c b\" title=\"";
 			public string HRStatusTip = "{HRStatusTip}";
-			protected static string s58 = "\" bgcolor=\"";
+			protected static string s56 = "\" bgcolor=\"";
 			public string ColorStatus = "{ColorStatus}";
-			protected static string s59 = "\" onmouseover=\"bgColor='";
+			protected static string s57 = "\" onmouseover=\"bgColor='";
 			public string ColorOver = "{ColorOver}";
-			protected static string s60 = "'\"onmouseout=\"bgColor='";
+			protected static string s58 = "'\"onmouseout=\"bgColor='";
 			protected string t1_ColorStatus;
-			protected static string s61 = "'\" ";
+			protected static string s59 = "'\" ";
 			public string RaceRowspan = "{RaceRowspan}";
-			protected static string s62 = "><span class=\"raceNo\">";
+			protected static string s60 = "><span class=\"raceNo\">";
 			public string RaceVal = "{RaceVal}";
-			protected static string s63 = "</span><br /><div style=\"margin-top: 5px;\" class=\"bl_time\">";
+			protected static string s61 = "</span><br /><div style=\"margin-top: 5px;\" class=\"bl_time\">";
 			public string KickOffDay = "{KickOffDay}";
-			protected static string s64 = "<br />";
+			protected static string s62 = "<br />";
 			public string KickOffTime = "{KickOffTime}";
-			protected static string s65 = "</div></td>";
+			protected static string s63 = "</div></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s57);
+					bd.Append(s55);
 					bd.Append(HRStatusTip);
+					bd.Append(s56);
+					bd.Append(ColorStatus);
+					bd.Append(s57);
+					bd.Append(ColorOver);
 					bd.Append(s58);
 					bd.Append(ColorStatus);
 					bd.Append(s59);
-					bd.Append(ColorOver);
-					bd.Append(s60);
-					bd.Append(ColorStatus);
-					bd.Append(s61);
 					bd.Append(RaceRowspan);
-					bd.Append(s62);
+					bd.Append(s60);
 					bd.Append(RaceVal);
-					bd.Append(s63);
+					bd.Append(s61);
 					bd.Append(KickOffDay);
-					bd.Append(s64);
+					bd.Append(s62);
 					bd.Append(KickOffTime);
-					bd.Append(s65);
+					bd.Append(s63);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -273,25 +269,25 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class Racing_Contents_LeagueContents_MatchContents_WinTote_Block: Block
 		{
-			protected static string s66 = "<a href=\"javascript:doViewBetListRacing(";
+			protected static string s64 = "<a href=\"javascript:doViewBetListRacing(";
 			public string MatchId = "{MatchId}";
-			protected static string s67 = ",31,'";
+			protected static string s65 = ",31,'";
 			public string BetType = "{BetType}";
-			protected static string s68 = "')\">";
+			protected static string s66 = "')\">";
 			public string WinToteTotal = "{WinToteTotal}";
-			protected static string s69 = "</a>";
+			protected static string s67 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s66);
+					bd.Append(s64);
 					bd.Append(MatchId);
-					bd.Append(s67);
+					bd.Append(s65);
 					bd.Append(BetType);
-					bd.Append(s68);
+					bd.Append(s66);
 					bd.Append(WinToteTotal);
-					bd.Append(s69);
+					bd.Append(s67);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -313,25 +309,25 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class Racing_Contents_LeagueContents_MatchContents_PlaceTote_Block: Block
 		{
-			protected static string s70 = "<a href=\"javascript:doViewBetListRacing(";
+			protected static string s68 = "<a href=\"javascript:doViewBetListRacing(";
 			public string MatchId = "{MatchId}";
-			protected static string s71 = ",32,'";
+			protected static string s69 = ",32,'";
 			public string BetType = "{BetType}";
-			protected static string s72 = "')\">";
+			protected static string s70 = "')\">";
 			public string PlaceToteTotal = "{PlaceToteTotal}";
-			protected static string s73 = "</a>";
+			protected static string s71 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s70);
+					bd.Append(s68);
 					bd.Append(MatchId);
-					bd.Append(s71);
+					bd.Append(s69);
 					bd.Append(BetType);
-					bd.Append(s72);
+					bd.Append(s70);
 					bd.Append(PlaceToteTotal);
-					bd.Append(s73);
+					bd.Append(s71);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -353,25 +349,25 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class Racing_Contents_LeagueContents_MatchContents_WinplaceTote_Block: Block
 		{
-			protected static string s74 = "<a href=\"javascript:doViewBetListRacing(";
+			protected static string s72 = "<a href=\"javascript:doViewBetListRacing(";
 			public string MatchId = "{MatchId}";
-			protected static string s75 = ",33,'";
+			protected static string s73 = ",33,'";
 			public string BetType = "{BetType}";
-			protected static string s76 = "')\">";
+			protected static string s74 = "')\">";
 			public string WinplaceToteTotal = "{WinplaceToteTotal}";
-			protected static string s77 = "</a>";
+			protected static string s75 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s74);
+					bd.Append(s72);
 					bd.Append(MatchId);
-					bd.Append(s75);
+					bd.Append(s73);
 					bd.Append(BetType);
-					bd.Append(s76);
+					bd.Append(s74);
 					bd.Append(WinplaceToteTotal);
-					bd.Append(s77);
+					bd.Append(s75);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -393,41 +389,41 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class Racing_Contents_TotalContents_Block: Block
 		{
-			protected static string s78 = "<tr class=\"RptFooter r\"><td colspan=\"3\">";
-			protected static string s79{get{return Resources.Lang.total;}}
-			protected static string s80 = "</td><td>";
+			protected static string s76 = "<tr class=\"RptFooter r\"><td colspan=\"3\">";
+			protected static string s77{get{return Resources.Lang.total;}}
+			protected static string s78 = "</td><td>";
 			public string SumWinTotal = "{SumWinTotal}";
-			protected static string s81 = "</td><td>";
+			protected static string s79 = "</td><td>";
 			public string SumWinWinloss = "{SumWinWinloss}";
-			protected static string s82 = "</td><td>";
+			protected static string s80 = "</td><td>";
 			public string SumPlaceTotal = "{SumPlaceTotal}";
-			protected static string s83 = "</td><td>";
+			protected static string s81 = "</td><td>";
 			public string SumPlaceWinloss = "{SumPlaceWinloss}";
-			protected static string s84 = "</td><td>";
+			protected static string s82 = "</td><td>";
 			public string SumWinplaceTotal = "{SumWinplaceTotal}";
-			protected static string s85 = "</td><td>";
+			protected static string s83 = "</td><td>";
 			public string SumWinplaceWinloss = "{SumWinplaceWinloss}";
-			protected static string s86 = "</td></tr>";
+			protected static string s84 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s76);
+					bd.Append(s77);
 					bd.Append(s78);
-					bd.Append(s79);
-					bd.Append(s80);
 					bd.Append(SumWinTotal);
-					bd.Append(s81);
+					bd.Append(s79);
 					bd.Append(SumWinWinloss);
-					bd.Append(s82);
+					bd.Append(s80);
 					bd.Append(SumPlaceTotal);
-					bd.Append(s83);
+					bd.Append(s81);
 					bd.Append(SumPlaceWinloss);
-					bd.Append(s84);
+					bd.Append(s82);
 					bd.Append(SumWinplaceTotal);
-					bd.Append(s85);
+					bd.Append(s83);
 					bd.Append(SumWinplaceWinloss);
-					bd.Append(s86);
+					bd.Append(s84);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -435,21 +431,21 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class Racing_Contents_NotFoundContent_Block: Block
 		{
-			protected static string s87 = "<tr class=\"bg_white\"><td colspan=\"";
+			protected static string s85 = "<tr class=\"bg_white\"><td colspan=\"";
 			public string NoFoundColSpan = "{NoFoundColSpan}";
-			protected static string s88 = "\" class=\"c nobold\">";
-			protected static string s89{get{return Resources.Lang.noInfo;}}
-			protected static string s90 = "</td></tr>";
+			protected static string s86 = "\" class=\"c nobold\">";
+			protected static string s87{get{return Resources.Lang.noInfo;}}
+			protected static string s88 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s87);
+					bd.Append(s85);
 					bd.Append(NoFoundColSpan);
+					bd.Append(s86);
+					bd.Append(s87);
 					bd.Append(s88);
-					bd.Append(s89);
-					bd.Append(s90);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
