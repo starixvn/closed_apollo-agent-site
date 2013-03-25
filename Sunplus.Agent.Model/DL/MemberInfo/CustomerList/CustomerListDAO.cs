@@ -240,12 +240,12 @@
         /// <param name="custID"></param>
         /// <param name="agentID"></param>
         /// <returns></returns>
-        public DataTable Age_Customer_GetAgentDownLinePath(int parentId, int agentId)
+        public DataTable Age_Customer_GetAgentDownlinePath(int parentId, int agentId)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("parentid", parentId);
             parameters.Add("agentid", agentId);
-            DbResult res = ExecSp("Age_Customer_GetAgentDownLinePath", parameters);
+            DbResult res = ExecSp("Age_Customer_GetAgentDownlinePath", parameters);
             return res.ResultSet.Tables[0];
         }
     }
