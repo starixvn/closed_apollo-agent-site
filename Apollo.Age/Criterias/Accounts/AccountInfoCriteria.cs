@@ -11,15 +11,15 @@ namespace Apollo.Age.Criterias.Accounts
 {
     using Fanex.NAP.Framework.Data;
 
-    public class AcountInfoCriteria : CriteriaBase
+    public class AccountInfoCriteria : CriteriaBase
     {
-        public int AgentId { get; set; }
+        public int CurrentAgentId { get; set; }
 
         public bool IsMember { get; set; }
 
-        public int SearchId { get; set; }
+        public int CustId { get; set; }
 
-        public string SearchName { get; set; }
+        public string UserName { get; set; }
 
         public override bool IsValid()
         {

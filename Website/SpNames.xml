@@ -109,9 +109,9 @@
   <Function Name="Agent-Apollo-Customer Setting">
 
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="CUSTDB" Plain="0" />
-    <Setting Key="Age_Customer_GetAgentDownLine" SpName="Age_Customer_GetAgentDownLine" DbName="CUSTDB" Plain="0" />
-    <Setting Key="Age_Customer_GetAgentDownLinePath" SpName="Age_Customer_GetAgentDownLinePath" DbName="CUSTDB" Plain="0" />
-    <Setting Key="Age_Customer_GetMemberDownLine" SpName="Age_Customer_GetMemberDownLine" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetAgentDownline" SpName="Age_Customer_GetAgentDownline" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetAgentDownlinePath" SpName="Age_Customer_GetAgentDownlinePath" DbName="CUSTDB" Plain="0" />
+    <Setting Key="Age_Customer_GetMemberDownline" SpName="Age_Customer_GetMemberDownline" DbName="CUSTDB" Plain="0" />
     <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="CUSTDB" Plain="0" />
 
   </Function>

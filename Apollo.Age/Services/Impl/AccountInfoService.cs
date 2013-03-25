@@ -16,25 +16,21 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;
     using Fanex.NAP.Framework.Data;
+    using Apollo.Age.Criterias.Accounts;
 
-    public class AcountInfoService : IAcountInfoService
+    public class AccountInfoService : IAccountInfoService
     {
         private readonly IAccountInfoRepository _accountIfoRepository;
         private readonly IDynamicRepository _repository;
 
-        public AcountInfoService(IAccountInfoRepository userRepository = null)
+        public AccountInfoService(IAccountInfoRepository userRepository = null)
         {
             _accountIfoRepository = _accountIfoRepository ?? new AccountInfoRepository();
         }
 
-        public AcountInfoDTO GetCustomerInfo(ICriteria criteria)
+        public AccountInfoDTO GetCustomerInfo(ICriteria criteria)
         {
             return _accountIfoRepository.GetCustomerInfo(criteria);
-        }
-
-        public List<CustomerDownline> GetCustomerDownline(ICriteria criteria)
-        {
-            return _accountIfoRepository.Fetch(criteria).ToList();
         }
 
         public List<CustomerSearching> GetCustomerSearch(ICriteria criteria)
@@ -45,6 +41,21 @@ namespace Apollo.Age.Services.Impl
         public List<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria)
         {
             return _accountIfoRepository.GetTreeViewNode(criteria).ToList();
+        }
+
+        public List<CustomerDownline> GetCustomerDownline(ICriteria criteria)
+        {
+            return _accountIfoRepository.GetCustomerDownline(criteria).ToList();
+        }
+
+        public List<CustomerDownline> GetMemberDownline(ref MemberDownlineCriteria criteria)
+        {
+            return _accountIfoRepository.GetMemberDownline(ref criteria).ToList();
+        }
+
+        public List<AgentDownlinePath> GetAgentDownlinePath(ICriteria criteria)
+        {
+            return _accountIfoRepository.GetAgentDownlinePath(criteria).ToList();
         }
     }
 }

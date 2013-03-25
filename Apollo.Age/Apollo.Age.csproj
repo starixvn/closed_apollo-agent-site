@@ -55,14 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Criterias\Accounts\AcountInfoCriteria.cs" />
+    <Compile Include="Criterias\Accounts\AccountInfoCriteria.cs" />
     <Compile Include="Criterias\Accounts\AgentDownlineCriteria.cs" />
     <Compile Include="Criterias\Accounts\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\Accounts\CustomerSearchCriteria.cs" />
     <Compile Include="Criterias\Accounts\MemberDownlineCriteria.cs" />
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
-    <Compile Include="DTO\Accounts\AcountInfoDTO.cs" />
+    <Compile Include="DTO\Accounts\AccountInfoDTO.cs" />
     <Compile Include="DTO\Accounts\TreeViewNodeDTO.cs" />
     <Compile Include="DTO\Reports\WinlossAgentDTO.cs" />
     <Compile Include="DTO\Reports\WinLossByBetTypeDTO.cs" />
@@ -84,12 +84,12 @@
     <Compile Include="Repositories\Interface\ICustomerRepository.cs" />
     <Compile Include="Repositories\Interface\IReportRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRepository.cs" />
-    <Compile Include="Services\Impl\AcountInfoService.cs" />
+    <Compile Include="Services\Impl\AccountInfoService.cs" />
     <Compile Include="Services\Impl\ReportService.cs" />
     <Compile Include="Services\Impl\ReportServiceBase.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
     <Compile Include="Services\Impl\UserService.cs" />
-    <Compile Include="Services\Interface\IAcountInfoService.cs" />
+    <Compile Include="Services\Interface\IAccountInfoService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Services\Interface\IReportService.cs" />
   </ItemGroup>

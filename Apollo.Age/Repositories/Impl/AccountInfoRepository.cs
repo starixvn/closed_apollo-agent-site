@@ -17,6 +17,7 @@ namespace Apollo.Age.Repositories.Impl
     using System;
     using Apollo.Age.Entities;
     using System.Collections.Generic;
+    using Apollo.Age.Criterias.Accounts;
 
     public class AccountInfoRepository : IAccountInfoRepository
     {
@@ -27,7 +28,7 @@ namespace Apollo.Age.Repositories.Impl
             _repository = repository ?? new DynamicRepository();
         }
 
-        public AcountInfoDTO GetCustomerInfo(ICriteria criteria)
+        public AccountInfoDTO GetCustomerInfo(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -35,7 +36,7 @@ namespace Apollo.Age.Repositories.Impl
             {
                 using (var db = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    return db.QueryEntity<AcountInfoDTO>();
+                    return db.QueryEntity<AccountInfoDTO>(criteria.GetSpParams());
                 }
             }
             catch (Exception ex)
@@ -52,7 +53,7 @@ namespace Apollo.Age.Repositories.Impl
             {
                 using (var db = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    return db.Query<CustomerSearching>();
+                    return db.Query<CustomerSearching>(criteria.GetSpParams());
                 }
             }
             catch (Exception ex)
@@ -69,7 +70,7 @@ namespace Apollo.Age.Repositories.Impl
             {
                 using (var db = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    return db.Query<TreeViewNodeDTO>();
+                    return db.Query<TreeViewNodeDTO>(criteria.GetSpParams());
                 }
             }
             catch (Exception ex)
@@ -78,7 +79,7 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
-        public IEnumerable<T> Fetch<T>(ICriteria criteria)
+        public IEnumerable<CustomerDownline> GetCustomerDownline(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -86,10 +87,56 @@ namespace Apollo.Age.Repositories.Impl
             {
                 if (criteria.IsValid())
                 {
-                    return _repository.Fetch<T>(criteria);
+                    return _repository.Fetch<CustomerDownline>(criteria);
                 }
 
-                return new List<T>();
+                return new List<CustomerDownline>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<CustomerDownline> GetMemberDownline(ref MemberDownlineCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var param = criteria.GetSpParams();
+                        var list = db.Query <CustomerDownline>(param);
+
+                        // get output parameter
+                        criteria.TotalPages = Convert.ToInt32(param["totalpages"]);
+                        return list;
+                    }
+                }
+
+                return new List<CustomerDownline>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<AgentDownlinePath> GetAgentDownlinePath(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    return _repository.Fetch<AgentDownlinePath>(criteria);
+                }
+
+                return new List<AgentDownlinePath>();
             }
             catch (Exception ex)
             {
@@ -122,10 +169,10 @@ namespace Apollo.Age.Repositories.Impl
             throw new NotImplementedException();
         }
 
-        //public IEnumerable<Agent> Fetch(ICriteria criteria)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IEnumerable<Agent> Fetch(ICriteria criteria)
+        {
+            throw new NotImplementedException();
+        }
 
         public IEnumerable<Agent> Fetch()
         {

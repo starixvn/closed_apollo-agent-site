@@ -16,13 +16,13 @@ namespace Apollo.Age.DTO.Accounts
 
     public class TreeViewNodeDTO
     {
-        private readonly string urlAgentList = "<a href='{0}{1}'>{2}</a>";
+        private readonly string urlAcountInfo = "<a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid={0}&txtUsername={1}' target='menu'> {2} </a>";
 
-        private readonly string urlAcountInfo = "<a href='{0}{1}'>{2}</a>";
+        private readonly string urlAgentList = "<a href='../_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'> {2} </a>";
 
         public static int Type = 0;
 
-        // public static int Root = 0;
+        public static int Root = 0;
 
         public int Id { get; set; }
 
@@ -34,11 +34,11 @@ namespace Apollo.Age.DTO.Accounts
             {
                 if (Type == 0)
                 {
-                    return string.Format(urlAgentList, UserName, Id, UserName);
+                    return string.Format(urlAgentList, Id, UserName, UserName);
                 }
                 else if (Type == 1)
                 {
-                    return string.Format(urlAcountInfo, UserName, Id, UserName);
+                    return string.Format(urlAcountInfo, Id, UserName, UserName);
                 }
                 else
                 {

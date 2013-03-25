@@ -60,7 +60,7 @@ namespace Fanex.Agent.UI
 			public string CustID = "{CustID}";
 			protected static string s10 = "&txtUsername=";
 			public string UserName = "{UserName}";
-			protected static string s11 = "'> ";
+			protected static string s11 = "' target='menu'> ";
 			public string MemberUserName = "{MemberUserName}";
 			protected static string s12 = " </a></li>";
 			public override void ToString(ref StringBuilder bd)

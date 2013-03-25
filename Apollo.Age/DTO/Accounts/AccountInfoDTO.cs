@@ -14,7 +14,7 @@ namespace Apollo.Age.DTO.Accounts
     using System.Linq;
     using System.Text;
 
-    public class AcountInfoDTO : CustomerDownline
+    public class AccountInfoDTO : CustomerDownline
     {
         public bool IsMember { get; set; }
 
@@ -34,6 +34,15 @@ namespace Apollo.Age.DTO.Accounts
         public int ParentId { get; set; }
 
         public bool HasAgentDownline { get; set; }
+
+        public bool Enable { get; set; }
+    }
+
+    public class AgentDownlinePath
+    {
+        public int AgentId { get; set; }
+
+        public string UserName { get; set; }
 
         public bool Enable { get; set; }
     }
