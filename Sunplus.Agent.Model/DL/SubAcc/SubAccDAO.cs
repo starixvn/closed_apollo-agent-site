@@ -18,12 +18,12 @@ namespace Sunplus.Agent.Model.DL.SubAcc
         /// </summary>
         /// <param name="custId">Main account id</param>
         /// <returns>Return a DataTable if succeeded, otherwise throw System.Data.SqlClient.SqlException or Sunplus.Agent.Model.DL.DataException.</returns>
-        public DataTable Acc_AgentUser_GetByAgent(int custId)
+        public DataTable Age_AgentUser_GetByAgent(int custId)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("agentid", custId);
 
-            DataTable result = ExecSpTable("Acc_AgentUser_GetByAgent", parameters);
+            DataTable result = ExecSpTable("Age_AgentUser_GetByAgent", parameters);
 
             return result;
         }
