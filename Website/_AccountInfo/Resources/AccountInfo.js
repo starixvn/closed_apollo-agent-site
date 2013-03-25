@@ -557,7 +557,6 @@ function bindMembersList(agentID) {
         text = "";
         if (text.length > 0) {
             contentId.innerHTML = text;
-<<<<<<< HEAD
             //$("#paging-member").show();
         }
         else {
@@ -583,9 +582,8 @@ function bindMembersList(agentID) {
             "width": "179px",
             "height": "554px"
         });
-=======
+
         }           
->>>>>>> 59ff0497058bdc1abe2ecf3d67082ec678412e0e
         contentId.style.display = "block";
     });
     */
@@ -611,7 +609,7 @@ if (typeof jQuery != 'undefined') {
                     contentId.html(contentId.html() + text);
                 });
             });
-            event.stopPropagation();           
+            event.stopPropagation();
         });
 
         $('body, html').on('click', function () {

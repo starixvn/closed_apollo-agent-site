@@ -55,8 +55,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criterias\Accounts\AccountInfoCriteria.cs" />
+    <Compile Include="Criterias\Accounts\AgentDownlineCriteria.cs" />
+    <Compile Include="Criterias\Accounts\AgentDownlinePathCriteria.cs" />
+    <Compile Include="Criterias\Accounts\CustomerSearchCriteria.cs" />
+    <Compile Include="Criterias\Accounts\MemberDownlineCriteria.cs" />
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
+    <Compile Include="DTO\Accounts\AccountInfoDTO.cs" />
+    <Compile Include="DTO\Accounts\TreeViewNodeDTO.cs" />
     <Compile Include="DTO\Reports\WinlossAgentDTO.cs" />
     <Compile Include="DTO\Reports\WinLossByBetTypeDTO.cs" />
     <Compile Include="Entities\Agent.cs" />
@@ -67,21 +74,26 @@
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Impl\AccountInfoRepository.cs" />
     <Compile Include="Repositories\Impl\AgentRepository.cs" />
     <Compile Include="Repositories\Impl\CustomerRepository.cs" />
+    <Compile Include="Repositories\Impl\ReportRepository.cs" />
     <Compile Include="Repositories\Impl\UserRepository.cs" />
+    <Compile Include="Repositories\Interface\IAccountInfoRepository.cs" />
     <Compile Include="Repositories\Interface\IAgentRepository.cs" />
     <Compile Include="Repositories\Interface\ICustomerRepository.cs" />
+    <Compile Include="Repositories\Interface\IReportRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRepository.cs" />
+    <Compile Include="Services\Impl\AccountInfoService.cs" />
     <Compile Include="Services\Impl\ReportService.cs" />
     <Compile Include="Services\Impl\ReportServiceBase.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
     <Compile Include="Services\Impl\UserService.cs" />
+    <Compile Include="Services\Interface\IAccountInfoService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Services\Interface\IReportService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTO\Accounts\" />
     <Folder Include="DTO\Forecast\" />
     <Folder Include="DTO\TotalBets\" />
     <Folder Include="Web\" />

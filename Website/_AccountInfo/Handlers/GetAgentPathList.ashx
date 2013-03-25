@@ -5,10 +5,15 @@ using System.Web;
 using System.Data;
 using Fanex.Age.UI;
 using Sunplus.Agent.Model.BL.AccountInfo;
+using Apollo.Age.Services.Interface;
+using Apollo.Age.Services.Impl;
+using Apollo.Age.Criterias.Accounts;
+using System.Collections.Generic;
+using Apollo.Age.DTO.Accounts;
 
 public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState.IReadOnlySessionState
 {
-    string agentId = string.Empty;
+    private int agentId = -1;
     
     public GetAgentPathList()
     {
@@ -17,31 +22,30 @@ public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState
 
     public override void RenderResult(ref JSONData data)
     {
-        DataTable dt = View as DataTable;
-        
-        if (dt != null)
+        List<AgentDownlinePath> lstAgents = View as List<AgentDownlinePath>;
+
+        if (lstAgents != null)
         {
-            int count = dt.Rows.Count;
+            int count = lstAgents.Count;
             object[] agentslist = new object[count];
-            
-            for (int i = 0; i < dt.Rows.Count; i++)
+
+            for (int i = 0; i < count; i++)
             {
-                agentslist[i] = new object[] { dt.Rows[i]["AgentId"].ToString(), HttpUtility.HtmlEncode(dt.Rows[i]["UserName"].ToString()) };
+                agentslist[i] = new object[] { lstAgents[i].AgentId, HttpUtility.HtmlEncode(lstAgents[i].UserName) };
             }
 
             data.Add("Agents", agentslist);
         }
     }
-
     
     public override void ProcessRequest(ref System.Collections.Hashtable p)
     {
-        this.agentId = Request["root"];
+        this.agentId = string.IsNullOrEmpty(Request["root"]) ? this.agentId : int.Parse(Request["root"].ToString());
     }
 
     public override object ValidateRequest(System.Collections.Hashtable p)
     {
-        if (string.IsNullOrEmpty(this.agentId))
+        if (this.agentId == -1)
         {
             return new Result(ErrorType.AccessDenied, string.Empty);
         }
@@ -51,8 +55,17 @@ public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState
 
     public override object InvokeData(System.Collections.Hashtable p)
     {
-        AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-        return bo.Age_Customer_GetAgentDownLinePath(int.Parse(this.agentId)).Tables[0];
+        IAccountInfoService service = new AccountInfoService();
+
+        AgentDownlinePathCriteria criteria = new AgentDownlinePathCriteria()
+        {
+            ParentId = CurrentUserSession.AgentId,
+            AgentId = this.agentId
+        };
+
+        var lstAgents = service.GetAgentDownlinePath(criteria);
+
+        return lstAgents;
     }
 
 }

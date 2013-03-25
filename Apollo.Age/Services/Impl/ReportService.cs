@@ -16,6 +16,7 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Services.Interface;
     using Fanex.NAP.Framework.Data;
     using Apollo.Age.DTO.Reports;
+    using Apollo.Age.Repositories.Impl;
 
     /// <summary>
     /// TODO: Update summary.
@@ -25,12 +26,14 @@ namespace Apollo.Age.Services.Impl
         public List<AgentWinlossDTO> GetAgentWinloss(ICriteria criteria)
         {
             IEnumerable<AgentWinlossDTO> reportData = null;
+            ReportRepository res = new ReportRepository();
 
             try
             {
                 if (criteria.IsValid())
                 {
-                    reportData = this.GetReportData<AgentWinlossDTO>(criteria);
+                    // reportData = this.GetReportData<AgentWinlossDTO>(criteria);
+                    reportData = res.Fetch(criteria);
                     // Do not forget create sum dto
                 }
             }

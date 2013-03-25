@@ -33,6 +33,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         #region Variable
 
         private AgentList_Template template = new AgentList_Template();
+
         private string langKey = string.Empty;
         private string agentId = string.Empty;
 
@@ -127,6 +128,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         public void RenderSearchControl()
         {
+            Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template pagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template();
+
             // Searching
             string getCustomer = "GetCustomer('AgentList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName + "')";
             this.template.searchControl = new DoubleCommissionSearchUserName(TemplateMain, this.UserName, Status, DCommStatus, getCustomer);
@@ -135,8 +138,11 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             string pagingControlName_bottom = "MemberList" + CurrentUserSession.SiteName + "_PagingBottom";
 
             // Paging on Top
-            this.template.PagingHeader.pagingControl = new Paging_Control(TemplateMain, pagingControlName_top, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
-            this.template.PagingHeader.selPageSize = this.RenderPageSize(pagingControlName_top, this.PageSize);
+            pagingHeader.pagingControl = new Paging_Control(TemplateMain, pagingControlName_top, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
+            pagingHeader.selPageSize = this.RenderPageSize(pagingControlName_top, this.PageSize);
+            pagingHeader.button.Hide();
+
+            this.template.pagingHeader = pagingHeader;
 
             // Paging on bottom
             if (this.TotalPage == 0)
@@ -147,8 +153,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             {
                 this.template.pagingControl = new Paging_Control(TemplateMain, pagingControlName_bottom, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
             }
-
-            this.template.PagingHeader.button.Hide();
         }
 
         public void RenderHeader(TplCore.Element.IElement e)
