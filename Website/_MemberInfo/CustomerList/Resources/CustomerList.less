@@ -1,0 +1,504 @@
+﻿@import "../../../_GlobalResources/Css/Agent.less";
+
+html
+{
+    font-family: Tahoma,Arial,helvetica,sans-serif;
+    font-size: 11px;
+    color: #171717;
+    margin: 0;
+    text-align: left;
+    cursor: default;
+}
+
+body
+{
+    background: #f2f4f6 url(Images/bg_conts.jpg) repeat-x top;
+    background-color: #f5f6f8;
+    background-attachment: fixed;
+    padding: 2px;
+    margin: 0;
+}
+
+#tblCustomerList
+{
+    font-weight: normal;
+    background-color: #B2B2B2;
+    border-collapse: separate;
+    width: 100%;
+    border-spacing: 1px;
+}
+
+#tblCustomerList .header_comm
+{
+    height: 22px;
+    width: 200px;
+    text-align: center;
+}
+
+#tblCustomerList tfoot tr
+{
+    font-weight: normal;
+    height: 20px;
+    text-align: center;
+}
+
+#tblCustomerList tfoot tr
+{
+    background: url( "Images/bg_header04.jpg" ) repeat-x scroll center top #E8E8E8;
+    font-weight: normal;
+    height: 20px;
+    text-align: center;
+}
+
+#tblCustomerList thead tr.header th
+{
+    font-size: 11px;
+    background-color: #CCCCCC;
+    color: #323435;
+    font-weight: normal;
+    height: 22px;
+    width: 200px;
+    text-align: center;
+    background-image: none;
+    padding: 3px;
+    border-left: 1px solid #F6F8F9;
+}
+
+#tblCustomerList thead tr th
+{
+    background: #3D3C3E;
+    color: #FAFDEB;
+    font-size: 11px;
+    text-align: center;
+    font-weight: normal;
+    padding: 0 3px;
+}
+
+#tblCustomerList th:first-child
+{
+    border-left: none;
+}
+
+#tblCustomerList thead tr td
+{
+    background-color: #F9F9F7;
+    text-align: center;
+    border: solid 1px #999;
+}
+
+#tblCustomerList tbody tr
+{
+    text-align: center;
+    border: solid 1px #999;
+}
+
+#tblCustomerList tbody tr
+{
+    text-align: center;
+    border: solid 1px #999;
+    line-height: 25px;
+}
+
+#tblCustomerList tbody tr:hover td
+{
+    background-color: #FBF0B9;
+}
+
+#tblCustomerList tr th
+{
+    border-top: none;
+    height: 22px;
+    padding: 2px;
+    white-space: nowrap;
+}
+
+#tblCustomerList td
+{
+    border-top: none;
+    padding: 2px;
+    white-space: nowrap;
+    background: #fff;
+}
+#tblCustomerList tfoot tr td
+{
+    background: url("Images/bg_header04.jpg") repeat-x scroll center top #E8E8E8;
+}
+
+#tblCustomerList td, th
+{
+    padding: 0 2px;
+}
+
+#title_header
+{
+    background: url( "Images/title.jpg" ) no-repeat scroll left bottom transparent;
+    color: #4B483C;
+    font-weight: bold;
+    height: 22px;
+    line-height: 18px;
+    min-width: 650px;
+    padding-left: 15px;
+    text-transform: uppercase;
+    position: relative;
+}
+#title_header .fullpath {
+    float: left;
+    background: url( "Images/icon-view-full-path.png" ) no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+#tblHeader
+{
+    border: 0;
+    width: 100%;
+}
+
+#tblHeader tr
+{
+    height: 55px;
+}
+
+select
+{
+    font-size: 11px;
+    height: 20px;
+    margin-right: 1px;
+    margin-top: 1px;
+}
+
+.btnEdit
+{
+    background: url( "Images/Pen.gif" ) no-repeat scroll left top transparent;
+    cursor: pointer;
+    display: block;
+    height: 17px;
+    width: 18px;
+}
+
+.text
+{
+    color: Blue;
+    cursor: pointer;
+}
+
+.text:hover
+{
+    color: Red;
+    cursor: pointer;
+}
+
+a:link, a:visited
+{
+    color: #1E1EEB;
+    text-decoration: none;
+}
+a:hover
+{
+    color: #FF6600;
+    text-decoration: none;
+}
+
+.aView
+{
+    background: url( "Images/info.gif" ) no-repeat scroll right center transparent;
+    display: block;
+    padding-right: 7px;
+    color: Blue;
+    cursor: pointer;
+}
+
+#chkPen
+{
+    width: 23px;
+    text-align: center;
+}
+
+.l
+{
+    text-align: left;
+}
+.r
+{
+    text-align: right;
+}
+.c
+{
+    text-align: center;
+}
+
+.arrow
+{
+    background: url("Images/arrow.gif") no-repeat;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+}
+
+.hidden
+{
+    display: none;
+}
+
+.bl_time
+{
+    color: #434343;
+    font-size: 7pt;
+    font-weight: normal;
+    text-align: center;
+}
+
+.RowBgClosed
+{
+    background-color: #ccc7ba;
+}
+.RowBgClosed
+{
+    background-color: #ccc7ba;
+}
+
+.RowBgSuspended
+{
+    background-color: #f8ded7;
+}
+
+.RowBgDisabled
+{
+    background-color: #A0A97A;
+}
+.RowBgOpen
+{
+    background-color: #f9f9f7;
+}
+
+.MaskLoadingDiv
+{
+    background: url(Images/loader3.gif);
+}
+
+.PwdError
+{
+    background: url(Images/x5.gif);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    border-width: 0;
+    display: inline-block;
+}
+
+.PwdSuccess
+{
+    background: url(Images/tick.png);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    border-width: 0;
+    display: inline-block;
+}
+
+.AGEWnd
+{
+    border: 1px solid #000;
+    background-color: #eee;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    -moz-border-radius: 3px 3px 2px 2px; /* Firefox */
+    -webkit-border-radius: 3px 3px 2px 2px; /* Safari and Chrome */
+    border-radius: 3px 3px 2px 2px 2px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+
+.AGEWndMask
+{
+    border: dashed 2px #999;
+    background-color: transparent;
+    z-index: 1002;
+    border-style: dotted;
+    cursor: move;
+}
+
+.AGEWndTitleMask
+{
+    border: solid 0px #fff;
+    background-color: #727272;
+    height: 20px;
+    cursor: move;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: ~"alpha(opacity=01)";
+    -moz-opacity: .01;
+    -khtml-opacity: 0.01;
+    opacity: 0.01;
+    z-index: 1002;
+    padding: 0px 0px;
+    margin: 0px 0px;
+    border-style: none;
+}
+
+.AGEWndTable
+{
+    table-layout: fixed;
+    cursor: default;
+    width: 100%;
+    border: solid 0px transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.AGEWndTitle
+{
+    background-color: #727272;
+    color: #fff;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    background: #000 url(Images/bg_popup.jpg) repeat scroll 0 0;
+    -moz-user-select: no;
+}
+
+.AGEWndTitleDiv
+{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.AGEWndTitleText
+{
+    text-align: left;
+    cursor: pointer;
+}
+
+.AGEWndTitleButton
+{
+    text-align: right;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    padding-right: 1px;
+}
+
+.AGEWndCloseButton
+{
+    width: 15px;
+    height: 15px;
+    background-image: url('Images/x.jpg');
+    line-height: 0;
+    display: block;
+    cursor: pointer;
+}
+
+.AGEWndNoPadding
+{
+    padding: 0;
+    margin: 0;
+}
+.clssBackground
+{
+    background-color: #f8b72b;
+}
+
+input[type=button]
+{
+    font-size: 11px;
+    -moz-border-radius: 3px; /* Firefox */
+    -webkit-border-radius: 3px; /* Safari and Chrome */
+    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+
+input[type=submit]
+{
+    -moz-border-radius: 3px; /* Firefox */
+    -webkit-border-radius: 3px; /* Safari and Chrome */
+    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+
+input[type=reset]
+{
+    -moz-border-radius: 3px; /* Firefox */
+    -webkit-border-radius: 3px; /* Safari and Chrome */
+    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+
+input[type=text]
+{
+    width: 120px;
+}
+
+.HideCol
+{
+    display: none;
+}
+
+/* breadcrumb */
+#page_main {
+    margin-top: 10px;
+}
+
+.agent-list-title {
+    float: left;
+}
+
+.boxNavigation {	
+    line-height: 18px;
+    padding-left: 6px;	
+	border-left: 5px solid #878787;
+	border-bottom: none;
+}
+
+.boxNavigation img {
+    vertical-align: middle;
+}
+
+.boxNavigation img {
+    margin: 0 5px;
+}
+
+.list {
+    position: relative;
+}
+
+.container-sub-nav {
+    position: absolute;
+    left: 2px;
+    top: -21px;
+    z-index: 10;
+}
+
+.sub-nav {
+	margin: 0 0 0 5px;
+	padding: 0;
+}
+
+.sub-nav li {
+	list-style: none;
+	float: left;	
+}
+
+.sub-nav li  a {
+	font-size: 11px;		
+	padding-right: 5px;			
+}
+
+.sub-nav li  a:hover {
+	font-size: 11px;	
+	color: #FF9933;
+	padding-right: 5px;	
+}
+
+.sub-nav li.active {
+	font-size: 11px;		
+	padding-right: 5px;	
+	color: #4B483C;	
+	font-weight: bold;
+}
+
+.line {
+    margin: 0 5px;
+}
+
+.people-icon {
+    background:url('Images/people-icon.png') no-repeat top right;
+    padding-right: 23px;
+    float: left;
+}

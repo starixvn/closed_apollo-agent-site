@@ -14,12 +14,10 @@ namespace Fanex.Agent.UI
 		public class Menu_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>Menu</title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_Menu/Resources/Menu.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"leftpanewrapper\">";
+			protected static string s1{get{return AbsoluteUrl("_Menu/Resources/Menu.less", TplSettings.Question);}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"leftpanewrapper\">";
 			public Menu_MenuTab_Block MenuTab = new Menu_MenuTab_Block();
-			protected static string s5 = "<div id=\"leftpane\">";
+			protected static string s3 = "<div id=\"leftpane\">";
 			public Menu_MenuTab1_Block MenuTab1 = new Menu_MenuTab1_Block();
 			public Menu_NoMenuTab_Block NoMenuTab = new Menu_NoMenuTab_Block();
 			public Menu_SubMenu_Block SubMenu = new Menu_SubMenu_Block();
@@ -28,7 +26,9 @@ namespace Fanex.Agent.UI
 			public Menu_IphoneAd_Block IphoneAd = new Menu_IphoneAd_Block();
 			public Menu_IphoneAd_Gif_Block IphoneAd_Gif = new Menu_IphoneAd_Gif_Block();
 			public Menu_NumberGameAd_Block NumberGameAd = new Menu_NumberGameAd_Block();
-			protected static string s6 = "</div></div></body><script src=\"";
+			protected static string s4 = "</div></div></body><script src=\"";
+			protected static string s5{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
+			protected static string s6 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s9{get{return AbsoluteUrl("_Menu/Resources/Menu.js", TplSettings.Question);}}
@@ -41,10 +41,8 @@ namespace Fanex.Agent.UI
 					bd.Append(s0);
 					bd.Append(s1);
 					bd.Append(s2);
-					bd.Append(s3);
-					bd.Append(s4);
 					if(null != MenuTab) MenuTab.ToString(ref bd);
-					bd.Append(s5);
+					bd.Append(s3);
 					if(null != MenuTab1) MenuTab1.ToString(ref bd);
 					if(null != NoMenuTab) NoMenuTab.ToString(ref bd);
 					if(null != SubMenu) SubMenu.ToString(ref bd);
@@ -53,6 +51,8 @@ namespace Fanex.Agent.UI
 					if(null != IphoneAd) IphoneAd.ToString(ref bd);
 					if(null != IphoneAd_Gif) IphoneAd_Gif.ToString(ref bd);
 					if(null != NumberGameAd) NumberGameAd.ToString(ref bd);
+					bd.Append(s4);
+					bd.Append(s5);
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
@@ -156,7 +156,7 @@ namespace Fanex.Agent.UI
 			protected string t2_sub_id;
 			protected static string s29 = "\" style=\"display: ";
 			public string item_display = "{item_display}";
-			protected static string s30 = "\"><div class=\"left_line\"><img alt=\"\" width=\"1\" height=\"1\" name=\"\" src=\"";
+			protected static string s30 = "\" class=\"submenu-list\"><div class=\"left_line\"><img alt=\"\" width=\"1\" height=\"1\" name=\"\" src=\"";
 			protected static string s31{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
 			protected static string s32 = "\" /></div><div class=\"Bleft_Sub0\" id=\"SubMenu\">";
 			public Menu_SubMenu_MenuItem_Block MenuItem = new Menu_SubMenu_MenuItem_Block();

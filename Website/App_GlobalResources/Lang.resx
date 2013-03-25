@@ -4227,4 +4227,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="NameExistedTpl" xml:space="preserve">
     <value>'{0}' existed</value>
   </data>
+  <data name="lblParentname" xml:space="preserve">
+    <value>Parent</value>
+  </data>
 </root>

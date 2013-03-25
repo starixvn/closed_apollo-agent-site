@@ -16,51 +16,49 @@ namespace Fanex.Agent.UI
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.lblMemberCommission;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s3{get{return AbsoluteUrl("_Reports/Resources/Reports.less", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("_Reports/Resources/Reports.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s7{get{return AbsoluteUrl("_MemberInfo/PositionTakingList/Resources/PositionTakingList.css", TplSettings.Question);}}
-			protected static string s8 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\"><div>";
-			protected static string s9{get{return Resources.Lang.lblMemberCommission;}}
-			protected static string s10 = "</div></div><div id=\"tbl-container\"><div id=\"boderRight\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td><table id=\"box_header\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%;padding-left:3px\"><tr><td width=\"400\">";
+			protected static string s5{get{return AbsoluteUrl("_MemberInfo/PositionTakingList/Resources/PositionTakingList.css", TplSettings.Question);}}
+			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\"><div>";
+			protected static string s7{get{return Resources.Lang.lblMemberCommission;}}
+			protected static string s8 = "</div></div><div id=\"tbl-container\"><div id=\"boderRight\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td><table id=\"box_header\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%;padding-left:3px\"><tr><td width=\"400\">";
 			public string CommonGroup = "{CommonGroup}";
-			protected static string s11 = "</td>";
+			protected static string s9 = "</td>";
 			public MemberCommissionP2P_GroupAgent_Block GroupAgent = new MemberCommissionP2P_GroupAgent_Block();
-			protected static string s12 = "</tr><tr><td style=\"text-align: left\" colspan=\"4\" class=\"warning\"><ul><li>";
+			protected static string s10 = "</tr><tr><td style=\"text-align: left\" colspan=\"4\" class=\"warning\"><ul><li>";
 			public string CommToAllTypes = "{CommToAllTypes}";
-			protected static string s13 = "</li></ul></td></tr></table></td></tr><tr><td><table id=\"tblMain\" border=\"1\" cellpadding=\"2\" cellspacing=\"0\" style=\"width:100%;\"><thead><tr class=\"RptHeader nowrap\"><td colspan=\"2\">&nbsp;</td><td colspan=\"";
+			protected static string s11 = "</li></ul></td></tr></table></td></tr><tr><td><table id=\"tblMain\" border=\"1\" cellpadding=\"2\" cellspacing=\"0\" style=\"width:100%;\"><thead><tr class=\"RptHeader nowrap\"><td colspan=\"2\">&nbsp;</td><td colspan=\"";
 			public string gamesColspan = "{gamesColspan}";
-			protected static string s14 = "\">";
-			protected static string s15{get{return Resources.Lang.games;}}
-			protected static string s16 = "</td><td colspan=\"";
+			protected static string s12 = "\">";
+			protected static string s13{get{return Resources.Lang.games;}}
+			protected static string s14 = "</td><td colspan=\"";
 			public string privateGamesColspan = "{privateGamesColspan}";
-			protected static string s17 = "\">";
-			protected static string s18{get{return Resources.Lang.privateGames;}}
-			protected static string s19 = "</td><td></td></tr><tr class=\"c\"><td class=\"RptHeader02\" style=\"width: 25px;\">#</td><td class=\"RptHeader02\">";
-			protected static string s20{get{return Resources.Lang.username;}}
-			protected static string s21 = "</td>";
+			protected static string s15 = "\">";
+			protected static string s16{get{return Resources.Lang.privateGames;}}
+			protected static string s17 = "</td><td></td></tr><tr class=\"c\"><td class=\"RptHeader02\" style=\"width: 25px;\">#</td><td class=\"RptHeader02\">";
+			protected static string s18{get{return Resources.Lang.username;}}
+			protected static string s19 = "</td>";
 			public MemberCommissionP2P_MasterColumn_Block MasterColumn = new MemberCommissionP2P_MasterColumn_Block();
-			protected static string s22 = "<td class=\"colHdr2\" title=\"";
-			protected static string s23{get{return Resources.Lang.agent;}}
-			protected static string s24 = "\">A</td><td class=\"colHdr2\" title=\"";
-			protected static string s25{get{return Resources.Lang.member;}}
-			protected static string s26 = "\">P</td>";
+			protected static string s20 = "<td class=\"colHdr2\" title=\"";
+			protected static string s21{get{return Resources.Lang.agent;}}
+			protected static string s22 = "\">A</td><td class=\"colHdr2\" title=\"";
+			protected static string s23{get{return Resources.Lang.member;}}
+			protected static string s24 = "\">P</td>";
 			public MemberCommissionP2P_MasterColumn2_Block MasterColumn2 = new MemberCommissionP2P_MasterColumn2_Block();
-			protected static string s27 = "<td class=\"colHdr\" title=\"";
-			protected static string s28{get{return Resources.Lang.agent;}}
-			protected static string s29 = "\">A</td><td class=\"colHdr\" title=\"";
-			protected static string s30{get{return Resources.Lang.member;}}
-			protected static string s31 = "\">P</td><td class=\"RptHeader02\">";
-			protected static string s32{get{return Resources.Lang.username;}}
-			protected static string s33 = "</td></tr></thead><tbody>";
+			protected static string s25 = "<td class=\"colHdr\" title=\"";
+			protected static string s26{get{return Resources.Lang.agent;}}
+			protected static string s27 = "\">A</td><td class=\"colHdr\" title=\"";
+			protected static string s28{get{return Resources.Lang.member;}}
+			protected static string s29 = "\">P</td><td class=\"RptHeader02\">";
+			protected static string s30{get{return Resources.Lang.username;}}
+			protected static string s31 = "</td></tr></thead><tbody>";
 			public MemberCommissionP2P_NoRowInfo_Block NoRowInfo = new MemberCommissionP2P_NoRowInfo_Block();
 			public MemberCommissionP2P_Rows_Block Rows = new MemberCommissionP2P_Rows_Block();
-			protected static string s34 = "</tbody></table></td></tr></table></div></div></div><script src=\"";
-			protected static string s35{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s36 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s37{get{return AbsoluteUrl("_MemberInfo/Commission/Resources/MemberCommissionP2P.js", TplSettings.Question);}}
-			protected static string s38 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s32 = "</tbody></table></td></tr></table></div></div></div><script src=\"";
+			protected static string s33{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s34 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s35{get{return AbsoluteUrl("_MemberInfo/Commission/Resources/MemberCommissionP2P.js", TplSettings.Question);}}
+			protected static string s36 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -75,45 +73,43 @@ namespace Fanex.Agent.UI
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
-					bd.Append(s9);
-					bd.Append(s10);
 					bd.Append(CommonGroup);
-					bd.Append(s11);
+					bd.Append(s9);
 					if(null != GroupAgent) GroupAgent.ToString(ref bd);
-					bd.Append(s12);
+					bd.Append(s10);
 					bd.Append(CommToAllTypes);
-					bd.Append(s13);
+					bd.Append(s11);
 					bd.Append(gamesColspan);
+					bd.Append(s12);
+					bd.Append(s13);
 					bd.Append(s14);
+					bd.Append(privateGamesColspan);
 					bd.Append(s15);
 					bd.Append(s16);
-					bd.Append(privateGamesColspan);
 					bd.Append(s17);
 					bd.Append(s18);
 					bd.Append(s19);
+					if(null != MasterColumn) MasterColumn.ToString(ref bd);
 					bd.Append(s20);
 					bd.Append(s21);
-					if(null != MasterColumn) MasterColumn.ToString(ref bd);
 					bd.Append(s22);
 					bd.Append(s23);
 					bd.Append(s24);
+					if(null != MasterColumn2) MasterColumn2.ToString(ref bd);
 					bd.Append(s25);
 					bd.Append(s26);
-					if(null != MasterColumn2) MasterColumn2.ToString(ref bd);
 					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
 					bd.Append(s30);
 					bd.Append(s31);
-					bd.Append(s32);
-					bd.Append(s33);
 					if(null != NoRowInfo) NoRowInfo.ToString(ref bd);
 					if(null != Rows) Rows.ToString(ref bd);
+					bd.Append(s32);
+					bd.Append(s33);
 					bd.Append(s34);
 					bd.Append(s35);
 					bd.Append(s36);
-					bd.Append(s37);
-					bd.Append(s38);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -129,22 +125,22 @@ namespace Fanex.Agent.UI
 		public class MemberCommissionP2P_GroupAgent_Block: Block
 		{
 			public MemberCommissionP2P_GroupAgent_GroupMaster_Block GroupMaster = new MemberCommissionP2P_GroupAgent_GroupMaster_Block();
-			protected static string s39 = "<td width=\"100\" class=\"r\">";
-			protected static string s40{get{return Resources.Lang.selectagent;}}
-			protected static string s41 = "</td><td width=\"140\" id=\"selagent\" name=\"selagent\" ><select id=\"selAg\" name=\"selAg\" onchange=\"show_data_com();\">";
+			protected static string s37 = "<td width=\"100\" class=\"r\">";
+			protected static string s38{get{return Resources.Lang.selectagent;}}
+			protected static string s39 = "</td><td width=\"140\" id=\"selagent\" name=\"selagent\" ><select id=\"selAg\" name=\"selAg\" onchange=\"show_data_com();\">";
 			public string ComboAgent = "{ComboAgent}";
-			protected static string s42 = "</select></td><td></td>";
+			protected static string s40 = "</select></td><td></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != GroupMaster) GroupMaster.ToString(ref bd);
+					bd.Append(s37);
+					bd.Append(s38);
 					bd.Append(s39);
-					bd.Append(s40);
-					bd.Append(s41);
 					bd.Append(ComboAgent);
-					bd.Append(s42);
+					bd.Append(s40);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -152,21 +148,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionP2P_GroupAgent_GroupMaster_Block: Block
 		{
-			protected static string s43 = "<td width=\"110\" class=\"r\">";
-			protected static string s44{get{return Resources.Lang.selectmaster;}}
-			protected static string s45 = "</td><td width=\"120\" ><select id=\"selmaster\" name=\"selmaster\" onchange=\"getData_MemberCommission_Agent();\">";
+			protected static string s41 = "<td width=\"110\" class=\"r\">";
+			protected static string s42{get{return Resources.Lang.selectmaster;}}
+			protected static string s43 = "</td><td width=\"120\" ><select id=\"selmaster\" name=\"selmaster\" onchange=\"getData_MemberCommission_Agent();\">";
 			public string ComboMaster = "{ComboMaster}";
-			protected static string s46 = "</select></td>";
+			protected static string s44 = "</select></td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s41);
+					bd.Append(s42);
 					bd.Append(s43);
-					bd.Append(s44);
-					bd.Append(s45);
 					bd.Append(ComboMaster);
-					bd.Append(s46);
+					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -174,17 +170,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionP2P_MasterColumn_Block: Block
 		{
-			protected static string s47 = "<td class=\"colHdr2\" title=\"";
-			protected static string s48{get{return Resources.Lang.master;}}
-			protected static string s49 = "\">M</td>";
+			protected static string s45 = "<td class=\"colHdr2\" title=\"";
+			protected static string s46{get{return Resources.Lang.master;}}
+			protected static string s47 = "\">M</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s45);
+					bd.Append(s46);
 					bd.Append(s47);
-					bd.Append(s48);
-					bd.Append(s49);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -192,17 +188,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionP2P_MasterColumn2_Block: Block
 		{
-			protected static string s50 = "<td class=\"colHdr\" title=\"";
-			protected static string s51{get{return Resources.Lang.master;}}
-			protected static string s52 = "\">M</td>";
+			protected static string s48 = "<td class=\"colHdr\" title=\"";
+			protected static string s49{get{return Resources.Lang.master;}}
+			protected static string s50 = "\">M</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s48);
+					bd.Append(s49);
 					bd.Append(s50);
-					bd.Append(s51);
-					bd.Append(s52);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -210,21 +206,21 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionP2P_NoRowInfo_Block: Block
 		{
-			protected static string s53 = "<tr class=\"bg_white\"><td colspan=\"";
+			protected static string s51 = "<tr class=\"bg_white\"><td colspan=\"";
 			public string NoInfoColspan = "{NoInfoColspan}";
-			protected static string s54 = "\" class=\"c nobold\">";
+			protected static string s52 = "\" class=\"c nobold\">";
 			public string NoInfo = "{NoInfo}";
-			protected static string s55 = "</td></tr>";
+			protected static string s53 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s53);
+					bd.Append(s51);
 					bd.Append(NoInfoColspan);
-					bd.Append(s54);
+					bd.Append(s52);
 					bd.Append(NoInfo);
-					bd.Append(s55);
+					bd.Append(s53);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -232,53 +228,53 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionP2P_Rows_Block: Block
 		{
-			protected static string s56 = "<tr class=\"";
+			protected static string s54 = "<tr class=\"";
 			public string BgRow = "{BgRow}";
-			protected static string s57 = "\"><td class=\"w-order\">";
+			protected static string s55 = "\"><td class=\"w-order\">";
 			public string No = "{No}";
-			protected static string s58 = "</td><td class=\"l\">";
+			protected static string s56 = "</td><td class=\"l\">";
 			public string UserName = "{UserName}";
-			protected static string s59 = "</td>";
+			protected static string s57 = "</td>";
 			public MemberCommissionP2P_Rows_MDiscount1_Block MDiscount1 = new MemberCommissionP2P_Rows_MDiscount1_Block();
-			protected static string s60 = "<td class=\"colHdr2\" style=\"width: 60px;\">";
+			protected static string s58 = "<td class=\"colHdr2\" style=\"width: 60px;\">";
 			public string ADiscount1 = "{ADiscount1}";
-			protected static string s61 = "</td><td class=\"colHdr2\" style=\"width: 60px;\">";
+			protected static string s59 = "</td><td class=\"colHdr2\" style=\"width: 60px;\">";
 			public string Discount1 = "{Discount1}";
-			protected static string s62 = "</td>";
+			protected static string s60 = "</td>";
 			public MemberCommissionP2P_Rows_MDiscount2_Block MDiscount2 = new MemberCommissionP2P_Rows_MDiscount2_Block();
-			protected static string s63 = "<td class=\"colHdr\" style=\"width: 60px;\">";
+			protected static string s61 = "<td class=\"colHdr\" style=\"width: 60px;\">";
 			public string ADiscount2 = "{ADiscount2}";
-			protected static string s64 = "</td><td class=\"colHdr\" style=\"width: 60px;\">";
+			protected static string s62 = "</td><td class=\"colHdr\" style=\"width: 60px;\">";
 			public string Discount2 = "{Discount2}";
-			protected static string s65 = "</td><td class=\"l\">";
+			protected static string s63 = "</td><td class=\"l\">";
 			protected string t0_UserName;
-			protected static string s66 = "</td></tr>";
+			protected static string s64 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s56);
+					bd.Append(s54);
 					bd.Append(BgRow);
-					bd.Append(s57);
+					bd.Append(s55);
 					bd.Append(No);
-					bd.Append(s58);
+					bd.Append(s56);
 					bd.Append(UserName);
-					bd.Append(s59);
+					bd.Append(s57);
 					if(null != MDiscount1) MDiscount1.ToString(ref bd);
-					bd.Append(s60);
+					bd.Append(s58);
 					bd.Append(ADiscount1);
-					bd.Append(s61);
+					bd.Append(s59);
 					bd.Append(Discount1);
-					bd.Append(s62);
+					bd.Append(s60);
 					if(null != MDiscount2) MDiscount2.ToString(ref bd);
-					bd.Append(s63);
+					bd.Append(s61);
 					bd.Append(ADiscount2);
-					bd.Append(s64);
+					bd.Append(s62);
 					bd.Append(Discount2);
-					bd.Append(s65);
+					bd.Append(s63);
 					bd.Append(UserName);
-					bd.Append(s66);
+					bd.Append(s64);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -286,17 +282,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionP2P_Rows_MDiscount1_Block: Block
 		{
-			protected static string s67 = "<td class=\"colHdr2\" style=\"width: 60px;\">";
+			protected static string s65 = "<td class=\"colHdr2\" style=\"width: 60px;\">";
 			public string MDiscount1 = "{MDiscount1}";
-			protected static string s68 = "</td>";
+			protected static string s66 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s67);
+					bd.Append(s65);
 					bd.Append(MDiscount1);
-					bd.Append(s68);
+					bd.Append(s66);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -304,17 +300,17 @@ namespace Fanex.Agent.UI
 
 		public class MemberCommissionP2P_Rows_MDiscount2_Block: Block
 		{
-			protected static string s69 = "<td class=\"colHdr\" style=\"width: 60px;\">";
+			protected static string s67 = "<td class=\"colHdr\" style=\"width: 60px;\">";
 			public string MDiscount2 = "{MDiscount2}";
-			protected static string s70 = "</td>";
+			protected static string s68 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s69);
+					bd.Append(s67);
 					bd.Append(MDiscount2);
-					bd.Append(s70);
+					bd.Append(s68);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

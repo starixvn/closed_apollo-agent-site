@@ -14,7 +14,7 @@ namespace Fanex.Age.UI.Components
 		public class ErrorPage_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>Error</title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("ErrorPage/ErrorPage.css", TplSettings.Question);}}
+			protected static string s1{get{return AbsoluteUrl("ErrorPage/ErrorPage.less", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><center><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"35%\" id=\"diverrmsg\" style=\"display: block; min-width: 300px\"><tr><td class=\"emsg_1_1\">&nbsp;</td><td class=\"emsg_1_2\">&nbsp;</td><td class=\"emsg_1_3\">&nbsp;</td></tr><tr><td valign=\"top\" class=\"emsg_2_1\">&nbsp;</td><td valign=\"top\" id=\"spmsgerr\" class=\"msgerr\">";
 			public string errorMsg = "{errorMsg}";
 			protected static string s3 = "</td><td class=\"emsg_2_2\">&nbsp;</td></tr><tr><td class=\"emsg_3_1\">&nbsp;</td><td class=\"emsg_3_2\">&nbsp;</td><td class=\"emsg_3_3\">&nbsp;</td></tr></table></center></body></html>";

@@ -1,5 +1,5 @@
 <!--HiddenBlock-->
-<link href="Resources/AccountInfo.css" rel="stylesheet" type="text/css" />
+<link href="Resources/AccountInfo.less" rel="stylesheet" type="text/css" />
 <link href="Resources/styles.css" rel="stylesheet" type="text/css" />
 <!--/HiddenBlock-->
 <link href="Resources/treeview.css" rel="stylesheet" type="text/css" />
@@ -48,17 +48,7 @@
                 </tbody>
             </table>
             <!--/CustInfo-->           
-        </div>
-        <div class="agent-tooltip">
-            <div class="agent-downline-list-container" id="agent-downline-list">
-                <div class="top"></div>
-                <div class="middle">
-                    <ul id="agent-downline" class="agent-list">                            
-                    </ul>
-                </div>
-                <div class="bottom"></div>
-            </div>
-        </div>        
+        </div>               
     </div>    
 </div> 
 
@@ -71,7 +61,16 @@
 <!--ButtonBetList-->
 <div id="button_nLeft02"><a class="b_nleft" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{memberlistlink}">{static:Resources.Lang.BetList}</a></div>
 <!--/ButtonBetList-->
-
+<div class="agent-tooltip">
+    <div class="agent-downline-list-container" id="agent-downline-list">
+        <div class="top"></div>
+        <div class="middle">
+            <ul id="agent-downline" class="agent-list">                            
+            </ul>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div> 
 <!--insert jquery and treeview javascript-->
 <link href="Resources/treeview.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>

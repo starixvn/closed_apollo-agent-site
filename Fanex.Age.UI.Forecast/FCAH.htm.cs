@@ -14,19 +14,17 @@ namespace Fanex.Age.UI.Forecast
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.lblForecast;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("Resources/FC.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body>";
+			protected static string s3{get{return AbsoluteUrl("Resources/FC.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body>";
 			public Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown{get {return _RefreshCountDown != null ? _RefreshCountDown : _RefreshCountDown =  new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"FCAH","RefreshFC");}}
 			protected Fanex.Age.UI.Components.RefreshCountDown_Control _RefreshCountDown;
-			protected static string s7 = "<div id=\"sContent\">";
+			protected static string s5 = "<div id=\"sContent\">";
 			public FCAH_Content_Block Content = new FCAH_Content_Block();
-			protected static string s8 = "</div><script src=\"";
-			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("Resources/FC.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s6 = "</div><script src=\"";
+			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("Resources/FC.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -37,16 +35,14 @@ namespace Fanex.Age.UI.Forecast
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
-					bd.Append(s5);
-					bd.Append(s6);
 					bd.Append(RefreshCountDown);
-					bd.Append(s7);
+					bd.Append(s5);
 					if(null != Content) Content.ToString(ref bd);
+					bd.Append(s6);
+					bd.Append(s7);
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
-					bd.Append(s11);
-					bd.Append(s12);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -77,75 +73,75 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCAH_Content_ForecastContent_Block: Block
 		{
-			protected static string s13 = "<table class=\"tblRpt\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 100%;\"><tr class=\"RptHeader\"><td>";
-			protected static string s14{get{return Resources.Lang.lblTeam;}}
-			protected static string s15 = "</td><td>";
-			protected static string s16{get{return Resources.Lang.lblScore;}}
-			protected static string s17 = "</td></tr><tr class=\"even_row c\"><td>";
+			protected static string s11 = "<table class=\"tblRpt\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 100%;\"><tr class=\"RptHeader\"><td>";
+			protected static string s12{get{return Resources.Lang.lblTeam;}}
+			protected static string s13 = "</td><td>";
+			protected static string s14{get{return Resources.Lang.lblScore;}}
+			protected static string s15 = "</td></tr><tr class=\"even_row c\"><td>";
 			public string Home = "{Home}";
-			protected static string s18 = " -vs- ";
+			protected static string s16 = " -vs- ";
 			public string Away = "{Away}";
-			protected static string s19 = "</td><td>";
+			protected static string s17 = "</td><td>";
 			public string LiveHomeScore = "{LiveHomeScore}";
-			protected static string s20 = " : ";
+			protected static string s18 = " : ";
 			public string LiveAwayScore = "{LiveAwayScore}";
-			protected static string s21 = "</td></tr></table><br /><table class=\"tblRpt default-tbl\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 100%;\"><tr class=\"even_row\" align=\"center\"><td bgcolor=\"#cccccc\"><b>";
+			protected static string s19 = "</td></tr></table><br /><table class=\"tblRpt default-tbl\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 100%;\"><tr class=\"even_row\" align=\"center\"><td bgcolor=\"#cccccc\"><b>";
 			public string Title = "{Title}";
-			protected static string s22 = "</b></td><td colspan=\"4\">";
+			protected static string s20 = "</b></td><td colspan=\"4\">";
 			public FCAH_Content_ForecastContent_ForecastPointContent_Block ForecastPointContent = new FCAH_Content_ForecastContent_ForecastPointContent_Block();
-			protected static string s23 = "</td></tr>";
+			protected static string s21 = "</td></tr>";
 			public FCAH_Content_ForecastContent_ForecastValue_Block ForecastValue = new FCAH_Content_ForecastContent_ForecastValue_Block();
 			public FCAH_Content_ForecastContent_NoInfo_Block NoInfo = new FCAH_Content_ForecastContent_NoInfo_Block();
-			protected static string s24 = "<tr class=\"even_row\"><td colspan=\"5\">";
+			protected static string s22 = "<tr class=\"even_row\"><td colspan=\"5\">";
 			public FCAH_Content_ForecastContent_BetListLink_Block BetListLink = new FCAH_Content_ForecastContent_BetListLink_Block();
-			protected static string s25 = "<a class=\"forecast_toggle_link\" href='javascript:GetFCAH(";
+			protected static string s23 = "<a class=\"forecast_toggle_link\" href='javascript:GetFCAH(";
 			public string MatchId = "{MatchId}";
-			protected static string s26 = ",0,";
+			protected static string s24 = ",0,";
 			public string ToggleBetType = "{ToggleBetType}";
-			protected static string s27 = ")'>";
+			protected static string s25 = ")'>";
 			public string ToggleFC = "{ToggleFC}";
-			protected static string s28 = "</a></td></tr></table><input type=\"hidden\" id=\"bettype_vl\" value=\"";
+			protected static string s26 = "</a></td></tr></table><input type=\"hidden\" id=\"bettype_vl\" value=\"";
 			public string BetType = "{BetType}";
-			protected static string s29 = "\" /><input type=\"hidden\" id=\"score_vl\" value=\"";
+			protected static string s27 = "\" /><input type=\"hidden\" id=\"score_vl\" value=\"";
 			public string ScoreValue = "{ScoreValue}";
-			protected static string s30 = "\" />";
+			protected static string s28 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s11);
+					bd.Append(s12);
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
-					bd.Append(s16);
-					bd.Append(s17);
 					bd.Append(Home);
-					bd.Append(s18);
+					bd.Append(s16);
 					bd.Append(Away);
-					bd.Append(s19);
+					bd.Append(s17);
 					bd.Append(LiveHomeScore);
-					bd.Append(s20);
+					bd.Append(s18);
 					bd.Append(LiveAwayScore);
-					bd.Append(s21);
+					bd.Append(s19);
 					bd.Append(Title);
-					bd.Append(s22);
+					bd.Append(s20);
 					if(null != ForecastPointContent) ForecastPointContent.ToString(ref bd);
-					bd.Append(s23);
+					bd.Append(s21);
 					if(null != ForecastValue) ForecastValue.ToString(ref bd);
 					if(null != NoInfo) NoInfo.ToString(ref bd);
-					bd.Append(s24);
+					bd.Append(s22);
 					if(null != BetListLink) BetListLink.ToString(ref bd);
-					bd.Append(s25);
+					bd.Append(s23);
 					bd.Append(MatchId);
-					bd.Append(s26);
+					bd.Append(s24);
 					bd.Append(ToggleBetType);
-					bd.Append(s27);
+					bd.Append(s25);
 					bd.Append(ToggleFC);
-					bd.Append(s28);
+					bd.Append(s26);
 					bd.Append(BetType);
-					bd.Append(s29);
+					bd.Append(s27);
 					bd.Append(ScoreValue);
-					bd.Append(s30);
+					bd.Append(s28);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -153,29 +149,29 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCAH_Content_ForecastContent_ForecastPointContent_Block: Block
 		{
-			protected static string s31 = "<a href='javascript:GetFCAH(";
+			protected static string s29 = "<a href='javascript:GetFCAH(";
 			public string MatchId = "{MatchId}";
-			protected static string s32 = ",";
+			protected static string s30 = ",";
 			public string ForecastPoint = "{ForecastPoint}";
-			protected static string s33 = ",";
+			protected static string s31 = ",";
 			public string BetType = "{BetType}";
-			protected static string s34 = ")'>";
+			protected static string s32 = ")'>";
 			public string ForecastPointValue = "{ForecastPointValue}";
-			protected static string s35 = "</a>&nbsp;";
+			protected static string s33 = "</a>&nbsp;";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s31);
+					bd.Append(s29);
 					bd.Append(MatchId);
-					bd.Append(s32);
+					bd.Append(s30);
 					bd.Append(ForecastPoint);
-					bd.Append(s33);
+					bd.Append(s31);
 					bd.Append(BetType);
-					bd.Append(s34);
+					bd.Append(s32);
 					bd.Append(ForecastPointValue);
-					bd.Append(s35);
+					bd.Append(s33);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -183,53 +179,53 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCAH_Content_ForecastContent_ForecastValue_Block: Block
 		{
-			protected static string s36 = "<tr class=\"even_row\" align=\"center\"><td>";
+			protected static string s34 = "<tr class=\"even_row\" align=\"center\"><td>";
 			public string VScore4 = "{VScore4}";
-			protected static string s37 = "</td><td>";
+			protected static string s35 = "</td><td>";
 			public string VScore3 = "{VScore3}";
-			protected static string s38 = "</td><td>";
+			protected static string s36 = "</td><td>";
 			public string VScore2 = "{VScore2}";
-			protected static string s39 = "</td><td>";
+			protected static string s37 = "</td><td>";
 			public string VScore1 = "{VScore1}";
-			protected static string s40 = "</td><td>";
+			protected static string s38 = "</td><td>";
 			public string VScore = "{VScore}";
-			protected static string s41 = "</td></tr><tr class=\"even_row\" align=\"center\"><td>";
+			protected static string s39 = "</td></tr><tr class=\"even_row\" align=\"center\"><td>";
 			public string FCValue4 = "{FCValue4}";
-			protected static string s42 = "</td><td>";
+			protected static string s40 = "</td><td>";
 			public string FCValue3 = "{FCValue3}";
-			protected static string s43 = "</td><td>";
+			protected static string s41 = "</td><td>";
 			public string FCValue2 = "{FCValue2}";
-			protected static string s44 = "</td><td>";
+			protected static string s42 = "</td><td>";
 			public string FCValue1 = "{FCValue1}";
-			protected static string s45 = "</td><td>";
+			protected static string s43 = "</td><td>";
 			public string FCValue0 = "{FCValue0}";
-			protected static string s46 = "</td></tr>";
+			protected static string s44 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s36);
+					bd.Append(s34);
 					bd.Append(VScore4);
-					bd.Append(s37);
+					bd.Append(s35);
 					bd.Append(VScore3);
-					bd.Append(s38);
+					bd.Append(s36);
 					bd.Append(VScore2);
-					bd.Append(s39);
+					bd.Append(s37);
 					bd.Append(VScore1);
-					bd.Append(s40);
+					bd.Append(s38);
 					bd.Append(VScore);
-					bd.Append(s41);
+					bd.Append(s39);
 					bd.Append(FCValue4);
-					bd.Append(s42);
+					bd.Append(s40);
 					bd.Append(FCValue3);
-					bd.Append(s43);
+					bd.Append(s41);
 					bd.Append(FCValue2);
-					bd.Append(s44);
+					bd.Append(s42);
 					bd.Append(FCValue1);
-					bd.Append(s45);
+					bd.Append(s43);
 					bd.Append(FCValue0);
-					bd.Append(s46);
+					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -237,17 +233,17 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCAH_Content_ForecastContent_NoInfo_Block: Block
 		{
-			protected static string s47 = "<tr class=\"no_info\"><td colspan=\"5\">";
-			protected static string s48{get{return Resources.Lang.noInfo;}}
-			protected static string s49 = "</td></tr>";
+			protected static string s45 = "<tr class=\"no_info\"><td colspan=\"5\">";
+			protected static string s46{get{return Resources.Lang.noInfo;}}
+			protected static string s47 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s45);
+					bd.Append(s46);
 					bd.Append(s47);
-					bd.Append(s48);
-					bd.Append(s49);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -255,29 +251,29 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCAH_Content_ForecastContent_BetListLink_Block: Block
 		{
-			protected static string s50 = "<a class=\"forecast_betlist_link\" href=\"../_BetList/BetList.aspx?matchid=";
+			protected static string s48 = "<a class=\"forecast_betlist_link\" href=\"../_BetList/BetList.aspx?matchid=";
 			public string MatchId = "{MatchId}";
-			protected static string s51 = "&bettype=";
+			protected static string s49 = "&bettype=";
 			public string BetType = "{BetType}";
-			protected static string s52 = "&type=";
+			protected static string s50 = "&type=";
 			public string BetTypeValue = "{BetTypeValue}";
-			protected static string s53 = "\">";
-			protected static string s54{get{return Resources.Lang.lblBetLists;}}
-			protected static string s55 = "</a>";
+			protected static string s51 = "\">";
+			protected static string s52{get{return Resources.Lang.lblBetLists;}}
+			protected static string s53 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s50);
+					bd.Append(s48);
 					bd.Append(MatchId);
-					bd.Append(s51);
+					bd.Append(s49);
 					bd.Append(BetType);
-					bd.Append(s52);
+					bd.Append(s50);
 					bd.Append(BetTypeValue);
+					bd.Append(s51);
+					bd.Append(s52);
 					bd.Append(s53);
-					bd.Append(s54);
-					bd.Append(s55);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -285,17 +281,17 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCAH_Content_NoInfo_Block: Block
 		{
-			protected static string s56 = "<table class=\"tblRpt\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 100%;\"><tr class=\"no_info\"><td>";
-			protected static string s57{get{return Resources.Lang.noInfo;}}
-			protected static string s58 = "</td></tr></table>";
+			protected static string s54 = "<table class=\"tblRpt\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 100%;\"><tr class=\"no_info\"><td>";
+			protected static string s55{get{return Resources.Lang.noInfo;}}
+			protected static string s56 = "</td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s54);
+					bd.Append(s55);
 					bd.Append(s56);
-					bd.Append(s57);
-					bd.Append(s58);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

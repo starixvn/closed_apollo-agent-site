@@ -162,7 +162,9 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
       <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>

@@ -30,7 +30,14 @@ function MenuItemSelect(index) {
 
 function MenuToggle(index) {
     var subMenu = document.getElementById('div' + index);
-    subMenu.style.display = (subMenu.style.display == 'none') ? 'block' : 'none';
+
+    if (subMenu.style.display == 'none') {
+        $('.submenu-list').hide();
+        subMenu.style.display = 'block';               
+    } else {
+        subMenu.style.display = 'none';        
+    }
+    //subMenu.style.display = (subMenu.style.display == 'none') ? 'block' : 'none';
     var aMenu = document.getElementById('a' + index);
     aMenu.className = (aMenu.className == 'Bleft_Parent') ? 'Bleft_ParentAc' : 'Bleft_Parent';
 }

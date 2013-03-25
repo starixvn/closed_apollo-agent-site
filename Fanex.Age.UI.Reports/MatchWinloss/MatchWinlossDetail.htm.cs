@@ -16,26 +16,24 @@ namespace Fanex.Age.UI.Reports
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.lblMatchWinLostDetail;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("Resources/Reports.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"post\" action=\"";
-			protected static string s7{get{return AbsoluteUrl2("MatchWinloss/MatchWinLossDetail.aspx");}}
-			protected static string s8 = "\"><div id=\"page_main\" onclick=\"setVisibleBoxLeague()\"><div id=\"header_main\">";
-			protected static string s9{get{return Resources.Lang.lblMatchWinLostDetail;}}
-			protected static string s10 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 99%\"><tr><td>";
+			protected static string s3{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"post\" action=\"";
+			protected static string s5{get{return AbsoluteUrl2("MatchWinloss/MatchWinLossDetail.aspx");}}
+			protected static string s6 = "\"><div id=\"page_main\" onclick=\"setVisibleBoxLeague()\"><div id=\"header_main\">";
+			protected static string s7{get{return Resources.Lang.lblMatchWinLostDetail;}}
+			protected static string s8 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 99%\"><tr><td>";
 			public string SearchPanel = "{SearchPanel}";
-			protected static string s11 = "</td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
+			protected static string s9 = "</td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
 			public MatchWinlossDetail_ExcelContents_Block ExcelContents = new MatchWinlossDetail_ExcelContents_Block();
-			protected static string s12 = "</div></div></td></tr></table></div>";
+			protected static string s10 = "</div></div></td></tr></table></div>";
 			public string BoxLeague = "{BoxLeague}";
-			protected static string s13 = "</form><script src=\"";
-			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s11 = "</form><script src=\"";
+			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s14{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
 			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s16{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s17 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s18{get{return AbsoluteUrl("Resources/SelectLeagues.js", TplSettings.Question);}}
-			protected static string s19 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s16{get{return AbsoluteUrl("Resources/SelectLeagues.js", TplSettings.Question);}}
+			protected static string s17 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -50,20 +48,18 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
-					bd.Append(s9);
-					bd.Append(s10);
 					bd.Append(SearchPanel);
-					bd.Append(s11);
+					bd.Append(s9);
 					if(null != ExcelContents) ExcelContents.ToString(ref bd);
-					bd.Append(s12);
+					bd.Append(s10);
 					bd.Append(BoxLeague);
+					bd.Append(s11);
+					bd.Append(s12);
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
 					bd.Append(s16);
 					bd.Append(s17);
-					bd.Append(s18);
-					bd.Append(s19);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -78,77 +74,79 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Block: Block
 		{
-			protected static string s20 = "<table class=\"tblRpt ";
+			protected static string s18 = "<table class=\"tblRpt ";
 			public string BoldRow = "{BoldRow}";
-			protected static string s21 = "\" cellpadding=\"0\" cellspacing=\"1\" style=\"width: 100%;\"id=\"tbl-rpt\"><thead><tr id=\"rowTitle\" class=\"RptTitleLeft\"><td id=\"content_title\" colspan=\"";
+			protected static string s19 = "\" cellpadding=\"0\" cellspacing=\"1\" style=\"width: 100%;\"id=\"tbl-rpt\"><thead><tr id=\"rowTitle\" class=\"RptTitleLeft\"><td id=\"content_title\" colspan=\"";
 			public string NumCols = "{NumCols}";
-			protected static string s22 = "\">";
-			protected static string s23{get{return Resources.Lang.lblMatchWinLostDetail;}}
-			protected static string s24 = "&nbsp;";
+			protected static string s20 = "\">";
+			protected static string s21{get{return Resources.Lang.lblMatchWinLostDetail;}}
+			protected static string s22 = "&nbsp;";
 			public string DateFrom = "{DateFrom}";
-			protected static string s25 = "--&gt;";
+			protected static string s23 = "--&gt;";
 			public string DateTo = "{DateTo}";
-			protected static string s26 = "</td></tr><tr><td class=\"RptHeader\" colspan=\"3\">&nbsp;</td><td class=\"RptHeader\" colspan=\"3\">";
-			protected static string s27{get{return Resources.Lang.member;}}
-			protected static string s28 = "</td><td class=\"RptHeader\" colspan=\"3\">";
-			protected static string s29{get{return Resources.Lang.agent;}}
-			protected static string s30 = "</td>";
+			protected static string s24 = "</td></tr><tr><td class=\"RptHeader\" colspan=\"3\">&nbsp;</td><td class=\"RptHeader\" colspan=\"3\">";
+			protected static string s25{get{return Resources.Lang.member;}}
+			protected static string s26 = "</td><td class=\"RptHeader\" colspan=\"3\">";
+			protected static string s27{get{return Resources.Lang.agent;}}
+			protected static string s28 = "</td>";
 			public MatchWinlossDetail_ExcelContents_Master1_Block Master1 = new MatchWinlossDetail_ExcelContents_Master1_Block();
 			public MatchWinlossDetail_ExcelContents_Super1_Block Super1 = new MatchWinlossDetail_ExcelContents_Super1_Block();
-			protected static string s31 = "<td class=\"RptHeader\" colspan=\"2\">";
-			protected static string s32{get{return Resources.Lang.company;}}
-			protected static string s33 = "</td></tr><tr><td class=\"RptHeader02\">";
-			protected static string s34{get{return Resources.Lang.bettype;}}
+			protected static string s29 = "<td class=\"RptHeader\" colspan=\"2\">";
+			protected static string s30{get{return Resources.Lang.company;}}
+			protected static string s31 = "</td></tr><tr><td class=\"RptHeader02\">";
+			protected static string s32{get{return Resources.Lang.bettype;}}
+			protected static string s33 = "</td><td class=\"RptHeader02\">";
+			protected static string s34{get{return Resources.Lang.turnover;}}
 			protected static string s35 = "</td><td class=\"RptHeader02\">";
-			protected static string s36{get{return Resources.Lang.turnover;}}
+			protected static string s36{get{return Resources.Lang.grosscomm;}}
 			protected static string s37 = "</td><td class=\"RptHeader02\">";
-			protected static string s38{get{return Resources.Lang.grosscomm;}}
+			protected static string s38{get{return Resources.Lang.win;}}
 			protected static string s39 = "</td><td class=\"RptHeader02\">";
-			protected static string s40{get{return Resources.Lang.win;}}
+			protected static string s40{get{return Resources.Lang.com;}}
 			protected static string s41 = "</td><td class=\"RptHeader02\">";
-			protected static string s42{get{return Resources.Lang.com;}}
+			protected static string s42{get{return Resources.Lang.total;}}
 			protected static string s43 = "</td><td class=\"RptHeader02\">";
-			protected static string s44{get{return Resources.Lang.total;}}
+			protected static string s44{get{return Resources.Lang.win;}}
 			protected static string s45 = "</td><td class=\"RptHeader02\">";
-			protected static string s46{get{return Resources.Lang.win;}}
+			protected static string s46{get{return Resources.Lang.com;}}
 			protected static string s47 = "</td><td class=\"RptHeader02\">";
-			protected static string s48{get{return Resources.Lang.com;}}
-			protected static string s49 = "</td><td class=\"RptHeader02\">";
-			protected static string s50{get{return Resources.Lang.total;}}
-			protected static string s51 = "</td>";
+			protected static string s48{get{return Resources.Lang.total;}}
+			protected static string s49 = "</td>";
 			public MatchWinlossDetail_ExcelContents_Master2_Block Master2 = new MatchWinlossDetail_ExcelContents_Master2_Block();
 			public MatchWinlossDetail_ExcelContents_Super2_Block Super2 = new MatchWinlossDetail_ExcelContents_Super2_Block();
-			protected static string s52 = "<td class=\"RptHeader02\">";
-			protected static string s53{get{return Resources.Lang.com;}}
-			protected static string s54 = "</td><td class=\"RptHeader02\">";
-			protected static string s55{get{return Resources.Lang.total;}}
-			protected static string s56 = "</td></tr></thead><tbody>";
+			protected static string s50 = "<td class=\"RptHeader02\">";
+			protected static string s51{get{return Resources.Lang.com;}}
+			protected static string s52 = "</td><td class=\"RptHeader02\">";
+			protected static string s53{get{return Resources.Lang.total;}}
+			protected static string s54 = "</td></tr></thead><tbody>";
 			public MatchWinlossDetail_ExcelContents_Content_Block Content = new MatchWinlossDetail_ExcelContents_Content_Block();
 			public MatchWinlossDetail_ExcelContents_LimitFooter_Block LimitFooter = new MatchWinlossDetail_ExcelContents_LimitFooter_Block();
 			public MatchWinlossDetail_ExcelContents_NoInfo_Block NoInfo = new MatchWinlossDetail_ExcelContents_NoInfo_Block();
-			protected static string s57 = "</tbody></table>";
+			protected static string s55 = "</tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s20);
+					bd.Append(s18);
 					bd.Append(BoldRow);
-					bd.Append(s21);
+					bd.Append(s19);
 					bd.Append(NumCols);
+					bd.Append(s20);
+					bd.Append(s21);
 					bd.Append(s22);
-					bd.Append(s23);
-					bd.Append(s24);
 					bd.Append(DateFrom);
-					bd.Append(s25);
+					bd.Append(s23);
 					bd.Append(DateTo);
+					bd.Append(s24);
+					bd.Append(s25);
 					bd.Append(s26);
 					bd.Append(s27);
 					bd.Append(s28);
-					bd.Append(s29);
-					bd.Append(s30);
 					if(null != Master1) Master1.ToString(ref bd);
 					if(null != Super1) Super1.ToString(ref bd);
+					bd.Append(s29);
+					bd.Append(s30);
 					bd.Append(s31);
 					bd.Append(s32);
 					bd.Append(s33);
@@ -168,19 +166,17 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s47);
 					bd.Append(s48);
 					bd.Append(s49);
-					bd.Append(s50);
-					bd.Append(s51);
 					if(null != Master2) Master2.ToString(ref bd);
 					if(null != Super2) Super2.ToString(ref bd);
+					bd.Append(s50);
+					bd.Append(s51);
 					bd.Append(s52);
 					bd.Append(s53);
 					bd.Append(s54);
-					bd.Append(s55);
-					bd.Append(s56);
 					if(null != Content) Content.ToString(ref bd);
 					if(null != LimitFooter) LimitFooter.ToString(ref bd);
 					if(null != NoInfo) NoInfo.ToString(ref bd);
-					bd.Append(s57);
+					bd.Append(s55);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -188,17 +184,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Master1_Block: Block
 		{
-			protected static string s58 = "<td class=\"RptHeader\" colspan=\"3\">";
-			protected static string s59{get{return Resources.Lang.master;}}
-			protected static string s60 = "</td>";
+			protected static string s56 = "<td class=\"RptHeader\" colspan=\"3\">";
+			protected static string s57{get{return Resources.Lang.master;}}
+			protected static string s58 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s56);
+					bd.Append(s57);
 					bd.Append(s58);
-					bd.Append(s59);
-					bd.Append(s60);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -206,17 +202,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Super1_Block: Block
 		{
-			protected static string s61 = "<td class=\"RptHeader\" colspan=\"3\">";
-			protected static string s62{get{return Resources.Lang.super;}}
-			protected static string s63 = "</td>";
+			protected static string s59 = "<td class=\"RptHeader\" colspan=\"3\">";
+			protected static string s60{get{return Resources.Lang.super;}}
+			protected static string s61 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s59);
+					bd.Append(s60);
 					bd.Append(s61);
-					bd.Append(s62);
-					bd.Append(s63);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -224,25 +220,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Master2_Block: Block
 		{
-			protected static string s64 = "<td class=\"RptHeader02\">";
-			protected static string s65{get{return Resources.Lang.win;}}
+			protected static string s62 = "<td class=\"RptHeader02\">";
+			protected static string s63{get{return Resources.Lang.win;}}
+			protected static string s64 = "</td><td class=\"RptHeader02\">";
+			protected static string s65{get{return Resources.Lang.com;}}
 			protected static string s66 = "</td><td class=\"RptHeader02\">";
-			protected static string s67{get{return Resources.Lang.com;}}
-			protected static string s68 = "</td><td class=\"RptHeader02\">";
-			protected static string s69{get{return Resources.Lang.total;}}
-			protected static string s70 = "</td>";
+			protected static string s67{get{return Resources.Lang.total;}}
+			protected static string s68 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s62);
+					bd.Append(s63);
 					bd.Append(s64);
 					bd.Append(s65);
 					bd.Append(s66);
 					bd.Append(s67);
 					bd.Append(s68);
-					bd.Append(s69);
-					bd.Append(s70);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -250,25 +246,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Super2_Block: Block
 		{
-			protected static string s71 = "<td class=\"RptHeader02\">";
-			protected static string s72{get{return Resources.Lang.win;}}
+			protected static string s69 = "<td class=\"RptHeader02\">";
+			protected static string s70{get{return Resources.Lang.win;}}
+			protected static string s71 = "</td><td class=\"RptHeader02\">";
+			protected static string s72{get{return Resources.Lang.com;}}
 			protected static string s73 = "</td><td class=\"RptHeader02\">";
-			protected static string s74{get{return Resources.Lang.com;}}
-			protected static string s75 = "</td><td class=\"RptHeader02\">";
-			protected static string s76{get{return Resources.Lang.total;}}
-			protected static string s77 = "</td>";
+			protected static string s74{get{return Resources.Lang.total;}}
+			protected static string s75 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s69);
+					bd.Append(s70);
 					bd.Append(s71);
 					bd.Append(s72);
 					bd.Append(s73);
 					bd.Append(s74);
 					bd.Append(s75);
-					bd.Append(s76);
-					bd.Append(s77);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -294,25 +290,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Content_MatchContent_Block: Block
 		{
-			protected static string s78 = "<tr><td colspan=\"";
+			protected static string s76 = "<tr><td colspan=\"";
 			public string NumCols = "{NumCols}";
-			protected static string s79 = "\" class=\"league\" style=\"font-weight: normal;\"><span id=\"winloss_league\">";
+			protected static string s77 = "\" class=\"league\" style=\"font-weight: normal;\"><span id=\"winloss_league\">";
 			public string League = "{League}";
-			protected static string s80 = "</span>";
+			protected static string s78 = "</span>";
 			public MatchWinlossDetail_ExcelContents_Content_MatchContent_MatchName_Block MatchName = new MatchWinlossDetail_ExcelContents_Content_MatchContent_MatchName_Block();
-			protected static string s81 = "</td></tr>";
+			protected static string s79 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s78);
+					bd.Append(s76);
 					bd.Append(NumCols);
-					bd.Append(s79);
+					bd.Append(s77);
 					bd.Append(League);
-					bd.Append(s80);
+					bd.Append(s78);
 					if(null != MatchName) MatchName.ToString(ref bd);
-					bd.Append(s81);
+					bd.Append(s79);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -320,17 +316,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Content_MatchContent_MatchName_Block: Block
 		{
-			protected static string s82 = "<span id=\"virtual_span\">&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span><span id=\"winloss_match\">";
+			protected static string s80 = "<span id=\"virtual_span\">&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span><span id=\"winloss_match\">";
 			public string MatchName = "{MatchName}";
-			protected static string s83 = "</span>";
+			protected static string s81 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s82);
+					bd.Append(s80);
 					bd.Append(MatchName);
-					bd.Append(s83);
+					bd.Append(s81);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -338,99 +334,99 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Content_BetTypeRow_Block: Block
 		{
-			protected static string s84 = "<tr bgcolor=\"";
+			protected static string s82 = "<tr bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s85 = "\" onmouseover=\"this.style.backgroundColor='";
-			protected static string s86{get{return Fanex.Age.UI.Common.RowBgOver;}}
-			protected static string s87 = "'\" onmouseout=\"this.style.backgroundColor='";
+			protected static string s83 = "\" onmouseover=\"this.style.backgroundColor='";
+			protected static string s84{get{return Fanex.Age.UI.Common.RowBgOver;}}
+			protected static string s85 = "'\" onmouseout=\"this.style.backgroundColor='";
 			protected string t0_ColorClass;
-			protected static string s88 = "'\"><td class=\"left_normal\"><span class='downline_link' onclick=\"doViewBetList(";
+			protected static string s86 = "'\"><td class=\"left_normal\"><span class='downline_link' onclick=\"doViewBetList(";
 			public string LeagueId = "{LeagueId}";
-			protected static string s89 = ",";
+			protected static string s87 = ",";
 			public string MatchId = "{MatchId}";
-			protected static string s90 = ",";
+			protected static string s88 = ",";
 			public string BetTypeId = "{BetTypeId}";
-			protected static string s91 = ",'";
+			protected static string s89 = ",'";
 			public string BetVewType = "{BetVewType}";
-			protected static string s92 = "', ";
+			protected static string s90 = "', ";
 			public string Race = "{Race}";
-			protected static string s93 = ", ";
+			protected static string s91 = ", ";
 			public string islive = "{islive}";
-			protected static string s94 = ")\">";
+			protected static string s92 = ")\">";
 			public string BetTypeName = "{BetTypeName}";
-			protected static string s95 = "</span></td><td>";
+			protected static string s93 = "</span></td><td>";
 			public string TurnOver = "{TurnOver}";
-			protected static string s96 = "</td><td>";
+			protected static string s94 = "</td><td>";
 			public string MaxComm = "{MaxComm}";
-			protected static string s97 = "</td><td>";
+			protected static string s95 = "</td><td>";
 			public string WinlossMem = "{WinlossMem}";
-			protected static string s98 = "</td><td>";
+			protected static string s96 = "</td><td>";
 			public string CommMem = "{CommMem}";
-			protected static string s99 = "</td><td class=\"b\">";
+			protected static string s97 = "</td><td class=\"b\">";
 			public string TotalMem = "{TotalMem}";
-			protected static string s100 = "</td><td class=\"altercol\">";
+			protected static string s98 = "</td><td class=\"altercol\">";
 			public string WinlossAg = "{WinlossAg}";
-			protected static string s101 = "</td><td class=\"altercol\">";
+			protected static string s99 = "</td><td class=\"altercol\">";
 			public string CommAg = "{CommAg}";
-			protected static string s102 = "</td><td class=\"altercol_bold\">";
+			protected static string s100 = "</td><td class=\"altercol_bold\">";
 			public string TotalAg = "{TotalAg}";
-			protected static string s103 = "</td>";
+			protected static string s101 = "</td>";
 			public MatchWinlossDetail_ExcelContents_Content_BetTypeRow_Master_Block Master = new MatchWinlossDetail_ExcelContents_Content_BetTypeRow_Master_Block();
 			public MatchWinlossDetail_ExcelContents_Content_BetTypeRow_Super_Block Super = new MatchWinlossDetail_ExcelContents_Content_BetTypeRow_Super_Block();
-			protected static string s104 = "<td>";
+			protected static string s102 = "<td>";
 			public string CommComp = "{CommComp}";
-			protected static string s105 = "</td><td class=\"b\">";
+			protected static string s103 = "</td><td class=\"b\">";
 			public string TotalComp = "{TotalComp}";
-			protected static string s106 = "</td></tr>";
+			protected static string s104 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s82);
+					bd.Append(ColorClass);
+					bd.Append(s83);
 					bd.Append(s84);
-					bd.Append(ColorClass);
 					bd.Append(s85);
-					bd.Append(s86);
-					bd.Append(s87);
 					bd.Append(ColorClass);
-					bd.Append(s88);
+					bd.Append(s86);
 					bd.Append(LeagueId);
-					bd.Append(s89);
+					bd.Append(s87);
 					bd.Append(MatchId);
-					bd.Append(s90);
+					bd.Append(s88);
 					bd.Append(BetTypeId);
-					bd.Append(s91);
+					bd.Append(s89);
 					bd.Append(BetVewType);
-					bd.Append(s92);
+					bd.Append(s90);
 					bd.Append(Race);
-					bd.Append(s93);
+					bd.Append(s91);
 					bd.Append(islive);
-					bd.Append(s94);
+					bd.Append(s92);
 					bd.Append(BetTypeName);
-					bd.Append(s95);
+					bd.Append(s93);
 					bd.Append(TurnOver);
-					bd.Append(s96);
+					bd.Append(s94);
 					bd.Append(MaxComm);
-					bd.Append(s97);
+					bd.Append(s95);
 					bd.Append(WinlossMem);
-					bd.Append(s98);
+					bd.Append(s96);
 					bd.Append(CommMem);
-					bd.Append(s99);
+					bd.Append(s97);
 					bd.Append(TotalMem);
-					bd.Append(s100);
+					bd.Append(s98);
 					bd.Append(WinlossAg);
-					bd.Append(s101);
+					bd.Append(s99);
 					bd.Append(CommAg);
-					bd.Append(s102);
+					bd.Append(s100);
 					bd.Append(TotalAg);
-					bd.Append(s103);
+					bd.Append(s101);
 					if(null != Master) Master.ToString(ref bd);
 					if(null != Super) Super.ToString(ref bd);
-					bd.Append(s104);
+					bd.Append(s102);
 					bd.Append(CommComp);
-					bd.Append(s105);
+					bd.Append(s103);
 					bd.Append(TotalComp);
-					bd.Append(s106);
+					bd.Append(s104);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -438,25 +434,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Content_BetTypeRow_Master_Block: Block
 		{
-			protected static string s107 = "<td>";
+			protected static string s105 = "<td>";
 			public string WinlossMAg = "{WinlossMAg}";
-			protected static string s108 = "</td><td>";
+			protected static string s106 = "</td><td>";
 			public string CommMAg = "{CommMAg}";
-			protected static string s109 = "</td><td class=\"b\">";
+			protected static string s107 = "</td><td class=\"b\">";
 			public string TotalMAg = "{TotalMAg}";
-			protected static string s110 = "</td>";
+			protected static string s108 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s107);
+					bd.Append(s105);
 					bd.Append(WinlossMAg);
-					bd.Append(s108);
+					bd.Append(s106);
 					bd.Append(CommMAg);
-					bd.Append(s109);
+					bd.Append(s107);
 					bd.Append(TotalMAg);
-					bd.Append(s110);
+					bd.Append(s108);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -464,25 +460,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Content_BetTypeRow_Super_Block: Block
 		{
-			protected static string s111 = "<td class=\"altercol\">";
+			protected static string s109 = "<td class=\"altercol\">";
 			public string WinlossSAg = "{WinlossSAg}";
-			protected static string s112 = "</td><td class=\"altercol\">";
+			protected static string s110 = "</td><td class=\"altercol\">";
 			public string CommSAg = "{CommSAg}";
-			protected static string s113 = "</td><td class=\"altercol_bold\">";
+			protected static string s111 = "</td><td class=\"altercol_bold\">";
 			public string TotalSAg = "{TotalSAg}";
-			protected static string s114 = "</td>";
+			protected static string s112 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s111);
+					bd.Append(s109);
 					bd.Append(WinlossSAg);
-					bd.Append(s112);
+					bd.Append(s110);
 					bd.Append(CommSAg);
-					bd.Append(s113);
+					bd.Append(s111);
 					bd.Append(TotalSAg);
-					bd.Append(s114);
+					bd.Append(s112);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -490,75 +486,75 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Content_TotalBetTypeRow_Block: Block
 		{
-			protected static string s115 = "<tr style=\"color:#394E6E\" class=\"b\" bgcolor=\"";
+			protected static string s113 = "<tr style=\"color:#394E6E\" class=\"b\" bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s116 = "\" onmouseover=\"this.style.backgroundColor='";
-			protected static string s117{get{return Fanex.Age.UI.Common.RowBgOver;}}
-			protected static string s118 = "'\" onmouseout=\"this.style.backgroundColor='";
+			protected static string s114 = "\" onmouseover=\"this.style.backgroundColor='";
+			protected static string s115{get{return Fanex.Age.UI.Common.RowBgOver;}}
+			protected static string s116 = "'\" onmouseout=\"this.style.backgroundColor='";
 			protected string t1_ColorClass;
-			protected static string s119 = "'\"><td class=\"l\">";
-			protected static string s120{get{return Resources.Lang.subTotal;}}
-			protected static string s121 = "</td><td>";
+			protected static string s117 = "'\"><td class=\"l\">";
+			protected static string s118{get{return Resources.Lang.subTotal;}}
+			protected static string s119 = "</td><td>";
 			public string TurnOver = "{TurnOver}";
-			protected static string s122 = "</td><td>";
+			protected static string s120 = "</td><td>";
 			public string MaxComm = "{MaxComm}";
-			protected static string s123 = "</td><td>";
+			protected static string s121 = "</td><td>";
 			public string WinlossMem = "{WinlossMem}";
-			protected static string s124 = "</td><td>";
+			protected static string s122 = "</td><td>";
 			public string CommMem = "{CommMem}";
-			protected static string s125 = "</td><td class=\"b\">";
+			protected static string s123 = "</td><td class=\"b\">";
 			public string TotalMem = "{TotalMem}";
-			protected static string s126 = "</td><td class=\"altercol\">";
+			protected static string s124 = "</td><td class=\"altercol\">";
 			public string WinlossAg = "{WinlossAg}";
-			protected static string s127 = "</td><td class=\"altercol\">";
+			protected static string s125 = "</td><td class=\"altercol\">";
 			public string CommAg = "{CommAg}";
-			protected static string s128 = "</td><td class=\"altercol_bold\">";
+			protected static string s126 = "</td><td class=\"altercol_bold\">";
 			public string TotalAg = "{TotalAg}";
-			protected static string s129 = "</td>";
+			protected static string s127 = "</td>";
 			public MatchWinlossDetail_ExcelContents_Content_TotalBetTypeRow_Master_Block Master = new MatchWinlossDetail_ExcelContents_Content_TotalBetTypeRow_Master_Block();
 			public MatchWinlossDetail_ExcelContents_Content_TotalBetTypeRow_Super_Block Super = new MatchWinlossDetail_ExcelContents_Content_TotalBetTypeRow_Super_Block();
-			protected static string s130 = "<td>";
+			protected static string s128 = "<td>";
 			public string CommComp = "{CommComp}";
-			protected static string s131 = "</td><td class=\"b\">";
+			protected static string s129 = "</td><td class=\"b\">";
 			public string TotalComp = "{TotalComp}";
-			protected static string s132 = "</td></tr>";
+			protected static string s130 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s115);
+					bd.Append(s113);
 					bd.Append(ColorClass);
+					bd.Append(s114);
+					bd.Append(s115);
 					bd.Append(s116);
+					bd.Append(ColorClass);
 					bd.Append(s117);
 					bd.Append(s118);
-					bd.Append(ColorClass);
 					bd.Append(s119);
-					bd.Append(s120);
-					bd.Append(s121);
 					bd.Append(TurnOver);
-					bd.Append(s122);
+					bd.Append(s120);
 					bd.Append(MaxComm);
-					bd.Append(s123);
+					bd.Append(s121);
 					bd.Append(WinlossMem);
-					bd.Append(s124);
+					bd.Append(s122);
 					bd.Append(CommMem);
-					bd.Append(s125);
+					bd.Append(s123);
 					bd.Append(TotalMem);
-					bd.Append(s126);
+					bd.Append(s124);
 					bd.Append(WinlossAg);
-					bd.Append(s127);
+					bd.Append(s125);
 					bd.Append(CommAg);
-					bd.Append(s128);
+					bd.Append(s126);
 					bd.Append(TotalAg);
-					bd.Append(s129);
+					bd.Append(s127);
 					if(null != Master) Master.ToString(ref bd);
 					if(null != Super) Super.ToString(ref bd);
-					bd.Append(s130);
+					bd.Append(s128);
 					bd.Append(CommComp);
-					bd.Append(s131);
+					bd.Append(s129);
 					bd.Append(TotalComp);
-					bd.Append(s132);
+					bd.Append(s130);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -566,25 +562,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Content_TotalBetTypeRow_Master_Block: Block
 		{
-			protected static string s133 = "<td>";
+			protected static string s131 = "<td>";
 			public string WinlossMAg = "{WinlossMAg}";
-			protected static string s134 = "</td><td>";
+			protected static string s132 = "</td><td>";
 			public string CommMAg = "{CommMAg}";
-			protected static string s135 = "</td><td class=\"b\">";
+			protected static string s133 = "</td><td class=\"b\">";
 			public string TotalMAg = "{TotalMAg}";
-			protected static string s136 = "</td>";
+			protected static string s134 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s133);
+					bd.Append(s131);
 					bd.Append(WinlossMAg);
-					bd.Append(s134);
+					bd.Append(s132);
 					bd.Append(CommMAg);
-					bd.Append(s135);
+					bd.Append(s133);
 					bd.Append(TotalMAg);
-					bd.Append(s136);
+					bd.Append(s134);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -592,25 +588,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Content_TotalBetTypeRow_Super_Block: Block
 		{
-			protected static string s137 = "<td class=\"altercol\">";
+			protected static string s135 = "<td class=\"altercol\">";
 			public string WinlossSAg = "{WinlossSAg}";
-			protected static string s138 = "</td><td class=\"altercol\">";
+			protected static string s136 = "</td><td class=\"altercol\">";
 			public string CommSAg = "{CommSAg}";
-			protected static string s139 = "</td><td class=\"altercol_bold\">";
+			protected static string s137 = "</td><td class=\"altercol_bold\">";
 			public string TotalSAg = "{TotalSAg}";
-			protected static string s140 = "</td>";
+			protected static string s138 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s137);
+					bd.Append(s135);
 					bd.Append(WinlossSAg);
-					bd.Append(s138);
+					bd.Append(s136);
 					bd.Append(CommSAg);
-					bd.Append(s139);
+					bd.Append(s137);
 					bd.Append(TotalSAg);
-					bd.Append(s140);
+					bd.Append(s138);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -618,32 +614,32 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_LimitFooter_Block: Block
 		{
-			protected static string s141 = "<tr class=\"RptFooter\"><td class=\"l\">";
-			protected static string s142{get{return Resources.Lang.total;}}
-			protected static string s143 = "</td><td>";
+			protected static string s139 = "<tr class=\"RptFooter\"><td class=\"l\">";
+			protected static string s140{get{return Resources.Lang.total;}}
+			protected static string s141 = "</td><td>";
 			public string TurnOverTotal = "{TurnOverTotal}";
-			protected static string s144 = "</td><td>";
+			protected static string s142 = "</td><td>";
 			public string MaxCommTotal = "{MaxCommTotal}";
-			protected static string s145 = "</td><td>";
+			protected static string s143 = "</td><td>";
 			public string WinlossMemTotal = "{WinlossMemTotal}";
-			protected static string s146 = "</td><td>";
+			protected static string s144 = "</td><td>";
 			public string CommMemTotal = "{CommMemTotal}";
-			protected static string s147 = "</td><td>";
+			protected static string s145 = "</td><td>";
 			public string TotalMemTotal = "{TotalMemTotal}";
-			protected static string s148 = "</td><td class=\"altercol_master\">";
+			protected static string s146 = "</td><td class=\"altercol_master\">";
 			public string WinlossAgtTotal = "{WinlossAgtTotal}";
-			protected static string s149 = "</td><td class=\"altercol_master\">";
+			protected static string s147 = "</td><td class=\"altercol_master\">";
 			public string CommAgtTotal = "{CommAgtTotal}";
-			protected static string s150 = "</td><td class=\"altercol_master\">";
+			protected static string s148 = "</td><td class=\"altercol_master\">";
 			public string TotalAgtTotal = "{TotalAgtTotal}";
-			protected static string s151 = "</td>";
+			protected static string s149 = "</td>";
 			public MatchWinlossDetail_ExcelContents_LimitFooter_Master_Block Master = new MatchWinlossDetail_ExcelContents_LimitFooter_Master_Block();
 			public MatchWinlossDetail_ExcelContents_LimitFooter_Super_Block Super = new MatchWinlossDetail_ExcelContents_LimitFooter_Super_Block();
-			protected static string s152 = "<td>";
+			protected static string s150 = "<td>";
 			public string CommComTotal = "{CommComTotal}";
-			protected static string s153 = "</td><td>";
+			protected static string s151 = "</td><td>";
 			public string TotalComTotal = "{TotalComTotal}";
-			protected static string s154 = "</td></tr>";
+			protected static string s152 = "</td></tr>";
 			public MatchWinlossDetail_ExcelContents_LimitFooter_Parlay_Block Parlay = new MatchWinlossDetail_ExcelContents_LimitFooter_Parlay_Block();
 			public MatchWinlossDetail_ExcelContents_LimitFooter_TotalAll_Block TotalAll = new MatchWinlossDetail_ExcelContents_LimitFooter_TotalAll_Block();
 			public override void ToString(ref StringBuilder bd)
@@ -651,32 +647,32 @@ namespace Fanex.Age.UI.Reports
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s139);
+					bd.Append(s140);
 					bd.Append(s141);
-					bd.Append(s142);
-					bd.Append(s143);
 					bd.Append(TurnOverTotal);
-					bd.Append(s144);
+					bd.Append(s142);
 					bd.Append(MaxCommTotal);
-					bd.Append(s145);
+					bd.Append(s143);
 					bd.Append(WinlossMemTotal);
-					bd.Append(s146);
+					bd.Append(s144);
 					bd.Append(CommMemTotal);
-					bd.Append(s147);
+					bd.Append(s145);
 					bd.Append(TotalMemTotal);
-					bd.Append(s148);
+					bd.Append(s146);
 					bd.Append(WinlossAgtTotal);
-					bd.Append(s149);
+					bd.Append(s147);
 					bd.Append(CommAgtTotal);
-					bd.Append(s150);
+					bd.Append(s148);
 					bd.Append(TotalAgtTotal);
-					bd.Append(s151);
+					bd.Append(s149);
 					if(null != Master) Master.ToString(ref bd);
 					if(null != Super) Super.ToString(ref bd);
-					bd.Append(s152);
+					bd.Append(s150);
 					bd.Append(CommComTotal);
-					bd.Append(s153);
+					bd.Append(s151);
 					bd.Append(TotalComTotal);
-					bd.Append(s154);
+					bd.Append(s152);
 					if(null != Parlay) Parlay.ToString(ref bd);
 					if(null != TotalAll) TotalAll.ToString(ref bd);
 				}
@@ -686,25 +682,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_LimitFooter_Master_Block: Block
 		{
-			protected static string s155 = "<td>";
+			protected static string s153 = "<td>";
 			public string WinlossMasTotal = "{WinlossMasTotal}";
-			protected static string s156 = "</td><td>";
+			protected static string s154 = "</td><td>";
 			public string CommMasTotal = "{CommMasTotal}";
-			protected static string s157 = "</td><td>";
+			protected static string s155 = "</td><td>";
 			public string TotalMasTotal = "{TotalMasTotal}";
-			protected static string s158 = "</td>";
+			protected static string s156 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s155);
+					bd.Append(s153);
 					bd.Append(WinlossMasTotal);
-					bd.Append(s156);
+					bd.Append(s154);
 					bd.Append(CommMasTotal);
-					bd.Append(s157);
+					bd.Append(s155);
 					bd.Append(TotalMasTotal);
-					bd.Append(s158);
+					bd.Append(s156);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -712,25 +708,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_LimitFooter_Super_Block: Block
 		{
-			protected static string s159 = "<td class=\"altercol_master\">";
+			protected static string s157 = "<td class=\"altercol_master\">";
 			public string WinlossSupTotal = "{WinlossSupTotal}";
-			protected static string s160 = "</td><td class=\"altercol_master\">";
+			protected static string s158 = "</td><td class=\"altercol_master\">";
 			public string CommSupTotal = "{CommSupTotal}";
-			protected static string s161 = "</td><td class=\"altercol_master\">";
+			protected static string s159 = "</td><td class=\"altercol_master\">";
 			public string TotalSupTotal = "{TotalSupTotal}";
-			protected static string s162 = "</td>";
+			protected static string s160 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s159);
+					bd.Append(s157);
 					bd.Append(WinlossSupTotal);
-					bd.Append(s160);
+					bd.Append(s158);
 					bd.Append(CommSupTotal);
-					bd.Append(s161);
+					bd.Append(s159);
 					bd.Append(TotalSupTotal);
-					bd.Append(s162);
+					bd.Append(s160);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -738,83 +734,83 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_LimitFooter_Parlay_Block: Block
 		{
-			protected static string s163 = "<tr bgcolor=\"#F6F8F9\" onmouseover=\"this.style.backgroundColor='";
+			protected static string s161 = "<tr bgcolor=\"#F6F8F9\" onmouseover=\"this.style.backgroundColor='";
 			public string ColorOver = "{ColorOver}";
-			protected static string s164 = "'\" onmouseout=\"this.style.backgroundColor='#F6F8F9'\"><td class=\"left_normal\"><span class='downline_link' onclick=\"doViewMPBetList('";
+			protected static string s162 = "'\" onmouseout=\"this.style.backgroundColor='#F6F8F9'\"><td class=\"left_normal\"><span class='downline_link' onclick=\"doViewMPBetList('";
 			public string MPDateFrom = "{MPDateFrom}";
-			protected static string s165 = "','";
+			protected static string s163 = "','";
 			public string MPDateTo = "{MPDateTo}";
-			protected static string s166 = "','";
+			protected static string s164 = "','";
 			public string MPBetType = "{MPBetType}";
-			protected static string s167 = "','";
+			protected static string s165 = "','";
 			public string MPType = "{MPType}";
-			protected static string s168 = "')\">";
+			protected static string s166 = "')\">";
 			public string BetTypeName = "{BetTypeName}";
-			protected static string s169 = "</span></td><td>";
+			protected static string s167 = "</span></td><td>";
 			public string TurnoverParlay = "{TurnoverParlay}";
-			protected static string s170 = "</td><td>";
+			protected static string s168 = "</td><td>";
 			public string MaxcommParlay = "{MaxcommParlay}";
-			protected static string s171 = "</td><td>";
+			protected static string s169 = "</td><td>";
 			public string WinlossMemParlay = "{WinlossMemParlay}";
-			protected static string s172 = "</td><td>";
+			protected static string s170 = "</td><td>";
 			public string CommMemParlay = "{CommMemParlay}";
-			protected static string s173 = "</td><td class=\"b\">";
+			protected static string s171 = "</td><td class=\"b\">";
 			public string TotalMemParlay = "{TotalMemParlay}";
-			protected static string s174 = "</td><td class=\"altercol\">";
+			protected static string s172 = "</td><td class=\"altercol\">";
 			public string WinlossAgtParlay = "{WinlossAgtParlay}";
-			protected static string s175 = "</td><td class=\"altercol\">";
+			protected static string s173 = "</td><td class=\"altercol\">";
 			public string CommAgtParlay = "{CommAgtParlay}";
-			protected static string s176 = "</td><td class=\"altercol_bold\">";
+			protected static string s174 = "</td><td class=\"altercol_bold\">";
 			public string TotalAgtParlay = "{TotalAgtParlay}";
-			protected static string s177 = "</td>";
+			protected static string s175 = "</td>";
 			public MatchWinlossDetail_ExcelContents_LimitFooter_Parlay_Master_Block Master = new MatchWinlossDetail_ExcelContents_LimitFooter_Parlay_Master_Block();
 			public MatchWinlossDetail_ExcelContents_LimitFooter_Parlay_Super_Block Super = new MatchWinlossDetail_ExcelContents_LimitFooter_Parlay_Super_Block();
-			protected static string s178 = "<td>";
+			protected static string s176 = "<td>";
 			public string CommComParlay = "{CommComParlay}";
-			protected static string s179 = "</td><td class=\"b\">";
+			protected static string s177 = "</td><td class=\"b\">";
 			public string TotalComParlay = "{TotalComParlay}";
-			protected static string s180 = "</td></tr>";
+			protected static string s178 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s163);
+					bd.Append(s161);
 					bd.Append(ColorOver);
-					bd.Append(s164);
+					bd.Append(s162);
 					bd.Append(MPDateFrom);
-					bd.Append(s165);
+					bd.Append(s163);
 					bd.Append(MPDateTo);
-					bd.Append(s166);
+					bd.Append(s164);
 					bd.Append(MPBetType);
-					bd.Append(s167);
+					bd.Append(s165);
 					bd.Append(MPType);
-					bd.Append(s168);
+					bd.Append(s166);
 					bd.Append(BetTypeName);
-					bd.Append(s169);
+					bd.Append(s167);
 					bd.Append(TurnoverParlay);
-					bd.Append(s170);
+					bd.Append(s168);
 					bd.Append(MaxcommParlay);
-					bd.Append(s171);
+					bd.Append(s169);
 					bd.Append(WinlossMemParlay);
-					bd.Append(s172);
+					bd.Append(s170);
 					bd.Append(CommMemParlay);
-					bd.Append(s173);
+					bd.Append(s171);
 					bd.Append(TotalMemParlay);
-					bd.Append(s174);
+					bd.Append(s172);
 					bd.Append(WinlossAgtParlay);
-					bd.Append(s175);
+					bd.Append(s173);
 					bd.Append(CommAgtParlay);
-					bd.Append(s176);
+					bd.Append(s174);
 					bd.Append(TotalAgtParlay);
-					bd.Append(s177);
+					bd.Append(s175);
 					if(null != Master) Master.ToString(ref bd);
 					if(null != Super) Super.ToString(ref bd);
-					bd.Append(s178);
+					bd.Append(s176);
 					bd.Append(CommComParlay);
-					bd.Append(s179);
+					bd.Append(s177);
 					bd.Append(TotalComParlay);
-					bd.Append(s180);
+					bd.Append(s178);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -822,25 +818,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_LimitFooter_Parlay_Master_Block: Block
 		{
-			protected static string s181 = "<td>";
+			protected static string s179 = "<td>";
 			public string WinlossMasParlay = "{WinlossMasParlay}";
-			protected static string s182 = "</td><td>";
+			protected static string s180 = "</td><td>";
 			public string CommMasParlay = "{CommMasParlay}";
-			protected static string s183 = "</td><td class=\"b\">";
+			protected static string s181 = "</td><td class=\"b\">";
 			public string TotalMasParlay = "{TotalMasParlay}";
-			protected static string s184 = "</td>";
+			protected static string s182 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s181);
+					bd.Append(s179);
 					bd.Append(WinlossMasParlay);
-					bd.Append(s182);
+					bd.Append(s180);
 					bd.Append(CommMasParlay);
-					bd.Append(s183);
+					bd.Append(s181);
 					bd.Append(TotalMasParlay);
-					bd.Append(s184);
+					bd.Append(s182);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -848,25 +844,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_LimitFooter_Parlay_Super_Block: Block
 		{
-			protected static string s185 = "<td class=\"altercol\">";
+			protected static string s183 = "<td class=\"altercol\">";
 			public string WinlossSupParlay = "{WinlossSupParlay}";
-			protected static string s186 = "</td><td class=\"altercol\">";
+			protected static string s184 = "</td><td class=\"altercol\">";
 			public string CommSupParlay = "{CommSupParlay}";
-			protected static string s187 = "</td><td class=\"altercol_bold\">";
+			protected static string s185 = "</td><td class=\"altercol_bold\">";
 			public string TotalSupParlay = "{TotalSupParlay}";
-			protected static string s188 = "</td>";
+			protected static string s186 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s185);
+					bd.Append(s183);
 					bd.Append(WinlossSupParlay);
-					bd.Append(s186);
+					bd.Append(s184);
 					bd.Append(CommSupParlay);
-					bd.Append(s187);
+					bd.Append(s185);
 					bd.Append(TotalSupParlay);
-					bd.Append(s188);
+					bd.Append(s186);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -874,63 +870,63 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_LimitFooter_TotalAll_Block: Block
 		{
-			protected static string s189 = "<tr class=\"RptFooter\"><td class=\"l\">";
-			protected static string s190{get{return Resources.Lang.grandTotal;}}
-			protected static string s191 = "</td><td>";
+			protected static string s187 = "<tr class=\"RptFooter\"><td class=\"l\">";
+			protected static string s188{get{return Resources.Lang.grandTotal;}}
+			protected static string s189 = "</td><td>";
 			public string TurnoverTotalAll = "{TurnoverTotalAll}";
-			protected static string s192 = "</td><td>";
+			protected static string s190 = "</td><td>";
 			public string MaxCommTotalAll = "{MaxCommTotalAll}";
-			protected static string s193 = "</td><td>";
+			protected static string s191 = "</td><td>";
 			public string WinlossTotalAll = "{WinlossTotalAll}";
-			protected static string s194 = "</td><td>";
+			protected static string s192 = "</td><td>";
 			public string CommTotalAll = "{CommTotalAll}";
-			protected static string s195 = "</td><td>";
+			protected static string s193 = "</td><td>";
 			public string TotalTotalAll = "{TotalTotalAll}";
-			protected static string s196 = "</td><td class=\"altercol_master\">";
+			protected static string s194 = "</td><td class=\"altercol_master\">";
 			public string WinlossAgtTotalAll = "{WinlossAgtTotalAll}";
-			protected static string s197 = "</td><td class=\"altercol_master\">";
+			protected static string s195 = "</td><td class=\"altercol_master\">";
 			public string CommAgtTotalAll = "{CommAgtTotalAll}";
-			protected static string s198 = "</td><td class=\"altercol_master\">";
+			protected static string s196 = "</td><td class=\"altercol_master\">";
 			public string TotalAgtTotalAll = "{TotalAgtTotalAll}";
-			protected static string s199 = "</td>";
+			protected static string s197 = "</td>";
 			public MatchWinlossDetail_ExcelContents_LimitFooter_TotalAll_Master_Block Master = new MatchWinlossDetail_ExcelContents_LimitFooter_TotalAll_Master_Block();
 			public MatchWinlossDetail_ExcelContents_LimitFooter_TotalAll_Super_Block Super = new MatchWinlossDetail_ExcelContents_LimitFooter_TotalAll_Super_Block();
-			protected static string s200 = "<td>";
+			protected static string s198 = "<td>";
 			public string CommComTotalAll = "{CommComTotalAll}";
-			protected static string s201 = "</td><td>";
+			protected static string s199 = "</td><td>";
 			public string TotalComTotalAll = "{TotalComTotalAll}";
-			protected static string s202 = "</td></tr>";
+			protected static string s200 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s187);
+					bd.Append(s188);
 					bd.Append(s189);
-					bd.Append(s190);
-					bd.Append(s191);
 					bd.Append(TurnoverTotalAll);
-					bd.Append(s192);
+					bd.Append(s190);
 					bd.Append(MaxCommTotalAll);
-					bd.Append(s193);
+					bd.Append(s191);
 					bd.Append(WinlossTotalAll);
-					bd.Append(s194);
+					bd.Append(s192);
 					bd.Append(CommTotalAll);
-					bd.Append(s195);
+					bd.Append(s193);
 					bd.Append(TotalTotalAll);
-					bd.Append(s196);
+					bd.Append(s194);
 					bd.Append(WinlossAgtTotalAll);
-					bd.Append(s197);
+					bd.Append(s195);
 					bd.Append(CommAgtTotalAll);
-					bd.Append(s198);
+					bd.Append(s196);
 					bd.Append(TotalAgtTotalAll);
-					bd.Append(s199);
+					bd.Append(s197);
 					if(null != Master) Master.ToString(ref bd);
 					if(null != Super) Super.ToString(ref bd);
-					bd.Append(s200);
+					bd.Append(s198);
 					bd.Append(CommComTotalAll);
-					bd.Append(s201);
+					bd.Append(s199);
 					bd.Append(TotalComTotalAll);
-					bd.Append(s202);
+					bd.Append(s200);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -938,25 +934,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_LimitFooter_TotalAll_Master_Block: Block
 		{
-			protected static string s203 = "<td>";
+			protected static string s201 = "<td>";
 			public string WinlossMasTotalAll = "{WinlossMasTotalAll}";
-			protected static string s204 = "</td><td>";
+			protected static string s202 = "</td><td>";
 			public string CommMasTotalAll = "{CommMasTotalAll}";
-			protected static string s205 = "</td><td>";
+			protected static string s203 = "</td><td>";
 			public string TotalMasTotalAll = "{TotalMasTotalAll}";
-			protected static string s206 = "</td>";
+			protected static string s204 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s203);
+					bd.Append(s201);
 					bd.Append(WinlossMasTotalAll);
-					bd.Append(s204);
+					bd.Append(s202);
 					bd.Append(CommMasTotalAll);
-					bd.Append(s205);
+					bd.Append(s203);
 					bd.Append(TotalMasTotalAll);
-					bd.Append(s206);
+					bd.Append(s204);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -964,25 +960,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_LimitFooter_TotalAll_Super_Block: Block
 		{
-			protected static string s207 = "<td class=\"altercol_master\">";
+			protected static string s205 = "<td class=\"altercol_master\">";
 			public string WinlossSupTotalAll = "{WinlossSupTotalAll}";
-			protected static string s208 = "</td><td class=\"altercol_master\">";
+			protected static string s206 = "</td><td class=\"altercol_master\">";
 			public string CommSupTotalAll = "{CommSupTotalAll}";
-			protected static string s209 = "</td><td class=\"altercol_master\">";
+			protected static string s207 = "</td><td class=\"altercol_master\">";
 			public string TotalSupTotalAll = "{TotalSupTotalAll}";
-			protected static string s210 = "</td>";
+			protected static string s208 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s207);
+					bd.Append(s205);
 					bd.Append(WinlossSupTotalAll);
-					bd.Append(s208);
+					bd.Append(s206);
 					bd.Append(CommSupTotalAll);
-					bd.Append(s209);
+					bd.Append(s207);
 					bd.Append(TotalSupTotalAll);
-					bd.Append(s210);
+					bd.Append(s208);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

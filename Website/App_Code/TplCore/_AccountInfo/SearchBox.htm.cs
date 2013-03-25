@@ -41,11 +41,11 @@ namespace Fanex.Agent.UI
 			protected static string s21{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
 			protected static string s22 = "\" /></a></div></form>";
 			public SearchBox_CustInfo_Block CustInfo = new SearchBox_CustInfo_Block();
-			protected static string s23 = "</div><div class=\"agent-tooltip\"><div class=\"agent-downline-list-container\" id=\"agent-downline-list\"><div class=\"top\"></div><div class=\"middle\"><ul id=\"agent-downline\" class=\"agent-list\"></ul></div><div class=\"bottom\"></div></div></div></div></div>";
+			protected static string s23 = "</div></div></div>";
 			public SearchBox_ButtonAgentList_Block ButtonAgentList = new SearchBox_ButtonAgentList_Block();
 			public SearchBox_ButtonMemberList_Block ButtonMemberList = new SearchBox_ButtonMemberList_Block();
 			public SearchBox_ButtonBetList_Block ButtonBetList = new SearchBox_ButtonBetList_Block();
-			protected static string s24 = "<!--insert jquery and treeview javascript--><link href=\"";
+			protected static string s24 = "<div class=\"agent-tooltip\"><div class=\"agent-downline-list-container\" id=\"agent-downline-list\"><div class=\"top\"></div><div class=\"middle\"><ul id=\"agent-downline\" class=\"agent-list\"></ul></div><div class=\"bottom\"></div></div></div><!--insert jquery and treeview javascript--><link href=\"";
 			protected static string s25{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
 			protected static string s26 = "\" rel=\"stylesheet\" type=\"text/css\" /><script type=\"text/javascript\" src=\"";
 			protected static string s27{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
