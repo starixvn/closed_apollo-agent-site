@@ -146,7 +146,7 @@
         public DataTable GetAgentDownlinePath(int parentId, int agentId)
         {
             CustomerListDAO dao = new CustomerListDAO();
-            return dao.Age_Customer_GetAgentDownLinePath(parentId, agentId);
+            return dao.Age_Customer_GetAgentDownlinePath(parentId, agentId);
         }
     }
 }
