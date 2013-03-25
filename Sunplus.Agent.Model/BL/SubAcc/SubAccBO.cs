@@ -31,7 +31,7 @@ namespace Sunplus.Agent.Model.BL.SubAcc
         {
             SubAccDAO dao = new SubAccDAO();
 
-            DataTable dataTable = dao.Acc_AgentUser_GetByAgent(CustId);
+            DataTable dataTable = dao.Age_AgentUser_GetByAgent(CustId);
 
             List<AgentUserAccount> subAccList = new List<AgentUserAccount>();
 
