@@ -17,9 +17,9 @@ namespace Sunplus.Agent.UI._MemberInfo.Announcement
     using Fanex.Age.UI.Components;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.BL.UserMessage;
-    using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.UI._Announcement;
+    using Sunplus.Agent.Model.Entities;    
     using Sunplus.Agent.Utilities;
+    using Fanex.Agent.UI._Announcement;
 
     public partial class Announcement_Page : Fanex.Age.UI.TplPage
     {

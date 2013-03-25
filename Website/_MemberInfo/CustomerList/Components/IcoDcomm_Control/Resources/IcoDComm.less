@@ -1,0 +1,45 @@
+﻿.chkMemDcomm
+{
+    display: none;
+}
+
+.bkgDcommAllowed
+{
+    background: url('Images/dcommAllowed.png') top left no-repeat;
+    width: 80px;
+    height: 18px;
+}
+
+.bkgDcommDisallowed
+{
+    background: url('Images/dcommDisallowed.png') top left no-repeat;
+    width: 80px;
+    height: 18px;
+}
+
+.bkgDcommAllowed > a
+{
+    color: #ffc3cc;
+    padding-right: 9px;
+    line-height: 18px;
+}
+
+.bkgDcommDisallowed > a
+{
+    color: #8B887F;
+    padding-left: 14px;
+    line-height: 16px;
+}
+
+.bkgDcommDisallowed > a, .bkgDcommAllowed > a
+{
+    font-size: 8px;
+    font-weight: bold;    
+    text-transform: uppercase; 
+    cursor: pointer;  
+}
+
+.bkgDcommDisallowed > a[onclick=''], .bkgDcommAllowed > a[onclick='']
+{
+    cursor: default;  
+}
