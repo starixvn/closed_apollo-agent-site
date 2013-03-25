@@ -18,16 +18,16 @@
     function load(settings, root, child, container) {
         $.getJSON(settings.url, { root: root }, function (response) {
             function createNode(parent) {
-                var current = $("<li/>").attr("id", this.id || "").html("<span>" + this.text + "</span>").appendTo(parent);
+                var current = $("<li/>").attr("id", this.Id || "").html("<span>" + this.Text + "</span>").appendTo(parent);
                 if (this.classes) {
                     current.children("span").addClass(this.classes);
                 }
                 if (this.expanded) {
                     current.addClass("open");
                 }
-                if (this.hasChildren || this.children && this.children.length) {
+                if (this.HasChildren || this.children && this.children.length) {
                     var branch = $("<ul/>").appendTo(current);
-                    if (this.hasChildren) {
+                    if (this.HasChildren) {
                         current.addClass("hasChildren");
                         createNode.call({
                             text: "placeholder",

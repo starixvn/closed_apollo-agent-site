@@ -85,9 +85,9 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
             }
 
             tree.Append("{");
-            tree.Append("\"text\": \"").Append("<a href='" + url + "' " + target  + ">" + dv[i]["Username"] + "</a>").Append("\",");
-            tree.Append("\"id\": \"").Append(dv[i]["AgentId"]).Append("\",");
-            tree.Append("\"hasChildren\": " + dv[i]["hasChildren"]);
+            tree.Append("\"Text\": \"").Append("<a href='" + url + "' " + target  + ">" + dv[i]["Username"] + "</a>").Append("\",");
+            tree.Append("\"Id\": \"").Append(dv[i]["AgentId"]).Append("\",");
+            tree.Append("\"HasChildren\": " + dv[i]["hasChildren"]);
             tree.Append("},");
         }
 

@@ -1,8 +1,11 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AgentWinlossCriteria.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="AgentWinlossCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.22">Created</change>
+// </history>
 
 namespace Apollo.Age.Criterias.Reports
 {
@@ -24,11 +27,16 @@ namespace Apollo.Age.Criterias.Reports
 
         public int AgentId { get; set; }
 
-        public int ViewedBy { get; set; }
+        // public int ViewedBy { get; set; }
 
         public override bool IsValid()
         {
-            return base.IsValid();
+            return FromDate <= ToDate;
+        }
+
+        public override string GetSettingKey()
+        {
+            return "Report_Quinn_Test";
         }
     }
 }

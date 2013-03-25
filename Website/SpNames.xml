@@ -116,6 +116,12 @@
 
   </Function>
 
+  <Function Name="Agent-Apollo-Report">
+    <Setting Key="Report_Quinn_Test" SpName="Report_Quinn_Test" DbName="RepDB" Plain="0" >
+      <Mapping DataField="BetAmount" ObjectProperty="MemberBetAmount" />
+    </Setting>
+  </Function>
+  
   <Function Name="Agent-Apollo-TotalBets">
     <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="REPDB" Plain="0" />
     <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="REPDB" Plain="0" />
