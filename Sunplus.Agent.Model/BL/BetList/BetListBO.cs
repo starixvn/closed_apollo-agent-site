@@ -391,7 +391,7 @@ namespace Sunplus.Agent.Model.BL.BetList
             //{
             //    runningBets = new DataTable();
             //}
-            runningBets = betListDAO.Age_BetList_TotalBet_SelRunningByBettypeMatch(matchId, customerId, betType, language, liveindicator, betteam);
+            runningBets = betListDAO.Age_BetList_TotalBets_SelRunningByBettypeMatch(matchId, customerId, betType, language, liveindicator, betteam);
 
             return runningBets;
         }
@@ -429,7 +429,7 @@ namespace Sunplus.Agent.Model.BL.BetList
             //    runningBets = new DataTable();
             //    outDataTable = new DataTable();
             //}
-            runningBets = betListDAO.Age_BetList_TotalBet_SelRunningByBettypeMatch(matchId, customerId, betType, language, liveindicator, betteam, out outDataTable);
+            runningBets = betListDAO.Age_BetList_TotalBets_SelRunningByBettypeMatch(matchId, customerId, betType, language, liveindicator, betteam, out outDataTable);
 
             return runningBets;
         }
@@ -491,7 +491,7 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             DataTable runningBets = new DataTable();
 
-            runningBets = betListDAO.Acc_BetList_TotalBets_SelRunningByBettype(customerId, betType, language);
+            runningBets = betListDAO.Age_BetList_TotalBets_SelRunningByBettype(customerId, betType, language);
 
             return runningBets;
         }
@@ -509,7 +509,7 @@ namespace Sunplus.Agent.Model.BL.BetList
             int customerId = CurrentSession.CustId;
 
             DataTable runningBets = null;
-            runningBets = betListDAO.Acc_Betlist_TotalBets_Sel_4_30(customerId, language);
+            runningBets = betListDAO.Age_Betlist_TotalBets_Sel_4_30(customerId, language);
 
             return runningBets;
         }
@@ -754,7 +754,7 @@ namespace Sunplus.Agent.Model.BL.BetList
             BetListDAO dao = new BetListDAO();
             DataTable ptComm = new DataTable();
             //ptComm = dao.Acc_BetList_AgentDetail(transId, agentId, fromDate, toDate, moveBetsDay, showSB, showNG);
-            ptComm = dao.Acc_BetList_TotalBet_AgentDetail(transId, CurrentSession.CustId);
+            ptComm = dao.Age_BetList_TotalBets_AgentDetail(transId, CurrentSession.CustId);
             return ptComm;
         }
 

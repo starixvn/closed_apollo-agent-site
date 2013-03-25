@@ -144,6 +144,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
         public void RenderSearchControl()
         {
+            Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template pagingHeader = new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template();
+
             // Searching
             Dictionary<object, int> dcommFilterDict = new Dictionary<object, int>() {
                 {Resources.Lang.all, 2},{Resources.Lang.doublecommissionON, 1},
@@ -157,8 +159,17 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             string pagingControlName_bottom = "MemberList" + CurrentUserSession.SiteName + "_PagingBottom";
 
             // Paging on Top
-            this.template.PagingHeader.pagingControl = new Paging_Control(TemplateMain, pagingControlName_top, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
-            this.template.PagingHeader.selPageSize = this.RenderPageSize(pagingControlName_top, this.PageSize);
+            pagingHeader.pagingControl = new Paging_Control(TemplateMain, pagingControlName_top, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
+
+            pagingHeader.selPageSize = this.RenderPageSize(pagingControlName_top, this.PageSize);
+            pagingHeader.button.Hide();
+
+            if (!CurrentUserSession.SubPageAccess.UpdateAccount)
+            {
+                pagingHeader.selected.Hide();
+            }
+
+            this.template.pagingHeader = pagingHeader;
 
             if (this.TotalPage == 0)
             {
@@ -167,13 +178,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             else
             {
                 this.template.pagingControl = new Paging_Control(TemplateMain, pagingControlName_bottom, PageSize, Request.Url.AbsoluteUri, TotalPage * PageSize, false);
-            }
-
-            this.template.PagingHeader.button.Hide();
-
-            if (!CurrentUserSession.SubPageAccess.UpdateAccount)
-            {
-                this.template.PagingHeader.selected.Hide();
             }
         }
 

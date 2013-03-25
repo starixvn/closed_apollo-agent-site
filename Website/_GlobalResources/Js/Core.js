@@ -1,8 +1,8 @@
-﻿var APOLLO = {}; // Global namespace for common functions
-
+﻿
 if (typeof jQuery != 'undefined') {
-    // functions in this namespace require jquery, and may be jquery-ui
-    var APOLLO = function ($) {
+    // Functions in this namespace require jquery and jquery-ui
+    // Global namespace for common functions
+    window.APOLLO = function ($) {
         return {
             dialogOpt: {
                 position: { my: "top+20%", at: "center top", of: window },
@@ -27,11 +27,13 @@ if (typeof jQuery != 'undefined') {
             },
 
             parseJSON: function (value) {
-                return $.parseJSON(value.replaceAll("'","\""));
+                return $.parseJSON(value.replaceAll("'", "\""));
             }
         };
     } (jQuery);
 }
+
+String.Empty = ""; // Extend static string
 
 /**
 * ReplaceAll by Fagner Brack (MIT Licensed)
@@ -73,6 +75,47 @@ String.prototype.trim = function () {
     return this.replace(/^\s+/, '').replace(/\s+$/, '');
 };
 
+String.prototype.contains = function (sub) {
+    return this.indexOf(sub, 0) != -1;
+}
+
+String.prototype.Format = function (args) {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};
+
+String.prototype.FormatNumber = function (number) { // Format a number to 1,234,567.89
+    number += String.Empty;
+    x = number.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : String.Empty;
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return this + x1 + x2;
+};
+
+String.prototype.escapeHtml = function () { // Replace all ampersands with &amp; and all <’s and >’s with &lt; and &gt;, respectively:
+    var result = String.Empty;
+    for (var i = 0; i < this.length; i++) {
+        if (this.charAt(i) == "&" && this.length - i - 1 >= 4 && this.substr(i, 4) != "&amp;") {
+            result = result + "&amp;";
+        } else if (this.charAt(i) == "<") {
+            result = result + "&lt;";
+        } else if (this.charAt(i) == ">") {
+            result = result + "&gt;";
+        } else {
+            result = result + this.charAt(i);
+        }
+    }
+    return result;
+};
+
 function SetParameterValue(name, value, url) {
     var newParameter = (value != null) ? (name + "=" + value) : null;
     if (!url.contains("?")) {
@@ -109,48 +152,6 @@ function GetParameterValue(name, url) {
     return value;
 }
 
-String.prototype.contains = function (sub) {
-    return this.indexOf(sub, 0) != -1;
-}
-
-String.Empty = ""; // Extend static string
-
-String.prototype.Format = function (args) {
-    var formatted = this;
-    for (var i = 0; i < arguments.length; i++) {
-        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
-        formatted = formatted.replace(regexp, arguments[i]);
-    }
-    return formatted;
-};
-String.prototype.FormatNumber = function (number) { // Format a number to 1,234,567.89
-    number += String.Empty;
-    x = number.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : String.Empty;
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    }
-    return this + x1 + x2;
-};
-
-String.prototype.escapeHtml = function () { // Replace all ampersands with &amp; and all <’s and >’s with &lt; and &gt;, respectively:
-    var result = String.Empty;
-    for (var i = 0; i < this.length; i++) {
-        if (this.charAt(i) == "&" && this.length - i - 1 >= 4 && this.substr(i, 4) != "&amp;") {
-            result = result + "&amp;";
-        } else if (this.charAt(i) == "<") {
-            result = result + "&lt;";
-        } else if (this.charAt(i) == ">") {
-            result = result + "&gt;";
-        } else {
-            result = result + this.charAt(i);
-        }
-    }
-    return result;
-};
-
 (function () { // Parse float with string has commas inside parseFloat(string, true)
     var proxied = window.parseFloat;
     window.parseFloat = function () {
@@ -161,12 +162,10 @@ String.prototype.escapeHtml = function () { // Replace all ampersands with &amp;
     };
 })();
 
-// Detect browser
-
-function isIE() {
+function isIE() { // Detect browser
     return /msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent);
 }
-IE = isIE();
+window.IE = isIE();
 
 // Cookie
 function getCookie(name) {
@@ -245,8 +244,7 @@ function _addEvent(el, evname, func) {
 }
 // Prototype of AGE
 
-function AGE()
-{ };
+function AGE() { };
 
 AGE.prototype.FormatNumberFloat = function (number) { // Format a number to 12,345
     if (number == String.Empty) return 0;
@@ -607,8 +605,8 @@ jx = {
 }
 // Ajax class
 
-function AJAX()
-{ };
+function AJAX() { };
+
 AJAX.prototype.Request = function (url, options) {
     //url:'url?var1=val1&var2=val2...'
     //options:{method:'get/post',asynchronous:true/false,parameters:'var3=val3&var4=val4',onComplete:function(data){}}

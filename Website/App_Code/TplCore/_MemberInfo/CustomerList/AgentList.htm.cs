@@ -17,35 +17,35 @@ namespace Fanex.Agent.UI
 			protected static string s1{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
 			protected static string s2 = "</td></tr><tr><td><div id=\"title_header\"><div class=\"agent-list-title\">";
 			protected static string s3{get{return Resources.Lang.lblAgentListOf;}}
+			protected static string s4 = " ";
 			public string AgentName = "{AgentName}";
-			protected static string s4 = "</div><div class=\"edit-setting\">";
+			protected static string s5 = "</div><div class=\"edit-setting\">";
 			public string IconEditSetting = "{IconEditSetting}";
-			protected static string s5 = "</div></div></td></tr><tr><td><div id=\"box_header\" style=\"width:100%\">";
+			protected static string s6 = "</div></div></td></tr><tr><td><div id=\"box_header\" style=\"width: 100%\">";
 			public string searchControl = "{searchControl}";
-			protected static string s6 = "</div></td></tr><tr><td><div id=\"page_main\">";
+			protected static string s7 = "</div></td></tr><tr><td><div id=\"page_main\">";
 			public AgentList_nav_link_container_Block nav_link_container = new AgentList_nav_link_container_Block();
-			protected static string s7 = "<link href=\"";
-			protected static string s8{get{return AbsoluteUrl("_MemberInfo/CustomerList/Components/Print_Control/Resources/Print.css", TplSettings.Question);}}
-			protected static string s9 = "\" rel=\"stylesheet\" type=\"text/css\"media=\"print\" />";
-			public Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template PagingHeader{get {return _PagingHeader != null ? _PagingHeader : _PagingHeader =  new Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template();}}
-			protected Fanex.Age.UI.Components.PagingHeader.PagingHeader_Template _PagingHeader;
-			protected static string s10 = "<div class=\"list\"><div class=\"container-sub-nav\"><ul class=\"sub-nav\"><li class=\"active\">";
-			protected static string s11{get{return Resources.Lang.lblAgentList;}}
-			protected static string s12 = "</li><li><span class=\"line\">|</span><a href=\"";
+			protected static string s8 = "<link href=\"";
+			protected static string s9{get{return AbsoluteUrl("_MemberInfo/CustomerList/Components/Print_Control/Resources/Print.css", TplSettings.Question);}}
+			protected static string s10 = "\" rel=\"stylesheet\" type=\"text/css\"media=\"print\" />";
+			public string pagingHeader = "{pagingHeader}";
+			protected static string s11 = "<div class=\"list\"><div class=\"container-sub-nav\"><ul class=\"sub-nav\"><li class=\"active\">";
+			protected static string s12{get{return Resources.Lang.lblAgentList;}}
+			protected static string s13 = "</li><li><span class=\"line\">|</span><a href=\"";
 			public string urlMemberList = "{urlMemberList}";
-			protected static string s13 = "\">";
-			protected static string s14{get{return Resources.Lang.lblPlayerList;}}
-			protected static string s15 = "</a></li><li><span class=\"line\">|</span><a href=\"";
+			protected static string s14 = "\">";
+			protected static string s15{get{return Resources.Lang.lblPlayerList;}}
+			protected static string s16 = "</a></li><li><span class=\"line\">|</span><a href=\"";
 			public string urlShadowList = "{urlShadowList}";
-			protected static string s16 = "\">";
-			protected static string s17{get{return Resources.Lang.lblShadowList;}}
-			protected static string s18 = "</a></li></ul></div><table id=\"tblCustomerList\">";
+			protected static string s17 = "\">";
+			protected static string s18{get{return Resources.Lang.lblShadowList;}}
+			protected static string s19 = "</a></li></ul></div><table id=\"tblCustomerList\">";
 			public AgentList_Header_Block Header = new AgentList_Header_Block();
-			protected static string s19 = "<tbody>";
+			protected static string s20 = "<tbody>";
 			public AgentList_Content_Block Content = new AgentList_Content_Block();
-			protected static string s20 = "</tbody><tfoot><tr><td colspan=\"23\">";
+			protected static string s21 = "</tbody><tfoot><tr><td colspan=\"23\">";
 			public string pagingControl = "{pagingControl}";
-			protected static string s21 = "</td></tr></tfoot></table></div></div></td></tr></table> ";
+			protected static string s22 = "</td></tr></tfoot></table></div></div></td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -55,34 +55,35 @@ namespace Fanex.Agent.UI
 					bd.Append(s1);
 					bd.Append(s2);
 					bd.Append(s3);
-					bd.Append(AgentName);
 					bd.Append(s4);
-					bd.Append(IconEditSetting);
+					bd.Append(AgentName);
 					bd.Append(s5);
-					bd.Append(searchControl);
+					bd.Append(IconEditSetting);
 					bd.Append(s6);
-					if(null != nav_link_container) nav_link_container.ToString(ref bd);
+					bd.Append(searchControl);
 					bd.Append(s7);
+					if(null != nav_link_container) nav_link_container.ToString(ref bd);
 					bd.Append(s8);
 					bd.Append(s9);
-					bd.Append(PagingHeader);
 					bd.Append(s10);
+					bd.Append(pagingHeader);
 					bd.Append(s11);
 					bd.Append(s12);
-					bd.Append(urlMemberList);
 					bd.Append(s13);
+					bd.Append(urlMemberList);
 					bd.Append(s14);
 					bd.Append(s15);
-					bd.Append(urlShadowList);
 					bd.Append(s16);
+					bd.Append(urlShadowList);
 					bd.Append(s17);
 					bd.Append(s18);
-					if(null != Header) Header.ToString(ref bd);
 					bd.Append(s19);
-					if(null != Content) Content.ToString(ref bd);
+					if(null != Header) Header.ToString(ref bd);
 					bd.Append(s20);
-					bd.Append(pagingControl);
+					if(null != Content) Content.ToString(ref bd);
 					bd.Append(s21);
+					bd.Append(pagingControl);
+					bd.Append(s22);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -97,17 +98,17 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_nav_link_container_Block: Block
 		{
-			protected static string s22 = "<div class=\"boxNavigation\" id=\"divnavigation\">";
+			protected static string s23 = "<div class=\"boxNavigation\" id=\"divnavigation\">";
 			public AgentList_nav_link_container_nav_link_Block nav_link = new AgentList_nav_link_container_nav_link_Block();
-			protected static string s23 = "</div>";
+			protected static string s24 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s22);
-					if(null != nav_link) nav_link.ToString(ref bd);
 					bd.Append(s23);
+					if(null != nav_link) nav_link.ToString(ref bd);
+					bd.Append(s24);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -115,22 +116,22 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_nav_link_container_nav_link_Block: Block
 		{
-			protected static string s24 = "<a href=\"";
+			protected static string s25 = "<a href=\"";
 			public string url = "{url}";
-			protected static string s25 = "\">";
+			protected static string s26 = "\">";
 			public string navigateName = "{navigateName}";
-			protected static string s26 = "</a>";
+			protected static string s27 = " </a>";
 			public string narrow = "{narrow}";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s24);
-					bd.Append(url);
 					bd.Append(s25);
-					bd.Append(navigateName);
+					bd.Append(url);
 					bd.Append(s26);
+					bd.Append(navigateName);
+					bd.Append(s27);
 					bd.Append(narrow);
 				}
 				if(IsAssigned){bd.Append(Value);}
@@ -139,49 +140,48 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_Header_Block: Block
 		{
-			protected static string s27 = "<thead><tr><th rowspan=\"2\">";
-			protected static string s28{get{return Resources.Lang.no;}}
-			protected static string s29 = "</th><th rowspan=\"2\" style=\"display:none\"><input type=\"checkbox\" id=\"chkAllItem\" name=\"chkAllItem\" onclick=\"CheckAll_onClick(this);\"/></th><th rowspan=\"2\">";
-			protected static string s30{get{return Resources.Lang.edit;}}
-			protected static string s31 = "</th><th rowspan=\"2\">";
-			protected static string s32{get{return Resources.Lang.lblUser;}}
-			protected static string s33 = "</th><th rowspan=\"2\">";
-			protected static string s34{get{return Resources.Lang.agentList;}}
-			protected static string s35 = "</th><th rowspan=\"2\">";
-			protected static string s36{get{return Resources.Lang.memberList;}}
-			protected static string s37 = "</th><th colspan=\"7\" class=\"header_comm\">";
-			protected static string s38{get{return Resources.Lang.commission;}}
-			protected static string s39 = "</th><th colspan=\"4\" class=\"header_comm\">";
-			protected static string s40{get{return Resources.Lang.lblSoccerPT;}}
-			protected static string s41 = "</th></tr><tr class=\"header\"><th>";
-			protected static string s42{get{return Resources.Lang.lblGroupa;}}
-			protected static string s43 = "</th><th>";
-			protected static string s44{get{return Resources.Lang.lblGroupb;}}
-			protected static string s45 = "</th><th>";
-			protected static string s46{get{return Resources.Lang.lblGroupc;}}
-			protected static string s47 = "</th><th>";
-			protected static string s48{get{return Resources.Lang.lblGroupd;}}
-			protected static string s49 = "</th><th>";
-			protected static string s50{get{return Resources.Lang.lbl1x2;}}
-			protected static string s51 = "</th><th>";
-			protected static string s52{get{return Resources.Lang.other;}}
-			protected static string s53 = "</th><th>";
-			protected static string s54{get{return Resources.Lang.numbergame;}}
-			protected static string s55 = "</th><th>";
-			protected static string s56{get{return Resources.Lang.hdp;}}
-			protected static string s57 = "</th><th>";
-			protected static string s58{get{return Resources.Lang.lblOU;}}
-			protected static string s59 = "</th><th>";
-			protected static string s60{get{return Resources.Lang.hdpLive;}}
-			protected static string s61 = "</th><th>";
-			protected static string s62{get{return Resources.Lang.ovLive;}}
-			protected static string s63 = "</th></tr></thead>";
+			protected static string s28 = "<thead><tr><th rowspan=\"2\">";
+			protected static string s29{get{return Resources.Lang.no;}}
+			protected static string s30 = "</th><th rowspan=\"2\" style=\"display: none\"><input type=\"checkbox\" id=\"chkAllItem\" name=\"chkAllItem\" onclick=\"CheckAll_onClick(this);\" /></th><th rowspan=\"2\">";
+			protected static string s31{get{return Resources.Lang.edit;}}
+			protected static string s32 = "</th><th rowspan=\"2\">";
+			protected static string s33{get{return Resources.Lang.lblUser;}}
+			protected static string s34 = "</th><th rowspan=\"2\">";
+			protected static string s35{get{return Resources.Lang.agentList;}}
+			protected static string s36 = "</th><th rowspan=\"2\">";
+			protected static string s37{get{return Resources.Lang.memberList;}}
+			protected static string s38 = "</th><th colspan=\"7\" class=\"header_comm\">";
+			protected static string s39{get{return Resources.Lang.commission;}}
+			protected static string s40 = "</th><th colspan=\"4\" class=\"header_comm\">";
+			protected static string s41{get{return Resources.Lang.lblSoccerPT;}}
+			protected static string s42 = "</th></tr><tr class=\"header\"><th>";
+			protected static string s43{get{return Resources.Lang.lblGroupa;}}
+			protected static string s44 = "</th><th>";
+			protected static string s45{get{return Resources.Lang.lblGroupb;}}
+			protected static string s46 = "</th><th>";
+			protected static string s47{get{return Resources.Lang.lblGroupc;}}
+			protected static string s48 = "</th><th>";
+			protected static string s49{get{return Resources.Lang.lblGroupd;}}
+			protected static string s50 = "</th><th>";
+			protected static string s51{get{return Resources.Lang.lbl1x2;}}
+			protected static string s52 = "</th><th>";
+			protected static string s53{get{return Resources.Lang.other;}}
+			protected static string s54 = "</th><th>";
+			protected static string s55{get{return Resources.Lang.numbergame;}}
+			protected static string s56 = "</th><th>";
+			protected static string s57{get{return Resources.Lang.hdp;}}
+			protected static string s58 = "</th><th>";
+			protected static string s59{get{return Resources.Lang.lblOU;}}
+			protected static string s60 = "</th><th>";
+			protected static string s61{get{return Resources.Lang.hdpLive;}}
+			protected static string s62 = "</th><th>";
+			protected static string s63{get{return Resources.Lang.ovLive;}}
+			protected static string s64 = "</th></tr></thead>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
 					bd.Append(s30);
@@ -218,6 +218,7 @@ namespace Fanex.Agent.UI
 					bd.Append(s61);
 					bd.Append(s62);
 					bd.Append(s63);
+					bd.Append(s64);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -225,19 +226,17 @@ namespace Fanex.Agent.UI
 
 		public class AgentList_Content_Block: Block
 		{
-			protected static string s64 = "<tr><td>";
+			protected static string s65 = "<tr><td>";
 			public string id = "{id}";
-			protected static string s65 = "</td><td style=\"display:none\"><input type=\"checkbox\" id=\"";
+			protected static string s66 = "</td><td style=\"display: none\"><input type=\"checkbox\" id=\"";
 			public string chkid = "{chkid}";
-			protected static string s66 = "\" name=\"chkid\" value=\"";
+			protected static string s67 = "\" name=\"chkid\" value=\"";
 			public string chkid_value = "{chkid_value}";
-			protected static string s67 = "\" onclick=\"ItemCheck_OnClick(this);\"/></td><td align=\"center\">";
+			protected static string s68 = "\" onclick=\"ItemCheck_OnClick(this);\" /></td><td align=\"center\">";
 			public string edit_Option = "{edit_Option}";
-			protected static string s68 = "</td><td class=\"l\"><div ";
-			public string LnkUserName = "{LnkUserName}";
-			protected static string s69 = ">";
+			protected static string s69 = "</td><td class=\"l\">";
 			public string username = "{username}";
-			protected static string s70 = "</div></td><td>";
+			protected static string s70 = "</td><td>";
 			public string viewAgentList = "{viewAgentList}";
 			protected static string s71 = "</td><td>";
 			public string viewPlayerList = "{viewPlayerList}";
@@ -269,16 +268,14 @@ namespace Fanex.Agent.UI
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s64);
-					bd.Append(id);
 					bd.Append(s65);
-					bd.Append(chkid);
+					bd.Append(id);
 					bd.Append(s66);
-					bd.Append(chkid_value);
+					bd.Append(chkid);
 					bd.Append(s67);
-					bd.Append(edit_Option);
+					bd.Append(chkid_value);
 					bd.Append(s68);
-					bd.Append(LnkUserName);
+					bd.Append(edit_Option);
 					bd.Append(s69);
 					bd.Append(username);
 					bd.Append(s70);

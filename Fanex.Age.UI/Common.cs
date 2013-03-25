@@ -1,12 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-
-
-/*
+﻿/*
  * Created 20091224@Lee - Common definitions
  * Revision:
  * 20091224@Lee - Initializing
@@ -19,10 +11,18 @@ using System.Web.UI;
 
 namespace Fanex.Age.UI
 {
+    using System;
+    using System.Data;
+    using System.Configuration;
+    using System.Web;
+    using System.Web.Security;
+    using System.Web.UI;
+
     public class Common
     {
-        // Background color setting
+        #region Background color setting
         // Note that we use bgColor, don't use className because performance problem
+
         public const string RowBgOdd = "#F6F8F9";
         public const string RowBgEven = "#faf9ee";
         public const string RowBgOver = "#FBF0B9";
@@ -39,11 +39,14 @@ namespace Fanex.Age.UI
         public const string RowCssLive = "BgLive";
         public const string RowCssDisabled = "BgDis";
 
+        #endregion
+
         // Checked status for checkbox
         public const string CHECKED = " checked";
         public const string DISABLED = " disabled";
 
         #region BetList
+
         /// <summary>
         /// BestList Winloss by date
         /// </summary>
@@ -114,9 +117,7 @@ namespace Fanex.Age.UI
         /// Best List By Daily Statement
         /// </summary>
         public const string BetListByDailyStatement = "BLDailyST";
+
         #endregion
-
-
-
     }
 }
