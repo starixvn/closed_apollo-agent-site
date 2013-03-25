@@ -20,7 +20,7 @@ namespace Fanex.Age.UI.Admin
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s5{get{return AbsoluteUrl("_globalresources/css/agent.css", TplSettings.Question);}}
 			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s7{get{return AbsoluteUrl("styles/exchangerate.css", TplSettings.Question);}}
+			protected static string s7{get{return AbsoluteUrl("styles/exchangerate.less", TplSettings.Question);}}
 			protected static string s8 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" ";
 			public string actionForm = "{actionForm}";
 			protected static string s9 = "><div id=\"page_main\"><div id=\"header_main\">";

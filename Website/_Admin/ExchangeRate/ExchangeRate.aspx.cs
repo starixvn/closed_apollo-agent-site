@@ -17,6 +17,7 @@ using Sunplus.Agent.Model.BL.Admin;
 using System.Collections;
 using Fanex.Age.UI.Admin;
 using Fanex.Age.Excel.Admin.ExchangeRate;
+using Fanex.Age.Utility;
 
 public partial class _Admin_ExchangeRate_ExchangeRate : AdminBasePage
 {
@@ -74,7 +75,7 @@ public partial class _Admin_ExchangeRate_ExchangeRate : AdminBasePage
                 contentBlock.ExchangeId = exRate["ExchangeId"].ToString();
                 contentBlock.Currency = exRate["Currency"].ToString();
                 contentBlock.MultipliedBy = exRate["MultipliedBy"].ToString();
-                contentBlock.BaseRate = exRate["ActualRate"].ToString();
+                contentBlock.BaseRate = Formater.DecFormat(exRate["ActualRate"], 4);
                 contentBlock.MinBet = exRate["MinBet"].ToString();
                 contentBlock.MinBetLive = exRate["MinBetLive"].ToString();
                 contentBlock.Description = exRate["Description"].ToString();
