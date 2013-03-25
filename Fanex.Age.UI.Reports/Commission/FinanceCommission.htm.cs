@@ -16,25 +16,23 @@ namespace Fanex.Age.UI.Reports
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.lblCommissionByFinance;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("Resources/Reports.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
-			protected static string s7{get{return AbsoluteUrl2("Commission/FinanceCommission.aspx");}}
-			protected static string s8 = "\"><div id=\"page_main\"><div id=\"header_main\">";
-			protected static string s9{get{return Resources.Lang.lblCommissionByFinance;}}
-			protected static string s10 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td><div id=\"box_header\">";
+			protected static string s3{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s5{get{return AbsoluteUrl2("Commission/FinanceCommission.aspx");}}
+			protected static string s6 = "\"><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s7{get{return Resources.Lang.lblCommissionByFinance;}}
+			protected static string s8 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td><div id=\"box_header\">";
 			public Fanex.Age.UI.Reports.Components.ReportSearchHeader_Control ReportSearchHeader{get {return _ReportSearchHeader != null ? _ReportSearchHeader : _ReportSearchHeader = new Fanex.Age.UI.Reports.Components.ReportSearchHeader_Control(this);}}
 			protected Fanex.Age.UI.Reports.Components.ReportSearchHeader_Control _ReportSearchHeader;
-			protected static string s11 = "</div></td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
+			protected static string s9 = "</div></td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
 			public FinanceCommission_ExcelContents_Block ExcelContents = new FinanceCommission_ExcelContents_Block();
-			protected static string s12 = "</div></div></td></tr></table></div><input type=\"hidden\" id=\"custid\" name=\"custid\" value=\"";
+			protected static string s10 = "</div></div></td></tr></table></div><input type=\"hidden\" id=\"custid\" name=\"custid\" value=\"";
 			public string CustId = "{CustId}";
-			protected static string s13 = "\" /></form><script src=\"";
-			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s16{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s17 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s11 = "\" /></form><script src=\"";
+			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s14{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
+			protected static string s15 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -49,18 +47,16 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
-					bd.Append(s9);
-					bd.Append(s10);
 					bd.Append(ReportSearchHeader);
-					bd.Append(s11);
+					bd.Append(s9);
 					if(null != ExcelContents) ExcelContents.ToString(ref bd);
-					bd.Append(s12);
+					bd.Append(s10);
 					bd.Append(CustId);
+					bd.Append(s11);
+					bd.Append(s12);
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
-					bd.Append(s16);
-					bd.Append(s17);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -75,66 +71,68 @@ namespace Fanex.Age.UI.Reports
 
 		public class FinanceCommission_ExcelContents_Block: Block
 		{
-			protected static string s18 = "<table class=\"tblRpt ";
+			protected static string s16 = "<table class=\"tblRpt ";
 			public string BoldRow = "{BoldRow}";
-			protected static string s19 = "\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\" style=\"display:none\"><tr id=\"rowTitle\" class=\"RptTitle\"><td colspan=\"15\" id=\"content_title\">";
-			protected static string s20{get{return Resources.Lang.lblCommissionByFinance;}}
-			protected static string s21 = "&nbsp;";
+			protected static string s17 = "\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\" style=\"display:none\"><tr id=\"rowTitle\" class=\"RptTitle\"><td colspan=\"15\" id=\"content_title\">";
+			protected static string s18{get{return Resources.Lang.lblCommissionByFinance;}}
+			protected static string s19 = "&nbsp;";
 			public string DateFrom = "{DateFrom}";
-			protected static string s22 = "--&gt;";
+			protected static string s20 = "--&gt;";
 			public string DateTo = "{DateTo}";
-			protected static string s23 = "</td></tr><tr class=\"RptHeader\"><td class=\"nowrap\" rowspan=\"2\" columnname=\"username\">";
-			protected static string s24{get{return Resources.Lang.username;}}
+			protected static string s21 = "</td></tr><tr class=\"RptHeader\"><td class=\"nowrap\" rowspan=\"2\" columnname=\"username\">";
+			protected static string s22{get{return Resources.Lang.username;}}
+			protected static string s23 = "</td><td colspan=\"7\">";
+			protected static string s24{get{return Resources.Lang.lblOverUnder;}}
 			protected static string s25 = "</td><td colspan=\"7\">";
-			protected static string s26{get{return Resources.Lang.lblOverUnder;}}
-			protected static string s27 = "</td><td colspan=\"7\">";
-			protected static string s28{get{return Resources.Lang.lblOddEven;}}
-			protected static string s29 = "</td></tr><tr class=\"RptHeader02\"><td class=\"nowrap\" columnname=\"fa51_com\">";
-			protected static string s30{get{return Resources.Lang._5minuteOE;}}
-			protected static string s31 = "</td><td class=\"nowrap\" columnname=\"fa52_com\">";
-			protected static string s32{get{return Resources.Lang._15minuteOE;}}
-			protected static string s33 = "</td><td class=\"nowrap\" columnname=\"fa53_com\">";
-			protected static string s34{get{return Resources.Lang._30minuteOE;}}
-			protected static string s35 = "</td><td class=\"nowrap\" columnname=\"fa54_com\">";
-			protected static string s36{get{return Resources.Lang._45minuteOE;}}
-			protected static string s37 = "</td><td class=\"nowrap\" columnname=\"fa55_com\">";
-			protected static string s38{get{return Resources.Lang._60minuteOE;}}
-			protected static string s39 = "</td><td class=\"nowrap\" columnname=\"fa56_com\">";
-			protected static string s40{get{return Resources.Lang._EndofdayOE;}}
-			protected static string s41 = "</td><td class=\"nowrap\" style=\"width: 70px;\" columnname=\"totalcomm_ou\">";
-			protected static string s42{get{return Resources.Lang.total;}}
-			protected static string s43 = "</td><td class=\"nowrap\" columnname=\"fa61_com\">";
-			protected static string s44{get{return Resources.Lang._5minuteOE;}}
-			protected static string s45 = "</td><td class=\"nowrap\" columnname=\"fa62_com\">";
-			protected static string s46{get{return Resources.Lang._15minuteOE;}}
-			protected static string s47 = "</td><td class=\"nowrap\" columnname=\"fa63_com\">";
-			protected static string s48{get{return Resources.Lang._30minuteOE;}}
-			protected static string s49 = "</td><td class=\"nowrap\" columnname=\"fa64_com\">";
-			protected static string s50{get{return Resources.Lang._45minuteOE;}}
-			protected static string s51 = "</td><td class=\"nowrap\" columnname=\"fa65_com\">";
-			protected static string s52{get{return Resources.Lang._60minuteOE;}}
-			protected static string s53 = "</td><td class=\"nowrap\" columnname=\"fa66_com\">";
-			protected static string s54{get{return Resources.Lang._EndofdayOE;}}
-			protected static string s55 = "</td><td class=\"nowrap\" style=\"width: 70px;\" columnname=\"totalcomm_oe\">";
-			protected static string s56{get{return Resources.Lang.total;}}
-			protected static string s57 = "</td></tr>";
+			protected static string s26{get{return Resources.Lang.lblOddEven;}}
+			protected static string s27 = "</td></tr><tr class=\"RptHeader02\"><td class=\"nowrap\" columnname=\"fa51_com\">";
+			protected static string s28{get{return Resources.Lang._5minuteOE;}}
+			protected static string s29 = "</td><td class=\"nowrap\" columnname=\"fa52_com\">";
+			protected static string s30{get{return Resources.Lang._15minuteOE;}}
+			protected static string s31 = "</td><td class=\"nowrap\" columnname=\"fa53_com\">";
+			protected static string s32{get{return Resources.Lang._30minuteOE;}}
+			protected static string s33 = "</td><td class=\"nowrap\" columnname=\"fa54_com\">";
+			protected static string s34{get{return Resources.Lang._45minuteOE;}}
+			protected static string s35 = "</td><td class=\"nowrap\" columnname=\"fa55_com\">";
+			protected static string s36{get{return Resources.Lang._60minuteOE;}}
+			protected static string s37 = "</td><td class=\"nowrap\" columnname=\"fa56_com\">";
+			protected static string s38{get{return Resources.Lang._EndofdayOE;}}
+			protected static string s39 = "</td><td class=\"nowrap\" style=\"width: 70px;\" columnname=\"totalcomm_ou\">";
+			protected static string s40{get{return Resources.Lang.total;}}
+			protected static string s41 = "</td><td class=\"nowrap\" columnname=\"fa61_com\">";
+			protected static string s42{get{return Resources.Lang._5minuteOE;}}
+			protected static string s43 = "</td><td class=\"nowrap\" columnname=\"fa62_com\">";
+			protected static string s44{get{return Resources.Lang._15minuteOE;}}
+			protected static string s45 = "</td><td class=\"nowrap\" columnname=\"fa63_com\">";
+			protected static string s46{get{return Resources.Lang._30minuteOE;}}
+			protected static string s47 = "</td><td class=\"nowrap\" columnname=\"fa64_com\">";
+			protected static string s48{get{return Resources.Lang._45minuteOE;}}
+			protected static string s49 = "</td><td class=\"nowrap\" columnname=\"fa65_com\">";
+			protected static string s50{get{return Resources.Lang._60minuteOE;}}
+			protected static string s51 = "</td><td class=\"nowrap\" columnname=\"fa66_com\">";
+			protected static string s52{get{return Resources.Lang._EndofdayOE;}}
+			protected static string s53 = "</td><td class=\"nowrap\" style=\"width: 70px;\" columnname=\"totalcomm_oe\">";
+			protected static string s54{get{return Resources.Lang.total;}}
+			protected static string s55 = "</td></tr>";
 			public FinanceCommission_ExcelContents_ContentRow_Block ContentRow = new FinanceCommission_ExcelContents_ContentRow_Block();
 			public FinanceCommission_ExcelContents_TotalContent_Block TotalContent = new FinanceCommission_ExcelContents_TotalContent_Block();
 			public FinanceCommission_ExcelContents_NoInfo_Block NoInfo = new FinanceCommission_ExcelContents_NoInfo_Block();
-			protected static string s58 = "</table>";
+			protected static string s56 = "</table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s18);
+					bd.Append(s16);
 					bd.Append(BoldRow);
+					bd.Append(s17);
+					bd.Append(s18);
 					bd.Append(s19);
-					bd.Append(s20);
-					bd.Append(s21);
 					bd.Append(DateFrom);
-					bd.Append(s22);
+					bd.Append(s20);
 					bd.Append(DateTo);
+					bd.Append(s21);
+					bd.Append(s22);
 					bd.Append(s23);
 					bd.Append(s24);
 					bd.Append(s25);
@@ -168,12 +166,10 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s53);
 					bd.Append(s54);
 					bd.Append(s55);
-					bd.Append(s56);
-					bd.Append(s57);
 					if(null != ContentRow) ContentRow.ToString(ref bd);
 					if(null != TotalContent) TotalContent.ToString(ref bd);
 					if(null != NoInfo) NoInfo.ToString(ref bd);
-					bd.Append(s58);
+					bd.Append(s56);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -181,87 +177,87 @@ namespace Fanex.Age.UI.Reports
 
 		public class FinanceCommission_ExcelContents_ContentRow_Block: Block
 		{
-			protected static string s59 = "<tr bgcolor=\"";
+			protected static string s57 = "<tr bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s60 = "\" onmouseover=\"this.style.backgroundColor='";
-			protected static string s61{get{return Fanex.Age.UI.Common.RowBgOver;}}
-			protected static string s62 = "'\" onmouseout=\"this.style.backgroundColor='";
+			protected static string s58 = "\" onmouseover=\"this.style.backgroundColor='";
+			protected static string s59{get{return Fanex.Age.UI.Common.RowBgOver;}}
+			protected static string s60 = "'\" onmouseout=\"this.style.backgroundColor='";
 			protected string t0_ColorClass;
-			protected static string s63 = "'\"><td class=\"left_normal\">";
+			protected static string s61 = "'\"><td class=\"left_normal\">";
 			public FinanceCommission_ExcelContents_ContentRow_DownlineLink_Block DownlineLink = new FinanceCommission_ExcelContents_ContentRow_DownlineLink_Block();
 			public string UserName = "{UserName}";
-			protected static string s64 = "</td><td>";
+			protected static string s62 = "</td><td>";
 			public string OU5 = "{OU5}";
-			protected static string s65 = "</td><td>";
+			protected static string s63 = "</td><td>";
 			public string OU15 = "{OU15}";
-			protected static string s66 = "</td><td>";
+			protected static string s64 = "</td><td>";
 			public string OU30 = "{OU30}";
-			protected static string s67 = "</td><td>";
+			protected static string s65 = "</td><td>";
 			public string OU45 = "{OU45}";
-			protected static string s68 = "</td><td>";
+			protected static string s66 = "</td><td>";
 			public string OU60 = "{OU60}";
-			protected static string s69 = "</td><td>";
+			protected static string s67 = "</td><td>";
 			public string OUEndOfDay = "{OUEndOfDay}";
-			protected static string s70 = "</td><td>";
+			protected static string s68 = "</td><td>";
 			public string OUTotal = "{OUTotal}";
-			protected static string s71 = "</td><td>";
+			protected static string s69 = "</td><td>";
 			public string OE5 = "{OE5}";
-			protected static string s72 = "</td><td>";
+			protected static string s70 = "</td><td>";
 			public string OE15 = "{OE15}";
-			protected static string s73 = "</td><td>";
+			protected static string s71 = "</td><td>";
 			public string OE30 = "{OE30}";
-			protected static string s74 = "</td><td>";
+			protected static string s72 = "</td><td>";
 			public string OE45 = "{OE45}";
-			protected static string s75 = "</td><td>";
+			protected static string s73 = "</td><td>";
 			public string OE60 = "{OE60}";
-			protected static string s76 = "</td><td>";
+			protected static string s74 = "</td><td>";
 			public string OEEndOfDay = "{OEEndOfDay}";
-			protected static string s77 = "</td><td>";
+			protected static string s75 = "</td><td>";
 			public string OETotal = "{OETotal}";
-			protected static string s78 = "</td></tr>";
+			protected static string s76 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s57);
+					bd.Append(ColorClass);
+					bd.Append(s58);
 					bd.Append(s59);
-					bd.Append(ColorClass);
 					bd.Append(s60);
-					bd.Append(s61);
-					bd.Append(s62);
 					bd.Append(ColorClass);
-					bd.Append(s63);
+					bd.Append(s61);
 					if(null != DownlineLink) DownlineLink.ToString(ref bd);
 					bd.Append(UserName);
-					bd.Append(s64);
+					bd.Append(s62);
 					bd.Append(OU5);
-					bd.Append(s65);
+					bd.Append(s63);
 					bd.Append(OU15);
-					bd.Append(s66);
+					bd.Append(s64);
 					bd.Append(OU30);
-					bd.Append(s67);
+					bd.Append(s65);
 					bd.Append(OU45);
-					bd.Append(s68);
+					bd.Append(s66);
 					bd.Append(OU60);
-					bd.Append(s69);
+					bd.Append(s67);
 					bd.Append(OUEndOfDay);
-					bd.Append(s70);
+					bd.Append(s68);
 					bd.Append(OUTotal);
-					bd.Append(s71);
+					bd.Append(s69);
 					bd.Append(OE5);
-					bd.Append(s72);
+					bd.Append(s70);
 					bd.Append(OE15);
-					bd.Append(s73);
+					bd.Append(s71);
 					bd.Append(OE30);
-					bd.Append(s74);
+					bd.Append(s72);
 					bd.Append(OE45);
-					bd.Append(s75);
+					bd.Append(s73);
 					bd.Append(OE60);
-					bd.Append(s76);
+					bd.Append(s74);
 					bd.Append(OEEndOfDay);
-					bd.Append(s77);
+					bd.Append(s75);
 					bd.Append(OETotal);
-					bd.Append(s78);
+					bd.Append(s76);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -269,25 +265,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class FinanceCommission_ExcelContents_ContentRow_DownlineLink_Block: Block
 		{
-			protected static string s79 = "<span class='downline_link' onclick=\"viewFinanceCommissionDownline(";
+			protected static string s77 = "<span class='downline_link' onclick=\"viewFinanceCommissionDownline(";
 			public string CustId = "{CustId}";
-			protected static string s80 = ",";
+			protected static string s78 = ",";
 			public string RoleId = "{RoleId}";
-			protected static string s81 = ")\">";
+			protected static string s79 = ")\">";
 			public string UserName = "{UserName}";
-			protected static string s82 = "</span>";
+			protected static string s80 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s79);
+					bd.Append(s77);
 					bd.Append(CustId);
-					bd.Append(s80);
+					bd.Append(s78);
 					bd.Append(RoleId);
-					bd.Append(s81);
+					bd.Append(s79);
 					bd.Append(UserName);
-					bd.Append(s82);
+					bd.Append(s80);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -295,73 +291,73 @@ namespace Fanex.Age.UI.Reports
 
 		public class FinanceCommission_ExcelContents_TotalContent_Block: Block
 		{
-			protected static string s83 = "<tr class=\"RptFooter\"><td class=\"l\">";
-			protected static string s84{get{return Resources.Lang.total;}}
-			protected static string s85 = "</td><td>";
+			protected static string s81 = "<tr class=\"RptFooter\"><td class=\"l\">";
+			protected static string s82{get{return Resources.Lang.total;}}
+			protected static string s83 = "</td><td>";
 			public string OU5Total = "{OU5Total}";
-			protected static string s86 = "</td><td>";
+			protected static string s84 = "</td><td>";
 			public string OU15Total = "{OU15Total}";
-			protected static string s87 = "</td><td>";
+			protected static string s85 = "</td><td>";
 			public string OU30Total = "{OU30Total}";
-			protected static string s88 = "</td><td>";
+			protected static string s86 = "</td><td>";
 			public string OU45Total = "{OU45Total}";
-			protected static string s89 = "</td><td>";
+			protected static string s87 = "</td><td>";
 			public string OU60Total = "{OU60Total}";
-			protected static string s90 = "</td><td>";
+			protected static string s88 = "</td><td>";
 			public string OUEndOfDayTotal = "{OUEndOfDayTotal}";
-			protected static string s91 = "</td><td>";
+			protected static string s89 = "</td><td>";
 			public string OUTotal = "{OUTotal}";
-			protected static string s92 = "</td><td>";
+			protected static string s90 = "</td><td>";
 			public string OE5Total = "{OE5Total}";
-			protected static string s93 = "</td><td>";
+			protected static string s91 = "</td><td>";
 			public string OE15Total = "{OE15Total}";
-			protected static string s94 = "</td><td>";
+			protected static string s92 = "</td><td>";
 			public string OE30Total = "{OE30Total}";
-			protected static string s95 = "</td><td>";
+			protected static string s93 = "</td><td>";
 			public string OE45Total = "{OE45Total}";
-			protected static string s96 = "</td><td>";
+			protected static string s94 = "</td><td>";
 			public string OE60Total = "{OE60Total}";
-			protected static string s97 = "</td><td>";
+			protected static string s95 = "</td><td>";
 			public string OEEndOfDayTotal = "{OEEndOfDayTotal}";
-			protected static string s98 = "</td><td>";
+			protected static string s96 = "</td><td>";
 			public string OETotal = "{OETotal}";
-			protected static string s99 = "</td></tr>";
+			protected static string s97 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s81);
+					bd.Append(s82);
 					bd.Append(s83);
-					bd.Append(s84);
-					bd.Append(s85);
 					bd.Append(OU5Total);
-					bd.Append(s86);
+					bd.Append(s84);
 					bd.Append(OU15Total);
-					bd.Append(s87);
+					bd.Append(s85);
 					bd.Append(OU30Total);
-					bd.Append(s88);
+					bd.Append(s86);
 					bd.Append(OU45Total);
-					bd.Append(s89);
+					bd.Append(s87);
 					bd.Append(OU60Total);
-					bd.Append(s90);
+					bd.Append(s88);
 					bd.Append(OUEndOfDayTotal);
-					bd.Append(s91);
+					bd.Append(s89);
 					bd.Append(OUTotal);
-					bd.Append(s92);
+					bd.Append(s90);
 					bd.Append(OE5Total);
-					bd.Append(s93);
+					bd.Append(s91);
 					bd.Append(OE15Total);
-					bd.Append(s94);
+					bd.Append(s92);
 					bd.Append(OE30Total);
-					bd.Append(s95);
+					bd.Append(s93);
 					bd.Append(OE45Total);
-					bd.Append(s96);
+					bd.Append(s94);
 					bd.Append(OE60Total);
-					bd.Append(s97);
+					bd.Append(s95);
 					bd.Append(OEEndOfDayTotal);
-					bd.Append(s98);
+					bd.Append(s96);
 					bd.Append(OETotal);
-					bd.Append(s99);
+					bd.Append(s97);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

@@ -14,7 +14,7 @@ namespace Fanex.Agent.UI
 		public class DownlineMemberList_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><head><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.css", TplSettings.Question);}}
+			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.less", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/styles.css", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";

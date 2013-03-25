@@ -12,21 +12,19 @@ namespace Fanex.Age.UI.TotalBets
 		public class HTFT_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>TotalBets</title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("Resources/TotalBets.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
-			protected static string s5{get{return Resources.Lang.htft;}}
-			protected static string s6 = "</div>";
+			protected static string s1{get{return AbsoluteUrl("Resources/TotalBets.less", TplSettings.Question);}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s3{get{return Resources.Lang.htft;}}
+			protected static string s4 = "</div>";
 			public Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown{get {return _RefreshCountDown != null ? _RefreshCountDown : _RefreshCountDown =  new Fanex.Age.UI.Components.RefreshCountDown_Control(this,90,"HTFT");}}
 			protected Fanex.Age.UI.Components.RefreshCountDown_Control _RefreshCountDown;
-			protected static string s7 = "<div id=\"sContent\">";
+			protected static string s5 = "<div id=\"sContent\">";
 			public HTFT_Contents_Block Contents = new HTFT_Contents_Block();
-			protected static string s8 = "</div></div><script src=\"";
-			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("Resources/TotalBets.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s6 = "</div></div><script src=\"";
+			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("Resources/TotalBets.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -37,16 +35,14 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
-					bd.Append(s5);
-					bd.Append(s6);
 					bd.Append(RefreshCountDown);
-					bd.Append(s7);
+					bd.Append(s5);
 					if(null != Contents) Contents.ToString(ref bd);
+					bd.Append(s6);
+					bd.Append(s7);
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
-					bd.Append(s11);
-					bd.Append(s12);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -61,39 +57,41 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HTFT_Contents_Block: Block
 		{
-			protected static string s13 = "<table class=\"tblRpt\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\"><tr class=\"RptHeader\"><td style=\"width: 20px;\">";
-			protected static string s14{get{return Resources.Lang.no;}}
+			protected static string s11 = "<table class=\"tblRpt\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\"><tr class=\"RptHeader\"><td style=\"width: 20px;\">";
+			protected static string s12{get{return Resources.Lang.no;}}
+			protected static string s13 = "</td><td style=\"width: 200px;\">";
+			protected static string s14{get{return Resources.Lang.home;}}
 			protected static string s15 = "</td><td style=\"width: 200px;\">";
-			protected static string s16{get{return Resources.Lang.home;}}
-			protected static string s17 = "</td><td style=\"width: 200px;\">";
-			protected static string s18{get{return Resources.Lang.away;}}
+			protected static string s16{get{return Resources.Lang.away;}}
+			protected static string s17 = "</td><td style=\"width: 50px;\">";
+			protected static string s18{get{return Resources.Lang.hh;}}
 			protected static string s19 = "</td><td style=\"width: 50px;\">";
-			protected static string s20{get{return Resources.Lang.hh;}}
+			protected static string s20{get{return Resources.Lang.hd;}}
 			protected static string s21 = "</td><td style=\"width: 50px;\">";
-			protected static string s22{get{return Resources.Lang.hd;}}
+			protected static string s22{get{return Resources.Lang.ha;}}
 			protected static string s23 = "</td><td style=\"width: 50px;\">";
-			protected static string s24{get{return Resources.Lang.ha;}}
+			protected static string s24{get{return Resources.Lang.dh;}}
 			protected static string s25 = "</td><td style=\"width: 50px;\">";
-			protected static string s26{get{return Resources.Lang.dh;}}
+			protected static string s26{get{return Resources.Lang.dd;}}
 			protected static string s27 = "</td><td style=\"width: 50px;\">";
-			protected static string s28{get{return Resources.Lang.dd;}}
+			protected static string s28{get{return Resources.Lang.da;}}
 			protected static string s29 = "</td><td style=\"width: 50px;\">";
-			protected static string s30{get{return Resources.Lang.da;}}
+			protected static string s30{get{return Resources.Lang.ah;}}
 			protected static string s31 = "</td><td style=\"width: 50px;\">";
-			protected static string s32{get{return Resources.Lang.ah;}}
+			protected static string s32{get{return Resources.Lang.ad;}}
 			protected static string s33 = "</td><td style=\"width: 50px;\">";
-			protected static string s34{get{return Resources.Lang.ad;}}
-			protected static string s35 = "</td><td style=\"width: 50px;\">";
-			protected static string s36{get{return Resources.Lang.aa;}}
-			protected static string s37 = "</td></tr>";
+			protected static string s34{get{return Resources.Lang.aa;}}
+			protected static string s35 = "</td></tr>";
 			public HTFT_Contents_HTFTContents_Block HTFTContents = new HTFT_Contents_HTFTContents_Block();
 			public HTFT_Contents_NotFoundContent_Block NotFoundContent = new HTFT_Contents_NotFoundContent_Block();
-			protected static string s38 = "</table>";
+			protected static string s36 = "</table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s11);
+					bd.Append(s12);
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
@@ -117,11 +115,9 @@ namespace Fanex.Age.UI.TotalBets
 					bd.Append(s33);
 					bd.Append(s34);
 					bd.Append(s35);
-					bd.Append(s36);
-					bd.Append(s37);
 					if(null != HTFTContents) HTFTContents.ToString(ref bd);
 					if(null != NotFoundContent) NotFoundContent.ToString(ref bd);
-					bd.Append(s38);
+					bd.Append(s36);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -129,81 +125,81 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HTFT_Contents_HTFTContents_Block: Block
 		{
-			protected static string s39 = "<tr class=\"r\" bgcolor=\"";
+			protected static string s37 = "<tr class=\"r\" bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s40 = "\" onmouseover=\"bgColor='";
+			protected static string s38 = "\" onmouseover=\"bgColor='";
 			public string ColorOver = "{ColorOver}";
-			protected static string s41 = "'\" onmouseout=\"bgColor='";
+			protected static string s39 = "'\" onmouseout=\"bgColor='";
 			protected string t0_ColorClass;
-			protected static string s42 = "'\"><td class=\"w-order\">";
+			protected static string s40 = "'\"><td class=\"w-order\">";
 			public string NoValue = "{NoValue}";
-			protected static string s43 = "</td><td class=\"l\"><a href=\"javascript:doViewBetList(";
+			protected static string s41 = "</td><td class=\"l\"><a href=\"javascript:doViewBetList(";
 			public string MatchId = "{MatchId}";
-			protected static string s44 = ", 16, '";
+			protected static string s42 = ", 16, '";
 			public string BetType = "{BetType}";
-			protected static string s45 = "')\">";
+			protected static string s43 = "')\">";
 			public string HomeValue = "{HomeValue}";
-			protected static string s46 = "</a></td><td class=\"l\">";
+			protected static string s44 = "</a></td><td class=\"l\">";
 			public string AwayValue = "{AwayValue}";
-			protected static string s47 = "</td><td class=\"fcnum\">";
+			protected static string s45 = "</td><td class=\"fcnum\">";
 			public string HHValue = "{HHValue}";
-			protected static string s48 = "</td><td class=\"fcnum\">";
+			protected static string s46 = "</td><td class=\"fcnum\">";
 			public string HDValue = "{HDValue}";
-			protected static string s49 = "</td><td class=\"fcnum\">";
+			protected static string s47 = "</td><td class=\"fcnum\">";
 			public string HAValue = "{HAValue}";
-			protected static string s50 = "</td><td class=\"fcnum\">";
+			protected static string s48 = "</td><td class=\"fcnum\">";
 			public string DHValue = "{DHValue}";
-			protected static string s51 = "</td><td class=\"fcnum\">";
+			protected static string s49 = "</td><td class=\"fcnum\">";
 			public string DDValue = "{DDValue}";
-			protected static string s52 = "</td><td class=\"fcnum\">";
+			protected static string s50 = "</td><td class=\"fcnum\">";
 			public string DAValue = "{DAValue}";
-			protected static string s53 = "</td><td class=\"fcnum\">";
+			protected static string s51 = "</td><td class=\"fcnum\">";
 			public string AHValue = "{AHValue}";
-			protected static string s54 = "</td><td class=\"fcnum\">";
+			protected static string s52 = "</td><td class=\"fcnum\">";
 			public string ADValue = "{ADValue}";
-			protected static string s55 = "</td><td class=\"fcnum\">";
+			protected static string s53 = "</td><td class=\"fcnum\">";
 			public string AAValue = "{AAValue}";
-			protected static string s56 = "</td></tr>";
+			protected static string s54 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s37);
+					bd.Append(ColorClass);
+					bd.Append(s38);
+					bd.Append(ColorOver);
 					bd.Append(s39);
 					bd.Append(ColorClass);
 					bd.Append(s40);
-					bd.Append(ColorOver);
-					bd.Append(s41);
-					bd.Append(ColorClass);
-					bd.Append(s42);
 					bd.Append(NoValue);
-					bd.Append(s43);
+					bd.Append(s41);
 					bd.Append(MatchId);
-					bd.Append(s44);
+					bd.Append(s42);
 					bd.Append(BetType);
-					bd.Append(s45);
+					bd.Append(s43);
 					bd.Append(HomeValue);
-					bd.Append(s46);
+					bd.Append(s44);
 					bd.Append(AwayValue);
-					bd.Append(s47);
+					bd.Append(s45);
 					bd.Append(HHValue);
-					bd.Append(s48);
+					bd.Append(s46);
 					bd.Append(HDValue);
-					bd.Append(s49);
+					bd.Append(s47);
 					bd.Append(HAValue);
-					bd.Append(s50);
+					bd.Append(s48);
 					bd.Append(DHValue);
-					bd.Append(s51);
+					bd.Append(s49);
 					bd.Append(DDValue);
-					bd.Append(s52);
+					bd.Append(s50);
 					bd.Append(DAValue);
-					bd.Append(s53);
+					bd.Append(s51);
 					bd.Append(AHValue);
-					bd.Append(s54);
+					bd.Append(s52);
 					bd.Append(ADValue);
-					bd.Append(s55);
+					bd.Append(s53);
 					bd.Append(AAValue);
-					bd.Append(s56);
+					bd.Append(s54);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -211,17 +207,17 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HTFT_Contents_NotFoundContent_Block: Block
 		{
-			protected static string s57 = "<tr class=\"bg_white\"><td colspan=\"12\" class=\"c nobold\">";
-			protected static string s58{get{return Resources.Lang.noInfo;}}
-			protected static string s59 = "</td></tr>";
+			protected static string s55 = "<tr class=\"bg_white\"><td colspan=\"12\" class=\"c nobold\">";
+			protected static string s56{get{return Resources.Lang.noInfo;}}
+			protected static string s57 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s55);
+					bd.Append(s56);
 					bd.Append(s57);
-					bd.Append(s58);
-					bd.Append(s59);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

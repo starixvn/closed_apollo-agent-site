@@ -22,30 +22,28 @@ namespace Fanex.Agent.UI
 			protected static string s5 = "'rel=\"stylesheet\" type=\"text/css\" /><script src='";
 			protected static string s6{get{return Fanex.PTEngine.HttpContextExtension._WebUtils.GetWebResourceUrl("Fanex.PTEngine.UI.Core.js");}}
 			protected static string s7 = "'type=\"text/javascript\"></script><link href=\"";
-			protected static string s8{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s9 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s10{get{return AbsoluteUrl("_MemberInfo/Resources/MemberInfo.css", TplSettings.Question);}}
-			protected static string s11 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src='";
+			protected static string s8{get{return AbsoluteUrl("_MemberInfo/Resources/MemberInfo.less", TplSettings.Question);}}
+			protected static string s9 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src='";
 			public string dataSource = "{dataSource}";
-			protected static string s12 = "?targetCustId=";
+			protected static string s10 = "?targetCustId=";
 			public string targetCustId = "{targetCustId}";
-			protected static string s13 = "' type=\"text/javascript\"></script></head><body><div id=\"header_main\" class=\"pt7\">";
-			protected static string s14{get{return Resources.Lang.lbleditcomm;}}
-			protected static string s15 = " ";
+			protected static string s11 = "' type=\"text/javascript\"></script></head><body><div id=\"header_main\" class=\"pt7\">";
+			protected static string s12{get{return Resources.Lang.lbleditcomm;}}
+			protected static string s13 = " ";
 			protected string t0_TargetCustName;
-			protected static string s16 = "</div><div class=\"minWidthCustomer pt3\">";
-			protected static string s17{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
-			protected static string s18 = "<div class=\"clearBlock\"></div>";
-			protected static string s19{get{return new Fanex.PTEngine.Age.Templates.AddNewMember_CommissionBlock_Block();}}
-			protected static string s20 = "<div class=\"clearBlock\"></div><div class=\"pt7\"><div class=\"btnLeft\"><button id=\"btnSubmit\" accountpermisssion=\"[B]\" class=\"btnMain\" onclick=\"updateCommission('";
+			protected static string s14 = "</div><div class=\"minWidthCustomer pt3\">";
+			protected static string s15{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
+			protected static string s16 = "<div class=\"clearBlock\"></div>";
+			protected static string s17{get{return new Fanex.PTEngine.Age.Templates.AddNewMember_CommissionBlock_Block();}}
+			protected static string s18 = "<div class=\"clearBlock\"></div><div class=\"pt7\"><div class=\"btnLeft\"><button id=\"btnSubmit\" accountpermisssion=\"[B]\" class=\"btnMain\" onclick=\"updateCommission('";
 			public string updateUrl = "{updateUrl}";
-			protected static string s21 = "?targetCustId=";
+			protected static string s19 = "?targetCustId=";
 			protected string t1_targetCustId;
-			protected static string s22 = "')\">";
+			protected static string s20 = "')\">";
 			public string actionName = "{actionName}";
-			protected static string s23 = "</button></div></div></div>";
+			protected static string s21 = "</button></div></div></div>";
 			public EditMemberCommission_ScriptBlock_Block ScriptBlock = new EditMemberCommission_ScriptBlock_Block();
-			protected static string s24 = "</body></html>";
+			protected static string s22 = "</body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -62,28 +60,26 @@ namespace Fanex.Agent.UI
 					bd.Append(s7);
 					bd.Append(s8);
 					bd.Append(s9);
-					bd.Append(s10);
-					bd.Append(s11);
 					bd.Append(dataSource);
-					bd.Append(s12);
+					bd.Append(s10);
 					bd.Append(targetCustId);
+					bd.Append(s11);
+					bd.Append(s12);
 					bd.Append(s13);
+					bd.Append(TargetCustName);
 					bd.Append(s14);
 					bd.Append(s15);
-					bd.Append(TargetCustName);
 					bd.Append(s16);
 					bd.Append(s17);
 					bd.Append(s18);
-					bd.Append(s19);
-					bd.Append(s20);
 					bd.Append(updateUrl);
-					bd.Append(s21);
+					bd.Append(s19);
 					bd.Append(targetCustId);
-					bd.Append(s22);
+					bd.Append(s20);
 					bd.Append(actionName);
-					bd.Append(s23);
+					bd.Append(s21);
 					if(null != ScriptBlock) ScriptBlock.ToString(ref bd);
-					bd.Append(s24);
+					bd.Append(s22);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

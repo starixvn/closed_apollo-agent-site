@@ -16,29 +16,27 @@ namespace Fanex.Age.UI.Reports
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			public string WinlossName = "{WinlossName}";
 			protected static string s1 = "</title><link href=\"";
-			protected static string s2{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s4{get{return AbsoluteUrl("Resources/Reports.css", TplSettings.Question);}}
-			protected static string s5 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
-			protected static string s6{get{return AbsoluteUrl2("Common/MatchResultEntered.aspx");}}
-			protected static string s7 = "\"><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s2{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
+			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s4{get{return AbsoluteUrl2("Common/MatchResultEntered.aspx");}}
+			protected static string s5 = "\"><div id=\"page_main\"><div id=\"header_main\">";
 			protected string t0_WinlossName;
-			protected static string s8 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td><div id=\"box_header\">";
+			protected static string s6 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td><div id=\"box_header\">";
 			public Fanex.Age.UI.Reports.Components.ReportSearchHeader_Control ReportSearchHeader{get {return _ReportSearchHeader != null ? _ReportSearchHeader : _ReportSearchHeader = new Fanex.Age.UI.Reports.Components.ReportSearchHeader_Control(this);}}
 			protected Fanex.Age.UI.Reports.Components.ReportSearchHeader_Control _ReportSearchHeader;
 			public Fanex.Age.UI.Reports.Components.HistoryMessage_Template HistoryMessage{get {return _HistoryMessage != null ? _HistoryMessage : _HistoryMessage = new Fanex.Age.UI.Reports.Components.HistoryMessage_Template();}}
 			protected Fanex.Age.UI.Reports.Components.HistoryMessage_Template _HistoryMessage;
-			protected static string s9 = "</div></td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
+			protected static string s7 = "</div></td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
 			public MatchResultEntered_ExcelContents_Block ExcelContents = new MatchResultEntered_ExcelContents_Block();
-			protected static string s10 = "</div></div></td></tr></table></div><input type=\"hidden\" id=\"custid\" name=\"custid\" value=\"";
+			protected static string s8 = "</div></div></td></tr></table></div><input type=\"hidden\" id=\"custid\" name=\"custid\" value=\"";
 			public string CustId = "{CustId}";
-			protected static string s11 = "\" /><input type=\"hidden\" id=\"roleid\" name=\"roleid\" value=\"";
+			protected static string s9 = "\" /><input type=\"hidden\" id=\"roleid\" name=\"roleid\" value=\"";
 			public string RoleId = "{RoleId}";
-			protected static string s12 = "\" /></form><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s15{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s16 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s10 = "\" /></form><script src=\"";
+			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s13{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
+			protected static string s14 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -51,23 +49,21 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s3);
 					bd.Append(s4);
 					bd.Append(s5);
-					bd.Append(s6);
-					bd.Append(s7);
 					bd.Append(WinlossName);
-					bd.Append(s8);
+					bd.Append(s6);
 					bd.Append(ReportSearchHeader);
 					bd.Append(HistoryMessage);
-					bd.Append(s9);
+					bd.Append(s7);
 					if(null != ExcelContents) ExcelContents.ToString(ref bd);
-					bd.Append(s10);
+					bd.Append(s8);
 					bd.Append(CustId);
-					bd.Append(s11);
+					bd.Append(s9);
 					bd.Append(RoleId);
+					bd.Append(s10);
+					bd.Append(s11);
 					bd.Append(s12);
 					bd.Append(s13);
 					bd.Append(s14);
-					bd.Append(s15);
-					bd.Append(s16);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -82,43 +78,43 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchResultEntered_ExcelContents_Block: Block
 		{
-			protected static string s17 = "<table class=\"tblRpt ";
+			protected static string s15 = "<table class=\"tblRpt ";
 			public string BoldRow = "{BoldRow}";
-			protected static string s18 = "\" style=\"min-width: 700px; width: 100%;display:none\" border=\"0\"cellpadding=\"0\" cellspacing=\"1\" id=\"tbl-rpt\"><tr class=\"RptHeader\"><td style=\"width: 150px\">";
-			protected static string s19{get{return Resources.Lang.date;}}
-			protected static string s20 = "</td>";
+			protected static string s16 = "\" style=\"min-width: 700px; width: 100%;display:none\" border=\"0\"cellpadding=\"0\" cellspacing=\"1\" id=\"tbl-rpt\"><tr class=\"RptHeader\"><td style=\"width: 150px\">";
+			protected static string s17{get{return Resources.Lang.date;}}
+			protected static string s18 = "</td>";
 			public MatchResultEntered_ExcelContents_YesterdayHeader1_Block YesterdayHeader1 = new MatchResultEntered_ExcelContents_YesterdayHeader1_Block();
 			public MatchResultEntered_ExcelContents_TodayHeader1_Block TodayHeader1 = new MatchResultEntered_ExcelContents_TodayHeader1_Block();
-			protected static string s21 = "</tr><tr class=\"RptHeader02\"><td columnname=\"sportname\">";
-			protected static string s22{get{return Resources.Lang.result;}}
-			protected static string s23 = "</td>";
+			protected static string s19 = "</tr><tr class=\"RptHeader02\"><td columnname=\"sportname\">";
+			protected static string s20{get{return Resources.Lang.result;}}
+			protected static string s21 = "</td>";
 			public MatchResultEntered_ExcelContents_YesterdayHeader2_Block YesterdayHeader2 = new MatchResultEntered_ExcelContents_YesterdayHeader2_Block();
 			public MatchResultEntered_ExcelContents_TodayHeader2_Block TodayHeader2 = new MatchResultEntered_ExcelContents_TodayHeader2_Block();
-			protected static string s24 = "</tr>";
+			protected static string s22 = "</tr>";
 			public MatchResultEntered_ExcelContents_Content_Block Content = new MatchResultEntered_ExcelContents_Content_Block();
 			public MatchResultEntered_ExcelContents_NoInfo_Block NoInfo = new MatchResultEntered_ExcelContents_NoInfo_Block();
-			protected static string s25 = "</table>";
+			protected static string s23 = "</table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s17);
+					bd.Append(s15);
 					bd.Append(BoldRow);
+					bd.Append(s16);
+					bd.Append(s17);
 					bd.Append(s18);
-					bd.Append(s19);
-					bd.Append(s20);
 					if(null != YesterdayHeader1) YesterdayHeader1.ToString(ref bd);
 					if(null != TodayHeader1) TodayHeader1.ToString(ref bd);
+					bd.Append(s19);
+					bd.Append(s20);
 					bd.Append(s21);
-					bd.Append(s22);
-					bd.Append(s23);
 					if(null != YesterdayHeader2) YesterdayHeader2.ToString(ref bd);
 					if(null != TodayHeader2) TodayHeader2.ToString(ref bd);
-					bd.Append(s24);
+					bd.Append(s22);
 					if(null != Content) Content.ToString(ref bd);
 					if(null != NoInfo) NoInfo.ToString(ref bd);
-					bd.Append(s25);
+					bd.Append(s23);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -126,17 +122,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchResultEntered_ExcelContents_YesterdayHeader1_Block: Block
 		{
-			protected static string s26 = "<td colspan=\"2\">";
+			protected static string s24 = "<td colspan=\"2\">";
 			public string Yesterday = "{Yesterday}";
-			protected static string s27 = "</td>";
+			protected static string s25 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s26);
+					bd.Append(s24);
 					bd.Append(Yesterday);
-					bd.Append(s27);
+					bd.Append(s25);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -144,17 +140,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchResultEntered_ExcelContents_TodayHeader1_Block: Block
 		{
-			protected static string s28 = "<td colspan=\"2\">";
+			protected static string s26 = "<td colspan=\"2\">";
 			public string Today = "{Today}";
-			protected static string s29 = "</td>";
+			protected static string s27 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s28);
+					bd.Append(s26);
 					bd.Append(Today);
-					bd.Append(s29);
+					bd.Append(s27);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -162,21 +158,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchResultEntered_ExcelContents_YesterdayHeader2_Block: Block
 		{
-			protected static string s30 = "<td style=\"width: 110px\" columnname=\"yesterdayentered\">";
-			protected static string s31{get{return Resources.Lang.entered;}}
-			protected static string s32 = "</td><td style=\"width: 110px\" columnname=\"yesterdaynonentered\">";
-			protected static string s33{get{return Resources.Lang.nonentered;}}
-			protected static string s34 = "</td>";
+			protected static string s28 = "<td style=\"width: 110px\" columnname=\"yesterdayentered\">";
+			protected static string s29{get{return Resources.Lang.entered;}}
+			protected static string s30 = "</td><td style=\"width: 110px\" columnname=\"yesterdaynonentered\">";
+			protected static string s31{get{return Resources.Lang.nonentered;}}
+			protected static string s32 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s28);
+					bd.Append(s29);
 					bd.Append(s30);
 					bd.Append(s31);
 					bd.Append(s32);
-					bd.Append(s33);
-					bd.Append(s34);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -184,21 +180,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchResultEntered_ExcelContents_TodayHeader2_Block: Block
 		{
-			protected static string s35 = "<td columnname=\"todayentered\">";
-			protected static string s36{get{return Resources.Lang.entered;}}
-			protected static string s37 = "</td><td columnname=\"todaynonentered\">";
-			protected static string s38{get{return Resources.Lang.nonentered;}}
-			protected static string s39 = "</td>";
+			protected static string s33 = "<td columnname=\"todayentered\">";
+			protected static string s34{get{return Resources.Lang.entered;}}
+			protected static string s35 = "</td><td columnname=\"todaynonentered\">";
+			protected static string s36{get{return Resources.Lang.nonentered;}}
+			protected static string s37 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s33);
+					bd.Append(s34);
 					bd.Append(s35);
 					bd.Append(s36);
 					bd.Append(s37);
-					bd.Append(s38);
-					bd.Append(s39);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -206,35 +202,35 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchResultEntered_ExcelContents_Content_Block: Block
 		{
-			protected static string s40 = "<tr bgcolor=\"";
+			protected static string s38 = "<tr bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s41 = "\" onmouseover=\"this.style.backgroundColor='";
-			protected static string s42{get{return Fanex.Age.UI.Common.RowBgOver;}}
-			protected static string s43 = "'\" onmouseout=\"this.style.backgroundColor='";
+			protected static string s39 = "\" onmouseover=\"this.style.backgroundColor='";
+			protected static string s40{get{return Fanex.Age.UI.Common.RowBgOver;}}
+			protected static string s41 = "'\" onmouseout=\"this.style.backgroundColor='";
 			protected string t1_ColorClass;
-			protected static string s44 = "'\"><td class=\"RptSubTitle\">";
+			protected static string s42 = "'\"><td class=\"RptSubTitle\">";
 			public string TypeName = "{TypeName}";
-			protected static string s45 = "</td>";
+			protected static string s43 = "</td>";
 			public MatchResultEntered_ExcelContents_Content_YesterdayContent_Block YesterdayContent = new MatchResultEntered_ExcelContents_Content_YesterdayContent_Block();
 			public MatchResultEntered_ExcelContents_Content_TodayContent_Block TodayContent = new MatchResultEntered_ExcelContents_Content_TodayContent_Block();
-			protected static string s46 = "</tr>";
+			protected static string s44 = "</tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s38);
+					bd.Append(ColorClass);
+					bd.Append(s39);
 					bd.Append(s40);
-					bd.Append(ColorClass);
 					bd.Append(s41);
-					bd.Append(s42);
-					bd.Append(s43);
 					bd.Append(ColorClass);
-					bd.Append(s44);
+					bd.Append(s42);
 					bd.Append(TypeName);
-					bd.Append(s45);
+					bd.Append(s43);
 					if(null != YesterdayContent) YesterdayContent.ToString(ref bd);
 					if(null != TodayContent) TodayContent.ToString(ref bd);
-					bd.Append(s46);
+					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -242,21 +238,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchResultEntered_ExcelContents_Content_YesterdayContent_Block: Block
 		{
-			protected static string s47 = "<td style=\"width: 110px\">";
+			protected static string s45 = "<td style=\"width: 110px\">";
 			public string YesterdayEntered = "{YesterdayEntered}";
-			protected static string s48 = "</td><td style=\"width: 110px\">";
+			protected static string s46 = "</td><td style=\"width: 110px\">";
 			public string YesterdayNonEntered = "{YesterdayNonEntered}";
-			protected static string s49 = "</td>";
+			protected static string s47 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s47);
+					bd.Append(s45);
 					bd.Append(YesterdayEntered);
-					bd.Append(s48);
+					bd.Append(s46);
 					bd.Append(YesterdayNonEntered);
-					bd.Append(s49);
+					bd.Append(s47);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -264,21 +260,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchResultEntered_ExcelContents_Content_TodayContent_Block: Block
 		{
-			protected static string s50 = "<td style=\"width: 110px\">";
+			protected static string s48 = "<td style=\"width: 110px\">";
 			public string TodayEntered = "{TodayEntered}";
-			protected static string s51 = "</td><td style=\"width: 110px\">";
+			protected static string s49 = "</td><td style=\"width: 110px\">";
 			public string TodayNonEntered = "{TodayNonEntered}";
-			protected static string s52 = "</td>";
+			protected static string s50 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s50);
+					bd.Append(s48);
 					bd.Append(TodayEntered);
-					bd.Append(s51);
+					bd.Append(s49);
 					bd.Append(TodayNonEntered);
-					bd.Append(s52);
+					bd.Append(s50);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

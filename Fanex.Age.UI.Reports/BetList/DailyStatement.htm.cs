@@ -14,40 +14,38 @@ namespace Fanex.Age.UI.Reports
 		public class DailyStatement_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
+			protected static string s1{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("Resources/Reports.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("_BetList/Resources/BetList.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\"><div id=\"header_main\">";
+			protected static string s3{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\"><div id=\"header_main\">";
 			public string title = "{title}";
-			protected static string s7 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td><div id=\"box_header\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td id=\"td2\" style=\"padding-left: 6px;\" class=\"l\"><span id=\"Span1\">";
+			protected static string s5 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td><div id=\"box_header\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td id=\"td2\" style=\"padding-left: 6px;\" class=\"l\"><span id=\"Span1\">";
 			public string BetListComboBox = "";
-			protected static string s8 = "</span></td><td>";
+			protected static string s6 = "</span></td><td>";
 			public Fanex.Age.UI.Components.DateRangeSelect_Control DateRangeSelect{get {return _DateRangeSelect != null ? _DateRangeSelect : _DateRangeSelect = new Fanex.Age.UI.Components.DateRangeSelect_Control(this,true,DateTime.Today,DateTime.Today);}}
 			protected Fanex.Age.UI.Components.DateRangeSelect_Control _DateRangeSelect;
-			protected static string s9 = "</td></tr></table></div></td></tr><tr><td><table id=\"hor-minimalist-b\"><thead><tr><th style=\"width: 20px;\">#</th><th style=\"width: 150px;\">";
-			protected static string s10{get{return Resources.Lang.date;}}
-			protected static string s11 = "</th><th style=\"width: 270px;\">";
-			protected static string s12{get{return Resources.Lang.remark;}}
+			protected static string s7 = "</td></tr></table></div></td></tr><tr><td><table id=\"hor-minimalist-b\"><thead><tr><th style=\"width: 20px;\">#</th><th style=\"width: 150px;\">";
+			protected static string s8{get{return Resources.Lang.date;}}
+			protected static string s9 = "</th><th style=\"width: 270px;\">";
+			protected static string s10{get{return Resources.Lang.remark;}}
+			protected static string s11 = "</th><th style=\"width: 100px;\">";
+			protected static string s12{get{return Resources.Lang.turnover;}}
 			protected static string s13 = "</th><th style=\"width: 100px;\">";
-			protected static string s14{get{return Resources.Lang.turnover;}}
+			protected static string s14{get{return Resources.Lang.CreditDebit;}}
 			protected static string s15 = "</th><th style=\"width: 100px;\">";
-			protected static string s16{get{return Resources.Lang.CreditDebit;}}
+			protected static string s16{get{return Resources.Lang.commission;}}
 			protected static string s17 = "</th><th style=\"width: 100px;\">";
-			protected static string s18{get{return Resources.Lang.commission;}}
-			protected static string s19 = "</th><th style=\"width: 100px;\">";
-			protected static string s20{get{return Resources.Lang.balance;}}
-			protected static string s21 = "</th></tr></thead>";
+			protected static string s18{get{return Resources.Lang.balance;}}
+			protected static string s19 = "</th></tr></thead>";
 			public DailyStatement_Content_Block Content = new DailyStatement_Content_Block();
 			public DailyStatement_NoInfo_Block NoInfo = new DailyStatement_NoInfo_Block();
-			protected static string s22 = "</table></td></tr></tbody></table></form></body><script src=\"";
-			protected static string s23{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s20 = "</table></td></tr></tbody></table></form></body><script src=\"";
+			protected static string s21{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s22 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s23{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
 			protected static string s24 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s25{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s26 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s27{get{return AbsoluteUrl("BetList/Resources/DailyStatement.js", TplSettings.Question);}}
-			protected static string s28 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s25{get{return AbsoluteUrl("BetList/Resources/DailyStatement.js", TplSettings.Question);}}
+			protected static string s26 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -58,13 +56,13 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
-					bd.Append(s5);
-					bd.Append(s6);
 					bd.Append(title);
-					bd.Append(s7);
+					bd.Append(s5);
 					bd.Append(BetListComboBox);
-					bd.Append(s8);
+					bd.Append(s6);
 					bd.Append(DateRangeSelect);
+					bd.Append(s7);
+					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
 					bd.Append(s11);
@@ -76,17 +74,15 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s17);
 					bd.Append(s18);
 					bd.Append(s19);
-					bd.Append(s20);
-					bd.Append(s21);
 					if(null != Content) Content.ToString(ref bd);
 					if(null != NoInfo) NoInfo.ToString(ref bd);
+					bd.Append(s20);
+					bd.Append(s21);
 					bd.Append(s22);
 					bd.Append(s23);
 					bd.Append(s24);
 					bd.Append(s25);
 					bd.Append(s26);
-					bd.Append(s27);
-					bd.Append(s28);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -101,47 +97,47 @@ namespace Fanex.Age.UI.Reports
 
 		public class DailyStatement_Content_Block: Block
 		{
-			protected static string s29 = "<tr class=\"";
+			protected static string s27 = "<tr class=\"";
 			public string row_class = "{row_class}";
-			protected static string s30 = "\"><td class=\"w-order\" style=\"width: 20px;\">";
+			protected static string s28 = "\"><td class=\"w-order\" style=\"width: 20px;\">";
 			public string orderNo = "{orderNo}";
-			protected static string s31 = "</td><td class=\"c\" style=\"width: 150px;\">";
+			protected static string s29 = "</td><td class=\"c\" style=\"width: 150px;\">";
 			public DailyStatement_Content_dateLink_Block dateLink = new DailyStatement_Content_dateLink_Block();
 			public DailyStatement_Content_dateNoLink_Block dateNoLink = new DailyStatement_Content_dateNoLink_Block();
-			protected static string s32 = "</td><td class=\"b l\" style=\"width: 270px;\">";
+			protected static string s30 = "</td><td class=\"b l\" style=\"width: 270px;\">";
 			public string remark = "{remark}";
-			protected static string s33 = "</td><td class=\"r\" style=\"width: 100px;\">";
+			protected static string s31 = "</td><td class=\"r\" style=\"width: 100px;\">";
 			public string turnover = "{turnover}";
-			protected static string s34 = "</td><td class=\"r\" style=\"width: 100px;\">";
+			protected static string s32 = "</td><td class=\"r\" style=\"width: 100px;\">";
 			public string credit_debit = "{credit_debit}";
-			protected static string s35 = "</td><td class=\"r\" style=\"width: 100px;\">";
+			protected static string s33 = "</td><td class=\"r\" style=\"width: 100px;\">";
 			public string commission = "{commission}";
-			protected static string s36 = "</td><td class=\"r\" style=\"width: 100px;\">";
+			protected static string s34 = "</td><td class=\"r\" style=\"width: 100px;\">";
 			public string balance = "{balance}";
-			protected static string s37 = "</td></tr>";
+			protected static string s35 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s29);
+					bd.Append(s27);
 					bd.Append(row_class);
-					bd.Append(s30);
+					bd.Append(s28);
 					bd.Append(orderNo);
-					bd.Append(s31);
+					bd.Append(s29);
 					if(null != dateLink) dateLink.ToString(ref bd);
 					if(null != dateNoLink) dateNoLink.ToString(ref bd);
-					bd.Append(s32);
+					bd.Append(s30);
 					bd.Append(remark);
-					bd.Append(s33);
+					bd.Append(s31);
 					bd.Append(turnover);
-					bd.Append(s34);
+					bd.Append(s32);
 					bd.Append(credit_debit);
-					bd.Append(s35);
+					bd.Append(s33);
 					bd.Append(commission);
-					bd.Append(s36);
+					bd.Append(s34);
 					bd.Append(balance);
-					bd.Append(s37);
+					bd.Append(s35);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -149,37 +145,37 @@ namespace Fanex.Age.UI.Reports
 
 		public class DailyStatement_Content_dateLink_Block: Block
 		{
-			protected static string s38 = "<a href=\"../../_BetList/BetList.aspx?custid=";
+			protected static string s36 = "<a href=\"../../_BetList/BetList.aspx?custid=";
 			public string custid = "{custid}";
-			protected static string s39 = "&fdate=";
+			protected static string s37 = "&fdate=";
 			public string fdate = "{fdate}";
-			protected static string s40 = "&transtype=";
+			protected static string s38 = "&transtype=";
 			public string transtype = "{transtype}";
-			protected static string s41 = "&type=";
+			protected static string s39 = "&type=";
 			public string type = "{type}";
-			protected static string s42 = "&username=";
+			protected static string s40 = "&username=";
 			public string uname = "{uname}";
-			protected static string s43 = "\">";
+			protected static string s41 = "\">";
 			public string date = "{date}";
-			protected static string s44 = "</a>";
+			protected static string s42 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s38);
+					bd.Append(s36);
 					bd.Append(custid);
-					bd.Append(s39);
+					bd.Append(s37);
 					bd.Append(fdate);
-					bd.Append(s40);
+					bd.Append(s38);
 					bd.Append(transtype);
-					bd.Append(s41);
+					bd.Append(s39);
 					bd.Append(type);
-					bd.Append(s42);
+					bd.Append(s40);
 					bd.Append(uname);
-					bd.Append(s43);
+					bd.Append(s41);
 					bd.Append(date);
-					bd.Append(s44);
+					bd.Append(s42);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -201,17 +197,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class DailyStatement_NoInfo_Block: Block
 		{
-			protected static string s45 = "<tr class=\"bg_white\"><td class=\"c\" colspan=\"7\">";
-			protected static string s46{get{return Resources.Lang.noInfo;}}
-			protected static string s47 = "</td></tr>";
+			protected static string s43 = "<tr class=\"bg_white\"><td class=\"c\" colspan=\"7\">";
+			protected static string s44{get{return Resources.Lang.noInfo;}}
+			protected static string s45 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s43);
+					bd.Append(s44);
 					bd.Append(s45);
-					bd.Append(s46);
-					bd.Append(s47);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

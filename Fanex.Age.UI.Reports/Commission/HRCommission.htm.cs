@@ -16,27 +16,25 @@ namespace Fanex.Age.UI.Reports
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.horseracingComm;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/Agent.css", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("Resources/Reports.css", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
-			protected static string s7{get{return AbsoluteUrl2("Commission/HRCommission.aspx");}}
-			protected static string s8 = "\"><div id=\"page_main\"><div id=\"header_main\">";
-			protected static string s9{get{return Resources.Lang.horseracingComm;}}
-			protected static string s10 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td><div id=\"box_header\">";
+			protected static string s3{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s5{get{return AbsoluteUrl2("Commission/HRCommission.aspx");}}
+			protected static string s6 = "\"><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s7{get{return Resources.Lang.horseracingComm;}}
+			protected static string s8 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td><div id=\"box_header\">";
 			public Fanex.Age.UI.Reports.Components.ReportSearchHeader_Control ReportSearchHeader{get {return _ReportSearchHeader != null ? _ReportSearchHeader : _ReportSearchHeader = new Fanex.Age.UI.Reports.Components.ReportSearchHeader_Control(this);}}
 			protected Fanex.Age.UI.Reports.Components.ReportSearchHeader_Control _ReportSearchHeader;
-			protected static string s11 = "</div></td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
+			protected static string s9 = "</div></td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
 			public HRCommission_ExcelContents_Block ExcelContents = new HRCommission_ExcelContents_Block();
-			protected static string s12 = "</div></div></td></tr></table></div><input type=\"hidden\" id=\"custid\" name=\"custid\" value=\"";
+			protected static string s10 = "</div></div></td></tr></table></div><input type=\"hidden\" id=\"custid\" name=\"custid\" value=\"";
 			public string CustId = "{CustId}";
-			protected static string s13 = "\" /><input type=\"hidden\" id=\"roleid\" name=\"roleid\" value=\"";
+			protected static string s11 = "\" /><input type=\"hidden\" id=\"roleid\" name=\"roleid\" value=\"";
 			public string RoleId = "{RoleId}";
-			protected static string s14 = "\" /></form><script src=\"";
-			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s17{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s18 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s12 = "\" /></form><script src=\"";
+			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s15{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
+			protected static string s16 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -51,20 +49,18 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
-					bd.Append(s9);
-					bd.Append(s10);
 					bd.Append(ReportSearchHeader);
-					bd.Append(s11);
+					bd.Append(s9);
 					if(null != ExcelContents) ExcelContents.ToString(ref bd);
-					bd.Append(s12);
+					bd.Append(s10);
 					bd.Append(CustId);
-					bd.Append(s13);
+					bd.Append(s11);
 					bd.Append(RoleId);
+					bd.Append(s12);
+					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
 					bd.Append(s16);
-					bd.Append(s17);
-					bd.Append(s18);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -79,44 +75,46 @@ namespace Fanex.Age.UI.Reports
 
 		public class HRCommission_ExcelContents_Block: Block
 		{
-			protected static string s19 = "<table class=\"tblRpt ";
+			protected static string s17 = "<table class=\"tblRpt ";
 			public string BoldRow = "{BoldRow}";
-			protected static string s20 = "\" width=\"750px;\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\" style=\"display:none\"><tr id=\"rowTitle\" class=\"RptTitle\"><td colspan=\"5\" id=\"content_title\">";
-			protected static string s21{get{return Resources.Lang.lblcommssionhorseracing;}}
-			protected static string s22 = "&nbsp;";
+			protected static string s18 = "\" width=\"750px;\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\" style=\"display:none\"><tr id=\"rowTitle\" class=\"RptTitle\"><td colspan=\"5\" id=\"content_title\">";
+			protected static string s19{get{return Resources.Lang.lblcommssionhorseracing;}}
+			protected static string s20 = "&nbsp;";
 			public string DateFrom = "{DateFrom}";
-			protected static string s23 = "--&gt;";
+			protected static string s21 = "--&gt;";
 			public string DateTo = "{DateTo}";
-			protected static string s24 = "</td></tr><tr class=\"RptHeader\"><td rowspan=\"2\" columnname=\"username\">";
-			protected static string s25{get{return Resources.Lang.username;}}
-			protected static string s26 = "</td><td colspan=\"4\">";
-			protected static string s27{get{return Resources.Lang.tote;}}
-			protected static string s28 = "</td></tr><tr class=\"RptHeader02\"><td style=\"width: 17%;\" columnname=\"tote_win\">";
-			protected static string s29{get{return Resources.Lang.WinHR;}}
-			protected static string s30 = "</td><td style=\"width: 17%;\" columnname=\"tote_palce\">";
-			protected static string s31{get{return Resources.Lang.Place;}}
-			protected static string s32 = "</td><td style=\"width: 17%;\" columnname=\"tote_winplace\">";
-			protected static string s33{get{return Resources.Lang.eway;}}
-			protected static string s34 = "</td><td style=\"width: 17%;\" columnname=\"tote_total\">";
-			protected static string s35{get{return Resources.Lang.total;}}
-			protected static string s36 = "</td></tr>";
+			protected static string s22 = "</td></tr><tr class=\"RptHeader\"><td rowspan=\"2\" columnname=\"username\">";
+			protected static string s23{get{return Resources.Lang.username;}}
+			protected static string s24 = "</td><td colspan=\"4\">";
+			protected static string s25{get{return Resources.Lang.tote;}}
+			protected static string s26 = "</td></tr><tr class=\"RptHeader02\"><td style=\"width: 17%;\" columnname=\"tote_win\">";
+			protected static string s27{get{return Resources.Lang.WinHR;}}
+			protected static string s28 = "</td><td style=\"width: 17%;\" columnname=\"tote_palce\">";
+			protected static string s29{get{return Resources.Lang.Place;}}
+			protected static string s30 = "</td><td style=\"width: 17%;\" columnname=\"tote_winplace\">";
+			protected static string s31{get{return Resources.Lang.eway;}}
+			protected static string s32 = "</td><td style=\"width: 17%;\" columnname=\"tote_total\">";
+			protected static string s33{get{return Resources.Lang.total;}}
+			protected static string s34 = "</td></tr>";
 			public HRCommission_ExcelContents_ContentRow_Block ContentRow = new HRCommission_ExcelContents_ContentRow_Block();
 			public HRCommission_ExcelContents_TotalContent_Block TotalContent = new HRCommission_ExcelContents_TotalContent_Block();
 			public HRCommission_ExcelContents_NoInfo_Block NoInfo = new HRCommission_ExcelContents_NoInfo_Block();
-			protected static string s37 = "</table>";
+			protected static string s35 = "</table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s19);
+					bd.Append(s17);
 					bd.Append(BoldRow);
+					bd.Append(s18);
+					bd.Append(s19);
 					bd.Append(s20);
-					bd.Append(s21);
-					bd.Append(s22);
 					bd.Append(DateFrom);
-					bd.Append(s23);
+					bd.Append(s21);
 					bd.Append(DateTo);
+					bd.Append(s22);
+					bd.Append(s23);
 					bd.Append(s24);
 					bd.Append(s25);
 					bd.Append(s26);
@@ -128,12 +126,10 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s32);
 					bd.Append(s33);
 					bd.Append(s34);
-					bd.Append(s35);
-					bd.Append(s36);
 					if(null != ContentRow) ContentRow.ToString(ref bd);
 					if(null != TotalContent) TotalContent.ToString(ref bd);
 					if(null != NoInfo) NoInfo.ToString(ref bd);
-					bd.Append(s37);
+					bd.Append(s35);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -141,47 +137,47 @@ namespace Fanex.Age.UI.Reports
 
 		public class HRCommission_ExcelContents_ContentRow_Block: Block
 		{
-			protected static string s38 = "<tr bgcolor=\"";
+			protected static string s36 = "<tr bgcolor=\"";
 			public string ColorClass = "{ColorClass}";
-			protected static string s39 = "\" onmouseover=\"this.style.backgroundColor='";
-			protected static string s40{get{return Fanex.Age.UI.Common.RowBgOver;}}
-			protected static string s41 = "'\" onmouseout=\"this.style.backgroundColor='";
+			protected static string s37 = "\" onmouseover=\"this.style.backgroundColor='";
+			protected static string s38{get{return Fanex.Age.UI.Common.RowBgOver;}}
+			protected static string s39 = "'\" onmouseout=\"this.style.backgroundColor='";
 			protected string t0_ColorClass;
-			protected static string s42 = "'\" class=\"r\"><td class=\"l\">";
+			protected static string s40 = "'\" class=\"r\"><td class=\"l\">";
 			public HRCommission_ExcelContents_ContentRow_DownlineLink_Block DownlineLink = new HRCommission_ExcelContents_ContentRow_DownlineLink_Block();
 			public HRCommission_ExcelContents_ContentRow_BetListLink_Block BetListLink = new HRCommission_ExcelContents_ContentRow_BetListLink_Block();
-			protected static string s43 = "</td><td>";
+			protected static string s41 = "</td><td>";
 			public string WinUKComm = "{WinUKComm}";
-			protected static string s44 = "</td><td>";
+			protected static string s42 = "</td><td>";
 			public string PlaceUKComm = "{PlaceUKComm}";
-			protected static string s45 = "</td><td>";
+			protected static string s43 = "</td><td>";
 			public string WinPlaceUKComm = "{WinPlaceUKComm}";
-			protected static string s46 = "</td><td class=\"b\">";
+			protected static string s44 = "</td><td class=\"b\">";
 			public string TotalUKComm = "{TotalUKComm}";
-			protected static string s47 = "</td></tr>";
+			protected static string s45 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s36);
+					bd.Append(ColorClass);
+					bd.Append(s37);
 					bd.Append(s38);
-					bd.Append(ColorClass);
 					bd.Append(s39);
-					bd.Append(s40);
-					bd.Append(s41);
 					bd.Append(ColorClass);
-					bd.Append(s42);
+					bd.Append(s40);
 					if(null != DownlineLink) DownlineLink.ToString(ref bd);
 					if(null != BetListLink) BetListLink.ToString(ref bd);
-					bd.Append(s43);
+					bd.Append(s41);
 					bd.Append(WinUKComm);
-					bd.Append(s44);
+					bd.Append(s42);
 					bd.Append(PlaceUKComm);
-					bd.Append(s45);
+					bd.Append(s43);
 					bd.Append(WinPlaceUKComm);
-					bd.Append(s46);
+					bd.Append(s44);
 					bd.Append(TotalUKComm);
-					bd.Append(s47);
+					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -189,25 +185,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class HRCommission_ExcelContents_ContentRow_DownlineLink_Block: Block
 		{
-			protected static string s48 = "<span class='downline_link' onclick=\"viewHRCommissionDownline(";
+			protected static string s46 = "<span class='downline_link' onclick=\"viewHRCommissionDownline(";
 			public string CustId = "{CustId}";
-			protected static string s49 = ",";
+			protected static string s47 = ",";
 			public string RoleId = "{RoleId}";
-			protected static string s50 = ")\">";
+			protected static string s48 = ")\">";
 			public string UserName = "{UserName}";
-			protected static string s51 = "</span>";
+			protected static string s49 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s48);
+					bd.Append(s46);
 					bd.Append(CustId);
-					bd.Append(s49);
+					bd.Append(s47);
 					bd.Append(RoleId);
-					bd.Append(s50);
+					bd.Append(s48);
 					bd.Append(UserName);
-					bd.Append(s51);
+					bd.Append(s49);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -215,25 +211,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class HRCommission_ExcelContents_ContentRow_BetListLink_Block: Block
 		{
-			protected static string s52 = "<a style='font-weight: normal;' href=\"javascript:viewHRBetList(";
+			protected static string s50 = "<a style='font-weight: normal;' href=\"javascript:viewHRBetList(";
 			public string CustId = "{CustId}";
-			protected static string s53 = ",'";
+			protected static string s51 = ",'";
 			public string UserName = "{UserName}";
-			protected static string s54 = "');\">";
+			protected static string s52 = "');\">";
 			protected string t1_UserName;
-			protected static string s55 = "</a>";
+			protected static string s53 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s52);
+					bd.Append(s50);
 					bd.Append(CustId);
+					bd.Append(s51);
+					bd.Append(UserName);
+					bd.Append(s52);
+					bd.Append(UserName);
 					bd.Append(s53);
-					bd.Append(UserName);
-					bd.Append(s54);
-					bd.Append(UserName);
-					bd.Append(s55);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -241,33 +237,33 @@ namespace Fanex.Age.UI.Reports
 
 		public class HRCommission_ExcelContents_TotalContent_Block: Block
 		{
-			protected static string s56 = "<tr class=\"RptFooter\"><td class=\"l\">";
-			protected static string s57{get{return Resources.Lang.total;}}
-			protected static string s58 = "</td><td>";
+			protected static string s54 = "<tr class=\"RptFooter\"><td class=\"l\">";
+			protected static string s55{get{return Resources.Lang.total;}}
+			protected static string s56 = "</td><td>";
 			public string WinUKComm = "{WinUKComm}";
-			protected static string s59 = "</td><td>";
+			protected static string s57 = "</td><td>";
 			public string PlaceUKComm = "{PlaceUKComm}";
-			protected static string s60 = "</td><td>";
+			protected static string s58 = "</td><td>";
 			public string WinPlaceUKComm = "{WinPlaceUKComm}";
-			protected static string s61 = "</td><td class=\"b\">";
+			protected static string s59 = "</td><td class=\"b\">";
 			public string TotalUKComm = "{TotalUKComm}";
-			protected static string s62 = "</td></tr>";
+			protected static string s60 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s54);
+					bd.Append(s55);
 					bd.Append(s56);
-					bd.Append(s57);
-					bd.Append(s58);
 					bd.Append(WinUKComm);
-					bd.Append(s59);
+					bd.Append(s57);
 					bd.Append(PlaceUKComm);
-					bd.Append(s60);
+					bd.Append(s58);
 					bd.Append(WinPlaceUKComm);
-					bd.Append(s61);
+					bd.Append(s59);
 					bd.Append(TotalUKComm);
-					bd.Append(s62);
+					bd.Append(s60);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
