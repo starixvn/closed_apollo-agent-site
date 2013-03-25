@@ -91,7 +91,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             this.template.AgentName = this.QueryUserName;
             this.template.urlAgentList = "AgentList.aspx?custid=" + this.CustId + "&us=" + this.QueryUserName;
-            this.template.urlShadowList = "#";
+            this.template.urlShadowList = "../../_SubAcc/SubAccList.aspx?AgentId=" + this.CustId;
         }
 
         #endregion Properties
