@@ -268,15 +268,6 @@ namespace Sunplus.Agent.Model.BL.Authorization
             UserSessionService.RemoveUserSession(CurrentSession);
         }
 
-        /// <summary>
-        /// True if re-checkin successful. False for kick-out.
-        /// </summary>
-        /// <param name="errMsg"></param>
-        /// <returns></returns>
-        public bool ReCheckin(out string errMsg)
-        {
-            return this.dao.Acc_ReCheckin(CurrentSession.CustId, CurrentSession.OnUserId, out errMsg);
-        }
 
         #region Checking Permission
 
