@@ -12,13 +12,12 @@ namespace Apollo.Age.Repositories.Impl
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using Apollo.Age.Repositories.Interface;
-    using Fanex.NAP.Framework.Data;
-    using Apollo.Age.Entities;
-    using Fanex.Data;
     using Apollo.Age.Criterias.Accounts;
+    using Apollo.Age.Entities;
+    using Apollo.Age.Repositories.Interface;
     using Fanex.Common.Helper;
+    using Fanex.Data;
+    using Fanex.NAP.Framework.Data;
 
     public class MemberRepository : IMemberRepository
     {
@@ -28,7 +27,14 @@ namespace Apollo.Age.Repositories.Impl
             {
                 using (var db = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    return db.QueryEntity<Member>(criteria.GetSpParams());
+                    return db.QueryEntity<Member, Agent, Member>(
+                        (f, w) =>
+                        {
+                            f.Agent = w;
+                            return f;
+                        },
+                        "ParentId",
+                        criteria.GetSpParams());
                 }
             }
             catch
