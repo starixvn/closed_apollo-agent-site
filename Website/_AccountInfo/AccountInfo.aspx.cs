@@ -327,10 +327,10 @@ namespace Sunplus.Agent.UI._AccountInfo
             }
             else
             {
-                tplSetting.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}&showheader=1", this.agent.Id, this.agent.Username));
-                tplSetting.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={0}&username={1}&showheader=1", this.agent.Id, this.agent.Username));
-                tplSetting.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}&showheader=1", this.agent.Id, this.agent.Username));
-                tplSetting.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}&showheader=1", this.agent.Id, this.agent.Username));
+                tplSetting.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}&showheader=1&agentlevel={2}", this.agent.Id, this.agent.Username, this.agent.Level));
+                tplSetting.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={0}&username={1}&showheader=1&agentlevel={2}", this.agent.Id, this.agent.Username, this.agent.Level));
+                tplSetting.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}&showheader=1&agentlevel={2}", this.agent.Id, this.agent.Username, this.agent.Level));
+                tplSetting.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}&showheader=1&agentlevel={2}", this.agent.Id, this.agent.Username, this.agent.Level));
             }
 
             tpl.otherSettings = tplSetting.ToString();
