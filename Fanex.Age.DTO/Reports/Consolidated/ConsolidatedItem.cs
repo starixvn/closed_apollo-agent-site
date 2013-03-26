@@ -7,9 +7,6 @@
 
 namespace Fanex.Age.DTO.Reports.Consolidated
 {
-    using System;
-    using System.Collections.Generic;
-
     public class ConsolidatedItem
     {
         public int BreakDown { get; set; }

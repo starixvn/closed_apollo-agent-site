@@ -3,8 +3,9 @@
     using System.Collections;
     using System.Data;
     using Fanex.Data.DNAide;
+    using Sunplus.Agent.Model.DL.Base;
 
-    public class GivenCreditDAO : Sunplus.Agent.Model.DL.Base.DAOBase
+    public class GivenCreditDAO : DAOBase
     {
         /// <summary>
         /// 

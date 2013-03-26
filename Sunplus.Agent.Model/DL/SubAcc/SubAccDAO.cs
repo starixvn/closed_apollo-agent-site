@@ -10,8 +10,9 @@ namespace Sunplus.Agent.Model.DL.SubAcc
     using System.Collections;
     using System.Data;
     using Fanex.Age.Utility;
+    using Sunplus.Agent.Model.DL.Base;
 
-    public class SubAccDAO : Sunplus.Agent.Model.DL.Base.DAOBase
+    public class SubAccDAO : DAOBase
     {
         /// <summary>
         /// Get list sub-accounts information.

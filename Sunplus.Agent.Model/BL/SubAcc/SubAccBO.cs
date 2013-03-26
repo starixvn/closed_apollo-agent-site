@@ -8,14 +8,13 @@
 namespace Sunplus.Agent.Model.BL.SubAcc
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using Sunplus.Agent.Model.BL.Base;
     using Sunplus.Agent.Model.DL.SubAcc;
     using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Model.Entities.Base;
 
-    public class SubAccBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class SubAccBO : BOBase
     {
         public SubAccBO(string netSessionId)
             : base(netSessionId)

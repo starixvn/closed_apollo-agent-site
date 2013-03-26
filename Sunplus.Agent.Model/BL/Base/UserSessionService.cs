@@ -7,9 +7,8 @@
 
 namespace Sunplus.Agent.Model.BL
 {
-    using System.Collections;
-    using Sunplus.Agent.Model.Entities;
     using Apollo.Age.Entities;
+    using Sunplus.Agent.Model.Entities;
 
     public sealed class UserSessionService
     {

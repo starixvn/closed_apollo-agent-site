@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Web;
-using System.Web.UI;
-using System.Data;
 using System.Web.SessionState;
-using System.Collections;
-using System.Text;
 
 /*
  * Created 20091211@Lee - Base ashx page, use Template method pattern http://sourcemaking.com/design_patterns/template_method

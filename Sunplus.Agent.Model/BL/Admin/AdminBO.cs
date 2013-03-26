@@ -6,15 +6,10 @@
 
 namespace Sunplus.Agent.Model.BL.Admin
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Sunplus.Agent.Model.BL.Base;
-    using Sunplus.Agent.Model.DL.Reports;
     using System.Data;
-    using Sunplus.Agent.Model.DL.Admin;
     using Fanex.Age.DTO.Admin.ExchangeRate;
+    using Sunplus.Agent.Model.BL.Base;
+    using Sunplus.Agent.Model.DL.Admin;
 
     public class AdminBO : BOBase
     {

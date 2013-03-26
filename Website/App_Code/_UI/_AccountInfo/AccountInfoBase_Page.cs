@@ -4,7 +4,7 @@
     using System.Data;
     using Fanex.Age.UI;
     using Fanex.Agent.UI._AccountInfo;
-    using Apollo.Age.DTO.Accounts;
+    
 
     public abstract class AccountInfoBase_Page : TplPage
     {

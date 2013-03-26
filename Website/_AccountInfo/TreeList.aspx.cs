@@ -9,11 +9,15 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using Apollo.Age.Criterias.Accounts;
-using Apollo.Age.DTO.Accounts;
+using Apollo.Age.Entities;
 using Apollo.Age.Services.Impl;
 using Apollo.Age.Services.Interface;
+using Fanex.Common.Extensions;
 
 public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 {
@@ -36,6 +40,14 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 
     }
 
+    private readonly IAgentService _agentService;
+
+    public _AccountInfo_TreeList()
+    {
+        _agentService = new AgentService();
+    }
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -48,64 +60,66 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
         }
     }
 
-    public void AsyncTree()
+    public int SelectedAgentId
     {
-        string root = Request.Params["root"];
-        int parentID = 0;
-
-        IAgentService service = new AgentService();
-        AgentDownlineCriteria criteria = null;
-
-        if (root == "source") //for the first time the JQuery tree will send the root param value as "source"
+        get
         {
-            criteria = new AgentDownlineCriteria()
-            {
-                AgentId = TreeViewNodeDTO.Root
-            };
-
-            var lstNodes = service.GetTreeViewNode(criteria);
-
-            GenerateTree(lstNodes);
-        }
-        else if (int.TryParse(root, out parentID)) //subsequent requests will send the ID
-        {
-            if (parentID > 0)
-            {
-                criteria = new AgentDownlineCriteria()
-                {
-                    AgentId = parentID
-                };
-
-                var lstNodes = service.GetTreeViewNode(criteria);
-
-                GenerateTree(lstNodes);
-            }
+            return Fanex.Common.Converter.ToInt(Request.QueryString["root"]);
         }
     }
 
-    private void GenerateTree(List<TreeViewNodeDTO> lstNodes)
+    public int AgentId
     {
-        System.Text.StringBuilder tree = new System.Text.StringBuilder();
-        tree.Append("[");
-
-        foreach (var node in lstNodes)
+        get
         {
-            tree.Append("{");
-            tree.Append("\"Text\": \"").Append(node.Text).Append("\",");
-            tree.Append("\"Id\": \"").Append(node.Id).Append("\",");
-            tree.Append("\"HasChildren\": " + (node.HasChildren ? "true" : "false"));
-            tree.Append("},");
+            return Fanex.Common.Converter.ToInt(Request.QueryString["agentid"]);
+        }
+    }
+
+    public void AsyncTree()
+    {
+        int agentId = SelectedAgentId;
+        agentId =  (agentId < 0) ? AgentId: agentId;
+
+        if (_agentService.IsDescendant(CurrentUserSession.AgentId, agentId))
+        {
+            var customerList = _agentService.GetDirectDownline(agentId);
+            RenderJsonString(ConvertToTreeViewNode(customerList));
+        }
+    }
+
+    /// <summary>
+    /// Convert agent list to ui object model treeview node
+    /// </summary>
+    /// <param name="customerList"></param>
+    /// <returns></returns>
+    public List<TreeViewNode> ConvertToTreeViewNode(List<Agent> customerList)
+    {
+        var listTreeViewNode = new List<TreeViewNode>();
+
+        if (customerList != null && customerList.Any())
+        {
+            customerList.ForEach(agent =>
+            {
+
+                listTreeViewNode.Add(new TreeViewNode
+                    {
+                        Id = agent.Id,
+                        UserName = agent.Username,
+                        HasChildren = agent.HasAgentDownline
+                    });
+            });
         }
 
-        //remove the ending comma from the result
-        if (tree.Length > 1)
-        {
-            tree = tree.Remove(tree.Length - 1, 1);
-        }
-        tree.Append("]");
+        return listTreeViewNode;
+    }
 
-        //put the result in Response and end the Response
-        Response.Write(tree.ToString());
+    private void RenderJsonString(List<TreeViewNode> nodeList)
+    {
+        JavaScriptSerializer serializer = new JavaScriptSerializer();
+        string json = serializer.Serialize(nodeList);     
+
+        Response.Write(json);
         Response.End();
     }
 }

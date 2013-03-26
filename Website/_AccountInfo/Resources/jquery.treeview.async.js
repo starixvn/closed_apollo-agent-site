@@ -51,7 +51,8 @@
             return proxied.apply(this, arguments);
         }
         var container = this;
-        load(settings, "source", this, container);
+        //load(settings, "source", this, container);
+        load(settings, "-1", this, container); // -1 is dummy root node id
         var userToggle = settings.toggle;
         return proxied.call(this, $.extend({}, settings, {
             collapsed: true,

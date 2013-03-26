@@ -6,13 +6,12 @@
 
 namespace Sunplus.Agent.Model.DL.Admin
 {
+    using System;
     using System.Collections;
     using System.Data;
-    using Sunplus.Agent.Model.DL.Base;
-    using Fanex.Data.DNAide;
-    using System;
-    using System.Collections.Generic;
     using Fanex.Age.DTO.Admin.ExchangeRate;
+    using Fanex.Data.DNAide;
+    using Sunplus.Agent.Model.DL.Base;
 
     public class AdminDAO : DAOBase
     {

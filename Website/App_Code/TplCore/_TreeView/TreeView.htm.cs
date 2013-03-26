@@ -19,9 +19,9 @@ namespace Fanex.Agent.UI
 			protected static string s3{get{return Resources.Lang.mainmenu;}}
 			protected static string s4 = "</a></div><div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\"href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
 			protected static string s5{get{return Resources.Lang.userinfo;}}
-			protected static string s6 = "</span></a></div><div id=\"tab_menu_L\"><a id=\"lnkTree\" class=\"tab_menu03AC\" target=\"treeview\" style=\"cursor: default;\"></a></div></div><div id=\"leftpane-treeview\" class=\"pnlTreeview\">";
-			public string TreeViewDownLineFrame = "{TreeViewDownLineFrame}";
-			protected static string s7 = "</div></div></body></html>";
+			protected static string s6 = "</span></a></div><div id=\"tab_menu_L\"><a id=\"lnkTree\" class=\"tab_menu03AC\" target=\"treeview\" style=\"cursor: default;\"></a></div></div><div id=\"leftpane-treeview\" class=\"pnlTreeview\"><iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?agentid=";
+			public string AgentId = "{AgentId}";
+			protected static string s7 = "' style='width:98%;height:100%;'></iframe></div></div></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -34,7 +34,7 @@ namespace Fanex.Agent.UI
 					bd.Append(s4);
 					bd.Append(s5);
 					bd.Append(s6);
-					bd.Append(TreeViewDownLineFrame);
+					bd.Append(AgentId);
 					bd.Append(s7);
 				}
 				if(IsAssigned){bd.Append(Value);}

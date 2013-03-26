@@ -3,8 +3,9 @@
     using System.Data;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.DL.GivenCredit;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class GivenCreditBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class GivenCreditBO : BOBase
     {
         public GivenCreditBO(string netSessionId)
             : base(netSessionId)

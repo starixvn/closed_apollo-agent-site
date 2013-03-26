@@ -1,6 +1,4 @@
-﻿
-
-/*
+﻿/*
  * Created 20100603@Lee - Url processor
  * Revision:
  * ?@? - ... 
@@ -9,7 +7,6 @@
 
 namespace Sunplus.Agent.Utilities
 {
-
     public class UrlProcessor
     {
         /// <summary>

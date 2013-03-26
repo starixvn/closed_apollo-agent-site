@@ -185,7 +185,7 @@ a {
 
 	&:hover {
 		background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;
-		color: #4B483C;
+		color: @titleColor;
 		margin-top: 2px;
 	}
 }
@@ -304,7 +304,7 @@ a {
 
 .Bleft_Sub02
 {
-	background: #FFFFFF url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x scroll center top;
+	background: @white url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x scroll center top;
 	border-bottom: 1px solid #B2B2B2;
 	border-left: 1px solid #B2B2B2;
 	border-right: 1px solid #B2B2B2;
@@ -423,7 +423,7 @@ font {
 		span {
 			float: none;
 			background: transparent url(../../_GlobalResources/Images/right_btleft.gif) no-repeat scroll right top;
-			color: #FFFFFF;
+			color: @white;
 			display: block;
 			float: left;
 			font-size: 11px;
@@ -492,12 +492,14 @@ font {
 {
 	width: 202px;
 	background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
+	padding-top: 6px;
 }
 
 .top_left
 {
 	width: 210px;
 	height: 6px;
+	display: none;
 }
 
 #button_left
@@ -544,7 +546,7 @@ font {
 	border-left: 1px #b2b2b2 solid;
 	border-right: 1px #b2b2b2 solid;
 	background: url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x top;
-	background-color: #FFFFFF;
+	background-color: @white;
 	padding-left: 8px;
 	margin-bottom: 3px;
 }
@@ -586,11 +588,11 @@ font {
 {
 	text-align: left;
 	padding: 6px 6px 6px 6px;
-	background-color: #ffffff;
+	background-color: @white;
 	position: absolute;
 	display: none;
 	z-index: 100;
-	border: solid 1px #000000;
+	border: solid 1px @black;
 	top: 440px;
 	left: 26px;
 	width: 160px;

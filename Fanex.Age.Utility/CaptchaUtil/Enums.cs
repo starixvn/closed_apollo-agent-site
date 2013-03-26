@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Fanex.Age.Utility.CaptchaUtil
+﻿namespace Fanex.Age.Utility.CaptchaUtil
 {
     public enum CaptchaType : byte
     {

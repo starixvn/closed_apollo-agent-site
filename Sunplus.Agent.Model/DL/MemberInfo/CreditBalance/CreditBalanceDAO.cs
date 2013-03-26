@@ -11,8 +11,9 @@ namespace Sunplus.Agent.Model.DL.MemberInfo.CreditBalance
     using System.Collections;
     using System.Data;
     using Fanex.Data.DNAide;
+    using Sunplus.Agent.Model.DL.Base;
 
-    public class CreditBalanceDAO : Sunplus.Agent.Model.DL.Base.DAOBase
+    public class CreditBalanceDAO : DAOBase
     {
         /// <summary>
         /// Clear credit of a customer.

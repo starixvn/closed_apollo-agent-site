@@ -13,7 +13,6 @@ namespace Fanex.BetList.Age.BetListCmd
     using System.Data;
     using Fanex.Data.DNAide;
     using Sunplus.Agent.Model.BL.BetList;
-    using Fanex.BetList.Age.Definition;
 
     /// <summary>
     /// Summary description for Combination MixParlayBetList Detail Command

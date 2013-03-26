@@ -285,9 +285,9 @@ namespace Fanex.BetList.Age.BetListExcelBuilderExt
             footerStyle.CloneStyleFrom(factory.EvenCellStyle);
             footerStyle.FillForegroundColor = 47;
             footerStyle.Alignment = HorizontalAlignment.RIGHT;
-            footerStyle.BorderTop = CellBorderType.NONE;
-            footerStyle.BorderLeft = CellBorderType.NONE;
-            footerStyle.BorderBottom = CellBorderType.NONE;
+            //footerStyle.BorderTop = CellBorderType.NONE;
+            //footerStyle.BorderLeft = CellBorderType.NONE;
+            //footerStyle.BorderBottom = CellBorderType.NONE;
             footerStyle.SetFont(factory.RTFHelper.PosFont);
 
             var rtfNumberRenderer = new RTFNumber(factory.RTFHelper.RTFRenderer, factory.RTFHelper.PosFont, factory.RTFHelper.NegFont);
@@ -342,7 +342,7 @@ namespace Fanex.BetList.Age.BetListExcelBuilderExt
 
             ICellStyle totalCellStyle = factory.CreateCellStyle();
             totalCellStyle.CloneStyleFrom(footerStyle);
-            totalCellStyle.BorderBottom = CellBorderType.THIN;
+            //totalCellStyle.BorderBottom = CellBorderType.THIN;
             totalCellStyle.SetFont(factory.RTFHelper.PosFont);
 
             CellAddress cell = factory.AddCell(rtfBetListTotalText, totalCellStyle);

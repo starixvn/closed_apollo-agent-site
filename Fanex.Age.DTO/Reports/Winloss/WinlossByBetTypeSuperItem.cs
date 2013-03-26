@@ -7,9 +7,6 @@
 
 namespace Fanex.Age.DTO.Reports.Winloss
 {
-    using System;
-    using System.Collections.Generic;
-
     public class WinlossByBetTypeSuperItem
     {
         public int BetType { get; set; }

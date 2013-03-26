@@ -10,13 +10,10 @@
 namespace Sunplus.Agent.Model.Entities
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Reflection;
     using System.Runtime.Serialization;
     using System.Web;
-    using Apollo.Age.Entities;
     using Fanex.Common;
 
     [Serializable]
