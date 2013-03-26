@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
+//   <change who="Anders.Le" date="2013.3.26">Apply generic repository</change>
 // </history>
 
 namespace Apollo.Age.Repositories.Impl
@@ -21,44 +22,9 @@ namespace Apollo.Age.Repositories.Impl
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class UserRepository : IUserRepository
-    {
-        public ICommandResult Delete(User entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICommandResult Insert(User entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICommandResult Update(User entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Count(ICriteria criteria)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> Fetch(ICriteria criteria, Action<Orderable<User>> order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> Fetch(ICriteria criteria)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> Fetch()
-        {
-            throw new NotImplementedException();
-        }
-
-        public User Get(ICriteria criteria)
+    public class UserRepository : RepositoryBase<User>, IUserRepository
+    {       
+        public override User Get(ICriteria criteria)
         {
             try
             {
@@ -82,22 +48,17 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
-        public User Get(int id)
+        public ICommandResult Delete(User entity)
         {
             throw new NotImplementedException();
         }
 
-        public int Length(dynamic paramaters)
+        public ICommandResult Insert(User entity)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> Query(dynamic parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public User Single(dynamic parameters)
+        public ICommandResult Update(User entity)
         {
             throw new NotImplementedException();
         }

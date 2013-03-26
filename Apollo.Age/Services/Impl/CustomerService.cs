@@ -19,16 +19,17 @@ namespace Apollo.Age.Services.Impl
 
     public class CustomerService : ICustomerService
     {
-        private readonly ICustomerRepository _repository;
+        private readonly IAgentRepository _repository;
 
-        public CustomerService(ICustomerRepository customerRepository = null)
+        public CustomerService(IAgentRepository customerRepository = null)
         {
-            _repository = customerRepository ?? new CustomerRepository();
+            _repository = customerRepository ?? new AgentRepository();
         }
 
         public List<Customer> GetCustomerSearch(ICriteria criteria)
         {
-            return _repository.Fetch(criteria).ToList();
+            throw new System.NotImplementedException();
+            //return _repository.Fetch(criteria).ToList();
         }
     }
 }
