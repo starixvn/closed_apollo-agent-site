@@ -8,13 +8,9 @@
 namespace Sunplus.Agent.Model.Entities
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Runtime.Serialization;
     using Sunplus.Agent.Model.Entities.Base;
-    using Apollo.Age.Entities;
-
 
     public interface IUserSession : IEntity, ISerializable
     {

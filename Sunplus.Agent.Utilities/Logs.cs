@@ -1,8 +1,5 @@
 using System;
-using System.Web;
-using System.Diagnostics;
-using System.Reflection;
-
+using Fanex.Logging;
 
 /*
  * Created ?@Ken,Ben,Don
@@ -15,8 +12,6 @@ using System.Reflection;
 
 namespace Sunplus.Agent.Utilities
 {
-    using Fanex.Logging;
-    
     public static class Logs
     {
         public static void Write(string msg)

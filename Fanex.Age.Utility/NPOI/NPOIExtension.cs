@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections;
-using NPOI.HSSF.UserModel;
+using System.Collections.Generic;
+using System.Diagnostics;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
-using System.Diagnostics;
-using System.Collections.Generic;
 
 /*
  * Created 20120216@Leo

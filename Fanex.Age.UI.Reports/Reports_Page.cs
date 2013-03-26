@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Resources;
-using System.Text;
 using System.Web;
+using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
 using Fanex.Age.UI.Reports.Components;
 using Sunplus.Agent.Model.BL.Reports;
-using Sunplus.Agent.Utilities;
 
 /*
  * Created 20100527@Jacob - Support render full mode or body mode
@@ -20,7 +18,7 @@ using Sunplus.Agent.Utilities;
 /// </summary>
 namespace Fanex.Age.UI.Reports
 {
-    public abstract class Reports_Page : Fanex.Age.UI.TplPage
+    public abstract class Reports_Page : TplPage
     {
         #region Variable
 

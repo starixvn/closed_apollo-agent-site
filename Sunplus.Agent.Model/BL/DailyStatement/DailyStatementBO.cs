@@ -3,11 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using Sunplus.Agent.Model.BL.Base;
     using Sunplus.Agent.Model.BL.Reports;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Base;
 
-    public class DailyStatementBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class DailyStatementBO : BOBase
     {
         public DailyStatementBO(string netSessionId)
             : base(netSessionId)

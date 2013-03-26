@@ -175,23 +175,23 @@
   </Function>
 
   <Function Name="AgentSetting">
-    <Setting Key="AgentSetting_Acc_Agent_GetDiscountForUpdate" SpName="Acc_Agent_GetDiscountForUpdate" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="AgentSetting_Acc_Agent_GetBetLimitForUpdate" SpName="Acc_Agent_GetBetLimitForUpdate" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="AgentSetting_Acc_Agent_GetPositionTakingForUpdate" SpName="Acc_Agent_GetPositionTakingForUpdate_xtest" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="AgentSetting_Acc_Agent_UpdateBetLimit" SpName="Acc_Agent_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="AgentSetting_Acc_Agent_UpdateDiscount" SpName="Acc_Agent_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="AgentSetting_Acc_Agent_UpdatePositionTaking" SpName="Acc_Agent_UpdatePositionTaking_xtest" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="AgentSetting_Acc_Agent_UpdateSetting" SpName="Acc_Agent_UpdateSetting" DbName="CUSTDB"  TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_GetDiscountForUpdate" SpName="Age_Agent_GetDiscountForUpdate" DbName="REPDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_GetBetLimitForUpdate" SpName="Age_Agent_GetBetLimitForUpdate" DbName="REPDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_GetPositionTakingForUpdate" SpName="Age_Agent_GetPositionTakingForUpdate" DbName="REPDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_UpdateBetLimit" SpName="Age_Agent_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_UpdateDiscount" SpName="Age_Agent_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_UpdateSetting" SpName="Age_Agent_UpdateSetting" DbName="CUSTDB"  TimeOut="600"/>
   </Function>
 
   <Function Name="PlayerSetting">
-    <Setting Key="PlayerSetting_Acc_Customer_GetDiscountForUpdate" SpName="Acc_Customer_GetDiscountForUpdate" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="PlayerSetting_Acc_Customer_GetBetLimitForUpdate" SpName="Acc_Customer_GetBetLimitForUpdate" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="PlayerSetting_Acc_Customer_GetPositionTakingForUpdate" SpName="Acc_Customer_GetPositionTakingForUpdate" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="PlayerSetting_Acc_Customer_UpdateBetLimit" SpName="Acc_Customer_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="PlayerSetting_Acc_Customer_UpdateDiscount" SpName="Acc_Customer_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="PlayerSetting_Acc_Customer_UpdatePositionTaking" SpName="Acc_Customer_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="PlayerSetting_Acc_Customer_UpdateSetting" SpName="Acc_Customer_UpdateSetting" DbName="CUSTDB" TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_GetDiscountForUpdate" SpName="Age_Customer_GetDiscountForUpdate" DbName="REPDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_GetBetLimitForUpdate" SpName="Age_Customer_GetBetLimitForUpdate" DbName="REPDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_GetPositionTakingForUpdate" SpName="Age_Customer_GetPositionTakingForUpdate" DbName="REPDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_UpdateBetLimit" SpName="Age_Customer_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_UpdateDiscount" SpName="Age_Customer_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Customer_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="CUSTDB" TimeOut="600"/>
   </Function>
 
   <Function Name="Agent-Apollo-BalanceUpDay">

@@ -10,8 +10,7 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Apollo.Age.Services.Impl;
     using Sunplus.Agent.Model.BL.AccountInfo;
     using Apollo.Age.Criterias.Accounts;
-    using System.Collections.Generic;
-    using Apollo.Age.DTO.Accounts;
+    using System.Collections.Generic;    
     using Apollo.Age.Entities;
     
     public class QueryUserName_Handler : Fanex.Age.UI.TplHandler, System.Web.SessionState.IReadOnlySessionState
@@ -45,7 +44,7 @@ namespace Sunplus.Agent.UI._AccountInfo
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
             this.query = Request.QueryString["query"];
-            this.isMember = Request.QueryString["isMember"] == "0" ? false : true;
+            this.isMember = Request.QueryString["isMember"] == "1";
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)

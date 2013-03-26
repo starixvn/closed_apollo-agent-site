@@ -1,6 +1,6 @@
 ﻿namespace Sunplus.Agent.Model.BL.Base
 {
-    public static class _Extension
-    {
-    }
+    //public static class _Extension
+    //{
+    //}
 }

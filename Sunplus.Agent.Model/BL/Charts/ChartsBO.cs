@@ -7,8 +7,9 @@
     using Fanex.Caching;
     using Sunplus.Agent.Model.BL.Reports;
     using Sunplus.Agent.Model.DL.Charts;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class ChartsBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class ChartsBO : BOBase
     {
         public string CHART_WINLOSS_ANALYSIS_KEY = "SUNPLUS.AGENT.MODEL.BL.CHARTS.WINLOSSANALYSIS";
 

@@ -10,8 +10,9 @@ namespace Sunplus.Agent.Model.DL.UserMessage
     using System;
     using System.Collections;
     using System.Data;
+    using Sunplus.Agent.Model.DL.Base;
 
-    public class UserMessageDAO : Sunplus.Agent.Model.DL.Base.DAOBase
+    public class UserMessageDAO : DAOBase
     {
         private static int maxWaitingConnection = 2;        
         private static object lockObject = new object();

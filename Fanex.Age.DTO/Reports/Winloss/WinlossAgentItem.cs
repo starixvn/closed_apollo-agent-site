@@ -7,9 +7,6 @@
 
 namespace Fanex.Age.DTO.Reports.Winloss
 {
-    using System;
-    using System.Collections.Generic;
-
     public class WinlossAgentItem
     {
         public int CustId { get; set; }

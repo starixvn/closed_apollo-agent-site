@@ -10,8 +10,9 @@ namespace Sunplus.Agent.Model.BL.Racing
     using System.Collections;
     using System.Data;
     using Sunplus.Agent.Model.DL.Racing;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class RacingBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class RacingBO : BOBase
     {
         public RacingBO(string netSessionId)
             : base(netSessionId)

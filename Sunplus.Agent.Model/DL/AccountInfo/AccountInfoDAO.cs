@@ -3,13 +3,9 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
     using System;
     using System.Collections;
     using System.Data;
-    using System.Web;
     using CasinoLibrary.SBAgent;
     using Fanex.Data.DNAide;
     using Sunplus.Agent.Model.DL.Base;
-    using Fanex.Age.Utility;
-    
-    
 
     public class AccountInfoDAO : DAOBase
     {

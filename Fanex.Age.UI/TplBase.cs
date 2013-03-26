@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
-using System.Data;
-using System.Collections;
-
-using Sunplus.Agent.Model.Entities;
 using Sunplus.Agent.Model.BL;
+using Sunplus.Agent.Model.Entities;
 
 /*
  * Created 20091211@Lee - Base aspx page
@@ -22,7 +22,7 @@ namespace Fanex.Age.UI
     /// <summary>
     /// Base IBC page.
     /// </summary>
-    public abstract class TplBase : System.Web.UI.Page, IBasePage
+    public abstract class TplBase : Page, IBasePage
     {
         protected override void InitializeCulture()
         {
@@ -32,13 +32,13 @@ namespace Fanex.Age.UI
 
         protected void SetLanguage(string language)
         {
-            System.Globalization.CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+            CultureInfo def = CultureInfo.CreateSpecificCulture("en-US");
 
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(language);
-            System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
 
-            System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
-            System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+            Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
         }
 
         // Handle external resources of controls
@@ -50,9 +50,10 @@ namespace Fanex.Age.UI
         /// <returns></returns>
         public bool RegisterControl(string name)
         {
-            if (RegisteredControls.Contains(name)) return false;
+            if (RegisteredControls.Contains(name)) 
+                return false;
             else RegisteredControls.Add(name);
-            return true;
+                return true;
         }
         
         private IUserSession _CurrentUserSession;

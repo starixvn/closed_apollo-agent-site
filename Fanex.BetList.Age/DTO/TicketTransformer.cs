@@ -14,7 +14,6 @@ namespace Fanex.BetList.Age.DTO
     using System.Collections.Generic;
     using System.Data;
     using System.Reflection;
-    using Fanex.BetList.Age.DTO;
     using Fanex.BetList.Core.Entities;
 
     /// <summary>

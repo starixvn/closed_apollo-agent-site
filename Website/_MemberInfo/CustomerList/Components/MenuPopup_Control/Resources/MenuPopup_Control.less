@@ -1,11 +1,13 @@
-﻿.divMenuPopup
+﻿@import "../../../../../_GlobalResources/Css/variable.less";
+
+.divMenuPopup
 {
-	background-color: #fff;
+	background-color: @white;
 	border: 1px solid #8F8272;
 	border-radius: 3px 3px 3px 3px;
 	box-shadow: 5px 5px 2px #999;
 	display: none;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4,endColorstr=#FFFFFFFF);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4,endColorstr=@white);
 	font-weight: 400;
 	line-height: 20px;
 	padding: 5px;
@@ -26,19 +28,19 @@
 
 .divMenuPopup div:hover
 {
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=#FFFFFFFF)";
-	background: -moz-linear-gradient(top, #EDE8E4, #fff);
-	background: -webkit-gradient(linear, center top, center bottom, from(#EDE8E4), to(#fff));
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=@white)";
+	background: -moz-linear-gradient(top, #EDE8E4, @white);
+	background: -webkit-gradient(linear, center top, center bottom, from(#EDE8E4), to(@white));
 	background-image: 0 0 100%;
 	border: 1px solid #B8B9BD;
 	border-radius: 3px 3px 3px 3px;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4,endColorstr=#FFFFFFFF);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4,endColorstr=@white);
 	line-height: 20px;
 }
 
 .divMenuPopup div a:link
 {
-	color: #1E1EEB;
+	color: @linkColor;
 	display: block;
 	padding-left: 30px;
 	text-decoration: none;

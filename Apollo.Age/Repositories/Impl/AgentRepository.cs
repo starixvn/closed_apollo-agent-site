@@ -12,7 +12,6 @@ namespace Apollo.Age.Repositories.Impl
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Apollo.Age.DTO.Accounts;
     using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Interface;
     using Fanex.Common.Helper;
@@ -59,24 +58,7 @@ namespace Apollo.Age.Repositories.Impl
             {
                 throw;
             }
-        }
-
-        public IEnumerable<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
-
-            try
-            {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    return db.Query<TreeViewNodeDTO>(criteria.GetSpParams());
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
+        }      
 
         public ICommandResult Delete(Agent entity)
         {

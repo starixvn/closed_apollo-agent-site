@@ -2,10 +2,11 @@
 {
     using System.Collections;
     using System.Data;
+    using Sunplus.Agent.Model.BL.Base;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.DL.Transfer;
 
-    public class TransferBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class TransferBO : BOBase
     {
         public TransferBO(string netSessionId)
             : base(netSessionId)

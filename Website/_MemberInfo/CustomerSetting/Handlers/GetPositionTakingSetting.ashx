@@ -34,43 +34,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             settings.Formatting = Formatting.Indented;
 
 
+            ICustomerSettingService customerService = new CustomerSettingService();
             string currentUserName = userSession.Username;
             int custId = userSession.AgentId;
-            int roleId = 1;
-            switch (userSession.AgentLevel)
-            {
-                case 0:
-                    roleId = (int)Role.Super;
-                    break;
-                case 1:
-                    roleId = (int)Role.MainShareHolder;
-                    break;
-                case 2:
-                    roleId = (int)Role.ShareHolder;
-                    break;
-                case 3:
-                    roleId = (int)Role.MainAgent;
-                    break;
-            }
+            int roleId = (int)customerService.GetRoleFromAgentLevel(userSession.AgentLevel);
             int targetCustId = Converter.ToInt(context.Request["targetCustId"]);
-            int targetRoleId = 1;
-            //int formType = 0;
-
-            switch (Converter.ToInt(context.Request["agentLevel"]))
-            {
-                case 0:
-                    targetRoleId = (int)Role.Super;
-                    break;
-                case 1:
-                    targetRoleId = (int)Role.MainShareHolder;
-                    break;
-                case 2:
-                    targetRoleId = (int)Role.ShareHolder;
-                    break;
-                case 3:
-                    targetRoleId = (int)Role.MainAgent;
-                    break;
-            }
+            int targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(context.Request["agentLevel"]));
 
             SettingContext settingContext = new SettingContext
             {
@@ -83,8 +52,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
                 Language = userSession.Language
             };
 
-
-            ICustomerSettingService customerService = new CustomerSettingService();
             PositionTakingSetting positionTakingSetting = customerService.GetPositionTakingSettingForUpdating(settingContext);
 
 

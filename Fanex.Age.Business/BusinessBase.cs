@@ -11,12 +11,6 @@
 // </history>
 namespace Fanex.Age.Business
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Fanex.Logging;
-
     public class BusinessBase
     {
         protected void ProcessException(string msg)

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Text;
 using System.Data;
+using System.Text;
 using Fanex.Age.Utility;
 
 namespace Sunplus.Agent.UI.ScoreMap.UI
@@ -20,7 +17,7 @@ namespace Sunplus.Agent.UI.ScoreMap.UI
         StringBuilder sbTotal = new StringBuilder();
 
         #endregion
-        public override void Assign(System.Data.DataRow row)
+        public override void Assign(DataRow row)
         {
             decimal total = Convert.ToDecimal(row["total"]);
             this.total = Formater.DecFormat(total, 0);
@@ -31,7 +28,7 @@ namespace Sunplus.Agent.UI.ScoreMap.UI
         {
             return ToString();
         }
-        public override void ToString(ref System.Text.StringBuilder bd)
+        public override void ToString(ref StringBuilder bd)
         {
             base.ToString(ref bd);
         }

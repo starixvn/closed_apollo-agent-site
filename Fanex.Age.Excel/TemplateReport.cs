@@ -34,7 +34,7 @@ namespace Fanex.Age.Excel
         {
             if (hssfWorkbook != null)
             {
-                hssfWorkbook.Dispose();
+                //hssfWorkbook.Dispose();
             }
         }
 

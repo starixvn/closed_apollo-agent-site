@@ -1,5 +1,4 @@
 ﻿
-
 /*
  * Created 20100603@Lee - Url processor
  * Revision:
@@ -9,7 +8,6 @@
 
 namespace Fanex.Age.Utility
 {
-
     public class UrlProcessor
     {
         /// <summary>

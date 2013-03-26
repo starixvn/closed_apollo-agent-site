@@ -99,7 +99,8 @@ namespace Fanex.Agent.UI
 		public class SettingBox_HiddenBlockTabAgent_Block: Block
 		{
 			protected static string s14 = "<table id=\"tbl_agentsTab\" class=\"agent-tab\"><tr><td>";
-			public string TreeViewDownLineFrame = "{TreeViewDownLineFrame}";
+			public SettingBox_HiddenBlockTabAgent_TreeViewBlock_Block TreeViewBlock = new SettingBox_HiddenBlockTabAgent_TreeViewBlock_Block();
+			public SettingBox_HiddenBlockTabAgent_NoInfoBlock_Block NoInfoBlock = new SettingBox_HiddenBlockTabAgent_NoInfoBlock_Block();
 			protected static string s15 = "</td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -107,8 +108,45 @@ namespace Fanex.Agent.UI
 				if(RenderChild)
 				{
 					bd.Append(s14);
-					bd.Append(TreeViewDownLineFrame);
+					if(null != TreeViewBlock) TreeViewBlock.ToString(ref bd);
+					if(null != NoInfoBlock) NoInfoBlock.ToString(ref bd);
 					bd.Append(s15);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class SettingBox_HiddenBlockTabAgent_TreeViewBlock_Block: Block
+		{
+			protected static string s16 = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?agentid=";
+			public string AgentId = "{AgentId}";
+			protected static string s17 = "' style='width:98%;height: 543px'></iframe>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s16);
+					bd.Append(AgentId);
+					bd.Append(s17);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class SettingBox_HiddenBlockTabAgent_NoInfoBlock_Block: Block
+		{
+			protected static string s18 = "<span class=\"no-data-agent\"> ";
+			protected static string s19{get{return Resources.Lang.noInfo;}}
+			protected static string s20 = " </span>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s18);
+					bd.Append(s19);
+					bd.Append(s20);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -116,13 +154,13 @@ namespace Fanex.Agent.UI
 
 		public class SettingBox_HiddenBlockTabMember_Block: Block
 		{
-			protected static string s16 = "<table id=\"tbl_membersTab\" class=\"member-tab\"><tr><td><div id=\"iframe-content\"> </div></td></tr></table>";
+			protected static string s21 = "<table id=\"tbl_membersTab\" class=\"member-tab\"><tr><td><div id=\"iframe-content\"> </div></td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s16);
+					bd.Append(s21);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

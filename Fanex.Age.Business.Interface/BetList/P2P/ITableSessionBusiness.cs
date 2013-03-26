@@ -13,8 +13,8 @@ using Fanex.Age.DTO.BetList.P2P;
 
 namespace Fanex.Age.Business.Interface.BetList.P2P
 {
-    public interface ITableSessionBusiness
-    {
-        TableSession GetTableSession(Int64 refNo, string userCurrency);
-    }
+    //public interface ITableSessionBusiness
+    //{
+    //    TableSession GetTableSession(Int64 refNo, string userCurrency);
+    //}
 }

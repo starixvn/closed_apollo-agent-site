@@ -36,45 +36,13 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.Formatting = Formatting.Indented;
 
-
+            ICustomerSettingService customerService = new CustomerSettingService();
             string currentUserName = userSession.Username;
             int custId = userSession.AgentId;
-            int roleId = 1;
-            switch (userSession.AgentLevel)
-            {
-                case 0:
-                    roleId = (int)Role.Super;
-                    break;
-                case 1:
-                    roleId = (int)Role.MainShareHolder;
-                    break;
-                case 2:
-                    roleId = (int)Role.ShareHolder;
-                    break;
-                case 3:
-                    roleId = (int)Role.MainAgent;
-                    break;
-            }
+            int roleId = (int)customerService.GetRoleFromAgentLevel(userSession.AgentLevel);
             int targetCustId = Converter.ToInt(context.Request["targetCustId"]);
-            int targetRoleId = 1;
-            //int formType = 0;
+            int targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(context.Request["agentLevel"]));
 
-            switch (Converter.ToInt(context.Request["agentLevel"]))
-            {
-                case 0:
-                    targetRoleId = (int)Role.Super;
-                    break;
-                case 1:
-                    targetRoleId = (int)Role.MainShareHolder;
-                    break;
-                case 2:
-                    targetRoleId = (int)Role.ShareHolder;
-                    break;
-                case 3:
-                    targetRoleId = (int)Role.MainAgent;
-                    break;
-            }
-            //int.TryParse(context.Request["formType"], out formType);
 
             SettingContext settingContext = new SettingContext
             {
@@ -85,7 +53,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
                 TargetRoleId = targetRoleId,
                 FormSetting = (int)FormSettingType.BetLimit
             };
-            ICustomerSettingService customerService = new CustomerSettingService();
+            
             IList<BettingLimit> betLimits = customerService.GetBettingLimitSettingForUpdating(settingContext);
 
             // Set language

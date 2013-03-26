@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
-
 
 /*
  * Created 20100404@Lee - Html controls generator
@@ -13,7 +12,6 @@ using System.Text;
 
 namespace Fanex.Age.Utility
 {
-
     public class HtmlGenerator
     {
 
