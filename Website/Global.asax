@@ -10,10 +10,17 @@
 <%@ Import Namespace="Sunplus.Agent.Model.BL.Authorization" %>
 <%@ Import Namespace="log4net" %>
 <%@ Import Namespace="log4net.Config" %>
+<%@ Import Namespace="System.Web.Http" %>
 <script RunAt="server">
 
     void Application_Start(object sender, EventArgs e)
     {
+        System.Web.Routing.RouteTable.Routes.MapHttpRoute(
+    name: "DefaultApi",
+    routeTemplate: "api/{controller}/{id}",
+    defaults: new { id = System.Web.Http.RouteParameter.Optional }
+    );
+        
         Sunplus.Agent.Configurations.AppSettings.LoadComplete += new Sunplus.Agent.Configurations.AppSettings.UpdateEventHandler(AppSettings_LoadComplete);
         Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
         // Code that runs on application startup

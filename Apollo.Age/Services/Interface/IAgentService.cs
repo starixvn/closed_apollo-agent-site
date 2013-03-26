@@ -37,5 +37,7 @@ namespace Apollo.Age.Services.Interface
         /// <param name="agentId"></param>
         /// <returns></returns>
         bool IsDescendant(int parentId, int agentId);
+
+        IEnumerable<Agent> GetAgents(int id);
     }
 }
