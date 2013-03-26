@@ -49,7 +49,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             // Get data
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
             DataTable dtbNavigation = bo.GetAgentDownlinePath(CurrentUserSession.CustId, this.CustId);
-
+            
             // Init template
             AgentList_nav_link_container_Block nav_link_Block = new AgentList_nav_link_container_Block();
             this.template.nav_link_container.nav_link.Clear();

@@ -6,9 +6,12 @@
         ageWnd.open(url, '', 50, 10, popW, popH);
     }
 }
-function EditAgentSetting(element, custId, userName) {
+function EditAgentSetting(element, custId, userName, agentLevel) {
     if (custId) {
-        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custid=" + custId + "&username=" + userName + "&showheader=0";
+        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custid=" + custId
+        + "&username=" + userName
+        + "&showheader=0"
+        + "&agentlevel=" + agentLevel;
         var popW = 960, popH = 780;
         //url, title, left, top, width, height
         ageWnd.open(url, '', 50, 10, popW, popH);

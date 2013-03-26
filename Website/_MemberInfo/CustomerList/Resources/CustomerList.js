@@ -739,8 +739,8 @@ function EditMemberMenuControl(element, popupId, custId, userName, uGroup) {
     var urlEditMemberBetLimit = 'OpenEditMemberBetLimit(' + custId + ',"' + userName + '","' + uGroup + '")';
     SetAttributeURL('editBetSetting', urlEditMemberBetLimit);
 
-    var urlEditMemberPT = 'OpenEditMemberPT(' + custId + ',"' + userName + '","' + uGroup + '")';
-    SetAttributeURL('editPositionTaking', urlEditMemberPT);
+//    var urlEditMemberPT = 'OpenEditMemberPT(' + custId + ',"' + userName + '","' + uGroup + '")';
+//    SetAttributeURL('editPositionTaking', urlEditMemberPT);
 }
 
 function ShowFrmUpdOthers(el, divID, custid, username, actionOn) {
