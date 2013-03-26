@@ -1,11 +1,19 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------
+// <copyright file="TreeList.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.26">Created</change>
+// </history>
+
+using System;
 using System.Collections.Generic;
 using System.Web.UI;
 using Apollo.Age.Criterias.Accounts;
 using Apollo.Age.DTO.Accounts;
 using Apollo.Age.Services.Impl;
 using Apollo.Age.Services.Interface;
-using Sunplus.Agent.Model.BL.AccountInfo;
 
 public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 {
@@ -25,7 +33,7 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 
     public override void RenderContent(HtmlTextWriter writer)
     {
-        
+
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -47,10 +55,6 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 
         IAgentService service = new AgentService();
         AgentDownlineCriteria criteria = null;
-
-
-        AccountInfoBO bo = new AccountInfoBO(CurrentUserSession.NetSessionId);
-        string scontent = string.Empty;
 
         if (root == "source") //for the first time the JQuery tree will send the root param value as "source"
         {

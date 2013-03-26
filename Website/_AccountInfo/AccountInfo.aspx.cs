@@ -1,9 +1,11 @@
-﻿/*
- * Created 20100715@Simon - Render Account Info page
- * Revision:
- * ?@? - ...
- *
- */
+﻿// --------------------------------------------------------------------------
+// <copyright file="AccountInfo.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.26">Created</change>
+// </history>
 
 namespace Sunplus.Agent.UI._AccountInfo
 {

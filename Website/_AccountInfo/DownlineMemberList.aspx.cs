@@ -1,7 +1,15 @@
-﻿using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------
+// <copyright file="DownlineMemberList.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.26">Created</change>
+// </history>
+
+using System.Collections.Generic;
 using System.Web.UI;
 using Apollo.Age.Criterias.Accounts;
-using Apollo.Age.DTO.Accounts;
 using Apollo.Age.Entities;
 using Apollo.Age.Services.Impl;
 using Apollo.Age.Services.Interface;

@@ -25,7 +25,7 @@
 
     </script>
     <link href="../_MemberInfo/SetNickName/Resources/SetNickName.less?<%=TplCore.TplSettings.UrlVersion %>" rel="stylesheet" type="text/css" />
-    <link href="../_Announcement/Resources/Announcement.css?<%=TplCore.TplSettings.UrlVersion %>" rel="stylesheet" type="text/css" />
+    <link href="../_Announcement/Resources/Announcement.less?<%=TplCore.TplSettings.UrlVersion %>" rel="stylesheet" type="text/css" />
     <link href="../_GlobalResources/css/tooltip.css?<%=TplCore.TplSettings.UrlVersion %>" rel="stylesheet" type="text/css" />
     <style type="text/css">
         #agentSite {
