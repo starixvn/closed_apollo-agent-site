@@ -38,31 +38,37 @@ namespace Fanex.Agent.UI
 			protected static string s17{get{return AbsoluteUrl("_Components/ErrorMsg/ErrorMsg.js", TplSettings.Question);}}
 			protected static string s18 = "\" type=\"text/javascript\"></script><script src='../Handlers/GetPositionTakingSetting.ashx?targetCustId=";
 			public string TargetAgentId = "{TargetAgentId}";
-			protected static string s19 = "&targetRoleId=2'type=\"text/javascript\"></script><script src='../Handlers/GetCommissionSetting.ashx?targetCustId=";
+			protected static string s19 = "&targetRoleId=";
+			public string TargetRoleId = "{TargetRoleId}";
+			protected static string s20 = "'type=\"text/javascript\"></script><script src='../Handlers/GetCommissionSetting.ashx?targetCustId=";
 			protected string t1_TargetAgentId;
-			protected static string s20 = "&targetRoleId=2'type=\"text/javascript\"></script><script src='../Handlers/GetBetLimit.ashx?targetCustId=";
-			protected string t2_TargetAgentId;
-			protected static string s21 = "&targetRoleId=2'type=\"text/javascript\"></script><script src='../Handlers/Language.ashx' type=\"text/javascript\"></script><script src=\"";
-			protected static string s22{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
-			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s24{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
-			protected static string s25 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s26{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetTypeGroup.js", TplSettings.Question);}}
-			protected static string s27 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s28{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetType.js", TplSettings.Question);}}
-			protected static string s29 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s30{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
-			protected static string s31 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s32{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BettingLimit.js", TplSettings.Question);}}
-			protected static string s33 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s34{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditPositionTaking.js", TplSettings.Question);}}
-			protected static string s35 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s36{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditBetLimit.js", TplSettings.Question);}}
-			protected static string s37 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s38{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditCommission.js", TplSettings.Question);}}
-			protected static string s39 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s40{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditSetting.js", TplSettings.Question);}}
-			protected static string s41 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s21 = "&targetRoleId=";
+			protected string t2_TargetRoleId;
+			protected static string s22 = "'type=\"text/javascript\"></script><script src='../Handlers/GetBetLimit.ashx?targetCustId=";
+			protected string t3_TargetAgentId;
+			protected static string s23 = "&targetRoleId=";
+			protected string t4_TargetRoleId;
+			protected static string s24 = "'type=\"text/javascript\"></script><script src='../Handlers/Language.ashx' type=\"text/javascript\"></script><script src=\"";
+			protected static string s25{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
+			protected static string s26 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s27{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
+			protected static string s28 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s29{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetTypeGroup.js", TplSettings.Question);}}
+			protected static string s30 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s31{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BetType.js", TplSettings.Question);}}
+			protected static string s32 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s33{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/CommissionSetting.js", TplSettings.Question);}}
+			protected static string s34 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s35{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BettingLimit.js", TplSettings.Question);}}
+			protected static string s36 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s37{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditPositionTaking.js", TplSettings.Question);}}
+			protected static string s38 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s39{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditBetLimit.js", TplSettings.Question);}}
+			protected static string s40 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s41{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditCommission.js", TplSettings.Question);}}
+			protected static string s42 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s43{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditSetting.js", TplSettings.Question);}}
+			protected static string s44 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -94,12 +100,15 @@ namespace Fanex.Agent.UI
 					bd.Append(s18);
 					bd.Append(TargetAgentId);
 					bd.Append(s19);
-					bd.Append(TargetAgentId);
+					bd.Append(TargetRoleId);
 					bd.Append(s20);
 					bd.Append(TargetAgentId);
 					bd.Append(s21);
+					bd.Append(TargetRoleId);
 					bd.Append(s22);
+					bd.Append(TargetAgentId);
 					bd.Append(s23);
+					bd.Append(TargetRoleId);
 					bd.Append(s24);
 					bd.Append(s25);
 					bd.Append(s26);
@@ -118,6 +127,9 @@ namespace Fanex.Agent.UI
 					bd.Append(s39);
 					bd.Append(s40);
 					bd.Append(s41);
+					bd.Append(s42);
+					bd.Append(s43);
+					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

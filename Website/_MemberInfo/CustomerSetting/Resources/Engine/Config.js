@@ -1,15 +1,10 @@
 ﻿// Test PT: M99RM02001
 var pt = {
-    Min: 0,
-    Max: 60,
-    Preset: 30,
-    PositionTaking: 35,
+    Preset: 50,
+    Max: 20,
     Upline:
     {
-        Max: 90,
-        Min: 0,
-        Preset: 55,
-        PositionTaking: 0
+        Max: 80
     }
 };
 
@@ -28,24 +23,24 @@ var commissionSettingData = {
                 DiscountA: 0.25,
                 DiscountB: 0.35,
                 DiscountC: 0.45,
-                DiscountD: 0.55,
+                DiscountD: 0.55
              }
-     }, {
-        Group: "",
-        Name: "1X2",
-        Discount: 0.2,
-        DiscountA: 0.2,
-        Upline: {
-            DiscountA: 0.3
-        }
-    }, {
-        Group: "",
-        Name: "Ohters",
-        Discount: 0.5,
-        DiscountA: 0.5,
-        Upline: {
-            DiscountA: 0.8
-        }
+//     }, {
+//        Group: "",
+//        Name: "1X2",
+//        Discount: 0.2,
+//        DiscountA: 0.2,
+//        Upline: {
+//            DiscountA: 0.3
+//        }
+//    }, {
+//        Group: "",
+//        Name: "Ohters",
+//        Discount: 0.5,
+//        DiscountA: 0.5,
+//        Upline: {
+//            DiscountA: 0.8
+//        }
     }, {
         Group: "",
         Name: "Number Game",
@@ -58,8 +53,7 @@ var commissionSettingData = {
     UserGroup: "A"
 };
 
-var bettingLimits2 = {
-    "bettingLimitItems": [{
+var bettingLimits2 =  [{
         "SportId": 1,
         "Name": "Soccer",
         "MinBet": 11.0000,
@@ -134,11 +128,11 @@ var bettingLimits2 = {
         "Name": "Other Sports",
         "MinBet": 11.0000,
         "MaxBet": 700.0000,
-        "MaxPerMatch": 10000.0000,
+        "MaxPerMatch": 9990.0000,
         "MinBetMax": 11.0000,
         "MaxBetMin": 700.0000,
-        
-        "MaxPerMatchMin": 10000.0000
+
+        "MaxPerMatchMin": 9990.0000
     }, {
         "SportId": 99,
         "Name": "Mix Sports Parlay",
@@ -161,10 +155,8 @@ var bettingLimits2 = {
         
         "MaxPerMatchMin": 1000.0000,
         "MaxPerBallMin": 1000.0000
-    }]
-};
-var bettingLimits = {
-    "bettingLimitItems": [{
+    }];
+var bettingLimits = [{
         "SportId": 1,
         "Name": "Soccer",
         "MinBet": 11.0000,
@@ -225,8 +217,7 @@ var bettingLimits = {
         "MaxBet": 100.0000,
         "MaxPerMatch": 1000.0000,
         "MaxPerBall": 1000.0000
-    }]
-};
+    }];
 var grid = {
     Name: 'ptGrId1',
     SportTypes: [{

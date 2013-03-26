@@ -34,7 +34,24 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
 
             string currentUserName = userSession.Username;
-            int custId = userSession.CustId;
+            int custId = userSession.AgentId;
+            int roleId = 1;
+            switch (userSession.AgentLevel)
+            {
+                case 0:
+                    roleId = (int)Role.Super;
+                    break;
+                case 1:
+                    roleId = (int)Role.MainShareHolder;
+                    break;
+                case 2:
+                    roleId = (int)Role.ShareHolder;
+                    break;
+                case 3:
+                    roleId = (int)Role.MainAgent;
+                    break;
+            }
+            
             int targetCustId = 0;
             int targetRoleId = 0;
             //int formType = 0;
@@ -47,9 +64,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
                 CustId = custId,
                 TargetCustId = targetCustId,
                 ActorCustId = custId,
-                RoleId = (int)Role.Agent,
+                RoleId = roleId,
                 TargetRoleId = targetRoleId,
-                FormSetting = (int)FormSettingType.BetLimit,
+                FormSetting = (int)FormSettingType.PositionTaking,
                 Language = userSession.Language
             };
 
