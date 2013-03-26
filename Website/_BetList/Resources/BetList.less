@@ -38,7 +38,7 @@ div.match + div.league {
     text-transform: none;
 }
 #casino-betlist-a {
-    font-family: Tahoma,Arial,helvetica,sans-serif;
+    font-family: @fontFamily;
     font-size: 11px;
     background: #FAF9EE;
     border-collapse: collapse;
@@ -46,7 +46,7 @@ div.match + div.league {
     line-height: 20px;
 }
 #casino-betlist-a2 {
-    font-family: Tahoma,Arial,helvetica,sans-serif;
+    font-family: @fontFamily;
     font-size: 13px;
     background: #FAF9EE;
     border-collapse: collapse;
@@ -107,11 +107,12 @@ div.match + div.league {
 .detail-popup #hor-minimalist-a {
     margin-bottom: 10px;
 }
+
 #hor-minimalist-a th {
     font-weight: normal;
     color: #fff;
     /*background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969;*/
-    background: #3D3C3E;
+    background: @grayDarker;
     padding: 2px 5px;    
     text-align: center;
 }

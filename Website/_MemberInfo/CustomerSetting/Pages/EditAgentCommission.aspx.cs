@@ -14,6 +14,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditAgentCommission : Fan
         var template = new EditAgentCommission_Template();
         template.actionName = Resources.Lang.update;
         template.title = string.Format("{0} - {1}", Resources.Lang.lblEditAgent, this.Request.QueryString["username"]);
+        template.agentLevel = Context.Request.QueryString["agentlevel"];
         if (this.Request.QueryString["showheader"] == "1")
         {
             template.headerText = string.Format("<div class='margin-top-12' id='header_main'>{0} {1}</div>", Resources.Lang.lbleditcomm, this.Request.QueryString["username"]);

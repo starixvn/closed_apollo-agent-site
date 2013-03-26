@@ -1,5 +1,7 @@
 ﻿/* File Created: February 26, 2013 */
 /// <reference path="Languages/en.js" />
+/// <reference path="PTSetting.js" />
+
 if (typeof (Fanex) == 'undefined') { // Require Fanex namespace
     Fanex = {};
 }
@@ -16,7 +18,7 @@ Fanex.CustSetting.CommissionSetting = function (source) {
     this.group = ["a", "b", "c", "d"];
     this.groupSelect = null;
     this.Save = function () {
-        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != 1) {
+        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             this.items[0].DiscountA = this.spinBoxItems[0].getValue();
             this.items[0].DiscountB = this.spinBoxItems[1].getValue();
             this.items[0].DiscountC = this.spinBoxItems[2].getValue();
@@ -143,7 +145,7 @@ Fanex.CustSetting.CommissionSetting = function (source) {
         var box = document.createElement("TABLE");
         bodyContainer.appendChild(box);
 
-        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != 1) {
+        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";
             var trBox = document.createElement("TR");
             var groupCom = this.items[0];

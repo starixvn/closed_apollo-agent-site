@@ -78,6 +78,13 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch));
             language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall));
             language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
+
+            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_BET_AFTER_COPY", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet));
+            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetValue("MIN_BET_GREATER_THAN_MIN_MIN_BET_AFTER_COPY", string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}")));
+            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MAX_MAX_BET_AFTER_COPY", string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}")));
+            language.AppendLine(this.SetValue("MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET_AFTER_COPY", Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}")));
             
             // Set language to validation value on form.
             //IUserSession userSession = UserSession.Current;
@@ -102,6 +109,11 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             language.AppendLine(this.SetValue("COMM_FOR_AGENT", "Comm for Agent"));
             language.AppendLine(this.SetValue("COMM_FOR_MEMBER", "Comm for Member"));
             language.AppendLine(this.SetValue("GROUP", Resources.Lang.group));
+
+            language.AppendLine(this.SetValue("AGENT_SHARE", "Agent Share"));
+            language.AppendLine(this.SetValue("MAIN_SHARE_HOLDER_SHARE", "Main Shareholder Share"));
+            language.AppendLine(this.SetValue("SHARE_HOLDER_SHARE", "Shareholder Share"));
+            language.AppendLine(this.SetValue("MAIN_AGENT_SHARE", "Main Agent Share"));
             
             return language.ToString();
         }
