@@ -4,7 +4,6 @@
 
 // Dragable window
 
-
 // class prototype
 AGEWnd = function () {
     this.is_ie = (/MSIE (\d+\.\d+);/.test(navigator.userAgent));
@@ -32,15 +31,19 @@ AGEWnd = function () {
     this.cssURL = this.baseURL + this.css;
     this.jsURL = this.baseURL + this.js;
     this.blankURL = this.baseURL + this.blank;
+
+    // added by lewis@20130326
+    this.currentOpenDialog = null;
 }
 
 AGEWnd.prototype.open = function (url, title, left, top, width, height, windowCss, titleCss, closeBtnCss) {
     var frame =
-        '<div>' +
-            '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
-        '</div>';
+		'<div>' +
+			'<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
+		'</div>';
 
-    APOLLO.openDialog(frame, title, { width: width + 30, height: height + 50 });
+    this.currentOpenDialog = APOLLO.openDialog(frame, title, { width: width + 30, height: height + 50 });
+    this.loaded = true;
 }
 
 // [obsolete]
@@ -173,6 +176,13 @@ AGEWnd.prototype.close = function (force) {
 }
 
 AGEWnd.prototype.setRect = function (left, top, width, height) {
+    if (!this.currentOpenDialog || !this.currentOpenDialog.dialog("isOpen")) return false;
+
+    this.currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
+}
+
+// [obsolete]
+AGEWnd.prototype.setRect__ = function (left, top, width, height) {
     if (!this.createdElement) return false;
 
     var scrOfX = 0;

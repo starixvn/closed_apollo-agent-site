@@ -235,6 +235,7 @@ function InitExcelFunction() {
 
 function InitBetList() {
     var ageWnd = parent.ageWnd;
+
     if (typeof ageWnd != 'undefined' && ageWnd.loaded) {
         ageWnd.setRect(ageWnd.left, 50, 900, 720);  // to fix the popup when click "Bet List" link
         document.getElementById("exportExcelDiv").style.visibility = "hidden";
@@ -248,14 +249,17 @@ function OpenIPInfo(ip) {
 }
 
 function OpenScoreMap(matchIds, bettype, liveindicator) {
-    var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
-    if (liveindicator == 1)
-        wnd.open(age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds + "&bettypes_live=" + bettype + "&bettypes_dead=-1", '', 0, 20, 1008, 480);
-    else
-        wnd.open(age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds + "&bettypes_live=-1&bettypes_dead=" + bettype, '', 0, 20, 1008, 480);
+    var wnd = parent.ageWnd ? parent.ageWnd : ageWnd,
+        url = age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds +
+            (liveindicator == 1
+                ? "&bettypes_live=" + bettype + "&bettypes_dead=-1"
+                : "&bettypes_live=-1&bettypes_dead=" + bettype);
+
+    wnd.open(url, '', 0, 20, 1010, 480);
 }
 
 RegisterStartUp(InitBetList);
+
 //function getOffset(el) {
 //    var _x = 0;
 //    var _y = 0;
@@ -306,32 +310,44 @@ RegisterStartUp(InitBetList);
 //    }
 //};
 
+var BETLIST = {};
+
 if (typeof jQuery != "undefined") {
-    $(function () {
-        if ($("div .view-detail") != undefined) {
-            $("div .view-detail").click(function (event) {
-                var transId = $("div .view-detail").attr("id");
-                var pnlDetails = $("#divDetail");
-                var ajaxParameters = "transid=" + transId + "&fromdate=" + _page.fdate + "&toDate=" + _page.tdate + "&isSportsbook=1";
-                var url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx";
+    BETLIST = function ($) {
+        return {
+            dialogDetails: null,
 
-                ajax.Request(url,
-                    {
-                        asynchronous: true,
-                        parameters: ajaxParameters,
-                        onComplete: function (data) {
-                            $('#divDetail').html(data.responseText);
-                        }
+            init: function () {
+                BETLIST.dialogDetails = $('#dialog-details');
+            }
+        };
+    } (jQuery);
+
+    $(document).ready(function () {
+        BETLIST.init();
+
+        var viewDetailsLinks = $(".view-detail");
+
+        if (viewDetailsLinks.length > 0) {
+            viewDetailsLinks.click(function () {
+                var $this = $(this),
+                    transId = $this.attr("tid"),
+                    url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx",
+                    ajaxParams = "isSportsbook=1" +
+                        "&transid=" + transId +
+                        "&fromdate=" + _page.fdate +
+                        "&toDate=" + _page.tdate;
+
+                ajax.Request(url, {
+                    asynchronous: true,
+                    parameters: ajaxParams,
+                    onComplete: function (data) {
+                        BETLIST.dialogDetails.html(data.responseText);
                     }
-                );
+                });
 
-                APOLLO.openDialog(pnlDetails, "View detail", { modal: false });
-                event.stopPropagation();
+                APOLLO.openDialog(BETLIST.dialogDetails, "Details", { modal: false });
             });
         }
-        $("body, html").on("click", function () {
-            $("#divDetail").dialog("close");
-        });
-
     });
 }
