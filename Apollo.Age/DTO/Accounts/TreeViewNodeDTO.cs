@@ -14,7 +14,7 @@ namespace Apollo.Age.DTO.Accounts
     using System.Linq;
     using System.Text;
 
-    public class TreeViewNodeDTO
+    public class TreeViewNode
     {
         private readonly string urlAcountInfo = "<a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid={0}&txtUsername={1}' target='menu'> {2} </a>";
 

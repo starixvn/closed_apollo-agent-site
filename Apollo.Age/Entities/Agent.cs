@@ -36,6 +36,10 @@ namespace Apollo.Age.Entities
             }
         }
 
+        public List<Member> MemberList { get; set; }
+
+        public List<Agent> AgentList { get; set; }
+
         public bool HasMemberDownline { get; set; }
 
         public bool HasAgentDownline { get; set; }
