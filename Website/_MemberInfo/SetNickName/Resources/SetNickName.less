@@ -62,7 +62,7 @@ body {
 
 .fontblack
 {
-	color: #000000;
+	color: @black;
 }
 
 .loading
@@ -79,7 +79,7 @@ body {
 	font-size: 11px;
 	font-family: @fontFamily;
 	border: 1px solid #A6A6A8;
-	background: #ffffff;
+	background: @white;
 	width: 450px;
 	-moz-border-radius: 4px; /* Firefox */
 	-webkit-border-radius: 4px; /* Safari and Chrome */
@@ -100,26 +100,26 @@ body {
 	}
 
 	 input {
-		background-color: #ffffff;
-		border: 1px solid #000;
-		color: #000;
+		background-color: @white;
+		border: 1px solid @black;
+		color: @black;
 	}
 
 	label {
 		cursor: pointer;
 		display: block;
-		color: #000000;
+		color: @black;
 		font-weight: bold;
 	}
 
 	button {
 		cursor: pointer;
-		color: #ffffff;
+		color: @white;
 		font-weight: bold;
 		font-size: 10px;
 		height: 23px;
 		padding-bottom: 3px;
-		border: solid 1px #000000;
+		border: solid 1px @black;
 		-moz-border-radius: 4px; /* Firefox */
 		-webkit-border-radius: 4px; /* Safari and Chrome */
 		border-radius: 4px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
@@ -159,7 +159,7 @@ body {
 		padding-top: 3px;
 		font-size: 13pt;
 		font-weight: bold;
-		color: #000;
+		color: @black;
 		text-transform: uppercase;
 	}
 

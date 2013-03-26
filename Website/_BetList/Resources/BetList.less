@@ -40,7 +40,7 @@ div.match + div.league {
 #casino-betlist-a {
     font-family: @fontFamily;
     font-size: 11px;
-    background: #FAF9EE;
+    background: @rowAltBackground;
     border-collapse: collapse;
     width: 95%;
     line-height: 20px;
@@ -48,7 +48,7 @@ div.match + div.league {
 #casino-betlist-a2 {
     font-family: @fontFamily;
     font-size: 13px;
-    background: #FAF9EE;
+    background: @rowAltBackground;
     border-collapse: collapse;
     line-height: 20px;
 }
@@ -58,7 +58,7 @@ div.match + div.league {
 #casino-betlist-a th {
     font-size: 14px;
 	font-weight: normal;
-    color: #000;
+    color: @black;
     background: url(../../_GlobalResources/Images/bg_popup2.jpg) repeat-x scroll center top #DFDDDC;
     border: solid 1px #999;
     text-align: center;
@@ -66,23 +66,23 @@ div.match + div.league {
 #casino-betlist-a tr.th {
     font-size: 14px;
 	font-weight: normal;
-    color: #000;
+    color: @black;
     background-color: #F7F0E4;
     border: solid 1px #999;
     text-align: center;
 }
 #casino-betlist-a tr.hd {
     background-color: #F7F0E4;
-    color: #000;
+    color: @black;
 }
 #casino-betlist-a tr.hd2 {
-    color: #000;
+    color: @black;
     background: url(../../_GlobalResources/Images/bg_popup2.jpg) repeat-x scroll center top #DFDDDC;
     font-weight: bold;
 }
 #casino-betlist-a tr.hd3 {
     background-color: #F7F0E4;
-    color: #000;
+    color: @black;
 }
 #casino-betlist-a td {
     vertical-align: top;
@@ -91,7 +91,7 @@ div.match + div.league {
 }
 #casino-betlist-a td.hd {
     background-color: #F7F0E4;
-    color: #000;
+    color: @black;
 }
 
 #hor-minimalist-a {
@@ -110,28 +110,27 @@ div.match + div.league {
 
 #hor-minimalist-a th {
     font-weight: normal;
-    color: #fff;
-    /*background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969;*/
-    background: @grayDarker;
+    color: @white;
+    background: @primaryHeaderBackground;
     padding: 2px 5px;    
     text-align: center;
 }
 
 #hor-minimalist-a td {
-    color: #000;
+    color: @black;
     vertical-align: top;
     padding: 2px 5px;    
     text-align: right;
-    background: #fff;
+    background: @white;
 }
 
 #hor-minimalist-a tbody tr:hover td {
     color: #009;
-    background-color: #FBF0B9;
+    background-color: @rowHoverBackground;
 }
 
 #hor-minimalist-a tbody tr#tr_footer:hover td {
-    color: #000000;
+    color: @black;
     background-color: #E8DFCA;
 }
 
@@ -165,7 +164,7 @@ div.match + div.league {
 }
 
 .bl_evt {
-    color: #FFFFFF;
+    color: @white;
     font-size: 11px;
 }
 .c {
@@ -192,7 +191,7 @@ div.match + div.league {
     width: 14px;
 }
 .bl_match {
-    color: #000000;
+    color: @black;
     font-weight: normal;
     line-height: 15px;
 }
@@ -238,7 +237,7 @@ a {
 }
 .iplink, .betsliplink {
     cursor: pointer;
-    color: #1E1EEB;
+    color: @linkColor;
     font-size: 11px;
     position: relative;
 }
@@ -286,7 +285,7 @@ a {
     text-decoration: line-through;
 }
 .bl_title {
-    color: #4B483C;
+    color: @titleColor;
     font-size: 11px;
     font-weight: bold;
     text-transform: uppercase;
@@ -302,7 +301,7 @@ a {
 }
 .no_info {
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: @white;
     font-weight: normal;
 }
 .RptTB {

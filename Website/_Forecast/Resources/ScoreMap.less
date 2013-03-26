@@ -1,5 +1,7 @@
 ﻿@import "../../_GlobalResources/Css/Agent.less";
+
 .paddingTopMatch{margin-top:10px;}
+
 #titleMatch
 {
 	padding-top: 3px;
@@ -8,16 +10,16 @@
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, 	#3c3c3c),color-stop(1, 		#111111));
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#3c3c3c', EndColorStr='#111111')";
     border: 1px solid #2A2A2A;
-    text-shadow: 0 -1px 1px #000000;
+    text-shadow: 0 -1px 1px @black;
 	height:20px;
 	
 }
-#titleMatch .matchname{color: #FFFFFF;font-size:11px;font-weight:normal; padding-left:5px}
+#titleMatch .matchname{color: @white;font-size:11px;font-weight:normal; padding-left:5px}
 
 .tblScoreMap{border-collapse: collapse;width: 780px;}
 .tblScoreMap td
 {
-	color: #000;
+	color: @black;
 	padding: 3px 1px 3px 1px;
 	border: solid 1px #999;
 	text-align: center;
@@ -32,11 +34,11 @@
 .scoreMap{padding-top:1px;}
 .vsm {background-color: #DCFFFF; font-weight:bold}
 .vsmHomeWay {background-color: #f6d9b9; font-weight:bold}
-.vScoreMap {background-color: #FFF; font-weight:bold}
-.csm {background-color: #FFF !important; font-weight:bold}
+.vScoreMap {background-color: @white; font-weight:bold}
+.csm {background-color: @white !important; font-weight:bold}
 .even_row
 {
-	background-color: #faf9ee;
+	background-color: @rowAltBackground;
 }
 
 #page_main
@@ -49,7 +51,7 @@
 {
 	height: 22px;
 	background: url(../../_GlobalResources/Images/bg_header01.jpg) no-repeat left bottom;
-	color: #4B483C;
+	color: @titleColor;
 	font-weight: bold;
 	padding-left: 15px;
 	text-transform: uppercase;
@@ -150,7 +152,7 @@ select
 #BoxMatchWL
 {
     position: absolute;
-    background: #fff;
+    background: @white;
     width: 700px;
     border: solid 1px #B7B7B7;
     left: 4px;
@@ -159,7 +161,7 @@ select
 
 #ContentMatchWL
 {
-    background:#fff;
+    background: @white;
     width: 690px;
     max-height: 310px;
     border: none;
@@ -201,7 +203,7 @@ select
 #SelMatchGroup
 {
     position: absolute;
-    background: #fff;
+    background: @white;
     width: 700px;
     border-bottom: solid 1px #B7B7B7;
     border-right: solid 1px #B7B7B7;
@@ -269,7 +271,7 @@ table.reference {
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    background-color: #FFFFFF;
+    background-color: @white;
     border-collapse: collapse;
     border-right-color: #C3C3C3;
     border-right-style:dotted;
