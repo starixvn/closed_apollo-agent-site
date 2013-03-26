@@ -22,18 +22,16 @@ namespace Apollo.Age.Services.Impl
     /// TODO: Update summary.
     /// </summary>
     public class ReportService : ReportServiceBase, IReportService
-    {
+    {   
         public List<AgentWinlossDTO> GetAgentWinloss(ICriteria criteria)
         {
-            IEnumerable<AgentWinlossDTO> reportData = null;
-            ReportRepository res = new ReportRepository();
+            IEnumerable<AgentWinlossDTO> reportData = null;          
 
             try
             {
                 if (criteria.IsValid())
                 {
-                    // reportData = this.GetReportData<AgentWinlossDTO>(criteria);
-                    reportData = res.Fetch(criteria);
+                    reportData = this.GetReportData<AgentWinlossDTO>(criteria);                    
                     // Do not forget create sum dto
                 }
             }

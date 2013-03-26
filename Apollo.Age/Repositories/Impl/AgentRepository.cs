@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
+//   <change who="Anders.Le" date="2013.3.26">Apply generic repository</change>
 // </history>
 
 namespace Apollo.Age.Repositories.Impl
@@ -21,9 +22,9 @@ namespace Apollo.Age.Repositories.Impl
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AgentRepository : IAgentRepository
+    public class AgentRepository : RepositoryBase<Agent>, IAgentRepository
     {
-        public Agent Get(ICriteria criteria)
+        public override Agent Get(ICriteria criteria)
         {
             try
             {
@@ -45,21 +46,6 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
-        public IEnumerable<Agent> Fetch(ICriteria criteria)
-        {
-            try
-            {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    return db.Query<Agent>(criteria.GetSpParams()).ToList<Agent>();
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }      
-
         public ICommandResult Delete(Agent entity)
         {
             throw new NotImplementedException();
@@ -73,41 +59,6 @@ namespace Apollo.Age.Repositories.Impl
         public ICommandResult Update(Agent entity)
         {
             throw new NotImplementedException();
-        }
-
-        public int Count(ICriteria criteria)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Agent> Fetch(ICriteria criteria, Action<Orderable<Agent>> order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Agent> Fetch()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Agent Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Length(dynamic paramaters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Agent> Query(dynamic parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Agent Single(dynamic parameters)
-        {
-            throw new NotImplementedException();
-        }
+        }      
     }
 }
