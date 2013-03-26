@@ -393,7 +393,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         /// </summary>
         public void InitEditMenuControl()
         {
-            int itemArray = 3;
+            int itemArray = 2;
 
             this.arrayDisabledPopupMenu = new object[itemArray];
             this.arrayTextPopupMenu = new object[itemArray];
@@ -407,9 +407,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.arrayTextPopupMenu[1] = Resources.Lang.lblBetSetting;
             this.arrayIdPopupMenu[1] = "editBetSetting";
 
-            this.arrayDisabledPopupMenu[2] = 0;
-            this.arrayTextPopupMenu[2] = Resources.Lang.positiontaking;
-            this.arrayIdPopupMenu[2] = "editPositionTaking";
+            //this.arrayDisabledPopupMenu[2] = 0;
+            //this.arrayTextPopupMenu[2] = Resources.Lang.positiontaking;
+            //this.arrayIdPopupMenu[2] = "editPositionTaking";
 
             this.RenderEditControl(arrayTextPopupMenu, arrayIdPopupMenu, arrayDisabledPopupMenu);
         }

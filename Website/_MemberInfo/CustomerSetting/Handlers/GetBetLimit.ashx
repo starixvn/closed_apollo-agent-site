@@ -41,7 +41,16 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             int custId = userSession.AgentId;
             int roleId = (int)customerService.GetRoleFromAgentLevel(userSession.AgentLevel);
             int targetCustId = Converter.ToInt(context.Request["targetCustId"]);
-            int targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(context.Request["agentLevel"]));
+            int targetRoleId;
+            string agentLevel = context.Request["agentLevel"];
+            if (agentLevel != null)
+            {
+                targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(agentLevel));
+            }
+            else
+            {
+                targetRoleId = (int)Role.Member;
+            }
 
 
             SettingContext settingContext = new SettingContext
