@@ -18,7 +18,7 @@ namespace Fanex.Agent.UI
 			protected static string s2 = "</title><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.less", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("_AccountInfo/Resources/styles.css", TplSettings.Question);}}
+			protected static string s5{get{return AbsoluteUrl("_AccountInfo/Resources/styles.less", TplSettings.Question);}}
 			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"leftpanewrapper\" style=\"display: none\"><div id=\"tab_menu\"><div id=\"tab_menu_m\"><a class=\"tab_menu01\" target=\"menu\" href=\"../_Menu/Menu.aspx\">";
 			protected static string s7{get{return Resources.Lang.mainmenu;}}
 			protected static string s8 = "</a></div><div id=\"tab_menu_m\"><a class=\"tab_menu02AC\" style=\"cursor: default;\">";

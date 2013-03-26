@@ -1,8 +1,5 @@
-﻿/*
-* Created 20100203@Lee - Left menu page functions
-* Revision ?@? - ... 
-* 
-*/
+﻿/// <reference path="../../_GlobalResources/Js/jquery-1.9.1.min.js" />
+
 
 
 var currentMenuItem = null;
@@ -29,19 +26,19 @@ function MenuItemSelect(index) {
 }
 
 function MenuToggle(index) {
-    var subMenu = document.getElementById('div' + index);
+    var aMenu = $('#a' + index),
+        subMenu = $('#div' + index),
+        parent = $('#leftpane'),
+        isThisActive = subMenu.is(':visible');
 
-    if (subMenu.style.display == 'none') {
-        $('.submenu-list').hide();
-        subMenu.style.display = 'block';               
-    } else {
-        subMenu.style.display = 'none';        
+    parent.find('.left-menu').removeClass('Bleft_ParentAc').addClass('Bleft_Parent');
+    parent.find('.submenu-list').slideUp('fast');
+
+    if (!isThisActive) {
+        aMenu.removeClass('Bleft_Parent').addClass('Bleft_ParentAc');
+        subMenu.slideDown('fast');
     }
-    //subMenu.style.display = (subMenu.style.display == 'none') ? 'block' : 'none';
-    var aMenu = document.getElementById('a' + index);
-    aMenu.className = (aMenu.className == 'Bleft_Parent') ? 'Bleft_ParentAc' : 'Bleft_Parent';
 }
-
 
 function StopBlinkAccInfoTab() {
 
