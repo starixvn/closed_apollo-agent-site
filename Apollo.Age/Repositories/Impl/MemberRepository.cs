@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Quinn.Vo" date="2013.3.25">Created</change>
+//   <change who="Anders.Le" date="2013.3.26">Apply generic repository</change>
 // </history>
 
 namespace Apollo.Age.Repositories.Impl
@@ -19,9 +20,9 @@ namespace Apollo.Age.Repositories.Impl
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
-    public class MemberRepository : IMemberRepository
+    public class MemberRepository : RepositoryBase<Member>, IMemberRepository
     {
-        public Member Get(ICriteria criteria)
+        public override Member Get(ICriteria criteria)
         {
             try
             {
@@ -42,22 +43,7 @@ namespace Apollo.Age.Repositories.Impl
                 throw;
             }
         }
-
-        public IEnumerable<Member> Fetch(ICriteria criteria)
-        {
-            try
-            {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    return db.Query<Member>(criteria.GetSpParams()).ToList<Member>();
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
+      
         public IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -98,41 +84,6 @@ namespace Apollo.Age.Repositories.Impl
         public ICommandResult Update(Member entity)
         {
             throw new NotImplementedException();
-        }
-
-        public int Count(ICriteria criteria)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Member> Fetch(ICriteria criteria, Action<Orderable<Member>> order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Member> Fetch()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Member Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Length(dynamic paramaters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Member> Query(dynamic parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Member Single(dynamic parameters)
-        {
-            throw new NotImplementedException();
-        }
+        }     
     }
 }

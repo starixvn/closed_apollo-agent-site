@@ -73,9 +73,9 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\AgentRepository.cs" />
-    <Compile Include="Repositories\Impl\CustomerRepository.cs" />
     <Compile Include="Repositories\Impl\MemberRepository.cs" />
     <Compile Include="Repositories\Impl\ReportRepository.cs" />
+    <Compile Include="Repositories\Impl\RepositoryBase.cs" />
     <Compile Include="Repositories\Impl\UserRepository.cs" />
     <Compile Include="Repositories\Interface\IAgentRepository.cs" />
     <Compile Include="Repositories\Interface\ICustomerRepository.cs" />

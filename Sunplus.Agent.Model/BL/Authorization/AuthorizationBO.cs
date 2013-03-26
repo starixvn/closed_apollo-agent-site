@@ -368,58 +368,58 @@ namespace Sunplus.Agent.Model.BL.Authorization
         /// <param name="isDataWarehouse"></param>
         /// <param name="urlKey"></param>
         /// <returns></returns>
-        public bool AuthorizeUrl(int custId, long transId, bool isDataWarehouse, string url)
-        {
-            // Check belonging
-            if (custId != 0 || transId != 0)
-            {
-                if (!this.CheckBelonging(custId, transId, isDataWarehouse))
-                {
-                    return false;
-                }
-            }
+        //public bool AuthorizeUrl(int custId, long transId, bool isDataWarehouse, string url)
+        //{
+        //    // Check belonging
+        //    if (custId != 0 || transId != 0)
+        //    {
+        //        if (!this.CheckBelonging(custId, transId, isDataWarehouse))
+        //        {
+        //            return false;
+        //        }
+        //    }
 
-            // Check Role and PageAccess
-            //PageAccess pageAccess = CurrentSession.SubPageAccess;
-            byte currentRoleId = CurrentSession.RoleId;
+        //    // Check Role and PageAccess
+        //    //PageAccess pageAccess = CurrentSession.SubPageAccess;
+        //    byte currentRoleId = CurrentSession.RoleId;
 
-            string pageAccessString = string.Empty; //(pageAccess == null) ? string.Empty : (string)pageAccess;
-            bool isSubAcc = CurrentSession.IsSubAcc;
+        //    string pageAccessString = string.Empty; //(pageAccess == null) ? string.Empty : (string)pageAccess;
+        //    bool isSubAcc = CurrentSession.IsSubAcc;
 
-            PageFunction pageFunction = PageFunctionCollection.GetPageFunctionByUrl(url);
-            if (pageFunction == null)
-            {
-                return true; // In case url is not described in PageAccess.xml
-            }
+        //    PageFunction pageFunction = PageFunctionCollection.GetPageFunctionByUrl(url);
+        //    if (pageFunction == null)
+        //    {
+        //        return true; // In case url is not described in PageAccess.xml
+        //    }
 
-            RolePermissionPair[] roleRules = pageFunction.RoleRules;
-            int length = roleRules.Length;
+        //    RolePermissionPair[] roleRules = pageFunction.RoleRules;
+        //    int length = roleRules.Length;
 
-            // Match at least one role rule
-            for (int i = 0; i < length; i++)
-            {
-                RolePermissionPair rule = roleRules[i];
-                if (rule.Role <= currentRoleId)
-                {
-                    if (!isSubAcc || pageAccessString.Contains(rule.Permission))
-                    {
-                        // Update page statistic
-                        if (!CurrentSession.IsInternal)
-                        {
-                            var statistic = new Statistic.StatisticBO(NetSessionId);
+        //    // Match at least one role rule
+        //    for (int i = 0; i < length; i++)
+        //    {
+        //        RolePermissionPair rule = roleRules[i];
+        //        if (rule.Role <= currentRoleId)
+        //        {
+        //            if (!isSubAcc || pageAccessString.Contains(rule.Permission))
+        //            {
+        //                // Update page statistic
+        //                if (!CurrentSession.IsInternal)
+        //                {
+        //                    var statistic = new Statistic.StatisticBO(NetSessionId);
 
-                            // statistic.UpdatePageVisit_Old(url);
+        //                    // statistic.UpdatePageVisit_Old(url);
 
-                            //statistic.UpdateFunctionUsage(pageFunction.Url, pageFunction.Name, pageFunction.SubName, (CurrentSession.Site));
-                        }
+        //                    //statistic.UpdateFunctionUsage(pageFunction.Url, pageFunction.Name, pageFunction.SubName, (CurrentSession.Site));
+        //                }
 
-                        return true;
-                    }
-                }
-            }
+        //                return true;
+        //            }
+        //        }
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
         #region ViewLogDependencies
 
