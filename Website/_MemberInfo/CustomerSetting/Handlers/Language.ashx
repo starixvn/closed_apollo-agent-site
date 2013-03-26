@@ -109,6 +109,11 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             language.AppendLine(this.SetValue("COMM_FOR_AGENT", "Comm for Agent"));
             language.AppendLine(this.SetValue("COMM_FOR_MEMBER", "Comm for Member"));
             language.AppendLine(this.SetValue("GROUP", Resources.Lang.group));
+
+            language.AppendLine(this.SetValue("AGENT_SHARE", "Agent Share"));
+            language.AppendLine(this.SetValue("MAIN_SHARE_HOLDER_SHARE", "Main Shareholder Share"));
+            language.AppendLine(this.SetValue("SHARE_HOLDER_SHARE", "Shareholder Share"));
+            language.AppendLine(this.SetValue("MAIN_AGENT_SHARE", "Main Agent Share"));
             
             return language.ToString();
         }

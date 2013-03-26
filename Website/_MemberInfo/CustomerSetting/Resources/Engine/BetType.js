@@ -7,6 +7,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Require Fanex.CustSetting na
 // Function name format Render_[RoleId_]TargetRoleId_Form
 // [RoleId_] is optional
 // Call method by Method.call(this, arg1, arg2...)
+Fanex.CustSetting.BetType.prototype.Render_5_2_1 =
+Fanex.CustSetting.BetType.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_3_2_1 = function (owner) { // a1
     box = document.createElement("DIV");
     var currentPt = this.pt;
@@ -116,7 +118,10 @@ Fanex.CustSetting.BetType.prototype.Render_3_2_1 = function (owner) { // a1
     return box;
 };
 Fanex.CustSetting.BetType.prototype.Render_5_4_1 =
+Fanex.CustSetting.BetType.prototype.Render_5_3_1 =
+Fanex.CustSetting.BetType.prototype.Render_5_1_1 =
 Fanex.CustSetting.BetType.prototype.Render_4_3_1 =
+Fanex.CustSetting.BetType.prototype.Render_4_1_1 =
 Fanex.CustSetting.BetType.prototype.Render_2_1_1 =
 Fanex.CustSetting.BetType.prototype.Render_1_1_1 = function (owner) {
     var currentPt = this.pt;

@@ -24,7 +24,7 @@ namespace Fanex.Agent.UI
 			protected static string s7 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body>";
 			protected static string s8{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
 			public string headerText = "{headerText}";
-			protected static string s9 = "<div id=\"settingContainer\" style=\"width: 936px;\"><div id=\"bettingLimitContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"memberBetLimit.UpdateMemberBetLimit();\">";
+			protected static string s9 = "<div id=\"settingContainer\"><div id=\"bettingLimitContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"memberBetLimit.UpdateMemberBetLimit();\">";
 			public string actionName = "{actionName}";
 			protected static string s10 = "</button></div><script type=\"text/javascript\">var isReloadParent = ";
 			public string isReloadParent = "{isReloadParent}";

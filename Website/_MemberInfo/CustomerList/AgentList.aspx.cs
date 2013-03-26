@@ -201,8 +201,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             tplBlock.username = dr["username"] as string;
 
             //// Render Other
-            string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "')";
-            string onClickEvent = "EditAgentSetting(this,'" + this.agentId + "', '" + dr["username"].ToString() + "')";
+            string editMenuControl = "EditAgentMenuControl(this,'editControl', '" + this.agentId + "', '" + dr["username"].ToString() + "', " + dr["agentlevel"].ToString() + ")";
+            string onClickEvent = "EditAgentSetting(this,'" + this.agentId + "', '" + dr["username"].ToString() + "', " + dr["agentlevel"].ToString() + ")";
             tplBlock.edit_Option = new IcoOther(TemplateMain, "edit_" + this.agentId, "divOther", onClickEvent, editMenuControl);
 
             int totalSubAgents = Convert.ToInt32(dr["NumberOfAgent"]);
