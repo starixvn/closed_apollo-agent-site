@@ -13,9 +13,9 @@ namespace Apollo.Age.Repositories.Impl
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Entities;
+    using Apollo.Age.Repositories.Interface;
+    using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -23,6 +23,21 @@ namespace Apollo.Age.Repositories.Impl
     /// </summary>
     public class CustomerRepository : ICustomerRepository
     {
+        public IEnumerable<Customer> Fetch(ICriteria criteria)
+        {
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return db.Query<Customer>(criteria.GetSpParams()).ToList<Customer>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ICommandResult Delete(Customer entity)
         {
             throw new NotImplementedException();
@@ -44,11 +59,6 @@ namespace Apollo.Age.Repositories.Impl
         }
 
         public IEnumerable<Customer> Fetch(ICriteria criteria, Action<Orderable<Customer>> order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Customer> Fetch(ICriteria criteria)
         {
             throw new NotImplementedException();
         }

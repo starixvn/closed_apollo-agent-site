@@ -1,21 +1,21 @@
-﻿/*
- * Created 20100715@Simon - Render Account Info page
- * Revision:
- * ?@? - ...
- *
- */
+﻿// --------------------------------------------------------------------------
+// <copyright file="AccountInfo.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.26">Created</change>
+// </history>
 
 namespace Sunplus.Agent.UI._AccountInfo
 {
-    using System.Data;
-    using Fanex.Agent.UI._AccountInfo;
-    using Sunplus.Agent.Model.BL.AccountInfo;
-    using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
     using Apollo.Age.Criterias.Accounts;
-    using Apollo.Age.Services.Interface;
-    using Apollo.Age.Services.Impl;
     using Apollo.Age.DTO.Accounts;
+    using Apollo.Age.Entities;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
+    using Fanex.Agent.UI._AccountInfo;
+    using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
@@ -30,7 +30,8 @@ namespace Sunplus.Agent.UI._AccountInfo
         private bool isChangedUserName = false;
         private string userNameRequest;
 
-        private AccountInfoDTO accountInfo = null;
+        private Agent agent = null;
+        private Member member = null;
 
         #endregion Defination
 
@@ -111,7 +112,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            IAccountInfoService service = new AccountInfoService();
+            
 
             AccountInfoCriteria criteria = new AccountInfoCriteria (){ 
                 CurrentAgentId = CurrentUserSession.AgentId,
@@ -120,9 +121,18 @@ namespace Sunplus.Agent.UI._AccountInfo
                 UserName = this.userNameRequest
             };
 
-            accountInfo = service.GetCustomerInfo(criteria);
-
-            return accountInfo;
+            if (this.isMember)
+            {
+                IMemberService service = new MemberService();
+                member = service.GetCustomerInfo(criteria);
+                return member;
+            }
+            else
+            {
+                IAgentService service = new AgentService();
+                agent = service.GetCustomerInfo(criteria);
+                return agent;
+            }
         }
 
         #endregion Override
@@ -133,24 +143,40 @@ namespace Sunplus.Agent.UI._AccountInfo
         {
             AccountInfo_Template tpl = new AccountInfo_Template();
 
-            if (accountInfo == null)
+            if (this.isMember)
             {
-                this.FillCustomerEmpty(ref tpl, Resources.Lang.usernamenotexisted);
-            }
-            else
-            {
-                tpl.searchBox = this.RenderSearchBox();
-
-                if (accountInfo.Id.ToString() == CurrentUserSession.AgentId.ToString().Trim())
+                if (member == null)
                 {
-                    tpl.TheRestAcc = null;
+                    this.FillCustomerEmpty(ref tpl, Resources.Lang.usernamenotexisted);
                 }
                 else
                 {
+                    tpl.searchBox = this.RenderSearchBox();
                     tpl.TheRestAcc.settingBox = RenderSettingBox();
+                    tpl.NoData = null;
                 }
+            }
+            else
+            {
+                if (agent == null)
+                {
+                    this.FillCustomerEmpty(ref tpl, Resources.Lang.usernamenotexisted);
+                }
+                else
+                {
+                    tpl.searchBox = this.RenderSearchBox();
 
-                tpl.NoData = null;
+                    if (agent.Id.ToString() == CurrentUserSession.AgentId.ToString().Trim())
+                    {
+                        tpl.TheRestAcc = null;
+                    }
+                    else
+                    {
+                        tpl.TheRestAcc.settingBox = RenderSettingBox();
+                    }
+
+                    tpl.NoData = null;
+                }
             }
 
             writer.Write(tpl);
@@ -163,14 +189,15 @@ namespace Sunplus.Agent.UI._AccountInfo
             SearchBox_Template tpl = new SearchBox_Template();
 
             tpl.classStyle = "text_f";
-            tpl.usernamesearch = accountInfo.UserName;
-            tpl.CustInfo.CustomerUsername = accountInfo.UserName;
-
-            tpl.CustInfo.ParentUsername = accountInfo.ParentName;
-
+            
             if (!this.isMember)
             {
-                tpl.CustInfo.AgentID = accountInfo.Id.ToString();
+                tpl.usernamesearch = agent.Username;
+                tpl.CustInfo.CustomerUsername = agent.Username;
+
+                tpl.CustInfo.ParentUsername = agent.Parent.Username;
+
+                tpl.CustInfo.AgentID = agent.Id.ToString();
                 tpl.CustInfo.lblParentname = Resources.Lang.lblParentname;
                 
                 tpl.IsAgent = SELECTED_DROPDOWN;
@@ -178,40 +205,24 @@ namespace Sunplus.Agent.UI._AccountInfo
 
                 tpl.ButtonBetList.Hide();
 
-                if (!accountInfo.HasAgentDownline)
+                if (!agent.HasAgentDownline)
                 {
                     tpl.ButtonAgentList.Hide();
                 }
                 else
                 {
-                    tpl.ButtonAgentList.agentlistlink = "../_MemberInfo/CustomerList/AgentList.aspx?custid=" + accountInfo.Id + "&us=" + accountInfo.UserName;
+                    tpl.ButtonAgentList.agentlistlink = "../_MemberInfo/CustomerList/AgentList.aspx?custid=" + agent.Id + "&us=" + agent.Username;
                 }
 
-                if (!accountInfo.HasMemberDownline)
+                if (!agent.HasMemberDownline)
                 {
                     tpl.ButtonMemberList.Hide();
                 }
                 else
                 {
-                    tpl.ButtonMemberList.memberlistlink = "../_MemberInfo/CustomerList/MemberList.aspx?custid=" + accountInfo.Id + "&us=" + accountInfo.UserName;
+                    tpl.ButtonMemberList.memberlistlink = "../_MemberInfo/CustomerList/MemberList.aspx?custid=" + agent.Id + "&us=" + agent.Username;
                 }
-            }
-            else
-            {
-                tpl.ButtonAgentList.Hide();
-                tpl.ButtonMemberList.Hide();
-                tpl.CustInfo.AgentID = accountInfo.ParentId.ToString();
-                tpl.CustInfo.lblParentname = Resources.Lang.agent;
-                tpl.IsAgent = string.Empty;
-                tpl.IsMember = SELECTED_DROPDOWN;
-            }
 
-            if (this.isMember)
-            {
-                tpl.CustInfo.lblUsername = Resources.Lang.lblMember;
-            }
-            else
-            {
                 tpl.CustInfo.lblUsername = Resources.Lang.agent;
                 //switch (this.agentLevel)
                 //{
@@ -232,6 +243,22 @@ namespace Sunplus.Agent.UI._AccountInfo
                 //        break;
                 //}
             }
+            else
+            {
+                tpl.usernamesearch = member.Username;
+                tpl.CustInfo.CustomerUsername = member.Username;
+                tpl.CustInfo.ParentUsername = member.Agent.Username;
+                tpl.CustInfo.AgentID = member.Agent.Id.ToString();
+
+                tpl.ButtonAgentList.Hide();
+                tpl.ButtonMemberList.Hide();
+                
+                tpl.CustInfo.lblParentname = Resources.Lang.agent;
+                tpl.IsAgent = string.Empty;
+                tpl.IsMember = SELECTED_DROPDOWN;
+
+                tpl.CustInfo.lblUsername = Resources.Lang.lblMember;
+            }
 
             return tpl.ToString();
         }
@@ -244,12 +271,15 @@ namespace Sunplus.Agent.UI._AccountInfo
         /// <returns></returns>
         public string RenderSettingBox()
         {
-            TreeViewNodeDTO.Root= accountInfo.Id;
-            TreeViewNodeDTO.Type = 1; //1: tree in tab account
-            // Use DataRow row1, row2, row3.
+            if (!this.isMember)
+            {
+                TreeViewNodeDTO.Root = agent.Id;
+                TreeViewNodeDTO.Type = 1; //1: tree in tab account
+            }
+
             SettingBox_Template tpl = new SettingBox_Template();
 
-            if (accountInfo.IsMember)
+            if (this.isMember)
             {
                 tpl.HiddenBlockHeaderTabAgent.Hide();
                 tpl.HiddenBlockHeaderTabMember.Hide();
@@ -258,16 +288,16 @@ namespace Sunplus.Agent.UI._AccountInfo
             }
             else
             {
-                tpl.HiddenBlockHeaderTabAgent.AgentID = accountInfo.Id.ToString();
-                tpl.HiddenBlockHeaderTabMember.AgentID = accountInfo.Id.ToString();
+                tpl.HiddenBlockHeaderTabAgent.AgentID = agent.Id.ToString();
+                tpl.HiddenBlockHeaderTabMember.AgentID = agent.Id.ToString();
 
-                if (!accountInfo.HasAgentDownline)
+                if (!agent.HasAgentDownline)
                 {
                     tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = "<span class=\"no-data-agent\"> " + Resources.Lang.noInfo + "<span>";
                 }
                 else
                 {
-                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, accountInfo.Id.ToString());
+                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, agent.Id.ToString());
                 }
             }
 
@@ -288,20 +318,20 @@ namespace Sunplus.Agent.UI._AccountInfo
             //Other settings
             SettingBoxView_Template tplSetting = new SettingBoxView_Template();
 
-            if (this.accountInfo.IsMember)
+            if (this.isMember)
             {
                 //Page.ResolveUrl("~/
-                tplSetting.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.accountInfo.Id, this.accountInfo.UserName, this.accountInfo.UserGroup));
-                tplSetting.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.accountInfo.Id, this.accountInfo.UserName, this.accountInfo.UserGroup));
-                tplSetting.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.accountInfo.Id, this.accountInfo.UserName, this.accountInfo.UserGroup));
-                tplSetting.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.accountInfo.Id, this.accountInfo.UserName, this.accountInfo.UserGroup));
+                tplSetting.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.member.Id, this.member.Username, this.member.Group));
+                tplSetting.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.member.Id, this.member.Username, this.member.Group));
+                tplSetting.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.member.Id, this.member.Username, this.member.Group));
+                tplSetting.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.member.Id, this.member.Username, this.member.Group));
             }
             else
             {
-                tplSetting.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}&showheader=1", this.accountInfo.Id, this.accountInfo.UserName));
-                tplSetting.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={0}&username={1}&showheader=1", this.accountInfo.Id, this.accountInfo.UserName));
-                tplSetting.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}&showheader=1", this.accountInfo.Id, this.accountInfo.UserName));
-                tplSetting.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}&showheader=1", this.accountInfo.Id, this.accountInfo.UserName));
+                tplSetting.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}&showheader=1", this.agent.Id, this.agent.Username));
+                tplSetting.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={0}&username={1}&showheader=1", this.agent.Id, this.agent.Username));
+                tplSetting.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}&showheader=1", this.agent.Id, this.agent.Username));
+                tplSetting.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}&showheader=1", this.agent.Id, this.agent.Username));
             }
 
             tpl.otherSettings = tplSetting.ToString();
@@ -328,7 +358,14 @@ namespace Sunplus.Agent.UI._AccountInfo
             else
             {
                 tpl.NoData.classStyle = "text_f";
-                tpl.NoData.usernamesearch = this.accountInfo.UserName;
+                if (this.isMember)
+                {
+                    tpl.NoData.usernamesearch = this.member.Username;
+                }
+                else
+                {
+                    tpl.NoData.usernamesearch = this.agent.Username;
+                }
             }
         }
     }

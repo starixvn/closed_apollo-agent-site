@@ -10,6 +10,7 @@ using Apollo.Age.Services.Impl;
 using Apollo.Age.Criterias.Accounts;
 using System.Collections.Generic;
 using Apollo.Age.DTO.Accounts;
+using Apollo.Age.Entities;
 
 public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState.IReadOnlySessionState
 {
@@ -22,7 +23,7 @@ public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState
 
     public override void RenderResult(ref JSONData data)
     {
-        List<AgentDownlinePath> lstAgents = View as List<AgentDownlinePath>;
+        List<Agent> lstAgents = View as List<Agent>;
 
         if (lstAgents != null)
         {
@@ -31,7 +32,7 @@ public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState
 
             for (int i = 0; i < count; i++)
             {
-                agentslist[i] = new object[] { lstAgents[i].AgentId, HttpUtility.HtmlEncode(lstAgents[i].UserName) };
+                agentslist[i] = new object[] { lstAgents[i].Id, HttpUtility.HtmlEncode(lstAgents[i].Username) };
             }
 
             data.Add("Agents", agentslist);
@@ -55,7 +56,7 @@ public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState
 
     public override object InvokeData(System.Collections.Hashtable p)
     {
-        IAccountInfoService service = new AccountInfoService();
+        IAgentService service = new AgentService();
 
         AgentDownlinePathCriteria criteria = new AgentDownlinePathCriteria()
         {

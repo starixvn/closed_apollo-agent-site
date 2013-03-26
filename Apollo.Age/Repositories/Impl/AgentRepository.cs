@@ -12,9 +12,11 @@ namespace Apollo.Age.Repositories.Impl
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using Apollo.Age.Repositories.Interface;
+    using Apollo.Age.DTO.Accounts;
     using Apollo.Age.Entities;
+    using Apollo.Age.Repositories.Interface;
+    using Fanex.Common.Helper;
+    using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -22,6 +24,60 @@ namespace Apollo.Age.Repositories.Impl
     /// </summary>
     public class AgentRepository : IAgentRepository
     {
+        public Agent Get(ICriteria criteria)
+        {
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return db.QueryEntity<Agent, Agent, Agent>(
+                        (f, w) =>
+                        {
+                            f.Agent = w;
+                            return f;
+                        },
+                        "ParentId",
+                        criteria.GetSpParams());
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<Agent> Fetch(ICriteria criteria)
+        {
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return db.Query<Agent>(criteria.GetSpParams()).ToList<Agent>();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return db.Query<TreeViewNodeDTO>(criteria.GetSpParams());
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public ICommandResult Delete(Agent entity)
         {
             throw new NotImplementedException();
@@ -47,17 +103,7 @@ namespace Apollo.Age.Repositories.Impl
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Agent> Fetch(ICriteria criteria)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Agent> Fetch()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Agent Get(ICriteria criteria)
         {
             throw new NotImplementedException();
         }
