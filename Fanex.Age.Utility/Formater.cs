@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Web;
 using System.Globalization;
-
+using System.Web;
 
 namespace Fanex.Age.Utility
 {
@@ -35,8 +34,7 @@ namespace Fanex.Age.Utility
         public const string DECIMAL_FORMAT3C_VI = "{0:#.##0,000}";
         public const string DECIMAL_FORMAT4_VI = "{0:#.##0,####}";
         public const string DECIMAL_FORMAT40_VI = "{0:#.##0,0000}";
-
-
+        
         public Formater()
         {
 

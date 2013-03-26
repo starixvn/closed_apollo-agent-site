@@ -11,12 +11,14 @@
 namespace Fanex.BetList.Age.BetListCmd
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.BetList.Age.Definition;
+    using Fanex.Age.Utility;
     using Sunplus.Agent.Model.BL.BetList;
     using Sunplus.Agent.Model.BL.Reports;
-    using Sunplus.Agent.Utilities;
+    using Sunplus.Agent.Model.Entities;
 
     /// <summary>
     /// Summary description for WLByBettypeMatchCmd
@@ -45,9 +47,9 @@ namespace Fanex.BetList.Age.BetListCmd
             this.filterParams = new Dictionary<string, bool>();
         }
 
-        public override void SetParams(System.Collections.Hashtable hash)
+        public override void SetParams(Hashtable hash)
         {
-            this.custId = Sunplus.Agent.Model.Entities.UserSession.Current.CustId;
+            this.custId = UserSession.Current.CustId;
             this.matchId = (int)hash["matchid"];
             this.betType = (int)hash["bettype"];
             this.userName = hash["username"].ToString();

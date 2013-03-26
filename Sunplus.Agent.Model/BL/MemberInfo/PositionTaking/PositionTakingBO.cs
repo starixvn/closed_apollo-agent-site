@@ -9,8 +9,9 @@ namespace Sunplus.Agent.Model.BL.MemberInfo.PositionTaking
 {
     using System.Data;
     using Sunplus.Agent.Model.DL.MemberInfo.PositionTaking;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class PositionTakingBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class PositionTakingBO : BOBase
     {
         public PositionTakingBO(string netSessionId)
             : base(netSessionId)

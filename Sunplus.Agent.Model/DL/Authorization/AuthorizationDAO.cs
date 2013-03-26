@@ -293,37 +293,7 @@ namespace Sunplus.Agent.Model.DL.Authorization
             onUserId = (int)outputs["on_userid"];
         }
 
-        /// <summary>
-        /// True if re-checkin successful. False for kick-out.
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="onUserId"></param>
-        /// <param name="errMsg"></param>
-        /// <returns></returns>
-        public bool Acc_ReCheckin(
-            int custId,
-            int onUserId,
-            out string errMsg)
-        {
-            errMsg = string.Empty;
-
-            if (onUserId <= 0)
-            {
-                errMsg = "System error(6090USL): You are forced to be kicked out.";
-                return false;
-            }
-
-            Hashtable parameters = new Hashtable();
-
-            parameters.Add("on_userid", onUserId);
-            parameters.Add("iskickedout", 0);
-
-            Hashtable outputs = ExecSpHashtable("Acc_ReCheckin", parameters);
-
-            errMsg = "System error(6090USL): You are forced to be kicked out.";
-
-            return !(bool)outputs["iskickedout"];
-        }
+        
 
         /// <summary>
         /// Check-out On_User database.

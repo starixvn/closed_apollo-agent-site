@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Age.DTO.Reports.Commission
 {
-    using System;
-    using System.Collections.Generic;
-
     public class CommissionByBetTypeItem
     {
         public string Username { get; set; }

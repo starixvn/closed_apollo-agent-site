@@ -2,8 +2,9 @@
 {
     using System.Data;
     using Sunplus.Agent.Model.DL.MemberInfo.NewMember;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class NewMemberBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class NewMemberBO : BOBase
     {
         public NewMemberBO(string netSessionId) : base(netSessionId)
         { 

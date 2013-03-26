@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
-using Sunplus.Agent.Utilities;
-using Sunplus.Agent.Model.BL.Definitions;
+using System.Linq;
 using Fanex.Age.UI.Reports.Consolidated;
+using Sunplus.Agent.Utilities;
 
 /// <summary>
 /// Summary description for Consolidated_Page

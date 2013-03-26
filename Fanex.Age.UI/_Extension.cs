@@ -1,9 +1,5 @@
-﻿using System;
-using System.Data;
-using System.Collections;
+﻿using System.Collections;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
 
 /*
  * Created 20091211@Lee - Extension for UI

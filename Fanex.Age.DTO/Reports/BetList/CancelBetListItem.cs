@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class CancelBetListItem
-    {
-    }
+    //public class CancelBetListItem
+    //{
+    //}
 }

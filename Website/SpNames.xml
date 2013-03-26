@@ -180,7 +180,7 @@
     <Setting Key="AgentSetting_Acc_Agent_GetPositionTakingForUpdate" SpName="Acc_Agent_GetPositionTakingForUpdate_xtest" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="AgentSetting_Acc_Agent_UpdateBetLimit" SpName="Acc_Agent_UpdateBetLimit" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="AgentSetting_Acc_Agent_UpdateDiscount" SpName="Acc_Agent_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
-    <Setting Key="AgentSetting_Acc_Agent_UpdatePositionTaking" SpName="Acc_Agent_UpdatePositionTaking_xtest" DbName="CUSTDB"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Acc_Agent_UpdatePositionTaking" SpName="Acc_Agent_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="AgentSetting_Acc_Agent_UpdateSetting" SpName="Acc_Agent_UpdateSetting" DbName="CUSTDB"  TimeOut="600"/>
   </Function>
 

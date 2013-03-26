@@ -7,10 +7,11 @@
 
 namespace Sunplus.Agent.Model.DL
 {
+    using System;
     using System.Collections;
     using System.Text;
 
-    public class DataException : System.Exception
+    public class DataException : Exception
     {
         private string message = null;
 

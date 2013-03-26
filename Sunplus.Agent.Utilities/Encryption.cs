@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.VisualBasic;
-using System.Security.Cryptography;
-using System.IO;
 
 /*
  * Created 20100330@Lee - Encryption functions

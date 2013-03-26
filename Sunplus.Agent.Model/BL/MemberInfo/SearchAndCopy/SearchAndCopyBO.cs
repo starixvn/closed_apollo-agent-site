@@ -10,9 +10,10 @@ namespace Sunplus.Agent.Model.BL.MemberInfo.SearchAndCopy
 {
     using System.Collections;
     using System.Data;
+    using Sunplus.Agent.Model.BL.Base;
     using Sunplus.Agent.Model.DL.MemberInfo.SearchAndCopy;
 
-    public class SearchAndCopyBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class SearchAndCopyBO : BOBase
     {
         public SearchAndCopyBO(string netSessionId)
             : base(netSessionId)

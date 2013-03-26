@@ -4,23 +4,23 @@
     using System.Data;
     using Sunplus.Agent.Model.DL.BetSetting;
 
-    public class BetSettingBO : Sunplus.Agent.Model.BL.Base.BOBase
-    {
-        public BetSettingBO(string netSessionId)
-            : base(netSessionId)
-        {
-        }
+    //public class BetSettingBO : Sunplus.Agent.Model.BL.Base.BOBase
+    //{
+    //    public BetSettingBO(string netSessionId)
+    //        : base(netSessionId)
+    //    {
+    //    }
 
-        public DataTable SelectBetSettingByCustomer(int custId)
-        {
-            BetSettingDAO dao = new BetSettingDAO();
-            return dao.Age_CustomerSelBetSetting(custId, CurrentSession.UserId);
-        }
+    //    public DataTable SelectBetSettingByCustomer(int custId)
+    //    {
+    //        BetSettingDAO dao = new BetSettingDAO();
+    //        return dao.Age_CustomerSelBetSetting(custId, CurrentSession.UserId);
+    //    }
 
-        public int UpdateMemberBetSetting(Hashtable param, out string errorMsg)
-        {
-            BetSettingDAO dao = new BetSettingDAO();
-            return dao.Age_CustomerUpdMemBetSetting(param, out errorMsg);
-        }
-    }
+    //    public int UpdateMemberBetSetting(Hashtable param, out string errorMsg)
+    //    {
+    //        BetSettingDAO dao = new BetSettingDAO();
+    //        return dao.Age_CustomerUpdMemBetSetting(param, out errorMsg);
+    //    }
+    //}
 }

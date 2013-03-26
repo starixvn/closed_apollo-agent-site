@@ -7,9 +7,6 @@
 
 namespace Fanex.Age.DTO.Reports.Common
 {
-    using System;
-    using System.Collections.Generic;
-
     public class MatchResultEnteredItem
     {
         public int SportType { get; set; }

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-
-
-/*
+﻿/*
  * Created 20091211@Lee - ERROR object in UI
  * Revision: 
  * 20091211@Lee - Initializing

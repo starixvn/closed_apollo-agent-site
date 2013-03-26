@@ -6,15 +6,11 @@
 
 namespace Sunplus.Agent.Model.DL.MemberInfo.EditCommission
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Sunplus.Agent.Model.DL.Base;
-    using Fanex.PTEngine.BusinessObjects;
+    using System.Collections;
     using System.Data;
     using Fanex.Data;
-    using System.Collections;
+    using Fanex.PTEngine.BusinessObjects;
+    using Sunplus.Agent.Model.DL.Base;
 
     /// <summary>
     /// TODO: Update summary.
