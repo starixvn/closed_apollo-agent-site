@@ -17,16 +17,10 @@ namespace Apollo.Age.Repositories.Interface
 
     public interface IAccountInfoRepository : IRepository<Agent>
     {
-        AccountInfoDTO GetCustomerInfo(ICriteria criteria);
+        //Agent GetAgentInfo(ICriteria criteria);
 
-        IEnumerable<CustomerSearching> GetCustomerSearch(ICriteria criteria);
+        //IEnumerable<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria);
 
-        IEnumerable<CustomerDownline> GetCustomerDownline(ICriteria criteria);
-
-        IEnumerable<CustomerDownline> GetMemberDownline(ref MemberDownlineCriteria criteria);
-
-        IEnumerable<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria);
-
-        IEnumerable<AgentDownlinePath> GetAgentDownlinePath(ICriteria criteria);
+        //IEnumerable<Agent>  (ICriteria criteria);
     }
 }

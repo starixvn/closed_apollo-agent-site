@@ -35,5 +35,9 @@ namespace Apollo.Age.Entities
                 this.Agent = value;
             }
         }
+
+        public bool HasMemberDownline { get; set; }
+
+        public bool HasAgentDownline { get; set; }
     }
 }

@@ -12,7 +12,8 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Apollo.Age.Criterias.Accounts;
     using System.Collections.Generic;
     using Apollo.Age.DTO.Accounts;
-
+    using Apollo.Age.Entities;
+    
     public class QueryUserName_Handler : Fanex.Age.UI.TplHandler, System.Web.SessionState.IReadOnlySessionState
     {
         private string query = string.Empty;
@@ -25,7 +26,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         public override void RenderResult(ref JSONData data)
         {
-            List<CustomerSearching> lstSuggest = View as List<CustomerSearching>;
+            List<Customer> lstSuggest = View as List<Customer>;
 
             int count = lstSuggest.Count;
 
@@ -33,7 +34,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
             for (int i = 0; i < count; i++)
             {
-                suggessions[i] = new object[] { HttpUtility.HtmlEncode(lstSuggest[i].UserName) };
+                suggessions[i] = new object[] { HttpUtility.HtmlEncode(lstSuggest[i].Username) };
             }
 
             data.Add("query", query);
@@ -59,12 +60,10 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-
-            IAccountInfoService service = new AccountInfoService();
-
+            ICustomerService service = new CustomerService();
             CustomerSearchCriteria criteria = new CustomerSearchCriteria()
             {
-                AgentId = -1,
+                AgentId = CurrentUserSession.AgentId,
                 IsMember = this.isMember,
                 UserName = this.query
             };

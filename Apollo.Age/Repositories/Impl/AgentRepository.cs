@@ -16,12 +16,62 @@ namespace Apollo.Age.Repositories.Impl
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
+    using Fanex.Data;
+    using Apollo.Age.DTO.Accounts;
+    using Fanex.Common.Helper;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class AgentRepository : IAgentRepository
     {
+        public Agent Get(ICriteria criteria)
+        {
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return db.QueryEntity<Agent>(criteria.GetSpParams());
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<Agent> Fetch(ICriteria criteria)
+        {
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return db.Query<Agent>(criteria.GetSpParams()).ToList<Agent>();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return db.Query<TreeViewNodeDTO>(criteria.GetSpParams());
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public ICommandResult Delete(Agent entity)
         {
             throw new NotImplementedException();
@@ -47,17 +97,7 @@ namespace Apollo.Age.Repositories.Impl
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Agent> Fetch(ICriteria criteria)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Agent> Fetch()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Agent Get(ICriteria criteria)
         {
             throw new NotImplementedException();
         }

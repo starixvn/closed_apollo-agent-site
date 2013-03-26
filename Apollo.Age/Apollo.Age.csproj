@@ -77,6 +77,7 @@
     <Compile Include="Repositories\Impl\AccountInfoRepository.cs" />
     <Compile Include="Repositories\Impl\AgentRepository.cs" />
     <Compile Include="Repositories\Impl\CustomerRepository.cs" />
+    <Compile Include="Repositories\Impl\MemberRepository.cs" />
     <Compile Include="Repositories\Impl\ReportRepository.cs" />
     <Compile Include="Repositories\Impl\UserRepository.cs" />
     <Compile Include="Repositories\Interface\IAccountInfoRepository.cs" />
@@ -84,12 +85,19 @@
     <Compile Include="Repositories\Interface\ICustomerRepository.cs" />
     <Compile Include="Repositories\Interface\IReportRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRepository.cs" />
+    <Compile Include="Repositories\Interface\IMemberRepository.cs" />
     <Compile Include="Services\Impl\AccountInfoService.cs" />
+    <Compile Include="Services\Impl\AgentService.cs" />
+    <Compile Include="Services\Impl\CustomerService.cs" />
+    <Compile Include="Services\Impl\MemberService.cs" />
     <Compile Include="Services\Impl\ReportService.cs" />
     <Compile Include="Services\Impl\ReportServiceBase.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
     <Compile Include="Services\Impl\UserService.cs" />
     <Compile Include="Services\Interface\IAccountInfoService.cs" />
+    <Compile Include="Services\Interface\IAgentService.cs" />
+    <Compile Include="Services\Interface\ICustomerService.cs" />
+    <Compile Include="Services\Interface\IMemberService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Services\Interface\IReportService.cs" />
   </ItemGroup>

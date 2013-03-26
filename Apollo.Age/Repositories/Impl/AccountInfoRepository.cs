@@ -45,7 +45,7 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
-        public IEnumerable<CustomerSearching> GetCustomerSearch(ICriteria criteria)
+        public Agent GetAgentInfo(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -53,7 +53,24 @@ namespace Apollo.Age.Repositories.Impl
             {
                 using (var db = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    return db.Query<CustomerSearching>(criteria.GetSpParams());
+                    return db.QueryEntity<Agent>(criteria.GetSpParams());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<Customer> GetCustomerSearch(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return db.Query<Customer>(criteria.GetSpParams());
                 }
             }
             catch (Exception ex)
@@ -79,26 +96,26 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
-        public IEnumerable<CustomerDownline> GetCustomerDownline(ICriteria criteria)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
+        //public IEnumerable<CustomerDownline> GetCustomerDownline(ICriteria criteria)
+        //{
+        //    Check.Argument.IsNotNull(criteria, "criteria");
 
-            try
-            {
-                if (criteria.IsValid())
-                {
-                    return _repository.Fetch<CustomerDownline>(criteria);
-                }
+        //    try
+        //    {
+        //        if (criteria.IsValid())
+        //        {
+        //            return _repository.Fetch<CustomerDownline>(criteria);
+        //        }
 
-                return new List<CustomerDownline>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        return new List<CustomerDownline>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public IEnumerable<CustomerDownline> GetMemberDownline(ref MemberDownlineCriteria criteria)
+        public IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -109,7 +126,7 @@ namespace Apollo.Age.Repositories.Impl
                     using (var db = new ObjectDb(criteria.GetSettingKey()))
                     {
                         var param = criteria.GetSpParams();
-                        var list = db.Query <CustomerDownline>(param);
+                        var list = db.Query<Member>(param);
 
                         // get output parameter
                         criteria.TotalPages = Convert.ToInt32(param["totalpages"]);
@@ -117,7 +134,7 @@ namespace Apollo.Age.Repositories.Impl
                     }
                 }
 
-                return new List<CustomerDownline>();
+                return new List<Member>();
             }
             catch (Exception ex)
             {
@@ -125,7 +142,7 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
-        public IEnumerable<AgentDownlinePath> GetAgentDownlinePath(ICriteria criteria)
+        public IEnumerable<Agent> GetAgentDownlinePath(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -133,10 +150,10 @@ namespace Apollo.Age.Repositories.Impl
             {
                 if (criteria.IsValid())
                 {
-                    return _repository.Fetch<AgentDownlinePath>(criteria);
+                    return _repository.Fetch<Agent>(criteria);
                 }
 
-                return new List<AgentDownlinePath>();
+                return new List<Agent>();
             }
             catch (Exception ex)
             {

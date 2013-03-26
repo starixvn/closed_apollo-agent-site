@@ -17,6 +17,7 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Services.Interface;
     using Fanex.NAP.Framework.Data;
     using Apollo.Age.Criterias.Accounts;
+    using Apollo.Age.Entities;
 
     public class AccountInfoService : IAccountInfoService
     {
@@ -28,34 +29,34 @@ namespace Apollo.Age.Services.Impl
             _accountIfoRepository = _accountIfoRepository ?? new AccountInfoRepository();
         }
 
-        public AccountInfoDTO GetCustomerInfo(ICriteria criteria)
-        {
-            return _accountIfoRepository.GetCustomerInfo(criteria);
-        }
+        //public Agent GetCustomerInfo(AccountInfoCriteria criteria)
+        //{
+        //    return _accountIfoRepository.GetAgentInfo(criteria);
+        //}
 
-        public List<CustomerSearching> GetCustomerSearch(ICriteria criteria)
-        {
-            return _accountIfoRepository.GetCustomerSearch(criteria).ToList();
-        }
+        //public Member GetCustomerInfo(AccountInfoCriteria criteria)
+        //{
+        //    return _accountIfoRepository.GetAgentInfo(criteria);
+        //}
 
-        public List<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria)
-        {
-            return _accountIfoRepository.GetTreeViewNode(criteria).ToList();
-        }
+        //public List<Customer> GetCustomerSearch(ICriteria criteria)
+        //{
+        //    return _accountIfoRepository.GetCustomerSearch(criteria).ToList();
+        //}
 
-        public List<CustomerDownline> GetCustomerDownline(ICriteria criteria)
-        {
-            return _accountIfoRepository.GetCustomerDownline(criteria).ToList();
-        }
+        //public List<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria)
+        //{
+        //    return _accountIfoRepository.GetTreeViewNode(criteria).ToList();
+        //}
 
-        public List<CustomerDownline> GetMemberDownline(ref MemberDownlineCriteria criteria)
-        {
-            return _accountIfoRepository.GetMemberDownline(ref criteria).ToList();
-        }
+        //public List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
+        //{
+        //    return _accountIfoRepository.GetMemberDownline(ref criteria).ToList();
+        //}
 
-        public List<AgentDownlinePath> GetAgentDownlinePath(ICriteria criteria)
-        {
-            return _accountIfoRepository.GetAgentDownlinePath(criteria).ToList();
-        }
+        //public List<Agent> GetAgentDownlinePath(ICriteria criteria)
+        //{
+        //    return _accountIfoRepository.GetAgentDownlinePath(criteria).ToList();
+        //}
     }
 }

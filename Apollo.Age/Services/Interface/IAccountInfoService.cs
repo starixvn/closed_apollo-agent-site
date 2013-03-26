@@ -9,23 +9,19 @@
 
 namespace Apollo.Age.Services.Interface
 {
-    using Apollo.Age.DTO.Accounts;
-    using Fanex.NAP.Framework.Data;
-    using System.Collections.Generic;
-    using Apollo.Age.Criterias.Accounts;
 
     public interface IAccountInfoService
     {
-        AccountInfoDTO GetCustomerInfo(ICriteria criteria);
+        //Agent GetCustomerInfo(AccountInfoCriteria criteria);
 
-        List<CustomerSearching> GetCustomerSearch(ICriteria criteria);
+        //Member GetCustomerInfo(AccountInfoCriteria criteria);
 
-        List<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria);
+        //List<Customer> GetCustomerSearch(ICriteria criteria);
 
-        List<CustomerDownline> GetCustomerDownline(ICriteria criteria);
+        //List<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria);
 
-        List<CustomerDownline> GetMemberDownline(ref MemberDownlineCriteria criteria);
+        //List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria);
 
-        List<AgentDownlinePath> GetAgentDownlinePath(ICriteria criteria);
+        //List<Agent> GetAgentDownlinePath(ICriteria criteria);
     }
 }
