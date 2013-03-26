@@ -3,6 +3,14 @@
 }
 if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting namespace
     Fanex.CustSetting = {
+        RoleType: {
+            Member: 6,
+            Super: 5,
+            MainShareHolder : 4,
+            ShareHolder : 3,
+            MainAgent : 2,
+            Agent: 1
+        },
         PT_STEP10: 1,
         PT_STEP100: 10,
         PT_STEP: 0.01,
@@ -101,7 +109,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 }
             }
             // Set children min-width
-            var minWidth = 121; //Fanex.CustSetting.CalculateMinWidth(text);
+            var minWidth = 131; //Fanex.CustSetting.CalculateMinWidth(text);
             for (var i = 0; i < count; i++) {
                 element.childNodes[i].style.minWidth = minWidth + 'px';
             }
@@ -871,35 +879,35 @@ Fanex.CustSetting.Spinner = function (container, options) {
     }
 
     // create the up button
-    var upButton = document.createElement('span');
-    upButton.appendChild(document.createElement('span'));
-    container.appendChild(upButton);
+//    var upButton = document.createElement('span');
+//    upButton.appendChild(document.createElement('span'));
+//    container.appendChild(upButton);
 
     // create the down button
-    var downButton = document.createElement('span');
-    downButton.appendChild(document.createElement('span'));
-    container.appendChild(downButton);
+//    var downButton = document.createElement('span');
+//    downButton.appendChild(document.createElement('span'));
+//    container.appendChild(downButton);
 
     // apply the classes
     container.className += ' ' + this.options.className;
-    upButton.className = this.options.className + 'Up';
-    downButton.className = this.options.className + 'Down';
-    if (this.lastLetter == Fanex.CustSetting.PT_LAST_LETTER) {
-        // Set Right css
-        upButton.style.right = downButton.style.right = ((options.minWidth / 2) - (Fanex.CustSetting.SPINNER_BOX_WIDTH / 2) - 10) + "px";
-    }
+//    upButton.className = this.options.className + 'Up';
+//    downButton.className = this.options.className + 'Down';
+//    if (this.lastLetter == Fanex.CustSetting.PT_LAST_LETTER) {
+//        // Set Right css
+//        upButton.style.right = downButton.style.right = ((options.minWidth / 2) - (Fanex.CustSetting.SPINNER_BOX_WIDTH / 2) - 10) + "px";
+//    }
     // add the listeners
     this.addEventListener(this.input, 'mousewheel', this.handleMouseWheel, [], true);
     this.addEventListener(this.input, 'DOMMouseScroll', this.handleMouseWheel, [], true);
     this.addEventListener(this.input, 'keydown', this.handleKeyDown, [], true);
     this.addEventListener(this.input, 'keypress', this.handleKeyPress, [], true);
     this.addEventListener(this.input, 'keyup', this.stop);
-    this.addEventListener(upButton, 'mousedown', this.start, [true]);
-    this.addEventListener(upButton, 'mouseup', this.stop);
-    this.addEventListener(upButton, 'mouseout', this.stop);
-    this.addEventListener(downButton, 'mousedown', this.start, [false]);
-    this.addEventListener(downButton, 'mouseup', this.stop);
-    this.addEventListener(downButton, 'mouseout', this.stop);
+//    this.addEventListener(upButton, 'mousedown', this.start, [true]);
+//    this.addEventListener(upButton, 'mouseup', this.stop);
+//    this.addEventListener(upButton, 'mouseout', this.stop);
+//    this.addEventListener(downButton, 'mousedown', this.start, [false]);
+//    this.addEventListener(downButton, 'mouseup', this.stop);
+//    this.addEventListener(downButton, 'mouseout', this.stop);
 
     return this;
 

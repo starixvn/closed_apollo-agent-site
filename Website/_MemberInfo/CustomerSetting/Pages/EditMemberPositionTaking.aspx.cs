@@ -24,6 +24,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditMemberPositionTaking 
             template.isReloadParent = "1";
         }
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
+        template.TargetRoleId = Context.Request.QueryString["roleid"];
         writer.Write(template);
     }
 

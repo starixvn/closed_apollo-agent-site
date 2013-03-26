@@ -26,7 +26,7 @@ namespace Fanex.Agent.UI
 			public string headerText = "{headerText}";
 			protected static string s9 = "<div class=\"btnLeft\"><button id=\"Button1\" class=\"btnMain\" onclick=\"editSetting.SaveSetting();\">";
 			public string actionName = "{actionName}";
-			protected static string s10 = "</button></div><div id=\"settingContainer\" style=\"width: 936px;\"><div id=\"commissionSettingContainer\"></div><div id=\"bettingLimitContainer\"></div><div id=\"ptContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"editSetting.SaveSetting();\">";
+			protected static string s10 = "</button></div><div id=\"settingContainer\"><div id=\"commissionSettingContainer\"></div><div id=\"bettingLimitContainer\"></div><div id=\"ptContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"editSetting.SaveSetting();\">";
 			protected string t0_actionName;
 			protected static string s11 = "</button></div><script type=\"text/javascript\">var isReloadParent = ";
 			public string isReloadParent = "{isReloadParent}";
@@ -36,18 +36,18 @@ namespace Fanex.Agent.UI
 			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/jx.js", TplSettings.Question);}}
 			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s17{get{return AbsoluteUrl("_Components/ErrorMsg/ErrorMsg.js", TplSettings.Question);}}
-			protected static string s18 = "\" type=\"text/javascript\"></script><script src='../Handlers/GetPositionTakingSetting.ashx?targetCustId=";
+			protected static string s18 = "\" type=\"text/javascript\"></script><script src='../Handlers/GetBetLimit.ashx?targetCustId=";
 			public string TargetAgentId = "{TargetAgentId}";
-			protected static string s19 = "&targetRoleId=1&ugroup=";
+			protected static string s19 = "&targetRoleId=";
+			public string TargetRoleId = "{TargetRoleId}";
+			protected static string s20 = "&ugroup=";
 			public string UGroup = "{UGroup}";
-			protected static string s20 = "'type=\"text/javascript\"></script><script src='../Handlers/GetBetLimit.ashx?targetCustId=";
+			protected static string s21 = "'type=\"text/javascript\"></script><script src='../Handlers/GetCommissionSetting.ashx?targetCustId=";
 			protected string t1_TargetAgentId;
-			protected static string s21 = "&targetRoleId=1&ugroup=";
-			protected string t2_UGroup;
-			protected static string s22 = "'type=\"text/javascript\"></script><script src='../Handlers/GetCommissionSetting.ashx?targetCustId=";
-			protected string t3_TargetAgentId;
-			protected static string s23 = "&targetRoleId=1&ugroup=";
-			protected string t4_UGroup;
+			protected static string s22 = "&targetRoleId=";
+			protected string t2_TargetRoleId;
+			protected static string s23 = "&ugroup=";
+			protected string t3_UGroup;
 			protected static string s24 = "'type=\"text/javascript\"></script><script src='../Handlers/Language.ashx' type=\"text/javascript\"></script><script src=\"";
 			protected static string s25{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
 			protected static string s26 = "\" type=\"text/javascript\"></script><script src=\"";
@@ -100,13 +100,13 @@ namespace Fanex.Agent.UI
 					bd.Append(s18);
 					bd.Append(TargetAgentId);
 					bd.Append(s19);
-					bd.Append(UGroup);
+					bd.Append(TargetRoleId);
 					bd.Append(s20);
-					bd.Append(TargetAgentId);
-					bd.Append(s21);
 					bd.Append(UGroup);
-					bd.Append(s22);
+					bd.Append(s21);
 					bd.Append(TargetAgentId);
+					bd.Append(s22);
+					bd.Append(TargetRoleId);
 					bd.Append(s23);
 					bd.Append(UGroup);
 					bd.Append(s24);

@@ -23,13 +23,13 @@ namespace Fanex.Age.UI.Forecast
 			protected Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template _ErrorMsg;
 			protected static string s6 = "</div></div><input id=\"strValueL\" name=\"strValueL\" type=\"hidden\" value=\"0\"/><input id=\"strValueD\" name=\"strValueD\" type=\"hidden\" value=\"0\"/>";
 			public string BoxMatch = "{BoxMatch}";
+			public Fanex.Age.UI.Forecast.Scripts_Template scripts{get {return _scripts != null ? _scripts : _scripts =  new Fanex.Age.UI.Forecast.Scripts_Template();}}
+			protected Fanex.Age.UI.Forecast.Scripts_Template _scripts;
 			protected static string s7 = "<script src=\"";
-			protected static string s8{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s8{get{return AbsoluteUrl("Resources/MatchByLeague.js", TplSettings.Question);}}
 			protected static string s9 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s10{get{return AbsoluteUrl("Resources/MatchByLeague.js", TplSettings.Question);}}
-			protected static string s11 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s12{get{return AbsoluteUrl("Resources/ScoreMap.js", TplSettings.Question);}}
-			protected static string s13 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s10{get{return AbsoluteUrl("Resources/ScoreMap.js", TplSettings.Question);}}
+			protected static string s11 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -46,13 +46,12 @@ namespace Fanex.Age.UI.Forecast
 					bd.Append(ErrorMsg);
 					bd.Append(s6);
 					bd.Append(BoxMatch);
+					bd.Append(scripts);
 					bd.Append(s7);
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
 					bd.Append(s11);
-					bd.Append(s12);
-					bd.Append(s13);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -67,17 +66,17 @@ namespace Fanex.Age.UI.Forecast
 
 		public class ScoreMap_mainTitle_Block: Block
 		{
-			protected static string s14 = "<div id=\"header_main\">";
+			protected static string s12 = "<div id=\"header_main\">";
 			public string Forecast = "{Forecast}";
-			protected static string s15 = "</div>";
+			protected static string s13 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s14);
+					bd.Append(s12);
 					bd.Append(Forecast);
-					bd.Append(s15);
+					bd.Append(s13);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -86,22 +85,22 @@ namespace Fanex.Age.UI.Forecast
 		public class ScoreMap_Content_Block: Block
 		{
 			public ScoreMap_Content_LimitLeagueList_Block LimitLeagueList = new ScoreMap_Content_LimitLeagueList_Block();
-			protected static string s16 = "<div id=\"mainContent\" style=\"width: ";
+			protected static string s14 = "<div id=\"mainContent\" style=\"width: ";
 			public string mWidth = "{mWidth}";
-			protected static string s17 = "\">";
+			protected static string s15 = "\">";
 			public ScoreMap_Content_ScoreMap_Block ScoreMap = new ScoreMap_Content_ScoreMap_Block();
-			protected static string s18 = "</div>";
+			protected static string s16 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != LimitLeagueList) LimitLeagueList.ToString(ref bd);
-					bd.Append(s16);
+					bd.Append(s14);
 					bd.Append(mWidth);
-					bd.Append(s17);
+					bd.Append(s15);
 					if(null != ScoreMap) ScoreMap.ToString(ref bd);
-					bd.Append(s18);
+					bd.Append(s16);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -109,69 +108,69 @@ namespace Fanex.Age.UI.Forecast
 
 		public class ScoreMap_Content_LimitLeagueList_Block: Block
 		{
-			protected static string s19 = "<div id=\"box_header\" style=\"width: ";
+			protected static string s17 = "<div id=\"box_header\" style=\"width: ";
 			public string mWidth = "{mWidth}";
-			protected static string s20 = "\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"margin:5px;";
+			protected static string s18 = "\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"margin:5px;";
 			public string display = "{display}";
-			protected static string s21 = "\"><tr><td>";
-			protected static string s22{get{return Resources.Lang.league;}}
-			protected static string s23 = "</td><td id=\"selLeague\">";
+			protected static string s19 = "\"><tr><td>";
+			protected static string s20{get{return Resources.Lang.league;}}
+			protected static string s21 = "</td><td id=\"selLeague\">";
 			public string LeagueList = "{LeagueList}";
-			protected static string s24 = "</td><td><div title=\"";
-			protected static string s25{get{return Resources.Lang.RefreshLeagues;}}
-			protected static string s26 = "\" class=\"btnRefresh\" id=\"RefreshLeagues\">&nbsp;</div></td><td><input type=\"button\" class=\"btn\" id=\"dSelMatch\" value=\"";
-			protected static string s27{get{return Resources.Lang.SelectMatch;}}
-			protected static string s28 = "\" style=\"width:80px\"></td><td valign=\"top\"><div style=\"float: left;padding-left:10px\" class=\"\" id=\"loading\"></div></td></tr></table><div id=\"tblLiveDead\" style=\"";
+			protected static string s22 = "</td><td><div title=\"";
+			protected static string s23{get{return Resources.Lang.RefreshLeagues;}}
+			protected static string s24 = "\" class=\"btnRefresh\" id=\"RefreshLeagues\">&nbsp;</div></td><td><input type=\"button\" class=\"btn\" id=\"dSelMatch\" value=\"";
+			protected static string s25{get{return Resources.Lang.SelectMatch;}}
+			protected static string s26 = "\" style=\"width:80px\"></td><td valign=\"top\"><div style=\"float: left;padding-left:10px\" class=\"\" id=\"loading\"></div></td></tr></table><div id=\"tblLiveDead\" style=\"";
 			public string displayLiveDead = "{displayLiveDead}";
-			protected static string s29 = "\"><table class=\"tblRpt\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"margin:5px\"><tr class=\"even_row\"><td><input class=\"hand\" type=\"checkbox\" ";
+			protected static string s27 = "\"><table class=\"tblRpt\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"margin:5px\"><tr class=\"even_row\"><td><input class=\"hand\" type=\"checkbox\" ";
 			public string isCheckedAllLive = "{isCheckedAllLive}";
-			protected static string s30 = " id=\"chkAllL\"><label class=\"hand bold\" for=\"chkAllL\">";
-			protected static string s31{get{return Resources.Lang.lblLiveBall;}}
-			protected static string s32 = "</label></td><td id=\"Td1\"><table class=\"reference\"><tr>";
+			protected static string s28 = " id=\"chkAllL\"><label class=\"hand bold\" for=\"chkAllL\">";
+			protected static string s29{get{return Resources.Lang.lblLiveBall;}}
+			protected static string s30 = "</label></td><td id=\"Td1\"><table class=\"reference\"><tr>";
 			public string LiveBall = "{LiveBall}";
-			protected static string s33 = "</tr></table></td></tr><tr class=\"even_row\"><td><input class=\"hand\" type=\"checkbox\" ";
+			protected static string s31 = "</tr></table></td></tr><tr class=\"even_row\"><td><input class=\"hand\" type=\"checkbox\" ";
 			public string isCheckedAllDead = "{isCheckedAllDead}";
-			protected static string s34 = " id=\"chkAllD\"><label class=\"hand bold\" for=\"chkAllD\">";
-			protected static string s35{get{return Resources.Lang.lblDeadball;}}
-			protected static string s36 = "</label></td><td id=\"Td2\"><table class=\"reference\"><tr>";
+			protected static string s32 = " id=\"chkAllD\"><label class=\"hand bold\" for=\"chkAllD\">";
+			protected static string s33{get{return Resources.Lang.lblDeadball;}}
+			protected static string s34 = "</label></td><td id=\"Td2\"><table class=\"reference\"><tr>";
 			public string DeadBall = "{DeadBall}";
-			protected static string s37 = "</tr></table></td></tr></table><table border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"margin:0px 5px 5px\"><tr><td><input type=\"button\" value=\"";
-			protected static string s38{get{return Resources.Lang.submit;}}
-			protected static string s39 = "\" id=\"dSubmit\" class=\"btn\" style=\"width: 70px;\"></td><td valign=\"top\"><div style=\"height:23px;padding-left:15px\" class=\"\" id=\"loadingSubmit\"></div></td></tr></table></div></div>";
+			protected static string s35 = "</tr></table></td></tr></table><table border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"margin:0px 5px 5px\"><tr><td><input type=\"button\" value=\"";
+			protected static string s36{get{return Resources.Lang.submit;}}
+			protected static string s37 = "\" id=\"dSubmit\" class=\"btn\" style=\"width: 70px;\"></td><td valign=\"top\"><div style=\"height:23px;padding-left:15px\" class=\"\" id=\"loadingSubmit\"></div></td></tr></table></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s19);
+					bd.Append(s17);
 					bd.Append(mWidth);
-					bd.Append(s20);
+					bd.Append(s18);
 					bd.Append(display);
+					bd.Append(s19);
+					bd.Append(s20);
 					bd.Append(s21);
+					bd.Append(LeagueList);
 					bd.Append(s22);
 					bd.Append(s23);
-					bd.Append(LeagueList);
 					bd.Append(s24);
 					bd.Append(s25);
 					bd.Append(s26);
-					bd.Append(s27);
-					bd.Append(s28);
 					bd.Append(displayLiveDead);
-					bd.Append(s29);
+					bd.Append(s27);
 					bd.Append(isCheckedAllLive);
+					bd.Append(s28);
+					bd.Append(s29);
 					bd.Append(s30);
-					bd.Append(s31);
-					bd.Append(s32);
 					bd.Append(LiveBall);
-					bd.Append(s33);
+					bd.Append(s31);
 					bd.Append(isCheckedAllDead);
+					bd.Append(s32);
+					bd.Append(s33);
 					bd.Append(s34);
+					bd.Append(DeadBall);
 					bd.Append(s35);
 					bd.Append(s36);
-					bd.Append(DeadBall);
 					bd.Append(s37);
-					bd.Append(s38);
-					bd.Append(s39);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -179,21 +178,21 @@ namespace Fanex.Age.UI.Forecast
 
 		public class ScoreMap_Content_ScoreMap_Block: Block
 		{
-			protected static string s40 = "<div id=\"RefreshContent";
+			protected static string s38 = "<div id=\"RefreshContent";
 			public string matchId = "{matchId}";
-			protected static string s41 = "\" style=\"padding-top:6px\">";
+			protected static string s39 = "\" style=\"padding-top:6px\">";
 			public string MainTable = "{MainTable}";
-			protected static string s42 = "</div>";
+			protected static string s40 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s40);
+					bd.Append(s38);
 					bd.Append(matchId);
-					bd.Append(s41);
+					bd.Append(s39);
 					bd.Append(MainTable);
-					bd.Append(s42);
+					bd.Append(s40);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

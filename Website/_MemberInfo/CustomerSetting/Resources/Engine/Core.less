@@ -18,7 +18,7 @@ body
 	font-size: 11px;
 	line-height: 23px;
 	margin: 0;
-	min-width: 800px;
+	min-width: 820px;
 	padding: 0;
 	border: 1px solid #12A3EB;
 }
@@ -33,6 +33,7 @@ body
     text-align: center;
     padding-left:9px;
 }
+
 .pt-sport-label
 {
 	border-left: 1px solid #12A3EB;
@@ -209,6 +210,15 @@ pt-groupset2
 	/*padding:3px 2px 1px 2px;*/
 	padding: 3px 2px 1px;
 	vertical-align: middle;
+	
+}
+
+.bet-type-select input {
+	margin-left: 20px;
+}
+
+.bet-type-select {
+	text-align: left;
 }
 
 .bet-type-header
@@ -243,7 +253,7 @@ pt-groupset2
 .bet-type-header-active
 {
 	background: url(Images/copyChecked.png) no-repeat right top;
-	background-position: 120px 4px;
+	background-position: 130px 5px;
 	border-left: 1px solid #12A3EB;
 	border-top: 1px solid #12A3EB;
 	cursor: pointer;
@@ -259,6 +269,10 @@ pt-groupset2
 {
 	background-color: #DDD !important;
 	cursor: default;
+}
+
+.upline-agent-share {
+	font-size: 1.1em;
 }
 
 .group-label
@@ -317,7 +331,7 @@ pt-groupset2
 	border-bottom: 1px solid #12A3EB;
 	border-right: 1px solid #12A3EB;
 	cursor: default;
-	width: 932px;
+	width: 942px;
 	margin: 1px;
 }
 .betting-limit-container-header {
@@ -331,7 +345,7 @@ pt-groupset2
 	border-bottom: 1px solid #12A3EB;
 	border-right: 1px solid #12A3EB;
 	cursor: default;
-	width: 932px;
+	width: 942px;
 	margin: 1px;
 }
 
@@ -511,7 +525,7 @@ pt-groupset2
 	height: 27px;
 	line-height: 27px;
 	margin: 0;
-	min-width: 122px;
+	min-width: 132px;
 	padding: 1px 2px 2px;
 	text-indent: 4px;
 }
@@ -524,7 +538,7 @@ pt-groupset2
 	height: 48px;
 	line-height: 48px;
 	margin: 0;
-	min-width: 122px;
+	min-width: 132px;
 	overflow: hidden;
 	padding: 1px 2px 2px;
 	text-indent: 4px;
@@ -533,7 +547,7 @@ pt-groupset2
 .betting-limit-header-copied
 {
 	background: url(Images/copyUnChecked.png) no-repeat right top;
-	background-position: 100px 5px;
+	background-position: 110px 5px;
 	border-left: 1px solid #12A3EB;
 	border-top: 1px solid #12A3EB;
 	cursor: pointer;
@@ -541,7 +555,7 @@ pt-groupset2
 	height: 27px;
 	line-height: 27px;
 	margin: 0;
-	min-width: 122px;
+	min-width: 132px;
 	padding: 1px 2px 2px;
 	text-indent: 4px;
 }
@@ -549,7 +563,7 @@ pt-groupset2
 .betting-limit-header-copied-active
 {
 	background: url(Images/copyChecked.png) no-repeat right top;
-	background-position: 100px 2px;
+	background-position: 110px 5px;
 	border-left: 1px solid #12A3EB;
 	border-top: 1px solid #12A3EB;
 	cursor: pointer;
@@ -557,7 +571,7 @@ pt-groupset2
 	height: 27px;
 	line-height: 27px;
 	margin: 0;
-	min-width: 122px;
+	min-width: 132px;
 	padding: 1px 2px 2px;
 	text-indent: 4px;
 }
@@ -697,13 +711,11 @@ pt-groupset2
 .commission-setting-table tr td.commission-text {
 	text-align:right;
 	vertical-align: middle;
-	
+
+	font-weight: bold;
 }
 
-.commission-setting-table tr td.commission-select, .commission-setting-table-player tr td.commission-select 
-{
-    text-align: left;
-}
+
 .commission-setting-table tr td.commission-select .commission-spin-box, .commission-setting-table-player tr td.commission-select .commission-spin-box
 {
     height: 27px;
@@ -711,6 +723,12 @@ pt-groupset2
     margin: 0 auto;
     padding:3px 0 1px;
     vertical-align: middle;
+}
+
+
+.commission-setting-table .max-com-value {
+	padding-top: 6px;
+	font-size: 1.1 em;
 }
 
 .commission-setting-table-player tr th {
@@ -754,6 +772,7 @@ pt-groupset2
 .commission-setting-table-player .member-com select {
 	width: 50px;
 }
+
 /*
     Spinner Box
 */
@@ -781,6 +800,7 @@ pt-groupset2
   font-size                 : 1em;*/
   text-align                : right;
   height: 19px;
+  font-size: 1.1em;
 }
 
 .spinBoxUp,
@@ -834,3 +854,7 @@ pt-groupset2
     bottom:5px !important;
 }*/
 
+#settingContainer
+{
+	width:946px;
+}

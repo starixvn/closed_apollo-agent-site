@@ -25,6 +25,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditMemberSetting : Fanex
         }
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
         template.UGroup = Context.Request.QueryString["ugroup"].ToString();
+        template.TargetRoleId = Context.Request.QueryString["roleid"];
         writer.Write(template);
     }
 

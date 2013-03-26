@@ -18,7 +18,7 @@ namespace Fanex.Age.UI.Admin
 			protected static string s2 = "</title><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("_globalresources/css/agent.css", TplSettings.Question);}}
+			protected static string s5{get{return AbsoluteUrl("_globalresources/css/agent.less", TplSettings.Question);}}
 			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s7{get{return AbsoluteUrl("styles/exchangerate.less", TplSettings.Question);}}
 			protected static string s8 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" ";

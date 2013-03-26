@@ -1,26 +1,16 @@
 ﻿if (typeof (Fanex) == 'undefined') { // Require Fanex namespace
     Fanex = {};
-//    Object.prototype.doCloneObject = function () {
-//        var newObj = (this instanceof Array) ? [] : {};
-//        for (i in this) {
-//            if (i == 'clone') continue;
-//            if (this[i] && typeof this[i] == "object") {
-//                newObj[i] = this[i].doCloneObject();
-//            } else {
-//                newObj[i] = this[i];
-//            }
-//        }
-//        return newObj;
-//    };
     Fanex.CloneObject = function (obj) {
-        var clone = {};
-        for (var i in obj) {
-            if (typeof (obj[i]) == "object")
-                clone[i] = Fanex.CloneObject(obj[i]);
-            else
-                clone[i] = obj[i];
+        var newObj = (obj instanceof Array) ? [] : {};
+        for (i in obj) {
+            if (i == 'clone') continue;
+            if (obj[i] && typeof obj[i] == "object") {
+                newObj[i] = Fanex.CloneObject(obj[i]);
+            } else {
+                newObj[i] = obj[i];
+            }
         }
-        return clone;
+        return newObj;
     };
     String.Empty = ""; // Extend static string
     String.prototype.Format = function (args) {

@@ -13,22 +13,20 @@ namespace Fanex.Age.UI.Forecast
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.lblForecast;}}
-			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("Resources/FC.less", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\"><span id=\"leagueName\">";
-			protected static string s5{get{return Resources.Lang.lblHOUL;}}
-			protected static string s6 = "</span></div>";
+			protected static string s2 = "</title>";
+			public Fanex.Age.UI.Forecast.Styles_Template styles{get {return _styles != null ? _styles : _styles =  new Fanex.Age.UI.Forecast.Styles_Template();}}
+			protected Fanex.Age.UI.Forecast.Styles_Template _styles;
+			protected static string s3 = "</head><body><div id=\"page_main\"><div id=\"header_main\"><span id=\"leagueName\">";
+			protected static string s4{get{return Resources.Lang.lblHOUL;}}
+			protected static string s5 = "</span></div>";
 			public Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown{get {return _RefreshCountDown != null ? _RefreshCountDown : _RefreshCountDown =  new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"FCHDPOU","RefreshFC");}}
 			protected Fanex.Age.UI.Components.RefreshCountDown_Control _RefreshCountDown;
-			protected static string s7 = "<div id=\"sContent\">";
+			protected static string s6 = "<div id=\"sContent\">";
 			public FCHDPOU_Content_Block Content = new FCHDPOU_Content_Block();
-			protected static string s8 = "</div></div><script src=\"";
-			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("Resources/FC.js", TplSettings.Question);}}
-			protected static string s14 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s7 = "</div></div>";
+			public Fanex.Age.UI.Forecast.Scripts_Template scripts{get {return _scripts != null ? _scripts : _scripts =  new Fanex.Age.UI.Forecast.Scripts_Template();}}
+			protected Fanex.Age.UI.Forecast.Scripts_Template _scripts;
+			protected static string s8 = "</body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -37,20 +35,16 @@ namespace Fanex.Age.UI.Forecast
 					bd.Append(s0);
 					bd.Append(s1);
 					bd.Append(s2);
+					bd.Append(styles);
 					bd.Append(s3);
 					bd.Append(s4);
 					bd.Append(s5);
-					bd.Append(s6);
 					bd.Append(RefreshCountDown);
-					bd.Append(s7);
+					bd.Append(s6);
 					if(null != Content) Content.ToString(ref bd);
+					bd.Append(s7);
+					bd.Append(scripts);
 					bd.Append(s8);
-					bd.Append(s9);
-					bd.Append(s10);
-					bd.Append(s11);
-					bd.Append(s12);
-					bd.Append(s13);
-					bd.Append(s14);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -66,32 +60,32 @@ namespace Fanex.Age.UI.Forecast
 		public class FCHDPOU_Content_Block: Block
 		{
 			public FCHDPOU_Content_LimitLeagueList_Block LimitLeagueList = new FCHDPOU_Content_LimitLeagueList_Block();
-			protected static string s15 = "<table class=\"tblRpt\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 600px\"><tr class=\"RptHeader\"><td colspan=\"2\">";
-			protected static string s16{get{return Resources.Lang.lblTeam;}}
-			protected static string s17 = "</td><td colspan=\"3\">";
-			protected static string s18{get{return Resources.Lang.lblHandicapFC;}}
-			protected static string s19 = "</td><td colspan=\"3\">";
-			protected static string s20{get{return Resources.Lang.lblOverUnder;}}
-			protected static string s21 = "</td></tr>";
+			protected static string s9 = "<table class=\"tblRpt\" cellpadding=\"0\" cellspacing=\"1\" border=\"0\" style=\"width: 600px\"><tr class=\"RptHeader\"><td colspan=\"2\">";
+			protected static string s10{get{return Resources.Lang.lblTeam;}}
+			protected static string s11 = "</td><td colspan=\"3\">";
+			protected static string s12{get{return Resources.Lang.lblHandicapFC;}}
+			protected static string s13 = "</td><td colspan=\"3\">";
+			protected static string s14{get{return Resources.Lang.lblOverUnder;}}
+			protected static string s15 = "</td></tr>";
 			public FCHDPOU_Content_RowContent_Block RowContent = new FCHDPOU_Content_RowContent_Block();
 			public FCHDPOU_Content_NotFoundContent_Block NotFoundContent = new FCHDPOU_Content_NotFoundContent_Block();
-			protected static string s22 = "</table>";
+			protected static string s16 = "</table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != LimitLeagueList) LimitLeagueList.ToString(ref bd);
+					bd.Append(s9);
+					bd.Append(s10);
+					bd.Append(s11);
+					bd.Append(s12);
+					bd.Append(s13);
+					bd.Append(s14);
 					bd.Append(s15);
-					bd.Append(s16);
-					bd.Append(s17);
-					bd.Append(s18);
-					bd.Append(s19);
-					bd.Append(s20);
-					bd.Append(s21);
 					if(null != RowContent) RowContent.ToString(ref bd);
 					if(null != NotFoundContent) NotFoundContent.ToString(ref bd);
-					bd.Append(s22);
+					bd.Append(s16);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -99,21 +93,21 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCHDPOU_Content_LimitLeagueList_Block: Block
 		{
-			protected static string s23 = "<div id=\"box_header\" style=\"width: 577px\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"height:35px;\"><tr><td>";
-			protected static string s24{get{return Resources.Lang.league;}}
-			protected static string s25 = "</td><td id=\"selLeague\"><select id='ddlLeague' name='ddlLeague' onchange='GetForecastByLeague();'>";
+			protected static string s17 = "<div id=\"box_header\" style=\"width: 577px\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"1\" style=\"height:35px;\"><tr><td>";
+			protected static string s18{get{return Resources.Lang.league;}}
+			protected static string s19 = "</td><td id=\"selLeague\"><select id='ddlLeague' name='ddlLeague' onchange='GetForecastByLeague();'>";
 			public string LeagueList = "{LeagueList}";
-			protected static string s26 = "</select></td></tr></table></div>";
+			protected static string s20 = "</select></td></tr></table></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s23);
-					bd.Append(s24);
-					bd.Append(s25);
+					bd.Append(s17);
+					bd.Append(s18);
+					bd.Append(s19);
 					bd.Append(LeagueList);
-					bd.Append(s26);
+					bd.Append(s20);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -121,113 +115,113 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCHDPOU_Content_RowContent_Block: Block
 		{
-			protected static string s27 = "<tr align=\"center\"><td class=\"l league\" colspan=\"8\" style=\"padding-left: 20px;\">";
+			protected static string s21 = "<tr align=\"center\"><td class=\"l league\" colspan=\"8\" style=\"padding-left: 20px;\">";
 			public string Home = "{Home}";
-			protected static string s28 = "-vs-";
+			protected static string s22 = "-vs-";
 			public string Away = "{Away}";
-			protected static string s29 = "</td></tr><tr class=\"even_row\" align=\"center\"><td colspan=\"2\" style=\"height: 20px\"><span>";
+			protected static string s23 = "</td></tr><tr class=\"even_row\" align=\"center\"><td colspan=\"2\" style=\"height: 20px\"><span>";
 			public string Time = "{Time}";
-			protected static string s30 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s24 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string OffsetHDPMinus1 = "{OffsetHDPMinus1}";
-			protected static string s31 = "</span></td><td class=\"bold\" width=\"8%\" bgcolor=\"#FFEFDE\"><span>";
+			protected static string s25 = "</span></td><td class=\"bold\" width=\"8%\" bgcolor=\"#FFEFDE\"><span>";
 			public string OffsetHDP = "{OffsetHDP}";
-			protected static string s32 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s26 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string OffsetHDPPlus1 = "{OffsetHDPPlus1}";
-			protected static string s33 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s27 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string OffsetOUPlus2 = "{OffsetOUPlus2}";
-			protected static string s34 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s28 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string OffsetOUPlus1 = "{OffsetOUPlus1}";
-			protected static string s35 = "</span></td><td class=\"bold\" width=\"8%\" bgcolor=\"#FFEFDE\"><span>";
+			protected static string s29 = "</span></td><td class=\"bold\" width=\"8%\" bgcolor=\"#FFEFDE\"><span>";
 			public string OffsetOU = "{OffsetOU}";
-			protected static string s36 = "</span></td></tr><tr class=\"even_row\" align=\"center\"><td width=\"15%\"><font color=\"#38536A\">";
-			protected static string s37{get{return Resources.Lang.fulltime;}}
-			protected static string s38 = "</font></td><td width=\"1%\"><a href=\"javascript:openForecastPopup('";
+			protected static string s30 = "</span></td></tr><tr class=\"even_row\" align=\"center\"><td width=\"15%\"><font color=\"#38536A\">";
+			protected static string s31{get{return Resources.Lang.fulltime;}}
+			protected static string s32 = "</font></td><td width=\"1%\"><a href=\"javascript:openForecastPopup('";
 			public string MatchId = "{MatchId}";
-			protected static string s39 = "','1')\" class=\"btnInfo\"></a></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s33 = "','1')\" class=\"btnInfo\"></a></td><td class=\"bold\" width=\"8%\"><span>";
 			public string HDPM1 = "{HDPM1}";
-			protected static string s40 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s34 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string HDPBase = "{HDPBase}";
-			protected static string s41 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s35 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string HDPP1 = "{HDPP1}";
-			protected static string s42 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s36 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string OUP2 = "{OUP2}";
-			protected static string s43 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s37 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string OUP1 = "{OUP1}";
-			protected static string s44 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s38 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string OUBase = "{OUBase}";
-			protected static string s45 = "</span></td></tr><tr class=\"even_row\" align=\"center\"><td width=\"15%\"><font color=\"#38536A\">";
-			protected static string s46{get{return Resources.Lang.halftime;}}
-			protected static string s47 = "</font></td><td width=\"1%\"><a href=\"javascript:openForecastPopup('";
+			protected static string s39 = "</span></td></tr><tr class=\"even_row\" align=\"center\"><td width=\"15%\"><font color=\"#38536A\">";
+			protected static string s40{get{return Resources.Lang.halftime;}}
+			protected static string s41 = "</font></td><td width=\"1%\"><a href=\"javascript:openForecastPopup('";
 			protected string t0_MatchId;
-			protected static string s48 = "','7')\" class=\"btnInfo\"></a></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s42 = "','7')\" class=\"btnInfo\"></a></td><td class=\"bold\" width=\"8%\"><span>";
 			public string HTHDPM1 = "{HTHDPM1}";
-			protected static string s49 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s43 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string HTHDPBase = "{HTHDPBase}";
-			protected static string s50 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s44 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string HTHDPP1 = "{HTHDPP1}";
-			protected static string s51 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s45 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string HTOUP2 = "{HTOUP2}";
-			protected static string s52 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s46 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string HTOUP1 = "{HTOUP1}";
-			protected static string s53 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
+			protected static string s47 = "</span></td><td class=\"bold\" width=\"8%\"><span>";
 			public string HTOUBase = "{HTOUBase}";
-			protected static string s54 = "</span></td></tr>";
+			protected static string s48 = "</span></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s27);
+					bd.Append(s21);
 					bd.Append(Home);
-					bd.Append(s28);
+					bd.Append(s22);
 					bd.Append(Away);
-					bd.Append(s29);
+					bd.Append(s23);
 					bd.Append(Time);
-					bd.Append(s30);
+					bd.Append(s24);
 					bd.Append(OffsetHDPMinus1);
-					bd.Append(s31);
+					bd.Append(s25);
 					bd.Append(OffsetHDP);
-					bd.Append(s32);
+					bd.Append(s26);
 					bd.Append(OffsetHDPPlus1);
-					bd.Append(s33);
+					bd.Append(s27);
 					bd.Append(OffsetOUPlus2);
-					bd.Append(s34);
+					bd.Append(s28);
 					bd.Append(OffsetOUPlus1);
-					bd.Append(s35);
+					bd.Append(s29);
 					bd.Append(OffsetOU);
-					bd.Append(s36);
-					bd.Append(s37);
-					bd.Append(s38);
+					bd.Append(s30);
+					bd.Append(s31);
+					bd.Append(s32);
 					bd.Append(MatchId);
-					bd.Append(s39);
+					bd.Append(s33);
 					bd.Append(HDPM1);
-					bd.Append(s40);
+					bd.Append(s34);
 					bd.Append(HDPBase);
-					bd.Append(s41);
+					bd.Append(s35);
 					bd.Append(HDPP1);
-					bd.Append(s42);
+					bd.Append(s36);
 					bd.Append(OUP2);
-					bd.Append(s43);
+					bd.Append(s37);
 					bd.Append(OUP1);
-					bd.Append(s44);
+					bd.Append(s38);
 					bd.Append(OUBase);
-					bd.Append(s45);
-					bd.Append(s46);
-					bd.Append(s47);
+					bd.Append(s39);
+					bd.Append(s40);
+					bd.Append(s41);
 					bd.Append(MatchId);
-					bd.Append(s48);
+					bd.Append(s42);
 					bd.Append(HTHDPM1);
-					bd.Append(s49);
+					bd.Append(s43);
 					bd.Append(HTHDPBase);
-					bd.Append(s50);
+					bd.Append(s44);
 					bd.Append(HTHDPP1);
-					bd.Append(s51);
+					bd.Append(s45);
 					bd.Append(HTOUP2);
-					bd.Append(s52);
+					bd.Append(s46);
 					bd.Append(HTOUP1);
-					bd.Append(s53);
+					bd.Append(s47);
 					bd.Append(HTOUBase);
-					bd.Append(s54);
+					bd.Append(s48);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -235,17 +229,17 @@ namespace Fanex.Age.UI.Forecast
 
 		public class FCHDPOU_Content_NotFoundContent_Block: Block
 		{
-			protected static string s55 = "<tr class=\"bg_white\"><td colspan=\"8\" class=\"c nobold\">";
-			protected static string s56{get{return Resources.Lang.noInfo;}}
-			protected static string s57 = "</td></tr>";
+			protected static string s49 = "<tr class=\"bg_white\"><td colspan=\"8\" class=\"c nobold\">";
+			protected static string s50{get{return Resources.Lang.noInfo;}}
+			protected static string s51 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s55);
-					bd.Append(s56);
-					bd.Append(s57);
+					bd.Append(s49);
+					bd.Append(s50);
+					bd.Append(s51);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

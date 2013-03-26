@@ -13,8 +13,8 @@ using Fanex.Age.DTO.BetList.P2P;
 
 namespace Fanex.Age.Business.Interface.BetList.P2P
 {
-    public interface ICommissionDetailBusiness
-    {
-        CommissionDetail GetCommissionDetail(Int64 refNo, string tableId, string tournamentId);
-    }
+    //public interface ICommissionDetailBusiness
+    //{
+    //    CommissionDetail GetCommissionDetail(Int64 refNo, string tableId, string tournamentId);
+    //}
 }

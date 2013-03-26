@@ -24,7 +24,7 @@ namespace Fanex.Agent.UI
 			protected static string s7 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body>";
 			protected static string s8{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
 			public string headerText = "{headerText}";
-			protected static string s9 = "<div id=\"settingContainer\" style=\"width: 936px;\"><div id=\"bettingLimitContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"memberBetLimit.UpdateMemberBetLimit();\">";
+			protected static string s9 = "<div id=\"settingContainer\"><div id=\"bettingLimitContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"memberBetLimit.UpdateMemberBetLimit();\">";
 			public string actionName = "{actionName}";
 			protected static string s10 = "</button></div><script type=\"text/javascript\">var isReloadParent = ";
 			public string isReloadParent = "{isReloadParent}";
@@ -36,17 +36,19 @@ namespace Fanex.Agent.UI
 			protected static string s16{get{return AbsoluteUrl("_Components/ErrorMsg/ErrorMsg.js", TplSettings.Question);}}
 			protected static string s17 = "\" type=\"text/javascript\"></script><script src='../Handlers/GetBetLimit.ashx?targetCustId=";
 			public string TargetAgentId = "{TargetAgentId}";
-			protected static string s18 = "&targetRoleId=1&ugroup=";
+			protected static string s18 = "&targetRoleId=";
+			public string TargetRoleId = "{TargetRoleId}";
+			protected static string s19 = "&ugroup=";
 			public string UGroup = "{UGroup}";
-			protected static string s19 = "'type=\"text/javascript\"></script><script src='../Handlers/Language.ashx' type=\"text/javascript\"></script><script src=\"";
-			protected static string s20{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
-			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s22{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
-			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s24{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BettingLimit.js", TplSettings.Question);}}
-			protected static string s25 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s26{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditBetLimit.js", TplSettings.Question);}}
-			protected static string s27 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s20 = "'type=\"text/javascript\"></script><script src='../Handlers/Language.ashx' type=\"text/javascript\"></script><script src=\"";
+			protected static string s21{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
+			protected static string s22 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s23{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/PTSetting.js", TplSettings.Question);}}
+			protected static string s24 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s25{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/BettingLimit.js", TplSettings.Question);}}
+			protected static string s26 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s27{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/EditBetLimit.js", TplSettings.Question);}}
+			protected static string s28 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -76,8 +78,9 @@ namespace Fanex.Agent.UI
 					bd.Append(s17);
 					bd.Append(TargetAgentId);
 					bd.Append(s18);
-					bd.Append(UGroup);
+					bd.Append(TargetRoleId);
 					bd.Append(s19);
+					bd.Append(UGroup);
 					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);
@@ -86,6 +89,7 @@ namespace Fanex.Agent.UI
 					bd.Append(s25);
 					bd.Append(s26);
 					bd.Append(s27);
+					bd.Append(s28);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

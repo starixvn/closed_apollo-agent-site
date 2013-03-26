@@ -671,7 +671,7 @@ function ChangedIcon(Id, Icon) {
     }
 }
 
-function EditAgentMenuControl(element, popupId, custId, userName) {
+function EditAgentMenuControl(element, popupId, custId, userName, agentLevel) {
     var div = document.getElementById(popupId);
     if (!div) return false;
 
@@ -697,13 +697,13 @@ function EditAgentMenuControl(element, popupId, custId, userName) {
 
     //// Set Attr Edit
     //OpenEditAgentCommission
-    var urlEditAgentCommission = 'OpenEditAgentCommission(' + custId + ',"' + userName + '")';
+    var urlEditAgentCommission = 'OpenEditAgentCommission(' + custId + ',"' + userName + '",' + agentLevel + ')';
     SetAttributeURL('editCommission', urlEditAgentCommission);
 
-    var urlEditAgentBetLimit = 'OpenEditAgentBetLimit(' + custId + ',"' + userName + '")';
+    var urlEditAgentBetLimit = 'OpenEditAgentBetLimit(' + custId + ',"' + userName + '",' + agentLevel + ')';
     SetAttributeURL('editBetSetting', urlEditAgentBetLimit);
 
-    var urlEditAgentPT = 'OpenEditAgentPT(' + custId + ',"' + userName + '")';
+    var urlEditAgentPT = 'OpenEditAgentPT(' + custId + ',"' + userName + '",' + agentLevel + ')';
     SetAttributeURL('editPositionTaking', urlEditAgentPT);
 }
 
@@ -739,8 +739,8 @@ function EditMemberMenuControl(element, popupId, custId, userName, uGroup) {
     var urlEditMemberBetLimit = 'OpenEditMemberBetLimit(' + custId + ',"' + userName + '","' + uGroup + '")';
     SetAttributeURL('editBetSetting', urlEditMemberBetLimit);
 
-    var urlEditMemberPT = 'OpenEditMemberPT(' + custId + ',"' + userName + '","' + uGroup + '")';
-    SetAttributeURL('editPositionTaking', urlEditMemberPT);
+//    var urlEditMemberPT = 'OpenEditMemberPT(' + custId + ',"' + userName + '","' + uGroup + '")';
+//    SetAttributeURL('editPositionTaking', urlEditMemberPT);
 }
 
 function ShowFrmUpdOthers(el, divID, custid, username, actionOn) {

@@ -12,7 +12,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using Fanex.CustSetting.Service;
     using System.Web.SessionState;
     using System.Resources;
-
+    using Fanex.Common;
+    
     public class GetPositionTakingSetting : IHttpHandler, IReadOnlySessionState
     {
 
@@ -34,22 +35,51 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
 
             string currentUserName = userSession.Username;
-            int custId = userSession.CustId;
-            int targetCustId = 0;
-            int targetRoleId = 0;
+            int custId = userSession.AgentId;
+            int roleId = 1;
+            switch (userSession.AgentLevel)
+            {
+                case 0:
+                    roleId = (int)Role.Super;
+                    break;
+                case 1:
+                    roleId = (int)Role.MainShareHolder;
+                    break;
+                case 2:
+                    roleId = (int)Role.ShareHolder;
+                    break;
+                case 3:
+                    roleId = (int)Role.MainAgent;
+                    break;
+            }
+            int targetCustId = Converter.ToInt(context.Request["targetCustId"]);
+            int targetRoleId = 1;
             //int formType = 0;
-            int.TryParse(context.Request["targetCustId"], out targetCustId);
-            int.TryParse(context.Request["targetRoleId"], out targetRoleId);
-            //int.TryParse(context.Request["formType"], out formType);
+
+            switch (Converter.ToInt(context.Request["agentLevel"]))
+            {
+                case 0:
+                    targetRoleId = (int)Role.Super;
+                    break;
+                case 1:
+                    targetRoleId = (int)Role.MainShareHolder;
+                    break;
+                case 2:
+                    targetRoleId = (int)Role.ShareHolder;
+                    break;
+                case 3:
+                    targetRoleId = (int)Role.MainAgent;
+                    break;
+            }
 
             SettingContext settingContext = new SettingContext
             {
                 CustId = custId,
                 TargetCustId = targetCustId,
                 ActorCustId = custId,
-                RoleId = (int)Role.Agent,
+                RoleId = roleId,
                 TargetRoleId = targetRoleId,
-                FormSetting = (int)FormSettingType.BetLimit,
+                FormSetting = (int)FormSettingType.PositionTaking,
                 Language = userSession.Language
             };
 
