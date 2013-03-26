@@ -41,9 +41,9 @@
     <Reference Include="NPOI">
       <HintPath>..\..\apollo-agent\Dependencies\NPOI.dll</HintPath>
     </Reference>
-    <Reference Include="Sunplus.Agent.Utilities, Version=1.0.4734.26154, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sunplus.Agent.Utilities, Version=1.0.4820.16323, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
+      <HintPath>..\Sunplus.Agent.Utilities\bin\Debug\Sunplus.Agent.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
