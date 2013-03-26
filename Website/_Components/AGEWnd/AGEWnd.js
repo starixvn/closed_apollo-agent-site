@@ -46,6 +46,16 @@ AGEWnd.prototype.open = function (url, title, left, top, width, height, windowCs
     this.loaded = true;
 }
 
+AGEWnd.prototype.openDialog = function (url, title, options) {
+    var frame =
+		'<div>' +
+			'<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
+		'</div>';
+
+    this.currentOpenDialog = APOLLO.openDialog(frame, title, options);
+    this.loaded = true;
+}
+
 // [obsolete]
 AGEWnd.prototype.open__ = function (url, titleText, left, top, width, height, windowCss, titleCss, closeBtnCss) {
     if (typeof left == 'undefined' ||

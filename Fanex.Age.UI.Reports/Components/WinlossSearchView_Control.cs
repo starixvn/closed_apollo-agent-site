@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Fanex.Age.UI.Reports;
-using Sunplus.Agent.Model.BL.Definitions;
-using Fanex.Age.UI.Reports.Components;
-using Sunplus.Agent.Utilities;
-using Fanex.Age.UI.Components;
-
-/*
+﻿/*
  * Created 20100716@Don - Winloss Search View Panel
  * Revision:
  * 20121226@Kaden: Modify function RenderControl() when _isHistoryReport is true
@@ -15,6 +7,10 @@ using Fanex.Age.UI.Components;
 
 namespace Fanex.Age.UI.Reports.Components
 {
+    using System;
+    using Fanex.Age.UI.Components;
+    using Sunplus.Agent.Model.BL.Definitions;
+
     public class WinlossSearchView_Control : TplCore.Element.IComponent
     {
         #region Members Variables
@@ -32,8 +28,6 @@ namespace Fanex.Age.UI.Reports.Components
         private Filter_Control _filterControl = null;
 
         #endregion
-
-
 
         #region Properties
 
@@ -63,8 +57,6 @@ namespace Fanex.Age.UI.Reports.Components
 
         #endregion
 
-
-
         #region Constructors
 
         public WinlossSearchView_Control(Filter_Control filterControl, DateTime dateFrom, DateTime dateTo) : this(filterControl, dateFrom, dateTo, true) { }
@@ -78,8 +70,6 @@ namespace Fanex.Age.UI.Reports.Components
         }              
 
         #endregion
-
-
 
         #region Processes
 
@@ -112,8 +102,6 @@ namespace Fanex.Age.UI.Reports.Components
         }
 
         #endregion
-
-
 
         #region Helpers
 
@@ -176,8 +164,6 @@ namespace Fanex.Age.UI.Reports.Components
         }
 
         #endregion
-
-
 
         #region IComponent Members
 

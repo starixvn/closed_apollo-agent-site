@@ -1,15 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Data;
-using System.Web.UI;
-
-using Sunplus.Agent.Utilities;
-
-using Fanex.Age.UI.Components;
-using Fanex.Age.UI.Reports.Common;
-using Fanex.Age.UI.Reports.Components;
-
-/*
+﻿/*
  * Created 20100529@Jacob - Render FCAH page
  * Revision:
  * ?@? - ... 
@@ -17,11 +6,23 @@ using Fanex.Age.UI.Reports.Components;
  */
 namespace Fanex.Age.UI.Reports.MatchWinloss
 {
+    using System;
+    using System.Data;
+    using System.Text;
+    using System.Web.UI;
+    using Fanex.Age.UI.Components;
+    using Fanex.Age.UI.Reports.Common;
+    using Fanex.Age.UI.Reports.Components;
+    using Sunplus.Agent.Utilities;
 
     public partial class MatchWinlossDetail_Page : WinlossReports_Page
     {
-        string leagueIds = string.Empty, sportIds = string.Empty, leagueFull = string.Empty;
-        string filterLeagueId = "0", filterRace = "0";
+        string leagueIds = string.Empty;
+        string sportIds = string.Empty;
+        string leagueFull = string.Empty;
+        string filterLeagueId = "0";
+        string filterRace = "0";
+
         DataTable reportData = null;
 
         protected override void InitCheckBox()
@@ -69,7 +70,7 @@ namespace Fanex.Age.UI.Reports.MatchWinloss
                     SelLeague_ContentLeague_ColLeague_Block ColLeague = new SelLeague_ContentLeague_ColLeague_Block();
                     ColLeague.League = "All";
                     ColLeague.LeagueName = "<b>" + Resources.Lang.all + "</b>";
-                    ColLeague.isChecked = (arrLeagues.Length == arrLeagueFull.Length ? "checked" : "");
+                    ColLeague.isChecked = (arrLeagues.Length == arrLeagueFull.Length ? "checked" : string.Empty);
                     ColLeague.checkAll = "onclick='CheckSelAllLeague()'";
                     strLeagueSel.Append(ColLeague);
                 }
@@ -833,7 +834,5 @@ namespace Fanex.Age.UI.Reports.MatchWinloss
             }
         }
         #endregion
-
     }
-
 }

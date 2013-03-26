@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>{static:Resources.Lang.matchwinloss}</title>
-    <link href="../Resources/Reports.less" rel="stylesheet" type="text/css" />
+    {load:Fanex.Age.UI.Reports.Styles_Template styles = new Fanex.Age.UI.Reports.Styles_Template()}
 </head>
 <body>
     <form id="frmmain" method="get" action="MatchWinloss.aspx">
@@ -29,7 +29,7 @@
                                 <thead>
                                     <tr class="RptTitle" id="rowTitle">
                                         <td colspan="6" id="content_title">
-                                            {static:Resources.Lang.matchwinloss}&nbsp;{DateFrom}--&gt;{DateTo}
+                                            {static:Resources.Lang.matchwinloss}&nbsp;{DateFrom} &rarr; {DateTo}
                                         </td>
                                     </tr>
                                     <tr>
@@ -108,10 +108,6 @@
         </table>
     </div>
     </form>
-
-    <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
-
-    <script src="../Resources/Reports.js" type="text/javascript"></script>
-
+    {load:Fanex.Age.UI.Reports.Scripts_Template scripts = new Fanex.Age.UI.Reports.Scripts_Template()}
 </body>
 </html>
