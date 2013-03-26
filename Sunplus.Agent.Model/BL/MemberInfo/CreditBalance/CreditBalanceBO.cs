@@ -11,8 +11,9 @@ namespace Sunplus.Agent.Model.BL.MemberInfo.CreditBalance
     using System.Data;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.DL.MemberInfo.CreditBalance;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class CreditBalanceBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class CreditBalanceBO : BOBase
     {
         private static readonly CreditBalanceDAO dao = new CreditBalanceDAO();
 

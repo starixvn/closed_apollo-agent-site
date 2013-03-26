@@ -10,8 +10,9 @@
 namespace Sunplus.Agent.Model.BL.Statistic
 {
     using Sunplus.Agent.Model.DL.Statistic;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class StatisticBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class StatisticBO : BOBase
     {
         public StatisticBO(string netSessionId)
             : base(netSessionId)

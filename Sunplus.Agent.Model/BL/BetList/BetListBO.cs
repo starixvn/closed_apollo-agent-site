@@ -11,11 +11,12 @@ namespace Sunplus.Agent.Model.BL.BetList
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data.DNAide;
-    using Reports;
+    using Sunplus.Agent.Model.BL.Base;
     using Sunplus.Agent.Model.BL.Definitions;
+    using Sunplus.Agent.Model.BL.Reports;
     using Sunplus.Agent.Model.DL.BetList;
 
-    public class BetListBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class BetListBO : BOBase
     {
         public BetListBO(string netSessionId)
             : base(netSessionId)

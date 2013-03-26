@@ -10,7 +10,6 @@
 namespace Sunplus.Agent.Model.BL.MemberInfo.TransferCondition
 {
     using System.Collections;
-    using System.Data;
     using Sunplus.Agent.Model.BL.Base;
     using Sunplus.Agent.Model.DL.MemberInfo.TransferCondition;
 

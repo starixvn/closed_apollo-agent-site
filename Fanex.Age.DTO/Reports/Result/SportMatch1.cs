@@ -8,7 +8,6 @@
 namespace Fanex.Age.DTO.Reports.Result
 {
     using System;
-    using System.Collections.Generic;
 
     public abstract class SportMatch1
     {

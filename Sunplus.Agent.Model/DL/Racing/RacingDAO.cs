@@ -10,8 +10,9 @@ namespace Sunplus.Agent.Model.DL.Racing
     using System.Collections;
     using System.Data;
     using Fanex.Data.DNAide;
+    using Sunplus.Agent.Model.DL.Base;
 
-    public class RacingDAO : Sunplus.Agent.Model.DL.Base.DAOBase
+    public class RacingDAO : DAOBase
     {
         /// <summary>
         /// Get currencies which allow to play Horse racing.

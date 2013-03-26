@@ -7,9 +7,6 @@
 
 namespace Fanex.Age.DTO.Reports.Commission
 {
-    using System;
-    using System.Collections.Generic;
-
     public class HRCommissionItem
     {
         public int CustId { get; set; }

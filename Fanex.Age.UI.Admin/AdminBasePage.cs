@@ -4,6 +4,7 @@
     using System.Data;
     using System.IO;
     using System.Resources;
+    using Fanex.Age.UI;
     using Sunplus.Agent.Model.BL.Admin;
 
     public abstract class AdminBasePage : TplPage

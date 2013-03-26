@@ -8,11 +8,9 @@ namespace Fanex.BetList.Age.DTO
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Fanex.BetList.Core.Entities;
     using System.Data;
     using System.Reflection;
+    using Fanex.BetList.Core.Entities;
 
     /// <summary>
     /// TODO: Update summary.

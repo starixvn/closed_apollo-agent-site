@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Fanex.Age.UI;
-using TplCore.Element;
+﻿using TplCore.Element;
 /// <summary>
 /// Summary description for AnalysisReportFilter
 /// </summary>

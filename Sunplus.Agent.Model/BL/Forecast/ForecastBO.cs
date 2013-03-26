@@ -13,8 +13,9 @@ namespace Sunplus.Agent.Model.BL.Forecast
     using Fanex.Caching;
     using Sunplus.Agent.Model.BL.Cache;
     using Sunplus.Agent.Model.DL.Forecast;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class ForecastBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class ForecastBO : BOBase
     {
         #region Variable
 

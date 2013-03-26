@@ -1,10 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Collections;
+﻿using System.Collections;
 
 /*
  * Created 20091211@Lee - Base UI interface

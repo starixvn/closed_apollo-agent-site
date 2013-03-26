@@ -9,8 +9,9 @@ namespace Sunplus.Agent.Model.DL.TotalBets
 {
     using System.Collections;
     using System.Data;
+    using Sunplus.Agent.Model.DL.Base;
 
-    public class TotalBetsDAO : Sunplus.Agent.Model.DL.Base.DAOBase
+    public class TotalBetsDAO : DAOBase
     {
         #region TotalGoal
 

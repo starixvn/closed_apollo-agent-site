@@ -9,8 +9,9 @@ namespace Sunplus.Agent.Model.BL.MemberInfo.PositionTakingList
 {
     using System.Data;
     using Sunplus.Agent.Model.DL.MemberInfo.PositionTakingList;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class PositionTakingListBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class PositionTakingListBO : BOBase
     {
         private static readonly PositionTakingListDAO positionTakingListDAO = new PositionTakingListDAO();
 
