@@ -33,7 +33,7 @@ namespace Fanex.Agent.UI
 			protected static string s14{get{return AbsoluteUrl("_AccountInfo/Resources/autocomplete.js", TplSettings.Question);}}
 			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s16{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js", TplSettings.Question);}}
-			protected static string s17 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s17 = "\" type=\"text/javascript\"></script><!--<script src=\"";
 			protected static string s18{get{return AbsoluteUrl("_AccountInfo/Resources/Racing.js", TplSettings.Question);}}
 			protected static string s19 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s20{get{return AbsoluteUrl("_AccountInfo/Resources/NumberGame.js", TplSettings.Question);}}
@@ -45,7 +45,7 @@ namespace Fanex.Agent.UI
 			protected static string s26{get{return AbsoluteUrl("_AccountInfo/Resources/VirtualSports.js", TplSettings.Question);}}
 			protected static string s27 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s28{get{return AbsoluteUrl("_AccountInfo/Resources/DoubleCommission.js", TplSettings.Question);}}
-			protected static string s29 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s29 = "\" type=\"text/javascript\"></script>--></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
