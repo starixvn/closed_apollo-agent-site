@@ -1,8 +1,8 @@
 ﻿html
 {
 	font-family: Tahoma,Arial,helvetica,sans-serif;
-	font-size: 11px;
-	color: #171717;
+	font-size: @fontSize;
+	color: @textColor;
 	margin: 0px;
 	text-align: left;
 	cursor: default;
