@@ -45,7 +45,7 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
         string root = Request.Params["root"];
         int parentID = 0;
 
-        IAccountInfoService service = new AccountInfoService();
+        IAgentService service = new AgentService();
         AgentDownlineCriteria criteria = null;
 
 

@@ -9,12 +9,9 @@
 
 namespace Apollo.Age.Services.Interface
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Fanex.NAP.Framework.Data;    
     using Apollo.Age.DTO.Reports;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
