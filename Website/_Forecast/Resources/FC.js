@@ -76,19 +76,19 @@ function GetForecastByLeague() {
     }
 }
 
-function initFC() {
+// [obsolete]
+//function initFC() {
 
-    var ageWnd = parent.ageWnd;
-    if (typeof ageWnd == 'undefined') {
-        return;
-    }
-    var h = 232;
-    var w = 600;
+//    var ageWnd = parent.ageWnd;
+//    if (typeof ageWnd == 'undefined') {
+//        return;
+//    }
+//    var h = 232;
+//    var w = 600;
 
-    if (ageWnd.loaded) {
-        ageWnd.setRect(ageWnd.left, ageWnd.top, w, h);
-    }
+//    if (ageWnd.loaded) {
+//        ageWnd.setRect(ageWnd.left, ageWnd.top, w, h);
+//    }
 
-}
-
-RegisterStartUp('initFC()');
+//}
+//RegisterStartUp('initFC()');

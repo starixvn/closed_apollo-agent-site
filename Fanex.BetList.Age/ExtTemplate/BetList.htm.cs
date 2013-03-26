@@ -23,8 +23,8 @@ namespace Fanex.BetList.Age
 			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
 			protected static string s7 = "\" title=\"Excel\" class=\"hand\" /></div></div><div id=\"spData\">";
 			public string content = "{content}";
-			protected static string s8 = "<div class=\"detail-popup\" id=\"divDetail\"></div></div><script src=\"";
-			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
+			protected static string s8 = "<div class=\"detail-popup\" id=\"dialog-details\"></div></div><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
 			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
 			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
