@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BoxLiveBallDeadBall.htm" />
+    <Content Include="Scripts.htm" />
+    <Content Include="Styles.htm" />
     <Content Include="FC1X2.htm" />
     <Content Include="FCAH.htm" />
     <Content Include="FCHDPOU.htm" />
@@ -76,6 +78,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripts.htm.cs" />
+    <Compile Include="Styles.htm.cs" />
     <Content Include="App_Code\TplCore\FCAH.htm.cs" />
     <Compile Include="App_GlobalResources\Lang.designer.cs">
       <DependentUpon>Lang.resx</DependentUpon>

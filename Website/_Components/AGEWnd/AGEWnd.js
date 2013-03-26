@@ -35,17 +35,15 @@ AGEWnd = function () {
 }
 
 AGEWnd.prototype.open = function (url, title, left, top, width, height, windowCss, titleCss, closeBtnCss) {
-//    var iframe = AGEWnd_createIframe();
-//    iframe.src = url;
-
     var frame =
         '<div>' +
-            '<iframe width="100%" height="100%" frameborder="0" border="0" src="' + url + '"></iframe>' +
+            '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
         '</div>';
 
     APOLLO.openDialog(frame, title, { width: width + 30, height: height + 50 });
 }
 
+// [obsolete]
 AGEWnd.prototype.open__ = function (url, titleText, left, top, width, height, windowCss, titleCss, closeBtnCss) {
     if (typeof left == 'undefined' ||
 		typeof top == 'undefined' ||
