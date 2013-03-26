@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fanex.Age.UI">
-      <HintPath>..\Dependencies\Fanex.Age.UI.dll</HintPath>
+      <HintPath>..\Fanex.Age.UI\bin\Debug\Fanex.Age.UI.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Age.UI.Components">
       <HintPath>..\Dependencies\Fanex.Age.UI.Components.dll</HintPath>

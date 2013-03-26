@@ -16,11 +16,13 @@ namespace Apollo.Age.Repositories.Interface
     using System.Text;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
+    using Apollo.Age.DTO.Accounts;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public interface IAgentRepository : IRepository<Agent>
     {
+        IEnumerable<TreeViewNodeDTO> GetTreeViewNode(ICriteria criteria);
     }
 }

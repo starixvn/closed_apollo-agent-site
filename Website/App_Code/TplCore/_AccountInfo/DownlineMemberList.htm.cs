@@ -18,7 +18,7 @@ namespace Fanex.Agent.UI
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/styles.css", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("_Components/Paging/Paging.css", TplSettings.Question);}}
+			protected static string s5{get{return AbsoluteUrl("_Components/Paging/Paging.less", TplSettings.Question);}}
 			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body class=\"member-list\"><ul id=\"members-list\" class=\"member-tab-list\">";
 			public DownlineMemberList_Content_Block Content = new DownlineMemberList_Content_Block();
 			public DownlineMemberList_NoInfoBlock_Block NoInfoBlock = new DownlineMemberList_NoInfoBlock_Block();

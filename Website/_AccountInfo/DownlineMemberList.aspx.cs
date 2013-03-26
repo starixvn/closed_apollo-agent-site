@@ -1,8 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿// --------------------------------------------------------------------------
+// <copyright file="DownlineMemberList.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.26">Created</change>
+// </history>
+
+using System.Collections.Generic;
 using System.Web.UI;
 using Apollo.Age.Criterias.Accounts;
-using Apollo.Age.DTO.Accounts;
+using Apollo.Age.Entities;
 using Apollo.Age.Services.Impl;
 using Apollo.Age.Services.Interface;
 using Fanex.Age.UI.Components;
@@ -14,7 +22,7 @@ public partial class _AccountInfo_DownlineMemberList : Fanex.Age.UI.TplPage
     private int pageSize = 50;
     private int pageIndex = 1;
     private int totalPage = 1;
-    private List<CustomerDownline> membersList = null;
+    private List<Member> membersList = null;
 
     public override void ProcessRequest(ref System.Collections.Hashtable p)
     {
@@ -30,7 +38,7 @@ public partial class _AccountInfo_DownlineMemberList : Fanex.Age.UI.TplPage
 
     public override object InvokeData(System.Collections.Hashtable p)
     {
-        IAccountInfoService service = new AccountInfoService();
+        IMemberService service = new MemberService();
 
         MemberDownlineCriteria criteria = new MemberDownlineCriteria()
         {
@@ -74,10 +82,10 @@ public partial class _AccountInfo_DownlineMemberList : Fanex.Age.UI.TplPage
         writer.Write(tpl);
     }
 
-    private void RenderContent(DownlineMemberList_Content_Block tplContent, CustomerDownline downLine)
+    private void RenderContent(DownlineMemberList_Content_Block tplContent, Member downLine)
     {
         tplContent.CustID = downLine.Id.ToString();
-        tplContent.UserName = downLine.UserName;
-        tplContent.MemberUserName = downLine.UserName;
+        tplContent.UserName = downLine.Username;
+        tplContent.MemberUserName = downLine.Username;
     }
 }

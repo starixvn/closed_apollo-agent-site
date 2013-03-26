@@ -1,4 +1,13 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------
+// <copyright file="DownLineTreeView.aspx.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.3.26">Created</change>
+// </history>
+
+using System;
 using Apollo.Age.DTO.Accounts;
 using Fanex.Agent.UI._AccountInfo;
 using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
