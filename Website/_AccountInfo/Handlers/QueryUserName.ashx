@@ -45,7 +45,7 @@ namespace Sunplus.Agent.UI._AccountInfo
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
             this.query = Request.QueryString["query"];
-            this.isMember = Request.QueryString["isMember"] == "0" ? false : true;
+            this.isMember = Request.QueryString["isMember"] == "1";
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
