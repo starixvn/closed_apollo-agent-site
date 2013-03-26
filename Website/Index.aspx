@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="Index.aspx.cs"
-    Inherits="Index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="Index.aspx.cs" Inherits="Index" %>
 <!DOCTYPE HTML>
 <html>
 <head>

@@ -1,8 +1,9 @@
 ﻿
+var APOLLO = {}; // Global namespace for common functions
+
 if (typeof jQuery != 'undefined') {
     // Functions in this namespace require jquery and jquery-ui
-    // Global namespace for common functions
-    window.APOLLO = function ($) {
+    APOLLO = function ($) {
         return {
             dialogOpt: {
                 position: { my: "top+20%", at: "center top", of: window },
@@ -12,6 +13,8 @@ if (typeof jQuery != 'undefined') {
             openDialog: function (target, title, options) {
                 options = options || {};
                 if (title) options.title = title;
+
+                if (target instanceof jQuery == false) target = $(target);
 
                 return target.dialog($.extend({}, APOLLO.dialogOpt, options));
             },

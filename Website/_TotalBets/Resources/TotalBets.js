@@ -19,9 +19,11 @@ function doViewBetListNewGames(matchId, betType, type, islive, betteam) {
 }
 
 function openForecast(matchId, betType) {
-    ageWnd.open(age.GetBaseUrl() + '_Forecast/FCAH.aspx?matchId=' + matchId + '&b=' + betType, '', 70, 50, 600, 210);
+    var url = age.GetBaseUrl() + '_Forecast/FCAH.aspx?matchId=' + matchId + '&b=' + betType;
+    ageWnd.open(url, '', 70, 50, 600, 210);
 }
 
 function openForecast1X2(matchId, betType) {
-    ageWnd.open(age.GetBaseUrl() + '_Forecast/FC1X2.aspx?is_popup=1&matchId=' + matchId + '&betType=' + betType, '', 70, 50, 600, 210);
+    var url = age.GetBaseUrl() + '_Forecast/FC1X2.aspx?is_popup=1&matchId=' + matchId + '&betType=' + betType;
+    ageWnd.open(url, '', 70, 50, 600, 210);
 }

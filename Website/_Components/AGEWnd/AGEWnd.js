@@ -34,12 +34,24 @@ AGEWnd = function () {
     this.blankURL = this.baseURL + this.blank;
 }
 
-AGEWnd.prototype.open = function (url, titleText, left, top, width, height, windowCss, titleCss, closeBtnCss) {
+AGEWnd.prototype.open = function (url, title, left, top, width, height, windowCss, titleCss, closeBtnCss) {
+//    var iframe = AGEWnd_createIframe();
+//    iframe.src = url;
+
+    var frame =
+        '<div>' +
+            '<iframe width="100%" height="100%" frameborder="0" border="0" src="' + url + '"></iframe>' +
+        '</div>';
+
+    APOLLO.openDialog(frame, title, { width: width + 30, height: height + 50 });
+}
+
+AGEWnd.prototype.open__ = function (url, titleText, left, top, width, height, windowCss, titleCss, closeBtnCss) {
     if (typeof left == 'undefined' ||
-        typeof top == 'undefined' ||
-        typeof width == 'undefined' ||
-        typeof height == 'undefined' ||
-        typeof url == 'undefined') {
+		typeof top == 'undefined' ||
+		typeof width == 'undefined' ||
+		typeof height == 'undefined' ||
+		typeof url == 'undefined') {
         alert('ageWnd.open(url, titleText, left, top, width, height, windowCss, titleCss, closeBtnCss)\r\n\r\n\   - Invalid parameters  ');
         return false;
     }
@@ -138,33 +150,31 @@ AGEWnd.prototype.open = function (url, titleText, left, top, width, height, wind
 }
 
 // Event on closing
-AGEWnd.prototype.onClosing = function(){return true;};
+AGEWnd.prototype.onClosing = function () { return true; };
 
-AGEWnd.prototype.close = function(force)
-{
-    if(!force)
-    {
+AGEWnd.prototype.close = function (force) {
+    if (!force) {
         var bContinue = this.onClosing();
-        if(!bContinue) return false;
+        if (!bContinue) return false;
     }
-    
+
     // un-listen event
-    AGEWnd_removeEvent(this.is_ie?this.iframe.document:this.iframe.contentDocument, "keydown", AGEWnd_keydown);
+    AGEWnd_removeEvent(this.is_ie ? this.iframe.document : this.iframe.contentDocument, "keydown", AGEWnd_keydown);
     AGEWnd_removeEvent(window, "resize", AGEWnd_calculateViewport);
-    
+
     this.url = null;
     this.loaded = false;
     this.element.style.display = 'none';
     this.viewport = null;
 
     if (this.iframe.src != this.blankURL) this.iframe.src = this.blankURL;
-    
+
     // Reset event
-    this.onClosing = function(){return true;};
-    
+    this.onClosing = function () { return true; };
+
 }
 
-AGEWnd.prototype.setRect = function(left, top, width, height) {
+AGEWnd.prototype.setRect = function (left, top, width, height) {
     if (!this.createdElement) return false;
 
     var scrOfX = 0;
@@ -189,8 +199,7 @@ AGEWnd.prototype.setRect = function(left, top, width, height) {
     this.scrOfX = scrOfX;
     this.scrOfY = scrOfY;
 
-    if(left != null && top != null && !this.loaded)
-    {
+    if (left != null && top != null && !this.loaded) {
         left += scrOfX;
         top += scrOfY;
         this.left = left;
@@ -199,16 +208,15 @@ AGEWnd.prototype.setRect = function(left, top, width, height) {
 
     this.width = (width < 30) ? 30 : width;
     this.height = (height < 30) ? 30 : height;
-    this.height = (height > (window.innerHeight - 30)) ? (window.innerHeight - 30) : height;    
+    this.height = (height > (window.innerHeight - 30)) ? (window.innerHeight - 30) : height;
 
     this.calculateViewport();
 
-    if(left != null && top != null)
-    {
+    if (left != null && top != null) {
         this.mask.style.left = this.left + "px";
         this.mask.style.top = this.top + "px";
     }
-    
+
     this.mask.style.width = this.mask.firstChild.style.width = this.width + "px";
     this.mask.style.height = this.mask.firstChild.style.height = this.height + "px";
 
@@ -229,82 +237,76 @@ AGEWnd.prototype.setRect = function(left, top, width, height) {
     return true;
 }
 
-AGEWnd.prototype.calculateViewport = function()
-{
+AGEWnd.prototype.calculateViewport = function () {
     this.viewport = [];
-    if(!this.is_ie)
-    {
+    if (!this.is_ie) {
         // in standards compliant mode (i.e. with a valid doctype as the first line in the document)
         if (typeof document.documentElement != 'undefined'
-         && typeof document.documentElement.scrollWidth !=
-         'undefined' && document.documentElement.scrollWidth != 0)
-        {
-           this.viewport.width = document.documentElement.scrollWidth;
-           this.viewport.height = document.documentElement.scrollHeight;
-        }        
+		 && typeof document.documentElement.scrollWidth !=
+		 'undefined' && document.documentElement.scrollWidth != 0) {
+            this.viewport.width = document.documentElement.scrollWidth;
+            this.viewport.height = document.documentElement.scrollHeight;
+        }
 
         this.viewport.width = Math.max(this.viewport.width, (Math.max(document.body.scrollWidth, document.body.clientWidth)));
         this.viewport.height = Math.max(this.viewport.height, (Math.max(document.body.scrollHeight, document.body.clientHeight)));
     }
-    else
-    {
+    else {
         // in standards compliant mode (i.e. with a valid doctype as the first line in the document)
         if (typeof document.documentElement != 'undefined'
-         && typeof document.documentElement.clientWidth !=
-         'undefined' && document.documentElement.clientWidth != 0)
-        {
-           this.viewport.width = document.documentElement.clientWidth;
-           this.viewport.height = document.documentElement.clientHeight;
+		 && typeof document.documentElement.clientWidth !=
+		 'undefined' && document.documentElement.clientWidth != 0) {
+            this.viewport.width = document.documentElement.clientWidth;
+            this.viewport.height = document.documentElement.clientHeight;
         }
         // older versions of IE
-        else
-        {
-           this.viewport.width = document.getElementsByTagName('body')[0].clientWidth;
-           this.viewport.height = document.getElementsByTagName('body')[0].clientHeight;
+        else {
+            this.viewport.width = document.getElementsByTagName('body')[0].clientWidth;
+            this.viewport.height = document.getElementsByTagName('body')[0].clientHeight;
         }
 
         this.viewport.width = Math.max(document.body.scrollWidth, this.viewport.width);
         this.viewport.height = Math.max(document.body.scrollHeight, this.viewport.height);
     }
-    
+
     this.maxLeft = this.viewport.width - this.width - 6;
     this.maxTop = this.viewport.height - this.height - 6;
 }
 
 // utility functions
 function AGEWnd_addEvent(el, evname, func) {
-	if (el.attachEvent) { // IE
-		el.attachEvent("on" + evname, func);
-	} else if (el.addEventListener) { // Gecko / W3C
-		el.addEventListener(evname, func, true);
-	} else { // Opera (or old browsers)
-		el["on" + evname] = func;
-	}
+    if (el.attachEvent) { // IE
+        el.attachEvent("on" + evname, func);
+    } else if (el.addEventListener) { // Gecko / W3C
+        el.addEventListener(evname, func, true);
+    } else { // Opera (or old browsers)
+        el["on" + evname] = func;
+    }
 }
 
 function AGEWnd_removeEvent(el, evname, func) {
-	if (el.detachEvent) { // IE
-		el.detachEvent("on" + evname, func);
-	} else if (el.removeEventListener) { // Gecko / W3C
-		el.removeEventListener(evname, func, true);
-	} else { // Opera (or old browsers)
-		el["on" + evname] = null;
-	}
+    if (el.detachEvent) { // IE
+        el.detachEvent("on" + evname, func);
+    } else if (el.removeEventListener) { // Gecko / W3C
+        el.removeEventListener(evname, func, true);
+    } else { // Opera (or old browsers)
+        el["on" + evname] = null;
+    }
 }
 
 function AGEWnd_createElement(type, parent) {
-	var el = null;
-	if (document.createElementNS) {
-		// use the XHTML namespace; IE won't normally get here unless
-		// _they_ "fix" the DOM2 implementation.
-		el = document.createElementNS("http://www.w3.org/1999/xhtml", type);
-	} else {
-		el = document.createElement(type);
-	}
-	if (typeof parent != "undefined") {
-		parent.appendChild(el);
-	}
-	return el;
+    var el = null;
+    if (document.createElementNS) {
+        // use the XHTML namespace; IE won't normally get here unless
+        // _they_ "fix" the DOM2 implementation.
+        el = document.createElementNS("http://www.w3.org/1999/xhtml", type);
+    } else {
+        el = document.createElement(type);
+    }
+    if (typeof parent != "undefined") {
+        parent.appendChild(el);
+    }
+    return el;
 }
 
 // static property
@@ -316,152 +318,149 @@ AGEWnd_preWidth = 0;
 AGEWnd_preHeight = 0;
 
 // static functions, were called in event
-AGEWnd_calculateViewport = function()
-{
+AGEWnd_calculateViewport = function () {
     var wnd = AGEWnd._W;
     wnd.calculateViewport();
 }
 
-AGEWnd_createIframe = function()
-{
-    var iframe = document.createElement("iframe"); iframe.setAttribute("border", 0); iframe.className = "AGEWndNoPadding";
-    iframe.setAttribute("frameborder", 0); iframe.style.backgroundColor = "#ffffff";
-    iframe.width = "100%"; iframe.height = "100%";
+AGEWnd_createIframe = function () {
+    var iframe = document.createElement("iframe");
+
+    iframe.setAttribute("border", 0);
+    iframe.className = "AGEWndNoPadding";
+    iframe.setAttribute("frameborder", 0);
+    iframe.style.backgroundColor = "#fff";
+    iframe.width = "100%";
+    iframe.height = "100%";
+
     return iframe;
 }
 
-function AGEWnd_keydown(ev)
-{
+function AGEWnd_keydown(ev) {
     var wnd = AGEWnd._W;
-    if(!wnd.loaded) return true;
-    
-	if (wnd.dragging) {
-	    wnd.mask.style.display = "none";
-	    wnd.dragging = false;
-		return false;
-	}
+    if (!wnd.loaded) return true;
 
-	if (!ev) {
-	    ev = window.event;
+    if (wnd.dragging) {
+        wnd.mask.style.display = "none";
+        wnd.dragging = false;
+        return false;
     }
-    
-    if (ev.which == 27 || ev.keyCode == 27) wnd.close(); 
+
+    if (!ev) {
+        ev = window.event;
+    }
+
+    if (ev.which == 27 || ev.keyCode == 27) wnd.close();
 
     return true;
 }
 
-function AGEWnd_dragStart(ev) 
-{    
+function AGEWnd_dragStart(ev) {
     var wnd = AGEWnd._W;
     var leftMouse = 1;
-    if(wnd.is_ie) {
+    if (wnd.is_ie) {
         leftMouse = window.event.button;
     }
     else {
         leftMouse = ev.which;
     }
-    
-    if(leftMouse != 1) return false;
-    
+
+    if (leftMouse != 1) return false;
+
     wnd.mask.style.display = "block";
     wnd.mask.style.left = wnd.element.style.left;
     wnd.mask.style.top = wnd.element.style.top;
-    
-	if (wnd.dragging) {
-		return false;
-	}
-	wnd.dragging = true;
-	
-	var posX;
-	var posY;
-	if (wnd.is_ie) {
-		posY = window.event.clientY + document.body.scrollTop;
-		posX = window.event.clientX + document.body.scrollLeft;
-	} else {
-		posY = ev.clientY + window.scrollY;
-		posX = ev.clientX + window.scrollX;
-	}
-	
-	var st = wnd.element.style;
-	wnd.xOffs = posX - parseInt(st.left);
-	wnd.yOffs = posY - parseInt(st.top);
 
-	AGEWnd_addEvent(document, "mousemove", AGEWnd_calDragIt);
-	AGEWnd_addEvent(document, "mouseover", AGEWnd_stopEvent);
-	AGEWnd_addEvent(document, "mouseup", AGEWnd_calDragEnd);
-	
-	AGEWnd_stopEvent(ev);
+    if (wnd.dragging) {
+        return false;
+    }
+    wnd.dragging = true;
+
+    var posX;
+    var posY;
+    if (wnd.is_ie) {
+        posY = window.event.clientY + document.body.scrollTop;
+        posX = window.event.clientX + document.body.scrollLeft;
+    } else {
+        posY = ev.clientY + window.scrollY;
+        posX = ev.clientX + window.scrollX;
+    }
+
+    var st = wnd.element.style;
+    wnd.xOffs = posX - parseInt(st.left);
+    wnd.yOffs = posY - parseInt(st.top);
+
+    AGEWnd_addEvent(document, "mousemove", AGEWnd_calDragIt);
+    AGEWnd_addEvent(document, "mouseover", AGEWnd_stopEvent);
+    AGEWnd_addEvent(document, "mouseup", AGEWnd_calDragEnd);
+
+    AGEWnd_stopEvent(ev);
 };
 
-function AGEWnd_calDragIt(ev) 
-{
+function AGEWnd_calDragIt(ev) {
     var wnd = AGEWnd._W;
-	if (!wnd.dragging) {
-		return false;
-	}
-	var posX;
-	var posY;
-	if (wnd.is_ie) {
-		posY = window.event.clientY + document.body.scrollTop;
-		posX = window.event.clientX + document.body.scrollLeft;
-	} else {
-		posX = ev.pageX;
-		posY = ev.pageY;
-	}
+    if (!wnd.dragging) {
+        return false;
+    }
+    var posX;
+    var posY;
+    if (wnd.is_ie) {
+        posY = window.event.clientY + document.body.scrollTop;
+        posX = window.event.clientX + document.body.scrollLeft;
+    } else {
+        posX = ev.pageX;
+        posY = ev.pageY;
+    }
 
     var left = (posX - wnd.xOffs);
     var top = (posY - wnd.yOffs);
-    
+
     // prevent horizontal move verflow width
-    if(wnd.width < wnd.viewport.width - 6)
-    {
-        if(left <= 1) left = 1; if(left >= wnd.maxLeft) left = wnd.maxLeft;
+    if (wnd.width < wnd.viewport.width - 6) {
+        if (left <= 1) left = 1; if (left >= wnd.maxLeft) left = wnd.maxLeft;
         wnd.mask.style.left = left + "px";
     }
-    
+
     // prevent vertical move overflow height
-    if(wnd.height < wnd.viewport.height)
-    {
-        if(top <= 1) top = 1; if(top >= wnd.maxTop) top = wnd.maxTop;
+    if (wnd.height < wnd.viewport.height) {
+        if (top <= 1) top = 1; if (top >= wnd.maxTop) top = wnd.maxTop;
         wnd.mask.style.top = top + "px";
     }
 };
 
-AGEWnd_calDragEnd = function(ev) 
-{
+AGEWnd_calDragEnd = function (ev) {
     var wnd = AGEWnd._W;
     wnd.mask.style.display = "none";
-    
-	if (!wnd.dragging) {
-		return false;
-	}
-	
-	wnd.dragging = false;
-	
-	wnd.left = AGEWnd_preLeft = parseInt(wnd.mask.style.left);
-	wnd.top = AGEWnd_preTop = parseInt(wnd.mask.style.top);
-	
-	wnd.element.style.left = wnd.mask.style.left;
-	wnd.element.style.top = wnd.mask.style.top;
-	
+
+    if (!wnd.dragging) {
+        return false;
+    }
+
+    wnd.dragging = false;
+
+    wnd.left = AGEWnd_preLeft = parseInt(wnd.mask.style.left);
+    wnd.top = AGEWnd_preTop = parseInt(wnd.mask.style.top);
+
+    wnd.element.style.left = wnd.mask.style.left;
+    wnd.element.style.top = wnd.mask.style.top;
+
     AGEWnd_removeEvent(document, "mousemove", AGEWnd_calDragIt);
     AGEWnd_removeEvent(document, "mouseover", AGEWnd_stopEvent);
     AGEWnd_removeEvent(document, "mouseup", AGEWnd_calDragEnd);
 };
 
-AGEWnd_stopEvent = function(ev) 
-{
+AGEWnd_stopEvent = function (ev) {
     var wnd = AGEWnd._W;
-	if (wnd.is_ie) {
-		window.event.cancelBubble = true;
-		window.event.returnValue = false;
-	} else {
-		ev.preventDefault();
-		ev.stopPropagation();
-	}
-	return false;
+    if (wnd.is_ie) {
+        window.event.cancelBubble = true;
+        window.event.returnValue = false;
+    } else {
+        ev.preventDefault();
+        ev.stopPropagation();
+    }
+    return false;
 };
 
 // init object
 var ageWnd;
-AGEWnd_addEvent(window, 'load', function(){ageWnd = new AGEWnd();});
+AGEWnd_addEvent(window, 'load', function () { ageWnd = new AGEWnd(); });
