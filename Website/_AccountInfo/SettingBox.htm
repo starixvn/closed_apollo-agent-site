@@ -39,7 +39,13 @@
             <table id="tbl_agentsTab" class="agent-tab">
                 <tr>
                     <td>
-                         {TreeViewDownLineFrame} 
+                        <!--TreeViewBlock-->
+                        <iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?agentid={AgentId}' style='width:98%;height: 543px'></iframe>
+                        <!--/TreeViewBlock-->
+                        <!--NoInfoBlock-->
+                        <span class="no-data-agent"> {static:Resources.Lang.noInfo} </span>
+                        <!--/NoInfoBlock-->
+
                     </td>
                 </tr>                
             </table>

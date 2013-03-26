@@ -15,7 +15,7 @@ public partial class _MemberInfo_CustomerSetting_Pages_EditAgentBetLimit : Fanex
         template.actionName = Resources.Lang.update;
         template.title = string.Format("{0} - {1}", Resources.Lang.lblEditAgent, this.Request.QueryString["username"]);
         template.TargetAgentId = Context.Request.QueryString["custid"].ToString();
-        template.TargetRoleId = Context.Request.QueryString["roleid"];
+        template.agentLevel = Context.Request.QueryString["agentlevel"];
         if (this.Request.QueryString["showheader"] == "1")
         {
             template.headerText = string.Format("<div class='margin-top-12' id='header_main'>{0} {1}</div>", "Edit Bet Limit ", this.Request.QueryString["username"]);

@@ -8,7 +8,6 @@
 namespace Fanex.Age.DTO.Reports.Winloss
 {
     using System;
-    using System.Collections.Generic;
 
     [Serializable]
     public class WinlossReport

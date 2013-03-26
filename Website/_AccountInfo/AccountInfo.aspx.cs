@@ -10,7 +10,6 @@
 namespace Sunplus.Agent.UI._AccountInfo
 {
     using Apollo.Age.Criterias.Accounts;
-    using Apollo.Age.DTO.Accounts;
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
@@ -20,7 +19,6 @@ namespace Sunplus.Agent.UI._AccountInfo
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
         #region Defination
-        const string HTML_IFRAME = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height: 543px'></iframe>";
         const string SESSION_MEMBERUSERNAME = "MEMBERUSERNAME";
         const string CHECKED_CHECKBOX = "checked='checked'";
         const string SELECTED_DROPDOWN = "selected";
@@ -273,8 +271,8 @@ namespace Sunplus.Agent.UI._AccountInfo
         {
             if (!this.isMember)
             {
-                TreeViewNodeDTO.Root = agent.Id;
-                TreeViewNodeDTO.Type = 1; //1: tree in tab account
+                TreeViewNode.Root = agent.Id;
+                TreeViewNode.Type = 1; //1: tree in tab account
             }
 
             SettingBox_Template tpl = new SettingBox_Template();
@@ -293,11 +291,12 @@ namespace Sunplus.Agent.UI._AccountInfo
 
                 if (!agent.HasAgentDownline)
                 {
-                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = "<span class=\"no-data-agent\"> " + Resources.Lang.noInfo + "<span>";
+                    tpl.HiddenBlockTabAgent.TreeViewBlock.Hide();
                 }
                 else
                 {
-                    tpl.HiddenBlockTabAgent.TreeViewDownLineFrame = string.Format(HTML_IFRAME, agent.Id.ToString());
+                    tpl.HiddenBlockTabAgent.TreeViewBlock.AgentId = agent.Id.ToString();
+                    tpl.HiddenBlockTabAgent.NoInfoBlock.Hide();
                 }
             }
 

@@ -26,7 +26,7 @@ namespace Fanex.Agent.UI
 			public string headerText = "{headerText}";
 			protected static string s9 = "<div class=\"btnLeft\"><button id=\"Button1\" class=\"btnMain\" onclick=\"editPositionTaking.UpdatePositionTakingSetting();\">";
 			public string actionName = "{actionName}";
-			protected static string s10 = "</button></div><div id=\"settingContainer\" style=\"width: 936px;\"><div id=\"ptContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"editPositionTaking.UpdatePositionTakingSetting();\">";
+			protected static string s10 = "</button></div><div id=\"settingContainer\"><div id=\"ptContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"editPositionTaking.UpdatePositionTakingSetting();\">";
 			protected string t0_actionName;
 			protected static string s11 = "</button></div><script type=\"text/javascript\">var isReloadParent = ";
 			public string isReloadParent = "{isReloadParent}";

@@ -1,13 +1,8 @@
 ﻿@import "../../../_GlobalResources/Css/Agent.less";
 
 html
-{
-    font-family: Tahoma,Arial,helvetica,sans-serif;
-    font-size: 11px;
-    color: #171717;
+{    
     margin: 0;
-    text-align: left;
-    cursor: default;
 }
 
 body
@@ -54,20 +49,20 @@ body
 {
     font-size: 11px;
     background-color: #CCCCCC;
-    color: #323435;
+    color: @secondHeaderColor;
     font-weight: normal;
     height: 22px;
     width: 200px;
     text-align: center;
     background-image: none;
     padding: 3px;
-    border-left: 1px solid #F6F8F9;
+    border-left: 1px solid @rowBackground;
 }
 
 #tblCustomerList thead tr th
 {
-    background: #3D3C3E;
-    color: #FAFDEB;
+    background: @primaryHeaderBackground;
+    color: @primaryHeaderColor;
     font-size: 11px;
     text-align: center;
     font-weight: normal;
@@ -101,7 +96,7 @@ body
 
 #tblCustomerList tbody tr:hover td
 {
-    background-color: #FBF0B9;
+    background-color: @rowHoverBackground;
 }
 
 #tblCustomerList tr th
@@ -117,7 +112,7 @@ body
     border-top: none;
     padding: 2px;
     white-space: nowrap;
-    background: #fff;
+    background: @white;
 }
 #tblCustomerList tfoot tr td
 {
@@ -132,7 +127,7 @@ body
 #title_header
 {
     background: url( "Images/title.jpg" ) no-repeat scroll left bottom transparent;
-    color: #4B483C;
+    color: @titleColor;
     font-weight: bold;
     height: 22px;
     line-height: 18px;
@@ -184,13 +179,13 @@ select
 
 .text:hover
 {
-    color: Red;
+    color: @hoverLinkColor;
     cursor: pointer;
 }
 
 a:link, a:visited
 {
-    color: #1E1EEB;
+    color: @linkColor;
     text-decoration: none;
 }
 a:hover
@@ -298,7 +293,7 @@ a:hover
 
 .AGEWnd
 {
-    border: 1px solid #000;
+    border: 1px solid @black;
     background-color: #eee;
     padding: 0;
     margin: 0;
@@ -319,7 +314,7 @@ a:hover
 
 .AGEWndTitleMask
 {
-    border: solid 0px #fff;
+    border: solid 0px @white;
     background-color: #727272;
     height: 20px;
     cursor: move;
@@ -349,11 +344,11 @@ a:hover
 .AGEWndTitle
 {
     background-color: #727272;
-    color: #fff;
+    color: @white;
     font-weight: bold;
     padding: 0;
     margin: 0;
-    background: #000 url(Images/bg_popup.jpg) repeat scroll 0 0;
+    background: @black url(Images/bg_popup.jpg) repeat scroll 0 0;
     -moz-user-select: no;
 }
 
@@ -489,7 +484,7 @@ input[type=text]
 .sub-nav li.active {
 	font-size: 11px;		
 	padding-right: 5px;	
-	color: #4B483C;	
+	color: @titleColor;	
 	font-weight: bold;
 }
 

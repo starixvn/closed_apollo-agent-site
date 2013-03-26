@@ -6,37 +6,49 @@
         ageWnd.open(url, '', 50, 10, popW, popH);
     }
 }
-function EditAgentSetting(element, custId, userName) {
+function EditAgentSetting(element, custId, userName, agentLevel) {
     if (custId) {
-        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custid=" + custId + "&username=" + userName + "&showheader=0";
-        var popW = 960, popH = 900;
+        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custid=" + custId
+        + "&username=" + userName
+        + "&showheader=0"
+        + "&agentlevel=" + agentLevel;
+        var popW = 960, popH = 780;
         //url, title, left, top, width, height
         ageWnd.open(url, '', 50, 10, popW, popH);
     }
 }
 
-function OpenEditAgentCommission(custId, userName) {
+function OpenEditAgentCommission(custId, userName, agentLevel) {
     if (custId) {
-        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custid=" + custId + "&username=" + userName + "&showheader=0";
-        var popW = 955, popH = 180;
+        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custid=" + custId
+        + "&username=" + userName
+        + "&showheader=0"
+        + "&agentlevel=" + agentLevel;
+        var popW = 955, popH = 170;
         //url, title, left, top, width, height
         ageWnd.open(url, '', 50, 200, popW, popH); 
     }
 }
 
-function OpenEditAgentBetLimit(custId, userName) {
+function OpenEditAgentBetLimit(custId, userName, agentLevel) {
     if (custId) {
-        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custid=" + custId + "&username=" + userName + "&showheader=0";
-        var popW = 955, popH = 440;
+        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custid=" + custId
+        + "&username=" + userName
+        + "&showheader=0"
+        + "&agentlevel=" + agentLevel;
+        var popW = 955, popH = 450;
         //url, title, left, top, width, height
         ageWnd.open(url, '', 50, 120, popW, popH);
     }
 }
 
-function OpenEditAgentPT(custId, userName) {
+function OpenEditAgentPT(custId, userName, agentLevel) {
     if (custId) {
-        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custid=" + custId + "&username=" + userName + "&showheader=0";
-        var popW = 960, popH = 900;
+        var url = "../../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custid=" + custId
+        + "&username=" + userName
+        + "&showheader=0"
+        + "&agentlevel=" + agentLevel;
+        var popW = 960, popH = 780;
         //url, title, left, top, width, height
         ageWnd.open(url, '', 50, 10, popW, popH); 
     }

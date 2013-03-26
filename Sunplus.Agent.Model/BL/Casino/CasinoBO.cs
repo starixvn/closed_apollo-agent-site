@@ -12,9 +12,10 @@ namespace Sunplus.Agent.Model.BL.Casino
     using Sunplus.Agent.Model.BL.Authorization;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Libraries.APILogger;
-    using Sunplus.Libraries.ThirdPartyTestData;    
+    using Sunplus.Libraries.ThirdPartyTestData;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class CasinoBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class CasinoBO : BOBase
     {
         public const int AGENT_SYSTEM = 2;
         public const string CASINO_GROUP1 = "01";

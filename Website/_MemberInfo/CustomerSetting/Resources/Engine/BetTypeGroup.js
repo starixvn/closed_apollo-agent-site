@@ -10,7 +10,10 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Require Fanex.CustSetting na
 // [RoleId_] is optional
 // Call method by Method.call(this, arg1, arg2...)
 Fanex.CustSetting.BetTypeGroup.prototype.Render_5_4_1 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_5_3_1 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_5_1_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_1 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_4_1_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_1_1_1 = function (owner) { // a1
     // There is no decorating for this implementation
@@ -22,16 +25,15 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_1_1_1 = function (owner) { // a1
 
     //// Set text before each bettype
     var agentShareLabel = document.createElement("DIV");
-    switch (Fanex.CustSetting.CURRENT_CONTEXT.RoleId) {
-        case Fanex.CustSetting.RoleType.Super:
+    switch (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId) {
+        case Fanex.CustSetting.RoleType.MainShareHolder:
             agentShareLabel.innerHTML = Language.MAIN_SHARE_HOLDER_SHARE;
             agentShareLabel.title = Language.MAIN_SHARE_HOLDER_SHARE;
             break;
-        case Fanex.CustSetting.RoleType.MainShareHolder:
+        case Fanex.CustSetting.RoleType.ShareHolder:
             agentShareLabel.innerHTML = Language.SHARE_HOLDER_SHARE;
             agentShareLabel.title = Language.SHARE_HOLDER_SHARE;
             break;
-        case Fanex.CustSetting.RoleType.MainAgent:
         case Fanex.CustSetting.RoleType.Agent:
             agentShareLabel.innerHTML = Language.AGENT_SHARE;
             agentShareLabel.title = Language.AGENT_SHARE;
@@ -45,6 +47,8 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_1_1_1 = function (owner) { // a1
     return box;
 };
 
+Fanex.CustSetting.BetTypeGroup.prototype.Render_5_2_1 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 = function (owner) { 
     var box = document.createElement("DIV");
     var emptyLabel = document.createElement("DIV");

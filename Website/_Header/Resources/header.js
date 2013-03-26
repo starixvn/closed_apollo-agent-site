@@ -57,27 +57,6 @@ AGE.prototype.Scrolling = function () {
     if (isTimeout) return;
 }
 
-function ReCheckin() {
-    function OnComplete(result) {
-        var errCode = result.errCode;
-        if (errCode == 0) {
-            setTimeout(ReCheckin, 30000);
-        } else {
-            var errMsg = result.errMsg;
-            if (errMsg) {
-                age.SignOut();
-                alert(errMsg);
-            } else {
-                alert('Could not contact the server. Please check your network connection.');
-            }
-        }
-    }
-
-    // Post with return result in JSON format
-    setCookie("ssl", location.href.indexOf('https://') == 0, 30);
-    ajax.PostJSON(age.GetBaseUrl() + '_Authorization/Handlers/ReCheckin.ashx', 'onid=' + _page.OnUserID, OnComplete);
-}
-
 function ChangeLang(lang) {
     function OnComplete(result) {
         var errCode = result.errCode;
@@ -416,7 +395,6 @@ function InitHeader() {
     timeoutId1 = setTimeout(GetMessages, 100);
     //ClockTick();
     SelectTopMenu();
-    // setTimeout(ReCheckin, 30000);
     HideTooltipIntroNickname();
 }
 

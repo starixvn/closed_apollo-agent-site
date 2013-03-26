@@ -70,11 +70,11 @@ namespace Fanex.BetList.Age
 
 		public class AgentComm_ViewDetail_Block: Block
 		{
-			protected static string s2 = "<div class=\"iplink view-detail\" id=\"";
+			protected static string s2 = "<a class=\"iplink view-detail\" tid=\"";
 			public string transId = "{transId}";
 			protected static string s3 = "\">";
 			protected static string s4{get{return Resources.Lang.lblDetails;}}
-			protected static string s5 = "</div>";
+			protected static string s5 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

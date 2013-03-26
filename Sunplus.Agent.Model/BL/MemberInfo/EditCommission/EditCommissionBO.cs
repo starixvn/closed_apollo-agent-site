@@ -6,18 +6,14 @@
 
 namespace Sunplus.Agent.Model.BL.MemberInfo.EditCommission
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     using Fanex.PTEngine.BusinessObjects;
     using Sunplus.Agent.Model.DL.MemberInfo.EditCommission;
+    using Sunplus.Agent.Model.BL.Base;
 
     /// <summary>
     /// Edit commission business object
     /// </summary>
-    public class EditCommissionBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class EditCommissionBO : BOBase
     {
         public EditCommissionBO(string netSessionId)
             : base(netSessionId)

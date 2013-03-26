@@ -44,15 +44,17 @@
     <Reference Include="Fanex.Age.UI">
       <HintPath>..\Fanex.Age.UI\bin\Debug\Fanex.Age.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Age.UI.Components">
-      <HintPath>..\Dependencies\Fanex.Age.UI.Components.dll</HintPath>
+    <Reference Include="Fanex.Age.UI.Components, Version=1.0.4832.28328, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Fanex.Age.UI.Components\bin\Fanex.Age.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="RemotingRef">
       <HintPath>..\Dependencies\RemotingRef.dll</HintPath>
     </Reference>
-    <Reference Include="Sunplus.Agent.Utilities">
-      <HintPath>..\Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Utilities, Version=1.0.4820.16323, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Sunplus.Agent.Utilities\bin\Debug\Sunplus.Agent.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />

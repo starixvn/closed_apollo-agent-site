@@ -7,9 +7,6 @@
 
 namespace Fanex.Age.DTO.Reports.WinlossAnalysis
 {
-    using System;
-    using System.Collections.Generic;
-
     public class WinlossAnalysisMasterItem
     {
         public int BreakDown { get; set; }

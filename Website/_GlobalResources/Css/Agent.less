@@ -1,9 +1,10 @@
 ﻿@import "variable.less";
+
 html {
-    color: #171717;
+    color: @textColor;
     cursor: default;
-    font-family: Tahoma,Arial,helvetica,sans-serif;
-    font-size: 11px;
+    font-family: @fontFamily;
+    font-size: @fontSize;
     margin: 0;
     text-align: left;
 }
@@ -23,29 +24,37 @@ html {
     border: solid transparent;
     border-width: 0 0 0 4px;
 }
+
 ::-webkit-scrollbar:vertical {
     width: 11px;
 }
+
 ::-webkit-scrollbar:horizontal {
     height: 11px;
 }
+
 ::-webkit-scrollbar-track:horizontal {
     border-width: 4px 0 0;
 }
+
 ::-webkit-scrollbar-track:hover {
     background-color: rgba(0,0,0,.05);
     box-shadow: inset 1px 0 0 rgba(0,0,0,.1);
 }
+
 ::-webkit-scrollbar-track:horizontal:hover {
     box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
 }
+
 ::-webkit-scrollbar-track:active {
     background-color: rgba(0,0,0,.05);
     box-shadow: inset 1px 0 0 rgba(0,0,0,.14),inset -1px 0 0 rgba(0,0,0,.07);
 }
+
 ::-webkit-scrollbar-track:horizontal:active {
     box-shadow: inset 0 1px 0 rgba(0,0,0,.14),inset 0 -1px 0 rgba(0,0,0,.07);
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: rgba(0,0,0,.2);
     background-clip: padding-box;
@@ -55,53 +64,63 @@ html {
     padding: 100px 0 0;
     box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
 }
+
 ::-webkit-scrollbar-thumb:horizontal {
     border-width: 6px 1px 1px;
     padding: 0 0 0 100px;
     box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset -1px 0 0 rgba(0,0,0,.07);
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0,0,0,.4);
     box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
 }
+
 ::-webkit-scrollbar-thumb:active {
     background-color: rgba(0,0,0,0.5);
     box-shadow: inset 1px 1px 3px rgba(0,0,0,0.35);
 }
+
 ::-webkit-scrollbar-corner {
     background: transparent;
 }
-body::-webkit-scrollbar-track-piece {
-    background-clip: padding-box;
-    background-color: #f5f5f5;
-    border: solid #fff;
-    border-width: 0 0 0 3px;
-    box-shadow: inset 1px 0 0 rgba(0,0,0,.14),inset -1px 0 0 rgba(0,0,0,.07);
-}
-body::-webkit-scrollbar-track-piece {
-    border-width: 3px 0 0;
-    box-shadow: none;
-}
-body::-webkit-scrollbar-thumb {
-    border-width: 1px 1px 1px 1px;
-}
-body::-webkit-scrollbar-thumb:horizontal {
-    border-width: 1px 1px 1px;
-}
-body::-webkit-scrollbar-corner {
-    background-clip: padding-box;
-    background-color: #f5f5f5;
-    border: solid #fff;
-    border-width: 3px 0 0 3px;
-    box-shadow: inset 1px 1px 0 rgba(0,0,0,.14);
-}
 
 body {
-    background: #f2f4f6 url(../Images/bg_conts.jpg) repeat-x top;
+	background: #f2f4f6 url(../Images/bg_conts.jpg) repeat-x top;
     background-attachment: fixed;
     background-color: #f5f6f8;
     margin: 0;
     padding: 2px;
+
+	&::-webkit-scrollbar-track-piece {
+		background-clip: padding-box;
+		background-color: #f5f5f5;
+		border: solid @white;
+		border-width: 0 0 0 3px;
+		box-shadow: inset 1px 0 0 rgba(0,0,0,.14),inset -1px 0 0 rgba(0,0,0,.07);
+	}
+
+	&::-webkit-scrollbar-track-piece {
+		border-width: 3px 0 0;
+		box-shadow: none;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-width: 1px 1px 1px 1px;
+	}
+
+	&::-webkit-scrollbar-thumb:horizontal {
+		border-width: 1px 1px 1px;
+	}
+
+	&::-webkit-scrollbar-corner {
+		background-clip: padding-box;
+		background-color: #f5f5f5;
+		border: solid #fff;
+		border-width: 3px 0 0 3px;
+		box-shadow: inset 1px 1px 0 rgba(0,0,0,.14);
+	}
+
 }
 
 input[type=button] {
@@ -126,17 +145,17 @@ select {
     height: 19px;
     line-height: 15px;
     padding: 0 5px 2px;
-}
 
-.btn:hover {
-    background: url(../Images/bg_buttonsiteOV.jpg) repeat-x top;
-    border: 1px #984d1a solid;
-    color: #cc4800;
+	&:hover {
+		background: url(../Images/bg_buttonsiteOV.jpg) repeat-x top;
+		border: 1px #984d1a solid;
+		color: #cc4800;
+	}
 }
 
 .editBtn {
     background: url(../Images/edit.gif) repeat-x top;
-    border: solid 0 #000;
+    border: solid 0 @black;
     cursor: pointer;
     height: 17px;
     width: 17px;
@@ -144,7 +163,7 @@ select {
 
 .editBtnDisabled {
     background: url(../Images/edit_disabled.gif) repeat-x top;
-    border: solid 0 #000;
+    border: solid 0 @black;
     cursor: pointer;
     height: 17px;
     width: 17px;
@@ -152,7 +171,7 @@ select {
 
 .viewBtn {
     background: url(../Images/view_icon.gif) repeat-x top;
-    border: solid 0 #000;
+    border: solid 0 @black;
     cursor: pointer;
     height: 17px;
     width: 17px;
@@ -160,7 +179,7 @@ select {
 
 .viewMenuBtn {
     background: url(../Images/sticky-arrow.png) repeat-x top;
-    border: solid 0 #000;
+    border: solid 0 @black;
     cursor: pointer;
     height: 17px;
     width: 17px;
@@ -168,7 +187,7 @@ select {
 
 .disabledBtn {
     background: url(../Images/disable_icon.gif) repeat-x top;
-    border: solid 0 #000;
+    border: solid 0 @black;
     cursor: pointer;
     height: 17px;
     width: 17px;
@@ -176,7 +195,7 @@ select {
 
 .syncBtn {
     background: url(../Images/sync.gif) repeat-x top;
-    border: solid 0 #000;
+    border: solid 0 @black;
     cursor: pointer;
     height: 17px;
     width: 17px;
@@ -184,7 +203,7 @@ select {
 
 .divHeader {
     background: transparent url(../Images/bg_header01.jpg) no-repeat scroll left bottom;
-    color: #4B483C;
+    color: @titleColor;
     font-weight: 700;
     height: 22px;
     line-height: 18px;
@@ -204,7 +223,7 @@ select {
 }
 
 .RptTitle {
-    background-color: #fff;
+    background-color: @white;
     font-weight: 400 !important;
     height: 22px;
     text-align: center;
@@ -212,31 +231,30 @@ select {
 }
 
 .RptHeader {
-    /*background: #6A6969 url(../Images/bg_header02.jpg) repeat-x scroll center top;*/
-    background: #3D3C3E;
-    color: #FAFDEB;
+    background: @primaryHeaderBackground;
+    color: @primaryHeaderColor;
     font-size: 12px !important;
     font-weight: 400 !important;
     height: 22px;
-    text-align: center
-}
+    text-align: center;
 
-.RptHeader td {
-    border-spacing: 0;
+	td {
+		border-spacing: 0;
+	}
 }
 
 .RptHeader02 {
-    background-color: #C7C7C7;
-    color: #323435;
+    background-color: @secondHeaderBackground;
+    color: @secondHeaderColor;
     font-size: 12px !important;
     font-weight: 400 !important;
     text-align: center;
     border-spacing: 0;
-}
 
-.RptHeader02 td {
-    border-spacing: 0;
-    border-left: 1px solid #F6F8F9;
+	td {
+		border-spacing: 0;
+		border-left: 1px solid @rowBackground;
+	}
 }
 
 .RptHeader01 {
@@ -249,7 +267,7 @@ select {
 
 .RptFooter {
     background: url(../Images/bg_f01.jpg) repeat-x scroll center top #783819;
-    color: #FFF;
+    color: @white;
     font-weight: 700;
 }
 
@@ -283,7 +301,7 @@ select {
 }
 
 .bg_white {
-    background-color: #fff;
+    background-color: @white;
 }
 
 .tblRpt .bg_white td {
@@ -336,7 +354,7 @@ select {
 
 #header_main {
     background: url(../Images/bg_header01.jpg) no-repeat left bottom;
-    color: #4B483C;
+    color: @titleColor;
     font-weight: 700;
     height: 22px;
     line-height: 18px;
@@ -359,11 +377,11 @@ select {
 .iplink {
     color: #06C;
     text-decoration: none;
-}
 
-.iplink:hover {
-    color: #F60;
-    text-decoration: none;
+	&:hover {
+		color: @orange;
+		text-decoration: none;
+	}
 }
 
 .ipnolink {
@@ -428,11 +446,6 @@ element.style {
     width: 17px;
 }
 
-td, span, div, a {
-    font-family: Tahoma,Arial,helvetica,sans-serif;
-    font-size: 11px;
-}
-
 .loading1 {
     background: url(../../_GlobalResources/Images/ajax-loader.gif) no-repeat top;
     display: block;
@@ -450,7 +463,7 @@ div.divBoxRight {
     -moz-border-radius: 3px 3px 2px 2px;
     -webkit-border-radius: 3px 3px 2px 2px;
     background-color: #eee;
-    border: 1px solid #000;
+    border: 1px solid @black;
     border-collapse: collapse;
     border-radius: 3px 3px 2px 2px 2px;
     margin: 0;
@@ -469,7 +482,7 @@ div.divBoxRight {
     -khtml-opacity: 0.01;
     -moz-opacity: .01;
     background-color: #727272;
-    border: solid 0 #fff;
+    border: solid 0 @white;
     border-style: none;
     cursor: move;
     filter: alpha(opacity=01);
@@ -494,9 +507,9 @@ div.divBoxRight {
 
 .AGEWndTitle {
     -moz-user-select: no;
-    background: #000 url(../Images/bg_popup.jpg) repeat scroll 0 0;
+    background: @black url(../Images/bg_popup.jpg) repeat scroll 0 0;
     background-color: #727272;
-    color: #fff;
+    color: @white;
     font-weight: 700;
     margin: 0;
     padding: 0;
@@ -567,12 +580,12 @@ div.divBoxRight {
     height: 22px;
     min-width: 64px;
     padding: 0 24px 2px 12px;
-}
 
-.btnMain:hover {
-    background-position: 100% -22px;
-    color: #000;
-    cursor: pointer;
+	&:hover {
+		background-position: 100% -22px;
+		color: @black;
+		cursor: pointer;
+	}
 }
 
 input[type=submit], input[type=reset] {
@@ -585,11 +598,14 @@ input[type=text], input[type=password] {
     width: 120px;
 }
 
-.tblRpt td, .tblPop td {
-    line-height: 22px;
-    padding-left: 2px;
-    padding-right: 2px;
-    }
+.tblRpt, .tblPop {
+	td {
+		line-height: 22px;
+		padding-left: 2px;
+		padding-right: 2px;
+	}
+}
+
 .successWarning {
     background-image: url("../../../_GlobalResources/Images/tick.png");
     padding-left: 5px;
@@ -597,6 +613,7 @@ input[type=text], input[type=password] {
     letter-spacing: 10px;
     font-size: 12px;
 }
+
 .errorWarning {
     background-image: url("../../../_GlobalResources/Images/x5.gif");
     padding-left: 5px;
@@ -604,6 +621,7 @@ input[type=text], input[type=password] {
     letter-spacing: 10px;
     font-size: 12px;
 }
+
 .successWarning2 {
     background-image: url("../../_GlobalResources/Images/tick.png");
     padding-left: 5px;
@@ -611,6 +629,7 @@ input[type=text], input[type=password] {
     letter-spacing: 10px;
     font-size: 12px;
 }
+
 .errorWarning2 {
     background-image: url("../../_GlobalResources/Images/x5.gif");
     padding-left: 5px;
@@ -618,6 +637,7 @@ input[type=text], input[type=password] {
     letter-spacing: 10px;
     font-size: 12px;
 }
+
 .loading2 {
     background-image: url(../../_MemberInfo/P2P/Resources/Images/loading.gif);
     background-repeat: no-repeat;
@@ -627,7 +647,7 @@ input[type=text], input[type=password] {
 button[disabled]:active, button[disabled], input[type="reset"][disabled]:active, input[type="reset"][disabled], input[type="button"][disabled]:active, input[type="button"][disabled], input[type="submit"][disabled]:active, input[type="submit"][disabled] {
     opacity: 0.6;
     filter: alpha(opacity=60); /* For IE8 and earlier */
-    color: #000;
+    color: @black;
     cursor: pointer;
 }
 
@@ -656,7 +676,8 @@ a.update {
     cursor: pointer;
     padding: 2px 4px;
     text-decoration: none;
-}
-a.update:hover {
-   background: none repeat scroll 0 0 #F2F2F2;
+
+	&:hover {
+	   background: none repeat scroll 0 0 #F2F2F2;
+	}
 }

@@ -11,8 +11,9 @@ namespace Sunplus.Agent.Model.DL.Reports
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using Sunplus.Agent.Model.DL.Base;
 
-    public class ReportsDAO : Sunplus.Agent.Model.DL.Base.DAOBase
+    public class ReportsDAO : DAOBase
     {
         #region Overwrite Function
 

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web;
+﻿using System.Collections;
 using System.Web.UI;
-using System.Data;
-using System.Collections;
-
-
 
 /*
  * Created 20091211@Lee - Base aspx page, use Template method pattern http://sourcemaking.com/design_patterns/template_method
@@ -21,7 +15,7 @@ namespace Fanex.Age.UI
     /// <summary>
     /// Base IBC page. All aspx pages should be inherited from TplPage or TplPage2.
     /// </summary>
-    public abstract class TplPage : Fanex.Age.UI.TplBase
+    public abstract class TplPage : TplBase
     {
         /// <summary>
         /// Root namespace of json data returned.

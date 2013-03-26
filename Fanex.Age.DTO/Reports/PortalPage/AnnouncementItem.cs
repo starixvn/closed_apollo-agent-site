@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Age.DTO.Reports.PortalPage
 {
     using System;
-    using System.Collections.Generic;
 
     public class AnnouncementItem
     {

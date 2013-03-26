@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Age.DTO.Reports.MatchWinloss
 {
-    using System;
-    using System.Collections.Generic;
-
     public class MatchWinLossDetailItem
     {
         public string ShowTime { get; set; }

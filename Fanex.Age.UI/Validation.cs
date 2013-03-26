@@ -1,10 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
-
-//using Sunplus.Agent.Model.Common;
+﻿//using Sunplus.Agent.Model.Common;
 
 /*
  * Created 20091224@Lee - Validating definitions

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
+﻿using System.Collections;
 using System.Web.UI;
-using System.Collections;
 
 /*
  * Created 20091211@Lee - Base aspx page, use Template method pattern http://sourcemaking.com/design_patterns/template_method
@@ -20,7 +15,7 @@ namespace Fanex.Age.UI
     /// <summary>
     /// Use this class only when need to handle post back event.
     /// </summary>
-    public abstract class TplPage2 : Fanex.Age.UI.TplPage
+    public abstract class TplPage2 : TplPage
     {
          /// <summary>
         /// New IsPostBack.

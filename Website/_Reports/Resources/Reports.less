@@ -1,7 +1,8 @@
 ﻿@import "../../_GlobalResources/Css/Agent.less";
+
 a:link, a:visited
 {
-    color: #1E1EEB;
+    color: @linkColor;
     text-decoration: none;
 }
 li
@@ -49,11 +50,11 @@ tr.closed_row, tr.closed_row:active
 }
 tr.odd_row, tr.odd_row:active
 {
-    background-color: #F6F8F9;
+    background-color: @rowBackground;
 }
 tr.even_row, tr.even_row:active
 {
-    background-color: #faf9ee;
+    background-color: @rowAltBackground;
 }
 tr.even_row:hover, tr.odd_row:hover, tr.closed_row:hover
 {
@@ -75,14 +76,14 @@ table.tblRpt tr td
 {
     text-align: left;
     text-transform: uppercase;
-    background-color: #fff;
+    background-color: @white;
     height: 22px;
     font-weight: normal !important;
 }
 .RptFooter
 {
     background: url( "../../_GlobalResources/Images/bg_f01.jpg" ) repeat-x scroll center top #783819;
-    color: #FFFFFF;
+    color: @white;
     font-weight: bold;
     white-space: nowrap;
 }
@@ -152,7 +153,7 @@ input.date_no
 .altercol_master
 {
     background: #432616 url(../../_GlobalResources/Images/bg_f02.jpg) repeat-x scroll center top;
-    color: #FFF;
+    color: @white;
     font-weight: bold;
     white-space: nowrap;
 }
@@ -230,7 +231,7 @@ input.date_no
 .no_info
 {
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: @white;
     font-weight: normal;
 }
 
@@ -308,7 +309,7 @@ td.selectedBetType a
 #BoxLeagueWL
 {
     position: absolute;
-    background: #fff;
+    background: @white;
     width: 900px;
     border: solid 1px #B7B7B7;
     left: 4px;
@@ -317,7 +318,7 @@ td.selectedBetType a
 
 #ContentLeagueWL
 {
-    background:#fff;
+    background:@white;
     width: 888px;
     max-height: 310px;
     border: none;
@@ -360,7 +361,7 @@ td.selectedBetType a
 #SelLeagueGroup
 {
     position: absolute;
-    background: #fff;
+    background: @white;
     width: 900px;
     border-bottom: solid 1px #B7B7B7;
     border-right: solid 1px #B7B7B7;
@@ -420,7 +421,7 @@ td.selectedBetType a
 #hor-minimalist-b
 {
 	font-size: 12px;
-	background: #fff;
+	background: @white;
 	border-collapse: collapse;
 	text-align: left;
 	width: 100%;  
@@ -428,7 +429,7 @@ td.selectedBetType a
 #hor-minimalist-b th
 {
 	font-weight: normal;
-	color: #fff;
+	color: @white;
 	background: url(../../_GlobalResources/Images/bg_header02.jpg) repeat-x scroll center top #6A6969;
 	padding: 2px 2px;
 	border: solid 1px #999;
@@ -436,7 +437,7 @@ td.selectedBetType a
 }
 #hor-minimalist-b td
 {
-	color: #000;
+	color: @black;
 	/*vertical-align: top;*/
 	padding: 2px 2px 2px 2px;
 	border: solid 1px #999;
@@ -449,7 +450,7 @@ td.selectedBetType a
 }
 #hor-minimalist-b tbody tr#tr_footer:hover td
 {
-	color: #000000;
+	color: @black;
 	background-color:#E8DFCA;
 }
 .titleMenu
@@ -478,7 +479,7 @@ td.selectedBetType a
 }
 a:link, a:visited
 {
-	color: #1e1eeb;
+	color: @linkColor;
 	text-decoration: none;
 }
 a:hover

@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
 using System.Text;
-using Sunplus.Agent.UI.ScoreMap.UI;
+using Sunplus.Agent.Model.BL.Cache;
+
 namespace Sunplus.Agent.UI.ScoreMap.Factories
 {
     using UI;
-    using Sunplus.Agent.Model.BL.Cache;
+
     public class RenderingFactory
     {
         private static int NUM_COLUMN = 7;
         private static int ALL_ITEM = 49;
+
         public static void Render(Boolean isSmartPhone, DataTable listScoreMap, DataTable listMatch , StringBuilder content, bool isRefresh)
         {
             // Append content

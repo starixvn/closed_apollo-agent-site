@@ -13,9 +13,9 @@ using Fanex.Age.DTO.BetList.P2P;
 
 namespace Fanex.Age.Business.Interface.BetList.P2P
 {
-    public interface IHandHistoryDetailBusiness
-    {
-        HoldemHandHistoryDetail GetHoldemHandHistoryDetail(Int64 handNo);
-        ThirteenCardsHandHistoryDetail GetThirteenCardsHandHistoryDetail(Int64 handNo);
-    }
+    //public interface IHandHistoryDetailBusiness
+    //{
+    //    HoldemHandHistoryDetail GetHoldemHandHistoryDetail(Int64 handNo);
+    //    ThirteenCardsHandHistoryDetail GetThirteenCardsHandHistoryDetail(Int64 handNo);
+    //}
 }

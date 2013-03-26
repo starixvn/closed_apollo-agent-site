@@ -34,13 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Age.UI.Components, Version=1.0.4820.16346, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fanex.Age.UI.Components, Version=1.0.4832.28328, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.Age.UI.Components.dll</HintPath>
-    </Reference>
-    <Reference Include="Sunplus.Agent.Utilities, Version=1.0.4815.17327, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
+      <HintPath>..\Fanex.Age.UI.Components\bin\Fanex.Age.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

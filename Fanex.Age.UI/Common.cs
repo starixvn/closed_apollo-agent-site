@@ -11,13 +11,6 @@
 
 namespace Fanex.Age.UI
 {
-    using System;
-    using System.Data;
-    using System.Configuration;
-    using System.Web;
-    using System.Web.Security;
-    using System.Web.UI;
-
     public class Common
     {
         #region Background color setting

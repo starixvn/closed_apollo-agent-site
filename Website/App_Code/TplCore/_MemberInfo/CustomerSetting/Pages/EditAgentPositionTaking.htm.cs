@@ -26,7 +26,7 @@ namespace Fanex.Agent.UI
 			public string headerText = "{headerText}";
 			protected static string s9 = "<div class=\"btnLeft\"><button id=\"Button1\" class=\"btnMain\" onclick=\"editPositionTaking.UpdatePositionTakingSetting();\">";
 			public string actionName = "{actionName}";
-			protected static string s10 = "</button></div><div id=\"settingContainer\" style=\"width: 936px;\"><div id=\"ptContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"editPositionTaking.UpdatePositionTakingSetting();\">";
+			protected static string s10 = "</button></div><div id=\"settingContainer\" ><div id=\"ptContainer\"></div></div><div class=\"btnLeft\"><button id=\"btnSubmitFooter\" class=\"btnMain\" onclick=\"editPositionTaking.UpdatePositionTakingSetting();\">";
 			protected string t0_actionName;
 			protected static string s11 = "</button></div><script type=\"text/javascript\">var isReloadParent = ";
 			public string isReloadParent = "{isReloadParent}";
@@ -38,8 +38,8 @@ namespace Fanex.Agent.UI
 			protected static string s17{get{return AbsoluteUrl("_Components/ErrorMsg/ErrorMsg.js", TplSettings.Question);}}
 			protected static string s18 = "\" type=\"text/javascript\"></script><script src='../Handlers/Language.ashx' type=\"text/javascript\"></script><script src='../Handlers/GetPositionTakingSetting.ashx?targetCustId=";
 			public string TargetAgentId = "{TargetAgentId}";
-			protected static string s19 = "&targetRoleId=";
-			public string TargetRoleId = "{TargetRoleId}";
+			protected static string s19 = "&agentLevel=";
+			public string agentLevel = "{agentLevel}";
 			protected static string s20 = "' type=\"text/javascript\"></script><script src=\"";
 			protected static string s21{get{return AbsoluteUrl("_MemberInfo/CustomerSetting/Resources/Engine/Core.js", TplSettings.Question);}}
 			protected static string s22 = "\" type=\"text/javascript\"></script><script src=\"";
@@ -84,7 +84,7 @@ namespace Fanex.Agent.UI
 					bd.Append(s18);
 					bd.Append(TargetAgentId);
 					bd.Append(s19);
-					bd.Append(TargetRoleId);
+					bd.Append(agentLevel);
 					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);

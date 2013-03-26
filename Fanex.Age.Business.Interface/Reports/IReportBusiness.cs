@@ -14,20 +14,18 @@ namespace Fanex.Age.Business.Interface.Reports
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using DTO.Reports.Winloss;
+    using Fanex.Age.DTO.Reports.Winloss;
 
     public interface IReportBusiness
     {
         #region Charting
-        IEnumerable<WinlossReport> GetChartWinlossAnalysis(int custId, DateTime fromDate, DateTime toDate, ICollection<KeyValuePair<string, bool>> filterParams);
+        IEnumerable<WinlossReport> GetChartWinlossAnalysis(int custId, DateTime fromDate, DateTime toDate, 
+            ICollection<KeyValuePair<string, bool>> filterParams);
         #endregion
 
         #region Utilities
         DateTime BalanceUpDay { get; }
         DateTime MoveBetsDay { get; }
         #endregion
-
     }
 }

@@ -15,8 +15,9 @@ namespace Sunplus.Agent.Model.BL.Reports
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.DL.Reports;
     using Sunplus.Agent.Model.Entities;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class ReportsBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class ReportsBO : BOBase
     {
         #region BalanceUpDate and MoveBetsDate
         private const string BALANCEUP_DAY_KEY = "SUNPLUS.AGENT.MODEL.BL.REPORTS.BALANCEUPDAY";

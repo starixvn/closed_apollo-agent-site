@@ -9,8 +9,9 @@
 namespace Sunplus.Agent.Model.DL.Statistic
 {
     using System.Collections;
+    using Sunplus.Agent.Model.DL.Base;
 
-    public class StatisticDAO : Sunplus.Agent.Model.DL.Base.DAOBase
+    public class StatisticDAO : DAOBase
     {
         public StatisticDAO()
         {

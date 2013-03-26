@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Fanex.Agent.UI._TreeView;
-using Apollo.Age.DTO.Accounts;
+
 
 public partial class _TreeView_TreeView : Fanex.Age.UI.TplPage
 {
@@ -15,8 +15,6 @@ public partial class _TreeView_TreeView : Fanex.Age.UI.TplPage
 
     public override object ValidateRequest(System.Collections.Hashtable p)
     {
-        //pageAccess = CurrentUserSession.SubPageAccess;
-
         return null;
     }
 
@@ -28,13 +26,7 @@ public partial class _TreeView_TreeView : Fanex.Age.UI.TplPage
     public override void RenderContent(HtmlTextWriter writer)
     {
         TreeView_Template tpl = new TreeView_Template();
-        string htmlFrame = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?root={0}' style='width:98%;height:100%;'></iframe>";
-
-        TreeViewNodeDTO.Root = CurrentUserSession.AgentId;
-        TreeViewNodeDTO.Type = 0; //0: tree in tab treeview
-
-        tpl.TreeViewDownLineFrame = string.Format(htmlFrame, CurrentUserSession.AgentId);
-
+        tpl.AgentId = CurrentUserSession.AgentId.ToString();
         writer.Write(tpl);
     }
 }

@@ -7,8 +7,9 @@
 namespace Sunplus.Agent.Model.BL.MemberInfo.ChangePassword
 {
     using Sunplus.Agent.Model.DL.MemberInfo.ChangePassword;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class ChangePasswordBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class ChangePasswordBO : BOBase
     {
         public ChangePasswordBO(string netSessionId)
             : base(netSessionId)

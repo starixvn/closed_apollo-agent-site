@@ -12,8 +12,9 @@ namespace Sunplus.Agent.Model.BL.UserMessage
     using Fanex.Caching;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.DL.UserMessage;
+    using Sunplus.Agent.Model.BL.Base;
 
-    public class UserMessageBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class UserMessageBO : BOBase
     {
         private bool limitConnection; // Default is true.
         private UserMessageDAO userMessageDAO;

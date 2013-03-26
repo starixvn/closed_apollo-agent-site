@@ -74,7 +74,7 @@ html, body {
 body::-webkit-scrollbar-track-piece {
     background-clip: padding-box;
     background-color: #f5f5f5;
-    border: solid #fff;
+    border: solid @white;
     border-width: 0 0 0 3px;
     box-shadow: inset 1px 0 0 rgba(0,0,0,.14),inset -1px 0 0 rgba(0,0,0,.07);
 }
@@ -91,26 +91,28 @@ body::-webkit-scrollbar-thumb:horizontal {
 body::-webkit-scrollbar-corner {
     background-clip: padding-box;
     background-color: #f5f5f5;
-    border: solid #fff;
+    border: solid @white;
     border-width: 3px 0 0 3px;
     box-shadow: inset 1px 1px 0 rgba(0,0,0,.14);
 }
 
 body {
-    font-family: Tahoma,Arial,helvetica,sans-serif;
-    font-size: 11px;
+    font-family: @fontFamily;
+    font-size: @fontSize;
     line-height: 18px;
-    color: #171717;
+    color: @textColor;
     margin: 0px;
     text-align: left;
     background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -5px 0px;
     background-attachment: fixed;
     background-color: #f5f6f8;
 }
+
 td {
     padding-left: 2px;
     padding-right: 2px;
 }
+
 #tab_menu {
     border-bottom: 1px solid #CCC;
     font-weight: bold;
@@ -222,14 +224,17 @@ td {
     width: 188px;
     height: 1px;
 }
+
 #clear0 {
     clear: both;
 }
+
 .text_f {
     color: #F60;
     font-size: 11px;
     height: 14px;
 }
+
 .text_f1 {
     color: #F93;
     font-style: italic;
@@ -237,18 +242,21 @@ td {
     vertical-align: top;
     height: 14px;
 }
+
 .textDisabled {
     background-color: #a0a97a;
     color: white;
 }
+
 .textBoxCredit {
-    font-family: Tahoma,Verdana;
+    font-family: @fontFamily;
     font-size: 8pt;
 }
 
 #frmAgent * {
     vertical-align: top;
 }
+
 #from_tab {
     float: left;
     height: 18px;
@@ -256,9 +264,11 @@ td {
     width: 81px;
     margin: 0 2px;
 }
+
 #from_tab * {
     vertical-align: top;
 }
+
 #b_serachL {
     display: block;
     float: left;
@@ -291,7 +301,7 @@ td {
     border-right: 1px solid #E0E0E0;
 }
 .Bleft_Sub02 {
-    background: #FFF url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x scroll center top;
+    background: @white url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x scroll center top;
     border-bottom: 1px solid #B2B2B2;
     border-left: 1px solid #B2B2B2;
     border-right: 1px solid #B2B2B2;
@@ -410,7 +420,7 @@ font.positive {
 }
 #left_tab a span {
     background: transparent url(../../_GlobalResources/Images/right_btleft.gif) no-repeat scroll right top;
-    color: #FFF;
+    color: @white;
     display: block;
     float: left;
     font-size: 11px;
@@ -541,7 +551,7 @@ font.positive {
     border-left: 1px #b2b2b2 solid;
     border-right: 1px #b2b2b2 solid;
     background: url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x top;
-    background-color: #FFF;
+    background-color: @white;
     padding-left: 8px;
     margin-bottom: 3px;
 }
@@ -595,7 +605,7 @@ font.positive {
 .popupSetting {
     text-align: left;
     padding: 2px 2px 2px 2px;
-    background-color: #fff;
+    background-color: @white;
     position: absolute;
     display: none;
     z-index: 100;
@@ -621,7 +631,7 @@ div.divright {
 
 
 td, span, div, a {
-    font-family: Tahoma,Arial,helvetica,sans-serif;
+    font-family: @fontFamily;
     font-size: 11px;
 }
 select {
@@ -792,13 +802,13 @@ select.commission {
 
 #tbl_custsettings {
     border-collapse: collapse;
-    border: solid 0px #000;
+    border: solid 0px @black;
     width: 100%;
 }
 
 #tbl_logininfo {
     border-collapse: collapse;
-    border: solid 0px #000;
+    border: solid 0px @black;
     width: 100%;
 }
 
@@ -863,7 +873,7 @@ input[type=reset] {
 
 /*downline title*/
 .downline-title {
-    color: #4B483C;
+    color: @titleColor;
     font-weight: bold;
     width: 175px;
     vertical-align: middle;
@@ -984,7 +994,7 @@ a.btnList:hover {
 }
 
 .agent-list .root-agent {
-    color: #4B483C;
+    color: @titleColor;
     background: url(Images/icon-root.png) left no-repeat;
     padding-left: 17px;
 }

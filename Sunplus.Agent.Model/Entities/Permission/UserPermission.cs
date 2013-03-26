@@ -10,8 +10,9 @@ namespace Sunplus.Agent.Model.Entities.Permission
 {
     using System;
     using Sunplus.Agent.Model.BL.Definitions;
+    using Sunplus.Agent.Model.Entities.Base;
 
-    public class UserPermission : Sunplus.Agent.Model.Entities.Base.IEntity
+    public class UserPermission : IEntity
     {
         private static string neutralSite = "789y,"; // Seperate by comma
         private static string creditNeutralSite = "789y,"; // Seperate by comma

@@ -1,4 +1,6 @@
-﻿.divMenuPopup
+﻿@import "../../../_GlobalResources/Css/variable.less";
+
+.divMenuPopup
 {
 	color: Blue;
 	display: none;
@@ -9,11 +11,11 @@
 	border: 1px solid #8F8272;
 	box-shadow: 5px 5px 2px #999;
 	/* For Internet Explorer 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=#FFFFFFFF);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=@white);
     /* For Internet Explorer 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=#FFFFFFFF)"; 
-	background: -moz-linear-gradient(top, #EDE8E4, #fff);
-	background: -webkit-gradient(linear, center top, center bottom, from(#EDE8E4), to(#fff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=@white)"; 
+	background: -moz-linear-gradient(top, #EDE8E4, @white);
+	background: -webkit-gradient(linear, center top, center bottom, from(#EDE8E4), to(@white));
 	padding: 5px;
 	line-height: 20px;
 }
@@ -33,16 +35,16 @@
 	border: 1px solid #B8B9BD;
 	border-radius: 3px 3px 3px 3px;
 	/* For Internet Explorer 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=#FFFFFFFF);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=@white);
     /* For Internet Explorer 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=#FFFFFFFF)"; 
-	background: -moz-linear-gradient(top, #EDE8E4, #fff);
-	background: -webkit-gradient(linear, center top, center bottom, from(#EDE8E4), to(#fff));	
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=@white)"; 
+	background: -moz-linear-gradient(top, #EDE8E4, @white);
+	background: -webkit-gradient(linear, center top, center bottom, from(#EDE8E4), to(@white));	
 }
 
 .divMenuPopup div a:link
 {
-	color: #1E1EEB;
+	color: @linkColor;
 	text-decoration: none;	
 	padding-left: 30px;
 	display:block ;
@@ -70,11 +72,11 @@
 	border: 1px solid #B8B9BD;
 	border-radius: 3px 3px 3px 3px;
 	/* For Internet Explorer 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=#FFFFFFFF);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=@white);
     /* For Internet Explorer 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=#FFFFFFFF)"; 
-	background: -moz-linear-gradient(top, #EDE8E4, #fff);
-	background: -webkit-gradient(linear, center top, center bottom, from(#EDE8E4), to(#fff));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#EDE8E4, endColorstr=@white)"; 
+	background: -moz-linear-gradient(top, #EDE8E4, @white);
+	background: -webkit-gradient(linear, center top, center bottom, from(#EDE8E4), to(@white));
 }
 #Popup
 {
@@ -115,7 +117,7 @@
 #menuPopupAd .normal
 {
 	color:#BF0104;
-	font-family:Tahoma,Arial,helvetica,sans-serif; 
+	font-family: @fontFamily; 
 	line-height:10px
 }
 label

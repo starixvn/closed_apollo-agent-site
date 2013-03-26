@@ -8,7 +8,6 @@
 namespace Fanex.Age.DTO.Reports.Common
 {
     using System;
-    using System.Collections.Generic;
 
     public class StatementItem
     {

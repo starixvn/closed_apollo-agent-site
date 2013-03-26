@@ -27,7 +27,9 @@ namespace Fanex.Agent.UI
 			protected static string s10{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.js");}}
 			protected static string s11 = "\"></script><script type=\"text/javascript\" src=\"";
 			protected static string s12{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.treeview.async.js");}}
-			protected static string s13 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx\"});});</script></body></html>";
+			protected static string s13 = "\"></script><script type=\"text/javascript\">jQuery(document).ready(function () {$(\"#treeview_list\").treeview({url: \"TreeList.aspx?agentid=";
+			public string AgentId = "{AgentId}";
+			protected static string s14 = "\"});});</script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -48,6 +50,8 @@ namespace Fanex.Agent.UI
 					bd.Append(s11);
 					bd.Append(s12);
 					bd.Append(s13);
+					bd.Append(AgentId);
+					bd.Append(s14);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

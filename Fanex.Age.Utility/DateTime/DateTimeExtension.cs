@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Fanex.Age.Utility
+﻿namespace Fanex.Age.Utility
 {
     public enum eConvertType
     {

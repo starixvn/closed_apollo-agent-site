@@ -12,6 +12,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using Fanex.CustSetting.Service;
     using Sunplus.Agent.Model.BL;
     using System.Web.SessionState;
+    using Fanex.Common;
 
     public class GetCommissionSetting : IHttpHandler, IReadOnlySessionState
     {
@@ -53,13 +54,25 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
                     roleId = (int)Role.MainAgent;
                     break;
             }
-            
-            int targetCustId = 0;
-            int targetRoleId = 0;
+            int targetCustId = Converter.ToInt(context.Request["targetCustId"]);
+            int targetRoleId = 1;
             //int formType = 0;
-            int.TryParse(context.Request["targetCustId"], out targetCustId);
-            int.TryParse(context.Request["targetRoleId"], out targetRoleId);
-            //int.TryParse(context.Request["formType"], out formType);
+
+            switch (Converter.ToInt(context.Request["agentLevel"]))
+            {
+                case 0:
+                    targetRoleId = (int)Role.Super;
+                    break;
+                case 1:
+                    targetRoleId = (int)Role.MainShareHolder;
+                    break;
+                case 2:
+                    targetRoleId = (int)Role.ShareHolder;
+                    break;
+                case 3:
+                    targetRoleId = (int)Role.MainAgent;
+                    break;
+            }
 
             SettingContext settingContext = new SettingContext
             {

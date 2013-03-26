@@ -7,7 +7,6 @@
 
 namespace Fanex.Age.DTO.Reports.Result
 {
-    using System;
     using System.Collections.Generic;
 
     public class SportLeague<T> where T : new()

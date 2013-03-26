@@ -7,11 +7,11 @@
 
 namespace Sunplus.Agent.Model.BL.TotalBets
 {
-    using System;
     using System.Data;
+    using Sunplus.Agent.Model.BL.Base;
     using Sunplus.Agent.Model.DL.TotalBets;
 
-    public class TotalBetsBO : Sunplus.Agent.Model.BL.Base.BOBase
+    public class TotalBetsBO : BOBase
     {
         #region Variable
 

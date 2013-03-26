@@ -9,7 +9,7 @@ using Apollo.Age.Services.Interface;
 using Apollo.Age.Services.Impl;
 using Apollo.Age.Criterias.Accounts;
 using System.Collections.Generic;
-using Apollo.Age.DTO.Accounts;
+
 using Apollo.Age.Entities;
 
 public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState.IReadOnlySessionState
