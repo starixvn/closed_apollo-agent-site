@@ -9,11 +9,14 @@
 
 namespace Sunplus.Agent.UI._AccountInfo
 {
+    using System.Collections;
+    using System.Web.UI;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Fanex.Agent.UI._AccountInfo;
+    using Fanex.Common;
     using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
@@ -31,16 +34,39 @@ namespace Sunplus.Agent.UI._AccountInfo
         private Agent agent = null;
         private Member member = null;
 
+        public int CustId
+        {
+            get
+            {
+                return Converter.ToInt(Request.QueryString["custid"]);
+            }
+        }
+
+        public string CustName 
+        {
+            get 
+            {
+                return Request.QueryString["txtUsername"];
+            }
+        }
+
+        public bool IsMember 
+        {
+            get
+            {
+                return Request.QueryString["isMember"] == "1";
+            }
+        }
+
         #endregion Defination
 
         #region Override
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
-            this.custId = string.IsNullOrEmpty(Request.QueryString["custid"]) ? -1 : int.Parse(Request.QueryString["custid"].ToString());
-            this.userNameRequest = Request.QueryString["txtUsername"];
-
-            this.isMember = Request.QueryString["isMember"] == "1";
+            this.custId = CustId;
+            this.userNameRequest = CustName;
+            this.isMember = IsMember;
 
             if (!string.IsNullOrEmpty(this.userNameRequest))
             {
@@ -96,7 +122,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             }
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             if (string.IsNullOrEmpty(this.userNameRequest) || this.userNameRequest.Equals(Resources.Lang.enterusername))
             {
@@ -108,7 +134,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             
 
@@ -137,7 +163,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         #region Render Content
 
-        public override void RenderContent(System.Web.UI.HtmlTextWriter writer)
+        public override void RenderContent(HtmlTextWriter writer)
         {
             AccountInfo_Template tpl = new AccountInfo_Template();
 
@@ -209,7 +235,8 @@ namespace Sunplus.Agent.UI._AccountInfo
                 }
                 else
                 {
-                    tpl.ButtonAgentList.agentlistlink = "../_MemberInfo/CustomerList/AgentList.aspx?custid=" + agent.Id + "&us=" + agent.Username;
+                    tpl.ButtonAgentList.AgentId = agent.Id.ToString(); 
+                    tpl.ButtonAgentList.AgentName = agent.Username;
                 }
 
                 if (!agent.HasMemberDownline)
@@ -218,7 +245,8 @@ namespace Sunplus.Agent.UI._AccountInfo
                 }
                 else
                 {
-                    tpl.ButtonMemberList.memberlistlink = "../_MemberInfo/CustomerList/MemberList.aspx?custid=" + agent.Id + "&us=" + agent.Username;
+                    tpl.ButtonMemberList.AgentId = agent.Id.ToString();
+                    tpl.ButtonMemberList.AgentName = agent.Username;
                 }
 
                 tpl.CustInfo.lblUsername = Resources.Lang.agent;
@@ -269,14 +297,7 @@ namespace Sunplus.Agent.UI._AccountInfo
         /// <returns></returns>
         public string RenderSettingBox()
         {
-            if (!this.isMember)
-            {
-                TreeViewNode.Root = agent.Id;
-                TreeViewNode.Type = 1; //1: tree in tab account
-            }
-
             SettingBox_Template tpl = new SettingBox_Template();
-
             if (this.isMember)
             {
                 tpl.HiddenBlockHeaderTabAgent.Hide();

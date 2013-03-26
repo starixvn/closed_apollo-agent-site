@@ -7,16 +7,19 @@
 //   <change who="Quinn.Vo" date="2013.3.26">Created</change>
 // </history>
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Web.UI;
 using Apollo.Age.Criterias.Accounts;
 using Apollo.Age.Entities;
 using Apollo.Age.Services.Impl;
 using Apollo.Age.Services.Interface;
+using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
 using Fanex.Agent.UI._AccountInfo;
+using Fanex.Common;
 
-public partial class _AccountInfo_DownlineMemberList : Fanex.Age.UI.TplPage
+public partial class _AccountInfo_DownlineMemberList : TplPage
 {
     private int custId = 0;
     private int pageSize = 50;
@@ -24,19 +27,43 @@ public partial class _AccountInfo_DownlineMemberList : Fanex.Age.UI.TplPage
     private int totalPage = 1;
     private List<Member> membersList = null;
 
-    public override void ProcessRequest(ref System.Collections.Hashtable p)
+    public int CustId
     {
-        this.custId = string.IsNullOrEmpty(Request.QueryString["custid"]) ? -1 : int.Parse(Request.QueryString["custid"].ToString());
-        this.pageIndex = string.IsNullOrEmpty(Request.QueryString["pageIndex"]) ? pageIndex : int.Parse(Request.QueryString["pageIndex"].ToString());
-        this.pageSize = string.IsNullOrEmpty(Request.QueryString["pageSize"]) ? pageSize : int.Parse(Request.QueryString["pageSize"].ToString());
+        get
+        {
+            return Converter.ToInt(Request.QueryString["custid"]);
+        }
     }
 
-    public override object ValidateRequest(System.Collections.Hashtable p)
+    public int PageIndex
+    {
+        get
+        {
+            return Converter.ToInt(Request.QueryString["pageIndex"]);
+        }
+    }
+
+    public int PageSize
+    {
+        get
+        {
+            return Converter.ToInt(Request.QueryString["pageSize"]);
+        }
+    }
+
+    public override void ProcessRequest(ref Hashtable p)
+    {
+        this.custId = CustId;
+        this.pageIndex = PageIndex;
+        this.pageSize = PageSize;
+    }
+
+    public override object ValidateRequest(Hashtable p)
     {
         return null;
     }
 
-    public override object InvokeData(System.Collections.Hashtable p)
+    public override object InvokeData(Hashtable p)
     {
         IMemberService service = new MemberService();
 

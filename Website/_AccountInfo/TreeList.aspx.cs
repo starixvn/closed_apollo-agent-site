@@ -10,14 +10,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web.Script.Serialization;
 using System.Web.UI;
-using Apollo.Age.Criterias.Accounts;
 using Apollo.Age.Entities;
 using Apollo.Age.Services.Impl;
 using Apollo.Age.Services.Interface;
-using Fanex.Common.Extensions;
+using Fanex.Common;
 
 public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
 {
@@ -64,7 +62,7 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
     {
         get
         {
-            return Fanex.Common.Converter.ToInt(Request.QueryString["root"]);
+            return Converter.ToInt(Request.QueryString["root"]);
         }
     }
 
@@ -72,7 +70,7 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
     {
         get
         {
-            return Fanex.Common.Converter.ToInt(Request.QueryString["agentid"]);
+            return Converter.ToInt(Request.QueryString["agentid"]);
         }
     }
 
@@ -101,7 +99,6 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
         {
             customerList.ForEach(agent =>
             {
-
                 listTreeViewNode.Add(new TreeViewNode
                     {
                         Id = agent.Id,

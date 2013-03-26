@@ -12,8 +12,10 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Apollo.Age.Criterias.Accounts;
     using System.Collections.Generic;    
     using Apollo.Age.Entities;
+    using System.Web.SessionState;
+    using System.Collections;
     
-    public class QueryUserName_Handler : Fanex.Age.UI.TplHandler, System.Web.SessionState.IReadOnlySessionState
+    public class QueryUserName_Handler : TplHandler, IReadOnlySessionState
     {
         private string query = string.Empty;
         private bool isMember = false;
@@ -41,13 +43,13 @@ namespace Sunplus.Agent.UI._AccountInfo
         }
 
 
-        public override void ProcessRequest(ref System.Collections.Hashtable p)
+        public override void ProcessRequest(ref Hashtable p)
         {
             this.query = Request.QueryString["query"];
             this.isMember = Request.QueryString["isMember"] == "1";
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             if (string.IsNullOrEmpty(query))
             {
@@ -57,7 +59,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             ICustomerService service = new CustomerService();
             CustomerSearchCriteria criteria = new CustomerSearchCriteria()
