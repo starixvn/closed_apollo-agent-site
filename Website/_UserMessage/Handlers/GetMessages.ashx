@@ -33,49 +33,49 @@ namespace Sunplus.Agent.UI._UserMessage
     {
         public override void RenderResult(ref Fanex.Age.UI.JSONData data)
         {
-            object[] publicMessages = new object[3];
-            object[] privateMessages = new object[2];
+            //object[] publicMessages = new object[3];
+            //object[] privateMessages = new object[2];
 
-            object[] dataView = View as object[];
-            DataTable messages = dataView[0] as DataTable;
-            if ((messages != null) && (messages.Rows.Count > 0))
-            {
-                // Public - 0:message ID, 1:message content, 2:message type (normall/allSpecial)
-                var publicMessageContent = UserMessageBO.GetContentMsg(messages.Rows[0], CurrentUserSession.Language);
-                publicMessageContent = publicMessageContent.Replace("\n", string.Empty);
-                publicMessageContent = publicMessageContent.Replace("\r", string.Empty);
-                publicMessageContent = publicMessageContent.Replace("'", "\'");
+            //object[] dataView = View as object[];
+            //DataTable messages = dataView[0] as DataTable;
+            //if ((messages != null) && (messages.Rows.Count > 0))
+            //{
+            //    // Public - 0:message ID, 1:message content, 2:message type (normall/allSpecial)
+            //    var publicMessageContent = UserMessageBO.GetContentMsg(messages.Rows[0], CurrentUserSession.Language);
+            //    publicMessageContent = publicMessageContent.Replace("\n", string.Empty);
+            //    publicMessageContent = publicMessageContent.Replace("\r", string.Empty);
+            //    publicMessageContent = publicMessageContent.Replace("'", "\'");
 
-                publicMessages[0] = messages.Rows[0]["MessageId"];
-                publicMessages[1] = publicMessageContent;
-                publicMessages[2] = "normal";
+            //    publicMessages[0] = messages.Rows[0]["MessageId"];
+            //    publicMessages[1] = publicMessageContent;
+            //    publicMessages[2] = "normal";
 
-                if ((DBNull.Value != messages.Rows[0]["IsSticky"]) && ((bool)messages.Rows[0]["IsSticky"]))
-                {
-                    publicMessages[2] = "allSpecial";
-                }
+            //    if ((DBNull.Value != messages.Rows[0]["IsSticky"]) && ((bool)messages.Rows[0]["IsSticky"]))
+            //    {
+            //        publicMessages[2] = "allSpecial";
+            //    }
 
-                // Private - 0:message ID, 1:message content
-                if (messages.Rows.Count == 2)
-                {
-                    var privateMessageContent = UserMessageBO.GetContentMsg(messages.Rows[1], CurrentUserSession.Language);
-                    privateMessageContent = privateMessageContent.Replace("\n", string.Empty);
-                    privateMessageContent = privateMessageContent.Replace("\r", string.Empty);
-                    privateMessageContent = privateMessageContent.Replace("'", "\'");
+            //    // Private - 0:message ID, 1:message content
+            //    if (messages.Rows.Count == 2)
+            //    {
+            //        var privateMessageContent = UserMessageBO.GetContentMsg(messages.Rows[1], CurrentUserSession.Language);
+            //        privateMessageContent = privateMessageContent.Replace("\n", string.Empty);
+            //        privateMessageContent = privateMessageContent.Replace("\r", string.Empty);
+            //        privateMessageContent = privateMessageContent.Replace("'", "\'");
 
-                    privateMessages[0] = messages.Rows[1]["MessageId"];
-                    privateMessages[1] = privateMessageContent;
-                }
-            }
+            //        privateMessages[0] = messages.Rows[1]["MessageId"];
+            //        privateMessages[1] = privateMessageContent;
+            //    }
+            //}
 
-            data.Add("public_message", publicMessages);
-            data.Add("private_message", privateMessages);
-            data.Add("unread_private_messages", (int)dataView[1]);
+            //data.Add("public_message", publicMessages);
+            //data.Add("private_message", privateMessages);
+            //data.Add("unread_private_messages", (int)dataView[1]);
         }
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
-            InitializeCaching();
+            //InitializeCaching();
         }
 
         void GetMessages_Handler_LoadComplete(object sender, EventArgs e)
@@ -90,16 +90,16 @@ namespace Sunplus.Agent.UI._UserMessage
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            DataTable messages = null;
-            UserMessageBO userMessageBO = new UserMessageBO(CurrentUserSession.NetSessionId);
-            int siteId = 3000;
-            siteId = RoleToSiteId(ref siteId);
+            //DataTable messages = null;
+            //UserMessageBO userMessageBO = new UserMessageBO(CurrentUserSession.NetSessionId);
+            //int siteId = 3000;
+            //siteId = RoleToSiteId(ref siteId);
 
-            // Get all public messages and private messages
-            messages = userMessageBO.GetMessages(3, siteId);
-            int count = userMessageBO.CountUnreadPriMessage();
+            //// Get all public messages and private messages
+            //messages = userMessageBO.GetMessages(3, siteId);
+            //int count = userMessageBO.CountUnreadPriMessage();
 
-            return new object[] { messages, count };
+            return new object();
         }
 
         private int RoleToSiteId(ref int siteId)
