@@ -16,7 +16,6 @@ using Sunplus.Shared.ViewLogLib.Entities;
 
 using Fanex.Caching;
 using CasinoSetting;
-using Sunplus.Agent.Model.BL.Bingo;
 using Sunplus.Agent.Model.BL.Casino;
 
 /*
@@ -142,7 +141,7 @@ namespace Sunplus.Agent.UI._UserMessage
                         }
                         catch { }
 
-                        BingoBO bingo = new BingoBO(CurrentUserSession.NetSessionId); // APILogger injection
+                        //BingoBO bingo = new BingoBO(CurrentUserSession.NetSessionId); // APILogger injection
                         CasinoBO casino = new CasinoBO(CurrentUserSession.NetSessionId); // APILogger injection
 
                         // Init one time only
