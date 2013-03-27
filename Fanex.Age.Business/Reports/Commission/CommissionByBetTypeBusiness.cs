@@ -42,7 +42,7 @@
                               Casino = c.Field<decimal>("Casino_comm"),
                               LiveCasino = c.Field<decimal>("LiveCasino_comm"),
                               NumberGame = c.Field<decimal>("NumberGame_comm"),
-                              Bingo = c.Field<decimal>("Bingo_comm"),
+                              //Bingo = c.Field<decimal>("Bingo_comm"),
                               P2P = c.Field<decimal>("P2P_comm"),
                               Total1 = c.Field<decimal>("TotalComm_1"),
                               Total2 = c.Field<decimal>("TotalComm_2"),

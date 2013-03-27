@@ -68,7 +68,7 @@ public partial class MemberInfo_TabPT : TplPage
             Request["ishr"].ToString(), 
             isSettingMinPT ? "0" : "1",
             Request["isCS"].ToString(), 
-            UserPermission.IsShowBingo ? "0" : "1", 
+            "1", 
             UserPermission.IsShowP2P ? "0" : "1",
             UserPermission.IsShowLiveCasino ? "0" : "1",
             UserPermission.IsShowVirtualSports ? "0" : "1"

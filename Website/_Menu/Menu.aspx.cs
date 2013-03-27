@@ -31,7 +31,7 @@ namespace Sunplus.Agent.UI._Menu
         public const string HR_FO = "hr-fo"; // Horse racing fix odds
         public const string FI = "fi"; // Finacial
         public const string CS = "cs"; // Casino
-        public const string BG = "bg"; // Bingo
+        //public const string BG = "bg"; // Bingo
         public const string NG = "numbergame"; // Number game
         public const string LiveCasino = "LiveCasino"; // Live Casino
         public const string SUBACC = "subacc"; // Sub-account
@@ -84,15 +84,6 @@ namespace Sunplus.Agent.UI._Menu
                 tpl.MenuTab1 = null;
                 tpl.SubMenu = null;
             }
-
-            tpl.NumberGameAd = null;
-            tpl.BingoAd = null;
-            tpl.CasinoAd = null;
-            tpl.NoMenuTab = null;
-            tpl.IphoneAd = null;
-            tpl.IphoneAd = null;
-            tpl.BingoAd = null;
-            tpl.IphoneAd_Gif = null;
 
             RenderMenu(ref tpl);
 

@@ -63,12 +63,12 @@
   <add url="_Reports/CasinoWinloss/CSWinlossMaster.aspx" role="3-[E]" id="0" fun="Report" subfun="Master Real Time Casino Winloss" />
   <add url="_Reports/CasinoWinloss/CSWinlossAgent.aspx" role="2-[E]" id="0" fun="Report" subfun="Agent Real Time Casino Winloss" />
 
-  <add url="_Reports/BingoWinloss/BingoWinlossDetailSuper.aspx" role="4-[E]" id="0" fun="Report" subfun="Super Real Time Bingo Winloss Detail" />
+  <!--<add url="_Reports/BingoWinloss/BingoWinlossDetailSuper.aspx" role="4-[E]" id="0" fun="Report" subfun="Super Real Time Bingo Winloss Detail" />
   <add url="_Reports/BingoWinloss/BingoWinlossDetailMaster.aspx" role="3-[E]" id="0" fun="Report" subfun="Master Real Time Bingo Winloss Detail" />
   <add url="_Reports/BingoWinloss/BingoWinlossDetailAgent.aspx" role="2-[E]" id="0" fun="Report" subfun="Agent Real Time Bingo Winloss Detail" />
   <add url="_Reports/BingoWinloss/BingoWinlossSuper.aspx" role="4-[E]" id="0" fun="Report" subfun="Super Real Time Bingo Winloss" />
   <add url="_Reports/BingoWinloss/BingoWinlossMaster.aspx" role="3-[E]" id="0" fun="Report" subfun="Master Real Time Bingo Winloss" />
-  <add url="_Reports/BingoWinloss/BingoWinlossAgent.aspx" role="2-[E]" id="0" fun="Report" subfun="Agent Real Time Bingo Winloss" />
+  <add url="_Reports/BingoWinloss/BingoWinlossAgent.aspx" role="2-[E]" id="0" fun="Report" subfun="Agent Real Time Bingo Winloss" />-->
 
   <add url="_Reports/MatchWinloss/MatchWinloss.aspx" role="2-[E]" id="3005" fun="Report" subfun="Agent Match Winloss" />
   <add url="_Reports/MatchWinloss/MatchWinLossDetail.aspx" role="2-[E]" id="3006" fun="Report" subfun="Match Winloss Detail" />

@@ -24,7 +24,6 @@ namespace Sunplus.Agent.UI._AccountInfo
         #region Defination
         const string SESSION_MEMBERUSERNAME = "MEMBERUSERNAME";
         const string SESSION_ISMEMBER = "SESSIONISMEMBER";
-        const string CHECKED_CHECKBOX = "checked='checked'";
         const string SELECTED_DROPDOWN = "selected";
         private int custId = -1; 
         private bool isMember = false;
@@ -339,17 +338,19 @@ namespace Sunplus.Agent.UI._AccountInfo
             if (this.isMember)
             {
                 //Page.ResolveUrl("~/
-                tplSetting.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.member.Id, this.member.Username, this.member.Group));
-                tplSetting.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.member.Id, this.member.Username, this.member.Group));
-                tplSetting.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.member.Id, this.member.Username, this.member.Group));
-                tplSetting.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={0}&username={1}&showheader=1&ugroup={2}", this.member.Id, this.member.Username, this.member.Group));
+                tplSetting.AgentSettingBlock.Hide();
+
+                tplSetting.MemberSettingBlock.CustId = this.member.Id.ToString();
+                tplSetting.MemberSettingBlock.UserName = this.member.Username;
+                tplSetting.MemberSettingBlock.Group = this.member.Group;
             }
             else
             {
-                tplSetting.ForDirectDownline.editSportBookLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={0}&username={1}&showheader=1&agentlevel={2}", this.agent.Id, this.agent.Username, this.agent.Level));
-                tplSetting.ForDirectDownline.editCommLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={0}&username={1}&showheader=1&agentlevel={2}", this.agent.Id, this.agent.Username, this.agent.Level));
-                tplSetting.ForDirectDownline.editBetSettingLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={0}&username={1}&showheader=1&agentlevel={2}", this.agent.Id, this.agent.Username, this.agent.Level));
-                tplSetting.ForDirectDownline.editPTLink = Response.ApplyAppPathModifier(string.Format("~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={0}&username={1}&showheader=1&agentlevel={2}", this.agent.Id, this.agent.Username, this.agent.Level));
+                tplSetting.MemberSettingBlock.Hide();
+
+                tplSetting.AgentSettingBlock.CustId = this.agent.Id.ToString();
+                tplSetting.AgentSettingBlock.UserName = this.agent.Username;
+                tplSetting.AgentSettingBlock.Level = this.agent.Level.ToString();
             }
 
             tpl.otherSettings = tplSetting.ToString();

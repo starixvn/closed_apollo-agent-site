@@ -33,7 +33,8 @@
     <link href="../_GlobalResources/css/tooltip.css?<%=TplCore.TplSettings.UrlVersion %>"
         rel="stylesheet" type="text/css" />
     <style type="text/css">
-        #agentSite {
+        #agentSite
+        {
             width: 100%;
             height: 100%;
         }
@@ -41,25 +42,25 @@
 </head>
 <body scroll='no'>
     <form id="agentSite" runat="server">
-    <div class="content">
-        <div class="header">
-            <iframe src="_Header/Header.aspx" frameborder="0" scrolling="no" width="100%" height="100%"
-                id="frHeader" name="frHeader"></iframe>
+        <div class="content">
+            <div class="header">
+                <iframe src="_Header/Header.aspx" frameborder="0" scrolling="no" width="100%" height="100%"
+                    id="frHeader" name="frHeader"></iframe>
+            </div>
+            <div class="menu">
+                <iframe src="_Menu/Menu.aspx" frameborder="0" id="menu" name="menu" width="100%"
+                    height="100%" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
+            </div>
+            <div class="mainpage">
+                <iframe src="<%=mainPage%>" onload="setURL();" frameborder="0" id="main" scrolling="auto"
+                    name="main" width="100%" height="100%" marginwidth="0" marginheight="0" allowtransparency="yes">
+                </iframe>
+            </div>
+            <div class="footer">
+                <iframe src="Footer.html" frameborder="0" width="100%" scrolling="no" height="100%"
+                    id="frFooter" name="frFooter"></iframe>
+            </div>
         </div>
-        <div class="menu">
-            <iframe src="_Menu/Menu.aspx" frameborder="0" id="menu" name="menu" width="100%"
-                height="100%" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
-        </div>
-        <div class="mainpage">
-            <iframe src="<%=mainPage%>" onload="setURL();" frameborder="0" id="main" scrolling="auto"
-                name="main" width="100%" height="100%" marginwidth="0" marginheight="0" allowtransparency="yes">
-            </iframe>
-        </div>
-        <div class="footer">
-            <iframe src="../Footer.html" frameborder="0" width="100%" scrolling="no" height="100%"
-                id="frFooter" name="frFooter"></iframe>
-        </div>
-    </div>
     </form>
     <script src="../_GlobalResources/Js/Core.js?<%=TplCore.TplSettings.UrlVersion %>"
         type="text/javascript"></script>
@@ -67,6 +68,7 @@
         type="text/javascript"></script>
     <script src="../_Announcement/Resources/Announcement.js?<%=TplCore.TplSettings.UrlVersion %>"
         type="text/javascript"></script>
+
     <script type="text/javascript">
 
         AGE.PERMISSIONS = '<%= (string)(Sunplus.Agent.Model.Entities.UserSession.Current.SubPageAccess) %>';
@@ -87,5 +89,6 @@
             this._SignOut();
         }
     </script>
+
 </body>
 </html>

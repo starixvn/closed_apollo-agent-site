@@ -487,22 +487,7 @@ AGE.prototype.Refresh = function () {
 }
 AGE.prototype.GetBaseUrl = function () {
     var url = window.location.href;
-    var mark = '))/';
-    var end = url.indexOf(mark);
-    if (end == -1) {
-        var slashNum = 3; // Public site
-        if (url.indexOf('.com') == -1 && url.indexOf('.net') == -1 && url.indexOf('.org') == -1) slashNum = 4; // Local site
-        end = 0;
-        for (var i = 0; i < slashNum; i++) {
-            end = url.indexOf('/', end + 1);
-            if (end == -1) return null;
-        }
-        end++;
-    }
-    else {
-        end += mark.length;
-    }
-    return url.substr(0, end);
+    return url.toString().replace(/^(.*\/\/[^\/?#]*).*$/, "$1") + "/";   
 }
 AGE.prototype.GetQueryString = function (key, defaultValue) {
     if (defaultValue == null) defaultValue = "";
