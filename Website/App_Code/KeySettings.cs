@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Collections;
+using System.Configuration;
 
 public partial class AppSettings
 {
@@ -9,7 +10,7 @@ public partial class AppSettings
     {
         get
         {
-            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("VirDir");
+            return ConfigurationManager.AppSettings["VirDir"];
         }
     }
 
@@ -26,7 +27,7 @@ public partial class AppSettings
     {
         get
         {
-            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("Site");
+            return ConfigurationManager.AppSettings["Site"];
         }
 
     }
@@ -44,7 +45,7 @@ public partial class AppSettings
     {
         get
         {
-            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("template_folder");
+            return ConfigurationManager.AppSettings["template_folder"];
         }
 
     }
@@ -53,7 +54,7 @@ public partial class AppSettings
     {
         get
         {
-            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("SiteUrl");;
+            return ConfigurationManager.AppSettings["SiteUrl"];
         }
 
     }
@@ -139,7 +140,7 @@ public partial class AppSettings
     {
         get
         {
-            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("DefaultNoIPVN");
+            return ConfigurationManager.AppSettings["DefaultNoIPVN"];
         }
     }
 
@@ -147,7 +148,7 @@ public partial class AppSettings
     {
         get
         {
-            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("VirPath");
+            return ConfigurationManager.AppSettings["VirPath"];
         }
 
     }
@@ -156,7 +157,7 @@ public partial class AppSettings
     {
         get
         {
-            return int.Parse(Sunplus.Agent.Configurations.AppSettings.Configuration.Get("PageSize"));
+            return int.Parse(ConfigurationManager.AppSettings["PageSize"]);
         }
     }
 

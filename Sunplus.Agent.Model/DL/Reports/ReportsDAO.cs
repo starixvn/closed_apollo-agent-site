@@ -12,6 +12,7 @@ namespace Sunplus.Agent.Model.DL.Reports
     using System.Collections.Generic;
     using System.Data;
     using Sunplus.Agent.Model.DL.Base;
+    using System.Configuration;
 
     public class ReportsDAO : DAOBase
     {
@@ -45,7 +46,7 @@ namespace Sunplus.Agent.Model.DL.Reports
         {
             if(!parameters.Contains("isshowall"))
             {
-                parameters.Add("isshowall", Sunplus.Agent.Configurations.AppSettings.Configuration.Get("LocalTest") == "1");                   
+                parameters.Add("isshowall", ConfigurationManager.AppSettings["LocalTest"] == "1");                   
             }
 
             return base.ExecSpTable(name, parameters, timeOut, isVerifyingReturnData);

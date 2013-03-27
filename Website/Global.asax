@@ -30,19 +30,11 @@
     }
     void Application_Start(object sender, EventArgs e)
     {
-    //    System.Web.Routing.RouteTable.Routes.MapHttpRoute(
-    //name: "DefaultApi",
-    //routeTemplate: "api/{controller}/{id}",
-    //defaults: new { id = System.Web.Http.RouteParameter.Optional }
-    //);
-        
+
         AreaRegistration.RegisterAllAreas();
         RegisterGlobalFilters(GlobalFilters.Filters);
         RegisterRoutes(RouteTable.Routes);
-        
-        Sunplus.Agent.Configurations.AppSettings.LoadComplete += new Sunplus.Agent.Configurations.AppSettings.UpdateEventHandler(AppSettings_LoadComplete);
-        Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
-        // Code that runs on application startup
+
         Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
 
         log4net.Config.XmlConfigurator.Configure();
@@ -53,13 +45,7 @@
     {
         if (error) return;
 
-        string[] keys = Sunplus.Agent.Configurations.AppSettings.Configuration.GetKeys();
-        foreach (string key in keys)
-        {
-            ConfigurationManager.AppSettings[key] = Sunplus.Agent.Configurations.AppSettings.Configuration.Get(key);
-        }
-
-        TplCore.TplSettings.UrlVersion = Sunplus.Agent.Configurations.AppSettings.Configuration.Get("JsVersion");
+        TplCore.TplSettings.UrlVersion = ConfigurationManager.AppSettings["JsVersion"];
     }
 
     void Application_End(object sender, EventArgs e)

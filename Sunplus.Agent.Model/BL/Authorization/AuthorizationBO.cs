@@ -17,6 +17,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
     using Sunplus.Agent.Model.BL.SubAcc;
     using Sunplus.Agent.Model.DL.Authorization;
     using Sunplus.Agent.Model.Entities;
+    using System.Configuration;
 
     public class AuthorizationBO : Sunplus.Agent.Model.BL.Base.BOBase
     {
@@ -309,7 +310,7 @@ namespace Sunplus.Agent.Model.BL.Authorization
             bool isAllowedTransferTotalBalance = this.dao.Age_Transfer_CheckTotalBalanceTransfer(custId, Sunplus.Agent.Model.BL.Definitions.AppSettings.AllowedListSuperAccounts);
             outputs.Add("isallowedtotalbalancetransfer", isAllowedTransferTotalBalance);
 
-            bool enableConsolidatedReport = Configurations.AppSettings.Configuration.Get("EnableConsolidatedReport") == "1";
+            bool enableConsolidatedReport = ConfigurationManager.AppSettings["EnableConsolidatedReport"] == "1";
             bool isShowConsolidated = enableConsolidatedReport && this.IsShownConsilatedReport(custId);
             outputs.Add("isshowconsolidated", isShowConsolidated);
         }
