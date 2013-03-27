@@ -391,9 +391,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         /// <summary>
         /// Apollo Agent - Init Edit Menu Control
         /// </summary>
-        public void InitEditMenuControl()
+        public void InitEditMenuControl(bool isAgentList)
         {
-            int itemArray = 2;
+            
+            int itemArray = isAgentList ? 3 : 2;
 
             this.arrayDisabledPopupMenu = new object[itemArray];
             this.arrayTextPopupMenu = new object[itemArray];
@@ -407,9 +408,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.arrayTextPopupMenu[1] = Resources.Lang.lblBetSetting;
             this.arrayIdPopupMenu[1] = "editBetSetting";
 
-            //this.arrayDisabledPopupMenu[2] = 0;
-            //this.arrayTextPopupMenu[2] = Resources.Lang.positiontaking;
-            //this.arrayIdPopupMenu[2] = "editPositionTaking";
+            if (isAgentList)
+            {
+                this.arrayDisabledPopupMenu[2] = 0;
+                this.arrayTextPopupMenu[2] = Resources.Lang.positiontaking;
+                this.arrayIdPopupMenu[2] = "editPositionTaking";
+            }
 
             this.RenderEditControl(arrayTextPopupMenu, arrayIdPopupMenu, arrayDisabledPopupMenu);
         }

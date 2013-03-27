@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="MemberCommissionSportbook.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.Commission.MemberCommissionSportbook_Page" %>

@@ -17,10 +17,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
     public class UpdateSetting : Fanex.Age.UI.TplHandler
     {
-        private IList<BettingLimit> betLimits = null;
-        private CommissionSetting commissionSetting = null;
-        private PositionTakingSetting positionTakingSetting = null;
-        private SettingContext settingContext = null;
+        private IList<BettingLimit> _betLimits = null;
+        private CommissionSetting _commissionSetting = null;
+        private PositionTakingSetting _positionTakingSetting = null;
+        private SettingContext _settingContext = null;
 
         public override void RenderResult(ref Fanex.Age.UI.JSONData data)
         {
@@ -41,22 +41,22 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
             if (!string.IsNullOrEmpty(settingContextString))
             {
-                settingContext = JsonConvert.DeserializeObject<SettingContext>(settingContextString, settings);
+                _settingContext = JsonConvert.DeserializeObject<SettingContext>(settingContextString, settings);
             }
 
             if (!string.IsNullOrEmpty(betLimitsString))
             {
-                betLimits = JsonConvert.DeserializeObject<IList<BettingLimit>>(betLimitsString, settings);
+                _betLimits = JsonConvert.DeserializeObject<IList<BettingLimit>>(betLimitsString, settings);
             }
 
             if (!string.IsNullOrEmpty(commissionSettingString))
             {
-                commissionSetting = JsonConvert.DeserializeObject<CommissionSetting>(commissionSettingString, settings);
+                _commissionSetting = JsonConvert.DeserializeObject<CommissionSetting>(commissionSettingString, settings);
             }
 
             if (!string.IsNullOrEmpty(positionTakingString))
             {
-                positionTakingSetting = JsonConvert.DeserializeObject<PositionTakingSetting>(positionTakingString, settings);
+                _positionTakingSetting = JsonConvert.DeserializeObject<PositionTakingSetting>(positionTakingString, settings);
             }
         }
 
@@ -72,12 +72,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            if (betLimits != null && settingContext != null)
+            if (_betLimits != null && _settingContext != null)
             {
                 ICustomerSettingService customerService = new CustomerSettingService();
                 Fanex.CustSetting.Models.Result result = null;
 
-                result = customerService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
+                result = customerService.UpdateSetting(_settingContext, _commissionSetting, _betLimits, _positionTakingSetting);
 
                 if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFUALT)
                 {

@@ -14,6 +14,12 @@
 
     void Application_Start(object sender, EventArgs e)
     {
+    //    System.Web.Routing.RouteTable.Routes.MapHttpRoute(
+    //name: "DefaultApi",
+    //routeTemplate: "api/{controller}/{id}",
+    //defaults: new { id = System.Web.Http.RouteParameter.Optional }
+    //);
+        
         Sunplus.Agent.Configurations.AppSettings.LoadComplete += new Sunplus.Agent.Configurations.AppSettings.UpdateEventHandler(AppSettings_LoadComplete);
         Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
         // Code that runs on application startup
