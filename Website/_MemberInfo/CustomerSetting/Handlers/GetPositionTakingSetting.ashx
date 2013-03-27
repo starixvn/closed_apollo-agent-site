@@ -13,63 +13,69 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using System.Web.SessionState;
     using System.Resources;
     using Fanex.Common;
+    using Fanex.Logging;
     
     public class GetPositionTakingSetting : IHttpHandler, IReadOnlySessionState
     {
 
         public void ProcessRequest(HttpContext context)
         {
-            IUserSession userSession = UserSession.Current;
-            CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
-            Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
-            Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
-
-            context.Response.ContentType = "text/javascript";
-            context.Response.Cache.SetNoStore();
-
-            JsonSerializerSettings settings = new JsonSerializerSettings();
-            settings.NullValueHandling = NullValueHandling.Ignore;
-            settings.Formatting = Formatting.Indented;
-
-
-            ICustomerSettingService customerService = new CustomerSettingService();
-            string currentUserName = userSession.Username;
-            int custId = userSession.AgentId;
-            int roleId = (int)customerService.GetRoleFromAgentLevel(userSession.AgentLevel);
-            int targetCustId = Converter.ToInt(context.Request["targetCustId"]);
-            int targetRoleId;
-            string agentLevel = context.Request["agentLevel"];
-            if (agentLevel != null)
+            try
             {
-                targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(agentLevel));
+                //// Get Data
+                IUserSession userSession = UserSession.Current;
+                ICustomerSettingService customerService = new CustomerSettingService();
+                string currentUserName = userSession.Username;
+                int custId = userSession.AgentId;
+                int roleId = (int)customerService.GetRoleFromAgentLevel(userSession.AgentLevel);
+                int targetCustId = Converter.ToInt(context.Request["targetCustId"]);
+                int targetRoleId;
+                string agentLevel = context.Request["agentLevel"];
+                if (agentLevel != null)
+                {
+                    targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(agentLevel));
+                }
+                else
+                {
+                    targetRoleId = (int)Role.Member;
+                }
+                SettingContext settingContext = new SettingContext
+                {
+                    CustId = custId,
+                    TargetCustId = targetCustId,
+                    ActorCustId = custId,
+                    RoleId = roleId,
+                    TargetRoleId = targetRoleId,
+                    FormSetting = (int)FormSettingType.PositionTaking,
+                    Language = userSession.Language
+                };
+                PositionTakingSetting positionTakingSetting = customerService.GetPositionTakingSettingForUpdating(settingContext);
+
+                //// Format Language
+                CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
+                Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+                Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+                SetPTLanguage(settingContext, positionTakingSetting);
+
+                //// Format Json
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.NullValueHandling = NullValueHandling.Ignore;
+                settings.Formatting = Formatting.Indented;
+
+                //// Response
+                context.Response.Write("var positionTakingSetting = ");
+                context.Response.Write(JsonConvert.SerializeObject(positionTakingSetting, settings));
+
+                context.Response.Write(";\n");
+                context.Response.Write("var settingContext = ");
+                context.Response.Write(JsonConvert.SerializeObject(settingContext, settings));
             }
-            else
+            catch (Exception ex)
             {
-                targetRoleId = (int)Role.Member;
+                Logger.Log.Error(ex.Message, ex);
             }
-            
-            SettingContext settingContext = new SettingContext
-            {
-                CustId = custId,
-                TargetCustId = targetCustId,
-                ActorCustId = custId,
-                RoleId = roleId,
-                TargetRoleId = targetRoleId,
-                FormSetting = (int)FormSettingType.PositionTaking,
-                Language = userSession.Language
-            };
-
-            PositionTakingSetting positionTakingSetting = customerService.GetPositionTakingSettingForUpdating(settingContext);
-            SetPTLanguage(settingContext, positionTakingSetting);
-
-            context.Response.Write("var positionTakingSetting = ");
-            context.Response.Write(JsonConvert.SerializeObject(positionTakingSetting, settings));
-
-            context.Response.Write(";\n");
-            context.Response.Write("var settingContext = ");
-            context.Response.Write(JsonConvert.SerializeObject(settingContext, settings));
         }
 
         public bool IsReusable

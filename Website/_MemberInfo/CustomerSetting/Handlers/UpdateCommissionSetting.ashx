@@ -14,15 +14,16 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using Fanex.CustSetting.ViewData;
     using System.Collections.Generic;
     using Fanex.CustSetting.Service;
+    using Fanex.Age.UI;
 
     public class UpdateCommissionSetting : Fanex.Age.UI.TplHandler
     {
-        private CommissionSetting commissionSetting = null;
-        private SettingContext settingContext = null;
+        private CommissionSetting _commissionSetting = null;
+        private SettingContext _settingContext = null;
 
         public override void RenderResult(ref Fanex.Age.UI.JSONData data)
         {
-            Fanex.Age.UI.Result r = View as Fanex.Age.UI.Result;
+            Result r = View as Result;
             data.AsResult(r, true);
         }
 
@@ -31,15 +32,18 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.Formatting = Formatting.Indented;
+            
+            string settingContextString = this.Request["settingContext"];
+            string commissionSettingString = this.Request["commissionSetting"];
 
-            if (this.Request["settingContext"] != null)
+            if (!string.IsNullOrEmpty(settingContextString))
             {
-                settingContext = JsonConvert.DeserializeObject<SettingContext>(this.Request["settingContext"].ToString(), settings);
+                _settingContext = JsonConvert.DeserializeObject<SettingContext>(settingContextString, settings);
             }
 
-            if (this.Request["commissionSetting"] != null)
+            if (!string.IsNullOrEmpty(commissionSettingString))
             {
-                commissionSetting = JsonConvert.DeserializeObject<CommissionSetting>(this.Request["commissionSetting"].ToString(), settings);
+                _commissionSetting = JsonConvert.DeserializeObject<CommissionSetting>(commissionSettingString, settings);
             }
 
         }
@@ -48,7 +52,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
         {
             //if (!CurrentUserSession.SubPageAccess.CreateAccount || CurrentUserSession.IsInternal)
             //{
-            //    return new Fanex.Age.UI.Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            //    return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
             //}
 
             return null;
@@ -56,24 +60,24 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            if (commissionSetting != null && settingContext != null)
+            if (_commissionSetting != null && _settingContext != null)
             {
                 ICustomerSettingService customerService = new CustomerSettingService();
                 Fanex.CustSetting.Models.Result result = null;
 
-                result = customerService.UpdateCommissionSetting(settingContext, commissionSetting);
+                result = customerService.UpdateCommissionSetting(_settingContext, _commissionSetting);
 
                 if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFUALT)
                 {
-                    return new Fanex.Age.UI.Result(ErrorType.Unknown, result.ErrMsg);
+                    return new Result(ErrorType.Unknown, result.ErrMsg);
                 }
                 else
                 {
-                    return new Fanex.Age.UI.Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
+                    return new Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
                 }
             }
 
-            return new Fanex.Age.UI.Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
         }
     }
 }

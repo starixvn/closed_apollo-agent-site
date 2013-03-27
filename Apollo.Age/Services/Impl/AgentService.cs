@@ -66,5 +66,13 @@ namespace Apollo.Age.Services.Impl
 
             return true;
         }
+
+        public IEnumerable<Agent> GetAgents(int id)
+        {
+            return _repository.Fetch(new AgentDownlineCriteria
+          {
+              AgentId = id
+          });
+        }
     }
 }

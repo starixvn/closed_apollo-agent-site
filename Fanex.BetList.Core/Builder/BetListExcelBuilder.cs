@@ -576,7 +576,8 @@ namespace Fanex.BetList.Core.Builder
             OddCellStyle.VerticalAlignment = EvenCellStyle.VerticalAlignment = VerticalAlignment.TOP;
             OddCellStyle.FillPattern = EvenCellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
 
-            OddCellStyle.BorderTop = OddCellStyle.BorderRight = OddCellStyle.BorderBottom = OddCellStyle.BorderLeft = EvenCellStyle.BorderTop = EvenCellStyle.BorderRight = EvenCellStyle.BorderBottom = EvenCellStyle.BorderLeft = CellBorderType.THIN;
+            //todo: convert to NPOI 1.2.5 API
+            //OddCellStyle.BorderTop = OddCellStyle.BorderRight = OddCellStyle.BorderBottom = OddCellStyle.BorderLeft = EvenCellStyle.BorderTop = EvenCellStyle.BorderRight = EvenCellStyle.BorderBottom = EvenCellStyle.BorderLeft = CellBorderType.THIN;
 
             OddCellStyle.TopBorderColor = OddCellStyle.RightBorderColor = OddCellStyle.BottomBorderColor = OddCellStyle.LeftBorderColor = EvenCellStyle.TopBorderColor = EvenCellStyle.RightBorderColor = EvenCellStyle.BottomBorderColor = EvenCellStyle.LeftBorderColor = 54;
 

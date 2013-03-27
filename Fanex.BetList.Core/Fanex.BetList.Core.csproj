@@ -38,8 +38,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NPOI">
-      <HintPath>DLL\NPOI.dll</HintPath>
+    <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -62,8 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DLL\NPOI.dll" />
-    <Content Include="DLL\TplCore.dll" />
     <Content Include="Templates\Status.htm" />
     <Content Include="Templates\Template.htm" />
     <Content Include="Templates\Stake.htm" />

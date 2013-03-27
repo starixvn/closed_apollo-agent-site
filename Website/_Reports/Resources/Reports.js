@@ -58,6 +58,7 @@ function doViewMPBetList(dateFrom, dateTo, betType, viewType) {
 
     window.location.href = url;
 }
+
 function viewHRBetList(custid, username)//ViewBetList HorseRacing
 {
     var url = age.GetBaseUrl() + "_BetList/BetList.aspx";
@@ -90,6 +91,7 @@ function viewSBBetList(custid, username, type)//ViewBetList for Sport Book
     url = SetParameterValue("chk_showvs", "on", url);
     window.location.href = url;
 }
+
 function viewCasinoOutstandingBetList(custid, username, type)//ViewBetList for Casino
 {
     var url = age.GetBaseUrl() + "_Reports/BetList/OutstandingDetail.aspx"
@@ -106,6 +108,7 @@ function viewCasinoOutstandingBetList(custid, username, type)//ViewBetList for C
 
     window.location.href = url;
 }
+
 function viewBingoOutstandingBetList(custid, username, type)//ViewBetList for Bingo
 {
     var url = age.GetBaseUrl() + "_Reports/BetList/OutstandingDetail.aspx"
@@ -159,6 +162,7 @@ function doViewOutstandingDownline(custid, roleid)//ViewDownline
 
     window.location.href = url;
 }
+
 function viewCommissionDownLine(custid, roleid) {
     var url = "CommissionByBettype.aspx";
 
@@ -171,6 +175,7 @@ function viewCommissionDownLine(custid, roleid) {
 
     window.location.href = url;
 }
+
 function viewFinanceCommissionDownline(custid, roleid) {
     var url = "FinanceCommission.aspx";
 
@@ -223,6 +228,7 @@ function ViewSuperCasinoDetail(bettype) {
 
     location.href = url;
 }
+
 function ViewMasterCasinoDetail(bettype) {
     var url = age.GetBaseUrl() + "_Reports/CasinoWinloss/CSWinlossDetailMaster.aspx";
     url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
@@ -233,6 +239,7 @@ function ViewMasterCasinoDetail(bettype) {
 
     location.href = url;
 }
+
 function ViewAgentCasinoDetail(bettype) {
     if (_page.role == 4) {
         ViewSuperCasinoDetail(bettype);
@@ -278,6 +285,7 @@ function ViewSuperBingoDetail() {
 
     location.href = url;
 }
+
 function ViewMasterBingoDetail(bettype) {
     var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailMaster.aspx";
     url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
@@ -333,11 +341,13 @@ function Result_ChangeSport() {
     document.getElementById("frmmain").method = "get";
     document.getElementById("frmmain").submit();
 }
+
 function Result_ChangeLeague() {
     document.getElementById("changeSportType").value = 1;
     document.getElementById("frmmain").method = "get";
     document.getElementById("frmmain").submit();
 }
+
 function Result_ToggleResultType() {
     var url = "Result.aspx";
     var isOutright = document.getElementById("is_outright").value == "0" ? "1" : "0";
@@ -345,6 +355,7 @@ function Result_ToggleResultType() {
 
     location.href = url;
 }
+
 function Result_SearchByDate() {
     var url = "Result.aspx";
     var tdate = document.getElementById("tdate") != null ? document.getElementById("tdate").value : document.getElementById("fdate").value;
@@ -358,6 +369,7 @@ function Result_SearchByDate() {
 
     location.href = url;
 }
+
 function Result_SearchOneDay(value) {
     var url = "Result.aspx?ddlSport=0&ddlLeague=0";
     url = SetParameterValue("ddlSport", "0", url);
@@ -499,6 +511,7 @@ function MatchResultEntered_GetSubmitPageUrl() {
     else if (roleId == 3) url = age.GetBaseUrl() + "_Reports/Winloss/WinlossMaster.aspx";
     return url;
 }
+
 function MatchResultEntered_ViewHistory() {
     var url = MatchResultEntered_GetSubmitPageUrl();
     url = SetParameterValue("custid", document.getElementById("custid").value, url);
@@ -506,6 +519,7 @@ function MatchResultEntered_ViewHistory() {
     url = SetParameterValue("IsSwitch", 1, url); ;
     window.location.href = url;
 }
+
 function MatchResultEntered_SearchByDate() {
     var url = MatchResultEntered_GetSubmitPageUrl();
     url = SetParameterValue("custid", document.getElementById("custid").value, url);
@@ -514,6 +528,7 @@ function MatchResultEntered_SearchByDate() {
 
     window.location.href = url;
 }
+
 function MatchResultEntered_SearchOneDay(value) {
     var url = MatchResultEntered_GetSubmitPageUrl();
     url = SetParameterValue("custid", document.getElementById("custid").value, url);
@@ -541,6 +556,7 @@ function Winloss_SearchByDate(fdate, tdate, targetCustId, actionPage) {
 
     document.getElementById("frmmain").submit();
 }
+
 function Winloss_SearchOneDay(objButton) {
     Winloss_SearchByDate(objButton.value, objButton.value, null, null);
 }
@@ -599,12 +615,14 @@ function ViewDownlineWLReport(fdate, tdate, targetCustId, actionPage, username) 
 
     document.getElementById("frmmain").submit();
 }
+
 function ViewHistory() {
     document.getElementById("IsHistoryReport").value = (document.getElementById("IsHistoryReport").value == "1" ? "0" : "1");
     document.getElementById("IsSwitch").value = "1";
 
     document.getElementById("frmmain").submit();
 }
+
 function ChangeView() {
     document.getElementById("OldView").value = (document.getElementById("OldView").value == "1" ? "0" : "1");
 
@@ -758,6 +776,6 @@ function ProcessDownlineForWinlossOnly(fdate, tdate, targetCustId, actionPage, u
 
 /* End search by date win loss*/
 
-// --End - Js functions is dedicated to reports (Win Loss and Win Loss Detail) --
+// -- End - Js functions is dedicated to reports (Win Loss and Win Loss Detail) --
 
 RegisterStartUp(initReport);

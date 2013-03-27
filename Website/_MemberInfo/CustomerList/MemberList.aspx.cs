@@ -99,7 +99,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
         public override void RenderContent(HtmlTextWriter writer)
         {
             this.InitJsLang();
-            this.InitEditMenuControl();
+            this.InitEditMenuControl(false);
 
             this.RequestQueryString = this.HashTableQueryString;
             this.JavaScriptRegister("custid", this.CustId);
