@@ -11,6 +11,7 @@ namespace Sunplus.Agent.Model.BL.Casino
     using System.Web;
     using Sunplus.Agent.Model.Services;
     using Sunplus.Libraries.ThirdPartyTestData;
+    using System.Configuration;
 
     public class CasinoAPICaller : IAPICaller
     {
@@ -44,7 +45,7 @@ namespace Sunplus.Agent.Model.BL.Casino
 
         public bool IsEnable()
         {
-            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get("UseLiveDb") == "1";
+            return ConfigurationManager.AppSettings["UseLiveDb"] == "1";
         }
         
         #endregion

@@ -1,4 +1,4 @@
-﻿@import "variable.less";
+﻿@import "variables.less";
 
 html {
     color: @textColor;
@@ -123,13 +123,6 @@ body {
 
 }
 
-input[type=button] {
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    font-size: 11px;
-}
-
 select {
     font-size: 11px;
     height: 20px;
@@ -138,19 +131,27 @@ select {
 }
 
 .btn {
-    background: url(../Images/bg_buttonsite.jpg) repeat-x top;
-    border: 1px #4d4d4d solid;
-    cursor: pointer;
-    font-size: 11px;
-    height: 19px;
-    line-height: 15px;
-    padding: 0 5px 2px;
+	height: 22px;
+	margin: 0 5px 0 0;
+	padding: 2px 6px;
+
+	background-color: lighten(@grayLight, 20%);
+	border: 1px solid @grayLight;
+	border-radius: 2px;
+	box-shadow: 0 1px 0 @white inset;
+	transition: background-color 0.15s ease-in-out 0s;
+
+	font-family: @fontFamily;
+	font-size: 1em;
+	font-weight: bold;
+	color: @grayDark;
+	cursor: pointer;
 
 	&:hover {
-		background: url(../Images/bg_buttonsiteOV.jpg) repeat-x top;
-		border: 1px #984d1a solid;
-		color: #cc4800;
+		background-color: @grayLight;
+		color: @white;
 	}
+	&:focus, &:active { box-shadow: 0 1px 0 @white inset, 0 0 3px @grayLight }
 }
 
 .editBtn {
@@ -679,5 +680,29 @@ a.update {
 
 	&:hover {
 	   background: none repeat scroll 0 0 #F2F2F2;
+	}
+}
+
+/* DATE RANGE CONTROL */
+
+.date-range {
+	border-collapse: collapse;
+
+	td {
+		padding-right: 3px;
+	}
+	input[type=text] {
+		background: url(img/cal/calendar.png) no-repeat right 1px;
+
+		border: 1px solid #999;
+		border-radius: 2px;
+		box-shadow: 1px 1px 3px #bbb inset;
+
+		width: 100px;
+		padding: 3px;
+
+		line-height: 1.2em;
+		font-size: .95em;
+		cursor: default;
 	}
 }

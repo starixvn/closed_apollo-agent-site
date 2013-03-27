@@ -62,7 +62,7 @@ namespace Fanex.BetList.Core.TicketHelper
 
         public bool IsVnIp(string ip)
         {
-            return IpUtils.IsVnIp(ip);
+            return false;//IpUtils.IsVnIp(ip);
         }
 
         public int Index { get; set; }

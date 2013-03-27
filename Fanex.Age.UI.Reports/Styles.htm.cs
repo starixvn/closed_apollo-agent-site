@@ -12,8 +12,10 @@ namespace Fanex.Age.UI.Reports
 		public class Styles_Template : Template
 		{
 			protected static string s0 = "<link href=\"";
-			protected static string s1{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s3{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -22,6 +24,8 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s0);
 					bd.Append(s1);
 					bd.Append(s2);
+					bd.Append(s3);
+					bd.Append(s4);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

@@ -591,7 +591,7 @@ function bindMembersList(agentID) {
 
 if (typeof jQuery != 'undefined') {
     $(function () {
-        $("div .view-agent-downline").click(function (event) {
+        $("div #agentDownlineLink").click(function (event) {           
             var $this = $(this);
             agentID = $this.attr('aid');
             contentId = $("#agent-downline");

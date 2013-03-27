@@ -9,6 +9,7 @@
     using RemotingRef;
 
     using Sunplus.Agent.Model.Services;
+    using System.Configuration;
 
     public class CacheRef
     {
@@ -38,7 +39,7 @@
         {
             get
             {
-                return "1".Equals(Configurations.AppSettings.Configuration.Get("UseLiveDb"));
+                return "1".Equals(ConfigurationManager.AppSettings["UseLiveDb"]);
             }
         }
 
