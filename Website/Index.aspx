@@ -62,7 +62,7 @@
         </tr>
         <tr>
             <td colspan="2" class="footer">
-                <iframe src="../Footer.html" frameborder="0" width="100%" scrolling="no" height="100%"
+                <iframe src="Footer.html" frameborder="0" width="100%" scrolling="no" height="100%"
                     id="frFooter" name="frFooter"></iframe>
             </td>
         </tr>

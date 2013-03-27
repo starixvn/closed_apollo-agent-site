@@ -85,15 +85,6 @@ namespace Sunplus.Agent.UI._Menu
                 tpl.SubMenu = null;
             }
 
-            tpl.NumberGameAd = null;
-            //tpl.BingoAd = null;
-            tpl.CasinoAd = null;
-            tpl.NoMenuTab = null;
-            tpl.IphoneAd = null;
-            tpl.IphoneAd = null;
-            //tpl.BingoAd = null;
-            tpl.IphoneAd_Gif = null;
-
             RenderMenu(ref tpl);
 
             writer.Write(tpl);
