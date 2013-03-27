@@ -1,4 +1,22 @@
-﻿// Require Core.js
+﻿var REPORT = {};
+
+if (typeof jQuery != 'undefined') {
+    REPORT = function ($) {
+        return {
+            
+        };
+    } (jQuery);
+
+    $(document).ready(function () {
+        $('.input-date').datepicker();
+
+    });
+}
+
+
+
+
+// Require Core.js
 _focusElementId = -1; // Do not use default focus
 age = new AGE();
 
