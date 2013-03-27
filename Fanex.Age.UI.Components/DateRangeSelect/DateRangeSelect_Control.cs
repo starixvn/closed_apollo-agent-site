@@ -25,7 +25,7 @@ namespace Fanex.Age.UI.Components
         {
             set
             {
-                _template.LimitDateRange.CalendarFrom.CurrentDate = value;
+                //_template.LimitDateRange.CalendarFrom.CurrentDate = value;
             }
         }
 
@@ -36,7 +36,7 @@ namespace Fanex.Age.UI.Components
         {
             set
             {
-                _template.LimitDateRange.LimitToDate.CalendarTo.CurrentDate = value;
+                //_template.LimitDateRange.LimitToDate.CalendarTo.CurrentDate = value;
             }
         }
 
@@ -169,13 +169,13 @@ namespace Fanex.Age.UI.Components
             _template.LimitHistoryDateRange.Hide();
             _template.LimitDateRange.Show();
             _template.LimitDateRange.DateFromText = showDateTo ? Resources.Lang.from : Resources.Lang.date;
-            _template.LimitDateRange.CalendarFrom.CurrentDate = dateFrom;
+            //_template.LimitDateRange.CalendarFrom.CurrentDate = dateFrom;
 
             if (!showDateTo) _template.LimitDateRange.LimitToDate.Hide();
             else
             {
-                _template.LimitDateRange.LimitToDate.CalendarTo.CurrentDate = dateTo;
-                _template.LimitDateRange.LimitToDate.CalendarTo.HideLinkedResources();
+                //_template.LimitDateRange.LimitToDate.CalendarTo.CurrentDate = dateTo;
+                //_template.LimitDateRange.LimitToDate.CalendarTo.HideLinkedResources();
             }
             _template.LimitHistoryDateRange.MonthYear.Hide();
         }
@@ -440,7 +440,7 @@ namespace Fanex.Age.UI.Components
 
         public void HideLinkedResources()
         {
-            _template.ExternalResources.Hide();
+            //_template.ExternalResources.Hide();
         }
 
         public override string ToString()
@@ -459,8 +459,8 @@ namespace Fanex.Age.UI.Components
         /// <param name="maxDate"></param>
         public void SetDateRange(DateTime minDate, DateTime maxDate)
         {
-            _template.LimitDateRange.CalendarFrom.SetDateRange(minDate, maxDate);
-            _template.LimitDateRange.LimitToDate.CalendarTo.SetDateRange(minDate, maxDate);
+            //_template.LimitDateRange.CalendarFrom.SetDateRange(minDate, maxDate);
+            //_template.LimitDateRange.LimitToDate.CalendarTo.SetDateRange(minDate, maxDate);
         }
 
         #endregion DateRange
@@ -478,7 +478,7 @@ namespace Fanex.Age.UI.Components
             if (!showDateTo) _template.LimitDateRange.LimitToDate.Hide();
             else
             {
-                _template.LimitDateRange.LimitToDate.CalendarTo.HideLinkedResources();
+                //_template.LimitDateRange.LimitToDate.CalendarTo.HideLinkedResources();
             }
         }
 
