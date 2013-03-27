@@ -9,9 +9,6 @@ using DNAide.Utils;
 using DNAide.Web;
 using Sunplus.Agent.Model.Entities.Permission;
 using Microsoft.Practices.Unity;
-using Sunplus.Bingo.Core;
-using Sunplus.Bingo.Entities;
-using Sunplus.Bingo.Services;
 using Sunplus.Agent.Model.Entities;
 
 /// <summary>
@@ -25,9 +22,9 @@ public class MemberInfo_Downline
     public static string memberCommissionBingo(string idmaster, string idagent)
     {
         #region Define variable
-        IResult resultCustomer = new Sunplus.Bingo.Entities.Result();
-        IResult resultGameKind = new Sunplus.Bingo.Entities.Result();
-        IResult resultGameType = new Sunplus.Bingo.Entities.Result();
+        //IResult resultCustomer = new Sunplus.Bingo.Entities.Result();
+        //IResult resultGameKind = new Sunplus.Bingo.Entities.Result();
+        //IResult resultGameType = new Sunplus.Bingo.Entities.Result();
         string main = TemplateHandler.LoadTemplate("MemberInfo/MemberCommissionBingo.html");
         string notfound = TemplateHandler.LoadTemplate("TotalBets/NotFound.html");
         string idfirstagent = "";
@@ -81,61 +78,61 @@ public class MemberInfo_Downline
         StringBuilder _rowData = new StringBuilder();
         int colCount = 0;
 
-        ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
-        DataTable tblGameKind = customerService.GetGameKindDataTable(BingoSettings.BingoGame.CodeGameNo, ref resultGameKind);
-        if (tblGameKind != null && tblGameKind.Rows.Count != 0)
-        {
-            //Load Game Type
-            #region Load Game Type
-            foreach (DataRow drGameKind in tblGameKind.Rows)
-            {
+        //ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
+        //DataTable tblGameKind = customerService.GetGameKindDataTable(BingoSettings.BingoGame.CodeGameNo, ref resultGameKind);
+        //if (tblGameKind != null && tblGameKind.Rows.Count != 0)
+        //{
+        //    //Load Game Type
+        //    #region Load Game Type
+        //    foreach (DataRow drGameKind in tblGameKind.Rows)
+        //    {
 
-                DataTable tableGameType = customerService.GetGameTypeDataTable(CastAide.AsInt32(drGameKind["GameGroupID"]), ref resultGameType);
-                if (tableGameType != null && tableGameType.Rows.Count != 0)
-                {
-                    foreach (DataRow drGameType in tableGameType.Rows)
-                    {
-                        string gameTypeTpl = gameType;
-                        TemplateHandler.Assign(ref gameTypeTpl, "GameTypeClass", "class='colHdr'");
-                        TemplateHandler.Assign(ref gameTypeTpl, "lblGameType", drGameType[DAL.APIClient.APICasinoProvider.Lang("GameTypeName")]);
-                        _gameType.Append(gameTypeTpl);
+        //        DataTable tableGameType = customerService.GetGameTypeDataTable(CastAide.AsInt32(drGameKind["GameGroupID"]), ref resultGameType);
+        //        if (tableGameType != null && tableGameType.Rows.Count != 0)
+        //        {
+        //            foreach (DataRow drGameType in tableGameType.Rows)
+        //            {
+        //                string gameTypeTpl = gameType;
+        //                TemplateHandler.Assign(ref gameTypeTpl, "GameTypeClass", "class='colHdr'");
+        //                TemplateHandler.Assign(ref gameTypeTpl, "lblGameType", drGameType[DAL.APIClient.APICasinoProvider.Lang("GameTypeName")]);
+        //                _gameType.Append(gameTypeTpl);
 
-                        string rowDataTpl = rowData;
-                        TemplateHandler.Assign(ref rowDataTpl, "rowdata", "{" + CastAide.AsInt32(drGameKind["GameGroupID"]).ToString() + "_" + CastAide.AsInt32(drGameType["GameTypeID"]).ToString() + "}");
-                        TemplateHandler.Assign(ref rowDataTpl, "normalCol", "#424242");
-                        _rowData.Append(rowDataTpl);
+        //                string rowDataTpl = rowData;
+        //                TemplateHandler.Assign(ref rowDataTpl, "rowdata", "{" + CastAide.AsInt32(drGameKind["GameGroupID"]).ToString() + "_" + CastAide.AsInt32(drGameType["GameTypeID"]).ToString() + "}");
+        //                TemplateHandler.Assign(ref rowDataTpl, "normalCol", "#424242");
+        //                _rowData.Append(rowDataTpl);
 
-                        //count column data
-                        colCount++;
-                    }
-                    string gameKindTpl = gameKind;
-                    TemplateHandler.Assign(ref gameKindTpl, "GameKindColSpan", "colspan='" + tableGameType.Rows.Count.ToString() + "'");
-                    TemplateHandler.Assign(ref gameKindTpl, "lblGameKind", drGameKind[DAL.APIClient.APICasinoProvider.Lang("GameGroupName")]);
-                    _gameKind.Append(gameKindTpl);
-                }
-            }
-            #endregion
+        //                //count column data
+        //                colCount++;
+        //            }
+        //            string gameKindTpl = gameKind;
+        //            TemplateHandler.Assign(ref gameKindTpl, "GameKindColSpan", "colspan='" + tableGameType.Rows.Count.ToString() + "'");
+        //            TemplateHandler.Assign(ref gameKindTpl, "lblGameKind", drGameKind[DAL.APIClient.APICasinoProvider.Lang("GameGroupName")]);
+        //            _gameKind.Append(gameKindTpl);
+        //        }
+        //    }
+        //    #endregion
 
-            TemplateHandler.ReplaceBlock(ref main, "GameKind", _gameKind.ToString());
-            TemplateHandler.ReplaceBlock(ref main, "GameType", _gameType.ToString());
-            TemplateHandler.ReplaceBlock(ref main, "rowdata", _rowData.ToString());
-        }
-        else
-        {
+        //    TemplateHandler.ReplaceBlock(ref main, "GameKind", _gameKind.ToString());
+        //    TemplateHandler.ReplaceBlock(ref main, "GameType", _gameType.ToString());
+        //    TemplateHandler.ReplaceBlock(ref main, "rowdata", _rowData.ToString());
+        //}
+        //else
+        //{
             //remove header
             TemplateHandler.RemoveBlock(ref main, "header");
-        }
+        //}
         #endregion
 
         #region Load Data Row
 
-        IReportService reportService = BingoContainer.Current.Resolve<IReportService>();
+        //IReportService reportService = BingoContainer.Current.Resolve<IReportService>();
         if (AppSettings.IsAgentSite)
         {
             TemplateHandler.Assign(ref main, "appliesallbettype", Resources.Lang.lblA + ", " + Resources.Lang.lblMe);
             TemplateHandler.RemoveBlock(ref main, "limit-agent");
             wildcard = new string[] { "P", "A" };
-            dataTable = reportService.GetMemberCommDataTable(null, null, Sunplus.Agent.Model.Entities.UserSession.Current.CustId, ref resultCustomer);
+            //dataTable = reportService.GetMemberCommDataTable(null, null, Sunplus.Agent.Model.Entities.UserSession.Current.CustId, ref resultCustomer);
         }
         else if (AppSettings.IsMasterSite)
         {
@@ -149,10 +146,10 @@ public class MemberInfo_Downline
             {
                 TemplateHandler.Assign(ref main, "option_agent", optionAgent);
                 wildcard = new string[] { "P", "A", "M" };
-                if (idagent == "")
-                    dataTable = reportService.GetMemberCommDataTable(null, CastAide.AsInt32(Sunplus.Agent.Model.Entities.UserSession.Current.CustId), CastAide.AsInt32(idfirstagent), ref resultCustomer);    
-                else
-                    dataTable = reportService.GetMemberCommDataTable(null, CastAide.AsInt32(Sunplus.Agent.Model.Entities.UserSession.Current.CustId), CastAide.AsInt32(idagent), ref resultCustomer);    
+                //if (idagent == "")
+                //    dataTable = reportService.GetMemberCommDataTable(null, CastAide.AsInt32(Sunplus.Agent.Model.Entities.UserSession.Current.CustId), CastAide.AsInt32(idfirstagent), ref resultCustomer);    
+                //else
+                //    dataTable = reportService.GetMemberCommDataTable(null, CastAide.AsInt32(Sunplus.Agent.Model.Entities.UserSession.Current.CustId), CastAide.AsInt32(idagent), ref resultCustomer);    
             }
         }
         else
@@ -178,15 +175,15 @@ public class MemberInfo_Downline
                 TemplateHandler.Assign(ref main, "option_master", optionMaster);
 
                 wildcard = new string[] { "P", "A", "M" };
-                if (idmaster != "")
-                {
-                    if (idmaster != idagent && idagent != "")
-                        dataTable = reportService.GetMemberCommDataTable(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, CastAide.AsInt32(idmaster), CastAide.AsInt32(idagent), ref resultCustomer);
-                    else
-                        dataTable = reportService.GetMemberCommDataTable(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, CastAide.AsInt32(idmaster), null, ref resultCustomer);
-                }
-                else
-                    dataTable = reportService.GetMemberCommDataTable(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, CastAide.AsInt32(idfirstmaster), null, ref resultCustomer);
+                //if (idmaster != "")
+                //{
+                //    if (idmaster != idagent && idagent != "")
+                //        dataTable = reportService.GetMemberCommDataTable(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, CastAide.AsInt32(idmaster), CastAide.AsInt32(idagent), ref resultCustomer);
+                //    else
+                //        dataTable = reportService.GetMemberCommDataTable(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, CastAide.AsInt32(idmaster), null, ref resultCustomer);
+                //}
+                //else
+                //    dataTable = reportService.GetMemberCommDataTable(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, CastAide.AsInt32(idfirstmaster), null, ref resultCustomer);
             }
         }
 
@@ -360,14 +357,14 @@ public class MemberInfo_Downline
         TemplateHandler.Assign(ref main, "Racing", Resources.Lang.Racebook);
         TemplateHandler.Assign(ref main, "Casino", Resources.Lang.casino);
         //Render Bingo
-        if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-        {
-            TemplateHandler.Assign(ref main, "Bingo", Resources.Bingo.bingo);
-        }
-        else
-        {
+        //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
+        //{
+        //    TemplateHandler.Assign(ref main, "Bingo", Resources.Bingo.bingo);
+        //}
+        //else
+        //{
             TemplateHandler.RemoveBlock(ref main, "p2pBingo");
-        }
+        //}
 
         if (UserPermission.IsShowP2P)
             TemplateHandler.Assign(ref main, "P2PText", Resources.Lang.P2P);
@@ -688,10 +685,10 @@ public class MemberInfo_Downline
             TemplateHandler.RemoveBlock(ref strmain, "p2pCasino");
         
         //Render Bingo
-        if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-            TemplateHandler.Assign(ref strmain, "Bingo", Resources.Bingo.bingo);
-        else
-            TemplateHandler.RemoveBlock(ref strmain, "p2pBingo");
+        //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
+        //    TemplateHandler.Assign(ref strmain, "Bingo", Resources.Bingo.bingo);
+        //else
+        TemplateHandler.RemoveBlock(ref strmain, "p2pBingo");
 
         TemplateHandler.Assign(ref strmain, "SportBook", Resources.Lang.sportBook);
         TemplateHandler.Assign(ref strmain, "Racing", Resources.Lang.Racebook);
@@ -828,10 +825,10 @@ public class MemberInfo_Downline
             TemplateHandler.RemoveBlock(ref strmain, "p2pCasino");
         
         // Render Bingo
-        if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-            TemplateHandler.Assign(ref strmain, "Bingo", Resources.Bingo.bingo);
-        else
-            TemplateHandler.RemoveBlock(ref strmain, "p2pBingo");
+        //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
+        //    TemplateHandler.Assign(ref strmain, "Bingo", Resources.Bingo.bingo);
+        //else
+        TemplateHandler.RemoveBlock(ref strmain, "p2pBingo");
 
         if (UserPermission.IsShowP2P)
             TemplateHandler.Assign(ref strmain, "P2PText", Resources.Lang.P2P);
@@ -2969,17 +2966,17 @@ public class MemberInfo_Downline
         }
 
         //Render Bingo
-        if (!UserPermission.IsShowBingo)
-        {
-            // Edit/Sync Bingo button
-            TemplateHandler.RemoveBlock(ref main, "bingo");
-            TemplateHandler.RemoveBlock(ref main, "no-bingo");
-            TemplateHandler.RemoveBlock(ref main, "edit-BG");
-        }
-        else
-        {
+        //if (!UserPermission.IsShowBingo)
+        //{
+        //    // Edit/Sync Bingo button
+        //    TemplateHandler.RemoveBlock(ref main, "bingo");
+        //    TemplateHandler.RemoveBlock(ref main, "no-bingo");
+        //    TemplateHandler.RemoveBlock(ref main, "edit-BG");
+        //}
+        //else
+        //{
             TemplateHandler.Assign(ref main, "lblBingo", Resources.Bingo.bingo);
-        }
+        //}
 
         if (AppSettings.IsSuperSite)
         {
@@ -3177,7 +3174,7 @@ public class MemberInfo_Downline
 
                 if (UserPermission.IsShowRacing) colspan1++;
                 if (UserPermission.IsShowCasino) colspan1++;
-                if (UserPermission.IsShowBingo) colspan1++;
+                //if (UserPermission.IsShowBingo) colspan1++;
                 if (UserPermission.IsShowP2P) colspan1++;
 
                 TemplateHandler.Assign(ref main, "colspan1", colspan1.ToString());
@@ -3279,15 +3276,15 @@ public class MemberInfo_Downline
             }
             
             //Render Bingo
-            if (UserPermission.IsShowBingo)
-            {
-                GenBingoForAgentList(ref temp_content, dt.Columns.Contains("syncbingo") ? dr["syncbingo"] : "0", roleid);
-            }
-            else
-            {
+            //if (UserPermission.IsShowBingo)
+            //{
+            //    GenBingoForAgentList(ref temp_content, dt.Columns.Contains("syncbingo") ? dr["syncbingo"] : "0", roleid);
+            //}
+            //else
+            //{
                 TemplateHandler.RemoveBlock(ref temp_content, "bingo");
                 TemplateHandler.RemoveBlock(ref temp_content, "no-bingo");
-            }
+            //}
 
             TemplateHandler.Assign(ref temp_content, "no_value", i);
             TemplateHandler.Assign(ref temp_content, "status", status);
@@ -3810,9 +3807,9 @@ public class MemberInfo_Downline
     public static string GetBingoPositionTaking(string type, string custid)
     {
         #region Define variable
-        IResult resultCustomer = new Sunplus.Bingo.Entities.Result();
-        IResult resultGameKind = new Sunplus.Bingo.Entities.Result();
-        IResult resultGameType = new Sunplus.Bingo.Entities.Result();
+        //IResult resultCustomer = new Sunplus.Bingo.Entities.Result();
+        //IResult resultGameKind = new Sunplus.Bingo.Entities.Result();
+        //IResult resultGameType = new Sunplus.Bingo.Entities.Result();
 
         string content = string.Empty;
         string[] wildcard = new string[] { "a" };
@@ -3853,102 +3850,102 @@ public class MemberInfo_Downline
         //Load Game Kind
         #region Load Game Kind
         int colCount = 0;
-        ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
-        DataTable tblGameKind = customerService.GetGameKindDataTable(BingoSettings.BingoGame.CodeGameNo, ref resultGameKind);
-        if (tblGameKind != null && tblGameKind.Rows.Count != 0)
-        {
-            //Load Game Type
-            #region Load Game Type
-            foreach (DataRow drGameKind in tblGameKind.Rows)
-            {
-                DataTable tblGameType = customerService.GetGameTypeDataTable(CastAide.AsInt32(drGameKind["GameGroupID"]), ref resultGameType);
-                if (tblGameType != null && tblGameType.Rows.Count != 0)
-                {
-                    foreach (DataRow drGameType in tblGameType.Rows)
-                    {
-                        string gameTypeTpl = gameType;
-                        TemplateHandler.Assign(ref gameTypeTpl, "GameTypeClass", "class='colHdr'");
-                        TemplateHandler.Assign(ref gameTypeTpl, "lblGameType", drGameType[DAL.APIClient.APICasinoProvider.Lang("GameTypeName")]);
-                        _gameType.Append(gameTypeTpl);
+        //ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
+        //DataTable tblGameKind = customerService.GetGameKindDataTable(BingoSettings.BingoGame.CodeGameNo, ref resultGameKind);
+        //if (tblGameKind != null && tblGameKind.Rows.Count != 0)
+        //{
+        //    //Load Game Type
+        //    #region Load Game Type
+        //    foreach (DataRow drGameKind in tblGameKind.Rows)
+        //    {
+        //        DataTable tblGameType = customerService.GetGameTypeDataTable(CastAide.AsInt32(drGameKind["GameGroupID"]), ref resultGameType);
+        //        if (tblGameType != null && tblGameType.Rows.Count != 0)
+        //        {
+        //            foreach (DataRow drGameType in tblGameType.Rows)
+        //            {
+        //                string gameTypeTpl = gameType;
+        //                TemplateHandler.Assign(ref gameTypeTpl, "GameTypeClass", "class='colHdr'");
+        //                TemplateHandler.Assign(ref gameTypeTpl, "lblGameType", drGameType[DAL.APIClient.APICasinoProvider.Lang("GameTypeName")]);
+        //                _gameType.Append(gameTypeTpl);
 
-                        string rowDataTpl = rowData;
-                        TemplateHandler.Assign(ref rowDataTpl, "rowdata", "{" + CastAide.AsInt32(drGameKind["GameGroupID"]).ToString() + "_" + CastAide.AsInt32(drGameType["GameTypeID"]).ToString() + "}");
-                        TemplateHandler.Assign(ref rowDataTpl, "normalCol", "#424242");
-                        _rowData.Append(rowDataTpl);
+        //                string rowDataTpl = rowData;
+        //                TemplateHandler.Assign(ref rowDataTpl, "rowdata", "{" + CastAide.AsInt32(drGameKind["GameGroupID"]).ToString() + "_" + CastAide.AsInt32(drGameType["GameTypeID"]).ToString() + "}");
+        //                TemplateHandler.Assign(ref rowDataTpl, "normalCol", "#424242");
+        //                _rowData.Append(rowDataTpl);
 
-                        //count column data
-                        colCount++;
-                    }
-                    string gameKindTpl = gameKind;
-                    TemplateHandler.Assign(ref gameKindTpl, "GameKindColSpan", "colspan='" + tblGameType.Rows.Count.ToString() + "'");
-                    TemplateHandler.Assign(ref gameKindTpl, "lblGameKind", drGameKind[DAL.APIClient.APICasinoProvider.Lang("GameGroupName")]);
-                    _gameKind.Append(gameKindTpl);
-                }
-            }
-            #endregion
+        //                //count column data
+        //                colCount++;
+        //            }
+        //            string gameKindTpl = gameKind;
+        //            TemplateHandler.Assign(ref gameKindTpl, "GameKindColSpan", "colspan='" + tblGameType.Rows.Count.ToString() + "'");
+        //            TemplateHandler.Assign(ref gameKindTpl, "lblGameKind", drGameKind[DAL.APIClient.APICasinoProvider.Lang("GameGroupName")]);
+        //            _gameKind.Append(gameKindTpl);
+        //        }
+        //    }
+        //    #endregion
 
-            TemplateHandler.ReplaceBlock(ref main, "GameKind", _gameKind.ToString());
-            TemplateHandler.ReplaceBlock(ref main, "GameType", _gameType.ToString());
-            TemplateHandler.ReplaceBlock(ref main, "rowdata", _rowData.ToString());
-        }
-        else
-        {
+        //    TemplateHandler.ReplaceBlock(ref main, "GameKind", _gameKind.ToString());
+        //    TemplateHandler.ReplaceBlock(ref main, "GameType", _gameType.ToString());
+        //    TemplateHandler.ReplaceBlock(ref main, "rowdata", _rowData.ToString());
+        //}
+        //else
+        //{
             //remove header
             TemplateHandler.RemoveBlock(ref main, "header");
-        }
+        //}
         #endregion
         #endregion
 
         #region Load Data Row
-        IReportService reportService = BingoContainer.Current.Resolve<IReportService>();
-        if (AppSettings.IsAgentSite)
-        {
-            IsEditMember = true;
-            dataTable = reportService.GetPositionTakingDataTable(null, null,intCustID, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-1 , ref resultCustomer);
-            wildcard = new string[] { "a" };
-        }
-        else
-        {
-            if (AppSettings.IsMasterSite)
-            {
-                if (type == "")
-                {
-                    IsEditMember = false;
-                    wildcard = new string[] { "m", "a" };
-                    dataTable = reportService.GetPositionTakingDataTable(null,intCustID, null,Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-1, ref resultCustomer);
-                    viewType = "agent";
-                }
-                else if (type == "agent")
-                {
-                    IsEditMember = true;
-                    wildcard = new string[] { "m", "a" };
-                    dataTable = reportService.GetPositionTakingDataTable(null, null, intCustID, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-2, ref resultCustomer);
-                }
-            }
-            else if (AppSettings.IsSuperSite)
-            {
-                if (type == "")
-                {
-                    IsEditMember = false;
-                    wildcard = new string[] { "s" };
-                    dataTable = reportService.GetPositionTakingDataTable(intCustID, null, null, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-1, ref resultCustomer);
-                    viewType = "master";
-                }
-                else if (type == "master")
-                {
-                    IsEditMember = false;
-                    wildcard = new string[] { "m", "a" };
-                    dataTable = reportService.GetPositionTakingDataTable(null, intCustID, null, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-2, ref resultCustomer);
-                    viewType = "agent";
-                }
-                else if (type == "agent")
-                {
-                    IsEditMember = true;
-                    wildcard = new string[] { "s", "m", "a" };
-                    dataTable = reportService.GetPositionTakingDataTable(null, null, intCustID, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-3, ref resultCustomer);
-                }
-            }
-        }
+        //IReportService reportService = BingoContainer.Current.Resolve<IReportService>();
+        //if (AppSettings.IsAgentSite)
+        //{
+        //    IsEditMember = true;
+        //    dataTable = reportService.GetPositionTakingDataTable(null, null,intCustID, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-1 , ref resultCustomer);
+        //    wildcard = new string[] { "a" };
+        //}
+        //else
+        //{
+        //    if (AppSettings.IsMasterSite)
+        //    {
+        //        if (type == "")
+        //        {
+        //            IsEditMember = false;
+        //            wildcard = new string[] { "m", "a" };
+        //            dataTable = reportService.GetPositionTakingDataTable(null,intCustID, null,Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-1, ref resultCustomer);
+        //            viewType = "agent";
+        //        }
+        //        else if (type == "agent")
+        //        {
+        //            IsEditMember = true;
+        //            wildcard = new string[] { "m", "a" };
+        //            dataTable = reportService.GetPositionTakingDataTable(null, null, intCustID, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-2, ref resultCustomer);
+        //        }
+        //    }
+        //    else if (AppSettings.IsSuperSite)
+        //    {
+        //        if (type == "")
+        //        {
+        //            IsEditMember = false;
+        //            wildcard = new string[] { "s" };
+        //            dataTable = reportService.GetPositionTakingDataTable(intCustID, null, null, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-1, ref resultCustomer);
+        //            viewType = "master";
+        //        }
+        //        else if (type == "master")
+        //        {
+        //            IsEditMember = false;
+        //            wildcard = new string[] { "m", "a" };
+        //            dataTable = reportService.GetPositionTakingDataTable(null, intCustID, null, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-2, ref resultCustomer);
+        //            viewType = "agent";
+        //        }
+        //        else if (type == "agent")
+        //        {
+        //            IsEditMember = true;
+        //            wildcard = new string[] { "s", "m", "a" };
+        //            dataTable = reportService.GetPositionTakingDataTable(null, null, intCustID, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-3, ref resultCustomer);
+        //        }
+        //    }
+        //}
 
         //should remove Role when wildcard.length = 1
         if (wildcard.Length == 1)
@@ -4166,13 +4163,13 @@ public class MemberInfo_Downline
         //END
 
         //Render Bingo
-        if (!UserPermission.IsShowBingo)
-        {
-            // Edit/Sync Bingo button
-            TemplateHandler.RemoveBlock(ref main, "bingo");
-            TemplateHandler.RemoveBlock(ref main, "no-bingo");
-            TemplateHandler.RemoveBlock(ref main, "edit-BG");
-        }
+        //if (!UserPermission.IsShowBingo)
+        //{
+        //    // Edit/Sync Bingo button
+        //    TemplateHandler.RemoveBlock(ref main, "bingo");
+        //    TemplateHandler.RemoveBlock(ref main, "no-bingo");
+        //    TemplateHandler.RemoveBlock(ref main, "edit-BG");
+        //}
 
         
         GenDownlineListTpl(ref main, ref cols, level,7);
@@ -4362,15 +4359,15 @@ public class MemberInfo_Downline
         }
         
         //Render Bingo
-        if (!UserPermission.IsShowBingo)
-        {
+        //if (!UserPermission.IsShowBingo)
+        //{
 
-            // Edit/Sync Bingo button
-            TemplateHandler.RemoveBlock(ref main, "bingo");
-            TemplateHandler.RemoveBlock(ref main, "no-bingo");
-            TemplateHandler.RemoveBlock(ref main, "edit-BG");
+        //    // Edit/Sync Bingo button
+        //    TemplateHandler.RemoveBlock(ref main, "bingo");
+        //    TemplateHandler.RemoveBlock(ref main, "no-bingo");
+        //    TemplateHandler.RemoveBlock(ref main, "edit-BG");
             
-        }
+        //}
 
         int roleid = Sunplus.Agent.Model.Entities.UserSession.Current.RoleId;
         bool isDirectDL = roleid - level == 1;
@@ -4673,20 +4670,20 @@ public class MemberInfo_Downline
             TemplateHandler.RemoveBlock(ref template, "edit-P2P");
         }
                 
-        if (!UserPermission.IsShowBingo)
-        {
-            // Edit/Sync Bingo button
-            TemplateHandler.RemoveBlock(ref template, "edit-BG");
-            TemplateHandler.RemoveBlock(ref template, "no-bingo");
-            TemplateHandler.RemoveBlock(ref template, "bingo");
-            colbeforeComm--;
-        }
-        else
-        {
+        //if (!UserPermission.IsShowBingo)
+        //{
+        //    // Edit/Sync Bingo button
+        //    TemplateHandler.RemoveBlock(ref template, "edit-BG");
+        //    TemplateHandler.RemoveBlock(ref template, "no-bingo");
+        //    TemplateHandler.RemoveBlock(ref template, "bingo");
+        //    colbeforeComm--;
+        //}
+        //else
+        //{
             TemplateHandler.Assign(ref template, "lblBingo", Resources.Bingo.bingo);
             // Disable Bingo
             //colbeforeComm--;
-        }
+        //}
         
         if (!UserPermission.IsShowFinance)
         {

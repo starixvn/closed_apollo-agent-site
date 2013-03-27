@@ -634,40 +634,6 @@ namespace Sunplus.Agent.Model.DL.AccountInfo
         }
 
         /// <summary>
-        /// Update disabled bingo status for customer
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="userId"></param>
-        /// <param name="subAccId"></param>
-        /// <param name="isSynBingo"></param>
-        /// <param name="disabledBingo"></param>
-        /// <param name="isEnableDownline"></param>
-        /// <param name="ip"></param>
-        /// <param name="languageKey"></param>
-        /// <param name="errMsg"></param>
-        /// <returns></returns>
-        public int Acc_UpdBingoStatus(int custId, int userId, int subAccId, bool isSynBingo, bool disabledBingo, bool isEnableDownline, string ip, string languageKey, ref string errMsg)
-        {
-            Hashtable parameters = new Hashtable();
-
-            parameters.Add("custid", custId);
-            parameters.Add("disabledbingo", disabledBingo);
-            parameters.Add("syncbg", isSynBingo);
-            parameters.Add("enabledownline", isEnableDownline);
-            parameters.Add("userid", userId);
-            parameters.Add("subaccid", subAccId);
-            parameters.Add("loginip", ip);
-            parameters.Add("language", languageKey);
-            parameters.Add("errcode", 0);
-            parameters.Add("errmsg", string.Empty);
-
-            DbResult result = ExecSp("Acc_UpdBingoStatus", parameters);
-            errMsg = result.Outputs["errmsg"].ToString();
-
-            return Convert.ToInt32(result.Outputs["errcode"]);
-        }
-
-        /// <summary>
         /// Update disabled number game status for customer
         /// </summary>
         /// <param name="custId"></param>

@@ -5,11 +5,11 @@ using System.Data;
 using System.Web;
 using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
+using Fanex.Agent.UI._Header;
 using Sunplus.Agent.Model.BL;
 using Sunplus.Agent.Model.BL.Definitions;
 using Sunplus.Agent.Model.Entities;
 using Sunplus.Agent.Utilities;
-using Fanex.Agent.UI._Header;
 
 /*
  * Created 20100126@Lee - Render header page
@@ -69,7 +69,7 @@ namespace Sunplus.Agent.UI._Header
             RegisterJavascriptObject("sec", DateTime.Now.Second.ToString());
             RegisterJavascriptObject("PM", Resources.Lang.PM);
             RegisterJavascriptObject("AM", Resources.Lang.AM);
-            RegisterJavascriptObject("CookieCurrentURLKey", CookieCurrentURLKey);
+            // RegisterJavascriptObject("CookieCurrentURLKey", CookieCurrentURLKey);
 
             #endregion Register javascript
 
@@ -112,6 +112,7 @@ namespace Sunplus.Agent.UI._Header
                 tpl.Transfer.TransferURL = "_Transfer/Super/MasterList.aspx";
             }
             */
+
             #endregion Transfer filter for Super, Master, Agent
 
             #region Tab filter for sub-account
@@ -135,6 +136,7 @@ namespace Sunplus.Agent.UI._Header
             //}
 
             #endregion Tab filter for sub-account
+
             /*
             if (!CurrentUserSession.IsLogged)
             {
@@ -161,7 +163,7 @@ namespace Sunplus.Agent.UI._Header
             tpl.cdate = DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8");
             tpl.ctime = DateTime.Now.AddHours(12).ToString("H-m-s-tt");
 
-           // string space = " ";
+            // string space = " ";
 
             //if (session.IsSubAcc)
             //{
@@ -272,7 +274,6 @@ namespace Sunplus.Agent.UI._Header
 
                 if (string.Compare(CurrentUserSession.Site, "789y", true) != 0) // i b c
                 {
-
                     if (CurrentUserSession.IsLiveCasinoSync)
                     {
                         string msgUS = "Dear valued agents,<br />We added a new feature ‘Member Win Limit’ for you to better handling your member winning in Live Casino. You may now go to your downline list and click on ‘Edit Live Casino’ for configuration. Click <a href='../_HowToUse/Index.aspx?lang=ja-JP' target='_blank' style='color:Blue'>here</a> for more information.";
@@ -358,8 +359,6 @@ namespace Sunplus.Agent.UI._Header
                         msgListTH.Add(msgTH);
                         msgListKR.Add(msgKR);
                     }
-
-
                 }
 
                 Session["MessageIsShowed"] = isShowed;

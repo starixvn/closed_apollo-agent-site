@@ -105,11 +105,11 @@ namespace Fanex.Age.UI.Reports.Common
                 template.Casino2.Hide();
             }
 
-            if (!UserPermission.IsShowBingo)
-            {
+            //if (!UserPermission.IsShowBingo)
+            //{
                 template.Bingo1.Hide();
                 template.Bingo2.Hide();
-            }
+            //}
 
             if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
             {
@@ -132,7 +132,7 @@ namespace Fanex.Age.UI.Reports.Common
             {
                 template.NotFoundContent.Hide();
                 Outstanding_ContentRow_Block contentBlock = new Outstanding_ContentRow_Block();
-                if (!UserPermission.IsShowBingo) contentBlock.Bingo.Hide();
+                contentBlock.Bingo.Hide();
                 if (!UserPermission.IsShowCasino) contentBlock.Casino.Hide();
                 if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P) contentBlock.P2P.Hide();
 
@@ -185,7 +185,7 @@ namespace Fanex.Age.UI.Reports.Common
         {
             // Render casino content
             if (UserPermission.IsShowCasino) RenderCasinoContentRow(dr, rowBlock.Casino);
-            if (UserPermission.IsShowBingo) RenderBingoContentRow(dr, rowBlock.Bingo);
+            //if (UserPermission.IsShowBingo) RenderBingoContentRow(dr, rowBlock.Bingo);
             if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P) RenderP2PContentRow(dr, rowBlock.P2P);
             // Decide to show outstanding downline link or show user name only
             RenderUserNameContent(dr, rowBlock);
@@ -256,23 +256,23 @@ namespace Fanex.Age.UI.Reports.Common
         /// </summary>
         /// <param name="dr"></param>
         /// <param name="casinoBlock"></param>
-        private void RenderBingoContentRow(DataRow dr, Outstanding_ContentRow_Bingo_Block bingoBlock)
-        {
-            bingoBlock.TransferValue = DecimalFormat(dr["BingoTransfer"]);
-            string bingoOutstanding = DecimalFormat(dr["bingooutstanding"]);
-            if (CurrentUserSession.IsAgent || _roleId == 2)
-            {
-                bingoBlock.OutstandingLink.CustId = dr["custid"].ToString();
-                bingoBlock.OutstandingLink.RoleId = _roleId.ToString();
-                bingoBlock.OutstandingLink.BetType = Fanex.Age.UI.Common.BetListRunningByDate_Member;
-                bingoBlock.OutstandingLink.OutstandingValue = bingoOutstanding;
-                bingoBlock.OutstandingLink.UserNameValue = dr["username"].ToString();
-            }
-            else
-            {
-                bingoBlock.OutstandingLink.SetValue(bingoOutstanding);
-            }
-        }
+        //private void RenderBingoContentRow(DataRow dr, Outstanding_ContentRow_Bingo_Block bingoBlock)
+        //{
+        //    bingoBlock.TransferValue = DecimalFormat(dr["BingoTransfer"]);
+        //    string bingoOutstanding = DecimalFormat(dr["bingooutstanding"]);
+        //    if (CurrentUserSession.IsAgent || _roleId == 2)
+        //    {
+        //        bingoBlock.OutstandingLink.CustId = dr["custid"].ToString();
+        //        bingoBlock.OutstandingLink.RoleId = _roleId.ToString();
+        //        bingoBlock.OutstandingLink.BetType = Fanex.Age.UI.Common.BetListRunningByDate_Member;
+        //        bingoBlock.OutstandingLink.OutstandingValue = bingoOutstanding;
+        //        bingoBlock.OutstandingLink.UserNameValue = dr["username"].ToString();
+        //    }
+        //    else
+        //    {
+        //        bingoBlock.OutstandingLink.SetValue(bingoOutstanding);
+        //    }
+        //}
         /// <summary>
         /// Render total row
         /// </summary>
@@ -295,12 +295,13 @@ namespace Fanex.Age.UI.Reports.Common
             }
             else totalBlock.Casino.Hide();
 
-            if (UserPermission.IsShowBingo)
-            {
-                totalBlock.Bingo.Outstanding = DecimalFormat(totalBingoOutstanding);
-                totalBlock.Bingo.Transfer = DecimalFormat(totalBingoTransfer);
-            }
-            else totalBlock.Bingo.Hide();
+            //if (UserPermission.IsShowBingo)
+            //{
+            //    totalBlock.Bingo.Outstanding = DecimalFormat(totalBingoOutstanding);
+            //    totalBlock.Bingo.Transfer = DecimalFormat(totalBingoTransfer);
+            //}
+            //else 
+            totalBlock.Bingo.Hide();
 
             if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
             {
@@ -362,7 +363,7 @@ namespace Fanex.Age.UI.Reports.Common
             {
                 int numCols = 3;
                 if (UserPermission.IsShowCasino) numCols += 2;
-                if (UserPermission.IsShowBingo) numCols += 2;
+                //if (UserPermission.IsShowBingo) numCols += 2;
                 if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P) numCols += 2;
                 return numCols;
             }

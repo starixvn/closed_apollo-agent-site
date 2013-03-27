@@ -127,22 +127,22 @@ function viewCasinoOutstandingBetList(custid, username, type)//ViewBetList for C
     window.location.href = url;
 }
 
-function viewBingoOutstandingBetList(custid, username, type)//ViewBetList for Bingo
-{
-    var url = age.GetBaseUrl() + "_Reports/BetList/OutstandingDetail.aspx"
-    url = SetParameterValue("custid", custid, url);
-    url = SetParameterValue("username", username, url);
-    url = SetParameterValue("type", type, url);
-    url = SetParameterValue("chkgetall", "on", url);
-    url = SetParameterValue("chk_showsb", "off", url);
-    url = SetParameterValue("chk_showcasino", "off", url);
-    url = SetParameterValue("chk_showrb", "off", url);
-    url = SetParameterValue("chk_showng", "off", url);
-    url = SetParameterValue("chk_showbi", "on", url);
-    url = SetParameterValue("chk_showvs", "off", url);
+//function viewBingoOutstandingBetList(custid, username, type)//ViewBetList for Bingo
+//{
+//    var url = age.GetBaseUrl() + "_Reports/BetList/OutstandingDetail.aspx"
+//    url = SetParameterValue("custid", custid, url);
+//    url = SetParameterValue("username", username, url);
+//    url = SetParameterValue("type", type, url);
+//    url = SetParameterValue("chkgetall", "on", url);
+//    url = SetParameterValue("chk_showsb", "off", url);
+//    url = SetParameterValue("chk_showcasino", "off", url);
+//    url = SetParameterValue("chk_showrb", "off", url);
+//    url = SetParameterValue("chk_showng", "off", url);
+//    url = SetParameterValue("chk_showbi", "on", url);
+//    url = SetParameterValue("chk_showvs", "off", url);
 
-    window.location.href = url;
-}
+//    window.location.href = url;
+//}
 
 function viewCasinoBetList(custid, username) {
     var url = age.GetBaseUrl() + "BetList/ViewCasinoResult.aspx";
@@ -156,17 +156,17 @@ function viewCasinoBetList(custid, username) {
     window.location.href = url;
 }
 
-function viewBingoBetList(custid, username) {
-    var url = age.GetBaseUrl() + "_BetList/BingoResult.aspx";
+//function viewBingoBetList(custid, username) {
+//    var url = age.GetBaseUrl() + "_BetList/BingoResult.aspx";
 
-    url = SetParameterValue("ibccustid", custid, url);
-    url = SetParameterValue("uname", username, url);
-    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
-    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
-    url = SetParameterValue("ACustID", document.getElementById("custid").value, url);
+//    url = SetParameterValue("ibccustid", custid, url);
+//    url = SetParameterValue("uname", username, url);
+//    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+//    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
+//    url = SetParameterValue("ACustID", document.getElementById("custid").value, url);
 
-    window.location.href = url;
-}
+//    window.location.href = url;
+//}
 /* End Bet list*/
 
 /* Downline */
@@ -294,62 +294,62 @@ function ViewCasinoDetail(bettype) {
 /* End Casino detail */
 
 /* Bingo detail */
-function ViewSuperBingoDetail() {
-    var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailSuper.aspx";
-    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
-    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
-    url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
-    url = SetParameterValue("sortingup", _page.SortingUp, url);
+//function ViewSuperBingoDetail() {
+//    var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailSuper.aspx";
+//    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+//    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
+//    url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
+//    url = SetParameterValue("sortingup", _page.SortingUp, url);
 
-    location.href = url;
-}
+//    location.href = url;
+//}
 
-function ViewMasterBingoDetail(bettype) {
-    var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailMaster.aspx";
-    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
-    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
-    url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
-    url = SetParameterValue("sortingup", _page.SortingUp, url);
+//function ViewMasterBingoDetail(bettype) {
+//    var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailMaster.aspx";
+//    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+//    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
+//    url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
+//    url = SetParameterValue("sortingup", _page.SortingUp, url);
 
-    location.href = url;
-}
+//    location.href = url;
+//}
 
-function ViewAgentBingoDetail(bettype) {
-    var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailAgent.aspx";
-    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
-    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
-    url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
-    url = SetParameterValue("sortingup", _page.SortingUp, url);
+//function ViewAgentBingoDetail(bettype) {
+//    var url = age.GetBaseUrl() + "_Reports/BingoWinloss/BingoWinlossDetailAgent.aspx";
+//    url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+//    url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
+//    url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
+//    url = SetParameterValue("sortingup", _page.SortingUp, url);
 
-    location.href = url;
-}
+//    location.href = url;
+//}
 
-function ViewBingoDetail(bettype) {
-    if (_page.role == 4) {
-        ViewSuperBingoDetail(bettype);
-    }
-    else if (_page.role == 3) {
-        ViewMasterBingoDetail(bettype);
-    }
-    else {
-        ViewAgentBingoDetail(bettype);
-    }
-}
+//function ViewBingoDetail(bettype) {
+//    if (_page.role == 4) {
+//        ViewSuperBingoDetail(bettype);
+//    }
+//    else if (_page.role == 3) {
+//        ViewMasterBingoDetail(bettype);
+//    }
+//    else {
+//        ViewAgentBingoDetail(bettype);
+//    }
+//}
 
-function doViewBingoWinlossDownline(custid, currentRole) {
-    var url = "";
-    if (currentRole == "super") url = "BingoWinlossMaster.aspx";
-    if (currentRole == "master") url = "BingoWinlossAgent.aspx";
-    if (url != "") {
-        url = SetParameterValue("custid", custid, url);
-        url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
-        url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
-        url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
-        url = SetParameterValue("sortingup", _page.SortingUp, url);
+//function doViewBingoWinlossDownline(custid, currentRole) {
+//    var url = "";
+//    if (currentRole == "super") url = "BingoWinlossMaster.aspx";
+//    if (currentRole == "master") url = "BingoWinlossAgent.aspx";
+//    if (url != "") {
+//        url = SetParameterValue("custid", custid, url);
+//        url = SetParameterValue("fdate", document.getElementById("fdate").value, url);
+//        url = SetParameterValue("tdate", document.getElementById("tdate").value, url);
+//        url = SetParameterValue("sortingcolumn", _page.SortingColumn, url);
+//        url = SetParameterValue("sortingup", _page.SortingUp, url);
 
-        window.location.href = url;
-    }
-}
+//        window.location.href = url;
+//    }
+//}
 /* End Bingo detail */
 
 /* Result page */
