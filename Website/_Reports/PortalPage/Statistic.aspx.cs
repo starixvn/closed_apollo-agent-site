@@ -49,16 +49,16 @@ namespace Fanex.Age.UI.Reports
                         tpl.NewUI.Casino.Clear();
                     }
 
-                    if (UserPermission.IsShowBingo)
-                    {
-                        tpl.NewUI.Bingo.TotalBingoTransferOutstanding = Lang.lblTotalBGTransferOutstanding;
-                        tpl.NewUI.Bingo.BingoTransfer = this.ConvertToDecimal(row["total_BITransfer"]);
-                        tpl.NewUI.Bingo.BingoOutstanding = this.ConvertToDecimal(row["total_BIOutStanding"]);
-                    }
-                    else
-                    {
+                    //if (UserPermission.IsShowBingo)
+                    //{
+                    //    tpl.NewUI.Bingo.TotalBingoTransferOutstanding = Lang.lblTotalBGTransferOutstanding;
+                    //    tpl.NewUI.Bingo.BingoTransfer = this.ConvertToDecimal(row["total_BITransfer"]);
+                    //    tpl.NewUI.Bingo.BingoOutstanding = this.ConvertToDecimal(row["total_BIOutStanding"]);
+                    //}
+                    //else
+                    //{
                         tpl.NewUI.Bingo.Clear();
-                    }
+                    //}
 
                     tpl.NewUI.P2P.TotalP2PTransferOutstanding = Lang.lblTotalP2PTransferOutstanding;
                     tpl.NewUI.P2P.P2PTransfer = this.ConvertToDecimal(row["total_P2PTransfer"]);
@@ -80,17 +80,17 @@ namespace Fanex.Age.UI.Reports
                         tpl.OldUI.Casino.Clear();
                     }
 
-                    if (UserPermission.IsShowBingo)
-                    {
-                        tpl.OldUI.Bingo.TotalBingoOutstanding = Lang.lblTotalBGOutstanding;
-                        tpl.OldUI.Bingo.TotalBingoTransfer = Lang.lblTotalBGTransfer;
-                        tpl.OldUI.Bingo.TotalBingoTransfer_vl = this.ConvertToDecimal(row["total_BITransfer"]);
-                        tpl.OldUI.Bingo.TotalBingoOutstanding_vl = this.ConvertToDecimal(row["total_BIOutStanding"]);
-                    }
-                    else
-                    {
+                    //if (UserPermission.IsShowBingo)
+                    //{
+                    //    tpl.OldUI.Bingo.TotalBingoOutstanding = Lang.lblTotalBGOutstanding;
+                    //    tpl.OldUI.Bingo.TotalBingoTransfer = Lang.lblTotalBGTransfer;
+                    //    tpl.OldUI.Bingo.TotalBingoTransfer_vl = this.ConvertToDecimal(row["total_BITransfer"]);
+                    //    tpl.OldUI.Bingo.TotalBingoOutstanding_vl = this.ConvertToDecimal(row["total_BIOutStanding"]);
+                    //}
+                    //else
+                    //{
                         tpl.OldUI.Bingo.Clear();
-                    }
+                    //}
 
                     tpl.NewUI.Clear();
                 }

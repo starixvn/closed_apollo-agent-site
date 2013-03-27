@@ -357,19 +357,19 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
     var custidVirtualSports = 0;
 
     var status = '';
-    var statusBingo = ''; //  For Bingo
+//    var statusBingo = ''; //  For Bingo
     var statusP2P = ''; //  For P2P
     var statusLiveCS = '';
     var statusVirtualSports = ''; //  For Virtual Sports
     var isCasino = false;
-    var isBingo = false;
+//    var isBingo = false;
     var isP2P = false;
     var isLiveCS = false;
     var isVirtualSports = false;
 
     var racing = document.getElementById('racing');
     var casino = document.getElementById('casino');
-    var bingo = document.getElementById('bingo');
+//    var bingo = document.getElementById('bingo');
     var p2p = document.getElementById('P2P');
     var liveCasino = document.getElementById('livecasino');
     var virtualSports = document.getElementById('virtualsports');
@@ -386,15 +386,15 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
                     } else counterCS--;
                 }
             }
-            if (bingo.value != 1) {
-                var strStatus = ArrChkId[j].getAttribute('statusBingo');
-                statusBingo += strStatus + ';';
-                if (!isBingo) {
-                    if (strStatus == "0" || strStatus == "1") {
-                        isBingo = true;
-                    } else counterBG--;
-                }
-            }
+//            if (bingo.value != 1) {
+//                var strStatus = ArrChkId[j].getAttribute('statusBingo');
+//                statusBingo += strStatus + ';';
+//                if (!isBingo) {
+//                    if (strStatus == "0" || strStatus == "1") {
+//                        isBingo = true;
+//                    } else counterBG--;
+//                }
+//            }
             if (p2p.value != 1) {
                 var strStatus = ArrChkId[j].getAttribute('statusP2P');
                 statusP2P += strStatus + ';';
@@ -441,9 +441,9 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
             if (counterCS == 1) { // First casino custid
                 custidCS = ArrChkId[j].id.split('_')[1];
             }
-            if (counterBG == 1) { // First bingo custid
-                custidBG = ArrChkId[j].id.split('_')[1];
-            }
+//            if (counterBG == 1) { // First bingo custid
+//                custidBG = ArrChkId[j].id.split('_')[1];
+//            }
             if (counterP2P == 1) { // First p2p custid
                 custidP2P = ArrChkId[j].id.split('_')[1];
             }
@@ -518,15 +518,15 @@ function RenderMulti(el, divID, custLevel, upline_id, masterid) {
         }
 
         //Link to edit Bingo
-        if (bingo.getAttribute('value') != '0') {
-            document.getElementById('tr_bingo').style.display = 'none';
-        } else {
-            if (!isBingo) // RemoveAttribute("MultiPopup", "tr_casino");
-                document.getElementById('tr_bingo').style.display = 'none';
-            else bingo.style.display = '';
-            if (counterBG > 1) bingo.href = 'javascript:EditMulti("","' + statusBingo + '",1,2)';
-            else bingo.href = 'javascript:EditMulti(' + custidBG + ',0,"' + statusBingo + '",2)';
-        }
+//        if (bingo.getAttribute('value') != '0') {
+//            document.getElementById('tr_bingo').style.display = 'none';
+//        } else {
+//            if (!isBingo) // RemoveAttribute("MultiPopup", "tr_casino");
+//                document.getElementById('tr_bingo').style.display = 'none';
+//            else bingo.style.display = '';
+//            if (counterBG > 1) bingo.href = 'javascript:EditMulti("","' + statusBingo + '",1,2)';
+//            else bingo.href = 'javascript:EditMulti(' + custidBG + ',0,"' + statusBingo + '",2)';
+//        }
 
         //Link to edit P2P
         if (p2p.getAttribute('value') != '0') {

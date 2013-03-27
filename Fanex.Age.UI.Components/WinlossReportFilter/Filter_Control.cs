@@ -128,10 +128,10 @@ namespace Fanex.Age.UI.Components
                 {
                     CheckPermission(UserPermission.IsShowRacing, SHOWRB);
                 }
-                else if (string.Compare(elementName, SHOW_IBC_BINGO) == 0)
-                {
-                    CheckPermission(UserPermission.IsShowBingoReport, SHOW_IBC_BINGO);
-                }
+                //else if (string.Compare(elementName, SHOW_IBC_BINGO) == 0)
+                //{
+                //    CheckPermission(UserPermission.IsShowBingoReport, SHOW_IBC_BINGO);
+                //}
                 else if (string.Compare(elementName, SHOW_NUMBER_GAME) == 0)
                 {
                     CheckPermission(UserPermission.IsShowNumberGame, SHOW_NUMBER_GAME);

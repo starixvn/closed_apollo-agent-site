@@ -103,12 +103,12 @@ public partial class MemberInfo_downlineList : TplPage
             TemplateHandler.RemoveBlock(ref this.HtmlContent, "edit-CS");
         }
 
-        if (!Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowBingo)
-        {
+        //if (!Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowBingo)
+        //{
             TemplateHandler.RemoveBlock(ref this.HtmlContent, "bingo");
             TemplateHandler.RemoveBlock(ref this.HtmlContent, "no-bingo");
             TemplateHandler.RemoveBlock(ref this.HtmlContent, "edit-BG");
-        }
+        //}
 
         if (AppSettings.IsAgentSite || act_list == "MemberList")
         {
@@ -191,7 +191,7 @@ public partial class MemberInfo_downlineList : TplPage
         TemplateHandler.Assign(ref HtmlContent, "isdisablecs", Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowCasino ? "0" : "1");
         TemplateHandler.Assign(ref HtmlContent, "isdisablefi", Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowFinance ? "0" : "1");
         TemplateHandler.Assign(ref HtmlContent, "isdisablehr", Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowRacing ? "0" : "1");
-        TemplateHandler.Assign(ref HtmlContent, "isdisablebg", Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowBingo ? "0" : "1");
+        //TemplateHandler.Assign(ref HtmlContent, "isdisablebg", Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowBingo ? "0" : "1");
         //TemplateHandler.Assign(ref HtmlContent, "isdisablep2p", Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P ? "0" : "1");
 
         TemplateHandler.Assign(ref HtmlContent, "roleid_val", Sunplus.Agent.Model.Entities.UserSession.Current.RoleId.ToString());

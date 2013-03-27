@@ -52,8 +52,6 @@
 
         public decimal NumberGame { get; set; }
 
-        public decimal Bingo { get; set; }
-
         public decimal P2P { get; set; }
 
         public decimal Total1 { get; set; }
