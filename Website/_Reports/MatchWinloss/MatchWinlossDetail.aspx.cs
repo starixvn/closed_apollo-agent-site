@@ -29,7 +29,7 @@ namespace Fanex.Age.UI.Reports.MatchWinloss
         {
             base.InitCheckBox();
 
-            _filterCollection.Remove(Filter_Control.SHOW_IBC_BINGO);
+            //_filterCollection.Remove(Filter_Control.SHOW_IBC_BINGO);
             _filterCollection.Remove(Filter_Control.SHOWCASINO);
             _filterCollection.Remove(Filter_Control.SHOW_P2P);
         }

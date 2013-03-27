@@ -407,18 +407,18 @@ namespace Sunplus.Agent.Model.Entities
         /// <summary>
         /// Disabled Bingo status of logged-in user.
         /// </summary>
-        bool IsBingoDisabled
-        {
-            get;
-        }
+        //bool IsBingoDisabled
+        //{
+        //    get;
+        //}
 
-        /// <summary>
-        /// Synchronized Bingo status of logged-in user.
-        /// </summary>
-        bool IsBingoSync
-        {
-            get;
-        }
+        ///// <summary>
+        ///// Synchronized Bingo status of logged-in user.
+        ///// </summary>
+        //bool IsBingoSync
+        //{
+        //    get;
+        //}
 
         /// <summary>
         /// Disabled Number Game status of logged-in user.
