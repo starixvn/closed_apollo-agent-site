@@ -14,11 +14,13 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using Fanex.CustSetting.ViewData;
     using System.Collections.Generic;
     using Fanex.CustSetting.Service;
+    using Fanex.CustSetting.Core;
+    using Fanex.Age.UI;
 
     public class UpdateBetLimit : Fanex.Age.UI.TplHandler
     {
-        private IList<BettingLimit> betLimits = null;
-        private SettingContext settingContext = null;
+        private IList<BettingLimit> _betLimits = null;
+        private SettingContext _settingContext = null;
 
         public override void RenderResult(ref Fanex.Age.UI.JSONData data)
         {
@@ -32,14 +34,17 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.Formatting = Formatting.Indented;
 
-            if (this.Request["settingContext"] != null)
+            string settingContextString = this.Request["settingContext"];
+            string betLimitsString = this.Request["betLimits"];
+
+            if (!string.IsNullOrEmpty(settingContextString))
             {
-                settingContext = JsonConvert.DeserializeObject<SettingContext>(this.Request["settingContext"].ToString(), settings);
+                _settingContext = JsonConvert.DeserializeObject<SettingContext>(settingContextString, settings);
             }
 
-            if (this.Request["betLimits"] != null)
+            if (!string.IsNullOrEmpty(betLimitsString))
             {
-                betLimits = JsonConvert.DeserializeObject<IList<BettingLimit>>(this.Request["betLimits"].ToString(), settings);
+                _betLimits = JsonConvert.DeserializeObject<IList<BettingLimit>>(betLimitsString, settings);
             }
 
         }
@@ -56,24 +61,25 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            if (betLimits != null && settingContext != null)
+            if (_betLimits != null 
+                && _settingContext != null)
             {
                 ICustomerSettingService customerService = new CustomerSettingService();
                 Fanex.CustSetting.Models.Result result = null;
 
-                result = customerService.UpdateBettingLimitSetting(settingContext, betLimits);
+                result = customerService.UpdateBettingLimitSetting(_settingContext, _betLimits);
 
-                if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFUALT)
+                if (result.ErrCode != 0 && result.ErrCode != Constant.WARNING_CODE_DEFUALT)
                 {
-                    return new Fanex.Age.UI.Result(ErrorType.Unknown, result.ErrMsg);
+                    return new Result(ErrorType.Unknown, result.ErrMsg);
                 }
                 else
                 {
-                    return new Fanex.Age.UI.Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
+                    return new Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
                 }
             }
 
-            return new Fanex.Age.UI.Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
         }
     }
 }
