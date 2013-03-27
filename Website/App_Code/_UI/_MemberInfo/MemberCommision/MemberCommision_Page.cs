@@ -15,7 +15,6 @@ namespace Sunplus.Agent.UI._MemberCommision
     using Fanex.Age.UI;
     using Resources;
     using Sunplus.Agent.Model.Entities.Permission;
-    using Sunplus.Agent.UI._MemberInfo.Commission;
 
     /// <summary>
     /// Defines permissions for sub-account
@@ -54,42 +53,43 @@ namespace Sunplus.Agent.UI._MemberCommision
 
         public string GroupOptionMemberCommission(string isOption)
         {
-            string strChecked = "checked='checked'";
-            CommonGroup_Template tplGroup = new CommonGroup_Template();
+            //string strChecked = "checked='checked'";
+            //CommonGroup_Template tplGroup = new CommonGroup_Template();
 
-            tplGroup.CheckedSP = isOption == "SB" ? strChecked : string.Empty;
-            tplGroup.RaceBook.CheckedRC = isOption == "RC" ? strChecked : string.Empty;
-            tplGroup.Casino.CheckedCA = isOption == "CA" ? strChecked : string.Empty;
-            tplGroup.P2P.CheckedP2P = isOption == "P2P" ? strChecked : string.Empty;
-            tplGroup.Bingo.CheckedBG = isOption == "BG" ? strChecked : string.Empty;
-            tplGroup.LiveCasino.CheckedLC = isOption == "LC" ? strChecked : string.Empty;
+            //tplGroup.CheckedSP = isOption == "SB" ? strChecked : string.Empty;
+            //tplGroup.RaceBook.CheckedRC = isOption == "RC" ? strChecked : string.Empty;
+            //tplGroup.Casino.CheckedCA = isOption == "CA" ? strChecked : string.Empty;
+            //tplGroup.P2P.CheckedP2P = isOption == "P2P" ? strChecked : string.Empty;
+            //tplGroup.Bingo.CheckedBG = isOption == "BG" ? strChecked : string.Empty;
+            //tplGroup.LiveCasino.CheckedLC = isOption == "LC" ? strChecked : string.Empty;
 
-            if (!UserPermission.IsShowRacing)
-            {
-                tplGroup.RaceBook.Clear();
-            }
+            //if (!UserPermission.IsShowRacing)
+            //{
+            //    tplGroup.RaceBook.Clear();
+            //}
 
-            if (!UserPermission.IsShowCasino)
-            {
-                tplGroup.Casino.Clear();
-            }
+            //if (!UserPermission.IsShowCasino)
+            //{
+            //    tplGroup.Casino.Clear();
+            //}
 
-            if (!UserPermission.IsShowP2P)
-            {
-                tplGroup.P2P.Clear();
-            }
+            //if (!UserPermission.IsShowP2P)
+            //{
+            //    tplGroup.P2P.Clear();
+            //}
 
-            if (!UserPermission.IsShowBingo || Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-            {
-                tplGroup.Bingo.Clear();
-            }
+            //if (!UserPermission.IsShowBingo || Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
+            //{
+            //    tplGroup.Bingo.Clear();
+            //}
 
-            if (!UserPermission.IsShowLiveCasino)
-            {
-                tplGroup.LiveCasino.Clear();
-            }
+            //if (!UserPermission.IsShowLiveCasino)
+            //{
+            //    tplGroup.LiveCasino.Clear();
+            //}
 
-            return tplGroup;
+            //return tplGroup;
+            return string.Empty;
         }
     }
 }

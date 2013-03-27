@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="MemberCommissionP2P.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.Commission.MemberCommissionP2P_Page" %>
