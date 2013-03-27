@@ -16,6 +16,7 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;
+    using Fanex.NAP.Framework.Data;
 
     public class MemberService : IMemberService
     {
@@ -24,6 +25,11 @@ namespace Apollo.Age.Services.Impl
         public MemberService(IMemberRepository memberRepository = null)
         {
             _repository = memberRepository ?? new MemberRepository();
+        }
+
+        public List<Member> GetCustomerSearch(ICriteria criteria)
+        {
+            return _repository.Fetch(criteria).ToList();
         }
 
         public Member GetCustomerInfo(AccountInfoCriteria criteria)

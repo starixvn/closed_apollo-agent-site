@@ -14,6 +14,7 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Apollo.Age.Entities;
     using System.Web.SessionState;
     using System.Collections;
+    using Fanex.Common;
     
     public class QueryUserName_Handler : TplHandler, IReadOnlySessionState
     {
@@ -25,19 +26,53 @@ namespace Sunplus.Agent.UI._AccountInfo
             IsValidateRequest = false;
         }
 
+        public string Username
+        {
+            get
+            {
+                return Request.QueryString["query"];
+            }
+        }
+
+        public bool IsMember
+        {
+            get
+            {
+                return Converter.ToBool(Request.QueryString["isMember"]);
+            }
+        }
+        
         public override void RenderResult(ref JSONData data)
         {
-            List<Customer> lstSuggest = View as List<Customer>;
-
-            int count = lstSuggest.Count;
-
-            object[] suggessions = new object[count];
-
-            for (int i = 0; i < count; i++)
+            object[] suggessions = null;
+            
+            if (this.isMember)
             {
-                suggessions[i] = new object[] { HttpUtility.HtmlEncode(lstSuggest[i].Username) };
-            }
+                List<Member> lstSuggest = View as List<Member>;
 
+                int count = lstSuggest.Count;
+
+                suggessions = new object[count];
+
+                for (int i = 0; i < count; i++)
+                {
+                    suggessions[i] = new object[] { HttpUtility.HtmlEncode(lstSuggest[i].Username) };
+                }
+            }
+            else
+            {
+                List<Agent> lstSuggest = View as List<Agent>;
+
+                int count = lstSuggest.Count;
+
+                suggessions = new object[count];
+
+                for (int i = 0; i < count; i++)
+                {
+                    suggessions[i] = new object[] { HttpUtility.HtmlEncode(lstSuggest[i].Username) };
+                }
+            }
+            
             data.Add("query", query);
             data.Add("suggestions", suggessions);
         }
@@ -45,8 +80,8 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         public override void ProcessRequest(ref Hashtable p)
         {
-            this.query = Request.QueryString["query"];
-            this.isMember = Request.QueryString["isMember"] == "1";
+            this.query = Username;
+            this.isMember = IsMember;
         }
 
         public override object ValidateRequest(Hashtable p)
@@ -61,7 +96,6 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         public override object InvokeData(Hashtable p)
         {
-            ICustomerService service = new CustomerService();
             CustomerSearchCriteria criteria = new CustomerSearchCriteria()
             {
                 AgentId = CurrentUserSession.AgentId,
@@ -69,8 +103,16 @@ namespace Sunplus.Agent.UI._AccountInfo
                 UserName = this.query
             };
 
-            var lstSuggest = service.GetCustomerSearch(criteria);
-            return lstSuggest;
+            if (criteria.IsMember)
+            {
+                IMemberService service = new MemberService();
+                return service.GetCustomerSearch(criteria);
+            }
+            else
+            {
+                IAgentService service = new AgentService();
+                return service.GetCustomerSearch(criteria);
+            }
         }
     }
 }

@@ -54,8 +54,8 @@ public partial class _AccountInfo_DownlineMemberList : TplPage
     public override void ProcessRequest(ref Hashtable p)
     {
         this.custId = CustId;
-        this.pageIndex = PageIndex;
-        this.pageSize = PageSize;
+        this.pageIndex = PageIndex == 0 ? this.pageIndex : PageIndex;
+        this.pageSize = PageSize == 0 ? this.pageSize : PageSize;
     }
 
     public override object ValidateRequest(Hashtable p)

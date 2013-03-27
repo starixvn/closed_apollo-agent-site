@@ -64,7 +64,7 @@ namespace Sunplus.Agent.UI._AccountInfo
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
-            this.custId = CustId;
+            this.custId = CustId == 0? -1 : CustId;
             this.userNameRequest = CustName;
             this.isMember = IsMember;
 

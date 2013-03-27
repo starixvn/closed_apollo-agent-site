@@ -22,7 +22,7 @@ public class GetAgentPathList : TplHandler, IReadOnlySessionState
     {
         get
         {
-            return Converter.ToInt(Request.QueryString["root"]);
+            return Converter.ToInt(Request["agentId"]);
         }  
     }
     
