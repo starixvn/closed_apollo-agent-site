@@ -31,15 +31,15 @@ var isTimeout = false;
 // age=this is the object of AGE instance
 AGE.prototype.Scrolling = function () {
     try {
-        if (top.main.location.href.indexOf(age.GetBaseUrl()) == -1) {
+        if (top.main.location.href.indexOf(_page.getBaseURL) == -1) {
             setCookie(_page.CookieCurrentURLKey, '', -1);
-            top.location = age.GetBaseUrl();
+            top.location = _page.getBaseURL;
             isTimeout = true;
             return;
         }
     } catch (e) { // Permission is denied because of cross domain issue
         setCookie(_page.CookieCurrentURLKey, '', -1);
-        top.location = age.GetBaseUrl();
+        top.location = _page.getBaseURL;
         isTimeout = true;
         return;
     }
@@ -81,7 +81,7 @@ function Change2Menu(url) {
         top.menu.ClearCurrentLeftMenu();
     }
 
-    top.main.location = age.GetBaseUrl() + url;
+    top.main.location = _page.getBaseURL + url;
     SelectTopMenu(url);
 }
 
@@ -231,7 +231,7 @@ function UpdateCountPrivateMsg() {
     }
 
     ajax.PostJSON(
-    age.GetBaseUrl() + '_UserMessage/Handlers/UpdatePrivateMessageCount.ashx', '', completeCountPrivateMsg);
+     _page.getBaseURL + '_UserMessage/Handlers/UpdatePrivateMessageCount.ashx', '', completeCountPrivateMsg);
 }
 
 var publicMessageId = 0; // public message
@@ -294,7 +294,7 @@ function GetMessages() {
         setTimeout(GetMessages, (60 * 1000));
     }
 
-    ajax.PostJSON(age.GetBaseUrl() + '_UserMessage/Handlers/GetMessages.ashx', '', completedGetMessages);
+    ajax.PostJSON(_page.getBaseURL + '_UserMessage/Handlers/GetMessages.ashx', '', completedGetMessages);
 }
 
 function ReplaceAll(source, stringToFind, stringToReplace) {
@@ -314,7 +314,7 @@ var msgIndex = 0;
 function ShowHotMsg(msgs) {
     if (msgs.length == 0) {
         document.getElementById("Popup_top").style.display = 'none';
-        
+
         return;
     }
 

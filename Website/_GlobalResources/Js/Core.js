@@ -1,5 +1,4 @@
-﻿
-var APOLLO = {}; // Global namespace for common functions
+﻿var APOLLO = {}; // Global namespace for common functions
 
 if (typeof jQuery != 'undefined') {
     // Functions in this namespace require jquery and jquery-ui
@@ -48,9 +47,7 @@ String.prototype.replaceAll = function (token, newToken, ignoreCase) {
     var i = -1;
 
     if (typeof token === "string") {
-
         if (ignoreCase) {
-
             _token = token.toLowerCase();
 
             while ((
@@ -62,11 +59,9 @@ String.prototype.replaceAll = function (token, newToken, ignoreCase) {
                     newToken +
                     str.substring(i + token.length);
             }
-
         } else {
             return this.split(token).join(newToken);
         }
-
     }
 
     return str;
@@ -486,8 +481,10 @@ AGE.prototype.Refresh = function () {
     wnd.location = wnd.location.href;
 }
 AGE.prototype.GetBaseUrl = function () {
-    var url = window.location.href;
-    return url.toString().replace(/^(.*\/\/[^\/?#]*).*$/, "$1") + "/";   
+    // return parent.baseURL;
+    //    var url = window.location.href;
+    //    return url.toString().replace(/^(.*\/\/[^\/?#]*).*$/, "$1") + "/";
+    return parent.baseURL;
 }
 AGE.prototype.GetQueryString = function (key, defaultValue) {
     if (defaultValue == null) defaultValue = "";

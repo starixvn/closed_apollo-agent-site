@@ -25,12 +25,14 @@
         window.errMsgs = new Array();
         window.userNames = new Array();
 
+        window.baseURL = "<%=baseURL %>";
+
     </script>
-    <link href="../_MemberInfo/SetNickName/Resources/SetNickName.less?<%=TplCore.TplSettings.UrlVersion %>"
+    <link href="_MemberInfo/SetNickName/Resources/SetNickName.less?<%=TplCore.TplSettings.UrlVersion %>"
         rel="stylesheet" type="text/css" />
-    <link href="../_Announcement/Resources/Announcement.less?<%=TplCore.TplSettings.UrlVersion %>"
+    <link href="_Announcement/Resources/Announcement.less?<%=TplCore.TplSettings.UrlVersion %>"
         rel="stylesheet" type="text/css" />
-    <link href="../_GlobalResources/css/tooltip.css?<%=TplCore.TplSettings.UrlVersion %>"
+    <link href="_GlobalResources/css/tooltip.css?<%=TplCore.TplSettings.UrlVersion %>"
         rel="stylesheet" type="text/css" />
     <style type="text/css">
         #agentSite
@@ -55,8 +57,8 @@
                     height="100%" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
             </td>
             <td class="mainpage" valign="top">
-                <iframe src="<%=mainPage%>" onload="setURL();" frameborder="0" id="main" scrolling="auto"
-                    name="main" width="100%" height="100%" marginwidth="0" marginheight="0" allowtransparency="yes">
+                <iframe src="<%=mainPage%>" frameborder="0" id="main" scrolling="auto" name="main"
+                    width="100%" height="100%" marginwidth="0" marginheight="0" allowtransparency="yes">
                 </iframe>
             </td>
         </tr>
@@ -68,11 +70,10 @@
         </tr>
     </table>
     </form>
-    <script src="../_GlobalResources/Js/Core.js?<%=TplCore.TplSettings.UrlVersion %>"
+    <script src="_GlobalResources/Js/Core.js?<%=TplCore.TplSettings.UrlVersion %>" type="text/javascript"></script>
+    <script src="_MemberInfo/SetNickName/Resources/SetNickName.js?<%=TplCore.TplSettings.UrlVersion %>"
         type="text/javascript"></script>
-    <script src="../_MemberInfo/SetNickName/Resources/SetNickName.js?<%=TplCore.TplSettings.UrlVersion %>"
-        type="text/javascript"></script>
-    <script src="../_Announcement/Resources/Announcement.js?<%=TplCore.TplSettings.UrlVersion %>"
+    <script src="_Announcement/Resources/Announcement.js?<%=TplCore.TplSettings.UrlVersion %>"
         type="text/javascript"></script>
 </body>
 </html>

@@ -69,6 +69,9 @@ namespace Sunplus.Agent.UI._Header
             RegisterJavascriptObject("sec", DateTime.Now.Second.ToString());
             RegisterJavascriptObject("PM", Resources.Lang.PM);
             RegisterJavascriptObject("AM", Resources.Lang.AM);
+            string urlPath = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + HttpContext.Current.Request.ApplicationPath;
+            RegisterJavascriptObject("getBaseURL", urlPath.LastIndexOf("/", urlPath.Length - 1, 1) != -1 ? urlPath : urlPath + "/");
+
             // RegisterJavascriptObject("CookieCurrentURLKey", CookieCurrentURLKey);
 
             #endregion Register javascript
