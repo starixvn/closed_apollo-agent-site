@@ -22,7 +22,7 @@ namespace Fanex.Age.UI.Reports
 			protected static string s4{get{return AbsoluteUrl2("MatchWinloss/MatchWinLossDetail.aspx");}}
 			protected static string s5 = "\"><div id=\"page_main\" onclick=\"setVisibleBoxLeague()\"><div id=\"header_main\">";
 			protected static string s6{get{return Resources.Lang.lblMatchWinLostDetail;}}
-			protected static string s7 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 99%\"><tr><td>";
+			protected static string s7 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%\"><tr><td>";
 			public string SearchPanel = "{SearchPanel}";
 			protected static string s8 = "</td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
 			public MatchWinlossDetail_ExcelContents_Block ExcelContents = new MatchWinlossDetail_ExcelContents_Block();
