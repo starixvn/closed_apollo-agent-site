@@ -23,6 +23,6 @@ namespace Apollo.Age.Repositories.Interface
     /// </summary>
     public interface IAgentRepository : IRepository<Agent>
     {
-        
+        bool IsExistValueSearch(ICriteria criteria);
     }
 }

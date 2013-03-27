@@ -210,7 +210,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             if (totalSubAgents > 0)
             {
                 string viewAgentDonwlineClick = "ViewDownLine('AgentList.aspx?custid=" + this.agentId + "&us=" + dr["username"].ToString() + "')";
-                IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view people-icon", viewAgentDonwlineClick, "[" + totalSubAgents.ToString() + "]");
+                IcoViewDownline viewAgentDownline = new IcoViewDownline(TemplateMain, "view view-icon", viewAgentDonwlineClick, "[" + totalSubAgents.ToString() + "]");
                 tplBlock.viewAgentList = viewAgentDownline;
             }
             else
@@ -222,7 +222,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             if (totalMembers > 0)
             {
                 string viewPlayerDonwlineClick = "ViewDownLine('MemberList.aspx?custid=" + this.agentId + "&us=" + dr["username"].ToString() + "')";
-                IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view people-icon", viewPlayerDonwlineClick, "[" + totalMembers.ToString() + "]");
+                IcoViewDownline viewPlayerDownline = new IcoViewDownline(TemplateMain, "view view-icon", viewPlayerDonwlineClick, "[" + totalMembers.ToString() + "]");
                 tplBlock.viewPlayerList = viewPlayerDownline;
             }
             else

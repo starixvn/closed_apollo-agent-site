@@ -17,7 +17,7 @@ namespace Fanex.Age.UI.Components
         public const string SHOWCASINO = "showcasino";
         public const string SHOWRB = "showrb";
         public const string SHOW_NUMBER_GAME = "showng";
-        public const string SHOW_IBC_BINGO = "showbi";
+        //public const string SHOW_IBC_BINGO = "showbi";
         public const string SHOW_P2P = "showp2p";
         public const string SHOW_LIVECASINO = "showlivecasino";
         public const string SHOW_VIRTUALSPORTS = "showvs";

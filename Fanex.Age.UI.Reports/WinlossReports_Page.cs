@@ -71,7 +71,7 @@ namespace Fanex.Age.UI.Reports
                     {Filter_Control.SHOWCASINO, new FilterElement(Filter_Control.SHOWCASINO, Resources.Lang.casino, "IsCheck()")},
                     {Filter_Control.SHOWRB, new FilterElement(Filter_Control.SHOWRB, Resources.Lang.Racebook, "IsCheck()")},
                     {Filter_Control.SHOW_NUMBER_GAME, new FilterElement(Filter_Control.SHOW_NUMBER_GAME, Resources.Lang.numbergame, "IsCheck()")},
-                    {Filter_Control.SHOW_IBC_BINGO, new FilterElement(Filter_Control.SHOW_IBC_BINGO, Resources.Bingo.bingo, "IsCheck()")},
+                    //{Filter_Control.SHOW_IBC_BINGO, new FilterElement(Filter_Control.SHOW_IBC_BINGO, Resources.Bingo.bingo, "IsCheck()")},
                     {Filter_Control.SHOW_P2P, new FilterElement(Filter_Control.SHOW_P2P, Resources.Lang.P2P, "IsCheck()")},
                     {Filter_Control.SHOW_LIVECASINO, new FilterElement(Filter_Control.SHOW_LIVECASINO, Resources.Lang.LiveCasino, "IsCheck()")},
                     {Filter_Control.SHOW_VIRTUALSPORTS, new FilterElement(Filter_Control.SHOW_VIRTUALSPORTS, Resources.Lang.VirtualSports, "IsCheck()")},

@@ -43,6 +43,24 @@ namespace Apollo.Age.Repositories.Impl
                 throw;
             }
         }
+
+        public bool IsExistValueSearch(ICriteria criteria)
+        {
+            bool result = false;
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    result = (bool)db.ExecuteScalar(criteria.GetSpParams());
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return result;
+        }
       
         public IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
         {

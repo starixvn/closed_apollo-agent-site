@@ -20,5 +20,7 @@ namespace Apollo.Age.Repositories.Interface
     public interface IMemberRepository : IRepository<Member>
     {
         IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria);
+
+        bool IsExistValueSearch(ICriteria criteria);
     }
 }

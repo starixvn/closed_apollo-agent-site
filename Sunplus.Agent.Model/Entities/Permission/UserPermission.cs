@@ -145,24 +145,24 @@ namespace Sunplus.Agent.Model.Entities.Permission
             }
         }
 
-        public static bool IsShowBingo
-        {
-            get
-            {
-                return !IsNeutral && AppSettings.IsEnableBingo && CurrentUserSession.IsBingoSync;
-            }
-        }
+        //public static bool IsShowBingo
+        //{
+        //    get
+        //    {
+        //        return !IsNeutral && AppSettings.IsEnableBingo && CurrentUserSession.IsBingoSync;
+        //    }
+        //}
 
-        public static bool IsShowBingoReport
-        {
-            get
-            {
-                //return (!IsNeutral ||
-                //   (CurrentUserSession.Site != null && creditNeutralSite.IndexOf(CurrentUserSession.Site, 0, StringComparison.CurrentCultureIgnoreCase) != -1))
-                //   && CurrentUserSession.IsBingoSync;
-                return false;
-            }
-        }
+        //public static bool IsShowBingoReport
+        //{
+        //    get
+        //    {
+        //        //return (!IsNeutral ||
+        //        //   (CurrentUserSession.Site != null && creditNeutralSite.IndexOf(CurrentUserSession.Site, 0, StringComparison.CurrentCultureIgnoreCase) != -1))
+        //        //   && CurrentUserSession.IsBingoSync;
+        //        return false;
+        //    }
+        //}
 
         public static string CreditNeutralSite
         {

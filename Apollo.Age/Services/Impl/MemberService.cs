@@ -34,7 +34,22 @@ namespace Apollo.Age.Services.Impl
 
         public Member GetCustomerInfo(AccountInfoCriteria criteria)
         {
-            return _repository.Get(criteria);
+            CustomerExistCriteria criteriaExist = new CustomerExistCriteria
+            {
+                CurrentAgentId = criteria.CurrentAgentId,
+                CustId = criteria.CustId,
+                IsMember = criteria.IsMember,
+                UserName = criteria.UserName
+            };
+
+            if (_repository.IsExistValueSearch(criteriaExist))
+            {
+                return _repository.Get(criteria);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
