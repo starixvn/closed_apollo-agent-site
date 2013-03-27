@@ -157,9 +157,10 @@ namespace Sunplus.Agent.Model.Entities.Permission
         {
             get
             {
-                return (!IsNeutral ||
-                   (CurrentUserSession.Site != null && creditNeutralSite.IndexOf(CurrentUserSession.Site, 0, StringComparison.CurrentCultureIgnoreCase) != -1))
-                   && CurrentUserSession.IsBingoSync;
+                //return (!IsNeutral ||
+                //   (CurrentUserSession.Site != null && creditNeutralSite.IndexOf(CurrentUserSession.Site, 0, StringComparison.CurrentCultureIgnoreCase) != -1))
+                //   && CurrentUserSession.IsBingoSync;
+                return false;
             }
         }
 
