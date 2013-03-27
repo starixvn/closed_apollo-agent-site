@@ -106,9 +106,7 @@
   </Function>
 
   <Function Name="Agent-Apollo-Customer Setting">
-
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="REPDB" Plain="0">
-      <Mapping DataField="AgentLevel" ObjectProperty="Level" />
       <Mapping DataField="ParentId" ObjectProperty="Id" />
       <Mapping DataField="ParentName" ObjectProperty="Username" />
       <Mapping DataField="UserGroup" ObjectProperty="Group" />
@@ -120,7 +118,6 @@
     </Setting>
     <Setting Key="Age_Customer_GetMemberDownline" SpName="Age_Customer_GetMemberDownline" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="REPDB" Plain="0" />
-
   </Function>
 
   <Function Name="Agent-Apollo-Report">

@@ -23,9 +23,9 @@ namespace Sunplus.Agent.UI._AccountInfo
     {
         #region Defination
         const string SESSION_MEMBERUSERNAME = "MEMBERUSERNAME";
+        const string SESSION_ISMEMBER = "SESSIONISMEMBER";
         const string CHECKED_CHECKBOX = "checked='checked'";
         const string SELECTED_DROPDOWN = "selected";
-        const string CLASS_NAME = "b_nleft";
         private int custId = -1; 
         private bool isMember = false;
         private bool isChangedUserName = false;
@@ -84,11 +84,11 @@ namespace Sunplus.Agent.UI._AccountInfo
                 }
 
                 Session[SESSION_MEMBERUSERNAME] = this.userNameRequest;
-                Session["SESSION_ISMEMBER"] = this.isMember;
+                Session[SESSION_ISMEMBER] = this.isMember;
             }
             else
             {
-                this.userNameRequest = Request["txtUsername"];
+                this.userNameRequest = CustName;
                 if (!string.IsNullOrEmpty(this.userNameRequest))
                 {
                     this.userNameRequest = this.userNameRequest.Trim();
@@ -111,7 +111,7 @@ namespace Sunplus.Agent.UI._AccountInfo
                     if (Session[SESSION_MEMBERUSERNAME] != null)
                     {
                         this.userNameRequest = Session[SESSION_MEMBERUSERNAME].ToString().Trim();
-                        this.isMember = bool.Parse(Session["SESSION_ISMEMBER"].ToString());
+                        this.isMember = bool.Parse(Session[SESSION_ISMEMBER].ToString());
                     }
 
                     if (string.IsNullOrEmpty(this.userNameRequest))
@@ -212,8 +212,6 @@ namespace Sunplus.Agent.UI._AccountInfo
         {
             SearchBox_Template tpl = new SearchBox_Template();
 
-            tpl.classStyle = "text_f";
-            
             if (!this.isMember)
             {
                 tpl.usernamesearch = agent.Username;
@@ -372,20 +370,23 @@ namespace Sunplus.Agent.UI._AccountInfo
             tpl.NoData.errMsg = errMsg;
             if (string.IsNullOrEmpty(errMsg))
             {
-                tpl.NoData.classStyle = "text_f1";
-                tpl.NoData.usernamesearch = Resources.Lang.enterusername;
+                tpl.NoData.NoInputSearchBlock.usernamesearch = Resources.Lang.enterusername;
+                tpl.NoData.InputSearchBlock.Hide();
             }
             else
             {
-                tpl.NoData.classStyle = "text_f";
-                if (this.isMember)
+                tpl.NoData.InputSearchBlock.usernamesearch = this.userNameRequest;
+                tpl.NoData.NoInputSearchBlock.Hide();
+
+                if(this.isMember)
                 {
-                    tpl.NoData.usernamesearch = this.member.Username;
+                    tpl.NoData.IsMember = SELECTED_DROPDOWN;
                 }
                 else
                 {
-                    tpl.NoData.usernamesearch = this.agent.Username;
+                    tpl.NoData.IsAgent = SELECTED_DROPDOWN;
                 }
+                
             }
         }
     }

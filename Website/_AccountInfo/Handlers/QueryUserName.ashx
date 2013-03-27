@@ -38,7 +38,7 @@ namespace Sunplus.Agent.UI._AccountInfo
         {
             get
             {
-                return Converter.ToBool(Request.QueryString["isMember"]);
+                return Request.QueryString["isMember"] == "1";
             }
         }
         
