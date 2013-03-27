@@ -1,66 +1,82 @@
 ﻿@import "../../_GlobalResources/Css/Agent.less";
-table.tblRpt {
-    /*background-color: #cdcdcd;*/
-}
-table.tblRpt tr {
-    height: 20px;
-}
-td {
-    padding: 0 2px;
-}
-.RptHeader {
-    background: @secondHeaderColor;
-    color: @primaryHeaderColor;
-    font-size: 12px;
-    text-align: center;
-    height: 22px;
+
+table {
+	&.tblRpt {
+		tr {
+			height: 20px;
+		}
+	} 
 }
 
-.RptHeader td {
-    font-size: 12px;
+td {
+    padding: 0 2px;
 }
 
 .odd_row {
     background-color: @rowBackground;
 }
+
 .even_row {
     background-color: @white;
 }
+
 .fl {
     float: left;
 }
+
 .l {
     text-align: left;
 }
+
 .r {
     text-align: right;
 }
+
 .c {
     text-align: center;
 }
+
 .b {
     font-weight: bold;
 }
+
 .n {
     font-weight: normal;
 }
-td, span, div, a {
-    font-family: @fontFamily;
+
+a {
+	font-family: @fontFamily;
     font-size: 11px;
+
+	&:link, &:visited {
+		color: @linkColor;
+		text-decoration: none;
+	}
+
+	&:hover {
+		color: @hoverLinkOrangeColor;
+		text-decoration: none;
+	}
+
+	&.forecast_betlist_link {
+		display: block;
+		float: left;
+		padding-left: 10px;
+	}
+
+	&.forecast_toggle_link {
+		display: block;
+		float: right;
+		padding-left: 10px;
+	}
 }
-a:link, a:visited {
-    color: @linkColor;
-    text-decoration: none;
-}
-a:hover {
-    color: #FF6600;
-    text-decoration: none;
-}
+
 #page_main {
     padding-top: 7px;
     overflow: visible;
     padding-bottom: 15px;
 }
+
 #header_main {
     height: 22px;
     background: url(../../_GlobalResources/Images/bg_header01.jpg) no-repeat left bottom;
@@ -72,13 +88,16 @@ a:hover {
     width: 97%;
     min-width: 100px;
 }
+
 body {
     background: url( "../../_GlobalResources/Images/bg_conts.jpg" ) repeat-x fixed center top #F5F6F8;
     margin: 0;
 }
+
 .bold {
     font-weight: bold;
 }
+
 .league {
     background: url( "../../_GlobalResources/Images/bg_header03.jpg" ) repeat-x scroll center top #F8F1E9;
     color: #333333;
@@ -94,6 +113,7 @@ body {
     margin-top: 7px;
     padding: 0 10px;   
 }
+
 .btnInfo {
     background: url( "../../_GlobalResources/Images/icon_add.jpg" ) no-repeat scroll center top transparent;
     display: block;
@@ -103,6 +123,7 @@ body {
     text-align: center;
     width: 16px;
 }
+
 select {
     font-size: 8pt;
     font-weight: normal;
@@ -113,33 +134,14 @@ select {
 .nobold {
     font-weight: normal;
 }
+
 .bg_white {
     background-color: White;
 }
+
 .no_info {
     text-align: center;
     background-color: @white;
     font-weight: normal;
     text-align: center;
-}
-
-a.forecast_betlist_link {
-    display: block;
-    float: left;
-}
-a.forecast_toggle_link {
-    display: block;
-    float: right;
-}
-
-a.forecast_betlist_link {
-    display: block;
-    float: left;
-    padding-left: 10px;
-}
-
-a.forecast_toggle_link {
-    display: block;
-    float: right;
-    padding-left: 10px;
 }

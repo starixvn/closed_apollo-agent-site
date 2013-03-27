@@ -537,7 +537,7 @@ function bindMembersList(agentID) {
     var iframe = document.createElement('iframe');
     iframe.frameBorder = 0;
     iframe.width = "100%";
-    iframe.height = "548px";
+    iframe.height = "100%";
     iframe.id = "randomid";
     iframe.setAttribute("src", link);
 
