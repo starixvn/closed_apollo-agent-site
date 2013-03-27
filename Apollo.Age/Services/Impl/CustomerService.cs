@@ -25,11 +25,5 @@ namespace Apollo.Age.Services.Impl
         {
             _repository = customerRepository ?? new AgentRepository();
         }
-
-        public List<Customer> GetCustomerSearch(ICriteria criteria)
-        {
-            throw new System.NotImplementedException();
-            //return _repository.Fetch(criteria).ToList();
-        }
     }
 }

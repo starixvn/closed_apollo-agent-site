@@ -9,12 +9,22 @@ using Apollo.Age.Services.Interface;
 using Apollo.Age.Services.Impl;
 using Apollo.Age.Criterias.Accounts;
 using System.Collections.Generic;
-
+using System.Web.SessionState;
 using Apollo.Age.Entities;
+using System.Collections;
+using Fanex.Common;
 
-public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState.IReadOnlySessionState
+public class GetAgentPathList : TplHandler, IReadOnlySessionState
 {
     private int agentId = -1;
+
+    public int AgentId 
+    {
+        get
+        {
+            return Converter.ToInt(Request["agentId"]);
+        }  
+    }
     
     public GetAgentPathList()
     {
@@ -39,12 +49,12 @@ public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState
         }
     }
     
-    public override void ProcessRequest(ref System.Collections.Hashtable p)
+    public override void ProcessRequest(ref Hashtable p)
     {
-        this.agentId = string.IsNullOrEmpty(Request["root"]) ? this.agentId : int.Parse(Request["root"].ToString());
+        this.agentId = AgentId;
     }
 
-    public override object ValidateRequest(System.Collections.Hashtable p)
+    public override object ValidateRequest(Hashtable p)
     {
         if (this.agentId == -1)
         {
@@ -54,7 +64,7 @@ public class GetAgentPathList : Fanex.Age.UI.TplHandler, System.Web.SessionState
         return null;
     }
 
-    public override object InvokeData(System.Collections.Hashtable p)
+    public override object InvokeData(Hashtable p)
     {
         IAgentService service = new AgentService();
 

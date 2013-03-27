@@ -56,9 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BetList\P2P\TableSession.cs" />
     <Compile Include="Reports\BetList\CancelBetListItem.cs" />
-    <Compile Include="Reports\BingoWinloss\BingoWinlossAgentItem.cs" />
-    <Compile Include="Reports\BingoWinloss\BingoWinlossMasterItem.cs" />
-    <Compile Include="Reports\BingoWinloss\BingoWinlossSuperItem.cs" />
     <Compile Include="Reports\CasinoWinloss\CSWinlossAgentItem.cs" />
     <Compile Include="Reports\CasinoWinloss\CSWinlossDetailAgentItem.cs" />
     <Compile Include="Reports\CasinoWinloss\CSWinlossDetailMasterItem.cs" />

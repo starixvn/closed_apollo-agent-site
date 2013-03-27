@@ -104,7 +104,7 @@ public class AddNewMem_Single : IHttpHandler, IRequiresSessionState
                 string isDisableFI = ((CastAide.AsBoolean(row["DisableFI"]) == true) ? "1" : "0");
                 string isDisableCas = ((CastAide.AsBoolean(row["DisableCasino"]) == true || isStatusCS == false) ? "1" : "0");
                 string isDisableHR = ((!UserPermission.IsShowRacing) ? "1" : "0");
-                string isDisableBG = (UserPermission.IsShowBingo == true) ? "0" : "1";
+                string isDisableBG = "1";
                 string isDisableLiveCS = "1"; //(UserPermission.IsShowLiveCasino == true) ? "0" : "1";
                 context.Response.Write("<script type='text/javascript'>parent.RedirectHRFICS('" + username + "', '" + drs.Outputs["custid"].ToString() + "','" + isDisableFI + "','" + isDisableCas + "','" + isDisableHR + "','" + isDisableBG + "','" + isDisableLiveCS + "','1');</script>");
 

@@ -129,8 +129,6 @@
     <Compile Include="BL\Admin\AdminBO.cs" />
     <Compile Include="BL\BetSetting\BetSettingBO.cs" />
     <Compile Include="BL\BetSummary\BetSummaryBO.cs" />
-    <Compile Include="BL\Bingo\BingoBO.cs" />
-    <Compile Include="BL\Bingo\BingoAPICaller.cs" />
     <Compile Include="BL\Casino\CasinoAPILogger.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -353,20 +353,6 @@
             return errCode;
         }
 
-        /// <summary>
-        /// Update disabled Bingo status for customer
-        /// </summary>vao i
-        /// <param name="custId"></param>
-        /// <param name="disabledBingo"></param>
-        /// <param name="isSynBingo"></param>
-        /// <param name="isEnableDownline"></param>
-        /// <param name="ip"></param>
-        /// <param name="errMsg"></param>
-        /// <returns></returns>
-        public int UpdateBingoStatus(int custId, bool disabledBingo, bool isSynBingo, bool isEnableDownline, string ip, ref string errMsg)
-        {
-            return this.accountInfoDAO.Acc_UpdBingoStatus(custId, CurrentSession.UserId, CurrentSession.SubAccId, isSynBingo, disabledBingo, isEnableDownline, ip, CurrentSession.LangKey, ref errMsg);
-        }
 
         public int UpdateNumberStatus(int custId, bool disableNumber, bool isUpdateDownline, string ip, ref string errMsg)
         {
@@ -426,12 +412,6 @@
                 customerInfo.LiveCasinoDisabled = Convert.ToBoolean(row["disablelivecasino"]);
 
                 //customerInfo.VirtualSportsDisabled = Convert.ToBoolean(row["disablevirtualsports"]);
-
-                customerInfo.BingoSync = Convert.ToBoolean(row["syncbingo"]);
-                if (row.Table.Columns.Contains("disablebingo"))
-                {
-                    customerInfo.BingoDisabled = Convert.ToBoolean(row["disablebingo"]);
-                }
 
                 customerInfo.IBCCustID = Convert.ToInt32(row["custid"]);
                 customerInfo.UserPwd = Convert.ToString(row["userpwd"]);

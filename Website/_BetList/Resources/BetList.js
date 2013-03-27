@@ -3,15 +3,6 @@
     location.href = SetParameterValue("showpic", showpic, url);
 }
 
-function ViewBingoDetail(userId) {
-    var url = age.GetBaseUrl() + '_BetList/BingoResultDetail.aspx';
-    url = SetParameterValue("userbetid", userId, url);
-    if (parent.ageWnd) {
-        parent.ageWnd.open(url, '', 50, 30, 550, 660);
-    } else {
-        ageWnd.open(url, '', 50, 30, 550, 660);
-    }
-}
 
 function ViewBallNo(id) {
     // Hide others
@@ -63,7 +54,7 @@ function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostd
     if (bettype == 71) {
         ViewCasinoResult(refno, bettype, username);
     } else if (bettype == 73) {
-        ViewBingoResult(refno, username);
+        //ViewBingoResult(refno, username);
     } else if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
         ViewMixParlayResult(refno_mixparlay, winlostdate, bettype);
     } else if (bettype == 1000 || bettype == 1001 || bettype == 1002) {  // P2P Game
@@ -125,29 +116,6 @@ function ViewCasinoResult(refno, bettype, uname) {
         params = SetParameterValue('isHistoryReport', _page.isHistoryReport, params);
     }
     var url = age.GetBaseUrl() + 'BetList/ViewCasinoResult.aspx' + params;
-    window.location.href = url;
-}
-
-function ViewBingoResult(refno, uname) {
-    var params = '?ibcrefno=' + refno + '&uname=' + uname;
-    //include hidden fields for returning back
-    if (document.getElementById('_type') != null) {
-        var arrayStatusItem = _page.FilterStatusCollection;
-
-        params = SetParameterValue('type', _page.type, params);
-        params = SetParameterValue('custid', _page.CustId, params);
-
-        if (arrayStatusItem != null) {
-            params = SetParameterValue('showSB', arrayStatusItem[1] == "on" ? "1" : "0", params);
-            params = SetParameterValue('showCasino', arrayStatusItem[2] == "on" ? "1" : "0", params);
-            params = SetParameterValue('showRB', arrayStatusItem[3] == "on" ? "1" : "0", params);
-        }
-        params = SetParameterValue('fdate', _page.fdate, params);
-        params = SetParameterValue('tdate', _page.tdate, params);
-        params = SetParameterValue('isHistoryReport', _page.isHistoryReport, params);
-    }
-
-    var url = age.GetBaseUrl() + '_BetList/BingoResult.aspx' + params;
     window.location.href = url;
 }
 

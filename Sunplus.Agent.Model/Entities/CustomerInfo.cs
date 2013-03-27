@@ -31,10 +31,6 @@
 
         public bool VirtualSportsDisabled { get; set; }
 
-        public bool BingoDisabled { get; set; }
-
-        public bool BingoSync { get; set; }
-
         public int Currency { get; set; }
 
         public string UserName { get; set; }

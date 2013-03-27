@@ -17,7 +17,7 @@ namespace Apollo.Age.Services.Interface
 
     public interface IAgentService
     {
-    //    List<TreeViewNode> GetTreeViewNode(ICriteria criteria);
+        List<Agent> GetCustomerSearch(ICriteria criteria);
 
         Agent GetCustomerInfo(AccountInfoCriteria criteria);
 

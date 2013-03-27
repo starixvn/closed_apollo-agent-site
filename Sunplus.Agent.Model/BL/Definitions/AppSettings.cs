@@ -98,7 +98,8 @@ namespace Sunplus.Agent.Model.BL.Definitions
         {
             get
             {
-                return GetValue("EnableBingo") == "1";
+                return false;
+                //return GetValue("EnableBingo") == "1";
             }
         }
 
@@ -604,7 +605,8 @@ namespace Sunplus.Agent.Model.BL.Definitions
         {
             get
             {
-                return int.Parse(GetValue("Disabled_BingoCommission")) == 1;
+                return true;
+                //return int.Parse(GetValue("Disabled_BingoCommission")) == 1;
             }
         }
 
@@ -626,7 +628,7 @@ namespace Sunplus.Agent.Model.BL.Definitions
         {
             get
             {
-                return int.Parse(GetValue("Disabled_BingoStatus")) == 1;
+                return true;//int.Parse(GetValue("Disabled_BingoStatus")) == 1;
             }
         }
 

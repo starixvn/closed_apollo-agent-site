@@ -29,10 +29,10 @@ namespace Apollo.Age.Services.Impl
             _repository = agentRepository ?? new AgentRepository();
         }
 
-        //public List<TreeViewNode> GetTreeViewNode(ICriteria criteria)
-        //{
-        //    return _repository.GetTreeViewNode(criteria).ToList();
-        //}
+        public List<Agent> GetCustomerSearch(ICriteria criteria)
+        {
+            return _repository.Fetch(criteria).ToList();
+        }
 
         public Agent GetCustomerInfo(AccountInfoCriteria criteria)
         {

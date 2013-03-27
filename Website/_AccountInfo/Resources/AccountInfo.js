@@ -592,13 +592,12 @@ function bindMembersList(agentID) {
 if (typeof jQuery != 'undefined') {
     $(function () {
         $("div .view-agent-downline").click(function (event) {
-            var $this = $(this),
-            agentID = $this.attr('aid'),
+            var $this = $(this);
+            agentID = $this.attr('aid');
             contentId = $("#agent-downline");
             $("div #agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info-hover.png");
-
             $("div .agent-tooltip").show('fast', function () {
-                ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
+                ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'agentId=' + agentID, function (result) {
                     var data = result.Agents;
                     var text = "";
                     contentId.html("");
