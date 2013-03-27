@@ -8,8 +8,6 @@
 <%@ Import Namespace="Sunplus.Agent.Utilities" %>
 <%@ Import Namespace="Sunplus.Agent.Model.Entities" %>
 <%@ Import Namespace="Sunplus.Agent.Model.BL.Authorization" %>
-<%@ Import Namespace="log4net" %>
-<%@ Import Namespace="log4net.Config" %>
 
 <script RunAt="server">
     public static void RegisterGlobalFilters(GlobalFilterCollection filters)
@@ -37,8 +35,6 @@
 
         Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
 
-        log4net.Config.XmlConfigurator.Configure();
-        log4net.LogManager.GetLogger("GeneralLog").Info("Start");
     }
 
     void AppSettings_LoadComplete(object sender, bool error)
