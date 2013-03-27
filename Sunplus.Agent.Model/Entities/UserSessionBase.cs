@@ -1006,8 +1006,9 @@ namespace Sunplus.Agent.Model.Entities
         {
             get
             {
-                object value = this.GetProperty(ISBINGODISABLED);
-                return (null == value) ? false : (bool)value;
+                return true;
+                //object value = this.GetProperty(ISBINGODISABLED);
+                //return (null == value) ? false : (bool)value;
             }
 
             set
@@ -1023,8 +1024,9 @@ namespace Sunplus.Agent.Model.Entities
         {
             get
             {
-                object value = this.GetProperty(ISBINGOSYNC);
-                return (null == value) ? false : (bool)value;
+                return false;
+                //object value = this.GetProperty(ISBINGOSYNC);
+                //return (null == value) ? false : (bool)value;
             }
 
             set

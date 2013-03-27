@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="Index.aspx.cs" Inherits="Index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="Index.aspx.cs"
+    Inherits="Index" %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -24,11 +26,15 @@
         window.userNames = new Array();
 
     </script>
-    <link href="../_MemberInfo/SetNickName/Resources/SetNickName.less?<%=TplCore.TplSettings.UrlVersion %>" rel="stylesheet" type="text/css" />
-    <link href="../_Announcement/Resources/Announcement.less?<%=TplCore.TplSettings.UrlVersion %>" rel="stylesheet" type="text/css" />
-    <link href="../_GlobalResources/css/tooltip.css?<%=TplCore.TplSettings.UrlVersion %>" rel="stylesheet" type="text/css" />
+    <link href="../_MemberInfo/SetNickName/Resources/SetNickName.less?<%=TplCore.TplSettings.UrlVersion %>"
+        rel="stylesheet" type="text/css" />
+    <link href="../_Announcement/Resources/Announcement.less?<%=TplCore.TplSettings.UrlVersion %>"
+        rel="stylesheet" type="text/css" />
+    <link href="../_GlobalResources/css/tooltip.css?<%=TplCore.TplSettings.UrlVersion %>"
+        rel="stylesheet" type="text/css" />
     <style type="text/css">
-        #agentSite {
+        #agentSite
+        {
             width: 100%;
             height: 100%;
         }
@@ -62,29 +68,11 @@
         </tr>
     </table>
     </form>
-    <script src="../_GlobalResources/Js/Core.js?<%=TplCore.TplSettings.UrlVersion %>" type="text/javascript"></script>
-    <script src="../_MemberInfo/SetNickName/Resources/SetNickName.js?<%=TplCore.TplSettings.UrlVersion %>" type="text/javascript"></script>
-    <script src="../_Announcement/Resources/Announcement.js?<%=TplCore.TplSettings.UrlVersion %>" type="text/javascript"></script>
-
-    <script type="text/javascript">
-
-        AGE.PERMISSIONS = '<%= (string)(Sunplus.Agent.Model.Entities.UserSession.Current.SubPageAccess) %>';
-
-        function setURL() {
-            var url = top.main.location;
-            var start = url.toString().lastIndexOf(')/') + 2;
-            var currentURL = url.toString().substring(start);
-
-            if (currentURL == null) return;
-            setCookie('<%=CookieCurrentURLKey %>', currentURL, 1);
-        }
-
-        AGE.prototype._SignOut = AGE.prototype.SignOut;
-        // SignOut
-        AGE.prototype.SignOut = function () {
-            setCookie('<%=CookieCurrentURLKey %>', '', -1);
-            this._SignOut();
-        }
-    </script>
+    <script src="../_GlobalResources/Js/Core.js?<%=TplCore.TplSettings.UrlVersion %>"
+        type="text/javascript"></script>
+    <script src="../_MemberInfo/SetNickName/Resources/SetNickName.js?<%=TplCore.TplSettings.UrlVersion %>"
+        type="text/javascript"></script>
+    <script src="../_Announcement/Resources/Announcement.js?<%=TplCore.TplSettings.UrlVersion %>"
+        type="text/javascript"></script>
 </body>
 </html>
