@@ -118,6 +118,7 @@
     </Setting>
     <Setting Key="Age_Customer_GetMemberDownline" SpName="Age_Customer_GetMemberDownline" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Customer_IsExistValueSearch" SpName="Age_Customer_IsExistValueSearch" DbName="REPDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-Report">
