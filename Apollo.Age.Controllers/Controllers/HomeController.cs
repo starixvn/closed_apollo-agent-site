@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Apollo_Agent.Age.Controllers.Models;
 
-namespace Apollo_Agent.Age.Controllers.Controllers
+namespace Apollo.Age.Controllers.Controllers
 {
     public class HomeController : Controller
     {

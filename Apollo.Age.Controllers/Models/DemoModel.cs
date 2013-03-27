@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Apollo_Agent.Age.Controllers.Models
+namespace Apollo.Age.Controllers.Models
 {
     public class DemoModel
     {
