@@ -19,9 +19,7 @@ public class TreeViewNode
 
     private readonly string urlAgentList = "<a href='../_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'> {2} </a>";
 
-    public static int Type = 0;
-
-    public static int Root = 0;
+    public int Type = 0;
 
     public int Id { get; set; }
 
