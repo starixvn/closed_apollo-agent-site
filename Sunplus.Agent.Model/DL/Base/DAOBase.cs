@@ -18,6 +18,7 @@ namespace Sunplus.Agent.Model.DL.Base
     using Fanex.PTEngine.BusinessObjects;
     using Sunplus.Agent.Model.DL.Definitions;
     using Sunplus.Agent.Model.Services;
+    using System.Configuration;
 
     public class DAOBase
     {
@@ -104,8 +105,8 @@ namespace Sunplus.Agent.Model.DL.Base
                 return new DbResult(new Hashtable(), ds);
             }
 
-            bool useLiveDb = Configurations.AppSettings.Configuration.Get("UseLiveDb") == "1";
-            bool useLiveMainDb = Configurations.AppSettings.Configuration.Get("UseLiveMainDb") == "1";
+            bool useLiveDb = ConfigurationManager.AppSettings["UseLiveDb"] == "1";
+            bool useLiveMainDb = ConfigurationManager.AppSettings["UseLiveMainDb"] == "1";
 
             if (useLiveDb && (
                 (asType == DbTypes.MAIN && useLiveMainDb) ||

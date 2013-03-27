@@ -1002,38 +1002,38 @@ namespace Sunplus.Agent.Model.Entities
         /// <summary>
         /// Disabled bingo status of logged-in user.
         /// </summary>
-        public bool IsBingoDisabled
-        {
-            get
-            {
-                return true;
-                //object value = this.GetProperty(ISBINGODISABLED);
-                //return (null == value) ? false : (bool)value;
-            }
+        //public bool IsBingoDisabled
+        //{
+        //    get
+        //    {
+        //        return true;
+        //        //object value = this.GetProperty(ISBINGODISABLED);
+        //        //return (null == value) ? false : (bool)value;
+        //    }
 
-            set
-            {
-                this.SetProperty(ISBINGODISABLED, value);
-            }
-        }
+        //    set
+        //    {
+        //        this.SetProperty(ISBINGODISABLED, value);
+        //    }
+        //}
 
         /// <summary>
         /// Synchronized Bingo status of logged-in user.
         /// </summary>
-        public bool IsBingoSync
-        {
-            get
-            {
-                return false;
-                //object value = this.GetProperty(ISBINGOSYNC);
-                //return (null == value) ? false : (bool)value;
-            }
+        //public bool IsBingoSync
+        //{
+        //    get
+        //    {
+        //        return false;
+        //        //object value = this.GetProperty(ISBINGOSYNC);
+        //        //return (null == value) ? false : (bool)value;
+        //    }
 
-            set
-            {
-                this.SetProperty(ISBINGOSYNC, value);
-            }
-        }
+        //    set
+        //    {
+        //        this.SetProperty(ISBINGOSYNC, value);
+        //    }
+        //}
 
         /// <summary>
         /// Disabled Number Game status of logged-in user.

@@ -29,7 +29,7 @@ namespace Fanex.Age.UI.Reports.MatchWinloss
         {
             base.InitCheckBox();
 
-            _filterCollection.Remove(Filter_Control.SHOW_IBC_BINGO);
+            //_filterCollection.Remove(Filter_Control.SHOW_IBC_BINGO);
             _filterCollection.Remove(Filter_Control.SHOWCASINO);
             _filterCollection.Remove(Filter_Control.SHOW_P2P);
         }
@@ -45,7 +45,7 @@ namespace Fanex.Age.UI.Reports.MatchWinloss
             searchControl._template.HistoryMessage.OptionMsg.Hide();
             searchControl._template.HistoryMessage.ContentMessage.SetValue(string.Empty);
 
-            searchControl._template.DateRangeSelect.SetDateRange(MIN_REPORT_DATE, MAX_REPORT_DATE);
+            //searchControl._template.DateRangeSelect.SetDateRange(MIN_REPORT_DATE, MAX_REPORT_DATE);
 
             ButtonBoxLeague_Template tplButtonBoxLeague = new ButtonBoxLeague_Template();
             searchControl._template.DateRangeSelect._template.AdditionalContent.SetValue(tplButtonBoxLeague);
