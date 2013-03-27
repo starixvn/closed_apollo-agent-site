@@ -49,9 +49,7 @@ namespace Fanex.Agent.UI
 			protected static string s26{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
 			protected static string s27 = "\"></script><script src=\"";
 			protected static string s28{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s29 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\" src=\"";
-			protected static string s30{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.js");}}
-			protected static string s31 = "\"></script>";
+			protected static string s29 = "\" type=\"text/javascript\"></script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -94,8 +92,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
-					bd.Append(s30);
-					bd.Append(s31);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -110,45 +106,45 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_CustInfo_Block: Block
 		{
-			protected static string s32 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td class=\"top-position\">";
+			protected static string s30 = "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody><tr><td class=\"top-position\">";
 			public string lblUsername = "{lblUsername}";
-			protected static string s33 = ":</td><td align=\"right\" class=\"text_org\">";
+			protected static string s31 = ":</td><td align=\"right\" class=\"text_org\">";
 			public string CustomerUsername = "{CustomerUsername}";
-			protected static string s34 = "</td></tr><tr><td class=\"top-position\">";
+			protected static string s32 = "</td></tr><tr><td class=\"top-position\">";
 			public string lblParentname = "{lblParentname}";
-			protected static string s35 = ":</td><td align=\"right\" class=\"text_org\"><a href=\"#\" class=\"link-text\">";
+			protected static string s33 = ":</td><td align=\"right\" class=\"text_org\"><a href=\"#\" class=\"link-text\">";
 			public string ParentUsername = "{ParentUsername}";
-			protected static string s36 = "</a><a href=\"javascript:void(0)\" id=\"agentDownlineLink\" class=\"view-agent-downline\" aid=\"";
+			protected static string s34 = "</a><a href=\"javascript:void(0)\" id=\"agentDownlineLink\" class=\"view-agent-downline\" aid=\"";
 			public string AgentID = "{AgentID}";
-			protected static string s37 = "\"><img height=\"16\" width=\"16\" alt=\"";
-			protected static string s38{get{return Resources.Lang.txtShowUpline;}}
-			protected static string s39 = "\" src=\"";
-			protected static string s40{get{return AbsoluteUrl("_AccountInfo/Resources/Images/icon-view-info.png");}}
-			protected static string s41 = "\" title=\"";
-			protected static string s42{get{return Resources.Lang.txtShowUpline;}}
-			protected static string s43 = "\"/></a></td></tr></tbody></table>";
+			protected static string s35 = "\"><img height=\"16\" width=\"16\" alt=\"";
+			protected static string s36{get{return Resources.Lang.txtShowUpline;}}
+			protected static string s37 = "\" src=\"";
+			protected static string s38{get{return AbsoluteUrl("_AccountInfo/Resources/Images/icon-view-info.png");}}
+			protected static string s39 = "\" title=\"";
+			protected static string s40{get{return Resources.Lang.txtShowUpline;}}
+			protected static string s41 = "\"/></a></td></tr></tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s32);
+					bd.Append(s30);
 					bd.Append(lblUsername);
-					bd.Append(s33);
+					bd.Append(s31);
 					bd.Append(CustomerUsername);
-					bd.Append(s34);
+					bd.Append(s32);
 					bd.Append(lblParentname);
-					bd.Append(s35);
+					bd.Append(s33);
 					bd.Append(ParentUsername);
-					bd.Append(s36);
+					bd.Append(s34);
 					bd.Append(AgentID);
+					bd.Append(s35);
+					bd.Append(s36);
 					bd.Append(s37);
 					bd.Append(s38);
 					bd.Append(s39);
 					bd.Append(s40);
 					bd.Append(s41);
-					bd.Append(s42);
-					bd.Append(s43);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -156,25 +152,25 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonAgentList_Block: Block
 		{
-			protected static string s44 = "<div id=\"button_nLeft01\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"../_MemberInfo/CustomerList/AgentList.aspx?custid=";
+			protected static string s42 = "<div id=\"button_nLeft01\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"../_MemberInfo/CustomerList/AgentList.aspx?custid=";
 			public string AgentId = "{AgentId}";
-			protected static string s45 = "&us=";
+			protected static string s43 = "&us=";
 			public string AgentName = "{AgentName}";
-			protected static string s46 = "\">";
-			protected static string s47{get{return Resources.Lang.lblAgentList;}}
-			protected static string s48 = "</a></div>";
+			protected static string s44 = "\">";
+			protected static string s45{get{return Resources.Lang.lblAgentList;}}
+			protected static string s46 = "</a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s44);
+					bd.Append(s42);
 					bd.Append(AgentId);
-					bd.Append(s45);
+					bd.Append(s43);
 					bd.Append(AgentName);
+					bd.Append(s44);
+					bd.Append(s45);
 					bd.Append(s46);
-					bd.Append(s47);
-					bd.Append(s48);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -182,25 +178,25 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonMemberList_Block: Block
 		{
-			protected static string s49 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"../_MemberInfo/CustomerList/MemberList.aspx?custid=";
+			protected static string s47 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"../_MemberInfo/CustomerList/MemberList.aspx?custid=";
 			public string AgentId = "{AgentId}";
-			protected static string s50 = "&us=";
+			protected static string s48 = "&us=";
 			public string AgentName = "{AgentName}";
-			protected static string s51 = "\">";
-			protected static string s52{get{return Resources.Lang.lblPlayerList;}}
-			protected static string s53 = "</a></div>";
+			protected static string s49 = "\">";
+			protected static string s50{get{return Resources.Lang.lblPlayerList;}}
+			protected static string s51 = "</a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s49);
+					bd.Append(s47);
 					bd.Append(AgentId);
-					bd.Append(s50);
+					bd.Append(s48);
 					bd.Append(AgentName);
+					bd.Append(s49);
+					bd.Append(s50);
 					bd.Append(s51);
-					bd.Append(s52);
-					bd.Append(s53);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -208,21 +204,21 @@ namespace Fanex.Agent.UI
 
 		public class SearchBox_ButtonBetList_Block: Block
 		{
-			protected static string s54 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
+			protected static string s52 = "<div id=\"button_nLeft02\"><a class=\"b_nleft\" onclick=\"clearTopMenu(); ClearCurrentLeftMenu();\" target=\"main\" href=\"";
 			public string memberlistlink = "{memberlistlink}";
-			protected static string s55 = "\">";
-			protected static string s56{get{return Resources.Lang.BetList;}}
-			protected static string s57 = "</a></div>";
+			protected static string s53 = "\">";
+			protected static string s54{get{return Resources.Lang.BetList;}}
+			protected static string s55 = "</a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s54);
+					bd.Append(s52);
 					bd.Append(memberlistlink);
+					bd.Append(s53);
+					bd.Append(s54);
 					bd.Append(s55);
-					bd.Append(s56);
-					bd.Append(s57);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
