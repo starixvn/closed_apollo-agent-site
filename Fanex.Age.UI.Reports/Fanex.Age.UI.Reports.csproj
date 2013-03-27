@@ -101,7 +101,9 @@
     <Content Include="Components\SearchHeader.htm" />
     <Content Include="Components\WinlossSearchView.htm" />
     <Content Include="Consolidated\Consolidated.htm" />
+    <Content Include="Scripts.htm" />
     <Content Include="LastBetMonitoring\LastBetMonitoring.htm" />
+    <Content Include="Styles.htm" />
     <Content Include="MatchWinloss\MatchWinloss.htm" />
     <Content Include="MatchWinloss\MatchWinlossDetail.htm" />
     <Content Include="PortalPage\ACS.htm" />
@@ -223,6 +225,8 @@
     <Compile Include="Result\ResultSoccer.htm.cs" />
     <Compile Include="Result\ResultTennis.htm.cs" />
     <Compile Include="Result\SportType.htm.cs" />
+    <Compile Include="Scripts.htm.cs" />
+    <Compile Include="Styles.htm.cs" />
     <Compile Include="WinlossAnalysis\WinlossAnalysisAgent.htm.cs" />
     <Compile Include="WinlossAnalysis\WinlossAnalysisMaster.htm.cs" />
     <Compile Include="WinlossAnalysis\WinlossAnalysisSuper.htm.cs" />
