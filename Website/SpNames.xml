@@ -16,7 +16,7 @@
 
   </Function>
 
-  <Function Name="Agent - Message">
+  <!--<Function Name="Agent - Message">
     <Setting Key="Dot_Msg_GetPrivateMessage" SpName="Dot_Msg_GetPrivateMessage" DbName="MessageDB" Plain="0" />
     <Setting Key="Dot_Msg_GetPublicMessage" SpName="Dot_Msg_GetPublicMessage" DbName="MessageDB" Plain="0" />
     <Setting Key="Dot_Msg_GetNotSpecialMessage" SpName="Dot_Msg_GetNotSpecialMessage" DbName="MessageDB" Plain="0" />
@@ -37,7 +37,7 @@
     <Setting Key="Age_MessageSelOne" SpName="Age_MessageSelOne" DbName="on_user" Plain="0" />
     <Setting Key="Acc_Msg_GetTopPubMessage" SpName="Acc_Msg_GetTopPubMessage" DbName="MessageDB" Plain="0" />
     <Setting Key="Age_CustomerSelMessages" SpName="Age_CustomerSelMessages" DbName="MessageDB" Plain="0" />
-  </Function>
+  </Function>-->
 
   <Function Name="Agent - BetList">
 
@@ -82,10 +82,10 @@
     <Setting Key="Age_BettransSelBetSlip_Old" SpName="Age_BettransSelBetSlip_Old" DbName="archive06" Plain="0" />
   </Function>
 
-  <Function Name="Agent - Forecast">
+  <!--<Function Name="Agent - Forecast">
     <Setting Key="Age_Forecast_OddsSelTopByMatch" SpName="Age_Forecast_OddsSelTopByMatch" DbName="archive" Plain="0" />
     <Setting Key="Age_Forecast_Sel1X2" SpName="Age_Forecast_Sel1X2" DbName="archive" Plain="0" />
-    <!--<Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="archive" Plain="0" />-->
+    --><!--<Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="archive" Plain="0" />--><!--
     <Setting Key="Age_Forecast_SelByLeague_Ag" SpName="Age_Forecast_SelByLeague_Ag" DbName="archive" Plain="0" />
     <Setting Key="Age_Forecast_SelByLeague_MAg" SpName="Age_Forecast_SelByLeague_MAg" DbName="archive" Plain="0" />
     <Setting Key="Age_Forecast_SelByLeague_SAg" SpName="Age_Forecast_SelByLeague_SAg" DbName="archive" Plain="0" />
@@ -94,7 +94,7 @@
     <Setting Key="Age_Forecast1x2_SelByLeague_Ag" SpName="Age_Forecast1x2_SelByLeague_Ag" DbName="archive" Plain="0" />
     <Setting Key="Age_Forecast1x2_SelByLeague_MAg" SpName="Age_Forecast1x2_SelByLeague_MAg" DbName="archive" Plain="0" />
     <Setting Key="Age_Forecast1x2_SelByLeague_SAg" SpName="Age_Forecast1x2_SelByLeague_SAg" DbName="archive" Plain="0" />
-  </Function>
+  </Function>-->
 
   <Function Name="Agent-Apollo-TotalBets-BetList">
     <Setting Key="Age_Betlist_TotalBets_Sel_4_30" SpName="Age_Betlist_TotalBets_Sel_4_30" DbName="REPDB" Plain="0" />

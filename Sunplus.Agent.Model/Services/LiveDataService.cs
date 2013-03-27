@@ -2,6 +2,7 @@
 {
     using System.Data;
     using Fanex.Data.DNAide;
+    using System.Configuration;
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
@@ -13,7 +14,7 @@
         /// <remarks/>
         public LiveDataService()
         {
-            this.Url = Sunplus.Agent.Configurations.AppSettings.Configuration.Get("LiveDataService");
+            this.Url = ConfigurationManager.AppSettings["LiveDataService"];
         }
 
         #region Invoke
