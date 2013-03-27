@@ -101,6 +101,7 @@
     <Content Include="bin\Sunplus.Libraries.ThirdPartyTestData.dll" />
     <Content Include="bin\TplCore.dll" />
     <Content Include="bin\UMControllerLibrary.dll" />
+    <Content Include="DateRangeSelect\Copy of DateRangeSelect.htm" />
     <Content Include="DoubleCommissionSearchUserName_Control\DoubleCommissionSearchUserName_Control.htm" />
     <Content Include="Transfer\AllowTransfer.htm" />
     <Content Include="Web.config" />

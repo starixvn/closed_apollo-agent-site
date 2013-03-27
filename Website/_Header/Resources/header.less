@@ -1,4 +1,4 @@
-﻿@import "../../_GlobalResources/Css/variable.less";
+﻿@import "../../_GlobalResources/Css/variables.less";
 
 body {
     padding: 0px 0px 0px 0px;
@@ -115,7 +115,7 @@ div.messageBlock {
     padding-left: 40px;
 
 	a {
-		color: #B39D74;
+		color: @yellow;
 		text-decoration: none;
 		margin: 0 3px;
 
@@ -126,7 +126,7 @@ div.messageBlock {
 }
 
 .username {
-    color: #B39D74;
+    color: @yellow;
     margin: 0 10px;
 }
 
@@ -233,12 +233,11 @@ div.messageBlock {
 }
 
 #text_news_out {
-    margin-top: 6px;
+    margin-top: 3px;
     background: url(../../_GlobalResources/Images/line_news.gif) no-repeat right;
     height: 20px;
 
-	&:hover {
-		margin-top: 6px;
+	&:hover {		
 		background: url(../../_GlobalResources/Images/line_newsOV.gif) no-repeat right;
 		height: 20px;
 	}
@@ -247,7 +246,7 @@ div.messageBlock {
 #button_top {
     line-height: 18px;
     padding-left: 5px;
-    margin-top: 6px;
+    margin-top: 3px;
 }
 
 a.b_top {

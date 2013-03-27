@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Apollo_Agent.Age.Controllers.Models;
 
-namespace Apollo_Agent.Age.Controllers.Controllers
+using System.ComponentModel.DataAnnotations;
+
+namespace Apollo.Age.Controllers
 {
     public class HomeController : Controller
     {
@@ -35,5 +36,15 @@ namespace Apollo_Agent.Age.Controllers.Controllers
                 
     }
 
+
+    public class DemoModel
+    {
+        [Required]
+        public int ID { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Name { get; set; }
+    }
 
 }

@@ -537,7 +537,7 @@ function bindMembersList(agentID) {
     var iframe = document.createElement('iframe');
     iframe.frameBorder = 0;
     iframe.width = "100%";
-    iframe.height = "548px";
+    iframe.height = "100%";
     iframe.id = "randomid";
     iframe.setAttribute("src", link);
 
@@ -591,7 +591,7 @@ function bindMembersList(agentID) {
 
 if (typeof jQuery != 'undefined') {
     $(function () {
-        $("div .view-agent-downline").click(function (event) {
+        $("div #agentDownlineLink").click(function (event) {           
             var $this = $(this);
             agentID = $this.attr('aid');
             contentId = $("#agent-downline");

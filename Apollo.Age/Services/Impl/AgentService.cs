@@ -12,13 +12,12 @@ namespace Apollo.Age.Services.Impl
     using System.Collections.Generic;
     using System.Linq;
     using Apollo.Age.Criterias.Accounts;
-    
     using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;
-    using Fanex.NAP.Framework.Data;
     using Fanex.Common.Helper;
+    using Fanex.NAP.Framework.Data;
 
     public class AgentService : IAgentService
     {
@@ -36,7 +35,22 @@ namespace Apollo.Age.Services.Impl
 
         public Agent GetCustomerInfo(AccountInfoCriteria criteria)
         {
-            return _repository.Get(criteria);
+            CustomerExistCriteria criteriaExist = new CustomerExistCriteria
+            {
+                CurrentAgentId = criteria.CurrentAgentId,
+                CustId = criteria.CustId,
+                IsMember = criteria.IsMember,
+                UserName = criteria.UserName
+            };
+
+            if (_repository.IsExistValueSearch(criteriaExist))
+            {
+                return _repository.Get(criteria);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Agent> GetAgentDownlinePath(ICriteria criteria)

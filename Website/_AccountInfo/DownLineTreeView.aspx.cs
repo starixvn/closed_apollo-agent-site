@@ -13,9 +13,6 @@ using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
 
 public partial class _AccountInfo_DownLineTreeView : AccountInfoBase_Page
 {
-    const string CLASS_TREEVIEW_TAB = "tree-tab";
-    const string CLASS_TREEVIEW_SUB = "tree-sub";
-
     public string AgentId 
     {
         get
@@ -32,11 +29,11 @@ public partial class _AccountInfo_DownLineTreeView : AccountInfoBase_Page
 
         if (AgentId == CurrentUserSession.AgentId.ToString())
         {
-            tpl.TreeClass = CLASS_TREEVIEW_TAB;
+            tpl.ClassTreeViewSub.Hide();
         }
         else
         {
-            tpl.TreeClass = CLASS_TREEVIEW_SUB;
+            tpl.ClassTreeViewTab.Hide();
         }
 
         writer.Write(tpl);

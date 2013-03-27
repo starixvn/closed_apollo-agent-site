@@ -103,7 +103,8 @@ public partial class _AccountInfo_TreeList : Fanex.Age.UI.TplPage
                     {
                         Id = agent.Id,
                         UserName = agent.Username,
-                        HasChildren = agent.HasAgentDownline
+                        HasChildren = agent.HasAgentDownline,
+                        Type = (CurrentUserSession.AgentId == AgentId) ? 0 : 1
                     });
             });
         }

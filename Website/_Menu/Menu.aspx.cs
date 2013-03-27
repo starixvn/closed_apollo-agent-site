@@ -112,7 +112,6 @@ namespace Sunplus.Agent.UI._Menu
             //else
             //    tpl.IphoneAd_Gif = null;
 
-            if (!pageAccess.ViewMemberInfo) tpl.MenuTab.CheckViewPermission.Hide();
             if (!node.HasChildNodes) return;
             if (tpl.SubMenu == null) return;
 

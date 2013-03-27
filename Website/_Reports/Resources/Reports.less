@@ -1,75 +1,90 @@
 ﻿@import "../../_GlobalResources/Css/Agent.less";
 
-a:link, a:visited
-{
-    color: @linkColor;
-    text-decoration: none;
+a {
+	&:link, &:visited {
+		color: @linkColor;
+		text-decoration: none;
+	}
 }
+
 li
 {
     margin-bottom: 3px;
     margin-top: 3px;
 }
-div.right_box
-{
-    float: right;
-    padding-right: 4px;
-    padding-top: 4px;
+
+div {
+	.right_box {
+		float: right;
+		padding-right: 4px;
+		padding-top: 4px;
+	}
 }
-span.right_box
-{
-    float: right;
-    padding-right: 4px;
-    padding-top: 4px;
+
+span {
+	.right_box {
+		float: right;
+		padding-right: 4px;
+		padding-top: 4px;
+	}
 }
+
 .tblRpt
 {
-    background-color: #B7B7B7;
-    white-space: nowrap;
-    text-align: right;
+	tr {
+		height: 20px;
+
+		td {
+			white-space: nowrap;
+		}
+	}
+	
 }
+
 .tblRpt_center
 {
     background-color: #B7B7B7;
     white-space: nowrap;
     text-align: center;
     margin-top: 10px;
+
+	tr {
+		height: 20px;
+	}
+
+	td {
+		line-height: normal;
+		padding: 0 2px;
+	}
 }
+
 .tblRpt_numbergame
 {
     background-color: #B7B7B7;
     text-align: center;
-}
-.tblRpt tr, .tblRpt_center tr
-{
-    height: 20px;
-}
-tr.closed_row, tr.closed_row:active
-{
-    background-color: #ccc7ba;
-}
-tr.odd_row, tr.odd_row:active
-{
-    background-color: @rowBackground;
-}
-tr.even_row, tr.even_row:active
-{
-    background-color: @rowAltBackground;
-}
-tr.even_row:hover, tr.odd_row:hover, tr.closed_row:hover
-{
-    background-color: #f8ff8d;
+
+	td {
+		line-height: normal;
+		padding: 0 2px;
+	}
 }
 
-.tblRpt td, .tblRpt_center td, .tblRpt_numbergame td
-{
-    line-height: normal;
-    padding: 0 2px;
-}
+tr {
+	&.closed_row, &.closed_row:active {
+		background-color: #ccc7ba;
+	}
 
-table.tblRpt tr td
-{
-    white-space: nowrap;
+	&.odd_row, &.odd_row:active {
+		background-color: @rowBackground;
+	}
+
+	&.even_row, &.even_row:active {
+		background-color: @rowAltBackground;
+	}
+
+	&.even_row:hover, &.odd_row:hover, &.closed_row:hover {
+		background-color: #f8ff8d;
+	}
 }
 
 .RptTitleLeft
@@ -80,6 +95,7 @@ table.tblRpt tr td
     height: 22px;
     font-weight: normal !important;
 }
+
 .RptFooter
 {
     background: url( "../../_GlobalResources/Images/bg_f01.jpg" ) repeat-x scroll center top #783819;
@@ -87,6 +103,7 @@ table.tblRpt tr td
     font-weight: bold;
     white-space: nowrap;
 }
+
 .RptSubTitle
 {
     background-color: #FFEFDE;
@@ -98,19 +115,28 @@ table.tblRpt tr td
 {
     font-weight: bold;
 }
+
 .left_normal
 {
     text-align: left;
     font-weight: normal;
 }
 
-#box_header
-{
-    background: url("../../_GlobalResources/Images/bg_boxTop.jpg") repeat-x scroll center top #E7E7E7;
-    border: 1px solid #CACACA;    
-    margin-top: 10px;
-    padding: 0;    
+#box_header {
+	background: #eee;
+	background: -moz-linear-gradient(top,#eee 0%, #ddd 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eee), color-stop(100%,#ddd));
+	background: -webkit-linear-gradient(top,#eee 0%,#ddd 100%);
+	background: -o-linear-gradient(top,#eee 0%,#ddd 100%);
+	background: -ms-linear-gradient(top,#eee 0%,#ddd 100%);
+	background: linear-gradient(to bottom,#eee 0%,#ddd 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee', endColorstr='#ddd',GradientType=0 );
+
+    border: 1px solid @grayLight;
+    margin: 10px 0 0 0;
+    padding: 5px 5px 0;
 }
+
 input.date_no
 {
     font-size: 11px;
@@ -126,6 +152,7 @@ input.date_no
     text-align: left;
     text-transform: none;
 }
+
 .league
 {
     background: #f8f1e9 url(../../_GlobalResources/Images/bg_header03.jpg) repeat-x scroll center top;
@@ -134,22 +161,26 @@ input.date_no
     text-align: left;
     color: #333;
 }
+
 .downline_link
 {
     color: Blue;
     cursor: pointer;
 }
+
 .altercol
 {
     background-color: #f5f2d6;
     text-align: right;
 }
+
 .altercol_bold
 {
     background-color: #f5f2d6;
     text-align: right;
     font-weight: bold;
 }
+
 .altercol_master
 {
     background: #432616 url(../../_GlobalResources/Images/bg_f02.jpg) repeat-x scroll center top;
@@ -176,6 +207,7 @@ input.date_no
     text-transform: uppercase;
     display: block;
 }
+
 #virtual_span
 {
     display: block;
@@ -211,6 +243,7 @@ input.date_no
     text-align: center;
     white-space: nowrap;
 }
+
 .last_goal
 {
     background: url(../../_GlobalResources/Images/lastGoal.gif) no-repeat center center;
@@ -219,6 +252,7 @@ input.date_no
     display: inline;
     padding: 0 4px;
 }
+
 .first_goal
 {
     background: url(../../_GlobalResources/Images/firstGoal.gif) no-repeat center center;
@@ -284,10 +318,12 @@ input.date_no
     margin-left: 5px;
     font-size: 12px;
 }
+
 .ascSorting
 {
     background-position: 0px -16px;
 }
+
 .descSorting
 {
     background-position: -64px -16px;
@@ -300,6 +336,7 @@ input.date_no
     margin-top: 3px;
     background: url(../../_GlobalResources/Images/rightf001a.gif) no-repeat left;
 }
+
 td.selectedBetType a
 {
     color: #9D1C1C;
@@ -324,11 +361,12 @@ td.selectedBetType a
     border: none;
     overflow: auto;
     padding-right: 1px;
-}
 
-#ContentLeagueWL .ListLeague li
-{
-    width: 50%;
+	.ListLeague {
+		li {
+			width: 50%;
+		}
+	}
 }
 
 #iconSelLeague
@@ -375,6 +413,7 @@ td.selectedBetType a
     width: 900px;
     background-image: url(bg_nav.gif);
 }
+
 .BoxLeague
 {
     width: 899px;
@@ -382,11 +421,11 @@ td.selectedBetType a
     border: none;
     overflow: auto;
     padding-right: 1px;
-}
-
-.BoxLeague .ListLeague li
-{
-    width: 50%;
+	.ListLeague {
+		li {
+			width: 50%;
+		}
+	} 
 }
 
 .ListLeague
@@ -396,13 +435,12 @@ td.selectedBetType a
     padding-left: 1px;
     padding-right: 1px;
     text-align: left;
-}
 
-.ListLeague li
-{
-    list-style: none;
-    float: left;
-    text-align: left;    
+	li {
+		list-style: none;
+		float: left;
+		text-align: left;    
+	}
 }
 
 .LoadingMonitor
@@ -418,6 +456,7 @@ td.selectedBetType a
 {
     width: 100%;    
 }
+
 #hor-minimalist-b
 {
 	font-size: 12px;
@@ -425,65 +464,75 @@ td.selectedBetType a
 	border-collapse: collapse;
 	text-align: left;
 	width: 100%;  
+
+	th {
+		font-weight: normal;
+		color: @white;
+		background: url(../../_GlobalResources/Images/bg_header02.jpg) repeat-x scroll center top #6A6969;
+		padding: 2px 2px;
+		border: solid 1px #999;
+		text-align: center;
+	}
+
+	td {
+		color: @black;
+		/*vertical-align: top;*/
+		padding: 2px 2px 2px 2px;
+		border: solid 1px #999;
+		text-align: right;
+	}
+
+	tbody {
+		tr {
+			&:hover {
+				td {	
+					color: #009;
+					background-color:#FFFF00;
+				}
+			}	
+
+			&#tr_footer:hover {
+				 td {
+					color: @black;
+					background-color:#E8DFCA;
+				}
+			}
+		}	
+	}
 }
-#hor-minimalist-b th
-{
-	font-weight: normal;
-	color: @white;
-	background: url(../../_GlobalResources/Images/bg_header02.jpg) repeat-x scroll center top #6A6969;
-	padding: 2px 2px;
-	border: solid 1px #999;
-	text-align: center;
-}
-#hor-minimalist-b td
-{
-	color: @black;
-	/*vertical-align: top;*/
-	padding: 2px 2px 2px 2px;
-	border: solid 1px #999;
-	text-align: right;
-}
-#hor-minimalist-b tbody tr:hover td
-{	
-	color: #009;
-	background-color:#FFFF00;
-}
-#hor-minimalist-b tbody tr#tr_footer:hover td
-{
-	color: @black;
-	background-color:#E8DFCA;
-}
+
 .titleMenu
 {
 	cursor:pointer; 
 	width: 300px;
 }
+
 .menuItem
 {
 	width: 150px; 
 	background-color: #E4EBF5; 
 }
+
 .tblBorder
 {
 	border-collapse: collapse;
 	border-color: #b7b7b7;
 	margin-top: 10px;
 }
-#tbl-rpt th, td
-{
-	border-color: #b7b7b7;
-}
+
 .right
 {
 	text-align: right;
 }
-a:link, a:visited
-{
-	color: @linkColor;
-	text-decoration: none;
-}
-a:hover
-{
-	color: #F60;
-	text-decoration: none;
+
+a {
+	&:link, &:visited {
+		color: @linkColor;
+		text-decoration: none;
+	}
+
+	&:hover {
+		color: #F60;
+		text-decoration: none;
+	}
 }

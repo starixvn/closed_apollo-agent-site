@@ -58,6 +58,7 @@
     <Compile Include="Criterias\Accounts\AccountInfoCriteria.cs" />
     <Compile Include="Criterias\Accounts\AgentDownlineCriteria.cs" />
     <Compile Include="Criterias\Accounts\AgentDownlinePathCriteria.cs" />
+    <Compile Include="Criterias\Accounts\CustomerExistCriteria.cs" />
     <Compile Include="Criterias\Accounts\CustomerSearchCriteria.cs" />
     <Compile Include="Criterias\Accounts\MemberDownlineCriteria.cs" />
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />

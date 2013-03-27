@@ -14,6 +14,8 @@ namespace Sunplus.Agent.Model.BL.Definitions
     using System;
     using System.Web;
     using Sunplus.Agent.Configurations;
+    using System.Configuration;
+    using Fanex.Logging;
 
     public enum UserTypes : int
     {
@@ -583,7 +585,7 @@ namespace Sunplus.Agent.Model.BL.Definitions
         {
             get
             {
-                return Configurations.AppSettings.Configuration.Get("EnableNumberGroup") == "1";
+                return ConfigurationManager.AppSettings["EnableNumberGroup"] == "1";
             }
         }
 
@@ -661,7 +663,15 @@ namespace Sunplus.Agent.Model.BL.Definitions
         /// <returns></returns>
         public static string GetValue(string key)
         {
-            return Sunplus.Agent.Configurations.AppSettings.Configuration.Get(key);
+            try
+            {
+                return ConfigurationManager.AppSettings[key];
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+                return string.Empty;
+            }
         }
 
         #region Setting functions

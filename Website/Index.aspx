@@ -44,36 +44,59 @@
 </head>
 <body scroll='no'>
     <form id="agentSite" runat="server">
-    <table class="content" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-            <td colspan="2" class="header">
+        <div class="content">
+            <div class="header">
                 <iframe src="_Header/Header.aspx" frameborder="0" scrolling="no" width="100%" height="100%"
                     id="frHeader" name="frHeader"></iframe>
-            </td>
-        </tr>
-        <tr>
-            <td class="menu" valign="top">
+            </div>
+            <div class="menu">
                 <iframe src="_Menu/Menu.aspx" frameborder="0" id="menu" name="menu" width="100%"
                     height="100%" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
+<<<<<<< HEAD
             </td>
             <td class="mainpage" valign="top">
                 <iframe src="<%=mainPage%>" frameborder="0" id="main" scrolling="auto" name="main"
                     width="100%" height="100%" marginwidth="0" marginheight="0" allowtransparency="yes">
+=======
+            </div>
+            <div class="mainpage">
+                <iframe src="<%=mainPage%>" onload="setURL();" frameborder="0" id="main" scrolling="auto"
+                    name="main" width="100%" height="100%" marginwidth="0" marginheight="0" allowtransparency="yes">
+>>>>>>> 4221f6f34078f846bd5e827e20f74af12f5eed28
                 </iframe>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" class="footer">
+            </div>
+            <div class="footer">
                 <iframe src="Footer.html" frameborder="0" width="100%" scrolling="no" height="100%"
                     id="frFooter" name="frFooter"></iframe>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
     </form>
     <script src="_GlobalResources/Js/Core.js?<%=TplCore.TplSettings.UrlVersion %>" type="text/javascript"></script>
     <script src="_MemberInfo/SetNickName/Resources/SetNickName.js?<%=TplCore.TplSettings.UrlVersion %>"
         type="text/javascript"></script>
     <script src="_Announcement/Resources/Announcement.js?<%=TplCore.TplSettings.UrlVersion %>"
         type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        AGE.PERMISSIONS = '<%= (string)(Sunplus.Agent.Model.Entities.UserSession.Current.SubPageAccess) %>';
+
+        function setURL() {
+            var url = top.main.location;
+            var start = url.toString().lastIndexOf(')/') + 2;
+            var currentURL = url.toString().substring(start);
+
+            if (currentURL == null) return;
+            setCookie('<%=CookieCurrentURLKey %>', currentURL, 1);
+        }
+
+        AGE.prototype._SignOut = AGE.prototype.SignOut;
+        // SignOut
+        AGE.prototype.SignOut = function () {
+            setCookie('<%=CookieCurrentURLKey %>', '', -1);
+            this._SignOut();
+        }
+    </script>
+
 </body>
 </html>
