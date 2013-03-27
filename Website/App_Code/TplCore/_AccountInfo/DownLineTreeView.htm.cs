@@ -17,9 +17,10 @@ namespace Fanex.Agent.UI
 			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/treeview.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.less", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body class=\"downlineTreview-bg\"><ul id=\"treeview_list\" class=\"";
-			public string TreeClass = "{TreeClass}";
-			protected static string s5 = "\"></ul><script type=\"text/javascript\" src=\"";
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body class=\"downlineTreview-bg\">";
+			public DownLineTreeView_ClassTreeViewTab_Block ClassTreeViewTab = new DownLineTreeView_ClassTreeViewTab_Block();
+			public DownLineTreeView_ClassTreeViewSub_Block ClassTreeViewSub = new DownLineTreeView_ClassTreeViewSub_Block();
+			protected static string s5 = "<script type=\"text/javascript\" src=\"";
 			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js");}}
 			protected static string s7 = "\"></script><script type=\"text/javascript\" src=\"";
 			protected static string s8{get{return AbsoluteUrl("_AccountInfo/Resources/jquery.cookie.js");}}
@@ -40,7 +41,8 @@ namespace Fanex.Agent.UI
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
-					bd.Append(TreeClass);
+					if(null != ClassTreeViewTab) ClassTreeViewTab.ToString(ref bd);
+					if(null != ClassTreeViewSub) ClassTreeViewSub.ToString(ref bd);
 					bd.Append(s5);
 					bd.Append(s6);
 					bd.Append(s7);
@@ -62,6 +64,34 @@ namespace Fanex.Agent.UI
 				return bd.ToString();
 			}
 
+		}
+
+		public class DownLineTreeView_ClassTreeViewTab_Block: Block
+		{
+			protected static string s15 = "<ul id=\"treeview_list\" class=\"tree-tab\"></ul>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s15);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class DownLineTreeView_ClassTreeViewSub_Block: Block
+		{
+			protected static string s16 = "<ul id=\"Ul1\" class=\"tree-sub\"></ul>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s16);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
 		}
 
 	}
