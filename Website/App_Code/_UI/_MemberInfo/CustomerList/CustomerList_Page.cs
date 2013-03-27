@@ -258,13 +258,13 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             this.arrayDisabledPopupMenu[6] = 0;
 
-            this.arrayTextPopupMenu[6] = Resources.Lang.editMultipleVirtualSports;
+            this.arrayTextPopupMenu[6] = string.Empty;//Resources.Lang.editMultipleVirtualSports;
 
             this.arrayIdPopupMenu[6] = "virtualsports";
 
             this.arrayDisabledPopupMenu[7] = 0;
 
-            this.arrayTextPopupMenu[7] = Resources.Lang.editMultipleDoubleComm;
+            this.arrayTextPopupMenu[7] = string.Empty;//Resources.Lang.editMultipleDoubleComm;
 
             this.arrayIdPopupMenu[7] = "doublecomm";
 
@@ -351,7 +351,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.arrayIdPopupMenu[4] = "livecasinoPT";
 
             this.arrayDisabledPopupMenu[5] = 0;
-            this.arrayTextPopupMenu[5] = Resources.Lang.VirtualSports;
+            this.arrayTextPopupMenu[5] = string.Empty;//Resources.Lang.VirtualSports;
             this.arrayIdPopupMenu[5] = "virtualsportsPT";
 
             if (CurrentUserSession.RoleId != 4 && CurrentUserSession.RoleId != 3)
@@ -453,7 +453,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.arrayIdPopupMenu[4] = "livecasinoPT";
 
             this.arrayDisabledPopupMenu[5] = 0;
-            this.arrayTextPopupMenu[5] = Resources.Lang.VirtualSports;
+            this.arrayTextPopupMenu[5] = string.Empty;//Resources.Lang.VirtualSports;
             this.arrayIdPopupMenu[5] = "virtualsportsPT";
 
             this.arrayDisabledPopupMenu[6] = 0;
