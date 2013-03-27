@@ -27,7 +27,6 @@ namespace Sunplus.Agent.UI._AccountInfo
         const string SELECTED_DROPDOWN = "selected";
         private int custId = -1; 
         private bool isMember = false;
-        private bool isChangedUserName = false;
         private string userNameRequest;
 
         private Agent agent = null;
@@ -66,23 +65,10 @@ namespace Sunplus.Agent.UI._AccountInfo
             this.custId = CustId == 0? -1 : CustId;
             this.userNameRequest = CustName;
             this.isMember = IsMember;
-            this.isChangedUserName = false;
 
             if (!string.IsNullOrEmpty(this.userNameRequest))
             {
                 this.userNameRequest = this.userNameRequest.Trim();
-                if (Session[SESSION_MEMBERUSERNAME] != null)
-                {
-                    if (string.Compare(Session[SESSION_MEMBERUSERNAME].ToString(), this.userNameRequest, true) != 0)
-                    {
-                        this.isChangedUserName = true;
-                    }
-                }
-                else
-                {
-                    this.isChangedUserName = true;
-                }
-
                 Session[SESSION_MEMBERUSERNAME] = this.userNameRequest;
                 Session[SESSION_ISMEMBER] = this.isMember;
             }
@@ -92,17 +78,6 @@ namespace Sunplus.Agent.UI._AccountInfo
                 if (!string.IsNullOrEmpty(this.userNameRequest))
                 {
                     this.userNameRequest = this.userNameRequest.Trim();
-                    if (Session[SESSION_MEMBERUSERNAME] != null)
-                    {
-                        if (string.Compare(Session[SESSION_MEMBERUSERNAME].ToString(), this.userNameRequest, true) != 0)
-                        {
-                            this.isChangedUserName = true;
-                        }
-                    }
-                    else
-                    {
-                        this.isChangedUserName = true;
-                    }
 
                     Session[SESSION_MEMBERUSERNAME] = this.userNameRequest;
                 }

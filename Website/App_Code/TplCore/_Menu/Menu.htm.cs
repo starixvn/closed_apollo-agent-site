@@ -76,9 +76,7 @@ namespace Fanex.Agent.UI
 			protected static string s12{get{return Resources.Lang.mainmenu;}}
 			protected static string s13 = "</a></div><div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
 			protected static string s14{get{return Resources.Lang.userinfo;}}
-			protected static string s15 = "</span></a></div>";
-			public Menu_MenuTab_CheckViewPermission_Block CheckViewPermission = new Menu_MenuTab_CheckViewPermission_Block();
-			protected static string s16 = "<div id=\"tab_menu_L\"><a id=\"lnkTree\" class=\"tab_menu03\" target=\"menu\" href=\"../_TreeView/TreeView.aspx\"></a></div></div>";
+			protected static string s15 = "</span></a></div><div id=\"tab_menu_L\"><a id=\"lnkTree\" class=\"tab_menu03\" target=\"menu\" href=\"../_TreeView/TreeView.aspx\"></a></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -89,34 +87,24 @@ namespace Fanex.Agent.UI
 					bd.Append(s13);
 					bd.Append(s14);
 					bd.Append(s15);
-					if(null != CheckViewPermission) CheckViewPermission.ToString(ref bd);
-					bd.Append(s16);
 				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class Menu_MenuTab_CheckViewPermission_Block: Block
-		{
-			public override void ToString(ref StringBuilder bd)
-			{
 				if(IsAssigned){bd.Append(Value);}
 			}
 		}
 
 		public class Menu_MenuTab1_Block: Block
 		{
-			protected static string s17 = "<div class=\"top_left\"><img alt=\"\" width=\"202px\" height=\"6\" src=\"";
-			protected static string s18{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s19 = "\" /></div>";
+			protected static string s16 = "<div class=\"top_left\"><img alt=\"\" width=\"202px\" height=\"6\" src=\"";
+			protected static string s17{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
+			protected static string s18 = "\" /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s16);
 					bd.Append(s17);
 					bd.Append(s18);
-					bd.Append(s19);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -124,17 +112,17 @@ namespace Fanex.Agent.UI
 
 		public class Menu_NoMenuTab_Block: Block
 		{
-			protected static string s20 = "<div class=\"top_left\"><img alt=\"\" width=\"202px\" height=\"4\" src=\"";
-			protected static string s21{get{return AbsoluteUrl("_GlobalResources/Images/top_left.jpg");}}
-			protected static string s22 = "\" /></div>";
+			protected static string s19 = "<div class=\"top_left\"><img alt=\"\" width=\"202px\" height=\"4\" src=\"";
+			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Images/top_left.jpg");}}
+			protected static string s21 = "\" /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s19);
 					bd.Append(s20);
 					bd.Append(s21);
-					bd.Append(s22);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -142,49 +130,49 @@ namespace Fanex.Agent.UI
 
 		public class Menu_SubMenu_Block: Block
 		{
-			protected static string s23 = "<div id=\"button_left\"><div class=\"Bleft_Parent0\"><a class=\"left-menu ";
+			protected static string s22 = "<div id=\"button_left\"><div class=\"Bleft_Parent0\"><a class=\"left-menu ";
 			public string sub_display = "{sub_display}";
-			protected static string s24 = "\" id=\"a";
+			protected static string s23 = "\" id=\"a";
 			public string sub_id = "{sub_id}";
-			protected static string s25 = "\" href=\"javascript:MenuToggle('";
+			protected static string s24 = "\" href=\"javascript:MenuToggle('";
 			protected string t0_sub_id;
-			protected static string s26 = "');\"><span id=\"menu";
+			protected static string s25 = "');\"><span id=\"menu";
 			protected string t1_sub_id;
-			protected static string s27 = "\">";
+			protected static string s26 = "\">";
 			public string sub_title = "{sub_title}";
-			protected static string s28 = "</span> </a><div id=\"div";
+			protected static string s27 = "</span> </a><div id=\"div";
 			protected string t2_sub_id;
-			protected static string s29 = "\" style=\"display: ";
+			protected static string s28 = "\" style=\"display: ";
 			public string item_display = "{item_display}";
-			protected static string s30 = "\" class=\"submenu-list\"><div class=\"left_line\"><img alt=\"\" width=\"1\" height=\"1\" name=\"\" src=\"";
-			protected static string s31{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s32 = "\" /></div><div class=\"Bleft_Sub0\" id=\"SubMenu\">";
+			protected static string s29 = "\" class=\"submenu-list\"><div class=\"left_line\"><img alt=\"\" width=\"1\" height=\"1\" name=\"\" src=\"";
+			protected static string s30{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
+			protected static string s31 = "\" /></div><div class=\"Bleft_Sub0\" id=\"SubMenu\">";
 			public Menu_SubMenu_MenuItem_Block MenuItem = new Menu_SubMenu_MenuItem_Block();
-			protected static string s33 = "</div></div></div></div>";
+			protected static string s32 = "</div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s23);
+					bd.Append(s22);
 					bd.Append(sub_display);
+					bd.Append(s23);
+					bd.Append(sub_id);
 					bd.Append(s24);
 					bd.Append(sub_id);
 					bd.Append(s25);
 					bd.Append(sub_id);
 					bd.Append(s26);
-					bd.Append(sub_id);
-					bd.Append(s27);
 					bd.Append(sub_title);
-					bd.Append(s28);
+					bd.Append(s27);
 					bd.Append(sub_id);
-					bd.Append(s29);
+					bd.Append(s28);
 					bd.Append(item_display);
+					bd.Append(s29);
 					bd.Append(s30);
 					bd.Append(s31);
-					bd.Append(s32);
 					if(null != MenuItem) MenuItem.ToString(ref bd);
-					bd.Append(s33);
+					bd.Append(s32);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -192,29 +180,29 @@ namespace Fanex.Agent.UI
 
 		public class Menu_SubMenu_MenuItem_Block: Block
 		{
-			protected static string s34 = "<a id=\"";
+			protected static string s33 = "<a id=\"";
 			public string menuId = "{menuId}";
-			protected static string s35 = "\" onclick=\"MenuItemSelect(";
+			protected static string s34 = "\" onclick=\"MenuItemSelect(";
 			public string order = "{order}";
-			protected static string s36 = ");\" href=\"";
+			protected static string s35 = ");\" href=\"";
 			public string item_url = "{item_url}";
-			protected static string s37 = "\" target=\"main\" class=\"Bleft_Sub\">";
+			protected static string s36 = "\" target=\"main\" class=\"Bleft_Sub\">";
 			public string item_title = "{item_title}";
-			protected static string s38 = "</a>";
+			protected static string s37 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s34);
+					bd.Append(s33);
 					bd.Append(menuId);
-					bd.Append(s35);
+					bd.Append(s34);
 					bd.Append(order);
-					bd.Append(s36);
+					bd.Append(s35);
 					bd.Append(item_url);
-					bd.Append(s37);
+					bd.Append(s36);
 					bd.Append(item_title);
-					bd.Append(s38);
+					bd.Append(s37);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -222,21 +210,21 @@ namespace Fanex.Agent.UI
 
 		public class Menu_BingoAd_Block: Block
 		{
-			protected static string s39 = "<div align=\"center\" style=\"width: 200px; height: 150px; margin-right: 20px; padding-top: 10px; cursor: pointer\"><object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0\" width=\"173\" height=\"132\" id=\"Object3\"><param name=\"movie\" ";
-			protected static string s40{get{return "value=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Bingo_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf\"";}}
-			protected static string s41 = " /><param name=\"quality\" value=\"high\" /><param name=\"wmode\" value=\"transparent\" /><embed ";
-			protected static string s42{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Bingo_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
-			protected static string s43 = " quality=\"high\" pluginspage=\"https://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"172\" height=\"150\" wmode=\"transparent\"></embed></object></div>";
+			protected static string s38 = "<div align=\"center\" style=\"width: 200px; height: 150px; margin-right: 20px; padding-top: 10px; cursor: pointer\"><object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0\" width=\"173\" height=\"132\" id=\"Object3\"><param name=\"movie\" ";
+			protected static string s39{get{return "value=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Bingo_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf\"";}}
+			protected static string s40 = " /><param name=\"quality\" value=\"high\" /><param name=\"wmode\" value=\"transparent\" /><embed ";
+			protected static string s41{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Bingo_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
+			protected static string s42 = " quality=\"high\" pluginspage=\"https://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"172\" height=\"150\" wmode=\"transparent\"></embed></object></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s38);
 					bd.Append(s39);
 					bd.Append(s40);
 					bd.Append(s41);
 					bd.Append(s42);
-					bd.Append(s43);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -244,21 +232,21 @@ namespace Fanex.Agent.UI
 
 		public class Menu_CasinoAd_Block: Block
 		{
-			protected static string s44 = "<div align=\"center\" style=\"width: 200px; height: 132px; margin-right: 20px; padding-top: 10px; cursor: pointer\"><object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0\" width=\"173\" height=\"132\" id=\"Object2\"><param name=\"movie\" ";
-			protected static string s45{get{return "value=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/CasinoOpen_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf\"";}}
-			protected static string s46 = " /><param name=\"quality\" value=\"high\" /><param name=\"wmode\" value=\"transparent\" /><embed ";
-			protected static string s47{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/CasinoOpen_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
-			protected static string s48 = " quality=\"high\" pluginspage=\"https://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"173\" height=\"132\" wmode=\"transparent\"></embed></object></div>";
+			protected static string s43 = "<div align=\"center\" style=\"width: 200px; height: 132px; margin-right: 20px; padding-top: 10px; cursor: pointer\"><object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0\" width=\"173\" height=\"132\" id=\"Object2\"><param name=\"movie\" ";
+			protected static string s44{get{return "value=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/CasinoOpen_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf\"";}}
+			protected static string s45 = " /><param name=\"quality\" value=\"high\" /><param name=\"wmode\" value=\"transparent\" /><embed ";
+			protected static string s46{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/CasinoOpen_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
+			protected static string s47 = " quality=\"high\" pluginspage=\"https://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"173\" height=\"132\" wmode=\"transparent\"></embed></object></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s43);
 					bd.Append(s44);
 					bd.Append(s45);
 					bd.Append(s46);
 					bd.Append(s47);
-					bd.Append(s48);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -266,21 +254,21 @@ namespace Fanex.Agent.UI
 
 		public class Menu_IphoneAd_Block: Block
 		{
-			protected static string s49 = "<div id=\"iphoneAd\" align=\"center\" style=\"width: 200px; height: 132px; margin-right: 20px; padding-top: 10px; cursor: pointer\"><object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0\" width=\"173\" height=\"132\" id=\"Object4\"><param name=\"movie\" ";
-			protected static string s50{get{return "value=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Iphone_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
-			protected static string s51 = " /><param name=\"quality\" value=\"high\" /><param name=\"wmode\" value=\"transparent\" /><embed ";
-			protected static string s52{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Iphone_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
-			protected static string s53 = " quality=\"high\" pluginspage=\"https://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"173\" height=\"132\" wmode=\"transparent\"></embed></object></div>";
+			protected static string s48 = "<div id=\"iphoneAd\" align=\"center\" style=\"width: 200px; height: 132px; margin-right: 20px; padding-top: 10px; cursor: pointer\"><object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0\" width=\"173\" height=\"132\" id=\"Object4\"><param name=\"movie\" ";
+			protected static string s49{get{return "value=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Iphone_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
+			protected static string s50 = " /><param name=\"quality\" value=\"high\" /><param name=\"wmode\" value=\"transparent\" /><embed ";
+			protected static string s51{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Iphone_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
+			protected static string s52 = " quality=\"high\" pluginspage=\"https://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"173\" height=\"132\" wmode=\"transparent\"></embed></object></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s48);
 					bd.Append(s49);
 					bd.Append(s50);
 					bd.Append(s51);
 					bd.Append(s52);
-					bd.Append(s53);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -288,17 +276,17 @@ namespace Fanex.Agent.UI
 
 		public class Menu_IphoneAd_Gif_Block: Block
 		{
-			protected static string s54 = "<div id=\"iphoneAdGif\" align=\"center\" style=\"padding-top: 10px;\"><a href=\"#\" target=\"_blank\" id=\"linkToMobileSiteID\"><img ";
-			protected static string s55{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Images/smallbanner_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".gif?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
-			protected static string s56 = " width=\"173\" height=\"132\" style=\"border:0\" /></a></div>";
+			protected static string s53 = "<div id=\"iphoneAdGif\" align=\"center\" style=\"padding-top: 10px;\"><a href=\"#\" target=\"_blank\" id=\"linkToMobileSiteID\"><img ";
+			protected static string s54{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/Images/smallbanner_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".gif?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
+			protected static string s55 = " width=\"173\" height=\"132\" style=\"border:0\" /></a></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s53);
 					bd.Append(s54);
 					bd.Append(s55);
-					bd.Append(s56);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -306,21 +294,21 @@ namespace Fanex.Agent.UI
 
 		public class Menu_NumberGameAd_Block: Block
 		{
-			protected static string s57 = "<div align=\"center\" style=\"width: 200px; height: 132px; margin-right: 20px; padding-top: 10px; cursor: pointer;\"><object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0\" width=\"173\" height=\"132\" id=\"Object1\"><param name=\"movie\" ";
-			protected static string s58{get{return "value=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/NumberGame_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf\"";}}
-			protected static string s59 = " /><param name=\"quality\" value=\"high\" /><param name=\"wmode\" value=\"transparent\" /><embed ";
-			protected static string s60{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/NumberGame_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
-			protected static string s61 = " quality=\"high\" pluginspage=\"https://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"173\" height=\"132\" wmode=\"transparent\"></embed></object></div>";
+			protected static string s56 = "<div align=\"center\" style=\"width: 200px; height: 132px; margin-right: 20px; padding-top: 10px; cursor: pointer;\"><object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0\" width=\"173\" height=\"132\" id=\"Object1\"><param name=\"movie\" ";
+			protected static string s57{get{return "value=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/NumberGame_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf\"";}}
+			protected static string s58 = " /><param name=\"quality\" value=\"high\" /><param name=\"wmode\" value=\"transparent\" /><embed ";
+			protected static string s59{get{return "src=\"" + TplCore.TplSettings.GetBaseUrl() + "Flash/Introduction/NumberGame_" + Sunplus.Agent.Model.Entities.UserSession.Current.Language + ".swf?" + Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion + "\"";}}
+			protected static string s60 = " quality=\"high\" pluginspage=\"https://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"173\" height=\"132\" wmode=\"transparent\"></embed></object></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s56);
 					bd.Append(s57);
 					bd.Append(s58);
 					bd.Append(s59);
 					bd.Append(s60);
-					bd.Append(s61);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
