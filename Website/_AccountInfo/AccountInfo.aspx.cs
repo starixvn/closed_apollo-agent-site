@@ -66,6 +66,7 @@ namespace Sunplus.Agent.UI._AccountInfo
             this.custId = CustId == 0? -1 : CustId;
             this.userNameRequest = CustName;
             this.isMember = IsMember;
+            this.isChangedUserName = false;
 
             if (!string.IsNullOrEmpty(this.userNameRequest))
             {
