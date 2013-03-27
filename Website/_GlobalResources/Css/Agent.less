@@ -1,4 +1,15 @@
 ﻿@import "variables.less";
+@import "mixins.less";
+
+/* UTILITIES */
+.pull-right			{ float: right }
+.pull-left			{ float: left }
+.hide				{ display: none }
+.show				{ display: block }
+.invisible			{ visibility: hidden }
+.text-left          { text-align: left }
+.text-right         { text-align: right }
+.text-center        { text-align: center } 
 
 html {
     color: @textColor;
@@ -144,6 +155,7 @@ select {
 	font-family: @fontFamily;
 	font-size: 1em;
 	font-weight: bold;
+	text-transform: uppercase;
 	color: @grayDark;
 	cursor: pointer;
 
@@ -689,10 +701,10 @@ a.update {
 	border-collapse: collapse;
 
 	td {
-		padding-right: 3px;
+		padding: 0 6px 0 0;
 	}
 	input[type=text] {
-		background: url(img/cal/calendar.png) no-repeat right 1px;
+		background: #f8f8f8 url(img/cal/calendar.png) no-repeat right 1px;
 
 		border: 1px solid #999;
 		border-radius: 2px;
@@ -704,5 +716,30 @@ a.update {
 		line-height: 1.2em;
 		font-size: .95em;
 		cursor: default;
+	}
+}
+
+.report-filter {
+	.clearfix;
+	padding: 10px 0 0;
+
+	input, label {
+		float: left;
+	}
+	input { margin: 0 3px 0 0 }
+	label {
+		margin: 0 20px 0 0;
+		&:hover { text-decoration: underline }
+	}
+}
+
+.ui-datepicker {
+	border-color: @gray;
+
+	.ui-datepicker-header {
+		background: none;
+		border-width: 0 0 1px;
+		border-color: @gray;
+		border-radius: 0;
 	}
 }

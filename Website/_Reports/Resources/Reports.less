@@ -123,11 +123,18 @@ tr {
 }
 
 #box_header {
-    //background: url("../../_GlobalResources/Images/bg_boxTop.jpg") repeat-x scroll center top #E7E7E7;
-	background-color: @grayLighter;
-    border: 1px solid @gray;
+	background: #eee;
+	background: -moz-linear-gradient(top,#eee 0%, #ddd 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eee), color-stop(100%,#ddd));
+	background: -webkit-linear-gradient(top,#eee 0%,#ddd 100%);
+	background: -o-linear-gradient(top,#eee 0%,#ddd 100%);
+	background: -ms-linear-gradient(top,#eee 0%,#ddd 100%);
+	background: linear-gradient(to bottom,#eee 0%,#ddd 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee', endColorstr='#ddd',GradientType=0 );
+
+    border: 1px solid @grayLight;
     margin: 10px 0 0 0;
-    padding: 0;    
+    padding: 5px 5px 0;
 }
 
 input.date_no
