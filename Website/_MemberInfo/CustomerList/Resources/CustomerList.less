@@ -21,108 +21,110 @@ body
     border-collapse: separate;
     width: 100%;
     border-spacing: 1px;
-}
 
-#tblCustomerList .header_comm
-{
-    height: 22px;
-    width: 200px;
-    text-align: center;
-}
+	&.header_comm {
+		height: 22px;
+		width: 200px;
+		text-align: center;
+	}
 
-#tblCustomerList tfoot tr
-{
-    font-weight: normal;
-    height: 20px;
-    text-align: center;
-}
+	tfoot  {
+		tr {
+			font-weight: normal;
+			height: 20px;
+			text-align: center;
+			background: url( "Images/bg_header04.jpg" ) repeat-x scroll center top #E8E8E8;
+			font-weight: normal;
+			height: 20px;
+			text-align: center;
+		}
+	}
 
-#tblCustomerList tfoot tr
-{
-    background: url( "Images/bg_header04.jpg" ) repeat-x scroll center top #E8E8E8;
-    font-weight: normal;
-    height: 20px;
-    text-align: center;
-}
+	thead  {
+		tr {
+			&.header {
+				th {
+					font-size: 11px;
+					background-color: #CCCCCC;
+					color: @secondHeaderColor;
+					font-weight: normal;
+					height: 22px;
+					width: 200px;
+					text-align: center;
+					background-image: none;
+					padding: 3px;
+					border-left: 1px solid @rowBackground;
+				}
+			}
+			
+			th {
+				background: @primaryHeaderBackground;
+				color: @primaryHeaderColor;
+				font-size: 11px;
+				text-align: center;
+				font-weight: normal;
+				padding: 0 3px;
+			}
 
-#tblCustomerList thead tr.header th
-{
-    font-size: 11px;
-    background-color: #CCCCCC;
-    color: @secondHeaderColor;
-    font-weight: normal;
-    height: 22px;
-    width: 200px;
-    text-align: center;
-    background-image: none;
-    padding: 3px;
-    border-left: 1px solid @rowBackground;
-}
+			td {
+				background-color: #F9F9F7;
+				text-align: center;
+				border: solid 1px #999;
+			}						
+		}
+		
+		th {
+			&:first-child {
+				border-left: none;
+			}
+		}			
+	}
 
-#tblCustomerList thead tr th
-{
-    background: @primaryHeaderBackground;
-    color: @primaryHeaderColor;
-    font-size: 11px;
-    text-align: center;
-    font-weight: normal;
-    padding: 0 3px;
-}
+	tbody  {
+		tr {
+			text-align: center;
+			border: solid 1px #999;
+			text-align: center;
+			border: solid 1px #999;
+			line-height: 25px;
 
-#tblCustomerList th:first-child
-{
-    border-left: none;
-}
+			&:hover {
+				td {
+					background-color: @rowHoverBackground;
+				}
+			}			
+		}
+	}	
 
-#tblCustomerList thead tr td
-{
-    background-color: #F9F9F7;
-    text-align: center;
-    border: solid 1px #999;
-}
+	tr {
+		th {
+			border-top: none;
+			height: 22px;
+			padding: 2px;
+			white-space: nowrap;
+		}
+	}
 
-#tblCustomerList tbody tr
-{
-    text-align: center;
-    border: solid 1px #999;
-}
+	td {
+		border-top: none;
+		padding: 2px;
+		white-space: nowrap;
+		background: @white;
+		padding: 0 2px;
+	}
 
-#tblCustomerList tbody tr
-{
-    text-align: center;
-    border: solid 1px #999;
-    line-height: 25px;
-}
+	tfoot {
+		tr {
+			td {
+				background: url("Images/bg_header04.jpg") repeat-x scroll center top #E8E8E8;
+			}
+		}
+	}	
 
-#tblCustomerList tbody tr:hover td
-{
-    background-color: @rowHoverBackground;
-}
-
-#tblCustomerList tr th
-{
-    border-top: none;
-    height: 22px;
-    padding: 2px;
-    white-space: nowrap;
-}
-
-#tblCustomerList td
-{
-    border-top: none;
-    padding: 2px;
-    white-space: nowrap;
-    background: @white;
-}
-#tblCustomerList tfoot tr td
-{
-    background: url("Images/bg_header04.jpg") repeat-x scroll center top #E8E8E8;
-}
-
-#tblCustomerList td, th
-{
-    padding: 0 2px;
-}
+	th {
+		padding: 0 2px;
+	}
+} 
 
 #title_header
 {
@@ -135,23 +137,23 @@ body
     padding-left: 15px;
     text-transform: uppercase;
     position: relative;
-}
-#title_header .fullpath {
-    float: left;
-    background: url( "Images/icon-view-full-path.png" ) no-repeat;
-    width: 16px;
-    height: 16px;
-    margin-left: 5px;
-}
-#tblHeader
-{
-    border: 0;
+	border: 0;
     width: 100%;
+
+	&.fullpath {
+		float: left;
+		background: url( "Images/icon-view-full-path.png" ) no-repeat;
+		width: 16px;
+		height: 16px;
+		margin-left: 5px;
+	}
 }
 
-#tblHeader tr
-{
-    height: 55px;
+#tblHeader {
+	width: 100%;
+	tr {
+		height: 55px;
+	}
 }
 
 select
@@ -175,24 +177,23 @@ select
 {
     color: Blue;
     cursor: pointer;
+
+	&:hover {
+		color: @hoverLinkColor;
+		cursor: pointer;
+	}
 }
 
-.text:hover
-{
-    color: @hoverLinkColor;
-    cursor: pointer;
-}
+a {
+	&:link, &:visited {
+		color: @linkColor;
+		text-decoration: none;
+	}
 
-a:link, a:visited
-{
-    color: @linkColor;
-    text-decoration: none;
-}
-a:hover
-{
-    color: #FF6600;
-    text-decoration: none;
-}
+	&:hover {
+		color: @hoverLinkOrangeColor;
+	}
+} 
 
 .aView
 {
@@ -247,6 +248,7 @@ a:hover
 {
     background-color: #ccc7ba;
 }
+
 .RowBgClosed
 {
     background-color: #ccc7ba;
@@ -439,14 +441,11 @@ input[type=text]
     padding-left: 6px;	
 	border-left: 5px solid #878787;
 	border-bottom: none;
-}
 
-.boxNavigation img {
-    vertical-align: middle;
-}
-
-.boxNavigation img {
-    margin: 0 5px;
+	img {
+		vertical-align: middle;
+		margin: 0 5px;
+	}
 }
 
 .list {
@@ -463,37 +462,35 @@ input[type=text]
 .sub-nav {
 	margin: 0 0 0 5px;
 	padding: 0;
-}
 
-.sub-nav li {
-	list-style: none;
-	float: left;	
-}
-
-.sub-nav li  a {
-	font-size: 11px;		
-	padding-right: 5px;			
-}
-
-.sub-nav li  a:hover {
-	font-size: 11px;	
-	color: #FF9933;
-	padding-right: 5px;	
-}
-
-.sub-nav li.active {
-	font-size: 11px;		
-	padding-right: 5px;	
-	color: @titleColor;	
-	font-weight: bold;
+	li {
+		list-style: none;
+		float: left;
+		
+		a {
+			font-size: 11px;		
+			padding-right: 5px;	
+			
+			&:hover {
+				font-size: 11px;	
+				color: #FF9933;
+				padding-right: 5px;	
+			}		
+		}
+		
+		&.active {
+			font-size: 11px;		
+			padding-right: 5px;	
+			color: @titleColor;	
+			font-weight: bold;
+		}	
+	}
 }
 
 .line {
     margin: 0 5px;
 }
 
-.people-icon {
-    background:url('Images/people-icon.png') no-repeat top right;
-    padding-right: 23px;
-    float: left;
+.view-icon {
+   
 }
