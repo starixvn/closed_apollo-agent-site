@@ -5,11 +5,32 @@
     color: #01122B;
     font-weight: bold !important;
 }
+
 .bl_favorite
 {
     font-weight: bold !important;
     color: #B50000;
 }
+
+#table-pp2 {
+	tbody {
+		tr {
+			&:hover {
+				td {
+					background-color: Yellow;
+					border-color: Blue;
+					border-width: 1px;
+				}
+			}
+		}
+
+		td {
+			padding: 1px 5px 1px 5px;
+		}
+	}
+
+}
+
 .portalTable
 {
     font-family: @fontFamily;
@@ -20,65 +41,54 @@
     line-height: 20px;
     table-layout: fixed;
     text-indent: 5px;
-}
-.portalTable tbody tr:hover td
-{
-}
-#table-pp2 tbody tr:hover td
-{
-    background-color: Yellow;
-    border-color: Blue;
-    border-width: 1px;
-}
-#table-pp2 tbody td
-{
-    padding: 1px 5px 1px 5px;
-}
-.portalTable th
-{
-    font-weight: bold;
-    color: @black;
-    background: repeat-x scroll center top #bfb29d;
-    border: solid 1px #999;
-    text-align: center;
-    padding: 0px 5px 0px 0px;
-}
-.portalTable tr.th
-{
-    font-weight: normal;
-    color: @black;
-    background-color: #F7F0E4;
-    border: solid 1px #999;
-    text-align: center;
+
+	th {
+		font-weight: bold;
+		color: @black;
+		background: repeat-x scroll center top #bfb29d;
+		border: solid 1px #999;
+		text-align: center;
+		padding: 0px 5px 0px 0px;
+	}
+
+	tr {
+		&.th {
+			font-weight: normal;
+			color: @black;
+			background-color: #F7F0E4;
+			border: solid 1px #999;
+			text-align: center;
+		}
+
+		&.hd {
+			background-color: #F7F0E4;
+			color: @black;
+		}
+
+		&.hd2 {
+			color: @black;
+			background: repeat-x scroll center top #DFDDDC;
+			font-weight: normal;
+		}
+
+		.hd3 {
+			background-color: #F7F0E4;
+			color: @black;
+		}
+	}
+
+	td {
+		vertical-align: top;
+		border: solid 1px #999;
+		padding: 0px 5px 0px 0px;
+
+		&.hd {
+			background-color: #F7F0E4;
+			color: @black;
+		}
+	}
 }
 
-.portalTable tr.hd
-{
-    background-color: #F7F0E4;
-    color: @black;
-}
-.portalTable tr.hd2
-{
-    color: @black;
-    background: repeat-x scroll center top #DFDDDC;
-    font-weight: normal;
-}
-.portalTable tr.hd3
-{
-    background-color: #F7F0E4;
-    color: @black;
-}
-.portalTable td
-{
-    vertical-align: top;
-    border: solid 1px #999;
-    padding: 0px 5px 0px 0px;
-}
-.portalTable td.hd
-{
-    background-color: #F7F0E4;
-    color: @black;
-}
 a
 {
     text-decoration: none;
@@ -89,53 +99,64 @@ a
     line-height: 20px;
     cursor: pointer;
 }
+
 .sectionOpen
 {
     color: Red;
     line-height: 20px;
     cursor: pointer;
 }
+
 .divCollapse
 {
     width: 310px;
     height: 280px;
     overflow: auto;
 }
+
 .divCollapse2
 {
     width: 364px;
     height: 280px;
     overflow: auto;
 }
+
 .tdOL
 {
     width: 34%;
 }
+
 .tblMain
 {
     border: 0px;
     width: 735px;
 }
+
 .txtRedColor
 {
     color: Red;
 }
+
 .txtNormalColor
 {
     color: Black;
 }
+
 .txtGreenColor
 {
     color: Green;
 }
+
 .ID
 {
     width: 70px;
 }
+
 .Date
 {
     width: 135px;
 }
+
 .active
 {
     color: #003366;
@@ -150,14 +171,17 @@ a
 {
     color: #d45f12;
 }
+
 .oddRow
 {
     background-color: #f0f0f0;
 }
+
 .evenRow
 {
     background-color: #e4ebf5;
 }
+
 .rowHeader
 {
     background-color: #ccceb9;
@@ -165,14 +189,7 @@ a
     font-weight: normal;
     text-transform: capitalize;
 }
-#table-pp
-{
-    border: 1px;
-    line-height: 20px;
-    border-style: solid;
-    border-color: #bfb29d;
-    text-indent: 5px;
-}
+
 #table-pp2
 {
     width: 100%;
@@ -181,42 +198,53 @@ a
     border-style: solid;
     border-color: #bfb29d;
     text-indent: 5px;
+
+	td {
+		padding: 0px 5px 0px 0px;
+	}
+
+	tbody {
+		td {
+			padding: 1px 5px 1px 5px;
+			line-height: 16px;
+			text-indent: 0px;
+		}
+	} 
 }
-#table-pp td
+
+#table-pp
 {
-    padding: 0px 5px 0px 0px;
+    border: 1px;
+    line-height: 20px;
+    border-style: solid;
+    border-color: #bfb29d;
+    text-indent: 5px;
+
+	td {
+		padding: 0px 5px 0px 0px;
+	}
 }
-#table-pp2 td
-{
-    padding: 0px 5px 0px 0px;
-}
-#table-pp2 tbody td
-{
-    padding: 1px 5px 1px 5px;
-    line-height: 16px;
-    text-indent: 0px;
-}
+
 .r
 {
     text-align: right;
 }
+
 .l
 {
     text-align: left;
 }
+
 .c
 {
     text-align: center;
 }
+
 .b
 {
     font-weight: bold;
 }
-.statistic
-{
-    background-color: #f0f0f0;
-    text-indent: 5px;
-}
+
 ul
 {
     padding-left: 25px;
@@ -225,6 +253,7 @@ ul
     padding-right: 0px;
     line-height: 19px;
 }
+
 .newmem
 {
     background-color: #e0e0e0;
@@ -235,6 +264,7 @@ ul
     font-weight: normal;
     text-align: center;
 }
+
 .newmem2
 {
     background-color: #e0e0e0;
@@ -250,45 +280,54 @@ ul
     font-weight: normal;
     text-align: center;
 }
+
 .padding-right
 {
     padding-top: 15px;
     padding-right: 15px;
     width: 300px;
 }
+
 .padding-top-right
 {
     padding-right: 15px;
 }
+
 .paging
 {
     background-color: #f3f3f3;
 }
+
 .leftTD
 {
     background-color: #e4ebf5;
     width: 55%;
 }
+
 .rightTD
 {
     background-color: #f0f0f0;
     width: 45%;
 }
+
 .imgLoading
 {
     width: 11px;
     height: 11px;
     border-style: none;
 }
+
 .rightACS
 {
     width: 120px;
     font-weight: bold;
 }
+
 .divCollapse3
 {
     width: 200px;
 }
+
 .balanceInfo
 {
     background-image: url('../Images/balance.png');
@@ -299,8 +338,11 @@ ul
     padding-top: 4px;
     padding-bottom: 4px;
 }
+
 .statistic
 {
+	background-color: #f0f0f0;
+    text-indent: 5px;
     background-image: url('../Images/statistic.png');
     background-repeat: no-repeat;
     text-indent: 24px;
@@ -310,6 +352,7 @@ ul
     padding-bottom: 4px;
     background-color: Transparent;
 }
+
 .announcement
 {
     background-image: url('../Images/announcement.png');
@@ -319,7 +362,9 @@ ul
     color: @titleColor;
     padding-top: 4px;
     padding-bottom: 4px;
+	margin-top: 7px;
 }
+
 .onlineList
 {
     background-image: url('../Images/onlinelist.png');
@@ -330,34 +375,42 @@ ul
     padding-top: 4px;
     padding-bottom: 4px;
 }
+
 .tblTop
 {
     width: 350px;
 }
+
 .tblBottom
 {
     width: 100%;
 }
+
 a
 {
     color: #3679fa;
 }
+
 .gotoMsg
 {
     cursor: pointer;
 }
+
 .content
 {
     text-align: justify;
 }
+
 .newMemFont
 {
     font-size: 8px;
 }
+
 .newMemCol
 {
     width: 100px;
 }
+
 .newMemWidth
 {
     width: 347px;
@@ -371,116 +424,117 @@ a
     max-height: 400px;
     max-width: 718px;
     overflow: auto;
+
+	.divGroupDate {
+		background-color: #CCCEB9;
+		font-weight: bold;
+		padding: 2px 5px;
+	}
+
+	.oddRow {
+		border: 1px solid transparent;
+		cursor: pointer;
+		background-color: #E4EBF5;
+		line-height: 18px;
+		max-width: 712px;
+
+		&:hover {
+			background: -moz-linear-gradient(center top, @white , #BBDDFF) repeat scroll 0 0 transparent;
+			border: 1px solid #3399FF;
+			border-radius: 3px 3px 3px 3px;
+			line-height: 18px;
+			max-width: 712px;
+		}
+	}
+
+	.evenRow {
+		border: 1px solid transparent;
+		cursor: pointer;
+		background-color: #F0F0F0;
+		line-height: 18px;
+		max-width: 712px;
+
+		&:hover {
+			background: -moz-linear-gradient(center top, @white , #BBDDFF) repeat scroll 0 0 transparent;
+			border: 1px solid #3399FF;
+			border-radius: 3px 3px 3px 3px;
+			line-height: 18px;
+			max-width: 712px;
+		}
+	}
+
+	.expanding {
+		background: -moz-linear-gradient(center top, @white , #BBDDFF) repeat scroll 0 0 transparent;
+		border: 1px solid #3399FF;
+		border-radius: 3px 3px 3px 3px;
+		line-height: 18px;
+	}
+
+	.divTime {
+		width: 80px;
+		float: left;
+		text-align: right;
+		color: #92593B;
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+
+	#divMore {
+		text-align: center;
+		background-color: #CCCEB9;
+		font-weight: bold;
+		cursor: pointer;
+		padding-top: 2px;
+		height: 17px;
+	}
+
+	.divContent {
+		display: block;
+		max-width: 590px;
+		width: 590px;
+		overflow: auto;
+		word-wrap: break-word;
+	}
+
+	.public {
+		color: Black;
+	}
+
+	.private {
+		color: Green;
+	}
+
+	.private_unread {
+		color: Green;
+		font-weight: bold;
+	}
+
+	.special {
+		color: Red;
+	}
+
+	.toogleIcon {
+		background-image: url('../Images/expand_collapse_icon.png');
+		background-repeat: no-repeat;
+		background-position: 0px 0px;
+		float: left;
+		width: 8px;
+		height: 8px;
+		margin-top: 5px;
+	}
+
+	.text_exposed_show {
+		display: inline;
+	}
+
+	.text_exposed_hide {
+		display: none;
+	}
+
+	.moreIcon {
+		display: none;
+		text-align: center;
+	}
 }
-#divAnnouncement .divGroupDate
-{
-    background-color: #CCCEB9;
-    font-weight: bold;
-    padding: 2px 5px;
-}
-#divAnnouncement .oddRow
-{
-    border: 1px solid transparent;
-    cursor: pointer;
-    background-color: #E4EBF5;
-    line-height: 18px;
-    max-width: 712px;
-}
-#divAnnouncement .evenRow
-{
-    border: 1px solid transparent;
-    cursor: pointer;
-    background-color: #F0F0F0;
-    line-height: 18px;
-    max-width: 712px;
-}
-#divAnnouncement .expanding
-{
-    background: -moz-linear-gradient(center top, @white , #BBDDFF) repeat scroll 0 0 transparent;
-    border: 1px solid #3399FF;
-    border-radius: 3px 3px 3px 3px;
-    line-height: 18px;
-}
-#divAnnouncement .oddRow:hover
-{
-    background: -moz-linear-gradient(center top, @white , #BBDDFF) repeat scroll 0 0 transparent;
-    border: 1px solid #3399FF;
-    border-radius: 3px 3px 3px 3px;
-    line-height: 18px;
-    max-width: 712px;
-}
-#divAnnouncement .evenRow:hover
-{
-    background: -moz-linear-gradient(center top, @white , #BBDDFF) repeat scroll 0 0 transparent;
-    border: 1px solid #3399FF;
-    border-radius: 3px 3px 3px 3px;
-    line-height: 18px;
-    max-width: 712px;
-}
-#divAnnouncement .divTime
-{
-    width: 80px;
-    float: left;
-    text-align: right;
-    color: #92593B;
-    margin-right: 10px;
-    margin-left: 10px;
-}
-#divAnnouncement #divMore
-{
-    text-align: center;
-    background-color: #CCCEB9;
-    font-weight: bold;
-    cursor: pointer;
-    padding-top: 2px;
-    height: 17px;
-}
-#divAnnouncement .divContent
-{
-    display: block;
-    max-width: 590px;
-    width: 590px;
-    overflow: auto;
-    word-wrap: break-word;
-}
-#divAnnouncement .public
-{
-    color: Black;
-}
-#divAnnouncement .private
-{
-    color: Green;
-}
-#divAnnouncement .private_unread
-{
-    color: Green;
-    font-weight: bold;
-}
-#divAnnouncement .special
-{
-    color: Red;
-}
-#divAnnouncement .toogleIcon
-{
-    background-image: url('../Images/expand_collapse_icon.png');
-    background-repeat: no-repeat;
-    background-position: 0px 0px;
-    float: left;
-    width: 8px;
-    height: 8px;
-    margin-top: 5px;
-}
-#divAnnouncement .text_exposed_show
-{
-    display: inline;
-}
-#divAnnouncement .text_exposed_hide
-{
-    display: none;
-}
-#divAnnouncement .moreIcon
-{
-    display: none;
-    text-align: center;
-}
+
 /* End Announcement */

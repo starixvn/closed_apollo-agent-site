@@ -113,8 +113,7 @@ body::-webkit-scrollbar-corner {
 }
 
 body {   
-    margin: 0px;    
-    background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -5px 0px;
+    margin: 0px;
     background-attachment: fixed;
     background-color: #f5f6f8;	
 }
@@ -556,9 +555,9 @@ font {
 }
 
 #leftpanewrapper {
-    background: url(../../_GlobalResources/Images/bg_conts.jpg) repeat-x top;
     padding-left: 5px;
     padding-top: 5px;
+	background: transparent url(../../_GlobalResources/Images/bg_left.jpg) repeat-y scroll center top;
     background-attachment: fixed;
     float: left;
     width: 215px;
@@ -567,26 +566,17 @@ font {
 	bottom: 0;
 }
 
-.leftpanewrapper-treeview {
-    background: url(../../_GlobalResources/Images/bg_conts.jpg) repeat-x top;
-    padding-left: 5px;
-    padding-top: 5px;
-    background-attachment: fixed;
-    float: left;
-    width: 215px;
-	position: absolute;
-    top: 0;
+.leftpanewrapper-treeview {    
+    #leftpanewrapper;
 	bottom: 3px;	
 }
 
 #leftpane {
     width: 202px;
-    background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
 }
 
 .pnlTreeview {
     width: 202px;
-    background: url(../../_GlobalResources/Images/bg_left_menu.jpg) repeat-y -10px 0px;
     position: absolute;
 	top: 31px;
 	bottom: 0;
