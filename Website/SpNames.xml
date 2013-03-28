@@ -34,6 +34,7 @@
     <Setting Key="Age_MessageSelAll" SpName="Age_MessageSelAll" DbName="on_user" Plain="0" />
     <Setting Key="Age_MessageSelByType" SpName="Age_MessageSelByType" DbName="on_user" Plain="0" />
     <Setting Key="Age_MessageSelOne" SpName="Age_MessageSelOne" DbName="on_user" Plain="0" />-->
+
     <Setting Key="Dot_Msg_HasPriMessage24" SpName="Dot_Msg_HasPriMessage24" DbName="MessageDB" Plain="0" />
     <Setting Key="Age_CustomerSelMessages" SpName="Age_CustomerSelMessages" DbName="MessageDB" Plain="0" />
     <Setting Key="Dot_Msg_SetPriMsgRead" SpName="Dot_Msg_SetPriMsgRead" DbName="MessageDB" Plain="0" />

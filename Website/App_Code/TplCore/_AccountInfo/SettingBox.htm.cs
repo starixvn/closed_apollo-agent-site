@@ -18,7 +18,7 @@ namespace Fanex.Agent.UI
 			protected static string s2 = "</span></a></li>";
 			public SettingBox_HiddenBlockHeaderTabAgent_Block HiddenBlockHeaderTabAgent = new SettingBox_HiddenBlockHeaderTabAgent_Block();
 			public SettingBox_HiddenBlockHeaderTabMember_Block HiddenBlockHeaderTabMember = new SettingBox_HiddenBlockHeaderTabMember_Block();
-			protected static string s3 = "</ul></div><div id=\"clear0\" /><div class=\"Bleft_Sub02_setting\"><table id=\"tbl_custsettings\"><tr><td colspan=\"2\"><div style=\"position: relative; left: -3px;\" class=\"settingWidth\"></div><div id=\"overlayBg\" class=\"overlay\"></div></td></tr>";
+			protected static string s3 = "</ul></div><div id=\"clear0\" ></div><div class=\"Bleft_Sub02_setting\"><table id=\"tbl_custsettings\"><tr><td colspan=\"2\"><div style=\"position: relative; left: -3px;\" class=\"settingWidth\"></div><div id=\"overlayBg\" class=\"overlay\"></div></td></tr>";
 			public string otherSettings = "{otherSettings}";
 			protected static string s4 = "</table>";
 			public SettingBox_HiddenBlockTabAgent_Block HiddenBlockTabAgent = new SettingBox_HiddenBlockTabAgent_Block();
