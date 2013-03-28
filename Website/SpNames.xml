@@ -16,7 +16,7 @@
 
   </Function>
 
-  <!--<Function Name="Agent - Message">
+  <Function Name="Agent - Message">
     <Setting Key="Dot_Msg_GetPrivateMessage" SpName="Dot_Msg_GetPrivateMessage" DbName="MessageDB" Plain="0" />
     <Setting Key="Dot_Msg_GetPublicMessage" SpName="Dot_Msg_GetPublicMessage" DbName="MessageDB" Plain="0" />
     <Setting Key="Dot_Msg_GetNotSpecialMessage" SpName="Dot_Msg_GetNotSpecialMessage" DbName="MessageDB" Plain="0" />
@@ -37,7 +37,7 @@
     <Setting Key="Age_MessageSelOne" SpName="Age_MessageSelOne" DbName="on_user" Plain="0" />
     <Setting Key="Acc_Msg_GetTopPubMessage" SpName="Acc_Msg_GetTopPubMessage" DbName="MessageDB" Plain="0" />
     <Setting Key="Age_CustomerSelMessages" SpName="Age_CustomerSelMessages" DbName="MessageDB" Plain="0" />
-  </Function>-->
+  </Function>
 
   <Function Name="Agent - BetList">
 
