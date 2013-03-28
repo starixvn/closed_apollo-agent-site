@@ -1,10 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="Index.aspx.cs"
-    Inherits="Index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="Index.aspx.cs" Inherits="Index" %>
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
     <title></title>
+    <link href="<%= Page.ResolveUrl("~/_GlobalResources/Css/Index.less")%>" rel="stylesheet" type="text/css" />
+
     <script type="text/javascript">
         function $(id) {
             return document.getElementById(id);
@@ -26,25 +27,10 @@
         window.userNames = new Array();
 
         window.baseURL = "<%=baseURL %>";
-
     </script>
-    <link href="_MemberInfo/SetNickName/Resources/SetNickName.less?<%=TplCore.TplSettings.UrlVersion %>"
-        rel="stylesheet" type="text/css" />
-    <link href="_Announcement/Resources/Announcement.less?<%=TplCore.TplSettings.UrlVersion %>"
-        rel="stylesheet" type="text/css" />
-    <link href="_GlobalResources/css/tooltip.css?<%=TplCore.TplSettings.UrlVersion %>"
-        rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        #agentSite
-        {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
 </head>
-<body scroll='no'>
+<body>
     <form id="agentSite" runat="server">
-    <div class="content">
         <div class="header">
             <iframe src="_Header/Header.aspx" frameborder="0" scrolling="no" width="100%" height="100%"
                 id="frHeader" name="frHeader"></iframe>
@@ -62,13 +48,9 @@
             <iframe src="Footer.html" frameborder="0" width="100%" scrolling="no" height="100%"
                 id="frFooter" name="frFooter"></iframe>
         </div>
-    </div>
     </form>
-    <script src="_GlobalResources/Js/Core.js?<%=TplCore.TplSettings.UrlVersion %>" type="text/javascript"></script>
-    <script src="_MemberInfo/SetNickName/Resources/SetNickName.js?<%=TplCore.TplSettings.UrlVersion %>"
-        type="text/javascript"></script>
-    <script src="_Announcement/Resources/Announcement.js?<%=TplCore.TplSettings.UrlVersion %>"
-        type="text/javascript"></script>
+    <script src="<%= Page.ResolveUrl("_GlobalResources/Js/Core.js")%>" type="text/javascript"></script>
+
     <script type="text/javascript">
 
         AGE.PERMISSIONS = '<%= (string)(Sunplus.Agent.Model.Entities.UserSession.Current.SubPageAccess) %>';
