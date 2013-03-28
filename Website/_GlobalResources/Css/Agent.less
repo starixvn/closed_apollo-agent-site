@@ -144,11 +144,11 @@ select {
 	margin: 0 5px 0 0;
 	padding: 2px 6px;
 
-	background-color: lighten(@grayLight, 20%);
+	#gradient.vertical(#fff, #ddd);
 	border: 1px solid @grayLight;
-	border-radius: 2px;
-	box-shadow: 0 1px 0 @white inset;
-	transition: background-color 0.15s ease-in-out 0s;
+	.border-radius(2px);
+	.box-shadow(1px 1px 0 @grayLighter);
+	.transition(background-color 0.15s ease-in-out 0s);
 
 	font-family: @fontFamily;
 	font-size: 1em;
@@ -157,11 +157,8 @@ select {
 	color: @grayDark;
 	cursor: pointer;
 
-	&:hover {
-		background-color: @grayLight;
-		color: @white;
-	}
-	&:focus, &:active { box-shadow: 0 1px 0 @white inset, 0 0 3px @grayLight }
+	&:hover { #gradient.vertical(#eee, #ccc) }
+	&:focus, &:active { #gradient.vertical(#ccc, #eee) }
 }
 
 .editBtn {
@@ -702,7 +699,7 @@ a.update {
 		padding: 0 6px 0 0;
 	}
 	input[type=text] {
-		background: #f8f8f8 url(img/cal/calendar.png) no-repeat right 1px;
+		background: #f8f8f8 url(img/cal/calendar_10.png) no-repeat right 1px;
 
 		border: 1px solid #999;
 		border-radius: 2px;
