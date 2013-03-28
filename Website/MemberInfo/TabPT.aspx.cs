@@ -27,7 +27,7 @@ public partial class MemberInfo_TabPT : TplPage
         if (Sunplus.Agent.Model.Entities.Permission.UserPermission.IsNeutral) // hide Bingo
             ArrText = new string[] { Resources.Lang.sbminpt, Resources.Lang.hr, Resources.Lang.hrminpt, Resources.Lang.casino, Resources.Lang.P2P, Resources.Lang.LiveCasino, Resources.Lang.VirtualSports };
         else
-            ArrText = new string[] { Resources.Lang.sbminpt, Resources.Lang.hr, Resources.Lang.hrminpt, Resources.Lang.casino, Resources.Bingo.bingo, Resources.Lang.P2P, Resources.Lang.LiveCasino, Resources.Lang.VirtualSports };
+            ArrText = new string[] { Resources.Lang.sbminpt, Resources.Lang.hr, Resources.Lang.hrminpt, Resources.Lang.casino, Resources.Lang.P2P, Resources.Lang.LiveCasino, Resources.Lang.VirtualSports };
 
         if (UserSession.Current.IsSuper)
         {
@@ -54,7 +54,6 @@ public partial class MemberInfo_TabPT : TplPage
             urlRacing + "?custid=" + Request["custid"], 
             urlRacingMinPT + "?custid=" + Request["custid"] + "&username=" + Request["username"], 
             "PositionTakingCS.aspx" + "?cscustid=" + Request["custid"] + "&insert=" + Request["insert"], 
-            "PositionTakingBingo.aspx" + "?custid=" + Request["custid"] + "&insert=" + Request["insert"], 
             "../_MemberInfo/P2P/P2P_Page.aspx?custids=" + Request["custid"] + "&roleid=" + Convert.ToString(UserSession.Current.RoleId - 1) + "&username=",
             urlLiveCasino + "?custids=" + Request["custid"] + "&roleid=" + Convert.ToString(UserSession.Current.RoleId - 1) + "&isMult=0" + "&disable=0" + "&username=" + Request["username"],
             "../_MemberInfo/VirtualSports/EditSingle.aspx?custid=" + Request["custid"] + "&roleid=" + Convert.ToString(UserSession.Current.RoleId - 1) + "&username=" + Request["username"],

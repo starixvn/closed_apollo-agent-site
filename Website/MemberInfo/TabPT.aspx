@@ -46,17 +46,7 @@
         }
         );
 
-    // Call _Bingo/Handlers/AutoInsertAccount.ashx
-    ajax.PostJSON(
-        '../_Bingo/Handlers/AutoInsertAccount.ashx',
-        'custid=' + GetParameterValue('custid', location.href),
-        function (result) {
-            if (result.errCode != 0) {
-
-            }
-        }
-        );
-
+    
     // Call _MemberInfo/LiveCasino/Handlers/AutoInsertAccount.ashx
     ajax.PostJSON(
     '../_MemberInfo/LiveCasino/Handlers/AutoInsertAccount.ashx',

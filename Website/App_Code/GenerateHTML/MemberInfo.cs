@@ -18,327 +18,6 @@ using Sunplus.Agent.Model.Entities;
 public class MemberInfo_Downline
 {
 
-    #region Bingo: Member Commission list
-    public static string memberCommissionBingo(string idmaster, string idagent)
-    {
-        #region Define variable
-        //IResult resultCustomer = new Sunplus.Bingo.Entities.Result();
-        //IResult resultGameKind = new Sunplus.Bingo.Entities.Result();
-        //IResult resultGameType = new Sunplus.Bingo.Entities.Result();
-        string main = TemplateHandler.LoadTemplate("MemberInfo/MemberCommissionBingo.html");
-        string notfound = TemplateHandler.LoadTemplate("TotalBets/NotFound.html");
-        string idfirstagent = "";
-        string idfirstmaster = "";
-        //Create template
-        string[] wildcard = new string[] { "P", "A" };
-        Report rptContent = new Report();
-        DataTable dataTable = null;
-        string content = "";
-        int count = 1;
-        string _custid = "-1";
-        string _username = "";
-        //for regular expression
-        Regex re = new Regex(@"\{\d{1,2}_\d{1,2}\}");
-        MatchCollection matches;
-        #endregion
-
-        TemplateHandler.Assign(ref main, "lblCommission", Resources.Lang.lblMemberCommission);
-        TemplateHandler.Assign(ref main, "SportBook", Resources.Lang.sportBook);
-        TemplateHandler.Assign(ref main, "Racing", Resources.Lang.Racebook);
-        TemplateHandler.Assign(ref main, "Bingo", Resources.Bingo.bingo);
-        //Render Casino
-        if (UserPermission.IsShowCasino)
-            TemplateHandler.Assign(ref main, "Casino", Resources.Lang.casino);
-        else
-            TemplateHandler.RemoveBlock(ref main, "p2pCasino");
-
-        TemplateHandler.Assign(ref main, "lblUserName", Resources.Lang.username);
-
-        //apply class name for Role
-        TemplateHandler.Assign(ref main, "firstCol", "firstCol");
-        TemplateHandler.Assign(ref main, "overcolor", AppSettings.RowBgOver);
-
-        if (UserPermission.IsShowP2P)
-            TemplateHandler.Assign(ref main, "P2PText", Resources.Lang.P2P);
-        else
-            TemplateHandler.RemoveBlock(ref main, "P2P");
-
-        if (UserPermission.IsShowLiveCasino)
-            TemplateHandler.Assign(ref main, "LiveCasinoText", Resources.Lang.LiveCasino);
-        else
-            TemplateHandler.RemoveBlock(ref main, "LiveCasino");
-
-        //Load Game Kind
-        #region Load Game Kind
-        string gameKind = TemplateHandler.CopyBlock(main, "GameKind");
-        string gameType = TemplateHandler.CopyBlock(main, "GameType");
-        string rowData = TemplateHandler.CopyBlock(main, "rowdata");
-        StringBuilder _gameKind = new StringBuilder();
-        StringBuilder _gameType = new StringBuilder();
-        StringBuilder _rowData = new StringBuilder();
-        int colCount = 0;
-
-        //ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
-        //DataTable tblGameKind = customerService.GetGameKindDataTable(BingoSettings.BingoGame.CodeGameNo, ref resultGameKind);
-        //if (tblGameKind != null && tblGameKind.Rows.Count != 0)
-        //{
-        //    //Load Game Type
-        //    #region Load Game Type
-        //    foreach (DataRow drGameKind in tblGameKind.Rows)
-        //    {
-
-        //        DataTable tableGameType = customerService.GetGameTypeDataTable(CastAide.AsInt32(drGameKind["GameGroupID"]), ref resultGameType);
-        //        if (tableGameType != null && tableGameType.Rows.Count != 0)
-        //        {
-        //            foreach (DataRow drGameType in tableGameType.Rows)
-        //            {
-        //                string gameTypeTpl = gameType;
-        //                TemplateHandler.Assign(ref gameTypeTpl, "GameTypeClass", "class='colHdr'");
-        //                TemplateHandler.Assign(ref gameTypeTpl, "lblGameType", drGameType[DAL.APIClient.APICasinoProvider.Lang("GameTypeName")]);
-        //                _gameType.Append(gameTypeTpl);
-
-        //                string rowDataTpl = rowData;
-        //                TemplateHandler.Assign(ref rowDataTpl, "rowdata", "{" + CastAide.AsInt32(drGameKind["GameGroupID"]).ToString() + "_" + CastAide.AsInt32(drGameType["GameTypeID"]).ToString() + "}");
-        //                TemplateHandler.Assign(ref rowDataTpl, "normalCol", "#424242");
-        //                _rowData.Append(rowDataTpl);
-
-        //                //count column data
-        //                colCount++;
-        //            }
-        //            string gameKindTpl = gameKind;
-        //            TemplateHandler.Assign(ref gameKindTpl, "GameKindColSpan", "colspan='" + tableGameType.Rows.Count.ToString() + "'");
-        //            TemplateHandler.Assign(ref gameKindTpl, "lblGameKind", drGameKind[DAL.APIClient.APICasinoProvider.Lang("GameGroupName")]);
-        //            _gameKind.Append(gameKindTpl);
-        //        }
-        //    }
-        //    #endregion
-
-        //    TemplateHandler.ReplaceBlock(ref main, "GameKind", _gameKind.ToString());
-        //    TemplateHandler.ReplaceBlock(ref main, "GameType", _gameType.ToString());
-        //    TemplateHandler.ReplaceBlock(ref main, "rowdata", _rowData.ToString());
-        //}
-        //else
-        //{
-            //remove header
-            TemplateHandler.RemoveBlock(ref main, "header");
-        //}
-        #endregion
-
-        #region Load Data Row
-
-        //IReportService reportService = BingoContainer.Current.Resolve<IReportService>();
-        if (AppSettings.IsAgentSite)
-        {
-            TemplateHandler.Assign(ref main, "appliesallbettype", Resources.Lang.lblA + ", " + Resources.Lang.lblMe);
-            TemplateHandler.RemoveBlock(ref main, "limit-agent");
-            wildcard = new string[] { "P", "A" };
-            //dataTable = reportService.GetMemberCommDataTable(null, null, Sunplus.Agent.Model.Entities.UserSession.Current.CustId, ref resultCustomer);
-        }
-        else if (AppSettings.IsMasterSite)
-        {
-            TemplateHandler.Assign(ref main, "appliesallbettype", Resources.Lang.lblM + ", " + Resources.Lang.lblA + ", " + Resources.Lang.lblMe);
-            TemplateHandler.RemoveBlock(ref main, "limit-master");
-            TemplateHandler.Assign(ref main, "selagent", Resources.Lang.selectagent);
-            string optionAgent = GetOptionAgentBingo(Sunplus.Agent.Model.Entities.UserSession.Current.CustId.ToString(), idagent, ref idfirstagent);
-            if (idfirstagent == "")
-                TemplateHandler.RemoveBlock(ref main, "limit-agent");
-            else
-            {
-                TemplateHandler.Assign(ref main, "option_agent", optionAgent);
-                wildcard = new string[] { "P", "A", "M" };
-                //if (idagent == "")
-                //    dataTable = reportService.GetMemberCommDataTable(null, CastAide.AsInt32(Sunplus.Agent.Model.Entities.UserSession.Current.CustId), CastAide.AsInt32(idfirstagent), ref resultCustomer);    
-                //else
-                //    dataTable = reportService.GetMemberCommDataTable(null, CastAide.AsInt32(Sunplus.Agent.Model.Entities.UserSession.Current.CustId), CastAide.AsInt32(idagent), ref resultCustomer);    
-            }
-        }
-        else
-        {
-            TemplateHandler.Assign(ref main, "appliesallbettype", Resources.Lang.lblM + ", " + Resources.Lang.lblA + ", " + Resources.Lang.lblMe);
-            TemplateHandler.Assign(ref main, "selmaster", Resources.Lang.selectmaster);
-            TemplateHandler.Assign(ref main, "selagent", Resources.Lang.selectagent);
-            string optionMaster = GetOptionMasterBingo(Sunplus.Agent.Model.Entities.UserSession.Current.CustId.ToString(), ref idfirstmaster, idmaster);
-            string optionAgent = "";
-
-            if (idfirstmaster == "")
-            {
-                TemplateHandler.RemoveBlock(ref main, "limit-agent");
-            }
-            else
-            {
-                if (idmaster != "")
-                    optionAgent = GetOptionAgentBingo(idmaster, idagent, ref idfirstagent);
-                else
-                    optionAgent = GetOptionAgentBingo(idfirstmaster, idagent, ref idfirstagent);
-
-                TemplateHandler.Assign(ref main, "option_agent", optionAgent);
-                TemplateHandler.Assign(ref main, "option_master", optionMaster);
-
-                wildcard = new string[] { "P", "A", "M" };
-                //if (idmaster != "")
-                //{
-                //    if (idmaster != idagent && idagent != "")
-                //        dataTable = reportService.GetMemberCommDataTable(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, CastAide.AsInt32(idmaster), CastAide.AsInt32(idagent), ref resultCustomer);
-                //    else
-                //        dataTable = reportService.GetMemberCommDataTable(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, CastAide.AsInt32(idmaster), null, ref resultCustomer);
-                //}
-                //else
-                //    dataTable = reportService.GetMemberCommDataTable(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, CastAide.AsInt32(idfirstmaster), null, ref resultCustomer);
-            }
-        }
-
-        // Load DataTable
-        if (dataTable != null && dataTable.Rows.Count > 0)
-        {
-            string rowTpl = TemplateHandler.CopyBlock(main, "row");
-            StringBuilder _s = new StringBuilder();
-            string _row = string.Empty;
-            string _row2 = string.Empty;
-            string _row3 = string.Empty;
-
-            #region Apply Comm from API
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-            {
-                if (_custid != CastAide.AsString(dataTable.Rows[i]["custid"]))
-                {
-                    //begin another user
-                    if (re.IsMatch(_row))
-                    {
-                        matches = re.Matches(_row);
-                        foreach (Match match in matches)
-                        {
-                            TemplateHandler.Assign(ref _row, match.Value, "-");
-                        }
-
-                    }
-                    _s.Append(_row);
-
-
-                    if (re.IsMatch(_row2))
-                    {
-                        matches = re.Matches(_row2);
-                        foreach (Match match in matches)
-                        {
-                            TemplateHandler.Assign(ref _row2, match.Value, "-");
-                        }
-
-                    }
-                    _s.Append(_row2);
-
-                    if (wildcard.Length == 3)
-                    {
-                        if (re.IsMatch(_row3))
-                        {
-                            matches = re.Matches(_row3);
-                            foreach (Match match in matches)
-                            {
-                                TemplateHandler.Assign(ref _row3, match.Value, "-");
-                            }
-
-                        }
-
-                        _s.Append(_row3);
-                    }
-                    _username = CastAide.AsString(dataTable.Rows[i]["UserName"]);
-                    _custid = CastAide.AsString(dataTable.Rows[i]["custid"]);
-
-                    _row = rowTpl;
-                    if (count % 2 != 0) //Apply Odd-Even Row
-                        TemplateHandler.Assign(ref _row, "color", AppSettings.RowBgEven);
-                    else
-                        TemplateHandler.Assign(ref _row, "color", AppSettings.RowBgOdd);
-
-                    //apply data for first row
-                    TemplateHandler.Assign(ref _row, "No", count);
-                    count++;
-                    TemplateHandler.Assign(ref _row, "UserName_vl", CastAide.AsString(_username));
-                    TemplateHandler.Assign(ref _row, "rowspan", "rowspan='" + wildcard.Length.ToString() + "'");
-
-                    _row2 = _row;
-                    //Remove NonRepeat td for second row
-                    TemplateHandler.RemoveBlock(ref _row2, "NonRepeat");
-                    if (wildcard.Length == 3)
-                    {
-                        _row3 = _row;
-                        TemplateHandler.RemoveBlock(ref _row3, "NonRepeat");
-                        TemplateHandler.Assign(ref _row3, "Role", wildcard[2].ToUpperInvariant());
-                    }
-                    TemplateHandler.Assign(ref _row, "Role", wildcard[0].ToUpperInvariant());
-                    TemplateHandler.Assign(ref _row2, "Role", wildcard[1].ToUpperInvariant());
-                }
-
-                //Apply position taking data from API
-                //First Row
-                TemplateHandler.Assign(ref _row, CastAide.AsString(dataTable.Rows[i]["GameGroupID"]) + "_" + CastAide.AsString(dataTable.Rows[i]["GameTypeID"]), NumberFormat.DecFormat(dataTable.Rows[i]["MemberRollingRate"], 4));
-                //second Row
-                TemplateHandler.Assign(ref _row2, CastAide.AsString(dataTable.Rows[i]["GameGroupID"]) + "_" + CastAide.AsString(dataTable.Rows[i]["GameTypeID"]), NumberFormat.DecFormat(dataTable.Rows[i]["AgentRollingRate"], 4));
-                if (AppSettings.IsSuperSite || AppSettings.IsMasterSite)
-                {
-                    //third Row
-                    TemplateHandler.Assign(ref _row3, CastAide.AsString(dataTable.Rows[i]["GameGroupID"]) + "_" + CastAide.AsString(dataTable.Rows[i]["GameTypeID"]), NumberFormat.DecFormat(dataTable.Rows[i]["MAgentRollingRate"], 4));
-                }
-            }
-            //for end of row --> append data to string builder : if (i == dataTable.Rows.Count - 1)
-            if (dataTable.Rows.Count > 0)
-            {
-                if (re.IsMatch(_row))
-                {
-                    matches = re.Matches(_row);
-                    foreach (Match match in matches)
-                    {
-                        TemplateHandler.Assign(ref _row, match.Value, "-");
-                    }
-
-                }
-                _s.Append(_row);
-
-
-                if (re.IsMatch(_row2))
-                {
-                    matches = re.Matches(_row2);
-                    foreach (Match match in matches)
-                    {
-                        TemplateHandler.Assign(ref _row2, match.Value, "-");
-                    }
-
-                }
-                _s.Append(_row2);
-
-
-                if (wildcard.Length == 3)
-                {
-                    if (re.IsMatch(_row3))
-                    {
-                        matches = re.Matches(_row3);
-                        foreach (Match match in matches)
-                        {
-                            TemplateHandler.Assign(ref _row3, match.Value, "-");
-                        }
-                    }
-                    _s.Append(_row3);
-                }
-            }
-
-            content = _s.ToString();
-            #endregion
-        }
-        else
-        {
-            if (wildcard.Length > 1)
-                colCount = colCount + 5;
-            else
-                colCount = colCount + 4;
-            TemplateHandler.Assign(ref notfound, "notfound", Resources.Lang.noInfo);
-            TemplateHandler.Assign(ref notfound, "numcolumn", colCount);
-            content = notfound;
-        }
-        #endregion
-
-        TemplateHandler.ReplaceBlock(ref main, "row", content);
-        return main;
-    }
-    #endregion
-
     #region Casino: Member Commission list
     public static string memberCommissionCasino(string idmaster, string idagent)
     {
@@ -356,15 +35,6 @@ public class MemberInfo_Downline
         TemplateHandler.Assign(ref main, "SportBook", Resources.Lang.sportBook);
         TemplateHandler.Assign(ref main, "Racing", Resources.Lang.Racebook);
         TemplateHandler.Assign(ref main, "Casino", Resources.Lang.casino);
-        //Render Bingo
-        //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-        //{
-        //    TemplateHandler.Assign(ref main, "Bingo", Resources.Bingo.bingo);
-        //}
-        //else
-        //{
-            TemplateHandler.RemoveBlock(ref main, "p2pBingo");
-        //}
 
         if (UserPermission.IsShowP2P)
             TemplateHandler.Assign(ref main, "P2PText", Resources.Lang.P2P);
@@ -684,11 +354,6 @@ public class MemberInfo_Downline
         else
             TemplateHandler.RemoveBlock(ref strmain, "p2pCasino");
         
-        //Render Bingo
-        //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-        //    TemplateHandler.Assign(ref strmain, "Bingo", Resources.Bingo.bingo);
-        //else
-        TemplateHandler.RemoveBlock(ref strmain, "p2pBingo");
 
         TemplateHandler.Assign(ref strmain, "SportBook", Resources.Lang.sportBook);
         TemplateHandler.Assign(ref strmain, "Racing", Resources.Lang.Racebook);
@@ -824,11 +489,6 @@ public class MemberInfo_Downline
         else
             TemplateHandler.RemoveBlock(ref strmain, "p2pCasino");
         
-        // Render Bingo
-        //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-        //    TemplateHandler.Assign(ref strmain, "Bingo", Resources.Bingo.bingo);
-        //else
-        TemplateHandler.RemoveBlock(ref strmain, "p2pBingo");
 
         if (UserPermission.IsShowP2P)
             TemplateHandler.Assign(ref strmain, "P2PText", Resources.Lang.P2P);
@@ -1002,15 +662,7 @@ public class MemberInfo_Downline
 
                     TemplateHandler.Assign(ref resstrmain, "credit_value", NumberFormat.DecFormat(dr["credit"], 2));
 
-                    //Bingo
-                    if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledNumberGameCommission)
-                    {
-                        TemplateHandler.Assign(ref resstrmain, "mnumber_comm_value", NumberFormat.DecFormat(dr["adiscount_numbergame"], 2));
-                        TemplateHandler.Assign(ref resstrmain, "anumber_comm_value", NumberFormat.DecFormat(dr["discount_numbergame"], 2));
-                        TemplateHandler.Assign(ref resstrmain, "pnumber_comm_value", NumberFormat.DecFormat(dr["playerdiscount_numbergame"], 2));
-                    }
-                    //End
-
+                   
                     result.Append(resstrmain);
                 }
             }
@@ -1425,11 +1077,6 @@ public class MemberInfo_Downline
         DbResult dbr = MemberInfo.GetSeLMaster_MemberCommCasino(idsu);
         return GetComboMaster(dbr, idsu, ref idfirstmaster, idmaster);
     }
-    public static string GetOptionMasterBingo(string idsu, ref string idfirstmaster, string idmaster)
-    {
-        DbResult dbr = MemberInfo.GetSeLMaster_MemberCommBingo(idsu);
-        return GetComboMaster(dbr, idsu, ref idfirstmaster, idmaster);
-    }
     public static string GetComboAgent(DbResult dbr, string idmas, string idagent, ref string idfistagent)
     {
         string alloption = "<option value=\"" + idmas + "\" {selected}>" + Resources.Lang.allagent + "</option>";
@@ -1477,11 +1124,6 @@ public class MemberInfo_Downline
     public static string GetOptionAgentCasino(string idmas, string idagent, ref string idfistagent)
     {
         DbResult dbr = MemberInfo.GetSeLAgent_MemberCommCasino(idmas);
-        return GetComboAgent(dbr, idmas, idagent, ref idfistagent);
-    }
-    public static string GetOptionAgentBingo(string idmas, string idagent, ref string idfistagent)
-    {
-        DbResult dbr = MemberInfo.GetSeLAgent_MemberCommBingo(idmas);
         return GetComboAgent(dbr, idmas, idagent, ref idfistagent);
     }
     #endregion
@@ -2825,8 +2467,7 @@ public class MemberInfo_Downline
                         }
                     }
                 }
-                GenBingoForMemberList(ref _copycontent, dtb.Columns.Contains("syncbingo") ? dtb.Rows[i]["syncbingo"] : "0", roleid);
-
+               
                 TemplateHandler.Assign(ref _copycontent, "isClosed", isClosed.ToString().ToLower());
                 TemplateHandler.Assign(ref _copycontent, "isSuspended", isSuspended.ToString().ToLower());
                 TemplateHandler.Assign(ref _copycontent, "custid_value", dtb.Rows[i]["custid"].ToString());
@@ -2964,19 +2605,6 @@ public class MemberInfo_Downline
             TemplateHandler.RemoveBlock(ref main, "no-p2p");
             TemplateHandler.RemoveBlock(ref main, "edit-P2P");
         }
-
-        //Render Bingo
-        //if (!UserPermission.IsShowBingo)
-        //{
-        //    // Edit/Sync Bingo button
-        //    TemplateHandler.RemoveBlock(ref main, "bingo");
-        //    TemplateHandler.RemoveBlock(ref main, "no-bingo");
-        //    TemplateHandler.RemoveBlock(ref main, "edit-BG");
-        //}
-        //else
-        //{
-            TemplateHandler.Assign(ref main, "lblBingo", Resources.Bingo.bingo);
-        //}
 
         if (AppSettings.IsSuperSite)
         {
@@ -3174,7 +2802,6 @@ public class MemberInfo_Downline
 
                 if (UserPermission.IsShowRacing) colspan1++;
                 if (UserPermission.IsShowCasino) colspan1++;
-                //if (UserPermission.IsShowBingo) colspan1++;
                 if (UserPermission.IsShowP2P) colspan1++;
 
                 TemplateHandler.Assign(ref main, "colspan1", colspan1.ToString());
@@ -3274,17 +2901,6 @@ public class MemberInfo_Downline
             {
                 GenP2P(ref temp_content, dr, roleid);
             }
-            
-            //Render Bingo
-            //if (UserPermission.IsShowBingo)
-            //{
-            //    GenBingoForAgentList(ref temp_content, dt.Columns.Contains("syncbingo") ? dr["syncbingo"] : "0", roleid);
-            //}
-            //else
-            //{
-                TemplateHandler.RemoveBlock(ref temp_content, "bingo");
-                TemplateHandler.RemoveBlock(ref temp_content, "no-bingo");
-            //}
 
             TemplateHandler.Assign(ref temp_content, "no_value", i);
             TemplateHandler.Assign(ref temp_content, "status", status);
@@ -3803,348 +3419,6 @@ public class MemberInfo_Downline
     }
     #endregion
 
-    #region Bingo Position Taking List
-    public static string GetBingoPositionTaking(string type, string custid)
-    {
-        #region Define variable
-        //IResult resultCustomer = new Sunplus.Bingo.Entities.Result();
-        //IResult resultGameKind = new Sunplus.Bingo.Entities.Result();
-        //IResult resultGameType = new Sunplus.Bingo.Entities.Result();
-
-        string content = string.Empty;
-        string[] wildcard = new string[] { "a" };
-        bool IsEditMember = false;
-        Report report = new Report();
-        DataTable dataTable = null;
-        int count = 1;
-        string _custid = "-1";
-        string _username = "";
-        string viewType = "";
-        int intCustID = CastAide.AsInt32(custid);
-        string notfound = TemplateHandler.LoadTemplate("NoInfo.html");
-        string main = TemplateHandler.LoadTemplate("MemberInfo/BingoPositionTaking.html");
-        string gameKind = TemplateHandler.CopyBlock(main, "GameKind");
-        string gameType = TemplateHandler.CopyBlock(main, "GameType");
-        string rowData = TemplateHandler.CopyBlock(main, "rowdata");
-        StringBuilder _gameKind = new StringBuilder();
-        StringBuilder _gameType = new StringBuilder();
-        StringBuilder _rowData = new StringBuilder();
-
-        //for regular expression
-        Regex re = new Regex(@"\{\d{1,2}_\d{1,2}\}");
-        MatchCollection matches;
-        #endregion
-
-        #region Get Header
-
-        TemplateHandler.Assign(ref main, "lblPositionTaking", Resources.Lang.bingoPositionTaking);
-        TemplateHandler.Assign(ref main, "lblUserName", Resources.Lang.username);
-
-        //apply class name for Role
-        TemplateHandler.Assign(ref main, "firstCol", "firstCol");
-        //apply over color
-        TemplateHandler.Assign(ref main, "overcolor", AppSettings.RowBgOver);
-
-
-        //Create template
-        //Load Game Kind
-        #region Load Game Kind
-        int colCount = 0;
-        //ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
-        //DataTable tblGameKind = customerService.GetGameKindDataTable(BingoSettings.BingoGame.CodeGameNo, ref resultGameKind);
-        //if (tblGameKind != null && tblGameKind.Rows.Count != 0)
-        //{
-        //    //Load Game Type
-        //    #region Load Game Type
-        //    foreach (DataRow drGameKind in tblGameKind.Rows)
-        //    {
-        //        DataTable tblGameType = customerService.GetGameTypeDataTable(CastAide.AsInt32(drGameKind["GameGroupID"]), ref resultGameType);
-        //        if (tblGameType != null && tblGameType.Rows.Count != 0)
-        //        {
-        //            foreach (DataRow drGameType in tblGameType.Rows)
-        //            {
-        //                string gameTypeTpl = gameType;
-        //                TemplateHandler.Assign(ref gameTypeTpl, "GameTypeClass", "class='colHdr'");
-        //                TemplateHandler.Assign(ref gameTypeTpl, "lblGameType", drGameType[DAL.APIClient.APICasinoProvider.Lang("GameTypeName")]);
-        //                _gameType.Append(gameTypeTpl);
-
-        //                string rowDataTpl = rowData;
-        //                TemplateHandler.Assign(ref rowDataTpl, "rowdata", "{" + CastAide.AsInt32(drGameKind["GameGroupID"]).ToString() + "_" + CastAide.AsInt32(drGameType["GameTypeID"]).ToString() + "}");
-        //                TemplateHandler.Assign(ref rowDataTpl, "normalCol", "#424242");
-        //                _rowData.Append(rowDataTpl);
-
-        //                //count column data
-        //                colCount++;
-        //            }
-        //            string gameKindTpl = gameKind;
-        //            TemplateHandler.Assign(ref gameKindTpl, "GameKindColSpan", "colspan='" + tblGameType.Rows.Count.ToString() + "'");
-        //            TemplateHandler.Assign(ref gameKindTpl, "lblGameKind", drGameKind[DAL.APIClient.APICasinoProvider.Lang("GameGroupName")]);
-        //            _gameKind.Append(gameKindTpl);
-        //        }
-        //    }
-        //    #endregion
-
-        //    TemplateHandler.ReplaceBlock(ref main, "GameKind", _gameKind.ToString());
-        //    TemplateHandler.ReplaceBlock(ref main, "GameType", _gameType.ToString());
-        //    TemplateHandler.ReplaceBlock(ref main, "rowdata", _rowData.ToString());
-        //}
-        //else
-        //{
-            //remove header
-            TemplateHandler.RemoveBlock(ref main, "header");
-        //}
-        #endregion
-        #endregion
-
-        #region Load Data Row
-        //IReportService reportService = BingoContainer.Current.Resolve<IReportService>();
-        //if (AppSettings.IsAgentSite)
-        //{
-        //    IsEditMember = true;
-        //    dataTable = reportService.GetPositionTakingDataTable(null, null,intCustID, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-1 , ref resultCustomer);
-        //    wildcard = new string[] { "a" };
-        //}
-        //else
-        //{
-        //    if (AppSettings.IsMasterSite)
-        //    {
-        //        if (type == "")
-        //        {
-        //            IsEditMember = false;
-        //            wildcard = new string[] { "m", "a" };
-        //            dataTable = reportService.GetPositionTakingDataTable(null,intCustID, null,Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-1, ref resultCustomer);
-        //            viewType = "agent";
-        //        }
-        //        else if (type == "agent")
-        //        {
-        //            IsEditMember = true;
-        //            wildcard = new string[] { "m", "a" };
-        //            dataTable = reportService.GetPositionTakingDataTable(null, null, intCustID, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-2, ref resultCustomer);
-        //        }
-        //    }
-        //    else if (AppSettings.IsSuperSite)
-        //    {
-        //        if (type == "")
-        //        {
-        //            IsEditMember = false;
-        //            wildcard = new string[] { "s" };
-        //            dataTable = reportService.GetPositionTakingDataTable(intCustID, null, null, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-1, ref resultCustomer);
-        //            viewType = "master";
-        //        }
-        //        else if (type == "master")
-        //        {
-        //            IsEditMember = false;
-        //            wildcard = new string[] { "m", "a" };
-        //            dataTable = reportService.GetPositionTakingDataTable(null, intCustID, null, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-2, ref resultCustomer);
-        //            viewType = "agent";
-        //        }
-        //        else if (type == "agent")
-        //        {
-        //            IsEditMember = true;
-        //            wildcard = new string[] { "s", "m", "a" };
-        //            dataTable = reportService.GetPositionTakingDataTable(null, null, intCustID, Sunplus.Agent.Model.Entities.UserSession.Current.RoleId-3, ref resultCustomer);
-        //        }
-        //    }
-        //}
-
-        //should remove Role when wildcard.length = 1
-        if (wildcard.Length == 1)
-        {
-            TemplateHandler.RemoveBlock(ref main, "AdditionalRow");
-            TemplateHandler.RemoveBlock(ref main, "Role");
-            TemplateHandler.Assign(ref main, "colNum", "2");
-            TemplateHandler.Assign(ref main, "colNum2", "1");
-        }
-        else
-        {
-            TemplateHandler.Assign(ref main, "colNum", "3");
-            TemplateHandler.Assign(ref main, "colNum2", "2");
-        }
-
-        //copy block row
-        string row = TemplateHandler.CopyBlock(main, "row");
-        if (dataTable != null && dataTable.Rows.Count > 0)
-        {
-            StringBuilder _s = new StringBuilder();
-            string _row = string.Empty;
-            string _row2 = string.Empty;
-            string _row3 = string.Empty;
-
-            //provide link to edit member if in agent level
-            if (IsEditMember)
-            {
-                TemplateHandler.RemoveBlock(ref row, "link");
-            }
-            else
-            {
-                TemplateHandler.RemoveBlock(ref row, "editmember");
-            }
-
-
-            #region Apply PT from API
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-            {
-                if (_custid != CastAide.AsString(dataTable.Rows[i]["custid"]))
-                {
-                    if (re.IsMatch(_row))
-                    {
-                        matches = re.Matches(_row);
-                        foreach (Match match in matches)
-                        {
-                            TemplateHandler.Assign(ref _row, match.Value, "-");
-                        }
-
-                    }
-
-                    _s.Append(_row);
-                    if (wildcard.Length > 1)
-                    {
-                        if (re.IsMatch(_row2))
-                        {
-                            matches = re.Matches(_row2);
-                            foreach (Match match in matches)
-                            {
-                                TemplateHandler.Assign(ref _row2, match.Value, "-");
-                            }
-
-                        }
-                        _s.Append(_row2);
-                        if (wildcard.Length == 3)
-                        {
-                            if (re.IsMatch(_row3))
-                            {
-                                matches = re.Matches(_row3);
-                                foreach (Match match in matches)
-                                {
-                                    TemplateHandler.Assign(ref _row3, match.Value, "-");
-                                }
-
-                            }
-
-                            _s.Append(_row3);
-                        }
-                    }
-
-
-                    _username = CastAide.AsString(dataTable.Rows[i]["UserName"]);
-                    _custid = CastAide.AsString(dataTable.Rows[i]["custid"]);
-
-                    _row = row;
-                    if (Convert.ToInt32(dataTable.Rows[i]["closed"]) != 0)
-                        TemplateHandler.Assign(ref _row, "color", AppSettings.RowBgClosed);
-                    else if (dataTable.Rows[i]["reject"].ToString()!="" && Convert.ToInt32(dataTable.Rows[i]["reject"]) != 0)
-                        TemplateHandler.Assign(ref _row, "color", AppSettings.RowBgSuspended);
-                    else if (count % 2 != 0) //Apply Odd-Even Row
-                        TemplateHandler.Assign(ref _row, "color", AppSettings.RowBgEven);
-                    else
-                        TemplateHandler.Assign(ref _row, "color", AppSettings.RowBgOdd);
-
-                    //Edit User position taking
-                    TemplateHandler.Assign(ref _row, "custid_value", _custid);
-
-                    //apply data for first row
-                    TemplateHandler.Assign(ref _row, "No", count);
-                    TemplateHandler.Assign(ref _row, "type", viewType);
-                    TemplateHandler.Assign(ref _row, "UserName_vl", CastAide.AsString(_username));
-                    TemplateHandler.Assign(ref _row, "rowspan", "rowspan='" + wildcard.Length.ToString() + "'");
-
-                    if (wildcard.Length > 1)
-                    {
-                        _row2 = _row;
-                        //Remove NonRepeat td for second row
-                        TemplateHandler.RemoveBlock(ref _row2, "NonRepeat");
-
-                        if (wildcard.Length == 3)
-                        {
-                            _row3 = _row;
-                            TemplateHandler.RemoveBlock(ref _row3, "NonRepeat");
-                            TemplateHandler.Assign(ref _row3, "Role", wildcard[2].ToUpperInvariant());
-                        }
-
-                        //Apply Role
-                        TemplateHandler.Assign(ref _row, "Role", wildcard[0].ToUpperInvariant());
-                        TemplateHandler.Assign(ref _row2, "Role", wildcard[1].ToUpperInvariant());
-
-                    }
-                    count++;
-                }
-
-
-                //Apply position taking data from API
-                //First Row
-                TemplateHandler.Assign(ref _row, CastAide.AsString(dataTable.Rows[i]["GameGroupID"]) + "_" + CastAide.AsString(dataTable.Rows[i]["GameTypeID"]), (wildcard[0].ToUpperInvariant() == "S") ? NumberFormat.DecFormat(dataTable.Rows[i]["SPositionTaking"], 2) : ((wildcard[0].ToUpperInvariant() == "M") ? NumberFormat.DecFormat(dataTable.Rows[i]["MPositionTaking"], 2) : NumberFormat.DecFormat(dataTable.Rows[i]["APositionTaking"], 2)));
-
-                //second Row
-                if (wildcard.Length > 1)
-                    TemplateHandler.Assign(ref _row2, CastAide.AsString(dataTable.Rows[i]["GameGroupID"]) + "_" + CastAide.AsString(dataTable.Rows[i]["GameTypeID"]), (wildcard[1].ToUpperInvariant() == "S") ? NumberFormat.DecFormat(dataTable.Rows[i]["SPositionTaking"], 2) : ((wildcard[1].ToUpperInvariant() == "M") ? NumberFormat.DecFormat(dataTable.Rows[i]["MPositionTaking"], 2) : NumberFormat.DecFormat(dataTable.Rows[i]["APositionTaking"], 2)));
-
-                //third Row
-                if (wildcard.Length == 3)
-                    TemplateHandler.Assign(ref _row3, CastAide.AsString(dataTable.Rows[i]["GameGroupID"]) + "_" + CastAide.AsString(dataTable.Rows[i]["GameTypeID"]), (wildcard[2].ToUpperInvariant() == "S") ? NumberFormat.DecFormat(dataTable.Rows[i]["SPositionTaking"], 2) : ((wildcard[2].ToUpperInvariant() == "M") ? NumberFormat.DecFormat(dataTable.Rows[i]["MPositionTaking"], 2) : NumberFormat.DecFormat(dataTable.Rows[i]["APositionTaking"], 2)));
-
-                //for end of row --> append data to string builder
-                if (i == dataTable.Rows.Count - 1)
-                {
-                    if (re.IsMatch(_row))
-                    {
-                        matches = re.Matches(_row);
-                        foreach (Match match in matches)
-                        {
-                            TemplateHandler.Assign(ref _row, match.Value, "-");
-                        }
-
-                    }
-                    _s.Append(_row);
-                    if (wildcard.Length > 1)
-                    {
-                        if (re.IsMatch(_row2))
-                        {
-                            matches = re.Matches(_row2);
-                            foreach (Match match in matches)
-                            {
-                                TemplateHandler.Assign(ref _row2, match.Value, "-");
-                            }
-
-                        }
-                        _s.Append(_row2);
-                        if (wildcard.Length == 3)
-                        {
-                            if (re.IsMatch(_row3))
-                            {
-                                matches = re.Matches(_row3);
-                                foreach (Match match in matches)
-                                {
-                                    TemplateHandler.Assign(ref _row3, match.Value, "-");
-                                }
-
-                            }
-
-                            _s.Append(_row3);
-                        }
-                    }
-                }
-            }
-
-            content = _s.ToString();
-            #endregion
-
-        }
-        else
-        {
-            if (wildcard.Length > 1)
-                colCount = colCount + 5;
-            else
-                colCount = colCount + 4;
-            TemplateHandler.Assign(ref notfound, "noinfo", Resources.Lang.noInfo);
-            TemplateHandler.Assign(ref notfound, "num-cols", colCount);
-            content = notfound;
-        }
-        #endregion
-
-        TemplateHandler.ReplaceBlock(ref main, "row", content);
-        return main;
-    }
-    #endregion
 
     #region Generate Downline list view by Super or Master
     public static string DirectDownlineList(int custid, string masterid, int level, string username, int pageindex, int status, string act_list, string search, int totalpages)
@@ -4162,16 +3436,7 @@ public class MemberInfo_Downline
         }
         //END
 
-        //Render Bingo
-        //if (!UserPermission.IsShowBingo)
-        //{
-        //    // Edit/Sync Bingo button
-        //    TemplateHandler.RemoveBlock(ref main, "bingo");
-        //    TemplateHandler.RemoveBlock(ref main, "no-bingo");
-        //    TemplateHandler.RemoveBlock(ref main, "edit-BG");
-        //}
-
-        
+       
         GenDownlineListTpl(ref main, ref cols, level,7);
         GenDownlineListTitle(ref main, level);
         GenEditMult(ref  main, custid);
@@ -4271,7 +3536,6 @@ public class MemberInfo_Downline
                     GenStatus(ref rowTpl, row);
                     GenViewStatement(ref rowTpl, row, masterid);
                     GenCasino(ref rowTpl, row, level);
-                    GenBingo(ref rowTpl, row, level);
                     GenP2P(ref rowTpl, row, level);
                     rows.Append(rowTpl);
                 }                
@@ -4357,17 +3621,6 @@ public class MemberInfo_Downline
             TemplateHandler.RemoveBlock(ref main, "edit-P2P");
             cols = 10;
         }
-        
-        //Render Bingo
-        //if (!UserPermission.IsShowBingo)
-        //{
-
-        //    // Edit/Sync Bingo button
-        //    TemplateHandler.RemoveBlock(ref main, "bingo");
-        //    TemplateHandler.RemoveBlock(ref main, "no-bingo");
-        //    TemplateHandler.RemoveBlock(ref main, "edit-BG");
-            
-        //}
 
         int roleid = Sunplus.Agent.Model.Entities.UserSession.Current.RoleId;
         bool isDirectDL = roleid - level == 1;
@@ -4446,7 +3699,6 @@ public class MemberInfo_Downline
                     GenStatus(ref rowTpl, row);
                     GenViewMemberStatement(ref rowTpl, row);
                     GenCasino(ref rowTpl, row, level);
-                    GenBingo(ref rowTpl, row, level);
                     GenP2P(ref rowTpl, row, level);
                     rows.Append(rowTpl);
                 }
@@ -4618,7 +3870,7 @@ public class MemberInfo_Downline
     }
     #endregion
 
-    #region Generate Template by HR, FI, Casino, Bingo
+    #region Generate Template by HR, FI, Casino
     private static void GenDownlineListTpl(ref string template, ref int colspan, int level, int colbeforeCreate)
     {
         int colbeforeComm = colspan;
@@ -4669,21 +3921,6 @@ public class MemberInfo_Downline
             TemplateHandler.RemoveBlock(ref template, "no-p2p");
             TemplateHandler.RemoveBlock(ref template, "edit-P2P");
         }
-                
-        //if (!UserPermission.IsShowBingo)
-        //{
-        //    // Edit/Sync Bingo button
-        //    TemplateHandler.RemoveBlock(ref template, "edit-BG");
-        //    TemplateHandler.RemoveBlock(ref template, "no-bingo");
-        //    TemplateHandler.RemoveBlock(ref template, "bingo");
-        //    colbeforeComm--;
-        //}
-        //else
-        //{
-            TemplateHandler.Assign(ref template, "lblBingo", Resources.Bingo.bingo);
-            // Disable Bingo
-            //colbeforeComm--;
-        //}
         
         if (!UserPermission.IsShowFinance)
         {
@@ -4902,150 +4139,6 @@ public class MemberInfo_Downline
     }
     #endregion
 
-    #region Generate Bingo Column
-
-    private static void GenBingoForMemberList(ref string _copycontent, object drBingo, int roleid)
-    {
-        if (!CastAide.AsBoolean(drBingo))
-        {
-            if (Sunplus.Agent.Model.Entities.UserSession.Current.RoleId - roleid == 1)
-            {
-                TemplateHandler.RemoveBlock(ref _copycontent, "no-bingo");
-                TemplateHandler.Assign(ref _copycontent, "divOpBG", "divSync");
-                TemplateHandler.Assign(ref _copycontent, "editBG", Resources.Lang.sync);
-            }
-            else
-            {
-                TemplateHandler.RemoveBlock(ref _copycontent, "edit-BG");
-                TemplateHandler.Assign(ref _copycontent, "divOpBG", "divDisable");
-                TemplateHandler.Assign(ref _copycontent, "editBG", "");
-            }
-
-        }
-        else
-        {
-            if ((Sunplus.Agent.Model.Entities.UserSession.Current.RoleId - roleid == 1) || (roleid == 1))
-            {
-                if (CastAide.AsBoolean(drBingo))
-                {
-                    TemplateHandler.RemoveBlock(ref _copycontent, "edit-BG");
-                    TemplateHandler.Assign(ref _copycontent, "divOpBG", "divEditDisabled");
-                }
-                else
-                {
-                    TemplateHandler.RemoveBlock(ref _copycontent, "no-bingo");
-                    TemplateHandler.Assign(ref _copycontent, "divOpBG", "divEdit");
-                }
-
-                TemplateHandler.Assign(ref _copycontent, "editBG", Resources.Lang.edit);
-            }
-            else
-            {
-                TemplateHandler.RemoveBlock(ref _copycontent, "no-bingo");
-                TemplateHandler.Assign(ref _copycontent, "divOpBG", "divViewCS");
-                TemplateHandler.Assign(ref _copycontent, "editBG", Resources.Lang.view);
-            }
-        }
-    }
-
-    private static void GenBingoForAgentList(ref string temp_content, object synBingo, int roleid )
-    {
-        if (!CastAide.AsBoolean(synBingo))
-        {
-            if (Sunplus.Agent.Model.Entities.UserSession.Current.RoleId - roleid == 1)
-            {
-                TemplateHandler.RemoveBlock(ref temp_content, "no-bingo");
-                TemplateHandler.Assign(ref temp_content, "divOpBG", "divSync");
-                TemplateHandler.Assign(ref temp_content, "editBG", Resources.Lang.sync);
-                TemplateHandler.Assign(ref temp_content, "statusBG", "0"); // Not syn bingo
-            }
-            else
-            {
-                TemplateHandler.RemoveBlock(ref temp_content, "bingo");
-                TemplateHandler.Assign(ref temp_content, "divOpBG", "divDisable");
-                TemplateHandler.Assign(ref temp_content, "editBG", "");
-                TemplateHandler.Assign(ref temp_content, "statusBG", "-1"); // Can not take any action
-            }
-        }
-        else
-        {
-            if ((Sunplus.Agent.Model.Entities.UserSession.Current.RoleId - roleid == 1) || (roleid == 1))
-            {
-                if (CastAide.AsBoolean(synBingo))
-                {
-                    TemplateHandler.RemoveBlock(ref temp_content, "bingo");
-                    TemplateHandler.Assign(ref temp_content, "divOpBG", "divEditDisabled");
-                }
-                else
-                {
-                    TemplateHandler.RemoveBlock(ref temp_content, "no-bingo");
-                    TemplateHandler.Assign(ref temp_content, "divOpBG", "divEdit");
-                }
-
-                TemplateHandler.Assign(ref temp_content, "editBG", Resources.Lang.edit);
-            }
-            else
-            {
-                TemplateHandler.RemoveBlock(ref temp_content, "no-bingo");
-                TemplateHandler.Assign(ref temp_content, "divOpBG", "divViewCS");
-                TemplateHandler.Assign(ref temp_content, "editBG", Resources.Lang.view);
-            }
-
-            TemplateHandler.Assign(ref temp_content, "statusBG", "1");
-        }
-    }
-
-    private static void GenBingo(ref string rowTpl, DataRow dr, int roleidDL)
-    {   
-        int roleid = Sunplus.Agent.Model.Entities.UserSession.Current.RoleId;
-        bool isDirectDL = roleid - roleidDL == 1;
-        if (dr.Table.Columns.Contains("disablenumber") ? !CastAide.AsBoolean(dr["syncbingo"]) : false)
-        {
-            if (isDirectDL)
-            {
-                TemplateHandler.RemoveBlock(ref rowTpl, "no-bingo");
-
-                TemplateHandler.Assign(ref rowTpl, "divOpBG", "divSync");
-                TemplateHandler.Assign(ref rowTpl, "editBG", Resources.Lang.sync);
-                TemplateHandler.Assign(ref rowTpl, "statusBG", "0"); // Not syn Bingo
-            }
-            else
-            {
-                TemplateHandler.RemoveBlock(ref rowTpl, "bingo");
-                TemplateHandler.RemoveBlock(ref rowTpl, "edit-BG");
-                
-                TemplateHandler.Assign(ref rowTpl, "divOpBG", "divDisable");
-                TemplateHandler.Assign(ref rowTpl, "editBG", "");
-                TemplateHandler.Assign(ref rowTpl, "statusBG", "-1"); // Can not take any action
-            }
-        }
-        else
-        {
-            if (isDirectDL || (roleid == 4 && roleidDL == 1) || (roleid == 3 && roleidDL == 1))
-            {
-                if (dr.Table.Columns.Contains("disablebingo"))
-                {
-                    TemplateHandler.RemoveBlock(ref rowTpl, "no-bingo");
-                    if (CastAide.AsBoolean(dr["disablebingo"]))
-                    {
-                        TemplateHandler.Assign(ref rowTpl, "divOpBG", "divEditDisabled");
-                    }
-                    else
-                    {
-                        TemplateHandler.Assign(ref rowTpl, "divOpBG", "divEdit");
-                    }
-                }
-                TemplateHandler.Assign(ref rowTpl, "editBG", Resources.Lang.edit);
-            }
-            else
-            {
-                TemplateHandler.Assign(ref rowTpl, "divOpBG", "divViewCS");
-                TemplateHandler.Assign(ref rowTpl, "editBG", Resources.Lang.view);
-            }
-            TemplateHandler.Assign(ref rowTpl, "statusBG", "1");
-        }
-    } 
-    #endregion
 
     #region Generate Casino Column
     private static void GenCasinoForAgentList(ref string temp_content, object drCasino, int roleid)

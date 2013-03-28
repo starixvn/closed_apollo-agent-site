@@ -294,14 +294,12 @@ namespace Fanex.Age.UI.Reports
 		public class WinlossByBetTypeAgent_LocalControl_Block: Block
 		{
 			public WinlossByBetTypeAgent_LocalControl_CasinoLink_Block CasinoLink = new WinlossByBetTypeAgent_LocalControl_CasinoLink_Block();
-			public WinlossByBetTypeAgent_LocalControl_BingoLink_Block BingoLink = new WinlossByBetTypeAgent_LocalControl_BingoLink_Block();
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != CasinoLink) CasinoLink.ToString(ref bd);
-					if(null != BingoLink) BingoLink.ToString(ref bd);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -324,24 +322,6 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s74);
 					bd.Append(BetTypeName);
 					bd.Append(s75);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class WinlossByBetTypeAgent_LocalControl_BingoLink_Block: Block
-		{
-			protected static string s76 = "<span class='downline_link' onclick=\"ViewBingoDetail()\">";
-			public string BetTypeName = "{BetTypeName}";
-			protected static string s77 = "</span>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s76);
-					bd.Append(BetTypeName);
-					bd.Append(s77);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

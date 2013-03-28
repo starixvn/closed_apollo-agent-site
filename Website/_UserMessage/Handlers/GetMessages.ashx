@@ -141,7 +141,7 @@ namespace Sunplus.Agent.UI._UserMessage
                         }
                         catch { }
 
-                        //BingoBO bingo = new BingoBO(CurrentUserSession.NetSessionId); // APILogger injection
+                        
                         CasinoBO casino = new CasinoBO(CurrentUserSession.NetSessionId); // APILogger injection
 
                         // Init one time only

@@ -56,8 +56,6 @@ namespace DAL
         private bool _LiveCasinoDisabled = false;
         private bool _LiveCasinoSync = false;
 
-        private bool _BingoSync = false;
-        private bool _BingoDisabled = false;
 
         public float GivenCredit = 0;
         public bool IsMultipleEdit = false;
@@ -140,17 +138,6 @@ namespace DAL
             set { _LiveCasinoSync = value; }
         }
 
-        public bool BingoDisabled
-        {
-            get { return _BingoDisabled; }
-            set { _BingoDisabled = value; }
-        }
-
-        public bool BingoSync
-        {
-            get { return _BingoSync; }
-            set { _BingoSync = value; }
-        }
 
         public int Currency
         {

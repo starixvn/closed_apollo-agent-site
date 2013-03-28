@@ -402,24 +402,8 @@ namespace Sunplus.Agent.Model.Entities
 
         #endregion Double Commission
 
-        #region Bingo
-
-        /// <summary>
-        /// Disabled Bingo status of logged-in user.
-        /// </summary>
-        //bool IsBingoDisabled
-        //{
-        //    get;
-        //}
-
-        ///// <summary>
-        ///// Synchronized Bingo status of logged-in user.
-        ///// </summary>
-        //bool IsBingoSync
-        //{
-        //    get;
-        //}
-
+        #region Number Game
+        
         /// <summary>
         /// Disabled Number Game status of logged-in user.
         /// </summary>
@@ -428,7 +412,7 @@ namespace Sunplus.Agent.Model.Entities
             get;
         }
 
-        #endregion Bingo
+        #endregion Number Game
 
         #region Will be removed when Racing was launched
 

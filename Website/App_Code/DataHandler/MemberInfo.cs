@@ -420,29 +420,6 @@ public static partial class MemberInfo
         return dbr;
     }
 
-    public static DbResult GetSeLMaster_MemberCommBingo(string idsup)
-    {
-        DbResult dbr = null;
-        Hashtable htb = new Hashtable();
-
-        if (string.IsNullOrEmpty(idsup)) idsup = "0";
-        htb.Add("srecommend", idsup);
-        dbr = DNAide.Data.DbHelper.Execute("Age_CustomerSelMAgentList_Bingo", htb);
-
-        return dbr;
-    }
-
-    public static DbResult GetSeLAgent_MemberCommBingo(string idmas)
-    {
-        DbResult dbr = null;
-        Hashtable htb = new Hashtable();
-
-        if (string.IsNullOrEmpty(idmas)) idmas = "0";
-        htb.Add("mrecommend", idmas);
-        dbr = DNAide.Data.DbHelper.Execute("Age_CustomerSelAgentList_Bingo", htb, 600);
-
-        return dbr;
-    }
 
     public static DbResult GetCustSubSel(string custid)
     {

@@ -83,8 +83,6 @@ namespace Sunplus.Agent.Model.BL
         /// bool iscasinodisabled,
         /// bool iscasinosync,
         /// bool disablenumber,
-        /// bool disablebingo,
-        /// bool syncbingo
         /// int on_userid,
         /// bool disablehorseracing,
         /// bool disablefi,
@@ -204,16 +202,6 @@ namespace Sunplus.Agent.Model.BL
             //if (values.Contains("disablenumber"))
             //{
             //    session.IsNumberGameDisabled = (bool)values["disablenumber"];
-            //}
-
-            //if (values.Contains("disablebingo"))
-            //{
-            //    session.IsBingoDisabled = (bool)values["disablebingo"];
-            //}
-
-            //if (values.Contains("syncbingo"))
-            //{
-            //    session.IsBingoSync = (bool)values["syncbingo"];
             //}
 
             //session.OnUserId = (int)values["on_userid"];

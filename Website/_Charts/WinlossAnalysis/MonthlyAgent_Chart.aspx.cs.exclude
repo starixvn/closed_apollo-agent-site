@@ -57,7 +57,6 @@ namespace Sunplus.Agent.UI._Charts.WinlossAnalysis
             _permission.Add(new KeyValuePair<string, bool>(Filter_Control.SHOWCASINO, GetBooleanRequest("chk_showcasino", false)));
             _permission.Add(new KeyValuePair<string, bool>(Filter_Control.SHOWRB, GetBooleanRequest("chk_showrb", false)));
             _permission.Add(new KeyValuePair<string, bool>(Filter_Control.SHOW_NUMBER_GAME, GetBooleanRequest("chk_showng", false)));
-            _permission.Add(new KeyValuePair<string, bool>(Filter_Control.SHOW_IBC_BINGO, GetBooleanRequest("chk_showbi", false)));
             _permission.Add(new KeyValuePair<string, bool>(Filter_Control.SHOW_P2P, GetBooleanRequest("chk_showp2p", false)));
             _permission.Add(new KeyValuePair<string, bool>(Filter_Control.SHOW_LIVECASINO, GetBooleanRequest("chk_showlivecasino", false)));
             _permission.Add(new KeyValuePair<string, bool>(Filter_Control.SHOW_VIRTUALSPORTS, GetBooleanRequest("chk_showvs", false)));

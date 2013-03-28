@@ -96,15 +96,6 @@ namespace Sunplus.Agent.Model.BL.Definitions
             }
         }
 
-        public static bool IsEnableBingo
-        {
-            get
-            {
-                return false;
-                //return GetValue("EnableBingo") == "1";
-            }
-        }
-
         public static bool IsEnableMemberWinLimit
         {
             get
@@ -600,39 +591,7 @@ namespace Sunplus.Agent.Model.BL.Definitions
             }
         }
 
-        /// <summary>
-        /// Show or Hide Commssion Bingo Game
-        /// </summary>
-        public static bool DisabledBingoCommission
-        {
-            get
-            {
-                return true;
-                //return int.Parse(GetValue("Disabled_BingoCommission")) == 1;
-            }
-        }
-
-        /// <summary>
-        /// Hide or Show Max Transfer Bingo Only
-        /// </summary>
-        public static bool DisabledBingoMaxTransfer
-        {
-            get
-            {
-                return int.Parse(GetValue("Disabled_BingoMaxTransfer")) == 1;
-            }
-        }
-
-        /// <summary>
-        /// Disabled and Enabled Bingo and Number Game status
-        /// </summary>
-        public static bool DisableBingoStatus
-        {
-            get
-            {
-                return true;//int.Parse(GetValue("Disabled_BingoStatus")) == 1;
-            }
-        }
+    
 
         /// <summary>
         /// Disabled and Enabled Number Game status

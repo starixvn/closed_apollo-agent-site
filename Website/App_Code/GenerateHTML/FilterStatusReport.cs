@@ -161,26 +161,6 @@ public class FilterStatusReport
             TemplateHandler.RemoveBlock(ref headhtml, "casino");
         }
 
-        //if (UserPermission.IsShowBingo)
-        //{
-
-        //    count++;
-        //    _ArrayShowAll[BI]++;
-        //    if (!string.IsNullOrEmpty(context.Request["chk_showbi"]))
-        //    {
-        //        _IsFirst = (_IsFirst && false);
-        //        if (HttpContext.Current.Request["chk_showbi"].Equals("on"))
-        //        {
-        //            _ShowBI = true;
-        //            _ArrayShowAll[BI]++;
-        //        }
-        //    }
-        //    TemplateHandler.Assign(ref headhtml, "BI", Resources.Bingo.bingo);
-        //}
-        //else
-        //{
-            TemplateHandler.RemoveBlock(ref headhtml, "bi");
-        //}
 
         #region NumberGame
         if (UserPermission.IsShowNumberGame)

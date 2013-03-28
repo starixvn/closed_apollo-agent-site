@@ -53,8 +53,6 @@ function ViewBetSlip(transid, winlostdate, isrunning, league) {
 function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
     if (bettype == 71) {
         ViewCasinoResult(refno, bettype, username);
-    } else if (bettype == 73) {
-        //ViewBingoResult(refno, username);
     } else if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
         ViewMixParlayResult(refno_mixparlay, winlostdate, bettype);
     } else if (bettype == 1000 || bettype == 1001 || bettype == 1002) {  // P2P Game
@@ -217,8 +215,8 @@ function OpenIPInfo(ip) {
 }
 
 function OpenScoreMap(matchIds, bettype, liveindicator) {
-    var wnd = parent.ageWnd ? parent.ageWnd : ageWnd,
-        url = age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds +
+    var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
+    var url = age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds +
             (liveindicator == 1
                 ? "&bettypes_live=" + bettype + "&bettypes_dead=-1"
                 : "&bettypes_live=-1&bettypes_dead=" + bettype);

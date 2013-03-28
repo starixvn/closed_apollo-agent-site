@@ -254,6 +254,7 @@
     <Content Include="App_GlobalResources\Bingo.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Bingo.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

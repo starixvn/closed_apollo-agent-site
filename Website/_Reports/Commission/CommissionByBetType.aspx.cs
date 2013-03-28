@@ -130,16 +130,6 @@ namespace Fanex.Age.UI.Reports.Commission
             cols.Add("oneXtwo");
             cols.Add("others");
 
-            //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-            //{
-            //    hasGame = true;
-            //}
-            //else
-            //{
-                excelBlock.Bingo.Hide();
-                excelBlock.TotalContent.Bingo.Hide();
-            //}
-
             if (UserPermission.IsShowCasino)
             {
                 hasGame = true;
@@ -207,8 +197,7 @@ namespace Fanex.Age.UI.Reports.Commission
                 if (!UserPermission.IsShowCasino) contentRow.Casino.Hide();
                 if (!UserPermission.IsShowLiveCasino) contentRow.LiveCasino.Hide();
                 if (!UserPermission.IsShowNumberGame) contentRow.NumberGame.Hide();
-                //if (!UserPermission.IsShowBingo || Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission) 
-                    contentRow.Bingo.Hide();
+               
 
                 var sumGame = 0m;
 
@@ -253,11 +242,10 @@ namespace Fanex.Age.UI.Reports.Commission
                     contentRow.Casino.Casino = Formater.DecFormat(dr["Casino_comm"], 2);
                     contentRow.LiveCasino.LiveCasino = Formater.DecFormat(dr["LiveCasino_comm"], 2);
                     contentRow.NumberGame.NumberGame = Formater.DecFormat(dr["NumberGame_comm"], 2);
-                    //contentRow.Bingo.Bingo = Formater.DecFormat(dr["Bingo_comm"], 2);
                     contentRow.P2P.P2P = Formater.DecFormat(dr["P2P_comm"], 2);
 
                     sum1RowGame = dr.Field<decimal>("Casino_comm") + dr.Field<decimal>("LiveCasino_comm") +
-                        dr.Field<decimal>("NumberGame_comm") + dr.Field<decimal>("Bingo_comm") + dr.Field<decimal>("P2P_comm");
+                        dr.Field<decimal>("NumberGame_comm") + dr.Field<decimal>("P2P_comm");
 
                     contentRow.Total1 = Formater.DecFormat(dr["TotalComm_1"], 2);
                     contentRow.Total2 = Formater.DecFormat(dr["TotalComm_2"], 2);
@@ -306,7 +294,6 @@ namespace Fanex.Age.UI.Reports.Commission
                 excelBlock.TotalContent.Casino.Casino = Formater.DecFormat(reportData.Compute("SUM(Casino_comm)", ""), 2);
                 excelBlock.TotalContent.LiveCasino.LiveCasino = Formater.DecFormat(reportData.Compute("SUM(LiveCasino_comm)", ""), 2);
                 excelBlock.TotalContent.NumberGame.NumberGame = Formater.DecFormat(reportData.Compute("SUM(NumberGame_comm)", ""), 2);
-                //excelBlock.TotalContent.Bingo.Bingo = Formater.DecFormat(reportData.Compute("SUM(Bingo_comm)", ""), 2);
                 excelBlock.TotalContent.P2P.P2P = Formater.DecFormat(reportData.Compute("SUM(P2P_comm)", ""), 2);
                 excelBlock.TotalContent.Total3 = Formater.DecFormat(sumGame, 2);
                 excelBlock.TotalContent.F1X2 = Formater.DecFormat(reportData.Compute("SUM(f_x12_comm)", ""), 2);
@@ -381,7 +368,6 @@ namespace Fanex.Age.UI.Reports.Commission
                     if (UserPermission.IsShowCasino) numCol++;
                     if (UserPermission.IsShowLiveCasino) numCol++;
                     if (UserPermission.IsShowNumberGame) numCol++;
-                    //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission) numCol++;
                     _reportColumnCount = numCol;
                 }
                 return _reportColumnCount;

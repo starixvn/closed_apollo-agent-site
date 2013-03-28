@@ -73,8 +73,6 @@ namespace Sunplus.Agent.Model.Entities
         private const string ISP2PDISABLED = "ISP2PDISABLED";
         private const string ISLIVECASINODISABLED = "ISLIVECASINODISABLED";
         private const string ISLIVECASINOSYNC = "ISLIVECASINOSYNC";
-        private const string ISBINGODISABLED = "ISBINGODISABLED";
-        private const string ISBINGOSYNC = "ISBINGOSYNC";
         private const string ISNUMBERGAMEDISABLED = "ISNUMBERGAMEDISABLED";
 
         private const string ISDOUBLECOMMLOSING = "DOUBLECOMMLOSING";
@@ -997,43 +995,6 @@ namespace Sunplus.Agent.Model.Entities
 
         #endregion Virtual Sports
 
-        #region Bingo
-
-        /// <summary>
-        /// Disabled bingo status of logged-in user.
-        /// </summary>
-        //public bool IsBingoDisabled
-        //{
-        //    get
-        //    {
-        //        return true;
-        //        //object value = this.GetProperty(ISBINGODISABLED);
-        //        //return (null == value) ? false : (bool)value;
-        //    }
-
-        //    set
-        //    {
-        //        this.SetProperty(ISBINGODISABLED, value);
-        //    }
-        //}
-
-        /// <summary>
-        /// Synchronized Bingo status of logged-in user.
-        /// </summary>
-        //public bool IsBingoSync
-        //{
-        //    get
-        //    {
-        //        return false;
-        //        //object value = this.GetProperty(ISBINGOSYNC);
-        //        //return (null == value) ? false : (bool)value;
-        //    }
-
-        //    set
-        //    {
-        //        this.SetProperty(ISBINGOSYNC, value);
-        //    }
-        //}
 
         /// <summary>
         /// Disabled Number Game status of logged-in user.
@@ -1051,8 +1012,6 @@ namespace Sunplus.Agent.Model.Entities
                 this.SetProperty(ISNUMBERGAMEDISABLED, value);
             }
         }
-
-        #endregion Bingo
 
         #region Racing
 
