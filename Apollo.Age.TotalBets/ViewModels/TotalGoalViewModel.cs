@@ -5,6 +5,7 @@ namespace Apollo.Age.TotalBets.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Sunplus.Agent.Model.BL.Cache;
 
     public class TotalGoalViewModel
     {
@@ -16,5 +17,21 @@ namespace Apollo.Age.TotalBets.ViewModels
         public decimal Total46 { get; set; }
         public decimal Total7Over { get; set; }
         public bool IsNeutral { get; set; }
+        
+        public string HomeTeam
+        {
+            get
+            {
+                return CacheRef.GetTeamName(this.HomeId) + ((IsNeutral) ? "(N)" : string.Empty);
+            }
+        }
+
+        public string AwayTeam
+        {
+            get
+            {
+                return CacheRef.GetTeamName(this.AwayId);
+            }
+        }
     }
 }

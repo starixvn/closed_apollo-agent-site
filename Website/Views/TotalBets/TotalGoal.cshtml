@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Apollo.Age.TotalBets.ViewModels.TotalGoalViewModel>
+<div id="page_main">
+    <div id="header_main">
+        {static:Resources.Lang.totalgoal}</div>
+    [count down component]
+    <div id="sContent">
+        <table class="tblRpt">
+            <thead>
+                <tr class="RptHeader">
+                    <td style="width: 20px;">                    
+                        {static:Resources.Lang.no}
+                    </td>
+                    <td style="width: 150px;">
+                        {static:Resources.Lang.home}
+                    </td>
+                    <td style="width: 150px;">
+                        {static:Resources.Lang.away}
+                    </td>
+                    <td style="width: 80px;">
+                        {static:Resources.Lang.total01}
+                    </td>
+                    <td style="width: 80px;">
+                        {static:Resources.Lang.total23}
+                    </td>
+                    <td style="width: 80px;">
+                        {static:Resources.Lang.total46}
+                    </td>
+                    <td style="width: 80px;">
+                        {static:Resources.Lang.total7over}
+                    </td>
+                </tr>
+            </thead>
+            @if (Model.Any())
+            {          
+                var length = Model.Count();  
+                for (int i = 0; i < length; i++)
+                {
+                <tbody>
+                </tbody>
+                }
+           
+            }
+            else
+            { 
+                
+            }
+        </table>
+    </div>
+</div>
