@@ -79,7 +79,7 @@ Fanex.CustSetting.CommissionSetting = function (source) {
                     decimals: Fanex.CustSetting.COMMISSION_DECIMALS,
                     step: Fanex.CustSetting.COMMISSION_STEP,
                     value: discount,
-                    minWidth: 72,
+                    minWidth: 125,
                     lastLetter: Fanex.CustSetting.COM_LAST_LETTER
                 }, 7);
         this.addEventConstrain(spinBox, uplineDiscount);
@@ -87,7 +87,7 @@ Fanex.CustSetting.CommissionSetting = function (source) {
     };
     this.RenderAgentCom = function (trBox, textName, discount, uplineDiscount) {
         var tdTextBox = document.createElement("TD");
-        tdTextBox.innerHTML = textName;
+        tdTextBox.innerHTML = textName + ' :';
         tdTextBox.className = "commission-text";
         trBox.appendChild(tdTextBox);
         var tdValue = document.createElement("TD");
@@ -100,6 +100,12 @@ Fanex.CustSetting.CommissionSetting = function (source) {
         tdValue.appendChild(comContainer2);
         var comSpinBox = this.RenderSpinBox(comContainer, discount, uplineDiscount);
         this.spinBoxItems.push(comSpinBox);
+
+        var maxSpan = document.createElement("SPAN");
+        maxSpan.innerHTML = ' / ' + Fanex.RoundNumber(uplineDiscount, 3) + '%';
+        maxSpan.className = "upline-agent-share";
+        comContainer.appendChild(maxSpan);
+
         trBox.appendChild(tdValue);
     };
     this.RenderPlayerCom = function (textName, discount, uplineDiscount) {
