@@ -27,7 +27,7 @@ namespace Fanex.Agent.UI
 			public AccountInfo_NoData_Block NoData = new AccountInfo_NoData_Block();
 			public string searchBox = "{searchBox}";
 			public AccountInfo_TheRestAcc_Block TheRestAcc = new AccountInfo_TheRestAcc_Block();
-			protected static string s11 = "</div><br /></div><div class=\"shadow\" id=\"shadow\" /><div class=\"output\" id=\"output\" /></div></body><script src=\"";
+			protected static string s11 = "</div></div><div class=\"shadow\" id=\"shadow\" /><div class=\"output\" id=\"output\" /></div></body><script src=\"";
 			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s14{get{return AbsoluteUrl("_AccountInfo/Resources/autocomplete.js", TplSettings.Question);}}
