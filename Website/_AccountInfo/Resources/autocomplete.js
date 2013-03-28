@@ -39,9 +39,9 @@ function setVisible(visi) {
     var x = document.getElementById("shadow");
     x.style.position = 'absolute';
     //x.style.top = (findPosY(txtObj) + 3) + "px";
-    x.style.top = "32px";
+    x.style.top = "63px";
     //x.style.left = (findPosX(txtObj) + 2) + "px";
-    x.style.left = "40px";
+    x.style.left = "70px";
     if (visi == "hidden") {
         x.style.display = "none";
     } else {

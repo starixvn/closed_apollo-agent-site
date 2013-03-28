@@ -24,8 +24,8 @@ namespace Fanex.Agent.UI
 			protected static string s5 = "</head><body>";
 			public string flash = "{flash}";
 			protected static string s6 = "<div id=\"banner_main\"><div class=\"logo\"><a id=\"balance\" href=\"javascript:Change2Menu('_Reports/PortalPage/PortalPage.aspx')\"><img alt=\"Logo\" src=\"";
-			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Images/suncity-logo.gif");}}
-			protected static string s8 = "\" width=\"275px\" height=\"84px\" border=\"0\" title=\"Logo\" /></a></div><div id=\"banner\"><div id=\"button\"><div id=\"button_main\"><div id=\"Popup_top\" style=\"display: ";
+			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Images/logo-agent.png");}}
+			protected static string s8 = "\" width=\"104px\" height=\"80px\" border=\"0\" title=\"Logo\" /></a></div><div id=\"banner\"><div id=\"button\"><div id=\"button_main\"><div id=\"Popup_top\" style=\"display: ";
 			public string popupTopDisplay = "{popupTopDisplay}";
 			protected static string s9 = "\"><div id=\"Popup_line\"><a onclick=\"javascript:ShowPopupTop(false)\" style=\"cursor: pointer;\"><img alt=\"Close\" src=\"";
 			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Images/icon_close.jpg");}}
