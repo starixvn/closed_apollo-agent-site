@@ -114,6 +114,10 @@ td {
 		background: @grayLighter;		
 		color: @grayDarker;
 	}
+
+	&:link, &:visited {
+		color: @white;
+	}
 }
 
 .tab_menu02Blink {
@@ -344,14 +348,15 @@ a {
     width: 92px;
 }
 
-.b_nleft {
-    color: #2678C5;
+a.b_nleft {
+    color: @gray;
     font-weight: bold;
     text-decoration: none;
 
 	&:hover {
-		color: #F60;
+		color: @hoverLinkOrangeColor;
 	}
+
 }
 
 font {
@@ -466,7 +471,7 @@ font {
 	background-color: @grayLighter;
     background-attachment: fixed;
     float: left;
-    width: 215px;
+    width: 207px;
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -1196,5 +1201,13 @@ iframe {
 .link-text {
     color: #2678C5;
     text-decoration: none;
+
+	&:link, &:visited {
+		color: #2678C5;
+	}
+
+	&:hover {
+		color: @hoverLinkRedColor;
+	}
 }
 
