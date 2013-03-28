@@ -32,7 +32,7 @@ var editPositionTaking =
         var errMsg = result.errMsg;
         if (result.errCode == 0) {
             age.UnLock();
-            AddPopupHeight(50);
+//            AddPopupHeight(50);
             ageMsg.Show(errMsg, 1);
             window.scroll(0, 0);
             setTimeout(function () {
