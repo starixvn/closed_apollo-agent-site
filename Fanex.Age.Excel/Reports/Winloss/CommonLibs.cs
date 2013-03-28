@@ -19,9 +19,7 @@
                 //    casinoType = "P2P";
                 //    break;
 
-                //case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Bingo: // 73
-
-                //    break;
+               
 
                 case (int)Sunplus.Agent.Model.BL.Definitions.BetType.N_Over_Under: // Number game Over/Under
                     betTypeName = Resources.Lang.next + " " + betTypeName + " (" + Resources.Lang.numbergame + ")";

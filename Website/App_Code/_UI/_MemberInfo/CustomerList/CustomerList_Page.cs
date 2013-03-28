@@ -418,77 +418,77 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             this.RenderEditControl(arrayTextPopupMenu, arrayIdPopupMenu, arrayDisabledPopupMenu);
         }
 
-        public void InitPopupOther()
-        {
-            // Init Div Other's Popup
-            int number = 13;
+        //public void InitPopupOther()
+        //{
+        //    // Init Div Other's Popup
+        //    int number = 13;
 
-            if (CurrentUserSession.IsSubAcc && !CurrentUserSession.SubPageAccess.UpdateAccount)
-            {
-                number--;
-            }
+        //    if (CurrentUserSession.IsSubAcc && !CurrentUserSession.SubPageAccess.UpdateAccount)
+        //    {
+        //        number--;
+        //    }
 
-            this.arrayDisabledPopupMenu = new object[number];
-            this.arrayTextPopupMenu = new object[number];
-            this.arrayIdPopupMenu = new object[number];
+        //    this.arrayDisabledPopupMenu = new object[number];
+        //    this.arrayTextPopupMenu = new object[number];
+        //    this.arrayIdPopupMenu = new object[number];
 
-            this.arrayDisabledPopupMenu[0] = 0;
-            this.arrayTextPopupMenu[0] = Resources.Lang.horseRacing;
-            this.arrayIdPopupMenu[0] = "racingPT";
+        //    this.arrayDisabledPopupMenu[0] = 0;
+        //    this.arrayTextPopupMenu[0] = Resources.Lang.horseRacing;
+        //    this.arrayIdPopupMenu[0] = "racingPT";
 
-            this.arrayDisabledPopupMenu[1] = 0;
-            this.arrayTextPopupMenu[1] = Resources.Lang.casino;
-            this.arrayIdPopupMenu[1] = "casinoPT";
+        //    this.arrayDisabledPopupMenu[1] = 0;
+        //    this.arrayTextPopupMenu[1] = Resources.Lang.casino;
+        //    this.arrayIdPopupMenu[1] = "casinoPT";
 
-            this.arrayDisabledPopupMenu[2] = 0;
-            this.arrayTextPopupMenu[2] = Resources.Lang.P2P;
-            this.arrayIdPopupMenu[2] = "p2pPT";
+        //    this.arrayDisabledPopupMenu[2] = 0;
+        //    this.arrayTextPopupMenu[2] = Resources.Lang.P2P;
+        //    this.arrayIdPopupMenu[2] = "p2pPT";
 
-            this.arrayDisabledPopupMenu[3] = 0;
-            this.arrayTextPopupMenu[3] = Resources.Lang.bingo;
-            this.arrayIdPopupMenu[3] = "bingoPT";
+        //    this.arrayDisabledPopupMenu[3] = 0;
+        //    this.arrayTextPopupMenu[3] = Resources.Lang.bingo;
+        //    this.arrayIdPopupMenu[3] = "bingoPT";
 
-            this.arrayDisabledPopupMenu[4] = 0;
-            this.arrayTextPopupMenu[4] = Resources.Lang.LiveCasino;
-            this.arrayIdPopupMenu[4] = "livecasinoPT";
+        //    this.arrayDisabledPopupMenu[4] = 0;
+        //    this.arrayTextPopupMenu[4] = Resources.Lang.LiveCasino;
+        //    this.arrayIdPopupMenu[4] = "livecasinoPT";
 
-            this.arrayDisabledPopupMenu[5] = 0;
-            this.arrayTextPopupMenu[5] = string.Empty;//Resources.Lang.VirtualSports;
-            this.arrayIdPopupMenu[5] = "virtualsportsPT";
+        //    this.arrayDisabledPopupMenu[5] = 0;
+        //    this.arrayTextPopupMenu[5] = string.Empty;//Resources.Lang.VirtualSports;
+        //    this.arrayIdPopupMenu[5] = "virtualsportsPT";
 
-            this.arrayDisabledPopupMenu[6] = 0;
-            this.arrayTextPopupMenu[6] = Resources.Lang.sbminpt;
-            this.arrayIdPopupMenu[6] = "sportBookMinPT";
+        //    this.arrayDisabledPopupMenu[6] = 0;
+        //    this.arrayTextPopupMenu[6] = Resources.Lang.sbminpt;
+        //    this.arrayIdPopupMenu[6] = "sportBookMinPT";
 
-            this.arrayDisabledPopupMenu[7] = 0;
-            this.arrayTextPopupMenu[7] = Resources.Lang.hrminpt;
-            this.arrayIdPopupMenu[7] = "racingMinPT";
+        //    this.arrayDisabledPopupMenu[7] = 0;
+        //    this.arrayTextPopupMenu[7] = Resources.Lang.hrminpt;
+        //    this.arrayIdPopupMenu[7] = "racingMinPT";
 
-            this.arrayDisabledPopupMenu[8] = 0;
-            this.arrayTextPopupMenu[8] = Resources.Lang.transfercondition;
-            this.arrayIdPopupMenu[8] = "transfer";
+        //    this.arrayDisabledPopupMenu[8] = 0;
+        //    this.arrayTextPopupMenu[8] = Resources.Lang.transfercondition;
+        //    this.arrayIdPopupMenu[8] = "transfer";
 
-            this.arrayDisabledPopupMenu[9] = this.disabledEdit ? 1 : 0;
-            this.arrayTextPopupMenu[9] = Resources.Lang.lblEditInfo;
-            this.arrayIdPopupMenu[9] = "editInfo";
+        //    this.arrayDisabledPopupMenu[9] = this.disabledEdit ? 1 : 0;
+        //    this.arrayTextPopupMenu[9] = Resources.Lang.lblEditInfo;
+        //    this.arrayIdPopupMenu[9] = "editInfo";
 
-            this.arrayDisabledPopupMenu[10] = this.disabledEdit ? 1 : 0;
-            this.arrayTextPopupMenu[10] = Resources.Lang.lblBetSetting;
-            this.arrayIdPopupMenu[10] = "betSetting";
+        //    this.arrayDisabledPopupMenu[10] = this.disabledEdit ? 1 : 0;
+        //    this.arrayTextPopupMenu[10] = Resources.Lang.lblBetSetting;
+        //    this.arrayIdPopupMenu[10] = "betSetting";
 
-            this.arrayDisabledPopupMenu[11] = this.disabledEdit ? 1 : 0;
-            this.arrayTextPopupMenu[11] = Resources.Lang.commission;
-            this.arrayIdPopupMenu[11] = "commission";
+        //    this.arrayDisabledPopupMenu[11] = this.disabledEdit ? 1 : 0;
+        //    this.arrayTextPopupMenu[11] = Resources.Lang.commission;
+        //    this.arrayIdPopupMenu[11] = "commission";
 
-            if (number > 12)
-            {
-                this.arrayDisabledPopupMenu[12] = 0;
-                this.arrayTextPopupMenu[12] = Resources.Lang.password;
-                this.arrayIdPopupMenu[12] = "password";
-            }
+        //    if (number > 12)
+        //    {
+        //        this.arrayDisabledPopupMenu[12] = 0;
+        //        this.arrayTextPopupMenu[12] = Resources.Lang.password;
+        //        this.arrayIdPopupMenu[12] = "password";
+        //    }
 
-            this.RenderOtherStatus(this.arrayTextPopupMenu, this.arrayDisabledPopupMenu, this.arrayIdPopupMenu);
-        }
+        //    this.RenderOtherStatus(this.arrayTextPopupMenu, this.arrayDisabledPopupMenu, this.arrayIdPopupMenu);
+        //}
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {

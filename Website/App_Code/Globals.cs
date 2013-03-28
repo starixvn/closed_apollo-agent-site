@@ -229,7 +229,6 @@ public static class Globals
     public static readonly string CS_SUBMIT_HREF = "javascript:void();";
 
     // Define provider type
-    public static readonly string PROVIDER_BINGO_API = "DAL.APIClient.APIBingoProvider";
     public static readonly string PROVIDER_CS_API = "DAL.APIClient.APICasinoProvider";
     public static readonly string PROVIDER_IBC_LIB = "DAL.IBCClient.IBCLibProvider";
     ///////

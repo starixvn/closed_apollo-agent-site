@@ -63,13 +63,7 @@
   <add url="_Reports/CasinoWinloss/CSWinlossMaster.aspx" role="3-[E]" id="0" fun="Report" subfun="Master Real Time Casino Winloss" />
   <add url="_Reports/CasinoWinloss/CSWinlossAgent.aspx" role="2-[E]" id="0" fun="Report" subfun="Agent Real Time Casino Winloss" />
 
-  <!--<add url="_Reports/BingoWinloss/BingoWinlossDetailSuper.aspx" role="4-[E]" id="0" fun="Report" subfun="Super Real Time Bingo Winloss Detail" />
-  <add url="_Reports/BingoWinloss/BingoWinlossDetailMaster.aspx" role="3-[E]" id="0" fun="Report" subfun="Master Real Time Bingo Winloss Detail" />
-  <add url="_Reports/BingoWinloss/BingoWinlossDetailAgent.aspx" role="2-[E]" id="0" fun="Report" subfun="Agent Real Time Bingo Winloss Detail" />
-  <add url="_Reports/BingoWinloss/BingoWinlossSuper.aspx" role="4-[E]" id="0" fun="Report" subfun="Super Real Time Bingo Winloss" />
-  <add url="_Reports/BingoWinloss/BingoWinlossMaster.aspx" role="3-[E]" id="0" fun="Report" subfun="Master Real Time Bingo Winloss" />
-  <add url="_Reports/BingoWinloss/BingoWinlossAgent.aspx" role="2-[E]" id="0" fun="Report" subfun="Agent Real Time Bingo Winloss" />-->
-
+  
   <add url="_Reports/MatchWinloss/MatchWinloss.aspx" role="2-[E]" id="3005" fun="Report" subfun="Agent Match Winloss" />
   <add url="_Reports/MatchWinloss/MatchWinLossDetail.aspx" role="2-[E]" id="3006" fun="Report" subfun="Match Winloss Detail" />
   <add url="_Report/BetList/CancelBetList.aspx" role="2-[E]" id="3008" fun="Report" subfun="Cancel Betlist" />
@@ -165,7 +159,6 @@
   <add url="_MemberInfo/PositionTakingList/Casino/CasinoPositionTakingList.aspx" role="2-[A],2-[B],2-[H]" id="5002" fun="Member Info" subfun="Position Taking List - Casino" />
   <add url="_MemberInfo/PositionTakingList/LiveCasino/LiveCasinoPositionTakingList.aspx" role="2-[A],2-[B],2-[H]" id="5002" fun="Member Info" subfun="Position Taking List - Casino" />
   <add url="_MemberInfo/PositionTakingList/VirtualSports/VirtualSportsPositionTakingList.aspx" role="2-[A],2-[B],2-[H]" id="5002" fun="Member Info" subfun="Position Taking List - Virtual Sports" />
-  <add url="_MemberInfo/PositionTakingList/Bingo/BingoPositionTakingList.aspx" role="2-[A],2-[B],2-[H]" id="5002" fun="Member Info" subfun="Position Taking List - Bingo" />
   <add url="_MemberInfo/CreditBalance/CreditBalance.aspx" role="2-[A],2-[B],2-[C],2-[H]" id="5003" fun="Member Info" subfun="Credit Balance" />
   <add url="_MemberInfo/CreditBalance/CreditBalanceList.aspx" role="2-[A],2-[B],2-[C],2-[H]" id="5003" fun="Member Info" subfun="Credit Balance List" />
   <!--\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/-->

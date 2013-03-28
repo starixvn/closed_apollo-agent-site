@@ -17,7 +17,6 @@ namespace Fanex.Age.UI.Components
         public const string SHOWCASINO = "showcasino";
         public const string SHOWRB = "showrb";
         public const string SHOW_NUMBER_GAME = "showng";
-        //public const string SHOW_IBC_BINGO = "showbi";
         public const string SHOW_P2P = "showp2p";
         public const string SHOW_LIVECASINO = "showlivecasino";
         public const string SHOW_VIRTUALSPORTS = "showvs";
@@ -128,10 +127,6 @@ namespace Fanex.Age.UI.Components
                 {
                     CheckPermission(UserPermission.IsShowRacing, SHOWRB);
                 }
-                //else if (string.Compare(elementName, SHOW_IBC_BINGO) == 0)
-                //{
-                //    CheckPermission(UserPermission.IsShowBingoReport, SHOW_IBC_BINGO);
-                //}
                 else if (string.Compare(elementName, SHOW_NUMBER_GAME) == 0)
                 {
                     CheckPermission(UserPermission.IsShowNumberGame, SHOW_NUMBER_GAME);

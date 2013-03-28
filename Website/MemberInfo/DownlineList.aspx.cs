@@ -103,13 +103,6 @@ public partial class MemberInfo_downlineList : TplPage
             TemplateHandler.RemoveBlock(ref this.HtmlContent, "edit-CS");
         }
 
-        //if (!Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowBingo)
-        //{
-            TemplateHandler.RemoveBlock(ref this.HtmlContent, "bingo");
-            TemplateHandler.RemoveBlock(ref this.HtmlContent, "no-bingo");
-            TemplateHandler.RemoveBlock(ref this.HtmlContent, "edit-BG");
-        //}
-
         if (AppSettings.IsAgentSite || act_list == "MemberList")
         {
             AddJsVariable("lblConfirmClearCredit", Resources.Lang.lblConfirmClearCreditMember);
@@ -182,7 +175,6 @@ public partial class MemberInfo_downlineList : TplPage
         TemplateHandler.Assign(ref HtmlContent, "spb_mult", Resources.Lang.editmultsportbook);
         TemplateHandler.Assign(ref HtmlContent, "hr_mult", Resources.Lang.editmulthr);
         TemplateHandler.Assign(ref HtmlContent, "cs_multEdit", Resources.Lang.editmultcs);
-        TemplateHandler.Assign(ref HtmlContent, "bg_multEdit", Resources.Lang.editmultbingo);
         TemplateHandler.Assign(ref HtmlContent, "p2p_multEdit", Resources.Lang.editmultp2p);
 
         TemplateHandler.Assign(ref HtmlContent, "fi_minpt", Resources.Lang.fiminpt);
@@ -191,9 +183,7 @@ public partial class MemberInfo_downlineList : TplPage
         TemplateHandler.Assign(ref HtmlContent, "isdisablecs", Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowCasino ? "0" : "1");
         TemplateHandler.Assign(ref HtmlContent, "isdisablefi", Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowFinance ? "0" : "1");
         TemplateHandler.Assign(ref HtmlContent, "isdisablehr", Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowRacing ? "0" : "1");
-        //TemplateHandler.Assign(ref HtmlContent, "isdisablebg", Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowBingo ? "0" : "1");
-        //TemplateHandler.Assign(ref HtmlContent, "isdisablep2p", Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P ? "0" : "1");
-
+     
         TemplateHandler.Assign(ref HtmlContent, "roleid_val", Sunplus.Agent.Model.Entities.UserSession.Current.RoleId.ToString());
         //Check Status NumberGame on WebConfig
         TemplateHandler.Assign(ref HtmlContent, "isDisableNumberGameStatus", Sunplus.Agent.Model.BL.Definitions.AppSettings.DisableNumberGameStatus.ToString().ToLower());

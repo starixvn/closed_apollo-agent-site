@@ -101,9 +101,7 @@ namespace Fanex.Age.Excel.Reports
                 case 161:
                     resourceName = "numbergame";
                     break;
-                case 252:
-                    resourceName = "bingo";
-                    break;
+               
                 case 253:
                     resourceName = "P2P";
                     break;

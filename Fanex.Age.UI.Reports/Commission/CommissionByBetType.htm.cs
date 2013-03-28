@@ -205,7 +205,6 @@ namespace Fanex.Age.UI.Reports
 			public CommissionByBetType_ExcelContents_Casino_Block Casino = new CommissionByBetType_ExcelContents_Casino_Block();
 			public CommissionByBetType_ExcelContents_LiveCasino_Block LiveCasino = new CommissionByBetType_ExcelContents_LiveCasino_Block();
 			public CommissionByBetType_ExcelContents_NumberGame_Block NumberGame = new CommissionByBetType_ExcelContents_NumberGame_Block();
-			public CommissionByBetType_ExcelContents_Bingo_Block Bingo = new CommissionByBetType_ExcelContents_Bingo_Block();
 			public CommissionByBetType_ExcelContents_P2P_Block P2P = new CommissionByBetType_ExcelContents_P2P_Block();
 			protected static string s132 = "<td>";
 			protected static string s133{get{return Resources.Lang.total;}}
@@ -341,7 +340,6 @@ namespace Fanex.Age.UI.Reports
 					if(null != Casino) Casino.ToString(ref bd);
 					if(null != LiveCasino) LiveCasino.ToString(ref bd);
 					if(null != NumberGame) NumberGame.ToString(ref bd);
-					if(null != Bingo) Bingo.ToString(ref bd);
 					if(null != P2P) P2P.ToString(ref bd);
 					bd.Append(s132);
 					bd.Append(s133);
@@ -409,10 +407,10 @@ namespace Fanex.Age.UI.Reports
 			}
 		}
 
-		public class CommissionByBetType_ExcelContents_Bingo_Block: Block
+		public class CommissionByBetType_ExcelContents_P2P_Block: Block
 		{
-			protected static string s145 = "<td class=\"_games\" colspan=\"1\" columnname=\"Bingo_comm\">";
-			protected static string s146{get{return Resources.Bingo.bingo;}}
+			protected static string s145 = "<td class=\"_games\" columnname=\"P2P_comm\">";
+			protected static string s146{get{return Resources.Lang.P2P;}}
 			protected static string s147 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -427,181 +425,161 @@ namespace Fanex.Age.UI.Reports
 			}
 		}
 
-		public class CommissionByBetType_ExcelContents_P2P_Block: Block
+		public class CommissionByBetType_ExcelContents_Content_Block: Block
 		{
-			protected static string s148 = "<td class=\"_games\" columnname=\"P2P_comm\">";
-			protected static string s149{get{return Resources.Lang.P2P;}}
-			protected static string s150 = "</td>";
+			protected static string s148 = "<tr bgcolor=\"";
+			public string ColorClass = "{ColorClass}";
+			protected static string s149 = "\" onmouseover=\"this.style.backgroundColor='";
+			protected static string s150{get{return Fanex.Age.UI.Common.RowBgOver;}}
+			protected static string s151 = "'\" onmouseout=\"this.style.backgroundColor='";
+			protected string t1_ColorClass;
+			protected static string s152 = "'\"><td class=\"left_normal\">";
+			public CommissionByBetType_ExcelContents_Content_DownlineLink_Block DownlineLink = new CommissionByBetType_ExcelContents_Content_DownlineLink_Block();
+			protected static string s153 = "</td><td class=\"comm1 right\">";
+			public string Handicap = "{Handicap}";
+			protected static string s154 = "</td><td class=\"comm1 right\">";
+			public string OverUnder = "{OverUnder}";
+			protected static string s155 = "</td><td class=\"comm1 right\">";
+			public string FirstHalfHandicap = "{FirstHalfHandicap}";
+			protected static string s156 = "</td><td class=\"comm1 right\">";
+			public string FirstHalfOverUnder = "{FirstHalfOverUnder}";
+			protected static string s157 = "</td><td class=\"comm1 right\">";
+			public string OddEven = "{OddEven}";
+			protected static string s158 = "</td><td class=\"comm1 right\">";
+			public string CSheet = "{CSheet}";
+			protected static string s159 = "</td><td class=\"comm1 right\">";
+			public string DChance = "{DChance}";
+			protected static string s160 = "</td><td class=\"comm1 right\">";
+			public string DNB = "{DNB}";
+			protected static string s161 = "</td><td class=\"comm1 right\">";
+			public string HNB = "{HNB}";
+			protected static string s162 = "</td><td class=\"comm1 right\">";
+			public string ANB = "{ANB}";
+			protected static string s163 = "</td><td class=\"comm1 right\">";
+			public string DND = "{DND}";
+			protected static string s164 = "</td><td class=\"comm1 right\">";
+			public string BON = "{BON}";
+			protected static string s165 = "</td><td class=\"comm1 right\">";
+			public string TWinTNill = "{TWinTNill}";
+			protected static string s166 = "</td><td class=\"comm1 right\">";
+			public string ThirdWayHdp = "{ThirdWayHdp}";
+			protected static string s167 = "</td><td class=\"b right\">";
+			public string Total1 = "{Total1}";
+			protected static string s168 = "</td><td class=\"comm2 right\">";
+			public string FCS = "{FCS}";
+			protected static string s169 = "</td><td class=\"comm2 right\">";
+			public string CorrectScore = "{CorrectScore}";
+			protected static string s170 = "</td><td class=\"comm2 right\">";
+			public string TotalGoal = "{TotalGoal}";
+			protected static string s171 = "</td><td class=\"comm2 right\">";
+			public string MixParlay = "{MixParlay}";
+			protected static string s172 = "</td><td class=\"comm2 right\">";
+			public string CombinationMixParlay = "{CombinationMixParlay}";
+			protected static string s173 = "</td><td class=\"comm2 right\">";
+			public string Outright = "{Outright}";
+			protected static string s174 = "</td><td class=\"comm2 right\">";
+			public string FGLG = "{FGLG}";
+			protected static string s175 = "</td><td class=\"comm2 right\">";
+			public string HTFT = "{HTFT}";
+			protected static string s176 = "</td><td class=\"comm2 right\">";
+			public string MoneyLineFullTime = "{MoneyLineFullTime}";
+			protected static string s177 = "</td><td class=\"comm2 right\">";
+			public string MoneyLineHalfTime = "{MoneyLineHalfTime}";
+			protected static string s178 = "</td><td class=\"b right\">";
+			public string Total2 = "{Total2}";
+			protected static string s179 = "</td><td class=\"oneXtwo right\">";
+			public string F1X2 = "{F1X2}";
+			protected static string s180 = "</td><td class=\"oneXtwo right\">";
+			public string _1X2 = "{_1X2}";
+			protected static string s181 = "</td><td class=\"others right\">";
+			public string OtherBettypes = "{OtherBettypes}";
+			protected static string s182 = "</td>";
+			public CommissionByBetType_ExcelContents_Content_Casino_Block Casino = new CommissionByBetType_ExcelContents_Content_Casino_Block();
+			public CommissionByBetType_ExcelContents_Content_LiveCasino_Block LiveCasino = new CommissionByBetType_ExcelContents_Content_LiveCasino_Block();
+			public CommissionByBetType_ExcelContents_Content_NumberGame_Block NumberGame = new CommissionByBetType_ExcelContents_Content_NumberGame_Block();
+			public CommissionByBetType_ExcelContents_Content_P2P_Block P2P = new CommissionByBetType_ExcelContents_Content_P2P_Block();
+			protected static string s183 = "<td class=\"b right\">";
+			public string Total3 = "{Total3}";
+			protected static string s184 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(s148);
+					bd.Append(ColorClass);
 					bd.Append(s149);
 					bd.Append(s150);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class CommissionByBetType_ExcelContents_Content_Block: Block
-		{
-			protected static string s151 = "<tr bgcolor=\"";
-			public string ColorClass = "{ColorClass}";
-			protected static string s152 = "\" onmouseover=\"this.style.backgroundColor='";
-			protected static string s153{get{return Fanex.Age.UI.Common.RowBgOver;}}
-			protected static string s154 = "'\" onmouseout=\"this.style.backgroundColor='";
-			protected string t1_ColorClass;
-			protected static string s155 = "'\"><td class=\"left_normal\">";
-			public CommissionByBetType_ExcelContents_Content_DownlineLink_Block DownlineLink = new CommissionByBetType_ExcelContents_Content_DownlineLink_Block();
-			protected static string s156 = "</td><td class=\"comm1 right\">";
-			public string Handicap = "{Handicap}";
-			protected static string s157 = "</td><td class=\"comm1 right\">";
-			public string OverUnder = "{OverUnder}";
-			protected static string s158 = "</td><td class=\"comm1 right\">";
-			public string FirstHalfHandicap = "{FirstHalfHandicap}";
-			protected static string s159 = "</td><td class=\"comm1 right\">";
-			public string FirstHalfOverUnder = "{FirstHalfOverUnder}";
-			protected static string s160 = "</td><td class=\"comm1 right\">";
-			public string OddEven = "{OddEven}";
-			protected static string s161 = "</td><td class=\"comm1 right\">";
-			public string CSheet = "{CSheet}";
-			protected static string s162 = "</td><td class=\"comm1 right\">";
-			public string DChance = "{DChance}";
-			protected static string s163 = "</td><td class=\"comm1 right\">";
-			public string DNB = "{DNB}";
-			protected static string s164 = "</td><td class=\"comm1 right\">";
-			public string HNB = "{HNB}";
-			protected static string s165 = "</td><td class=\"comm1 right\">";
-			public string ANB = "{ANB}";
-			protected static string s166 = "</td><td class=\"comm1 right\">";
-			public string DND = "{DND}";
-			protected static string s167 = "</td><td class=\"comm1 right\">";
-			public string BON = "{BON}";
-			protected static string s168 = "</td><td class=\"comm1 right\">";
-			public string TWinTNill = "{TWinTNill}";
-			protected static string s169 = "</td><td class=\"comm1 right\">";
-			public string ThirdWayHdp = "{ThirdWayHdp}";
-			protected static string s170 = "</td><td class=\"b right\">";
-			public string Total1 = "{Total1}";
-			protected static string s171 = "</td><td class=\"comm2 right\">";
-			public string FCS = "{FCS}";
-			protected static string s172 = "</td><td class=\"comm2 right\">";
-			public string CorrectScore = "{CorrectScore}";
-			protected static string s173 = "</td><td class=\"comm2 right\">";
-			public string TotalGoal = "{TotalGoal}";
-			protected static string s174 = "</td><td class=\"comm2 right\">";
-			public string MixParlay = "{MixParlay}";
-			protected static string s175 = "</td><td class=\"comm2 right\">";
-			public string CombinationMixParlay = "{CombinationMixParlay}";
-			protected static string s176 = "</td><td class=\"comm2 right\">";
-			public string Outright = "{Outright}";
-			protected static string s177 = "</td><td class=\"comm2 right\">";
-			public string FGLG = "{FGLG}";
-			protected static string s178 = "</td><td class=\"comm2 right\">";
-			public string HTFT = "{HTFT}";
-			protected static string s179 = "</td><td class=\"comm2 right\">";
-			public string MoneyLineFullTime = "{MoneyLineFullTime}";
-			protected static string s180 = "</td><td class=\"comm2 right\">";
-			public string MoneyLineHalfTime = "{MoneyLineHalfTime}";
-			protected static string s181 = "</td><td class=\"b right\">";
-			public string Total2 = "{Total2}";
-			protected static string s182 = "</td><td class=\"oneXtwo right\">";
-			public string F1X2 = "{F1X2}";
-			protected static string s183 = "</td><td class=\"oneXtwo right\">";
-			public string _1X2 = "{_1X2}";
-			protected static string s184 = "</td><td class=\"others right\">";
-			public string OtherBettypes = "{OtherBettypes}";
-			protected static string s185 = "</td>";
-			public CommissionByBetType_ExcelContents_Content_Casino_Block Casino = new CommissionByBetType_ExcelContents_Content_Casino_Block();
-			public CommissionByBetType_ExcelContents_Content_LiveCasino_Block LiveCasino = new CommissionByBetType_ExcelContents_Content_LiveCasino_Block();
-			public CommissionByBetType_ExcelContents_Content_NumberGame_Block NumberGame = new CommissionByBetType_ExcelContents_Content_NumberGame_Block();
-			public CommissionByBetType_ExcelContents_Content_Bingo_Block Bingo = new CommissionByBetType_ExcelContents_Content_Bingo_Block();
-			public CommissionByBetType_ExcelContents_Content_P2P_Block P2P = new CommissionByBetType_ExcelContents_Content_P2P_Block();
-			protected static string s186 = "<td class=\"b right\">";
-			public string Total3 = "{Total3}";
-			protected static string s187 = "</td></tr>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
 					bd.Append(s151);
 					bd.Append(ColorClass);
 					bd.Append(s152);
-					bd.Append(s153);
-					bd.Append(s154);
-					bd.Append(ColorClass);
-					bd.Append(s155);
 					if(null != DownlineLink) DownlineLink.ToString(ref bd);
-					bd.Append(s156);
+					bd.Append(s153);
 					bd.Append(Handicap);
-					bd.Append(s157);
+					bd.Append(s154);
 					bd.Append(OverUnder);
-					bd.Append(s158);
+					bd.Append(s155);
 					bd.Append(FirstHalfHandicap);
-					bd.Append(s159);
+					bd.Append(s156);
 					bd.Append(FirstHalfOverUnder);
-					bd.Append(s160);
+					bd.Append(s157);
 					bd.Append(OddEven);
-					bd.Append(s161);
+					bd.Append(s158);
 					bd.Append(CSheet);
-					bd.Append(s162);
+					bd.Append(s159);
 					bd.Append(DChance);
-					bd.Append(s163);
+					bd.Append(s160);
 					bd.Append(DNB);
-					bd.Append(s164);
+					bd.Append(s161);
 					bd.Append(HNB);
-					bd.Append(s165);
+					bd.Append(s162);
 					bd.Append(ANB);
-					bd.Append(s166);
+					bd.Append(s163);
 					bd.Append(DND);
-					bd.Append(s167);
+					bd.Append(s164);
 					bd.Append(BON);
-					bd.Append(s168);
+					bd.Append(s165);
 					bd.Append(TWinTNill);
-					bd.Append(s169);
+					bd.Append(s166);
 					bd.Append(ThirdWayHdp);
-					bd.Append(s170);
+					bd.Append(s167);
 					bd.Append(Total1);
-					bd.Append(s171);
+					bd.Append(s168);
 					bd.Append(FCS);
-					bd.Append(s172);
+					bd.Append(s169);
 					bd.Append(CorrectScore);
-					bd.Append(s173);
+					bd.Append(s170);
 					bd.Append(TotalGoal);
-					bd.Append(s174);
+					bd.Append(s171);
 					bd.Append(MixParlay);
-					bd.Append(s175);
+					bd.Append(s172);
 					bd.Append(CombinationMixParlay);
-					bd.Append(s176);
+					bd.Append(s173);
 					bd.Append(Outright);
-					bd.Append(s177);
+					bd.Append(s174);
 					bd.Append(FGLG);
-					bd.Append(s178);
+					bd.Append(s175);
 					bd.Append(HTFT);
-					bd.Append(s179);
+					bd.Append(s176);
 					bd.Append(MoneyLineFullTime);
-					bd.Append(s180);
+					bd.Append(s177);
 					bd.Append(MoneyLineHalfTime);
-					bd.Append(s181);
+					bd.Append(s178);
 					bd.Append(Total2);
-					bd.Append(s182);
+					bd.Append(s179);
 					bd.Append(F1X2);
-					bd.Append(s183);
+					bd.Append(s180);
 					bd.Append(_1X2);
-					bd.Append(s184);
+					bd.Append(s181);
 					bd.Append(OtherBettypes);
-					bd.Append(s185);
+					bd.Append(s182);
 					if(null != Casino) Casino.ToString(ref bd);
 					if(null != LiveCasino) LiveCasino.ToString(ref bd);
 					if(null != NumberGame) NumberGame.ToString(ref bd);
-					if(null != Bingo) Bingo.ToString(ref bd);
 					if(null != P2P) P2P.ToString(ref bd);
-					bd.Append(s186);
+					bd.Append(s183);
 					bd.Append(Total3);
-					bd.Append(s187);
+					bd.Append(s184);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -609,25 +587,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_Content_DownlineLink_Block: Block
 		{
-			protected static string s188 = "<span class='downline_link' onclick=\"viewCommissionDownLine(";
+			protected static string s185 = "<span class='downline_link' onclick=\"viewCommissionDownLine(";
 			public string CustId = "{CustId}";
-			protected static string s189 = ",";
+			protected static string s186 = ",";
 			public string RoleId = "{RoleId}";
-			protected static string s190 = ")\">";
+			protected static string s187 = ")\">";
 			public string UserName = "{UserName}";
-			protected static string s191 = "</span>";
+			protected static string s188 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s188);
+					bd.Append(s185);
 					bd.Append(CustId);
-					bd.Append(s189);
+					bd.Append(s186);
 					bd.Append(RoleId);
-					bd.Append(s190);
+					bd.Append(s187);
 					bd.Append(UserName);
-					bd.Append(s191);
+					bd.Append(s188);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -635,17 +613,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_Content_Casino_Block: Block
 		{
-			protected static string s192 = "<td class=\"_games right\">";
+			protected static string s189 = "<td class=\"_games right\">";
 			public string Casino = "{Casino}";
-			protected static string s193 = "</td>";
+			protected static string s190 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s192);
+					bd.Append(s189);
 					bd.Append(Casino);
-					bd.Append(s193);
+					bd.Append(s190);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -653,17 +631,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_Content_LiveCasino_Block: Block
 		{
-			protected static string s194 = "<td class=\"_games right\">";
+			protected static string s191 = "<td class=\"_games right\">";
 			public string LiveCasino = "{LiveCasino}";
-			protected static string s195 = "</td>";
+			protected static string s192 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s194);
+					bd.Append(s191);
 					bd.Append(LiveCasino);
-					bd.Append(s195);
+					bd.Append(s192);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -671,35 +649,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_Content_NumberGame_Block: Block
 		{
-			protected static string s196 = "<td class=\"_games right\">";
+			protected static string s193 = "<td class=\"_games right\">";
 			public string NumberGame = "{NumberGame}";
-			protected static string s197 = "</td>";
+			protected static string s194 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s196);
+					bd.Append(s193);
 					bd.Append(NumberGame);
-					bd.Append(s197);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class CommissionByBetType_ExcelContents_Content_Bingo_Block: Block
-		{
-			protected static string s198 = "<td class=\"_games right\">";
-			public string Bingo = "{Bingo}";
-			protected static string s199 = "</td>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s198);
-					bd.Append(Bingo);
-					bd.Append(s199);
+					bd.Append(s194);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -707,17 +667,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_Content_P2P_Block: Block
 		{
-			protected static string s200 = "<td class=\"_games right\">";
+			protected static string s195 = "<td class=\"_games right\">";
 			public string P2P = "{P2P}";
-			protected static string s201 = "</td>";
+			protected static string s196 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s200);
+					bd.Append(s195);
 					bd.Append(P2P);
-					bd.Append(s201);
+					bd.Append(s196);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -725,149 +685,147 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_TotalContent_Block: Block
 		{
-			protected static string s202 = "<tr class=\"RptFooter\"><td class=\"l\">";
-			protected static string s203{get{return Resources.Lang.total;}}
-			protected static string s204 = "</td><td class=\"comm1 right\">";
+			protected static string s197 = "<tr class=\"RptFooter\"><td class=\"l\">";
+			protected static string s198{get{return Resources.Lang.total;}}
+			protected static string s199 = "</td><td class=\"comm1 right\">";
 			public string Handicap = "{Handicap}";
-			protected static string s205 = "</td><td class=\"comm1 right\">";
+			protected static string s200 = "</td><td class=\"comm1 right\">";
 			public string OverUnder = "{OverUnder}";
-			protected static string s206 = "</td><td class=\"comm1 right\">";
+			protected static string s201 = "</td><td class=\"comm1 right\">";
 			public string FirstHalfHandicap = "{FirstHalfHandicap}";
-			protected static string s207 = "</td><td class=\"comm1 right\">";
+			protected static string s202 = "</td><td class=\"comm1 right\">";
 			public string FirsthalfOverUnder = "{FirsthalfOverUnder}";
-			protected static string s208 = "</td><td class=\"comm1 right\">";
+			protected static string s203 = "</td><td class=\"comm1 right\">";
 			public string OddEven = "{OddEven}";
-			protected static string s209 = "</td><td class=\"comm1 right\">";
+			protected static string s204 = "</td><td class=\"comm1 right\">";
 			public string CSheet = "{CSheet}";
-			protected static string s210 = "</td><td class=\"comm1 right\">";
+			protected static string s205 = "</td><td class=\"comm1 right\">";
 			public string DChance = "{DChance}";
-			protected static string s211 = "</td><td class=\"comm1 right\">";
+			protected static string s206 = "</td><td class=\"comm1 right\">";
 			public string DNB = "{DNB}";
-			protected static string s212 = "</td><td class=\"comm1 right\">";
+			protected static string s207 = "</td><td class=\"comm1 right\">";
 			public string HNB = "{HNB}";
-			protected static string s213 = "</td><td class=\"comm1 right\">";
+			protected static string s208 = "</td><td class=\"comm1 right\">";
 			public string ANB = "{ANB}";
-			protected static string s214 = "</td><td class=\"comm1 right\">";
+			protected static string s209 = "</td><td class=\"comm1 right\">";
 			public string DND = "{DND}";
-			protected static string s215 = "</td><td class=\"comm1 right\">";
+			protected static string s210 = "</td><td class=\"comm1 right\">";
 			public string BON = "{BON}";
-			protected static string s216 = "</td><td class=\"comm1 right\">";
+			protected static string s211 = "</td><td class=\"comm1 right\">";
 			public string TWinTNill = "{TWinTNill}";
-			protected static string s217 = "</td><td class=\"comm1 right\">";
+			protected static string s212 = "</td><td class=\"comm1 right\">";
 			public string ThirdWayHdp = "{ThirdWayHdp}";
-			protected static string s218 = "</td><td class=\"right\">";
+			protected static string s213 = "</td><td class=\"right\">";
 			public string Total1 = "{Total1}";
-			protected static string s219 = "</td><td class=\"comm2 right\">";
+			protected static string s214 = "</td><td class=\"comm2 right\">";
 			public string FCS = "{FCS}";
-			protected static string s220 = "</td><td class=\"comm2 right\">";
+			protected static string s215 = "</td><td class=\"comm2 right\">";
 			public string CorectScore = "{CorectScore}";
-			protected static string s221 = "</td><td class=\"comm2 right\">";
+			protected static string s216 = "</td><td class=\"comm2 right\">";
 			public string TotalGoal = "{TotalGoal}";
-			protected static string s222 = "</td><td class=\"comm2 right\">";
+			protected static string s217 = "</td><td class=\"comm2 right\">";
 			public string MixParlay = "{MixParlay}";
-			protected static string s223 = "</td><td class=\"comm2 right\">";
+			protected static string s218 = "</td><td class=\"comm2 right\">";
 			public string CombinationMixParlay = "{CombinationMixParlay}";
-			protected static string s224 = "</td><td class=\"comm2 right\">";
+			protected static string s219 = "</td><td class=\"comm2 right\">";
 			public string Outright = "{Outright}";
-			protected static string s225 = "</td><td class=\"comm2 right\">";
+			protected static string s220 = "</td><td class=\"comm2 right\">";
 			public string FGLG = "{FGLG}";
-			protected static string s226 = "</td><td class=\"comm2 right\">";
+			protected static string s221 = "</td><td class=\"comm2 right\">";
 			public string HTFT = "{HTFT}";
-			protected static string s227 = "</td><td class=\"comm2 right\">";
+			protected static string s222 = "</td><td class=\"comm2 right\">";
 			public string MoneyLineFullTime = "{MoneyLineFullTime}";
-			protected static string s228 = "</td><td class=\"comm2 right\">";
+			protected static string s223 = "</td><td class=\"comm2 right\">";
 			public string MoneyLineHalfTime = "{MoneyLineHalfTime}";
-			protected static string s229 = "</td><td class=\"right\">";
+			protected static string s224 = "</td><td class=\"right\">";
 			public string Total2 = "{Total2}";
-			protected static string s230 = "</td><td class=\"oneXtwo right\">";
+			protected static string s225 = "</td><td class=\"oneXtwo right\">";
 			public string F1X2 = "{F1X2}";
-			protected static string s231 = "</td><td class=\"oneXtwo right\">";
+			protected static string s226 = "</td><td class=\"oneXtwo right\">";
 			public string _1X2 = "{_1X2}";
-			protected static string s232 = "</td><td class=\"others right\">";
+			protected static string s227 = "</td><td class=\"others right\">";
 			public string OtherBettypes = "{OtherBettypes}";
-			protected static string s233 = "</td>";
+			protected static string s228 = "</td>";
 			public CommissionByBetType_ExcelContents_TotalContent_Casino_Block Casino = new CommissionByBetType_ExcelContents_TotalContent_Casino_Block();
 			public CommissionByBetType_ExcelContents_TotalContent_LiveCasino_Block LiveCasino = new CommissionByBetType_ExcelContents_TotalContent_LiveCasino_Block();
 			public CommissionByBetType_ExcelContents_TotalContent_NumberGame_Block NumberGame = new CommissionByBetType_ExcelContents_TotalContent_NumberGame_Block();
-			public CommissionByBetType_ExcelContents_TotalContent_Bingo_Block Bingo = new CommissionByBetType_ExcelContents_TotalContent_Bingo_Block();
 			public CommissionByBetType_ExcelContents_TotalContent_P2P_Block P2P = new CommissionByBetType_ExcelContents_TotalContent_P2P_Block();
-			protected static string s234 = "<td class=\"right\">";
+			protected static string s229 = "<td class=\"right\">";
 			public string Total3 = "{Total3}";
-			protected static string s235 = "</td></tr>";
+			protected static string s230 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s202);
-					bd.Append(s203);
-					bd.Append(s204);
+					bd.Append(s197);
+					bd.Append(s198);
+					bd.Append(s199);
 					bd.Append(Handicap);
-					bd.Append(s205);
+					bd.Append(s200);
 					bd.Append(OverUnder);
-					bd.Append(s206);
+					bd.Append(s201);
 					bd.Append(FirstHalfHandicap);
-					bd.Append(s207);
+					bd.Append(s202);
 					bd.Append(FirsthalfOverUnder);
-					bd.Append(s208);
+					bd.Append(s203);
 					bd.Append(OddEven);
-					bd.Append(s209);
+					bd.Append(s204);
 					bd.Append(CSheet);
-					bd.Append(s210);
+					bd.Append(s205);
 					bd.Append(DChance);
-					bd.Append(s211);
+					bd.Append(s206);
 					bd.Append(DNB);
-					bd.Append(s212);
+					bd.Append(s207);
 					bd.Append(HNB);
-					bd.Append(s213);
+					bd.Append(s208);
 					bd.Append(ANB);
-					bd.Append(s214);
+					bd.Append(s209);
 					bd.Append(DND);
-					bd.Append(s215);
+					bd.Append(s210);
 					bd.Append(BON);
-					bd.Append(s216);
+					bd.Append(s211);
 					bd.Append(TWinTNill);
-					bd.Append(s217);
+					bd.Append(s212);
 					bd.Append(ThirdWayHdp);
-					bd.Append(s218);
+					bd.Append(s213);
 					bd.Append(Total1);
-					bd.Append(s219);
+					bd.Append(s214);
 					bd.Append(FCS);
-					bd.Append(s220);
+					bd.Append(s215);
 					bd.Append(CorectScore);
-					bd.Append(s221);
+					bd.Append(s216);
 					bd.Append(TotalGoal);
-					bd.Append(s222);
+					bd.Append(s217);
 					bd.Append(MixParlay);
-					bd.Append(s223);
+					bd.Append(s218);
 					bd.Append(CombinationMixParlay);
-					bd.Append(s224);
+					bd.Append(s219);
 					bd.Append(Outright);
-					bd.Append(s225);
+					bd.Append(s220);
 					bd.Append(FGLG);
-					bd.Append(s226);
+					bd.Append(s221);
 					bd.Append(HTFT);
-					bd.Append(s227);
+					bd.Append(s222);
 					bd.Append(MoneyLineFullTime);
-					bd.Append(s228);
+					bd.Append(s223);
 					bd.Append(MoneyLineHalfTime);
-					bd.Append(s229);
+					bd.Append(s224);
 					bd.Append(Total2);
-					bd.Append(s230);
+					bd.Append(s225);
 					bd.Append(F1X2);
-					bd.Append(s231);
+					bd.Append(s226);
 					bd.Append(_1X2);
-					bd.Append(s232);
+					bd.Append(s227);
 					bd.Append(OtherBettypes);
-					bd.Append(s233);
+					bd.Append(s228);
 					if(null != Casino) Casino.ToString(ref bd);
 					if(null != LiveCasino) LiveCasino.ToString(ref bd);
 					if(null != NumberGame) NumberGame.ToString(ref bd);
-					if(null != Bingo) Bingo.ToString(ref bd);
 					if(null != P2P) P2P.ToString(ref bd);
-					bd.Append(s234);
+					bd.Append(s229);
 					bd.Append(Total3);
-					bd.Append(s235);
+					bd.Append(s230);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -875,17 +833,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_TotalContent_Casino_Block: Block
 		{
-			protected static string s236 = "<td class=\"_games right\">";
+			protected static string s231 = "<td class=\"_games right\">";
 			public string Casino = "{Casino}";
-			protected static string s237 = "</td>";
+			protected static string s232 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s236);
+					bd.Append(s231);
 					bd.Append(Casino);
-					bd.Append(s237);
+					bd.Append(s232);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -893,17 +851,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_TotalContent_LiveCasino_Block: Block
 		{
-			protected static string s238 = "<td class=\"_games right\">";
+			protected static string s233 = "<td class=\"_games right\">";
 			public string LiveCasino = "{LiveCasino}";
-			protected static string s239 = "</td>";
+			protected static string s234 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s238);
+					bd.Append(s233);
 					bd.Append(LiveCasino);
-					bd.Append(s239);
+					bd.Append(s234);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -911,35 +869,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_TotalContent_NumberGame_Block: Block
 		{
-			protected static string s240 = "<td class=\"_games right\">";
+			protected static string s235 = "<td class=\"_games right\">";
 			public string NumberGame = "{NumberGame}";
-			protected static string s241 = "</td>";
+			protected static string s236 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s240);
+					bd.Append(s235);
 					bd.Append(NumberGame);
-					bd.Append(s241);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class CommissionByBetType_ExcelContents_TotalContent_Bingo_Block: Block
-		{
-			protected static string s242 = "<td class=\"_games right\">";
-			public string Bingo = "{Bingo}";
-			protected static string s243 = "</td>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s242);
-					bd.Append(Bingo);
-					bd.Append(s243);
+					bd.Append(s236);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -947,17 +887,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CommissionByBetType_ExcelContents_TotalContent_P2P_Block: Block
 		{
-			protected static string s244 = "<td class=\"_games right\">";
+			protected static string s237 = "<td class=\"_games right\">";
 			public string P2P = "{P2P}";
-			protected static string s245 = "</td>";
+			protected static string s238 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s244);
+					bd.Append(s237);
 					bd.Append(P2P);
-					bd.Append(s245);
+					bd.Append(s238);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

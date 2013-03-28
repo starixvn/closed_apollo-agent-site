@@ -481,10 +481,17 @@ AGE.prototype.Refresh = function () {
     wnd.location = wnd.location.href;
 }
 AGE.prototype.GetBaseUrl = function () {
-    // return parent.baseURL;
-    //    var url = window.location.href;
-    //    return url.toString().replace(/^(.*\/\/[^\/?#]*).*$/, "$1") + "/";
-    return parent.baseURL;
+    var baseUrl = '';
+    if (parent.baseURL) {
+        baseUrl = parent.baseURL;
+    }
+    else if (parent.parent.baseURL) {
+        baseUrl = parent.parent.baseURL;
+    }
+    return baseUrl;
+    //        var url = window.location.href;
+    //        return url.toString().replace(/^(.*\/\/[^\/?#]*).*$/, "$1") + "/";
+    //return parent.location.host + "/";
 }
 AGE.prototype.GetQueryString = function (key, defaultValue) {
     if (defaultValue == null) defaultValue = "";

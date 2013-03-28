@@ -61,7 +61,6 @@ namespace Sunplus.Agent.Model.BL.Definitions
         End_of_day_OE = 66,
         Casino_Games = 71,
         P2P_Games = 72,
-        Bingo = 73,
         Home_No_Bet = 121,
         Away_No_Bet = 122,
         Draw_NoDraw = 123,

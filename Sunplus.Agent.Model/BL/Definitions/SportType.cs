@@ -62,7 +62,6 @@ namespace Sunplus.Agent.Model.BL.Definitions
         NumberGame = 161,
         LiveCasino = 162,
         VirtualSports = 180,
-        Bingo = 252,
         P2P = 253,
         Others = 1000
     }

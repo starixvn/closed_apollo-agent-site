@@ -52,10 +52,6 @@ namespace Fanex.Age.Excel.Reports.Commission
             {
                 totalRemoveColumn++;
             }
-            //if (!(UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission))
-            //{
-            //    totalRemoveColumn++;
-            //}
             if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
             {
                 totalRemoveColumn++;
@@ -129,10 +125,7 @@ namespace Fanex.Age.Excel.Reports.Commission
             {
                 values.Add(Resources.Lang.numbergame);
             }
-            //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-            //{
-            //    values.Add(Resources.Lang.bingo);
-            //}
+           
             if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
             {
                 values.Add(Resources.Lang.P2P);
@@ -181,11 +174,7 @@ namespace Fanex.Age.Excel.Reports.Commission
                         values.Add(item.NumberGame);
                         sumGame += item.NumberGame;
                     }
-                    //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-                    //{
-                    //    values.Add(item.Bingo);
-                    //    sumGame += item.Bingo;
-                    //}
+                    
                     if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
                     {
                         values.Add(item.P2P);
@@ -230,10 +219,7 @@ namespace Fanex.Age.Excel.Reports.Commission
                 {
                     values.Add(data.Sum(p => p.NumberGame));
                 }
-                //if (UserPermission.IsShowBingo && !Sunplus.Agent.Model.BL.Definitions.AppSettings.DisabledBingoCommission)
-                //{
-                //    values.Add(data.Sum(p => p.Bingo));
-                //}
+               
                 if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsEnableP2P)
                 {
                     values.Add(data.Sum(p => p.P2P));

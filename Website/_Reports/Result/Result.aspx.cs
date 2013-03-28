@@ -2129,16 +2129,6 @@ namespace Fanex.Age.UI.Reports.Result
         /// <returns></returns>
         private string GenerateNumberGameBall(int ballNumber)
         {
-            //if (_exportToExcel)
-            //{
-            //    return ballNumber.ToString();
-            //}
-            //else
-            //{
-            //    Result.ResultNumberGame_Content_Match_Ball_Block ballBlock = new ResultNumberGame_Content_Match_Ball_Block();
-            //    ballBlock.BallImageSource = this.GenerateBingoBallImageUrl(ballNumber);
-            //    return ballBlock.ToString();
-            //}
             return string.Empty;
         }
 
@@ -2196,9 +2186,7 @@ namespace Fanex.Age.UI.Reports.Result
         /// <returns></returns>
         private string GenerateBingoBallImageUrl(int number)
         {
-            //string relativeUrl = string.Format("img/Bingo/Ball/{0}.jpg", this.FormatTwoDigit(number));
-            //string url = this.GetAbsoluteUrl(relativeUrl);
-
+          
             //return url;
             return string.Empty;
         }

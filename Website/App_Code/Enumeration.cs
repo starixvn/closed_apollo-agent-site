@@ -48,7 +48,6 @@ public enum BetType
     FIEndOfDayOE=66,
     Casino = 71,
     P2P = 72,
-    Bingo = 73,
     NG1stBallOU = 81,
     NGLastBallOU = 82,
     NG1stBallOE = 83,
@@ -100,7 +99,6 @@ public enum SportType
     Winter = 29,
     Entertainment = 31,
     NumberGame = 161,
-    Bingo = 252,
     NetBall = 32
 }
 

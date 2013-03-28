@@ -12,11 +12,7 @@ namespace ConfigSection
 
     public class IBCAccounting : ConfigurationSection
     {
-        [ConfigurationProperty("Bingo", IsRequired = true)]
-        public BingoElements Bingo
-        {
-            get { return (BingoElements)base["Bingo"]; }
-        }
+        
         [ConfigurationProperty("Casino", IsRequired = true)]
         public CasinoElements Casino
         {
@@ -30,37 +26,7 @@ namespace ConfigSection
               
     }
 
-    public class BingoElements : ConfigurationElement  
-    {    
-        
-        [ConfigurationProperty("providerType", DefaultValue = "DAL.Provider.Bingo.BingoProviderClient")]
-        public string ProviderType
-        {
-            get
-            {
-                return (string)base["providerType"];
-
-            }
-            set
-            {
-                ;
-            }
-        }
-
-        [ConfigurationProperty("showBetSetting", DefaultValue = false)]
-        public bool ShowBetSetting
-        {
-            get
-            {
-                return true;// CastAide.AsBoolean(base["showBetSetting"], false);
-
-            }
-            set
-            {
-                base["showBetSetting"] = value;
-            }
-        }
-    }
+   
 
     public class CasinoElements: ConfigurationElement
     {

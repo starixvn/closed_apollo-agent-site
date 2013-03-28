@@ -165,12 +165,6 @@ namespace Fanex.Age.UI.Reports.Winloss
                                 rowBlock.BetTypeName = Resources.Lang.P2P;
                             }
                             break;
-                        case (int)Sunplus.Agent.Model.BL.Definitions.BetType.Bingo: // 73
-                            {
-                                bingoLink.BetTypeName = betTypeName;
-                                rowBlock.BetTypeName = bingoLink.ToString();
-                            }
-                            break;
                         case (int)(Sunplus.Agent.Model.BL.Definitions.BetType.N_Over_Under): // Number game Over/Under
                             if (isVN)
                             {

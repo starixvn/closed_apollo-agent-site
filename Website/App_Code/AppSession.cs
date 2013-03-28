@@ -26,11 +26,6 @@ public static class AppSession
         }
     }
 
-    public static bool IsBingoInDBDisabled
-    {
-        get { return (bool)(AccountInfo.Age_CustomerSelStatus(Sunplus.Agent.Model.Entities.UserSession.Current.CustId).ResultSet.Tables[0].Rows[0]["disablebingo"]); }
-    }
-
     public static bool IsCasinoInDBDisabled
     {
         get { return (bool)(AccountInfo.Age_CustomerSelStatus(Sunplus.Agent.Model.Entities.UserSession.Current.CustId).ResultSet.Tables[0].Rows[0]["disablecasino"]); }
