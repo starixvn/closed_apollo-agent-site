@@ -6,112 +6,6 @@ html, body {
     height: 100%;
 }
 
-::-webkit-scrollbar {
-    height: 16px;
-    overflow: visible;
-    width: 16px;
-}
-
-::-webkit-scrollbar-button {
-    height: 0;
-    width: 0;
-}
-
-::-webkit-scrollbar-track {
-    background-clip: padding-box;
-    border: solid transparent;
-    border-width: 0 0 0 4px;
-}
-
-::-webkit-scrollbar:vertical {
-    width: 11px;
-}
-
-::-webkit-scrollbar:horizontal {
-    height: 11px;
-}
-
-::-webkit-scrollbar-track:horizontal {
-    border-width: 4px 0 0;
-}
-
-::-webkit-scrollbar-track:hover {
-    background-color: rgba(0,0,0,.05);
-    box-shadow: inset 1px 0 0 rgba(0,0,0,.1);
-}
-
-::-webkit-scrollbar-track:horizontal:hover {
-    box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
-}
-
-::-webkit-scrollbar-track:active {
-    background-color: rgba(0,0,0,.05);
-    box-shadow: inset 1px 0 0 rgba(0,0,0,.14),inset -1px 0 0 rgba(0,0,0,.07);
-}
-
-::-webkit-scrollbar-track:horizontal:active {
-    box-shadow: inset 0 1px 0 rgba(0,0,0,.14),inset 0 -1px 0 rgba(0,0,0,.07);
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,.2);
-    background-clip: padding-box;
-    border: solid transparent;
-    border-width: 1px 1px 1px 6px;
-    min-height: 28px;
-    padding: 100px 0 0;
-    box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
-}
-
-::-webkit-scrollbar-thumb:horizontal {
-    border-width: 6px 1px 1px;
-    padding: 0 0 0 100px;
-    box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset -1px 0 0 rgba(0,0,0,.07);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0,0,0,.4);
-    box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
-}
-
-::-webkit-scrollbar-thumb:active {
-    background-color: rgba(0,0,0,0.5);
-    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.35);
-}
-
-::-webkit-scrollbar-corner {
-    background: transparent;
-}
-
-body::-webkit-scrollbar-track-piece {
-    background-clip: padding-box;
-    background-color: #f5f5f5;
-    border: solid @white;
-    border-width: 0 0 0 3px;
-    box-shadow: inset 1px 0 0 rgba(0,0,0,.14),inset -1px 0 0 rgba(0,0,0,.07);
-}
-
-body::-webkit-scrollbar-track-piece {
-    border-width: 3px 0 0;
-    box-shadow: none;
-}
-
-body::-webkit-scrollbar-thumb {
-    border-width: 1px 1px 1px 1px;
-}
-
-body::-webkit-scrollbar-thumb:horizontal {
-    border-width: 1px 1px 1px;
-}
-
-body::-webkit-scrollbar-corner {
-    background-clip: padding-box;
-    background-color: #f5f5f5;
-    border: solid @white;
-    border-width: 3px 0 0 3px;
-    box-shadow: inset 1px 1px 0 rgba(0,0,0,.14);
-}
-
 body {   
     margin: 0px;
     background-attachment: fixed;
@@ -143,37 +37,40 @@ td {
 #tab_menu_L {
     float: left;
     height: 22px;
-    width: 27px;
-}
-
-.tab_menu01AC {
-    background: transparent url(../../_GlobalResources/Images/menutop_OV_1.jpg) no-repeat scroll right top;
-    color: red;
-    display: block;
-    text-decoration: none;
+    width: 29px;
 }
 
 .tab_menu02 {
-    background: transparent url(../../_GlobalResources/Images/info_bg.png) no-repeat scroll;
-    color: white;
+    #gradient.vertical(darken(@primaryColor, 10%), @primaryColor);
+	color: @white;
+	border: 1px solid @primaryColor;
+	border-bottom: none;
+	.border-top-right-radius(3px);
+	.border-top-left-radius(3px);	
     display: block;
     text-decoration: none;
     height: 19px;
     padding-top: 2px;
 
 	&:hover {
-		background: transparent url(../../_GlobalResources/Images/info_bg.png) no-repeat 0 -26px scroll;
-		color: @yellow;
+		border: 1px solid @grayLight;
+		border-bottom: none;
+		background: @grayLighter;
+		color: @grayDarker;
 	}
 }
 
-.tab_menu02AC {
-    background: url(../../_GlobalResources/Images/info_bg.png) #EEEEEE no-repeat 0 -26px scroll;
-    color: @yellow;
+.tab_menu02AC {   
+    background: @grayLighter;
+	border: 1px solid @grayLight;
+	border-bottom: none;
+	.border-top-right-radius(3px);
+	.border-top-left-radius(3px);
+	color: @grayDarker;
     display: block;
     text-decoration: none;
-    height: 22px;
-    padding-top: 3px;
+    height: 18px;
+    padding-top: 4px;
 }
 
 .tab_menu03 {
@@ -181,10 +78,14 @@ td {
     display: block;
     text-decoration: none;
     height: 21px;
+	border: 1px solid @grayLight;
+	border-bottom: none;
+	.border-top-right-radius(3px);
+	.border-top-left-radius(3px);
 
 	&:hover {
-		background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat 0 -26px scroll;
-		color: @yellow;
+		background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll 0 -26px;
+		color: @grayDarker;
 	}
 }
 
@@ -195,17 +96,23 @@ td {
     height: 23px;
 }
 
-.tab_menu01 {
-    background: transparent url(../../_GlobalResources/Images/menu_bg.png) no-repeat scroll;
-    color: white;
+.tab_menu01 {    
+    #gradient.vertical(darken(@primaryColor, 10%), @primaryColor);
+	color: @white;
     display: block;
     text-decoration: none;
-    height: 19px;
-    padding-top: 2px;
+    height: 18px;
+    padding-top: 4px;
+	border: 1px solid @primaryColor;	
+	border-bottom: none;
+	.border-top-right-radius(3px);
+	.border-top-left-radius(3px);
 
 	&:hover {
-		background: transparent url(../../_GlobalResources/Images/menu_bg.png) no-repeat 0 -26px scroll;
-		color: @yellow;
+		border: 1px solid @grayLight;
+		border-bottom: none;
+		background: @grayLighter;		
+		color: @grayDarker;
 	}
 }
 
@@ -223,12 +130,8 @@ td {
 	}
 }
 
-#leftpane02 {
-    background: transparent url(../../_GlobalResources/Images/bg_left.jpg) repeat-y scroll center top;
-    border-left: 1px solid #C8C8C8;
-    border-right: 1px solid #C8C8C8;
-    float: left;
-    /*height: 95%;*/
+#leftpane02 {       
+    float: left;    
     padding-top: 1px;
     width: 200px;
 	position: absolute;
@@ -261,7 +164,7 @@ td {
 
 #left_line02 {
     background: #B2B2B2;
-    width: 188px;
+    width: 200px;
     height: 1px;
 }
 
@@ -350,23 +253,23 @@ td {
 }
 
 .Bleft_Sub02 {
-    background: @white url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x scroll center top;
+    background: @white;
     border-bottom: 1px solid #B2B2B2;
     border-left: 1px solid #B2B2B2;
     border-right: 1px solid #B2B2B2;
     margin-bottom: 1px;
     padding: 5px;
-    width: 179px;
+    width: 188px;
 }
 
 .Bleft_Sub02_setting {
-    background: @white url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x scroll center top;
+    background: @white;
     border-bottom: 1px solid #B2B2B2;
     border-left: 1px solid #B2B2B2;
     border-right: 1px solid #B2B2B2;
     margin-bottom: 1px;
     padding: 5px;
-    width: 179px;
+    width: 188px;
 	position: absolute;
 	top: 22px;
 	bottom: 0;
@@ -469,7 +372,8 @@ font {
     font-size: 11px;
     font-weight: bold;
     line-height: 18px;
-    width: 190px;
+    width: 200px;
+	height: 22px;
 
 	ul {
 		font-size: 11px;
@@ -484,41 +388,43 @@ font {
 	}
 
 	.current {
-		a {
-			background-position: 0 -21px;
-
-			span {
-				background-position: 100% -21px;
-				color: #F78F1E;
-			}
+		a {			
+			color: @grayDarker;
+			background: @white;
+			border: 1px solid @grayLight;	
+			border-bottom: none;			
 		}
 	}
 
 	a {
-		background: transparent url(../../_GlobalResources/Images/left_btleft.gif) no-repeat scroll left top;
+		#gradient.vertical(darken(@primaryColor, 10%), @primaryColor);
+		color: @white;
+		display: block;	
+		text-decoration: none;
+		border: 1px solid @primaryColor;
+		border-bottom: none;
+		.border-top-right-radius(3px);
+		.border-top-left-radius(3px);
 		float: left;
-		font-size: 11px;
 		margin-right: 3px;
 		padding-left: 3px;
 		text-decoration: none;
+		height: 22px;
+		line-height: 19px;
 
 		span {			
-			background: transparent url(../../_GlobalResources/Images/right_btleft.gif) no-repeat scroll right top;
-			color: @white;
-			display: block;
-			float: left;
-			font-size: 11px;
 			font-weight: bold;
 			padding: 1px 6px 2px 5px;
 		}
 
 		&:hover {
-			background-position: 0% -21px;
+			border: 1px solid @grayLight;
+			border-bottom: none;			
+			background: @white;
+			color: @grayDarker;
 
-			span {
-				color: #4d4e4e;
-				cursor: pointer;
-				background-position: 100% -21px;
+			span {				
+				cursor: pointer;				
 			}
 		}
 	}
@@ -557,7 +463,7 @@ font {
 #leftpanewrapper {
     padding-left: 5px;
     padding-top: 5px;
-	background: transparent url(../../_GlobalResources/Images/bg_left.jpg) repeat-y scroll center top;
+	background-color: @grayLighter;
     background-attachment: fixed;
     float: left;
     width: 215px;
@@ -598,8 +504,7 @@ font {
 }
 
 #button_left02 {
-    width: 192px;
-    margin-left: 5px;
+    width: 201px;    
     padding-top: 4px;
 	position: absolute;
 	top: 0;
@@ -1075,7 +980,7 @@ a {
 			text-decoration: none;
 
 			&:hover {
-				color: @hoverLinkOrangeColor;
+				color: @hoverLinkRedColor;
 			}
 		} 
 	}

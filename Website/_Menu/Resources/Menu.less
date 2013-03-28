@@ -11,10 +11,9 @@ html, body
 body
 {
 	line-height: 21px;
-	margin: 0px;	
-	background: transparent url(../../_GlobalResources/Images/bg_left.jpg) repeat-y scroll center top;
+	margin: 0px;
 	background-attachment: fixed;
-	background-color: #f5f6f8;
+	background-color: @grayLighter;
 }
 
 td
@@ -46,29 +45,38 @@ td
 {
 	float: left;
 	height: 26px;
-	width: 27px;	
-}
-
-.tab_menu01AC
-{	
-	background: url(../../_GlobalResources/Images/menu_bg.png) #EEEEEE no-repeat 0 -26px scroll;
-	color: @yellow;
-	display: block;	
-	text-decoration: none;
-	height: 22px;
-	padding-top: 1px;
+	width: 29px;	
 }
 
 a {
-	&.tab_menu02 {	
-		background: transparent url(../../_GlobalResources/Images/info_bg.png) no-repeat scroll left top;
-		color: white;
+	&.tab_menu01AC {		
+		color: @grayDarker;
 		display: block;	
 		text-decoration: none;
+		height: 21px;
+		padding-top: 1px;
+		background: @grayLighter;
+		border: 1px solid @grayLight;
+		border-bottom: none;
+		.border-top-right-radius(3px);
+		.border-top-left-radius(3px);
+	}
+
+	&.tab_menu02 {	
+		#gradient.vertical(darken(@primaryColor, 10%), @primaryColor);
+		color: @white;
+		display: block;	
+		text-decoration: none;
+		border: 1px solid @primaryColor;
+		border-bottom: none;
+		.border-top-right-radius(3px);
+		.border-top-left-radius(3px);
 
 		&:hover {	
-			background: transparent url(../../_GlobalResources/Images/info_bg.png) no-repeat 0 -26px scroll;
-			color: @yellow;
+			border: 1px solid @grayLight;	
+			border-bottom: none;		
+			background: #EFEFEF;
+			color: @grayDarker;			
 		}
 
 		img {
@@ -77,12 +85,16 @@ a {
 	}
 
 	&.tab_menu03 {	
-		background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll left top;
+		background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll;
 		color: white;
 		display: block;
 		padding-right: 6px;
 		text-decoration: none;
 		height: 21px;
+		border: 1px solid @grayLight;
+		border-bottom: none;
+		.border-top-right-radius(3px);
+		.border-top-left-radius(3px);
 
 		&:hover {	
 			background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat 0 -26px scroll;
@@ -125,7 +137,7 @@ a {
 		text-transform: uppercase;
 
 		&:hover {
-			color: @yellow;
+			color: @primaryColor;
 			background: url(../../_GlobalResources/Images/icon_active.jpg) no-repeat right;
 		}
 	}
@@ -134,7 +146,7 @@ a {
 		display: block;
 		width: 190px;
 		background: url(../../_GlobalResources/Images/icon_active.jpg) no-repeat right;
-		color: @yellow;
+		color: @primaryColor;
 		text-decoration: none;
 		text-transform: uppercase;
 		cursor: pointer;
