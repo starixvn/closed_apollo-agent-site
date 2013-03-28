@@ -6,8 +6,11 @@ var editSetting =
         if (memberBetLimit.BetLimitElement.Validate()) {
             var params = "settingContext=" + JSON.stringify(memberBetLimit.SettingContext) +
                          "&betLimits=" + JSON.stringify(memberBetLimit.BetLimitElement.Save()) +
-                         "&commissionSetting=" + JSON.stringify(editCommission.CommissionSettingElement.Save()) +
-                         "&positionTakingSetting=" + JSON.stringify(editPositionTaking.PositionTakingElement.Save());
+                         "&commissionSetting=" + JSON.stringify(editCommission.CommissionSettingElement.Save());
+            if (editPositionTaking)
+            {
+                params += "&positionTakingSetting=" + JSON.stringify(editPositionTaking.PositionTakingElement.Save());
+            }
             var submitUrl = "../../CustomerSetting/Handlers/UpdateSetting.ashx";
             var onCompleteCallback = null;
             age.ReloadPage(600000);
