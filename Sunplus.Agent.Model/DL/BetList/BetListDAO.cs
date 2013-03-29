@@ -712,7 +712,7 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-
+        /*
         /// <summary>
         /// Get Running bets by bettype and match for master
         /// </summary>
@@ -829,7 +829,7 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
-
+        */
         #endregion RunningByBettypeAndMatch
 
         #region DailyStatement
@@ -920,7 +920,7 @@ namespace Sunplus.Agent.Model.DL.BetList
 
             return ExecSpTable("Age_BetList_TotalBets_SelRunningByBettype", parameters);
         }
-
+        /*
         /// <summary>
         /// Get running bets by bet type for master
         /// </summary>
@@ -954,7 +954,7 @@ namespace Sunplus.Agent.Model.DL.BetList
 
             return ExecSpTable("Age_BetList_SelRunningByBettype_SAg", parameters);
         }
-
+        */
         /// <summary>
         /// Get correct score for Agent
         /// </summary>

@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-
 using Sunplus.Agent.Utilities;
-
+using System.Collections;
 
 /*
  * Created 20100507@Jacob - Render HDPOU page
@@ -101,8 +90,7 @@ namespace Fanex.Age.UI.TotalBets
                     RenderMatchRow(matchBlock, dr, matchIndex, i + 1);
 
                     leagueBlock.MatchContents.Append(matchBlock);
-
-
+                    
                     winToteTotal += Convert.ToDecimal(dr["Total_Win_Tote"]);
                     placeToteTotal += Convert.ToDecimal(dr["Total_Place_Tote"]);
                     winPlaceToteTotal += Convert.ToDecimal(dr["Total_WinPlace_Tote"]);
@@ -120,8 +108,9 @@ namespace Fanex.Age.UI.TotalBets
                 if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
                 #endregion
 
-                RenderTotalRow(tpl.Contents.TotalContents, winToteTotal, placeToteTotal, winPlaceToteTotal, winToteWinLoss, placeToteWinloss, winPlaceToteWinloss, placeToteFOTotal, placeToteFOTotal, winPlaceFOTotal, winToteFOWinloss, placeToteFOWinloss, winPlaceFOWinloss);
-
+                RenderTotalRow(tpl.Contents.TotalContents, winToteTotal, placeToteTotal, winPlaceToteTotal, 
+                    winToteWinLoss, placeToteWinloss, winPlaceToteWinloss, placeToteFOTotal, placeToteFOTotal, 
+                    winPlaceFOTotal, winToteFOWinloss, placeToteFOWinloss, winPlaceFOWinloss);
             }
             else
             {
@@ -139,12 +128,12 @@ namespace Fanex.Age.UI.TotalBets
             }
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetHorseRacing();
         }
@@ -163,8 +152,8 @@ namespace Fanex.Age.UI.TotalBets
         {
             // Render match content
             matchBlock.ColorClass = (matchIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
-            matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
-            matchBlock.RaceTime.ColorOver = Fanex.Age.UI.Common.RowBgOver;
+            matchBlock.ColorOver = Common.RowBgOver;
+            matchBlock.RaceTime.ColorOver = Common.RowBgOver;
 
             if (String.Compare(dr["oddsstatus"].ToString(), BetListStatus.Running, true) == 0)
             {
@@ -172,7 +161,7 @@ namespace Fanex.Age.UI.TotalBets
             }
             else
             {
-                matchBlock.RaceTime.ColorStatus = Fanex.Age.UI.Common.RowBgOdd;
+                matchBlock.RaceTime.ColorStatus = Common.RowBgOdd;
             }
 
             matchBlock.RaceTime.KickOffDay = Formater.ShortDateFormat(dr["kickofftime"]);
@@ -191,7 +180,6 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         private void RenderTote(Racing_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr)
         {
-
             #region WinTote
             if (Convert.ToInt32(dr["Total_Win_Tote"]) == 0)
             {
@@ -205,8 +193,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.WinToteValue.Hide();
                 matchBlock.WinTote.WinToteTotal = RedForNegativeAmount(dr["Total_Win_Tote"], 0);
                 matchBlock.WinTote.MatchId = dr["matchid"].ToString();
-                matchBlock.WinTote.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
-
+                matchBlock.WinTote.BetType = Common.BetListByBetTypeMatch;
             }
             matchBlock.WinToteWinloss = RedForNegativeAmount(dr["Winloss_Win_Tote"], 2);
             #endregion
@@ -224,8 +211,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.PlaceToteValue.Hide();
                 matchBlock.PlaceTote.PlaceToteTotal = RedForNegativeAmount(dr["Total_Place_Tote"], 0);
                 matchBlock.PlaceTote.MatchId = dr["matchid"].ToString();
-                matchBlock.PlaceTote.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
-
+                matchBlock.PlaceTote.BetType = Common.BetListByBetTypeMatch;
             }
             matchBlock.PlaceToteWinloss = RedForNegativeAmount(dr["Winloss_Place_Tote"], 2);
             #endregion
@@ -243,12 +229,10 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.WinplaceToteValue.Hide();
                 matchBlock.WinplaceTote.WinplaceToteTotal = RedForNegativeAmount(dr["Total_WinPlace_Tote"], 0);
                 matchBlock.WinplaceTote.MatchId = dr["matchid"].ToString();
-                matchBlock.WinplaceTote.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
-
+                matchBlock.WinplaceTote.BetType = Common.BetListByBetTypeMatch;
             }
             matchBlock.WinplaceToteWinloss = RedForNegativeAmount(dr["Winloss_WinPlace_Tote"], 2);
             #endregion
-
         }
 
         /// <summary>
@@ -258,7 +242,6 @@ namespace Fanex.Age.UI.TotalBets
         /// <returns></returns>
         public static string RedForNegativeAmount(object amount, byte decDigits)
         {
-
             if ((decimal)amount < 0)
                 return "<font color='#eb6003'>" + Formater.DecFormat(amount, decDigits) + "</font>";
             else
@@ -297,5 +280,4 @@ namespace Fanex.Age.UI.TotalBets
 
         #endregion
     }
-
 }

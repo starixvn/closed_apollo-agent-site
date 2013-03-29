@@ -1,21 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Sunplus.Agent.Model.BL.TotalBets;
-
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
 using System.Data;
-using DNAide.Core;
-using DNAide.Utils;
+using System.Web.UI;
 using Sunplus.Agent.Utilities;
-
 
 /*
  * Created 20100507@Jacob - Render HDPOU page
@@ -25,10 +11,8 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class NextGoal_Page : TotalBets_Page
     {
-
         #region Constant
         private const int SCORE_COLUMN_COUNT = 5;
         #endregion
@@ -86,9 +70,9 @@ namespace Fanex.Age.UI.TotalBets
                         matchBlock.MatchId = currentMatchId.ToString();
                         matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(NextGoalList.Rows[currentRowIndex]["homeid"]) + ((bool)NextGoalList.Rows[currentRowIndex]["isNeutral"] ? Resources.Lang.IsNeutral : string.Empty);
                         matchBlock.Away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(NextGoalList.Rows[currentRowIndex]["awayid"]);
-                        matchBlock.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
-                        matchBlock.ColorClass = (matchIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
-                        matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
+                        matchBlock.BetType = Common.BetListByBetTypeMatch;
+                        matchBlock.ColorClass = (matchIndex % 2) == 0 ? Common.RowBgEven : Common.RowBgOdd;
+                        matchBlock.ColorOver = Common.RowBgOver;
                         matchBlock.TimeValue = NextGoalList.Rows[currentRowIndex]["showtime"].ToString();
                         matchBlock.ScoreContents.Clear();
                         // Loop for score
@@ -122,8 +106,7 @@ namespace Fanex.Age.UI.TotalBets
                                 betScoreBlock.BetScoreContents.NextScoreContents.WinLost = PositiveNumberRedColor(NextGoalList.Rows[currentRowIndex]["winlost"]);
                             }
                             scoreBlock.BetScores.Append(betScoreBlock);
-
-
+                            
                             scoreIndex++;
                             // Full column
                             if (scoreIndex % SCORE_COLUMN_COUNT == 0)
@@ -198,5 +181,4 @@ namespace Fanex.Age.UI.TotalBets
         }
         #endregion
     }
-
 }
