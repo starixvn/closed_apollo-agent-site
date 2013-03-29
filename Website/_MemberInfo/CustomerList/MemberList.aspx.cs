@@ -246,20 +246,20 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     break;
             }
 
-            tplBlock.groupAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentgroup"]) * 100), this.langKey);
-            tplBlock.oneXtwoAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscount1x2"]) * 100), this.langKey);
-            tplBlock.otherAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscountother"]) * 100), this.langKey);
-            tplBlock.gameAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscountnumbergame"]) * 100), this.langKey);
+            tplBlock.groupAgent = Formater.FormatNumber40((Convert.ToDecimal(dr["agentgroup"]) * 100), this.langKey);
+            tplBlock.oneXtwoAgent = Formater.FormatNumber40((Convert.ToDecimal(dr["agentdiscount1x2"]) * 100), this.langKey);
+            tplBlock.otherAgent = Formater.FormatNumber40((Convert.ToDecimal(dr["agentdiscountother"]) * 100), this.langKey);
+            tplBlock.gameAgent = Formater.FormatNumber40((Convert.ToDecimal(dr["agentdiscountnumbergame"]) * 100), this.langKey);
 
-            tplBlock.groupMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustGroup"]) * 100), this.langKey);
-            tplBlock.oneXtwoMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscount1x2"]) * 100), this.langKey);
-            tplBlock.otherMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscountOther"]) * 100), this.langKey);
-            tplBlock.gameMember = Formater.FormatNumber4((Convert.ToDecimal(dr["CustDiscountNumberGame"]) * 100), this.langKey);
+            tplBlock.groupMember = Formater.FormatNumber40((Convert.ToDecimal(dr["CustGroup"]) * 100), this.langKey);
+            tplBlock.oneXtwoMember = Formater.FormatNumber40((Convert.ToDecimal(dr["CustDiscount1x2"]) * 100), this.langKey);
+            tplBlock.otherMember = Formater.FormatNumber40((Convert.ToDecimal(dr["CustDiscountOther"]) * 100), this.langKey);
+            tplBlock.gameMember = Formater.FormatNumber40((Convert.ToDecimal(dr["CustDiscountNumberGame"]) * 100), this.langKey);
 
-            tplBlock.HDP = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_Soccer_PT"]) / 100), this.langKey);
-            tplBlock.OU = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_Soccer_PT"]) / 100), this.langKey);
-            tplBlock.HDPLive = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_Soccer_PT_Live"]) / 100), this.langKey);
-            tplBlock.OULive = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_Soccer_PT_Live"]) / 100), this.langKey);
+            tplBlock.HDP = Formater.FormatNumber40((Convert.ToDecimal(dr["HDP_Soccer_PT"]) / 100), this.langKey);
+            tplBlock.OU = Formater.FormatNumber40((Convert.ToDecimal(dr["OU_Soccer_PT"]) / 100), this.langKey);
+            tplBlock.HDPLive = Formater.FormatNumber40((Convert.ToDecimal(dr["HDP_Soccer_PT_Live"]) / 100), this.langKey);
+            tplBlock.OULive = Formater.FormatNumber40((Convert.ToDecimal(dr["OU_Soccer_PT_Live"]) / 100), this.langKey);
         }
     }
 }

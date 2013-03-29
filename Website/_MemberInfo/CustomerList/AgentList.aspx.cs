@@ -242,18 +242,18 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
                     break;
             }
 
-            tplBlock.groupA = Formater.FormatNumber4((Convert.ToDecimal(dr["groupa"]) * 100), this.langKey);
-            tplBlock.groupB = Formater.FormatNumber4((Convert.ToDecimal(dr["groupb"]) * 100), this.langKey);
-            tplBlock.groupC = Formater.FormatNumber4((Convert.ToDecimal(dr["groupc"]) * 100), this.langKey);
-            tplBlock.groupD = Formater.FormatNumber4((Convert.ToDecimal(dr["groupd"]) * 100), this.langKey);
-            tplBlock.other = Formater.FormatNumber4((Convert.ToDecimal(dr["DiscountOther"]) * 100), this.langKey);
-            tplBlock.onextwo = Formater.FormatNumber4((Convert.ToDecimal(dr["Discount1x2"]) * 100), this.langKey);
-            tplBlock.game = Formater.FormatNumber4((Convert.ToDecimal(dr["DiscountNumberGame"]) * 100), this.langKey);
+            tplBlock.groupA = Formater.FormatNumber40((Convert.ToDecimal(dr["groupa"]) * 100), this.langKey);
+            tplBlock.groupB = Formater.FormatNumber40((Convert.ToDecimal(dr["groupb"]) * 100), this.langKey);
+            tplBlock.groupC = Formater.FormatNumber40((Convert.ToDecimal(dr["groupc"]) * 100), this.langKey);
+            tplBlock.groupD = Formater.FormatNumber40((Convert.ToDecimal(dr["groupd"]) * 100), this.langKey);
+            tplBlock.other = Formater.FormatNumber40((Convert.ToDecimal(dr["DiscountOther"]) * 100), this.langKey);
+            tplBlock.onextwo = Formater.FormatNumber40((Convert.ToDecimal(dr["Discount1x2"]) * 100), this.langKey);
+            tplBlock.game = Formater.FormatNumber40((Convert.ToDecimal(dr["DiscountNumberGame"]) * 100), this.langKey);
 
-            tplBlock.HDP = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_PositionTaking"]) / 100), this.langKey);
-            tplBlock.OU = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking"]) / 100), this.langKey);
-            tplBlock.HDPLive = Formater.FormatNumber4((Convert.ToDecimal(dr["HDP_PositionTaking_Live"]) / 100), this.langKey);
-            tplBlock.OULive = Formater.FormatNumber4((Convert.ToDecimal(dr["OU_PositionTaking_Live"]) / 100), this.langKey);
+            tplBlock.HDP = Formater.FormatNumber40((Convert.ToDecimal(dr["HDP_PositionTaking"]) / 100), this.langKey);
+            tplBlock.OU = Formater.FormatNumber40((Convert.ToDecimal(dr["OU_PositionTaking"]) / 100), this.langKey);
+            tplBlock.HDPLive = Formater.FormatNumber40((Convert.ToDecimal(dr["HDP_PositionTaking_Live"]) / 100), this.langKey);
+            tplBlock.OULive = Formater.FormatNumber40((Convert.ToDecimal(dr["OU_PositionTaking_Live"]) / 100), this.langKey);
         }
     }
 }
