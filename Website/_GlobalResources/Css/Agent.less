@@ -104,34 +104,52 @@ a {
 /* TABLES */
 
 .tblRpt {
+	background-color: #EAEAEA;
+	border: 1px solid #CCC;
+	.box-shadow(0 0 0 2px #D5D5D5);
 	border-collapse: collapse;
-	border: 1px solid @tableRptBorderColor;
+	color: #707070;
 	margin: 10px 0 0;
 
 	td {
-		height: 20px;
+		height: 22px;
+		padding: 2px 4px;
 		white-space: nowrap;
 	}
 	
-	.RptTitle {
-		background-color: @white;
-		text-align: center;
-		text-transform: uppercase;
-	}
-	.RptSubTitle { background-color: #ffefde }
-
-	.RptHeader, .RptHeader02 {
-		background: @primaryHeaderBackground;
-		border: 1px solid @tableRptBorderColor;
-		color: @primaryHeaderColor;
-		text-align: center;
-
-		td { border-spacing: 0 }
+	.RptTitle, .RptTitleLeft {
+		#gradient.vertical(#F8F8F8, #EAEAEA);
+		.box-shadow(0 1px 0 0 #FFF inset);
+		td {
+			height: 33px;
+			text-align: left;
+		}
 	}
 
-	.RptHeader02 {
-		background: @secondHeaderBackground;
-		color: @secondHeaderColor;
+	thead td {
+		border-spacing: 0;
+		border: 1px solid #CCC;
+		border-width: 1px 1px 0 0;
+		.box-shadow(0 1px 0 #FFF inset);
+		text-shadow: 0 1px 0 #FFF;
+		text-align: center;
+	}
+
+	tbody {
+		td {
+			border-right: 1px solid #CCC;
+			border-top: 1px solid #CCC;
+
+			.box-shadow(0 1px 0 #FFF inset);
+			text-shadow: 0 1px 0 #FFF;
+			
+			&:last-child {
+				border-right: 0;
+			}
+		}
+		tr:first-child td {
+			border-top: 1px solid #CCC;
+		}
 	}
 
 	.RptFooter {

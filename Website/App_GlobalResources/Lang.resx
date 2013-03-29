@@ -1787,7 +1787,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Master Win Lost Detail</value>
   </data>
   <data name="lblMatchWinLostDetail" xml:space="preserve">
-    <value>Match Win Loss Detail</value>
+    <value>Match Win Loss Details</value>
   </data>
   <data name="lblMax" xml:space="preserve">
     <value>Max</value>
