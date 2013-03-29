@@ -41,6 +41,7 @@ if (typeof jQuery != 'undefined') {
                     timeout: 120000,
                     success: function (rs) {
                         if (rs.ErrCode == 3) {
+                            alert("Your Account was kicked out.")
                             location.href = window.baseURL + "Account/SignOut";
                         }
                     },

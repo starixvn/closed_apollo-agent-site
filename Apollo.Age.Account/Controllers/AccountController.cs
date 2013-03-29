@@ -43,7 +43,7 @@ namespace Apollo.Age.Account.Controllers
             // Clear session ticket
             FormsAuthentication.SignOut(); // Use this command will make the logout function log out all loged in users in the same machine and browser
 
-            FormsAuthentication.RedirectToLoginPage();
+            //FormsAuthentication.RedirectToLoginPage();
             return View("~/_Authorization/SignIn.aspx");
         }
     }

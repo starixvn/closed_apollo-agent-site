@@ -63,9 +63,9 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
         public override object ValidateRequest(Hashtable p)
         {
-            if (PermissionService.HasPermissionOnUpdating(CurrentUserSession.AgentId,
+            if (!PermissionService.HasPermissionOnUpdating(CurrentUserSession.AgentId,
                 CurrentUserSession.UserId,
-                CurrentUserSession.IsMaster))
+                CurrentUserSession.IsUserMaster))
             {
                 return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
             }

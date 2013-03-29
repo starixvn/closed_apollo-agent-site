@@ -24,8 +24,6 @@ namespace Apollo.Age.Services.Impl
     /// </summary>
     public static class PermissionService
     {
-        private const string AgentIdSessionKey = "Apollo-AgentId";
-        private const string UserIdSessionKey = "Apollo-AgentUserId";
 
         private static IUserRepository _userRepository;
         static PermissionService()
