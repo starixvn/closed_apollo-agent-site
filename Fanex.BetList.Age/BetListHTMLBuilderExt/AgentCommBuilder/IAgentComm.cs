@@ -1,5 +1,6 @@
 ﻿namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder
 {
+    using System.Collections.Generic;
     using Fanex.BetList.Age.ExtTemplate;
     using Fanex.BetList.Core.Entities;
 
@@ -22,6 +23,6 @@
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <returns></returns>
-        AgentComm_Template Render(ITicket ticket, System.Collections.Generic.List<ITicketData> ticketData, bool hideDetail);
+        AgentComm_Template Render(ITicket ticket, List<ITicketData> ticketData, bool hideDetail);
     }
 }

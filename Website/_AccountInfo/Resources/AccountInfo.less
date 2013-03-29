@@ -40,97 +40,92 @@ td {
     width: 29px;
 }
 
-.tab_menu02 {
-    #gradient.vertical(darken(@primaryColor, 10%), @primaryColor);
-	color: @white;
-	border: 1px solid @primaryColor;
-	border-bottom: none;
-	.border-top-right-radius(3px);
-	.border-top-left-radius(3px);	
-    display: block;
-    text-decoration: none;
-    height: 19px;
-    padding-top: 2px;
-
-	&:hover {
-		border: 1px solid @grayLight;
-		border-bottom: none;
-		background: @grayLighter;
-		color: @grayDarker;
-	}
-}
-
-.tab_menu02AC {   
-    background: @grayLighter;
-	border: 1px solid @grayLight;
-	border-bottom: none;
-	.border-top-right-radius(3px);
-	.border-top-left-radius(3px);
-	color: @grayDarker;
-    display: block;
-    text-decoration: none;
-    height: 18px;
-    padding-top: 4px;
-}
-
-.tab_menu03 {
-    background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll left top;
-    display: block;
-    text-decoration: none;
-    height: 21px;
-	border: 1px solid @grayLight;
-	border-bottom: none;
-	.border-top-right-radius(3px);
-	.border-top-left-radius(3px);
-
-	&:hover {
-		background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll 0 -26px;
-		color: @grayDarker;
-	}
-}
-
-.tab_menu03AC {
-    background: url(../../_GlobalResources/Images/treeview_bg.png) #D5D5D5 no-repeat 0 -26px scroll;
-    display: block;
-    text-decoration: none;
-    height: 23px;
-}
-
-.tab_menu01 {    
-    #gradient.vertical(darken(@primaryColor, 10%), @primaryColor);
-	color: @white;
-    display: block;
-    text-decoration: none;
-    height: 18px;
-    padding-top: 4px;
-	border: 1px solid @primaryColor;	
-	border-bottom: none;
-	.border-top-right-radius(3px);
-	.border-top-left-radius(3px);
-
-	&:hover {
-		border: 1px solid @grayLight;
-		border-bottom: none;
-		background: @grayLighter;		
-		color: @grayDarker;
-	}
-
-	&:link, &:visited {
+a {
+	&.tab_menu02 {
+		background: @primaryColor;
 		color: @white;
+		border: 1px solid @primaryColor;
+		border-bottom: none;
+		.border-top-right-radius(3px);
+		.border-top-left-radius(3px);	
+		display: block;
+		text-decoration: none;
+		height: 19px;
+		padding-top: 2px;
+
+		&:hover {
+			border: 1px solid @grayLight;
+			border-bottom: none;
+			background: @grayLighter;
+			color: @grayDarker;
+		}
 	}
-}
 
-.tab_menu02Blink {
-    background: transparent url(../../_GlobalResources/Images/menutop_none.gif) no-repeat scroll left top;
-    color: white;
-    display: block;
-    padding-right: 10px;
-    text-decoration: none;
+	&.tab_menu02AC {   
+		background: @grayLighter;
+		border: 1px solid @grayLight;
+		border-bottom: none;
+		.border-top-right-radius(3px);
+		.border-top-left-radius(3px);
+		color: @grayDarker;
+		display: block;
+		text-decoration: none;
+		height: 18px;
+		padding-top: 4px;
+	}
 
-	&:hover {
-		background: transparent url(../../_GlobalResources/Images/menutop_OV2.jpg) no-repeat scroll left top;
-		color: red;
-		margin-top: 2px;
+	&.tab_menu03 {
+		background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll left top;
+		display: block;
+		text-decoration: none;
+		height: 21px;
+		border: 1px solid @grayLight;
+		border-bottom: none;
+		.border-top-right-radius(3px);
+		.border-top-left-radius(3px);
+
+		&:hover {
+			background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat scroll 0 -26px;
+			color: @grayDarker;
+		}
+	}
+
+	&.tab_menu03AC {
+		background: url(../../_GlobalResources/Images/treeview_bg.png) #D5D5D5 no-repeat 0 -26px scroll;
+		display: block;
+		text-decoration: none;
+		height: 23px;
+	}
+
+	&.tab_menu01 {    
+		background: @primaryColor;
+		color: @white;
+		display: block;
+		text-decoration: none;
+		height: 17px;
+		padding-top: 4px;
+		border: 1px solid @primaryColor;	
+		border-bottom: none;
+		.border-top-right-radius(3px);
+		.border-top-left-radius(3px);
+
+		&:hover {
+			border: 1px solid @grayLight;
+			border-bottom: none;
+			background: @grayLighter;		
+			color: @grayDarker;
+		}
+	}
+
+	&.b_nleft {
+		color: @gray;
+		font-weight: bold;
+		text-decoration: none;
+
+		&:hover {
+			color: @hoverLinkOrangeColor;
+		}
+
 	}
 }
 
@@ -257,7 +252,7 @@ td {
 }
 
 .Bleft_Sub02 {
-    background: @white;
+    background: lighten(@grayLight, 39%);
     border-bottom: 1px solid #B2B2B2;
     border-left: 1px solid #B2B2B2;
     border-right: 1px solid #B2B2B2;
@@ -267,13 +262,13 @@ td {
 }
 
 .Bleft_Sub02_setting {
-    background: @white;
+    background: lighten(@grayLight, 39%);
     border-bottom: 1px solid #B2B2B2;
     border-left: 1px solid #B2B2B2;
     border-right: 1px solid #B2B2B2;
     margin-bottom: 1px;
     padding: 5px;
-    width: 188px;
+    width: 187px;
 	position: absolute;
 	top: 22px;
 	bottom: 0;
@@ -338,6 +333,7 @@ a {
     height: 24px;
     text-align: center;
     width: 92px;
+	padding-top: 3px;
 }
 
 #button_nLeft02 {
@@ -346,17 +342,6 @@ a {
     height: 24px;
     text-align: center;
     width: 92px;
-}
-
-a.b_nleft {
-    color: @gray;
-    font-weight: bold;
-    text-decoration: none;
-
-	&:hover {
-		color: @hoverLinkOrangeColor;
-	}
-
 }
 
 font {
@@ -402,11 +387,11 @@ font {
 	}
 
 	a {
-		#gradient.vertical(darken(@primaryColor, 10%), @primaryColor);
+		background: @grayLight;
 		color: @white;
 		display: block;	
 		text-decoration: none;
-		border: 1px solid @primaryColor;
+		border: 1px solid @grayLight;
 		border-bottom: none;
 		.border-top-right-radius(3px);
 		.border-top-left-radius(3px);
@@ -489,8 +474,9 @@ font {
 .pnlTreeview {
     width: 202px;
     position: absolute;
-	top: 31px;
+	top: 30px;
 	bottom: 0;
+	border: 1px solid @grayLight;
 }
 
 .ie9 .pnlTreeview {
@@ -1210,4 +1196,3 @@ iframe {
 		color: @hoverLinkRedColor;
 	}
 }
-

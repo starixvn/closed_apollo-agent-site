@@ -109,7 +109,7 @@
         /// <param name="enabled"></param>
         /// <param name="totalpages"></param>
         /// <returns></returns>
-        public DataTable Acc_Agent_GetByAgent(int custId, string userName, int pageindex, int pagesize, ref int totalpages)
+        public DataTable Age_Agent_GetByAgent(int custId, string userName, int pageindex, int pagesize, ref int totalpages)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("agentid", custId);
@@ -118,7 +118,7 @@
             parameters.Add("pageindex", pageindex);
             parameters.Add("totalpages", totalpages);
 
-            DbResult res = ExecSp("Acc_Agent_GetByAgent", parameters);
+            DbResult res = ExecSp("Age_Agent_GetByAgent", parameters);
             totalpages = Convert.ToInt32(res.Outputs["totalpages"]);
             return res.ResultSet.Tables[0];
         }
@@ -219,7 +219,7 @@
         /// <param name="enabled"></param>
         /// <param name="totalpages"></param>
         /// <returns></returns>
-        public DataTable Acc_Customer_GetByAgent(int custId, int currentAgentId, string userName, int pageindex, int pagesize, ref int totalpages)
+        public DataTable Age_Customer_GetByAgent(int custId, int currentAgentId, string userName, int pageindex, int pagesize, ref int totalpages)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("agentid", custId);
@@ -229,7 +229,7 @@
             parameters.Add("username", userName);
             parameters.Add("pagesize", pagesize);
 
-            DbResult res = ExecSp("Acc_Customer_GetByAgent", parameters);
+            DbResult res = ExecSp("Age_Customer_GetByAgent", parameters);
             totalpages = Convert.ToInt32(res.Outputs["totalpages"]);
             return res.ResultSet.Tables[0];
         }
