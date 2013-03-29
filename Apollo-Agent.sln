@@ -12,7 +12,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{C99C4F08-2A1D-4ECF-976B-5F7DC928182C}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}|Sunplus.Shared.ViewLogLib.dll;{A7134F35-65C9-43A6-9386-86CD65F349DD}|Fanex.Age.DTO.dll;{5024C3EB-BEB3-4096-8365-FFE2E34DC237}|Fanex.Age.Business.dll;{F5A64151-9580-4878-A3D1-F737E391A702}|Fanex.Age.UI.Forecast.dll;{DFE39BB5-0B6A-4EE0-86BA-FFAC6BEEFA3A}|Sunplus.Agent.UI.ScoreMap.dll;{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}|Fanex.Age.UI.TotalBets.dll;{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}|Fanex.Age.UI.dll;{1BCB2913-352A-49D2-99C6-1F8EACE6B49C}|Fanex.Age.UI.Admin.dll;{85998BF3-454B-49BD-B137-F8CCAF973ABF}|Fanex.Age.Excel.dll;{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}|Fanex.Age.Utility.dll;{784D23CD-1AF9-4265-9C68-62C31DD84AAC}|Apollo.Age.dll;{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}|Fanex.BetList.Core.dll;{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}|Fanex.BetList.Age.dll;{5384E9C5-8CF1-42F8-8D12-8089EA725351}|Fanex.BetList.Core.TicketHelper.dll;{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}|Sunplus.Agent.Model.dll;{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}|Fanex.Age.UI.Components.dll;{6044CB14-ACC9-4627-8559-18EE24513585}|Fanex.Age.Business.Interface.dll;{BD56914E-88CE-4330-BE77-8BD78208A140}|Apollo.Age.TotalBets.dll;{126C63A6-33AC-482C-A100-E077C91B7912}|Apollo.Age.Web.dll;{39FC7B3E-361B-4470-9A02-73B25795D99E}|Apollo.Age.Account.dll;"
+		ProjectReferences = "{DB53C8B9-5982-4033-9ECB-C1D5426FAAB3}|Sunplus.Shared.ViewLogLib.dll;{A7134F35-65C9-43A6-9386-86CD65F349DD}|Fanex.Age.DTO.dll;{5024C3EB-BEB3-4096-8365-FFE2E34DC237}|Fanex.Age.Business.dll;{F5A64151-9580-4878-A3D1-F737E391A702}|Fanex.Age.UI.Forecast.dll;{DFE39BB5-0B6A-4EE0-86BA-FFAC6BEEFA3A}|Sunplus.Agent.UI.ScoreMap.dll;{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}|Fanex.Age.UI.TotalBets.dll;{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}|Fanex.Age.UI.dll;{1BCB2913-352A-49D2-99C6-1F8EACE6B49C}|Fanex.Age.UI.Admin.dll;{85998BF3-454B-49BD-B137-F8CCAF973ABF}|Fanex.Age.Excel.dll;{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}|Fanex.Age.Utility.dll;{784D23CD-1AF9-4265-9C68-62C31DD84AAC}|Apollo.Age.dll;{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}|Fanex.BetList.Core.dll;{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}|Fanex.BetList.Age.dll;{5384E9C5-8CF1-42F8-8D12-8089EA725351}|Fanex.BetList.Core.TicketHelper.dll;{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}|Sunplus.Agent.Model.dll;{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}|Fanex.Age.UI.Components.dll;{6044CB14-ACC9-4627-8559-18EE24513585}|Fanex.Age.Business.Interface.dll;{BD56914E-88CE-4330-BE77-8BD78208A140}|Apollo.Age.TotalBets.dll;{126C63A6-33AC-482C-A100-E077C91B7912}|Apollo.Age.Web.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Website"
 		Debug.AspNetCompiler.PhysicalPath = "Website\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Website\"
@@ -27,7 +27,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{C99
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "59488"
+		VWDPort = "53397"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.TotalBets", "Fanex.Age.UI.TotalBets\Fanex.Age.UI.TotalBets.csproj", "{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}"
@@ -73,7 +73,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.TotalBets", "Apo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Web", "Apollo.Age.Web\Apollo.Age.Web.csproj", "{126C63A6-33AC-482C-A100-E077C91B7912}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Account", "Apollo.Age.Account\Apollo.Age.Account.csproj", "{39FC7B3E-361B-4470-9A02-73B25795D99E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Reports", "Apollo.Age.Reports\Apollo.Age.Reports.csproj", "{0DCAB062-FC45-436B-9F66-4D141DEBAF49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -157,10 +157,10 @@ Global
 		{126C63A6-33AC-482C-A100-E077C91B7912}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{126C63A6-33AC-482C-A100-E077C91B7912}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{126C63A6-33AC-482C-A100-E077C91B7912}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DCAB062-FC45-436B-9F66-4D141DEBAF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DCAB062-FC45-436B-9F66-4D141DEBAF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DCAB062-FC45-436B-9F66-4D141DEBAF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DCAB062-FC45-436B-9F66-4D141DEBAF49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
