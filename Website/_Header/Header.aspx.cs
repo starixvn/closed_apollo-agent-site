@@ -154,7 +154,7 @@ namespace Sunplus.Agent.UI._Header
             */
             //tpl.langFlag = "langFlag_" + session.LangKey.ToLower();
 
-            tpl.popupTopDisplay = "none";
+            //tpl.popupTopDisplay = "none";
 
             tpl.roleid = session.RoleId.ToString();
             tpl.userid = session.UserId.ToString();
