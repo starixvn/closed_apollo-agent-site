@@ -14,6 +14,7 @@ namespace Fanex.BetList.Age.BetListCmd
     using System.Data;
     using Sunplus.Agent.Model.BL.BetList;
     using Sunplus.Agent.Model.BL.Definitions;
+    using System.Collections;
 
     /// <summary>
     /// Summary description for CancelBetListCmd
@@ -32,7 +33,7 @@ namespace Fanex.BetList.Age.BetListCmd
             this.betListBO = new BetListBO(CurrentUserSession.NetSessionId);
         }
 
-        public override void SetParams(System.Collections.Hashtable hash)
+        public override void SetParams(Hashtable hash)
         {
             this.masterId = (int)hash["masterId"];
             this.agentId = (int)hash["agentId"];

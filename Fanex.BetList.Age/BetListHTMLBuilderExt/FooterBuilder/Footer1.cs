@@ -16,7 +16,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
     using Fanex.BetList.Age.ExtTemplate;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
-    using Sunplus.Agent.Model.BL.Definitions;
 
     /// <summary>
     /// WinLost

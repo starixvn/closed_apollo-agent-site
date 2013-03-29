@@ -11,6 +11,7 @@
 namespace Fanex.BetList.Age.BetListCmd
 {
     using System;
+    using System.Collections;
     using System.Data;
     using Fanex.BetList.Age.Definition;
     using Sunplus.Agent.Model.BL.BetList;
@@ -37,7 +38,7 @@ namespace Fanex.BetList.Age.BetListCmd
             this.outDataTable = new DataTable();
         }
 
-        public override void SetParams(System.Collections.Hashtable hash)
+        public override void SetParams(Hashtable hash)
         {
             this.custId = (int)hash["custid"];
             this.fdate = (DateTime)hash["fdate"];
