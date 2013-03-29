@@ -7,19 +7,29 @@
 //   <change who="Anders.Le" date="2013.3.29">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Reports.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Apollo.Age.Reports.ViewModels;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class OutStandingService : ReportServiceBase
     {
-
+        public OutStandingViewModel Total(IEnumerable<OutStandingViewModel> models)
+        {
+            return new OutStandingViewModel
+            {
+                UserName = string.Empty,
+                GameOutStanding = models.Sum(x => x.GameOutStanding),
+                GameShareAmount = models.Sum(x => x.GameShareAmount),
+                OutStanding = models.Sum(x => x.OutStanding),
+                ShareAmount = models.Sum(x => x.ShareAmount)
+            };
+        }
     }
 }
