@@ -48,7 +48,7 @@ var editPositionTaking =
         }
         else {
             age.UnLock();
-            AddPopupHeight(50);
+//            AddPopupHeight(50);
             ageMsg.Show(errMsg);
             window.scroll(0, 0);
             return;
