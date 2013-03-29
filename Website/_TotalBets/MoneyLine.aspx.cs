@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-using Fanex.Age.UI;
-using Fanex.Age.UI.Components;
-using Sunplus.Agent.Model.BL.Definitions;
-using Sunplus.Agent.Model.BL.TotalBets;
 using Sunplus.Agent.Utilities;
 
 /*
@@ -66,7 +60,8 @@ namespace Fanex.Age.UI.TotalBets
                     leagueBlock.MatchContents.Append(matchBlock);
                 }
 
-                if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
+                if (leagueBlock != null) 
+                    tpl.Contents.LeagueContents.Append(leagueBlock);
             }
 
             if (_fullMode)
@@ -100,23 +95,24 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         /// <param name="matchIndex"></param>
         /// <param name="rowIndex"></param>
-        private void RenderMatchRow(MoneyLine_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, int matchIndex, int rowIndex)
+        private void RenderMatchRow(MoneyLine_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, 
+            int matchIndex, int rowIndex)
         {
             // Render match content
 
             if (dr.Table.Columns.Contains("closed") && Convert.ToInt32(dr["closed"]) != 0)
             {
-                matchBlock.ColorClass = Fanex.Age.UI.Common.RowBgClosed;
+                matchBlock.ColorClass = Common.RowBgClosed;
             }
             else if (matchIndex % 2 == 0)
             {
-                matchBlock.ColorClass = Fanex.Age.UI.Common.RowBgEven;
+                matchBlock.ColorClass = Common.RowBgEven;
             }
             else
             {
-                matchBlock.ColorClass = Fanex.Age.UI.Common.RowBgOdd;
+                matchBlock.ColorClass = Common.RowBgOdd;
             }
-            matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
+            matchBlock.ColorOver = Common.RowBgOver;
             matchBlock.NoValue = rowIndex.ToString();
             matchBlock.TimeValue = dr["showtime"].ToString();
             matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isneutral"] ? Resources.Lang.IsNeutral : string.Empty);
@@ -130,7 +126,7 @@ namespace Fanex.Age.UI.TotalBets
             matchBlock.ForecastHomeHalfTime = Convert.ToInt16(dr["BetCount_Home_HT"]) == 0 ? string.Empty : RoundPositiveColor(dr["winlost_home_HT"]);
             matchBlock.ForecastAwayHalfTime = Convert.ToInt16(dr["BetCount_Away_HT"]) == 0 ? string.Empty : RoundPositiveColor(dr["winlost_away_HT"]);
             matchBlock.MatchId = dr["matchid"].ToString();
-            matchBlock.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+            matchBlock.BetType = Common.BetListByBetTypeMatch;
         }
 
         /// <summary>

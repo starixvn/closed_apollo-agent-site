@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-using Fanex.Age.UI;
-using Fanex.Age.UI.Components;
-using Sunplus.Agent.Model.BL.Definitions;
-using Sunplus.Agent.Model.BL.TotalBets;
 using Sunplus.Agent.Utilities;
 
 /*
@@ -78,12 +73,12 @@ namespace Fanex.Age.UI.TotalBets
             }
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetOddEventOneXTwo();
         }
@@ -113,17 +108,17 @@ namespace Fanex.Age.UI.TotalBets
             {
                 if (dr.Table.Columns.Contains("closed") && Convert.ToInt32(dr["closed"]) != 0)
                 {
-                    matchBlock.ColorClass = Fanex.Age.UI.Common.RowBgClosed;
+                    matchBlock.ColorClass = Common.RowBgClosed;
                 }
                 else
                 {
-                    matchBlock.ColorClass = (matchIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
+                    matchBlock.ColorClass = (matchIndex % 2) == 0 ? Common.RowBgEven : Common.RowBgOdd;
                 }
 
                 matchBlock.TimeValue = dr["showtime"].ToString();
                 matchBlock.LiveNotice.Hide();
             }
-            matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
+            matchBlock.ColorOver = Common.RowBgOver;
 
             // Event
             matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + (Convert.ToBoolean(dr["isNeutral"]) ? Resources.Lang.IsNeutral : string.Empty);
@@ -151,7 +146,7 @@ namespace Fanex.Age.UI.TotalBets
                 decimal OETotal = (decimal)(dr["home_odds_OE"]) - (decimal)(dr["away_odds_OE"]);
                 matchBlock.OddEvenValue.OddEvenValue = NegativeNumberRoundColor(OETotal);
                 matchBlock.OddEvenValue.MatchId = dr["matchid"].ToString();
-                matchBlock.OddEvenValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.OddEvenValue.BetType = Common.BetListByBetTypeMatch;
                 matchBlock.OddEvenValue.Show();
             }
             else
@@ -174,7 +169,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OneXTwoValue.OneXTwoValue = Formater.DecFormat(OneXTwoTotal, 0);
                 matchBlock.OneXTwoValue.MatchId = dr["matchid"].ToString();
                 matchBlock.OneXTwoButton.MatchId = dr["matchid"].ToString();
-                matchBlock.OneXTwoValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.OneXTwoValue.BetType = Common.BetListByBetTypeMatch;
 
                 matchBlock.OneXTwoValue.Show();
                 matchBlock.OneXTwoButton.Show();
@@ -199,7 +194,7 @@ namespace Fanex.Age.UI.TotalBets
                 decimal DNDTotal = (decimal)(dr["home_odds_DND"]) - (decimal)(dr["away_odds_DND"]);
                 matchBlock.DNDValue.DNDValue = Formater.DecFormat(DNDTotal, 0);
                 matchBlock.DNDValue.MatchId = dr["matchid"].ToString();
-                matchBlock.DNDValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.DNDValue.BetType = Common.BetListByBetTypeMatch;
 
                 matchBlock.DNDValue.Show();
             }
@@ -222,7 +217,7 @@ namespace Fanex.Age.UI.TotalBets
                 decimal OEFirstHalf = (decimal)dr["home_odds_OE_1st"] - (decimal)dr["away_odds_OE_1st"];
                 matchBlock.OddEvenFirstHalfValue.OddEventFirstHalfValue = NegativeNumberRoundColor(OEFirstHalf);
                 matchBlock.OddEvenFirstHalfValue.MatchId = dr["matchid"].ToString();
-                matchBlock.OddEvenFirstHalfValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.OddEvenFirstHalfValue.BetType = Common.BetListByBetTypeMatch;
 
                 matchBlock.OddEvenFirstHalfValue.Show();
             }
@@ -246,7 +241,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OneXTwoFirstHalfValue.OneXTwoFirstHalfValue = Formater.DecFormat(OneXTwoFirstHalf, 0);
                 matchBlock.OneXTwoFirstHalfValue.MatchId = dr["matchid"].ToString();
                 matchBlock.OneXTwoFirstHalfButton.MatchId = dr["matchid"].ToString();
-                matchBlock.OneXTwoFirstHalfValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.OneXTwoFirstHalfValue.BetType = Common.BetListByBetTypeMatch;
 
                 matchBlock.OneXTwoFirstHalfValue.Show();
                 matchBlock.OneXTwoFirstHalfButton.Show();
