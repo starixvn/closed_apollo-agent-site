@@ -17,7 +17,7 @@ function EditAgentSetting(element, custId, userName, agentLevel) {
         //url, title, left, top, width, height
         ageWnd.openDialog(url, '', {
             width: 990,
-            height: 700,
+            height: 740,
             position: { my: "top+15", at: "center top", of: window }
         });
     }
@@ -32,7 +32,7 @@ function OpenEditAgentCommission(custId, userName, agentLevel) {
         //url, title, left, top, width, height
         ageWnd.openDialog(url, '', {
             width: 990,
-            height: 220,
+            height: 260,
             position: { my: "top+15", at: "center top", of: window }
         });
     }
@@ -47,7 +47,7 @@ function OpenEditAgentBetLimit(custId, userName, agentLevel) {
         //url, title, left, top, width, height
         ageWnd.openDialog(url, '', {
             width: 990,
-            height: 500,
+            height: 540,
             position: { my: "top+15", at: "center top", of: window }
         });
     }
@@ -62,7 +62,7 @@ function OpenEditAgentPT(custId, userName, agentLevel) {
 
         ageWnd.openDialog(url, '', {
             width: 990,
-            height: 720,
+            height: 760,
             position: { my: "top+15", at: "center top", of: window }
         });
     }
@@ -74,7 +74,7 @@ function OpenEditMemberCommission(custId, userName, ugroup) {
 
         ageWnd.openDialog(url, '', {
             width: 990,
-            height: 320,
+            height: 360,
             position: { my: "top+15", at: "center top", of: window }
         });
     }
@@ -85,7 +85,7 @@ function OpenEditMemberBetLimit(custId, userName, ugroup) {
         var url = "../../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custid=" + custId + "&username=" + userName + "&ugroup=" + ugroup + "&showheader=0";
         ageWnd.openDialog(url, '', {
             width: 990,
-            height: 490,
+            height: 530,
             position: { my: "top+15", at: "center top", of: window }
         });
     }

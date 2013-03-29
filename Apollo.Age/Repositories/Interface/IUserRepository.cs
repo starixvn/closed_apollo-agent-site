@@ -22,5 +22,6 @@ namespace Apollo.Age.Repositories.Interface
     /// </summary>
     public interface IUserRepository : IRepository<User>
     {
+        int GetUserStatus(ICriteria criteria);
     }
 }
