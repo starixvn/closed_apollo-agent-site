@@ -27,7 +27,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{C99
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "59488"
+		VWDPort = "53397"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.TotalBets", "Fanex.Age.UI.TotalBets\Fanex.Age.UI.TotalBets.csproj", "{4EEEE9B8-03DE-47F4-A7FD-B8F9DA4CC1EE}"

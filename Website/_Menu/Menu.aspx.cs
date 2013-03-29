@@ -80,8 +80,8 @@ namespace Sunplus.Agent.UI._Menu
             if (!CurrentUserSession.IsLogged)
             {
                 tpl.MenuTab = null;
-                tpl.MenuTab1 = null;
-                tpl.SubMenu = null;
+                //tpl.MenuTab1 = null;
+                //tpl.SubMenu = null;
             }
 
             RenderMenu(ref tpl);
