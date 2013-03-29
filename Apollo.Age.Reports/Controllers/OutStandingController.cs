@@ -7,7 +7,6 @@
 //   <change who="Anders.Le" date="2013.3.29">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Reports.Controllers
 {
     using System;
@@ -15,9 +14,9 @@ namespace Apollo.Age.Reports.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
-    using Apollo.Age.Reports.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -38,9 +37,7 @@ namespace Apollo.Age.Reports.Controllers
             // call service to get report data here
             IEnumerable<OutStandingViewModel> models = _reportService.GetReportData<OutStandingViewModel>(criteria);
 
-            
-
             return View();
-        }        
+        }
     }
 }
