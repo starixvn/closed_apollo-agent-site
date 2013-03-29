@@ -40,9 +40,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Age.Business.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Dependencies\Fanex.Age.Business.Interface.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Caching">
       <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
     </Reference>
@@ -107,6 +104,10 @@
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Age.Business.Interface\Fanex.Age.Business.Interface.csproj">
+      <Project>{6044CB14-ACC9-4627-8559-18EE24513585}</Project>
+      <Name>Fanex.Age.Business.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.DTO\Fanex.Age.DTO.csproj">
       <Project>{A7134F35-65C9-43A6-9386-86CD65F349DD}</Project>
       <Name>Fanex.Age.DTO</Name>

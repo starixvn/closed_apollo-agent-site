@@ -8,7 +8,7 @@
 using System;
 using Fanex.Age.UI;
 using Fanex.Age.UI.Components.ShowHideColumn;
-using Sunplus.Agent.Utilities;
+using Fanex.Age.Utility;
 
 /// <summary>
 /// Base class for renderring context menu to show/hide columns.
@@ -146,7 +146,7 @@ public abstract class ContextMenuColumnsBase : TplPage, IContextMenuColumns
     {
         var encodeStr = string.Concat(CurrentUserSession.UserId, CurrentUserSession.CustId, CurrentUserSession.SubAccId, implement.GetType().BaseType.FullName);
 
-        this.CookieName = Encryption.PearsonEncode(encodeStr);
+        //this.CookieName = Encryption.PearsonEncode(encodeStr);
         this.TableId = tableId;
         this.MenuRegions = ctxMenuRegionIds;
         this.MenuContainer = ctxMenuContainerId;

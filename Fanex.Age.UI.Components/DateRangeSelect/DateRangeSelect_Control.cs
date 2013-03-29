@@ -5,6 +5,7 @@ using System.Web;
 using Fanex.Age.UI.Components.DateRangeSelect;
 using Fanex.Age.UI.Components.RefreshCountDown;
 using TplCore.Element;
+using Fanex.Age.Utility;
 
 /// <summary>
 /// Generate refresh count down control
@@ -210,8 +211,8 @@ namespace Fanex.Age.UI.Components
             _template.LimitDateRange.Hide();
             _template.LimitHistoryDateRange.MonthYear.Hide();
             _template.LimitHistoryDateRange.Show();
-            _template.LimitHistoryDateRange.OneMonthYearCalendar.DateFrom = Sunplus.Agent.Utilities.Formater.ShortDateFormat(dateFrom);
-            _template.LimitHistoryDateRange.OneMonthYearCalendar.DateTo = Sunplus.Agent.Utilities.Formater.ShortDateFormat(dateTo);
+            _template.LimitHistoryDateRange.OneMonthYearCalendar.DateFrom = Formater.ShortDateFormat(dateFrom);
+            _template.LimitHistoryDateRange.OneMonthYearCalendar.DateTo = Formater.ShortDateFormat(dateTo);
             // Render LimitHistoryDateRange Month
             string[] textMonthArray = { "", Resources.Lang.January, Resources.Lang.February, Resources.Lang.March, Resources.Lang.April, Resources.Lang.May, Resources.Lang.June, Resources.Lang.July, Resources.Lang.August, Resources.Lang.September, Resources.Lang.October, Resources.Lang.November, Resources.Lang.December };
 
@@ -316,7 +317,7 @@ namespace Fanex.Age.UI.Components
             _template.LimitHistoryDateRange.MonthYear.Show();
             _template.LimitHistoryDateRange.OneMonthYearCalendar.Hide();
             _template.LimitHistoryDateRange.Show();
-            _template.LimitHistoryDateRange.MonthYear.DateFrom = Sunplus.Agent.Utilities.Formater.ShortDateFormat(dateFrom);
+            _template.LimitHistoryDateRange.MonthYear.DateFrom = Formater.ShortDateFormat(dateFrom);
             _template.LimitHistoryDateRange.MonthYear.DateTo = new DateTime(dateTo.Year, dateTo.Month, dateTo.ToString("yyyyMM") == DateTime.Now.ToString("yyyyMM") ? DateTime.Now.Day : this.DayOfMonth(dateTo.Year, dateTo.Month)).ToShortDateString();
             // Render LimitHistoryDateRange Month
             string[] textMonthArray = { "", Resources.Lang.January, Resources.Lang.February, Resources.Lang.March, Resources.Lang.April, Resources.Lang.May, Resources.Lang.June, Resources.Lang.July, Resources.Lang.August, Resources.Lang.September, Resources.Lang.October, Resources.Lang.November, Resources.Lang.December };
