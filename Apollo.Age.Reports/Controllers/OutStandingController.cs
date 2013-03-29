@@ -37,7 +37,7 @@ namespace Apollo.Age.Reports.Controllers
             // call service to get report data here
             IEnumerable<OutStandingViewModel> models = _reportService.GetReportData<OutStandingViewModel>(criteria);
 
-            return View();
+            return View(models);
         }
     }
 }
