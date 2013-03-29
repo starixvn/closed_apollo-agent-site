@@ -4,6 +4,7 @@ using System.Web;
 using TplCore.Element;
 using Fanex.Age.UI.Components.RefreshCountDown;
 using Fanex.Age.UI.Components.DateRangeSelect;
+using Fanex.Age.Utility;
 
 
 /// <summary>
@@ -28,7 +29,7 @@ namespace Fanex.Age.UI.Components.DateTimeControl.Calendar
 
         public DateTime CurrentDate
         {
-            set { _template.CurrentDate = Sunplus.Agent.Utilities.Formater.ShortDateFormat(value); }
+            set { _template.CurrentDate = Formater.ShortDateFormat(value); }
         }
         #endregion
 
@@ -46,7 +47,7 @@ namespace Fanex.Age.UI.Components.DateTimeControl.Calendar
             DateTime maxDate = DateTime.Today;
             _template.TriggerId = triggerId;
             _template.DateTextBoxId = dateTextboxId;
-            _template.CurrentDate = Sunplus.Agent.Utilities.Formater.ShortDateFormat(currentDate);
+            _template.CurrentDate = Formater.ShortDateFormat(currentDate);
             parent.RegisterComponent("Calendar_Control", this);
             SetDateRange(minDate, maxDate);
         }

@@ -5,7 +5,7 @@ using System.Web;
 using System.Data;
 using TplCore.Element;
 using Sunplus.Agent.Model.BL.Transfer;
-using Sunplus.Agent.Utilities;
+using Fanex.Age.Utility;
 using Sunplus.Agent.Model.Entities;
 using Fanex.Age.UI.Components.Transfer;
 

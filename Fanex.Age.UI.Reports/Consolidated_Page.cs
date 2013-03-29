@@ -2,7 +2,7 @@
 using System.Data;
 using System.Linq;
 using Fanex.Age.UI.Reports.Consolidated;
-using Sunplus.Agent.Utilities;
+using Fanex.Age.Utility;
 
 /// <summary>
 /// Summary description for Consolidated_Page

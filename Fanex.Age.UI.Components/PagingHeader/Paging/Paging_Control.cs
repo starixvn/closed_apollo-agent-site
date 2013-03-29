@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
-using Sunplus.Agent.Utilities;
+using Fanex.Age.Utility;
 using TplCore.Element;
 
 /*
@@ -101,7 +101,7 @@ namespace Fanex.Age.UI.Components
 
             if (isSelPageSize)
             {
-                tpl.SelPageSize.selPageSize = Sunplus.Agent.Utilities.HtmlGenerator.ComboBox("sel" + id, (object)(PageSize), PAGE_SIZES, id + ".SetPageSize(this.value)");
+                tpl.SelPageSize.selPageSize = HtmlGenerator.ComboBox("sel" + id, (object)(PageSize), PAGE_SIZES, id + ".SetPageSize(this.value)");
 
                 ShowHidePageSize();
             }
@@ -175,7 +175,7 @@ namespace Fanex.Age.UI.Components
                 tpl.disabledNext = tpl.disabledPrev = tpl.disabledFirst = tpl.disabledLast = "disabled";
             }
 
-            tpl.SelPageSize.selPageSize = Sunplus.Agent.Utilities.HtmlGenerator.ComboBox("sel" + id, (object)(PageSize), PAGE_SIZES, id + ".SetPageSize(this.value)");
+            tpl.SelPageSize.selPageSize = HtmlGenerator.ComboBox("sel" + id, (object)(PageSize), PAGE_SIZES, id + ".SetPageSize(this.value)");
 
             ShowHidePageSize();
         }
@@ -199,11 +199,11 @@ namespace Fanex.Age.UI.Components
         protected void ParseUrl(string url, ref int pageSize, ref int pageIndex)
         {
             if (url == null) return;
-
-            string ps = Sunplus.Agent.Utilities.UrlProcessor.GetParameterValue(PAGE_SIZE_P, url);
+            
+            string ps = UrlProcessor.GetParameterValue(PAGE_SIZE_P, url);
             int.TryParse(ps, out pageSize);
 
-            string pi = Sunplus.Agent.Utilities.UrlProcessor.GetParameterValue(PAGE_INDEX_P, url);
+            string pi = UrlProcessor.GetParameterValue(PAGE_INDEX_P, url);
             int.TryParse(pi, out pageIndex);
         }
 
