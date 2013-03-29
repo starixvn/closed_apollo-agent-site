@@ -74,7 +74,7 @@ namespace Fanex.Age.UI.Reports
 		{
 			protected static string s14 = "<table id=\"tbl-rpt\" class=\"tblRpt ";
 			public string BoldRow = "{BoldRow}";
-			protected static string s15 = "\"cellpadding=\"0\" cellspacing=\"1\" style=\"width: 100%;\"><thead><tr id=\"rowTitle\" class=\"RptTitleLeft\"><td id=\"content_title\" colspan=\"";
+			protected static string s15 = "\"><thead><tr id=\"rowTitle\" class=\"RptTitleLeft\"><td id=\"content_title\" colspan=\"";
 			public string NumCols = "{NumCols}";
 			protected static string s16 = "\">";
 			protected static string s17{get{return Resources.Lang.lblMatchWinLostDetail;}}
