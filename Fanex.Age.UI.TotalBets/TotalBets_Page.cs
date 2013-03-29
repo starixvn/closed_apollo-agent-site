@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Collections;
 using Sunplus.Agent.Model.BL.TotalBets;
+
 /*
  * Created 20100527@Jacob - Support render full mode or body mode
  * Revision:
@@ -14,28 +13,25 @@ namespace Fanex.Age.UI.TotalBets
 {
     public abstract class TotalBets_Page : TplPage
     {
-        #region Variable
         /// <summary>
         /// If fullMode=false, only render the body content
         /// Else render full page
         /// </summary>
         protected bool _fullMode = true;
         private TotalBetsBO _totalBetsBO = null;
+
         protected TotalBetsBO _TotalBetsBO
         {
             get
             {
-                if (_totalBetsBO == null) _totalBetsBO = new TotalBetsBO(CurrentUserSession.NetSessionId);
+                if (_totalBetsBO == null) 
+                    _totalBetsBO = new TotalBetsBO(CurrentUserSession.NetSessionId);
+
                 return _totalBetsBO;
             }
         }
 
-        #endregion
-
-
-        #region Override
-
-        public override void ProcessRequest(ref System.Collections.Hashtable p)
+        public override void ProcessRequest(ref Hashtable p)
         {
             if (Request["full_mode"] != null)
             {
@@ -46,7 +42,5 @@ namespace Fanex.Age.UI.TotalBets
                 }
             }
         }
-        #endregion
-
     }
 }

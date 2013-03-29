@@ -30,7 +30,7 @@
     <script src="<%= Page.ResolveUrl("_GlobalResources/Js/Core.js")%>" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
-            setInterval(APOLLO.reCheckIn, 5000);
+            setInterval(APOLLO.reCheckIn, 45000);
         });
     </script>
 </body>

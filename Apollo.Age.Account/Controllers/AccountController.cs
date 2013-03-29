@@ -20,6 +20,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.Age.UI;
     using Apollo.Age.Services.Impl;
     using System.Web.Security;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// TODO: Update summary.
@@ -30,7 +31,7 @@ namespace Apollo.Age.Account.Controllers
         {
             IUserSession userSession = UserSession.Current;
             Result result = new Result(0, string.Empty);
-            if (PermissionService.IsKickOut(userSession.AgentId, userSession.UserId))
+            if (PermissionService.IsKickOut(userSession.AgentId, userSession.UserId) && !AppSettings.IsLocal)
             {
                 result.ErrCode = (int)ErrorType.KickedOut;
             }

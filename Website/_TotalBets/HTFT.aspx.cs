@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-using Fanex.Age.UI;
-using Fanex.Age.UI.Components;
-using Sunplus.Agent.Model.BL.Definitions;
-using Sunplus.Agent.Model.BL.TotalBets;
 using Sunplus.Agent.Utilities;
+using System.Collections;
 
 /*
  * Created 20100507@Jacob - Render HTFT page
@@ -41,17 +36,17 @@ namespace Fanex.Age.UI.TotalBets
 
                     if (HTFTList.Columns.Contains("closed") && Convert.ToInt32(dr["closed"]) != 0)
                     {
-                        block.ColorClass = Fanex.Age.UI.Common.RowBgClosed;
+                        block.ColorClass = Common.RowBgClosed;
                     }
                     else
                     {
-                        block.ColorClass = (rowIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
+                        block.ColorClass = (rowIndex % 2) == 0 ? Common.RowBgEven : Common.RowBgOdd;
                     }
-                    block.ColorOver = Fanex.Age.UI.Common.RowBgOver;
+                    block.ColorOver = Common.RowBgOver;
                     block.NoValue = rowIndex.ToString();
                     block.HomeValue = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : string.Empty);
                     block.MatchId = dr["matchid"].ToString();
-                    block.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                    block.BetType = Common.BetListByBetTypeMatch;
                     block.AwayValue = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
                     block.HHValue = PositiveNumberRoundColor(dr["totalHH"]);
                     block.HDValue = PositiveNumberRoundColor(dr["totalHD"]);

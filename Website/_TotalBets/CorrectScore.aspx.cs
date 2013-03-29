@@ -1,12 +1,5 @@
-﻿using System;
-using System.Data;
+﻿using System.Collections;
 using System.Web.UI;
-
-
-
-
-using Sunplus.Agent.Utilities;
-
 
 /*
  * Created 20100507@Jacob - Render Financial page
@@ -16,35 +9,20 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class CorrectScore_Page : TotalBets_Page
     {
-       
-
-        #region Override
-        /// <summary>        
-        /// </summary>
-        /// <param name="writer"></param>
         public override void RenderContent(HtmlTextWriter writer)
         {
-            
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetFinancial();
         }
-        #endregion
-
-        #region Utility
-
-        
-        #endregion
     }
-
 }

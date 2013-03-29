@@ -1,16 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
-using System.Collections.Generic;
-
-using System.Web;
 using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-
-using Sunplus.Agent.Model.BL.Definitions;
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
 using Sunplus.Agent.Utilities;
 
 /*
@@ -21,10 +12,8 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class NumberGame_Page : TotalBets_Page
     {
-
         #region Override
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -85,12 +74,12 @@ namespace Fanex.Age.UI.TotalBets
             }
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetNumberGame();
         }
@@ -105,16 +94,16 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         /// <param name="matchIndex"></param>
         /// <param name="rowIndex"></param>
-        private void RenderMatchRow(NumberGame_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, int matchIndex, int rowIndex)
+        private void RenderMatchRow(NumberGame_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, 
+            int matchIndex, int rowIndex)
         {
             // Render match content
-            matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
-            matchBlock.ColorClass = (matchIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
+            matchBlock.ColorOver = Common.RowBgOver;
+            matchBlock.ColorClass = (matchIndex % 2) == 0 ? Common.RowBgEven : Common.RowBgOdd;
             
             matchBlock.NoValue = rowIndex.ToString();
             matchBlock.GameNo = dr["matchcode"].ToString();
             matchBlock.MatchId = dr["matchid"].ToString();
-
 
             #region get value infomation
             decimal Warrior_2ndBall = (decimal)dr["Warrior_2ndBall"];
@@ -204,5 +193,4 @@ namespace Fanex.Age.UI.TotalBets
 
         #endregion
     }
-
 }

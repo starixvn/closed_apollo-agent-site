@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-using Fanex.Age.UI;
-using Fanex.Age.UI.Components;
-using Sunplus.Agent.Model.BL.Definitions;
-using Sunplus.Agent.Model.BL.TotalBets;
 using Sunplus.Agent.Utilities;
 
 /*
@@ -42,14 +36,14 @@ namespace Fanex.Age.UI.TotalBets
                     counter++;
                     if (totalGoalList.Columns.Contains("closed") && Convert.ToInt32(dr["closed"]) != 0)
                     {
-                        contentBlock.ColorClass = Fanex.Age.UI.Common.RowBgClosed;
+                        contentBlock.ColorClass = Common.RowBgClosed;
                     }
                     else
                     {
-                        contentBlock.ColorClass = (counter % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
+                        contentBlock.ColorClass = (counter % 2) == 0 ? Common.RowBgEven : Common.RowBgOdd;
                     }
 
-                    contentBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
+                    contentBlock.ColorOver = Common.RowBgOver;
                     contentBlock.ValueNo = counter.ToString();
                     contentBlock.ValueHome = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : string.Empty);
                     contentBlock.ValueAway = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
@@ -59,7 +53,7 @@ namespace Fanex.Age.UI.TotalBets
                     contentBlock.Value7Over = TotalGoalRoundColor(dr["total7over"]);
 
                     contentBlock.MatchId = dr["matchid"].ToString();
-                    contentBlock.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                    contentBlock.BetType = Common.BetListByBetTypeMatch;
 
                     tpl.Contents.TotalGoalContent.Append(contentBlock);
                 }
