@@ -18,6 +18,9 @@ namespace Apollo.Age.Repositories.Impl
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
     using Fanex.Data;
+    using System.Data;
+    using Fanex.Common.Extensions;
+    using Apollo.Age.DTO.Accounts;
 
     /// <summary>
     /// TODO: Update summary.
@@ -46,6 +49,26 @@ namespace Apollo.Age.Repositories.Impl
             {
                 throw ex;
             }
+        }
+
+        public int GetUserStatus(ICriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    IDataReader reader = objectDb.ExecuteReader(criteria.GetSpParams());
+                    if (reader.Read())
+                    {
+                        return reader.ToInt("CurrentStatus");
+                    }
+                    else
+                    {
+                        return (int)AgentStatus.Closed;
+                    }
+                }
+            }
+            return (int)AgentStatus.Closed;
         }
 
         public ICommandResult Delete(User entity)

@@ -78,7 +78,6 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
                     return new Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
                 }
             }
-
             return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
         }
     }
