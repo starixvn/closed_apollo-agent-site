@@ -13,7 +13,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
     using System.Collections.Generic;
     using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Core.Entities;
-    using Sunplus.Agent.Model.BL.Definitions;
 
     public interface IFooter
     {

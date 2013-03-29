@@ -35,7 +35,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData"></param>
         /// <returns></returns>
-        public override AgentPT_Template Render(ITicket ticket, System.Collections.Generic.List<Core.Entities.ITicketData> ticketData)
+        public override AgentPT_Template Render(ITicket ticket, List<Core.Entities.ITicketData> ticketData)
         {
             base.Render(ticket, ticketData);
 

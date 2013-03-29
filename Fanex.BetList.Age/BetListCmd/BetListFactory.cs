@@ -8,11 +8,12 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using Fanex.Age.UI;
+
 namespace Fanex.BetList.Age.BetListCmd
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -40,7 +41,7 @@ namespace Fanex.BetList.Age.BetListCmd
 
         public static BetListCmd CreateBetList(string sessionId, ICollection<KeyValuePair<string, bool>> permission)
         {
-            return CreateBetList(Fanex.Age.UI.Common.BetListWinLossByDate, sessionId, permission);
+            return CreateBetList(Common.BetListWinLossByDate, sessionId, permission);
         }
     }
 

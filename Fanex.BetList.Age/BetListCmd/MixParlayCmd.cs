@@ -10,6 +10,7 @@
 
 namespace Fanex.BetList.Age.BetListCmd
 {
+    using System.Collections;
     using System.Data;
     using Fanex.BetList.Age.Definition;
     using Sunplus.Agent.Model.BL.BetList;
@@ -42,7 +43,7 @@ namespace Fanex.BetList.Age.BetListCmd
             set { this.bettype = value; }
         }
 
-        public override void SetParams(System.Collections.Hashtable hash)
+        public override void SetParams(Hashtable hash)
         {
             this.bettype = (int)hash["bettype"];
 

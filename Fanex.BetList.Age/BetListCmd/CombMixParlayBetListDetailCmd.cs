@@ -8,12 +8,13 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
+using System.Collections;
+using System.Data;
+using Fanex.Data.DNAide;
+using Sunplus.Agent.Model.BL.BetList;
+
 namespace Fanex.BetList.Age.BetListCmd
 {
-    using System.Data;
-    using Fanex.Data.DNAide;
-    using Sunplus.Agent.Model.BL.BetList;
-
     /// <summary>
     /// Summary description for Combination MixParlayBetList Detail Command
     /// </summary>
@@ -32,7 +33,7 @@ namespace Fanex.BetList.Age.BetListCmd
             this.betList = new BetListBO(sessionId);
         }
 
-        public override void SetParams(System.Collections.Hashtable hash)
+        public override void SetParams(Hashtable hash)
         {
             this.refNo = (long)hash["refno"];
             this.transId = (long)hash["transid"];

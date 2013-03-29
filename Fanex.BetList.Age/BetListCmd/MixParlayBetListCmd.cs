@@ -11,6 +11,7 @@
 namespace Fanex.BetList.Age.BetListCmd
 {
     using System;
+    using System.Collections;
     using System.Data;
     using Fanex.BetList.Age.Definition;
     using Sunplus.Agent.Model.BL.BetList;
@@ -52,7 +53,7 @@ namespace Fanex.BetList.Age.BetListCmd
             set { this.transId = value; }
         }
 
-        public override void SetParams(System.Collections.Hashtable hash)
+        public override void SetParams(Hashtable hash)
         {
             this.transId = Convert.ToInt64(hash["transid"]);
 

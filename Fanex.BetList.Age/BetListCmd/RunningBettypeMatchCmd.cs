@@ -11,9 +11,11 @@
 namespace Fanex.BetList.Age.BetListCmd
 {
     using System;
+    using System.Collections;
     using System.Data;
-    using Sunplus.Agent.Model.BL.BetList;
     using Fanex.BetList.Age.Definition;
+    using Sunplus.Agent.Model.BL.BetList;
+    using Sunplus.Agent.Model.BL.Cache;
 
     /// <summary>
     /// Summary description for RunningBettypeMatchCmd
@@ -36,7 +38,7 @@ namespace Fanex.BetList.Age.BetListCmd
             this.outDataTable = new DataTable();
         }
 
-        public override void SetParams(System.Collections.Hashtable hash)
+        public override void SetParams(Hashtable hash)
         {
             this.matchId = (int)hash["matchid"];
             this.betType = (int)hash["bettype"];
@@ -55,7 +57,7 @@ namespace Fanex.BetList.Age.BetListCmd
                 {
                     DataRow row = this.result.Rows[0];
                     int leagueId = Convert.ToInt32(row["leagueid"]);
-                    Title = Sunplus.Agent.Model.BL.Cache.CacheRef.GetLeagueName(leagueId) + " " + Sunplus.Agent.Model.BL.Cache.CacheRef.GetBettype(this.betType);
+                    Title = CacheRef.GetLeagueName(leagueId) + " " + CacheRef.GetBettype(this.betType);
                 }
             }
 

@@ -14,8 +14,8 @@ namespace Fanex.BetList.Age.BetListCmd
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
-    using Fanex.BetList.Age.Definition;
     using Fanex.Age.Utility;
+    using Fanex.BetList.Age.Definition;
     using Sunplus.Agent.Model.BL.BetList;
     using Sunplus.Agent.Model.BL.Reports;
     using Sunplus.Agent.Model.Entities;
