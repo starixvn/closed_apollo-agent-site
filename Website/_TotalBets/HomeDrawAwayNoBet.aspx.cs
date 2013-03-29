@@ -11,15 +11,9 @@
 namespace Fanex.Age.UI.TotalBets
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections;
     using System.Data;
-    using System.Web;
     using System.Web.UI;
-
-    using Fanex.Age.UI;
-    using Fanex.Age.UI.Components;
-    using Sunplus.Agent.Model.BL.Definitions;
-    using Sunplus.Agent.Model.BL.TotalBets;
     using Sunplus.Agent.Utilities;
 
     public partial class HomeDrawAwayNoBet_Page : TotalBets_Page
@@ -70,7 +64,8 @@ namespace Fanex.Age.UI.TotalBets
                     leagueBlock.MatchContents.Append(matchBlock);
                 }
 
-                if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
+                if (leagueBlock != null) 
+                    tpl.Contents.LeagueContents.Append(leagueBlock);
             }
 
             if (_fullMode)
@@ -83,12 +78,12 @@ namespace Fanex.Age.UI.TotalBets
             }
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetHomeDrawAwayNoBet();
         }
@@ -104,13 +99,14 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         /// <param name="matchIndex"></param>
         /// <param name="rowIndex"></param>
-        private void RenderMatchRow(HomeDrawAwayNoBet_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, int matchIndex, int rowIndex)
+        private void RenderMatchRow(HomeDrawAwayNoBet_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, 
+            int matchIndex, int rowIndex)
         {
             // Render match content
             // Row Color  and time value
             if (Convert.ToInt16(dr["liveindicator"]) == 1)
             {
-                matchBlock.ColorClass = Fanex.Age.UI.Common.RowBgLive;
+                matchBlock.ColorClass = Common.RowBgLive;
                 matchBlock.TimeValue = dr["livehomescore"] + " - " + dr["liveawayscore"];
                 matchBlock.LiveNotice.Show();
             }
@@ -118,17 +114,17 @@ namespace Fanex.Age.UI.TotalBets
             {
                 if (dr.Table.Columns.Contains("closed") && Convert.ToInt32(dr["closed"]) != 0)
                 {
-                    matchBlock.ColorClass = Fanex.Age.UI.Common.RowBgClosed;
+                    matchBlock.ColorClass = Common.RowBgClosed;
                 }
                 else
                 {
-                    matchBlock.ColorClass = (matchIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
+                    matchBlock.ColorClass = (matchIndex % 2) == 0 ? Common.RowBgEven : Common.RowBgOdd;
                 }
 
                 matchBlock.TimeValue = dr["showtime"].ToString();
                 matchBlock.LiveNotice.Hide();
             }
-            matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
+            matchBlock.ColorOver = Common.RowBgOver;
 
             // Event
             matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + (Convert.ToBoolean(dr["isNeutral"]) ? Resources.Lang.IsNeutral : string.Empty);
@@ -152,9 +148,10 @@ namespace Fanex.Age.UI.TotalBets
             if (Convert.ToInt16(dr["betcount_HNB"]) != 0)
             {
                 decimal HNBTotal = (decimal)(dr["home_odds_HNB"]) - (decimal)(dr["away_odds_HNB"]);
+
                 matchBlock.HomeNoBetValue.HomeNoBetValue = Formater.DecFormat(HNBTotal, 0);
                 matchBlock.HomeNoBetValue.MatchId = dr["matchid"].ToString();
-                matchBlock.HomeNoBetValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.HomeNoBetValue.BetType = Common.BetListByBetTypeMatch;
 
                 matchBlock.HomeNoBetValue.Show();
             }
@@ -175,9 +172,10 @@ namespace Fanex.Age.UI.TotalBets
             if (Convert.ToInt16(dr["betcount_DNB"]) != 0)
             {
                 decimal DNBTotal = (decimal)(dr["home_odds_DNB"]) - (decimal)(dr["away_odds_DNB"]);
+
                 matchBlock.DrawNoBetValue.DrawNoBetValue = Formater.DecFormat(DNBTotal, 0);
                 matchBlock.DrawNoBetValue.MatchId = dr["matchid"].ToString();
-                matchBlock.DrawNoBetValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.DrawNoBetValue.BetType = Common.BetListByBetTypeMatch;
 
                 matchBlock.DrawNoBetValue.Show();
             }
@@ -198,9 +196,10 @@ namespace Fanex.Age.UI.TotalBets
             if (Convert.ToInt16(dr["betcount_ANB"]) != 0)
             {
                 decimal ANBTotal = (decimal)(dr["home_odds_ANB"]) - (decimal)(dr["away_odds_ANB"]);
+
                 matchBlock.AwayNoBetValue.AwayNoBetValue = Formater.DecFormat(ANBTotal, 0);
                 matchBlock.AwayNoBetValue.MatchId = dr["matchid"].ToString();
-                matchBlock.AwayNoBetValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.AwayNoBetValue.BetType = Common.BetListByBetTypeMatch;
 
                 matchBlock.AwayNoBetValue.Show();
             }
@@ -209,9 +208,6 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.AwayNoBetValue.Hide();
             }
         }
-
-     
-       
 
         #endregion Utility
     }

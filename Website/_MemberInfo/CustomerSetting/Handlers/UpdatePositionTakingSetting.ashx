@@ -15,19 +15,21 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using System.Collections.Generic;
     using Fanex.CustSetting.Service;
     using Fanex.Age.UI;
+    using Apollo.Age.Services.Impl;
+    using Fanex.CustSetting.Core;
 
-    public class UpdatePositionTakingSetting : Fanex.Age.UI.TplHandler
+    public class UpdatePositionTakingSetting : TplHandler
     {
         private PositionTakingSetting _positionTakingSetting = null;
         private SettingContext _settingContext = null;
 
-        public override void RenderResult(ref Fanex.Age.UI.JSONData data)
+        public override void RenderResult(ref JSONData data)
         {
             Result r = View as Result;
             data.AsResult(r, true);
         }
 
-        public override void ProcessRequest(ref System.Collections.Hashtable p)
+        public override void ProcessRequest(ref Hashtable p)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
@@ -48,17 +50,19 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
-            //if (!CurrentUserSession.SubPageAccess.CreateAccount || CurrentUserSession.IsInternal)
-            //{
-            //    return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
-            //}
+            if (!PermissionService.HasPermissionOnUpdating(CurrentUserSession.AgentId,
+                CurrentUserSession.UserId,
+                CurrentUserSession.IsUserMaster))
+            {
+                return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            }
 
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             if (_positionTakingSetting != null && _settingContext != null)
             {
@@ -67,7 +71,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
                 result = customerService.UpdatePositionTakingSetting(_settingContext, _positionTakingSetting);
 
-                if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFUALT)
+                if (result.ErrCode != 0 && result.ErrCode != Constant.WARNING_CODE_DEFAULT)
                 {
                     return new Result(ErrorType.Unknown, result.ErrMsg);
                 }
@@ -76,8 +80,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
                     return new Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
                 }
             }
-
-            return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            else
+            {
+                return new Result(ErrorType.AccessDenied, Resources.Lang.invalidvalue);
+            }
         }
     }
 }

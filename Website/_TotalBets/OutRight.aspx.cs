@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
 using Sunplus.Agent.Utilities;
-
-
 
 /*
  * Created 20100507@Jacob - Render OutRight page
@@ -23,10 +12,8 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class OutRight_Page : TotalBets_Page
     {
-
         #region Override
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -86,12 +73,12 @@ namespace Fanex.Age.UI.TotalBets
         }
 
         
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetOutRight();
         }
@@ -110,7 +97,7 @@ namespace Fanex.Age.UI.TotalBets
         {
             // Render match content
             matchBlock.ColorClass = (matchIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
-            matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
+            matchBlock.ColorOver = Common.RowBgOver;
 
             matchBlock.NoValue = rowIndex.ToString();
             matchBlock.TeamsValue = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["teamid"]);
@@ -118,7 +105,7 @@ namespace Fanex.Age.UI.TotalBets
             matchBlock.ForecastValue = PositiveNumberRoundColor(dr["totalwinlost"]);
             matchBlock.BalanceValue = Formater.FormatNumber2(dr["balance"], CurrentUserSession.Language);
             matchBlock.MatchId = dr["orid"].ToString();
-            matchBlock.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+            matchBlock.BetType = Common.BetListByBetTypeMatch;
 
         }
         /// <summary>
@@ -132,9 +119,7 @@ namespace Fanex.Age.UI.TotalBets
 
             return (num > 0) ? "<font color='red'>" + Formater.FormatNumber2(num, CurrentUserSession.Language) + "</font>" : Formater.FormatNumber2(num, CurrentUserSession.Language);
         }
-
-
+        
         #endregion
     }
-
 }

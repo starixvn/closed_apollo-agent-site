@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-
 using Sunplus.Agent.Utilities;
-
 
 /*
  * Created 20100507@Jacob - Render HDPOU page
@@ -23,10 +12,8 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class HDPOU_Page : TotalBets_Page
     {
-
         #region Override
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -74,7 +61,8 @@ namespace Fanex.Age.UI.TotalBets
                     leagueBlock.MatchContents.Append(matchBlock);
                 }
 
-                if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
+                if (leagueBlock != null) 
+                    tpl.Contents.LeagueContents.Append(leagueBlock);
             }
             
             if (_fullMode)
@@ -87,12 +75,12 @@ namespace Fanex.Age.UI.TotalBets
             }            
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetHDPOU();
         }
@@ -147,7 +135,7 @@ namespace Fanex.Age.UI.TotalBets
                 decimal HdpTotal = Convert.ToDecimal(dr["home_odds_HDP"]) - Convert.ToDecimal(dr["away_odds_HDP"]);
                 matchBlock.HandicapTotalValue.HandicapTotalValue = NegativeNumberRoundColor(HdpTotal);
                 matchBlock.HandicapTotalValue.MatchId = dr["matchid"].ToString();
-                matchBlock.HandicapTotalValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.HandicapTotalValue.BetType = Common.BetListByBetTypeMatch;
                 matchBlock.HandicapTotalButton.MatchId = dr["matchid"].ToString();
 
                 matchBlock.HandicapTotalValue.Show();
@@ -174,7 +162,7 @@ namespace Fanex.Age.UI.TotalBets
 
                 matchBlock.OverUnderTotalValue.OverUnderTotalValue = NegativeNumberRoundColor(OUTotal);
                 matchBlock.OverUnderTotalValue.MatchId = dr["matchid"].ToString();
-                matchBlock.OverUnderTotalValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.OverUnderTotalValue.BetType = Common.BetListByBetTypeMatch;
                 matchBlock.OverUnderTotalButton.MatchId = dr["matchid"].ToString();
 
                 matchBlock.OverUnderTotalValue.Show();
@@ -200,7 +188,7 @@ namespace Fanex.Age.UI.TotalBets
 
                 matchBlock.HandicapFirstHalfValue.HandicapFirstHalfValue = NegativeNumberRoundColor(HdpFH);
                 matchBlock.HandicapFirstHalfValue.MatchId = dr["matchid"].ToString();
-                matchBlock.HandicapFirstHalfValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.HandicapFirstHalfValue.BetType = Common.BetListByBetTypeMatch;
                 matchBlock.HandicapFirstHalfButton.MatchId = dr["matchid"].ToString();
 
                 matchBlock.HandicapFirstHalfValue.Show();
@@ -226,7 +214,7 @@ namespace Fanex.Age.UI.TotalBets
                 
                 matchBlock.OverUnderFirstHalfValue.OverUnderFirstHalfValue = NegativeNumberRoundColor(OUHT);
                 matchBlock.OverUnderFirstHalfValue.MatchId = dr["matchid"].ToString();
-                matchBlock.OverUnderFirstHalfValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                matchBlock.OverUnderFirstHalfValue.BetType = Common.BetListByBetTypeMatch;
                 matchBlock.OverUnderFirstHalfButton.MatchId = dr["matchid"].ToString();
 
                 matchBlock.OverUnderFirstHalfValue.Show();
@@ -245,10 +233,9 @@ namespace Fanex.Age.UI.TotalBets
         /// <returns></returns>
         private static string NegativeNumberRoundColor(decimal number)
         {
-            return Math.Round(number) < 0 ? "<font color='#eb6003'>" + Formater.DecFormat(number, 0) + "</font>" : Formater.DecFormat(number, 0);
-
+            return Math.Round(number) < 0 ? "<font color='#eb6003'>" + Formater.DecFormat(number, 0) 
+                + "</font>" : Formater.DecFormat(number, 0);
         }
         #endregion
     }
-
 }

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-using Fanex.Age.UI;
-using Fanex.Age.UI.Components;
-using Sunplus.Agent.Model.BL.Definitions;
-using Sunplus.Agent.Model.BL.TotalBets;
 using Sunplus.Agent.Utilities;
 
 /*
@@ -79,12 +74,12 @@ namespace Fanex.Age.UI.TotalBets
             }
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetFGLG();
         }
@@ -100,10 +95,11 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         /// <param name="matchIndex"></param>
         /// <param name="rowIndex"></param>
-        private void RenderMatchRow(FGLG_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, int matchIndex, int rowIndex)
+        private void RenderMatchRow(FGLG_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, 
+            int matchIndex, int rowIndex)
         {
-            matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
-            matchBlock.ColorClass = (matchIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
+            matchBlock.ColorOver = Common.RowBgOver;
+            matchBlock.ColorClass = (matchIndex % 2) == 0 ? Common.RowBgEven : Common.RowBgOdd;
             matchBlock.NoValue = rowIndex.ToString();
             matchBlock.TimeValue = dr["showtime"].ToString();
             matchBlock.HomeValue = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : string.Empty);
