@@ -1,27 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Web;
-using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.Forecast;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-
-using Sunplus.Agent.Utilities;
-using System.Text;
-using Fanex.Age.UI.Reports.Common;
-using Fanex.Age.UI.Components.MatchByLeague;
-using Fanex.Age.UI.Forecast;
-using Sunplus.Agent.UI.ScoreMap.Factories;
-//using Sunplus.Agent.UI.ScoreMap.Factories;
-
-
-/*
+﻿/*
  * Created 20100529@Jacob - Render ScoreMap page
  * Revision:
  * ?@? - ... 
@@ -29,26 +6,37 @@ using Sunplus.Agent.UI.ScoreMap.Factories;
  */
 namespace Fanex.Age.UI.Forecast
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Text;
+    using System.Web.UI;
+    using Fanex.Age.UI.Components;
+    using Fanex.Age.UI.Components.MatchByLeague;
+    using Sunplus.Agent.Model.BL.Forecast;
+    using Sunplus.Agent.UI.ScoreMap.Factories;
 
-    public partial class ScoreMap_Page : Fanex.Age.UI.TplPage
+    public partial class ScoreMap_Page : TplPage
     {
         #region Const
-        private const String RUNNING_LEAGUES = "RunningLeague";        
+
+        private const String RUNNING_LEAGUES = "RunningLeague";
+
         #endregion
 
-        #region Variable
+        #region Variables
+
         private ScoreMap_Template tpl = new ScoreMap_Template();
         private int _leagueId = 0;
         private string _matchIds = string.Empty, _bettypes_live = string.Empty, _bettypes_dead = string.Empty;
         DataSet dsScoreMap = null;
         DataTable liveBallDeadBall = null;
+
         #endregion
 
         #region Override
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="writer"></param>
+
         public override void RenderContent(HtmlTextWriter writer)
         {
             // Create Box Select Match
@@ -66,21 +54,21 @@ namespace Fanex.Age.UI.Forecast
             // Header name
             RenderLeagueList(tpl.Content);
 
-            if (CurrentUserSession.Language == "th-TH" || CurrentUserSession.Language == "ja-JP")
-            {
-                tpl.Content.LimitLeagueList.mWidth = "1030px";
-                tpl.Content.mWidth = "1030px";
-            }
-            else
-            {
-                tpl.Content.LimitLeagueList.mWidth = "1000px";
-                tpl.Content.mWidth = "99%";
-            }
+            //if (CurrentUserSession.Language == "th-TH" || CurrentUserSession.Language == "ja-JP")
+            //{
+            //    tpl.Content.LimitLeagueList.mWidth = "1030px";
+            //    tpl.Content.mWidth = "1030px";
+            //}
+            //else
+            //{
+            //    tpl.Content.LimitLeagueList.mWidth = "1000px";
+            //    tpl.Content.mWidth = "99%";
+            //}
 
             if (_leagueId != -1)
             {
                 tpl.mainTitle.Forecast = Resources.Lang.lblScoreMap;
-                tpl.Content.LimitLeagueList.display = "";
+                tpl.Content.LimitLeagueList.display = string.Empty;
                 tpl.Content.LimitLeagueList.displayLiveDead = "display:none";
                 tpl.Content.ScoreMap = null;
             }
@@ -88,7 +76,7 @@ namespace Fanex.Age.UI.Forecast
             {
                 tpl.mainTitle = null;
                 tpl.Content.LimitLeagueList.display = "display:none";
-                tpl.Content.LimitLeagueList.displayLiveDead = "";
+                tpl.Content.LimitLeagueList.displayLiveDead = string.Empty;
 
                 StringBuilder content = new StringBuilder();
                 DataTable listScoreMap = dsScoreMap.Tables[0];
@@ -100,7 +88,7 @@ namespace Fanex.Age.UI.Forecast
             writer.Write(tpl);
         }
 
-        public override void ProcessRequest(ref System.Collections.Hashtable p)
+        public override void ProcessRequest(ref Hashtable p)
         {
             p.AddHttpParameters(new string[] { 
                 "leagueId", "bettypes_live", "bettypes_dead"
@@ -111,12 +99,12 @@ namespace Fanex.Age.UI.Forecast
             _bettypes_dead = Convert.ToString(p["bettypes_dead"]);
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             Dictionary<String, DataTable> view = new Dictionary<string, DataTable>();
             ForecastBO bo = new ForecastBO(CurrentUserSession.NetSessionId);
@@ -139,9 +127,11 @@ namespace Fanex.Age.UI.Forecast
             view.Add(RUNNING_LEAGUES, runningLeagues);
             return view;
         }
+
         #endregion
 
-        #region Render Utility
+        #region Utility
+
         private void RenderLeagueList(ScoreMap_Content_Block content)
         {
             DataTable leagues = (View as Dictionary<String, DataTable>)[RUNNING_LEAGUES];
@@ -152,7 +142,7 @@ namespace Fanex.Age.UI.Forecast
             }
             else
             {
-                if (_leagueId!=-1) 
+                if (_leagueId != -1)
                     content.SetValue("<div class='no_info'>" + Resources.Lang.noInfo + "</div>");
                 else
                     content.LimitLeagueList.LeagueList = "<option value='0'></option>";
@@ -162,7 +152,7 @@ namespace Fanex.Age.UI.Forecast
         private void RenderLiveBallDeadBall(ScoreMap_Content_Block content)
         {
             int Count = liveBallDeadBall.Rows.Count;
-            int AvgCount = Count/2;
+            int AvgCount = Count / 2;
             if (liveBallDeadBall != null && Count > 0)
             {
                 Boolean isCheckAllLiveBall = true, isCheckAllDeadBall = true;
@@ -171,7 +161,7 @@ namespace Fanex.Age.UI.Forecast
                 BoxLiveBallDeadBall_Template tplLBDB;
                 StringBuilder liveBall = new StringBuilder();
                 StringBuilder deadBall = new StringBuilder();
-                
+
                 foreach (DataRow dr in liveBallDeadBall.Rows)
                 {
                     tplLBDB = new BoxLiveBallDeadBall_Template();
@@ -184,7 +174,7 @@ namespace Fanex.Age.UI.Forecast
                     if (Convert.ToBoolean(dr["islive"]))
                     {
                         tplLBDB.LiveDead = "L";
-                        if (string.IsNullOrEmpty(_bettypes_live) || _bettypes_live == typeId.ToString() || _bettypes_live == stId.ToString()) 
+                        if (string.IsNullOrEmpty(_bettypes_live) || _bettypes_live == typeId.ToString() || _bettypes_live == stId.ToString())
                         {
                             if (!string.IsNullOrEmpty(_bettypes_live) && typeId != 0 && stId != 0)
                                 _bettypes_live = typeId.ToString() + "," + stId.ToString();
@@ -206,7 +196,7 @@ namespace Fanex.Age.UI.Forecast
                         }
 
                         liveBall.Append(tplLBDB);
-                        
+
                         if (indexLiveBall == AvgCount)
                         {
                             if (Count % indexLiveBall != 0)
@@ -239,7 +229,7 @@ namespace Fanex.Age.UI.Forecast
                             tplLBDB.mClass = string.Empty;
                         }
                         deadBall.Append(tplLBDB);
-                        
+
                         if (indexDeadBall == AvgCount)
                         {
                             if (Count % indexDeadBall != 0)
@@ -250,7 +240,7 @@ namespace Fanex.Age.UI.Forecast
                         indexDeadBall++;
                     }
                 }
-                
+
                 liveBall.Append("<td class='TLiveDead'></td>");
                 liveBall.Append("<td class='TLiveDead'></td>");
 
@@ -288,6 +278,7 @@ namespace Fanex.Age.UI.Forecast
                 default: return string.Empty;
             }
         }
+
         #endregion
     }
 }

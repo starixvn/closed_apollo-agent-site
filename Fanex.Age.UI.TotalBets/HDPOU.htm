@@ -55,55 +55,55 @@
                 </tr>
                 <!--MatchContents-->
                 <tr class="{rowClass}">
-                    <td class="w-order">
+                    <td class="c">
                         {No}
                     </td>
                     <td class="c bl_time">
                         {TimeValue}
                         <!--LiveNotice-->
                         <br />
-                        <font color="red"><i>{static:Resources.Lang.lblLive}</i></font>
+                        <i style="color: red">{static:Resources.Lang.lblLive}</i>
                         <!--/LiveNotice-->
                     </td>
-                    <td style="white-space: nowrap;">
+                    <td>
                         {Home} -vs- {Away}
                     </td>
-                    <td style="width: 90px;" class="r">
+                    <td class="r" style="width: 90px">
                         <!--HandicapTotalValue-->
                         <a class="fcnum" href="javascript:doViewBetList({MatchId},1,'{BetType}');">{HandicapTotalValue}</a>
                         <!--/HandicapTotalValue-->
                     </td>
-                    <td align="center" class="fcbtn" style="width: 16px">
+                    <td class="fcbtn">
                         <!--HandicapTotalButton-->
                         <a href="javascript:openForecast('{MatchId}','1')" class="btnInfo">&nbsp;</a>
                         <!--/HandicapTotalButton-->
                     </td>
-                    <td style="width: 90px;" class="r">
+                    <td class="r" style="width: 90px">
                         <!--OverUnderTotalValue-->
                         <a class="fcnum" href="javascript:doViewBetList({MatchId},3,'{BetType}');">{OverUnderTotalValue}</a>
                         <!--/OverUnderTotalValue-->
                     </td>
-                    <td class="fcbtn" align="center" style="width: 16px">
+                    <td class="fcbtn">
                         <!--OverUnderTotalButton-->
                         <a href="javascript:openForecast('{MatchId}','3')" class="btnInfo">&nbsp;</a>
                         <!--/OverUnderTotalButton-->
                     </td>
-                    <td style="width: 90px;" class="r">
+                    <td class="r" style="width: 90px">
                         <!--HandicapFirstHalfValue-->
                         <a class="fcnum" href="javascript:doViewBetList({MatchId},7,'{BetType}');">{HandicapFirstHalfValue}</a>
                         <!--/HandicapFirstHalfValue-->
                     </td>
-                    <td class="fcbtn" align="center" style="width: 16px">
+                    <td class="fcbtn">
                         <!--HandicapFirstHalfButton-->
                         <a href="javascript:openForecast('{MatchId}','7')" class="btnInfo">&nbsp;</a>
                         <!--/HandicapFirstHalfButton-->
                     </td>
-                    <td style="width: 90px;" class="r">
+                    <td class="r" style="width: 90px">
                         <!--OverUnderFirstHalfValue-->
                         <a class="fcnum" href="javascript:doViewBetList({MatchId},8,'{BetType}');">{OverUnderFirstHalfValue}</a>
                         <!--/OverUnderFirstHalfValue-->
                     </td>
-                    <td class="fcbtn" align="center" style="width: 16px">
+                    <td class="fcbtn">
                         <!--OverUnderFirstHalfButton-->
                         <a href="javascript:openForecast('{MatchId}','8')" class="btnInfo">&nbsp;</a>
                         <!--/OverUnderFirstHalfButton-->
@@ -112,8 +112,8 @@
                 <!--/MatchContents-->
                 <!--/LeagueContents-->
                 <!--NotFoundContent-->
-                <tr class="bg_white">
-                    <td colspan="11" class="c nobold">
+                <tr class="no_info">
+                    <td colspan="11">
                         {static:Resources.Lang.noInfo}
                     </td>
                 </tr>

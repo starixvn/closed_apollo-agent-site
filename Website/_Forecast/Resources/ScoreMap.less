@@ -1,5 +1,9 @@
 ﻿@import "../../_GlobalResources/Css/Agent.less";
 
+select#ddlLeague {
+	width: 280px;
+}
+
 .paddingTopMatch{margin-top:10px;}
 
 #titleMatch
@@ -7,7 +11,7 @@
 	padding-top: 3px;
 	border: solid 1px #999;
 	background: -moz-linear-gradient(center top , #3C3C3C, #111111) repeat scroll 0 0 #111111;
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, 	#3c3c3c),color-stop(1, 		#111111));
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, 	#3c3c3c),color-stop(1,#111111));
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#3c3c3c', EndColorStr='#111111')";
     border: 1px solid #2A2A2A;
     text-shadow: 0 -1px 1px @black;
@@ -41,52 +45,6 @@
 	background-color: @rowAltBackground;
 }
 
-#page_main
-{
-	padding-top: 7px;
-	overflow: visible;
-	padding-bottom: 15px;
-}
-#header_main
-{
-	height: 22px;
-	background: url(../../_GlobalResources/Images/bg_header01.jpg) no-repeat left bottom;
-	color: @titleColor;
-	font-weight: bold;
-	padding-left: 15px;
-	text-transform: uppercase;
-	line-height: 18px;
-	width: 97%;
-	min-width: 100px;
-}
-.bold
-{
-	font-weight: bold;
-}
-#box_header
-{
-	background: url( "../../_GlobalResources/Images/bg_boxTop.jpg" ) repeat-x scroll center top #E7E7E7;
-	border: 1px solid #CACACA;
-	margin-top: 0;
-	padding: 0;	
-}
-
-select
-{
-	font-size: 8pt;
-	font-weight: normal;
-	height: 19px;
-	line-height: 19px;
-}
-
-.no_info
-{
-	text-align: center;
-	font-weight: normal;
-	text-align: center;
-}
-
-.hand{cursor:pointer}
 .btnRefresh
 {
     background: url( "Images/Refresh.png" ) no-repeat scroll left top transparent;
@@ -246,50 +204,21 @@ select
     float: left;
     text-align: left;    
 }
-
-div.loading {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: transparent;
-    background-image: url("../../_GlobalResources/Images/ajax-loader.gif");
-    background-origin: padding-box;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: auto auto;
-    display: block;
-    height: 23px;
-    opacity: 1;
-    width: 23px;
-}
 /* End: Box Match by League */
 
-
-
 table.reference {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: @white;
-    border-collapse: collapse;
-    border-right-color: #C3C3C3;
-    border-right-style:dotted;
-    border-right-width: 1px;    
+	border: 0;
+	td {
+		border: 0;
+		.box-shadow(none);
+	}
 }
-table.reference td {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-right-color: #C3C3C3;
-    border-right-style: dotted;
-    border-right-width: 1px;
-    padding-bottom: 3px;
-    padding-right: 2px;
-    padding-top: 3px;
-    vertical-align: top;
+
+.loading {
+    display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(images/loading.gif) no-repeat;
 }
 
 .TLiveDead {
@@ -347,7 +276,4 @@ table.reference td {
     height:26px;
     width:29px;
     float:left;
-}
-#sContent {
-    margin-top: 10px;
 }

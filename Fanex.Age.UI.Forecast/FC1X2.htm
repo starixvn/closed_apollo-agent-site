@@ -5,24 +5,25 @@
     {load:Fanex.Age.UI.Forecast.Styles_Template styles = new Fanex.Age.UI.Forecast.Styles_Template()}
 </head>
 <body>
-<!--TitleHeader-->
+    <!--TitleHeader-->
     <div id="page_main">
         <div id="header_main">
-            <span id="leagueName">{static:Resources.Lang.lbl1x2}</span>
+            <span id="leagueName">{static:Resources.Lang.lbl1x2}
         </div>
-<!--/TitleHeader-->
-        {load:Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown = new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"FC1X2","RefreshFC")}
-        <div id="sContent">
+    <!--/TitleHeader-->
+        <div id="content_main" class="pull-left" style="width: 50%">
+            {load:Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown = new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"FC1X2","RefreshFC")}
             <!--Content-->
             <!--LimitLeagueList-->
-            <div id="box_header" style="width: {TableWidth}">
-                <table border="0" cellpadding="0" cellspacing="1" style="height:35px;">
+            <div id="box_header">
+                <table>
                     <tr>
                         <td>
-                            {static:Resources.Lang.league}
+                            <b>{static:Resources.Lang.league}</b>
                         </td>
                         <td id="selLeague">
-                            <select id='ddlLeague' name='ddlLeague' onchange='GetForecastByLeague();'>
+                            <select id='ddlLeague' name='ddlLeague' style="width: 280px"
+                                onchange='GetForecastByLeague();'>
                                 {LeagueList}
                             </select>
                         </td>
@@ -30,7 +31,8 @@
                 </table>
             </div>
             <!--/LimitLeagueList-->
-            <table class="tblRpt" cellpadding="0" cellspacing="1" border="0" style="width: {TableWidth};">
+            <table class="tblRpt">
+                <thead>
                 <tr class="RptHeader">
                     <td colspan="2">
                         {static:Resources.Lang.lblTeam}
@@ -39,74 +41,77 @@
                         {static:Resources.Lang.lbl1x2}
                     </td>
                 </tr>
+                </thead>
+                <tbody>
                 <!--RowContent-->
-                <tr align="center">
-                    <td class="l league" colspan="5" style="padding-left: 20px;">
-                        {Home}-vs-{Away}
+                <tr class="league">
+                    <td colspan="5">
+                        {Home} -vs- {Away}
                     </td>
                 </tr>
-                <tr class="even_row" align="center">
-                    <td colspan="2" style="height: 20px">
-                        <span>{Time}</span>
+                <tr class="c">
+                    <td colspan="2">
+                        {Time}
                     </td>
                     <td class="bold">
-                        <span>1</span>
+                        1
                     </td>
-                    <td class="bold" bgcolor="#FFEFDE">
-                        <span>X</span>
+                    <td class="bold" style="background-color: #ffefde">
+                        X
                     </td>
                     <td class="bold">
-                        <span>2</span>
+                        2
                     </td>
                 </tr>
-                <tr class="even_row" align="center">
-                    <td width="15%">
-                        <font color="#38536A">{static:Resources.Lang.fulltime}</font>
+                <tr class="c">
+                    <td style="width: 39%">
+                        {static:Resources.Lang.fulltime}
                     </td>
-                    <td width="1%">
+                    <td style="width: 1%">
                         <a href="javascript:openForecast('{MatchId}','1')" class="btnInfo"></a>
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HomeWinLose}</span>
+                    <td class="bold" style="width: 20%">
+                        {HomeWinLose}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{DrawWinLose}</span>
+                    <td class="bold" style="width: 20%">
+                        {DrawWinLose}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{AwayWinLose}</span>
+                    <td class="bold" style="width: 20%">
+                        {AwayWinLose}
                     </td>
                 </tr>
-                <tr class="even_row" align="center">
-                    <td width="15%">
-                        <font color="#38536A">{static:Resources.Lang.halftime}</font>
+                <tr class="c">
+                    <td style="width: 39%">
+                        {static:Resources.Lang.halftime}
                     </td>
-                    <td width="1%">
+                    <td style="width: 1%">
                         <a href="javascript:openForecast('{MatchId}','7')" class="btnInfo"></a>
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HTHomeWinLose}</span>
+                    <td class="bold" style="width: 20%">
+                        {HTHomeWinLose}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HTDrawWinLose}</span>
+                    <td class="bold" style="width: 20%">
+                        {HTDrawWinLose}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HTAwayWinLose}</span>
+                    <td class="bold" style="width: 20%">
+                        {HTAwayWinLose}
                     </td>
                 </tr>
                 <!--/RowContent-->
                 <!--NotFoundContent-->
-                <tr class="bg_white">
-                    <td colspan="5" class="c nobold">
+                <tr class="no_info">
+                    <td colspan="8">
                         {static:Resources.Lang.noInfo}
                     </td>
                 </tr>
                 <!--/NotFoundContent-->
+                </tbody>
             </table>
             <!--/Content-->
         </div>
-<!--TitleFooter-->
+    <!--TitleFooter-->
     </div>
-<!--/TitleFooter-->
+    <!--/TitleFooter-->
     {load:Fanex.Age.UI.Forecast.Scripts_Template scripts = new Fanex.Age.UI.Forecast.Scripts_Template()}
 </body>
 </html>

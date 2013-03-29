@@ -1,4 +1,7 @@
 ﻿<td {mClass}>
-    <input class="hand" type="checkbox" {isChecked} onclick="isAllBetType('{LiveDead}','bt{LiveDead}{BetType}')" id="bt{LiveDead}{BetType}">
-    <label class="hand" for="bt{LiveDead}{BetType}">{BetTypeName}</label>
+    <label for="bt{LiveDead}{BetType}">
+        <input type="checkbox" id="bt{LiveDead}{BetType}" {isChecked}
+            onclick="isAllBetType('{LiveDead}','bt{LiveDead}{BetType}')" />
+        {BetTypeName}
+    </label>
 </td>

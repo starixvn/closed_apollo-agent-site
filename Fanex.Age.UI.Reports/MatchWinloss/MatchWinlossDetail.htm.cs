@@ -22,10 +22,10 @@ namespace Fanex.Age.UI.Reports
 			protected static string s4{get{return AbsoluteUrl2("MatchWinloss/MatchWinLossDetail.aspx");}}
 			protected static string s5 = "\"><div id=\"page_main\" onclick=\"setVisibleBoxLeague()\"><div id=\"header_main\">";
 			protected static string s6{get{return Resources.Lang.lblMatchWinLostDetail;}}
-			protected static string s7 = "</div>";
+			protected static string s7 = "</div><div id=\"content_main\">";
 			public string SearchPanel = "{SearchPanel}";
 			public MatchWinlossDetail_ExcelContents_Block ExcelContents = new MatchWinlossDetail_ExcelContents_Block();
-			protected static string s8 = "</div>";
+			protected static string s8 = "</div></div>";
 			public string BoxLeague = "{BoxLeague}";
 			protected static string s9 = "</form>";
 			public Fanex.Age.UI.Reports.Scripts_Template scripts{get {return _scripts != null ? _scripts : _scripts =  new Fanex.Age.UI.Reports.Scripts_Template();}}
@@ -70,7 +70,7 @@ namespace Fanex.Age.UI.Reports
 
 		public class MatchWinlossDetail_ExcelContents_Block: Block
 		{
-			protected static string s13 = "<table id=\"tbl-rpt\" class=\"tblRpt ";
+			protected static string s13 = "<table class=\"tblRpt ";
 			public string BoldRow = "{BoldRow}";
 			protected static string s14 = "\"><thead><tr class=\"report-title\"><td colspan=\"";
 			public string NumCols = "{NumCols}";
@@ -288,7 +288,7 @@ namespace Fanex.Age.UI.Reports
 		{
 			protected static string s71 = "<tr><td colspan=\"";
 			public string NumCols = "{NumCols}";
-			protected static string s72 = "\" class=\"league\" style=\"font-weight: normal;\"><span id=\"winloss_league\">";
+			protected static string s72 = "\" class=\"league\"><span id=\"winloss_league\">";
 			public string League = "{League}";
 			protected static string s73 = "</span>";
 			public MatchWinlossDetail_ExcelContents_Content_MatchContent_MatchName_Block MatchName = new MatchWinlossDetail_ExcelContents_Content_MatchContent_MatchName_Block();

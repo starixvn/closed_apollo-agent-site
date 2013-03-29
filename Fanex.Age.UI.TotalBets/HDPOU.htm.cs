@@ -127,30 +127,30 @@ namespace Fanex.Age.UI.TotalBets
 		{
 			protected static string s26 = "<tr class=\"";
 			public string rowClass = "{rowClass}";
-			protected static string s27 = "\"><td class=\"w-order\">";
+			protected static string s27 = "\"><td class=\"c\">";
 			public string No = "{No}";
 			protected static string s28 = "</td><td class=\"c bl_time\">";
 			public string TimeValue = "{TimeValue}";
 			public HDPOU_Contents_LeagueContents_MatchContents_LiveNotice_Block LiveNotice = new HDPOU_Contents_LeagueContents_MatchContents_LiveNotice_Block();
-			protected static string s29 = "</td><td style=\"white-space: nowrap;\">";
+			protected static string s29 = "</td><td>";
 			public string Home = "{Home}";
 			protected static string s30 = " -vs- ";
 			public string Away = "{Away}";
-			protected static string s31 = "</td><td style=\"width: 90px;\" class=\"r\">";
+			protected static string s31 = "</td><td class=\"r\" style=\"width: 90px\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalValue_Block HandicapTotalValue = new HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalValue_Block();
-			protected static string s32 = "</td><td align=\"center\" class=\"fcbtn\" style=\"width: 16px\">";
+			protected static string s32 = "</td><td class=\"fcbtn\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalButton_Block HandicapTotalButton = new HDPOU_Contents_LeagueContents_MatchContents_HandicapTotalButton_Block();
-			protected static string s33 = "</td><td style=\"width: 90px;\" class=\"r\">";
+			protected static string s33 = "</td><td class=\"r\" style=\"width: 90px\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalValue_Block OverUnderTotalValue = new HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalValue_Block();
-			protected static string s34 = "</td><td class=\"fcbtn\" align=\"center\" style=\"width: 16px\">";
+			protected static string s34 = "</td><td class=\"fcbtn\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalButton_Block OverUnderTotalButton = new HDPOU_Contents_LeagueContents_MatchContents_OverUnderTotalButton_Block();
-			protected static string s35 = "</td><td style=\"width: 90px;\" class=\"r\">";
+			protected static string s35 = "</td><td class=\"r\" style=\"width: 90px\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfValue_Block HandicapFirstHalfValue = new HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfValue_Block();
-			protected static string s36 = "</td><td class=\"fcbtn\" align=\"center\" style=\"width: 16px\">";
+			protected static string s36 = "</td><td class=\"fcbtn\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfButton_Block HandicapFirstHalfButton = new HDPOU_Contents_LeagueContents_MatchContents_HandicapFirstHalfButton_Block();
-			protected static string s37 = "</td><td style=\"width: 90px;\" class=\"r\">";
+			protected static string s37 = "</td><td class=\"r\" style=\"width: 90px\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfValue_Block OverUnderFirstHalfValue = new HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfValue_Block();
-			protected static string s38 = "</td><td class=\"fcbtn\" align=\"center\" style=\"width: 16px\">";
+			protected static string s38 = "</td><td class=\"fcbtn\">";
 			public HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfButton_Block OverUnderFirstHalfButton = new HDPOU_Contents_LeagueContents_MatchContents_OverUnderFirstHalfButton_Block();
 			protected static string s39 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
@@ -193,9 +193,9 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_LeagueContents_MatchContents_LiveNotice_Block: Block
 		{
-			protected static string s40 = "<br /><font color=\"red\"><i>";
+			protected static string s40 = "<br /><i style=\"color: red\">";
 			protected static string s41{get{return Resources.Lang.lblLive;}}
-			protected static string s42 = "</i></font>";
+			protected static string s42 = "</i>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -387,7 +387,7 @@ namespace Fanex.Age.UI.TotalBets
 
 		public class HDPOU_Contents_NotFoundContent_Block: Block
 		{
-			protected static string s67 = "<tr class=\"bg_white\"><td colspan=\"11\" class=\"c nobold\">";
+			protected static string s67 = "<tr class=\"no_info\"><td colspan=\"11\">";
 			protected static string s68{get{return Resources.Lang.noInfo;}}
 			protected static string s69 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
