@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Data;
-using System.Web;
 using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-
 using Sunplus.Agent.Utilities;
-
 
 /*
  * Created 20100507@Jacob - Render Financial page
@@ -23,7 +12,6 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class Financial_Page : TotalBets_Page
     {
         #region Const
@@ -94,13 +82,14 @@ namespace Fanex.Age.UI.TotalBets
                             betTypeBlocks[j].OELink.OETurnOverValue = "0";
                             betTypeBlocks[j].OEText.OETurnOverValue = "0";
                             betTypeBlocks[j].OEWinlossValue = "0";
-                            betTypeBlocks[j].ColorOver = Fanex.Age.UI.Common.RowBgOver;
-                            betTypeBlocks[j].OULink.BetTypeMatch = Fanex.Age.UI.Common.BetListByBetTypeMatch;
-                            betTypeBlocks[j].OELink.BetTypeMatch = Fanex.Age.UI.Common.BetListByBetTypeMatch;
+                            betTypeBlocks[j].ColorOver = Common.RowBgOver;
+                            betTypeBlocks[j].OULink.BetTypeMatch = Common.BetListByBetTypeMatch;
+                            betTypeBlocks[j].OELink.BetTypeMatch = Common.BetListByBetTypeMatch;
                         }
                     }
 
-                    RenderStockBetTypeRow(betTypeBlocks, dr, markBetType, ref OUTotal, ref OUWinlossTotal, ref OETotal, ref OEWinlossTotal);
+                    RenderStockBetTypeRow(betTypeBlocks, dr, markBetType, ref OUTotal, ref OUWinlossTotal, ref OETotal, 
+                        ref OEWinlossTotal);
 
                     // End of stock index
 
@@ -141,12 +130,12 @@ namespace Fanex.Age.UI.TotalBets
             }   
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetFinancial();
         }

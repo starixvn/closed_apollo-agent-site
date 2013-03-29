@@ -131,6 +131,9 @@
     <Setting Key="Report_Quinn_Test" SpName="Report_Quinn_Test" DbName="RepDB" Plain="0" >
       <Mapping DataField="BetAmount" ObjectProperty="MemberBetAmount" />
     </Setting>
+    <Setting Key="Age_Rpt_Outstanding_Agent" SpName="Age_Rpt_Outstanding_Agent" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding" DbName="REPDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets">
@@ -176,9 +179,10 @@
     <Setting Key="Age_Exchange_GetAll" SpName="Age_Exchange_GetAll" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Exchange_InsertRate" SpName="Age_Exchange_InsertRate" DbName="PRODB" Plain="0" />
     <Setting Key="Age_Exchange_UpdateRate" SpName="Age_Exchange_UpdateRate" DbName="PRODB" Plain="0" />
+    <Setting Key="AgentAdmin_Age_Agent_GetStatus" SpName="Age_Agent_GetStatus" DbName="REPDB" Plain="0" />
   </Function>
 
-  <Function Name="AgentSetting">
+  <Function Name="Agent-Apollo-Setting">
     <Setting Key="AgentSetting_Age_Agent_GetDiscountForUpdate" SpName="Age_Agent_GetDiscountForUpdate" DbName="REPDB"   TimeOut="600"/>
     <Setting Key="AgentSetting_Age_Agent_GetBetLimitForUpdate" SpName="Age_Agent_GetBetLimitForUpdate" DbName="REPDB"   TimeOut="600"/>
     <Setting Key="AgentSetting_Age_Agent_GetPositionTakingForUpdate" SpName="Age_Agent_GetPositionTakingForUpdate" DbName="REPDB"   TimeOut="600"/>
@@ -188,7 +192,7 @@
     <Setting Key="AgentSetting_Age_Agent_UpdateSetting" SpName="Age_Agent_UpdateSetting" DbName="CUSTDB"  TimeOut="600"/>
   </Function>
 
-  <Function Name="PlayerSetting">
+  <Function Name="Player-Apollo-Setting">
     <Setting Key="PlayerSetting_Age_Customer_GetDiscountForUpdate" SpName="Age_Customer_GetDiscountForUpdate" DbName="REPDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Age_Customer_GetBetLimitForUpdate" SpName="Age_Customer_GetBetLimitForUpdate" DbName="REPDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Age_Customer_GetPositionTakingForUpdate" SpName="Age_Customer_GetPositionTakingForUpdate" DbName="REPDB"   TimeOut="600"/>

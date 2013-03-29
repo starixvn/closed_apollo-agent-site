@@ -16,19 +16,20 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.Core;
     using Fanex.Age.UI;
+    using Apollo.Age.Services.Impl;
 
-    public class UpdateBetLimit : Fanex.Age.UI.TplHandler
+    public class UpdateBetLimit : TplHandler
     {
         private IList<BettingLimit> _betLimits = null;
         private SettingContext _settingContext = null;
 
-        public override void RenderResult(ref Fanex.Age.UI.JSONData data)
+        public override void RenderResult(ref JSONData data)
         {
-            Fanex.Age.UI.Result r = View as Fanex.Age.UI.Result;
+            Result r = View as Result;
             data.AsResult(r, true);
         }
 
-        public override void ProcessRequest(ref System.Collections.Hashtable p)
+        public override void ProcessRequest(ref Hashtable p)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
@@ -49,27 +50,28 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
-            //if (!CurrentUserSession.SubPageAccess.CreateAccount || CurrentUserSession.IsInternal)
-            //{
-            //    return new Fanex.Age.UI.Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
-            //}
+            if (!PermissionService.HasPermissionOnUpdating(CurrentUserSession.AgentId,
+                CurrentUserSession.UserId,
+                CurrentUserSession.IsUserMaster))
+            {
+                return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            }
 
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
-            if (_betLimits != null 
-                && _settingContext != null)
+            if (_betLimits != null && _settingContext != null)
             {
                 ICustomerSettingService customerService = new CustomerSettingService();
                 Fanex.CustSetting.Models.Result result = null;
 
                 result = customerService.UpdateBettingLimitSetting(_settingContext, _betLimits);
 
-                if (result.ErrCode != 0 && result.ErrCode != Constant.WARNING_CODE_DEFUALT)
+                if (result.ErrCode != 0 && result.ErrCode != Constant.WARNING_CODE_DEFAULT)
                 {
                     return new Result(ErrorType.Unknown, result.ErrMsg);
                 }
@@ -78,8 +80,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
                     return new Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
                 }
             }
-
-            return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            else
+            {
+                return new Result(ErrorType.AccessDenied, Resources.Lang.invalidvalue);
+            }
         }
     }
 }

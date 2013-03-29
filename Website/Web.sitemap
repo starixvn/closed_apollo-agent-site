@@ -35,7 +35,7 @@
       <!--Report-->
       <siteMapNode title="reports">
         <siteMapNode title="agentwinloss" href="_Reports/Common/MatchResultEntered.aspx"></siteMapNode>
-        <siteMapNode title="lblAgentOutstanding" href="_Reports/Common/Outstanding.aspx"></siteMapNode>
+        <siteMapNode title="lblAgentOutstanding" href="Reports/OutStanding/AgentOutStanding"></siteMapNode>
         <siteMapNode title="lblMatchWinLostDetail" href="_Reports/MatchWinloss/MatchWinLossDetail.aspx"></siteMapNode>
         <siteMapNode title="lblWinLossByBettype" href="_Reports/Winloss/WinLossByBettypeMaster.aspx"></siteMapNode>
         <siteMapNode description="Consolidated" title="consolidatedreport" href="_Reports/Consolidated/Daily_Consolidated.aspx"></siteMapNode>
@@ -55,7 +55,7 @@
       <!--/MemberInfo-->
       <!--Admin-->
       <siteMapNode title="lblAdmin">
-          <siteMapNode title="lblExchangeRate" href="_Admin/ExchangeRate/ExchangeRate.aspx"></siteMapNode>
+        <siteMapNode title="lblExchangeRate" href="_Admin/ExchangeRate/ExchangeRate.aspx"></siteMapNode>
       </siteMapNode>
       <!--/Admin-->
     </siteMapNode>

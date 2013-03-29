@@ -47,7 +47,9 @@
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,14 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\AppSettings.cs" />
     <Compile Include="Criterias\Accounts\AccountInfoCriteria.cs" />
     <Compile Include="Criterias\Accounts\AgentDownlineCriteria.cs" />
     <Compile Include="Criterias\Accounts\AgentDownlinePathCriteria.cs" />
+    <Compile Include="Criterias\Accounts\AgentGetStatusCriteria.cs" />
     <Compile Include="Criterias\Accounts\CustomerExistCriteria.cs" />
     <Compile Include="Criterias\Accounts\CustomerSearchCriteria.cs" />
     <Compile Include="Criterias\Accounts\MemberDownlineCriteria.cs" />
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
+    <Compile Include="DTO\Accounts\AgentStatus.cs" />
     <Compile Include="DTO\Reports\WinlossAgentDTO.cs" />
     <Compile Include="DTO\Reports\WinLossByBetTypeDTO.cs" />
     <Compile Include="Entities\Agent.cs" />
@@ -85,6 +90,7 @@
     <Compile Include="Services\Impl\AgentService.cs" />
     <Compile Include="Services\Impl\CustomerService.cs" />
     <Compile Include="Services\Impl\MemberService.cs" />
+    <Compile Include="Services\Impl\PermissionService.cs" />
     <Compile Include="Services\Impl\ReportService.cs" />
     <Compile Include="Services\Impl\ReportServiceBase.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
@@ -96,7 +102,6 @@
     <Compile Include="Services\Interface\IReportService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTO\Accounts\" />
     <Folder Include="DTO\Forecast\" />
     <Folder Include="DTO\TotalBets\" />
     <Folder Include="Web\" />
