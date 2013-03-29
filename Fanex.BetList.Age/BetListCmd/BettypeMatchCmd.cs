@@ -8,14 +8,14 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
+using System;
+using System.Data;
+using Fanex.BetList.Age.Definition;
+using Sunplus.Agent.Model.BL.BetList;
+using Sunplus.Agent.Model.BL.Cache;
+
 namespace Fanex.BetList.Age.BetListCmd
 {
-    using System;
-    using System.Data;
-    using Fanex.BetList.Age.Definition;
-    using Sunplus.Agent.Model.BL.BetList;
-    using Sunplus.Agent.Model.Entities.Permission;
-
     /// <summary>
     /// Summary description for BettypeMatchCmd
     /// </summary>
@@ -75,7 +75,7 @@ namespace Fanex.BetList.Age.BetListCmd
                 // outright
                 if (this.betType == 10)
                 {
-                    Title = Sunplus.Agent.Model.BL.Cache.CacheRef.GetBettype(this.betType).ToUpper();
+                    Title = CacheRef.GetBettype(this.betType).ToUpper();
                 }
                 else if (this.betType == 31 || this.betType == 32 || this.betType == 33)
                 {
@@ -85,7 +85,7 @@ namespace Fanex.BetList.Age.BetListCmd
                 {
                     DataRow row = this.result.Rows[0];
                     int leagueId = Convert.ToInt32(row["leagueid"]);
-                    Title = Sunplus.Agent.Model.BL.Cache.CacheRef.GetLeagueName(leagueId) + " " + Sunplus.Agent.Model.BL.Cache.CacheRef.GetBettype(this.betType);
+                    Title = CacheRef.GetLeagueName(leagueId) + " " + CacheRef.GetBettype(this.betType);
                 }
             }
 

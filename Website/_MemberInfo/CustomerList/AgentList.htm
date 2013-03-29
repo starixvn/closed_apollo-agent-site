@@ -60,6 +60,9 @@
                                     {static:Resources.Lang.lblUser}
                                 </th>
                                 <th rowspan="2">
+                                    {static:Resources.Lang.status}
+                                </th>
+                                <th rowspan="2">
                                     {static:Resources.Lang.agentList}
                                 </th>
                                 <th rowspan="2">
@@ -124,6 +127,9 @@
                                 <td class="l">
                                     {username}
                                 </td>
+                                <td class="l">
+                                    {active}
+                                </td>
                                 <td>
                                     {viewAgentList}
                                 </td>
@@ -168,7 +174,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="23">
+                                <td colspan="18">
                                     {pagingControl}
                                 </td>
                             </tr>

@@ -49,7 +49,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             // Get data
             CustomerListBO bo = new CustomerListBO(CurrentUserSession.NetSessionId);
             DataTable dtbNavigation = bo.GetAgentDownlinePath(CurrentUserSession.CustId, this.CustId);
-            
+
             // Init template
             AgentList_nav_link_container_Block nav_link_Block = new AgentList_nav_link_container_Block();
             this.template.nav_link_container.nav_link.Clear();
@@ -228,6 +228,19 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
             else
             {
                 tplBlock.viewPlayerList = "0";
+            }
+
+            switch (Convert.ToInt16(dr["active"]))
+            {
+                case 1:
+                    tplBlock.active = Resources.Lang.suspended;
+                    break;
+                case 2:
+                    tplBlock.active = Resources.Lang.closed;
+                    break;
+                default:
+                    tplBlock.active = Resources.Lang.lblActive;
+                    break;
             }
 
             tplBlock.groupA = Formater.FormatNumber4((Convert.ToDecimal(dr["groupa"]) * 100), this.langKey);

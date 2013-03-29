@@ -14,7 +14,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
     using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Age.ExtTemplate;
     using Fanex.BetList.Core.Entities;
-    using Sunplus.Agent.Model.BL.Definitions;
 
     /// <summary>
     /// Build Footer with no total info

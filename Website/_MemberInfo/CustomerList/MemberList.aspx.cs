@@ -234,6 +234,19 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
 
             tplBlock.group = userGroup;
 
+            switch (Convert.ToInt16(dr["active"]))
+            {
+                case 1:
+                    tplBlock.active = Resources.Lang.suspended;
+                    break;
+                case 2:
+                    tplBlock.active = Resources.Lang.closed;
+                    break;
+                default:
+                    tplBlock.active = Resources.Lang.lblActive;
+                    break;
+            }
+
             tplBlock.groupAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentgroup"]) * 100), this.langKey);
             tplBlock.oneXtwoAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscount1x2"]) * 100), this.langKey);
             tplBlock.otherAgent = Formater.FormatNumber4((Convert.ToDecimal(dr["agentdiscountother"]) * 100), this.langKey);

@@ -10,11 +10,7 @@
 
 namespace Fanex.BetList.Core.TicketHelper
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
     using System.Threading;
-    using Fanex.Caching;
     using RemotingRef;
 
     public class CacheRef

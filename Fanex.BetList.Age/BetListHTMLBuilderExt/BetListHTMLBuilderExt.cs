@@ -20,7 +20,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
     using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Sunplus.Agent.Model.BL.Definitions;
 
     /// <summary>
     /// Extend CoreBetList HTML Builder
