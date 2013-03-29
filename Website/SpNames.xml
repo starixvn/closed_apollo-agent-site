@@ -131,6 +131,9 @@
     <Setting Key="Report_Quinn_Test" SpName="Report_Quinn_Test" DbName="RepDB" Plain="0" >
       <Mapping DataField="BetAmount" ObjectProperty="MemberBetAmount" />
     </Setting>
+    <Setting Key="Age_Rpt_Outstanding_Agent" SpName="Age_Rpt_Outstanding_Agent" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding" DbName="REPDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets">
