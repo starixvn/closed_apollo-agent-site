@@ -74,55 +74,47 @@ namespace Fanex.Agent.UI
 
 		public class AccountInfo_NoData_Block: Block
 		{
-			protected static string s18 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div id=\"left_line02\"><img height=\"1\" width=\"1\" alt=\"\" src=\"";
-			protected static string s19{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s20 = "\" name=\"\" /></div><div class=\"Bleft_Sub02\"><form name=\"frmAgent\" id=\"frmAgent\" method=\"get\" action=\"\" target=\"menu\" style=\"float:left;\"><select id=\"isMember\" name=\"IsMember\" class=\"option-search\"><option value=\"0\" ";
+			protected static string s18 = "<div id=\"Bleft_Parent02\"><div id=\"left_submenu\"><div class=\"Bleft_Sub02\"><form name=\"frmAgent\" id=\"frmAgent\" method=\"get\" action=\"\" target=\"menu\" style=\"float:left;\"><select id=\"isMember\" name=\"IsMember\" class=\"option-search\"><option value=\"0\" ";
 			public string IsAgent = "{IsAgent}";
-			protected static string s21 = ">";
-			protected static string s22{get{return Resources.Lang.lblAgent;}}
-			protected static string s23 = "</option><option value=\"1\" ";
+			protected static string s19 = ">";
+			protected static string s20{get{return Resources.Lang.lblAgent;}}
+			protected static string s21 = "</option><option value=\"1\" ";
 			public string IsMember = "{IsMember}";
-			protected static string s24 = ">";
-			protected static string s25{get{return Resources.Lang.lblMember;}}
-			protected static string s26 = "</option></select><div id=\"from_tab\">";
+			protected static string s22 = ">";
+			protected static string s23{get{return Resources.Lang.lblMember;}}
+			protected static string s24 = "</option></select><div id=\"from_tab\">";
 			public AccountInfo_NoData_InputSearchBlock_Block InputSearchBlock = new AccountInfo_NoData_InputSearchBlock_Block();
 			public AccountInfo_NoData_NoInputSearchBlock_Block NoInputSearchBlock = new AccountInfo_NoData_NoInputSearchBlock_Block();
-			protected static string s27 = "</div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink img\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
-			protected static string s28{get{return Resources.Lang.search;}}
-			protected static string s29 = "\" border=\"0\" nowap=\"nowap\" src=\"";
-			protected static string s30{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
-			protected static string s31 = "\" /></a></div></form><br /><div class=\"line_info\"><img height=\"9\" width=\"1\" alt=\"\" src=\"";
-			protected static string s32{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s33 = "\" name=\"\" /></div><div class=\"errMsg\">";
+			protected static string s25 = "</div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink img\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
+			protected static string s26{get{return Resources.Lang.search;}}
+			protected static string s27 = "\" border=\"0\" nowap=\"nowap\" src=\"";
+			protected static string s28{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
+			protected static string s29 = "\" /></a></div></form></div><div class=\"errMsg\">";
 			public string errMsg = "{errMsg}";
-			protected static string s34 = "</div></div></div></div>";
+			protected static string s30 = "</div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(s18);
+					bd.Append(IsAgent);
 					bd.Append(s19);
 					bd.Append(s20);
-					bd.Append(IsAgent);
 					bd.Append(s21);
+					bd.Append(IsMember);
 					bd.Append(s22);
 					bd.Append(s23);
-					bd.Append(IsMember);
 					bd.Append(s24);
-					bd.Append(s25);
-					bd.Append(s26);
 					if(null != InputSearchBlock) InputSearchBlock.ToString(ref bd);
 					if(null != NoInputSearchBlock) NoInputSearchBlock.ToString(ref bd);
+					bd.Append(s25);
+					bd.Append(s26);
 					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
-					bd.Append(s30);
-					bd.Append(s31);
-					bd.Append(s32);
-					bd.Append(s33);
 					bd.Append(errMsg);
-					bd.Append(s34);
+					bd.Append(s30);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -130,29 +122,29 @@ namespace Fanex.Agent.UI
 
 		public class AccountInfo_NoData_InputSearchBlock_Block: Block
 		{
-			protected static string s35 = "<input maxlength=\"50\" id=\"txtUsername\" type=\"text\" onkeydown=\"onclickUser('";
+			protected static string s31 = "<input maxlength=\"50\" id=\"txtUsername\" type=\"text\" onkeydown=\"onclickUser('";
+			protected static string s32{get{return Resources.Lang.enterusername;}}
+			protected static string s33 = "')\" onclick=\"onclickUser('";
+			protected static string s34{get{return Resources.Lang.enterusername;}}
+			protected static string s35 = "')\" onblur=\"onblurUser('";
 			protected static string s36{get{return Resources.Lang.enterusername;}}
-			protected static string s37 = "')\" onclick=\"onclickUser('";
-			protected static string s38{get{return Resources.Lang.enterusername;}}
-			protected static string s39 = "')\" onblur=\"onblurUser('";
-			protected static string s40{get{return Resources.Lang.enterusername;}}
-			protected static string s41 = "')\" value=\"";
+			protected static string s37 = "')\" value=\"";
 			public string usernamesearch = "{usernamesearch}";
-			protected static string s42 = "\" style=\"width: 77px;\" class=\"text_f\" name=\"txtUsername\" />";
+			protected static string s38 = "\" class=\"text_f\" name=\"txtUsername\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s31);
+					bd.Append(s32);
+					bd.Append(s33);
+					bd.Append(s34);
 					bd.Append(s35);
 					bd.Append(s36);
 					bd.Append(s37);
-					bd.Append(s38);
-					bd.Append(s39);
-					bd.Append(s40);
-					bd.Append(s41);
 					bd.Append(usernamesearch);
-					bd.Append(s42);
+					bd.Append(s38);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -160,29 +152,29 @@ namespace Fanex.Agent.UI
 
 		public class AccountInfo_NoData_NoInputSearchBlock_Block: Block
 		{
-			protected static string s43 = "<input maxlength=\"50\" id=\"txtUsername\" type=\"text\" onkeydown=\"onclickUser('";
+			protected static string s39 = "<input maxlength=\"50\" id=\"txtUsername\" type=\"text\" onkeydown=\"onclickUser('";
+			protected static string s40{get{return Resources.Lang.enterusername;}}
+			protected static string s41 = "')\" onclick=\"onclickUser('";
+			protected static string s42{get{return Resources.Lang.enterusername;}}
+			protected static string s43 = "')\" onblur=\"onblurUser('";
 			protected static string s44{get{return Resources.Lang.enterusername;}}
-			protected static string s45 = "')\" onclick=\"onclickUser('";
-			protected static string s46{get{return Resources.Lang.enterusername;}}
-			protected static string s47 = "')\" onblur=\"onblurUser('";
-			protected static string s48{get{return Resources.Lang.enterusername;}}
-			protected static string s49 = "')\" value=\"";
+			protected static string s45 = "')\" value=\"";
 			public string usernamesearch = "{usernamesearch}";
-			protected static string s50 = "\" style=\"width: 77px;\" class=\"text_f1\" name=\"txtUsername\" />";
+			protected static string s46 = "\" class=\"text_f1\" name=\"txtUsername\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s39);
+					bd.Append(s40);
+					bd.Append(s41);
+					bd.Append(s42);
 					bd.Append(s43);
 					bd.Append(s44);
 					bd.Append(s45);
-					bd.Append(s46);
-					bd.Append(s47);
-					bd.Append(s48);
-					bd.Append(s49);
 					bd.Append(usernamesearch);
-					bd.Append(s50);
+					bd.Append(s46);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -190,18 +182,18 @@ namespace Fanex.Agent.UI
 
 		public class AccountInfo_TheRestAcc_Block: Block
 		{
-			protected static string s51 = "<div id=\"clear02\"><img height=\"5\" width=\"1\" alt=\"\" src=\"";
-			protected static string s52{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s53 = "\" name=\"\" /></div>";
+			protected static string s47 = "<div id=\"clear02\"><img height=\"5\" width=\"1\" alt=\"\" src=\"";
+			protected static string s48{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
+			protected static string s49 = "\" name=\"\" /></div>";
 			public string settingBox = "{settingBox}";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s51);
-					bd.Append(s52);
-					bd.Append(s53);
+					bd.Append(s47);
+					bd.Append(s48);
+					bd.Append(s49);
 					bd.Append(settingBox);
 				}
 				if(IsAssigned){bd.Append(Value);}

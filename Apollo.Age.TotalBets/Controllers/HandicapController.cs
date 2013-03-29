@@ -23,6 +23,6 @@ namespace Apollo.Age.TotalBets.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        }        
     }
 }

@@ -1,7 +1,5 @@
 ﻿/// <reference path="../../_GlobalResources/Js/jquery-1.9.1.min.js" />
 
-
-
 var currentMenuItem = null;
 function ClearCurrentLeftMenu() {
     if (currentMenuItem != null) {

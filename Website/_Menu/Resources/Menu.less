@@ -29,14 +29,13 @@ td
 	padding-top: 10px;
 
 	#tab_menu {
-		border-bottom: 1px solid @grayLight;
+		border-bottom: 1px solid lighten(@grayLight, 20%);
 		font-weight: bold;
 		height: 25px;
-		margin: 10px 0 0 5px;
 		text-align: center;
 		text-transform: uppercase;
-		width: 203px;
-		padding: 0 5px;
+		width: 96%;
+		padding: 0 4%;
 
 		#tab_menu_m {
 			float: left;
@@ -126,13 +125,14 @@ a {
 
 .Bleft_Sub0
 {
-	width: 100%;
+	width: 95%;
 	border-bottom: 1px #b2b2b2 solid;
 	border-left: 1px #b2b2b2 solid;
 	border-right: 1px #b2b2b2 solid;
-	background: url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x top;
+	/*background: url(../../_GlobalResources/Images/bg_leftSub.jpg) repeat-x top;*/
+	background: @grayLighter;
 	background-color: @white;
-	padding-left: 8px;
+	padding: 3px 3px 3px 8px;
 
 	a {
 		&.Bleft_Sub {
@@ -221,17 +221,17 @@ a {
 	width: 100%;
 
 	#button_left {
-		width: 100%;
-
 		.Bleft_Parent0 {
 			display: block;
 			width: 100%;
 			line-height: 20px;			
 			font-weight: bold;	
 			min-height: 30px;
-			border-bottom: 1px solid #CCCCCC;
-			box-shadow: 0 1px 0 #EEEEEE inset;
-			background: url(Images/navBg.png) repeat-x;	
+			border-bottom: 1px solid lighten(@grayLight, 20%);
+			box-shadow: 0 1px 0 lighten(@grayLight, 35%) inset;
+			text-shadow: 0 1px 0 @white;
+			color: @gray;
+			background: url(Images/navBg.png), linear-gradient(to bottom, #F7F7F7 0%, #E5E5E5 100%) repeat-x;				
 
 			&:hover, &.active {
 				box-shadow: 0 1px 0 #D87071 inset;

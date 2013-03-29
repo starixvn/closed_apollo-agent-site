@@ -29,6 +29,12 @@
                 width="100%" height="100%" frameborder="0"></iframe>
         </div>
     </form>
+    <script src="<%= Page.ResolveUrl("_GlobalResources/Js/jquery-1.9.1.min.js")%>" type="text/javascript"></script>
     <script src="<%= Page.ResolveUrl("_GlobalResources/Js/Core.js")%>" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            setInterval(APOLLO.reCheckIn, 45000);
+        });
+    </script>
 </body>
 </html>

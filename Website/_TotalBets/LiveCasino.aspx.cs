@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using System.Web.UI;
+using Sunplus.Agent.Model.Entities.Permission;
 using Sunplus.Agent.Utilities;
 
 /*
@@ -11,7 +13,6 @@ using Sunplus.Agent.Utilities;
  */
 namespace Fanex.Age.UI.TotalBets
 {
-
     public partial class LiveCasino_Page : TotalBets_Page
     {
 
@@ -63,8 +64,7 @@ namespace Fanex.Age.UI.TotalBets
 
                 if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
             }
-
-
+            
             if (_fullMode)
             {
                 writer.Write(tpl);
@@ -75,14 +75,15 @@ namespace Fanex.Age.UI.TotalBets
             }
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
-            if (!Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowLiveCasino) Response.Redirect("../AccessDenied.aspx");
+            if (!UserPermission.IsShowLiveCasino) 
+                Response.Redirect("../AccessDenied.aspx");
 
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetLiveCasino();
         }
@@ -97,11 +98,12 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         /// <param name="matchIndex"></param>
         /// <param name="rowIndex"></param>
-        private void RenderMatchRow(LiveCasino_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, int matchIndex, int rowIndex)
+        private void RenderMatchRow(LiveCasino_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, 
+            int matchIndex, int rowIndex)
         {
             // Render match content
-            matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
-            matchBlock.ColorClass = (matchIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
+            matchBlock.ColorOver = Common.RowBgOver;
+            matchBlock.ColorClass = (matchIndex % 2) == 0 ? Common.RowBgEven : Common.RowBgOdd;
             
             matchBlock.vNo = rowIndex.ToString();
             matchBlock.vEvent = CacheRef.GetBettype(dr["bettype"]) + " " + dr["showtime"].ToString();
