@@ -1,4 +1,7 @@
-﻿html, body {
+﻿@headerHeight:	28px;
+@menuWidth:		220px;
+
+html, body {
 	padding: 0;
 	margin: 0;
 	border: 0;
@@ -14,18 +17,20 @@ iframe { border: 0 }
 }
 
 .header {
-	height: 28px;
-	display: none;
+	height: @headerHeight;
+	width: 100%;
+	border-bottom: 1px solid #AC3B3B;
 }
 
 .menu {
-	top: 28px;
-	width: 220px;
+	top: @headerHeight + 1;
+	width: @menuWidth;
 	border-right: 1px solid #999;
 }
 
 .mainpage {
-	top: 28px;
-	left: 221px;
+	top: @headerHeight + 1;
+	left: @menuWidth + 1;
 	right: 0;
+	padding: 0 5px;
 }
