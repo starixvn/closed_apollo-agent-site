@@ -19,13 +19,14 @@ namespace Apollo.Age.Account.Controllers
     using Sunplus.Agent.Model.Entities;
     using Fanex.Age.UI;
     using Apollo.Age.Services.Impl;
+    using System.Web.Security;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class AccountController : BaseController
     {
-        public JsonResult IsKickOut()
+        public JsonResult ReCheckIn()
         {
             IUserSession userSession = UserSession.Current;
             Result result = new Result(0, string.Empty);
@@ -34,6 +35,16 @@ namespace Apollo.Age.Account.Controllers
                 result.ErrCode = (int)ErrorType.KickedOut;
             }
             return Json(result);
+        }
+
+        public ActionResult SignOut()
+        {
+            Session.Abandon();
+            // Clear session ticket
+            FormsAuthentication.SignOut(); // Use this command will make the logout function log out all loged in users in the same machine and browser
+
+            FormsAuthentication.RedirectToLoginPage();
+            return View("~/_Authorization/SignIn.aspx");
         }
     }
 }
