@@ -92,7 +92,7 @@ namespace Fanex.Agent.UI
 
 		public class Menu_SubMenu_Block: Block
 		{
-			protected static string s17 = "<div id=\"button_left\"><div class=\"Bleft_Parent0 isActive\"><a class=\"left-menu ";
+			protected static string s17 = "<div id=\"button_left\"><div class=\"Bleft_Parent0\"><a class=\"left-menu ";
 			public string sub_display = "{sub_display}";
 			protected static string s18 = "\" id=\"a";
 			public string sub_id = "{sub_id}";

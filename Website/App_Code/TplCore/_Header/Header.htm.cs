@@ -23,13 +23,13 @@ namespace Fanex.Agent.UI
 			public Header_CssAgent_Block CssAgent = new Header_CssAgent_Block();
 			protected static string s5 = "</head><body>";
 			public string flash = "{flash}";
-			protected static string s6 = "<div id=\"banner_main\"><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"99%\"><tr><td colspan=\"2\"><div class=\"login-info\">";
+			protected static string s6 = "<div id=\"banner_main\"><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td colspan=\"2\" class=\"login-bg\"><div class=\"login-info\">";
 			protected static string s7{get{return Resources.Lang.lblWebHostLogin;}}
 			protected static string s8 = "<span class=\"username\">";
 			public Header_SetUserName_Block SetUserName = new Header_SetUserName_Block();
 			protected static string s9 = "</span><a href=\"javascript:top.age.SignOut()\">";
 			protected static string s10{get{return Resources.Lang.ImgLogOut;}}
-			protected static string s11 = "</a></div></td></tr><tr><td style=\"width: 99%\"><div id=\"text_news_out\" onclick=\"Change2Menu('Info/NewMessageForm.aspx?pageQuery=";
+			protected static string s11 = "</a></div></td></tr><tr><td style=\"width: 100%\"><div id=\"text_news_out\" onclick=\"Change2Menu('Info/NewMessageForm.aspx?pageQuery=";
 			public string issticky = "{issticky}";
 			protected static string s12 = "', this)\"><div id=\"text_news\" id=\"text_news\" style=\"overflow: hidden; position: relative\"><div id=\"scroller\" class=\"news-scroller\"><a id=\"topnews\" style=\"overflow: hidden; position: relative\" href=\"javascript:;\">";
 			public string scrollMessage = "{scrollMessage}";
