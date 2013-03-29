@@ -29,7 +29,14 @@
             OutStandingViewModel totalModel = _reportService.Total(models);
             models.ToList().Add(totalModel);
 
-            return View(models);
+            return View("~/View/Reports/OutStanding/AgentOutStanding.cshml", models);
         }
+
+        //AgentOutStanding/Index
+        // + AgentOutStanding/Demo
+        //public JsonResult Demo()
+        //{
+        //    return Json("");
+        //}
     }
 }
