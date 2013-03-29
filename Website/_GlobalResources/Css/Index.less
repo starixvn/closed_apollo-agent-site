@@ -1,39 +1,36 @@
-﻿html, body {
+﻿@headerHeight:	28px;
+@menuWidth:		220px;
+
+html, body {
 	padding: 0;
 	margin: 0;
 	border: 0;
 }
 
-.header {
+iframe { border: 0 }
+
+.header, .menu, .mainpage {
 	position: fixed;
 	top: 0;
+	bottom: 0;
 	left: 0;
-	height: 28px;
-	width: 100%;
 }
 
-.menu {	
-	position: absolute;
-	top: 28px;
-	left: 0px;
-	bottom: 0;
-	width: 220px;
+.header {
+	height: @headerHeight;
+	width: 100%;
+	border-bottom: 1px solid #AC3B3B;
+}
+
+.menu {
+	top: @headerHeight + 1;
+	width: @menuWidth;
 	border-right: 1px solid #999;
 }
 
-.mainpage {		
-	position: fixed;
-	top: 28px;
-	bottom: 0;
-	left: 230px;
+.mainpage {
+	top: @headerHeight + 1;
+	left: @menuWidth + 1;
 	right: 0;
-}
-
-.footer {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 22px;
-	display: none;
+	padding: 0 5px;
 }
