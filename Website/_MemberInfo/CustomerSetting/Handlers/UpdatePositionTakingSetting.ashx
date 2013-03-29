@@ -15,6 +15,8 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using System.Collections.Generic;
     using Fanex.CustSetting.Service;
     using Fanex.Age.UI;
+    using Apollo.Age.Services.Impl;
+    using Fanex.CustSetting.Core;
 
     public class UpdatePositionTakingSetting : Fanex.Age.UI.TplHandler
     {
@@ -50,10 +52,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
-            //if (!CurrentUserSession.SubPageAccess.CreateAccount || CurrentUserSession.IsInternal)
-            //{
-            //    return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
-            //}
+            if (PermissionService.HasPermissionOnUpdating(CurrentUserSession.AgentId,
+                CurrentUserSession.UserId,
+                CurrentUserSession.IsMaster))
+            {
+                return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            }
 
             return null;
         }
@@ -67,7 +71,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
                 result = customerService.UpdatePositionTakingSetting(_settingContext, _positionTakingSetting);
 
-                if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFUALT)
+                if (result.ErrCode != 0 && result.ErrCode != Constant.WARNING_CODE_DEFAULT)
                 {
                     return new Result(ErrorType.Unknown, result.ErrMsg);
                 }
@@ -76,8 +80,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
                     return new Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
                 }
             }
-
-            return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            else
+            {
+                return new Result(ErrorType.AccessDenied, Resources.Lang.invalidvalue);
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using Fanex.CustSetting.ViewData;
     using System.Collections.Generic;
     using Fanex.CustSetting.Service;
+    using Apollo.Age.Services.Impl;
 
     public class UpdateSetting : Fanex.Age.UI.TplHandler
     {
@@ -62,10 +63,12 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
-            //if (!CurrentUserSession.SubPageAccess.CreateAccount || CurrentUserSession.IsInternal)
-            //{
-            //    return new Fanex.Age.UI.Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
-            //}
+            if (PermissionService.HasPermissionOnUpdating(CurrentUserSession.AgentId,
+                CurrentUserSession.UserId,
+                CurrentUserSession.IsMaster))
+            {
+                return new Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            }
 
             return null;
         }
@@ -79,7 +82,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
 
                 result = customerService.UpdateSetting(_settingContext, _commissionSetting, _betLimits, _positionTakingSetting);
 
-                if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFUALT)
+                if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFAULT)
                 {
                     return new Fanex.Age.UI.Result(ErrorType.Unknown, result.ErrMsg);
                 }
@@ -88,8 +91,10 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
                     return new Fanex.Age.UI.Result(ErrorType.Success, Resources.Lang.updatesuccessfull);
                 }
             }
-
-            return new Fanex.Age.UI.Result(ErrorType.AccessDenied, Resources.Lang.lblNotAuthorized);
+            else
+            {
+                return new Result(ErrorType.AccessDenied, Resources.Lang.invalidvalue);
+            }
         }
     }
 }

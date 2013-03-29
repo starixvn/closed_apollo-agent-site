@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Apollo.Age.Controllers</RootNamespace>
-    <AssemblyName>Apollo.Age.Controllers</AssemblyName>
+    <RootNamespace>Apollo.Age.Account</RootNamespace>
+    <AssemblyName>Apollo.Age.Account</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
@@ -105,9 +105,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HomeController.cs" />
+    <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
+      <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
+      <Name>Apollo.Age.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
+      <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
+      <Name>Apollo.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
+      <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
+      <Name>Fanex.Age.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
+      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
+      <Name>Sunplus.Agent.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

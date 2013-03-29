@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="PermissionController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AccountController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,19 +7,23 @@
 //   <change who="Ricky.Nguyen" date="2013.3.29">Created</change>
 // </history>
 
-namespace Apollo.Age.Controllers
+
+namespace Apollo.Age.Account.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
+    using System.Text;
     using Apollo.Age.Web;
     using System.Web.Mvc;
     using Sunplus.Agent.Model.Entities;
-    using Apollo.Age.Services.Impl;
     using Fanex.Age.UI;
+    using Apollo.Age.Services.Impl;
 
-    public class PermissionController : BaseController
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class AccountController : BaseController
     {
         public JsonResult IsKickOut()
         {
