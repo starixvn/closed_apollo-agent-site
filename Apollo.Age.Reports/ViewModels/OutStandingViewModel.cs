@@ -7,7 +7,6 @@
 //   <change who="Anders.Le" date="2013.3.29">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Reports.ViewModels
 {
     using System;
@@ -20,5 +19,14 @@ namespace Apollo.Age.Reports.ViewModels
     /// </summary>
     public class OutStandingViewModel
     {
+        public string UserName { get; set; }
+
+        public decimal OutStanding { get; set; }
+
+        public decimal ShareAmount { get; set; }
+
+        public decimal GameOutStanding { get; set; }
+
+        public decimal GameShareAmount { get; set; }
     }
 }
