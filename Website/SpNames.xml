@@ -146,8 +146,8 @@
   </Function>
 
   <Function Name="Agent-Apollo-DownlinesInfo">
-    <Setting Key="Acc_Agent_GetByAgent" SpName="Acc_Agent_GetByAgent" DbName="REPDB" Plain="0" />
-    <Setting Key="Acc_Customer_GetByAgent" SpName="Acc_Customer_GetByAgent" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Agent_GetByAgent" SpName="Age_Agent_GetByAgent" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Customer_GetByAgent" SpName="Age_Customer_GetByAgent" DbName="REPDB" Plain="0" />
     <Setting Key="Age_AgentUser_GetByAgent" SpName="Age_AgentUser_GetByAgent" DbName="REPDB" Plain="0" />
     <Setting Key="Acc_AgentUser_UpdatePermission" SpName="Acc_AgentUser_UpdatePermission" DbName="CustDB" Plain="0" />
   </Function>

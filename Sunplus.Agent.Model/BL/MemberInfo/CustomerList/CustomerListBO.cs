@@ -1,8 +1,8 @@
 ﻿namespace Sunplus.Agent.Model.BL.MemberInfo.CustomerList
 {
     using System.Data;
-    using Sunplus.Agent.Model.DL.MemberInfo.CustomerList;
     using Sunplus.Agent.Model.BL.Base;
+    using Sunplus.Agent.Model.DL.MemberInfo.CustomerList;
 
     public class CustomerListBO : BOBase
     {
@@ -87,7 +87,7 @@
         {
             CustomerListDAO dao = new CustomerListDAO();
 
-            return dao.Acc_Agent_GetByAgent(custId, userName, pageIndex, pageSize, ref totalPages);
+            return dao.Age_Agent_GetByAgent(custId, userName, pageIndex, pageSize, ref totalPages);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@
         {
             CustomerListDAO dao = new CustomerListDAO();
 
-            return dao.Acc_Customer_GetByAgent(custId, currentAgentId, userName, pageIndex, pageSize, ref totalPages);
+            return dao.Age_Customer_GetByAgent(custId, currentAgentId, userName, pageIndex, pageSize, ref totalPages);
         }
 
         /// <summary>
