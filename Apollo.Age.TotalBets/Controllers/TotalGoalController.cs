@@ -5,32 +5,30 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders" date="2013.3.27">Created</change>
+//   <change who="Edward.Nguyen" date="2013.3.29">Implement</change>
 // </history>
 
 namespace Apollo.Age.TotalBets.Controllers
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
-
-    using Apollo.Age;
-    using ViewModels;
     using Fanex.NAP.Framework.Data;
+    using ViewModels;
+    using Apollo.Age.TotalBets.Services;
+    using Apollo.Age.TotalBets.Criterias;
 
     public class TotalGoalController : TotalBetController
     {
-        private readonly DynamicRepository _dynamicRepository;
+        private readonly TotalGoalService _totalGoalService;
 
         public TotalGoalController()
         {
-            _dynamicRepository = new DynamicRepository();
+            _totalGoalService = new TotalGoalService();
         }
 
         public ActionResult Index()
         {
-            IEnumerable<TotalGoalViewModel> model = _dynamicRepository.Fetch<TotalGoalViewModel>();
+            IEnumerable<TotalGoalViewModel> model = _totalGoalService.GetReportData<TotalGoalViewModel>(new GetTotalGoalCriteria { AgentId = 3 });
             return View(model);
         }
     }

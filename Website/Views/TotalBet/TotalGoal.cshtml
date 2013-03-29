@@ -7,7 +7,7 @@
         <table class="tblRpt">
             <thead>
                 <tr class="RptHeader">
-                    <td style="width: 20px;">                    
+                    <td style="width: 20px;">
                         {static:Resources.Lang.no}
                     </td>
                     <td style="width: 150px;">
@@ -30,20 +30,38 @@
                     </td>
                 </tr>
             </thead>
-            @if (Model.Any())
-            {          
-                var length = Model.Count();  
-                for (int i = 0; i < length; i++)
-                {
-                <tbody>
-                </tbody>
+            <tbody>
+                @{
+                    int count = 0;
+                    foreach (var item in Model)
+                    {
+                        count++;
+                    <tr class="RptHeader">
+                        <td style="width: 20px;">
+                            @count
+                        </td>
+                        <td style="width: 150px;">
+                            @item.HomeTeam
+                        </td>
+                        <td style="width: 150px;">
+                            @item.AwayTeam
+                        </td>
+                        <td style="width: 80px;">
+                            @item.Total01
+                        </td>
+                        <td style="width: 80px;">
+                            @item.Total23
+                        </td>
+                        <td style="width: 80px;">
+                            @item.Total46
+                        </td>
+                        <td style="width: 80px;">
+                            @item.Total7Over
+                        </td>
+                    </tr>
+                    }
                 }
-           
-            }
-            else
-            { 
-                
-            }
+            </tbody>
         </table>
     </div>
 </div>
