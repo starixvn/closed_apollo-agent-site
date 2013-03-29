@@ -1,4 +1,5 @@
 ﻿@import "../../_GlobalResources/Css/variables.less";
+@import "../../_GlobalResources/Css/mixins.less";
 
 body {
     padding: 0px 0px 0px 0px;
@@ -23,15 +24,15 @@ td {
 
 #banner_main {
     height: 100px;
-    background: @primaryColor;
-    position: relative; /*margin-left: 5px; 	margin-right: 1px;*/
+    /*background: @primaryColor;*/
+    position: relative; /*margin-left: 5px; 	margin-right: 1px;*/	
 }
 
 .logo {
-    position: absolute;
-    z-index: 1000;
-    top: 14px;
-    left: 35px;
+	position: absolute;
+	z-index: 1000;
+	top: 14px;
+	left: 35px;
 	
 	a {
 		cursor: pointer;
@@ -49,10 +50,7 @@ td {
 
 #privateMsgLnk {
     white-space: nowrap;
-    text-align: center;
-    -moz-border-radius: 3px; /* Firefox */
-    -webkit-border-radius: 3px; /* Safari and Chrome */
-    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+    text-align: center;    
 }
 
 #Popup_top {
@@ -206,10 +204,9 @@ div.messageBlock {
 
 #news_main {
     height: 33px;
-    color: #CC0000;
     width: auto;
     overflow: hidden;
-    background: @grayDarker;
+    background: @primaryColor;
 }
 
 #text_news {
@@ -226,35 +223,30 @@ div.messageBlock {
 }
 
 #topnews {
-    color: #CECECE;
+    color: @white;
 }
 
 #text_news_out {
     margin-top: 3px;
     background: url(../../_GlobalResources/Images/line_news.gif) no-repeat right;
-    height: 20px;
-
-	&:hover {		
-		background: url(../../_GlobalResources/Images/line_newsOV.gif) no-repeat right;
-		height: 20px;
-	}
+    height: 22px;
 }
 
 #button_top {
     line-height: 18px;
     padding-left: 5px;
-    margin-top: 3px;
+    margin-top: 2px;
 }
 
 a.b_top {
-    border: 1px #2c2c2c solid;
-    background: url(../../_GlobalResources/Images/BGb_top.jpg) #C9C8C8 repeat-x;
-    color: #414140;
+    border-bottom: 1px #CE6F6F solid;
+	#gradient .vertical(#fff, #E6E6E6);
+    color: @grayDark;
     cursor: pointer;
     text-indent: 2;
     text-decoration: none;
     padding: 2px 4px 2px 4px;
-
+	
 	&:hover {
 		background: #F2F2F2;
 	} 
@@ -465,4 +457,8 @@ a.b_top {
     position: absolute;
     white-space: nowrap;
     left: 1000px
+}
+
+.hide {
+	display: none;
 }
