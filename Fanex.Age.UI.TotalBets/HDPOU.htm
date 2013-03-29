@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Total Bets</title>
@@ -9,49 +9,52 @@
         <div id="header_main">
             {static:Resources.Lang.lblHOUL}
         </div>
-        {load:Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown = new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"HDPOU")}
-        <div id="sContent">
+        <div id="content_main">
+            {load:Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown = new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"HDPOU")}
             <!--Contents-->
-            <table cellpadding="0" cellspacing="1" class="tblRpt" style="width: 100%;">
-                <tr class="RptHeader">
-                    <td rowspan="2" style="width: 20px;">
-                        #
-                    </td>
-                    <td rowspan="2" style="width: 110px;">
-                        {static:Resources.Lang.time}
-                    </td>
-                    <td rowspan="2">
-                        {static:Resources.Lang.events}
-                    </td>
-                    <td colspan="4">
-                        {static:Resources.Lang.fulltime}
-                    </td>
-                    <td colspan="4">
-                        {static:Resources.Lang.lbl1sthalf}
-                    </td>
-                </tr>
-                <tr class="RptHeader02">
-                    <td colspan="2" style="text-align: center;">
-                        {static:Resources.Lang.lblHandicapFC}
-                    </td>
-                    <td colspan="2" style="text-align: center;">
-                        {static:Resources.Lang.lblOverUnder}
-                    </td>
-                    <td colspan="2" style="text-align: center;">
-                        {static:Resources.Lang.lblHandicapFC}
-                    </td>
-                    <td colspan="2" style="text-align: center;">
-                        {static:Resources.Lang.lblOverUnder}
-                    </td>
-                </tr>
+            <table class="tblRpt">
+                <thead>
+                    <tr class="RptHeader">
+                        <td rowspan="2" style="width: 20px">
+                            #
+                        </td>
+                        <td rowspan="2" style="width: 110px">
+                            {static:Resources.Lang.time}
+                        </td>
+                        <td rowspan="2">
+                            {static:Resources.Lang.events}
+                        </td>
+                        <td colspan="4">
+                            {static:Resources.Lang.fulltime}
+                        </td>
+                        <td colspan="4">
+                            {static:Resources.Lang.lbl1sthalf}
+                        </td>
+                    </tr>
+                    <tr class="RptHeader02">
+                        <td colspan="2"class="text-center">
+                            {static:Resources.Lang.lblHandicapFC}
+                        </td>
+                        <td colspan="2"class="text-center">
+                            {static:Resources.Lang.lblOverUnder}
+                        </td>
+                        <td colspan="2"class="text-center">
+                            {static:Resources.Lang.lblHandicapFC}
+                        </td>
+                        <td colspan="2"class="text-center">
+                            {static:Resources.Lang.lblOverUnder}
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
                 <!--LeagueContents-->
-                <tr class="c">
-                    <td colspan="11" class="league" style="padding-left: 20px;">
+                <tr class="league">
+                    <td colspan="11">
                         {LeagueName}
                     </td>
                 </tr>
                 <!--MatchContents-->
-                <tr bgcolor="{ColorClass}" onmouseover="bgColor='{ColorOver}'" onmouseout="bgColor='{ColorClass}'">
+                <tr class="{rowClass}">
                     <td class="w-order">
                         {No}
                     </td>
@@ -115,6 +118,7 @@
                     </td>
                 </tr>
                 <!--/NotFoundContent-->
+                </tbody>
             </table>
             <!--/Contents-->
         </div>

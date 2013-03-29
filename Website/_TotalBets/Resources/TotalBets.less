@@ -1,23 +1,12 @@
 ﻿@import "../../_GlobalResources/Css/Agent.less";
-body
-{
-}
 
-a:link, a:visited
-{
+a {
 	color: @linkColor;
 	text-decoration: none;
-}
-a:hover
-{
-	color: #F60;
-	text-decoration: none;
-}
-table.tblRpt td
-{
-    padding: 2px 5px;
-    line-height: normal;
-    height: 20px;
+	&:hover {
+		color: #F60;
+		text-decoration: none;
+	}
 }
 
 /* Total goal */
@@ -35,17 +24,8 @@ table.tblRpt td
     color: Red;
 }
 
-/* Handicap over under */
-.league
-{
-    background: url("../../_GlobalResources/Images/bg_header03.jpg") repeat-x scroll center top #F8F1E9;
-    color: #333333;
-    font-weight: bold;
-    text-align: left;
-    text-transform: uppercase;
-}
-.btnInfo
-{
+/* HANDICAP OVER UNDER */
+.btnInfo {
     background: url("../../_GlobalResources/Images/icon_add.jpg") no-repeat scroll center top transparent;
     display: block;
     height: 16px;

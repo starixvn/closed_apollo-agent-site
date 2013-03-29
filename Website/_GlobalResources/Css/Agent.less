@@ -53,8 +53,8 @@ a {
 	color: @grayDark;
 	cursor: pointer;
 
-	&:hover { #gradient.vertical(#eee, #ccc) }
-	&:focus, &:active { #gradient.vertical(#ccc, #eee) }
+	&:hover { #gradient.vertical(@grayLighter, @borderColor) }
+	&:focus, &:active { #gradient.vertical(@borderColor, @grayLighter) }
 }
 
 .editBtn,
@@ -77,17 +77,24 @@ a {
 /* MAIN ELEMENTS */
 
 #page_main {
-	padding: 5px;
+	padding: 0;
 }
 
 #header_main {
-	padding: 10px 0 2px;
-	margin: 0 0 10px;
-	border-bottom: 1px solid @gray;
+	padding: 10px;
+
+	#gradient.vertical(#F8F8F8, #EAEAEA);
+    border-bottom: 1px solid @borderColor;
+    box-shadow: 0 1px 0 0 #fff inset, 0 1px 0 0 #fff;
+
 	text-transform: uppercase;
 	color: @titleColor;
 	font-size: 1.1em;
 	.bold;
+}
+
+#content_main {
+	padding: 10px;
 }
 
 /* COMPONENTS */
@@ -105,8 +112,8 @@ a {
 
 .tblRpt {
 	background-color: #EAEAEA;
-	border: 1px solid #CCC;
-	.box-shadow(0 0 0 2px #D5D5D5);
+	border: 1px solid @borderColor;
+	//.box-shadow(0 0 0 2px #D5D5D5);
 	border-collapse: collapse;
 	color: #707070;
 	margin: 10px 0 0;
@@ -117,18 +124,21 @@ a {
 		white-space: nowrap;
 	}
 	
-	.RptTitle, .RptTitleLeft {
+	.report-title {
 		#gradient.vertical(#F8F8F8, #EAEAEA);
 		.box-shadow(0 1px 0 0 #FFF inset);
+
 		td {
-			height: 33px;
+			background: url(img/report-title.gif) no-repeat 5px center;
+			padding: 0 0 0 24px;
+			height: 35px;
 			text-align: left;
 		}
 	}
 
 	thead td {
 		border-spacing: 0;
-		border: 1px solid #CCC;
+		border: 1px solid @borderColor;
 		border-width: 1px 1px 0 0;
 		.box-shadow(0 1px 0 #FFF inset);
 		text-shadow: 0 1px 0 #FFF;
@@ -137,8 +147,8 @@ a {
 
 	tbody {
 		td {
-			border-right: 1px solid #CCC;
-			border-top: 1px solid #CCC;
+			border-right: 1px solid @borderColor;
+			border-top: 1px solid @borderColor;
 
 			.box-shadow(0 1px 0 #FFF inset);
 			text-shadow: 0 1px 0 #FFF;
@@ -147,8 +157,18 @@ a {
 				border-right: 0;
 			}
 		}
-		tr:first-child td {
-			border-top: 1px solid #CCC;
+		tr {
+			/*background-color: @rowBackground;
+			&.alt { background-color: @rowAltBackground }*/
+			&.live { background-color: @rowLiveBackground }
+			&.league {
+				#gradient.vertical(#F1E5D5, #F8F1E9);
+				color: @grayDark;
+				font-weight: bold;
+				text-transform: uppercase;
+				td { padding: 4px 4px 4px 30px }
+			}
+			&:hover { background-color: @rowHoverBackground }
 		}
 	}
 

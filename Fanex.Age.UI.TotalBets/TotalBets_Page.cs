@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Sunplus.Agent.Model.BL.TotalBets;
-/*
+﻿/*
  * Created 20100527@Jacob - Support render full mode or body mode
  * Revision:
- * ?@? - ... 
+ *      Lewis@20130329 - added constants
  * 
  */
-/// </summary>
+
 namespace Fanex.Age.UI.TotalBets
 {
+    using System;
+    using Sunplus.Agent.Model.BL.TotalBets;
+
     public abstract class TotalBets_Page : TplPage
     {
+        #region Const
+        protected const string LIVE = "live";
+        protected const string ALT = "alt";
+        #endregion
+
         #region Variable
         /// <summary>
         /// If fullMode=false, only render the body content
@@ -32,7 +35,6 @@ namespace Fanex.Age.UI.TotalBets
 
         #endregion
 
-
         #region Override
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
@@ -47,6 +49,5 @@ namespace Fanex.Age.UI.TotalBets
             }
         }
         #endregion
-
     }
 }

@@ -1,32 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Web;
-using System.Web.UI;
-
-using Sunplus.Agent.Model.BL.TotalBets;
-using Sunplus.Agent.Model.BL.Definitions;
-
-using Fanex.Age.UI;
-
-using Fanex.Age.UI.Components;
-
-
-using Sunplus.Agent.Utilities;
-
-
-/*
+﻿/*
  * Created 20100507@Jacob - Render HDPOU page
  * Revision:
- * ?@? - ... 
+ *      Lewis@20130329 - Remove ColorClass, ColorOver, etc.
  * 
  */
 namespace Fanex.Age.UI.TotalBets
 {
+    using System;
+    using System.Data;
+    using System.Web.UI;
+    using Sunplus.Agent.Utilities;
+    using System.Collections;
 
     public partial class HDPOU_Page : TotalBets_Page
     {
-
         #region Override
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -62,7 +49,7 @@ namespace Fanex.Age.UI.TotalBets
                         currentLeagueId = leagueId;
 
                         leagueBlock.MatchContents.Clear();
-                        leagueBlock.LeagueName = Sunplus.Agent.Model.BL.Cache.CacheRef.GetLeagueName(leagueId);
+                        leagueBlock.LeagueName = CacheRef.GetLeagueName(leagueId);
                     }
                     else
                     {
@@ -76,7 +63,7 @@ namespace Fanex.Age.UI.TotalBets
 
                 if (leagueBlock != null) tpl.Contents.LeagueContents.Append(leagueBlock);
             }
-            
+
             if (_fullMode)
             {
                 writer.Write(tpl);
@@ -84,21 +71,22 @@ namespace Fanex.Age.UI.TotalBets
             else
             {
                 writer.Write(tpl.Contents);
-            }            
+            }
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return _TotalBetsBO.GetHDPOU();
         }
+
         #endregion
 
-        #region Utility
+        #region Utilities
 
         /// <summary>
         /// Render match row
@@ -107,24 +95,25 @@ namespace Fanex.Age.UI.TotalBets
         /// <param name="dr"></param>
         /// <param name="matchIndex"></param>
         /// <param name="rowIndex"></param>
-        private void RenderMatchRow(HDPOU_Contents_LeagueContents_MatchContents_Block matchBlock, DataRow dr, int matchIndex, int rowIndex)
+        private void RenderMatchRow(HDPOU_Contents_LeagueContents_MatchContents_Block matchBlock,
+            DataRow dr, int matchIndex, int rowIndex)
         {
             // Render match content
             if (Convert.ToInt16(dr["liveindicator"]) == 1)
             {
-                matchBlock.ColorClass = Fanex.Age.UI.Common.RowBgLive;
+                matchBlock.rowClass = LIVE;
                 matchBlock.TimeValue = dr["livehomescore"] + " - " + dr["liveawayscore"];
                 matchBlock.LiveNotice.Show();
             }
             else
             {
-                matchBlock.ColorClass = (matchIndex % 2) == 0 ? Fanex.Age.UI.Common.RowBgEven : Fanex.Age.UI.Common.RowBgOdd;
+                matchBlock.rowClass = matchIndex % 2 == 0 ? ALT : string.Empty;
+
                 matchBlock.TimeValue = dr["showtime"].ToString();
                 matchBlock.LiveNotice.Hide();
             }
-            matchBlock.ColorOver = Fanex.Age.UI.Common.RowBgOver;
-            matchBlock.Home = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + (Convert.ToBoolean(dr["isNeutral"]) ? Resources.Lang.IsNeutral : string.Empty);
-            matchBlock.Away = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
+            matchBlock.Home = CacheRef.GetTeamName(dr["homeid"]) + (Convert.ToBoolean(dr["isNeutral"]) ? Resources.Lang.IsNeutral : string.Empty);
+            matchBlock.Away = CacheRef.GetTeamName(dr["awayid"]);
             matchBlock.No = rowIndex.ToString();
 
             // Render value column
@@ -186,6 +175,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OverUnderTotalButton.Hide();
             }
         }
+
         /// <summary>
         /// Render handicap first half column
         /// </summary>
@@ -212,6 +202,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.HandicapFirstHalfButton.Hide();
             }
         }
+        
         /// <summary>
         /// Render over under first half column
         /// </summary>
@@ -223,7 +214,7 @@ namespace Fanex.Age.UI.TotalBets
             if (Convert.ToInt16(dr["BetCount_HTOU"]) != 0)
             {
                 decimal OUHT = Convert.ToDecimal(dr["home_odds_HTOU"]) - Convert.ToDecimal(dr["away_odds_HTOU"]);
-                
+
                 matchBlock.OverUnderFirstHalfValue.OverUnderFirstHalfValue = NegativeNumberRoundColor(OUHT);
                 matchBlock.OverUnderFirstHalfValue.MatchId = dr["matchid"].ToString();
                 matchBlock.OverUnderFirstHalfValue.BetType = Fanex.Age.UI.Common.BetListByBetTypeMatch;
@@ -238,6 +229,7 @@ namespace Fanex.Age.UI.TotalBets
                 matchBlock.OverUnderFirstHalfButton.Hide();
             }
         }
+        
         /// <summary>
         /// Round color for negative number
         /// </summary>
@@ -248,7 +240,7 @@ namespace Fanex.Age.UI.TotalBets
             return Math.Round(number) < 0 ? "<font color='#eb6003'>" + Formater.DecFormat(number, 0) + "</font>" : Formater.DecFormat(number, 0);
 
         }
+
         #endregion
     }
-
 }
