@@ -14,6 +14,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
     using System.Resources;
     using Fanex.Common;
     using Fanex.Logging;
+    using Fanex.Age.Utility;
     
     public class GetPositionTakingSetting : IHttpHandler, IReadOnlySessionState
     {
@@ -74,7 +75,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             }
             catch (Exception ex)
             {
-                Logger.Log.Error(ex.Message, ex);
+                Logs.Error(ex.Message, ex);
             }
         }
 
