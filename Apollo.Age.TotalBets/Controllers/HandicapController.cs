@@ -14,6 +14,8 @@ namespace Apollo.Age.TotalBets.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.TotalBets.ViewModels;
+    using Apollo.Age.TotalBets.Criterias;
 
     /// <summary>
     /// Handle all requests regarding of Handicap, Over Under Live
@@ -22,7 +24,8 @@ namespace Apollo.Age.TotalBets.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }        
+            IEnumerable<HandicapViewModel> model = TotalBetService.GetReportData<HandicapViewModel>(new HandicapCriteria { AgentId = 3 });
+            return TotalBetsView(model);
+        }
     }
 }

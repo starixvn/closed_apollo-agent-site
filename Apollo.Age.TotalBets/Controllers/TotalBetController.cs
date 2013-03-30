@@ -21,17 +21,34 @@ namespace Apollo.Age.TotalBets.Controllers
 
     public class TotalBetController : BaseController
     {
-         private readonly TotalGoalService _totalGoalService;
+        private readonly TotalBetsServiceBase _totalBetsService;
 
-         public TotalBetController()
+        public TotalBetController()
         {
-            _totalGoalService = new TotalGoalService();
+            _totalBetsService = new TotalBetsServiceBase();
         }
 
-         public ActionResult TotalGoal()
+        public TotalBetsServiceBase TotalBetService
         {
-            IEnumerable<TotalGoalViewModel> model = _totalGoalService.GetReportData<TotalGoalViewModel>(new GetTotalGoalCriteria { AgentId = 3 });
-            return View(model);
+            get
+            {
+                return _totalBetsService;
+            }
         }
+
+        private const string ViewPath = "~/Views/TotalBets/{0}.cshtml";
+        protected ViewResult TotalBetsView(object model, string path = ViewPath)
+        {
+            return View(string.Format(ViewPath, ControllerName), model);
+        }
+
+        protected string ControllerName
+        {
+            get {
+                return RouteData.Values["controller"].ToString();
+            }
+        }
+
+        
     }
 }

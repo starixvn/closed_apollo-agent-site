@@ -32,24 +32,24 @@ if (typeof jQuery != 'undefined') {
                 return $.parseJSON(value.replaceAll("'", "\""));
             },
             reCheckIn: function () {
-                $.ajax({
-                    type: "POST",
-                    url: window.baseURL + "Account/ReCheckIn",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: null,
-                    timeout: 120000,
-                    success: function (rs) {
-                        if (rs.ErrCode == 3) {
-                            alert("Your Account was kicked out.")
-                            location.href = window.baseURL + "Account/SignOut";
-                        }
-                    },
-                    error: function (event, jqXHR, ajaxSettings) {
-                    },
-                    complete: function () {
-                    }
-                });
+//                $.ajax({
+//                    type: "POST",
+//                    url: window.baseURL + "Account/ReCheckIn",
+//                    contentType: "application/json; charset=utf-8",
+//                    dataType: "json",
+//                    data: null,
+//                    timeout: 120000,
+//                    success: function (rs) {
+//                        if (rs.ErrCode == 3) {
+//                            alert("Your Account was kicked out.")
+//                            location.href = window.baseURL + "Account/SignOut";
+//                        }
+//                    },
+//                    error: function (event, jqXHR, ajaxSettings) {
+//                    },
+//                    complete: function () {
+//                    }
+//                });
             }
         };
     } (jQuery);

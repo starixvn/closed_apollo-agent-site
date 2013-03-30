@@ -9,8 +9,8 @@
 
 namespace Apollo.Age.TotalBets.ViewModels
 {
-    using Sunplus.Agent.Model.BL.Cache;
 
+    using Apollo.Age.Services;
     public class TotalGoalViewModel
     {
         public int MatchId { get; set; }
@@ -28,6 +28,8 @@ namespace Apollo.Age.TotalBets.ViewModels
         public decimal Total7Over { get; set; }
 
         public bool IsNeutral { get; set; }
+
+        public bool Closed { get; set; }
 
         public string HomeTeam
         {

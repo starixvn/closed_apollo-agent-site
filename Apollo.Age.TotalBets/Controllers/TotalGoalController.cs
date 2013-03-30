@@ -18,18 +18,16 @@ namespace Apollo.Age.TotalBets.Controllers
     using Apollo.Age.TotalBets.Criterias;
 
     public class TotalGoalController : TotalBetController
-    {
-        private readonly TotalGoalService _totalGoalService;
-
-        public TotalGoalController()
+    {       
+        public TotalGoalController() : base()
         {
-            _totalGoalService = new TotalGoalService();
+        
         }
 
         public ActionResult Index()
         {
-            IEnumerable<TotalGoalViewModel> model = _totalGoalService.GetReportData<TotalGoalViewModel>(new GetTotalGoalCriteria { AgentId = 3 });
-            return View(model);
+            IEnumerable<TotalGoalViewModel> model = TotalBetService.GetReportData<TotalGoalViewModel>(new TotalGoalCriteria { AgentId = 3 });
+            return TotalBetsView(model);
         }
     }
 }
