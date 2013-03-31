@@ -1,0 +1,130 @@
+﻿@using Apollo.Age.TotalBets.ViewModels
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+}
+@model IEnumerable<HandicapViewModel>
+@helper ShowBlock(int betType, int matchId, decimal homeOdds, decimal awayOdds)
+    {
+        var totalOdds = homeOdds - awayOdds;
+        if (Math.Round(totalOdds) != 0)
+        { 
+            <td style="width: 90px;" class="r">
+                <!--HandicapTotalValue-->
+                <a class="fcnum" href="javascript:doViewBetList(@matchId,1,'BettypeMatch');">@TotalBetHelper.FormatValue(totalOdds)</a>
+                <!--/HandicapTotalValue-->
+            </td>
+            <td align="center" class="fcbtn" style="width: 16px">
+                <!--HandicapTotalButton-->
+                <a href="javascript:openForecast(@matchId, @betType)" class="btnInfo">&nbsp;</a>
+                <!--/HandicapTotalButton-->
+            </td>
+        }
+        else
+        { 
+            <td style="width: 90px;" class="r">
+            </td>
+            <td align="center" class="fcbtn" style="width: 16px">
+            </td>
+        }
+}
+@helper ShowTime(HandicapViewModel item)
+{
+        <td class="c bl_time">
+            @if (item.LiveIndicator)
+            {
+                @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)                            
+                <!--LiveNotice-->                            
+                <br />
+                <font color="red"><i>Live</i></font>
+                <!--/LiveNotice-->
+            }
+            else
+            {
+                @Html.Raw(item.ShowTime)
+            }
+        </td>
+}
+@helper ShowMatch(int index, HandicapViewModel item)
+    {
+    <tr>
+        <td class="w-order">
+            @index
+        </td>
+        @ShowTime(item)
+        <td style="white-space: nowrap;">
+            @item.HomeTeam -vs- @item.AwayTeam
+        </td>
+        @ShowBlock(1, item.MatchId, item.Home_Odds_HDP, item.Away_Odds_HDP)
+        @ShowBlock(3, item.MatchId, item.Home_Odds_OU, item.Away_Odds_OU)
+        @ShowBlock(7, item.MatchId, item.Home_Odds_HTHDP, item.Away_Odds_HTHDP)
+        @ShowBlock(8, item.MatchId, item.Home_Odds_HTOU, item.Away_Odds_HTOU)
+    </tr>           
+}
+@helper ShowLeague(int currentLeagueId, HandicapViewModel item)
+    {
+        if (currentLeagueId != item.LeagueId)
+        { 
+    <!--LeagueContents-->
+    <tr class="c">
+        <td colspan="11" class="league" style="padding-left: 20px;">
+            @item.LeagueName
+        </td>
+    </tr>
+        }            
+}
+<table class="tblRpt">
+    <thead>
+        <tr class="RptHeader">
+            <td rowspan="2" style="width: 20px;">
+                #
+            </td>
+            <td rowspan="2" style="width: 110px;">
+                @Resources.Lang.time
+            </td>
+            <td rowspan="2">
+                @Resources.Lang.events
+            </td>
+            <td colspan="4">
+                @Resources.Lang.fulltime
+            </td>
+            <td colspan="4">
+                @Resources.Lang.lbl1sthalf
+            </td>
+        </tr>
+        <tr class="RptHeader02">
+            <td colspan="2">
+                @Resources.Lang.lblHandicapFC
+            </td>
+            <td colspan="2">
+                @Resources.Lang.lblOverUnder
+            </td>
+            <td colspan="2">
+                @Resources.Lang.lblHandicapFC
+            </td>
+            <td colspan="2">
+                @Resources.Lang.lblOverUnder
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null && Model.Any())
+            {
+                int rowIndex = 0;
+                int currentLeagueId = 0;
+
+                foreach (var item in Model)
+                {
+                    rowIndex++;
+            @ShowLeague(currentLeagueId, item)                                          
+            @ShowMatch(rowIndex, item)                   
+                    currentLeagueId = item.LeagueId;
+                }
+            }
+            else
+            {
+            @RazorHelper.ShowNoInfo(colspan: 11)
+            }
+        }
+    </tbody>
+</table>

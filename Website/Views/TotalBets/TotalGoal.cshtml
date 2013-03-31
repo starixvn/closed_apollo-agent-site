@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Apollo.Age.TotalBets.ViewModels.TotalGoalViewModel>
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+}
+<table class="tblRpt">
+    <thead>
+        <tr class="RptHeader">
+            <td style="width: 20px;">
+                #
+            </td>
+            <td style="width: 150px;">
+                {static:Resources.Lang.home}
+            </td>
+            <td style="width: 150px;">
+                {static:Resources.Lang.away}
+            </td>
+            <td style="width: 80px;">
+                {static:Resources.Lang.total01}
+            </td>
+            <td style="width: 80px;">
+                {static:Resources.Lang.total23}
+            </td>
+            <td style="width: 80px;">
+                {static:Resources.Lang.total46}
+            </td>
+            <td style="width: 80px;">
+                {static:Resources.Lang.total7over}
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model.Any())
+            {
+                int count = 0;
+                foreach (var item in Model)
+                {
+                    count++;
+            <tr class="item @item.Closed">
+                <td style="width: 20px;">
+                    @count
+                </td>
+                <td style="width: 150px;">
+                    <a href="javascript:doViewBetList(@item.MatchId, 6, 'BettypeMatch')" >
+                        @item.HomeTeam
+                    </a>
+                </td>
+                <td style="width: 150px;">
+                    @item.AwayTeam
+                </td>
+                <td style="width: 80px;">
+                    @TotalBetHelper.FormatValue(item.Total01)
+                </td>
+                <td style="width: 80px;">
+                    @TotalBetHelper.FormatValue(item.Total23)
+                </td>
+                <td style="width: 80px;">
+                    @TotalBetHelper.FormatValue(item.Total46)
+                </td>
+                <td style="width: 80px;">
+                    @TotalBetHelper.FormatValue(item.Total7Over)
+                </td>
+            </tr>
+                }
+            }
+            else
+            { 
+            @RazorHelper.ShowNoInfo(colspan: 7)
+            }
+        }
+    </tbody>
+</table>

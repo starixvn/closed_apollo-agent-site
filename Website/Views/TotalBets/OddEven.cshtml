@@ -1,0 +1,148 @@
+﻿@using Apollo.Age.TotalBets.ViewModels
+@using Fanex.Age.Utility    ;
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+}
+@model IEnumerable<MoneyLineViewModel>
+@helper ShowLeague(int currentLeagueId, MoneyLineViewModel item)
+    {
+        if (currentLeagueId != item.LeagueId)
+        { 
+    <!--LeagueContents-->
+    <tr class="c">
+        <td colspan="11" class="league" style="padding-left: 20px;">
+            @item.LeagueName
+        </td>
+    </tr>
+        }            
+}
+
+@helper ShowTotal(int betCount, decimal odds){
+    if (betCount != 0)
+    {
+        @Formater.FormatNumber2(odds, "en-US")                
+    }   
+}
+
+@helper ShowForecas(int betCount, decimal winlost)
+{
+    if (betCount != 0)
+    {
+        if (Math.Round(winlost) > 0)
+        { 
+           <font color='red'>  @Formater.FormatNumber2(winlost, "en-US")   </font>
+        }
+        else
+        {
+            @Formater.FormatNumber2(winlost, "en-US")  
+        }
+    }
+} 
+
+<table class="tblRpt c" style="width: 100%">
+    <thead>
+        <tr class="RptHeader">
+            <td rowspan="2">
+                @Resources.Lang.no
+            </td>
+            <td rowspan="2">
+                @Resources.Lang.time
+            </td>
+            <td rowspan="2">
+                @Resources.Lang.events
+            </td>
+            <td colspan="4">
+                @Resources.Lang.fulltime
+            </td>
+            <td colspan="4">
+                @Resources.Lang.lbl1sthalf
+            </td>
+        </tr>
+        <tr class="RptHeader02">
+            <td>
+                @Resources.Lang.totalhome
+            </td>
+            <td>
+                @Resources.Lang.totalaway
+            </td>
+            <td>
+                @Resources.Lang.forecasthome
+            </td>
+            <td>
+                @Resources.Lang.forecastaway
+            </td>
+            <td>
+                @Resources.Lang.totalhome
+            </td>
+            <td>
+                @Resources.Lang.totalaway
+            </td>
+            <td>
+                @Resources.Lang.forecasthome
+            </td>
+            <td>
+                @Resources.Lang.forecastaway
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <!--LeagueContents-->
+        @{
+        
+            if (Model != null && Model.Any())
+            {
+                int rowIndex = 0;
+                int currentLeagueId = 0;
+
+                foreach (var item in Model)
+                {
+                    rowIndex++;
+                    @ShowLeague(currentLeagueId, item)  
+            
+            <!--MatchContents-->
+            <tr class="r" >
+                <td class="w-order">
+                    @rowIndex
+                </td>
+                <td class="c bl_time">
+                    @Html.Raw(@item.ShowTime)
+                </td>
+                <td class="l">
+                    @item.HomeTeam -vs- @item.AwayTeam
+                </td>
+                <td>
+                    <a class="fcnum" href="javascript:doViewBetList(@item.MatchId, 20, '{BetType}')">@ShowTotal(item.BetCount_Home, item.Home_Odds)</a>
+                </td>
+                <td>
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 20, '{BetType}')">@ShowTotal(item.BetCount_Away, item.Away_Odds)</a>
+                </td>
+                <td>
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 20, '{BetType}')">@ShowForecas(item.BetCount_Home, item.WinLost_Home)</a>
+                </td>
+                <td class="fcnum">
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 20, '{BetType}')">@ShowForecas(item.BetCount_Away, item.WinLost_Away)</a>
+                </td>
+                <td>
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowTotal(item.BetCount_Home_HT, item.Home_Odss_HT)</a>
+                </td>
+                <td>
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowTotal(item.BetCount_Away_HT, item.Away_Odds_HT)</a>
+                </td>
+                <td>
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowForecas(item.BetCount_Home_HT, item.WinLost_Home_HT)</a>
+                </td>
+                <td>
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowForecas(item.BetCount_Away_HT, item.WinLost_Away_HT)</a>
+                </td>
+            </tr>
+            
+                    currentLeagueId = item.LeagueId;
+                }
+            }
+            else
+            { 
+            @RazorHelper.ShowNoInfo(colspan: 11)
+            }            
+        }
+    </tbody>
+</table>
