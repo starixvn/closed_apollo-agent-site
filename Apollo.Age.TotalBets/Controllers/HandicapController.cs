@@ -23,8 +23,8 @@ namespace Apollo.Age.TotalBets.Controllers
     public class HandicapController : TotalBetController
     {
         public ActionResult Index()
-        {
-            IEnumerable<HandicapViewModel> model = TotalBetService.GetReportData<HandicapViewModel>(new HandicapCriteria { AgentId = 3 });
+        {           
+            var model = GetViewModel<HandicapViewModel>(agentId: 3, betType: 1);
             return TotalBetsView(model);
         }
     }

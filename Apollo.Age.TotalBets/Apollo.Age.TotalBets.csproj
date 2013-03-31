@@ -73,20 +73,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HandicapController.cs" />
-    <Compile Include="Controllers\MoneyLineController.cs" />
     <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Controllers\RacingController.cs" />
-    <Compile Include="Controllers\TotalBetController.cs" />
-    <Compile Include="Controllers\TotalGoalController.cs" />
-    <Compile Include="Criterias\HandicapCriteria.cs" />
-    <Compile Include="Criterias\TotalGoalCriteria.cs" />
+    <Compile Include="Controllers\TotalBetsController.cs" />
+    <Compile Include="Criterias\TotalBetsCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\TotalGoalService.cs" />
     <Compile Include="Services\TotalBetsServiceBase.cs" />
-    <Compile Include="TotalBetsAreaRegistration.cs" />
-    <Compile Include="TotalBetsRazorViewEngine.cs" />
     <Compile Include="ViewModels\HandicapViewModel.cs" />
+    <Compile Include="ViewModels\MoneyLineViewModel.cs" />
     <Compile Include="ViewModels\TotalGoalViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

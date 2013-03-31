@@ -25,9 +25,10 @@ namespace Apollo.Age.TotalBets.Controllers
         }
 
         public ActionResult Index()
-        {
-            IEnumerable<TotalGoalViewModel> model = TotalBetService.GetReportData<TotalGoalViewModel>(new TotalGoalCriteria { AgentId = 3 });
+        {           
+            var model = GetViewModel<TotalGoalViewModel>(agentId: 3, betType: 6);
             return TotalBetsView(model);
         }
     }
 }
+    
