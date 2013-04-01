@@ -17,7 +17,7 @@
 
         public override bool IsValid()
         {
-            return AgentId > 0;
+            return AgentId >= 0;
         }
     }
 }
