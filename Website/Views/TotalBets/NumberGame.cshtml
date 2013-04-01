@@ -1,0 +1,230 @@
+﻿@using Apollo.Age.TotalBets.ViewModels
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<NumberGameViewModel>
+
+@helper ShowLeague(int currentLeagueId, NumberGameViewModel item)
+{
+    if (currentLeagueId != item.LeagueId)
+    { 
+        <!--LeagueContents-->
+        <tr class="league">
+            <td colspan="18">
+                @item.LeagueName
+            </td>
+        </tr>
+    }            
+}
+
+@helper ShowMatch(int index, NumberGameViewModel item)
+{
+    <tr>
+        <td class="c">
+            @index
+        </td>
+        <td>
+            @Resources.Lang.numbergameno  @item.MatchCode
+        </td>
+        <td>
+            @if (item.BetCount_Warrior_2ndBall != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.Warrior_2ndBall)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_Warrior_3rdBall != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.Warrior_3rdBall)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_OU1stBall != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.Over_1stBall - item.Under_1stBall)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_OULastBall != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.Over_LastBall - item.Under_LastBall)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_OE1stBall != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.Odd_1stBall - item.Even_1stBall)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_OELastBall != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.Odd_LastBall - item.Even_LastBall)
+            }
+        </td>
+        
+        <td>
+            @if (item.BetCount_OUNext != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.Over_Next - item.Under_Next)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_OENext != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.Odd_Next - item.Even_Next)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_HighLow != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.High - item.Low)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_NextCombo_OverOdd != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.NextCombo_OverOdd)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_NextCombo_OverEven != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.NextCombo_OverEven)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_NextCombo_UnderOdd != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.NextCombo_UnderOdd)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_NextCombo_UnderEven != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.NextCombo_UnderEven)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_OEFullTime != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.Odd_FullTime - item.Even_FullTime)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_NumberGroupLive != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.NumberGroupLive)
+            }
+        </td>
+        <td>
+            @if (item.BetCount_NumberGroupPre != 0)
+            {
+                @TotalBetHelper.FormatNegativeNumber(item.NumberGroupPre)
+            }
+        </td>
+    </tr>  
+}
+
+<table class="tblRpt c" style="width: 100%">
+    <thead>
+        <tr class="RptHeader">
+            <td rowspan="2">
+                #
+            </td>
+            <td rowspan="2">
+                @Resources.Lang.events
+            </td>
+            <td colspan="2">
+                @Resources.Lang.warrior
+            </td>
+            <td colspan="2">
+                @Resources.Lang.lbl1stBall
+            </td>
+            <td colspan="2">
+                @Resources.Lang.lastball
+            </td>
+            <td colspan="3">
+                @Resources.Lang.nextBall
+            </td>
+            <td colspan="4">
+                @Resources.Lang.nextcombo
+            </td>
+            <td rowspan="2" title="@Resources.Lang.lblFTOddEven">
+                @Resources.Lang.lblFTOE
+            </td>
+            <td colspan="2">
+                @Resources.Lang.numberGroup
+            </td>
+        </tr>
+        <tr class="RptHeader02">
+            <td>
+                @Resources.Lang.warrior2ndBall
+            </td>
+            <td>
+                @Resources.Lang.warrior3rdBall
+            </td>
+            <td title="@Resources.Lang.lblOverUnder">
+                @Resources.Lang.lblOU
+            </td>
+            <td title="@Resources.Lang.lblOddEven">
+                @Resources.Lang.lblOE
+            </td>
+            <td title="@Resources.Lang.lblOverUnder">
+                @Resources.Lang.lblOU
+            </td>
+            <td title="@Resources.Lang.lblOddEven">
+                @Resources.Lang.lblOE
+            </td>                                        
+            <td title="@Resources.Lang.lblOverUnder">
+                @Resources.Lang.lblOU
+            </td>
+            <td title="@Resources.Lang.lblOddEven">
+                @Resources.Lang.lblOE
+            </td>
+            <td>
+                @Resources.Lang.highlow
+            </td>
+            <td title="@Resources.Lang.lblOverOdd">
+                @Resources.Lang.lblOO
+            </td>
+            <td title="@Resources.Lang.lblUnderOdd">
+                @Resources.Lang.lblUO
+            </td>
+            <td title="@Resources.Lang.lblOverEven">
+                @Resources.Lang.lblOvE
+            </td>
+            <td title="@Resources.Lang.lblUnderEven">
+                @Resources.Lang.lblUE
+            </td>         
+            <td>
+                @Resources.Lang.LiveGame
+            </td>
+            <td>
+                @Resources.Lang.PreGame
+            </td>  
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            int rowIndex = 0;
+            int currentLeagueId = 0;
+
+            foreach (var item in Model)
+            {
+                rowIndex++;
+
+                @ShowLeague(currentLeagueId, item)
+                @ShowMatch(rowIndex, item)
+
+                currentLeagueId = item.LeagueId;
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(colspan: 18)
+        }
+    </tbody>
+</table>

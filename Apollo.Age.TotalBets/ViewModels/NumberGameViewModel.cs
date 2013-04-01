@@ -69,37 +69,37 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public decimal NumberGroupLive { get; set; }
 
-        public decimal BetCount_OU1stBall { get; set; }
+        public int BetCount_OU1stBall { get; set; }
 
-        public decimal BetCount_OULastBall { get; set; }
+        public int BetCount_OULastBall { get; set; }
 
-        public decimal BetCount_OE1stBall { get; set; }
+        public int BetCount_OE1stBall { get; set; }
 
-        public decimal BetCount_OELastBall { get; set; }
+        public int BetCount_OELastBall { get; set; }
 
-        public decimal BetCount_OEFullTime { get; set; }
+        public int BetCount_OEFullTime { get; set; }
 
-        public decimal BetCount_OUNext { get; set; }
+        public int BetCount_OUNext { get; set; }
 
-        public decimal BetCount_OENext { get; set; }
+        public int BetCount_OENext { get; set; }
 
-        public decimal BetCount_HighLow { get; set; }
+        public int BetCount_HighLow { get; set; }
 
-        public decimal BetCount_Warrior_2ndBall { get; set; }
+        public int BetCount_Warrior_2ndBall { get; set; }
 
-        public decimal BetCount_Warrior_3rdBall { get; set; }
+        public int BetCount_Warrior_3rdBall { get; set; }
 
-        public decimal BetCount_NextCombo_OverOdd { get; set; }
+        public int BetCount_NextCombo_OverOdd { get; set; }
 
-        public decimal BetCount_NextCombo_OverEven { get; set; }
+        public int BetCount_NextCombo_OverEven { get; set; }
 
-        public decimal BetCount_NextCombo_UnderOdd { get; set; }
+        public int BetCount_NextCombo_UnderOdd { get; set; }
 
-        public decimal BetCount_NextCombo_UnderEven { get; set; }
+        public int BetCount_NextCombo_UnderEven { get; set; }
 
-        public decimal BetCount_NumberGroupPre { get; set; }
+        public int BetCount_NumberGroupPre { get; set; }
 
-        public decimal BetCount_NumberGroupLive { get; set; }
+        public int BetCount_NumberGroupLive { get; set; }
 
         public string LeagueName
         {

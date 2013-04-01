@@ -1,0 +1,138 @@
+﻿@using Apollo.Age.TotalBets.ViewModels
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<HomeNoBetViewModel>
+
+@helper ShowLeague(int currentLeagueId, HomeNoBetViewModel item)
+{
+    if (currentLeagueId != item.LeagueId)
+    { 
+        <!--LeagueContents-->
+        <tr class="league">
+            <td colspan="6">
+                @item.LeagueName
+            </td>
+        </tr>
+    }            
+}
+
+@helper ShowMatch(int index, HomeNoBetViewModel item)
+{
+    <tr>
+        <td class="c" rowspan="2">
+            @index
+        </td>
+        @ShowTime(item)
+        <td>
+            @item.HomeTeam -vs- @item.AwayTeam
+        </td>
+        <td class="r">
+            @if(item.BetCount_HNB != 0)
+            {
+                <a class="fcnum" href="javascript:;">
+                    @TotalBetHelper.FormatNumber(item.Home_Odds_HNB - item.Away_Odds_HNB)    
+                </a>
+            }
+            
+        </td>
+        <td class="r">
+            @if(item.BetCount_DNB != 0)
+            {
+                <a class="fcnum" href="javascript:;">
+                    @TotalBetHelper.FormatNumber(item.Home_Odds_DNB - item.Away_Odds_DNB)
+                </a>
+            }
+        </td>
+        <td rowspan="2" class="r">
+            @if(item.BetCount_ANB != 0)
+            {
+                <a class="fcnum" href="javascript:;">
+                    @TotalBetHelper.FormatNumber(item.Home_Odds_ANB - item.Away_Odds_ANB)
+                </a>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="javascript:;">
+                @item.AwayTeam
+            </a>
+        </td>
+        <td>
+            @TotalBetHelper.FormatNumber(item.BetCount_HNB)
+        </td>
+        <td>
+            @TotalBetHelper.FormatNumber(item.BetCount_HNB)
+        </td>
+        
+    </tr>           
+}
+
+@helper ShowTime(HomeNoBetViewModel item)
+    {
+    <td class="c bl_time">
+        @if (item.LiveIndicator)
+        {
+            @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
+            <br />
+            <span class="red-num">Live</span>
+        }
+        else
+        {
+            @Html.Raw(item.ShowTime)
+        }
+    </td>
+}
+
+<table class="tblRpt">
+    <thead>
+        <tr>
+            <td rowspan="2" style="width: 20px;">
+                #
+            </td>
+            <td rowspan="2" style="width: 110px;">
+                @Resources.Lang.time
+            </td>
+            <td rowspan="2" style="width: 366px;">
+                @Resources.Lang.events
+            </td>
+            <td colspan="3">
+                @Resources.Lang.fulltime
+            </td>
+        </tr>
+        <tr class="RptHeader02">
+            <td style="width: 100px;">
+                @Resources.Lang.lblHomeNoBet
+            </td>
+            <td style="width: 100px;">
+                @Resources.Lang.lblDrawNoBet
+            </td>
+            <td style="width: 100px;">
+                @Resources.Lang.lblAwayNoBet
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            int rowIndex = 0;
+            int currentLeagueId = 0;
+
+            foreach (var item in Model)
+            {
+                rowIndex++;
+
+                @ShowLeague(currentLeagueId, item)
+                @ShowMatch(rowIndex, item)
+
+                currentLeagueId = item.LeagueId;
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(colspan: 6)
+        }
+    </tbody>
+</table>
