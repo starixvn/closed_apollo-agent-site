@@ -21,21 +21,27 @@ namespace Apollo.Age.Reports.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class OutStandingController : Controller
+    public class ReportsController : Controller
     {
         private readonly OutStandingService _reportService;
 
-        public OutStandingController() : this(null) { }
+        public ReportsController() : this(null) { }
 
-        public OutStandingController(OutStandingService reportService = null)
+        public ReportsController(OutStandingService reportService = null)
         {
             _reportService = reportService ?? new OutStandingService();
         }
 
-        public ActionResult Index(OutStandingCriteria criteria)
+        public ViewResult AgentOutstanding()
         {
+            AgentOutstandingCriteria criteria = new AgentOutstandingCriteria();
+            criteria.AgentId = 3;
             // call service to get report data here
-            IEnumerable<OutStandingViewModel> models = _reportService.GetReportData<OutStandingViewModel>(criteria);
+            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(criteria);
+
+            // Add total row
+            OutstandingViewModel totalModel = _reportService.Total(models);
+            models.ToList().Add(totalModel);
 
             return View(models);
         }

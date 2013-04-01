@@ -18,7 +18,7 @@ namespace Apollo.Age.Reports.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class OutStandingCriteria : CriteriaBase
+    public class OutstandingCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

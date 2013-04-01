@@ -6,7 +6,7 @@
     using System.Text;
     using Fanex.NAP.Framework.Data;
 
-    public class MemberOutStandingCriteria : CriteriaBase
+    public class MemberOutstandingCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

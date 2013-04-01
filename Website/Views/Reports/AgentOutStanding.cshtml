@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Apollo.Age.Reports.ViewModels.OutstandingViewModel>
+@{
+    Page.Title = "Title goes here";
+        //Layout = "Your Layout Page goes here";
+}
+<div>
+    @foreach (Apollo.Age.Reports.ViewModels.OutstandingViewModel item in Model)
+    {
+        item.OutStanding.ToString();
+        <br />
+    }
+</div>
