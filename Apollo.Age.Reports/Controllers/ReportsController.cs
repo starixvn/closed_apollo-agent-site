@@ -23,25 +23,33 @@ namespace Apollo.Age.Reports.Controllers
     /// </summary>
     public class ReportsController : Controller
     {
-        private readonly OutStandingService _reportService;
+        private readonly OutstandingService _reportService;
 
         public ReportsController() : this(null) { }
 
-        public ReportsController(OutStandingService reportService = null)
+        public ReportsController(OutstandingService reportService = null)
         {
-            _reportService = reportService ?? new OutStandingService();
+            _reportService = reportService ?? new OutstandingService();
+        }
+
+        public ViewResult Outstanding()
+        {
+            // call service to get report data here
+            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new OutstandingCriteria
+            {
+                AgentId = 3
+            });
+
+            return View(models);
         }
 
         public ViewResult AgentOutstanding()
         {
-            AgentOutstandingCriteria criteria = new AgentOutstandingCriteria();
-            criteria.AgentId = 3;
             // call service to get report data here
-            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(criteria);
-
-            // Add total row
-            OutstandingViewModel totalModel = _reportService.Total(models);
-            models.ToList().Add(totalModel);
+            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new AgentOutstandingCriteria
+            {
+                AgentId = 3
+            });
 
             return View(models);
         }
