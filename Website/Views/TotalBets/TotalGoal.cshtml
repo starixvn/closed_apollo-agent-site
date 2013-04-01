@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Apollo.Age.TotalBets.ViewModels.TotalGoalViewModel>
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.Lang.totalgoal;
 }
+@RazorHelper.RefreshCountDown("TotalGoal", 90, 60)
 <table class="tblRpt">
     <thead>
         <tr class="RptHeader">
@@ -9,22 +11,22 @@
                 #
             </td>
             <td style="width: 150px;">
-                {static:Resources.Lang.home}
+                @Resources.Lang.home
             </td>
             <td style="width: 150px;">
-                {static:Resources.Lang.away}
+                @Resources.Lang.away
             </td>
             <td style="width: 80px;">
-                {static:Resources.Lang.total01}
+                @Resources.Lang.total01
             </td>
             <td style="width: 80px;">
-                {static:Resources.Lang.total23}
+                @Resources.Lang.total23
             </td>
             <td style="width: 80px;">
-                {static:Resources.Lang.total46}
+                @Resources.Lang.total46
             </td>
             <td style="width: 80px;">
-                {static:Resources.Lang.total7over}
+                @Resources.Lang.total7over
             </td>
         </tr>
     </thead>
@@ -37,7 +39,7 @@
                 {
                     count++;
             <tr class="item @item.Closed">
-                <td style="width: 20px;">
+                <td class="c" style="width: 20px;">
                     @count
                 </td>
                 <td style="width: 150px;">
@@ -48,17 +50,17 @@
                 <td style="width: 150px;">
                     @item.AwayTeam
                 </td>
-                <td style="width: 80px;">
-                    @TotalBetHelper.FormatValue(item.Total01)
+                <td class="r fcnum" style="width: 80px;">
+                    @TotalBetHelper.FormatPositiveNumber(item.Total01, 0)
                 </td>
-                <td style="width: 80px;">
-                    @TotalBetHelper.FormatValue(item.Total23)
+                <td class="r fcnum" style="width: 80px;">
+                    @TotalBetHelper.FormatPositiveNumber(item.Total23, 0)
                 </td>
-                <td style="width: 80px;">
-                    @TotalBetHelper.FormatValue(item.Total46)
+                <td class="r fcnum" style="width: 80px;">
+                    @TotalBetHelper.FormatPositiveNumber(item.Total46, 0)
                 </td>
-                <td style="width: 80px;">
-                    @TotalBetHelper.FormatValue(item.Total7Over)
+                <td class="r fcnum" style="width: 80px;">
+                    @TotalBetHelper.FormatPositiveNumber(item.Total7Over, 0)
                 </td>
             </tr>
                 }

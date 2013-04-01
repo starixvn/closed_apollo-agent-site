@@ -27,16 +27,16 @@ namespace Apollo.Age.Account.Controllers
     /// </summary>
     public class AccountController : BaseController
     {
-        public JsonResult ReCheckIn()
-        {
-            IUserSession userSession = UserSession.Current;
-            Result result = new Result(0, string.Empty);
-            if (PermissionService.IsKickOut(userSession.AgentId, userSession.UserId) && !AppSettings.IsLocal)
-            {
-                result.ErrCode = (int)ErrorType.KickedOut;
-            }
-            return Json(result);
-        }
+        //public JsonResult ReCheckIn()
+        //{
+        //    IUserSession userSession = UserSession.Current;
+        //    Result result = new Result(0, string.Empty);
+        //    if (PermissionService.IsKickOut(userSession.AgentId, userSession.UserId) && !AppSettings.IsLocal)
+        //    {
+        //        result.ErrCode = (int)ErrorType.KickedOut;
+        //    }
+        //    return Json(result);
+        //}
 
         public ActionResult SignOut()
         {

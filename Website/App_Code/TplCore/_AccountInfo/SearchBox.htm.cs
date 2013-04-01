@@ -33,7 +33,7 @@ namespace Fanex.Agent.UI
 			protected static string s15{get{return Resources.Lang.enterusername;}}
 			protected static string s16 = "')\" value=\"";
 			public string usernamesearch = "{usernamesearch}";
-			protected static string s17 = "\" style=\"width: 77px;\" class=\"text_f\" name=\"txtUsername\" /></div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
+			protected static string s17 = "\" class=\"text_f\" name=\"txtUsername\" /></div><div id=\"b_serachL\"><a id=\"lnkSearch\" class=\"imaLink\" href=\"#\" onclick=\"javascript:checkAndSubmitUI();\"><img height=\"18\" width=\"21\" alt=\"Search\" title=\"";
 			protected static string s18{get{return Resources.Lang.search;}}
 			protected static string s19 = "\" border=\"0\" nowap=\"nowap\" src=\"";
 			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}

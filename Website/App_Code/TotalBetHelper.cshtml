@@ -5,30 +5,40 @@
     // <p>@msg</p>
     // For more information, visit http://go.microsoft.com/fwlink/?LinkID=204658
 }
-@helper FormatValue(decimal value)
+@helper FormatNegativeNumber(decimal value, byte numDecimals = 0, bool showZero = false)
+{
+    if (value != 0 || showZero)
     {
-       
-        if (value != 0)
+        if (Math.Round(value, numDecimals) < 0)
         {
-            if (Math.Round(value) < 0)
-            {
-    <font color='red'>@Fanex.Age.Utility.Formater.DecFormat(value, 0) </font>       
-            }
-            else
-            {
-    @Fanex.Age.Utility.Formater.DecFormat(value, 0)
-            }
+            <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals) </span>       
         }
+        else
+        {
+            @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+        }
+    }
 }
 
-@helper FormatPositiveNumber(decimal value)
+@helper FormatPositiveNumber(decimal value, byte numDecimals = 0, bool showZero = false)
 {
-    if (Math.Round(value) > 0)
-    { 
-        <font color='red'> @Fanex.Age.Utility.Formater.FormatNumber2(value, "en-US") </font>
+    if (value != 0 || showZero)
+    {
+        if (Math.Round(value, numDecimals) > 0)
+        { 
+            <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals) </span>
+        }
+        else
+        { 
+            @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+        }
     }
-    else
-    { 
-         @Html.Raw(Fanex.Age.Utility.Formater.FormatNumber2(value, "en-US"))
+}
+
+@helper FormatNumber(decimal value, byte numDecimals = 0, bool showZero = false)
+{
+    if (value != 0 || showZero)
+    {
+        @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
     }
 }

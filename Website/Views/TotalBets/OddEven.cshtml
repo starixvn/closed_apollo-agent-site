@@ -1,10 +1,11 @@
 ﻿@using Apollo.Age.TotalBets.ViewModels
-@using Fanex.Age.Utility    ;
+@using Fanex.Age.Utility
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = string.Format("{0} + {1} + {2}/{3}", Resources.Lang.lblOddEven, Resources.Lang.lbl1x2, Resources.Lang.lblDraw, Resources.Lang.lblNoDraw);
 }
-@model IEnumerable<MoneyLineViewModel>
-@helper ShowLeague(int currentLeagueId, MoneyLineViewModel item)
+@model IEnumerable<OddEvenViewModel>
+@helper ShowLeague(int currentLeagueId, OddEvenViewModel item)
     {
         if (currentLeagueId != item.LeagueId)
         { 
@@ -16,36 +17,84 @@
     </tr>
         }            
 }
-
-@helper ShowTotal(int betCount, decimal odds){
+@helper ShowTotal(int betCount, decimal odds)
+    {
     if (betCount != 0)
     {
-        @Formater.FormatNumber2(odds, "en-US")                
+    @Formater.FormatNumber2(odds, "en-US")                
     }   
 }
-
 @helper ShowForecas(int betCount, decimal winlost)
-{
+    {
     if (betCount != 0)
     {
-        if (Math.Round(winlost) > 0)
-        { 
-           <font color='red'>  @Formater.FormatNumber2(winlost, "en-US")   </font>
+    @TotalBetHelper.FormatPositiveNumber(winlost, 2)
+    }
+}
+@helper Show1x2Button(OddEvenViewModel item, bool isFullTime)
+    {
+    if (isFullTime)
+    {
+        <td style="width: 70px">
+            <!--OneXTwoValue-->
+            <a class="fcnum" href="javascript:doViewBetList({MatchId},5,'{BetType}');">@TotalBetHelper.FormatNumber(item.OneXTwoTotal, showZero: item.BetCount_1x2 != 0)</a>
+            <!--/OneXTwoValue-->
+        </td>
+           
+        <td class="fcbtn" align="center" style="width: 16px">
+            @if (item.OneXTwoTotal != 0)
+            { 
+                <!--OneXTwoButton-->
+                <a href="javascript:openForecast1X2('{MatchId}',5)" class="btnInfo"></a>
+                <!--/OneXTwoButton-->
+            }
+        </td>
+        
+    }
+    else
+    {
+        <td style="width: 70px">
+            <!--OneXTwoFirstHalfValue-->
+            <a class="fcnum" href="javascript:doViewBetList({MatchId},15,'{BetType}');">@TotalBetHelper.FormatNumber(item.OneXTwoFirstHalf, showZero: item.BetCount_1x2_1st != 0)</a>
+            <!--/OneXTwoFirstHalfValue-->
+        </td>
+        
+        <td class="fcbtn" align="center" style="width: 16px">
+            @if (item.OneXTwoFirstHalf != 0)
+            {
+                <!--OneXTwoFirstHalfButton-->
+                <a href="javascript:openForecast1X2('{MatchId}',15)" class="btnInfo"></a>
+            }
+            <!--/OneXTwoFirstHalfButton-->
+        </td>
+       
+    }
+}
+@helper ShowTime(OddEvenViewModel item)
+{
+    <td class="c bl_time">
+        @if (item.LiveIndicator)
+        {
+            @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
+            <br />
+            <!--LiveNotice-->
+            <i style="color: red">Live</i>
+            <!--/LiveNotice-->
         }
         else
         {
-            @Formater.FormatNumber2(winlost, "en-US")  
+            @Html.Raw(item.ShowTime)
         }
-    }
-} 
-
+    </td>
+}
+@RazorHelper.RefreshCountDown("OddEven", 45, 15)
 <table class="tblRpt c" style="width: 100%">
     <thead>
         <tr class="RptHeader">
-            <td rowspan="2">
-                @Resources.Lang.no
+            <td rowspan="2" style="width: 20px;">
+                #
             </td>
-            <td rowspan="2">
+            <td rowspan="2" style="width: 110px;">
                 @Resources.Lang.time
             </td>
             <td rowspan="2">
@@ -54,34 +103,25 @@
             <td colspan="4">
                 @Resources.Lang.fulltime
             </td>
-            <td colspan="4">
+            <td colspan="3">
                 @Resources.Lang.lbl1sthalf
             </td>
         </tr>
         <tr class="RptHeader02">
-            <td>
-                @Resources.Lang.totalhome
+            <td style="width: 100px;">
+                @Resources.Lang.lblOddEven
             </td>
-            <td>
-                @Resources.Lang.totalaway
+            <td colspan="2" style="width: 100px;">
+                @Resources.Lang.lbl1x2
             </td>
-            <td>
-                @Resources.Lang.forecasthome
+            <td style="width: 100px;">
+                @Resources.Lang.lblDraw/@Resources.Lang.lblNoDraw
             </td>
-            <td>
-                @Resources.Lang.forecastaway
+            <td style="width: 100px;">
+                @Resources.Lang.lblOddEven
             </td>
-            <td>
-                @Resources.Lang.totalhome
-            </td>
-            <td>
-                @Resources.Lang.totalaway
-            </td>
-            <td>
-                @Resources.Lang.forecasthome
-            </td>
-            <td>
-                @Resources.Lang.forecastaway
+            <td colspan="2" style="width: 100px;">
+                @Resources.Lang.lbl1x2
             </td>
         </tr>
     </thead>
@@ -97,43 +137,34 @@
                 foreach (var item in Model)
                 {
                     rowIndex++;
-                    @ShowLeague(currentLeagueId, item)  
+            @ShowLeague(currentLeagueId, item)  
             
             <!--MatchContents-->
-            <tr class="r" >
+            <tr class='r @(item.LiveIndicator ? "live" : string.Empty)'>
                 <td class="w-order">
                     @rowIndex
                 </td>
-                <td class="c bl_time">
-                    @Html.Raw(@item.ShowTime)
-                </td>
+                    @ShowTime(item)
                 <td class="l">
                     @item.HomeTeam -vs- @item.AwayTeam
                 </td>
                 <td>
-                    <a class="fcnum" href="javascript:doViewBetList(@item.MatchId, 20, '{BetType}')">@ShowTotal(item.BetCount_Home, item.Home_Odds)</a>
+                    <!--OddEvenValue-->
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId},2,'{BetType}');"> @TotalBetHelper.FormatNegativeNumber(item.OddEvenTotal, showZero: item.BetCount_OE != 0)</a>
+                    <!--/OddEvenValue-->
+                </td>
+                @Show1x2Button(item, true)
+                <td style="width: 86px">
+                    <!--DNDValue-->
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId},123,'{BetType}');">@TotalBetHelper.FormatNumber(item.DrawNoDrawTotal, showZero: item.BetCount_DND != 0)</a>
+                    <!--/DNDValue-->
                 </td>
                 <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 20, '{BetType}')">@ShowTotal(item.BetCount_Away, item.Away_Odds)</a>
+                    <!--OddEvenFirstHalfValue-->
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId},12,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.OddEvenFirstHalf, showZero: item.BetCount_OE_1st != 0)</a>
+                    <!--/OddEvenFirstHalfValue-->
                 </td>
-                <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 20, '{BetType}')">@ShowForecas(item.BetCount_Home, item.WinLost_Home)</a>
-                </td>
-                <td class="fcnum">
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 20, '{BetType}')">@ShowForecas(item.BetCount_Away, item.WinLost_Away)</a>
-                </td>
-                <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowTotal(item.BetCount_Home_HT, item.Home_Odss_HT)</a>
-                </td>
-                <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowTotal(item.BetCount_Away_HT, item.Away_Odds_HT)</a>
-                </td>
-                <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowForecas(item.BetCount_Home_HT, item.WinLost_Home_HT)</a>
-                </td>
-                <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowForecas(item.BetCount_Away_HT, item.WinLost_Away_HT)</a>
-                </td>
+                @Show1x2Button(item, false)
             </tr>
             
                     currentLeagueId = item.LeagueId;

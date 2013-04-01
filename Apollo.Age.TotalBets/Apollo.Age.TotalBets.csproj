@@ -77,8 +77,14 @@
     <Compile Include="Criterias\TotalBetsCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TotalBetsService.cs" />
+    <Compile Include="ViewModels\FirstGoalViewModel.cs" />
     <Compile Include="ViewModels\HandicapViewModel.cs" />
+    <Compile Include="ViewModels\HomeNoBetViewModel.cs" />
+    <Compile Include="ViewModels\HTFTViewModel.cs" />
     <Compile Include="ViewModels\MoneyLineViewModel.cs" />
+    <Compile Include="ViewModels\NumberGameViewModel.cs" />
+    <Compile Include="ViewModels\OddEvenViewModel.cs" />
+    <Compile Include="ViewModels\OutRightViewModel.cs" />
     <Compile Include="ViewModels\TotalGoalViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
