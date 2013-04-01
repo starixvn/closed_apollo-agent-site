@@ -13,27 +13,31 @@ namespace Fanex.BetList.Age
 	{
 		public class BetList_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE HTML><html><head><title>Bet List</title><link href=\"";
+			protected static string s0 = "<!DOCTYPE html><html><head><title>Bet List</title><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div class=\"bl_title\">";
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
 			public string title = "{title}";
-			protected static string s5 = "<div id=\"exportExcelDiv\" class=\"divBoxRight\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"Excel\" nofocus=\"true\"src=\"";
+			protected static string s5 = "<input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\"src=\"";
 			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
-			protected static string s7 = "\" title=\"Excel\" class=\"hand\" /></div></div><div id=\"spData\">";
+			protected static string s7 = "\"alt=\"";
+			protected static string s8{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s9 = "\" title=\"";
+			protected static string s10{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s11 = "\" /></div><div id=\"content_main\"><table id=\"betlist\" class=\"tblRpt\">";
 			public string content = "{content}";
-			protected static string s8 = "<div class=\"detail-popup\" id=\"dialog-details\"></div></div><script src=\"";
-			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
-			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s12 = "</table><div id=\"dialog-details\"></div></div></div><script src=\"";
+			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
 			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s15{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
 			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s17{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
-			protected static string s18 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s17{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s18 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s19{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s20 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s21{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
+			protected static string s22 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -48,11 +52,11 @@ namespace Fanex.BetList.Age
 					bd.Append(s5);
 					bd.Append(s6);
 					bd.Append(s7);
-					bd.Append(content);
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
 					bd.Append(s11);
+					bd.Append(content);
 					bd.Append(s12);
 					bd.Append(s13);
 					bd.Append(s14);
@@ -60,6 +64,10 @@ namespace Fanex.BetList.Age
 					bd.Append(s16);
 					bd.Append(s17);
 					bd.Append(s18);
+					bd.Append(s19);
+					bd.Append(s20);
+					bd.Append(s21);
+					bd.Append(s22);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
