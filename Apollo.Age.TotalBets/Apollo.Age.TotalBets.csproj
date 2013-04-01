@@ -73,8 +73,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ParlayController.cs" />
-    <Compile Include="Controllers\RacingController.cs" />
     <Compile Include="Controllers\TotalBetsController.cs" />
     <Compile Include="Criterias\TotalBetsCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -182,18 +182,12 @@ namespace Fanex.Agent.UI
 
 		public class AccountInfo_TheRestAcc_Block: Block
 		{
-			protected static string s47 = "<div id=\"clear02\"><img height=\"5\" width=\"1\" alt=\"\" src=\"";
-			protected static string s48{get{return AbsoluteUrl("_GlobalResources/Images/dot.gif");}}
-			protected static string s49 = "\" name=\"\" /></div>";
 			public string settingBox = "{settingBox}";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s47);
-					bd.Append(s48);
-					bd.Append(s49);
 					bd.Append(settingBox);
 				}
 				if(IsAssigned){bd.Append(Value);}
