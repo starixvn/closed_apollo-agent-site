@@ -68,14 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AgentOutStandingController.cs" />
-    <Compile Include="Controllers\MemberOutStandingController.cs" />
-    <Compile Include="Controllers\OutStandingController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Criterias\AgentOutStandingCriteria.cs" />
     <Compile Include="Criterias\MemberOutStandingCriteria.cs" />
     <Compile Include="Criterias\OutStandingCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportsAreaRegistration.cs" />
     <Compile Include="Services\OutStandingService.cs" />
     <Compile Include="Services\ReportServiceBase.cs" />
     <Compile Include="ViewModels\OutStandingViewModel.cs" />
