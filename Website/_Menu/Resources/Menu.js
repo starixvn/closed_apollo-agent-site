@@ -29,11 +29,12 @@ function MenuToggle(index) {
         parent = $('#leftpane'),
         isThisActive = subMenu.is(':visible');
 
-    parent.find('.Bleft_Parent0').removeClass('active');
+    parent.find('.left-menu').removeClass('active');
     parent.find('.submenu-list').slideUp('fast');
 
     if (!isThisActive) {
-        aMenu.parent().addClass('active');            
+        aMenu.addClass('active');
+        subMenu.find('.Bleft_Sub0').css({'border-bottom': 'none'});           
         subMenu.slideDown('fast');
     }
 }
