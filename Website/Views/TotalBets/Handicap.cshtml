@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.ViewModels
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = "Handicap";
+    ViewBag.Title = Resources.Lang.lblHOUL;
 }
 
 @model IEnumerable<HandicapViewModel>
@@ -14,7 +14,7 @@
     { 
         <td class="r" style="width: 90px">
             <!--HandicapTotalValue-->
-            <a class="fcnum" href="javascript:doViewBetList(@matchId,1,'BettypeMatch');">@TotalBetHelper.FormatValue(totalOdds)</a>
+            <a class="fcnum" href="javascript:doViewBetList(@matchId,1,'BettypeMatch');">@TotalBetHelper.FormatNegativeNumber(totalOdds)</a>
             <!--/HandicapTotalValue-->
         </td>
         <td class="fcbtn">
@@ -77,7 +77,7 @@
     </tr>
     }            
 }
-
+@RazorHelper.RefreshCountDown("HDPOU", 15, 15)
 <table class="tblRpt">
     <thead>
         <tr>

@@ -62,7 +62,6 @@ a {
 		border: 1px solid @white;
 		border-bottom: none;
 		.border-top-right-radius(3px);
-		.border-top-left-radius(3px);
 	}
 
 	&.tab_menu02 {		
@@ -104,20 +103,6 @@ a {
 		&:hover {	
 			background: transparent url(../../_GlobalResources/Images/treeview_bg.png) no-repeat 0 -26px scroll;
 			color: @yellow;
-		}
-	}
-
-	&.Bleft_Parent {
-		display: block;			
-		color: @gray;
-		text-decoration: none;
-		text-transform: uppercase;
-		padding: 5px 10px;
-		padding-left: 5%;
-		width: 95%;	
-
-		&:hover {
-			color: @primaryColor;
 		}
 	}	
 }
@@ -228,28 +213,29 @@ a {
 			font-weight: bold;	
 			min-height: 30px;
 			border-bottom: 1px solid lighten(@grayLight, 20%);
-			box-shadow: 0 1px 0 lighten(@grayLight, 35%) inset;
-			
-			color: @gray;
-			background: url(Images/navBg.png), linear-gradient(to bottom, #F7F7F7 0%, #E5E5E5 100%) repeat-x;				
+			box-shadow: 0 1px 0 lighten(@grayLight, 35%) inset;	
 
-			&:hover {				
-				background: url(Images/redNoise.jpg) repeat-x;
-				color: @grayLighter;
-				border-bottom: none;
+			a {
+				&.Bleft_Parent {
+					display: block;			
+					color: @gray;
+					text-decoration: none;
+					text-transform: uppercase;
+					padding: 5px 10px;
+					padding-left: 5%;
+					width: 95%;	
+					color: @gray;
+					background: url(Images/navBg.png), linear-gradient(to bottom, #F7F7F7 0%, #E5E5E5 100%) repeat-x;
 
-				> a {
-					color: @grayLighter;
+					&:hover {
+						background: url(Images/redNoise.jpg) repeat-x;
+						color: @grayLighter;
+					}
 				}
-			}
 
-			&.active {
-				background: url(Images/redNoise.jpg) repeat-x;					
-				border-bottom: none;		
-
-				> a {
+				&.active {
+					background: url(Images/redNoise.jpg) repeat-x;
 					color: @grayLighter;
-					text-shadow: 0 1px 0 @white;
 				}
 			}
 		}

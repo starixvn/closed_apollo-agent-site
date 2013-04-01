@@ -23,6 +23,7 @@ namespace Sunplus.Agent.UI._BetList
     using System.Web;
     using System.Web.UI;
     using Fanex.Age.UI.Components;
+    using Fanex.Age.UI.Reports;
     using Fanex.BetList.Age.BetListCmd;
     using Fanex.BetList.Age.BetListExcelBuilderExt;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
@@ -34,12 +35,11 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
     using NPOI.SS.UserModel;
-    using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.BL.Forecast;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
 
-    public partial class BetList_Page : Fanex.Age.UI.Reports.WinlossReports_Page
+    public partial class BetList_Page : WinlossReports_Page
     {
         string type = string.Empty;
         string title = string.Empty;
@@ -231,30 +231,25 @@ namespace Sunplus.Agent.UI._BetList
             {
                 #region RENDER HTML
 
-                BetListTemplate tpl = new BetListTemplate();
-                StringBuilder content = new StringBuilder();
-
-                tpl.title = reportTitle;
-
-                Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
-                content.Append(betlistOpenTag);
+                var tpl = new BetListTemplate { title = reportTitle };
+                var content = new StringBuilder();
 
                 content.Append(betlistHeader);
                 content.Append("<tbody>");
-                ForecastBO bo = new ForecastBO(UserSession.Current.NetSessionId);
-                List<int> lstScoremap = bo.GetListBetTypeScoreMap();
 
+                var forecastBO = new ForecastBO(UserSession.Current.NetSessionId);
+                List<int> lstScoremap = forecastBO.GetListBetTypeScoreMap();
                 bool isShowScoremap;
-                bool mode = ((BetListType)bettype & BetListType.SmartPhone) != BetListType.SmartPhone;
-                GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
+                bool deviceMode = ((BetListType)bettype & BetListType.SmartPhone) != BetListType.SmartPhone;
 
-                ITicketHelper ticketHelper = new TicketHelper();
-                BetListHTMLFactory factory = new BetListHTMLFactory();
-                BetListHTMLBuilder builder = factory.CreateBuilder();
+                GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
+                var ticketHelper = new TicketHelper();
+                var factory = new BetListHTMLFactory();
+                var builder = factory.CreateBuilder();
 
                 foreach (ITicket ticket in tickets)
                 {
-                    if (lstScoremap.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running) && mode)
+                    if (lstScoremap.Contains(ticket.BetTypeId) && ticket.Status.Equals(BetStatus.Running) && deviceMode)
                     {
                         isShowScoremap = true;
                     }
@@ -274,11 +269,10 @@ namespace Sunplus.Agent.UI._BetList
                         builder.AddMember(ticket, "<td class='c'>", "</td>");
                     }
 
-                    builder
-                            .AddTrans(ticket, "<td class='c nonbreak'>", "</td>")
-                            .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", isShowScoremap)
-                            .AddOdds(ticket, ticketData, "<td class='bl_underdog nonbreak'>", "</td>", funcGetOddsTypeName)
-                            .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
+                    builder.AddTrans(ticket, "<td class='c nonbreak'>", "</td>")
+                           .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", isShowScoremap)
+                           .AddOdds(ticket, ticketData, "<td class='bl_underdog nonbreak'>", "</td>", funcGetOddsTypeName)
+                           .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
 
                     if (isShowWinLost)
                     {
@@ -296,10 +290,9 @@ namespace Sunplus.Agent.UI._BetList
                 builder.AddFooter(tickets, string.Empty, string.Empty, (Fanex.BetList.Age.Definition.BetListType)betlistType);
 
                 content.Append(builder.GetBetList());
-                content.Append("</tbody></table>");
+                content.Append("</tbody>");
 
                 tpl.content = content.ToString();
-                //tpl.ToString(writer);
                 writer.Write(tpl);
 
                 RegisterJavascriptObject("type", type);

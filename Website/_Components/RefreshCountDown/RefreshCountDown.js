@@ -8,7 +8,7 @@ function CountDownRefresh_Tick() {
     if (countDownTimer != null) clearTimeout(countDownTimer);
     countDownTimer=setTimeout(CountDownRefresh_Tick, 1000);
 
-    if (curCountDown < -1) {
+    if (curCountDown < 0) {
         eval(countDownRefreshFunc);
     }
 }
