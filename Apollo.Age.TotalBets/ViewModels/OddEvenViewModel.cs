@@ -75,7 +75,7 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public decimal OddEvenTotal { 
             get {
-                return this.home_odds_OE - this.away_odds_OE;
+                    return this.home_odds_OE - this.away_odds_OE;
             } 
         }
 
@@ -91,7 +91,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return this.home_odds_DND + this.away_odds_DND;
+                return this.home_odds_DND - this.away_odds_DND;
             }
         }
 
@@ -99,7 +99,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return this.home_odds_OE_1st + this.away_odds_OE_1st;
+                return this.home_odds_OE_1st - this.away_odds_OE_1st;
             }
         }
 

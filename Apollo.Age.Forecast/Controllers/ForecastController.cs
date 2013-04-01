@@ -15,12 +15,24 @@ namespace Apollo.Age.Forecast.Controllers
     using System.Linq;
     using System.Text;
     using Apollo.Age.Web;
+using System.Web.Mvc;
+using Apollo.Age.Forecast.Services;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class ForecastController : BaseController
     {
+        private readonly ForecastService _foreCastService;
 
+        public ForecastController(ForecastService foreCastService = null)
+        {
+            _foreCastService = foreCastService ?? new ForecastService();
+        }
+
+        public ViewResult FC1X2()
+        {            
+            return View();
+        }
     }
 }
