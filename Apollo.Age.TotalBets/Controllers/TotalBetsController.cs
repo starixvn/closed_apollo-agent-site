@@ -60,5 +60,17 @@ namespace Apollo.Age.TotalBets.Controllers
             var model = GetViewModel<dynamic>(agentId: 3, betType: 2);
             return View(model);
         }
+
+        public ViewResult NumberGame()
+        {
+            var model = GetViewModel<NumberGameViewModel>(agentId: 3, betType: 161);
+            return View(model);
+        }
+
+        public ViewResult HomeNoBet()
+        {
+            var model = GetViewModel<HomeNoBetViewModel>(agentId: 3, betType: 25);
+            return View(model);
+        }
     }
 }
