@@ -4,7 +4,7 @@
 }
 @model IEnumerable<HTFTViewModel>
 <table class="tblRpt" cellpadding="0" cellspacing="1" border="0">
-    <tr class="RptHeader">
+    <thead class="RptHeader">
         <td style="width: 20px;">
             @Resources.Lang.no
         </td>
@@ -41,7 +41,7 @@
         <td style="width: 50px;">
             @Resources.Lang.aa
         </td>
-    </tr>
+    </thead>
       @{
         
           if (Model != null && Model.Any())
@@ -52,42 +52,42 @@
               foreach (var item in Model)
               {
                   rowIndex++;
-                    <tr class="r" bgcolor="{ColorClass}" onmouseover="bgColor='{ColorOver}'" onmouseout="bgColor='{ColorClass}'">
-                        <td class="w-order">
-                            {NoValue}
+                    <tr class="r">
+                        <td class="c">
+                            @rowIndex
                         </td>
                         <td class="l">
-                            <a href="javascript:doViewBetList({MatchId}, 16, '{BetType}')">{HomeValue}</a>
+                            <a href="javascript:doViewBetList({MatchId}, 16, '{BetType}')">@item.HomeTeam</a>
                         </td>
                         <td class="l">
-                            {AwayValue}
+                            @item.AwayTeam
                         </td>
                         <td class="fcnum">
-                            {HHValue}
+                            @TotalBetHelper.FormatPositiveNumber(item.totalHH)
                         </td>
                         <td class="fcnum">
-                            {HDValue}
+                            @TotalBetHelper.FormatPositiveNumber(item.totalHD)
                         </td>
                         <td class="fcnum">
-                            {HAValue}
+                            @TotalBetHelper.FormatPositiveNumber(item.totalHA)
                         </td>
                         <td class="fcnum">
-                            {DHValue}
+                            @TotalBetHelper.FormatPositiveNumber(item.totalDH)
                         </td>
                         <td class="fcnum">
-                            {DDValue}
+                            @TotalBetHelper.FormatPositiveNumber(item.totalDD)
                         </td>
                         <td class="fcnum">
-                            {DAValue}
+                            @TotalBetHelper.FormatPositiveNumber(item.totalDA)
                         </td>
                         <td class="fcnum">
-                            {AHValue}
+                            @TotalBetHelper.FormatPositiveNumber(item.totalAH)
                         </td>
                         <td class="fcnum">
-                            {ADValue}
+                            @TotalBetHelper.FormatPositiveNumber(item.totalAD)
                         </td>
                         <td class="fcnum">
-                            {AAValue}
+                            @TotalBetHelper.FormatPositiveNumber(item.totalAA)
                         </td>
                     </tr>
               }

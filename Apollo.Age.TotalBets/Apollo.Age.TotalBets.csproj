@@ -80,7 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TotalBetsServiceBase.cs" />
     <Compile Include="ViewModels\HandicapViewModel.cs" />
+    <Compile Include="ViewModels\HTFTViewModel.cs" />
     <Compile Include="ViewModels\MoneyLineViewModel.cs" />
+    <Compile Include="ViewModels\OutRightViewModel.cs" />
     <Compile Include="ViewModels\TotalGoalViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -66,5 +66,11 @@ namespace Apollo.Age.TotalBets.Controllers
             var model = GetViewModel<HTFTViewModel>(agentId: 3, betType: 16);
             return View(model);
         }
+
+        public ViewResult OutRight()
+        {
+            var model = GetViewModel<OutRightViewModel>(agentId: 3, betType: 10);
+            return View(model);
+        }
     }
 }
