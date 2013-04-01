@@ -42,7 +42,7 @@ AGEWnd.prototype.open = function (url, title, left, top, width, height, windowCs
 			'<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
 		'</div>';
 
-    this.currentOpenDialog = APOLLO.openDialog(frame, title, { width: width + 30, height: height + 50 });
+    this.currentOpenDialog = APOLLO.openDialog(frame, title, { width: width + 80, height: height + 80 });
     this.loaded = true;
 }
 
@@ -57,108 +57,108 @@ AGEWnd.prototype.openDialog = function (url, title, options) {
 }
 
 // [obsolete]
-AGEWnd.prototype.open__ = function (url, titleText, left, top, width, height, windowCss, titleCss, closeBtnCss) {
-    if (typeof left == 'undefined' ||
-		typeof top == 'undefined' ||
-		typeof width == 'undefined' ||
-		typeof height == 'undefined' ||
-		typeof url == 'undefined') {
-        alert('ageWnd.open(url, titleText, left, top, width, height, windowCss, titleCss, closeBtnCss)\r\n\r\n\   - Invalid parameters  ');
-        return false;
-    }
+//AGEWnd.prototype.open__ = function (url, titleText, left, top, width, height, windowCss, titleCss, closeBtnCss) {
+//    if (typeof left == 'undefined' ||
+//		typeof top == 'undefined' ||
+//		typeof width == 'undefined' ||
+//		typeof height == 'undefined' ||
+//		typeof url == 'undefined') {
+//        alert('ageWnd.open(url, titleText, left, top, width, height, windowCss, titleCss, closeBtnCss)\r\n\r\n\   - Invalid parameters  ');
+//        return false;
+//    }
 
-    AGEWnd_preWidth = 0;
-    AGEWnd_preHeight = 0;
+//    AGEWnd_preWidth = 0;
+//    AGEWnd_preHeight = 0;
 
-    if (AGEWnd_autoKeepPosition || this.autoKeepPosition) {
-        if (typeof AGEWnd_preLeft != 'undefined') left = AGEWnd_preLeft;
-        if (typeof AGEWnd_preTop != 'undefined') top = AGEWnd_preTop;
-    }
+//    if (AGEWnd_autoKeepPosition || this.autoKeepPosition) {
+//        if (typeof AGEWnd_preLeft != 'undefined') left = AGEWnd_preLeft;
+//        if (typeof AGEWnd_preTop != 'undefined') top = AGEWnd_preTop;
+//    }
 
-    if (!this.createdElement) {
-        this.mask = AGEWnd_createElement("div");
-        this.mask.className = "AGEWndMask";
-        this.mask.style.position = "absolute";
-        this.mask.style.display = "none";
-        this.mask.innerHTML = "<input class=\"AGEWndTitleMask\" readonly=\"true\" type=\"text\" value=\"\" />";
+//    if (!this.createdElement) {
+//        this.mask = AGEWnd_createElement("div");
+//        this.mask.className = "AGEWndMask";
+//        this.mask.style.position = "absolute";
+//        this.mask.style.display = "none";
+//        this.mask.innerHTML = "<input class=\"AGEWndTitleMask\" readonly=\"true\" type=\"text\" value=\"\" />";
 
-        this.element = AGEWnd_createElement("div");
-        this.element.className = (windowCss ? (windowCss) : "AGEWnd");
-        this.element.style.position = "absolute";
-        this.element.style.display = "none";
-        this.element.style.zIndex = 1000;
+//        this.element = AGEWnd_createElement("div");
+//        this.element.className = (windowCss ? (windowCss) : "AGEWnd");
+//        this.element.style.position = "absolute";
+//        this.element.style.display = "none";
+//        this.element.style.zIndex = 1000;
 
-        var table = AGEWnd_createElement("table", this.element);
-        table.cellPadding = 0; table.cellSpacing = 0; table.className = "AGEWndTable"; table.border = 0;
-        var thead = AGEWnd_createElement("thead", table);
-        var tr = AGEWnd_createElement("tr", thead);
-        tr.oncontextmenu = function () { return false; };
-        tr.className = (titleCss ? (titleCss) : "AGEWndTitle");
-        tr.style.height = "20px"; tr.style.overflow = "hidden"; tr.style.zIndex = 1000;
+//        var table = AGEWnd_createElement("table", this.element);
+//        table.cellPadding = 0; table.cellSpacing = 0; table.className = "AGEWndTable"; table.border = 0;
+//        var thead = AGEWnd_createElement("thead", table);
+//        var tr = AGEWnd_createElement("tr", thead);
+//        tr.oncontextmenu = function () { return false; };
+//        tr.className = (titleCss ? (titleCss) : "AGEWndTitle");
+//        tr.style.height = "20px"; tr.style.overflow = "hidden"; tr.style.zIndex = 1000;
 
-        var td1 = AGEWnd_createElement("td", tr);
-        td1.className = "AGEWndTitleText"; td1.style.cursor = "move";
-        AGEWnd_addEvent(td1, "mousedown", AGEWnd_dragStart);
-        td1.className = (titleCss ? (titleCss) : "AGEWndTitle");
-        this.maskTitle = td1;
-        var div1 = AGEWnd_createElement("div", td1); div1.style.height = "20px"; div1.style.display = "block"; div1.style.zIndex = 1000;
-        div1.style.paddingLeft = "10px"; div1.style.lineHeight = "20px"; div1.style.color = "#ffffff"; div1.style.textAlign = "center";
-        div1.className = "AGEWndTitleDiv";
-        this.title = div1;
+//        var td1 = AGEWnd_createElement("td", tr);
+//        td1.className = "AGEWndTitleText"; td1.style.cursor = "move";
+//        AGEWnd_addEvent(td1, "mousedown", AGEWnd_dragStart);
+//        td1.className = (titleCss ? (titleCss) : "AGEWndTitle");
+//        this.maskTitle = td1;
+//        var div1 = AGEWnd_createElement("div", td1); div1.style.height = "20px"; div1.style.display = "block"; div1.style.zIndex = 1000;
+//        div1.style.paddingLeft = "10px"; div1.style.lineHeight = "20px"; div1.style.color = "#ffffff"; div1.style.textAlign = "center";
+//        div1.className = "AGEWndTitleDiv";
+//        this.title = div1;
 
-        var td2 = AGEWnd_createElement("td", tr); td2.className = "AGEWndTitleButton";
-        td2.onclick = function () { ageWnd.close(); }; td2.oncontextmenu = function () { return false; };
+//        var td2 = AGEWnd_createElement("td", tr); td2.className = "AGEWndTitleButton";
+//        td2.onclick = function () { ageWnd.close(); }; td2.oncontextmenu = function () { return false; };
 
-        if (this.displayBtnClose) {
-            td2.innerHTML = "<div oncontextmenu=\"return false\" title=\"Close\" class=\"" + (closeBtnCss ? closeBtnCss : "AGEWndCloseButton") + "\" style=\"float:right\"></div>";
-        }
-        else {
-            td2.onclick = function () { return false; }
-        }
+//        if (this.displayBtnClose) {
+//            td2.innerHTML = "<div oncontextmenu=\"return false\" title=\"Close\" class=\"" + (closeBtnCss ? closeBtnCss : "AGEWndCloseButton") + "\" style=\"float:right\"></div>";
+//        }
+//        else {
+//            td2.onclick = function () { return false; }
+//        }
 
-        td2.vAlign = "center"; td2.align = "right";
-        td2.className = (titleCss ? (titleCss) : "AGEWndTitle");
-        var tbody = AGEWnd_createElement("tbody", table);
+//        td2.vAlign = "center"; td2.align = "right";
+//        td2.className = (titleCss ? (titleCss) : "AGEWndTitle");
+//        var tbody = AGEWnd_createElement("tbody", table);
 
-        tr = AGEWnd_createElement("tr", tbody);
-        td = AGEWnd_createElement("td", tr); td.colSpan = 2;
-        td.align = "left"; td.vAlign = "top"; td.className = "AGEWndNoPadding";
-        this.content = td;
+//        tr = AGEWnd_createElement("tr", tbody);
+//        td = AGEWnd_createElement("td", tr); td.colSpan = 2;
+//        td.align = "left"; td.vAlign = "top"; td.className = "AGEWndNoPadding";
+//        this.content = td;
 
-        this.iframe = AGEWnd_createIframe();
-        this.content.appendChild(this.iframe);
+//        this.iframe = AGEWnd_createIframe();
+//        this.content.appendChild(this.iframe);
 
-        document.body.appendChild(this.mask);
-        document.body.appendChild(this.element);
+//        document.body.appendChild(this.mask);
+//        document.body.appendChild(this.element);
 
-        this.createdElement = true;
-    }
+//        this.createdElement = true;
+//    }
 
-    this.setRect(left, top, width, height);
+//    this.setRect(left, top, width, height);
 
-    this.url = url;
-    this.iframe.src = this.blankURL;
-    this.loaded = false;
+//    this.url = url;
+//    this.iframe.src = this.blankURL;
+//    this.loaded = false;
 
-    this.title.innerHTML = titleText;
-    this.element.style.display = 'block';
+//    this.title.innerHTML = titleText;
+//    this.element.style.display = 'block';
 
-    // Listen event
-    AGEWnd_addEvent(this.iframe, "load", function () {
-        var iframe_doc = AGEWnd._W.is_ie ? AGEWnd._W.iframe.contentWindow.document : AGEWnd._W.iframe.contentDocument;
+//    // Listen event
+//    AGEWnd_addEvent(this.iframe, "load", function () {
+//        var iframe_doc = AGEWnd._W.is_ie ? AGEWnd._W.iframe.contentWindow.document : AGEWnd._W.iframe.contentDocument;
 
-        if (AGEWnd._W.title.innerHTML == '' && iframe_doc.title != 'Home') {
-            AGEWnd._W.title.innerHTML = iframe_doc.title;
-        }
+//        if (AGEWnd._W.title.innerHTML == '' && iframe_doc.title != 'Home') {
+//            AGEWnd._W.title.innerHTML = iframe_doc.title;
+//        }
 
-        AGEWnd_addEvent(iframe_doc, "keydown", AGEWnd_keydown);
-    });
+//        AGEWnd_addEvent(iframe_doc, "keydown", AGEWnd_keydown);
+//    });
 
-    AGEWnd_addEvent(window, "resize", AGEWnd_calculateViewport);
+//    AGEWnd_addEvent(window, "resize", AGEWnd_calculateViewport);
 
-    // add public reference for active window
-    AGEWnd._W = this;
-}
+//    // add public reference for active window
+//    AGEWnd._W = this;
+//}
 
 // Event on closing
 AGEWnd.prototype.onClosing = function () { return true; };
@@ -192,68 +192,68 @@ AGEWnd.prototype.setRect = function (left, top, width, height) {
 }
 
 // [obsolete]
-AGEWnd.prototype.setRect__ = function (left, top, width, height) {
-    if (!this.createdElement) return false;
+//AGEWnd.prototype.setRect__ = function (left, top, width, height) {
+//    if (!this.createdElement) return false;
 
-    var scrOfX = 0;
-    var scrOfY = 0;
-    if (this.is_ie && typeof (window.pageXOffset) == 'number') {
-        scrOfX = window.pageXOffset;
-    } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
-        scrOfX = document.body.scrollLeft;
-    } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
-        scrOfX = document.documentElement.scrollLeft;
-    }
-    if (this.is_ie && typeof (window.pageYOffset) == 'number') {
-        scrOfY = window.pageYOffset;
-    } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
-        scrOfY = document.body.scrollTop;
-    } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
-        scrOfY = document.documentElement.scrollTop;
-    }
+//    var scrOfX = 0;
+//    var scrOfY = 0;
+//    if (this.is_ie && typeof (window.pageXOffset) == 'number') {
+//        scrOfX = window.pageXOffset;
+//    } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+//        scrOfX = document.body.scrollLeft;
+//    } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+//        scrOfX = document.documentElement.scrollLeft;
+//    }
+//    if (this.is_ie && typeof (window.pageYOffset) == 'number') {
+//        scrOfY = window.pageYOffset;
+//    } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+//        scrOfY = document.body.scrollTop;
+//    } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+//        scrOfY = document.documentElement.scrollTop;
+//    }
 
-    //scrOfY += 15;
+//    //scrOfY += 15;
 
-    this.scrOfX = scrOfX;
-    this.scrOfY = scrOfY;
+//    this.scrOfX = scrOfX;
+//    this.scrOfY = scrOfY;
 
-    if (left != null && top != null && !this.loaded) {
-        left += scrOfX;
-        top += scrOfY;
-        this.left = left;
-        this.top = top;
-    }
+//    if (left != null && top != null && !this.loaded) {
+//        left += scrOfX;
+//        top += scrOfY;
+//        this.left = left;
+//        this.top = top;
+//    }
 
-    this.width = (width < 30) ? 30 : width;
-    this.height = (height < 30) ? 30 : height;
-    this.height = (height > (window.innerHeight - 30)) ? (window.innerHeight - 30) : height;
+//    this.width = (width < 30) ? 30 : width;
+//    this.height = (height < 30) ? 30 : height;
+//    this.height = (height > (window.innerHeight - 30)) ? (window.innerHeight - 30) : height;
 
-    this.calculateViewport();
+//    this.calculateViewport();
 
-    if (left != null && top != null) {
-        this.mask.style.left = this.left + "px";
-        this.mask.style.top = this.top + "px";
-    }
+//    if (left != null && top != null) {
+//        this.mask.style.left = this.left + "px";
+//        this.mask.style.top = this.top + "px";
+//    }
 
-    this.mask.style.width = this.mask.firstChild.style.width = this.width + "px";
-    this.mask.style.height = this.mask.firstChild.style.height = this.height + "px";
+//    this.mask.style.width = this.mask.firstChild.style.width = this.width + "px";
+//    this.mask.style.height = this.mask.firstChild.style.height = this.height + "px";
 
-    this.title.style.width = this.maskTitle.style.width = (this.width - 20) + 'px';
-    this.content.style.width = (this.width) + "px";
-    this.content.style.height = (this.height - 20) + "px";
+//    this.title.style.width = this.maskTitle.style.width = (this.width - 20) + 'px';
+//    this.content.style.width = (this.width) + "px";
+//    this.content.style.height = (this.height - 20) + "px";
 
-    this.element.style.left = this.left + "px";
-    this.element.style.top = this.top + "px";
-    this.element.style.width = this.width + "px";
-    this.element.style.height = this.height + "px";
+//    this.element.style.left = this.left + "px";
+//    this.element.style.top = this.top + "px";
+//    this.element.style.width = this.width + "px";
+//    this.element.style.height = this.height + "px";
 
-    if (width <= 5 || height <= 5)
-        this.element.style.visibility = "hidden";
-    else
-        this.element.style.visibility = "visible";
+//    if (width <= 5 || height <= 5)
+//        this.element.style.visibility = "hidden";
+//    else
+//        this.element.style.visibility = "visible";
 
-    return true;
-}
+//    return true;
+//}
 
 AGEWnd.prototype.calculateViewport = function () {
     this.viewport = [];

@@ -249,7 +249,7 @@ namespace Fanex.Age.UI.Reports
                             body{font-family:Tahoma; font-size:12px; color:#000000; background:#ffffff;}
                             td,table{border-collapse:collapse;border-color:#7C98A4; border-style:Solid; border-width:thin;}
                             .league{color: #000000; background: #aacccc;}
-                            tr.RptHeader, td.RptHeader,tr.RptTitle,td.RptTitle, tr.RptTB, tr.RptFooter, tr.RptTitleLeft, td.RptTitleLeft, tr.RptHeader02, td.RptHeader02 {color:#000000; background:#aaccee;font-size:12px;font-weight:bold}
+                            tr.RptHeader, td.RptHeader,tr.RptTitle,td.RptTitle, tr.RptTB, tr.RptFooter, tr.RptHeader02, td.RptHeader02 {color:#000000; background:#aaccee;font-size:12px;font-weight:bold}
                             td{text-align:center;font-size:12px;}
                             font, div, span{font-size:12px;text-decoration:none;}
                             .bl_underdog{font-weight:bold}

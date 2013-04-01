@@ -35,6 +35,10 @@ a {
 	&:hover { color: @hoverLinkColor }
 }
 
+table {
+	border-collapse: collapse;
+}
+
 .btn {
 	height: 22px;
 	margin: 0 5px 0 0;
@@ -53,8 +57,8 @@ a {
 	color: @grayDark;
 	cursor: pointer;
 
-	&:hover { #gradient.vertical(#eee, #ccc) }
-	&:focus, &:active { #gradient.vertical(#ccc, #eee) }
+	&:hover { #gradient.vertical(@grayLighter, @borderColor) }
+	&:focus, &:active { #gradient.vertical(@borderColor, @grayLighter) }
 }
 
 .editBtn,
@@ -77,17 +81,24 @@ a {
 /* MAIN ELEMENTS */
 
 #page_main {
-	padding: 5px;
+	padding: 0;
 }
 
 #header_main {
-	padding: 10px 0 2px;
-	margin: 0 0 10px;
-	border-bottom: 1px solid @gray;
+	padding: 10px;
+
+	#gradient.vertical(#F8F8F8, @tableBackground);
+    border-bottom: 1px solid @borderColor;
+    box-shadow: 0 1px 0 0 #fff inset, 0 1px 0 0 #fff;
+
 	text-transform: uppercase;
 	color: @titleColor;
 	font-size: 1.1em;
 	.bold;
+}
+
+#content_main {
+	padding: 10px;
 }
 
 /* COMPONENTS */
@@ -104,11 +115,10 @@ a {
 /* TABLES */
 
 .tblRpt {
-	background-color: #EAEAEA;
-	border: 1px solid #CCC;
-	.box-shadow(0 0 0 2px #D5D5D5);
+	background-color: @tableBackground;
+	border: 1px solid @borderColor;
 	border-collapse: collapse;
-	color: #707070;
+	color: @grayDark;
 	margin: 10px 0 0;
 
 	td {
@@ -117,38 +127,49 @@ a {
 		white-space: nowrap;
 	}
 	
-	.RptTitle, .RptTitleLeft {
-		#gradient.vertical(#F8F8F8, #EAEAEA);
+	.report-title {
+		#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
 		.box-shadow(0 1px 0 0 #FFF inset);
+
 		td {
-			height: 33px;
+			background: url(img/report-title.gif) no-repeat 5px center;
+			padding: 0 0 0 24px;
+			height: 35px;
 			text-align: left;
 		}
 	}
 
 	thead td {
+		background-color: @primaryHeaderBackground;
 		border-spacing: 0;
-		border: 1px solid #CCC;
+		border: 1px solid @borderColor;
 		border-width: 1px 1px 0 0;
 		.box-shadow(0 1px 0 #FFF inset);
 		text-shadow: 0 1px 0 #FFF;
 		text-align: center;
+		font-weight: bold;
 	}
 
 	tbody {
 		td {
-			border-right: 1px solid #CCC;
-			border-top: 1px solid #CCC;
+			border: 1px solid @borderColor;
+			border-width: 1px 1px 0 0;
 
 			.box-shadow(0 1px 0 #FFF inset);
 			text-shadow: 0 1px 0 #FFF;
-			
-			&:last-child {
-				border-right: 0;
-			}
 		}
-		tr:first-child td {
-			border-top: 1px solid #CCC;
+		tr {
+			/*background-color: @rowBackground;
+			&.alt { background-color: @rowAltBackground }*/
+			&.live { background-color: @rowLiveBackground }
+			&.league {
+				#gradient.vertical(#F1E5D5, #F8F1E9);
+				color: @grayDark;
+				font-weight: bold;
+				text-transform: uppercase;
+				td { padding: 4px 4px 4px 30px }
+			}
+			&:hover { background-color: @rowHoverBackground }
 		}
 	}
 
@@ -157,11 +178,34 @@ a {
 		color: @white;
 		.bold;
 	}
-
+	.bl_time {
+		font-size: .9em;
+	}
 	.no_info {
-		background-color: @white;
 		.bold;
 		.text-center;
+	}
+}
+
+#box_header {
+	#gradient.vertical(@grayLighter, darken(@grayLighter,10%));
+	border: 1px solid @grayLight;
+	margin: 10px 0 0 0;
+	padding: 5px 5px 0;
+
+	input[type=text], select {
+		background-color: #f8f8f8;
+
+		border: 1px solid @grayLight;
+		border-radius: 2px;
+		box-shadow: 1px 1px 3px #bbb inset;
+
+		width: 100px;
+		padding: 3px;
+
+		line-height: 1.2em;
+		font-size: .95em;
+		cursor: default;
 	}
 }
 
@@ -175,24 +219,10 @@ a {
 	}
 	input[type=text] {
 		background: #f8f8f8 url(img/cal/calendar_10.png) no-repeat right 1px;
-
-		border: 1px solid #999;
-		border-radius: 2px;
-		box-shadow: 1px 1px 3px #bbb inset;
-
-		width: 100px;
-		padding: 3px;
-
-		line-height: 1.2em;
-		font-size: .95em;
-		cursor: default;
 	}
 }
 
-.report-filter {
-	.clearfix;
-	padding: 10px 0 0;
-
+.check-list {
 	input, label {
 		float: left;
 	}
@@ -201,6 +231,12 @@ a {
 		margin: 0 20px 0 0;
 		&:hover { text-decoration: underline }
 	}
+}
+
+.report-filter {	
+	padding: 10px 0 0;
+	.clearfix;
+	.check-list;
 }
 
 .ui-datepicker {
@@ -215,25 +251,13 @@ a {
 }
 
 /* B*S* MISC */
-.w-order {
-	color: #7d7d7d;
-	font-weight: 400;
-	text-align: right;
-}
 
-.bl_time {
-	color: #434343;
-	font-size: 7pt !important;
-	font-weight: 400;
-	text-align: center;
-}
-
-.bg_white {
-	background-color: @white;
-}
-
-.tblRpt .bg_white td {
-	text-align: center;
+.btnInfo {
+    background: url(../../_GlobalResources/Images/icon_add.jpg) no-repeat center top;
+    display: block;
+    width: 16px;
+	height: 16px;
+    margin: 3px;
 }
 
 .bg_eb {
