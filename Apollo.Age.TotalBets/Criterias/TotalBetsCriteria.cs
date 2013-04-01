@@ -19,7 +19,6 @@ namespace Apollo.Age.TotalBets.Criterias
 
     public class TotalBetsCriteria : CriteriaBase
     {
-        private string _settingKey;
         private int _agentId;
 
         public override string GetSettingKey()
@@ -42,9 +41,11 @@ namespace Apollo.Age.TotalBets.Criterias
                     return "Age_TotalBets_25_121_122";
                 case 14: // First Goal/Last Goal
                     return "Age_TotalBets_14";
+                case 10:
+                    return "Age_TotalBets_10";
             }
 
-            return _settingKey;
+            return string.Empty;
         }
 
         public int AgentId

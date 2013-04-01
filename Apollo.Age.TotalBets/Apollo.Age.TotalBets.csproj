@@ -83,6 +83,7 @@
     <Compile Include="ViewModels\HTFTViewModel.cs" />
     <Compile Include="ViewModels\MoneyLineViewModel.cs" />
     <Compile Include="ViewModels\NumberGameViewModel.cs" />
+    <Compile Include="ViewModels\OddEvenViewModel.cs" />
     <Compile Include="ViewModels\OutRightViewModel.cs" />
     <Compile Include="ViewModels\TotalGoalViewModel.cs" />
   </ItemGroup>

@@ -57,7 +57,7 @@ namespace Apollo.Age.TotalBets.Controllers
 
         public ViewResult OddEven()
         {
-            var model = GetViewModel<dynamic>(agentId: 3, betType: 2);
+            var model = GetViewModel<OddEvenViewModel>(agentId: 3, betType: 2);
             return View(model);
         }
 

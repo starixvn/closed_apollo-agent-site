@@ -14,6 +14,7 @@ namespace Apollo.Age.TotalBets.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Apollo.Age.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -28,5 +29,21 @@ namespace Apollo.Age.TotalBets.ViewModels
         public int BetCount { get; set; }
         public decimal totalwinlost { get; set; }
         public bool IsNeutral { get; set; }
+
+        public string TeamName
+        {
+            get
+            {
+                return CacheRef.GetTeamName(this.teamid);
+            }
+        }
+
+        public string LeagueName
+        {
+            get
+            {
+                return CacheRef.GetLeagueName(this.leagueid);
+            }
+        }
     }
 }
