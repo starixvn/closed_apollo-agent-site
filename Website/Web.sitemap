@@ -4,7 +4,7 @@
 
     <siteMapNode title="Master">
       <!--Totalbets-->
-      <siteMapNode title="totalbets">
+      <siteMapNode title="totalbets" expand="true">
         <siteMapNode title="lblHOUL" href="_TotalBets/HDPOU.aspx"></siteMapNode>
         <siteMapNode title="moneyline" href="_TotalBets/MoneyLine.aspx"></siteMapNode>
         <siteMapNode title="OE1x2DND" href="_TotalBets/OddEven1x2.aspx"></siteMapNode>

@@ -33,8 +33,7 @@ function MenuToggle(index) {
     parent.find('.submenu-list').slideUp('fast');
 
     if (!isThisActive) {
-        aMenu.addClass('active');
-        subMenu.find('.Bleft_Sub0').css({'border-bottom': 'none'});           
+        aMenu.addClass('active');    
         subMenu.slideDown('fast');
     }
 }
