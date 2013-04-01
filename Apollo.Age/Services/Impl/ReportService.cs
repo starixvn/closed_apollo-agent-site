@@ -21,7 +21,7 @@ namespace Apollo.Age.Services.Impl
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ReportService : ReportServiceBase, IReportService
+    public class ReportService : QueryService, IReportService
     {   
         public List<AgentWinlossDTO> GetAgentWinloss(ICriteria criteria)
         {
