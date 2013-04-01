@@ -14,7 +14,7 @@ namespace Apollo.Age.TotalBets.Controllers
     using System.Linq;
     using System.Text;
 
-    public class RacingController : TotalBetController
+    public class RacingController : TotalBetsController
     {
     }
 }

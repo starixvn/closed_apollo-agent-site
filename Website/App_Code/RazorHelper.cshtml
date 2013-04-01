@@ -1,0 +1,41 @@
+﻿@helper ShowNoInfo(int colspan, string cssClass = "c nobold")
+    {
+    <!--NotFoundContent-->
+    <tr class="bg_white">
+        <td colspan="@colspan" class="@cssClass">
+            {static:Resources.Lang.noInfo}
+        </td>
+    </tr>
+    <!--/NotFoundContent-->
+}
+@helper RefreshCountDown(string refreshCountDownId, int initCountDown = 15)
+    {
+
+    
+
+    <div class="btnCountDown">
+        <div id="CountDownRefresh" class="btnRefresh" 
+            title="{static:Resources.Lang.refresh}">
+        </div>
+        <div class="btnDown" id="btnDown" >
+        </div>
+    </div>
+    <div style="clear: both;">
+    </div>
+    <div id="CountDownMenu" style="display: none;" class="panelDown">
+        <!--Seconds-->
+        <div id="option{i}" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id);">
+            {SecondNum}{static:Resources.Lang.sec}
+        </div>
+        <!--/Seconds-->
+    </div>
+
+ 
+    <script type="text/javascript">
+    var refreshCountDownId = "@refreshCountDownId";
+    var initCountDown = @initCountDown;
+    var loadingTxt = "<span class='miniloading'>Loading</span>";
+    var countDownRefreshFunc="{CountDownRefreshFunc}()";
+    </script>
+
+}
