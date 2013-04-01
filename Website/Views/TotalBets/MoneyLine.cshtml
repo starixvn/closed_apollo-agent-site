@@ -28,14 +28,7 @@
 {
     if (betCount != 0)
     {
-        if (Math.Round(winlost, 2) > 0)
-        { 
-           <font color='red'>  @Formater.FormatNumber2(winlost, "en-US")   </font>
-        }
-        else
-        {
-            @Formater.FormatNumber2(winlost, "en-US")  
-        }
+        @TotalBetHelper.FormatPositiveNumber(winlost, 2)
     }
 } 
 

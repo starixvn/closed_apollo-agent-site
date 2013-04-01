@@ -5,14 +5,14 @@
     // <p>@msg</p>
     // For more information, visit http://go.microsoft.com/fwlink/?LinkID=204658
 }
-@helper FormatNegativeValue(decimal value, byte numDecimals = 0)
+@helper FormatNegativeNumber(decimal value, byte numDecimals = 0)
     {
        
         if (value != 0)
         {
             if (Math.Round(value, numDecimals) < 0)
             {
-                <font color='red'>@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals) </font>       
+                <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals) </span>       
             }
             else
             {
@@ -25,7 +25,7 @@
 {
     if (Math.Round(value, numDecimals) > 0)
     { 
-        <font color='red'> @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals) </font>
+        <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals) </span>
     }
     else
     { 
