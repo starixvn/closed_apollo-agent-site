@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
     <title>{static:Resources.Lang.lblForecast}</title>
@@ -9,18 +9,20 @@
         <div id="header_main">
             <span id="leagueName">{static:Resources.Lang.lblHOUL}</span>
         </div>
-        {load:Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown = new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"FCHDPOU","RefreshFC")}
-        <div id="sContent">
+        <div id="content_main" class="pull-left" style="width: 50%">
+            {load:Fanex.Age.UI.Components.RefreshCountDown_Control RefreshCountDown = new Fanex.Age.UI.Components.RefreshCountDown_Control(this,15,"FCHDPOU","RefreshFC")}
+        
             <!--Content-->
             <!--LimitLeagueList-->
-            <div id="box_header" style="width: 577px">
-                <table border="0" cellpadding="0" cellspacing="1" style="height:35px;">
+            <div id="box_header">
+                <table>
                     <tr>
                         <td>
-                            {static:Resources.Lang.league}
+                            <b>{static:Resources.Lang.league}</b>
                         </td>
                         <td id="selLeague">
-                            <select id='ddlLeague' name='ddlLeague' onchange='GetForecastByLeague();'>
+                            <select id='ddlLeague' name='ddlLeague' style="width: 280px"
+                                onchange='GetForecastByLeague();'>
                                 {LeagueList}
                             </select>
                         </td>
@@ -28,7 +30,8 @@
                 </table>
             </div>
             <!--/LimitLeagueList-->
-            <table class="tblRpt" cellpadding="0" cellspacing="1" border="0" style="width: 600px">
+            <table class="tblRpt">
+                <thead>
                 <tr class="RptHeader">
                     <td colspan="2">
                         {static:Resources.Lang.lblTeam}
@@ -40,95 +43,98 @@
                         {static:Resources.Lang.lblOverUnder}
                     </td>
                 </tr>
+                </thead>
+                <tbody>
                 <!--RowContent-->
-                 <tr align="center">
-                    <td class="l league" colspan="8" style="padding-left: 20px;">
-                        {Home}-vs-{Away}
+                <tr class="league">
+                    <td colspan="8">
+                        {Home} -vs- {Away}
                     </td>
                 </tr>
-                <tr class="even_row" align="center">
-                    <td colspan="2" style="height: 20px">
-                        <span>{Time}</span>
+                <tr class="c">
+                    <td colspan="2">
+                        {Time}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{OffsetHDPMinus1}</span>
+                    <td class="bold" style="width: 8%">
+                        {OffsetHDPMinus1}
                     </td>
-                    <td class="bold" width="8%" bgcolor="#FFEFDE">
-                        <span>{OffsetHDP}</span>
+                    <td class="bold" style="width: 8%; background-color: #ffefde">
+                        {OffsetHDP}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{OffsetHDPPlus1}</span>
+                    <td class="bold" style="width: 8%">
+                        {OffsetHDPPlus1}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{OffsetOUPlus2}</span>
+                    <td class="bold" style="width: 8%">
+                        {OffsetOUPlus2}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{OffsetOUPlus1}</span>
+                    <td class="bold" style="width: 8%">
+                        {OffsetOUPlus1}
                     </td>
-                    <td class="bold" width="8%" bgcolor="#FFEFDE">
-                        <span>{OffsetOU}</span>
+                    <td class="bold" style="width: 8%; background-color: #ffefde">
+                        {OffsetOU}
                     </td>
                 </tr>
-                <tr class="even_row" align="center">
-                    <td width="15%">
-                        <font color="#38536A">{static:Resources.Lang.fulltime}</font>
+                <tr class="c">
+                    <td style="width: 15%">
+                        {static:Resources.Lang.fulltime}
                     </td>
-                    <td width="1%">
+                    <td style="width: 1%">
                         <a href="javascript:openForecastPopup('{MatchId}','1')" class="btnInfo"></a>
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HDPM1}</span>
+                    <td class="bold" style="width: 8%">
+                        {HDPM1}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HDPBase}</span>
+                    <td class="bold" style="width: 8%">
+                        {HDPBase}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HDPP1}</span>
+                    <td class="bold" style="width: 8%">
+                        {HDPP1}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{OUP2}</span>
+                    <td class="bold" style="width: 8%">
+                        {OUP2}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{OUP1}</span>
+                    <td class="bold" style="width: 8%">
+                        {OUP1}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{OUBase}</span>
+                    <td class="bold" style="width: 8%">
+                        {OUBase}
                     </td>
                 </tr>
-                <tr class="even_row" align="center">
-                    <td width="15%">
-                        <font color="#38536A">{static:Resources.Lang.halftime}</font>
+                <tr class="c">
+                    <td style="width: 15%">
+                        {static:Resources.Lang.halftime}
                     </td>
-                    <td width="1%">
+                    <td style="width: 1%">
                         <a href="javascript:openForecastPopup('{MatchId}','7')" class="btnInfo"></a>
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HTHDPM1}</span>
+                    <td class="bold" style="width: 8%">
+                        {HTHDPM1}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HTHDPBase}</span>
+                    <td class="bold" style="width: 8%">
+                        {HTHDPBase}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HTHDPP1}</span>
+                    <td class="bold" style="width: 8%">
+                        {HTHDPP1}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HTOUP2}</span>
+                    <td class="bold" style="width: 8%">
+                        {HTOUP2}
                     </td>
-                    <td class="bold" width="8%">
-                        <span>{HTOUP1}</span>
+                    <td class="bold" style="width: 8%">
+                        {HTOUP1}
                     </td> 
-                    <td class="bold" width="8%">
-                        <span>{HTOUBase}</span>
+                    <td class="bold" style="width: 8%">
+                        {HTOUBase}
                     </td>
                 </tr>
                 <!--/RowContent-->
                 <!--NotFoundContent-->
-                <tr class="bg_white">
-                    <td colspan="8" class="c nobold">
+                <tr class="no_info">
+                    <td colspan="8">
                         {static:Resources.Lang.noInfo}
                     </td>
                 </tr>
                 <!--/NotFoundContent-->
+                </tbody>
             </table>
             <!--/Content-->
         </div>
