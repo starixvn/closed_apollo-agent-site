@@ -1,41 +1,34 @@
-﻿@helper ShowNoInfo(int colspan, string cssClass = "c nobold")
-    {
+﻿@helper ShowNoInfo(int colspan, string cssClass = "no_info")
+{
     <!--NotFoundContent-->
-    <tr class="bg_white">
-        <td colspan="@colspan" class="@cssClass">
+    <tr class="@cssClass">
+        <td colspan="@colspan">
             @Resources.Lang.noInfo
         </td>
     </tr>
     <!--/NotFoundContent-->
 }
 @helper RefreshCountDown(string refreshCountDownId, int initCountDown = 15)
-    {
-
-    
-
+{
     <div class="btnCountDown">
-        <div id="CountDownRefresh" class="btnRefresh" 
-            title="{static:Resources.Lang.refresh}">
+        <div id="CountDownRefresh" class="btnRefresh" title="@Resources.Lang.refresh">
         </div>
-        <div class="btnDown" id="btnDown" >
+        <div class="btnDown" id="btnDown">
         </div>
     </div>
-    <div style="clear: both;">
-    </div>
-    <div id="CountDownMenu" style="display: none;" class="panelDown">
+    <div id="CountDownMenu" class="panelDown" style="display: none">
         <!--Seconds-->
-        <div id="option{i}" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id);">
-            {SecondNum}@Resources.Lang.sec
+        <div id="option{i}" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id)">
+            @initCountDown@Resources.Lang.sec
         </div>
         <!--/Seconds-->
     </div>
 
  
     <script type="text/javascript">
-    var refreshCountDownId = "@refreshCountDownId";
-    var initCountDown = @initCountDown;
-    var loadingTxt = "<span class='miniloading'>Loading</span>";
-    var countDownRefreshFunc="{CountDownRefreshFunc}()";
+        var refreshCountDownId = "@refreshCountDownId";
+        var initCountDown = @initCountDown;
+        var loadingTxt = "<span class='miniloading'>Loading</span>";
+        var countDownRefreshFunc="{CountDownRefreshFunc}()";
     </script>
-
 }
