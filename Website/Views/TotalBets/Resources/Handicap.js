@@ -2,7 +2,7 @@
 
 var handicapTotalBet = {
     Init: function () {
-        $(".tblRpt .fcbtn").on("click", "a", function () {
+        $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = window.rootUrl + '_Forecast/FCAH.aspx?'
             + 'matchId=' + $(this).attr("match-id")
@@ -17,7 +17,7 @@ var handicapTotalBet = {
                 }
             });
         });
-        $(".tblRpt").on("click", "a.fcnum", function () {
+        $(".tblRpt").on("click", "a.view-bet-list", function () {
 
             var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type")
