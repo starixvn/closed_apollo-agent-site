@@ -45,7 +45,7 @@ namespace Apollo.Age.TotalBets.Controllers
 
         public ViewResult MoneyLine()
         {
-            var model = GetViewModel<MoneyLineViewModel>(agentId: 3, betType: 22);
+            var model = GetViewModel<MoneyLineViewModel>(agentId: 3, betType: 20);
             return View(model);
         }
 
@@ -57,7 +57,37 @@ namespace Apollo.Age.TotalBets.Controllers
 
         public ViewResult OddEven()
         {
-            var model = GetViewModel<dynamic>(agentId: 3, betType: 2);
+            var model = GetViewModel<OddEvenViewModel>(agentId: 3, betType: 2);
+            return View(model);
+        }
+
+        public ViewResult HTFT()
+        {
+            var model = GetViewModel<HTFTViewModel>(agentId: 3, betType: 16);
+            return View(model);
+        }
+
+        public ViewResult OutRight()
+        {
+            var model = GetViewModel<OutRightViewModel>(agentId: 3, betType: 10);
+            return View(model);
+        }
+
+        public ViewResult NumberGame()
+        {
+            var model = GetViewModel<NumberGameViewModel>(agentId: 3, betType: 161);
+            return View(model);
+        }
+
+        public ViewResult HomeNoBet()
+        {
+            var model = GetViewModel<HomeNoBetViewModel>(agentId: 3, betType: 25);
+            return View(model);
+        }
+
+        public ViewResult FirstGoal()
+        {
+            var model = GetViewModel<FirstGoalViewModel>(agentId: 3, betType: 14);
             return View(model);
         }
     }

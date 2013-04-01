@@ -1,12 +1,70 @@
-﻿@model IEnumerable<Apollo.Age.Reports.ViewModels.OutstandingViewModel>
-@{
-    Page.Title = "Title goes here";
-        //Layout = "Your Layout Page goes here";
-}
-<div>
-    @foreach (Apollo.Age.Reports.ViewModels.OutstandingViewModel item in Model)
+﻿@using Apollo.Age.Reports.ViewModels
+@model IEnumerable<OutstandingViewModel>
+<table width="500px" style="border: 1px solid #000;">
+    <tr>
+        <td rowspan="2">
+            @Resources.Lang.agent
+        </td>
+        <td colspan="2">
+            @Resources.Lang.sportBook
+        </td>
+        <td colspan="2">
+            @Resources.Lang.numbergame
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Resources.Lang.outstanding
+        </td>
+        <td>
+            @Resources.Lang.ShareAmount
+        </td>
+        <td>
+            @Resources.Lang.outstanding
+        </td>
+        <td>
+            @Resources.Lang.ShareAmount
+        </td>
+    </tr>
+    @if (Model != null && Model.Any())
     {
-        item.OutStanding.ToString();
-        <br />
+
+        foreach (OutstandingViewModel item in Model)
+        {
+        <tr>
+            <td>
+                <a href="#" onclick="ViewAgentDetail(@item.AgentId);">@item.UserName</a>
+            </td>
+            <td>
+                @item.Outstanding
+            </td>
+            <td>
+                @item.ShareAmount
+            </td>
+            <td>
+                @item.GameOutstanding
+            </td>
+            <td>
+                @item.GameShareAmount
+            </td>
+        </tr>
+        }
+        <tr>
+            <td>
+                @Resources.Lang.total
+            </td>
+            <td>
+                @Model.Sum(x => x.Outstanding)
+            </td>
+            <td>
+                @Model.Sum(x => x.ShareAmount)
+            </td>
+            <td>
+                @Model.Sum(x => x.GameOutstanding)
+            </td>
+            <td>
+                @Model.Sum(x => x.GameShareAmount)
+            </td>
+        </tr>
     }
-</div>
+</table>
