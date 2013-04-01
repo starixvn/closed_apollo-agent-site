@@ -1,0 +1,101 @@
+﻿@using Apollo.Age.TotalBets.ViewModels
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+}
+@model IEnumerable<HTFTViewModel>
+<table class="tblRpt" cellpadding="0" cellspacing="1" border="0">
+    <tr class="RptHeader">
+        <td style="width: 20px;">
+            @Resources.Lang.no
+        </td>
+        <td style="width: 200px;">
+            @Resources.Lang.home
+        </td>
+        <td style="width: 200px;">
+            @Resources.Lang.away
+        </td>
+        <td style="width: 50px;">
+            @Resources.Lang.hh
+        </td>
+        <td style="width: 50px;">
+            @Resources.Lang.hd
+        </td>
+        <td style="width: 50px;">
+            @Resources.Lang.ha
+        </td>
+        <td style="width: 50px;">
+            @Resources.Lang.dh
+        </td>
+        <td style="width: 50px;">
+            @Resources.Lang.dd
+        </td>
+        <td style="width: 50px;">
+            @Resources.Lang.da
+        </td>
+        <td style="width: 50px;">
+            @Resources.Lang.ah
+        </td>
+        <td style="width: 50px;">
+            @Resources.Lang.ad
+        </td>
+        <td style="width: 50px;">
+            @Resources.Lang.aa
+        </td>
+    </tr>
+      @{
+        
+          if (Model != null && Model.Any())
+          {
+              int rowIndex = 0;
+              int currentLeagueId = 0;
+
+              foreach (var item in Model)
+              {
+                  rowIndex++;
+                    <tr class="r" bgcolor="{ColorClass}" onmouseover="bgColor='{ColorOver}'" onmouseout="bgColor='{ColorClass}'">
+                        <td class="w-order">
+                            {NoValue}
+                        </td>
+                        <td class="l">
+                            <a href="javascript:doViewBetList({MatchId}, 16, '{BetType}')">{HomeValue}</a>
+                        </td>
+                        <td class="l">
+                            {AwayValue}
+                        </td>
+                        <td class="fcnum">
+                            {HHValue}
+                        </td>
+                        <td class="fcnum">
+                            {HDValue}
+                        </td>
+                        <td class="fcnum">
+                            {HAValue}
+                        </td>
+                        <td class="fcnum">
+                            {DHValue}
+                        </td>
+                        <td class="fcnum">
+                            {DDValue}
+                        </td>
+                        <td class="fcnum">
+                            {DAValue}
+                        </td>
+                        <td class="fcnum">
+                            {AHValue}
+                        </td>
+                        <td class="fcnum">
+                            {ADValue}
+                        </td>
+                        <td class="fcnum">
+                            {AAValue}
+                        </td>
+                    </tr>
+              }
+          }
+          else
+          {
+              @RazorHelper.ShowNoInfo(colspan: 12)
+          }
+          }
+  
+</table>

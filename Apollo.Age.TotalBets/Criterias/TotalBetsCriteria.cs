@@ -34,7 +34,8 @@ namespace Apollo.Age.TotalBets.Criterias
                     return "Age_TotalBets_20_21";
                 case 2: // Odd/Even
                     return "Age_TotalBets_2_5_12_15_123";
-
+                case 16:
+                    return "Age_TotalBets_16";
             }
 
             return _settingKey;

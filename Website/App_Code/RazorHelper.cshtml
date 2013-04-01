@@ -3,7 +3,7 @@
     <!--NotFoundContent-->
     <tr class="bg_white">
         <td colspan="@colspan" class="@cssClass">
-            {static:Resources.Lang.noInfo}
+            @Resources.Lang.noInfo
         </td>
     </tr>
     <!--/NotFoundContent-->
@@ -25,7 +25,7 @@
     <div id="CountDownMenu" style="display: none;" class="panelDown">
         <!--Seconds-->
         <div id="option{i}" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id);">
-            {SecondNum}{static:Resources.Lang.sec}
+            {SecondNum}@Resources.Lang.sec
         </div>
         <!--/Seconds-->
     </div>
