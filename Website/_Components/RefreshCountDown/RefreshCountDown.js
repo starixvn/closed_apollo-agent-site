@@ -1,6 +1,7 @@
 ﻿var curCountDown = 0;
 var ckiName = null;
 var countDownTimer = null;
+var isStopCoundown = false;
 
 function CountDownRefresh_Tick() {
     document.getElementById('CountDownRefresh').innerHTML = curCountDown;
@@ -9,7 +10,12 @@ function CountDownRefresh_Tick() {
     countDownTimer=setTimeout(CountDownRefresh_Tick, 1000);
 
     if (curCountDown < 0) {
-        eval(countDownRefreshFunc);
+        if (!isStopCoundown) {
+            eval(countDownRefreshFunc);
+        }
+        else {
+            curCountDown = initCountDown;
+        }
     }
 }
 

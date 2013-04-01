@@ -19,7 +19,7 @@
         </td>
         <td class="fcbtn">
             <!--HandicapTotalButton-->
-            <a href="javascript:openForecast(@matchId, @betType)" class="btnInfo"></a>
+            <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" class="btnInfo" ></a>
             <!--/HandicapTotalButton-->
         </td>
     }
@@ -50,7 +50,7 @@
 
 @helper ShowMatch(int index, HandicapViewModel item)
 {
-    <tr>
+    <tr class='@(item.LiveIndicator ? "live" : string.Empty)'>
         <td class="c">
             @index
         </td>
@@ -134,3 +134,8 @@
         }
     </tbody>
 </table>
+@section scripts
+{
+    <script src="~/Views/TotalBets/Resources/Handicap.js" type="text/javascript"></script>    
+}
+
