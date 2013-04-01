@@ -19,13 +19,15 @@ namespace Apollo.Age.Reports.ViewModels
     /// </summary>
     public class OutstandingViewModel
     {
+        public int AgentId { get; set; }
+
         public string UserName { get; set; }
 
-        public decimal OutStanding { get; set; }
+        public decimal Outstanding { get; set; }
 
         public decimal ShareAmount { get; set; }
 
-        public decimal GameOutStanding { get; set; }
+        public decimal GameOutstanding { get; set; }
 
         public decimal GameShareAmount { get; set; }
     }

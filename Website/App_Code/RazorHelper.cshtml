@@ -8,19 +8,23 @@
     </tr>
     <!--/NotFoundContent-->
 }
-@helper RefreshCountDown(string refreshCountDownId, int initCountDown = 15)
+@helper RefreshCountDown(string refreshCountDownId, int initCountDown = 15, int fromSecond = 15)
 {
     <div class="btnCountDown">
-        <div id="CountDownRefresh" class="btnRefresh" title="@Resources.Lang.refresh">
+        <div id="CountDownRefresh" class="btnRefresh" title="@Resources.Lang.refresh" onclick="CountDownRefresh_Refresh();">
         </div>
-        <div class="btnDown" id="btnDown">
+        <div class="btnDown" id="btnDown" onclick="CountDownRefresh_DoOpenOption(this);">
         </div>
     </div>
     <div id="CountDownMenu" class="panelDown" style="display: none">
         <!--Seconds-->
-        <div id="option{i}" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id)">
-            @initCountDown@Resources.Lang.sec
-        </div>
+        @for (int i = 1; i < 6; i++)
+        {
+           <div id="option@(i)" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id)">
+            @(fromSecond + i*15)@Resources.Lang.sec
+           </div>
+        }
+        
         <!--/Seconds-->
     </div>
 
@@ -29,6 +33,6 @@
         var refreshCountDownId = "@refreshCountDownId";
         var initCountDown = @initCountDown;
         var loadingTxt = "<span class='miniloading'>Loading</span>";
-        var countDownRefreshFunc="{CountDownRefreshFunc}()";
+        var countDownRefreshFunc="location.reload();";
     </script>
 }
