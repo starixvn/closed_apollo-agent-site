@@ -36,6 +36,12 @@ namespace Apollo.Age.TotalBets.Criterias
                     return "Age_TotalBets_2_5_12_15_123";
                 case 16:
                     return "Age_TotalBets_16";
+                case 161: // Number Game
+                    return "Age_TotalBets_161";
+                case 25: // Home/Draw/Away/No Bet
+                    return "Age_TotalBets_25_121_122";
+                case 14: // First Goal/Last Goal
+                    return "Age_TotalBets_14";
             }
 
             return _settingKey;
