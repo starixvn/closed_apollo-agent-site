@@ -1,60 +1,68 @@
-﻿<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>{static:Resources.Lang.lblScoreMap}</title>
     <link href="Resources/ScoreMap.less" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="page_main" style="min-height:380px">
+    <div id="page_main">
         <!--mainTitle-->
         <div id="header_main">
             {Forecast}
         </div>
         <!--/mainTitle-->
-        <div id="sContent">
+        <div id="content_main">
             <!--Content-->
             <!--LimitLeagueList-->
-            <div id="box_header" style="width: {mWidth}">
-                <table border="0" cellpadding="0" cellspacing="1" style="margin:5px;{display}">
+            <div id="box_header">
+                <table style="{display}">
                     <tr>
                         <td>
-                            {static:Resources.Lang.league}
+                            <b>{static:Resources.Lang.league}</b>
                         </td>
                         <td id="selLeague">
                             {LeagueList}
                         </td>
-                        <td><div title="{static:Resources.Lang.RefreshLeagues}" class="btnRefresh" id="RefreshLeagues">&nbsp;</div></td>
-                        <td><input type="button" class="btn" id="dSelMatch" value="{static:Resources.Lang.SelectMatch}" style="width:80px"></td>
-                        <td valign="top"><div style="float: left;padding-left:10px" class="" id="loading"></div></td>
+                        <td>
+                            <div title="{static:Resources.Lang.RefreshLeagues}" class="btnRefresh" id="RefreshLeagues">&nbsp;</div>
+                        </td>
+                        <td>
+                            <input type="button" class="btn" id="dSelMatch" value="{static:Resources.Lang.SelectMatch}">
+                        </td>
+                        <td>
+                            <span class="pull-left" id="loading"></span>
+                        </td>
                     </tr>
                 </table>
                 <div id="tblLiveDead" style="{displayLiveDead}">
-                    <table class="tblRpt" border="0" cellpadding="0" cellspacing="1" style="margin:5px">
-                        <tr class="even_row">
+                    <table class="tblRpt check-list">
+                        <tr>
                             <td>
-                                <input class="hand" type="checkbox" {isCheckedAllLive} id="chkAllL">
-                                <label class="hand bold" for="chkAllL">{static:Resources.Lang.lblLiveBall}</label>
+                                <label class="bold" for="chkAllL">
+                                    <input type="checkbox" {isCheckedAllLive} id="chkAllL" />
+                                    {static:Resources.Lang.lblLiveBall}
+                                </label>
                             </td>
                             <td id="Td1">
                                 <table class="reference"><tr>{LiveBall}</tr></table>
                             </td>
                         </tr>
-                        <tr class="even_row">
+                        <tr>
                             <td>
-                                <input class="hand" type="checkbox" {isCheckedAllDead} id="chkAllD">
-                                <label class="hand bold" for="chkAllD">{static:Resources.Lang.lblDeadball}</label>
+                                <label class="bold" for="chkAllD">
+                                    <input type="checkbox" {isCheckedAllDead} id="chkAllD" />
+                                    {static:Resources.Lang.lblDeadball}
+                                </label>
                             </td>
                             <td id="Td2">
                                 <table class="reference"><tr>{DeadBall}</tr></table>
                             </td>
                         </tr>
-                    </table>       
-                    <table border="0" cellpadding="0" cellspacing="1" style="margin:0px 5px 5px">
-                        <tr>
-                            <td><input type="button" value="{static:Resources.Lang.submit}" id="dSubmit" class="btn" style="width: 70px;"></td>
-                            <td valign="top"><div style="height:23px;padding-left:15px" class="" id="loadingSubmit"></div></td>
-                        </tr>
-                    </table>             
+                    </table>
+                    <p>
+                        <input type="button" value="{static:Resources.Lang.submit}" id="dSubmit" class="btn" />
+                        <span id="loadingSubmit"></span>
+                    </p>
                 </div>
             </div>            
             <!--/LimitLeagueList-->

@@ -140,10 +140,7 @@ function LoadScoreMap() {
             document.getElementById('diverrmsg').style.display = "none";
             DisableBtnSubmit();
             var paras = "isRefresh=false" + "&leagueid=0&matchIds=" + document.getElementById('MatchIds').value + "&bettypes_live=" + document.getElementById('strValueL').value + "&bettypes_dead=" + document.getElementById('strValueD').value;
-            http = jx.request(
-            '../_Forecast/ScoreMapProcess.aspx', onComplete, 'POST'
-                , paras
-            );
+            http = jx.request('../_Forecast/ScoreMapProcess.aspx', onComplete, 'POST', paras);
         }
     }
     else {
