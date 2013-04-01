@@ -2,20 +2,22 @@
 @using Fanex.Age.Utility
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.Lang.lblOutRight;
 }
 @model IEnumerable<OutRightViewModel>
 @helper ShowLeague(int currentLeagueId, OutRightViewModel item)
     {
         if (currentLeagueId != item.leagueid)
         { 
-            <!--LeagueContents-->
-              <tr align="center">
-                        <td colspan="4" style="padding-left: 20px;" class="league">
-                    @item.LeagueName
-                  </td>
-                </tr>
+    <!--LeagueContents-->
+    <tr align="center">
+        <td colspan="4" style="padding-left: 20px;" class="league">
+            @item.LeagueName
+        </td>
+    </tr>
         }            
 }
+@RazorHelper.RefreshCountDown("OutRight", 90, 60)
 <table class="tblRpt c" cellpadding="0" cellspacing="1" border="0" style="width: 600px">
     <thead>
         <tr class="RptHeader">
@@ -33,9 +35,8 @@
             </td>
         </tr>
     </thead>
-
     <tbody>
-          <!--LeagueContents-->
+        <!--LeagueContents-->
         @{
         
             if (Model != null && Model.Any())
@@ -46,28 +47,28 @@
                 foreach (var item in Model)
                 {
                     rowIndex++;
-                    @ShowLeague(currentLeagueId, item)  
-                    <!--MatchContents-->
-                    <tr class="r">
-                        <td class="w-order">
-                            @rowIndex
-                        </td>
-                        <td class="l">
-                            <a href="javascript:doViewBetList(@item.orid, 10, '{BetType}')">@item.TeamName</a>
-                        </td>
-                        <td>
-                            @TotalBetHelper.FormatNumber(item.balance, 2)
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalwinlost, 2)
-                        </td>
-                    </tr>
+            @ShowLeague(currentLeagueId, item)  
+            <!--MatchContents-->
+            <tr class="r">
+                <td class="w-order">
+                    @rowIndex
+                </td>
+                <td class="l">
+                    <a href="javascript:doViewBetList(@item.orid, 10, '{BetType}')">@item.TeamName</a>
+                </td>
+                <td>
+                    @TotalBetHelper.FormatNumber(item.balance, 2)
+                </td>
+                <td class="fcnum">
+                    @TotalBetHelper.FormatPositiveNumber(item.totalwinlost, 2)
+                </td>
+            </tr>
                     currentLeagueId = item.leagueid;
                 }
             }
             else
             { 
-                @RazorHelper.ShowNoInfo(colspan: 3)
+            @RazorHelper.ShowNoInfo(colspan: 3)
             }     
         }
     </tbody>

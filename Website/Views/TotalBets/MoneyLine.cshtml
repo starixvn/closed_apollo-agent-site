@@ -2,6 +2,7 @@
 @using Fanex.Age.Utility
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.Lang.moneyline;
 }
 @model IEnumerable<MoneyLineViewModel>
 @helper ShowLeague(int currentLeagueId, MoneyLineViewModel item)
@@ -16,22 +17,21 @@
     </tr>
         }            
 }
-
-@helper ShowTotal(int betCount, decimal odds){
-    if (betCount != 0)
+@helper ShowTotal(int betCount, decimal odds)
     {
-        @Formater.FormatNumber2(odds, "en-US")                
-    }   
+        if (betCount != 0)
+        {
+    @Formater.FormatNumber2(odds, "en-US")                
+        }   
 }
-
 @helper ShowForecas(int betCount, decimal winlost)
-{
-    if (betCount != 0)
     {
-        @TotalBetHelper.FormatPositiveNumber(winlost, 2)
-    }
-} 
-
+        if (betCount != 0)
+        {
+    @TotalBetHelper.FormatPositiveNumber(winlost, 2)
+        }
+}
+@RazorHelper.RefreshCountDown("MoneyLine", 90, 60)
 <table class="tblRpt c" style="width: 100%">
     <thead>
         <tr class="RptHeader">
@@ -90,10 +90,10 @@
                 foreach (var item in Model)
                 {
                     rowIndex++;
-                    @ShowLeague(currentLeagueId, item)  
+            @ShowLeague(currentLeagueId, item)  
             
             <!--MatchContents-->
-            <tr class="r" >
+            <tr class="r">
                 <td class="w-order">
                     @rowIndex
                 </td>

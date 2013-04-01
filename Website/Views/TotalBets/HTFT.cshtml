@@ -1,8 +1,10 @@
 ﻿@using Apollo.Age.TotalBets.ViewModels
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.Lang.htft;
 }
 @model IEnumerable<HTFTViewModel>
+@RazorHelper.RefreshCountDown("HTFT", 90, 60)
 <table class="tblRpt" cellpadding="0" cellspacing="1" border="0">
     <thead class="RptHeader">
         <td style="width: 20px;">
@@ -42,60 +44,59 @@
             @Resources.Lang.aa
         </td>
     </thead>
-      @{
+    @{
         
-          if (Model != null && Model.Any())
-          {
-              int rowIndex = 0;
-              int currentLeagueId = 0;
+        if (Model != null && Model.Any())
+        {
+            int rowIndex = 0;
+            int currentLeagueId = 0;
 
-              foreach (var item in Model)
-              {
-                  rowIndex++;
-                    <tr class="r">
-                        <td class="c">
-                            @rowIndex
-                        </td>
-                        <td class="l">
-                            <a href="javascript:doViewBetList({MatchId}, 16, '{BetType}')">@item.HomeTeam</a>
-                        </td>
-                        <td class="l">
-                            @item.AwayTeam
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalHH)
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalHD)
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalHA)
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalDH)
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalDD)
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalDA)
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalAH)
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalAD)
-                        </td>
-                        <td class="fcnum">
-                            @TotalBetHelper.FormatPositiveNumber(item.totalAA)
-                        </td>
-                    </tr>
-              }
-          }
-          else
-          {
-              @RazorHelper.ShowNoInfo(colspan: 12)
-          }
-          }
-  
+            foreach (var item in Model)
+            {
+                rowIndex++;
+        <tr class="r">
+            <td class="c">
+                @rowIndex
+            </td>
+            <td class="l">
+                <a href="javascript:doViewBetList({MatchId}, 16, '{BetType}')">@item.HomeTeam</a>
+            </td>
+            <td class="l">
+                @item.AwayTeam
+            </td>
+            <td class="fcnum">
+                @TotalBetHelper.FormatPositiveNumber(item.totalHH)
+            </td>
+            <td class="fcnum">
+                @TotalBetHelper.FormatPositiveNumber(item.totalHD)
+            </td>
+            <td class="fcnum">
+                @TotalBetHelper.FormatPositiveNumber(item.totalHA)
+            </td>
+            <td class="fcnum">
+                @TotalBetHelper.FormatPositiveNumber(item.totalDH)
+            </td>
+            <td class="fcnum">
+                @TotalBetHelper.FormatPositiveNumber(item.totalDD)
+            </td>
+            <td class="fcnum">
+                @TotalBetHelper.FormatPositiveNumber(item.totalDA)
+            </td>
+            <td class="fcnum">
+                @TotalBetHelper.FormatPositiveNumber(item.totalAH)
+            </td>
+            <td class="fcnum">
+                @TotalBetHelper.FormatPositiveNumber(item.totalAD)
+            </td>
+            <td class="fcnum">
+                @TotalBetHelper.FormatPositiveNumber(item.totalAA)
+            </td>
+        </tr>
+            }
+        }
+        else
+        {
+        @RazorHelper.ShowNoInfo(colspan: 12)
+        }
+    }
 </table>

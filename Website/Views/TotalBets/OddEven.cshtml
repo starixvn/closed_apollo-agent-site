@@ -2,112 +2,111 @@
 @using Fanex.Age.Utility
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = string.Format("{0} + {1} + {2}/{3}", Resources.Lang.lblOddEven, Resources.Lang.lbl1x2, Resources.Lang.lblDraw, Resources.Lang.lblNoDraw);
 }
 @model IEnumerable<OddEvenViewModel>
 @helper ShowLeague(int currentLeagueId, OddEvenViewModel item)
     {
         if (currentLeagueId != item.LeagueId)
         { 
-            <!--LeagueContents-->
-            <tr class="c">
-                <td colspan="11" class="league" style="padding-left: 20px;">
-                    @item.LeagueName
-                </td>
-            </tr>
+    <!--LeagueContents-->
+    <tr class="c">
+        <td colspan="11" class="league" style="padding-left: 20px;">
+            @item.LeagueName
+        </td>
+    </tr>
         }            
 }
-
-@helper ShowTotal(int betCount, decimal odds){
+@helper ShowTotal(int betCount, decimal odds)
+    {
     if (betCount != 0)
     {
-        @Formater.FormatNumber2(odds, "en-US")                
+    @Formater.FormatNumber2(odds, "en-US")                
     }   
 }
-
 @helper ShowForecas(int betCount, decimal winlost)
-{
+    {
     if (betCount != 0)
     {
-        @TotalBetHelper.FormatPositiveNumber(winlost, 2)
+    @TotalBetHelper.FormatPositiveNumber(winlost, 2)
     }
 }
-
 @helper Show1x2Button(OddEvenViewModel item, bool isFullTime)
-{
-    if(isFullTime)
     {
-        <td style="width: 70px">
-            <!--OneXTwoValue-->
-            <a class="fcnum" href="javascript:doViewBetList({MatchId},5,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.OneXTwoTotal)</a>
-            <!--/OneXTwoValue-->
-        </td>
+    if (isFullTime)
+    {
+    <td style="width: 70px">
+        <!--OneXTwoValue-->
+        <a class="fcnum" href="javascript:doViewBetList({MatchId},5,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.OneXTwoTotal)</a>
+        <!--/OneXTwoValue-->
+    </td>
            
-        <td class="fcbtn" align="center" style="width: 16px">
-            @if (item.OneXTwoTotal != 0)
-            { 
-                <!--OneXTwoButton-->
-                <a href="javascript:openForecast1X2('{MatchId}',5)" class="btnInfo"></a>
-                <!--/OneXTwoButton-->
-            }
-        </td>
+    <td class="fcbtn" align="center" style="width: 16px">
+        @if (item.OneXTwoTotal != 0)
+        { 
+            <!--OneXTwoButton-->
+            <a href="javascript:openForecast1X2('{MatchId}',5)" class="btnInfo"></a>
+            <!--/OneXTwoButton-->
+        }
+    </td>
         
     }
     else
     {
-        <td style="width: 70px">
-            <!--OneXTwoFirstHalfValue-->
-            <a class="fcnum" href="javascript:doViewBetList({MatchId},15,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.OneXTwoFirstHalf)</a>
-            <!--/OneXTwoFirstHalfValue-->
-        </td>
+    <td style="width: 70px">
+        <!--OneXTwoFirstHalfValue-->
+        <a class="fcnum" href="javascript:doViewBetList({MatchId},15,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.OneXTwoFirstHalf)</a>
+        <!--/OneXTwoFirstHalfValue-->
+    </td>
         
-            <td class="fcbtn" align="center" style="width: 16px">
-                @if (item.OneXTwoFirstHalf != 0)
-                {
-                    <!--OneXTwoFirstHalfButton-->
-                    <a href="javascript:openForecast1X2('{MatchId}',15)" class="btnInfo"></a>
-                }
-                <!--/OneXTwoFirstHalfButton-->
-            </td>
+    <td class="fcbtn" align="center" style="width: 16px">
+        @if (item.OneXTwoFirstHalf != 0)
+        {
+            <!--OneXTwoFirstHalfButton-->
+            <a href="javascript:openForecast1X2('{MatchId}',15)" class="btnInfo"></a>
+        }
+        <!--/OneXTwoFirstHalfButton-->
+    </td>
        
     }
 }
-
+@RazorHelper.RefreshCountDown("OddEven", 45, 15)
 <table class="tblRpt c" style="width: 100%">
     <thead>
         <tr class="RptHeader">
-                    <td rowspan="2" style="width: 20px;">
-                        #
-                    </td>
-                    <td rowspan="2" style="width: 110px;">
-                        @Resources.Lang.time
-                    </td>
-                    <td rowspan="2">
-                        @Resources.Lang.events
-                    </td>
-                    <td colspan="4">
-                        @Resources.Lang.fulltime
-                    </td>
-                    <td colspan="3">
-                        @Resources.Lang.lbl1sthalf
-                    </td>
-                </tr>
-                <tr class="RptHeader02">
-                    <td style="width: 100px;">
-                        @Resources.Lang.lblOddEven
-                    </td>
-                    <td colspan="2" style="width: 100px;">
-                        @Resources.Lang.lbl1x2
-                    </td>
-                    <td style="width: 100px;">
-                        @Resources.Lang.lblDraw/@Resources.Lang.lblNoDraw
-                    </td>
-                    <td style="width: 100px;">
-                        @Resources.Lang.lblOddEven
-                    </td>
-                    <td colspan="2" style="width: 100px;">
-                        @Resources.Lang.lbl1x2
-                    </td>
-                </tr>
+            <td rowspan="2" style="width: 20px;">
+                #
+            </td>
+            <td rowspan="2" style="width: 110px;">
+                @Resources.Lang.time
+            </td>
+            <td rowspan="2">
+                @Resources.Lang.events
+            </td>
+            <td colspan="4">
+                @Resources.Lang.fulltime
+            </td>
+            <td colspan="3">
+                @Resources.Lang.lbl1sthalf
+            </td>
+        </tr>
+        <tr class="RptHeader02">
+            <td style="width: 100px;">
+                @Resources.Lang.lblOddEven
+            </td>
+            <td colspan="2" style="width: 100px;">
+                @Resources.Lang.lbl1x2
+            </td>
+            <td style="width: 100px;">
+                @Resources.Lang.lblDraw/@Resources.Lang.lblNoDraw
+            </td>
+            <td style="width: 100px;">
+                @Resources.Lang.lblOddEven
+            </td>
+            <td colspan="2" style="width: 100px;">
+                @Resources.Lang.lbl1x2
+            </td>
+        </tr>
     </thead>
     <tbody>
         <!--LeagueContents-->
@@ -121,44 +120,44 @@
                 foreach (var item in Model)
                 {
                     rowIndex++;
-                    @ShowLeague(currentLeagueId, item)  
+            @ShowLeague(currentLeagueId, item)  
             
-                    <!--MatchContents-->
-                    <tr class="r" >
-                        <td class="w-order">
-                            @rowIndex
-                        </td>
-                        <td class="c bl_time">
-                            @Html.Raw(item.ShowTime)
-                        </td>
-                        <td class="l">
-                            @item.HomeTeam -vs- @item.AwayTeam
-                        </td>
-                        <td>
-                        <!--OddEvenValue-->
-                        <a class="fcnum" href="javascript:doViewBetList({MatchId},2,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.OddEvenTotal)</a>
-                        <!--/OddEvenValue-->
-                        </td>
-                        @Show1x2Button(item, true)
-                        <td style="width: 86px">
-                            <!--DNDValue-->
-                            <a class="fcnum" href="javascript:doViewBetList({MatchId},123,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.DrawNoDrawTotal)</a>
-                            <!--/DNDValue-->
-                        </td>
-                        <td>
-                            <!--OddEvenFirstHalfValue-->
-                            <a class="fcnum" href="javascript:doViewBetList({MatchId},12,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.OddEvenFirstHalf)</a>
-                            <!--/OddEvenFirstHalfValue-->
-                        </td>
-                        @Show1x2Button(item, false)
-                    </tr>
+            <!--MatchContents-->
+            <tr class="r">
+                <td class="w-order">
+                    @rowIndex
+                </td>
+                <td class="c bl_time">
+                    @Html.Raw(item.ShowTime)
+                </td>
+                <td class="l">
+                    @item.HomeTeam -vs- @item.AwayTeam
+                </td>
+                <td>
+                    <!--OddEvenValue-->
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId},2,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.OddEvenTotal)</a>
+                    <!--/OddEvenValue-->
+                </td>
+                @Show1x2Button(item, true)
+                <td style="width: 86px">
+                    <!--DNDValue-->
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId},123,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.DrawNoDrawTotal)</a>
+                    <!--/DNDValue-->
+                </td>
+                <td>
+                    <!--OddEvenFirstHalfValue-->
+                    <a class="fcnum" href="javascript:doViewBetList({MatchId},12,'{BetType}');">@TotalBetHelper.FormatNegativeNumber(item.OddEvenFirstHalf)</a>
+                    <!--/OddEvenFirstHalfValue-->
+                </td>
+                @Show1x2Button(item, false)
+            </tr>
             
                     currentLeagueId = item.LeagueId;
                 }
             }
             else
             { 
-                @RazorHelper.ShowNoInfo(colspan: 11)
+            @RazorHelper.ShowNoInfo(colspan: 11)
             }            
         }
     </tbody>

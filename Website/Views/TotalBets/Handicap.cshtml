@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.ViewModels
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = "Handicap";
+    ViewBag.Title = Resources.Lang.lblHOUL;
 }
 
 @model IEnumerable<HandicapViewModel>
@@ -77,7 +77,7 @@
     </tr>
     }            
 }
-
+@RazorHelper.RefreshCountDown("HDPOU", 15, 15)
 <table class="tblRpt">
     <thead>
         <tr>
