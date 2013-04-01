@@ -13,11 +13,11 @@ namespace Fanex.BetList.Age
 	{
 		public class WinLoss_Template : Template
 		{
-			protected static string s0 = "<div><span class=\"bl_underdog\">";
+			protected static string s0 = "<div class=\"bl_underdog\">";
 			public string winloss = "{winloss}";
-			protected static string s1 = "</span></div><div><font class=\"bl_underdog\">";
+			protected static string s1 = "</div><div class=\"bl_underdog\">";
 			public string comm = "{comm}";
-			protected static string s2 = "</font></div>";
+			protected static string s2 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

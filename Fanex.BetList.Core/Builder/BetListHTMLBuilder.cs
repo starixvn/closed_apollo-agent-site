@@ -74,7 +74,8 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="closeTag">The close tag.</param>
         /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
         /// <returns>BetListHTMLBuilder.</returns>
-        public BetListHTMLBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, string openTag, string closeTag, bool isShowScoreMap)
+        public BetListHTMLBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData,
+            string openTag, string closeTag, bool isShowScoreMap)
         {
             string choice = BuildChoice(ticket, ticketHelper, ticketData, isShowScoreMap);
             this._content.Append(string.Join(null, new string[] { openTag, choice, closeTag }));
