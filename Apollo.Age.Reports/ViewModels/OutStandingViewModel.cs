@@ -17,7 +17,7 @@ namespace Apollo.Age.Reports.ViewModels
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class OutStandingViewModel
+    public class OutstandingViewModel
     {
         public string UserName { get; set; }
 

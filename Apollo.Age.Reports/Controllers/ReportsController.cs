@@ -32,15 +32,15 @@ namespace Apollo.Age.Reports.Controllers
             _reportService = reportService ?? new OutStandingService();
         }
 
-        public ViewResult AgentOutStanding()
+        public ViewResult AgentOutstanding()
         {
-            AgentOutStandingCriteria criteria = new AgentOutStandingCriteria();
+            AgentOutstandingCriteria criteria = new AgentOutstandingCriteria();
             criteria.AgentId = 3;
             // call service to get report data here
-            IEnumerable<OutStandingViewModel> models = _reportService.GetReportData<OutStandingViewModel>(criteria);
+            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(criteria);
 
             // Add total row
-            OutStandingViewModel totalModel = _reportService.Total(models);
+            OutstandingViewModel totalModel = _reportService.Total(models);
             models.ToList().Add(totalModel);
 
             return View(models);

@@ -20,9 +20,9 @@ namespace Apollo.Age.Reports.Services
     /// </summary>
     public class OutStandingService : ReportServiceBase
     {
-        public OutStandingViewModel Total(IEnumerable<OutStandingViewModel> models)
+        public OutstandingViewModel Total(IEnumerable<OutstandingViewModel> models)
         {
-            return new OutStandingViewModel
+            return new OutstandingViewModel
             {
                 UserName = string.Empty,
                 GameOutStanding = models.Sum(x => x.GameOutStanding),
