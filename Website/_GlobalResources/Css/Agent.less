@@ -12,6 +12,7 @@
 .text-center,.c     { text-align: center } 
 .bold,.b			{ font-weight: bold }
 .nowrap				{ white-space: nowrap }
+.red-num			{ color: red }
 
 /* COMMON */
 
@@ -81,10 +82,15 @@ table {
 /* MAIN ELEMENTS */
 
 #page_main {
-	padding: 0;
+	padding: 37px 0 0;
 }
 
 #header_main {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 99;
 	padding: 10px;
 
 	#gradient.vertical(#F8F8F8, @tableBackground);
@@ -121,7 +127,7 @@ table {
 	color: @grayDark;
 	margin: 10px 0 0;
 
-	td {
+	td, th {
 		height: 22px;
 		padding: 2px 4px;
 		white-space: nowrap;
@@ -139,15 +145,17 @@ table {
 		}
 	}
 
-	thead td {
-		background-color: @primaryHeaderBackground;
-		border-spacing: 0;
-		border: 1px solid @borderColor;
-		border-width: 1px 1px 0 0;
-		.box-shadow(0 1px 0 #FFF inset);
-		text-shadow: 0 1px 0 #FFF;
-		text-align: center;
-		font-weight: bold;
+	thead {
+		td, th {
+			background-color: @primaryHeaderBackground;
+			border-spacing: 0;
+			border: 1px solid @borderColor;
+			border-width: 1px 1px 0 0;
+			.box-shadow(0 1px 0 #FFF inset);
+			text-shadow: 0 1px 0 #FFF;
+			text-align: center;
+			font-weight: bold;
+		}
 	}
 
 	tbody {
