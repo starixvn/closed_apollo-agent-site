@@ -46,6 +46,9 @@
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="RemotingRef">
+      <HintPath>..\Dependencies\RemotingRef.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -87,6 +90,7 @@
     <Compile Include="Repositories\Interface\IReportRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRepository.cs" />
     <Compile Include="Repositories\Interface\IMemberRepository.cs" />
+    <Compile Include="Services\CacheRef.cs" />
     <Compile Include="Services\Impl\AgentService.cs" />
     <Compile Include="Services\Impl\CustomerService.cs" />
     <Compile Include="Services\Impl\MemberService.cs" />

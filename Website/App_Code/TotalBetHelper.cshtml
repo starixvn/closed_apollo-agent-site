@@ -1,0 +1,34 @@
+﻿@helper HelperName(string name)
+    {
+    // your helper can contain code and/or markup, e.g.
+    // var msg = "Hello " + name;
+    // <p>@msg</p>
+    // For more information, visit http://go.microsoft.com/fwlink/?LinkID=204658
+}
+@helper FormatValue(decimal value)
+    {
+       
+        if (value != 0)
+        {
+            if (Math.Round(value) < 0)
+            {
+    <font color='red'>@Fanex.Age.Utility.Formater.DecFormat(value, 0) </font>       
+            }
+            else
+            {
+    @Fanex.Age.Utility.Formater.DecFormat(value, 0)
+            }
+        }
+}
+
+@helper FormatPositiveNumber(decimal value)
+{
+    if (Math.Round(value) > 0)
+    { 
+        <font color='red'> @Fanex.Age.Utility.Formater.FormatNumber2(value, "en-US") </font>
+    }
+    else
+    { 
+         @Html.Raw(Fanex.Age.Utility.Formater.FormatNumber2(value, "en-US"))
+    }
+}
