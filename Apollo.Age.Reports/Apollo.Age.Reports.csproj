@@ -69,12 +69,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentOutstandingCriteria.cs" />
     <Compile Include="Criterias\MemberOutstandingCriteria.cs" />
     <Compile Include="Criterias\OutstandingCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\OutstandingService.cs" />
     <Compile Include="Services\ReportServiceBase.cs" />
+    <Compile Include="ViewModels\AgentDownlinePathViewModel.cs" />
     <Compile Include="ViewModels\OutstandingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +87,10 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
+      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
+      <Name>Sunplus.Agent.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
