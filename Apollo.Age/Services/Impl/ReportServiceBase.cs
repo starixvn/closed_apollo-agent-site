@@ -1,8 +1,13 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ReportServiceBase.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ReportServiceBase.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Anders.Le" date="2013.4.1">Created</change>
+//   <change who="Anders.Le" date="2013.4.1">Change name from ReportServiceBase to QueryService</change>
+// </history>
+
 
 namespace Apollo.Age.Services.Impl
 {
@@ -16,16 +21,16 @@ namespace Apollo.Age.Services.Impl
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ReportServiceBase : ServiceBase
+    public class QueryService : ServiceBase
     {
-         private readonly IDynamicRepository _repository;
+        private readonly IDynamicRepository _repository;
 
-         public ReportServiceBase(IDynamicRepository repository = null)
+        public QueryService(IDynamicRepository repository = null)
         {
             _repository = repository ?? new DynamicRepository();
         }
 
-        protected virtual IEnumerable<T> GetReportData<T>(ICriteria criteria)
+        public virtual IEnumerable<T> GetReportData<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 

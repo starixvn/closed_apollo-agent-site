@@ -21,11 +21,11 @@ namespace Apollo.Age.TotalBets.Controllers
 
     public class TotalBetsController : BaseController
     {
-        private readonly TotalBetsServiceBase _totalBetsService;
+        private readonly TotalBetsService _totalBetsService;
 
         public TotalBetsController()
         {
-            _totalBetsService = new TotalBetsServiceBase();
+            _totalBetsService = new TotalBetsService();
         }
    
         protected IEnumerable<T> GetViewModel<T>(int agentId, int betType)
