@@ -1,20 +1,23 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ParlayController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ForecastService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Anders" date="2013.3.27">Created</change>
+//   <change who="Anders.Le" date="2013.4.1">Created</change>
 // </history>
 
-namespace Apollo.Age.TotalBets.Controllers
+namespace Apollo.Age.Forecast.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public class ParlayController : TotalBetsController
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class ForecastService
     {
     }
 }
