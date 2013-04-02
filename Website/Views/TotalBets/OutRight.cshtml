@@ -66,7 +66,7 @@
                 <td class="l">
                     <a class="view-bet-list" match-id="@item.orid" bet-type="10" betlist-type="BettypeMatch" href="javascript:void(0);">@item.TeamName</a>
                 </td>
-                <td>
+                <td class="fcnum">
                     @TotalBetHelper.FormatNumber(item.balance, 2)
                 </td>
                 <td class="fcnum">
@@ -78,7 +78,7 @@
             }
             else
             { 
-            @RazorHelper.ShowNoInfo(colspan: 3)
+            @RazorHelper.ShowNoInfo(colspan: 4)
             }     
         }
     </tbody>
