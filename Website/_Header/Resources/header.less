@@ -20,36 +20,36 @@ td {
     height: 53px;
     width: auto;
     overflow: hidden;
-    background: #ECE9D8;	
+    background: @headerBackground;	
 
 	.login-bg {
-		background: @gray;
-		border-bottom: 1px solid @grayLighter;
+		background: @grayLighter;
+		border-bottom: 1px solid @headerBorderColor;
 	}
 	.login-info {		
 		float: right;		
 		padding: 5px;
-		color: @grayLighter;
+		color: @gray;
 
 		.username {			
 			margin: 0 10px;
 		}
 
 		a {
-			color: @textYellow;
+			color: @linkColor;
 			text-decoration: none;
 			margin: 0 3px;
 
 			&:hover {
-				color: @white;
+				color: @hoverLinkRedColor;
 			}
 		}
 	}
 
 	#text_news_out {
-		margin-top: 3px;
+		margin-top: 2px;
 		background: url(../../_GlobalResources/Images/line_news.gif) no-repeat right;
-		height: 22px;
+		height: 23px;
 
 		#text_news {
 			height: 28px;
