@@ -41,13 +41,37 @@ namespace Fanex.Age.Utility
         }
 
         #region Decimal
+        private static string FormatDecimal(object value, byte decDigits)
+        {
+            //"{0:0.##}"
+            if (value != null)
+            {
+                string decDigitsString = string.Empty;
+                for (int i = 0; i < decDigits; i++)
+                {
+                    decDigitsString += "#";
+                }
+                string formatString = "{0:0." + decDigitsString + "}";
+                string result = null;
+                if (value != null)
+                {
+                    result = string.Format(formatString, value);
+                }
+
+                return result;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
         public static string DecFormat(decimal value, byte decDigits)
         {
-            return value.ToString("N" + decDigits);
+            return FormatDecimal(value, decDigits);
         }
         public static string DecFormat(object value, byte decDigits)
         {
-            return DecFormat(value, decDigits, "0");
+            return FormatDecimal(value, decDigits);
         }
         public static string DecFormat(object value, byte decDigits, string numberDefault)
         {
