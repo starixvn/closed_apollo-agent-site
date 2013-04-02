@@ -77,7 +77,8 @@ namespace Apollo.Age.Reports.Controllers
             return View(models);
         }
 
-        public ViewResult MemberOutstanding()
+        [HttpPost]
+        public JsonResult MemberOutstanding()
         {
             int agentId = string.IsNullOrEmpty(HttpContext.Request["agentId"]) ? UserSession.Current.AgentId : Convert.ToInt32(HttpContext.Request["agentId"]);
             // call service to get report data here
@@ -86,7 +87,19 @@ namespace Apollo.Age.Reports.Controllers
                 AgentId = agentId
             });
 
-            return View(models);
+            OutstandingViewModel totalModels = new OutstandingViewModel()
+            {
+                Outstanding = models.Sum(x => x.Outstanding),
+                ShareAmount = models.Sum(x => x.ShareAmount),
+                GameOutstanding = models.Sum(x => x.GameOutstanding),
+                GameShareAmount = models.Sum(x => x.GameShareAmount)
+            };
+
+            return Json(new
+            {
+                ListOutstanding = models,
+                Total = totalModels
+            });
         }
 
         #endregion Outstanding Report
