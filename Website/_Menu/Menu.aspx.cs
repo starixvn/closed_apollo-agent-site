@@ -143,7 +143,7 @@ namespace Sunplus.Agent.UI._Menu
         {
             int itemCount = subMenu.ChildNodes.Count;
 
-            subBlock.sub_display = isExpand ? "Bleft_ParentAc" : "Bleft_Parent";
+            subBlock.sub_display = isExpand ? "Bleft_Parent active" : "Bleft_Parent";
             subBlock.item_display = isExpand ? "block" : "none";
 
             subBlock.sub_id = index.ToString();

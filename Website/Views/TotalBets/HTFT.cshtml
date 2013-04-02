@@ -59,7 +59,7 @@
                 @rowIndex
             </td>
             <td class="l">
-                <a href="javascript:doViewBetList({MatchId}, 16, '{BetType}')">@item.HomeTeam</a>
+                <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" href="javascript:void(0);">@item.HomeTeam</a>
             </td>
             <td class="l">
                 @item.AwayTeam
@@ -100,3 +100,12 @@
         }
     }
 </table>
+@section scripts
+{
+    <script src="~/Views/TotalBets/Resources/TotalBets.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            totalBets.InitViewBetList();
+        });
+    </script>       
+}
