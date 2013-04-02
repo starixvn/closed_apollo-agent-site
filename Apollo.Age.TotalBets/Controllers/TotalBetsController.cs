@@ -18,7 +18,6 @@ namespace Apollo.Age.TotalBets.Controllers
     using System.Web.Mvc;
     using Apollo.Age.TotalBets.ViewModels;
     using Apollo.Age.TotalBets.Criterias;
-    using Sunplus.Agent.Model.Entities;
 
     public class TotalBetsController : BaseController
     {
@@ -33,7 +32,7 @@ namespace Apollo.Age.TotalBets.Controllers
         {
             return _totalBetsService.GetReportData<T>(new TotalBetsCriteria
             {
-                AgentId = UserSession.Current.AgentId,
+                AgentId = base.AgentId,
                 BetType = betType
             });
         }

@@ -15,8 +15,9 @@ namespace Apollo.Age.Forecast.Controllers
     using System.Linq;
     using System.Text;
     using Apollo.Age.Web;
-using System.Web.Mvc;
-using Apollo.Age.Forecast.Services;
+    using System.Web.Mvc;
+    using Apollo.Age.Forecast.Services;
+    using Apollo.Age.Forecast.ViewModels;
 
     /// <summary>
     /// TODO: Update summary.
@@ -25,14 +26,28 @@ using Apollo.Age.Forecast.Services;
     {
         private readonly ForecastService _foreCastService;
 
+        public ForecastController() : this(null)
+        {
+        }
+
         public ForecastController(ForecastService foreCastService = null)
         {
             _foreCastService = foreCastService ?? new ForecastService();
         }
 
         public ViewResult FC1X2()
-        {            
-            return View();
+        {
+            IEnumerable<LeagueViewModel> leagues = _foreCastService.GetRunningLeague(5, base.AgentId);
+            ViewBag.Leagues = leagues;
+            IEnumerable<Forecast1X2ViewModel> forecasts = new List<Forecast1X2ViewModel>();
+            if(leagues.Any())
+            {
+                forecasts = _foreCastService.GetForecast1x2(base.AgentId, leagues.ElementAt(0).LeagueId);
+            }
+            
+            return View(forecasts);
         }
+
+
     }
 }

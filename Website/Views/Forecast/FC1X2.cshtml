@@ -1,3 +1,108 @@
-﻿@{
-    
+﻿@using Apollo.Age.Forecast.ViewModels
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.Lang.fglg;
+    IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
+}
+@model IEnumerable<Forecast1X2ViewModel>
+@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 15)
+<div id="box_header">
+    <table>
+        <tr>
+            <td>
+                <b>@Resources.Lang.league</b>
+            </td>
+            <td id="selLeague">
+                <select id='ddlLeague' name='ddlLeague' style="width: 280px" onchange='GetForecastByLeague();'>
+                    @{
+                        foreach (var league in leagues)
+                        {
+                            <option value="@league.LeagueId">@league.LeagueName</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--/LimitLeagueList-->
+<table class="tblRpt">
+    <thead>
+        <tr class="RptHeader">
+            <td colspan="2">
+                {static:Resources.Lang.lblTeam}
+            </td>
+            <td colspan="3">
+                {static:Resources.Lang.lbl1x2}
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <!--RowContent-->
+        <tr class="league">
+            <td colspan="5">
+                {Home} -vs- {Away}
+            </td>
+        </tr>
+        <tr class="c">
+            <td colspan="2">
+                {Time}
+            </td>
+            <td class="bold">
+                1
+            </td>
+            <td class="bold" style="background-color: #ffefde">
+                X
+            </td>
+            <td class="bold">
+                2
+            </td>
+        </tr>
+        <tr class="c">
+            <td style="width: 39%">
+                {static:Resources.Lang.fulltime}
+            </td>
+            <td style="width: 1%">
+                <a href="javascript:openForecast('{MatchId}','1')" class="btnInfo"></a>
+            </td>
+            <td class="bold" style="width: 20%">
+                {HomeWinLose}
+            </td>
+            <td class="bold" style="width: 20%">
+                {DrawWinLose}
+            </td>
+            <td class="bold" style="width: 20%">
+                {AwayWinLose}
+            </td>
+        </tr>
+        <tr class="c">
+            <td style="width: 39%">
+                {static:Resources.Lang.halftime}
+            </td>
+            <td style="width: 1%">
+                <a href="javascript:openForecast('{MatchId}','7')" class="btnInfo"></a>
+            </td>
+            <td class="bold" style="width: 20%">
+                {HTHomeWinLose}
+            </td>
+            <td class="bold" style="width: 20%">
+                {HTDrawWinLose}
+            </td>
+            <td class="bold" style="width: 20%">
+                {HTAwayWinLose}
+            </td>
+        </tr>
+        <!--/RowContent-->
+        <!--NotFoundContent-->
+        <tr class="no_info">
+            <td colspan="8">
+                {static:Resources.Lang.noInfo}
+            </td>
+        </tr>
+        <!--/NotFoundContent-->
+    </tbody>
+</table>
+<!--/Content-->
+@section scripts
+{
 }
