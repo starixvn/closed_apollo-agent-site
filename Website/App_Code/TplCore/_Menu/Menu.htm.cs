@@ -13,19 +13,19 @@ namespace Fanex.Agent.UI
 	{
 		public class Menu_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE HTML><html><head><title>Menu</title><link href=\"";
+			protected static string s0 = "<!DOCTYPE html><html><head><title>Menu</title><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_Menu/Resources/Menu.less", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"leftpanewrapper\">";
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body>";
 			public Menu_MenuTab_Block MenuTab = new Menu_MenuTab_Block();
-			protected static string s3 = "<div id=\"leftpane\">";
+			protected static string s3 = "<ul id=\"menu\">";
 			public Menu_SubMenu_Block SubMenu = new Menu_SubMenu_Block();
-			protected static string s4 = "</div></div></body><script src=\"";
+			protected static string s4 = "</ul><script src=\"";
 			protected static string s5{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
 			protected static string s6 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s9{get{return AbsoluteUrl("_Menu/Resources/Menu.js", TplSettings.Question);}}
-			protected static string s10 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s10 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -58,13 +58,13 @@ namespace Fanex.Agent.UI
 
 		public class Menu_MenuTab_Block: Block
 		{
-			protected static string s11 = "<div id=\"tab_menu\"><div id=\"tab_menu_m\"><a class=\"tab_menu01AC\" style=\"cursor: default;\">";
+			protected static string s11 = "<ul id=\"tab-menu\"><li class=\"active\"><a href=\"#\"><i class=\"icon-align-justify\"></i>";
 			protected static string s12{get{return Resources.Lang.mainmenu;}}
-			protected static string s13 = "</a></div><div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\" href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
+			protected static string s13 = "</a></li><li><a target=\"menu\" href=\"../_AccountInfo/AccountInfo.aspx\"><i class=\"icon-user\"></i>";
 			protected static string s14{get{return Resources.Lang.userinfo;}}
-			protected static string s15 = "</span></a></div>";
+			protected static string s15 = "</a></li>";
 			public Menu_MenuTab_CheckViewPermission_Block CheckViewPermission = new Menu_MenuTab_CheckViewPermission_Block();
-			protected static string s16 = "<div id=\"tab_menu_m\"><a id=\"lnkTree\" class=\"tab_menu03\" target=\"menu\" href=\"../_TreeView/TreeView.aspx\">Treeview</a></div></div>";
+			protected static string s16 = "<li><a target=\"menu\" href=\"../_TreeView/TreeView.aspx\"><i class=\"icon-align-left\"></i>Tree</a></li></ul>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -92,23 +92,13 @@ namespace Fanex.Agent.UI
 
 		public class Menu_SubMenu_Block: Block
 		{
-			protected static string s17 = "<div id=\"button_left\"><div class=\"Bleft_Parent0\"><a class=\"left-menu ";
+			protected static string s17 = "<li class=\"menu-item ";
 			public string sub_display = "{sub_display}";
-			protected static string s18 = "\" id=\"a";
-			public string sub_id = "{sub_id}";
-			protected static string s19 = "\" href=\"javascript:MenuToggle('";
-			protected string t0_sub_id;
-			protected static string s20 = "');\"><span id=\"menu";
-			protected string t1_sub_id;
-			protected static string s21 = "\">";
+			protected static string s18 = "\"><a class=\"menu-item-title\">";
 			public string sub_title = "{sub_title}";
-			protected static string s22 = "</span> </a><div id=\"div";
-			protected string t2_sub_id;
-			protected static string s23 = "\" style=\"display: ";
-			public string item_display = "{item_display}";
-			protected static string s24 = "\" class=\"submenu-list\"><div class=\"Bleft_Sub0\" id=\"SubMenu\">";
+			protected static string s19 = "</a><div class=\"submenu\">";
 			public Menu_SubMenu_MenuItem_Block MenuItem = new Menu_SubMenu_MenuItem_Block();
-			protected static string s25 = "</div></div></div></div>";
+			protected static string s20 = "</div></li>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -117,20 +107,10 @@ namespace Fanex.Agent.UI
 					bd.Append(s17);
 					bd.Append(sub_display);
 					bd.Append(s18);
-					bd.Append(sub_id);
-					bd.Append(s19);
-					bd.Append(sub_id);
-					bd.Append(s20);
-					bd.Append(sub_id);
-					bd.Append(s21);
 					bd.Append(sub_title);
-					bd.Append(s22);
-					bd.Append(sub_id);
-					bd.Append(s23);
-					bd.Append(item_display);
-					bd.Append(s24);
+					bd.Append(s19);
 					if(null != MenuItem) MenuItem.ToString(ref bd);
-					bd.Append(s25);
+					bd.Append(s20);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -138,29 +118,21 @@ namespace Fanex.Agent.UI
 
 		public class Menu_SubMenu_MenuItem_Block: Block
 		{
-			protected static string s26 = "<a id=\"";
-			public string menuId = "{menuId}";
-			protected static string s27 = "\" onclick=\"MenuItemSelect(";
-			public string order = "{order}";
-			protected static string s28 = ");\" href=\"";
+			protected static string s21 = "<a href=\"";
 			public string item_url = "{item_url}";
-			protected static string s29 = "\" target=\"main\"class=\"Bleft_Sub\">";
+			protected static string s22 = "\" target=\"main\">";
 			public string item_title = "{item_title}";
-			protected static string s30 = "</a>";
+			protected static string s23 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s26);
-					bd.Append(menuId);
-					bd.Append(s27);
-					bd.Append(order);
-					bd.Append(s28);
+					bd.Append(s21);
 					bd.Append(item_url);
-					bd.Append(s29);
+					bd.Append(s22);
 					bd.Append(item_title);
-					bd.Append(s30);
+					bd.Append(s23);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
