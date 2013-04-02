@@ -19,6 +19,8 @@ namespace Apollo.Age.Reports.ViewModels
     /// </summary>
     public class OutstandingViewModel
     {
+        public int IsAgent { get; set; }
+
         public int AgentId { get; set; }
 
         public string UserName { get; set; }

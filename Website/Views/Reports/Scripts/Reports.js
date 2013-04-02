@@ -78,13 +78,13 @@ if (typeof jQuery != 'undefined') {
                          { HeaderText: "Agent", Width: 229, Name: "Agent", HeaderAlign: "center", CellAlign: "left" },
                         { HeaderText: "Outstanding", Width: 195, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right",
                             CustomCellRender: function (cell) {
-                                return "<a href=''>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>";
+                                return (cell.Value.Outstanding != 0 ? "<a href=''>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>" : numeral(cell.Value.Outstanding).format("0,0.00"));
                             }
                         },
                         { HeaderText: "Share Amount ", Width: 195, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                         { HeaderText: "Outstanding", Width: 195, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right",
                             CustomCellRender: function (cell) {
-                                return "<a href=''>" + numeral(cell.Value.GameOutstanding).format("0,0.00") + "</a>";
+                                return (cell.Value.GameOutstanding != 0 ? "<a href=''>" + numeral(cell.Value.GameOutstanding).format("0,0.00") + "</a>" : numeral(cell.Value.GameOutstanding).format("0,0.00"));
                             }
                         },
                         { HeaderText: "Share Amount ", Width: 180, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
