@@ -175,12 +175,16 @@ table {
 				td { padding: 4px 4px 4px 30px }
 			}
 			&:hover { background-color: @rowHoverBackground }
+
+			&.RptFooter:hover {
+				background: @rowTotalBackground;
+			}
 		}
 	}
 
 	.RptFooter {
 		//background: url(../images/bg_f01.jpg) repeat-x center top #783819;
-		background: @primaryColor;
+		background: @rowTotalBackground;
 		color: @white;
 		.bold;
 	}
