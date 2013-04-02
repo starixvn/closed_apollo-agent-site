@@ -50,7 +50,20 @@
 
 @helper ShowMatch(int index, HandicapViewModel item)
 {
-    <tr class='@(item.LiveIndicator ? "live" : string.Empty)'>
+    var classRow = string.Empty;
+    if (item.LiveIndicator)
+    {
+        classRow = "class=live";
+    }
+    else
+    {
+        if (index % 2 == 0)
+        {
+            classRow = "class=alt";
+        }
+    }
+    
+    <tr @classRow>
         <td class="c">
             @index
         </td>

@@ -21,7 +21,13 @@
 
 @helper ShowMatch(int index, FirstGoalViewModel item)
 {
-    <tr>
+    var classRow = string.Empty;
+    if (index % 2 == 0)
+    {
+        classRow = "class=alt";
+    }
+
+    <tr @classRow>
         <td class="c" rowspan="2">
             @index
         </td>

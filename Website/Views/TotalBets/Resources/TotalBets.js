@@ -70,15 +70,15 @@ var totalBets =
     },
     InitViewBetList: function () {
         $(".tblRpt").on("click", "a.view-bet-list", function () {
-
+            if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type")
             + '&type=' + $(this).attr("betlist-type");
 
             //location.href = url;
             ageWnd.openDialog(url, 'Bet List', {
-                width: 800,
-                height: 800,
+                width: 930,
+                height: 770,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
                     countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
@@ -88,23 +88,39 @@ var totalBets =
     },
     InitViewBetListGame: function () {
         $(".tblRpt").on("click", "a.view-bet-list", function () {
-
+            if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type")
             + '&type=' + $(this).attr("betlist-type")
             + '&islive=' + $(this).attr("is-live");
-            location.href = url;
+            //location.href = url;
+            ageWnd.openDialog(url, 'Bet List', {
+                width: 930,
+                height: 770,
+                position: { my: "top+50", at: "center top", of: window },
+                close: function (event, ui) {
+                    countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+                }
+            });
         });
     },
     InitViewBetListNewGame: function () {
         $(".tblRpt").on("click", "a.view-bet-list-new-game", function () {
-
+            if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type")
             + '&type=' + $(this).attr("betlist-type")
             + '&islive=' + $(this).attr("is-live")
             + '&betteam=' + $(this).attr("bet-team");
-            location.href = url;
+            //location.href = url;
+            ageWnd.openDialog(url, 'Bet List', {
+                width: 930,
+                height: 770,
+                position: { my: "top+50", at: "center top", of: window },
+                close: function (event, ui) {
+                    countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+                }
+            });
         });
     },
     InitViewForecast1x2: function () {
