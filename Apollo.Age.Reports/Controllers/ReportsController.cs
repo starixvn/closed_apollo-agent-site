@@ -17,6 +17,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
+    using Sunplus.Agent.Model.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -32,26 +33,62 @@ namespace Apollo.Age.Reports.Controllers
             _reportService = reportService ?? new OutstandingService();
         }
 
+        private IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath(int agentId)
+        {
+            IEnumerable<AgentDownlinePathViewModel> models = _reportService.GetReportData<AgentDownlinePathViewModel>(new AgentDownlinePathCriteria
+            {
+                ParentId = UserSession.Current.AgentId,
+                AgentId = agentId
+            });
+
+            return models;
+        }
+
+        #region Outstanding Report
+
         public ViewResult Outstanding()
         {
+            if (UserSession.Current.AgentLevel == 0)
+            {
+                return AgentOutstanding();
+            }
+
+            int agentId = string.IsNullOrEmpty(HttpContext.Request["agentId"]) ? UserSession.Current.AgentId : Convert.ToInt32(HttpContext.Request["agentId"]);
             // call service to get report data here
             IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new OutstandingCriteria
             {
-                AgentId = 3
+                AgentId = agentId
             });
+
+            ViewBag.AgentDownlinePath = AgentDownlinePath(agentId);
 
             return View(models);
         }
 
         public ViewResult AgentOutstanding()
         {
+            int agentId = string.IsNullOrEmpty(HttpContext.Request["agentId"]) ? UserSession.Current.AgentId : Convert.ToInt32(HttpContext.Request["agentId"]);
             // call service to get report data here
             IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new AgentOutstandingCriteria
             {
-                AgentId = 3
+                AgentId = agentId
             });
 
             return View(models);
         }
+
+        public ViewResult MemberOutstanding()
+        {
+            int agentId = string.IsNullOrEmpty(HttpContext.Request["agentId"]) ? UserSession.Current.AgentId : Convert.ToInt32(HttpContext.Request["agentId"]);
+            // call service to get report data here
+            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new MemberOutstandingCriteria
+            {
+                AgentId = agentId
+            });
+
+            return View(models);
+        }
+
+        #endregion Outstanding Report
     }
 }

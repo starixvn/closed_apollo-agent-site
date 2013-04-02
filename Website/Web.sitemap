@@ -4,7 +4,7 @@
 
     <siteMapNode title="Master">
       <!--Totalbets-->
-      <siteMapNode title="totalbets">
+      <siteMapNode title="totalbets" expand="true">
         <siteMapNode title="lblHOUL" href="_TotalBets/HDPOU.aspx"></siteMapNode>
         <siteMapNode title="moneyline" href="_TotalBets/MoneyLine.aspx"></siteMapNode>
         <siteMapNode title="OE1x2DND" href="_TotalBets/OddEven1x2.aspx"></siteMapNode>
@@ -35,7 +35,7 @@
       <!--Report-->
       <siteMapNode title="reports">
         <siteMapNode title="agentwinloss" href="_Reports/Common/MatchResultEntered.aspx"></siteMapNode>
-        <siteMapNode title="lblAgentOutstanding" href="Reports/OutStanding/AgentOutStanding"></siteMapNode>
+        <siteMapNode title="lblAgentOutstanding" href="Reports/Outstanding"></siteMapNode>
         <siteMapNode title="lblMatchWinLostDetail" href="_Reports/MatchWinloss/MatchWinLossDetail.aspx"></siteMapNode>
         <siteMapNode title="lblWinLossByBettype" href="_Reports/Winloss/WinLossByBettypeMaster.aspx"></siteMapNode>
         <siteMapNode description="Consolidated" title="consolidatedreport" href="_Reports/Consolidated/Daily_Consolidated.aspx"></siteMapNode>
