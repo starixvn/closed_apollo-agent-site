@@ -1,186 +1,163 @@
-﻿<table>
-    <tr>
-        <td>
-            {static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div id="title_header">
-                <div class="agent-list-title">
-                    {static:Resources.Lang.lblAgentListOf} {AgentName}
-                </div>
-                <div class="edit-setting">
-                    {IconEditSetting}</div>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div id="box_header" style="width: 100%">
-                {searchControl}
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div id="page_main">
-                <!--nav_link-container-->
-                <div class="boxNavigation" id="divnavigation">
-                    <!--nav_link-->
-                    <a href="{url}">{navigateName} </a>{narrow}
-                    <!--/nav_link-->
-                </div>
-                <!--/nav_link-container-->
-                <link href="Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
-                    media="print" />
-                {pagingHeader}
-                <div class="list">
-                    <div class="container-sub-nav">
-                        <ul class="sub-nav">
-                            <li class="active">{static:Resources.Lang.lblAgentList}</li>
-                            <li><span class="line">|</span><a href="{urlMemberList}">{static:Resources.Lang.lblPlayerList}</a></li>
-                        </ul>
-                    </div>
-                    <table id="tblCustomerList">
-                        <!--Header-->
-                        <thead>
-                            <tr>
-                                <th rowspan="2">
-                                    {static:Resources.Lang.no}
-                                </th>
-                                <th rowspan="2" style="display: none">
-                                    <input type="checkbox" id="chkAllItem" name="chkAllItem" onclick="CheckAll_onClick(this);" />
-                                </th>
-                                <th rowspan="2">
-                                    {static:Resources.Lang.edit}
-                                </th>
-                                <th rowspan="2">
-                                    {static:Resources.Lang.lblUser}
-                                </th>
-                                <th rowspan="2">
-                                    {static:Resources.Lang.status}
-                                </th>
-                                <th rowspan="2">
-                                    {static:Resources.Lang.agentList}
-                                </th>
-                                <th rowspan="2">
-                                    {static:Resources.Lang.memberList}
-                                </th>
-                                <th colspan="7" class="header_comm">
-                                    {static:Resources.Lang.commission}
-                                </th>
-                                <th colspan="4" class="header_comm">
-                                    {static:Resources.Lang.lblSoccerPT}
-                                </th>
-                            </tr>
-                            <tr class="header">
-                                <th>
-                                    {static:Resources.Lang.lblGroupa}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.lblGroupb}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.lblGroupc}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.lblGroupd}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.lbl1x2}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.other}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.numbergame}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.hdp}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.lblOU}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.hdpLive}
-                                </th>
-                                <th>
-                                    {static:Resources.Lang.ovLive}
-                                </th>
-                            </tr>
-                        </thead>
-                        <!--/Header-->
-                        <tbody>
-                            <!--Content-->
-                            <tr>
-                                <td>
-                                    {id}
-                                </td>
-                                <td style="display: none">
-                                    <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" onclick="ItemCheck_OnClick(this);" />
-                                </td>
-                                <td align="center">
-                                    {edit_Option}
-                                </td>
-                                <td class="l">
-                                    {username}
-                                </td>
-                                <td class="l">
-                                    {active}
-                                </td>
-                                <td>
-                                    {viewAgentList}
-                                </td>
-                                <td>
-                                    {viewPlayerList}
-                                </td>
-                                <td>
-                                    {groupA}
-                                </td>
-                                <td>
-                                    {groupB}
-                                </td>
-                                <td>
-                                    {groupC}
-                                </td>
-                                <td>
-                                    {groupD}
-                                </td>
-                                <td>
-                                    {onextwo}
-                                </td>
-                                <td>
-                                    {other}
-                                </td>
-                                <td>
-                                    {game}
-                                </td>
-                                <td>
-                                    {HDP}
-                                </td>
-                                <td>
-                                    {OU}
-                                </td>
-                                <td>
-                                    {HDPLive}
-                                </td>
-                                <td>
-                                    {OULive}
-                                </td>
-                            </tr>
-                            <!--/Content-->
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="18">
-                                    {pagingControl}
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </td>
-    </tr>
-</table>
+﻿<div class="error-msg">{static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}</div>
+<div class="title_header">
+    <div id="header_main">{static:Resources.Lang.lblAgentListOf} {AgentName}</div>
+    <div class="edit-setting">{IconEditSetting}</div>
+</div>
+<div id="box_header">{searchControl}</div>
+<div id="page_main">
+    <!--nav_link-container-->
+    <div class="boxNavigation" id="divnavigation">
+        <!--nav_link-->
+        <a href="{url}">{navigateName} </a>{narrow}
+        <!--/nav_link-->
+    </div>
+    <!--/nav_link-container-->
+    <link href="Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
+        media="print" />
+    {pagingHeader}
+    <div class="list">
+        <div class="container-sub-nav">
+            <ul class="sub-nav">
+                <li class="active">{static:Resources.Lang.lblAgentList}</li>
+                <li><span class="line">|</span><a href="{urlMemberList}">{static:Resources.Lang.lblPlayerList}</a></li>
+            </ul>
+        </div>
+        <table id="tblCustomerList" class="tblRpt">
+            <!--Header-->
+            <thead>
+                <tr>
+                    <th rowspan="2">
+                        {static:Resources.Lang.no}
+                    </th>
+                    <th rowspan="2" style="display: none">
+                        <input type="checkbox" id="chkAllItem" name="chkAllItem" onclick="CheckAll_onClick(this);" />
+                    </th>
+                    <th rowspan="2">
+                        {static:Resources.Lang.edit}
+                    </th>
+                    <th rowspan="2">
+                        {static:Resources.Lang.lblUser}
+                    </th>
+                    <th rowspan="2">
+                        {static:Resources.Lang.status}
+                    </th>
+                    <th rowspan="2">
+                        {static:Resources.Lang.agentList}
+                    </th>
+                    <th rowspan="2">
+                        {static:Resources.Lang.memberList}
+                    </th>
+                    <th colspan="7" class="header_comm">
+                        {static:Resources.Lang.commission}
+                    </th>
+                    <th colspan="4" class="header_comm">
+                        {static:Resources.Lang.lblSoccerPT}
+                    </th>
+                </tr>
+                <tr class="header">
+                    <th>
+                        {static:Resources.Lang.lblGroupa}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.lblGroupb}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.lblGroupc}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.lblGroupd}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.lbl1x2}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.other}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.numbergame}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.hdp}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.lblOU}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.hdpLive}
+                    </th>
+                    <th>
+                        {static:Resources.Lang.ovLive}
+                    </th>
+                </tr>
+            </thead>
+            <!--/Header-->
+            <tbody>
+                <!--Content-->
+                <tr>
+                    <td>
+                        {id}
+                    </td>
+                    <td style="display: none">
+                        <input type="checkbox" id="{chkid}" name="chkid" value="{chkid_value}" onclick="ItemCheck_OnClick(this);" />
+                    </td>
+                    <td align="center">
+                        {edit_Option}
+                    </td>
+                    <td class="l">
+                        {username}
+                    </td>
+                    <td class="l">
+                        {active}
+                    </td>
+                    <td>
+                        {viewAgentList}
+                    </td>
+                    <td>
+                        {viewPlayerList}
+                    </td>
+                    <td>
+                        {groupA}
+                    </td>
+                    <td>
+                        {groupB}
+                    </td>
+                    <td>
+                        {groupC}
+                    </td>
+                    <td>
+                        {groupD}
+                    </td>
+                    <td>
+                        {onextwo}
+                    </td>
+                    <td>
+                        {other}
+                    </td>
+                    <td>
+                        {game}
+                    </td>
+                    <td>
+                        {HDP}
+                    </td>
+                    <td>
+                        {OU}
+                    </td>
+                    <td>
+                        {HDPLive}
+                    </td>
+                    <td>
+                        {OULive}
+                    </td>
+                </tr>
+                <!--/Content-->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="18">
+                        {pagingControl}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
