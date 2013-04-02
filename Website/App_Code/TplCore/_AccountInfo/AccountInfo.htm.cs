@@ -23,7 +23,7 @@ namespace Fanex.Agent.UI
 			protected static string s7{get{return Resources.Lang.mainmenu;}}
 			protected static string s8 = "</a></div><div id=\"tab_menu_m\"><a class=\"tab_menu02AC\" style=\"cursor: default;\">";
 			protected static string s9{get{return Resources.Lang.userinfo;}}
-			protected static string s10 = "</a></div><div id=\"tab_menu_L\"><a id=\"lnkTree\" class=\"tab_menu03\" target=\"menu\" href=\"../_TreeView/TreeView.aspx\"></a></div></div><div id=\"clear0\" /><div id=\"leftpane02\"><div id=\"button_left02\">";
+			protected static string s10 = "</a></div><div id=\"tab_menu_m\"><a id=\"lnkTree\" class=\"tab_menu03\" target=\"menu\" href=\"../_TreeView/TreeView.aspx\">Treeview</a></div></div><div id=\"clear0\" /><div id=\"leftpane02\"><div id=\"button_left02\">";
 			public AccountInfo_NoData_Block NoData = new AccountInfo_NoData_Block();
 			public string searchBox = "{searchBox}";
 			public AccountInfo_TheRestAcc_Block TheRestAcc = new AccountInfo_TheRestAcc_Block();
@@ -89,9 +89,9 @@ namespace Fanex.Agent.UI
 			protected static string s26{get{return Resources.Lang.search;}}
 			protected static string s27 = "\" border=\"0\" nowap=\"nowap\" src=\"";
 			protected static string s28{get{return AbsoluteUrl("_GlobalResources/Images/icon_search.jpg");}}
-			protected static string s29 = "\" /></a></div></form></div><div class=\"errMsg\">";
+			protected static string s29 = "\" /></a></div></form><div class=\"errMsg\">";
 			public string errMsg = "{errMsg}";
-			protected static string s30 = "</div></div></div>";
+			protected static string s30 = "</div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

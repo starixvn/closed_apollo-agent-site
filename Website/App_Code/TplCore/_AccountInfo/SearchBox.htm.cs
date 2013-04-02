@@ -108,17 +108,17 @@ namespace Fanex.Agent.UI
 			public string CustomerUsername = "{CustomerUsername}";
 			protected static string s30 = "</td></tr><tr><td class=\"top-position\">";
 			public string lblParentname = "{lblParentname}";
-			protected static string s31 = ":</td><td align=\"right\" class=\"text_org\"><a href=\"#\" class=\"link-text\">";
-			public string ParentUsername = "{ParentUsername}";
-			protected static string s32 = "</a><a href=\"javascript:void(0)\" id=\"agentDownlineLink\" class=\"view-agent-downline\" aid=\"";
+			protected static string s31 = ":</td><td align=\"right\" class=\"text_org\"><a href=\"javascript:void(0)\" id=\"agentDownlineLink\" class=\"view-agent-downline\" aid=\"";
 			public string AgentID = "{AgentID}";
-			protected static string s33 = "\"><img height=\"16\" width=\"16\" alt=\"";
-			protected static string s34{get{return Resources.Lang.txtShowUpline;}}
-			protected static string s35 = "\" src=\"";
-			protected static string s36{get{return AbsoluteUrl("_AccountInfo/Resources/Images/icon-view-info.png");}}
-			protected static string s37 = "\" title=\"";
-			protected static string s38{get{return Resources.Lang.txtShowUpline;}}
-			protected static string s39 = "\"/></a></td></tr></tbody></table>";
+			protected static string s32 = "\"><img height=\"16\" width=\"16\" alt=\"";
+			protected static string s33{get{return Resources.Lang.txtShowUpline;}}
+			protected static string s34 = "\" src=\"";
+			protected static string s35{get{return AbsoluteUrl("_AccountInfo/Resources/Images/icon-view-info.png");}}
+			protected static string s36 = "\" title=\"";
+			protected static string s37{get{return Resources.Lang.txtShowUpline;}}
+			protected static string s38 = "\"/></a><a href=\"#\" class=\"link-text\">";
+			public string ParentUsername = "{ParentUsername}";
+			protected static string s39 = "</a></td></tr></tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -131,15 +131,15 @@ namespace Fanex.Agent.UI
 					bd.Append(s30);
 					bd.Append(lblParentname);
 					bd.Append(s31);
-					bd.Append(ParentUsername);
-					bd.Append(s32);
 					bd.Append(AgentID);
+					bd.Append(s32);
 					bd.Append(s33);
 					bd.Append(s34);
 					bd.Append(s35);
 					bd.Append(s36);
 					bd.Append(s37);
 					bd.Append(s38);
+					bd.Append(ParentUsername);
 					bd.Append(s39);
 				}
 				if(IsAssigned){bd.Append(Value);}
