@@ -11,6 +11,7 @@ if (typeof jQuery != 'undefined') {
                             $("#gridId").hide();
                             $('#divDetail').html(data);
                         });
+                    return false;
                 });
 
                 $("#MemberOutstanding").bind('click', function () {
