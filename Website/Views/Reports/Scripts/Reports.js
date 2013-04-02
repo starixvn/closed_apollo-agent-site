@@ -75,19 +75,19 @@ if (typeof jQuery != 'undefined') {
                                  }
                         ],
                     columns: [
-                         { HeaderText: "Agent", Width: 208, Name: "Agent", HeaderAlign: "center", CellAlign: "left" },
-                        { HeaderText: "Outstanding", Width: 170, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right",
+                         { HeaderText: "Agent", Width: 229, Name: "Agent", HeaderAlign: "center", CellAlign: "left" },
+                        { HeaderText: "Outstanding", Width: 195, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right",
                             CustomCellRender: function (cell) {
                                 return "<a href=''>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>";
                             }
                         },
-                        { HeaderText: "Share Amount ", Width: 170, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                        { HeaderText: "Outstanding", Width: 170, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right",
+                        { HeaderText: "Share Amount ", Width: 195, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: "Outstanding", Width: 195, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right",
                             CustomCellRender: function (cell) {
                                 return "<a href=''>" + numeral(cell.Value.GameOutstanding).format("0,0.00") + "</a>";
                             }
                         },
-                        { HeaderText: "Share Amount ", Width: 170, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                        { HeaderText: "Share Amount ", Width: 180, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ],
                     bodyRows: bodyData,
                     showFooter: true,

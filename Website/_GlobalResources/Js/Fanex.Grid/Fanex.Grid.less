@@ -7,7 +7,7 @@
     position: relative;
     z-index: 0;
     border: solid 1px #c5c5c5;
-    font-size: 0.9em;
+    font-size: 1em;
 
 	.grid-toolbox input[type='button']:hover {
 		box-shadow: 0 0px 2px 0px rgba(0,0,0,0.25);
@@ -274,8 +274,8 @@
 	}
 
 	.row_footer table thead th, .col_footer table thead th {
-		background: @primaryColor;
-		color: @white;
+		background: @rowTotalBackground;
+		color: @grayDark;
 	}
 
 	.free-bottom-right table thead th, .free-top-right table thead th {
@@ -328,9 +328,9 @@
 	}
 
 	.row-footer-background {
-		border-top: 1px solid #ff6600;
+		border-top: 1px solid @borderColor;
 		overflow: hidden;
-		background: @primaryColor;
+		background: @rowTotalBackground;
 		position: absolute;
 		z-index: 2;
 	}
