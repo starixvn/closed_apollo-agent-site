@@ -11,31 +11,27 @@
 }
 @model IEnumerable<OutstandingViewModel>
 <div id="divMain">
+    @{
+        IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath = (IEnumerable<AgentDownlinePathViewModel>)ViewBag.AgentDownlinePath;
+        <div class="boxNavigation" id="divnavigation">
+            @foreach (AgentDownlinePathViewModel item in AgentDownlinePath)
+            {
+
+                if (!AgentDownlinePath.IsLast(item))
+                {
+                <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
+                <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
+                }
+                else
+                {
+                <span>@item.Username</span>
+                }
+            }
+        </div>
+    }
     <table id="tbl-rpt" class="tblRpt" cellspacing="1" cellpadding="0" style="width: 100%;
         display: table">
-        <thead>
-            <tr>
-                <td colspan="5" id="navigation">
-                    @{
-                        IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath = (IEnumerable<AgentDownlinePathViewModel>)ViewBag.AgentDownlinePath;
-                        <div class="boxNavigation" id="divnavigation">
-                            @foreach (AgentDownlinePathViewModel item in AgentDownlinePath)
-                            {
-
-                                if (!AgentDownlinePath.IsLast(item))
-                                {
-                                <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
-                                <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
-                                }
-                                else
-                                {
-                                <span>@item.Username</span>
-                                }
-                            }
-                        </div>
-                    }
-                </td>
-            </tr>
+        <thead>           
             <tr>
                 <td rowspan="2" class="RptHeader02" style="width: 200px;">
                 </td>
