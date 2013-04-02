@@ -49,49 +49,57 @@
         if (Model != null && Model.Any())
         {
             int rowIndex = 0;
-            int currentLeagueId = 0;
-
+            var classRow = string.Empty;
+            
             foreach (var item in Model)
             {
                 rowIndex++;
-        <tr class="r">
-            <td class="c">
-                @rowIndex
-            </td>
-            <td class="l">
-                <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" href="javascript:void(0);">@item.HomeTeam</a>
-            </td>
-            <td class="l">
-                @item.AwayTeam
-            </td>
-            <td class="fcnum">
-                @TotalBetHelper.FormatPositiveNumber(item.totalHH, 2)
-            </td>
-            <td class="fcnum">
-                @TotalBetHelper.FormatPositiveNumber(item.totalHD, 2)
-            </td>
-            <td class="fcnum">
-                @TotalBetHelper.FormatPositiveNumber(item.totalHA, 2)
-            </td>
-            <td class="fcnum">
-                @TotalBetHelper.FormatPositiveNumber(item.totalDH, 2)
-            </td>
-            <td class="fcnum">
-                @TotalBetHelper.FormatPositiveNumber(item.totalDD, 2)
-            </td>
-            <td class="fcnum">
-                @TotalBetHelper.FormatPositiveNumber(item.totalDA, 2)
-            </td>
-            <td class="fcnum">
-                @TotalBetHelper.FormatPositiveNumber(item.totalAH, 2)
-            </td>
-            <td class="fcnum">
-                @TotalBetHelper.FormatPositiveNumber(item.totalAD, 2)
-            </td>
-            <td class="fcnum">
-                @TotalBetHelper.FormatPositiveNumber(item.totalAA, 2)
-            </td>
-        </tr>
+                if (rowIndex % 2 == 0)
+                {
+                    classRow = "r alt";
+                }
+                else
+                {
+                    classRow = "r";
+                }
+                <tr class="@classRow">
+                    <td class="c">
+                        @rowIndex
+                    </td>
+                    <td class="l">
+                        <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" href="javascript:void(0);">@item.HomeTeam</a>
+                    </td>
+                    <td class="l">
+                        @item.AwayTeam
+                    </td>
+                    <td class="fcnum">
+                        @TotalBetHelper.FormatPositiveNumber(item.totalHH, 2)
+                    </td>
+                    <td class="fcnum">
+                        @TotalBetHelper.FormatPositiveNumber(item.totalHD, 2)
+                    </td>
+                    <td class="fcnum">
+                        @TotalBetHelper.FormatPositiveNumber(item.totalHA, 2)
+                    </td>
+                    <td class="fcnum">
+                        @TotalBetHelper.FormatPositiveNumber(item.totalDH, 2)
+                    </td>
+                    <td class="fcnum">
+                        @TotalBetHelper.FormatPositiveNumber(item.totalDD, 2)
+                    </td>
+                    <td class="fcnum">
+                        @TotalBetHelper.FormatPositiveNumber(item.totalDA, 2)
+                    </td>
+                    <td class="fcnum">
+                        @TotalBetHelper.FormatPositiveNumber(item.totalAH, 2)
+                    </td>
+                    <td class="fcnum">
+                        @TotalBetHelper.FormatPositiveNumber(item.totalAD, 2)
+                    </td>
+                    <td class="fcnum">
+                        @TotalBetHelper.FormatPositiveNumber(item.totalAA, 2)
+                    </td>
+                </tr>
             }
         }
         else
