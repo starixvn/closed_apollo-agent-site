@@ -249,45 +249,37 @@ namespace Sunplus.Agent.UI._BetList
 
                 foreach (ITicket ticket in tickets)
                 {
-                    if (lstScoremap.Contains(ticket.BetTypeId) && ticket.Status.Equals(BetStatus.Running) && deviceMode)
-                    {
-                        isShowScoremap = true;
-                    }
-                    else
-                    {
-                        isShowScoremap = false;
-                    }
+                    isShowScoremap = lstScoremap.Contains(ticket.BetTypeId)
+                        && ticket.Status.Equals(BetStatus.Running) && deviceMode;
 
-                    index++;
-                    ticketHelper.Index = index;
+                    ticketHelper.Index = ++index;
 
                     builder.Append(string.Format("<tr id='{0}'>", ticket.TransId))
-                           .AddNo(index, "<td class='w-order'>", "</td>");
+                           .AddNo(index, "<td class='c'>", "</td>");
 
                     if (isShowMember)
                     {
                         builder.AddMember(ticket, "<td class='c'>", "</td>");
                     }
 
-                    builder.AddTrans(ticket, "<td class='c nonbreak'>", "</td>")
-                           .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", isShowScoremap)
-                           .AddOdds(ticket, ticketData, "<td class='bl_underdog nonbreak'>", "</td>", funcGetOddsTypeName)
+                    builder.AddTrans(ticket, "<td class='c'>", "</td>")
+                           .AddChoice(ticket, ticketHelper, ticketData, "<td class='bl_evt'>", "</td>", isShowScoremap)
+                           .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
                            .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
 
                     if (isShowWinLost)
                     {
-                        builder.AddWinLoss(ticket, "<td class='r nonbreak'>", "</td>");
+                        builder.AddWinLoss(ticket, "<td class='r nowrap'>", "</td>");
                     }
 
                     builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
-
                     builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
                     builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
 
                     builder.Append("</tr>");
                 }
 
-                builder.AddFooter(tickets, string.Empty, string.Empty, (Fanex.BetList.Age.Definition.BetListType)betlistType);
+                builder.AddFooter(tickets, string.Empty, string.Empty, (BetListType)betlistType);
 
                 content.Append(builder.GetBetList());
                 content.Append("</tbody>");
