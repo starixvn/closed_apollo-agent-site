@@ -6,7 +6,7 @@ if (typeof jQuery != 'undefined') {
         return {
             init: function () {
                 $("#AgentOutstanding").bind('click', function () {
-                    $.get(parent.baseURL + '/reports/agentoutstanding', { 'agentId': $("#AgentOutstanding").attr("agentid") })
+                    $.get(parent.baseURL + '/Reports/AgentOutstanding', { 'agentId': $("#AgentOutstanding").attr("agentid") })
                         .done(function (data) {
                             $("#gridId").hide();
                             $('#divDetail').html(data);
@@ -16,7 +16,7 @@ if (typeof jQuery != 'undefined') {
                 $("#MemberOutstanding").bind('click', function () {
                     $.ajax({
                         type: "POST",
-                        url: parent.baseURL + "/reports/memberoutstanding",
+                        url: parent.baseURL + "/Reports/MemberOutstanding",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: { 'agentId': $("#MemberOutstanding").attr("agentid") },
@@ -34,7 +34,7 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             viewAgent: function (agentId) {
-                location.href = parent.baseURL + "/reports/outstanding?agentid=" + agentId;
+                location.href = parent.baseURL + "/Reports/Outstanding?agentid=" + agentId;
             },
             initGrid: function (outstandingData) {
                 var bodyData = [];
@@ -57,7 +57,7 @@ if (typeof jQuery != 'undefined') {
                             { Name: "Agent", Value: current.UserName },
                             { Name: "Outstanding", Value: current },
                             { Name: "ShareAmount", Value: current.ShareAmount },
-                            { Name: "OutstandingGame", Value: current.GameOutstanding },
+                            { Name: "OutstandingGame", Value: current },
                             { Name: "ShareAmountGame", Value: current.GameShareAmount }
                         ]
                     });
@@ -74,21 +74,27 @@ if (typeof jQuery != 'undefined') {
                                  }
                         ],
                     columns: [
-                         { HeaderText: "Agent", Width: 200, Name: "Agent", HeaderAlign: "center", CellAlign: "center" },
-                        { HeaderText: "Outstanding", Width: 150, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right",
+                         { HeaderText: "Agent", Width: 208, Name: "Agent", HeaderAlign: "center", CellAlign: "left" },
+                        { HeaderText: "Outstanding", Width: 170, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right",
                             CustomCellRender: function (cell) {
                                 return "<a href=''>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>";
                             }
                         },
-                        { HeaderText: "Share Amount ", Width: 150, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                        { HeaderText: "Outstanding", Width: 150, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                        { HeaderText: "Share Amount ", Width: 150, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                        { HeaderText: "Share Amount ", Width: 170, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: "Outstanding", Width: 170, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right",
+                            CustomCellRender: function (cell) {
+                                return "<a href=''>" + numeral(cell.Value.GameOutstanding).format("0,0.00") + "</a>";
+                            }
+                        },
+                        { HeaderText: "Share Amount ", Width: 170, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ],
                     bodyRows: bodyData,
                     showFooter: true,
                     footerRows: footerData,
-                    fullHeight: false,
-                    gridHeight: 550
+                    fullHeight: true,
+                    //gridHeight: 550,
+                    gridExpandHeight: 250,
+                    marginRight: 0
                 };
 
                 $("#gridId").fanexGrid(gridOption);
