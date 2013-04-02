@@ -114,7 +114,7 @@ var totalBets =
             + '&betteam=' + $(this).attr("bet-team");
             //location.href = url;
             ageWnd.openDialog(url, 'Bet List', {
-                width: 930,
+                width: 900,
                 height: 770,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
