@@ -87,7 +87,19 @@ namespace Apollo.Age.Reports.Controllers
                 AgentId = agentId
             });
 
-            return Json(models);
+            OutstandingViewModel totalModels = new OutstandingViewModel()
+            {
+                Outstanding = models.Sum(x => x.Outstanding),
+                ShareAmount = models.Sum(x => x.ShareAmount),
+                GameOutstanding = models.Sum(x => x.GameOutstanding),
+                GameShareAmount = models.Sum(x => x.GameShareAmount)
+            };
+
+            return Json(new
+            {
+                ListOutstanding = models,
+                Total = totalModels
+            });
         }
 
         #endregion Outstanding Report

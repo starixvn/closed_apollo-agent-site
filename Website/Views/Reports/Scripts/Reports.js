@@ -13,10 +13,6 @@ if (typeof jQuery != 'undefined') {
                 });
 
                 $("#MemberOutstanding").bind('click', function () {
-                    //                    $.get('memberoutstanding', { 'agentId': $("#MemberOutstanding").attr("agentid") })
-                    //                        .done(function (data) {
-                    //                            $('#divDetail').html(data);
-                    //                        });
                     $.ajax({
                         type: "POST",
                         url: "memberoutstanding",
@@ -35,14 +31,24 @@ if (typeof jQuery != 'undefined') {
                     return false;
                 });
             },
-            ViewAgent: function (agentId) {
+            viewAgent: function (agentId) {
                 location.href = "outstanding?agentid=" + agentId;
             },
             initGrid: function (outstandingData) {
                 var bodyData = [];
-                var rowLength = outstandingData.length;
+                var footerData = [];
+                footerData.push({
+                    Columns: [
+                        { Name: "Agent", Value: "Total" },
+                        { Name: "Outstanding", Value: outstandingData.Total.Outstanding },
+                        { Name: "ShareAmount", Value: outstandingData.Total.ShareAmount },
+                        { Name: "OutstandingGame", Value: outstandingData.Total.GameOutstanding },
+                        { Name: "ShareAmountGame", Value: outstandingData.Total.GameShareAmount },
+                    ]
+                });
+                var rowLength = outstandingData.ListOutstanding.length;
                 for (var i = 0; i < rowLength; i++) {
-                    var current = outstandingData[i];
+                    var current = outstandingData.ListOutstanding[i];
                     bodyData.push({
                         Columns:
                         [
@@ -66,15 +72,17 @@ if (typeof jQuery != 'undefined') {
                                  }
                         ],
                     columns: [
-                         { HeaderText: "Agent", Width: 160, Name: "Agent", HeaderAlign: "center", CellAlign: "center" },
-                        { HeaderText: "Outstanding", Width: 70, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right" },
-                        { HeaderText: "Share Amount ", Width: 100, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right" },
-                        { HeaderText: "Outstanding", Width: 100, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right" },
-                        { HeaderText: "Share Amount ", Width: 160, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right" }
+                         { HeaderText: "Agent", Width: 200, Name: "Agent", HeaderAlign: "center", CellAlign: "center" },
+                        { HeaderText: "Outstanding", Width: 150, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: "Share Amount ", Width: 150, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: "Outstanding", Width: 150, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: "Share Amount ", Width: 150, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ],
                     bodyRows: bodyData,
+                    showFooter: true,
+                    footerRows: footerData,
                     fullHeight: false,
-                    gridHeight: 400
+                    gridHeight: 550
                 };
 
                 $("#gridId").fanexGrid(gridOption);

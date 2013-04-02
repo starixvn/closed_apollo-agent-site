@@ -24,7 +24,7 @@
 
                                 if (!AgentDownlinePath.IsLast(item))
                                 {
-                                <a href="#" onclick="REPORTS.ViewAgent(@item.Id)">@item.Username</a>
+                                <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
                                 <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
                                 }
                                 else
@@ -134,5 +134,6 @@
 @section scripts
 {
     <script src="~/_GlobalResources/Js/Fanex.Grid/moment.min.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/Fanex.Grid/numeral.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.js" type="text/javascript"></script>
 }
