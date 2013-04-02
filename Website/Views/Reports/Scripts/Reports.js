@@ -75,19 +75,19 @@ if (typeof jQuery != 'undefined') {
                                  }
                         ],
                     columns: [
-                         { HeaderText: "Agent", Width: 229, Name: "Agent", HeaderAlign: "center", CellAlign: "left" },
-                        { HeaderText: "Outstanding", Width: 195, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right",
+                         { HeaderText: "Agent", Width: 234, Name: "Agent", HeaderAlign: "center", CellAlign: "left" },
+                        { HeaderText: "Outstanding", Width: 190, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
                             CustomCellRender: function (cell) {
                                 return (cell.Value.Outstanding != 0 ? "<a href=''>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>" : numeral(cell.Value.Outstanding).format("0,0.00"));
                             }
                         },
-                        { HeaderText: "Share Amount ", Width: 195, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                        { HeaderText: "Outstanding", Width: 195, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right",
+                        { HeaderText: "Share Amount ", Width: 190, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: "Outstanding", Width: 190, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
                             CustomCellRender: function (cell) {
                                 return (cell.Value.GameOutstanding != 0 ? "<a href=''>" + numeral(cell.Value.GameOutstanding).format("0,0.00") + "</a>" : numeral(cell.Value.GameOutstanding).format("0,0.00"));
                             }
                         },
-                        { HeaderText: "Share Amount ", Width: 180, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                        { HeaderText: "Share Amount ", Width: 190, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ],
                     bodyRows: bodyData,
                     showFooter: true,
