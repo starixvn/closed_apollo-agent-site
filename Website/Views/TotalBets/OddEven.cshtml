@@ -183,5 +183,11 @@
 </table>
 @section scripts
 {
-    <script src="~/Views/TotalBets/Resources/OddEven.js" type="text/javascript"></script>    
+    <script src="~/Views/TotalBets/Resources/TotalBets.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            totalBets.InitViewForecast1x2();
+            totalBets.InitViewBetList();
+        });
+    </script>       
 }
