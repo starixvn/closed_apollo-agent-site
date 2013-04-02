@@ -132,6 +132,10 @@
 
             // handle toggle event
             function toggler() {
+                if(!$(this).hasClass("hasChildren-hitarea"))
+                {
+                    return;
+                }
                 $(this)
 					.parent()
                 // swap classes for hitarea
