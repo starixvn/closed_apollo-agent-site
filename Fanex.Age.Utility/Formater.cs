@@ -51,7 +51,7 @@ namespace Fanex.Age.Utility
                 {
                     decDigitsString += "#";
                 }
-                string formatString = "{0:0." + decDigitsString + "}";
+                string formatString = "{0:#,0." + decDigitsString + "}";
                 string result = null;
                 if (value != null)
                 {
