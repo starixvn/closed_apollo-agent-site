@@ -21,16 +21,18 @@ public partial class _Reports_Winloss_AgentWinloss : Fanex.Age.UI.TplPage
 
     public override object InvokeData(System.Collections.Hashtable p)
     {
-        ReportService sv = new ReportService();
-        AgentWinlossCriteria criteria = new AgentWinlossCriteria {
-            AgentId = 3,
-            FromDate = new DateTime(2013, 02, 01),
-            ToDate = new DateTime(2013, 03, 21)
-        };
+        //ReportService sv = new ReportService();
+        //AgentWinlossCriteria criteria = new AgentWinlossCriteria {
+        //    AgentId = 3,
+        //    FromDate = new DateTime(2013, 02, 01),
+        //    ToDate = new DateTime(2013, 03, 21)
+        //};
 
-        var list = sv.GetAgentWinloss(criteria);
+        //var list = sv.GetAgentWinloss(criteria);
 
-        return list;
+        //return list;
+
+        throw new NotImplementedException();
     }
 
     public override void RenderContent(HtmlTextWriter writer)
