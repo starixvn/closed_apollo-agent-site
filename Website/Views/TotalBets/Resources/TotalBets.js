@@ -58,7 +58,7 @@ var totalBets =
             + 'matchId=' + $(this).attr("match-id")
             + '&b=' + $(this).attr("bet-type");
 
-            ageWnd.openDialog(url, 'ForeCast', {
+            ageWnd.openDialog(url, '', {
                 width: 650,
                 height: 320,
                 position: { my: "top+50", at: "center top", of: window },
@@ -76,7 +76,7 @@ var totalBets =
             + '&type=' + $(this).attr("betlist-type");
 
             //location.href = url;
-            ageWnd.openDialog(url, 'Bet List', {
+            ageWnd.openDialog(url, '', {
                 width: 930,
                 height: 770,
                 position: { my: "top+50", at: "center top", of: window },
@@ -94,7 +94,7 @@ var totalBets =
             + '&type=' + $(this).attr("betlist-type")
             + '&islive=' + $(this).attr("is-live");
             //location.href = url;
-            ageWnd.openDialog(url, 'Bet List', {
+            ageWnd.openDialog(url, '', {
                 width: 930,
                 height: 770,
                 position: { my: "top+50", at: "center top", of: window },
@@ -113,7 +113,7 @@ var totalBets =
             + '&islive=' + $(this).attr("is-live")
             + '&betteam=' + $(this).attr("bet-team");
             //location.href = url;
-            ageWnd.openDialog(url, 'Bet List', {
+            ageWnd.openDialog(url, '', {
                 width: 900,
                 height: 770,
                 position: { my: "top+50", at: "center top", of: window },
@@ -129,7 +129,7 @@ var totalBets =
             var url = window.rootUrl + '_Forecast/FC1X2.aspx?'
             + 'matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type");
-            ageWnd.openDialog(url, 'ForeCast', {
+            ageWnd.openDialog(url, '', {
                 width: 650,
                 height: 470,
                 position: { my: "top+50", at: "center top", of: window },
