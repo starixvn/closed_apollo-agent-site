@@ -86,6 +86,27 @@ var totalBets =
             });
         });
     },
+    InitViewBetListGame: function () {
+        $(".tblRpt").on("click", "a.view-bet-list", function () {
+
+            var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
+            + '&betType=' + $(this).attr("bet-type")
+            + '&type=' + $(this).attr("betlist-type")
+            + '&islive=' + $(this).attr("is-live");
+            location.href = url;
+        });
+    },
+    InitViewBetListNewGame: function () {
+        $(".tblRpt").on("click", "a.view-bet-list-new-game", function () {
+
+            var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
+            + '&betType=' + $(this).attr("bet-type")
+            + '&type=' + $(this).attr("betlist-type")
+            + '&islive=' + $(this).attr("is-live")
+            + '&betteam=' + $(this).attr("bet-team");
+            location.href = url;
+        });
+    },
     InitViewForecast1x2: function () {
         $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
