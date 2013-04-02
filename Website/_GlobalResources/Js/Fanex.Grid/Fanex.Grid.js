@@ -6,10 +6,49 @@
 
 (function ($) {
     //// Grid Scroller
-    var ub = {};
+    var matchedBrowser, browserDectect;
+
+    // Use of jQuery.browser is frowned upon.
+    // More details: http://api.jquery.com/jQuery.browser
+    // jQuery.uaMatch maintained for back-compat
+    function ubMatch(ua) {
+        ua = ua.toLowerCase();
+
+        var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
+        /(webkit)[ \/]([\w.]+)/.exec(ua) ||
+        /(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
+        /(msie) ([\w.]+)/.exec(ua) ||
+        ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
+        [];
+
+        return {
+            browserDectect: match[1] || "",
+            version: match[2] || "0"
+        };
+    };
+
+    matchedBrowser = ubMatch(navigator.userAgent);
+    browserDectect = {};
+
+    if (matchedBrowser.browserDectect) {
+        browserDectect[matchedBrowser.browserDectect] = true;
+        browserDectect.version = matchedBrowser.version;
+    }
+
+    // Chrome is Webkit, but Webkit is also Safari.
+    if (browserDectect.chrome) {
+        browserDectect.webkit = true;
+    } else if (browserDectect.webkit) {
+        browserDectect.safari = true;
+    }
+
+    //jQuery.browser = browser;
+
+
+    var ub = browserDectect;
     ub.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
-    var ff16 = false; // $.browser.mozilla && parseInt($.browser.version, 10) >= 16;
-    var ff18 = false; //  $.browser.mozilla && (parseInt($.browser.version, 10) >= 18);
+    var ff16 = browserDectect.mozilla && parseInt(browserDectect.version, 10) >= 16;
+    var ff18 = browserDectect.mozilla && (parseInt(browserDectect.version, 10) >= 18);
     var extraPosition = ff18 ? 1 : 0;
     //// Method expose for user use
     var methods =
@@ -1462,10 +1501,10 @@
             }
         },
         RemoveSpaceIE9: function (html) {
-            //            if ($.browser.msie && parseInt($.browser.version, 10) === 9 && html != undefined) {
-            //                var expr = new RegExp('>[ \t\r\n\v\f]*<', 'g');
-            //                html = html.replace(expr, '><');
-            //            }
+            if (browserDectect.msie && parseInt(browserDectect.version, 10) === 9 && html != undefined) {
+                var expr = new RegExp('>[ \t\r\n\v\f]*<', 'g');
+                html = html.replace(expr, '><');
+            }
 
             return html;
         },
@@ -1506,6 +1545,7 @@
             var container = o.find(".container");
             var rowheader = o.find(".row_header");
             o.parent().removeClass('display-none');
+            o.parent().show();
             o.parent().find('.grid-title').removeClass('display-none');
             var options = $.extend({}, $.fn.renderScroller.defaults, opts);
             var timeOutResize = null;
