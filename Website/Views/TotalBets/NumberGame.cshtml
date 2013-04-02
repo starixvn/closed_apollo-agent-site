@@ -30,102 +30,138 @@
         <td>
             @if (item.BetCount_Warrior_2ndBall != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.Warrior_2ndBall)
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="88" betlist-type="BettypeMatch" is-live="0" bet-team="h" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.Warrior_2ndBall)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_Warrior_3rdBall != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.Warrior_3rdBall)
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="88" betlist-type="BettypeMatch" is-live="0" bet-team="a" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.Warrior_3rdBall)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_OU1stBall != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.Over_1stBall - item.Under_1stBall)
-            }
-        </td>
-        <td>
-            @if (item.BetCount_OULastBall != 0)
-            {
-                @TotalBetHelper.FormatNegativeNumber(item.Over_LastBall - item.Under_LastBall)
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="81" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.Over_1stBall - item.Under_1stBall)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_OE1stBall != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.Odd_1stBall - item.Even_1stBall)
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="83" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.Odd_1stBall - item.Even_1stBall)
+                </a>
             }
         </td>
         <td>
+            @if (item.BetCount_OULastBall != 0)
+            {
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="82" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.Over_LastBall - item.Under_LastBall)
+                </a>
+            }
+        </td>
+        
+        <td>
             @if (item.BetCount_OELastBall != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.Odd_LastBall - item.Even_LastBall)
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="84" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.Odd_LastBall - item.Even_LastBall)
+                </a>
             }
         </td>
         
         <td>
             @if (item.BetCount_OUNext != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.Over_Next - item.Under_Next)
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="85" betlist-type="BettypeMatch" is-live="1" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.Over_Next - item.Under_Next)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_OENext != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.Odd_Next - item.Even_Next)
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="86" betlist-type="BettypeMatch" is-live="1" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.Odd_Next - item.Even_Next)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_HighLow != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.High - item.Low)
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="87" betlist-type="BettypeMatch" is-live="1" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.High - item.Low)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_NextCombo_OverOdd != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.NextCombo_OverOdd)
-            }
-        </td>
-        <td>
-            @if (item.BetCount_NextCombo_OverEven != 0)
-            {
-                @TotalBetHelper.FormatNegativeNumber(item.NextCombo_OverEven)
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="1:1" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.NextCombo_OverOdd)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_NextCombo_UnderOdd != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.NextCombo_UnderOdd)
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="2:1" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.NextCombo_UnderOdd)
+                </a>
             }
         </td>
         <td>
+            @if (item.BetCount_NextCombo_OverEven != 0)
+            {
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="1:2" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.NextCombo_OverEven)
+                </a>
+            }
+        </td>
+        
+        <td>
             @if (item.BetCount_NextCombo_UnderEven != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.NextCombo_UnderEven)
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="2:2" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.NextCombo_UnderEven)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_OEFullTime != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.Odd_FullTime - item.Even_FullTime)
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="86" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.Odd_FullTime - item.Even_FullTime)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_NumberGroupLive != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.NumberGroupLive)
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="90" betlist-type="BettypeMatch" is-live="1" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.NumberGroupLive)
+                </a>
             }
         </td>
         <td>
             @if (item.BetCount_NumberGroupPre != 0)
             {
-                @TotalBetHelper.FormatNegativeNumber(item.NumberGroupPre)
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="90" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                    @TotalBetHelper.FormatNegativeNumber(item.NumberGroupPre)
+                </a>
             }
         </td>
     </tr>  
 }
+
+@RazorHelper.RefreshCountDown("NumberGame", 60, 0)
 
 <table class="tblRpt c" style="width: 100%">
     <thead>
@@ -228,3 +264,14 @@
         }
     </tbody>
 </table>
+
+@section scripts
+{
+    <script src="~/Views/TotalBets/Resources/TotalBets.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            totalBets.InitViewBetListGame();
+            totalBets.InitViewBetListNewGame();
+        });
+    </script>    
+}

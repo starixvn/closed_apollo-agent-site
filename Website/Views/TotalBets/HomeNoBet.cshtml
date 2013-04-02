@@ -21,7 +21,7 @@
 @helper ShowMatch(int index, HomeNoBetViewModel item)
 {
     <tr>
-        <td class="c" rowspan="2">
+        <td class="c">
             @index
         </td>
         @ShowTime(item)
@@ -31,7 +31,7 @@
         <td class="r">
             @if(item.BetCount_HNB != 0)
             {
-                <a class="fcnum" href="javascript:;">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" href="javascript:void(0);">
                     @TotalBetHelper.FormatNumber(item.Home_Odds_HNB - item.Away_Odds_HNB)    
                 </a>
             }
@@ -40,34 +40,20 @@
         <td class="r">
             @if(item.BetCount_DNB != 0)
             {
-                <a class="fcnum" href="javascript:;">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" href="javascript:void(0);">
                     @TotalBetHelper.FormatNumber(item.Home_Odds_DNB - item.Away_Odds_DNB)
                 </a>
             }
         </td>
-        <td rowspan="2" class="r">
+        <td class="r">
             @if(item.BetCount_ANB != 0)
             {
-                <a class="fcnum" href="javascript:;">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" href="javascript:void(0);">
                     @TotalBetHelper.FormatNumber(item.Home_Odds_ANB - item.Away_Odds_ANB)
                 </a>
             }
         </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="javascript:;">
-                @item.AwayTeam
-            </a>
-        </td>
-        <td>
-            @TotalBetHelper.FormatNumber(item.BetCount_HNB)
-        </td>
-        <td>
-            @TotalBetHelper.FormatNumber(item.BetCount_HNB)
-        </td>
-        
-    </tr>           
+    </tr>        
 }
 
 @helper ShowTime(HomeNoBetViewModel item)
@@ -77,7 +63,7 @@
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
             <br />
-            <span class="red-num">Live</span>
+            <span class="red-num">@Resources.Lang.lblLive</span>
         }
         else
         {
@@ -86,6 +72,7 @@
     </td>
 }
 
+@RazorHelper.RefreshCountDown("HomeNoBet", 15, 0)
 <table class="tblRpt">
     <thead>
         <tr>
@@ -136,3 +123,13 @@
         }
     </tbody>
 </table>
+
+@section scripts
+{
+    <script src="~/Views/TotalBets/Resources/TotalBets.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            totalBets.InitViewBetList();
+        });
+    </script>    
+}

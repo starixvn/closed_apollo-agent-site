@@ -81,7 +81,7 @@ namespace Apollo.Age.TotalBets.Controllers
 
         public ViewResult HomeNoBet()
         {
-            var model = GetViewModel<HomeNoBetViewModel>(agentId: 3, betType: 25);
+            var model = GetViewModel<HomeNoBetViewModel>(agentId: 24, betType: 25);
             return View(model);
         }
 
