@@ -21,7 +21,20 @@
 
 @helper ShowMatch(int index, HomeNoBetViewModel item)
 {
-    <tr>
+    var classRow = string.Empty;
+    if (item.LiveIndicator)
+    {
+        classRow = "class=live";
+    }
+    else
+    {
+        if(index%2==0)
+        {
+            classRow = "class=alt";
+        }
+    }
+    
+    <tr @classRow>
         <td class="c">
             @index
         </td>
@@ -64,7 +77,7 @@
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
             <br />
-            <span class="red-num">@Resources.Lang.lblLive</span>
+            <i class="red-num">@Resources.Lang.lblLive</i>
         }
         else
         {

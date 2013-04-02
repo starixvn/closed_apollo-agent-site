@@ -10,7 +10,7 @@
         if (currentLeagueId != item.LeagueId)
         { 
     <!--LeagueContents-->
-    <tr class="c">
+    <tr class="league">
         <td colspan="11" class="league" style="padding-left: 20px;">
             @item.LeagueName
         </td>
@@ -37,7 +37,7 @@
     {
         <td style="width: 70px">
             <!--OneXTwoValue-->
-            <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="5" betlist-type="BettypeMatch" href="javascript:Void(0);">
+            <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="5" betlist-type="BettypeMatch" href="javascript:void(0);">
                 @TotalBetHelper.FormatNumber(item.OneXTwoTotal, showZero: item.BetCount_1x2 != 0)
                 </a>
             <!--/OneXTwoValue-->
@@ -57,7 +57,7 @@
     {
         <td style="width: 70px">
             <!--OneXTwoFirstHalfValue-->
-            <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="15" betlist-type="BettypeMatch" href="javascript:Void(0);">
+            <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="15" betlist-type="BettypeMatch" href="javascript:void(0);">
                 @TotalBetHelper.FormatNumber(item.OneXTwoFirstHalf, showZero: item.BetCount_1x2_1st != 0)
             </a>
             <!--/OneXTwoFirstHalfValue-->
@@ -92,7 +92,7 @@
     </td>
 }
 @RazorHelper.RefreshCountDown("OddEven", 45, 15)
-<table class="tblRpt c" style="width: 100%">
+<table class="tblRpt" style="width: 100%">
     <thead>
         <tr class="RptHeader">
             <td rowspan="2" style="width: 20px;">
@@ -137,14 +137,32 @@
             {
                 int rowIndex = 0;
                 int currentLeagueId = 0;
+                var classRow = string.Empty;
 
                 foreach (var item in Model)
                 {
                     rowIndex++;
+                    
+                    if (item.LiveIndicator)
+                    {
+                        classRow = "live";
+                    }
+                    else
+                    {
+                        if (rowIndex % 2 == 0)
+                        {
+                            classRow = "alt";
+                        }
+                        else
+                        {
+                            classRow = string.Empty;
+                        }
+                    }
+                    
             @ShowLeague(currentLeagueId, item)  
             
             <!--MatchContents-->
-            <tr class='r @(item.LiveIndicator ? "live" : string.Empty)'>
+            <tr class='r @classRow'>
                 <td class="w-order">
                     @rowIndex
                 </td>
@@ -154,18 +172,18 @@
                 </td>
                 <td>
                     <!--OddEvenValue-->
-                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="2" betlist-type="BettypeMatch" href="javascript:Void(0);"> @TotalBetHelper.FormatNegativeNumber(item.OddEvenTotal, showZero: item.BetCount_OE != 0)</a>
+                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="2" betlist-type="BettypeMatch" href="javascript:void(0);"> @TotalBetHelper.FormatNegativeNumber(item.OddEvenTotal, showZero: item.BetCount_OE != 0)</a>
                     <!--/OddEvenValue-->
                 </td>
                 @Show1x2Button(item, true)
                 <td style="width: 86px">
                     <!--DNDValue-->
-                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="123" betlist-type="BettypeMatch" href="javascript:Void(0);">@TotalBetHelper.FormatNumber(item.DrawNoDrawTotal, showZero: item.BetCount_DND != 0)</a>
+                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="123" betlist-type="BettypeMatch" href="javascript:void(0);">@TotalBetHelper.FormatNumber(item.DrawNoDrawTotal, showZero: item.BetCount_DND != 0)</a>
                     <!--/DNDValue-->
                 </td>
                 <td>
                     <!--OddEvenFirstHalfValue-->
-                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="12" betlist-type="BettypeMatch" href="javascript:Void(0);">@TotalBetHelper.FormatNegativeNumber(item.OddEvenFirstHalf, showZero: item.BetCount_OE_1st != 0)</a>
+                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="12" betlist-type="BettypeMatch" href="javascript:void(0);">@TotalBetHelper.FormatNegativeNumber(item.OddEvenFirstHalf, showZero: item.BetCount_OE_1st != 0)</a>
                     <!--/OddEvenFirstHalfValue-->
                 </td>
                 @Show1x2Button(item, false)

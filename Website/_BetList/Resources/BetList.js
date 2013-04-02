@@ -204,9 +204,9 @@ function InitBetList() {
 
     if (typeof ageWnd != 'undefined' && ageWnd.loaded) {
         ageWnd.setRect(ageWnd.left, 50, 900, 720);  // resize parent dialog
-        document.getElementById("exporttoexcel").style.display = "none";
+        //
     }
-
+    document.getElementById("exporttoexcel").style.display = "none";
     InitExcelFunction();
 }
 

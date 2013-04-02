@@ -7,99 +7,100 @@
 }
 @section css
 {
-    <link href="~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.css" rel="stylesheet" type="text/css" />
+    <link href="~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.less" rel="stylesheet" type="text/css" />
 }
 @model IEnumerable<OutstandingViewModel>
 <div id="divMain">
+    @{
+        IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath = (IEnumerable<AgentDownlinePathViewModel>)ViewBag.AgentDownlinePath;
+        <div class="boxNavigation" id="divnavigation">
+            @foreach (AgentDownlinePathViewModel item in AgentDownlinePath)
+            {
+
+                if (!AgentDownlinePath.IsLast(item))
+                {
+                <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
+                <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
+                }
+                else
+                {
+                <span>@item.Username</span>
+                }
+            }
+        </div>
+    }
     <table id="tbl-rpt" class="tblRpt" cellspacing="1" cellpadding="0" style="width: 100%;
         display: table">
-        <thead>
+        <thead>           
             <tr>
-                <td colspan="5" id="navigation">
-                    @{
-                        IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath = (IEnumerable<AgentDownlinePathViewModel>)ViewBag.AgentDownlinePath;
-                        <div class="boxNavigation" id="divnavigation">
-                            @foreach (AgentDownlinePathViewModel item in AgentDownlinePath)
-                            {
-
-                                if (!AgentDownlinePath.IsLast(item))
-                                {
-                                <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
-                                <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
-                                }
-                                else
-                                {
-                                <span>@item.Username</span>
-                                }
-                            }
-                        </div>
-                    }
+                <td rowspan="2" class="RptHeader02" style="width: 200px;">
                 </td>
-            </tr>
-            <tr>
-                <td rowspan="2" class="RptHeader02">
-                </td>
-                <td colspan="2" class="RptHeader02">
+                <td colspan="2" class="RptHeader02" style="width: 170px;">
                     @Resources.Lang.sportBook
                 </td>
-                <td colspan="2" class="RptHeader02">
+                <td colspan="2" class="RptHeader02" style="width: 170px;">
                     @Resources.Lang.numbergame
                 </td>
             </tr>
             <tr>
-                <td class="RptHeader02">
+                <td class="RptHeader02" style="width: 170px;">
                     @Resources.Lang.outstanding
                 </td>
-                <td class="RptHeader02">
+                <td class="RptHeader02" style="width: 170px;">
                     @Resources.Lang.ShareAmount
                 </td>
-                <td class="RptHeader02">
+                <td class="RptHeader02" style="width: 170px;">
                     @Resources.Lang.outstanding
                 </td>
-                <td class="RptHeader02">
+                <td class="RptHeader02" style="width: 170px;">
                     @Resources.Lang.ShareAmount
                 </td>
             </tr>
         </thead>
         @if (Model != null && Model.Any())
         {
-
-            foreach (OutstandingViewModel item in Model)
+            var agentOutStanding = Model.SingleOrDefault(x => x.IsAgent == 1);
+            var memberOutstandig = Model.SingleOrDefault(x => x.IsAgent == 0);
+            if (agentOutStanding != null)
             {
             <tr>
                 <td>
-                    @if (UserSession.Current.AgentLevel == 0)
-                    {
-
-                        <a href="#" id="AgentOutstanding" agentid="@Request.QueryString["agentid"]" >@item.UserName</a>
-                    }
-                    else
-                    {
-                        if (Model.IsFirst(item))
-                        {
-                        <a href="#" id="AgentOutstanding" agentid="@Request.QueryString["agentid"]" >@Resources.Lang.lblAgentOutstanding</a>
-                        }
-                        else
-                        {
-                        <a href="#" id="MemberOutstanding" agentid="@Request.QueryString["agentid"]">@Resources.Lang.lblMemberOutstanding</a>
-                        }
-                    }
+                    <a href="#" id="AgentOutstanding" agentid="@Request.QueryString["agentid"]" >@Resources.Lang.lblAgentOutstanding</a>
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(item.Outstanding, "en-US")
+                    @Formater.FormatNumber20(agentOutStanding.Outstanding, "en-US")
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(item.ShareAmount, "en-US")
+                    @Formater.FormatNumber20(agentOutStanding.ShareAmount, "en-US")
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(item.GameOutstanding, "en-US")
+                    @Formater.FormatNumber20(agentOutStanding.GameOutstanding, "en-US")
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(item.GameShareAmount, "en-US")
+                    @Formater.FormatNumber20(agentOutStanding.GameShareAmount, "en-US")
                 </td>
             </tr>
             }
-
+            if (memberOutstandig != null)
+            {
+            <tr>
+                <td>
+                    <a href="#" id="MemberOutstanding" agentid="@Request.QueryString["agentid"]" >@Resources.Lang.lblMemberOutstanding</a>
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(memberOutstandig.Outstanding, "en-US")
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(memberOutstandig.ShareAmount, "en-US")
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(memberOutstandig.GameOutstanding, "en-US")
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(memberOutstandig.GameShareAmount, "en-US")
+                </td>
+            </tr>
+            }
             <tr class="RptFooter">
                 <td>
                     @Resources.Lang.total

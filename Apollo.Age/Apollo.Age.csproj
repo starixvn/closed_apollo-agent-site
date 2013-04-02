@@ -95,8 +95,7 @@
     <Compile Include="Services\Impl\CustomerService.cs" />
     <Compile Include="Services\Impl\MemberService.cs" />
     <Compile Include="Services\Impl\PermissionService.cs" />
-    <Compile Include="Services\Impl\ReportService.cs" />
-    <Compile Include="Services\Impl\ReportServiceBase.cs" />
+    <Compile Include="Services\Impl\QueryService.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
     <Compile Include="Services\Impl\UserService.cs" />
     <Compile Include="Services\Interface\IAgentService.cs" />
