@@ -1,10 +1,6 @@
-﻿<!--HiddenBlock-->
-<link href="Resources/PortalPage.css" rel="stylesheet" type="text/css" />
-<!--/HiddenBlock-->
+﻿
 <!--Title-->
-<div class="announcement">
-    <span class="gotoMsg" onclick="openMsg()">{Announcement}</span>
-</div>
+<span class="gotoMsg" onclick="openMsg()">{Announcement}</span>
 <!--/Title-->
 <div id="divAnnouncement">
     <!--NoRow-->
@@ -19,7 +15,8 @@
     </div>
     <!--/GroupTitle-->
     <!--DataRow-->
-    <div class="{oddEvenRow} {msgType}" id="{Announment_Id}" onclick="ToggleAnnouncementContent('{Announment_Id}');" isread="{IsRead}">
+    <div class="{oddEvenRow} {msgType}" id="{Announment_Id}"
+        onclick="ToggleAnnouncementContent('{Announment_Id}');" isread="{IsRead}">
         <div class="divTime">
             <div class="toogleIcon">
             </div>

@@ -13,19 +13,25 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class PortalPage_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE HTML><html><head><title></title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("PortalPage/Resources/PortalPage.less", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"Stylesheet\" type=\"text/css\" /></head><body><div><table class=\"tblMain\" cellspacing=\"0\"><tr class=\"hide\"><td valign=\"top\" style=\"width: 50%\"><div id=\"balanceInfo\" class=\"padding-right\"></div></td><td valign=\"top\" style=\"width: 50%\"><div id=\"statistic\" class=\"padding-right\"></div></td></tr>";
+			protected static string s0 = "<!DOCTYPE html><html><head><title>Announcement</title><link href=\"";
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s3{get{return AbsoluteUrl("PortalPage/Resources/PortalPage.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"Stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">Announcement</div><div id=\"content_main\"><table class=\"tblMain\" cellspacing=\"0\"><tr class=\"hide\"><td valign=\"top\" style=\"width: 50%\"><div id=\"balanceInfo\" class=\"padding-right\"></div></td><td valign=\"top\" style=\"width: 50%\"><div id=\"statistic\" class=\"padding-right\"></div></td></tr>";
 			public PortalPage_OnlineList_Block OnlineList = new PortalPage_OnlineList_Block();
-			protected static string s3 = "<tr><td colspan=\"2\" valign=\"top\"><div id=\"announcement\" class=\"padding-top-right\"></div></td></tr></table></div><script src=\"";
-			protected static string s4{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s5 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s6{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s5 = "<tr><td colspan=\"2\" valign=\"top\"><div id=\"announcement\" class=\"padding-top-right\"></div></td></tr></table></div></div><script src=\"";
+			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
 			protected static string s7 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s8{get{return AbsoluteUrl("_Components/Paging/Paging.js", TplSettings.Question);}}
+			protected static string s8{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
 			protected static string s9 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s10{get{return AbsoluteUrl("PortalPage/Resources/PortalPage.js", TplSettings.Question);}}
-			protected static string s11 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s11 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s12{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s14{get{return AbsoluteUrl("_Components/Paging/Paging.js", TplSettings.Question);}}
+			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s16{get{return AbsoluteUrl("PortalPage/Resources/PortalPage.js", TplSettings.Question);}}
+			protected static string s17 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -34,9 +40,9 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s0);
 					bd.Append(s1);
 					bd.Append(s2);
-					if(null != OnlineList) OnlineList.ToString(ref bd);
 					bd.Append(s3);
 					bd.Append(s4);
+					if(null != OnlineList) OnlineList.ToString(ref bd);
 					bd.Append(s5);
 					bd.Append(s6);
 					bd.Append(s7);
@@ -44,6 +50,12 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s9);
 					bd.Append(s10);
 					bd.Append(s11);
+					bd.Append(s12);
+					bd.Append(s13);
+					bd.Append(s14);
+					bd.Append(s15);
+					bd.Append(s16);
+					bd.Append(s17);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -58,13 +70,13 @@ namespace Fanex.Age.UI.Reports
 
 		public class PortalPage_OnlineList_Block: Block
 		{
-			protected static string s12 = "<tr><td colspan=\"2\" valign=\"top\"><div id=\"onlineList\" class=\"padding-top-right\"></div></td></tr>";
+			protected static string s18 = "<tr><td colspan=\"2\" valign=\"top\"><div id=\"onlineList\" class=\"padding-top-right\"></div></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s12);
+					bd.Append(s18);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
