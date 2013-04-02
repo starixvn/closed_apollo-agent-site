@@ -35,10 +35,19 @@
             if (Model.Any())
             {
                 int count = 0;
+                var classRow = string.Empty;
                 foreach (var item in Model)
                 {
                     count++;
-            <tr class="item @item.Closed">
+                    if (count % 2 == 0)
+                    {
+                        classRow = "alt";
+                    }
+                    else
+                    {
+                        classRow = string.Empty;
+                    }
+            <tr class="item @item.Closed @classRow">
                 <td class="c" style="width: 20px;">
                     @count
                 </td>
