@@ -31,7 +31,7 @@
 
             if (IsFirstRun())
             {
-                tpl.Title.Announcement = Lang.announcement.ToUpper();
+                tpl.Title.Announcement = "Message History";//Lang.announcement.ToUpper();
             }
             else
             {

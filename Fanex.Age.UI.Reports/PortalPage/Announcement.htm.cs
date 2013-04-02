@@ -44,7 +44,7 @@ namespace Fanex.Age.UI.Reports
 
 		public class Announcement_Title_Block: Block
 		{
-			protected static string s2 = "<span class=\"gotoMsg\" onclick=\"openMsg()\">";
+			protected static string s2 = "<span class=\"gotoMsg\" onclick=\"openMsg()\">&rarr; ";
 			public string Announcement = "{Announcement}";
 			protected static string s3 = "</span>";
 			public override void ToString(ref StringBuilder bd)
