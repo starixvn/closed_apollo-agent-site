@@ -50,6 +50,7 @@ input[type=button], input[type=submit], input[type=reset] {
 	bottom: 0;
 
 	#tab_menu {
+		#gradient.vertical(@tabMenuBackground, @tableBackground);
 		border-bottom: 1px solid lighten(@grayLight, 20%);
 		font-weight: bold;
 		height: 35px;
@@ -60,16 +61,8 @@ input[type=button], input[type=submit], input[type=reset] {
 			float: left;
 			height: 35px;
 			width: 72px;				
-			border-left: 1px solid #CCCCCC;
-			box-shadow: 1px 1px 0 0 #FFFFFF inset;
-		}
-
-		#tab_menu_L {
-			float: left;
-			height: 35px;
-			width: 72px;
-			border-left: 1px solid #CCCCCC;
-			box-shadow: 1px 1px 0 0 #FFFFFF inset;	
+			border-left: 1px solid @borderColor;
+			.box-shadow(1px 1px 0 0 @white inset);
 		}
 	}
 
@@ -87,58 +80,25 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
 a {
-	&.tab_menu02 {	
-		color: #707070;	
-		display: block;
+	display: block;	
+	text-decoration: none;
+
+	&.tab_menu02, &.tab_menu03, &.tab_menu01 {	
+		color: @textTabMenuColor;			
 		height: 29px;
 		padding-top: 7px;
 
 		&:hover {
-			background: #F8F8F8;			
+			height: 28px;
+			background: @hoverTabMenuBackground;			
 		}
 	}
 
-	&.tab_menu02AC {
-		background: #F8F8F8;
-		color: #707070;
-		display: block;
-		text-decoration: none;
-		height: 29px;
+	&.tab_menu02AC, &.tab_menu03AC {
+		background: @hoverTabMenuBackground;
+		color: @textTabMenuColor;		
+		height: 28px;
 		padding-top: 7px;
-	}
-
-	&.tab_menu03 {		
-		display: block;
-		color: #707070;
-		text-decoration: none;
-		height: 29px;
-		padding-top: 7px;
-		
-
-		&:hover {
-			background: #F8F8F8;
-		}
-	}
-
-	&.tab_menu03AC {
-		background: #F8F8F8;
-		display: block;
-		height: 24px;
-		color: #707070;
-		height: 29px;
-		padding-top: 7px;
-	}
-
-	&.tab_menu01 {
-		color: #707070;
-		display: block;
-		text-decoration: none;
-		height: 29px;
-		padding-top: 7px;
-
-		&:hover {
-			background: #F8F8F8;			
-		}
 	}
 
 	&.b_nleft {
@@ -149,7 +109,6 @@ a {
 		&:hover {
 			color: @hoverLinkOrangeColor;
 		}
-
 	}
 }
 
@@ -293,7 +252,7 @@ a {
 						font-size: @fontSize;
 					}
 
-					.frmSearch {
+					#frmAgent {
 						margin-bottom: 5px;
 
 						&* {
@@ -349,6 +308,7 @@ a {
 					}
 										
 					.link-text {
+						float: right;
 						color: #2678C5;
 						text-decoration: none;
 
@@ -362,18 +322,19 @@ a {
 					}
 
 					.view-agent-downline {
-						&* {
+						float: right;
+
+						* {
 							vertical-align: middle;
 						}
 
 						img {
-							margin: -3px -3px 0 3px;
+							margin: 1px -3px 0 3px;
 							border: none;
 							outline: none;
 							z-index: 9999;
 						}
-					}
-					
+					}					
 				}
 
 				.errMsg {
