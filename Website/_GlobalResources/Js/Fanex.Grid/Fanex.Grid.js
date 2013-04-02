@@ -48,7 +48,7 @@
     var ub = browserDectect;
     ub.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
     var ff16 = browserDectect.mozilla && parseInt(browserDectect.version, 10) >= 16;
-    var ff18 = browserDectect.mozilla && (parseInt(browserDectect.version, 10) == 18);
+    var ff18 = browserDectect.mozilla && (parseInt(browserDectect.version, 10) >= 18);
     var extraPosition = ff18 ? 1 : 0;
     //// Method expose for user use
     var methods =
