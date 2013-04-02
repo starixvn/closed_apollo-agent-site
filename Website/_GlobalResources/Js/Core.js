@@ -508,6 +508,9 @@ AGE.prototype.GetBaseUrl = function () {
     else if (parent.parent.baseURL) {
         baseUrl = parent.parent.baseURL;
     }
+    else if (parent.parent.parent.baseURL) {
+        baseUrl = parent.parent.parent.baseURL;
+    }
     return baseUrl;
     //        var url = window.location.href;
     //        return url.toString().replace(/^(.*\/\/[^\/?#]*).*$/, "$1") + "/";

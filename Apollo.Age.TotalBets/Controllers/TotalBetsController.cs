@@ -18,6 +18,7 @@ namespace Apollo.Age.TotalBets.Controllers
     using System.Web.Mvc;
     using Apollo.Age.TotalBets.ViewModels;
     using Apollo.Age.TotalBets.Criterias;
+    using Sunplus.Agent.Model.Entities;
 
     public class TotalBetsController : BaseController
     {
@@ -28,66 +29,66 @@ namespace Apollo.Age.TotalBets.Controllers
             _totalBetsService = new TotalBetsService();
         }
    
-        protected IEnumerable<T> GetViewModel<T>(int agentId, int betType)
+        protected IEnumerable<T> GetViewModel<T>(int betType)
         {
             return _totalBetsService.GetReportData<T>(new TotalBetsCriteria
             {
-                AgentId = agentId,
+                AgentId = UserSession.Current.AgentId,
                 BetType = betType
             });
         }
 
         public ViewResult Handicap()
         {
-            var model = GetViewModel<HandicapViewModel>(agentId: 3, betType: 1);
+            var model = GetViewModel<HandicapViewModel>(betType: 1);
             return View(model);
         }
 
         public ViewResult MoneyLine()
         {
-            var model = GetViewModel<MoneyLineViewModel>(agentId: 3, betType: 20);
+            var model = GetViewModel<MoneyLineViewModel>(betType: 20);
             return View(model);
         }
 
         public ViewResult TotalGoal()
         {
-            var model = GetViewModel<TotalGoalViewModel>(agentId: 3, betType: 6);
+            var model = GetViewModel<TotalGoalViewModel>(betType: 6);
             return View(model);
         }
 
         public ViewResult OddEven()
         {
-            var model = GetViewModel<OddEvenViewModel>(agentId: 3, betType: 2);
+            var model = GetViewModel<OddEvenViewModel>(betType: 2);
             return View(model);
         }
 
         public ViewResult HTFT()
         {
-            var model = GetViewModel<HTFTViewModel>(agentId: 3, betType: 16);
+            var model = GetViewModel<HTFTViewModel>(betType: 16);
             return View(model);
         }
 
         public ViewResult OutRight()
         {
-            var model = GetViewModel<OutRightViewModel>(agentId: 3, betType: 10);
+            var model = GetViewModel<OutRightViewModel>(betType: 10);
             return View(model);
         }
 
         public ViewResult NumberGame()
         {
-            var model = GetViewModel<NumberGameViewModel>(agentId: 3, betType: 161);
+            var model = GetViewModel<NumberGameViewModel>(betType: 161);
             return View(model);
         }
 
         public ViewResult HomeNoBet()
         {
-            var model = GetViewModel<HomeNoBetViewModel>(agentId: 3, betType: 25);
+            var model = GetViewModel<HomeNoBetViewModel>(betType: 25);
             return View(model);
         }
 
         public ViewResult FirstGoal()
         {
-            var model = GetViewModel<FirstGoalViewModel>(agentId: 3, betType: 14);
+            var model = GetViewModel<FirstGoalViewModel>(betType: 14);
             return View(model);
         }
     }
