@@ -1,0 +1,116 @@
+﻿@using Apollo.Age.TotalBets.ViewModels
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<FirstGoalViewModel>
+
+@helper ShowLeague(int currentLeagueId, FirstGoalViewModel item)
+{
+    if (currentLeagueId != item.LeagueId)
+    { 
+        <!--LeagueContents-->
+        <tr class="league">
+            <td colspan="6">
+                @item.LeagueName
+            </td>
+        </tr>
+    }            
+}
+
+@helper ShowMatch(int index, FirstGoalViewModel item)
+{
+    <tr>
+        <td class="c" rowspan="2">
+            @index
+        </td>
+        <td class="c bl_time" rowspan="2">
+            @Html.Raw(item.ShowTime)
+        </td>
+        <td>
+            <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" href="javascript:void(0);">
+                @item.HomeTeam
+            </a>
+        </td>
+        <td class="r">
+            @TotalBetHelper.FormatPositiveNumber(item.WinLost_HomeFG, numDecimals: 2)
+        </td>
+        <td class="r">
+            @TotalBetHelper.FormatPositiveNumber(item.WinLost_HomeLG, numDecimals: 2)
+        </td>
+        <td rowspan="2" class="r">
+            @TotalBetHelper.FormatPositiveNumber(item.WinLost_NoGoal, numDecimals: 2)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" href="javascript:void(0);">
+                @item.AwayTeam
+            </a>
+        </td>
+        <td class="r">
+            @TotalBetHelper.FormatPositiveNumber(item.WinLost_AwayFG, numDecimals: 2)
+        </td>
+        <td class="r">
+            @TotalBetHelper.FormatPositiveNumber(item.WinLost_AwayLG, numDecimals: 2)
+        </td>
+        
+    </tr>           
+}
+
+@RazorHelper.RefreshCountDown("FirstGoal", 90, 45)
+<table class="tblRpt">
+    <thead>
+        <tr>
+            <td style="width: 20px;">
+                #
+            </td>
+            <td style="width: 120px;">
+                @Resources.Lang.time
+            </td>
+            <td style="width: 200px;">
+                @Resources.Lang.homeaway
+            </td>
+            <td style="width: 100px;">
+                @Resources.Lang.firstgoal
+            </td>
+            <td style="width: 100px;">
+                @Resources.Lang.lastgoal
+            </td>
+            <td style="width: 100px;">
+                @Resources.Lang.nogoal
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            int rowIndex = 0;
+            int currentLeagueId = 0;
+
+            foreach (var item in Model)
+            {
+                rowIndex++;
+
+                @ShowLeague(currentLeagueId, item)
+                @ShowMatch(rowIndex, item)
+
+                currentLeagueId = item.LeagueId;
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(colspan: 6)
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script src="~/Views/TotalBets/Resources/TotalBets.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            totalBets.InitViewBetList();
+        });
+    </script>    
+}

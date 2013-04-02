@@ -45,11 +45,11 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public decimal Away_Odds_ANB { get; set; }
 
-        public decimal BetCount_DNB { get; set; }
+        public int BetCount_DNB { get; set; }
 
-        public decimal BetCount_HNB { get; set; }
+        public int BetCount_HNB { get; set; }
 
-        public decimal BetCount_ANB { get; set; }
+        public int BetCount_ANB { get; set; }
 
         public string HomeTeam
         {
