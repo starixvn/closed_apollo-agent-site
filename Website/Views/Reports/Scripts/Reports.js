@@ -6,8 +6,9 @@ if (typeof jQuery != 'undefined') {
         return {
             init: function () {
                 $("#AgentOutstanding").bind('click', function () {
-                    $.get('agentoutstanding', { 'agentId': $("#AgentOutstanding").attr("agentid") })
+                    $.get(parent.baseURL + '/reports/agentoutstanding', { 'agentId': $("#AgentOutstanding").attr("agentid") })
                         .done(function (data) {
+                            $("#gridId").hide();
                             $('#divDetail').html(data);
                         });
                 });
@@ -15,12 +16,13 @@ if (typeof jQuery != 'undefined') {
                 $("#MemberOutstanding").bind('click', function () {
                     $.ajax({
                         type: "POST",
-                        url: "memberoutstanding",
+                        url: parent.baseURL + "/reports/memberoutstanding",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: { 'agentId': $("#MemberOutstanding").attr("agentid") },
                         timeout: 120000,
                         success: function (result) {
+                            $("#divDetail").html(null);
                             REPORTS.initGrid(result);
                         },
                         error: function (event, jqXHR, ajaxSettings) {
@@ -32,7 +34,7 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             viewAgent: function (agentId) {
-                location.href = "outstanding?agentid=" + agentId;
+                location.href = parent.baseURL + "/reports/outstanding?agentid=" + agentId;
             },
             initGrid: function (outstandingData) {
                 var bodyData = [];
@@ -53,7 +55,7 @@ if (typeof jQuery != 'undefined') {
                         Columns:
                         [
                             { Name: "Agent", Value: current.UserName },
-                            { Name: "Outstanding", Value: current.Outstanding },
+                            { Name: "Outstanding", Value: current },
                             { Name: "ShareAmount", Value: current.ShareAmount },
                             { Name: "OutstandingGame", Value: current.GameOutstanding },
                             { Name: "ShareAmountGame", Value: current.GameShareAmount }
@@ -73,7 +75,11 @@ if (typeof jQuery != 'undefined') {
                         ],
                     columns: [
                          { HeaderText: "Agent", Width: 200, Name: "Agent", HeaderAlign: "center", CellAlign: "center" },
-                        { HeaderText: "Outstanding", Width: 150, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: "Outstanding", Width: 150, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right",
+                            CustomCellRender: function (cell) {
+                                return "<a href=''>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>";
+                            }
+                        },
                         { HeaderText: "Share Amount ", Width: 150, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                         { HeaderText: "Outstanding", Width: 150, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                         { HeaderText: "Share Amount ", Width: 150, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
