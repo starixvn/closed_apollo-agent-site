@@ -63,7 +63,7 @@
             + '&betteam=' + $(this).attr("bet-team");
             //location.href = url;
             ageWnd.openDialog(url, '', {
-                width: 900,
+                width: 930,
                 height: 770,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
