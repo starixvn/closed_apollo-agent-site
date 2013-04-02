@@ -16,16 +16,16 @@ td {
     text-align: center;    
 }
 
-.login-bg {
-	background: @gray;
-}
-
 #news_main {
     height: 53px;
     width: auto;
     overflow: hidden;
-    background: @primaryColor;
+    background: #ECE9D8;	
 
+	.login-bg {
+		background: @gray;
+		border-bottom: 1px solid @grayLighter;
+	}
 	.login-info {		
 		float: right;		
 		padding: 5px;
@@ -69,7 +69,7 @@ td {
 			a {
 				&#topnews {
 					text-decoration: none;
-					color: @white;
+					color: @grayDark;
 				}
 			}
 		}
@@ -82,7 +82,6 @@ td {
 
 		a {
 			&.b_top {
-				border-bottom: 1px #CE6F6F solid;
 				#gradient .vertical(#fff, #E6E6E6);
 				color: @grayDark;
 				cursor: pointer;
