@@ -77,7 +77,8 @@ namespace Apollo.Age.Reports.Controllers
             return View(models);
         }
 
-        public ViewResult MemberOutstanding()
+        [HttpPost]
+        public JsonResult MemberOutstanding()
         {
             int agentId = string.IsNullOrEmpty(HttpContext.Request["agentId"]) ? UserSession.Current.AgentId : Convert.ToInt32(HttpContext.Request["agentId"]);
             // call service to get report data here
@@ -86,7 +87,7 @@ namespace Apollo.Age.Reports.Controllers
                 AgentId = agentId
             });
 
-            return View(models);
+            return Json(models);
         }
 
         #endregion Outstanding Report
