@@ -113,28 +113,28 @@
                     @item.HomeTeam -vs- @item.AwayTeam
                 </td>
                 <td>
-                    <a class="fcnum" href="javascript:doViewBetList(@item.MatchId, 20, '{BetType}')">@ShowTotal(item.BetCount_Home, item.Home_Odds)</a>
+                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="20" betlist-type="BettypeMatch" href="javascript:void(0);">@ShowTotal(item.BetCount_Home, item.Home_Odds)</a>
                 </td>
                 <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 20, '{BetType}')">@ShowTotal(item.BetCount_Away, item.Away_Odds)</a>
+                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="20" betlist-type="BettypeMatch" href="javascript:void(0);">@ShowTotal(item.BetCount_Away, item.Away_Odds)</a>
                 </td>
                 <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 20, '{BetType}')">@ShowForecas(item.BetCount_Home, item.WinLost_Home)</a>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="20" betlist-type="BettypeMatch" href="javascript:void(0);">@ShowForecas(item.BetCount_Home, item.WinLost_Home)</a>
                 </td>
-                <td class="fcnum">
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 20, '{BetType}')">@ShowForecas(item.BetCount_Away, item.WinLost_Away)</a>
-                </td>
-                <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowTotal(item.BetCount_Home_HT, item.Home_Odss_HT)</a>
+                <td >
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="20" betlist-type="BettypeMatch" href="javascript:void(0);">@ShowForecas(item.BetCount_Away, item.WinLost_Away)</a>
                 </td>
                 <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowTotal(item.BetCount_Away_HT, item.Away_Odds_HT)</a>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="21" betlist-type="BettypeMatch" href="javascript:void(0);">@ShowTotal(item.BetCount_Home_HT, item.Home_Odss_HT)</a>
                 </td>
                 <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowForecas(item.BetCount_Home_HT, item.WinLost_Home_HT)</a>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId bet-type="21" betlist-type="BettypeMatch" href="javascript:void(0);">@ShowTotal(item.BetCount_Away_HT, item.Away_Odds_HT)</a>
                 </td>
                 <td>
-                    <a class="fcnum" href="javascript:doViewBetList({MatchId}, 21, '{BetType}')">@ShowForecas(item.BetCount_Away_HT, item.WinLost_Away_HT)</a>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="21" betlist-type="BettypeMatch" href="javascript:void(0);">@ShowForecas(item.BetCount_Home_HT, item.WinLost_Home_HT)</a>
+                </td>
+                <td>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="21" betlist-type="BettypeMatch" href="javascript:void(0);">@ShowForecas(item.BetCount_Away_HT, item.WinLost_Away_HT)</a>
                 </td>
             </tr>
             
@@ -148,3 +148,13 @@
         }
     </tbody>
 </table>
+
+@section scripts
+{
+    <script src="~/Views/TotalBets/Resources/TotalBets.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            totalBets.InitViewBetList();
+        });
+    </script>    
+}
