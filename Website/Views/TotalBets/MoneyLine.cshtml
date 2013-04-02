@@ -10,8 +10,8 @@
         if (currentLeagueId != item.LeagueId)
         { 
     <!--LeagueContents-->
-    <tr class="c">
-        <td colspan="11" class="league" style="padding-left: 20px;">
+    <tr class="league">
+        <td colspan="11" style="padding-left: 20px;">
             @item.LeagueName
         </td>
     </tr>
@@ -32,7 +32,7 @@
         }
 }
 @RazorHelper.RefreshCountDown("MoneyLine", 90, 60)
-<table class="tblRpt c" style="width: 100%">
+<table class="tblRpt" style="width: 100%">
     <thead>
         <tr class="RptHeader">
             <td rowspan="2">
@@ -86,14 +86,23 @@
             {
                 int rowIndex = 0;
                 int currentLeagueId = 0;
+                var classRow = string.Empty;
 
                 foreach (var item in Model)
                 {
                     rowIndex++;
+                    if (rowIndex % 2 == 0)
+                    {
+                        classRow = "alt";
+                    }
+                    else
+                    {
+                        classRow = string.Empty;
+                    }
             @ShowLeague(currentLeagueId, item)  
             
             <!--MatchContents-->
-            <tr class="r">
+            <tr class='r @classRow'>
                 <td class="w-order">
                     @rowIndex
                 </td>
