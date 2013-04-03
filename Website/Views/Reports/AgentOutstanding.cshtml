@@ -32,9 +32,16 @@
     </thead>
     @if (Model != null && Model.Any())
     {
-
+        decimal outStandingTotal = 0;
+        decimal shareAmountTotal = 0;
+        decimal gameOutstandingTotal = 0;
+        decimal gameShareAmountTotal = 0;
         foreach (OutstandingViewModel item in Model)
         {
+            outStandingTotal += item.Outstanding;
+            shareAmountTotal += item.ShareAmount;
+            gameOutstandingTotal += item.GameOutstanding;
+            gameShareAmountTotal += item.GameShareAmount;
         <tr>
             <td>
                 <a href="#" onclick="REPORTS.viewAgent(@item.AgentId);">
@@ -61,16 +68,16 @@
                 @Resources.Lang.total
             </td>
             <td class="r">
-                @Formater.FormatNumber20(Model.Sum(x => x.Outstanding), "en-US")
+                @Formater.FormatNumber20(outStandingTotal, "en-US")
             </td>
             <td class="r">
-                @Formater.FormatNumber20(Model.Sum(x => x.ShareAmount), "en-US")
+                @Formater.FormatNumber20(shareAmountTotal, "en-US")
             </td>
             <td class="r">
-                @Formater.FormatNumber20(Model.Sum(x => x.GameOutstanding), "en-US")
+                @Formater.FormatNumber20(gameOutstandingTotal, "en-US")
             </td>
             <td class="r">
-                @Formater.FormatNumber20(Model.Sum(x => x.GameShareAmount), "en-US")
+                @Formater.FormatNumber20(gameShareAmountTotal, "en-US")
             </td>
         </tr>
     }

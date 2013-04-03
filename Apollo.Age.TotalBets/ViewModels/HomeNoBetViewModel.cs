@@ -33,23 +33,23 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public int AwayId { get; set; }
 
-        public decimal Home_Odds_DNB { get; set; }
+        public decimal HomeOddsDNB { get; set; }
 
-        public decimal Away_Odds_DNB { get; set; }
+        public decimal AwayOddsDNB { get; set; }
 
-        public decimal Home_Odds_HNB { get; set; }
+        public decimal HomeOddsHNB { get; set; }
 
-        public decimal Away_Odds_HNB { get; set; }
+        public decimal AwayOddsHNB { get; set; }
 
-        public decimal Home_Odds_ANB { get; set; }
+        public decimal HomeOddsANB { get; set; }
 
-        public decimal Away_Odds_ANB { get; set; }
+        public decimal AwayOddsANB { get; set; }
 
-        public int BetCount_DNB { get; set; }
+        public int BetCountDNB { get; set; }
 
-        public int BetCount_HNB { get; set; }
+        public int BetCountHNB { get; set; }
 
-        public int BetCount_ANB { get; set; }
+        public int BetCountANB { get; set; }
 
         public string HomeTeam
         {

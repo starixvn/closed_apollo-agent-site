@@ -32,8 +32,8 @@
         }
 }
 @RazorHelper.RefreshCountDown("MoneyLine", 90, 60)
-<table class="tblRpt" style="width: 100%">
-    <thead>
+<table class="tblRpt persist-area" style="width: 100%">
+    <thead class="persist-header">
         <tr class="RptHeader">
             <td rowspan="2">
                 @Resources.Lang.no
@@ -155,6 +155,7 @@
     <script type="text/javascript">
         $(function () {
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>    
 }
