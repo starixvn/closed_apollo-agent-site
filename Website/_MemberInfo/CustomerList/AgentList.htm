@@ -1,6 +1,6 @@
 ﻿<div class="error-msg">{static:new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template()}</div>
-<div class="title_header">
-    <div id="header_main">{static:Resources.Lang.lblAgentListOf} {AgentName}</div>
+<div id="header_main">
+    <div class="header-title">{static:Resources.Lang.lblAgentListOf} {AgentName}</div>
     <div class="edit-setting">{IconEditSetting}</div>
 </div>
 <div id="box_header">{searchControl}</div>
@@ -15,14 +15,12 @@
     <link href="Components/Print_Control/Resources/Print.css" rel="stylesheet" type="text/css"
         media="print" />
     {pagingHeader}
-    <div class="list">
-        <div class="container-sub-nav">
-            <ul class="sub-nav">
-                <li class="active">{static:Resources.Lang.lblAgentList}</li>
-                <li><span class="line">|</span><a href="{urlMemberList}">{static:Resources.Lang.lblPlayerList}</a></li>
-            </ul>
-        </div>
-        <table id="tblCustomerList" class="tblRpt">
+    <div class="list">       
+        <ul class="sub-nav">
+            <li class="active">{static:Resources.Lang.lblAgentList}</li>
+            <li><span class="line">|</span><a href="{urlMemberList}">{static:Resources.Lang.lblPlayerList}</a></li>
+        </ul>        
+        <table class="tblRpt">
             <!--Header-->
             <thead>
                 <tr>

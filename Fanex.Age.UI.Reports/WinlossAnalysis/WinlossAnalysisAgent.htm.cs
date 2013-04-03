@@ -94,7 +94,7 @@ namespace Fanex.Age.UI.Reports
 		{
 			protected static string s19 = "<table class=\"tblRpt ";
 			public string BoldRow = "{BoldRow}";
-			protected static string s20 = "\" width=\"750\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\"><tr id=\"rowTitle\" class=\"RptTitle\"><td id=\"content_title\" colspan=\"10\">";
+			protected static string s20 = "\" width=\"750\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\"><tr class=\"RptTitle\"><td colspan=\"10\">";
 			public string title = "{title}";
 			protected static string s21 = " <span id='spSumaryDate'>";
 			public string DateFrom = "{DateFrom}";

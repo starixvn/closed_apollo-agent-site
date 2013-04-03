@@ -111,6 +111,12 @@
         if ($(".persist-area").val() != undefined) {
             var widthspace = $(".persist-area").width() + 18;
 
+//            var offsetIE = 0;
+//            if (APOLLO.browser.msie) {
+//                offsetIE = -10;
+//                console.log(APOLLO.browser.version)
+//            }
+
             $('.floatingHeader').width(widthspace);
             var left = $('table thead tr:first').position()["left"];
             $(".persist-area").each(function () {

@@ -32,28 +32,65 @@ if (typeof jQuery != 'undefined') {
                 return $.parseJSON(value.replaceAll("'", "\""));
             },
             reCheckIn: function () {
-//                $.ajax({
-//                    type: "POST",
-//                    url: window.baseURL + "Account/ReCheckIn",
-//                    contentType: "application/json; charset=utf-8",
-//                    dataType: "json",
-//                    data: null,
-//                    timeout: 120000,
-//                    success: function (rs) {
-//                        if (rs.ErrCode == 3) {
-//                            alert("Your Account was kicked out.")
-//                            location.href = window.baseURL + "Account/SignOut";
-//                        }
-//                    },
-//                    error: function (event, jqXHR, ajaxSettings) {
-//                    },
-//                    complete: function () {
-//                    }
-//                });
+                //                $.ajax({
+                //                    type: "POST",
+                //                    url: window.baseURL + "Account/ReCheckIn",
+                //                    contentType: "application/json; charset=utf-8",
+                //                    dataType: "json",
+                //                    data: null,
+                //                    timeout: 120000,
+                //                    success: function (rs) {
+                //                        if (rs.ErrCode == 3) {
+                //                            alert("Your Account was kicked out.")
+                //                            location.href = window.baseURL + "Account/SignOut";
+                //                        }
+                //                    },
+                //                    error: function (event, jqXHR, ajaxSettings) {
+                //                    },
+                //                    complete: function () {
+                //                    }
+                //                });
             }
         };
     } (jQuery);
 }
+
+var matchedBrowser, browserDectect;
+
+// Use of jQuery.browser is frowned upon.
+// More details: http://api.jquery.com/jQuery.browser
+// jQuery.uaMatch maintained for back-compat
+function ubMatch(ua) {
+    ua = ua.toLowerCase();
+
+    var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
+        /(webkit)[ \/]([\w.]+)/.exec(ua) ||
+        /(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
+        /(msie) ([\w.]+)/.exec(ua) ||
+        ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
+        [];
+
+    return {
+        browserDectect: match[1] || "",
+        version: match[2] || "0"
+    };
+};
+
+matchedBrowser = ubMatch(navigator.userAgent);
+browserDectect = {};
+
+if (matchedBrowser.browserDectect) {
+    browserDectect[matchedBrowser.browserDectect] = true;
+    browserDectect.version = matchedBrowser.version;
+}
+
+// Chrome is Webkit, but Webkit is also Safari.
+if (browserDectect.chrome) {
+    browserDectect.webkit = true;
+} else if (browserDectect.webkit) {
+    browserDectect.safari = true;
+}
+APOLLO.browser = browserDectect;
 
 String.Empty = ""; // Extend static string
 

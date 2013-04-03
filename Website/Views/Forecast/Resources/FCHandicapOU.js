@@ -2,13 +2,14 @@
 
 var fcHandicapOu =
 {
-    CurrentLeague: initLeague,
+    CurrentLeague: 0,
     Init: function () {
-        if (fcHandicapOu.CurrentLeague != 0) {
+        fcHandicapOu.CurrentLeague = $('#ddlLeague').val();
+        if (fcHandicapOu.CurrentLeague) {
             $('#ddlLeague').on("change", function () {
                 var $this = $(this);
                 fcHandicapOu.CurrentLeague = $this.val();
-                if (fcHandicapOu.CurrentLeague != 0) {
+                if (fcHandicapOu.CurrentLeague) {
                     fcHandicapOu.ChangeLeague();
                 }
             });
@@ -45,8 +46,3 @@ var fcHandicapOu =
 $(function () {
     fcHandicapOu.Init();
 });
-
-function ReloadMatches() {
-    RefreshCountDown_Init();
-    $('#ddlLeague').trigger("change");
-}
