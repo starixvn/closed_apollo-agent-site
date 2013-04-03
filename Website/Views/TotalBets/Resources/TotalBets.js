@@ -110,17 +110,6 @@
     updateTableHeaders: function () {
         if ($(".persist-area").val() != undefined) {
             var widthspace = $(".persist-area").width() + 18;
-            //            if ($.browser.safari) {
-            //                leftspace = 192;
-            //                widthspace = widthspace - 8;
-            //                if (widthspace < 1060)
-            //                    widthspace = 1060;
-            //            }
-            //            else {
-            //                widthspace = widthspace - 17;
-            //                if (widthspace < 1051)
-            //                    widthspace = 1051;
-            //            }
 
             $('.floatingHeader').width(widthspace);
             var left = $('table thead tr:first').position()["left"];
@@ -132,7 +121,7 @@
                 if ((scrollTop > offset.top - 60) && (scrollTop < offset.top + el.height())) {
                     floatingHeader.css({
                         "visibility": "visible",
-                        "left": left
+                        "left": (left - $(window).scrollLeft())
                     });
                 } else {
                     floatingHeader.css({
@@ -140,9 +129,6 @@
                     });
                 };
             });
-
-            //alert($('.floatingHeader').width());
-            console.log(left);
 
             var i = 0;
             $("table .persist-header td").each(function () {
