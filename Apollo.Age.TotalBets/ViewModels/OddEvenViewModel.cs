@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.4.1">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.4.3">Update Mapping SP Property</change>
 // </history>
 
 
@@ -30,23 +31,23 @@ namespace Apollo.Age.TotalBets.ViewModels
         public int MatchId { get; set; }
         public int HomeId { get; set; }
         public int AwayId { get; set; }
-        public decimal home_odds_OE { get; set; }
-        public decimal away_odds_OE { get; set; }
-        public decimal home_odds_OE_1st { get; set; }
-        public decimal away_odds_OE_1st { get; set; }
-        public decimal odds_1 { get; set; }
-        public decimal odds_x { get; set; }
-        public decimal odds_2 { get; set; }
-        public decimal odds_1_1st { get; set; }
-        public decimal odds_x_1st { get; set; }
-        public decimal odds_2_1st { get; set; }
-        public decimal home_odds_DND { get; set; }
-        public decimal away_odds_DND { get; set; }
-        public int BetCount_OE { get; set; }
-        public int BetCount_OE_1st { get; set; }
-        public int BetCount_1x2 { get; set; }
-        public int BetCount_1x2_1st { get; set; }
-        public int BetCount_DND { get; set; }
+        public decimal HomeOddsOddEven { get; set; }
+        public decimal AwayOddsOddEven { get; set; }
+        public decimal HomeOddsHaftTimeOddEven { get; set; }
+        public decimal AwayOddsHaftTimeOddEven { get; set; }
+        public decimal Odds1 { get; set; }
+        public decimal OddsX { get; set; }
+        public decimal Odds2 { get; set; }
+        public decimal Odds1HaftTime { get; set; }
+        public decimal OddsXHaftTime { get; set; }
+        public decimal Odds2HaftTime { get; set; }
+        public decimal HomeOddsDrawNoDraw { get; set; }
+        public decimal AwayOddsDrawNoDraw { get; set; }
+        public int BetCountOddEven { get; set; }
+        public int BetCountHaftTimeOddEven { get; set; }
+        public int BetCount1X2 { get; set; }
+        public int BetCount1X2HaftTime { get; set; }
+        public int BetCountDrawNoDraw { get; set; }
         public bool IsNeutral { get; set; }
 
         public string HomeTeam
@@ -75,7 +76,7 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public decimal OddEvenTotal { 
             get {
-                    return this.home_odds_OE - this.away_odds_OE;
+                    return this.HomeOddsOddEven - this.AwayOddsOddEven;
             } 
         }
 
@@ -83,7 +84,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return this.odds_1 + this.odds_x + this.odds_2;
+                return this.Odds1 + this.OddsX + this.Odds2;
             }
         }
 
@@ -91,7 +92,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return this.home_odds_DND - this.away_odds_DND;
+                return this.HomeOddsDrawNoDraw - this.AwayOddsDrawNoDraw;
             }
         }
 
@@ -99,7 +100,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return this.home_odds_OE_1st - this.away_odds_OE_1st;
+                return this.HomeOddsHaftTimeOddEven - this.AwayOddsHaftTimeOddEven;
             }
         }
 
@@ -107,7 +108,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return this.odds_1_1st + this.odds_x_1st + this.odds_2_1st;
+                return this.Odds1HaftTime + this.OddsXHaftTime + this.Odds2HaftTime;
             }
         }
     }

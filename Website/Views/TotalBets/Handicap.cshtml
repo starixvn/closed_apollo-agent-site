@@ -71,10 +71,10 @@
         <td>
             @item.HomeTeam -vs- @item.AwayTeam
         </td>
-        @ShowBlock(1, item.MatchId, item.Home_Odds_HDP, item.Away_Odds_HDP)
-        @ShowBlock(3, item.MatchId, item.Home_Odds_OU, item.Away_Odds_OU)
-        @ShowBlock(7, item.MatchId, item.Home_Odds_HTHDP, item.Away_Odds_HTHDP)
-        @ShowBlock(8, item.MatchId, item.Home_Odds_HTOU, item.Away_Odds_HTOU)
+        @ShowBlock(1, item.MatchId, item.HomeOddsHandicap, item.AwayOddsHandicap)
+        @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder)
+        @ShowBlock(7, item.MatchId, item.HomeOddsHaftTimeHandicap, item.AwayOddsHaftTimeHandicap)
+        @ShowBlock(8, item.MatchId, item.HomeOddHaftTimeOverUnder, item.AwayOddHaftTimeOverUnder)
     </tr>           
 }
 

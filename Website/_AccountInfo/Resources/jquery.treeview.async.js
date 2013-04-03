@@ -14,20 +14,29 @@
 */
 
 ; (function ($) {
+    
+    function stringFormat () {
+      var s = arguments[0];
+      for (var i = 0; i < arguments.length - 1; i++) {       
+          var reg = new RegExp("\\{" + i + "\\}", "gm");             
+          s = s.replace(reg, arguments[i + 1]);
+      }
+      return s;
+    }
 
-    function load(settings, root, child, container) {
-        $.getJSON(settings.url, { root: root }, function (response) {
+    function load(settings, root, child, container, link) {
+        $.getJSON(settings.url+"/" + root, null, function (response) {
             function createNode(parent) {
-                var current = $("<li/>").attr("id", this.Id || "").html("<span>" + this.Text + "</span>").appendTo(parent);
+                var current = $("<li/>").attr("id", this.Id || "").html("<span>" + stringFormat(settings.link, this.Id, this.Username, this.Username)  + "</span>").appendTo(parent);
                 if (this.classes) {
                     current.children("span").addClass(this.classes);
                 }
                 if (this.expanded) {
                     current.addClass("open");
                 }
-                if (this.HasChildren || this.children && this.children.length) {
+                if (this.HasAgentDownline || this.children && this.children.length) {
                     var branch = $("<ul/>").appendTo(current);
-                    if (this.HasChildren) {
+                    if (this.HasAgentDownline) {
                         current.addClass("hasChildren");
                         createNode.call({
                             text: "placeholder",
@@ -47,12 +56,13 @@
 
     var proxied = $.fn.treeview;
     $.fn.treeview = function (settings) {
+        //alert(stringFormat(settings.link, 1, 2,3));
         if (!settings.url) {
             return proxied.apply(this, arguments);
         }
         var container = this;
         //load(settings, "source", this, container);
-        load(settings, "-1", this, container); // -1 is dummy root node id
+        load(settings, settings.custid, this, container, settings.link); // -1 is dummy root node id
         var userToggle = settings.toggle;
         return proxied.call(this, $.extend({}, settings, {
             collapsed: true,
@@ -61,7 +71,7 @@
                 if ($this.hasClass("hasChildren")) {
                     var childList = $this.removeClass("hasChildren").find("ul");
                     childList.empty();
-                    load(settings, this.id, childList, container);
+                    load(settings, this.id, childList, container, settings.link);
                 }
                 if (userToggle) {
                     userToggle.apply(this, arguments);

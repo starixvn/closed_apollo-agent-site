@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders" date="2013.3.30">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.4.3">Update Mapping SP Property</change>
 // </history>
 
 
@@ -31,21 +32,21 @@ namespace Apollo.Age.TotalBets.ViewModels
         public string MatchCode { get; set; }
         public int BetCount_Hdp { get; set; }
 
-        public decimal Home_Odds_HDP { get; set; }
-        public decimal Away_Odds_HDP { get; set; }
-        public int BetCound_HDP { get; set; }
+        public decimal HomeOddsHandicap { get; set; }
+        public decimal AwayOddsHandicap { get; set; }
+        public int BetCountHandicap { get; set; }
 
-        public decimal Home_Odds_HTHDP { get; set; }
-        public decimal Away_Odds_HTHDP { get; set; }
-        public int BetCount_HTHDP { get; set; }
+        public decimal HomeOddsHaftTimeHandicap { get; set; }
+        public decimal AwayOddsHaftTimeHandicap { get; set; }
+        public int BetCountHaftTimeHandicap { get; set; }
 
-        public decimal Home_Odds_OU { get; set; }
-        public decimal Away_Odds_OU { get; set; }
-        public int BetCount_OU { get; set; }
+        public decimal HomeOddsOverUnder { get; set; }
+        public decimal AwayOddsOverUnder { get; set; }
+        public int BetCountOverUnder { get; set; }
 
-        public decimal Home_Odds_HTOU { get; set; }
-        public decimal Away_Odds_HTOU { get; set; }
-        public int BetCount_HTOU { get; set; }
+        public decimal HomeOddHaftTimeOverUnder { get; set; }
+        public decimal AwayOddHaftTimeOverUnder { get; set; }
+        public int BetCountHaftTimeOverUnder { get; set; }
 
         public string HomeTeam
         {

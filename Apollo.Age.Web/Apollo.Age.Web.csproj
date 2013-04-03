@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Common">
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,6 +67,12 @@
     <Compile Include="BaseController.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
+      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
+      <Name>Sunplus.Agent.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

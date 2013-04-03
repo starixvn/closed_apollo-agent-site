@@ -118,8 +118,8 @@ namespace Fanex.Agent.UI
 
 		public class SettingBox_HiddenBlockTabAgent_TreeViewBlock_Block: Block
 		{
-			protected static string s16 = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?agentid=";
-			public string AgentId = "{AgentId}";
+			protected static string s16 = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/AgentTreeList.html?custid=";
+			public string CustId = "{CustId}";
 			protected static string s17 = "' style='width:98%;height: 100%'></iframe>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -127,7 +127,7 @@ namespace Fanex.Agent.UI
 				if(RenderChild)
 				{
 					bd.Append(s16);
-					bd.Append(AgentId);
+					bd.Append(CustId);
 					bd.Append(s17);
 				}
 				if(IsAssigned){bd.Append(Value);}
