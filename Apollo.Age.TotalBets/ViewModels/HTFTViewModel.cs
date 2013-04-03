@@ -25,15 +25,15 @@ namespace Apollo.Age.TotalBets.ViewModels
         public int HomeId { get; set; }
         public int AwayId { get; set; }
         public string MatchCode { get; set; }
-        public decimal totalHH { get; set; }
-        public decimal totalHD { get; set; }
-        public decimal totalHA { get; set; }
-        public decimal totalDH { get; set; }
-        public decimal totalDD { get; set; }
-        public decimal totalDA { get; set; }
-        public decimal totalAH { get; set; }
-        public decimal totalAD { get; set; }
-        public decimal totalAA { get; set; }
+        public decimal TotalHH { get; set; }
+        public decimal TotalHD { get; set; }
+        public decimal TotalHA { get; set; }
+        public decimal TotalDH { get; set; }
+        public decimal TotalDD { get; set; }
+        public decimal TotalDA { get; set; }
+        public decimal TotalAH { get; set; }
+        public decimal TotalAD { get; set; }
+        public decimal TotalAA { get; set; }
         public bool IsNeutral { get; set; }
 
         public string HomeTeam

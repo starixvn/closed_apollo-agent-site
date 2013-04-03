@@ -33,7 +33,7 @@ namespace Apollo.Age.TotalBets.Criterias
                     return "Age_TotalBets_20_21";
                 case 2: // Odd/Even
                     return "Age_TotalBets_2_5_12_15_123";
-                case 16:
+                case 16: // HTFT
                     return "Age_TotalBets_16";
                 case 161: // Number Game
                     return "Age_TotalBets_161";
@@ -41,7 +41,7 @@ namespace Apollo.Age.TotalBets.Criterias
                     return "Age_TotalBets_25_121_122";
                 case 14: // First Goal/Last Goal
                     return "Age_TotalBets_14";
-                case 10:
+                case 10: // Out Right
                     return "Age_TotalBets_10";
             }
 

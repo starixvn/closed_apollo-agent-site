@@ -23,7 +23,7 @@ namespace Fanex.Agent.UI
 			public Header_CssAgent_Block CssAgent = new Header_CssAgent_Block();
 			protected static string s5 = "</head><body>";
 			public string flash = "{flash}";
-			protected static string s6 = "<div id=\"banner_main\"><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td colspan=\"2\" class=\"login-bg\"><div class=\"login-info\">";
+			protected static string s6 = "<div id=\"banner_main\"><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td colspan=\"2\" class=\"login-bg\"><b style=\"line-height: 2em; color: #555\">This bar is for testing only and will be removed later</b><div class=\"login-info\">";
 			protected static string s7{get{return Resources.Lang.lblWebHostLogin;}}
 			protected static string s8 = "<span class=\"username\">";
 			public Header_SetUserName_Block SetUserName = new Header_SetUserName_Block();

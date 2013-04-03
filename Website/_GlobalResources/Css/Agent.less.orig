@@ -1,5 +1,6 @@
 ﻿@import "variables.less";
 @import "mixins.less";
+@import "sprites.less";
 
 /* UTILITIES */
 .pull-right			{ float: right }
@@ -34,6 +35,12 @@ a {
 	text-decoration: none;
 
 	&:hover { color: @hoverLinkColor }
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
 }
 
 table {
@@ -82,27 +89,21 @@ table {
 /* MAIN ELEMENTS */
 
 #page_main {
-	padding: 37px 0 0;
+	padding: 0;
 }
 
+<<<<<<< HEAD
 #header_main {
-	position: fixed;
+=======
+#header_main {	
 	top: 0;
 	left: 0;
 	right: 0;
 	z-index: 99;
-<<<<<<< HEAD
-	padding: 10px;
-
-	#gradient.vertical(#F8F8F8, #EAEAEA);
-	border-bottom: 1px solid @borderColor;
-	.box-shadow(~"0 1px 0 0 #fff inset, 0 1px 0 0 #fff");
-
-=======
+>>>>>>> cbf56e505440616709b5486cbbfddf990dc302e0
 	padding: 10px 0 6px;
-	margin-left: 10px;
+	margin:  0 10px;
 	border-bottom: 1px solid @grayLight;
->>>>>>> 35578fe06f1253dd12fee4999f628acf9837cd2d
 	text-transform: uppercase;
 	color: @titleColor;
 	font-size: 1.1em;
@@ -184,11 +185,16 @@ table {
 				td { padding: 4px 4px 4px 30px }
 			}
 			&:hover { background-color: @rowHoverBackground }
+
+			&.RptFooter:hover {
+				background: @rowTotalBackground;
+			}
 		}
 	}
 
 	.RptFooter {
-		background: url(../images/bg_f01.jpg) repeat-x center top #783819;
+		//background: url(../images/bg_f01.jpg) repeat-x center top #783819;
+		background: @rowTotalBackground;
 		color: @white;
 		.bold;
 	}

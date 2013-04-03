@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders" date="2013.3.31">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.4.3">Update Mapping SP Property</change>
 // </history>
 
 namespace Apollo.Age.TotalBets.ViewModels
@@ -37,30 +38,30 @@ namespace Apollo.Age.TotalBets.ViewModels
         public short LiveAwayScore { get; set; }
 
 
-        public decimal Home_Odds { get; set; }
+        public decimal HomeOdds { get; set; }
 
-        public decimal Away_Odds { get; set; }
+        public decimal AwayOdds { get; set; }
 
-        public decimal WinLost_Home { get; set; }
+        public decimal HomeWinLost { get; set; }
 
-        public decimal WinLost_Away { get; set; }
+        public decimal AwayWinLost { get; set; }
 
-        public int BetCount_Home { get; set; }
+        public int BetCountHome { get; set; }
 
-        public int BetCount_Away { get; set; }
+        public int BetCountAway { get; set; }
 
 
-        public decimal Home_Odss_HT { get; set; }
+        public decimal HomeOddsHaftTime { get; set; }
 
-        public decimal Away_Odds_HT { get; set; }
+        public decimal AwayOddsHaftTime { get; set; }
 
-        public decimal WinLost_Home_HT { get; set; }
+        public decimal HomeHaftTimeWinLost { get; set; }
 
-        public decimal WinLost_Away_HT { get; set; }
+        public decimal AwayHaftTimeWinLost { get; set; }
 
-        public int BetCount_Home_HT { get; set; }
+        public int BetCountHomeHaftTime { get; set; }
 
-        public int BetCount_Away_HT { get; set; }
+        public int BetCountAwayHaftTime { get; set; }
 
 
         public bool IsNeutral { get; set; }
