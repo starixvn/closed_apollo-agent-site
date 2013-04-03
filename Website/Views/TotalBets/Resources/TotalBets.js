@@ -8,7 +8,7 @@
             + '&b=' + $(this).attr("bet-type");
 
             ageWnd.openDialog(url, '', {
-                width: 655,
+                width: 665,
                 height: 320,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
@@ -79,8 +79,8 @@
             + 'matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type");
             ageWnd.openDialog(url, '', {
-                width: 650,
-                height: 470,
+                width: 350,
+                height: 520,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
                     countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);

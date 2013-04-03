@@ -1,0 +1,112 @@
+﻿@using Apollo.Age.Forecast.ViewModels
+@{
+    Layout = null;
+}
+@model IEnumerable<ForecastHandicapOUViewModel>
+@helper ShowTime(ForecastHandicapOUViewModel fcItem)
+    {
+    if (fcItem.LiveIndicator)
+    {
+    @Html.Raw(fcItem.LiveHomeScore + " - " + fcItem.LiveAwayScore + "&nbsp;&nbsp;&nbsp;&nbsp;<i><font style='color:red;'>" + Resources.Lang.lblLive + "</font></i>")
+    }
+    else
+    {
+    @Html.Raw(fcItem.ShowTime)
+    }    
+}
+@{
+    if (Model != null && Model.Any())
+    {
+
+        foreach (ForecastHandicapOUViewModel fcItem in Model)
+        {
+            var offsetHDP = fcItem.LiveHomeScore - fcItem.LiveAwayScore;
+            var offsetOU = fcItem.LiveHomeScore + fcItem.LiveAwayScore;
+            <!--RowContent-->
+            <tr class="league">
+                <td colspan="8">
+                    @fcItem.HomeTeam -vs- @fcItem.AwayTeam
+                </td>
+            </tr>
+            <tr class="c">
+                <td colspan="2">
+                    @ShowTime(fcItem)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @((offsetHDP - 1).ToString())
+                </td>
+                <td class="bold" style="width: 8%; background-color: #ffefde">
+                    @(offsetHDP)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @((offsetHDP + 1).ToString())
+                </td>
+                <td class="bold" style="width: 8%">
+                    @((offsetOU + 2).ToString())
+                </td>
+                <td class="bold" style="width: 8%">
+                    @((offsetOU + 1).ToString())
+                </td>
+                <td class="bold" style="width: 8%; background-color: #ffefde">
+                    @offsetOU
+                </td>
+            </tr>
+            <tr class="c">
+                <td style="width: 15%">
+                    @Resources.Lang.fulltime
+                </td>
+                <td style="width: 1%">
+                    <a match-id="@fcItem.MatchId" bet-type="1"  href="javascript:void(0)" class="btnInfo view-forecast-detail"></a>
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.HandicapWinLostMinus1, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.HandicapWinLostBase, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.HandicapWinLostPlus1, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.OverUnderWinLost2, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.OverUnderWinLost1, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.OverUnderWinLostBase, showZero: true)
+                </td>
+            </tr>
+            <tr class="c">
+                <td style="width: 15%">
+                    @Resources.Lang.halftime
+                </td>
+                <td style="width: 1%">
+                    <a match-id="@fcItem.MatchId" bet-type="7"  href="javascript:void(0)" class="btnInfo view-forecast-detail"></a>
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.HaftTimeHandicapWinLostMinus1, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.HaftTimeHandicapWinLostBase, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.HaftTimeHandicapWinLostPlus1, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.HaftTimeOverUnderWinLost2, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.HaftTimeOverUnderWinLost1, showZero: true)
+                </td>
+                <td class="bold" style="width: 8%">
+                    @TotalBetHelper.FormatPositiveNumber(fcItem.HaftTimeOverUnderWinLostBase, showZero: true)
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        @RazorHelper.ShowNoInfo(colspan: 8)
+    }
+}

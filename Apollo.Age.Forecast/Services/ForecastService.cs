@@ -50,5 +50,23 @@ namespace Apollo.Age.Forecast.Services
                     }
                 );
         }
+
+        public IEnumerable<ForecastHandicapOUViewModel> GetForecastHandicapOverUnder(int agentId, int leagueId)
+        {
+            Check.Argument.IsNotNegative(agentId, "agentId");
+            Check.Argument.IsNotNegative(leagueId, "leagueId");
+
+            return GetReportData<ForecastHandicapOUViewModel>(
+                    new GetForecastHandicapOverUnder
+                    {
+                        AgentId = agentId,
+                        LeagueID = leagueId,
+                        BaseOffsetHDP = 0,
+                        BaseOffsetHTHDP = 0,
+                        BaseOffsetHTOU = 0,
+                        BaseOffsetOU = 0
+                    }
+                );
+        }
     }
 }
