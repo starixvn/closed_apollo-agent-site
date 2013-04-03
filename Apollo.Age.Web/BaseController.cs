@@ -14,9 +14,15 @@ namespace Apollo.Age.Web
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Fanex.Common;
 
     public class BaseController : Controller
     {
-
+        protected int AgentId {
+            get
+            {
+                return Converter.ToInt(HttpContext.Session[HttpContext.Session.SessionID + "_Apollo-AgentId"]);
+            }
+        }
     }
 }

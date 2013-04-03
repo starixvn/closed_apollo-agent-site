@@ -14,12 +14,21 @@ namespace Apollo.Age.Forecast.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Apollo.Age.Services;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class LeagueViewModel
     {
-
+        public int LeagueId { get; set; }
+        public byte SportType { get; set; }
+        public string LeagueName
+        {
+            get
+            {
+                return CacheRef.GetLeagueName(this.LeagueId);
+            }
+        }
     }
 }

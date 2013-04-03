@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Edward.Nguyen" date="2013.3.29">Implement</change>
+//   <change who="Ricky.Nguyen" date="2013.4.3">Update Mapping SP Property</change>
 // </history>
 
 namespace Apollo.Age.TotalBets.ViewModels
@@ -19,12 +20,21 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public int AwayId { get; set; }
 
+        /// <summary>
+        /// BetTeam in 0-1
+        /// </summary>
         public decimal Total01 { get; set; }
-
+        /// <summary>
+        /// BetTeam in 2-3
+        /// </summary>
         public decimal Total23 { get; set; }
-
+        /// <summary>
+        /// BetTeam in 4-6
+        /// </summary>
         public decimal Total46 { get; set; }
-
+        /// <summary>
+        /// BetTeam in 7 - Over
+        /// </summary>
         public decimal Total7Over { get; set; }
 
         public bool IsNeutral { get; set; }

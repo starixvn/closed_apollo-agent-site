@@ -60,9 +60,11 @@ namespace Apollo.Age.Reports.Controllers
                 AgentId = agentId
             });
 
-            ViewBag.AgentDownlinePath = AgentDownlinePath(agentId);
-
-            return View(models);
+            return View(new OutstandingDownlinePathViewModel()
+            {
+                ListOutStanding = models,
+                DownlinePath = AgentDownlinePath(agentId)
+            });
         }
 
         public ViewResult AgentOutstanding()

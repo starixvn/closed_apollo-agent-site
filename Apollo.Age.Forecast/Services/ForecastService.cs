@@ -36,6 +36,19 @@ namespace Apollo.Age.Forecast.Services
                     }
                 );
         }
-        
+
+        public IEnumerable<Forecast1X2ViewModel> GetForecast1x2(int agentId, int leagueId)
+        {
+            Check.Argument.IsNotNegative(agentId, "agentId");
+            Check.Argument.IsNotNegative(leagueId, "leagueId");
+
+            return GetReportData<Forecast1X2ViewModel>(
+                    new GetForecast1X2GetByLeague
+                    {
+                        AgentId = agentId,
+                        LeagueID = leagueId
+                    }
+                );
+        }
     }
 }

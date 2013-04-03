@@ -21,20 +21,20 @@ namespace Apollo.Age.TotalBets.ViewModels
     /// </summary>
     public class OutRightViewModel
     {
-        public int leagueid { get; set; }
-        public string matchcode { get; set; }
-        public int orid { get; set; }
-        public int teamid { get; set; }
-        public decimal balance { get; set; }
+        public int LeagueId { get; set; }
+        public string MatchCode { get; set; }
+        public int MatchId { get; set; }
+        public int TeamId { get; set; }
+        public decimal Balance { get; set; }
         public int BetCount { get; set; }
-        public decimal totalwinlost { get; set; }
+        public decimal TotalWinLost { get; set; }
         public bool IsNeutral { get; set; }
 
         public string TeamName
         {
             get
             {
-                return CacheRef.GetTeamName(this.teamid);
+                return CacheRef.GetTeamName(this.TeamId);
             }
         }
 
@@ -42,7 +42,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return CacheRef.GetLeagueName(this.leagueid);
+                return CacheRef.GetLeagueName(this.LeagueId);
             }
         }
     }
