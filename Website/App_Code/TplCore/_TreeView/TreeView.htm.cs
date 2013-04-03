@@ -13,15 +13,15 @@ namespace Fanex.Agent.UI
 	{
 		public class TreeView_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE HTML><!--[if lt IE 7 ]> <html class=\"ie6\"> <![endif]--><!--[if IE 7 ]> <html class=\"ie7\"> <![endif]--><!--[if IE 8 ]> <html class=\"ie8\"> <![endif]--><!--[if IE 9 ]> <html class=\"ie9\"> <![endif]--><!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]--><head><title>TreeView</title><link href=\"";
+			protected static string s0 = "<!DOCTYPE html><html><head><title>Tree View</title><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.less", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div class=\"leftpanewrapper-treeview\"><!--MenuTab--><div id=\"tab_menu\"><div id=\"tab_menu_m\"><a class=\"tab_menu01\" target=\"menu\" href=\"../_Menu/Menu.aspx\">";
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><ul id=\"tab-menu\"><li><a target=\"menu\" href=\"../_Menu/Menu.aspx\"><i class=\"icon-align-justify\"></i>";
 			protected static string s3{get{return Resources.Lang.mainmenu;}}
-			protected static string s4 = "</a></div><div id=\"tab_menu_m\"><a id=\"lnkAccInfo\" class=\"tab_menu02\" target=\"menu\"href=\"../_AccountInfo/AccountInfo.aspx\"><span id=\"lblAccInfo\">";
+			protected static string s4 = "</a></li><li><a target=\"menu\" href=\"../_AccountInfo/AccountInfo.aspx\"><i class=\"icon-user\"></i>";
 			protected static string s5{get{return Resources.Lang.userinfo;}}
-			protected static string s6 = "</span></a></div><div id=\"tab_menu_m\"><a id=\"lnkTree\" class=\"tab_menu03AC\" target=\"treeview\" style=\"cursor: default;\">Treeview</a></div></div><div id=\"leftpane-treeview\" class=\"pnlTreeview\"><iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/DownLineTreeView.aspx?agentid=";
+			protected static string s6 = "</a></li><li class=\"active\"><a><i class=\"icon-align-left\"></i>Tree</a></li></ul><div id=\"leftpane-treeview\" class=\"pnlTreeview\"><iframe id='frmDownlineList' name='frmDownlineList'src='../_AccountInfo/DownLineTreeView.aspx?agentid=";
 			public string AgentId = "{AgentId}";
-			protected static string s7 = "' style='width:98%;height:100%;'></iframe></div></div></body></html>";
+			protected static string s7 = "' style='width:98%; height:100%;'></iframe></div></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

@@ -26,7 +26,7 @@ public partial class _TreeView_TreeView : Fanex.Age.UI.TplPage
     public override void RenderContent(HtmlTextWriter writer)
     {
         TreeView_Template tpl = new TreeView_Template();
-        tpl.AgentId = CurrentUserSession.AgentId.ToString();
+        tpl.CustId = CurrentUserSession.AgentId.ToString();
         writer.Write(tpl);
     }
 }

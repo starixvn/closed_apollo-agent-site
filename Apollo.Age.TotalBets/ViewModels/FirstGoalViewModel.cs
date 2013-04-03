@@ -33,15 +33,15 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public int AwayId { get; set; }
 
-        public decimal WinLost_HomeFG { get; set; }
+        public decimal WinLostHomeFG { get; set; }
 
-        public decimal WinLost_HomeLG { get; set; }
+        public decimal WinLostHomeLG { get; set; }
 
-        public decimal WinLost_AwayFG { get; set; }
+        public decimal WinLostAwayFG { get; set; }
 
-        public decimal WinLost_AwayLG { get; set; }
+        public decimal WinLostAwayLG { get; set; }
 
-        public decimal WinLost_NoGoal { get; set; }
+        public decimal WinLostNoGoal { get; set; }
 
         public string HomeTeam
         {
