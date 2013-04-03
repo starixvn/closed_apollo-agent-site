@@ -14,6 +14,7 @@ namespace Apollo.Age.Forecast.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Apollo.Age.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -29,11 +30,27 @@ namespace Apollo.Age.Forecast.ViewModels
         public string ShowTime { get; set; }
         public string MatchCode { get; set; }
         public bool isNeutral { get; set; }
-        public int al { get; set; }
-        public int hl { get; set; }
-        public int dl { get; set; }
-        public int ht_al { get; set; }
-        public int ht_hl { get; set; }
-        public int ht_dl { get; set; }
+        public decimal al { get; set; }
+        public decimal hl { get; set; }
+        public decimal dl { get; set; }
+        public decimal ht_al { get; set; }
+        public decimal ht_hl { get; set; }
+        public decimal ht_dl { get; set; }
+
+        public string HomeTeam
+        {
+            get
+            {
+                return CacheRef.GetTeamName(this.homeid) + ((isNeutral) ? "(N)" : string.Empty);
+            }
+        }
+
+        public string AwayTeam
+        {
+            get
+            {
+                return CacheRef.GetTeamName(this.awayid);
+            }
+        }
     }
 }

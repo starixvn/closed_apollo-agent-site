@@ -37,17 +37,15 @@ namespace Apollo.Age.Forecast.Controllers
 
         public ViewResult FC1X2()
         {
-            IEnumerable<LeagueViewModel> leagues = _foreCastService.GetRunningLeague(5, base.AgentId);
-            ViewBag.Leagues = leagues;
-            IEnumerable<Forecast1X2ViewModel> forecasts = new List<Forecast1X2ViewModel>();
-            if(leagues.Any())
-            {
-                forecasts = _foreCastService.GetForecast1x2(base.AgentId, leagues.ElementAt(0).LeagueId);
-            }
-            
-            return View(forecasts);
+            IEnumerable<LeagueViewModel> leagues = _foreCastService.GetRunningLeague(betType: 5,agentId: base.AgentId);
+            return View(leagues);
         }
 
+        public ActionResult FC1X2Matches(int leagueId)
+        {
+            var forecasts = _foreCastService.GetForecast1x2(base.AgentId, leagueId);
+            return View(forecasts);
+        }
 
     }
 }
