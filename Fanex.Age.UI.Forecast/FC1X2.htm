@@ -16,19 +16,11 @@
             <!--Content-->
             <!--LimitLeagueList-->
             <div id="box_header">
-                <table>
-                    <tr>
-                        <td>
-                            <b>{static:Resources.Lang.league}</b>
-                        </td>
-                        <td id="selLeague">
-                            <select id='ddlLeague' name='ddlLeague' style="width: 280px"
-                                onchange='GetForecastByLeague();'>
-                                {LeagueList}
-                            </select>
-                        </td>
-                    </tr>
-                </table>
+                <span><b>@Resources.Lang.league</b></span>   
+                <select id='ddlLeague' name='ddlLeague' style="width: 280px"
+                    onchange='GetForecastByLeague();'>
+                    {LeagueList}
+                </select>
             </div>
             <!--/LimitLeagueList-->
             <table class="tblRpt">
