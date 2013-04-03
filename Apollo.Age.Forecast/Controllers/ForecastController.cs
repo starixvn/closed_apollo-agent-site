@@ -35,6 +35,8 @@ namespace Apollo.Age.Forecast.Controllers
             _foreCastService = foreCastService ?? new ForecastService();
         }
 
+        #region FC1X2
+
         public ViewResult FC1X2()
         {
             IEnumerable<LeagueViewModel> leagues = _foreCastService.GetRunningLeague(betType: 5,agentId: base.AgentId);
@@ -48,5 +50,24 @@ namespace Apollo.Age.Forecast.Controllers
             return View(forecasts);
         }
 
+        #endregion
+
+        #region Handicap, Over/Under
+
+        public ViewResult FCHandicapOverUnder()
+        {
+            // 1: for Hdp/OU/Live
+            IEnumerable<LeagueViewModel> leagues = _foreCastService.GetRunningLeague(betType: 1, agentId: base.AgentId);
+            ViewBag.InitLeague = leagues.Any() ? leagues.ElementAt(0).LeagueId : 0;
+            return View(leagues);
+        }
+
+        public ActionResult FCHandicapOverUnderMatches(int leagueId)
+        {
+            var forecasts = _foreCastService.GetForecastHandicapOverUnder(base.AgentId, leagueId);
+            return View(forecasts);
+        }
+
+        #endregion
     }
 }
