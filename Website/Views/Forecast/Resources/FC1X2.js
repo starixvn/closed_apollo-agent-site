@@ -46,3 +46,8 @@ var fc1x2 =
 $(function () {
     fc1x2.Init();
 });
+
+function ReloadMatches() {
+    RefreshCountDown_Init();
+    $('#ddlLeague').trigger("change");
+}

@@ -45,3 +45,8 @@ var fcHandicapOu =
 $(function () {
     fcHandicapOu.Init();
 });
+
+function ReloadMatches() {
+    RefreshCountDown_Init()
+    $('#ddlLeague').trigger("change");
+}
