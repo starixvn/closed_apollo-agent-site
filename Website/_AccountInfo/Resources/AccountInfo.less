@@ -1,212 +1,30 @@
-﻿@import "../../_GlobalResources/Css/Agent.less";
-
-/* COMMON */
-
-html, body {
-    overflow-x: hiden;   
-    padding: 0;
-    height: 100%;
-}
-
-body {   
-    margin: 0px;
-    background-attachment: fixed;
-    background-color: @grayLighter;	
-}
-
-td {
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-iframe {
-    overflow: hidden;
-	position: relative;
-}
-
-input[type=button], input[type=submit], input[type=reset] {
-    -moz-border-radius: 3px; /* Firefox */
-    -webkit-border-radius: 3px; /* Safari and Chrome */
-    border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
-}
-
-#left_line02 {
-    background: #B2B2B2;
-    width: 200px;
-    height: 1px;
-}
-
-#clear0 {
-    clear: both;
-}
-
+﻿@import "../../_menu/resources/menu.less";
 
 /* MAIN ELEMENTS */
 
-#leftpanewrapper, .leftpanewrapper-treeview {   
-    width: 100%;
-	position: absolute;
-	top: 0;
+#wrapper {
+	position: fixed;
+	top: 40px;
+	left: 0;
+	right: 0;
 	bottom: 0;
 
-	#tab_menu {
-		#gradient.vertical(@tabMenuBackground, @tableBackground);
-		border-bottom: 1px solid lighten(@grayLight, 20%);
-		font-weight: bold;
-		height: 31px;
-		text-align: center;
-		width: 100%;
+	.search-box {
+		padding: 10px 0 0;
 
-		#tab_menu_m {
-			float: left;
-			width: 72px;				
-			border-left: 1px solid @borderColor;
-			.box-shadow(1px 1px 0 0 @white inset);
-		}
-	}
-
-	.pnlTreeview {
-		width: 100%;
-		position: absolute;
-		top: 33px;
-		bottom: 0;
-	}
-	
-	.ie9 .pnlTreeview {
-		height: 94%;
-	}
-
-}
-
-a {
-	display: block;	
-	text-decoration: none;
-
-	&.tab_menu02, &.tab_menu03, &.tab_menu01 {	
-		color: @textTabMenuColor;			
-		height: 23px;
-		padding-top: 8px;
-
-		&:hover {			
-			background: @hoverTabMenuBackground;			
-		}
-	}
-
-	&.tab_menu02AC, &.tab_menu03AC {
-		background: @hoverTabMenuBackground;
-		color: @textTabMenuColor;		
-		height: 23px;
-		padding-top: 8px;
-	}
-
-	&.b_nleft {
-		color: @gray;
-		font-weight: bold;
-		text-decoration: none;
-
-		&:hover {
-			color: @hoverLinkOrangeColor;
-		}
-	}
-}
-
-#Bleft_Parent02_setting {
-    display: block;
-    line-height: 21px;
-    width: 190px;
-	position: absolute;
-	top: 125px;
-	bottom: 10px;
-	margin-left: 10px;
-	background: @grayLighter;
-	
-	#left_tab {
-		background: transparent url(../../_GlobalResources/Images/line_left02.jpg) repeat-x scroll center bottom;
-		float: left;
-		font-size: 11px;
-		font-weight: bold;
-		line-height: 18px;
-		width: 200px;
-		height: 25px;
-
-		ul {
-			font-size: 11px;
-			list-style-type: none;
-			margin: 1px auto 0;
-			padding: 0;
-		}
-
-		li {
-			display: inline;
-			font-size: 11px;
-		}
-
-		.current {
-			a {			
-				color: @white;
-				background: @hoverSubTabMenuBackground;
-				border: 1px solid lighten(@hoverSubTabMenuBackground, 30%);	
-				border-bottom: none;	
-				padding-top: 1px;		
-			}
-		}
-
-		a {		
-			color: @gray;
-			display: block;	
-			text-decoration: none;
-			background: @subTabMenuBackground;
-			border: 1px solid @borderColor;
-			border-bottom: none;
-			.border-top-right-radius(3px);
-			.border-top-left-radius(3px);
-			float: left;
-			margin-right: 3px;
-			text-decoration: none;
-			height: 22px;
-			padding-top: 1px;
-			line-height: 19px;
-
-			span {
-				font-weight: bold;
-				padding: 1px 6px 2px 5px;
-			}
-
-			&:hover {
-				border: 1px solid @borderColor;
-				border-bottom: none;			
-				color: @white;
-				background: #72A5E4;
-
-				span {				
-					cursor: pointer;				
-				}
-			}
-		}
-	} 
-
-	.Bleft_Sub02_setting {  
-		background: lighten(@grayLight, 39%);
-		border: 1px solid @borderColor;
-		margin-bottom: 1px;
-		padding: 0 5px 5px;
-		width: 100%;
-		position: absolute;
-		top: 24px;
-		bottom: 0;
-		left: 0;
-
-		.divLinkSetting {
-			.b_left {
-				background: transparent url(../../_GlobalResources/Images/icon_bleft.gif) no-repeat scroll left center;
-				color: #2678C5;
-				padding-left: 10px;
-				text-decoration: none;
+		input[type=text], select {
+			display: inine-block;
+			vertical-align: middle;
+			margin: 0;
+			padding: 3px;
+			width: 100px;
 			
-				&:hover {
-					color: @hoverLinkRedColor;
-				}
-			}
+			line-height: 1.2em;
+			font-size: 1em;
+			color: #555;
+
+			border: 1px solid #ccc;
+			transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
 		}
 	}
 }
@@ -620,5 +438,105 @@ a {
 		bottom: 2px;
 		left: 0;
 	}
+}
 
+#Bleft_Parent02_setting {
+    display: block;
+    line-height: 21px;
+    width: 190px;
+	position: absolute;
+	top: 125px;
+	bottom: 10px;
+	margin-left: 10px;
+	background: @grayLighter;
+	
+	#left_tab {
+		background: transparent url(../../_GlobalResources/Images/line_left02.jpg) repeat-x scroll center bottom;
+		float: left;
+		font-size: 11px;
+		font-weight: bold;
+		line-height: 18px;
+		width: 200px;
+		height: 25px;
+
+		ul {
+			font-size: 11px;
+			list-style-type: none;
+			margin: 1px auto 0;
+			padding: 0;
+		}
+
+		li {
+			display: inline;
+			font-size: 11px;
+		}
+
+		.current {
+			a {			
+				color: @white;
+				background: @hoverSubTabMenuBackground;
+				border: 1px solid lighten(@hoverSubTabMenuBackground, 30%);	
+				border-bottom: none;	
+				padding-top: 1px;		
+			}
+		}
+
+		a {		
+			color: @gray;
+			display: block;	
+			text-decoration: none;
+			background: @subTabMenuBackground;
+			border: 1px solid @borderColor;
+			border-bottom: none;
+			.border-top-right-radius(3px);
+			.border-top-left-radius(3px);
+			float: left;
+			margin-right: 3px;
+			text-decoration: none;
+			height: 22px;
+			padding-top: 1px;
+			line-height: 19px;
+
+			span {
+				font-weight: bold;
+				padding: 1px 6px 2px 5px;
+			}
+
+			&:hover {
+				border: 1px solid @borderColor;
+				border-bottom: none;			
+				color: @white;
+				background: #72A5E4;
+
+				span {				
+					cursor: pointer;				
+				}
+			}
+		}
+	} 
+
+	.Bleft_Sub02_setting {  
+		background: lighten(@grayLight, 39%);
+		border: 1px solid @borderColor;
+		margin-bottom: 1px;
+		padding: 0 5px 5px;
+		width: 100%;
+		position: absolute;
+		top: 24px;
+		bottom: 0;
+		left: 0;
+
+		.divLinkSetting {
+			.b_left {
+				background: transparent url(../../_GlobalResources/Images/icon_bleft.gif) no-repeat scroll left center;
+				color: #2678C5;
+				padding-left: 10px;
+				text-decoration: none;
+			
+				&:hover {
+					color: @hoverLinkRedColor;
+				}
+			}
+		}
+	}
 }

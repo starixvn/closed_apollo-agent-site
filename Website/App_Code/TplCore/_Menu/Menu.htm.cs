@@ -58,7 +58,7 @@ namespace Fanex.Agent.UI
 
 		public class Menu_MenuTab_Block: Block
 		{
-			protected static string s11 = "<ul id=\"tab-menu\"><li class=\"active\"><a href=\"#\"><i class=\"icon-align-justify\"></i>";
+			protected static string s11 = "<ul id=\"tab-menu\"><li class=\"active\"><a><i class=\"icon-align-justify\"></i>";
 			protected static string s12{get{return Resources.Lang.mainmenu;}}
 			protected static string s13 = "</a></li><li><a target=\"menu\" href=\"../_AccountInfo/AccountInfo.aspx\"><i class=\"icon-user\"></i>";
 			protected static string s14{get{return Resources.Lang.userinfo;}}

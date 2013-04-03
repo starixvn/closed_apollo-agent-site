@@ -1,66 +1,69 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
     <title>{static:Resources.Lang.userinfo}</title>
     <link href="Resources/AccountInfo.less" rel="stylesheet" type="text/css" />
-    <link href="Resources/styles.less" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="leftpanewrapper" style="display: none">
-        <div id="tab_menu">
-            <div id="tab_menu_m">
-                <a class="tab_menu01" target="menu" href="../_Menu/Menu.aspx">{static:Resources.Lang.mainmenu}</a></div>
-            <div id="tab_menu_m">
-                <a class="tab_menu02AC" style="cursor: default;">{static:Resources.Lang.userinfo}</a></div>
-            <div id="tab_menu_m">
-                <a id="lnkTree" class="tab_menu03" target="menu" href="../_TreeView/TreeView.aspx">Treeview</a>
-            </div>
-        </div>
-        <div id="clear0" />
-        <div id="leftpane02">
-            <div id="button_left02">
-                <!--NoData-->
-                <div id="Bleft_Parent02">
-                    <div id="left_submenu">                        
-                        <div class="Bleft_Sub02">
-                            <form name="frmAgent" id="frmAgent" method="get" action="" target="menu" style="float:left;">
-                                <select id="isMember" name="IsMember" class="option-search">
-                                    <option value="0" {IsAgent}>{static:Resources.Lang.lblAgent}</option>
-                                    <option value="1" {IsMember}>{static:Resources.Lang.lblMember}</option>
-                                </select>
-                                <div id="from_tab">
-                                    <!--InputSearchBlock-->
-                                    <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" class="text_f" name="txtUsername" />
-                                    <!--/InputSearchBlock-->
-                                    <!--NoInputSearchBlock-->
-                                    <input maxlength="50" id="txtUsername" type="text" onkeydown="onclickUser('{static:Resources.Lang.enterusername}')" onclick="onclickUser('{static:Resources.Lang.enterusername}')" onblur="onblurUser('{static:Resources.Lang.enterusername}')" value="{usernamesearch}" class="text_f1" name="txtUsername" />
-                                    <!--/NoInputSearchBlock-->
-                                </div>
-                                <div id="b_serachL">
-                                    <a id="lnkSearch" class="imaLink img" href="#" onclick="javascript:checkAndSubmitUI();">
-                                        <img height="18" width="21" alt="Search" title="{static:Resources.Lang.search}" border="0" nowap="nowap" src="../_GlobalResources/Images/icon_search.jpg" />
-                                    </a>
-                                 </div>
-                            </form>
-                            <div class="errMsg">{errMsg}</div>
-                        </div>
-                    </div>
+    <ul id="tab-menu">
+        <li>
+            <a target="menu" href="../_Menu/Menu.aspx">
+                <i class="icon-align-justify"></i>{static:Resources.Lang.mainmenu}</a>
+        </li>
+        <li class="active">
+            <a><i class="icon-user"></i>{static:Resources.Lang.userinfo}</a>
+        </li>
+        <li>
+            <a target="menu" href="../_TreeView/TreeView.aspx">
+                <i class="icon-align-left"></i>Tree</a>
+        </li>
+    </ul>
+
+    <div id="wrapper">
+        <!--NoData-->
+        <div class="search-box">
+            <form name="frmAgent" id="frmAgent" method="get" action="" target="menu">
+                <select id="isMember" name="IsMember">
+                    <option value="0" {IsAgent}>{static:Resources.Lang.lblAgent}</option>
+                    <option value="1" {IsMember}>{static:Resources.Lang.lblMember}</option>
+                </select>
+                <!--InputSearchBlock-->
+                <input maxlength="50" id="txtUsername" type="text"
+                    value="{usernamesearch}" name="txtUsername"
+                    onkeydown="onclickUser('{static:Resources.Lang.enterusername}')"
+                    onclick="onclickUser('{static:Resources.Lang.enterusername}')"
+                    onblur="onblurUser('{static:Resources.Lang.enterusername}')" />
+                <!--/InputSearchBlock-->
+                <!--NoInputSearchBlock-->
+                <input maxlength="50" id="txtUsername" type="text"
+                    value="{usernamesearch}" name="txtUsername"
+                    onkeydown="onclickUser('{static:Resources.Lang.enterusername}')"
+                    onclick="onclickUser('{static:Resources.Lang.enterusername}')"
+                    onblur="onblurUser('{static:Resources.Lang.enterusername}')" />
+                <!--/NoInputSearchBlock-->
+                <div id="b_serachL">
+                    <a id="lnkSearch" class="imaLink img" href="#" onclick="javascript:checkAndSubmitUI();">
+                        <img height="18" width="21" alt="Search" title="{static:Resources.Lang.search}"
+                            border="0" nowap="nowap" src="../_GlobalResources/Images/icon_search.jpg" />
+                    </a>
                 </div>
-                <!--/NoData-->
-
-                {searchBox}
-                <!--TheRestAcc-->                
-                {settingBox}
-                <!--/TheRestAcc-->
-            </div>            
+            </form>
+            <div class="errMsg">{errMsg}</div>
         </div>
-        <div class="shadow" id="shadow" />
-        <div class="output" id="output" />
+        <!--/NoData-->
+
+        {searchBox}
+        <!--TheRestAcc-->                
+        {settingBox}
+        <!--/TheRestAcc-->
     </div>
+
+    <div class="shadow" id="shadow"></div>
+    <div class="output" id="output"></div>
+
+    <script src="../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="Resources/autocomplete.js" type="text/javascript"></script>
+    <script src="Resources/AccountInfo.js" type="text/javascript"></script>
+
 </body>
-
-<script src="../_GlobalResources/Js/Core.js" type="text/javascript"></script>
-<script src="Resources/autocomplete.js" type="text/javascript"></script>
-<script src="Resources/AccountInfo.js" type="text/javascript"></script>
-
 </html>
