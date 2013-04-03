@@ -21,85 +21,85 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public int MatchId { get; set; }
 
-        public decimal Over_1stBall { get; set; }
+        public decimal Over1stBall { get; set; }
 
-        public decimal Under_1stBall { get; set; }
+        public decimal Under1stBall { get; set; }
 
-        public decimal Over_LastBall { get; set; }
+        public decimal OverLastBall { get; set; }
 
-        public decimal Under_LastBall { get; set; }
+        public decimal UnderLastBall { get; set; }
 
         public decimal Odd_1stBall { get; set; }
 
-        public decimal Even_1stBall { get; set; }
+        public decimal Even1stBall { get; set; }
 
-        public decimal Odd_LastBall { get; set; }
+        public decimal OddLastBall { get; set; }
 
-        public decimal Even_LastBall { get; set; }
+        public decimal EvenLastBall { get; set; }
 
-        public decimal Odd_FullTime { get; set; }
+        public decimal OddFullTime { get; set; }
 
-        public decimal Even_FullTime { get; set; }
+        public decimal EvenFullTime { get; set; }
 
-        public decimal Over_Next { get; set; }
+        public decimal OverNext { get; set; }
 
-        public decimal Under_Next { get; set; }
+        public decimal UnderNext { get; set; }
 
-        public decimal Odd_Next { get; set; }
+        public decimal OddNext { get; set; }
 
-        public decimal Even_Next { get; set; }
+        public decimal EvenNext { get; set; }
 
         public decimal High { get; set; }
 
         public decimal Low { get; set; }
 
-        public decimal Warrior_2ndBall { get; set; }
+        public decimal Warrior2ndBall { get; set; }
 
-        public decimal Warrior_3rdBall { get; set; }
+        public decimal Warrior3rdBall { get; set; }
 
-        public decimal NextCombo_OverOdd { get; set; }
+        public decimal NextComboOverOdd { get; set; }
 
-        public decimal NextCombo_OverEven { get; set; }
+        public decimal NextComboOverEven { get; set; }
 
-        public decimal NextCombo_UnderOdd { get; set; }
+        public decimal NextComboUnderOdd { get; set; }
 
-        public decimal NextCombo_UnderEven { get; set; }
+        public decimal NextComboUnderEven { get; set; }
 
         public decimal NumberGroupPre { get; set; }
 
         public decimal NumberGroupLive { get; set; }
 
-        public int BetCount_OU1stBall { get; set; }
+        public int BetCountOU1stBall { get; set; }
 
-        public int BetCount_OULastBall { get; set; }
+        public int BetCountOULastBall { get; set; }
 
-        public int BetCount_OE1stBall { get; set; }
+        public int BetCountOE1stBall { get; set; }
 
-        public int BetCount_OELastBall { get; set; }
+        public int BetCountOELastBall { get; set; }
 
-        public int BetCount_OEFullTime { get; set; }
+        public int BetCountOEFullTime { get; set; }
 
-        public int BetCount_OUNext { get; set; }
+        public int BetCountOUNext { get; set; }
 
-        public int BetCount_OENext { get; set; }
+        public int BetCountOENext { get; set; }
 
-        public int BetCount_HighLow { get; set; }
+        public int BetCountHighLow { get; set; }
 
-        public int BetCount_Warrior_2ndBall { get; set; }
+        public int BetCountWarrior2ndBall { get; set; }
 
-        public int BetCount_Warrior_3rdBall { get; set; }
+        public int BetCountWarrior3rdBall { get; set; }
 
-        public int BetCount_NextCombo_OverOdd { get; set; }
+        public int BetCountNextComboOverOdd { get; set; }
 
-        public int BetCount_NextCombo_OverEven { get; set; }
+        public int BetCountNextComboOverEven { get; set; }
 
-        public int BetCount_NextCombo_UnderOdd { get; set; }
+        public int BetCountNextComboUnderOdd { get; set; }
 
-        public int BetCount_NextCombo_UnderEven { get; set; }
+        public int BetCountNextComboUnderEven { get; set; }
 
-        public int BetCount_NumberGroupPre { get; set; }
+        public int BetCountNumberGroupPre { get; set; }
 
-        public int BetCount_NumberGroupLive { get; set; }
+        public int BetCountNumberGroupLive { get; set; }
 
         public string LeagueName
         {

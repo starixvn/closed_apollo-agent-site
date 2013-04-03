@@ -43,27 +43,27 @@
             @item.HomeTeam -vs- @item.AwayTeam
         </td>
         <td class="r">
-            @if(item.BetCount_HNB != 0)
+            @if(item.BetCountHNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" href="javascript:void(0);">
-                    @TotalBetHelper.FormatNumber(item.Home_Odds_HNB - item.Away_Odds_HNB)    
+                    @TotalBetHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB)    
                 </a>
             }
             
         </td>
         <td class="r">
-            @if(item.BetCount_DNB != 0)
+            @if(item.BetCountDNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" href="javascript:void(0);">
-                    @TotalBetHelper.FormatNumber(item.Home_Odds_DNB - item.Away_Odds_DNB)
+                    @TotalBetHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB)
                 </a>
             }
         </td>
         <td class="r">
-            @if(item.BetCount_ANB != 0)
+            @if(item.BetCountANB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" href="javascript:void(0);">
-                    @TotalBetHelper.FormatNumber(item.Home_Odds_ANB - item.Away_Odds_ANB)
+                    @TotalBetHelper.FormatNumber(item.HomeOddsANB - item.AwayOddsANB)
                 </a>
             }
         </td>
