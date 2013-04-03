@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Forecast.ViewModels
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.fglg;
+    ViewBag.Title = Resources.Lang.lblForecast;
     //IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
 }
 @model IEnumerable<LeagueViewModel>
@@ -46,7 +46,7 @@
 @section scripts
 {
     <script type="text/javascript">
-        var initLeague = 3;
+        var initLeague = @ViewBag.InitLeague;
     </script>
     <script src="~/Views/Forecast/Resources/FC1X2.js" type="text/javascript"></script>
 }

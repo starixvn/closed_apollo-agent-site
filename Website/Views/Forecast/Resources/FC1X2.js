@@ -4,13 +4,16 @@ var fc1x2 =
 {
     CurrentLeague: initLeague,
     Init: function () {
-        $('#ddlLeague').on("change", function () {
-            var $this = $(this);
-            fc1x2.CurrentLeague = $this.val();
+        if (fc1x2.CurrentLeague != 0) {
+            $('#ddlLeague').on("change", function () {
+                var $this = $(this);
+                fc1x2.CurrentLeague = $this.val();
+                if (fc1x2.CurrentLeague != 0) {
+                    fc1x2.ChangeLeague();
+                }
+            });
             fc1x2.ChangeLeague();
-        });
-        fc1x2.ChangeLeague();
-        
+        }
     },
     RegisterEvents: function () {
         $('#forecast-body')
