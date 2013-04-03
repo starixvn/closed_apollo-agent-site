@@ -7,8 +7,7 @@
     
     <link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.less" rel="stylesheet" type="text/css" />
     <link href="~/_Components/RefreshCountDown/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
-    <link href="~/_Forecast/Resources/FC.less" />
-    <link href="~/_Forecast/Resources/ScoreMap.less" />
+    <link href="~/_Forecast/Resources/FC.less" rel="Stylesheet" type="text/css" />
     @RenderSection("css", required: false)
 </head>
 <body>
@@ -18,7 +17,7 @@
             @ViewBag.Title
             </span>
         </div>
-        <div id="content_main">
+        <div id="content_main" class="pull-left" style="width: 50%">
             @RenderBody()
         </div>
     </div>

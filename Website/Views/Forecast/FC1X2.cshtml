@@ -1,12 +1,12 @@
 ﻿@using Apollo.Age.Forecast.ViewModels
 @{
-    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.lblForecast;
     //IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
 }
 @model IEnumerable<LeagueViewModel>
 @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 15)
-
+<div style="clear:both;"></div>
 <div id="box_header">
     <table>
         <tr>
