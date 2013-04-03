@@ -26,8 +26,8 @@
 
             //location.href = url;
             ageWnd.openDialog(url, '', {
-                width: 930,
-                height: 770,
+                width: 935,
+                height: 775,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
                     countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
@@ -44,8 +44,8 @@
             + '&islive=' + $(this).attr("is-live");
             //location.href = url;
             ageWnd.openDialog(url, '', {
-                width: 930,
-                height: 770,
+                width: 935,
+                height: 775,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
                     countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
@@ -63,8 +63,8 @@
             + '&betteam=' + $(this).attr("bet-team");
             //location.href = url;
             ageWnd.openDialog(url, '', {
-                width: 930,
-                height: 770,
+                width: 935,
+                height: 775,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
                     countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
