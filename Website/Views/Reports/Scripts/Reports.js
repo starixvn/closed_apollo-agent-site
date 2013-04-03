@@ -42,7 +42,7 @@ if (typeof jQuery != 'undefined') {
                 var footerData = [];
                 footerData.push({
                     Columns: [
-                        { Name: "Agent", Value: "Total" },
+                        { Name: "Member", Value: "Total" },
                         { Name: "Outstanding", Value: outstandingData.Total.Outstanding },
                         { Name: "ShareAmount", Value: outstandingData.Total.ShareAmount },
                         { Name: "OutstandingGame", Value: outstandingData.Total.GameOutstanding },
@@ -55,7 +55,7 @@ if (typeof jQuery != 'undefined') {
                     bodyData.push({
                         Columns:
                         [
-                            { Name: "Agent", Value: current.UserName },
+                            { Name: "Member", Value: current.UserName },
                             { Name: "Outstanding", Value: current },
                             { Name: "ShareAmount", Value: current.ShareAmount },
                             { Name: "OutstandingGame", Value: current },
@@ -68,26 +68,27 @@ if (typeof jQuery != 'undefined') {
                     groupHeaderRows: [
                                  {
                                      Columns: [
-                                            { HeaderText: "Agent", Name: "Agent", MergeRowNumber: 2 },
+                                            { HeaderText: "Member", Name: "Member", MergeRowNumber: 2 },
                                             { HeaderText: "Sportsbook", Name: "Outstanding", MergeColNumber: 2 },
                                             { HeaderText: "Number Game ", Name: "OutstandingGame", MergeColNumber: 2 }
                                         ]
                                  }
                         ],
                     columns: [
-                         { HeaderText: "Agent", Width: 208, Name: "Agent", HeaderAlign: "center", CellAlign: "left" },
-                        { HeaderText: "Outstanding", Width: 170, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right",
+
+                         { HeaderText: "Member", Width: 230, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
+                        { HeaderText: "Outstanding", Width: 193, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
                             CustomCellRender: function (cell) {
-                                return "<a href=''>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>";
+                                return (cell.Value.Outstanding != 0 ? "<a href=''>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>" : numeral(cell.Value.Outstanding).format("0,0.00"));
                             }
                         },
-                        { HeaderText: "Share Amount ", Width: 170, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                        { HeaderText: "Outstanding", Width: 170, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right",
+                        { HeaderText: "Share Amount ", Width: 197, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: "Outstanding", Width: 195, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
                             CustomCellRender: function (cell) {
-                                return "<a href=''>" + numeral(cell.Value.GameOutstanding).format("0,0.00") + "</a>";
+                                return (cell.Value.GameOutstanding != 0 ? "<a href=''>" + numeral(cell.Value.GameOutstanding).format("0,0.00") + "</a>" : numeral(cell.Value.GameOutstanding).format("0,0.00"));
                             }
                         },
-                        { HeaderText: "Share Amount ", Width: 170, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                        { HeaderText: "Share Amount ", Width: 180, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ],
                     bodyRows: bodyData,
                     showFooter: true,

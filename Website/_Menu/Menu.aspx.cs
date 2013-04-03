@@ -23,9 +23,13 @@ namespace Sunplus.Agent.UI._Menu
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
+    using Sunplus.Agent.Model.BL.Authorization;
+    using System.Collections;
 
-    public partial class Menu_Page : Fanex.Age.UI.TplPage
+    public partial class Menu_Page : TplPage
     {
+        #region Const
+
         // Role descriptions
         public const string HR = "hr"; // Horse racing
         public const string HR_FO = "hr-fo"; // Horse racing fix odds
@@ -53,21 +57,25 @@ namespace Sunplus.Agent.UI._Menu
         public const int BGPT = 6;
         public const int MEMBERCOMM = 7;
 
+        #endregion
+
         //Moved PageAccess to global variable
         PageAccess pageAccess = null;
 
-        public override void ProcessRequest(ref System.Collections.Hashtable p)
+        #region Override
+        
+        public override void ProcessRequest(ref Hashtable p)
         {
         }
 
-        public override object ValidateRequest(System.Collections.Hashtable p)
+        public override object ValidateRequest(Hashtable p)
         {
             pageAccess = CurrentUserSession.SubPageAccess;
 
             return null;
         }
 
-        public override object InvokeData(System.Collections.Hashtable p)
+        public override object InvokeData(Hashtable p)
         {
             return null;
         }
@@ -88,6 +96,10 @@ namespace Sunplus.Agent.UI._Menu
 
             writer.Write(tpl);
         }
+
+        #endregion
+
+        #region Render Helpers
 
         protected void RenderMenu(ref Menu_Template tpl)
         {
@@ -143,18 +155,18 @@ namespace Sunplus.Agent.UI._Menu
         {
             int itemCount = subMenu.ChildNodes.Count;
 
-            subBlock.sub_display = isExpand ? "Bleft_Parent active" : "Bleft_Parent";
-            subBlock.item_display = isExpand ? "block" : "none";
+            subBlock.sub_display = isExpand ? "active" : string.Empty;
+            //subBlock.item_display = isExpand ? "block" : "none";
 
-            subBlock.sub_id = index.ToString();
+            //subBlock.sub_id = index.ToString();
             subBlock.sub_title = GetGlobalResourceObject("Lang", subMenu.Title) as string;
 
             bool isSubAcc = CurrentUserSession.IsSubAcc;
 
-            Menu_SubMenu_MenuItem_Block itemBlock = new Menu_SubMenu_MenuItem_Block();
+            var itemBlock = new Menu_SubMenu_MenuItem_Block();
             subBlock.MenuItem.Clear();
 
-            Sunplus.Agent.Model.BL.Authorization.AuthorizationBO authorize = new Sunplus.Agent.Model.BL.Authorization.AuthorizationBO(CurrentUserSession.NetSessionId);
+            var authorize = new AuthorizationBO(CurrentUserSession.NetSessionId);
 
             int k = 0;
             for (int j = 0; j < itemCount; j++) // Menu item loop
@@ -201,8 +213,10 @@ namespace Sunplus.Agent.UI._Menu
                 itemBlock.item_title = GetGlobalResourceObject("Lang", menuItem.Title).ToString().Trim();
             }
             itemBlock.item_url = "../" + menuItem.GetAttribute("href");
-            itemBlock.order = (parentIndex + 1).ToString() + (index + 1).ToString();
-            itemBlock.menuId = menuItem.Description;
+            //itemBlock.order = (parentIndex + 1).ToString() + (index + 1).ToString();
+            //itemBlock.menuId = menuItem.Description;
         }
+
+        #endregion
     }
 }

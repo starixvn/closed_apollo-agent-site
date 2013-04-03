@@ -1,3 +1,52 @@
-﻿@{
-    
+﻿@using Apollo.Age.Forecast.ViewModels
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.Lang.lblForecast;
+    //IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
+}
+@model IEnumerable<LeagueViewModel>
+@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 15)
+
+<div id="box_header">
+    <table>
+        <tr>
+            <td>
+                <b>@Resources.Lang.league</b>
+            </td>
+            <td id="selLeague">
+                <select id='ddlLeague' name='ddlLeague' style="width: 280px">
+                    @{
+                        foreach (var league in Model)
+                        {
+                            <option value="@league.LeagueId">@league.LeagueName</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--/LimitLeagueList-->
+<table class="tblRpt">
+    <thead>
+        <tr class="RptHeader">
+            <td colspan="2">
+                @Resources.Lang.lblTeam
+            </td>
+            <td colspan="3">
+                @Resources.Lang.lbl1x2
+            </td>
+        </tr>
+    </thead>
+    <tbody id="forecast-body">
+        @*Load Ajax*@
+    </tbody>
+</table>
+<!--/Content-->
+@section scripts
+{
+    <script type="text/javascript">
+        var initLeague = @ViewBag.InitLeague;
+    </script>
+    <script src="~/Views/Forecast/Resources/FC1X2.js" type="text/javascript"></script>
 }

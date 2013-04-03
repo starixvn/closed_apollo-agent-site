@@ -37,6 +37,7 @@ namespace Apollo.Age.Account.Controllers
         //        result.ErrCode = (int)ErrorType.KickedOut;
         //    }
         //    return Json(result);
+            
         //}
 
         private readonly AgentService _agentService;
@@ -49,11 +50,8 @@ namespace Apollo.Age.Account.Controllers
         public ActionResult SignOut()
         {
             Session.Abandon();
-            // Clear session ticket
-            FormsAuthentication.SignOut(); // Use this command will make the logout function log out all loged in users in the same machine and browser
-
-            //FormsAuthentication.RedirectToLoginPage();
-            return View("~/_Authorization/SignIn.aspx");
+            FormsAuthentication.SignOut(); 
+            return Redirect("~/_Authorization/SignIn.aspx");
         }
 
         public JsonResult TreeNodeData(int id)

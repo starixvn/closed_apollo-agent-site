@@ -19,6 +19,8 @@ namespace Apollo.Age.Reports.ViewModels
     /// </summary>
     public class OutstandingViewModel
     {
+        public int IsAgent { get; set; }
+
         public int AgentId { get; set; }
 
         public string UserName { get; set; }
@@ -30,5 +32,12 @@ namespace Apollo.Age.Reports.ViewModels
         public decimal GameOutstanding { get; set; }
 
         public decimal GameShareAmount { get; set; }
+    }
+
+    public class OutstandingDownlinePathViewModel
+    {
+        public IEnumerable<OutstandingViewModel> ListOutStanding { get; set; }
+
+        public IEnumerable<AgentDownlinePathViewModel> DownlinePath { get; set; }
     }
 }
