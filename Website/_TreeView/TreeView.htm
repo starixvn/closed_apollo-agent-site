@@ -1,28 +1,32 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE HTML>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
 <head>
-    <title>Tree View</title>
+    <title>TreeView</title>
     <link href="../_AccountInfo/Resources/AccountInfo.less" rel="stylesheet" type="text/css" />    
 </head>
 <body>
-    <ul id="tab-menu">
-        <li>
-            <a target="menu" href="../_Menu/Menu.aspx">
-                <i class="icon-align-justify"></i>{static:Resources.Lang.mainmenu}</a>
-        </li>
-        <li>
-            <a target="menu" href="../_AccountInfo/AccountInfo.aspx">
-                <i class="icon-user"></i>{static:Resources.Lang.userinfo}</a>
-        </li>
-        <li class="active">
-            <a><i class="icon-align-left"></i>Tree</a>
-        </li>
-    </ul>
-
-    <div id="leftpane-treeview" class="pnlTreeview">
-        <iframe id='frmDownlineList' name='frmDownlineList'
-            src='../_TreeView/TreeViewList.html?custid={CustId}' style='width:98%; height:100%;'>
-        </iframe>
+    <div class="leftpanewrapper-treeview">
+        <div id="tab_menu">
+            <div id="tab_menu_m">
+                <a class="tab_menu01" target="menu" href="../_Menu/Menu.aspx">{static:Resources.Lang.mainmenu}</a></div>
+            
+            <div id="tab_menu_m">
+                <a id="lnkAccInfo" class="tab_menu02" target="menu"
+                    href="../_AccountInfo/AccountInfo.aspx"><span id="lblAccInfo">{static:Resources.Lang.userinfo}</span></a>
+            </div>
+            
+            <div id="tab_menu_m">
+                <a id="lnkTree" class="tab_menu03AC" target="treeview" style="cursor: default;">Treeview</a>
+            </div>
+        </div>
+        <div id="leftpane-treeview" class="pnlTreeview">
+            <iframe id='frmDownlineList' name='frmDownlineList' src='../_TreeView/TreeViewList.html?custid={CustId}' style='width:98%;height:100%;'>
+            </iframe>
+        </div>
     </div>
 </body>
 </html>
