@@ -101,11 +101,56 @@
         });
 
         $(window)
-	        .scroll(updateTableHeaders)
+	        .scroll(this.updateTableHeaders)
 	        .trigger("scroll");
         $(window).resize(function () {
             updateTableHeaders();
         });
+    },
+    updateTableHeaders: function () {
+        if ($(".persist-area").val() != undefined) {
+            var widthspace = $(".persist-area").width() + 18;
+            //            if ($.browser.safari) {
+            //                leftspace = 192;
+            //                widthspace = widthspace - 8;
+            //                if (widthspace < 1060)
+            //                    widthspace = 1060;
+            //            }
+            //            else {
+            //                widthspace = widthspace - 17;
+            //                if (widthspace < 1051)
+            //                    widthspace = 1051;
+            //            }
+
+            $('.floatingHeader').width(widthspace);
+            var left = $('table thead tr:first').position()["left"];
+            $(".persist-area").each(function () {
+                var el = $(this),
+                    offset = el.offset(),
+                    scrollTop = $(window).scrollTop(),
+                    floatingHeader = $(".floatingHeader", this)
+                if ((scrollTop > offset.top - 60) && (scrollTop < offset.top + el.height())) {
+                    floatingHeader.css({
+                        "visibility": "visible",
+                        "left": left
+                    });
+                } else {
+                    floatingHeader.css({
+                        "visibility": "hidden"
+                    });
+                };
+            });
+
+            //alert($('.floatingHeader').width());
+            console.log(left);
+
+            var i = 0;
+            $("table .persist-header td").each(function () {
+                var x = $(this).width();
+                $($("table .floatingHeader td")[i]).width(x);
+                i++;
+            });
+        }
     }
 };
 
