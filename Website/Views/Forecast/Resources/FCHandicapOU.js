@@ -47,6 +47,6 @@ $(function () {
 });
 
 function ReloadMatches() {
-    RefreshCountDown_Init()
+    RefreshCountDown_Init();
     $('#ddlLeague').trigger("change");
 }
