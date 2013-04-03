@@ -122,7 +122,7 @@ function changeClosedStatus(evt, objDiv) {
         document.getElementById('chkEnabledDL').disabled = true; // False
         document.getElementById('chkEnabledDL').checked = false; // True
         document.getElementById('btnUpdStatus').disabled = false;
-        document.getElementById('btnUpdStatus').onclick = function() {
+        document.getElementById('btnUpdStatus').onclick = function () {
             var confirmMsg = _page.CustRoleId == 1 ? _page.confirmCloseMem : _page.alertCloseCustDownline;
             if (!confirm(confirmMsg)) {
                 closeDivPopup();
@@ -307,7 +307,7 @@ function showDownlineList(isShow) {
 }
 //Show/hide customer settings tab
 
-function showSection(sectionID, agentId) {   
+function showSection(sectionID, agentId) {
     switch (sectionID) {
         case "custsettings":
             document.getElementById("agentsTab").className = "";
@@ -320,7 +320,7 @@ function showSection(sectionID, agentId) {
             document.getElementById("membersTab").className = "";
             document.getElementById("tbl_custsettings").style.display = "none";
             document.getElementById("tbl_membersTab").style.display = "none";
-            document.getElementById("tbl_agentsTab").style.display = "block";           
+            document.getElementById("tbl_agentsTab").style.display = "block";
             break;
         case "membersTab":
             document.getElementById("custsettings").className = "";
@@ -341,7 +341,7 @@ function showSection(sectionID, agentId) {
             */
             break;
     }
-    
+
     document.getElementById(sectionID).className = "current";
     document.getElementById("tbl_" + sectionID).style.display = "block";
 }
@@ -403,8 +403,6 @@ RegisterStartUp('initHeader()');
 
 function initHeader() {
     initAutoComplete('txtUsername', 'Handlers/QueryUserName.ashx');
-    document.getElementById('leftpanewrapper').style.display = 'block';
- 
 }
 // Menu2 & Acc Info (Common.js)----------------------
 var currentItem = 0;
@@ -488,48 +486,48 @@ function changeLiveCasinoStatus(evt, objDiv) {
         }
         else {
             document.getElementById('chkLiveCasino').checked = !isEnabled;
-            alert(_page.updateFailed);            
+            alert(_page.updateFailed);
         }
     }
 }
 
 function bindAgentDownLine(agentID) {
-    
-//    var contentId = document.getElementById("agent-downline");
-//    var container = document.getElementById("agent-downline-list");
-//    if (container.style.display == "none") {
-//        ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
-//            var data = result.Agents;
-//            var text = "";
-//            document.getElementById("agent-downline").innerHTML = "";
-//            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + "<span class='root-agent'>" + data[0][1] + "</span> </br>";
-//            for (var i = 1; i < data.length; ++i) {
-//                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
-//            }
 
-//            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + text;
-//            container.style.display = "block";
-//        });
-//        
-//    }
-//    else {
-//        container.style.display = "none";
+    //    var contentId = document.getElementById("agent-downline");
+    //    var container = document.getElementById("agent-downline-list");
+    //    if (container.style.display == "none") {
+    //        ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
+    //            var data = result.Agents;
+    //            var text = "";
+    //            document.getElementById("agent-downline").innerHTML = "";
+    //            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + "<span class='root-agent'>" + data[0][1] + "</span> </br>";
+    //            for (var i = 1; i < data.length; ++i) {
+    //                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
+    //            }
+
+    //            document.getElementById("agent-downline").innerHTML = document.getElementById("agent-downline").innerHTML + text;
+    //            container.style.display = "block";
+    //        });
+    //        
+    //    }
+    //    else {
+    //        container.style.display = "none";
     //    }
 
-//    var contentId = $("#agent-downline");
+    //    var contentId = $("#agent-downline");
 
-//    $("#agent-downline-list").toggle('fast', function() {
-//        ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
-//            var data = result.Agents;
-//            var text = "";
-//            contentId.html("");
-//            contentId.html(contentId.html() + "<span class='root-agent'>" + data[0][1] + "</span> </br>");
-//            for (var i = 1; i < data.length; ++i) {
-//                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
-//            }
-//            contentId.html(contentId.html() + text);
-//        });
-//    });  
+    //    $("#agent-downline-list").toggle('fast', function() {
+    //        ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'root=' + agentID, function (result) {
+    //            var data = result.Agents;
+    //            var text = "";
+    //            contentId.html("");
+    //            contentId.html(contentId.html() + "<span class='root-agent'>" + data[0][1] + "</span> </br>");
+    //            for (var i = 1; i < data.length; ++i) {
+    //                text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
+    //            }
+    //            contentId.html(contentId.html() + text);
+    //        });
+    //    });  
 }
 
 function bindMembersList(agentID) {
@@ -547,74 +545,84 @@ function bindMembersList(agentID) {
 
     /*
     ajax.PostJSON('../_AccountInfo/Handlers/GetMemberList.ashx', 'root=' + agentID + "&pagesize=20&pageindex=1", function (result) {
-        var data = result.Members;
-        var text = "";
-        for (var i = 0; i < data.length; ++i) {
-            text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a></li>";
-        }
+    var data = result.Members;
+    var text = "";
+    for (var i = 0; i < data.length; ++i) {
+    text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'> " + data[i][1] + "</a></li>";
+    }
 
-        var contentId = document.getElementById("members-list");
-        text = "";
-        if (text.length > 0) {
-            contentId.innerHTML = text;
-            //$("#paging-member").show();
-        }
-        else {
-            // $("#paging-member").hide();
-            var link = "../_AccountInfo/DownLineTreeView.aspx?root=2";
-            var iframe = document.createElement('iframe');
-            iframe.frameBorder = 0;
-            iframe.width = "300px";
-            iframe.height = "250px";
-            iframe.id = "randomid";
-            iframe.setAttribute("src", link);
-            document.getElementById("iframe-content").appendChild(iframe);
-        }
+    var contentId = document.getElementById("members-list");
+    text = "";
+    if (text.length > 0) {
+    contentId.innerHTML = text;
+    //$("#paging-member").show();
+    }
+    else {
+    // $("#paging-member").hide();
+    var link = "../_AccountInfo/DownLineTreeView.aspx?root=2";
+    var iframe = document.createElement('iframe');
+    iframe.frameBorder = 0;
+    iframe.width = "300px";
+    iframe.height = "250px";
+    iframe.id = "randomid";
+    iframe.setAttribute("src", link);
+    document.getElementById("iframe-content").appendChild(iframe);
+    }
 
-        $('#members-list').slimscroll({
-            width: '161px',
-            height: '546px',
-            railVisible: true,
-            allowPageScroll: true,
-            touchScrollStep: 1000,
-            railDraggable: true
-        }).parent().css({
-            "width": "179px",
-            "height": "554px"
-        });
+    $('#members-list').slimscroll({
+    width: '161px',
+    height: '546px',
+    railVisible: true,
+    allowPageScroll: true,
+    touchScrollStep: 1000,
+    railDraggable: true
+    }).parent().css({
+    "width": "179px",
+    "height": "554px"
+    });
 
-        }           
-        contentId.style.display = "block";
+    }           
+    contentId.style.display = "block";
     });
     */
 }
 
 if (typeof jQuery != 'undefined') {
+
     $(function () {
-        $("div #agentDownlineLink").click(function (event) {           
-            var $this = $(this);
-            agentID = $this.attr('aid');
-            contentId = $("#agent-downline");
-            $("div #agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info-hover.png");
-            $("div .agent-tooltip").show('fast', function () {
-                ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'agentId=' + agentID, function (result) {
-                    var data = result.Agents;
-                    var text = "";
-                    contentId.html("");
-                    contentId.html(contentId.html() + "<span class='root-agent'>" + data[0][1] + "</span> </br>");
-                    for (var i = 1; i < data.length; ++i) {
-                        text += "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=0&custid=" + data[i][0] + "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a></li>";
-                    }
-                    contentId.html(contentId.html() + text);
-                });
+        var ageDownLink = $("#agentDownlineLink"),
+            ddlAgents = $("#ddl-agents");
+
+        ageDownLink.click(function (event) {
+            var $this = $(this),
+                agentID = $this.attr('aid'),
+                agentList = ddlAgents.find('.agent-list');
+
+            ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'agentId=' + agentID, function (result) {
+                var data = result.Agents;
+
+                agentList.html("<li class='root-agent'>" + data[0][1] + "</li>");
+
+                for (var i = 1; i < data.length; ++i) {
+                    agentList.append(
+                            "<li>" +
+                                "<a href='../_AccountInfo/AccountInfo.aspx" +
+                                    "?IsMember=0" +
+                                    "&CustId=" + data[i][0] +
+                                    "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a>" +
+                            "</li>"
+                        );
+                }
             });
+
+            ddlAgents.fadeIn('fast');
             event.stopPropagation();
         });
 
         $('body, html').on('click', function () {
-            if ($("div .view-agent-downline") != undefined) {
-                $("div .agent-tooltip").hide();
-                $("div #agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info.png");
+            if (ageDownLink.length > 0) {
+                ddlAgents.fadeOut('fast');
+                //$("div #agentDownlineLink").find("img").attr("src", "../_AccountInfo/Resources/Images/icon-view-info.png");
             }
         });
     });
