@@ -33,4 +33,11 @@ namespace Apollo.Age.Reports.ViewModels
 
         public decimal GameShareAmount { get; set; }
     }
+
+    public class OutstandingDownlinePathViewModel
+    {
+        public IEnumerable<OutstandingViewModel> ListOutStanding { get; set; }
+
+        public IEnumerable<AgentDownlinePathViewModel> DownlinePath { get; set; }
+    }
 }

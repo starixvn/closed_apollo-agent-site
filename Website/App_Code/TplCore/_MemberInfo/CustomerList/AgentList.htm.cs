@@ -13,17 +13,17 @@ namespace Fanex.Agent.UI
 	{
 		public class AgentList_Template : Template
 		{
-			protected static string s0 = "<table><tr><td>";
+			protected static string s0 = "<div class=\"error-msg\">";
 			protected static string s1{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
-			protected static string s2 = "</td></tr><tr><td><div id=\"title_header\"><div class=\"agent-list-title\">";
+			protected static string s2 = "</div><div class=\"title_header\"><div id=\"header_main\">";
 			protected static string s3{get{return Resources.Lang.lblAgentListOf;}}
 			protected static string s4 = " ";
 			public string AgentName = "{AgentName}";
 			protected static string s5 = "</div><div class=\"edit-setting\">";
 			public string IconEditSetting = "{IconEditSetting}";
-			protected static string s6 = "</div></div></td></tr><tr><td><div id=\"box_header\" style=\"width: 100%\">";
+			protected static string s6 = "</div></div><div id=\"box_header\">";
 			public string searchControl = "{searchControl}";
-			protected static string s7 = "</div></td></tr><tr><td><div id=\"page_main\">";
+			protected static string s7 = "</div><div id=\"page_main\">";
 			public AgentList_nav_link_container_Block nav_link_container = new AgentList_nav_link_container_Block();
 			protected static string s8 = "<link href=\"";
 			protected static string s9{get{return AbsoluteUrl("_MemberInfo/CustomerList/Components/Print_Control/Resources/Print.css", TplSettings.Question);}}
@@ -35,13 +35,13 @@ namespace Fanex.Agent.UI
 			public string urlMemberList = "{urlMemberList}";
 			protected static string s14 = "\">";
 			protected static string s15{get{return Resources.Lang.lblPlayerList;}}
-			protected static string s16 = "</a></li></ul></div><table id=\"tblCustomerList\">";
+			protected static string s16 = "</a></li></ul></div><table id=\"tblCustomerList\" class=\"tblRpt\">";
 			public AgentList_Header_Block Header = new AgentList_Header_Block();
 			protected static string s17 = "<tbody>";
 			public AgentList_Content_Block Content = new AgentList_Content_Block();
 			protected static string s18 = "</tbody><tfoot><tr><td colspan=\"18\">";
 			public string pagingControl = "{pagingControl}";
-			protected static string s19 = "</td></tr></tfoot></table></div></div></td></tr></table>";
+			protected static string s19 = "</td></tr></tfoot></table></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

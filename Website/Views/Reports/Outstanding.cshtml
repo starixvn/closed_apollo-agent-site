@@ -9,33 +9,32 @@
 {
     <link href="~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.less" rel="stylesheet" type="text/css" />
 }
-@model IEnumerable<OutstandingViewModel>
+@model OutstandingDownlinePathViewModel
 <div id="divMain">
+    @{
+        if (Model.DownlinePath != null && Model.DownlinePath.Any())
+        {
+            IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath = Model.DownlinePath;
+        <div class="boxNavigation" id="divnavigation">
+            @foreach (AgentDownlinePathViewModel item in AgentDownlinePath)
+            {
+
+                if (!AgentDownlinePath.IsLast(item))
+                {
+                <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
+                <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
+                }
+                else
+                {
+                <span>@item.Username</span>
+                }
+            }
+        </div>
+        }
+    }
     <table id="tbl-rpt" class="tblRpt" cellspacing="1" cellpadding="0" style="width: 100%;
         display: table">
         <thead>
-            <tr>
-                <td colspan="5" id="navigation">
-                    @{
-                        IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath = (IEnumerable<AgentDownlinePathViewModel>)ViewBag.AgentDownlinePath;
-                        <div class="boxNavigation" id="divnavigation">
-                            @foreach (AgentDownlinePathViewModel item in AgentDownlinePath)
-                            {
-
-                                if (!AgentDownlinePath.IsLast(item))
-                                {
-                                <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
-                                <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
-                                }
-                                else
-                                {
-                                <span>@item.Username</span>
-                                }
-                            }
-                        </div>
-                    }
-                </td>
-            </tr>
             <tr>
                 <td rowspan="2" class="RptHeader02" style="width: 200px;">
                 </td>
@@ -61,10 +60,10 @@
                 </td>
             </tr>
         </thead>
-        @if (Model != null && Model.Any())
+        @if (Model.ListOutStanding != null && Model.ListOutStanding.Any())
         {
-            var agentOutStanding = Model.SingleOrDefault(x => x.IsAgent == 1);
-            var memberOutstandig = Model.SingleOrDefault(x => x.IsAgent == 0);
+            var agentOutStanding = Model.ListOutStanding.SingleOrDefault(x => x.IsAgent == 1);
+            var memberOutstandig = Model.ListOutStanding.SingleOrDefault(x => x.IsAgent == 0);
             if (agentOutStanding != null)
             {
             <tr>
@@ -110,16 +109,16 @@
                     @Resources.Lang.total
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(Model.Sum(x => x.Outstanding), "en-US")
+                    @Formater.FormatNumber20(Model.ListOutStanding.Sum(x => x.Outstanding), "en-US")
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(Model.Sum(x => x.ShareAmount), "en-US")
+                    @Formater.FormatNumber20(Model.ListOutStanding.Sum(x => x.ShareAmount), "en-US")
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(Model.Sum(x => x.GameOutstanding), "en-US")
+                    @Formater.FormatNumber20(Model.ListOutStanding.Sum(x => x.GameOutstanding), "en-US")
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(Model.Sum(x => x.GameShareAmount), "en-US")
+                    @Formater.FormatNumber20(Model.ListOutStanding.Sum(x => x.GameShareAmount), "en-US")
                 </td>
             </tr>
         }
