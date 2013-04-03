@@ -15,7 +15,7 @@ namespace Fanex.Agent.UI
 		{
 			protected static string s0 = "<div class=\"error-msg\">";
 			protected static string s1{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
-			protected static string s2 = "</div><div class=\"title_header\"><div id=\"header_main\">";
+			protected static string s2 = "</div><div id=\"header_main\"><div class=\"header-title\">";
 			protected static string s3{get{return Resources.Lang.lblAgentListOf;}}
 			protected static string s4 = " ";
 			public string AgentName = "{AgentName}";
@@ -29,13 +29,13 @@ namespace Fanex.Agent.UI
 			protected static string s9{get{return AbsoluteUrl("_MemberInfo/CustomerList/Components/Print_Control/Resources/Print.css", TplSettings.Question);}}
 			protected static string s10 = "\" rel=\"stylesheet\" type=\"text/css\"media=\"print\" />";
 			public string pagingHeader = "{pagingHeader}";
-			protected static string s11 = "<div class=\"list\"><div class=\"container-sub-nav\"><ul class=\"sub-nav\"><li class=\"active\">";
+			protected static string s11 = "<div class=\"list\"><ul class=\"sub-nav\"><li class=\"active\">";
 			protected static string s12{get{return Resources.Lang.lblAgentList;}}
 			protected static string s13 = "</li><li><span class=\"line\">|</span><a href=\"";
 			public string urlMemberList = "{urlMemberList}";
 			protected static string s14 = "\">";
 			protected static string s15{get{return Resources.Lang.lblPlayerList;}}
-			protected static string s16 = "</a></li></ul></div><table id=\"tblCustomerList\" class=\"tblRpt\">";
+			protected static string s16 = "</a></li></ul><table class=\"tblRpt\">";
 			public AgentList_Header_Block Header = new AgentList_Header_Block();
 			protected static string s17 = "<tbody>";
 			public AgentList_Content_Block Content = new AgentList_Content_Block();
