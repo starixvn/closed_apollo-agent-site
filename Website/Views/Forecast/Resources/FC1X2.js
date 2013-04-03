@@ -2,13 +2,14 @@
 
 var fc1x2 =
 {
-    CurrentLeague: initLeague,
+    CurrentLeague: 0,
     Init: function () {
-        if (fc1x2.CurrentLeague != 0) {
+        fc1x2.CurrentLeague = $('#ddlLeague').val();
+        if (fc1x2.CurrentLeague) {
             $('#ddlLeague').on("change", function () {
                 var $this = $(this);
                 fc1x2.CurrentLeague = $this.val();
-                if (fc1x2.CurrentLeague != 0) {
+                if (fc1x2.CurrentLeague) {
                     fc1x2.ChangeLeague();
                 }
             });
@@ -46,8 +47,3 @@ var fc1x2 =
 $(function () {
     fc1x2.Init();
 });
-
-function ReloadMatches() {
-    RefreshCountDown_Init();
-    $('#ddlLeague').trigger("change");
-}

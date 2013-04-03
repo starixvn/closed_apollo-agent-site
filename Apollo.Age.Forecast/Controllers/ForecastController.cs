@@ -40,7 +40,6 @@ namespace Apollo.Age.Forecast.Controllers
         public ViewResult FC1X2()
         {
             IEnumerable<LeagueViewModel> leagues = _foreCastService.GetRunningLeague(betType: 5,agentId: base.AgentId);
-            ViewBag.InitLeague = leagues.Any() ? leagues.ElementAt(0).LeagueId : 0;
             return View(leagues);
         }
 
@@ -58,7 +57,6 @@ namespace Apollo.Age.Forecast.Controllers
         {
             // 1: for Hdp/OU/Live
             IEnumerable<LeagueViewModel> leagues = _foreCastService.GetRunningLeague(betType: 1, agentId: base.AgentId);
-            ViewBag.InitLeague = leagues.Any() ? leagues.ElementAt(0).LeagueId : 0;
             return View(leagues);
         }
 

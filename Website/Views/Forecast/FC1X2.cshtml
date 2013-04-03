@@ -5,7 +5,7 @@
     //IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
 }
 @model IEnumerable<LeagueViewModel>
-@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0, "ReloadMatches();")
+@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
 <div style="clear:both;"></div>
 <div id="box_header">
     <table>
@@ -45,8 +45,5 @@
 <!--/Content-->
 @section scripts
 {
-    <script type="text/javascript">
-        var initLeague = @ViewBag.InitLeague;
-    </script>
     <script src="~/Views/Forecast/Resources/FC1X2.js" type="text/javascript"></script>
 }
