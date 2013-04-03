@@ -14,12 +14,11 @@
     @{
         if (Model.DownlinePath != null && Model.DownlinePath.Any())
         {
-            IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath = Model.DownlinePath;
         <div class="boxNavigation" id="divnavigation">
-            @foreach (AgentDownlinePathViewModel item in AgentDownlinePath)
+            @foreach (AgentDownlinePathViewModel item in Model.DownlinePath)
             {
-
-                if (!AgentDownlinePath.IsLast(item))
+                var last = Model.DownlinePath.LastOrDefault();
+                if (last != null && !last.Equals(item))
                 {
                 <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
                 <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
@@ -68,7 +67,7 @@
             {
             <tr>
                 <td>
-                    <a href="#" id="AgentOutstanding" agentid="@Request.QueryString["agentid"]" >@Resources.Lang.lblAgentOutstanding</a>
+                    <a href="#" id="AgentOutstanding" agentid="@Model.CurrentAgentId" >@Resources.Lang.lblAgentOutstanding</a>
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(agentOutStanding.Outstanding, "en-US")
@@ -88,7 +87,7 @@
             {
             <tr>
                 <td>
-                    <a href="#" id="MemberOutstanding" agentid="@Request.QueryString["agentid"]" >@Resources.Lang.lblMemberOutstanding</a>
+                    <a href="#" id="MemberOutstanding" agentid="@Model.CurrentAgentId" >@Resources.Lang.lblMemberOutstanding</a>
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(memberOutstandig.Outstanding, "en-US")
@@ -109,16 +108,16 @@
                     @Resources.Lang.total
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(Model.ListOutStanding.Sum(x => x.Outstanding), "en-US")
+                    @Formater.FormatNumber20(agentOutStanding.Outstanding + memberOutstandig.Outstanding, "en-US")
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(Model.ListOutStanding.Sum(x => x.ShareAmount), "en-US")
+                    @Formater.FormatNumber20(agentOutStanding.ShareAmount + memberOutstandig.ShareAmount, "en-US")
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(Model.ListOutStanding.Sum(x => x.GameOutstanding), "en-US")
+                    @Formater.FormatNumber20(agentOutStanding.GameOutstanding + memberOutstandig.GameOutstanding, "en-US")
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(Model.ListOutStanding.Sum(x => x.GameShareAmount), "en-US")
+                    @Formater.FormatNumber20(agentOutStanding.GameShareAmount + memberOutstandig.GameShareAmount, "en-US")
                 </td>
             </tr>
         }
