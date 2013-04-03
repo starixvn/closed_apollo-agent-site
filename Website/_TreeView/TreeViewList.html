@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../_AccountInfo/Resources/treeview.css" rel="stylesheet" type="text/css" />
+    <link href="../_AccountInfo/Resources/AccountInfo.less" rel="stylesheet" type="text/css" />
+</head>
+<body class="downlineTreview-bg">
+    <ul id="treeview_list" class="tree-tab">
+        
+    </ul>
+</body>
+</html>
+<script type="text/javascript" src="../_GlobalResources/Js/jquery.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/jquery.cookie.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.js"></script>
+<script type="text/javascript" src="../_AccountInfo/Resources/jquery.treeview.async.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        
+        $("#treeview_list").treeview({
+            url: parent.parent.window.baseURL + "Account/TreeNodeData",
+            link: "<a href='../_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'> {2} </a>",
+            custid: getCustId()
+        });
+
+        function getCustId() {
+            var url = window.location.href;
+            var params = url.split('?')[1];
+            return params.split('=')[1];
+        }
+    });
+</script>

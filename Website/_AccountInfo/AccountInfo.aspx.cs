@@ -289,7 +289,7 @@ namespace Sunplus.Agent.UI._AccountInfo
                 }
                 else
                 {
-                    tpl.HiddenBlockTabAgent.TreeViewBlock.AgentId = agent.Id.ToString();
+                    tpl.HiddenBlockTabAgent.TreeViewBlock.CustId = agent.Id.ToString();
                     tpl.HiddenBlockTabAgent.NoInfoBlock.Hide();
                 }
             }
