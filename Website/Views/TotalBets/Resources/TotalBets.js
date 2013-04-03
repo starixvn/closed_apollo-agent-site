@@ -8,7 +8,7 @@
             + '&b=' + $(this).attr("bet-type");
 
             ageWnd.openDialog(url, '', {
-                width: 650,
+                width: 655,
                 height: 320,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
@@ -86,6 +86,25 @@
                     countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                 }
             });
+        });
+    },
+    InnitFreeHeader: function () {
+        var clonedHeaderRow;
+        $(".persist-area").each(function () {
+            clonedHeaderRow = $(".persist-header", this);
+            clonedHeaderRow
+	             .before(clonedHeaderRow.clone())
+	             .css("width", clonedHeaderRow.width())
+	             .addClass("floatingHeader")
+	             .removeClass("persist-header");
+
+        });
+
+        $(window)
+	        .scroll(updateTableHeaders)
+	        .trigger("scroll");
+        $(window).resize(function () {
+            updateTableHeaders();
         });
     }
 };

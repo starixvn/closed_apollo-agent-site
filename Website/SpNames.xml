@@ -138,14 +138,117 @@
     </Function>
 
     <Function Name="Agent-Apollo-TotalBets">
-        <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_TotalBets_10" SpName="Age_TotalBets_10" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_TotalBets_14" SpName="Age_TotalBets_14" DbName="REPDB" Plain="0" />
+      <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="REPDB" Plain="0" >
+        <Mapping DataField="Home_Odds" ObjectProperty="HomeOdds" />
+        <Mapping DataField="Away_Odds" ObjectProperty="AwayOdds" />
+        <Mapping DataField="WinLost_Home" ObjectProperty="HomeWinLost" />
+        <Mapping DataField="WinLost_Away" ObjectProperty="AwayWinLost" />
+        <Mapping DataField="Home_Odds_HT" ObjectProperty="HomeOddsHaftTime" />
+        <Mapping DataField="Away_Odds_HT" ObjectProperty="AwayOddsHaftTime" />
+        <Mapping DataField="WinLost_Home_HT" ObjectProperty="HomeHaftTimeWinLost" />
+        <Mapping DataField="WinLost_Away_HT" ObjectProperty="AwayHaftTimeWinLost" />
+        <Mapping DataField="BetCount_Home" ObjectProperty="BetCountHome" />
+        <Mapping DataField="BetCount_Away" ObjectProperty="BetCountAway" />
+        <Mapping DataField="BetCount_Home_HT" ObjectProperty="BetCountHomeHaftTime" />
+        <Mapping DataField="BetCount_Away_HT" ObjectProperty="BetCountAwayHaftTime" />
+
+      </Setting>
+      <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="REPDB" Plain="0">
+        <Mapping DataField="home_odds_HDP" ObjectProperty="HomeOddsHandicap" />
+        <Mapping DataField="away_odds_HDP" ObjectProperty="AwayOddsHandicap" />
+        <Mapping DataField="home_odds_HTHDP" ObjectProperty="HomeOddsHaftTimeHandicap" />
+        <Mapping DataField="away_odds_HTHDP" ObjectProperty="AwayOddsHaftTimeHandicap" />
+        <Mapping DataField="home_odds_OU" ObjectProperty="HomeOddsOverUnder" />
+        <Mapping DataField="away_odds_OU" ObjectProperty="AwayOddsOverUnder" />
+        <Mapping DataField="home_odds_HTOU" ObjectProperty="HomeOddHaftTimeOverUnder" />
+        <Mapping DataField="away_odds_HTOU" ObjectProperty="AwayOddHaftTimeOverUnder" />
+        <Mapping DataField="BetCount_HDP" ObjectProperty="BetCountHandicap" />
+        <Mapping DataField="BetCount_HTHDP" ObjectProperty="BetCountHaftTimeHandicap" />
+        <Mapping DataField="BetCount_OU" ObjectProperty="BetCountOverUnder" />
+        <Mapping DataField="BetCount_HTOU" ObjectProperty="BetCountHaftTimeOverUnder" />
+      </Setting>
+        <Setting Key="Age_TotalBets_10" SpName="Age_TotalBets_10" DbName="REPDB" Plain="0">
+          <Mapping DataField="orid" ObjectProperty="MatchId" />
+        </Setting>
+        <Setting Key="Age_TotalBets_14" SpName="Age_TotalBets_14" DbName="REPDB" Plain="0" >
+          <Mapping DataField="WinLost_HomeFG" ObjectProperty="WinLostHomeFG" />
+          <Mapping DataField="WinLost_HomeLG" ObjectProperty="WinLostHomeLG" />
+          <Mapping DataField="WinLost_AwayFG" ObjectProperty="WinLostAwayFG" />
+          <Mapping DataField="WinLost_AwayLG" ObjectProperty="WinLostAwayLG" />
+          <Mapping DataField="WinLost_NoGoal" ObjectProperty="WinLostNoGoal" />
+        </Setting>
         <Setting Key="Age_TotalBets_16" SpName="Age_TotalBets_16" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_TotalBets_161" SpName="Age_TotalBets_161" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_TotalBets_2_5_12_15_123" SpName="Age_TotalBets_2_5_12_15_123" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_TotalBets_25_121_122" SpName="Age_TotalBets_25_121_122" DbName="REPDB" Plain="0" />
+      
+      <Setting Key="Age_TotalBets_161" SpName="Age_TotalBets_161" DbName="REPDB" Plain="0">
+        <Mapping DataField="over_1stBall" ObjectProperty="Over1stBall" />
+        <Mapping DataField="under_1stBall" ObjectProperty="Under1stBall" />
+        <Mapping DataField="over_lastBall" ObjectProperty="OverLastBall" />
+        <Mapping DataField="under_lastBall" ObjectProperty="UnderLastBall" />
+        <Mapping DataField="odd_1stBall" ObjectProperty="Odd1stBall" />
+        <Mapping DataField="even_1stBall" ObjectProperty="Even1stBall" />
+        <Mapping DataField="odd_lastBall" ObjectProperty="OddLastBall" />
+        <Mapping DataField="even_lastBall" ObjectProperty="EvenLastBall" />
+        <Mapping DataField="odd_fullTime" ObjectProperty="OddFullTime" />
+        <Mapping DataField="even_fullTime" ObjectProperty="EvenFullTime" />
+        <Mapping DataField="over_next" ObjectProperty="OverNext" />
+        <Mapping DataField="under_next" ObjectProperty="UnderNext" />
+        <Mapping DataField="odd_next" ObjectProperty="OddNext" />
+        <Mapping DataField="even_next" ObjectProperty="EvenNext" />
+        <Mapping DataField="Warrior_2ndBall" ObjectProperty="Warrior2ndBall" />
+        <Mapping DataField="Warrior_3rdBall" ObjectProperty="Warrior3rdBall" />
+        <Mapping DataField="NextCombo_OverOdd" ObjectProperty="NextComboOverOdd" />
+        <Mapping DataField="NextCombo_OverEven" ObjectProperty="NextComboOverEven" />
+        <Mapping DataField="NextCombo_UnderOdd" ObjectProperty="NextComboUnderOdd" />
+        <Mapping DataField="NextCombo_UnderEven" ObjectProperty="NextComboUnderEven" />
+        <Mapping DataField="betCOUNT_OU1stBall" ObjectProperty="BetCountOU1stBall" />
+        <Mapping DataField="betCOUNT_OULastBall" ObjectProperty="BetCountOULastBall" />
+        <Mapping DataField="betCOUNT_OE1stBall" ObjectProperty="BetCountOE1stBall" />
+        <Mapping DataField="betCOUNT_OElastBall" ObjectProperty="BetCountOELastBall" />
+        <Mapping DataField="betCOUNT_OEfullTime" ObjectProperty="BetCountOEFullTime" />
+        <Mapping DataField="betCOUNT_OUNext" ObjectProperty="BetCountOUNext" />
+        <Mapping DataField="betCOUNT_OENext" ObjectProperty="BetCountOENext" />
+        <Mapping DataField="betCOUNT_highlow" ObjectProperty="BetCountHighLow" />
+        <Mapping DataField="betCOUNT_Warrior_2ndBall" ObjectProperty="BetCountWarrior2ndBall" />
+        <Mapping DataField="betCOUNT_Warrior_3rdBall" ObjectProperty="BetCountWarrior3rdBall" />
+        <Mapping DataField="betCOUNT_NextCombo_OverOdd" ObjectProperty="BetCountNextComboOverOdd" />
+        <Mapping DataField="betCOUNT_NextCombo_OverEven" ObjectProperty="BetCountNextComboOverEven" />
+        <Mapping DataField="betCOUNT_NextCombo_UnderOdd" ObjectProperty="BetCountNextComboUnderOdd" />
+        <Mapping DataField="betCOUNT_NextCombo_UnderEven" ObjectProperty="BetCountNextComboUnderEven" />
+        <Mapping DataField="betCOUNT_NumberGroupPre" ObjectProperty="BetCountNumberGroupPre" />
+        <Mapping DataField="betCOUNT_NumberGroupLive" ObjectProperty="BetCountNumberGroupLive" />
+      </Setting>
+      
+      <Setting Key="Age_TotalBets_2_5_12_15_123" SpName="Age_TotalBets_2_5_12_15_123" DbName="REPDB" Plain="0" >
+        <Mapping DataField="home_odds_OE" ObjectProperty="HomeOddsOddEven" />
+        <Mapping DataField="away_odds_OE" ObjectProperty="AwayOddsOddEven" />
+        <Mapping DataField="home_odds_OE_1st" ObjectProperty="HomeOddsHaftTimeOddEven" />
+        <Mapping DataField="away_odds_OE_1st" ObjectProperty="AwayOddsHaftTimeOddEven" />
+        <Mapping DataField="odds_1" ObjectProperty="Odds1" />
+        <Mapping DataField="odds_x" ObjectProperty="OddsX" />
+        <Mapping DataField="odds_2" ObjectProperty="Odds2" />
+        <Mapping DataField="odds_1_1st" ObjectProperty="Odds1HaftTime" />
+        <Mapping DataField="odds_x_1st" ObjectProperty="OddsXHaftTime" />
+        <Mapping DataField="odds_2_1st" ObjectProperty="Odds2HaftTime" />
+        <Mapping DataField="home_odds_DND" ObjectProperty="HomeOddsDrawNoDraw" />
+        <Mapping DataField="away_odds_DND" ObjectProperty="AwayOddsDrawNoDraw" />
+        <Mapping DataField="BetCount_OE" ObjectProperty="BetCountOddEven" />
+        <Mapping DataField="BetCount_OE_1st" ObjectProperty="BetCountHaftTimeOddEven" />
+        <Mapping DataField="BetCount_1x2" ObjectProperty="BetCount1X2" />
+        <Mapping DataField="BetCount_1x2_1st" ObjectProperty="BetCount1X2HaftTime" />
+        <Mapping DataField="BetCount_DND" ObjectProperty="BetCountDrawNoDraw" />
+        
+      </Setting>
+      <Setting Key="Age_TotalBets_25_121_122" SpName="Age_TotalBets_25_121_122" DbName="REPDB" Plain="0" >
+        <Mapping DataField="home_odds_DNB" ObjectProperty="HomeOddsDNB" />
+        <Mapping DataField="away_odds_DNB" ObjectProperty="AwayOddsDNB" />
+        <Mapping DataField="home_odds_HNB" ObjectProperty="HomeOddsHNB" />
+        <Mapping DataField="away_odds_HNB" ObjectProperty="AwayOddsHNB" />
+        <Mapping DataField="home_odds_ANB" ObjectProperty="HomeOddsANB" />
+        <Mapping DataField="away_odds_ANB" ObjectProperty="AwayOddsANB" />
+        <Mapping DataField="BetCount_DNB" ObjectProperty="BetCountDNB" />
+        <Mapping DataField="BetCount_HNB" ObjectProperty="BetCountHNB" />
+        <Mapping DataField="BetCount_ANB" ObjectProperty="BetCountANB" />
+      </Setting>
         <Setting Key="Age_TotalBets_6" SpName="Age_TotalBets_6" DbName="REPDB" Plain="0" />
     </Function>
 

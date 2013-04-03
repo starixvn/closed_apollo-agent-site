@@ -26,11 +26,14 @@ namespace Apollo.Age.Reports.Controllers
     {
         private readonly OutstandingService _reportService;
 
+        private int currentAgentId;
+
         public ReportsController() : this(null) { }
 
         public ReportsController(OutstandingService reportService = null)
         {
             _reportService = reportService ?? new OutstandingService();
+            currentAgentId = UserSession.Current.AgentId;
         }
 
         private IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath(int agentId)
@@ -46,55 +49,61 @@ namespace Apollo.Age.Reports.Controllers
 
         #region Outstanding Report
 
-        public ViewResult Outstanding()
+        public ViewResult Outstanding(int? agentId)
         {
+            currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
             if (UserSession.Current.AgentLevel == 0)
             {
-                return AgentOutstanding();
+                return AgentOutstanding(currentAgentId);
             }
 
-            int agentId = string.IsNullOrEmpty(HttpContext.Request["agentId"]) ? UserSession.Current.AgentId : Convert.ToInt32(HttpContext.Request["agentId"]);
             // call service to get report data here
             IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new OutstandingCriteria
             {
-                AgentId = agentId
+                AgentId = currentAgentId
             });
 
-            ViewBag.AgentDownlinePath = AgentDownlinePath(agentId);
-
-            return View(models);
+            return View(new OutstandingDownlinePathViewModel()
+            {
+                CurrentAgentId = currentAgentId,
+                ListOutStanding = models,
+                DownlinePath = AgentDownlinePath(currentAgentId)
+            });
         }
 
-        public ViewResult AgentOutstanding()
+        public ViewResult AgentOutstanding(int? agentId)
         {
-            int agentId = string.IsNullOrEmpty(HttpContext.Request["agentId"]) ? UserSession.Current.AgentId : Convert.ToInt32(HttpContext.Request["agentId"]);
+            currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
             // call service to get report data here
             IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new AgentOutstandingCriteria
             {
-                AgentId = agentId
+                AgentId = currentAgentId
             });
 
             return View(models);
         }
 
         [HttpPost]
-        public JsonResult MemberOutstanding()
+        public ActionResult MemberOutstanding(int? agentId)
         {
-            int agentId = string.IsNullOrEmpty(HttpContext.Request["agentId"]) ? UserSession.Current.AgentId : Convert.ToInt32(HttpContext.Request["agentId"]);
+            currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
             // call service to get report data here
             IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new MemberOutstandingCriteria
             {
-                AgentId = agentId
+                AgentId = currentAgentId
             });
 
-            OutstandingViewModel totalModels = new OutstandingViewModel()
+            // Sum total amount
+            OutstandingViewModel totalModels = new OutstandingViewModel();
+            foreach (OutstandingViewModel item in models)
             {
-                Outstanding = models.Sum(x => x.Outstanding),
-                ShareAmount = models.Sum(x => x.ShareAmount),
-                GameOutstanding = models.Sum(x => x.GameOutstanding),
-                GameShareAmount = models.Sum(x => x.GameShareAmount)
-            };
+                totalModels.Outstanding += item.Outstanding;
+                totalModels.ShareAmount += item.ShareAmount;
+                totalModels.GameOutstanding += item.GameOutstanding;
+                totalModels.GameShareAmount += item.GameShareAmount;
+            }
 
+            // return object
             return Json(new
             {
                 ListOutstanding = models,

@@ -20,7 +20,7 @@ if (typeof jQuery != 'undefined') {
                         url: parent.baseURL + "/Reports/MemberOutstanding",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        data: { 'agentId': $("#MemberOutstanding").attr("agentid") },
+                        data: JSON.stringify({ 'agentId': $("#MemberOutstanding").attr("agentid") }),
                         timeout: 120000,
                         success: function (result) {
                             $("#divDetail").html(null);
@@ -35,7 +35,7 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             viewAgent: function (agentId) {
-                location.href = parent.baseURL + "/Reports/Outstanding?agentid=" + agentId;
+                location.href = parent.baseURL + "/Reports/Outstanding?agentId=" + agentId;
             },
             initGrid: function (outstandingData) {
                 var bodyData = [];
@@ -94,7 +94,6 @@ if (typeof jQuery != 'undefined') {
                     showFooter: true,
                     footerRows: footerData,
                     fullHeight: true,
-                    //gridHeight: 550,
                     gridExpandHeight: 250,
                     marginRight: 0
                 };
