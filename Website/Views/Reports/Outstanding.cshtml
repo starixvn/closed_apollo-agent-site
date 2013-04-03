@@ -14,11 +14,10 @@
     @{
         if (Model.DownlinePath != null && Model.DownlinePath.Any())
         {
-            IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath = Model.DownlinePath;
         <div class="boxNavigation" id="divnavigation">
-            @foreach (AgentDownlinePathViewModel item in AgentDownlinePath)
+            @foreach (AgentDownlinePathViewModel item in Model.DownlinePath)
             {
-                var last = AgentDownlinePath.LastOrDefault();
+                var last = Model.DownlinePath.LastOrDefault();
                 if (last != null && !last.Equals(item))
                 {
                 <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
