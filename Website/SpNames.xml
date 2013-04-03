@@ -262,7 +262,20 @@
     <Function Name="Agent-Apollo-ForeCast">
         <Setting Key="Age_Forecast_OddsGetTopByMatch" SpName="Age_Forecast_OddsGetTopByMatch" DbName="REPDB" Plain="0" />
         <!--<Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="DB05" Plain="0" />-->
-        <Setting Key="Age_Forecast_1_3_7_8_GetByLeague" SpName="Age_Forecast_1_3_7_8_GetByLeague" DbName="REPDB" Plain="0" />
+      <Setting Key="Age_Forecast_1_3_7_8_GetByLeague" SpName="Age_Forecast_1_3_7_8_GetByLeague" DbName="REPDB" Plain="0">
+        <Mapping DataField="WinLost_M1_HDP" ObjectProperty="HandicapWinLostMinus1" />
+        <Mapping DataField="WinLost_0_HDP" ObjectProperty="HandicapWinLostBase" />
+        <Mapping DataField="WinLost_1_HDP" ObjectProperty="HandicapWinLostPlus1" />
+        <Mapping DataField="WinLost_0_OU" ObjectProperty="OverUnderWinLostBase" />
+        <Mapping DataField="WinLost_1_OU" ObjectProperty="OverUnderWinLost1" />
+        <Mapping DataField="WinLost_2_OU" ObjectProperty="OverUnderWinLost2" />
+        <Mapping DataField="WinLost_M1_HTHDP" ObjectProperty="HaftTimeHandicapWinLostMinus1" />
+        <Mapping DataField="WinLost_0_HTHDP" ObjectProperty="HaftTimeHandicapWinLostBase" />
+        <Mapping DataField="WinLost_1_HTHDP" ObjectProperty="HaftTimeHandicapWinLostPlus1" />
+        <Mapping DataField="WinLost_0_HTOU" ObjectProperty="HaftTimeOverUnderWinLostBase" />
+        <Mapping DataField="WinLost_1_HTOU" ObjectProperty="HaftTimeOverUnderWinLost1" />
+        <Mapping DataField="WinLost_2_HTOU" ObjectProperty="HaftTimeOverUnderWinLost2" />
+      </Setting>
         <Setting Key="Age_Forecast_5_15_GetByLeague" SpName="Age_Forecast_5_15_GetByLeague" DbName="REPDB" Plain="0" />
         <Setting Key="Age_Forecast_1_7_GetByMatch" SpName="Age_Forecast_1_7_GetByMatch" DbName="REPDB" Plain="0" />
         <Setting Key="Age_Forecast_3_8_GetByMatch" SpName="Age_Forecast_3_8_GetByMatch" DbName="REPDB" Plain="0" />

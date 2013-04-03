@@ -36,6 +36,8 @@ namespace Apollo.Age.Reports.ViewModels
 
     public class OutstandingDownlinePathViewModel
     {
+        public int CurrentAgentId { get; set; }
+
         public IEnumerable<OutstandingViewModel> ListOutStanding { get; set; }
 
         public IEnumerable<AgentDownlinePathViewModel> DownlinePath { get; set; }

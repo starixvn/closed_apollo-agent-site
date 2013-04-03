@@ -19,8 +19,8 @@ namespace Fanex.Agent.UI
 			protected static string s3{get{return Resources.Lang.mainmenu;}}
 			protected static string s4 = "</a></li><li><a target=\"menu\" href=\"../_AccountInfo/AccountInfo.aspx\"><i class=\"icon-user\"></i>";
 			protected static string s5{get{return Resources.Lang.userinfo;}}
-			protected static string s6 = "</a></li><li class=\"active\"><a><i class=\"icon-align-left\"></i>Tree</a></li></ul><div id=\"leftpane-treeview\" class=\"pnlTreeview\"><iframe id='frmDownlineList' name='frmDownlineList'src='../_AccountInfo/DownLineTreeView.aspx?agentid=";
-			public string AgentId = "{AgentId}";
+			protected static string s6 = "</a></li><li class=\"active\"><a><i class=\"icon-align-left\"></i>Tree</a></li></ul><div id=\"Div1\" class=\"pnlTreeview\"><iframe id='Iframe1' name='frmDownlineList'src='../_TreeView/TreeViewList.html?custid=";
+			public string CustId = "{CustId}";
 			protected static string s7 = "' style='width:98%; height:100%;'></iframe></div></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -34,7 +34,7 @@ namespace Fanex.Agent.UI
 					bd.Append(s4);
 					bd.Append(s5);
 					bd.Append(s6);
-					bd.Append(AgentId);
+					bd.Append(CustId);
 					bd.Append(s7);
 				}
 				if(IsAssigned){bd.Append(Value);}

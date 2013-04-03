@@ -8,7 +8,7 @@
             + '&b=' + $(this).attr("bet-type");
 
             ageWnd.openDialog(url, '', {
-                width: 650,
+                width: 665,
                 height: 320,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
@@ -79,14 +79,64 @@
             + 'matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type");
             ageWnd.openDialog(url, '', {
-                width: 650,
-                height: 470,
+                width: 350,
+                height: 520,
                 position: { my: "top+50", at: "center top", of: window },
                 close: function (event, ui) {
                     countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                 }
             });
         });
+    },
+    InnitFreeHeader: function () {
+        var clonedHeaderRow;
+        $(".persist-area").each(function () {
+            clonedHeaderRow = $(".persist-header", this);
+            clonedHeaderRow
+	             .before(clonedHeaderRow.clone())
+	             .css("width", clonedHeaderRow.width())
+	             .addClass("floatingHeader")
+	             .removeClass("persist-header");
+
+        });
+
+        $(window)
+	        .scroll(this.updateTableHeaders)
+	        .trigger("scroll");
+        $(window).resize(function () {
+            updateTableHeaders();
+        });
+    },
+    updateTableHeaders: function () {
+        if ($(".persist-area").val() != undefined) {
+            var widthspace = $(".persist-area").width() + 18;
+
+            $('.floatingHeader').width(widthspace);
+            var left = $('table thead tr:first').position()["left"];
+            $(".persist-area").each(function () {
+                var el = $(this),
+                    offset = el.offset(),
+                    scrollTop = $(window).scrollTop(),
+                    floatingHeader = $(".floatingHeader", this)
+                if ((scrollTop > offset.top - 60) && (scrollTop < offset.top + el.height())) {
+                    floatingHeader.css({
+                        "visibility": "visible",
+                        "left": (left - $(window).scrollLeft())
+                    });
+                } else {
+                    floatingHeader.css({
+                        "visibility": "hidden"
+                    });
+                };
+            });
+
+            var i = 0;
+            $("table .persist-header td").each(function () {
+                var x = $(this).width();
+                $($("table .floatingHeader td")[i]).width(x);
+                i++;
+            });
+        }
     }
 };
 
