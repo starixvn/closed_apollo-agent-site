@@ -25,8 +25,8 @@ namespace Apollo.Age.Forecast.ViewModels
         public int HomeId { get; set; }
         public int AwayId { get; set; }
         public bool LiveIndicator { get; set; }
-        public short LiveHomeScore { get; set; }
-        public short LiveAwayScore { get; set; }
+        public int LiveHomeScore { get; set; }
+        public int LiveAwayScore { get; set; }
         public string ShowTime { get; set; }
         public string MatchCode { get; set; }
         public decimal HandicapWinLostMinus1 { get; set; }
