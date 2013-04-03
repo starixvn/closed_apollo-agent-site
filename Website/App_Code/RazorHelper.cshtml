@@ -8,7 +8,7 @@
     </tr>
     <!--/NotFoundContent-->
 }
-@helper RefreshCountDown(string refreshCountDownId, int initCountDown = 15, int fromSecond = 15)
+@helper RefreshCountDown(string refreshCountDownId, int initCountDown = 15, int fromSecond = 15, string onRefresh = "location.reload();")
 {
     <div class="btnCountDown">
         <div id="CountDownRefresh" class="btnRefresh" title="@Resources.Lang.refresh" onclick="CountDownRefresh_Refresh();">
@@ -33,6 +33,6 @@
         var refreshCountDownId = "@refreshCountDownId";
         var initCountDown = @initCountDown;
         var loadingTxt = "<span class='miniloading'>Loading</span>";
-        var countDownRefreshFunc="location.reload();";
+        var countDownRefreshFunc= "@onRefresh";
     </script>
 }

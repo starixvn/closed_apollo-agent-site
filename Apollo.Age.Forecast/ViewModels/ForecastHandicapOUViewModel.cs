@@ -29,18 +29,18 @@ namespace Apollo.Age.Forecast.ViewModels
         public int LiveAwayScore { get; set; }
         public string ShowTime { get; set; }
         public string MatchCode { get; set; }
-        public decimal HandicapWinLostMinus1 { get; set; }
-        public decimal HandicapWinLostBase { get; set; }
-        public decimal HandicapWinLostPlus1 { get; set; }
-        public decimal OverUnderWinLostBase { get; set; }
-        public decimal OverUnderWinLost1 { get; set; }
-        public decimal OverUnderWinLost2 { get; set; }
-        public decimal HaftTimeHandicapWinLostMinus1 { get; set; }
-        public decimal HaftTimeHandicapWinLostBase { get; set; }
-        public decimal HaftTimeHandicapWinLostPlus1 { get; set; }
-        public decimal HaftTimeOverUnderWinLostBase { get; set; }
-        public decimal HaftTimeOverUnderWinLost1 { get; set; }
-        public decimal HaftTimeOverUnderWinLost2 { get; set; }
+        public decimal? HandicapWinLostMinus1 { get; set; }
+        public decimal? HandicapWinLostBase { get; set; }
+        public decimal? HandicapWinLostPlus1 { get; set; }
+        public decimal? OverUnderWinLostBase { get; set; }
+        public decimal? OverUnderWinLost1 { get; set; }
+        public decimal? OverUnderWinLost2 { get; set; }
+        public decimal? HaftTimeHandicapWinLostMinus1 { get; set; }
+        public decimal? HaftTimeHandicapWinLostBase { get; set; }
+        public decimal? HaftTimeHandicapWinLostPlus1 { get; set; }
+        public decimal? HaftTimeOverUnderWinLostBase { get; set; }
+        public decimal? HaftTimeOverUnderWinLost1 { get; set; }
+        public decimal? HaftTimeOverUnderWinLost2 { get; set; }
         public bool IsNeutral { get; set; }
         
         public string HomeTeam

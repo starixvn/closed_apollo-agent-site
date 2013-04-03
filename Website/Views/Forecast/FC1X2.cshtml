@@ -5,7 +5,7 @@
     //IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
 }
 @model IEnumerable<LeagueViewModel>
-@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 15)
+@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0, "ReloadMatches();")
 <div style="clear:both;"></div>
 <div id="box_header">
     <table>

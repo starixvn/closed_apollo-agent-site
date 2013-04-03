@@ -35,6 +35,22 @@
     }
 }
 
+@helper FormatPositiveNumber(decimal? value, byte numDecimals = 0, bool showZero = false)
+{
+    if (value != null && (value.Value != 0 || showZero))
+    {
+        if (Math.Round(value.Value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
+        { 
+            <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value.Value, numDecimals) </span>
+        }
+        else
+        { 
+            @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+        }
+    }
+}
+
+
 @helper FormatNumber(decimal value, byte numDecimals = 0, bool showZero = false)
     {
     if (value != 0 || showZero)

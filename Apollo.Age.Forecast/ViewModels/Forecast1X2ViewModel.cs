@@ -30,12 +30,12 @@ namespace Apollo.Age.Forecast.ViewModels
         public string ShowTime { get; set; }
         public string MatchCode { get; set; }
         public bool isNeutral { get; set; }
-        public decimal al { get; set; }
-        public decimal hl { get; set; }
-        public decimal dl { get; set; }
-        public decimal ht_al { get; set; }
-        public decimal ht_hl { get; set; }
-        public decimal ht_dl { get; set; }
+        public decimal? al { get; set; }
+        public decimal? hl { get; set; }
+        public decimal? dl { get; set; }
+        public decimal? ht_al { get; set; }
+        public decimal? ht_hl { get; set; }
+        public decimal? ht_dl { get; set; }
 
         public string HomeTeam
         {
