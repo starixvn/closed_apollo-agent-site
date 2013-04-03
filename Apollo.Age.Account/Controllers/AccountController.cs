@@ -21,6 +21,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Services.Impl;
     using System.Web.Security;
     using Apollo.Age.Core;
+    using Apollo.Age.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -38,6 +39,13 @@ namespace Apollo.Age.Account.Controllers
         //    return Json(result);
         //}
 
+        private readonly AgentService _agentService;
+
+        public AccountController()
+        {
+            _agentService = new AgentService();
+        }
+
         public ActionResult SignOut()
         {
             Session.Abandon();
@@ -47,5 +55,12 @@ namespace Apollo.Age.Account.Controllers
             //FormsAuthentication.RedirectToLoginPage();
             return View("~/_Authorization/SignIn.aspx");
         }
+
+        public JsonResult TreeNodeData(int id)
+        {
+            var customerList = _agentService.GetDirectDownline(id);
+            return Json(customerList, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
