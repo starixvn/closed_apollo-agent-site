@@ -13,19 +13,15 @@ namespace Fanex.Agent.UI
 	{
 		public class SettingBoxView_Template : Template
 		{
-			protected static string s0 = "<tr><td colspan=\"2\"><div class=\"settingWidth\">";
 			public SettingBoxView_MemberSettingBlock_Block MemberSettingBlock = new SettingBoxView_MemberSettingBlock_Block();
 			public SettingBoxView_AgentSettingBlock_Block AgentSettingBlock = new SettingBoxView_AgentSettingBlock_Block();
-			protected static string s1 = "</div></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s0);
 					if(null != MemberSettingBlock) MemberSettingBlock.ToString(ref bd);
 					if(null != AgentSettingBlock) AgentSettingBlock.ToString(ref bd);
-					bd.Append(s1);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -40,77 +36,77 @@ namespace Fanex.Agent.UI
 
 		public class SettingBoxView_MemberSettingBlock_Block: Block
 		{
-			protected static string s2 = "<div class=\"divLinkSetting\"><a id=\"menuitem0\" class=\"b_left\" target=\"main\" onclick=\"menu_select(0);\"href=\"../_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId=";
+			protected static string s0 = "<a id=\"menuitem0\" class=\"lnk-setting\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId=";
 			public string CustId = "{CustId}";
-			protected static string s3 = "&username=";
+			protected static string s1 = "&username=";
 			public string UserName = "{UserName}";
-			protected static string s4 = "&showheader=1&ugroup=";
+			protected static string s2 = "&showheader=1&ugroup=";
 			public string Group = "{Group}";
-			protected static string s5 = "\">";
-			protected static string s6{get{return Resources.Lang.lblEditSB;}}
-			protected static string s7 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem4\" class=\"b_left\" align=\"main\" onclick=\"menu_select(4);\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId=";
+			protected static string s3 = "\">";
+			protected static string s4{get{return Resources.Lang.lblEditSB;}}
+			protected static string s5 = "</a><a id=\"menuitem4\" class=\"lnk-setting\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId=";
 			protected string t0_CustId;
-			protected static string s8 = "&username=";
+			protected static string s6 = "&username=";
 			protected string t1_UserName;
-			protected static string s9 = "&showheader=1&ugroup=";
+			protected static string s7 = "&showheader=1&ugroup=";
 			protected string t2_Group;
-			protected static string s10 = "\">";
-			protected static string s11{get{return Resources.Lang.lbleditbetsetting;}}
-			protected static string s12 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem2\" class=\"b_left\" align=\"main\" onclick=\"menu_select(2);\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId=";
+			protected static string s8 = "\">";
+			protected static string s9{get{return Resources.Lang.lbleditbetsetting;}}
+			protected static string s10 = "</a><a id=\"menuitem2\" class=\"lnk-setting\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId=";
 			protected string t3_CustId;
-			protected static string s13 = "&username=";
+			protected static string s11 = "&username=";
 			protected string t4_UserName;
-			protected static string s14 = "&showheader=1&ugroup=";
+			protected static string s12 = "&showheader=1&ugroup=";
 			protected string t5_Group;
-			protected static string s15 = "\">";
-			protected static string s16{get{return Resources.Lang.lbleditcomm;}}
-			protected static string s17 = "</a></div><div class=\"divLinkSetting\"><a id=\"menuitem1\" class=\"b_left\" target=\"main\" onclick=\"menu_select(1);\"href=\"../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId=";
+			protected static string s13 = "\">";
+			protected static string s14{get{return Resources.Lang.lbleditcomm;}}
+			protected static string s15 = "</a><a id=\"menuitem1\" class=\"lnk-setting\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId=";
 			protected string t6_CustId;
-			protected static string s18 = "&username=";
+			protected static string s16 = "&username=";
 			protected string t7_UserName;
-			protected static string s19 = "&showheader=1&ugroup=";
+			protected static string s17 = "&showheader=1&ugroup=";
 			protected string t8_Group;
-			protected static string s20 = "\">";
-			protected static string s21{get{return Resources.Lang.lblEditPositionTalking;}}
-			protected static string s22 = "</a></div>";
+			protected static string s18 = "\">";
+			protected static string s19{get{return Resources.Lang.lblEditPositionTalking;}}
+			protected static string s20 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s0);
+					bd.Append(CustId);
+					bd.Append(s1);
+					bd.Append(UserName);
 					bd.Append(s2);
-					bd.Append(CustId);
+					bd.Append(Group);
 					bd.Append(s3);
-					bd.Append(UserName);
 					bd.Append(s4);
-					bd.Append(Group);
 					bd.Append(s5);
+					bd.Append(CustId);
 					bd.Append(s6);
+					bd.Append(UserName);
 					bd.Append(s7);
-					bd.Append(CustId);
+					bd.Append(Group);
 					bd.Append(s8);
-					bd.Append(UserName);
 					bd.Append(s9);
-					bd.Append(Group);
 					bd.Append(s10);
+					bd.Append(CustId);
 					bd.Append(s11);
+					bd.Append(UserName);
 					bd.Append(s12);
-					bd.Append(CustId);
+					bd.Append(Group);
 					bd.Append(s13);
-					bd.Append(UserName);
 					bd.Append(s14);
-					bd.Append(Group);
 					bd.Append(s15);
-					bd.Append(s16);
-					bd.Append(s17);
 					bd.Append(CustId);
-					bd.Append(s18);
+					bd.Append(s16);
 					bd.Append(UserName);
-					bd.Append(s19);
+					bd.Append(s17);
 					bd.Append(Group);
+					bd.Append(s18);
+					bd.Append(s19);
 					bd.Append(s20);
-					bd.Append(s21);
-					bd.Append(s22);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -118,77 +114,77 @@ namespace Fanex.Agent.UI
 
 		public class SettingBoxView_AgentSettingBlock_Block: Block
 		{
-			protected static string s23 = "<div class=\"divLinkSetting\"><a id=\"A1\" class=\"b_left\" target=\"main\" onclick=\"menu_select(0);\"href=\"../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId=";
+			protected static string s21 = "<a id=\"A1\" class=\"lnk-setting\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId=";
 			public string CustId = "{CustId}";
-			protected static string s24 = "&username=";
+			protected static string s22 = "&username=";
 			public string UserName = "{UserName}";
-			protected static string s25 = "&showheader=1&agentlevel=";
+			protected static string s23 = "&showheader=1&agentlevel=";
 			public string Level = "{Level}";
-			protected static string s26 = "\">";
-			protected static string s27{get{return Resources.Lang.lblEditSB;}}
-			protected static string s28 = "</a></div><div class=\"divLinkSetting\"><a id=\"A2\" class=\"b_left\" align=\"main\" onclick=\"menu_select(4);\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId=";
+			protected static string s24 = "\">";
+			protected static string s25{get{return Resources.Lang.lblEditSB;}}
+			protected static string s26 = "</a><a id=\"A2\" class=\"lnk-setting\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId=";
 			protected string t9_CustId;
-			protected static string s29 = "&username=";
+			protected static string s27 = "&username=";
 			protected string t10_UserName;
-			protected static string s30 = "&showheader=1&agentlevel=";
+			protected static string s28 = "&showheader=1&agentlevel=";
 			protected string t11_Level;
-			protected static string s31 = "\">";
-			protected static string s32{get{return Resources.Lang.lbleditbetsetting;}}
-			protected static string s33 = "</a></div><div class=\"divLinkSetting\"><a id=\"A3\" class=\"b_left\" align=\"main\" onclick=\"menu_select(2);\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId=";
+			protected static string s29 = "\">";
+			protected static string s30{get{return Resources.Lang.lbleditbetsetting;}}
+			protected static string s31 = "</a><a id=\"A3\" class=\"lnk-setting\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId=";
 			protected string t12_CustId;
-			protected static string s34 = "&username=";
+			protected static string s32 = "&username=";
 			protected string t13_UserName;
-			protected static string s35 = "&showheader=1&agentlevel=";
+			protected static string s33 = "&showheader=1&agentlevel=";
 			protected string t14_Level;
-			protected static string s36 = "\">";
-			protected static string s37{get{return Resources.Lang.lbleditcomm;}}
-			protected static string s38 = "</a></div><div class=\"divLinkSetting\"><a id=\"A4\" class=\"b_left\" target=\"main\" onclick=\"menu_select(1);\"href=\"../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId=";
+			protected static string s34 = "\">";
+			protected static string s35{get{return Resources.Lang.lbleditcomm;}}
+			protected static string s36 = "</a><a id=\"A4\" class=\"lnk-setting\" target=\"main\"href=\"../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId=";
 			protected string t15_CustId;
-			protected static string s39 = "&username=";
+			protected static string s37 = "&username=";
 			protected string t16_UserName;
-			protected static string s40 = "&showheader=1&agentlevel=";
+			protected static string s38 = "&showheader=1&agentlevel=";
 			protected string t17_Level;
-			protected static string s41 = "\">";
-			protected static string s42{get{return Resources.Lang.lblEditPositionTalking;}}
-			protected static string s43 = "</a></div>";
+			protected static string s39 = "\">";
+			protected static string s40{get{return Resources.Lang.lblEditPositionTalking;}}
+			protected static string s41 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s21);
+					bd.Append(CustId);
+					bd.Append(s22);
+					bd.Append(UserName);
 					bd.Append(s23);
-					bd.Append(CustId);
+					bd.Append(Level);
 					bd.Append(s24);
-					bd.Append(UserName);
 					bd.Append(s25);
-					bd.Append(Level);
 					bd.Append(s26);
+					bd.Append(CustId);
 					bd.Append(s27);
+					bd.Append(UserName);
 					bd.Append(s28);
-					bd.Append(CustId);
+					bd.Append(Level);
 					bd.Append(s29);
-					bd.Append(UserName);
 					bd.Append(s30);
-					bd.Append(Level);
 					bd.Append(s31);
+					bd.Append(CustId);
 					bd.Append(s32);
+					bd.Append(UserName);
 					bd.Append(s33);
-					bd.Append(CustId);
+					bd.Append(Level);
 					bd.Append(s34);
-					bd.Append(UserName);
 					bd.Append(s35);
-					bd.Append(Level);
 					bd.Append(s36);
-					bd.Append(s37);
-					bd.Append(s38);
 					bd.Append(CustId);
-					bd.Append(s39);
+					bd.Append(s37);
 					bd.Append(UserName);
-					bd.Append(s40);
+					bd.Append(s38);
 					bd.Append(Level);
+					bd.Append(s39);
+					bd.Append(s40);
 					bd.Append(s41);
-					bd.Append(s42);
-					bd.Append(s43);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

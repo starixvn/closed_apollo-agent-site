@@ -1,70 +1,47 @@
-<!--HiddenBlock-->
-<html>
-<link href="Resources/AccountInfo.less" rel="stylesheet" type="text/css" />
-<link href="Resources/styles.less" rel="stylesheet" type="text/css" />
 
-<body>
-<!--/HiddenBlock-->
-
-<div id="Bleft_Parent02_setting">
-    <div id="left_submenu_setting"> 
-        <div id="left_tab">
-            <ul>                
-                <li id="custsettings" class="current"><a href="#" onclick="showSection(this.parentNode.id, null);">
-                    <span>{static:Resources.Lang.setting}</span></a></li>
-                <!--HiddenBlockHeaderTabAgent-->
-                <li id="agentsTab"><a href="#" onclick="showSection(this.parentNode.id, {AgentID});">
-                    <span>{static:Resources.Lang.lblAgents}</span></a></li>
-                <!--/HiddenBlockHeaderTabAgent-->
-                <!--HiddenBlockHeaderTabMember-->
-                <li id="membersTab"><a href="#" onclick="showSection(this.parentNode.id, {AgentID});">
-                    <span>{static:Resources.Lang.lblMembers}</span></a></li>
-                <!--/HiddenBlockHeaderTabMember-->
-            </ul>
+<div id="agent-setting">
+    <ul class="tabs">                
+        <li id="custsettings" class="current"><a href="#" onclick="showSection(this.parentNode.id, null);">
+            <span>{static:Resources.Lang.setting}</span></a></li>
+        <!--HiddenBlockHeaderTabAgent-->
+        <li id="agentsTab"><a href="#" onclick="showSection(this.parentNode.id, {AgentID});">
+            <span>{static:Resources.Lang.lblAgents}</span></a></li>
+        <!--/HiddenBlockHeaderTabAgent-->
+        <!--HiddenBlockHeaderTabMember-->
+        <li id="membersTab"><a href="#" onclick="showSection(this.parentNode.id, {AgentID});">
+            <span>{static:Resources.Lang.lblMembers}</span></a></li>
+        <!--/HiddenBlockHeaderTabMember-->
+    </ul>
+    <div class="content">
+        <div id="custsettings-content">
+            {otherSettings}                    
         </div>
-        <div id="clear0" ></div>
-        <div class="Bleft_Sub02_setting">
-            <table id="tbl_custsettings">             
-                <tr>
-                    <td colspan="2">
-                        <div style="position: relative; left: -3px;" class="settingWidth"></div>
-                        <div id="overlayBg" class="overlay">
-                        </div>
-                    </td>
-                </tr>                
-                {otherSettings}                    
-            </table>
             
-            <!--HiddenBlockTabAgent-->
-            <table id="tbl_agentsTab" class="agent-tab">
-                <tr>
-                    <td>
-                        <!--TreeViewBlock-->
-                        <iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/AgentTreeList.html?custid={CustId}' style='width:98%;height: 100%'></iframe>
-                        <!--/TreeViewBlock-->
-                        <!--NoInfoBlock-->
-                        <span class="no-data-agent"> {static:Resources.Lang.noInfo} </span>
-                        <!--/NoInfoBlock-->
+        <!--HiddenBlockTabAgent-->
+        <table id="agentsTab-content" class="agent-tab">
+            <tr>
+                <td>
+                    <!--TreeViewBlock-->
+                    <iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/AgentTreeList.html?custid={CustId}' style='width:98%;height: 100%'></iframe>
+                    <!--/TreeViewBlock-->
+                    <!--NoInfoBlock-->
+                    <span class="no-data-agent"> {static:Resources.Lang.noInfo} </span>
+                    <!--/NoInfoBlock-->
 
-                    </td>
-                </tr>                
-            </table>
-            <!--/HiddenBlockTabAgent-->
+                </td>
+            </tr>                
+        </table>
+        <!--/HiddenBlockTabAgent-->
 
-            <!--HiddenBlockTabMember-->
-            <table id="tbl_membersTab" class="member-tab">
-                <tr>
-                    <td>
-                        <div id="iframe-content"> </div>
-                    </td>
-                </tr>
-            </table>
+        <!--HiddenBlockTabMember-->
+        <table id="membersTab-content" class="member-tab">
+            <tr>
+                <td>
+                    <div id="iframe-content"> </div>
+                </td>
+            </tr>
+        </table>
             
-            <!--/HiddenBlockTabMember-->            
-        </div>          
+        <!--/HiddenBlockTabMember-->            
     </div>
 </div>
-<!--HiddenBlock-->
-</body>
-</html>
-<!--/HiddenBlock-->

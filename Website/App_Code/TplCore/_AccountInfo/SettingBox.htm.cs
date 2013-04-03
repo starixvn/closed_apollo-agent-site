@@ -13,17 +13,17 @@ namespace Fanex.Agent.UI
 	{
 		public class SettingBox_Template : Template
 		{
-			protected static string s0 = "<div id=\"Bleft_Parent02_setting\"><div id=\"left_submenu_setting\"><div id=\"left_tab\"><ul><li id=\"custsettings\" class=\"current\"><a href=\"#\" onclick=\"showSection(this.parentNode.id, null);\"><span>";
+			protected static string s0 = "<div id=\"agent-setting\"><ul class=\"tabs\"><li id=\"custsettings\" class=\"current\"><a href=\"#\" onclick=\"showSection(this.parentNode.id, null);\"><span>";
 			protected static string s1{get{return Resources.Lang.setting;}}
 			protected static string s2 = "</span></a></li>";
 			public SettingBox_HiddenBlockHeaderTabAgent_Block HiddenBlockHeaderTabAgent = new SettingBox_HiddenBlockHeaderTabAgent_Block();
 			public SettingBox_HiddenBlockHeaderTabMember_Block HiddenBlockHeaderTabMember = new SettingBox_HiddenBlockHeaderTabMember_Block();
-			protected static string s3 = "</ul></div><div id=\"clear0\" ></div><div class=\"Bleft_Sub02_setting\"><table id=\"tbl_custsettings\"><tr><td colspan=\"2\"><div style=\"position: relative; left: -3px;\" class=\"settingWidth\"></div><div id=\"overlayBg\" class=\"overlay\"></div></td></tr>";
+			protected static string s3 = "</ul><div class=\"content\"><div id=\"custsettings-content\">";
 			public string otherSettings = "{otherSettings}";
-			protected static string s4 = "</table>";
+			protected static string s4 = "</div>";
 			public SettingBox_HiddenBlockTabAgent_Block HiddenBlockTabAgent = new SettingBox_HiddenBlockTabAgent_Block();
 			public SettingBox_HiddenBlockTabMember_Block HiddenBlockTabMember = new SettingBox_HiddenBlockTabMember_Block();
-			protected static string s5 = "</div></div></div>";
+			protected static string s5 = "</div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -98,7 +98,7 @@ namespace Fanex.Agent.UI
 
 		public class SettingBox_HiddenBlockTabAgent_Block: Block
 		{
-			protected static string s14 = "<table id=\"tbl_agentsTab\" class=\"agent-tab\"><tr><td>";
+			protected static string s14 = "<table id=\"agentsTab-content\" class=\"agent-tab\"><tr><td>";
 			public SettingBox_HiddenBlockTabAgent_TreeViewBlock_Block TreeViewBlock = new SettingBox_HiddenBlockTabAgent_TreeViewBlock_Block();
 			public SettingBox_HiddenBlockTabAgent_NoInfoBlock_Block NoInfoBlock = new SettingBox_HiddenBlockTabAgent_NoInfoBlock_Block();
 			protected static string s15 = "</td></tr></table>";
@@ -154,7 +154,7 @@ namespace Fanex.Agent.UI
 
 		public class SettingBox_HiddenBlockTabMember_Block: Block
 		{
-			protected static string s21 = "<table id=\"tbl_membersTab\" class=\"member-tab\"><tr><td><div id=\"iframe-content\"> </div></td></tr></table>";
+			protected static string s21 = "<table id=\"membersTab-content\" class=\"member-tab\"><tr><td><div id=\"iframe-content\"> </div></td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
