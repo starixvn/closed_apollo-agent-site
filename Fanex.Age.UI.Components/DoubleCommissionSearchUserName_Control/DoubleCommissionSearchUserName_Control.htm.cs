@@ -28,7 +28,7 @@ namespace Fanex.Age.UI.Components
 			public DoubleCommissionSearchUserName_Control_CheckingFilter_Block CheckingFilter = new DoubleCommissionSearchUserName_Control_CheckingFilter_Block();
 			protected static string s6 = "<div style=\"width:65px; float:right; text-align:right\"><input id=\"dSubmit\" type=\"button\" value=\"";
 			public string submit = "{submit}";
-			protected static string s7 = "\" class=\"buttonSubmit\" onclick=\"";
+			protected static string s7 = "\" class=\"btn\" onclick=\"";
 			public string onClick_function = "{onClick_function}";
 			protected static string s8 = "\" /></div><div class=\"shadow\" id=\"shadow\" /><div class=\"output\" id=\"output\" /><script src=\"";
 			protected static string s9{get{return AbsoluteUrl("DoubleCommissionSearchUserName_Control/SearchUserName_Control.js", TplSettings.Question);}}
