@@ -1,7 +1,8 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="true" CodeFile="NewMessageForm.aspx.cs" Inherits="zTest_NewMessageForm" %>
+﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="true" CodeFile="NewMessageForm.aspx.cs"
+    Inherits="zTest_NewMessageForm" %>
 
 <script type="text/javascript">
-    var sobjDate=null;
+    /*var sobjDate=null;
     var eobjDate=null;
     var fromDateControlID = "fdate";
     var toDateControlID = "tdate";
@@ -25,6 +26,7 @@
 	    sobjDate = new Date(s_dataAry[2],s_dataAry[0],s_dataAry[1]);
 	    eobjDate = new Date(e_dataAry[2],e_dataAry[0],e_dataAry[1]);
 	}
+
 	function showMsg(msgType) {
 	    splitDate();
 	    if (eobjDate < sobjDate) {
@@ -60,6 +62,7 @@
 	    
 	    location.href = "NewMessageForm.aspx?pageQuery=" + str1 + "&s_date=" + str2 + "&e_date=" + str3 + extraParam;
 	}
+
     function setDDate() {
         var timeNow = new Date();
         var year = timeNow.getFullYear();
@@ -69,12 +72,14 @@
         $(fromDateControlID).value = mon + "/" + yesterday.getDate() + "/" + year;
         $(toDateControlID).value = mon + "/" + ddate + "/" + year;
     }
+
     function enableCalendar(IsDisabled)
     {
         $(fromDateControlID + "_tg").disabled = IsDisabled;
         $(toDateControlID + "_tg").disabled = IsDisabled;
         $("dSubmit").disabled = IsDisabled;
     }
+
     function setStatusCalendar() {
         var spMes = $("msgType").value;
         if (spMes == 'special' || spMes == 'allSpecial') {
@@ -83,5 +88,5 @@
         else {
             enableCalendar(false);
         }
-    }
+    }*/
 </script>

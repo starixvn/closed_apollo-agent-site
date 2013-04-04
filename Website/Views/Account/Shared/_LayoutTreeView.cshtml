@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>@Page.Title</title>
+
+        <link href="~/Views/Account/Resources/treeview.css" rel="stylesheet" type="text/css" />
+        <link href="~/Views/Account/Resources/AccountInfo.less" rel="Stylesheet" type="text/css"/>
+        @RenderSection("css", required: false)
+    </head>
+    <body class="downlineTreview-bg">
+        <script type="text/javascript" src="~/_GlobalResources/Js/jquery.js"></script>
+        <script type="text/javascript" src="~/Views/Account/Resources/jquery.cookie.js"></script>
+        <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.js"></script>
+        <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.async.js"></script>
+
+        @RenderBody()
+        
+    </body>
+</html>

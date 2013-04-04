@@ -1,0 +1,29 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="ForecastMatchWinLost.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Ricky.Nguyen" date="2013.4.4">Created</change>
+// </history>
+
+
+namespace Apollo.Age.Forecast.ViewModels
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class ForecastMatchWinLostViewModel
+    {
+        public decimal Value0 { get; set; }
+        public decimal Value1 { get; set; }
+        public decimal Value2 { get; set; }
+        public decimal Value3 { get; set; }
+        public decimal Value4 { get; set; }
+    }
+}

@@ -1,0 +1,69 @@
+﻿@import "../../_GlobalResources/Css/agent.less";
+@import "../../_GlobalResources/Css/calander.less";
+
+#box_header {
+	padding: 5px;
+	margin-bottom: 10px;
+	
+	.date {
+		float: left;
+		* {
+			vertical-align: middle;
+		}
+
+		input {
+			margin: 0 5px;
+		}
+	}	
+}
+
+.tblRpt {
+	width: 100%;
+
+	td {
+		&.tbList {
+			#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+
+			ul {				
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+
+				li {					
+					display: inline;
+					padding: 0;
+
+					a {						
+						float: left;						
+						margin-right: 2px;
+
+						span {							
+							font-weight: normal;												
+							padding: 2px 0px;
+							float: none;							
+						}
+
+						a:hover {
+							background-position: 0% -20px;
+
+							span {
+								background-position: 100% -20px;
+								color: #F00;
+							}
+						}
+					}
+
+					span.line {
+						margin: 0 5px;
+						float: left;
+					}
+
+					&#current a span {		
+						color: @textColor;
+						font-weight: bold;
+					}
+				}		
+			}
+		}
+	}
+}

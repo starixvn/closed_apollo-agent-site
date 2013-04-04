@@ -179,7 +179,9 @@
     <Compile Include="Components\WinlossSearchView.htm.cs" />
     <Compile Include="Components\WinlossSearchView_Control.cs" />
     <Compile Include="Consolidated\Consolidated.htm.cs" />
-    <Compile Include="Consolidated_Page.cs" />
+    <Compile Include="Consolidated_Page.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="DataSetHelper.cs" />
     <Compile Include="LastBetMonitoring\LastBetMonitoring.htm.cs" />
     <Compile Include="MatchWinloss\MatchWinloss.htm.cs" />
@@ -193,7 +195,9 @@
     <Compile Include="PortalPage\StatisticDiv.htm.cs" />
     <Compile Include="PortalPage\StatisticDiv2.htm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports_Page.cs" />
+    <Compile Include="Reports_Page.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Result\Result.htm.cs" />
     <Compile Include="Result\ResultBadminton.htm.cs" />
     <Compile Include="Result\ResultBaseBall.htm.cs" />
@@ -215,7 +219,9 @@
     <Compile Include="WinlossAnalysis\WinlossAnalysisAgent.htm.cs" />
     <Compile Include="WinlossAnalysis\WinlossAnalysisMaster.htm.cs" />
     <Compile Include="WinlossAnalysis\WinlossAnalysisSuper.htm.cs" />
-    <Compile Include="WinlossReports_Page.cs" />
+    <Compile Include="WinlossReports_Page.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Winloss\WinlossAgent.htm.cs" />
     <Compile Include="Winloss\WinlossByBetTypeAgent.htm.cs" />
     <Compile Include="Winloss\WinlossByBetTypeMaster.htm.cs" />

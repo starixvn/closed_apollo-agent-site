@@ -5,46 +5,40 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.3.29">Created</change>
+//   <change who="Lewis.Le" date="2013.4.4">Added action: Menu</change>
 // </history>
 
 
 namespace Apollo.Age.Account.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Web;
     using System.Web.Mvc;
-    using Sunplus.Agent.Model.Entities;
-    using Fanex.Age.UI;
-    using Apollo.Age.Services.Impl;
     using System.Web.Security;
-    using Apollo.Age.Core;
-    using Apollo.Age.Entities;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Web;
+    using System.Web;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AccountController : BaseController
     {
-        //public JsonResult ReCheckIn()
-        //{
-        //    IUserSession userSession = UserSession.Current;
-        //    Result result = new Result(0, string.Empty);
-        //    if (PermissionService.IsKickOut(userSession.AgentId, userSession.UserId) && !AppSettings.IsLocal)
-        //    {
-        //        result.ErrCode = (int)ErrorType.KickedOut;
-        //    }
-        //    return Json(result);
-            
-        //}
-
         private readonly AgentService _agentService;
 
         public AccountController()
         {
             _agentService = new AgentService();
+        }
+
+        public ActionResult Menu()
+        {
+            return View(SiteMap.RootNode);
+        }
+
+        public ActionResult AccountInfo()
+        {
+            return View();
+        }
+
+        public ViewResult AgentTreeList()
+        {
+            return View();
         }
 
         public ActionResult SignOut()
@@ -60,5 +54,16 @@ namespace Apollo.Age.Account.Controllers
             return Json(customerList, JsonRequestBehavior.AllowGet);
         }
 
+        //public JsonResult ReCheckIn()
+        //{
+        //    IUserSession userSession = UserSession.Current;
+        //    Result result = new Result(0, string.Empty);
+        //    if (PermissionService.IsKickOut(userSession.AgentId, userSession.UserId) && !AppSettings.IsLocal)
+        //    {
+        //        result.ErrCode = (int)ErrorType.KickedOut;
+        //    }
+        //    return Json(result);
+
+        //}
     }
 }

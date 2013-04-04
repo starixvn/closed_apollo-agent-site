@@ -308,6 +308,7 @@
 
         private string GetParentSites1(string SiteId)
         {
+            SiteId = "2300";
             ArrayList list = new ArrayList();
             int num = 0;
             for (int i = SiteId.Length - 1; i >= 0; i--)

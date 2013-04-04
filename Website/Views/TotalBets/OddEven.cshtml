@@ -58,7 +58,7 @@
         <td style="width: 70px">
             <!--OneXTwoFirstHalfValue-->
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="15" betlist-type="BettypeMatch" href="javascript:void(0);">
-                @TotalBetHelper.FormatNumber(item.OneXTwoFirstHalf, showZero: item.BetCount1X2HaftTime != 0)
+                @TotalBetHelper.FormatNumber(item.OneXTwoFirstHalf, showZero: item.BetCount1X2HalfTime != 0)
             </a>
             <!--/OneXTwoFirstHalfValue-->
         </td>
@@ -183,7 +183,7 @@
                 </td>
                 <td>
                     <!--OddEvenFirstHalfValue-->
-                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="12" betlist-type="BettypeMatch" href="javascript:void(0);">@TotalBetHelper.FormatNegativeNumber(item.OddEvenFirstHalf, showZero: item.BetCountHaftTimeOddEven != 0)</a>
+                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="12" betlist-type="BettypeMatch" href="javascript:void(0);">@TotalBetHelper.FormatNegativeNumber(item.OddEvenFirstHalf, showZero: item.BetCountHalfTimeOddEven != 0)</a>
                     <!--/OddEvenFirstHalfValue-->
                 </td>
                 @Show1x2Button(item, false)

@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Services\MessageService.cs" />
+    <Compile Include="ViewModels\AnnouncementViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,13 +65,18 @@
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
+      <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
+      <Name>Fanex.Age.Utility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
       <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
       <Name>Sunplus.Agent.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
