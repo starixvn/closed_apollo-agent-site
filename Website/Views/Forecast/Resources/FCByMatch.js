@@ -43,23 +43,16 @@ var forecastByMatch =
         //// Register View Others BetType
         $('#forecast-body .toggle-link').click(function () {
             var $this = $(this);
-            var url = forecastByMatch.ContentLink + '?matchId=' + forecastByMatch.MatchId
-            + '&betType=' + $this.attr('bet-type')
-            + '&currentScore=0';
-            $("#forecast-body").load(url);
-            forecastByMatch.RegisterEvents();
+            forecastByMatch.BetType = $this.attr('toggle-bet-type');
+            forecastByMatch.CurrentScore = 0;
+            forecastByMatch.LoadContentView();
         });
 
         //// Register View Others Score
-        $('#forecast-body')
-        .off("click")
-        .on("click", ".view-other-forecast", function () {
+        $('#forecast-body .view-other-forecast').click(function () {
             var $this = $(this);
-            var url = forecastByMatch.ContentLink + '?matchId=' + forecastByMatch.MatchId
-            + '&betType=' + forecastByMatch.BetType
-            + '&currentScore=' + $this.attr('forecast-point');
-            $("#forecast-body").load(url);
-            forecastByMatch.RegisterEvents();
+            forecastByMatch.CurrentScore = $this.attr('forecast-point');
+            forecastByMatch.LoadContentView();
         });
     }
 };

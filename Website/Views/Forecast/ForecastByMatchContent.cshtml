@@ -8,32 +8,32 @@
 @model ForecastMatchWinLostViewModel
 @helper RenderTitle(int betType)
     {
-    switch (betType)
-    {
-        case 1:
+        switch (betType)
+        {
+            case 1:
             @(Resources.Lang.lblHandicapFC)
         break;
-        case 3:
+            case 3:
             @(Resources.Lang.lblOverUnder)
         break;
-        case 7:
+            case 7:
             @(Resources.Lang.lbl1stHdp)
         break;
-        case 8:
+            case 8:
             @(Resources.Lang.lbl1stOU)
         break;
-    }
+        }
 } 
 @helper RenderForecastPoint(int matchId, int betType, int currentScore)
     {
-    bool isHDPOr1stHDP = betType == (int)BetType.Handicap || betType == (int)BetType._1stHandicap;
-    int indexCount = isHDPOr1stHDP ? 11 : 16;
-    int endIndex = isHDPOr1stHDP ? currentScore + 5 : 15;
-    int selectedIndex = currentScore;
-    string boldSpan = "<span style='text-decoration:none;color:#FF0000;font-weight:bold;'>{0}</span>";
+        bool isHDPOr1stHDP = betType == (int)BetType.Handicap || betType == (int)BetType._1stHandicap;
+        int indexCount = isHDPOr1stHDP ? 11 : 16;
+        int endIndex = isHDPOr1stHDP ? currentScore + 5 : 15;
+        int selectedIndex = currentScore;
+        string boldSpan = "<span style='text-decoration:none;color:#FF0000;font-weight:bold;'>{0}</span>";
 
-    for (int i = 0; i < indexCount; i++)
-    {
+        for (int i = 0; i < indexCount; i++)
+        {
         <a class="view-other-forecast" bet-type="@betType" forecast-point="@endIndex" href='javascript:void(0);'>
             @if (endIndex == selectedIndex)
             {
@@ -45,92 +45,98 @@
             }
         </a>@:&nbsp;
         endIndex--;
-    }
+        }
 }
 @helper RenderToggleLink(int matchId, int betType)
     {
-    int toggleBettype = 0;
-    string toggleText = string.Empty;
+        int toggleBettype = 0;
+        string toggleText = string.Empty;
 
-    switch (betType)
-    {
-        case (int)BetType.Handicap:
-            toggleBettype = (int)BetType.OverUnder;
-            toggleText = Resources.Lang.lblViewOverUnderForecast;
-            break;
-        case (int)BetType.OverUnder:
-            toggleBettype = (int)BetType.Handicap;
-            toggleText = Resources.Lang.lblViewHandicapForecast;
-            break;
-        case (int)BetType._1stHandicap:
-            toggleBettype = (int)BetType._1stOverUnder;
-            toggleText = Resources.Lang.lblView1stOverUnderForecast;
-            break;
-        case (int)BetType._1stOverUnder:
-            toggleBettype = (int)BetType._1stHandicap;
-            toggleText = Resources.Lang.lblView1stHandicapForecast;
-            break;
-    }
+        switch (betType)
+        {
+            case (int)BetType.Handicap:
+                toggleBettype = (int)BetType.OverUnder;
+                toggleText = Resources.Lang.lblViewOverUnderForecast;
+                break;
+            case (int)BetType.OverUnder:
+                toggleBettype = (int)BetType.Handicap;
+                toggleText = Resources.Lang.lblViewHandicapForecast;
+                break;
+            case (int)BetType._1stHandicap:
+                toggleBettype = (int)BetType._1stOverUnder;
+                toggleText = Resources.Lang.lblView1stOverUnderForecast;
+                break;
+            case (int)BetType._1stOverUnder:
+                toggleBettype = (int)BetType._1stHandicap;
+                toggleText = Resources.Lang.lblView1stHandicapForecast;
+                break;
+        }
     
     <a toggle-bet-type="@toggleBettype" class="forecast_toggle_link toggle-link"  href='javascript:void(0);'>
                         @(toggleText)</a>
 }
 @helper RenderBetListLink(int matchId, int betType)
-{
-    <a match-id="@matchId" bet-type="@betType" class="forecast_betlist_link view-bet-list" href="javascript:void(0);"> @Resources.Lang.lblBetLists</a>
-}
-@helper RenderForecastInfo()
     {
-     <!--ForecastValue-->
-            <tr class="even_row" align="center">
-                <td>
-                    @Model.Value4
-                </td>
-                <td>
-                    @Model.Value3
-                </td>
-                <td>
-                    @Model.Value2
-                </td>
-                <td>
-                    @Model.Value1
-                </td>
-                <td>
-                    @Model.Value0
-                </td>
-            </tr>
-            @*<tr class="even_row" align="center">
-                <td>
-                    {FCValue4}
-                </td>
-                <td>
-                    {FCValue3}
-                </td>
-                <td>
-                    {FCValue2}
-                </td>
-                <td>
-                    {FCValue1}
-                </td>
-                <td>
-                    {FCValue0}
-                </td>
-            </tr>*@
-            <!--/ForecastValue-->
-            <!--NoInfo-->
-            @*<tr class="no_info">
-                <td colspan="5">
-                    @Resources.Lang.noInfo
-                </td>
-            </tr>*@
-            <!--/NoInfo-->
+    if (Model != null)
+    {
+        <a match-id="@matchId" bet-type="@betType" class="forecast_betlist_link view-bet-list" href="javascript:void(0);"> @Resources.Lang.lblBetLists</a>
+    }
+}
+@helper RenderForecastInfo(int betType, int currentScore)
+    {
+    int startIndex = betType == 1 || betType == 7 ? currentScore - 2 : currentScore;
+    if (Model != null)
+    {
+        <tr class="even_row" align="center">
+            <td>
+                @(startIndex + 4)
+            </td>
+            <td>
+                @(startIndex + 3)
+            </td>
+            <td>
+                @(startIndex + 2)
+            </td>
+            <td>
+                @(startIndex + 1)
+            </td>
+            <td>
+                @(startIndex)
+            </td>
+        </tr>
+        <tr class="even_row" align="center">
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value4, numDecimals: 2, showZero:true)
+            </td>
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value3, numDecimals: 2, showZero: true)
+            </td>
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value2, numDecimals: 2, showZero: true)
+            </td>
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value1, numDecimals: 2, showZero: true)
+            </td>
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value0, numDecimals: 2, showZero: true)
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr class="no_info">
+            <td colspan="5">
+                @Resources.Lang.noInfo
+            </td>
+        </tr>
+    }
 }
 <table class="tblRpt" cellpadding="0" cellspacing="1" border="0" style="width: 100%;">
     <tr class="RptHeader">
-        <td>
+        <td align="center">
             @Resources.Lang.lblTeam
         </td>
-        <td>
+        <td align="center">
             @Resources.Lang.lblScore
         </td>
     </tr>
@@ -145,8 +151,6 @@
 </table>
 <br />
 @{
-    if (Model != null)
-    {
         <table class="tblRpt default-tbl" cellpadding="0" cellspacing="1" border="0" style="width: 100%;">
             <tr class="even_row" align="center">
                 <td bgcolor="#cccccc">
@@ -156,7 +160,7 @@
                     @RenderForecastPoint(matchId, betType, currentScore)
                 </td>
             </tr>
-            @RenderForecastInfo()
+            @RenderForecastInfo(betType, currentScore)
             <tr class="even_row">
                 <td colspan="5">
                     <!--BetListLink-->
@@ -166,18 +170,5 @@
                 </td>
             </tr>
         </table>
-        <input type="hidden" id="bettype_vl" value="{BetType}" />
-        <input type="hidden" id="score_vl" value="{ScoreValue}" />
-        <!--/ForecastContent-->
-    }
-    else
-    {
-        <table class="tblRpt" cellpadding="0" cellspacing="1" border="0" style="width: 100%;">
-            <tr class="no_info">
-                <td>
-                    @Resources.Lang.noInfo
-                </td>
-            </tr>
-        </table>
-    }
+        
     }
