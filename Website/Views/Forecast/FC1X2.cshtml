@@ -4,14 +4,13 @@
     ViewBag.Title = Resources.Lang.lblForecast;
     IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
 }
-@model IEnumerable<LeagueViewModel>
 @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
 <div style="clear:both;"></div>
 <div id="box_header">
     <span><b>@Resources.Lang.league</b></span>   
     <select id='ddlLeague' name='ddlLeague' style="width: 280px">
     @{
-                        foreach (var league in leagues)
+        foreach (var league in leagues)
         {
             <option value="@league.LeagueId">@league.LeagueName</option>
         }

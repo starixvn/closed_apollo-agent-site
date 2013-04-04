@@ -277,8 +277,18 @@
         <Mapping DataField="WinLost_2_HTOU" ObjectProperty="HaftTimeOverUnderWinLost2" />
       </Setting>
         <Setting Key="Age_Forecast_5_15_GetByLeague" SpName="Age_Forecast_5_15_GetByLeague" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_Forecast_1_7_GetByMatch" SpName="Age_Forecast_1_7_GetByMatch" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_Forecast_3_8_GetByMatch" SpName="Age_Forecast_3_8_GetByMatch" DbName="REPDB" Plain="0" />
+      <Setting Key="Age_Forecast_1_7_GetByMatch" SpName="Age_Forecast_1_7_GetByMatch" DbName="REPDB" Plain="0" >
+        <Mapping DataField="ht" ObjectProperty="HomeTotal" />
+        <Mapping DataField="at" ObjectProperty="AwayTotal" />
+        <Mapping DataField="al" ObjectProperty="AwayWinLost" />
+        <Mapping DataField="hl" ObjectProperty="HomeWinLost" />
+      </Setting>
+      <Setting Key="Age_Forecast_3_8_GetByMatch" SpName="Age_Forecast_3_8_GetByMatch" DbName="REPDB" Plain="0" >
+        <Mapping DataField="ht" ObjectProperty="HomeTotal" />
+        <Mapping DataField="at" ObjectProperty="AwayTotal" />
+        <Mapping DataField="al" ObjectProperty="AwayWinLost" />
+        <Mapping DataField="hl" ObjectProperty="HomeWinLost" />
+      </Setting>
         <Setting Key="Age_Forecast_5_15_GetByMatch" SpName="Age_Forecast_5_15_GetByMatch" DbName="REPDB" Plain="0" />
         <Setting Key="Age_League_GetRunning" SpName="Age_League_GetRunning" DbName="REPDB" Plain="0" />
     </Function>

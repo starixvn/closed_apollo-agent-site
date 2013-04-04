@@ -4,7 +4,6 @@
     ViewBag.Title = Resources.Lang.lblForecast;
     IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
 }
-@model IEnumerable<LeagueViewModel>
 @RazorHelper.RefreshCountDown("ForeCastHandicapOU", 15, 0)
 <div style="clear:both;"></div>
 <div id="box_header">

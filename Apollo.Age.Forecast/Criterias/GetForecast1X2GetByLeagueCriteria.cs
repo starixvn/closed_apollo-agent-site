@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="GetForecastHandicapOverUnder.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="Forecast1X2GetByLeague.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Ricky.Nguyen" date="2013.4.3">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.4.2">Created</change>
 // </history>
 
 
@@ -19,18 +19,16 @@ namespace Apollo.Age.Forecast.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class GetForecastHandicapOverUnder : CriteriaBase
+    public class GetForecast1X2GetByLeagueCriteria : CriteriaBase
     {
-        public int BaseOffsetHDP { get; set; }
-        public int BaseOffsetOU { get; set; }
-        public int BaseOffsetHTHDP { get; set; }
-        public int BaseOffsetHTOU { get; set; }
-        public int LeagueID { get; set; }
+        
         public int AgentId { get; set; }
+
+        public int LeagueID { get; set; }
 
         public override string GetSettingKey()
         {
-            return "Age_Forecast_1_3_7_8_GetByLeague";
+            return "Age_Forecast_5_15_GetByLeague";
         }
 
         public override bool IsValid()
