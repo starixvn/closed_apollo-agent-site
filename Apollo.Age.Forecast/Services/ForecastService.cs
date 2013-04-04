@@ -119,11 +119,11 @@ namespace Apollo.Age.Forecast.Services
             {
                 foreach (var forecastMatch in forecastMatches)
                 {
-                    matchWinLost.Value0 = GetForecastOverUnderValue(forecastMatch, currentScore, -2, matchWinLost.Value0);
-                    matchWinLost.Value1 = GetForecastOverUnderValue(forecastMatch, currentScore, -1, matchWinLost.Value1);
-                    matchWinLost.Value2 = GetForecastOverUnderValue(forecastMatch, currentScore, 0, matchWinLost.Value2);
-                    matchWinLost.Value3 = GetForecastOverUnderValue(forecastMatch, currentScore, 1, matchWinLost.Value3);
-                    matchWinLost.Value4 = GetForecastOverUnderValue(forecastMatch, currentScore, 2, matchWinLost.Value4);
+                    matchWinLost.Value0 = GetForecastOverUnderValue(forecastMatch, currentScore, 0, matchWinLost.Value0);
+                    matchWinLost.Value1 = GetForecastOverUnderValue(forecastMatch, currentScore, 1, matchWinLost.Value1);
+                    matchWinLost.Value2 = GetForecastOverUnderValue(forecastMatch, currentScore, 2, matchWinLost.Value2);
+                    matchWinLost.Value3 = GetForecastOverUnderValue(forecastMatch, currentScore, 3, matchWinLost.Value3);
+                    matchWinLost.Value4 = GetForecastOverUnderValue(forecastMatch, currentScore, 4, matchWinLost.Value4);
                 }
             }
 

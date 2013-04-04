@@ -24,20 +24,10 @@ var forecastByMatch =
         //// Register View BestList
         $('#forecast-body .view-bet-list').click(function () {
             var $this = $(this);
-            if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
             + '&betType=' + $this.attr("bet-type")
             + '&type=BettypeMatch';
-
-            //location.href = url;
-            ageWnd.openDialog(url, '', {
-                width: 930,
-                height: 770,
-                position: { my: "top+50", at: "center top", of: window },
-                close: function (event, ui) {
-                    countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-                }
-            });
+            location.href = url;
         });
 
         //// Register View Others BetType
@@ -62,5 +52,6 @@ $(function () {
 });
 
 function UpdateForecastValue() {
+    RefreshCountDown_Init();
     forecastByMatch.LoadContentView();
 }
