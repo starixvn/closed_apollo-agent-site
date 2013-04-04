@@ -22,8 +22,8 @@ var fcHandicapOu =
         .on("click", ".view-forecast-detail", function () {
             var $this = $(this);
             if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url = window.rootUrl + '_Forecast/FCAH.aspx?matchId=' + $this.attr("match-id")
-            + '&b=' + $this.attr("bet-type");
+            var url = window.rootUrl + 'Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
+            + '&betType=' + $this.attr("bet-type");
             //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
             //location.href = url;
             ageWnd.openDialog(url, '', {

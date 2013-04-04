@@ -1,0 +1,174 @@
+﻿@using Apollo.Age.Forecast.ViewModels
+@{
+    var oddsByMatch = (MatchOddsViewModel)ViewBag.TopOddsByMatch ?? new MatchOddsViewModel();
+    var betType = (int)ViewBag.BetType;
+    var currentScore = (int)ViewBag.CurrentScore;
+    var matchId = (int)ViewBag.MatchId;
+}
+@model ForecastMatchWinLostViewModel
+@helper RenderTitle(int betType)
+    {
+        switch (betType)
+        {
+            case 1:
+            @(Resources.Lang.lblHandicapFC)
+        break;
+            case 3:
+            @(Resources.Lang.lblOverUnder)
+        break;
+            case 7:
+            @(Resources.Lang.lbl1stHdp)
+        break;
+            case 8:
+            @(Resources.Lang.lbl1stOU)
+        break;
+        }
+} 
+@helper RenderForecastPoint(int matchId, int betType, int currentScore)
+    {
+        bool isHDPOr1stHDP = betType == (int)BetType.Handicap || betType == (int)BetType._1stHandicap;
+        int indexCount = isHDPOr1stHDP ? 11 : 16;
+        int endIndex = isHDPOr1stHDP ? currentScore + 5 : 15;
+        int selectedIndex = currentScore;
+        string boldSpan = "<span style='text-decoration:none;color:#FF0000;font-weight:bold;'>{0}</span>";
+
+        for (int i = 0; i < indexCount; i++)
+        {
+        <a class="view-other-forecast" bet-type="@betType" forecast-point="@endIndex" href='javascript:void(0);'>
+            @if (endIndex == selectedIndex)
+            {
+                @Html.Raw(string.Format(boldSpan, endIndex))
+            }
+            else
+            {
+                @(endIndex)
+            }
+        </a>@:&nbsp;
+        endIndex--;
+        }
+}
+@helper RenderToggleLink(int matchId, int betType)
+    {
+        int toggleBettype = 0;
+        string toggleText = string.Empty;
+
+        switch (betType)
+        {
+            case (int)BetType.Handicap:
+                toggleBettype = (int)BetType.OverUnder;
+                toggleText = Resources.Lang.lblViewOverUnderForecast;
+                break;
+            case (int)BetType.OverUnder:
+                toggleBettype = (int)BetType.Handicap;
+                toggleText = Resources.Lang.lblViewHandicapForecast;
+                break;
+            case (int)BetType._1stHandicap:
+                toggleBettype = (int)BetType._1stOverUnder;
+                toggleText = Resources.Lang.lblView1stOverUnderForecast;
+                break;
+            case (int)BetType._1stOverUnder:
+                toggleBettype = (int)BetType._1stHandicap;
+                toggleText = Resources.Lang.lblView1stHandicapForecast;
+                break;
+        }
+    
+    <a toggle-bet-type="@toggleBettype" class="forecast_toggle_link toggle-link"  href='javascript:void(0);'>
+                        @(toggleText)</a>
+}
+@helper RenderBetListLink(int matchId, int betType)
+    {
+    if (Model != null)
+    {
+        <a match-id="@matchId" bet-type="@betType" class="forecast_betlist_link view-bet-list" href="javascript:void(0);"> @Resources.Lang.lblBetLists</a>
+    }
+}
+@helper RenderForecastInfo(int betType, int currentScore)
+    {
+    int startIndex = betType == 1 || betType == 7 ? currentScore - 2 : currentScore;
+    if (Model != null)
+    {
+        <tr class="even_row" align="center">
+            <td>
+                @(startIndex + 4)
+            </td>
+            <td>
+                @(startIndex + 3)
+            </td>
+            <td>
+                @(startIndex + 2)
+            </td>
+            <td>
+                @(startIndex + 1)
+            </td>
+            <td>
+                @(startIndex)
+            </td>
+        </tr>
+        <tr class="even_row" align="center">
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value4, numDecimals: 0, showZero:true)
+            </td>
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value3, numDecimals: 0, showZero: true)
+            </td>
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value2, numDecimals: 0, showZero: true)
+            </td>
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value1, numDecimals: 0, showZero: true)
+            </td>
+            <td>
+                @TotalBetHelper.FormatPositiveNumber(Model.Value0, numDecimals: 0, showZero: true)
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr class="no_info">
+            <td colspan="5">
+                @Resources.Lang.noInfo
+            </td>
+        </tr>
+    }
+}
+<table class="tblRpt" cellpadding="0" cellspacing="1" border="0" style="width: 100%;">
+    <tr class="RptHeader">
+        <td align="center">
+            @Resources.Lang.lblTeam
+        </td>
+        <td align="center">
+            @Resources.Lang.lblScore
+        </td>
+    </tr>
+    <tr class="even_row c">
+        <td>
+            @oddsByMatch.HomeTeam -vs- @oddsByMatch.AwayTeam
+        </td>
+        <td>
+            @oddsByMatch.LiveHomeScore : @oddsByMatch.LiveAwayScore
+        </td>
+    </tr>
+</table>
+<br />
+@{
+        <table class="tblRpt default-tbl" cellpadding="0" cellspacing="1" border="0" style="width: 100%;">
+            <tr class="even_row" align="center">
+                <td bgcolor="#cccccc">
+                    <b>@RenderTitle(betType)</b>
+                </td>
+                <td colspan="4">
+                    @RenderForecastPoint(matchId, betType, currentScore)
+                </td>
+            </tr>
+            @RenderForecastInfo(betType, currentScore)
+            <tr class="even_row">
+                <td colspan="5">
+                    <!--BetListLink-->
+                    @RenderBetListLink(matchId, betType)
+                    <!--/BetListLink-->
+                    @RenderToggleLink(matchId, betType)
+                </td>
+            </tr>
+        </table>
+        
+    }

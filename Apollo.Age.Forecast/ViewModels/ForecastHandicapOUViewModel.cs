@@ -35,12 +35,12 @@ namespace Apollo.Age.Forecast.ViewModels
         public decimal? OverUnderWinLostBase { get; set; }
         public decimal? OverUnderWinLost1 { get; set; }
         public decimal? OverUnderWinLost2 { get; set; }
-        public decimal? HaftTimeHandicapWinLostMinus1 { get; set; }
-        public decimal? HaftTimeHandicapWinLostBase { get; set; }
-        public decimal? HaftTimeHandicapWinLostPlus1 { get; set; }
-        public decimal? HaftTimeOverUnderWinLostBase { get; set; }
-        public decimal? HaftTimeOverUnderWinLost1 { get; set; }
-        public decimal? HaftTimeOverUnderWinLost2 { get; set; }
+        public decimal? HalfTimeHandicapWinLostMinus1 { get; set; }
+        public decimal? HalfTimeHandicapWinLostBase { get; set; }
+        public decimal? HalfTimeHandicapWinLostPlus1 { get; set; }
+        public decimal? HalfTimeOverUnderWinLostBase { get; set; }
+        public decimal? HalfTimeOverUnderWinLost1 { get; set; }
+        public decimal? HalfTimeOverUnderWinLost2 { get; set; }
         public bool IsNeutral { get; set; }
         
         public string HomeTeam
