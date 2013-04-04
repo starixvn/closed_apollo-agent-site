@@ -118,9 +118,9 @@ namespace Fanex.Agent.UI
 
 		public class SettingBox_HiddenBlockTabAgent_TreeViewBlock_Block: Block
 		{
-			protected static string s16 = "<iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/AgentTreeList.html?custid=";
+			protected static string s16 = "<iframe id='frmDownlineList' name='frmDownlineList'src='../_AccountInfo/AgentTreeList.html?CustId=";
 			public string CustId = "{CustId}";
-			protected static string s17 = "' style='width:98%;height: 100%'></iframe>";
+			protected static string s17 = "'style='width:98%;height: 100%'></iframe>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -136,9 +136,9 @@ namespace Fanex.Agent.UI
 
 		public class SettingBox_HiddenBlockTabAgent_NoInfoBlock_Block: Block
 		{
-			protected static string s18 = "<span class=\"no-data-agent\"> ";
+			protected static string s18 = "<span class=\"no-data-agent\">";
 			protected static string s19{get{return Resources.Lang.noInfo;}}
-			protected static string s20 = " </span>";
+			protected static string s20 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -154,7 +154,7 @@ namespace Fanex.Agent.UI
 
 		public class SettingBox_HiddenBlockTabMember_Block: Block
 		{
-			protected static string s21 = "<table id=\"membersTab-content\" class=\"member-tab\"><tr><td><div id=\"iframe-content\"> </div></td></tr></table>";
+			protected static string s21 = "<table id=\"membersTab-content\" class=\"member-tab\"><tr><td><div id=\"iframe-content\"></div></td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
