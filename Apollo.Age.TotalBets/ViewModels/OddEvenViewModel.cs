@@ -33,20 +33,20 @@ namespace Apollo.Age.TotalBets.ViewModels
         public int AwayId { get; set; }
         public decimal HomeOddsOddEven { get; set; }
         public decimal AwayOddsOddEven { get; set; }
-        public decimal HomeOddsHaftTimeOddEven { get; set; }
-        public decimal AwayOddsHaftTimeOddEven { get; set; }
+        public decimal HomeOddsHalfTimeOddEven { get; set; }
+        public decimal AwayOddsHalfTimeOddEven { get; set; }
         public decimal Odds1 { get; set; }
         public decimal OddsX { get; set; }
         public decimal Odds2 { get; set; }
-        public decimal Odds1HaftTime { get; set; }
-        public decimal OddsXHaftTime { get; set; }
-        public decimal Odds2HaftTime { get; set; }
+        public decimal Odds1HalfTime { get; set; }
+        public decimal OddsXHalfTime { get; set; }
+        public decimal Odds2HalfTime { get; set; }
         public decimal HomeOddsDrawNoDraw { get; set; }
         public decimal AwayOddsDrawNoDraw { get; set; }
         public int BetCountOddEven { get; set; }
-        public int BetCountHaftTimeOddEven { get; set; }
+        public int BetCountHalfTimeOddEven { get; set; }
         public int BetCount1X2 { get; set; }
-        public int BetCount1X2HaftTime { get; set; }
+        public int BetCount1X2HalfTime { get; set; }
         public int BetCountDrawNoDraw { get; set; }
         public bool IsNeutral { get; set; }
 
@@ -100,7 +100,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return this.HomeOddsHaftTimeOddEven - this.AwayOddsHaftTimeOddEven;
+                return this.HomeOddsHalfTimeOddEven - this.AwayOddsHalfTimeOddEven;
             }
         }
 
@@ -108,7 +108,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return this.Odds1HaftTime + this.OddsXHaftTime + this.Odds2HaftTime;
+                return this.Odds1HalfTime + this.OddsXHalfTime + this.Odds2HalfTime;
             }
         }
     }

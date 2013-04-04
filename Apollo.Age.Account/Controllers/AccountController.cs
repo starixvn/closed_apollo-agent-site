@@ -15,6 +15,7 @@ namespace Apollo.Age.Account.Controllers
     using System.Web.Security;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
+    using System.Web;
 
     public class AccountController : BaseController
     {
@@ -27,7 +28,7 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult Menu()
         {
-            return View();
+            return View(SiteMap.RootNode);
         }
 
         public ActionResult AccountInfo()

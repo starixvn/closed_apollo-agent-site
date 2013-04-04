@@ -19,9 +19,12 @@ body {
 	text-align: center;
 	.clearfix;
 
+	.tab-menu	{ width: 56px }
+	.tab-acc	{ width: 80px }
+	.tab-mem	{ width: 80px }
+
 	li {
 		float: left;
-		width: 72px;
 		border-left: 1px solid @borderColor;
 		border-right: 1px solid #fff;
 		border-bottom: 1px solid @borderColor;
@@ -31,13 +34,15 @@ body {
 
 		a {
 			display: block;
-			padding: 8px 0;
+			padding: 10px 0 6px;
 			text-decoration: none;
 			text-align: center;
 			color: #707070;			
+			text-transform: uppercase;
+			font-size: .85em;
 
 			i {
-				margin: 0 3px 0 0;
+				margin: -2px 3px 0 0;
 				.opacity(60);
 			}
 		}
@@ -45,7 +50,7 @@ body {
 		&.active a, &:hover a {
 			color: @primaryColor;
 			i {
-				background-image: url(../../_globalresources/css/img/glyphicons-halflings-red.png);
+				background-image: url(img/glyphicons-halflings-red.png);
 				.opacity(100);
 			}			
 		}
@@ -54,11 +59,11 @@ body {
 			background-color: #fff;
 			border-right: 0;
 			border-bottom: 1px solid transparent;
-			cursor: default;
 
 			a {
 				border-top: 2px solid @primaryColor;
-				padding: 6px 0 8px;
+				padding: 8px 0 6px;
+				cursor: default;
 			}
 		}
 	}
@@ -95,7 +100,7 @@ body {
 			display: none;
 
 			a {
-				background: url(images/submenu-bullet.jpg) no-repeat left;
+				background: url(img/submenu-bullet.jpg) no-repeat left;
 				padding: 0 0 0 12px;
 				display: block;
 				font-size: .9em;
@@ -103,7 +108,7 @@ body {
 				.transition(all .2s);
 
 				&:hover {
-					background-image: url(images/submenu-bullet-o.jpg);
+					background-image: url(img/submenu-bullet-o.jpg);
 					color: @primaryColor;
 					text-decoration: underline;
 				}
