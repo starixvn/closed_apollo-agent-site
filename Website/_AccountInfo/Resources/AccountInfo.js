@@ -312,22 +312,22 @@ function showSection(sectionID, agentId) {
         case "custsettings":
             document.getElementById("agentsTab").className = "";
             document.getElementById("membersTab").className = "";
-            document.getElementById("tbl_agentsTab").style.display = "none";
-            document.getElementById("tbl_membersTab").style.display = "none";
+            document.getElementById("agentsTab-content").style.display = "none";
+            document.getElementById("membersTab-content").style.display = "none";
             break;
         case "agentsTab":
             document.getElementById("custsettings").className = "";
             document.getElementById("membersTab").className = "";
-            document.getElementById("tbl_custsettings").style.display = "none";
-            document.getElementById("tbl_membersTab").style.display = "none";
-            document.getElementById("tbl_agentsTab").style.display = "block";
+            document.getElementById("custsettings-content").style.display = "none";
+            document.getElementById("membersTab-content").style.display = "none";
+            document.getElementById("agentsTab-content").style.display = "block";
             break;
         case "membersTab":
             document.getElementById("custsettings").className = "";
             document.getElementById("agentsTab").className = "";
-            document.getElementById("tbl_agentsTab").style.display = "none";
-            document.getElementById("tbl_custsettings").style.display = "none";
-            document.getElementById("tbl_membersTab").style.display = "block";
+            document.getElementById("agentsTab-content").style.display = "none";
+            document.getElementById("custsettings-content").style.display = "none";
+            document.getElementById("membersTab-content").style.display = "block";
             bindMembersList(agentId);
 
             /*
@@ -343,7 +343,7 @@ function showSection(sectionID, agentId) {
     }
 
     document.getElementById(sectionID).className = "current";
-    document.getElementById("tbl_" + sectionID).style.display = "block";
+    document.getElementById(sectionID + "-content").style.display = "block";
 }
 
 function replaceAll(text, strA, strB) {

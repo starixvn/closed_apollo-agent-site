@@ -19,15 +19,15 @@ namespace Fanex.Age.UI.Reports
 			protected static string s3{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" ";
 			public string actionForm = "{actionForm}";
-			protected static string s5 = "><div id=\"page_main\"><div id=\"header_main\" style=\"width:740px;\"><span style=\"float:left\">";
+			protected static string s5 = "><div id=\"page_main\"><div id=\"header_main\"><span style=\"float:left\">";
 			protected static string s6{get{return Resources.Lang.memberwinloss;}}
 			protected static string s7 = "</span>";
 			public WinlossAgent_BoldExportExcel_Block BoldExportExcel = new WinlossAgent_BoldExportExcel_Block();
-			protected static string s8 = "</div><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td>";
+			protected static string s8 = "</div><div id=\"content_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td>";
 			public string SearchPanel = "{SearchPanel}";
 			protected static string s9 = "</td></tr><tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
 			public WinlossAgent_ExcelContents_Block ExcelContents = new WinlossAgent_ExcelContents_Block();
-			protected static string s10 = "</div></div></td></tr></table></div><input type=\"hidden\" name=\"CustId\" id=\"CustId\" value=\"";
+			protected static string s10 = "</div></div></td></tr></table></div></div><input type=\"hidden\" name=\"CustId\" id=\"CustId\" value=\"";
 			public string CustId = "{CustId}";
 			protected static string s11 = "\" /><input type=\"hidden\" name=\"IsHistoryReport\" id=\"IsHistoryReport\" value=\"";
 			public string IsHistoryReport = "{IsHistoryReport}";
@@ -123,7 +123,7 @@ namespace Fanex.Age.UI.Reports
 		{
 			protected static string s25 = "<table class=\"tblRpt ";
 			public string BoldRow = "{BoldRow}";
-			protected static string s26 = "\" width=\"750px\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\" id=\"tbl-rpt\" style=\"display:none\"><tr id=\"rowTitle\" class=\"RptTitle\"><td id=\"content_title\" colspan=\"10\">";
+			protected static string s26 = "\" width=\"750px\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\" id=\"tbl-rpt\" style=\"display:none\"><tr class=\"RptTitle\"><td colspan=\"10\">";
 			protected static string s27{get{return Resources.Lang.memberwinloss;}}
 			protected static string s28 = " ";
 			public string DateFrom = "{DateFrom}";

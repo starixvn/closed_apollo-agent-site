@@ -37,9 +37,9 @@ namespace Fanex.Agent.UI
 			public string content = "{content}";
 			public MasterPage_Extend_tpl_Block Extend_tpl = new MasterPage_Extend_tpl_Block();
 			protected static string s19 = "</body><script src=\"";
-			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
+			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s22{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2.min.js", TplSettings.Question);}}
+			protected static string s22{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
 			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s24{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s25 = "\" type=\"text/javascript\"></script><script src=\"";

@@ -7,7 +7,7 @@ function CountDownRefresh_Tick() {
     document.getElementById('CountDownRefresh').innerHTML = curCountDown;
     curCountDown--;
     if (countDownTimer != null) clearTimeout(countDownTimer);
-    countDownTimer=setTimeout(CountDownRefresh_Tick, 1000);
+    countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
 
     if (curCountDown < 0) {
         if (!isStopCoundown) {
@@ -23,13 +23,13 @@ function CountDownRefresh() {
     if (countDownTimer != null) clearTimeout(countDownTimer);
     document.getElementById('CountDownRefresh').innerHTML = loadingTxt;
 
-    ajax.Request(window.location.href, {asynchronous: true, parameters: 'full_mode=0'
-                            , onComplete: function(data) {
+    ajax.Request(window.location.href, { asynchronous: true, parameters: 'full_mode=0'
+                            , onComplete: function (data) {
                                 document.getElementById('sContent').innerHTML = data.responseText;
                                 RefreshCountDown_Init();
                             }
     });
-    
+
     return true;
 }
 
@@ -96,7 +96,7 @@ function RefreshCountDown_Init() {
 
     curCountDown = initCountDown;
     ckiName = "ibcCountDown" + refreshCountDownId;
-    
+
     //read countdown from cookie
     var countDownFromCookie = getCookie(ckiName);
     if (countDownFromCookie && countDownFromCookie != 0) {

@@ -10,7 +10,7 @@
 }
 @helper RefreshCountDown(string refreshCountDownId, int initCountDown = 15, int fromSecond = 15, string onRefresh = "location.reload();")
 {
-    <div class="btnCountDown">
+    <div class="btnCountDown clearfix">
         <div id="CountDownRefresh" class="btnRefresh" title="@Resources.Lang.refresh" onclick="CountDownRefresh_Refresh();">
         </div>
         <div class="btnDown" id="btnDown" onclick="CountDownRefresh_DoOpenOption(this);">

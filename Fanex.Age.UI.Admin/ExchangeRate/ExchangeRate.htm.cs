@@ -38,7 +38,7 @@ namespace Fanex.Age.UI.Admin
 			protected static string s20 = "</label></th><th><label for=\"editor-minbl\">";
 			protected static string s21{get{return Resources.Lang.MinBetLive;}}
 			protected static string s22 = "</label></th></tr></thead><tbody><tr><td><input type=\"text\" id=\"editor-curr\" /></td><td><input type=\"text\" id=\"editor-desc\" /></td><td><input type=\"number\" id=\"editor-mult\" /></td><td><input type=\"number\" id=\"editor-base\" /></td><td><input type=\"number\" id=\"editor-minb\" /></td><td><input type=\"number\" id=\"editor-minbl\" /></td></tr></tbody></table></div><script src=\"";
-			protected static string s23{get{return AbsoluteUrl("_globalresources/js/jquery-1.9.1.min.js", TplSettings.Question);}}
+			protected static string s23{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s24 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s25{get{return AbsoluteUrl("_globalresources/js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
 			protected static string s26 = "\" type=\"text/javascript\"></script><script src=\"";

@@ -1,64 +1,45 @@
-<!--HiddenBlock-->
-<link href="Resources/AccountInfo.css" rel="stylesheet" type="text/css" />
-<link href="Resources/styles.less" rel="stylesheet" type="text/css" />
-<!--/HiddenBlock-->
 
-<tr>
-    <td colspan="2">
-        <div class="settingWidth">
-            <!--MemberSettingBlock-->
-            <div class="divLinkSetting">
-                <a id="menuitem0" class="b_left" target="main" onclick="menu_select(0);" 
-                    href="../_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId={CustId}&username={UserName}&showheader=1&ugroup={Group}">
-                    {static:Resources.Lang.lblEditSB}
-                </a>
-            </div>
-            <div class="divLinkSetting">
-                <a id="menuitem4" class="b_left" align="main" onclick="menu_select(4);" target="main"
-                    href="../_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId={CustId}&username={UserName}&showheader=1&ugroup={Group}">
-                    {static:Resources.Lang.lbleditbetsetting}
-                </a>
-            </div>
-            <div class="divLinkSetting">
-                <a id="menuitem2" class="b_left" align="main" onclick="menu_select(2);" target="main"
-                    href="../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId={CustId}&username={UserName}&showheader=1&ugroup={Group}">
-                    {static:Resources.Lang.lbleditcomm}
-                </a>
-            </div>
-            <div class="divLinkSetting">
-                <a id="menuitem1" class="b_left" target="main" onclick="menu_select(1);" 
-                    href="../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={CustId}&username={UserName}&showheader=1&ugroup={Group}">
-                    {static:Resources.Lang.lblEditPositionTalking}
-                </a>
-            </div>
-            <!--/MemberSettingBlock-->
+
+<!--MemberSettingBlock-->
+<a id="menuitem0" class="lnk-setting" target="main"
+    href="../_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId={CustId}&username={UserName}&showheader=1&ugroup={Group}">
+    {static:Resources.Lang.lblEditSB}
+</a>
+        
+<a id="menuitem4" class="lnk-setting" target="main"
+    href="../_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId={CustId}&username={UserName}&showheader=1&ugroup={Group}">
+    {static:Resources.Lang.lbleditbetsetting}
+</a>
+        
+<a id="menuitem2" class="lnk-setting" target="main"
+    href="../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId={CustId}&username={UserName}&showheader=1&ugroup={Group}">
+    {static:Resources.Lang.lbleditcomm}
+</a>
+        
+<a id="menuitem1" class="lnk-setting" target="main"
+    href="../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId={CustId}&username={UserName}&showheader=1&ugroup={Group}">
+    {static:Resources.Lang.lblEditPositionTalking}
+</a>
+<!--/MemberSettingBlock-->
             
-            <!--AgentSettingBlock-->
-            <div class="divLinkSetting">
-                <a id="A1" class="b_left" target="main" onclick="menu_select(0);" 
-                    href="../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={CustId}&username={UserName}&showheader=1&agentlevel={Level}">
-                    {static:Resources.Lang.lblEditSB}
-                </a>
-            </div>
-            <div class="divLinkSetting">
-                <a id="A2" class="b_left" align="main" onclick="menu_select(4);" target="main"
-                    href="../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={CustId}&username={UserName}&showheader=1&agentlevel={Level}">
-                    {static:Resources.Lang.lbleditbetsetting}
-                </a>
-            </div>
-            <div class="divLinkSetting">
-                <a id="A3" class="b_left" align="main" onclick="menu_select(2);" target="main"
-                    href="../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={CustId}&username={UserName}&showheader=1&agentlevel={Level}">
-                    {static:Resources.Lang.lbleditcomm}
-                </a>
-            </div>
-            <div class="divLinkSetting">
-                <a id="A4" class="b_left" target="main" onclick="menu_select(1);" 
-                    href="../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={CustId}&username={UserName}&showheader=1&agentlevel={Level}">
-                    {static:Resources.Lang.lblEditPositionTalking}
-                </a>
-            </div>
-            <!--/AgentSettingBlock-->
-        </div>
-    </td>
-</tr>
+<!--AgentSettingBlock-->
+<a id="A1" class="lnk-setting" target="main"
+    href="../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId={CustId}&username={UserName}&showheader=1&agentlevel={Level}">
+    {static:Resources.Lang.lblEditSB}
+</a>
+        
+<a id="A2" class="lnk-setting" target="main"
+    href="../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId={CustId}&username={UserName}&showheader=1&agentlevel={Level}">
+    {static:Resources.Lang.lbleditbetsetting}
+</a>
+        
+<a id="A3" class="lnk-setting" target="main"
+    href="../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId={CustId}&username={UserName}&showheader=1&agentlevel={Level}">
+    {static:Resources.Lang.lbleditcomm}
+</a>
+        
+<a id="A4" class="lnk-setting" target="main"
+    href="../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId={CustId}&username={UserName}&showheader=1&agentlevel={Level}">
+    {static:Resources.Lang.lblEditPositionTalking}
+</a>
+<!--/AgentSettingBlock-->

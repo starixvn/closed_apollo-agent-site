@@ -14,7 +14,7 @@ namespace Fanex.Age.UI.Components
 		public class RefreshCountDown_Template : Template
 		{
 			public RefreshCountDown_ExternalResources_Block ExternalResources = new RefreshCountDown_ExternalResources_Block();
-			protected static string s0 = "<div class=\"btnCountDown\"><div id=\"CountDownRefresh\" class=\"btnRefresh\" onclick=\"return CountDownRefresh_Refresh()\" title=\"";
+			protected static string s0 = "<div class=\"btnCountDown clearfix\"><div id=\"CountDownRefresh\" class=\"btnRefresh\" onclick=\"return CountDownRefresh_Refresh()\" title=\"";
 			protected static string s1{get{return Resources.Lang.refresh;}}
 			protected static string s2 = "\"></div><div class=\"btnDown\" onclick=\"CountDownRefresh_DoOpenOption(this);\" ></div></div><div style=\"clear:both;\"></div><div id=\"CountDownMenu\" style=\"display:none;\" class=\"panelDown\">";
 			public RefreshCountDown_Seconds_Block Seconds = new RefreshCountDown_Seconds_Block();
