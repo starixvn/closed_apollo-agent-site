@@ -1,6 +1,42 @@
-﻿@{
+﻿@model SiteMapNode
+@{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
+    var menu = Model.ChildNodes[0];
 }
-<p>
-MENU
-</p>
+<ul id="menu">
+    @for (int i = 0; i < menu.ChildNodes.Count; i++)
+    {
+        var item = menu.ChildNodes[i];
+        string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
+        
+        <li class="menu-item @activeClass"><a class="menu-item-title">@this.GlobalLangResources(item.Title)</a>
+            @if (item.HasChildNodes)
+            {
+                <div class="submenu">
+                    @for (int j = 0; j < item.ChildNodes.Count; j++)
+                    {
+                        var subItem = item.ChildNodes[j];
+                        int bettypeId = 0;
+                        string title=string.Empty;
+                        
+                        if (subItem.Title.Contains("bettype")
+                            && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
+                        {
+                            title = CacheRef.GetBettype(bettypeId);
+                        }
+                        else
+                        {
+                            title = this.GlobalLangResources(subItem.Title);
+                        }
+                        
+                        <a href="@subItem.Url" target="main">@title</a>
+                    }
+                </div>
+            }
+        </li>
+    }
+</ul>
+
+@section foot {
+    <script src="~/Views/Account/Resources/Menu.js" type="text/javascript"></script>
+}

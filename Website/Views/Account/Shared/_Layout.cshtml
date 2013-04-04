@@ -8,14 +8,15 @@
     </head>
     <body>
         <ul id="tab-menu">
-            <li class="active">
-                <a><i class="icon-align-justify"></i>Menu</a>
+            <li class="tab-menu active" tid="1">
+                <a href="@Url.Action("Menu")" target="menu">
+                    <i class="icon-align-justify"></i>Menu</a>
             </li>
-            <li>
+            <li class="tab-acc" tid="2">
                 <a href="@Url.Action("AccountInfo")" target="menu">
                     <i class="icon-user"></i>Account</a>
             </li>
-            <li>
+            <li class="tab-mem" tid="3">
                 <a href="@Url.Action("AgentTreeList")" target="menu">
                     <i class="icon-align-left"></i>Members</a>
             </li>
@@ -23,10 +24,37 @@
         @RenderBody()
 
     <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/AutoComplete.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/Menu.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/Account.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>    
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var tabMenu = $('#tab-menu'),
+                tid = $.cookie('age-active-tab');
+
+            // activate selected tab
+            if (tid) {
+                tabMenu.children('li').each(function () {
+                    var tab = $(this);
+
+                    if (tab.attr('tid') == tid) {
+                        tab.addClass('active').siblings('li').removeClass('active');
+                    }
+                });
+            }
+
+            // save selected tab using cookie
+            tabMenu.on('click', 'li', function () {
+                var tab = $(this);
+
+                if (tab.hasClass('active')) return false;
+
+                $.cookie('age-active-tab', tab.attr('tid'), { path: '/' });
+            })
+        });
+
+    </script>
 
     @RenderSection("foot", required: false)
 
