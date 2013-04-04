@@ -1,4 +1,4 @@
-﻿/// <reference path="../../_GlobalResources/Js/jquery-1.9.1.min.js" />
+﻿/// <reference path="../../_GlobalResources/Js/jquery.js" />
 
 var currentMenuItem = null;
 

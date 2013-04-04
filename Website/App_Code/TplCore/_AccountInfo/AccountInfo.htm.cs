@@ -28,7 +28,7 @@ namespace Fanex.Agent.UI
 			public string searchBox = "{searchBox}";
 			public AccountInfo_TheRestAcc_Block TheRestAcc = new AccountInfo_TheRestAcc_Block();
 			protected static string s11 = "</div><div id=\"shadow\" class=\"shadow\"><div id=\"output\" class=\"output\"></div></div><script src=\"";
-			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
+			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";

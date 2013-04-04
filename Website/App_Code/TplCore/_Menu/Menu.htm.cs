@@ -20,7 +20,7 @@ namespace Fanex.Agent.UI
 			protected static string s3 = "<ul id=\"menu\">";
 			public Menu_SubMenu_Block SubMenu = new Menu_SubMenu_Block();
 			protected static string s4 = "</ul><script src=\"";
-			protected static string s5{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
+			protected static string s5{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s6 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";

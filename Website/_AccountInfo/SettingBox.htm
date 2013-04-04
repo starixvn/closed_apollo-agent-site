@@ -22,10 +22,12 @@
             <tr>
                 <td>
                     <!--TreeViewBlock-->
-                    <iframe id='frmDownlineList' name='frmDownlineList' src='../_AccountInfo/AgentTreeList.html?custid={CustId}' style='width:98%;height: 100%'></iframe>
+                    <iframe id='frmDownlineList' name='frmDownlineList'
+                        src='../_AccountInfo/AgentTreeList.html?CustId={CustId}'
+                        style='width:98%;height: 100%'></iframe>
                     <!--/TreeViewBlock-->
                     <!--NoInfoBlock-->
-                    <span class="no-data-agent"> {static:Resources.Lang.noInfo} </span>
+                    <span class="no-data-agent">{static:Resources.Lang.noInfo}</span>
                     <!--/NoInfoBlock-->
 
                 </td>
@@ -37,7 +39,7 @@
         <table id="membersTab-content" class="member-tab">
             <tr>
                 <td>
-                    <div id="iframe-content"> </div>
+                    <div id="iframe-content"></div>
                 </td>
             </tr>
         </table>

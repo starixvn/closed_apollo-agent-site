@@ -28,7 +28,7 @@ namespace Fanex.BetList.Age
 			protected static string s11 = "\" /></div><div id=\"content_main\"><table id=\"betlist\" class=\"tblRpt\">";
 			public string content = "{content}";
 			protected static string s12 = "</table><div id=\"dialog-details\"></div></div></div><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
+			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
 			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
