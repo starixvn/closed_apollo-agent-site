@@ -36,17 +36,17 @@ namespace Apollo.Age.TotalBets.ViewModels
         public decimal AwayOddsHandicap { get; set; }
         public int BetCountHandicap { get; set; }
 
-        public decimal HomeOddsHaftTimeHandicap { get; set; }
-        public decimal AwayOddsHaftTimeHandicap { get; set; }
-        public int BetCountHaftTimeHandicap { get; set; }
+        public decimal HomeOddsHalfTimeHandicap { get; set; }
+        public decimal AwayOddsHalfTimeHandicap { get; set; }
+        public int BetCountHalfTimeHandicap { get; set; }
 
         public decimal HomeOddsOverUnder { get; set; }
         public decimal AwayOddsOverUnder { get; set; }
         public int BetCountOverUnder { get; set; }
 
-        public decimal HomeOddHaftTimeOverUnder { get; set; }
-        public decimal AwayOddHaftTimeOverUnder { get; set; }
-        public int BetCountHaftTimeOverUnder { get; set; }
+        public decimal HomeOddHalfTimeOverUnder { get; set; }
+        public decimal AwayOddHalfTimeOverUnder { get; set; }
+        public int BetCountHalfTimeOverUnder { get; set; }
 
         public string HomeTeam
         {

@@ -1,4 +1,5 @@
 ﻿@import "../../_GlobalResources/Css/Agent.less";
+@import "../../_GlobalResources/Css/calander.less";
 
 #header_main #exporttoexcel {
 	position: absolute;
@@ -264,74 +265,4 @@ a {
 
 #spDateTimeSearch {
 	float: left;
-}
-
-
-/* Customize calander */
-
-.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
-	border-radius: 0;
-}
-.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
-	border-radius: 0;
-}
-.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
-	border-radius: 0;
-}
-.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
-	border-radius: 0;
-}
-
-.ui-datepicker {
-	border: 2px solid #DB8973;	
-	width: 16em;
-	background: #fff;
-
-	.ui-datepicker-title {
-		font-size: 0.9em;
-		color: #707070;
-		text-shadow: 0 1px 0 #FFF;
-	}
-
-	th {
-		font-size: 0.9em;
-		color: #707070;
-		border-bottom: 1px solid #ccc;
-		text-shadow: 0 1px 0 #FFF;
-	}
-	
-	td a {
-		text-align: center;
-		padding: 6px;
-
-		&:hover {
-			background: #77AAE8;
-			color: #fff;			
-		}
-	}
-	.ui-datepicker-header {		
-		border-bottom: 1px solid #CCC;
-		box-shadow: 0 1px 0 #F5F5F5;
-	}
-	
-	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-		background: none;
-		border: none;
-		font-size: 0.9em;
-	}
-
-	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-		background: #DE8B74;
-		color: #FFF;
-		padding: 6px;
-		text-align: center;
-	}
-
-	.ui-icon-circle-triangle-w {
-		background-position: -95px -17px;
-	}
-
-	.ui-icon-circle-triangle-e {
-		background-position: -30px -17px;
-	}
 }

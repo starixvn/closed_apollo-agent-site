@@ -24,28 +24,29 @@ namespace Apollo.Age.Forecast.Controllers
     /// </summary>
     public class ForecastController : BaseController
     {
-        private readonly ForecastService _foreCastService;
+        private readonly ForecastService _forecastService;
 
         public ForecastController() : this(null)
         {
         }
 
-        public ForecastController(ForecastService foreCastService = null)
+        public ForecastController(ForecastService forecastService = null)
         {
-            _foreCastService = foreCastService ?? new ForecastService();
+            _forecastService = forecastService ?? new ForecastService();
         }
 
         #region FC1X2
 
         public ViewResult FC1X2()
         {
-            IEnumerable<LeagueViewModel> leagues = _foreCastService.GetRunningLeague(betType: 5,agentId: base.AgentId);
-            return View(leagues);
+            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType: 5,agentId: base.AgentId);
+            ViewBag.Leagues = leagues;
+            return View();
         }
 
         public ActionResult FC1X2Matches(int leagueId)
         {
-            var forecasts = _foreCastService.GetForecast1x2(base.AgentId, leagueId);
+            var forecasts = _forecastService.GetForecast1x2(base.AgentId, leagueId);
             return View(forecasts);
         }
 
@@ -56,16 +57,35 @@ namespace Apollo.Age.Forecast.Controllers
         public ViewResult FCHandicapOverUnder()
         {
             // 1: for Hdp/OU/Live
-            IEnumerable<LeagueViewModel> leagues = _foreCastService.GetRunningLeague(betType: 1, agentId: base.AgentId);
-            return View(leagues);
+            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType: 1, agentId: base.AgentId);
+            ViewBag.Leagues = leagues;
+            return View();
         }
 
         public ActionResult FCHandicapOverUnderMatches(int leagueId)
         {
-            var forecasts = _foreCastService.GetForecastHandicapOverUnder(base.AgentId, leagueId);
+            var forecasts = _forecastService.GetForecastHandicapOverUnder(base.AgentId, leagueId);
             return View(forecasts);
         }
 
         #endregion
+
+        public ViewResult ForecastByMatchContent(int matchId, int betType = 1, int currentScore = 0)
+        {
+            ViewBag.TopOddsByMatch = _forecastService.GetTopOddsByMatch(matchId, betType);
+            ViewBag.BetType = betType;
+            ViewBag.MatchId = matchId;
+            ViewBag.CurrentScore = currentScore;
+            return View(_forecastService.GetForecastMatcheValue(base.AgentId, matchId, betType, currentScore));
+
+        }
+
+        public ViewResult ForecastByMatch(int matchId, int betType = 1, int currentScore = 0)
+        {
+            ViewBag.BetType = betType;
+            ViewBag.MatchId = matchId;
+            ViewBag.CurrentScore = currentScore;
+            return View();
+        }
     }
 }
