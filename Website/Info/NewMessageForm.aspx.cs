@@ -30,6 +30,7 @@ public partial class zTest_NewMessageForm : TplPage
     protected void Page_Load(object sender, EventArgs e)
     {
         this.CssGroup = "main";
+         
 
         string pageQuery = _ArrParamValue[NORMAL];
         DateTime tDate = DateTime.Now;
