@@ -226,7 +226,7 @@
         <Mapping DataField="odds_1" ObjectProperty="Odds1" />
         <Mapping DataField="odds_x" ObjectProperty="OddsX" />
         <Mapping DataField="odds_2" ObjectProperty="Odds2" />
-        <Mapping DataField="odds_1_1st" ObjectProperty="Odds1HalfTime" />
+        <Mapping DataField="odds_1_1st" ObjectProperty="Odds1HaftTime" />
         <Mapping DataField="odds_x_1st" ObjectProperty="OddsXHalfTime" />
         <Mapping DataField="odds_2_1st" ObjectProperty="Odds2HalfTime" />
         <Mapping DataField="home_odds_DND" ObjectProperty="HomeOddsDrawNoDraw" />
@@ -276,7 +276,14 @@
         <Mapping DataField="WinLost_1_HTOU" ObjectProperty="HalfTimeOverUnderWinLost1" />
         <Mapping DataField="WinLost_2_HTOU" ObjectProperty="HalfTimeOverUnderWinLost2" />
       </Setting>
-        <Setting Key="Age_Forecast_5_15_GetByLeague" SpName="Age_Forecast_5_15_GetByLeague" DbName="REPDB" Plain="0" />
+      <Setting Key="Age_Forecast_5_15_GetByLeague" SpName="Age_Forecast_5_15_GetByLeague" DbName="REPDB" Plain="0" >
+        <Mapping DataField="al" ObjectProperty="AwayWinLost" />
+        <Mapping DataField="hl" ObjectProperty="HomeWinLost" />
+        <Mapping DataField="dl" ObjectProperty="DrawWinLost" />
+        <Mapping DataField="ht_al" ObjectProperty="HalfTimeAwayWinLost" />
+        <Mapping DataField="ht_hl" ObjectProperty="HalfTimeHomeWinLost" />
+        <Mapping DataField="ht_dl" ObjectProperty="HalfTimeDrawWinLost" />
+      </Setting>
       <Setting Key="Age_Forecast_1_7_GetByMatch" SpName="Age_Forecast_1_7_GetByMatch" DbName="REPDB" Plain="0" >
         <Mapping DataField="ht" ObjectProperty="HomeTotal" />
         <Mapping DataField="at" ObjectProperty="AwayTotal" />
