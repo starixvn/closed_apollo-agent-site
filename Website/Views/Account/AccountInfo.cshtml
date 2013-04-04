@@ -1,6 +1,145 @@
-﻿@{
+﻿@using Apollo.Age.Account.ViewModel
+@{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
 }
-<p>
-Account info
-</p>
+
+@model CustomerInfoViewModel
+
+@helper SearchBox()
+    {
+    if (Model == null)
+    {
+        <select id="ddlIsMember" name="isMember">
+            <option value="0" "selected">@Resources.Lang.lblAgent</option>
+            <option value="1">@Resources.Lang.lblMember</option>
+        </select>
+        <input maxlength="50" id="txtUsername" type="text"
+            value="@Resources.Lang.enterusername" name="userName"
+            onkeydown="onclickUser('@Resources.Lang.enterusername')"
+            onclick="onclickUser('@Resources.Lang.enterusername')"
+            onblur="onblurUser('{@Resources.Lang.enterusername')" />
+        <button type="button" class="btn search-button">
+            <i class="icon-search"></i>
+        </button> 
+    }
+    else
+    {
+        <select id="ddlIsMember" name="isMember">
+            <option value="0" @(Model.IsMember ? string.Empty : "selected") >@Resources.Lang.lblAgent</option>
+            <option value="1" @(Model.IsMember ? "selected" : string.Empty) >@Resources.Lang.lblMember</option>
+        </select>
+        <input maxlength="50" id="txtUsername" type="text"
+            value="@Model.Username" name="userName"
+            onkeydown="onclickUser('@Resources.Lang.enterusername')"
+            onclick="onclickUser('@Resources.Lang.enterusername')"
+            onblur="onblurUser('@Resources.Lang.enterusername')" />
+        <button type="button" class="btn search-button">
+            <i class="icon-search"></i>
+        </button>
+    }
+    
+    <input id="enterUsernameValue" type="hidden" value="@Resources.Lang.enterusername"/>
+}
+
+<div class="search-box">
+    @SearchBox()
+    @if (Model != null)
+    {
+        if (Model.CustId > 0)
+        {
+            <table class="cust-info">
+                <tbody>
+                    <tr>
+                        @if (Model.IsMember)
+                        {
+                            <td class="agent-lbl">
+                                @Resources.Lang.lblMember:
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="agent-lbl">
+                                @Resources.Lang.agent:
+                            </td>
+                        }
+                        <td class="agent-name">
+                            @Model.Username
+                        </td>
+                    </tr> 
+                    <tr>
+                        @if (Model.IsMember)
+                        {
+                            <td class="parent-lbl">
+                                @Resources.Lang.agent:
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="parent-lbl">
+                                @Resources.Lang.lblParentname:
+                            </td>
+                        }
+                        <td class="parent-name">
+                            <a href="javascript:;" id="agentDownlineLink" aid="@Model.CustId">
+                                <img height="16" width="16"
+                                    src="~/Views/Account/Resources/Images/icon-view-info.png"
+                                    title="@Resources.Lang.txtShowUpline"
+                                    alt="@Resources.Lang.txtShowUpline" />
+                                @if (Model.CurrentAgentId == Model.ParentId)
+                                {
+                                    @Model.ParentName
+                                }
+                                else
+                                {
+                                    <a class="view-custinfo" agent-id="@Model.ParentId" user-name="@Model.ParentName" 
+                                    is-member="0" href="javascript:{0};"> @Model.ParentName </a>
+                                }
+                                    
+                                <div id="ddl-agents">
+                                    <ul class="agent-list"></ul>
+                                </div>
+                            </a>        
+                        </td>
+                    </tr>                                        
+                </tbody>
+            </table>
+            <div class="clearfix">
+                @if (!Model.IsMember && Model.HasAgentDownline)
+                {
+                    <a class="lnk-agent-list" agent-id="@Model.CustId" agent-name="@Model.Username" target="main" href="javascript:{0};">
+                        @Resources.Lang.lblAgentList
+                    </a>
+                }
+            
+                @if (!Model.IsMember && Model.HasMemberDownline)
+                {
+                    <a class="lnk-member-list" agent-id="@Model.CustId" agent-name="@Model.Username" target="main" href="javascript:{0};">
+                        @Resources.Lang.lblPlayerList
+                    </a>
+                }
+
+                @if (Model.IsMember)
+                {
+                    <a class="lnk-betlist" target="main" href="javascript:{0};">
+                        @Resources.Lang.BetList
+                    </a>
+                }
+            </div>
+        }
+        else
+        {
+            @*<div class="errMsg">@Resources.Lang.usernamenotexisted</div> *@
+        }
+    }
+            </div>
+
+
+@section scripts
+{
+    <script src="~/Views/Account/Resources/AccountInfo.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            Account.InitSearchClick();
+        });
+    </script>    
+}
