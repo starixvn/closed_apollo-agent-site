@@ -60,7 +60,17 @@ namespace Apollo.Age.Account.Controllers
             return Json(customerList, JsonRequestBehavior.AllowGet);
         }
 
+        public ViewResult AccountInfo()
+        {
+            return View();
+        }
+
         public ViewResult AgentTreeList()
+        {
+            return View();
+        }
+
+        public ViewResult TreeViewList()
         {
             return View();
         }
