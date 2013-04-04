@@ -26,8 +26,8 @@
 
       <!--Forecast-->
       <siteMapNode title="lblForecast">
-        <siteMapNode title="lblHOUL" href="_Forecast/FCHDPOU.aspx"></siteMapNode>
-        <siteMapNode title="lbl1x2" href="_Forecast/FC1X2.aspx"></siteMapNode>
+        <siteMapNode title="lblHOUL" href="Forecast/FCHandicapOverUnder"></siteMapNode>
+        <siteMapNode title="lbl1x2" href="Forecast/FC1X2"></siteMapNode>
         <siteMapNode description="ScoreMap" title="lblScoreMap" href="_Forecast/ScoreMap.aspx"></siteMapNode>
       </siteMapNode>
       <!--/Forecast-->
