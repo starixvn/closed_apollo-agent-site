@@ -21,7 +21,6 @@ namespace Apollo.Age.Forecast.Criterias
     /// </summary>
     public class GetRunningLeagueCriteria : CriteriaBase
     {
-        [SpParam(SqlParamName = "AgID")]
         public int AgentId { get; set; }
 
         public string BetTypes { get; set; }
