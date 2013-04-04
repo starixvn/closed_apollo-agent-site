@@ -2,7 +2,7 @@
     Inherits="zTest_NewMessageForm" %>
 
 <script type="text/javascript">
-    var sobjDate=null;
+    /*var sobjDate=null;
     var eobjDate=null;
     var fromDateControlID = "fdate";
     var toDateControlID = "tdate";
@@ -88,5 +88,5 @@
         else {
             enableCalendar(false);
         }
-    }
+    }*/
 </script>

@@ -13,7 +13,7 @@
                 <!--DateTimeSearch-->
                 <div class="date">
                     <label>{dateText}</label>
-                    <input id="{txtDate}" class="input-date {TxtDateCls}" value="{currentDate}" type="text" size="13" name="{txtDate}" readonly />
+                    <input id="{txtDate}" class="{TxtDateCls} input-date" value="{currentDate}" type="text" size="13" name="{txtDate}"/>
                 </div>
                 <!--/DateTimeSearch-->
                 <input type="button" class="btn" style="width:55px" id="dSubmit" value="{submit}" onclick="javascript:showMsg('');" />
@@ -52,6 +52,8 @@
 </div>
 <input type="hidden" name="eroMeg" id="eroMeg" value="{invalidDateMessage}">
 <input type="hidden" name="msgType" id="msgType" value="{msgType}">
+
 <script src="../../_GlobalResources/Js/jquery.js" type="text/javascript"></script>
 <script src="../../_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
 <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+<script src="../../Info/Resources/message.js" type="text/javascript"></script>
