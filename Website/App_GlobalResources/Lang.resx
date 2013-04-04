@@ -4233,4 +4233,10 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="ShareAmount" xml:space="preserve">
     <value>Share Amount</value>
   </data>
+  <data name="ViewBetList" xml:space="preserve">
+    <value>View Bet List</value>
+  </data>
+  <data name="ViewForeCast" xml:space="preserve">
+    <value>View Forecast</value>
+  </data>
 </root>

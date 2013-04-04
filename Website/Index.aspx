@@ -21,9 +21,9 @@
                 width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
         </div>
         <div class="menu">
-            <%--<iframe src="_Menu/Menu.aspx" id="menu" name="menu"
+            <%--<iframe src="Account/Menu" id="menu" name="menu"
                 width="100%" height="100%" frameborder="0" scrolling="no"></iframe>--%>
-            <iframe src="_AccountInfo/AccountInfo.aspx" id="menu" name="menu"
+            <iframe src="_Menu/Menu.aspx" id="menu" name="menu"
                 width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
         </div>
         <div class="mainpage">
@@ -31,7 +31,7 @@
                 width="100%" height="100%" frameborder="0"></iframe>
         </div>
     </form>
-    <script src="<%= Page.ResolveUrl("_GlobalResources/Js/jquery-1.9.1.min.js")%>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveUrl("_GlobalResources/Js/jquery.js")%>" type="text/javascript"></script>
     <script src="<%= Page.ResolveUrl("_GlobalResources/Js/Core.js")%>" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {

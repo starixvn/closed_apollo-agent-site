@@ -20,7 +20,7 @@ namespace Fanex.Age.UI.Reports
 			protected static string s4 = "\" rel=\"Stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">Announcement</div><div id=\"content_main\"><table class=\"tblMain\" cellspacing=\"0\"><tr class=\"hide\"><td valign=\"top\" style=\"width: 50%\"><div id=\"balanceInfo\" class=\"padding-right\"></div></td><td valign=\"top\" style=\"width: 50%\"><div id=\"statistic\" class=\"padding-right\"></div></td></tr>";
 			public PortalPage_OnlineList_Block OnlineList = new PortalPage_OnlineList_Block();
 			protected static string s5 = "<tr><td colspan=\"2\" valign=\"top\"><div id=\"announcement\" class=\"padding-top-right\"></div></td></tr></table></div></div><script src=\"";
-			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
+			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s7 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s8{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
 			protected static string s9 = "\" type=\"text/javascript\"></script><script src=\"";

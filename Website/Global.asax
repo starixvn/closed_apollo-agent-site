@@ -10,22 +10,26 @@
 <%@ Import Namespace="Sunplus.Agent.Model.BL.Authorization" %>
 
 <script RunAt="server">
+
     public static void RegisterGlobalFilters(GlobalFilterCollection filters)
     {
         filters.Add(new HandleErrorAttribute());
     }
+    
     static void RegisterRoutes(RouteCollection routes)
     {
         routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
         routes.IgnoreRoute("{*allaspx}", new { allaspx = @".*\.aspx(/.*)?" });
         routes.IgnoreRoute("{*allashx}", new { allashx = @".*\.ashx(/.*)?" });
         routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+        
         routes.MapRoute(
              "Default", // Route name  
              "{controller}/{action}/{id}", // URL with parameters  
              new { controller = "Home", action = "Index", id = UrlParameter.Optional }
          );
     }
+    
     void Application_Start(object sender, EventArgs e)
     {
 

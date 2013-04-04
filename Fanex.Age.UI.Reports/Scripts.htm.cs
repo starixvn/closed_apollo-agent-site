@@ -12,9 +12,9 @@ namespace Fanex.Age.UI.Reports
 		public class Scripts_Template : Template
 		{
 			protected static string s0 = "<script src=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Js/jquery-1.9.1.min.js", TplSettings.Question);}}
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s2 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2.min.js", TplSettings.Question);}}
+			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
 			protected static string s4 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s5{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s6 = "\" type=\"text/javascript\"></script><script src=\"";
