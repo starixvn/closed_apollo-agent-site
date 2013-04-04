@@ -1,10 +1,17 @@
 ﻿@import "../../../_GlobalResources/Css/Agent.less";
 
-.title_header
-{     
-    position: relative;	
-    width: 100%;
-	display: block;
+#header_main {
+	padding: 17px 0 19px;
+	margin-bottom: 10px;
+
+	.header-title {
+		float: left;
+	}	
+
+	.edit-setting {
+		float: left;
+		margin-left: 5px;
+	}
 }
 
 #box_header {
@@ -15,122 +22,114 @@
 	margin: 0 10px;
 	width: 98%;
 
-	.tblRpt {
+	.boxNavigation {	
+		line-height: 18px;
+		padding-left: 6px;	
+		margin-top: 10px;
+		border-left: 5px solid #878787;
+		border-bottom: none;
+
+		img {
+			vertical-align: middle;
+			margin: 0 5px;
+		}
+	}	
+
+	#tblHeader {
 		width: 100%;
-		margin: 0;
-		tbody  {
-			tr {
-				td {
-					line-height: 25px;
+		tr {			
+
+			td .hidden {
+				display: none;
+			}
+		}
+	}
+
+	.list {
+		position: relative;
+
+		ul.sub-nav {
+			margin: 0 0 0 5px;
+			padding: 0;
+			position: absolute;
+			left: 2px;
+			top: -21px;
+			z-index: 10;
+
+			li {
+				list-style: none;
+				float: left;
+		
+				a {
+					font-size: 11px;		
+					padding-right: 5px;	
+			
+					&:hover {
+						font-size: 11px;	
+						color: #FF9933;
+						padding-right: 5px;	
+					}		
+				}
+		
+				&.active {
+					font-size: 11px;		
+					padding-right: 5px;	
+					font-weight: bold;
+				}	
+
+				.line {
+					margin: 0 5px;
+				}
+			}
+		}
+		
+		.tblRpt {
+			width: 100%;
+			margin: 0;
+
+			tbody  {
+				tr {
+					td {
+						line-height: 25px;
+						text-align: center;
+
+						.view-icon {
+							color: @linkColor;
+						}
+
+						&.l {
+							text-align: left;
+						}
+
+						&.r {
+							text-align: right;
+						}
+
+						&.c {
+							text-align: center;
+						}
+					}			
+				}
+			}	
+
+			tfoot  {
+				tr {
+					font-weight: normal;
+					height: 20px;
+					text-align: center;
+					background: url( "Images/bg_header04.jpg" ) repeat-x scroll center top #E8E8E8;
+					border-top: 1px solid @borderColor;
+					font-weight: normal;
+					height: 20px;
 					text-align: center;
 
-					.view-icon {
-						color: @linkColor;
-						
+					td #MemberList_PagingBottom {
+						* {
+							vertical-align: middle;
+						}
 					}
-
-					&.l
-					{
-						text-align: left;
-					}
-
-					&.r
-					{
-						text-align: right;
-					}
-
-					&.c
-					{
-						text-align: center;
-					}
-				}			
-			}
-		}	
-
-		tfoot  {
-			tr {
-				font-weight: normal;
-				height: 20px;
-				text-align: center;
-				background: url( "Images/bg_header04.jpg" ) repeat-x scroll center top #E8E8E8;
-				border-top: 1px solid @borderColor;
-				font-weight: normal;
-				height: 20px;
-				text-align: center;
+				}
 			}
 		}
 	}
-}
-
-#tblHeader {
-	width: 100%;
-	tr {
-		height: 55px;
-	}
-}
-
-
-
-.hidden
-{
-    display: none;
-}
-
-.agent-list-title {
-    float: left;
-}
-
-.boxNavigation {	
-    line-height: 18px;
-    padding-left: 6px;	
-	border-left: 5px solid #878787;
-	border-bottom: none;
-
-	img {
-		vertical-align: middle;
-		margin: 0 5px;
-	}
-}
-
-.list {
-    position: relative;
-}
-
-.container-sub-nav {
-    position: absolute;
-    left: 2px;
-    top: -21px;
-    z-index: 10;
-}
-
-.sub-nav {
-	margin: 0 0 0 5px;
-	padding: 0;
-
-	li {
-		list-style: none;
-		float: left;
-		
-		a {
-			font-size: 11px;		
-			padding-right: 5px;	
-			
-			&:hover {
-				font-size: 11px;	
-				color: #FF9933;
-				padding-right: 5px;	
-			}		
-		}
-		
-		&.active {
-			font-size: 11px;		
-			padding-right: 5px;	
-			color: @titleColor;	
-			font-weight: bold;
-		}	
-	}
-}
-
-.line {
-    margin: 0 5px;
 }

@@ -8,23 +8,15 @@
 @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
 <div style="clear:both;"></div>
 <div id="box_header">
-    <table>
-        <tr>
-            <td>
-                <b>@Resources.Lang.league</b>
-            </td>
-            <td id="selLeague">
-                <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-                    @{
+    <span><b>@Resources.Lang.league</b></span>   
+    <select id='ddlLeague' name='ddlLeague' style="width: 280px">
+    @{
                         foreach (var league in leagues)
-                        {
-                            <option value="@league.LeagueId">@league.LeagueName</option>
-                        }
-                    }
-                </select>
-            </td>
-        </tr>
-    </table>
+        {
+            <option value="@league.LeagueId">@league.LeagueName</option>
+        }
+    }
+    </select>    
 </div>
 <!--/LimitLeagueList-->
 <table class="tblRpt">

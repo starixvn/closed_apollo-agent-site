@@ -15,26 +15,26 @@ namespace Fanex.Age.UI.Reports
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			public string Title = "{Title}";
-			protected static string s1 = "</title><link href=\"";
-			protected static string s2{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
-			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s4{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
-			protected static string s5 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
-			protected static string s6{get{return AbsoluteUrl2("Result/Result.aspx");}}
-			protected static string s7 = "\"><div id=\"page_main\">";
+			protected static string s1 = "</title>";
+			public Fanex.Age.UI.Reports.Styles_Template styles{get {return _styles != null ? _styles : _styles =  new Fanex.Age.UI.Reports.Styles_Template();}}
+			protected Fanex.Age.UI.Reports.Styles_Template _styles;
+			protected static string s2 = "<link href=\"";
+			protected static string s3{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s5{get{return AbsoluteUrl2("Result/Result.aspx");}}
+			protected static string s6 = "\"><div id=\"page_main\">";
 			public Result_ResultTitle_Block ResultTitle = new Result_ResultTitle_Block();
-			protected static string s8 = "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\">";
+			protected static string s7 = "<div id=\"content_main\">";
 			public Result_HeaderRegion_Block HeaderRegion = new Result_HeaderRegion_Block();
 			public Result_SportCriteria_Block SportCriteria = new Result_SportCriteria_Block();
-			protected static string s9 = "<tr><td><div id=\"tbl-container\"><div id=\"boderRight\">";
+			protected static string s8 = "<div id=\"tbl-container\"><div id=\"boderRight\">";
 			public Result_ExcelContents_Block ExcelContents = new Result_ExcelContents_Block();
-			protected static string s10 = "</div></div></td></tr></table></div><input type=\"hidden\" id=\"is_outright\" name=\"is_outright\" value=\"";
+			protected static string s9 = "</div></div></div></div><input type=\"hidden\" id=\"is_outright\" name=\"is_outright\" value=\"";
 			public string IsOutright = "{IsOutright}";
-			protected static string s11 = "\" /><input type=\"hidden\" id=\"changeSportType\" name=\"changeSportType\" value=\"0\" /></form><script src=\"";
-			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s14{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s15 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s10 = "\" /><input type=\"hidden\" id=\"changeSportType\" name=\"changeSportType\" value=\"0\" /></form>";
+			public Fanex.Age.UI.Reports.Scripts_Template scripts{get {return _scripts != null ? _scripts : _scripts =  new Fanex.Age.UI.Reports.Scripts_Template();}}
+			protected Fanex.Age.UI.Reports.Scripts_Template _scripts;
+			protected static string s11 = "</body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -43,25 +43,23 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s0);
 					bd.Append(Title);
 					bd.Append(s1);
+					bd.Append(styles);
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
 					bd.Append(s5);
 					bd.Append(s6);
-					bd.Append(s7);
 					if(null != ResultTitle) ResultTitle.ToString(ref bd);
-					bd.Append(s8);
+					bd.Append(s7);
 					if(null != HeaderRegion) HeaderRegion.ToString(ref bd);
 					if(null != SportCriteria) SportCriteria.ToString(ref bd);
-					bd.Append(s9);
+					bd.Append(s8);
 					if(null != ExcelContents) ExcelContents.ToString(ref bd);
-					bd.Append(s10);
+					bd.Append(s9);
 					bd.Append(IsOutright);
+					bd.Append(s10);
+					bd.Append(scripts);
 					bd.Append(s11);
-					bd.Append(s12);
-					bd.Append(s13);
-					bd.Append(s14);
-					bd.Append(s15);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -76,17 +74,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class Result_ResultTitle_Block: Block
 		{
-			protected static string s16 = "<div id=\"header_main\">";
+			protected static string s12 = "<div id=\"header_main\">";
 			public string Title = "{Title}";
-			protected static string s17 = "</div>";
+			protected static string s13 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s16);
+					bd.Append(s12);
 					bd.Append(Title);
-					bd.Append(s17);
+					bd.Append(s13);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -94,34 +92,34 @@ namespace Fanex.Age.UI.Reports
 
 		public class Result_HeaderRegion_Block: Block
 		{
-			protected static string s18 = "<tr><td><div id=\"box_header\"><table style=\"width: 100%\"><tr><td>";
+			protected static string s14 = "<div id=\"box_header\">";
 			public Fanex.Age.UI.Components.DateRangeSelect_Control DateRangeSelect{get {return _DateRangeSelect != null ? _DateRangeSelect : _DateRangeSelect = new Fanex.Age.UI.Components.DateRangeSelect_Control(this,true,DateTime.Today,DateTime.Today);}}
 			protected Fanex.Age.UI.Components.DateRangeSelect_Control _DateRangeSelect;
-			protected static string s19 = "</td><td align=\"right\"><input type=\"button\" class=\"btn\" style=\"width: 90px\" id=\"btResultType\" value=\"";
+			protected static string s15 = "<input type=\"button\" class=\"btn\" id=\"btResultType\" value=\"";
 			public string ResultType = "{ResultType}";
-			protected static string s20 = "\" onclick=\"DisableButton(); Result_ToggleResultType();\" /></td><td align=\"right\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
+			protected static string s16 = "\" onclick=\"DisableButton(); Result_ToggleResultType();\" /><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
+			protected static string s17{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s18 = "\"nofocus=\"true\" src=\"";
+			protected static string s19{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
+			protected static string s20 = "\" title=\"";
 			protected static string s21{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s22 = "\"nofocus=\"true\" src=\"";
-			protected static string s23{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
-			protected static string s24 = "\" title=\"";
-			protected static string s25{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s26 = "\"class=\"hand\" /></td></tr></table></div></td></tr>";
+			protected static string s22 = "\"class=\"hand export-excel\" /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s18);
+					bd.Append(s14);
 					bd.Append(DateRangeSelect);
-					bd.Append(s19);
+					bd.Append(s15);
 					bd.Append(ResultType);
+					bd.Append(s16);
+					bd.Append(s17);
+					bd.Append(s18);
+					bd.Append(s19);
 					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);
-					bd.Append(s23);
-					bd.Append(s24);
-					bd.Append(s25);
-					bd.Append(s26);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -129,29 +127,29 @@ namespace Fanex.Age.UI.Reports
 
 		public class Result_SportCriteria_Block: Block
 		{
-			protected static string s27 = "<tr><td><table border=\"0\"><tr><td>";
-			protected static string s28{get{return Resources.Lang.sport;}}
-			protected static string s29 = "</td><td id=\"selSport\"><select onchange=\"Result_ChangeSport();\" name=\"ddlSport\" id=\"ddlSport\" style=\"position: relative;\">";
+			protected static string s23 = "<table class=\"tblRpt\"><tr><td>";
+			protected static string s24{get{return Resources.Lang.sport;}}
+			protected static string s25 = "</td><td id=\"selSport\"><select onchange=\"Result_ChangeSport();\" name=\"ddlSport\" id=\"ddlSport\" style=\"position: relative;\">";
 			public Result_SportCriteria_SportOption_Block SportOption = new Result_SportCriteria_SportOption_Block();
-			protected static string s30 = "</select></td><td width=\"10\">&nbsp;</td><td>";
-			protected static string s31{get{return Resources.Lang.league;}}
-			protected static string s32 = "</td><td id=\"selLeague\" name=\"selLeague\"><select onchange=\"Result_ChangeLeague();\" name=\"ddlLeague\" id=\"ddlLeague\"><option value='0' selected='selected'>*..::* Show All Leagues*::..*</option>";
+			protected static string s26 = "</select></td><td width=\"10\">&nbsp;</td><td>";
+			protected static string s27{get{return Resources.Lang.league;}}
+			protected static string s28 = "</td><td id=\"selLeague\" name=\"selLeague\"><select onchange=\"Result_ChangeLeague();\" name=\"ddlLeague\" id=\"ddlLeague\"><option value='0' selected='selected'>*..::* Show All Leagues*::..*</option>";
 			public Result_SportCriteria_LeagueOption_Block LeagueOption = new Result_SportCriteria_LeagueOption_Block();
-			protected static string s33 = "</select></td></tr></table></td></tr>";
+			protected static string s29 = "</select></td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s23);
+					bd.Append(s24);
+					bd.Append(s25);
+					if(null != SportOption) SportOption.ToString(ref bd);
+					bd.Append(s26);
 					bd.Append(s27);
 					bd.Append(s28);
-					bd.Append(s29);
-					if(null != SportOption) SportOption.ToString(ref bd);
-					bd.Append(s30);
-					bd.Append(s31);
-					bd.Append(s32);
 					if(null != LeagueOption) LeagueOption.ToString(ref bd);
-					bd.Append(s33);
+					bd.Append(s29);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -159,25 +157,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class Result_SportCriteria_SportOption_Block: Block
 		{
-			protected static string s34 = "<option ";
+			protected static string s30 = "<option ";
 			public string SelectedOption = "{SelectedOption}";
-			protected static string s35 = " value=\"";
+			protected static string s31 = " value=\"";
 			public string SportId = "{SportId}";
-			protected static string s36 = "\">";
+			protected static string s32 = "\">";
 			public string SportName = "{SportName}";
-			protected static string s37 = "</option>";
+			protected static string s33 = "</option>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s34);
+					bd.Append(s30);
 					bd.Append(SelectedOption);
-					bd.Append(s35);
+					bd.Append(s31);
 					bd.Append(SportId);
-					bd.Append(s36);
+					bd.Append(s32);
 					bd.Append(SportName);
-					bd.Append(s37);
+					bd.Append(s33);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -185,25 +183,25 @@ namespace Fanex.Age.UI.Reports
 
 		public class Result_SportCriteria_LeagueOption_Block: Block
 		{
-			protected static string s38 = "<option value=\"";
+			protected static string s34 = "<option value=\"";
 			public string LeagueId = "{LeagueId}";
-			protected static string s39 = "\" ";
+			protected static string s35 = "\" ";
 			public string SelectedOption = "{SelectedOption}";
-			protected static string s40 = ">";
+			protected static string s36 = ">";
 			public string LeagueName = "{LeagueName}";
-			protected static string s41 = "</option>";
+			protected static string s37 = "</option>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s38);
+					bd.Append(s34);
 					bd.Append(LeagueId);
-					bd.Append(s39);
+					bd.Append(s35);
 					bd.Append(SelectedOption);
-					bd.Append(s40);
+					bd.Append(s36);
 					bd.Append(LeagueName);
-					bd.Append(s41);
+					bd.Append(s37);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

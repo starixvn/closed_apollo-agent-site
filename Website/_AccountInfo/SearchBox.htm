@@ -47,19 +47,21 @@
     <!--/CustInfo-->
 </div>
 
-<!--ButtonAgentList-->
-<a class="lnk-agent-list" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main"
-   href="../_MemberInfo/CustomerList/AgentList.aspx?custid={AgentId}&us={AgentName}">
-    {static:Resources.Lang.lblAgentList}</a>
-<!--/ButtonAgentList-->
+<div class="clearfix">
+    <!--ButtonAgentList-->
+    <a class="lnk-agent-list" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main"
+       href="../_MemberInfo/CustomerList/AgentList.aspx?custid={AgentId}&us={AgentName}">
+        {static:Resources.Lang.lblAgentList}</a>
+    <!--/ButtonAgentList-->
 
-<!--ButtonMemberList-->
-<a class="lnk-member-list" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main"
-   href="../_MemberInfo/CustomerList/MemberList.aspx?custid={AgentId}&us={AgentName}">
-    {static:Resources.Lang.lblPlayerList}</a>
-<!--/ButtonMemberList-->
+    <!--ButtonMemberList-->
+    <a class="lnk-member-list" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main"
+       href="../_MemberInfo/CustomerList/MemberList.aspx?custid={AgentId}&us={AgentName}">
+        {static:Resources.Lang.lblPlayerList}</a>
+    <!--/ButtonMemberList-->
 
-<!--ButtonBetList-->
-<a class="lnk-betlist" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{memberlistlink}">
-    {static:Resources.Lang.BetList}</a>
-<!--/ButtonBetList-->
+    <!--ButtonBetList-->
+    <a class="lnk-betlist" onclick="clearTopMenu(); ClearCurrentLeftMenu();" target="main" href="{memberlistlink}">
+        {static:Resources.Lang.BetList}</a>
+    <!--/ButtonBetList-->
+</div>

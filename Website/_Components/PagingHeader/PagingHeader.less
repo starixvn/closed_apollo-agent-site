@@ -9,111 +9,100 @@
     border-radius: none;    
     height: 20px;
     margin-top: 10px;
-}
 
-#tblHeader tr
-{
-    /*height: 55px;*/
-    height: 20px;
-}
+	tr {		
+		height: 20px;
 
-#tblHeader tr td {
-    padding: 3px;
-}
+		td {
+			padding: 3px;
 
-#tblHeader .bgleft
-{
-    /*background: url( "left_table.jpg" ) no-repeat scroll left bottom transparent;*/
-    text-align: left;
-    width: 159px; /*padding-top: 15px;*/
-}
+			&.bgleft {				
+				text-align: left;
+				width: 159px; /*padding-top: 15px;*/
 
-#tblHeader .bgleft a:link, #tblHeader .bgleft a:visited
-{
-    color: @black;
-    font-weight: bold;
-    text-decoration: none;
-}
+				a {
+					&:link, &:visited {
+						color: @black;
+						font-weight: bold;
+						text-decoration: none;
+					}
+					&:hover, &:active {
+						color: #666666;
+						font-weight: bold;
+						text-decoration: none;
+					}
 
-#tblHeader .bgleft a:hover, #tblHeader .bgleft a:active
-{
-    color: #666666;
-    font-weight: bold;
-    text-decoration: none;
-}
+				}
+			}
 
-#tblHeader .bgcenter
-{
-    /*background: url( "center_table.png" ) repeat-x scroll center bottom transparent;*/
-    text-align: center; /*padding-top: 13px;*/
-}
+			&.bgcenter {				
+				text-align: center; /*padding-top: 13px;*/
 
-#tblHeader .bgcenter *
-{
-    vertical-align: middle;
-}
-#tblHeader .bgright
-{
-    /*background: url( "right_table.jpg" ) no-repeat scroll right bottom transparent;*/
-    width: 159px;
-    text-align: right;
-}
+				* {
+					vertical-align: middle;
+				}
+			}
 
-#tblHeader .btnSubmit
-{
-    display: inline-block;
-    background: url(btn.bg.png) repeat-x 0px 0px;
-    padding: 2px 12px 2px 12px;
-    font-weight: bold;
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
-    border: 1px solid rgba(0,0,0,0.4);
-    -moz-border-radius: 3px;
-    -moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
-    -webkit-border-radius: 8px;
-    -webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
-    cursor: pointer;
-    background-color: #CCCCCC;
-    color: #141414;
-    text-align: center;
-    margin-top: 8px;
-    margin-left: 10px;
-    width: 80px;
-    height: 15px;
-}
+			&.bgright {				
+				width: 159px;
+				text-align: right;
+			}
+		}
+	}
 
-#tblHeader .btnSubmitDisable
-{
-    display: inline-block;
-    padding: 2px 12px 2px 12px;
-    font-weight: bold;
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
-    border: 1px solid rgba(0,0,0,0.4);
-    -moz-border-radius: 3px;
-    -moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
-    -webkit-border-radius: 8px;
-    -webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
-    cursor: default;
-    background-color: #CCCCCC;
-    color: #707070;
-    text-align: center;
-    margin-top: 8px;
-    margin-left: 10px;
-    width: 80px;
-    height: 15px;
-}
+	.btnSubmit {
+		display: inline-block;
+		background: url(btn.bg.png) repeat-x 0px 0px;
+		padding: 2px 12px 2px 12px;
+		font-weight: bold;
+		text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+		border: 1px solid rgba(0,0,0,0.4);
+		-moz-border-radius: 3px;
+		-moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+		-webkit-border-radius: 8px;
+		-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+		cursor: pointer;
+		background-color: #CCCCCC;
+		color: #141414;
+		text-align: center;
+		margin-top: 8px;
+		margin-left: 10px;
+		width: 80px;
+		height: 15px;
 
-#tblHeader .arrowIco
-{
-    background: url(Arrow.gif) no-repeat 0px 0px;
-    width: 7px;
-    height: 9px;
-    margin-top: -10px;
-    margin-left: 82px;
-}
+		&:hover {
+			color: #cc4800;
+		}
+	}
 
-#tblHeader .btnSubmit:hover
-{
-    color: #cc4800;
+	.btnSubmitDisable {
+		display: inline-block;
+		padding: 2px 12px 2px 12px;
+		font-weight: bold;
+		text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+		border: 1px solid rgba(0,0,0,0.4);
+		-moz-border-radius: 3px;
+		-moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+		-webkit-border-radius: 8px;
+		-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+		cursor: default;
+		background-color: #CCCCCC;
+		color: #707070;
+		text-align: center;
+		margin-top: 8px;
+		margin-left: 10px;
+		width: 80px;
+		height: 15px;
+	}
+
+	.arrowIco {
+		background: url(Arrow.gif) no-repeat 0px 0px;
+		width: 7px;
+		height: 9px;
+		margin-top: -10px;
+		margin-left: 82px;
+	}
+
 }
 
 #page_main
