@@ -99,5 +99,32 @@ namespace Apollo.Age.Account.ViewModels
 
             return content;
         }
+
+        public string GetMessageType
+        {
+            get
+            {
+                var typeName = string.Empty;
+
+                if (MsgType == 1 && IsSticky != true)
+                {
+                    typeName = "private";
+                }
+                else if ((MsgType == 1 || MsgType == 3) && IsSticky == true)
+                {
+                    typeName = "special";
+                }
+                else if (MsgType == 3 && IsSticky == false)
+                {
+                    typeName = "public";
+                }
+                else
+                {
+                    typeName = "--";
+                }
+
+                return typeName;
+            }
+        }
     }
 }

@@ -33,9 +33,13 @@ namespace Apollo.Age.Account.Controllers
 
         public ViewResult Announcement(DateTime? lastPostDate)
         {
-
             var model = _messageService.GetAnnouncement(3, lastPostDate ?? DateTime.Now);
             return View(model);
+        }
+
+        public ViewResult Portal()
+        {
+            return View();
         }
     }
 }

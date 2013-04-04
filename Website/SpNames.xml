@@ -16,7 +16,7 @@
 
     </Function>
 
-    <Function Name="Agent - Message">
+    <Function Name="Apollo Agent Message">
         <!--<Setting Key="Dot_Msg_GetPrivateMessage" SpName="Dot_Msg_GetPrivateMessage" DbName="MessageDB" Plain="0" />
     <Setting Key="Dot_Msg_GetPublicMessage" SpName="Dot_Msg_GetPublicMessage" DbName="MessageDB" Plain="0" />
     <Setting Key="Dot_Msg_GetNotSpecialMessage" SpName="Dot_Msg_GetNotSpecialMessage" DbName="MessageDB" Plain="0" />
@@ -41,6 +41,10 @@
         <Setting Key="Dot_Msg_GetPriMsgCount" SpName="Dot_Msg_GetPriMsgCount" DbName="MessageDB" Plain="0" />
         <Setting Key="Dot_Msg_GetTopPriMessage24" SpName="Dot_Msg_GetTopPriMessage24" DbName="MessageDB" Plain="0" />
         <Setting Key="Acc_Msg_GetTopPubMessage" SpName="Acc_Msg_GetTopPubMessage" DbName="MessageDB" Plain="0" />
+
+      <Setting Key="Age_CustomerUpdMessagesRead" SpName="Age_CustomerUpdMessagesRead" DbName="MessageDB" Plain="0" />
+
+      
     </Function>
 
     <Function Name="Agent - BetList">
