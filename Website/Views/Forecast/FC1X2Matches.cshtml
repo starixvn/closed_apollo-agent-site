@@ -2,6 +2,17 @@
 @{
     Layout = null;
 }
+@helper ShowTime(Forecast1X2ViewModel fcItem)
+{
+   if (fcItem.liveindicator)
+    {
+        @Html.Raw(fcItem.livehomescore + " - " + fcItem.liveawayscore + "&nbsp;&nbsp;&nbsp;&nbsp;<i><font style='color:red;'>" + Resources.Lang.lblLive + "</font></i>")
+    }
+   else
+   {
+        @Html.Raw(fcItem.ShowTime)
+   }    
+}
 @model IEnumerable<Forecast1X2ViewModel>
 @{
     if(Model != null && Model.Any())
@@ -17,16 +28,7 @@
             </tr>
             <tr class="c">
                 <td colspan="2">
-                    @{
-                        if(fcItem.liveindicator)
-                        {
-                            @Html.Raw(fcItem.livehomescore + " - " + fcItem.liveawayscore + "&nbsp;&nbsp;&nbsp;&nbsp;<i><font style='color:red;'>" + Resources.Lang.lblLive + "</font></i>")
-                        }
-                        else
-                        {
-                            @Html.Raw(fcItem.ShowTime)
-                        }
-                    }
+                    @ShowTime(fcItem)
                 </td>
                 <td class="bold">
                     1

@@ -66,7 +66,7 @@ namespace Fanex.Age.UI.Reports.Commission
 
                 //Show/hide columns context menu
                 this.RegisterCommonScriptObjects("tbl-rpt", new string[] { "rowTitle", "rptHeader", "rptHeader2" }, "mnuColumn", this);
-                tpl.ExcelContents.TableClass = this.RenderTableClasses(cols.ToArray());
+                //tpl.ExcelContents.TableClass = this.RenderTableClasses(cols.ToArray());
                 tpl.contextMenu = this.RenderContextMenu(texts.ToArray(), cols.ToArray());
 
                 writer.Write(tpl);

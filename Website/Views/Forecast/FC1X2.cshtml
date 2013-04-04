@@ -5,26 +5,18 @@
     //IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
 }
 @model IEnumerable<LeagueViewModel>
-@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 15)
+@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
 <div style="clear:both;"></div>
 <div id="box_header">
-    <table>
-        <tr>
-            <td>
-                <b>@Resources.Lang.league</b>
-            </td>
-            <td id="selLeague">
-                <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-                    @{
-                        foreach (var league in Model)
-                        {
-                            <option value="@league.LeagueId">@league.LeagueName</option>
-                        }
-                    }
-                </select>
-            </td>
-        </tr>
-    </table>
+    <span><b>@Resources.Lang.league</b></span>   
+    <select id='ddlLeague' name='ddlLeague' style="width: 280px">
+    @{
+        foreach (var league in Model)
+        {
+            <option value="@league.LeagueId">@league.LeagueName</option>
+        }
+    }
+    </select>    
 </div>
 <!--/LimitLeagueList-->
 <table class="tblRpt">
@@ -45,8 +37,5 @@
 <!--/Content-->
 @section scripts
 {
-    <script type="text/javascript">
-        var initLeague = @ViewBag.InitLeague;
-    </script>
     <script src="~/Views/Forecast/Resources/FC1X2.js" type="text/javascript"></script>
 }
