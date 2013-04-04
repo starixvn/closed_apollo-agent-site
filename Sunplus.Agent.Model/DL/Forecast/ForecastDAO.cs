@@ -217,6 +217,7 @@ namespace Sunplus.Agent.Model.DL.Forecast
             return ExecSpDataset("Age_ScoreMap_Result", parameters);
         }
 
+		
         #endregion For Score Map
     }
 }
