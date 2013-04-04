@@ -101,7 +101,7 @@ namespace Sunplus.Agent.Model.DL.Forecast
         public DataTable Age_League_GetRunning(int agentId, int betType)
         {
             Hashtable parameters = new Hashtable();
-            parameters.Add("agid", agentId);
+            parameters.Add("agentid", agentId);
             parameters.Add("bettypes", betType);
             return ExecSpTable("Age_League_GetRunning", parameters);
         }
@@ -217,6 +217,7 @@ namespace Sunplus.Agent.Model.DL.Forecast
             return ExecSpDataset("Age_ScoreMap_Result", parameters);
         }
 
+		
         #endregion For Score Map
     }
 }
