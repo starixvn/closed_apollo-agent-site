@@ -238,28 +238,28 @@ namespace Sunplus.Agent.Model.BL.UserMessage
 
         #region Announcement
 
-        public DataTable GetMessages(int targetID, string targetID2, bool isTest)
-        {
-            return this.userMessageDAO.Age_CustomerSelMessages(targetID, targetID2, isTest);
-        }
+        //public DataTable GetMessages(int targetID, string targetID2, bool isTest)
+        //{
+        //    return this.userMessageDAO.Age_CustomerSelMessages(targetID, targetID2, isTest);
+        //}
 
-        public DataTable GetMessages(int targetID, string targetID2, DateTime lastPostTime, int totalMessage, bool isTest)
-        {
-            return this.userMessageDAO.Age_CustomerSelMessages(targetID, targetID2, lastPostTime, totalMessage, isTest);
-        }
+        //public DataTable GetMessages(int targetID, string targetID2, DateTime lastPostTime, int totalMessage, bool isTest)
+        //{
+        //    return this.userMessageDAO.Age_CustomerSelMessages(targetID, targetID2, lastPostTime, totalMessage, isTest);
+        //}
 
-        public void SetReadPriMsg(int userID, string msgIds)
-        {
-            this.userMessageDAO.Age_CustomerUpdMessagesRead(userID, msgIds);
-        }
+        //public void SetReadPriMsg(int userID, string msgIds)
+        //{
+        //    this.userMessageDAO.Age_CustomerUpdMessagesRead(userID, msgIds);
+        //}
 
-        private void InitiateUserMessage()
-        {
-            if (this.userMessageDAO == null)
-            {
-                this.userMessageDAO = new UserMessageDAO(this.limitConnection);
-            }
-        }
+        //private void InitiateUserMessage()
+        //{
+        //    if (this.userMessageDAO == null)
+        //    {
+        //        this.userMessageDAO = new UserMessageDAO(this.limitConnection);
+        //    }
+        //}
 
         #endregion Announcement
     }

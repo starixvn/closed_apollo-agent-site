@@ -13,15 +13,16 @@ namespace Apollo.Age.Account.Services
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Account.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MessageService
+    public class MessageService : QueryService
     {
-        private static int TargetId = 3300;
-
-        private static string SiteList = "3000,3300";
+        private const string SiteList = "3000,3300";
 
         private string GetMessageType(int msgType, bool isSticky)
         {
@@ -45,6 +46,23 @@ namespace Apollo.Age.Account.Services
             }
 
             return typeName;
+        }
+
+        public IEnumerable<AnnouncementViewModel> GetAnnouncement(int agentId, DateTime lastPostDate, int totalMessage = 10, bool isTest = false)
+        {
+            return this.GetReportData<AnnouncementViewModel>(new GetCustomerMessageCriteria
+                {
+                    AgentId = agentId,
+                    SiteIds = SiteList,
+                    LastPostTime = lastPostDate,
+                    TotalMessage = totalMessage,
+                    IsTest = isTest
+                });
+        }
+
+        public bool UpdateReadMessage(int messsageId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

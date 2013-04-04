@@ -24,14 +24,18 @@ namespace Apollo.Age.Account.Controllers
     {
         private MessageService _messageService;
 
+        public MessageController() : this(null) { }
+
         public MessageController(MessageService messageService = null)
         {
-            _messageService = messageService;
+            _messageService = messageService ?? new MessageService();
         }
 
-        public ViewResult Announcement()
+        public ViewResult Announcement(DateTime? lastPostDate)
         {
-            return View();
+
+            var model = _messageService.GetAnnouncement(3, lastPostDate ?? DateTime.Now);
+            return View(model);
         }
     }
 }
