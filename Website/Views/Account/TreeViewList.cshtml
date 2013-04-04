@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Account/Shared/_LayoutTreeView.cshtml";
+}
+<ul id="treeview_list" class="tree-sub">   
+</ul>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert($(location).attr('host') + "/Account/TreeNodeData");
+        $("#treeview_list").treeview({
+            url: "TreeNodeData",
+            link: "<a href='../_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'> {2} </a>",
+            custid: getCustId()
+        });
+
+        function getCustId() {
+            //            var url = window.location.href;
+            //            var params = url.split('?')[1];
+            //            return params.split('=')[1];
+            return 3;
+        }
+    });
+</script>

@@ -52,17 +52,21 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult Outstanding(int? agentId)
         {
             currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
-            if (UserSession.Current.AgentLevel == 0)
+            IEnumerable<OutstandingViewModel> models = null;
+            if (UserSession.Current.AgentLevel != 0 || currentAgentId != UserSession.Current.AgentId) // Agent View
             {
-                return AgentOutstanding(currentAgentId);
+                models = _reportService.GetReportData<OutstandingViewModel>(new OutstandingCriteria
+                {
+                    AgentId = currentAgentId
+                });
             }
-
-            // call service to get report data here
-            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new OutstandingCriteria
+            else // Super View
             {
-                AgentId = currentAgentId
-            });
-
+                models = _reportService.GetReportData<OutstandingViewModel>(new AgentOutstandingCriteria
+                {
+                    AgentId = currentAgentId
+                });
+            }
             return View(new OutstandingDownlinePathViewModel()
             {
                 CurrentAgentId = currentAgentId,
@@ -95,14 +99,16 @@ namespace Apollo.Age.Reports.Controllers
 
             // Sum total amount
             OutstandingViewModel totalModels = new OutstandingViewModel();
-            foreach (OutstandingViewModel item in models)
+            if (models != null && models.Any())
             {
-                totalModels.Outstanding += item.Outstanding;
-                totalModels.ShareAmount += item.ShareAmount;
-                totalModels.GameOutstanding += item.GameOutstanding;
-                totalModels.GameShareAmount += item.GameShareAmount;
+                foreach (OutstandingViewModel item in models)
+                {
+                    totalModels.Outstanding += item.Outstanding;
+                    totalModels.ShareAmount += item.ShareAmount;
+                    totalModels.GameOutstanding += item.GameOutstanding;
+                    totalModels.GameShareAmount += item.GameShareAmount;
+                }
             }
-
             // return object
             return Json(new
             {
