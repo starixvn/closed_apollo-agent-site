@@ -131,17 +131,17 @@ namespace Apollo.Age.Account.Controllers
             return Json(customerList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetSuggestValues(string query, short isMember)
+        public JsonResult GetSuggestValues(string term, short isMember)
         {
             List<string> listValue = new List<string>();
             if (isMember == 1)
             {
-                var memberlist = _memberService.GetCustomerSearch(true, query, base.AgentId);
+                var memberlist = _memberService.GetCustomerSearch(true, term, base.AgentId);
                 memberlist.ForEach(t=> listValue.Add(t.Username));
             }
             else
             {
-                var agentlist = _agentService.GetCustomerSearch(false, query, base.AgentId);
+                var agentlist = _agentService.GetCustomerSearch(false, term, base.AgentId);
                 agentlist.ForEach(t => listValue.Add(t.Username));
             }
 

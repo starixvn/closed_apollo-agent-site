@@ -1,17 +1,26 @@
-﻿var Account =
+﻿var ACCOUNT =
 {
-    InitSearchClick: function () {
-        Account.ShowSectionTab("custsettings", 1);
+    txtUsername: null,
+    dllIsMember: null,
 
-        $("#txtUsername").autocomplete({
-            //source: acOptions
-            source: function () {
-                //pass request to server  
-                $.getJSON(parent.baseURL + "Account/GetSuggestValues?query="
-                + $("#txtUsername").val() + "&isMember=" + $("#ddlIsMember").val(), function (data) {
-                    return data;
-                });
-            }
+    init: function () {
+        ACCOUNT.txtUsername = $("#txtUsername");
+        ACCOUNT.dllIsMember = $("#ddlIsMember");
+    },
+
+    getAutoCompleteUrl: function () {
+        alert('asf');
+
+        return APOLLO.resolveUrl("Account/GetSuggestValues" +
+            "?query=" + ACCOUNT.txtUsername.val() +
+            "&isMember=" + ACCOUNT.dllIsMember.val());
+    },
+
+    initSearchClick: function () {
+        ACCOUNT.ShowSectionTab("custsettings", 1);
+
+        ACCOUNT.txtUsername.autocomplete({
+            source: ACCOUNT.getAutoCompleteUrl
         });
 
         $(".search-button").bind('click', function () {
@@ -19,7 +28,7 @@
         });
 
         $(".show-section").bind('click', function () {
-            Account.ShowSectionTab(this.parentNode.id, $(this).attr("agent-id"));
+            ACCOUNT.ShowSectionTab(this.parentNode.id, $(this).attr("agent-id"));
         });
 
         $("#txtUsername").bind('click', function () {
@@ -69,7 +78,7 @@
                 $("#custsettings-content").hide();
                 $("#agentsTab-content").hide();
                 $("#membersTab-content").show();
-                Account.BindMembersList(agentId);
+                ACCOUNT.BindMembersList(agentId);
                 break;
         }
     },
@@ -87,3 +96,8 @@
         contentId.appendChild(iframe);
     }
 };
+
+$(function () {
+    ACCOUNT.init();
+    ACCOUNT.initSearchClick();
+});
