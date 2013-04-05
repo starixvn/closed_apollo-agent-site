@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Criterias\UpdateReadMessageCriteria.cs" />
     <Compile Include="Criterias\GetCustomerMessageCriteria.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="ViewModels\AnnouncementViewModel.cs" />

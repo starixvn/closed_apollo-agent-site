@@ -1,24 +1,30 @@
 ﻿@model IEnumerable<Apollo.Age.Account.ViewModels.AnnouncementViewModel>
+@{
+    Layout = null;
+}
 @if (Model != null && Model.Any())
 {
-    var lastPostDate = Model.First().PostTime.Date;
+    var lastPostDate = ViewBag.LastPostTime.Date;
     var index = 0;
+
     foreach (var msgItem in Model)
-    { 
+    {
+        index++;
     <!--GroupDate-->
-    <!--GroupTitle-->  
-        if (msgItem.PostTime.Date != lastPostDate || index == 0)
+    <!--GroupTitle-->
+        if (msgItem.PostTime.Date != lastPostDate)
         {
-            index++;   
+           
     <div class="divGroupDate">
         @msgItem.PostTime.Date.ToShortDateString()
     </div>
         }
-        
     <!--/GroupTitle-->
     <!--DataRow-->
-    <div class="{msgType}" style="clear:both" id="@msgItem.MessageId.ToString()" onclick="ToggleAnnouncementContent('{Announment_Id}');"
-        IsRead="@msgItem.IsRead">
+        var ccs = (msgItem.IsRead ? msgItem.GetMessageType : msgItem.GetMessageType + "_unread");
+        ccs = index % 2 == 0 ? ccs + " evenRow" : ccs + " oddRow";
+    <div class="@ccs" style="clear:both" id="@msgItem.MessageId.ToString()" onclick="ToggleAnnouncementContent('@msgItem.MessageId');"
+        IsRead="@(msgItem.IsRead ? 1 : 0)">
         <div class="divTime">
             <div class="toogleIcon">
             </div>
@@ -27,30 +33,30 @@
             </div>
         </div>
         <div class="divContent">
-            <div class="text_exposed_show">
-                {SmallContent}
+            <div class="text_exposed_show small">
+                @msgItem.SmallContent
             </div>
-            <div class="text_exposed_hide">
-                {FullContent}
+            <div class="text_exposed_hide full">
+                @msgItem.FullContent
             </div>
         </div>
     </div>
     <!--/DataRow-->
-    <!--/GroupDate-->    
-    
+    <!--/GroupDate-->
         { lastPostDate = msgItem.PostTime.Date; }
+
     }
-    <!--MoreFooter-->
+    <!--MoreFooter-->    
     <div id="divMore" onclick="ShowMoreAnnouncements();">
-        {static:Resources.Lang.more} ...
+        {Resources.Lang.more} ...
     </div>
     <!--/MoreFooter-->
 }
 else
-{ 
+{
     <!--NoRow-->
     <div class="c">
-        {NoRowInfo}
+        {Resources.Lang.NoRowInfo}
     </div>
     <!--/NoRow-->
 }
