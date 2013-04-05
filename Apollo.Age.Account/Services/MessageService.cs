@@ -22,31 +22,7 @@ namespace Apollo.Age.Account.Services
     /// </summary>
     public class MessageService : QueryService
     {
-        private const string SiteList = "3000,3300";
-
-        private string GetMessageType(int msgType, bool isSticky)
-        {
-            var typeName = string.Empty;
-
-            if (msgType == 1 && !isSticky)
-            {
-                typeName = "private";
-            }
-            else if ((msgType == 1 || msgType == 3) && isSticky)
-            {
-                typeName = "special";
-            }
-            else if (msgType == 3 && !isSticky)
-            {
-                typeName = "public";
-            }
-            else
-            {
-                typeName = "--";
-            }
-
-            return typeName;
-        }
+        private const string SiteList = "3000,3300";      
 
         public IEnumerable<AnnouncementViewModel> GetAnnouncement(int agentId, DateTime lastPostDate, int totalMessage = 10, bool isTest = false)
         {
