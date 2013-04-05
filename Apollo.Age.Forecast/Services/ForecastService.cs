@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.4.5">Update Function</change>
 // </history>
 
 namespace Apollo.Age.Forecast.Services
@@ -12,11 +13,11 @@ namespace Apollo.Age.Forecast.Services
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using Apollo.Age.Services.Impl;
-    using Apollo.Age.Forecast.ViewModels;
     using Apollo.Age.Forecast.Criterias;
+    using Apollo.Age.Forecast.ViewModels;
+    using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
+    using Apollo.Age.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -96,6 +97,24 @@ namespace Apollo.Age.Forecast.Services
             }
         }
 
+        public MatchOddsViewModel GetTopOddsByMatch(int matchId, int betType)
+        {
+            Check.Argument.IsNotNegative(matchId, "matchId");
+            Check.Argument.IsNotNegative(betType, "betType");
+
+            IEnumerable<MatchOddsViewModel> matchOddsViewModels = GetReportData<MatchOddsViewModel>(
+                    new GetTopOddsByMatchCriteria
+                    {
+                        BetType = betType,
+                        MatchId = matchId
+                    }
+                );
+
+            return matchOddsViewModels.ElementAtOrDefault(0);
+        }
+
+        #region Private Functions
+
         private ForecastMatchWinLostViewModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchViewModel> forecastMatches, int betType, int currentScore)
         {
             if (!forecastMatches.Any())
@@ -104,7 +123,7 @@ namespace Apollo.Age.Forecast.Services
             }
 
             ForecastMatchWinLostViewModel matchWinLost = new ForecastMatchWinLostViewModel();
-            if (betType == 1 || betType == 7)
+            if (betType == (int)BetTypes.Handicap || betType == (int)BetTypes._1st_Handicap)
             {
                 foreach (var forecastMatch in forecastMatches)
                 {
@@ -176,22 +195,6 @@ namespace Apollo.Age.Forecast.Services
             return forecast;
         }
 
-
-        public MatchOddsViewModel GetTopOddsByMatch(int matchId, int betType)
-        {
-            Check.Argument.IsNotNegative(matchId, "matchId");
-            Check.Argument.IsNotNegative(betType, "betType");
-
-            IEnumerable<MatchOddsViewModel> matchOddsViewModels = GetReportData<MatchOddsViewModel>(
-                    new GetTopOddsByMatchCriteria
-                    {
-                        BetType = betType,
-                        MatchId = matchId
-                    }
-                );
-
-
-            return matchOddsViewModels.ElementAtOrDefault(0);
-        }
+        #endregion
     }
 }
