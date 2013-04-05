@@ -5,7 +5,7 @@ using Sunplus.Agent.Utilities;
 
 public partial class Index : System.Web.UI.Page
 {
-    private const string DEFAULT_INDEX = "_Reports/PortalPage/PortalPage.aspx";
+    private const string DEFAULT_INDEX = "Message/Portal";
     protected string mainPage = null;
     //protected string baseURL = string.Empty;
 
