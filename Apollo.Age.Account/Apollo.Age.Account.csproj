@@ -53,11 +53,11 @@
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="ViewModels\AnnouncementViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
+
     <Compile Include="ViewModels\UserListViewModel.cs" />
-=======
+
     <Compile Include="ViewModels\CustomerInfoViewModel.cs" />
->>>>>>> d452939d2cce14cdecbec5e7e995043c99738cab
+
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
