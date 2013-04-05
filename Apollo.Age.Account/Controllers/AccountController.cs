@@ -8,9 +8,9 @@
 //   <change who="Lewis.Le" date="2013.4.4">Added action: Menu</change>
 // </history>
 
-
 namespace Apollo.Age.Account.Controllers
 {
+    using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -18,7 +18,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
-    using System.Collections.Generic;
+    using System.Linq;
 
     public class AccountController : BaseController
     {
@@ -121,7 +121,7 @@ namespace Apollo.Age.Account.Controllers
         public ActionResult SignOut()
         {
             Session.Abandon();
-            FormsAuthentication.SignOut(); 
+            FormsAuthentication.SignOut();
             return Redirect("~/_Authorization/SignIn.aspx");
         }
 
@@ -131,19 +131,15 @@ namespace Apollo.Age.Account.Controllers
             return Json(customerList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetSuggestValues(string query, short isMember)
+        public JsonResult GetSuggestValues(string term, bool isMember)
         {
-            if (isMember == 1)
-            {
-                var memberlist = _memberService.GetCustomerSearch(true, query, base.AgentId);
-                return Json(memberlist, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                var agentlist = _agentService.GetCustomerSearch(false, query, base.AgentId);
-                return Json(agentlist, JsonRequestBehavior.AllowGet);
-            }
+            var listValue = isMember
+                ? _memberService.GetCustomerSearch(true, term, base.AgentId)
+                    .Select(x => x.Username).ToList()
+                : _agentService.GetCustomerSearch(false, term, base.AgentId)
+                    .Select(x => x.Username).ToList();
 
+            return Json(listValue, JsonRequestBehavior.AllowGet);
         }
 
         //public JsonResult ReCheckIn()

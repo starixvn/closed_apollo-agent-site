@@ -94,5 +94,22 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.CurrentScore = currentScore;
             return View();
         }
+
+        #region Score Map
+        public ViewResult ScoreMapMatch(int leagueId)
+        {
+            return View(_forecastService.GetScoreMapMatches(base.AgentId, leagueId));
+        }
+
+        public ViewResult ScoreMapBetType()
+        {
+            return View(_forecastService.GetScoreMapBetType());
+        }
+
+        public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes)
+        {
+            return View(_forecastService.GetScoreMapResults(base.AgentId, matchIds, liveBetTypes, deadBallBetTypes));
+        }
+        #endregion
     }
 }

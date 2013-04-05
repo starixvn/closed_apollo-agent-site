@@ -46,7 +46,7 @@
             @if(item.BetCountHNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" href="javascript:void(0);">
-                    @TotalBetHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB)    
+                    @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB)    
                 </a>
             }
             
@@ -55,7 +55,7 @@
             @if(item.BetCountDNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" href="javascript:void(0);">
-                    @TotalBetHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB)
+                    @RazorHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB)
                 </a>
             }
         </td>
@@ -63,7 +63,7 @@
             @if(item.BetCountANB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" href="javascript:void(0);">
-                    @TotalBetHelper.FormatNumber(item.HomeOddsANB - item.AwayOddsANB)
+                    @RazorHelper.FormatNumber(item.HomeOddsANB - item.AwayOddsANB)
                 </a>
             }
         </td>
