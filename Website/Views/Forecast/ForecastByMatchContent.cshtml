@@ -1,4 +1,5 @@
 ﻿@using Apollo.Age.Forecast.ViewModels
+@using Apollo.Age.Enumerations;
 @{
     var oddsByMatch = (MatchOddsViewModel)ViewBag.TopOddsByMatch ?? new MatchOddsViewModel();
     var betType = (int)ViewBag.BetType;
@@ -10,23 +11,23 @@
     {
         switch (betType)
         {
-            case 1:
+            case (int)BetTypes.Handicap:
             @(Resources.Lang.lblHandicapFC)
         break;
-            case 3:
+            case (int)BetTypes.Over_Under:
             @(Resources.Lang.lblOverUnder)
         break;
-            case 7:
+            case (int)BetTypes._1st_Handicap:
             @(Resources.Lang.lbl1stHdp)
         break;
-            case 8:
+            case (int)BetTypes._1st_Over_Under:
             @(Resources.Lang.lbl1stOU)
         break;
         }
 } 
 @helper RenderForecastPoint(int matchId, int betType, int currentScore)
     {
-        bool isHDPOr1stHDP = betType == (int)BetType.Handicap || betType == (int)BetType._1stHandicap;
+        bool isHDPOr1stHDP = betType == (int)BetTypes.Handicap || betType == (int)BetTypes._1stHandicap;
         int indexCount = isHDPOr1stHDP ? 11 : 16;
         int endIndex = isHDPOr1stHDP ? currentScore + 5 : 15;
         int selectedIndex = currentScore;
@@ -54,20 +55,20 @@
 
         switch (betType)
         {
-            case (int)BetType.Handicap:
-                toggleBettype = (int)BetType.OverUnder;
+            case (int)BetTypes.Handicap:
+                toggleBettype = (int)BetTypes.Over_Under;
                 toggleText = Resources.Lang.lblViewOverUnderForecast;
                 break;
-            case (int)BetType.OverUnder:
-                toggleBettype = (int)BetType.Handicap;
+            case (int)BetTypes.Over_Under:
+                toggleBettype = (int)BetTypes.Handicap;
                 toggleText = Resources.Lang.lblViewHandicapForecast;
                 break;
-            case (int)BetType._1stHandicap:
-                toggleBettype = (int)BetType._1stOverUnder;
+            case (int)BetTypes._1st_Handicap:
+                toggleBettype = (int)BetTypes._1st_Over_Under;
                 toggleText = Resources.Lang.lblView1stOverUnderForecast;
                 break;
-            case (int)BetType._1stOverUnder:
-                toggleBettype = (int)BetType._1stHandicap;
+            case (int)BetTypes._1st_Over_Under:
+                toggleBettype = (int)BetTypes._1st_Handicap;
                 toggleText = Resources.Lang.lblView1stHandicapForecast;
                 break;
         }
@@ -77,16 +78,16 @@
 }
 @helper RenderBetListLink(int matchId, int betType)
     {
-    if (Model != null)
-    {
+        if (Model != null)
+        {
         <a match-id="@matchId" bet-type="@betType" class="forecast_betlist_link view-bet-list" href="javascript:void(0);"> @Resources.Lang.lblBetLists</a>
-    }
+        }
 }
 @helper RenderForecastInfo(int betType, int currentScore)
     {
-    int startIndex = betType == 1 || betType == 7 ? currentScore - 2 : currentScore;
-    if (Model != null)
-    {
+        int startIndex = betType == (int)BetTypes.Handicap || betType == (int)BetTypes._1st_Handicap ? currentScore - 2 : currentScore;
+        if (Model != null)
+        {
         <tr class="even_row" align="center">
             <td>
                 @(startIndex + 4)
@@ -106,7 +107,7 @@
         </tr>
         <tr class="even_row" align="center">
             <td>
-                @TotalBetHelper.FormatPositiveNumber(Model.Value4, numDecimals: 0, showZero:true)
+                @TotalBetHelper.FormatPositiveNumber(Model.Value4, numDecimals: 0, showZero: true)
             </td>
             <td>
                 @TotalBetHelper.FormatPositiveNumber(Model.Value3, numDecimals: 0, showZero: true)
@@ -121,15 +122,15 @@
                 @TotalBetHelper.FormatPositiveNumber(Model.Value0, numDecimals: 0, showZero: true)
             </td>
         </tr>
-    }
-    else
-    {
+        }
+        else
+        {
         <tr class="no_info">
             <td colspan="5">
                 @Resources.Lang.noInfo
             </td>
         </tr>
-    }
+        }
 }
 <table class="tblRpt" cellpadding="0" cellspacing="1" border="0" style="width: 100%;">
     <tr class="RptHeader">
