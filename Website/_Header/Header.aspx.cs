@@ -185,15 +185,19 @@ namespace Sunplus.Agent.UI._Header
 
         private string InitUnreadPrivateMsgCountText()
         {
-            string result = "{0}({1})", firstWord = "Personal";
-            string displayText = Resources.Lang.personalmessage;
-            if (displayText.IndexOf(firstWord) >= 0) //check if Language is en-US
-            {
-                displayText = firstWord + " Msg";
-            }
+            //string result = "{0}({1})", firstWord = "Personal";
+            //string displayText = Resources.Lang.personalmessage;
+            //if (displayText.IndexOf(firstWord) >= 0) //check if Language is en-US
+            //{
+            //    displayText = firstWord + " Msg";
+            //}
+            //string count = "0";
+
+            //return string.Format(result, displayText, count);
+            string result = "({0})";
             string count = "0";
 
-            return string.Format(result, displayText, count);
+            return string.Format(result, count);
         }
     }
 }

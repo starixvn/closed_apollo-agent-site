@@ -12,6 +12,11 @@
         
     },
 
+    getAccountInfo: function (username) {
+        location.href = APOLLO.resolveUrl('Account/AccountInfo?userName='
+            + username + '&isMember=' + ACCOUNT.dllIsMember.val());
+    },
+
     initSearchClick: function () {
         ACCOUNT.showSectionTab("custsettings", 1);
 
@@ -27,21 +32,20 @@
                         return response(data);
                     }
                 });
+            },
+            select: function (event, ui) {
+                ACCOUNT.getAccountInfo(ui.item.value);
             }
-        });
-
-        $(".ui-corner-all").bind('click', function () {
-            location.href = ACCOUNT.getAccountInfoUrl();
         });
 
         ACCOUNT.txtUsername.keypress(function (e) {
             if (e.keyCode == '13') {
-                location.href = ACCOUNT.getAccountInfoUrl();
+                ACCOUNT.getAccountInfo();
             }
         });
 
         $(".search-button").bind('click', function () {
-            location.href = ACCOUNT.getAccountInfoUrl();
+            ACCOUNT.getAccountInfo();
         });
 
         $(".show-section").bind('click', function () {
@@ -99,10 +103,7 @@
             }
         });
     },
-    getAccountInfoUrl: function () {
-        return APOLLO.resolveUrl('Account/AccountInfo?userName='
-        + ACCOUNT.txtUsername.val() + '&isMember=' + ACCOUNT.dllIsMember.val());
-    },
+
     showSectionTab: function (tabId, agentId) {
         switch (tabId) {
             case "custsettings":

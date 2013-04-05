@@ -15,13 +15,14 @@ namespace Apollo.Age.Account.ViewModels
     using System.Linq;
     using System.Text;
     using Fanex.Age.Utility;
+    using Sunplus.Agent.Model.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class AnnouncementViewModel
     {
-        public string BetTransId { get; set; }     
+        public string BetTransId { get; set; }
 
         public bool IsRead { get; set; }
 
@@ -51,7 +52,62 @@ namespace Apollo.Age.Account.ViewModels
 
         public string ContentTH { get; set; }
 
-        public string GetContent(string userLanguage, string langName)
+        public string GetMessageType
+        {
+            get
+            {
+                var typeName = string.Empty;
+
+                if (MsgType == 1 && IsSticky != true)
+                {
+                    typeName = "private";
+                }
+                else if ((MsgType == 1 || MsgType == 3) && IsSticky == true)
+                {
+                    typeName = "special";
+                }
+                else if (MsgType == 3 && IsSticky == false)
+                {
+                    typeName = "public";
+                }
+                else
+                {
+                    typeName = "--";
+                }
+
+                return typeName;
+            }
+        }
+
+        public string FullContent
+        {
+            get
+            {
+                string lang = GetLang("Content").Replace("_", string.Empty);
+                string content = GetContent(UserSession.Current.Language, lang);
+
+                if (GetMessageType == "private")
+                {
+                    if (this.BetTransId != null)
+                    {
+                        content = content.Replace("@@", this.BetTransId);
+                    }
+                }
+
+                return content;
+            }
+        }
+
+        public string SmallContent
+        {
+            get
+            {
+                int maxLength = this.IsRead ? 100 : 80;
+                return GetSmallContent(FullContent, maxLength);
+            }
+        }
+
+        private string GetContent(string userLanguage, string langName)
         {
             string content = string.Empty;
             object value = ReflectionUtil.GetValue(this, langName);
@@ -65,7 +121,7 @@ namespace Apollo.Age.Account.ViewModels
                 var Content_cs = this.ContentCS;
                 var Content_ch = this.ContentCH;
 
-                if (string.IsNullOrWhiteSpace(this.ContentCS) && string.IsNullOrWhiteSpace(this.ContentCH))                    
+                if (string.IsNullOrWhiteSpace(this.ContentCS) && string.IsNullOrWhiteSpace(this.ContentCH))
                 {
                     langName = "Content_en";
                 }
@@ -95,36 +151,45 @@ namespace Apollo.Age.Account.ViewModels
             {
                 content = value.ToString();
             }
-         
+
 
             return content;
         }
 
-        public string GetMessageType
+        private string GetLang(string original)
         {
-            get
+            var tmp = UserSession.Current.Language;
+            var ret = "_";
+
+            switch (tmp)
             {
-                var typeName = string.Empty;
-
-                if (MsgType == 1 && IsSticky != true)
-                {
-                    typeName = "private";
-                }
-                else if ((MsgType == 1 || MsgType == 3) && IsSticky == true)
-                {
-                    typeName = "special";
-                }
-                else if (MsgType == 3 && IsSticky == false)
-                {
-                    typeName = "public";
-                }
-                else
-                {
-                    typeName = "--";
-                }
-
-                return typeName;
+                case "zh-CN":
+                    ret += "cs";
+                    break;
+                case "zh-TW":
+                    ret += "ch";
+                    break;
+                case "th-TH":
+                    ret += "th";
+                    break;
+                case "ja-JP":
+                    ret += "jp";
+                    break;
+                case "ko-KR":
+                    ret += "ko";
+                    break;
+                default:
+                    ret += "en";
+                    break;
             }
+
+            return original + ret;
+        }
+
+        private string GetSmallContent(string fullContent, int maxLength)
+        {
+            int length = Math.Min(maxLength, fullContent.Length);
+            return fullContent.Substring(0, length) + " ...";
         }
     }
 }

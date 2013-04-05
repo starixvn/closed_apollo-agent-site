@@ -60,6 +60,7 @@
     <Compile Include="Criterias\AgentListCriteria.cs" />
     <Compile Include="Criterias\CustomerListCriteria.cs" />
     <Compile Include="Criterias\GetCustomerMessageCriteria.cs" />
+    <Compile Include="Criterias\UpdateReadMessageCriteria.cs" />
     <Compile Include="Repositories\Impl\AgentListRepository.cs" />
     <Compile Include="Repositories\Impl\CustomerListRepository.cs" />
     <Compile Include="Repositories\Interface\ICustomerListRepository.cs" />
