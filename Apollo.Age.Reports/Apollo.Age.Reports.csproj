@@ -70,7 +70,6 @@
   <ItemGroup>
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
-    <Compile Include="Criterias\AgentOutstandingCriteria.cs" />
     <Compile Include="Criterias\MemberOutstandingCriteria.cs" />
     <Compile Include="Criterias\OutstandingCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

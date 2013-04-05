@@ -11,7 +11,7 @@
         window.cachePage = new Array();
         window.cacheData = new Array();
 
-        window.baseURL = "<%=baseURL %>";
+        window.baseURL = '<%=Page.ResolveUrl("~/")%>';
     </script>
 </head>
 <body>

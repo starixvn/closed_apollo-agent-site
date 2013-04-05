@@ -52,39 +52,18 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult Outstanding(int? agentId)
         {
             currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
-            IEnumerable<OutstandingViewModel> models = null;
-            if (UserSession.Current.AgentLevel != 0 || currentAgentId != UserSession.Current.AgentId) // Agent View
+
+            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new OutstandingCriteria
             {
-                models = _reportService.GetReportData<OutstandingViewModel>(new OutstandingCriteria
-                {
-                    AgentId = currentAgentId
-                });
-            }
-            else // Super View
-            {
-                models = _reportService.GetReportData<OutstandingViewModel>(new AgentOutstandingCriteria
-                {
-                    AgentId = currentAgentId
-                });
-            }
+                AgentId = currentAgentId
+            });
+
             return View(new OutstandingDownlinePathViewModel()
             {
                 CurrentAgentId = currentAgentId,
                 ListOutStanding = models,
                 DownlinePath = AgentDownlinePath(currentAgentId)
             });
-        }
-
-        public ViewResult AgentOutstanding(int? agentId)
-        {
-            currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
-            // call service to get report data here
-            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new AgentOutstandingCriteria
-            {
-                AgentId = currentAgentId
-            });
-
-            return View(models);
         }
 
         [HttpPost]
