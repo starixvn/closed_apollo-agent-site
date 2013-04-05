@@ -9,21 +9,21 @@
     <!--GroupTitle-->  
         if (msgItem.PostTime.Date != lastPostDate || index == 0)
         {
-            
+            index++;   
     <div class="divGroupDate">
-        @msgItem.PostTime.Date
+        @msgItem.PostTime.Date.ToShortDateString()
     </div>
         }
         
     <!--/GroupTitle-->
     <!--DataRow-->
-    <div class="{oddEvenRow} {msgType}" id="@msgItem.MessageId.ToString()" onclick="ToggleAnnouncementContent('{Announment_Id}');"
+    <div class="{msgType}" style="clear:both" id="@msgItem.MessageId.ToString()" onclick="ToggleAnnouncementContent('{Announment_Id}');"
         IsRead="@msgItem.IsRead">
         <div class="divTime">
             <div class="toogleIcon">
             </div>
             <div>
-                @msgItem.PostTime
+                @msgItem.PostTime.ToLongTimeString()
             </div>
         </div>
         <div class="divContent">
