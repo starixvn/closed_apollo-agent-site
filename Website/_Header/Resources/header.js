@@ -244,4 +244,61 @@ function InitHeader() {
     timeoutId1 = setTimeout(GetMessages, 100);
 }
 
+// Change to message page
+function Change2Menu(url) {
+    if (top.menu && top.menu.ClearCurrentLeftMenu) {
+        top.menu.ClearCurrentLeftMenu();
+    }
+
+    top.main.location = _page.getBaseURL + url;
+    SelectTopMenu(url);
+}
+
+// Clear active tab
+function ClearActiveTab() {
+    if (currentTab) currentTab.className = "";
+}
+
+function SelectTopMenu(url) {
+    var mainUrl = '';
+    if (url) {
+        mainUrl = url;
+    } else if (top.main) {
+        mainUrl = top.main.location.href;
+    }
+
+    var start = mainUrl.lastIndexOf('/');
+    var end = mainUrl.lastIndexOf('?');
+    if (end == -1) end = mainUrl.length;
+    var name = mainUrl.substring(start + 1, end);
+
+    //if (currentTab) currentTab.className = "";
+
+    switch (name) {
+        case 'PortalPage.aspx':
+            currentTab = document.getElementById("balance");
+            break;
+        case 'MemberList.aspx':
+            currentTab = document.getElementById("transfer");
+            break;
+        case 'AgentList.aspx':
+            currentTab = document.getElementById("transfer");
+            break;
+        case 'MasterList.aspx':
+            currentTab = document.getElementById("transfer");
+            break;
+        case 'ChangePassword.aspx':
+            currentTab = document.getElementById("changepass");
+            break;
+        case 'LogCustomerSetting.aspx':
+            currentTab = document.getElementById("viewlog");
+            break;
+        default:
+            currentTab = null;
+            break;
+    }
+
+    if (currentTab) currentTab.className = "active";
+    else ClearActiveTab();
+}
 RegisterStartUp(InitHeader);

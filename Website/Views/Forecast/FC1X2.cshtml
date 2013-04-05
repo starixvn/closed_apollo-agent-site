@@ -3,20 +3,25 @@
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.lblForecast;
     IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
+    int matchId = ViewBag.MatchId != null ? (int) ViewBag.MatchId : 0;
+    int betType = ViewBag.BetType != null ? (int) ViewBag.BetType : 0;
 }
 @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
 <div style="clear:both;"></div>
-<div id="box_header">
-    <span><b>@Resources.Lang.league</b></span>   
-    <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-    @{
+@if (matchId == 0)
+{
+    <div id="box_header">
+        <span><b>@Resources.Lang.league</b></span>   
+        <select id='ddlLeague' name='ddlLeague' style="width: 280px">
+        @{
         foreach (var league in leagues)
         {
-            <option value="@league.LeagueId">@league.LeagueName</option>
+                <option value="@league.LeagueId">@league.LeagueName</option>
         }
-    }
-    </select>    
-</div>
+        }
+        </select>    
+    </div>
+}
 <!--/LimitLeagueList-->
 <table class="tblRpt">
     <thead>
@@ -36,5 +41,9 @@
 <!--/Content-->
 @section scripts
 {
+    <script type="text/javascript">
+        var matchId = @(matchId);
+        var betType = @(betType);
+    </script>
     <script src="~/Views/Forecast/Resources/FC1X2.js" type="text/javascript"></script>
 }

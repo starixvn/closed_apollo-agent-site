@@ -10,11 +10,6 @@
 
 namespace Apollo.Age.TotalBets.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     using Apollo.Age.Services;
 
     public class MoneyLineViewModel
@@ -25,7 +20,7 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public string MatchCode { get; set; }
 
-        public bool LiveIndicator { get; set; }        
+        public bool LiveIndicator { get; set; }
 
         public int MatchId { get; set; }
 
@@ -36,7 +31,6 @@ namespace Apollo.Age.TotalBets.ViewModels
         public short LiveHomeScore { get; set; }
 
         public short LiveAwayScore { get; set; }
-
 
         public decimal HomeOdds { get; set; }
 
@@ -50,7 +44,6 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public int BetCountAway { get; set; }
 
-
         public decimal HomeOddsHalfTime { get; set; }
 
         public decimal AwayOddsHalfTime { get; set; }
@@ -63,9 +56,7 @@ namespace Apollo.Age.TotalBets.ViewModels
 
         public int BetCountAwayHalfTime { get; set; }
 
-
         public bool IsNeutral { get; set; }
-
 
         public string HomeTeam
         {
@@ -90,6 +81,5 @@ namespace Apollo.Age.TotalBets.ViewModels
                 return CacheRef.GetLeagueName(this.LeagueId);
             }
         }
-
     }
 }

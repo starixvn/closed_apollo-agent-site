@@ -300,7 +300,14 @@
         <Mapping DataField="al" ObjectProperty="AwayWinLost" />
         <Mapping DataField="hl" ObjectProperty="HomeWinLost" />
       </Setting>
-        <Setting Key="Age_Forecast_5_15_GetByMatch" SpName="Age_Forecast_5_15_GetByMatch" DbName="REPDB" Plain="0" />
+      <Setting Key="Age_Forecast_5_15_GetByMatch" SpName="Age_Forecast_5_15_GetByMatch" DbName="REPDB" Plain="0" >
+        <Mapping DataField="al" ObjectProperty="AwayWinLost" />
+        <Mapping DataField="hl" ObjectProperty="HomeWinLost" />
+        <Mapping DataField="dl" ObjectProperty="DrawWinLost" />
+        <Mapping DataField="ht_al" ObjectProperty="HalfTimeAwayWinLost" />
+        <Mapping DataField="ht_hl" ObjectProperty="HalfTimeHomeWinLost" />
+        <Mapping DataField="ht_dl" ObjectProperty="HalfTimeDrawWinLost" />
+      </Setting>
         <Setting Key="Age_League_GetRunning" SpName="Age_League_GetRunning" DbName="REPDB" Plain="0" />
     </Function>
 

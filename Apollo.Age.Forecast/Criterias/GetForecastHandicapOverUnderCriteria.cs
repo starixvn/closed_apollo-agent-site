@@ -7,13 +7,8 @@
 //   <change who="Ricky.Nguyen" date="2013.4.3">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -22,10 +17,15 @@ namespace Apollo.Age.Forecast.Criterias
     public class GetForecastHandicapOverUnderCriteria : CriteriaBase
     {
         public int BaseOffsetHDP { get; set; }
+
         public int BaseOffsetOU { get; set; }
+
         public int BaseOffsetHTHDP { get; set; }
+
         public int BaseOffsetHTOU { get; set; }
+
         public int LeagueID { get; set; }
+
         public int AgentId { get; set; }
 
         public override string GetSettingKey()

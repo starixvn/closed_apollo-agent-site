@@ -5,29 +5,29 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.4.4">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.4.5">StyleCop</change>
 // </history>
-
 
 namespace Apollo.Age.Forecast.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class ForecastMatchViewModel
     {
         public decimal Offset { get; set; }
+
         public decimal HomeTotal { get; set; }
+
         public decimal AwayTotal { get; set; }
+
         public decimal HomeWinLost { get; set; }
+
         public decimal AwayWinLost { get; set; }
 
         //// Nerver Use
         public bool LiveIndicator { get; set; }
+
         public string Status { get; set; }
     }
 }

@@ -4,9 +4,9 @@
 }
 @helper ShowTime(Forecast1X2ViewModel fcItem)
 {
-   if (fcItem.liveindicator)
+   if (fcItem.LiveIndicator)
     {
-        @Html.Raw(fcItem.livehomescore + " - " + fcItem.liveawayscore + "&nbsp;&nbsp;&nbsp;&nbsp;<i><font style='color:red;'>" + Resources.Lang.lblLive + "</font></i>")
+        @Html.Raw(fcItem.LiveHomeScore + " - " + fcItem.LiveAwayScore + "&nbsp;&nbsp;&nbsp;&nbsp;<i><font style='color:red;'>" + Resources.Lang.lblLive + "</font></i>")
     }
    else
    {
