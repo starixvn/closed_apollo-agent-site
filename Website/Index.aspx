@@ -21,10 +21,10 @@
                 width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
         </div>
         <div class="menu">
-            <iframe src="Account/Menu" id="menu" name="menu"
-                width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
-            <%--<iframe src="_Menu/Menu.aspx" id="menu" name="menu"
+            <%--<iframe src="Account/Menu" id="menu" name="menu"
                 width="100%" height="100%" frameborder="0" scrolling="no"></iframe>--%>
+            <iframe src="_Menu/Menu.aspx" id="menu" name="menu"
+                width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
         </div>
         <div class="mainpage">
             <iframe src="<%=mainPage%>" id="main" name="main"
