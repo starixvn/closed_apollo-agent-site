@@ -11,12 +11,13 @@
 
 namespace Apollo.Age.Account.Controllers
 {
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
+    using Apollo.Age.Account.ViewModel;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
-    using Apollo.Age.Account.ViewModel;
 
     public class AccountController : BaseController
     {
@@ -31,7 +32,7 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult Menu()
         {
-            return View();
+            return View(SiteMap.RootNode);
         }
 
         //public ActionResult AccountInfo()
@@ -109,13 +110,15 @@ namespace Apollo.Age.Account.Controllers
             return View(viewmodel);
         }
 
-        public ViewResult AgentTreeList()
+        public ViewResult AgentTreeList(int id)
         {
+            ViewBag.AgentId = id;
             return View();
         }
 
         public ViewResult TreeViewList()
         {
+            ViewBag.AgentId = base.AgentId;
             return View();
         }
 
