@@ -4,7 +4,7 @@
         <title>@Page.Title</title>
 
         <link href="~/Views/Account/Resources/treeview.css" rel="stylesheet" type="text/css" />
-        <link href="~/Views/Account/Resources/AccountInfo.less" rel="Stylesheet" type="text/css"/>
+        <link href="~/Views/Account/Resources/Account.less" rel="Stylesheet" type="text/css"/>
         @RenderSection("css", required: false)
     </head>
     <body class="downlineTreview-bg">
@@ -14,6 +14,6 @@
         <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.async.js"></script>
 
         @RenderBody()
-        
+        @RenderSection("foot", required: false)
     </body>
 </html>
