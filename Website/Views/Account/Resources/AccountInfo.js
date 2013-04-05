@@ -1,21 +1,34 @@
-﻿var Account =
+﻿var ACCOUNT =
 {
-    InitSearchClick: function () {
-        Account.ShowSectionTab("custsettings", 1);
+    txtUsername: null,
+    dllIsMember: null,
+
+    init: function () {
+        ACCOUNT.txtUsername = $("#txtUsername");
+        ACCOUNT.dllIsMember = $("#ddlIsMember");
+    },
+
+    getAutoCompleteUrl: function () {
+        alert('asf');
+
+        return APOLLO.resolveUrl("Account/GetSuggestValues" +
+            "?query=" + ACCOUNT.txtUsername.val() +
+            "&isMember=" + ACCOUNT.dllIsMember.val());
+    },
+
+    initSearchClick: function () {
+        ACCOUNT.ShowSectionTab("custsettings", 1);
+
+        ACCOUNT.txtUsername.autocomplete({
+            source: ACCOUNT.getAutoCompleteUrl
+        });
+
         $(".search-button").bind('click', function () {
             location.href = parent.baseURL + 'Account/AccountInfo?userName=' + $("#txtUsername").val() + '&isMember=' + $("#ddlIsMember").val();
         });
 
-//        $(".view-custinfo").bind('click', function () {
-//            location.href = parent.baseURL + 'Account/AccountInfo?userName=' + $(this).attr("user-name") + '&custId=' + $(this).attr("agent-id") + '&isMember=' + $(this).attr("is-member");
-//        });
-
-        $(".lnk-betlist").bind('click', function () {
-            //location.href = parent.baseURL + '../_MemberInfo/CustomerList/MemberList.aspx?custid=' + $(this).attr("agent-id") + '&us=' $(this).attr("user-name");
-        });
-
         $(".show-section").bind('click', function () {
-            Account.ShowSectionTab(this.parentNode.id, $(this).attr("agent-id"));
+            ACCOUNT.ShowSectionTab(this.parentNode.id, $(this).attr("agent-id"));
         });
 
         $("#txtUsername").bind('click', function () {
@@ -36,6 +49,9 @@
                 document.getElementById('txtUsername').value = $("#enterUsernameValue").val();
             }
         });
+
+        //RegisterStartUp('initHeader()');
+        //initAutoComplete('txtUsername', 'Handlers/QueryUserName.ashx');
     },
     ShowSectionTab: function (tabId, agentId) {
         switch (tabId) {
@@ -62,7 +78,7 @@
                 $("#custsettings-content").hide();
                 $("#agentsTab-content").hide();
                 $("#membersTab-content").show();
-                Account.BindMembersList(agentId);
+                ACCOUNT.BindMembersList(agentId);
                 break;
         }
     },
@@ -80,3 +96,8 @@
         contentId.appendChild(iframe);
     }
 };
+
+$(function () {
+    ACCOUNT.init();
+    ACCOUNT.initSearchClick();
+});

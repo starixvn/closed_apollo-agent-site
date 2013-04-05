@@ -21,6 +21,16 @@ if (typeof jQuery != 'undefined') {
                 target.dialog("close");
             },
 
+            resolveUrl: function (url) {
+                var siteRoot = parent.baseUrl;
+
+                if (!siteRoot) siteRoot = parent.parent.baseURL;
+                if (!siteRoot) siteRoot = parent.parent.parent.baseURL;
+                if (!siteRoot) siteRoot = "";
+
+                return siteRoot + url;                
+            },
+
             alertGeneralError: function () {
                 alert('Your request is temporarily cannot be processed, please try again later!');
             },

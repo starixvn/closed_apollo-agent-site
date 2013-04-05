@@ -3,37 +3,23 @@
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
 }
 
+<ul id="tab-menu">
+    <li class="tab-menu">
+        <a href="@Url.Action("Menu")" target="menu">
+            <i class="icon-align-justify"></i>Menu</a>
+    </li>
+    <li class="tab-acc active">
+        <a>
+            <i class="icon-user"></i>Account</a>
+    </li>
+    <li class="tab-tree">
+        <a href="@Url.Action("TreeViewList")" target="menu">
+            <i class="icon-align-left"></i>Agents</a>
+    </li>
+</ul>
+
 @model CustomerInfoViewModel
 <div id="wrapper">
-@helper SearchBox()
-    {
-    if (Model == null)
-    {
-        <select id="ddlIsMember" name="isMember">
-            <option value="0" "selected">@Resources.Lang.lblAgent</option>
-            <option value="1">@Resources.Lang.lblMember</option>
-        </select>
-        <input maxlength="50" id="txtUsername" type="text"
-            value="@Resources.Lang.enterusername" name="userName"/>
-        <button type="button" class="btn search-button">
-            <i class="icon-search"></i>
-        </button> 
-    }
-    else
-    {
-        <select id="ddlIsMember" name="isMember">
-            <option value="0" @(Model.IsMember ? string.Empty : "selected") >@Resources.Lang.lblAgent</option>
-            <option value="1" @(Model.IsMember ? "selected" : string.Empty) >@Resources.Lang.lblMember</option>
-        </select>
-        <input maxlength="50" id="txtUsername" type="text"
-            value="@Model.Username" name="userName"/>
-        <button type="button" class="btn search-button">
-            <i class="icon-search"></i>
-        </button>
-    }
-    
-    <input id="enterUsernameValue" type="hidden" value="@Resources.Lang.enterusername"/>
-}
 
 <div class="search-box">
     @SearchBox()
@@ -106,6 +92,7 @@
         }
     }
 </div>
+
 @if (Model != null)
 {
     if (Model.CustId > 0)
@@ -232,12 +219,41 @@
     }
 }
 
-@section scripts
+</div>
+
+@section foot
 {
+    <script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
     <script src="~/Views/Account/Resources/AccountInfo.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function () {
-            Account.InitSearchClick();
-        });
-    </script>    
+}
+
+@helper SearchBox()
+{
+    if (Model == null)
+    {
+        <select id="ddlIsMember" name="isMember">
+            <option value="0" "selected">@Resources.Lang.lblAgent</option>
+            <option value="1">@Resources.Lang.lblMember</option>
+        </select>
+        <input maxlength="50" id="txtUsername" type="text"
+            value="@Resources.Lang.enterusername" name="userName"/>
+        <button type="button" class="btn search-button">
+            <i class="icon-search"></i>
+        </button> 
+    }
+    else
+    {
+        <select id="ddlIsMember" name="isMember">
+            <option value="0" @(Model.IsMember ? string.Empty : "selected") >@Resources.Lang.lblAgent</option>
+            <option value="1" @(Model.IsMember ? "selected" : string.Empty) >@Resources.Lang.lblMember</option>
+        </select>
+        <input maxlength="50" id="txtUsername" type="text"
+            value="@Model.Username" name="userName"/>
+        <button type="button" class="btn search-button">
+            <i class="icon-search"></i>
+        </button>
+    }
+    
+    <input id="enterUsernameValue" type="hidden" value="@Resources.Lang.enterusername"/>
 }
