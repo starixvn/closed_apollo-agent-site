@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Common, Version=1.0.404.98, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.60, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
@@ -48,9 +56,17 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\UserListController.cs" />
+    <Compile Include="Criterias\AgentListCriteria.cs" />
     <Compile Include="Criterias\CustomerListCriteria.cs" />
     <Compile Include="Criterias\GetCustomerMessageCriteria.cs" />
+    <Compile Include="Criterias\UpdateReadMessageCriteria.cs" />
+    <Compile Include="Repositories\Impl\AgentListRepository.cs" />
+    <Compile Include="Repositories\Impl\CustomerListRepository.cs" />
+    <Compile Include="Repositories\Interface\ICustomerListRepository.cs" />
+    <Compile Include="Repositories\Interface\IAgentListRepository.cs" />
     <Compile Include="Services\MessageService.cs" />
+    <Compile Include="Services\UserListService.cs" />
     <Compile Include="ViewModels\AnnouncementViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CustomerInfoViewModel.cs" />
@@ -80,7 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

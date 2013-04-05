@@ -32,6 +32,18 @@ namespace Apollo.Age.Services.Impl
             return _repository.Fetch(criteria).ToList();
         }
 
+        public List<Member> GetCustomerSearch(bool isMember, string userName, int agentId)
+        {
+            CustomerSearchCriteria criteria = new CustomerSearchCriteria()
+            {
+                AgentId = agentId,
+                IsMember = isMember,
+                UserName = userName
+            };
+
+            return _repository.Fetch(criteria).ToList();
+        }
+
         public Member GetCustomerInfo(bool isMember, int custId, string userName, int agentId)
         {
             CustomerExistCriteria criteriaExist = new CustomerExistCriteria()

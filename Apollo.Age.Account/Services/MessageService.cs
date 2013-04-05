@@ -16,13 +16,17 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Account.Criterias;
+    using Fanex.NAP.Framework.Data;
+    using Sunplus.Agent.Model.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class MessageService : QueryService
     {
-        private const string SiteList = "3000,3300";      
+        private const string SiteList = "3000,3300";
+
+        private DynamicRepository _dyanamicRepository = new DynamicRepository();
 
         public IEnumerable<AnnouncementViewModel> GetAnnouncement(int agentId, DateTime lastPostDate, int totalMessage = 10, bool isTest = false)
         {
@@ -38,7 +42,16 @@ namespace Apollo.Age.Account.Services
 
         public bool UpdateReadMessage(int messsageId)
         {
-            throw new NotImplementedException();
+            var criteria = new UpdateReadMessageCriteria
+            {
+                MessageIds = messsageId.ToString(),
+                CustomerId = UserSession.Current.AgentId,
+                IsAgent = false
+            };
+
+            _dyanamicRepository.Count(criteria);
+
+            return true;
         }
     }
 }

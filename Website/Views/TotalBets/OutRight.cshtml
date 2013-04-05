@@ -67,10 +67,10 @@
                     <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" href="javascript:void(0);">@item.TeamName</a>
                 </td>
                 <td class="fcnum">
-                    @TotalBetHelper.FormatNumber(item.Balance, 2)
+                    @RazorHelper.FormatNumber(item.Balance, 2)
                 </td>
                 <td class="fcnum">
-                    @TotalBetHelper.FormatPositiveNumber(item.TotalWinLost, 2)
+                    @RazorHelper.FormatPositiveNumber(item.TotalWinLost, 2)
                 </td>
             </tr>
                     currentLeagueId = item.LeagueId;
