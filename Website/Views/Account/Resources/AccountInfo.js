@@ -8,35 +8,22 @@
         ACCOUNT.dllIsMember = $("#ddlIsMember");
     },
 
-    getAutoCompleteUrl: function () {
-
-        return APOLLO.resolveUrl("Account/GetSuggestValues" +
-            "?query=" + ACCOUNT.txtUsername.val() +
-            "&isMember=" + ACCOUNT.dllIsMember.val());
-    },
-
     initSearchClick: function () {
-        ACCOUNT.showSectionTab("custsettings", 1);
+        ACCOUNT.ShowSectionTab("custsettings", 1);
 
         ACCOUNT.txtUsername.autocomplete({
             source: function (request, response) {
-                $.getJSON(
-                    APOLLO.resolveUrl("Account/GetSuggestValues?isMember=" + ACCOUNT.dllIsMember.val()), //url
-                    {query: request.term }, //param
-                    function (result) {
-                        response($.map(result, function (item) {
-                            return item.Username;
-                        }));
-                    });
+                var url = "Account/GetSuggestValues" +
+                    "?term=" + request.term +
+                    "&isMember=" + (ACCOUNT.dllIsMember.val() == 1);
+
+                $.ajax({
+                    url: APOLLO.resolveUrl(url),
+                    success: function (data) {
+                        return response(data);
+                    }
+                });
             }
-        });
-
-        $(".ui-menu-item").bind('click', function () {
-            alert("AAA");
-        });
-
-        $(".ui-menu-item").bind('keydown', function () {
-            alert("bbb");
         });
 
         $(".search-button").bind('click', function () {
@@ -44,7 +31,7 @@
         });
 
         $(".show-section").bind('click', function () {
-            ACCOUNT.showSectionTab(this.parentNode.id, $(this).attr("agent-id"));
+            ACCOUNT.ShowSectionTab(this.parentNode.id, $(this).attr("agent-id"));
         });
 
         $("#txtUsername").bind('click', function () {
@@ -69,7 +56,7 @@
         //RegisterStartUp('initHeader()');
         //initAutoComplete('txtUsername', 'Handlers/QueryUserName.ashx');
     },
-    showSectionTab: function (tabId, agentId) {
+    ShowSectionTab: function (tabId, agentId) {
         switch (tabId) {
             case "custsettings":
                 $("#custsettings").addClass("current");
@@ -94,11 +81,11 @@
                 $("#custsettings-content").hide();
                 $("#agentsTab-content").hide();
                 $("#membersTab-content").show();
-                ACCOUNT.bindMembersList(agentId);
+                ACCOUNT.BindMembersList(agentId);
                 break;
         }
     },
-    bindMembersList: function (agentId) {
+    BindMembersList: function (agentId) {
         var link = "../_AccountInfo/DownlineMemberList.aspx?custid=" + agentId;
         var iframe = document.createElement('iframe');
         iframe.frameBorder = 0;
