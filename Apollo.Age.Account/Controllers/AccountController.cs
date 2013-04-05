@@ -18,6 +18,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
+    using System.Collections.Generic;
 
     public class AccountController : BaseController
     {
@@ -35,14 +36,9 @@ namespace Apollo.Age.Account.Controllers
             return View(SiteMap.RootNode);
         }
 
-        //public ActionResult AccountInfo()
-        //{
-        //    return View();
-        //}
-
         public ActionResult AccountInfo(string userName, short? isMember, int? custId)
         {
-            var viewmodel = new CustomerInfoViewModel();
+            CustomerInfoViewModel viewmodel = null;
             if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
             {
                 var ismember = isMember == 1;
@@ -70,7 +66,7 @@ namespace Apollo.Age.Account.Controllers
                         viewmodel = new CustomerInfoViewModel()
                         {
                             CurrentAgentId = base.AgentId,
-                            CustId =-1,
+                            CustId = -1,
                             IsMember = ismember,
                             Username = username,
                         };
@@ -99,7 +95,7 @@ namespace Apollo.Age.Account.Controllers
                         viewmodel = new CustomerInfoViewModel()
                         {
                             CurrentAgentId = base.AgentId,
-                            CustId =-1,
+                            CustId = -1,
                             IsMember = ismember,
                             Username = username,
                         };
@@ -133,6 +129,21 @@ namespace Apollo.Age.Account.Controllers
         {
             var customerList = _agentService.GetDirectDownline(id);
             return Json(customerList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSuggestValues(string query, short isMember)
+        {
+            if (isMember == 1)
+            {
+                var memberlist = _memberService.GetCustomerSearch(true, query, base.AgentId);
+                return Json(memberlist, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var agentlist = _agentService.GetCustomerSearch(false, query, base.AgentId);
+                return Json(agentlist, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         //public JsonResult ReCheckIn()
