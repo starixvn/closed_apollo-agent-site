@@ -35,14 +35,9 @@ namespace Apollo.Age.Account.Controllers
             return View(SiteMap.RootNode);
         }
 
-        //public ActionResult AccountInfo()
-        //{
-        //    return View();
-        //}
-
         public ActionResult AccountInfo(string userName, short? isMember, int? custId)
         {
-            var viewmodel = new CustomerInfoViewModel();
+            CustomerInfoViewModel viewmodel = null;
             if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
             {
                 var ismember = isMember == 1;
@@ -70,7 +65,7 @@ namespace Apollo.Age.Account.Controllers
                         viewmodel = new CustomerInfoViewModel()
                         {
                             CurrentAgentId = base.AgentId,
-                            CustId =-1,
+                            CustId = -1,
                             IsMember = ismember,
                             Username = username,
                         };
@@ -99,7 +94,7 @@ namespace Apollo.Age.Account.Controllers
                         viewmodel = new CustomerInfoViewModel()
                         {
                             CurrentAgentId = base.AgentId,
-                            CustId =-1,
+                            CustId = -1,
                             IsMember = ismember,
                             Username = username,
                         };
