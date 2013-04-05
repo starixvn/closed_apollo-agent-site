@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Portal Page</title>
+    <link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="~/Views/Message/Resources/PortalPage.less" rel="Stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="page_main">
+        <div id="header_main">
+            Resource.Announcement
+        </div>
+        <div id="content_main">
+            <div class="padding-top-right">
+                <!--Title-->
+                <span class="gotoMsg" onclick="openMsg()">&rarr; {Resource.Announcement}</span>
+                <!--/Title-->
+                <div id="divAnnouncement">
+                   @{Html.RenderAction("Announcement");}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="~/_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+    <script src="~/_Components/Paging/Paging.js" type="text/javascript"></script>
+    <script src="~/Views/Message/Resources/PortalPage.js" type="text/javascript"></script>
+    
+</body>
+</html>

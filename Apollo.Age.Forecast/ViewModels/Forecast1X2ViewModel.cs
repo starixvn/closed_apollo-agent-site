@@ -22,14 +22,14 @@ namespace Apollo.Age.Forecast.ViewModels
     public class Forecast1X2ViewModel
     {
         public int MatchID { get; set; }
-        public int homeid { get; set; }
-        public int awayid { get; set; }
-        public bool liveindicator { get; set; }
-        public short livehomescore { get; set; }
-        public short liveawayscore { get; set; }
+        public int HomeId { get; set; }
+        public int AwayId { get; set; }
+        public bool LiveIndicator { get; set; }
+        public short LiveHomeScore { get; set; }
+        public short LiveAwayScore { get; set; }
         public string ShowTime { get; set; }
         public string MatchCode { get; set; }
-        public bool isNeutral { get; set; }
+        public bool IsNeutral { get; set; }
         public decimal? AwayWinLost { get; set; }
         public decimal? HomeWinLost { get; set; }
         public decimal? DrawWinLost { get; set; }
@@ -41,7 +41,7 @@ namespace Apollo.Age.Forecast.ViewModels
         {
             get
             {
-                return CacheRef.GetTeamName(this.homeid) + ((isNeutral) ? "(N)" : string.Empty);
+                return CacheRef.GetTeamName(this.HomeId) + ((IsNeutral) ? "(N)" : string.Empty);
             }
         }
 
@@ -49,7 +49,7 @@ namespace Apollo.Age.Forecast.ViewModels
         {
             get
             {
-                return CacheRef.GetTeamName(this.awayid);
+                return CacheRef.GetTeamName(this.AwayId);
             }
         }
     }

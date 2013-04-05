@@ -7,17 +7,14 @@
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.Controllers
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Web;
     using System.Web.Mvc;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Forecast.ViewModels;
+    using Apollo.Age.Web;
+    using Apollo.Age.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -26,7 +23,8 @@ namespace Apollo.Age.Forecast.Controllers
     {
         private readonly ForecastService _forecastService;
 
-        public ForecastController() : this(null)
+        public ForecastController()
+            : this(null)
         {
         }
 
@@ -37,27 +35,37 @@ namespace Apollo.Age.Forecast.Controllers
 
         #region FC1X2
 
-        public ViewResult FC1X2()
+        public ViewResult FC1X2(int? matchId, int betType = (int)BetTypes.FT_1X2)
         {
-            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType: 5,agentId: base.AgentId);
+            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType, agentId: base.AgentId);
             ViewBag.Leagues = leagues;
+            ViewBag.MatchId = matchId;
+            ViewBag.BetType = betType;
             return View();
         }
 
-        public ActionResult FC1X2Matches(int leagueId)
+        public ActionResult FC1X2Matches(int? leagueId, int? matchId, int betType = (int)BetTypes.FT_1X2 )
         {
-            var forecasts = _forecastService.GetForecast1x2(base.AgentId, leagueId);
+            IEnumerable<Forecast1X2ViewModel> forecasts = null;
+            if (matchId != null && matchId.Value > 0)
+            {
+                forecasts = _forecastService.GetForecast1X2Matches(base.AgentId, matchId.Value, betType);
+            }
+            else
+            {
+                forecasts = _forecastService.GetForecast1x2(base.AgentId, leagueId.Value);
+            }
             return View(forecasts);
         }
 
-        #endregion
+        #endregion FC1X2
 
         #region Handicap, Over/Under
 
         public ViewResult FCHandicapOverUnder()
         {
             // 1: for Hdp/OU/Live
-            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType: 1, agentId: base.AgentId);
+            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType: (int)BetTypes.Handicap, agentId: base.AgentId);
             ViewBag.Leagues = leagues;
             return View();
         }
@@ -68,19 +76,18 @@ namespace Apollo.Age.Forecast.Controllers
             return View(forecasts);
         }
 
-        #endregion
+        #endregion Handicap, Over/Under
 
-        public ViewResult ForecastByMatchContent(int matchId, int betType = 1, int currentScore = 0)
+        public ViewResult ForecastByMatchContent(int matchId, int betType = (int)BetTypes.Handicap, int currentScore = 0)
         {
             ViewBag.TopOddsByMatch = _forecastService.GetTopOddsByMatch(matchId, betType);
             ViewBag.BetType = betType;
             ViewBag.MatchId = matchId;
             ViewBag.CurrentScore = currentScore;
             return View(_forecastService.GetForecastMatcheValue(base.AgentId, matchId, betType, currentScore));
-
         }
 
-        public ViewResult ForecastByMatch(int matchId, int betType = 1, int currentScore = 0)
+        public ViewResult ForecastByMatch(int matchId, int betType = (int)BetTypes.Handicap, int currentScore = 0)
         {
             ViewBag.BetType = betType;
             ViewBag.MatchId = matchId;

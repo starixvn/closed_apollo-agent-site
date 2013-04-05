@@ -289,75 +289,7 @@ public partial class zTest_NewMessageForm : TplPage
             msgOfRole =
                 IBCAgent.Message.GetMessage(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, siteid, 0, 2, maxsize, FormatHandler.ResetStartDate(fDate).ToString(), FormatHandler.ResetEndDate(tDate).ToString(), AppSettings.IsLocalTest);
         }
-
-        if (string.Compare(UserSession.Current.Site, "789y", true) == 0 && pageQuery.Equals(_ArrParamValue[NORMAL])) // hardcode for 789y message
-        {
-            string strContentBlock = TemplateHandler.CopyBlock(htmlMsg, "MsgContent");
-            string strPostDate = DateFormat.ShortDateFormat(DateTime.Now);
-            counter = 0;
-            // Show messages
-            string strContentRow = strContentBlock;
-            TemplateHandler.Assign(ref strContentRow, "clor-over", AppSettings.RowBgOver);
-            TemplateHandler.Assign(ref strContentRow, "row-class", "odd_row");
-            TemplateHandler.Assign(ref strContentRow, "row-over", "live_row");
-            TemplateHandler.Assign(ref strContentRow, "clor-class", AppSettings.RowBgOdd);
-
-            TemplateHandler.Assign(ref strContentRow, "{No}", ++counter);
-            TemplateHandler.Assign(ref strContentRow, "{MessageID}", "888888");
-            TemplateHandler.Assign(ref strContentRow, "{PostDate}", strPostDate);
-            // Show message content
-            string normalMessage = "{0}";
-            string originalMessage = string.Empty;
-            string msgUS = "To Our valued Customers: Kindly be informed that ‘www.3399933.com’, ‘www.9966699.com’, ‘www.9911199.com’, ‘www.3311133.com’ and ‘www.5511155.com’ are not belong to ibet888.net. As alertion, Casino and Number Game section could be proven as the fraud is unable to access those section. For further assist please do get advice from your upline of the accurate of domain to avoid the fraud incident.";
-            msgUS += "<p>Quý khách hàng lưu ý: Trang web ‘www.3399933.com’, ‘www.9966699.com’, ‘www.9911199.com’, ‘www.3311133.com’  và ‘www.5511155.com’ Không thuộc ibet888.net của chúng tôi. Đăng nhập những trang web này, Quý khách sẽ không thể truy cập được 'Live Casino' và 'Number Game', từ đây chứng minh được những trang web này là giả mạo. Để tránh có sự nhầm lẫn hoặc bất cứ hành vi lừa đảo xảy ra, chúng tôi kiến nghị Quý khách liên hệ với Đại Lý để được tư vấn trực tiếp.";
-            string msgCN = "各位尊贵的会员请注意: 网址‘www.3399933.com’, ‘www.9966699.com’, ‘www.9911199.com’, ‘www.3311133.com’ 及 ‘www.5511155.com’ 并不属于ibet888.net. 登入该网站,您将无法访问“娱乐厅”及“百练赛”的部分,这证明了该网站的冒充行为. 我们强烈建议您联络您的上线以便直接查询, 这可避免任何误会或欺诈行为的产生.";
-            string msgTW = "各位尊貴的會員請注意: 網址‘www.3399933.com’, ‘www.9966699.com’, ‘www.9911199.com’,  ‘www.3311133.com’ 及 ‘www.5511155.com’ 並不屬於ibet888.net. 登入該網站,您將無法訪問“娛樂廳”及“百練賽”的部分,這證明了該網站的冒充行為. 我們強烈建議您聯絡您的上线以便直接查詢, 這可避免任何誤會或欺詐行為的產生.";
-            if (string.Compare(UserSession.Current.Language, "zh-TW") == 0)
-            {
-                originalMessage = msgTW;
-            }
-            else if (string.Compare(UserSession.Current.Language, "zh-CN") == 0)
-            {
-                originalMessage = msgCN;
-            }
-            else
-            {
-                originalMessage = msgUS;
-            }
-
-            TemplateHandler.Assign(ref strContentRow, "{Message}", string.Format(normalMessage, originalMessage));
-            result.Append(strContentRow);
-
-            strContentRow = strContentBlock;
-            TemplateHandler.Assign(ref strContentRow, "clor-over", AppSettings.RowBgOver);            
-            TemplateHandler.Assign(ref strContentRow, "row-class", "even_row");
-            TemplateHandler.Assign(ref strContentRow, "row-over", "live_row");
-            TemplateHandler.Assign(ref strContentRow, "clor-class", AppSettings.RowBgEven);
-
-            TemplateHandler.Assign(ref strContentRow, "{No}", ++counter);
-            TemplateHandler.Assign(ref strContentRow, "{MessageID}", "888888");
-            TemplateHandler.Assign(ref strContentRow, "{PostDate}", strPostDate);
-
-            msgUS = "Join our daily lucky draw now! Stand a chance to win up to USD 10,000! Just place your bet as usual and you will entitled for our lucky draw!";
-            msgUS += "<p>Hãy đến và tham gia bốc thăm may mắn hàng ngày của chúng tôi! Quý khách có cơ hội để giành chiến thắng lên đến 10.000 USD tiền thưởng! Chỉ cần Quý khách cá cược thông thường, Quý khách sẽ có thể trở thành Người may mắn của chúng tôi!";
-            msgCN = "快来参加我们的每日幸运大抽奖! 您有机会赢取高达10,000美元的奖金! 只要您像往常一样的投注, 您将有可能成为我们的幸运儿!";
-            msgTW = "快來參加我們的每日幸運大抽獎! 您有機會贏取高達10,000美元的獎金! 只要您像往常一樣的投注, 您將有可能成為我們的幸運兒!";
-            if (string.Compare(UserSession.Current.Language, "zh-TW") == 0)
-            {
-                originalMessage = msgTW;
-            }
-            else if (string.Compare(UserSession.Current.Language, "zh-CN") == 0)
-            {
-                originalMessage = msgCN;
-            }
-            else
-            {
-                originalMessage = msgUS;
-            }
-            
-            TemplateHandler.Assign(ref strContentRow, "{Message}", string.Format(normalMessage, originalMessage));
-            result.Append(strContentRow);
-        }
+      
 
         if ((msgOfRole != null) && (msgOfRole.Rows.Count > 0))
         {

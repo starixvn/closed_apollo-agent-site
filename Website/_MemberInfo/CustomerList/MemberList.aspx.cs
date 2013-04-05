@@ -21,7 +21,7 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerList
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control;
     using Fanex.Agent.UI._MemberInfo.CustomerList;
-    using Fanex.PTVirtualSports.Extension;
+    //using Fanex.PTVirtualSports.Extension;
     using Sunplus.Agent.Model.BL.MemberInfo.CustomerList;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;

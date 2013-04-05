@@ -57,160 +57,11 @@ AGE.prototype.Scrolling = function () {
     if (isTimeout) return;
 }
 
-function ChangeLang(lang) {
-    function OnComplete(result) {
-        var errCode = result.errCode;
-        if (errCode == 0) {
-            // Remove www so that subdomain can override LANGUAGE value
-            var domain = window.location.hostname.replace(/([a-zA-Z0-9]+.)/, '').replace('www.', '');
-            setCookie('LANGUAGE', lang, 30, domain);
-            age.Invalidate();
-        } else {
-            if (errCode == ACCESS_DENIED) {
-                age.SignOut();
-            }
-        }
-    }
-
-    // Post with return result in JSON format
-    ajax.PostJSON('Handlers/SetLanguage.ashx', 'lang=' + lang, OnComplete);
-}
-
-function Change2Menu(url) {
-    if (top.menu && top.menu.ClearCurrentLeftMenu) {
-        top.menu.ClearCurrentLeftMenu();
-    }
-
-    top.main.location = _page.getBaseURL + url;
-    SelectTopMenu(url);
-}
-
-function SetCurrentLanguage() {
-    document.getElementById('selLanguage').value = _page.Language;
-}
-
-function ClearActiveTab() {
-    if (currentTab) currentTab.className = "";
-}
-
-// For keeping top menu selected correctly
-var currentTab = null;
-
-function SelectTopMenu(url) {
-    var mainUrl = '';
-    if (url) {
-        mainUrl = url;
-    } else if (top.main) {
-        mainUrl = top.main.location.href;
-    }
-
-    var start = mainUrl.lastIndexOf('/');
-    var end = mainUrl.lastIndexOf('?');
-    if (end == -1) end = mainUrl.length;
-    var name = mainUrl.substring(start + 1, end);
-
-    if (currentTab) currentTab.className = "";
-
-    switch (name) {
-        case 'PortalPage.aspx':
-            currentTab = document.getElementById("balance");
-            break;
-        case 'MemberList.aspx':
-            currentTab = document.getElementById("transfer");
-            break;
-        case 'AgentList.aspx':
-            currentTab = document.getElementById("transfer");
-            break;
-        case 'MasterList.aspx':
-            currentTab = document.getElementById("transfer");
-            break;
-        case 'ChangePassword.aspx':
-            currentTab = document.getElementById("changepass");
-            break;
-        case 'LogCustomerSetting.aspx':
-            currentTab = document.getElementById("viewlog");
-            break;
-        default:
-            currentTab = null;
-            break;
-    }
-
-    if (currentTab) currentTab.className = "active";
-    else ClearActiveTab();
-}
-
-function isDate(TDY, TDM, TDD) // input 3 string
-{
-    var BegDate = new Date(parseFloat(TDY) + "/" + TDM + "/" + TDD);
-    if (BegDate.getYear() < 200) var TBegYear = BegDate.getYear() + 1900
-    else var TBegYear = BegDate.getYear()
-    if (TBegYear != parseFloat(TDY) || BegDate.getMonth() + 1 != parseFloat(TDM) || BegDate.getDate() != parseFloat(TDD)) return false;
-    else return true;
-}
-
-function ClockTick() {
-    _page.sec++;
-    if (_page.sec == 60) {
-        _page.sec = 0;
-        _page.min++;
-    }
-    if (_page.min == 60) {
-        _page.min = 0;
-        _page.hrs++;
-    }
-    if (_page.hrs == 24) {
-        _page.hrs = 0;
-        _page.sec = 0;
-        _page.min = 0;
-        _page.day++;
-    }
-    if (_page.min < 10) {
-        strmin = "0" + _page.min;
-    } else {
-        strmin = _page.min;
-    }
-    if (_page.sec < 10) {
-        strsec = "0" + _page.sec;
-    } else {
-        strsec = _page.sec;
-    }
-
-    if (!isDate(_page.year, _page.month, _page.day)) //to next _page.month
-    {
-        _page.month++;
-        _page.day = 1;
-    }
-    if (!isDate(_page.year, _page.month, _page.day)) //to next _page.year
-    {
-        _page.year++;
-        _page.month = 1;
-        _page.day = 1;
-    }
-
-    if (_page.hrs >= 12) {
-        stra = _page.PM;
-    } else {
-        stra = _page.AM;
-    }
-    if (_page.hrs >= 12) {
-        strhrs = _page.hrs - 12;
-    } else {
-        strhrs = _page.hrs;
-    }
-
-    var months = eval(_page.Months);
-
-    var str = strhrs + ":" + strmin + ":" + strsec + " " + stra + " " + months[_page.month - 1] + " " + _page.day + ", " + _page.year + " GMT-4";
-    document.getElementById("clock").innerHTML = str;
-
-    setTimeout(ClockTick, 1000);
-}
-
 // Balloon tip and message functions
 var timeOutId;
 
 function PrivateMsgLink(url) {
-    Change2Menu(url);
+    
     var open = "(",
         close = ")";
     var countText = document.getElementById('privateMsgLnk').innerHTML;
@@ -265,7 +116,7 @@ function GetMessages() {
 
             if ((publicMessage[MSGID] != null) && (publicMessageId != publicMessage[MSGID])) {
                 document.getElementById('topnews').innerHTML = publicMessage[MSGCONTENT];
-                document.getElementById('text_news_out').onclick = new Function("Change2Menu('" + url + "')"); //Work with FF, IE6-7
+                
                 if (publicMessageId > 0) {
                     balloonPopupContent = publicMessage[MSGCONTENT];
                 }
@@ -390,12 +241,64 @@ function HideTooltipIntroNickname() {
 
 // Start up
 function InitHeader() {
-    // SetCurrentLanguage();
-    //ShowHotMsg(_page.msgList);
     timeoutId1 = setTimeout(GetMessages, 100);
-    //ClockTick();
-    SelectTopMenu();
-    HideTooltipIntroNickname();
 }
 
+// Change to message page
+function Change2Menu(url) {
+    if (top.menu && top.menu.ClearCurrentLeftMenu) {
+        top.menu.ClearCurrentLeftMenu();
+    }
+
+    top.main.location = _page.getBaseURL + url;
+    SelectTopMenu(url);
+}
+
+// Clear active tab
+function ClearActiveTab() {
+    if (currentTab) currentTab.className = "";
+}
+
+function SelectTopMenu(url) {
+    var mainUrl = '';
+    if (url) {
+        mainUrl = url;
+    } else if (top.main) {
+        mainUrl = top.main.location.href;
+    }
+
+    var start = mainUrl.lastIndexOf('/');
+    var end = mainUrl.lastIndexOf('?');
+    if (end == -1) end = mainUrl.length;
+    var name = mainUrl.substring(start + 1, end);
+
+    //if (currentTab) currentTab.className = "";
+
+    switch (name) {
+        case 'PortalPage.aspx':
+            currentTab = document.getElementById("balance");
+            break;
+        case 'MemberList.aspx':
+            currentTab = document.getElementById("transfer");
+            break;
+        case 'AgentList.aspx':
+            currentTab = document.getElementById("transfer");
+            break;
+        case 'MasterList.aspx':
+            currentTab = document.getElementById("transfer");
+            break;
+        case 'ChangePassword.aspx':
+            currentTab = document.getElementById("changepass");
+            break;
+        case 'LogCustomerSetting.aspx':
+            currentTab = document.getElementById("viewlog");
+            break;
+        default:
+            currentTab = null;
+            break;
+    }
+
+    if (currentTab) currentTab.className = "active";
+    else ClearActiveTab();
+}
 RegisterStartUp(InitHeader);
