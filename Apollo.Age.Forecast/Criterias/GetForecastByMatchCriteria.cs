@@ -7,21 +7,16 @@
 //   <change who="Ricky.Nguyen" date="2013.4.4">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
+    using Apollo.Age.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class GetForecastByMatchCriteria : CriteriaBase
     {
-
         public int AgentId { get; set; }
 
         public int MatchId { get; set; }
@@ -32,19 +27,18 @@ namespace Apollo.Age.Forecast.Criterias
         {
             switch (BetType)
             {
-                case 1:
-                case 7:
+                case (int)BetTypes.Handicap:
+                case (int)BetTypes._1st_Handicap:
                     // HDP
                     return "Age_Forecast_1_7_GetByMatch";
-                case 3:
-                case 8:
+                case (int)BetTypes.Over_Under:
+                case (int)BetTypes._1st_Over_Under:
                     // OU
                     return "Age_Forecast_3_8_GetByMatch";
-                case 5:
-                case 15:
+                case (int)BetTypes.FT_1X2:
+                case (int)BetTypes.FirstHalf_1X2:
                     // 1x2
                     return "Age_Forecast_5_15_GetByMatch";
-                    
             }
             return string.Empty;
         }
