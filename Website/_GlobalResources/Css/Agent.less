@@ -99,6 +99,7 @@ table {
 	padding: 16px 0 2px;
 	margin:  0 10px 10px;
 	border-bottom: 1px solid @titleColor;
+	.box-shadow(0 4px 0 #F3F3F3);
 	text-transform: uppercase;
 	color: @titleColor;
 	font-size: 1.2em;
@@ -370,10 +371,11 @@ table {
 
 .tblRpt-option-1 {
 	background-color: #fff;
-	border: 1px solid #ccc;
+	border: 1px solid #AFAFAF;
 	border-collapse: collapse;
 	color: @grayDark;
 	margin: 0;
+	width: 100%;
 
 	td, th {
 		height: 22px;
@@ -399,28 +401,112 @@ table {
 			border-spacing: 0;
 			border: 1px solid #ccc;
 			border-width: 1px 1px 0 0;	
-			.box-shadow(0 1px 0 #555 inset);			
+			.box-shadow(0 -1px 0 #555 inset);			
 			text-align: center;
 			font-weight: bold;
-			text-shadow: 0 1px 0 #333;
+			text-shadow: 0 -1px 0 #333;
 			color: #fff;
 		}
 	}
 
 	tbody {
 		td {
-			border: 1px solid @borderColor;
+			border: 1px solid #AFAFAF;
 			border-width: 1px 1px 0 0;
-
 			.box-shadow(0 1px 0 #FFF inset);
 			text-shadow: 0 1px 0 #FFF;
 		}
 		tr {
 			/*background-color: @rowBackground;
 			&.alt { background-color: @rowAltBackground }*/
-			&.live { background-color: @rowLiveBackground }
+			&.live {background-color: @rowLiveBackground;}
 			&.league {
-				#gradient.vertical(#F7F7F7, #EEE);				
+				#gradient.vertical(#EEE, #F7F7F7);				
+				color: @grayDark;
+				font-weight: bold;
+				text-transform: uppercase;				
+
+				td { padding: 4px 4px 4px 30px }
+			}
+			&:hover { background-color: @rowHoverBackground }
+
+			&.RptFooter:hover {
+				background: @rowTotalBackground;
+			}
+		}
+	}
+
+	.RptFooter {
+		//background: url(../images/bg_f01.jpg) repeat-x center top #783819;
+		background: @rowTotalBackground;
+		color: @white;
+		.bold;
+	}
+	.bl_time {
+		font-size: .9em;
+	}
+	.no_info {
+		.bold;
+		.text-center;
+	}
+}
+
+.tblRpt-option-2 {
+	background-color: #fff;
+	border: 1px solid #AFAFAF;
+	border-collapse: collapse;
+	color: @grayDark;
+	margin: 0;
+	width: 100%;
+
+	td, th {
+		height: 22px;
+		padding: 2px 4px;
+		white-space: nowrap;
+	}
+	
+	.report-title {
+		#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
+		.box-shadow(0 1px 0 0 #FFF inset);
+
+		td {
+			background: url(img/report-title.gif) no-repeat 5px center;
+			padding: 0 0 0 24px;
+			height: 35px;
+			text-align: left;
+		}
+	}
+
+	thead {
+		td, th {
+			background-color: #77AAE8;
+			border-spacing: 0;
+			border: 1px solid #B6CFDB;
+			border-width: 1px 1px 0 0;	
+			.box-shadow(0 -1px 0 #4D8CCC inset);			
+			text-align: center;
+			font-weight: bold;
+			text-shadow: 0 -1px 0 #5F88B7;
+			color: #fff;
+		}
+	}
+
+	tbody {
+		td {
+			border: 1px solid #AFAFAF;
+			border-width: 1px 1px 0 0;
+			.box-shadow(0 1px 0 #fff inset);
+			text-shadow: 0 1px 0 #FFF;
+		}
+		tr {
+			/*background-color: @rowBackground;
+			&.alt { background-color: @rowAltBackground }*/
+			&.live { 
+				background-color: @rowLiveBackground;
+			}
+			&.league {
+				#gradient.vertical(#E8F0FF, #F7FAFF);
+				//background: #F7FAFF;				
 				color: @grayDark;
 				font-weight: bold;
 				text-transform: uppercase;
@@ -449,12 +535,13 @@ table {
 	}
 }
 
-.tblRpt-option-2 {
+.tblRpt-option-3 {
 	background-color: #fff;
-	border: 1px solid #ccc;
+	border: 1px solid #a7d7f9;
 	border-collapse: collapse;
 	color: @grayDark;
 	margin: 0;
+	width: 100%;
 
 	td, th {
 		height: 22px;
@@ -480,33 +567,122 @@ table {
 			border-spacing: 0;
 			border: 1px solid #B6CFDB;
 			border-width: 1px 1px 0 0;	
-			.box-shadow(0 1px 0 #689BD1 inset);			
+			.box-shadow(0 -1px 0 #4D8CCC inset);			
 			text-align: center;
 			font-weight: bold;
-			text-shadow: 0 1px 0 #689BD1;
+			text-shadow: 0 -1px 0 #5F88B7;
 			color: #fff;
 		}
 	}
 
 	tbody {
 		td {
-			border: 1px solid @borderColor;
+			border: 1px solid #a7d7f9;
 			border-width: 1px 1px 0 0;
-
-			.box-shadow(0 1px 0 #FFF inset);
+			.box-shadow(0 1px 0 #fff inset);
 			text-shadow: 0 1px 0 #FFF;
 		}
 		tr {
 			/*background-color: @rowBackground;
 			&.alt { background-color: @rowAltBackground }*/
-			&.live { background-color: @rowLiveBackground }
+			&.live {background-color: @rowLiveBackground;}
 			&.league {
-				#gradient.vertical(#F7FAFF, #E8F0FF);
+				#gradient.vertical(#E8F0FF, #F7FAFF);
 				//background: #F7FAFF;				
 				color: @grayDark;
 				font-weight: bold;
 				text-transform: uppercase;
 				td { padding: 4px 4px 4px 30px }
+			}
+			&:hover { background-color: @rowHoverBackground }
+
+			&.RptFooter:hover {
+				background: @rowTotalBackground;
+			}
+		}
+	}
+
+	.RptFooter {
+		//background: url(../images/bg_f01.jpg) repeat-x center top #783819;
+		background: @rowTotalBackground;
+		color: @white;
+		.bold;
+	}
+	.bl_time {
+		font-size: .9em;
+	}
+	.no_info {
+		.bold;
+		.text-center;
+	}
+}
+
+.tblRpt-option-4 {
+	background-color: #fff;
+	border: 1px solid #bbb;
+	border-collapse: collapse;
+	color: @grayDark;
+	margin: 0;
+	width: 100%;
+
+	td, th {
+		height: 22px;
+		padding: 2px 4px;
+		white-space: nowrap;
+	}
+	
+	.report-title {
+		#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
+		.box-shadow(0 1px 0 0 #FFF inset);
+
+		td {
+			background: url(img/report-title.gif) no-repeat 5px center;
+			padding: 0 0 0 24px;
+			height: 35px;
+			text-align: left;
+		}
+	}
+
+	thead {
+		td, th {
+			background-color: #CB4D4E;
+			border-spacing: 0;
+			border: 1px solid #AC3B3B;
+			border-width: 1px 1px 0 0;	
+			.box-shadow(0px 1px 0 #E26363 inset);			
+			text-align: center;
+			font-weight: bold;
+			text-shadow: 0 -1px 0 #AC3B3B;
+			color: #e5e5e5;
+		}
+	}
+
+	tbody {
+		td {
+			border: 1px solid #bbb;
+			border-width: 1px 1px 0 0;
+			.box-shadow(0 1px 0 #fff inset);
+			text-shadow: 0 1px 0 #FFF;
+		}
+		tr {
+			/*background-color: @rowBackground;
+			&.alt { background-color: @rowAltBackground }*/
+			&.live {
+				background-color: @rowLiveBackground;
+				td {
+					box-shadow: none;
+				}
+			}
+			&.league {
+				#gradient.vertical(#EFEFEF, #F4F4F4);				
+				color: @grayDark;
+				font-weight: bold;
+				text-transform: uppercase;
+
+				td { 
+					padding: 4px 4px 4px 30px;
+					box-shadow: none;					
+				}
 			}
 			&:hover { background-color: @rowHoverBackground }
 

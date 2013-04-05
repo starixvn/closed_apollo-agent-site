@@ -33,7 +33,7 @@ namespace Fanex.Agent.UI
 			public string issticky = "{issticky}";
 			protected static string s12 = "', this)\"><div id=\"text_news\" id=\"text_news\" style=\"overflow: hidden; position: relative\"><div id=\"scroller\" class=\"news-scroller\"><a id=\"topnews\" style=\"overflow: hidden; position: relative\" href=\"javascript:;\">";
 			public string scrollMessage = "{scrollMessage}";
-			protected static string s13 = "</a></div></div></div></td><td><div id=\"button_top\"><a id=\"privateMsgLnk\" class=\"btn\" href=\"javascript:PrivateMsgLink('Info/NewMessageForm.aspx?pageQuery=private')\">&nbsp;&nbsp;";
+			protected static string s13 = "</a></div></div></div></td><td><div id=\"button_top\" class=\"icon-envelope\"><a id=\"privateMsgLnk\" href=\"javascript:PrivateMsgLink('Info/NewMessageForm.aspx?pageQuery=private')\">&nbsp;&nbsp;";
 			public string priMsgCount = "{priMsgCount}";
 			protected static string s14 = "</a></div></td></tr></table></div></div><input type=\"hidden\" id=\"showFlashAccInfo\" value=\"1\" /><input type=\"hidden\" id=\"ctime\" value=\"";
 			public string ctime = "{ctime}";
