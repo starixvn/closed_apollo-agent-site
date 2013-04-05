@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Criterias\GetCustomerMessageCriteria.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="ViewModels\AnnouncementViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,7 +76,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Criterias\" />
     <Folder Include="Entities\" />
     <Folder Include="Repositories\" />
   </ItemGroup>

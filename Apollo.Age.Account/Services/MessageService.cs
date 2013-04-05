@@ -52,7 +52,7 @@ namespace Apollo.Age.Account.Services
         {
             return this.GetReportData<AnnouncementViewModel>(new GetCustomerMessageCriteria
                 {
-                    AgentId = agentId,
+                    CustomerId = agentId,
                     SiteIds = SiteList,
                     LastPostTime = lastPostDate,
                     TotalMessage = totalMessage,
