@@ -2,6 +2,18 @@
 {
     InitSearchClick: function () {
         Account.ShowSectionTab("custsettings", 1);
+
+        $("#txtUsername").autocomplete({
+            //source: acOptions
+            source: function () {
+                //pass request to server  
+                $.getJSON(parent.baseURL + "Account/GetSuggestValues?query="
+                + $("#txtUsername").val() + "&isMember=" + $("#ddlIsMember").val(), function (data) {
+                    return data;
+                });
+            }
+        });
+
         $(".search-button").bind('click', function () {
             location.href = parent.baseURL + 'Account/AccountInfo?userName=' + $("#txtUsername").val() + '&isMember=' + $("#ddlIsMember").val();
         });
@@ -29,8 +41,8 @@
             }
         });
 
-        RegisterStartUp('initHeader()');
-        initAutoComplete('txtUsername', 'Handlers/QueryUserName.ashx');
+        //RegisterStartUp('initHeader()');
+        //initAutoComplete('txtUsername', 'Handlers/QueryUserName.ashx');
     },
     ShowSectionTab: function (tabId, agentId) {
         switch (tabId) {

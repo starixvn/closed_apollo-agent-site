@@ -18,6 +18,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
+    using System.Collections.Generic;
 
     public class AccountController : BaseController
     {
@@ -128,6 +129,23 @@ namespace Apollo.Age.Account.Controllers
         {
             var customerList = _agentService.GetDirectDownline(id);
             return Json(customerList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSuggestValues(string query, short isMember)
+        {
+            List<string> listValue = new List<string>();
+            if (isMember == 1)
+            {
+                var memberlist = _memberService.GetCustomerSearch(true, query, base.AgentId);
+                memberlist.ForEach(t=> listValue.Add(t.Username));
+            }
+            else
+            {
+                var agentlist = _agentService.GetCustomerSearch(false, query, base.AgentId);
+                agentlist.ForEach(t => listValue.Add(t.Username));
+            }
+
+            return Json(listValue, JsonRequestBehavior.AllowGet);
         }
 
         //public JsonResult ReCheckIn()
