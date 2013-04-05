@@ -3,9 +3,9 @@
     InitViewForeCastHandicap: function () {
         $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url = window.rootUrl + '_Forecast/FCAH.aspx?'
+            var url = window.rootUrl + 'Forecast/ForecastByMatch?'
             + 'matchId=' + $(this).attr("match-id")
-            + '&b=' + $(this).attr("bet-type");
+            + '&betType=' + $(this).attr("bet-type");
 
             ageWnd.openDialog(url, '', {
                 width: 665,
@@ -75,7 +75,7 @@
     InitViewForecast1x2: function () {
         $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url = window.rootUrl + '_Forecast/FC1X2.aspx?'
+            var url = window.rootUrl + 'Forecast/FC1X2?'
             + 'matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type");
             ageWnd.openDialog(url, '', {
@@ -111,11 +111,11 @@
         if ($(".persist-area").val() != undefined) {
             var widthspace = $(".persist-area").width() + 18;
 
-//            var offsetIE = 0;
-//            if (APOLLO.browser.msie) {
-//                offsetIE = -10;
-//                console.log(APOLLO.browser.version)
-//            }
+            //            var offsetIE = 0;
+            //            if (APOLLO.browser.msie) {
+            //                offsetIE = -10;
+            //                console.log(APOLLO.browser.version)
+            //            }
 
             $('.floatingHeader').width(widthspace);
             var left = $('table thead tr:first').position()["left"];
