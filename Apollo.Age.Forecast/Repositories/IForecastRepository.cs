@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ScoreMapBetType.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="IForecastRepository.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -8,21 +8,20 @@
 // </history>
 
 
-namespace Apollo.Age.Forecast.ViewModels
+namespace Apollo.Age.Forecast.Repositories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Apollo.Age.Forecast.Models;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ScoreMapBetType
+    public interface IForecastRepository
     {
-        public int TypeId { get; set; }
-        public bool IsLive { get; set; }
-        public bool IsDead { get; set; }
-        public bool Id1st { get; set; }
+        ScoreMapResult GetScoreMapResult(ICriteria criteria);
     }
 }
