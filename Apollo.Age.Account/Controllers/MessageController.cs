@@ -16,6 +16,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using System.Web.Mvc;
     using Apollo.Age.Account.Services;
+    using System.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -31,15 +32,32 @@ namespace Apollo.Age.Account.Controllers
             _messageService = messageService ?? new MessageService();
         }
 
-        public ViewResult Announcement(DateTime? lastPostDate)
+        public ViewResult Announcement(DateTime? lastPostTime)
         {
-            var model = _messageService.GetAnnouncement(3, lastPostDate ?? DateTime.Now);
+            var model = _messageService.GetAnnouncement(3, lastPostTime ?? DateTime.Now);
+
+            var cookie = new HttpCookie("lastPostTime", model.Last().PostTime.ToString());
+            HttpContext.Response.Cookies.Set(cookie);
+
+            ViewBag.LastPostTime = lastPostTime ?? model.Last().PostTime;
+
             return View(model);
         }
 
         public ViewResult Portal()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SetReadPriMsg(int messageId)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return Json(_messageService.UpdateReadMessage(messageId));
+            }
+
+            return Json(null);
         }
     }
 }
