@@ -7,13 +7,8 @@
 //   <change who="Ricky.Nguyen" date="2013.4.1">Created</change>
 // </history>
 
-
 namespace Apollo.Age.TotalBets.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Services;
 
     /// <summary>
@@ -22,18 +17,31 @@ namespace Apollo.Age.TotalBets.ViewModels
     public class HTFTViewModel
     {
         public int MatchId { get; set; }
+
         public int HomeId { get; set; }
+
         public int AwayId { get; set; }
+
         public string MatchCode { get; set; }
+
         public decimal TotalHH { get; set; }
+
         public decimal TotalHD { get; set; }
+
         public decimal TotalHA { get; set; }
+
         public decimal TotalDH { get; set; }
+
         public decimal TotalDD { get; set; }
+
         public decimal TotalDA { get; set; }
+
         public decimal TotalAH { get; set; }
+
         public decimal TotalAD { get; set; }
+
         public decimal TotalAA { get; set; }
+
         public bool IsNeutral { get; set; }
 
         public string HomeTeam
