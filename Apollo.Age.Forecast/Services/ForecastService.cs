@@ -96,6 +96,22 @@ namespace Apollo.Age.Forecast.Services
             }
         }
 
+        public IEnumerable<Forecast1X2ViewModel> GetForecast1X2Matches(int agentId, int matchId, int betType)
+        {
+            Check.Argument.IsNotNegative(agentId, "agentId");
+            Check.Argument.IsNotNegative(matchId, "matchId");
+            Check.Argument.IsNotNegative(betType, "betType");
+
+            return GetReportData<Forecast1X2ViewModel>(
+                    new GetForecastByMatchCriteria
+                    {
+                        AgentId = agentId,
+                        BetType = betType,
+                        MatchId = matchId
+                    }
+                );
+        }
+
         private ForecastMatchWinLostViewModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchViewModel> forecastMatches, int betType, int currentScore)
         {
             if (!forecastMatches.Any())

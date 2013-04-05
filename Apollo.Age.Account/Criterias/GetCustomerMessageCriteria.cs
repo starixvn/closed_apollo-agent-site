@@ -40,5 +40,10 @@ namespace Apollo.Age.Account.Criterias
 
         [SpParam(SqlParamName = "IsTest")]
         public bool IsTest { get; set; }
+
+        public override bool IsValid()
+        {
+            return this.CustomerId > 0 && !string.IsNullOrWhiteSpace(SiteIds);
+        }
     }
 }

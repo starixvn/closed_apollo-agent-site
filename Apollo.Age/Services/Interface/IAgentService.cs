@@ -21,6 +21,8 @@ namespace Apollo.Age.Services.Interface
 
         Agent GetCustomerInfo(AccountInfoCriteria criteria);
 
+        Agent GetCustomerInfo(bool isMember, int custId, string userName, int agentId);
+
         List<Agent> GetAgentDownlinePath(ICriteria criteria);
 
         /// <summary>

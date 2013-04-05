@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Apollo.Age.Account.ViewModels.AnnouncementViewModel>
+@if (Model != null && Model.Any())
+{
+    var lastPostDate = Model.First().PostTime.Date;
+    var index = 0;
+    foreach (var msgItem in Model)
+    { 
+    <!--GroupDate-->
+    <!--GroupTitle-->  
+        if (msgItem.PostTime.Date != lastPostDate || index == 0)
+        {
+            index++;   
+    <div class="divGroupDate">
+        @msgItem.PostTime.Date.ToShortDateString()
+    </div>
+        }
+        
+    <!--/GroupTitle-->
+    <!--DataRow-->
+    <div class="{msgType}" style="clear:both" id="@msgItem.MessageId.ToString()" onclick="ToggleAnnouncementContent('{Announment_Id}');"
+        IsRead="@msgItem.IsRead">
+        <div class="divTime">
+            <div class="toogleIcon">
+            </div>
+            <div>
+                @msgItem.PostTime.ToLongTimeString()
+            </div>
+        </div>
+        <div class="divContent">
+            <div class="text_exposed_show">
+                {SmallContent}
+            </div>
+            <div class="text_exposed_hide">
+                {FullContent}
+            </div>
+        </div>
+    </div>
+    <!--/DataRow-->
+    <!--/GroupDate-->    
+    
+        { lastPostDate = msgItem.PostTime.Date; }
+    }
+    <!--MoreFooter-->
+    <div id="divMore" onclick="ShowMoreAnnouncements();">
+        {static:Resources.Lang.more} ...
+    </div>
+    <!--/MoreFooter-->
+}
+else
+{ 
+    <!--NoRow-->
+    <div class="c">
+        {NoRowInfo}
+    </div>
+    <!--/NoRow-->
+}

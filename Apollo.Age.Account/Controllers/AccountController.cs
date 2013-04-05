@@ -11,19 +11,23 @@
 
 namespace Apollo.Age.Account.Controllers
 {
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
+    using Apollo.Age.Account.ViewModel;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
-    using System.Web;
 
     public class AccountController : BaseController
     {
-        private readonly AgentService _agentService;
+        private readonly IAgentService _agentService;
+        private readonly IMemberService _memberService;
 
         public AccountController()
         {
             _agentService = new AgentService();
+            _memberService = new MemberService();
         }
 
         public ActionResult Menu()
@@ -31,13 +35,90 @@ namespace Apollo.Age.Account.Controllers
             return View(SiteMap.RootNode);
         }
 
-        public ActionResult AccountInfo()
+        //public ActionResult AccountInfo()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult AccountInfo(string userName, short? isMember, int? custId)
         {
+            var viewmodel = new CustomerInfoViewModel();
+            if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
+            {
+                var ismember = isMember == 1;
+                var custid = custId.HasValue ? custId.Value : -1;
+                var username = userName;
+
+                if (ismember)
+                {
+                    var memberInfo = _memberService.GetCustomerInfo(ismember, custid, username, base.AgentId);
+                    if (memberInfo != null)
+                    {
+                        viewmodel = new CustomerInfoViewModel()
+                        {
+                            CurrentAgentId = base.AgentId,
+                            IsMember = ismember,
+                            CustId = memberInfo.Id,
+                            Username = memberInfo.Username,
+                            ParentId = memberInfo.Agent.Id,
+                            ParentName = memberInfo.Agent.Username,
+                            Group = memberInfo.Group
+                        };
+                    }
+                    else
+                    {
+                        viewmodel = new CustomerInfoViewModel()
+                        {
+                            CurrentAgentId = base.AgentId,
+                            CustId =-1,
+                            IsMember = ismember,
+                            Username = username,
+                        };
+                    }
+                }
+                else
+                {
+                    var agentInfo = _agentService.GetCustomerInfo(ismember, custid, username, base.AgentId);
+                    if (agentInfo != null)
+                    {
+                        viewmodel = new CustomerInfoViewModel()
+                        {
+                            CurrentAgentId = base.AgentId,
+                            IsMember = ismember,
+                            CustId = agentInfo.Id,
+                            Username = agentInfo.Username,
+                            ParentId = agentInfo.Parent.Id,
+                            ParentName = agentInfo.Parent.Username,
+                            HasAgentDownline = agentInfo.HasAgentDownline,
+                            HasMemberDownline = agentInfo.HasMemberDownline,
+                            Level = agentInfo.Level
+                        };
+                    }
+                    else
+                    {
+                        viewmodel = new CustomerInfoViewModel()
+                        {
+                            CurrentAgentId = base.AgentId,
+                            CustId =-1,
+                            IsMember = ismember,
+                            Username = username,
+                        };
+                    }
+                }
+            }
+
+            return View(viewmodel);
+        }
+
+        public ViewResult AgentTreeList(int id)
+        {
+            ViewBag.AgentId = id;
             return View();
         }
 
-        public ViewResult AgentTreeList()
+        public ViewResult TreeViewList()
         {
+            ViewBag.AgentId = base.AgentId;
             return View();
         }
 
