@@ -27,7 +27,7 @@
 } 
 @helper RenderForecastPoint(int matchId, int betType, int currentScore)
     {
-        bool isHDPOr1stHDP = betType == (int)BetTypes.Handicap || betType == (int)BetTypes._1stHandicap;
+        bool isHDPOr1stHDP = betType == (int)BetTypes.Handicap || betType == (int)BetTypes._1st_Handicap;
         int indexCount = isHDPOr1stHDP ? 11 : 16;
         int endIndex = isHDPOr1stHDP ? currentScore + 5 : 15;
         int selectedIndex = currentScore;

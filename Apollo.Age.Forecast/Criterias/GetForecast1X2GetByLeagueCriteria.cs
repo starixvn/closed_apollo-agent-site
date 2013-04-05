@@ -7,8 +7,13 @@
 //   <change who="Ricky.Nguyen" date="2013.4.2">Created</change>
 // </history>
 
+
 namespace Apollo.Age.Forecast.Criterias
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -16,6 +21,7 @@ namespace Apollo.Age.Forecast.Criterias
     /// </summary>
     public class GetForecast1X2GetByLeagueCriteria : CriteriaBase
     {
+        
         public int AgentId { get; set; }
 
         public int LeagueID { get; set; }

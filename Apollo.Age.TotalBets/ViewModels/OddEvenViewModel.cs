@@ -8,8 +8,13 @@
 //   <change who="Ricky.Nguyen" date="2013.4.3">Update Mapping SP Property</change>
 // </history>
 
+
 namespace Apollo.Age.TotalBets.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using Apollo.Age.Services;
 
     /// <summary>
@@ -18,57 +23,31 @@ namespace Apollo.Age.TotalBets.ViewModels
     public class OddEvenViewModel
     {
         public string ShowTime { get; set; }
-
         public int LeagueId { get; set; }
-
         public string MatchCode { get; set; }
-
         public bool LiveIndicator { get; set; }
-
         public short LiveHomeScore { get; set; }
-
         public short LiveAwayScore { get; set; }
-
         public int MatchId { get; set; }
-
         public int HomeId { get; set; }
-
         public int AwayId { get; set; }
-
         public decimal HomeOddsOddEven { get; set; }
-
         public decimal AwayOddsOddEven { get; set; }
-
         public decimal HomeOddsHalfTimeOddEven { get; set; }
-
         public decimal AwayOddsHalfTimeOddEven { get; set; }
-
         public decimal Odds1 { get; set; }
-
         public decimal OddsX { get; set; }
-
         public decimal Odds2 { get; set; }
-
         public decimal Odds1HalfTime { get; set; }
-
         public decimal OddsXHalfTime { get; set; }
-
         public decimal Odds2HalfTime { get; set; }
-
         public decimal HomeOddsDrawNoDraw { get; set; }
-
         public decimal AwayOddsDrawNoDraw { get; set; }
-
         public int BetCountOddEven { get; set; }
-
         public int BetCountHalfTimeOddEven { get; set; }
-
         public int BetCount1X2 { get; set; }
-
         public int BetCount1X2HalfTime { get; set; }
-
         public int BetCountDrawNoDraw { get; set; }
-
         public bool IsNeutral { get; set; }
 
         public string HomeTeam
@@ -83,7 +62,7 @@ namespace Apollo.Age.TotalBets.ViewModels
         {
             get
             {
-                return CacheRef.GetTeamName(this.AwayId);
+                return  CacheRef.GetTeamName(this.AwayId);
             }
         }
 
@@ -95,12 +74,10 @@ namespace Apollo.Age.TotalBets.ViewModels
             }
         }
 
-        public decimal OddEvenTotal
-        {
-            get
-            {
-                return this.HomeOddsOddEven - this.AwayOddsOddEven;
-            }
+        public decimal OddEvenTotal { 
+            get {
+                    return this.HomeOddsOddEven - this.AwayOddsOddEven;
+            } 
         }
 
         public decimal OneXTwoTotal

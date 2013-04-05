@@ -7,14 +7,17 @@
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
 // </history>
 
+
 namespace Apollo.Age.Forecast.Controllers
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Apollo.Age.Web;
     using System.Web.Mvc;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Forecast.ViewModels;
-    using Apollo.Age.Web;
-    using Apollo.Age.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -23,8 +26,7 @@ namespace Apollo.Age.Forecast.Controllers
     {
         private readonly ForecastService _forecastService;
 
-        public ForecastController()
-            : this(null)
+        public ForecastController() : this(null)
         {
         }
 
@@ -37,7 +39,7 @@ namespace Apollo.Age.Forecast.Controllers
 
         public ViewResult FC1X2()
         {
-            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague((int)BetTypes.FT_1X2, agentId: base.AgentId);
+            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType: 5,agentId: base.AgentId);
             ViewBag.Leagues = leagues;
             return View();
         }
@@ -48,14 +50,14 @@ namespace Apollo.Age.Forecast.Controllers
             return View(forecasts);
         }
 
-        #endregion FC1X2
+        #endregion
 
         #region Handicap, Over/Under
 
         public ViewResult FCHandicapOverUnder()
         {
             // 1: for Hdp/OU/Live
-            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType: (int)BetTypes.Handicap, agentId: base.AgentId);
+            IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType: 1, agentId: base.AgentId);
             ViewBag.Leagues = leagues;
             return View();
         }
@@ -66,18 +68,19 @@ namespace Apollo.Age.Forecast.Controllers
             return View(forecasts);
         }
 
-        #endregion Handicap, Over/Under
+        #endregion
 
-        public ViewResult ForecastByMatchContent(int matchId, int betType = (int)BetTypes.Handicap, int currentScore = 0)
+        public ViewResult ForecastByMatchContent(int matchId, int betType = 1, int currentScore = 0)
         {
             ViewBag.TopOddsByMatch = _forecastService.GetTopOddsByMatch(matchId, betType);
             ViewBag.BetType = betType;
             ViewBag.MatchId = matchId;
             ViewBag.CurrentScore = currentScore;
             return View(_forecastService.GetForecastMatcheValue(base.AgentId, matchId, betType, currentScore));
+
         }
 
-        public ViewResult ForecastByMatch(int matchId, int betType = (int)BetTypes.Handicap, int currentScore = 0)
+        public ViewResult ForecastByMatch(int matchId, int betType = 1, int currentScore = 0)
         {
             ViewBag.BetType = betType;
             ViewBag.MatchId = matchId;

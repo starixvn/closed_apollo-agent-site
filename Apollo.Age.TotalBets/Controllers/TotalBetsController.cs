@@ -18,7 +18,6 @@ namespace Apollo.Age.TotalBets.Controllers
     using System.Web.Mvc;
     using Apollo.Age.TotalBets.ViewModels;
     using Apollo.Age.TotalBets.Criterias;
-    using Apollo.Age.Enumerations;
 
     public class TotalBetsController : BaseController
     {
@@ -40,37 +39,37 @@ namespace Apollo.Age.TotalBets.Controllers
 
         public ViewResult Handicap()
         {
-            var model = GetViewModel<HandicapViewModel>(betType: (int)BetTypes.Handicap);
+            var model = GetViewModel<HandicapViewModel>(betType: 1);
             return View(model);
         }
 
         public ViewResult MoneyLine()
         {
-            var model = GetViewModel<MoneyLineViewModel>(betType: (int)BetTypes.Money_Line);
+            var model = GetViewModel<MoneyLineViewModel>(betType: 20);
             return View(model);
         }
 
         public ViewResult TotalGoal()
         {
-            var model = GetViewModel<TotalGoalViewModel>(betType: (int)BetTypes.Total_Goal);
+            var model = GetViewModel<TotalGoalViewModel>(betType: 6);
             return View(model);
         }
 
         public ViewResult OddEven()
         {
-            var model = GetViewModel<OddEvenViewModel>(betType: (int)BetTypes.Odd_Even);
+            var model = GetViewModel<OddEvenViewModel>(betType: 2);
             return View(model);
         }
 
         public ViewResult HTFT()
         {
-            var model = GetViewModel<HTFTViewModel>(betType: (int)BetTypes.HT_FT);
+            var model = GetViewModel<HTFTViewModel>(betType: 16);
             return View(model);
         }
 
         public ViewResult OutRight()
         {
-            var model = GetViewModel<OutRightViewModel>(betType: (int)BetTypes.Outright);
+            var model = GetViewModel<OutRightViewModel>(betType: 10);
             return View(model);
         }
 
@@ -82,13 +81,13 @@ namespace Apollo.Age.TotalBets.Controllers
 
         public ViewResult HomeNoBet()
         {
-            var model = GetViewModel<HomeNoBetViewModel>(betType: (int)BetTypes.Draw_No_Bet);
+            var model = GetViewModel<HomeNoBetViewModel>(betType: 25);
             return View(model);
         }
 
         public ViewResult FirstGoal()
         {
-            var model = GetViewModel<FirstGoalViewModel>(betType: (int)BetTypes.First_Goal_Last_Goal);
+            var model = GetViewModel<FirstGoalViewModel>(betType: 14);
             return View(model);
         }
     }

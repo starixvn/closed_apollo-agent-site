@@ -10,8 +10,8 @@
 
 namespace Apollo.Age.TotalBets.ViewModels
 {
-    using Apollo.Age.Services;
 
+    using Apollo.Age.Services;
     public class TotalGoalViewModel
     {
         public int MatchId { get; set; }
@@ -24,17 +24,14 @@ namespace Apollo.Age.TotalBets.ViewModels
         /// BetTeam in 0-1
         /// </summary>
         public decimal Total01 { get; set; }
-
         /// <summary>
         /// BetTeam in 2-3
         /// </summary>
         public decimal Total23 { get; set; }
-
         /// <summary>
         /// BetTeam in 4-6
         /// </summary>
         public decimal Total46 { get; set; }
-
         /// <summary>
         /// BetTeam in 7 - Over
         /// </summary>

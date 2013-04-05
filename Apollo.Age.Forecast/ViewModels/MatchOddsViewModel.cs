@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.4.4">Created</change>
-//   <change who="Ricky.Nguyen" date="2013.4.5">StyleCop</change>
 // </history>
 
 namespace Apollo.Age.Forecast.ViewModels

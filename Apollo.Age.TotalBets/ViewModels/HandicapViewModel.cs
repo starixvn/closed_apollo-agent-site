@@ -8,56 +8,44 @@
 //   <change who="Ricky.Nguyen" date="2013.4.3">Update Mapping SP Property</change>
 // </history>
 
+
 namespace Apollo.Age.TotalBets.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     using Apollo.Age.Services;
 
     public class HandicapViewModel
     {
         public int LeagueId { get; set; }
-
         public int MatchId { get; set; }
-
         public int HomeId { get; set; }
-
         public int AwayId { get; set; }
-
         public bool LiveIndicator { get; set; }
-
         public short LiveHomeScore { get; set; }
-
         public short LiveAwayScore { get; set; }
-
         public bool IsNeutral { get; set; }
-
         public string ShowTime { get; set; }
-
         public string MatchCode { get; set; }
-
         public int BetCount_Hdp { get; set; }
 
         public decimal HomeOddsHandicap { get; set; }
-
         public decimal AwayOddsHandicap { get; set; }
-
         public int BetCountHandicap { get; set; }
 
         public decimal HomeOddsHalfTimeHandicap { get; set; }
-
         public decimal AwayOddsHalfTimeHandicap { get; set; }
-
         public int BetCountHalfTimeHandicap { get; set; }
 
         public decimal HomeOddsOverUnder { get; set; }
-
         public decimal AwayOddsOverUnder { get; set; }
-
         public int BetCountOverUnder { get; set; }
 
         public decimal HomeOddHalfTimeOverUnder { get; set; }
-
         public decimal AwayOddHalfTimeOverUnder { get; set; }
-
         public int BetCountHalfTimeOverUnder { get; set; }
 
         public string HomeTeam

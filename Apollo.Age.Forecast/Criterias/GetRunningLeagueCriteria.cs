@@ -7,8 +7,13 @@
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
 // </history>
 
+
 namespace Apollo.Age.Forecast.Criterias
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

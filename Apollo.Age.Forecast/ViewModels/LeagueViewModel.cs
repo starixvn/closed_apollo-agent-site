@@ -5,11 +5,15 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
-//   <change who="Ricky.Nguyen" date="2013.4.5">StyleCop</change>
 // </history>
+
 
 namespace Apollo.Age.Forecast.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using Apollo.Age.Services;
 
     /// <summary>
@@ -18,9 +22,7 @@ namespace Apollo.Age.Forecast.ViewModels
     public class LeagueViewModel
     {
         public int LeagueId { get; set; }
-
         public byte SportType { get; set; }
-
         public string LeagueName
         {
             get

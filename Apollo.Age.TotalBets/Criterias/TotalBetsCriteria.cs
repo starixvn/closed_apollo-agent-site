@@ -15,7 +15,6 @@ namespace Apollo.Age.TotalBets.Criterias
     using System.Text;
 
     using Fanex.NAP.Framework.Data;
-    using Apollo.Age.Enumerations;
 
 
     public class TotalBetsCriteria : CriteriaBase
@@ -26,23 +25,23 @@ namespace Apollo.Age.TotalBets.Criterias
         {
             switch (BetType)
             {
-                case (int)BetTypes.Handicap: //Handicap
+                case 1: //Handicap
                     return "Age_TotalBets_1_3_7_8";
-                case (int)BetTypes.Total_Goal: //Total Goal
+                case 6: //Total Goal
                     return "Age_TotalBets_6";
-                case (int)BetTypes.Money_Line: // Money Line
+                case 20: // Money Line
                     return "Age_TotalBets_20_21";
-                case (int)BetTypes.Odd_Even: // Odd/Even
+                case 2: // Odd/Even
                     return "Age_TotalBets_2_5_12_15_123";
-                case (int)BetTypes.HT_FT: // HTFT
+                case 16: // HTFT
                     return "Age_TotalBets_16";
                 case 161: // Number Game
                     return "Age_TotalBets_161";
-                case (int)BetTypes.Draw_No_Bet: // Home/Draw/Away/No Bet
+                case 25: // Home/Draw/Away/No Bet
                     return "Age_TotalBets_25_121_122";
-                case (int)BetTypes.First_Goal_Last_Goal: // First Goal/Last Goal
+                case 14: // First Goal/Last Goal
                     return "Age_TotalBets_14";
-                case (int)BetTypes.Outright: // Out Right
+                case 10: // Out Right
                     return "Age_TotalBets_10";
             }
 
