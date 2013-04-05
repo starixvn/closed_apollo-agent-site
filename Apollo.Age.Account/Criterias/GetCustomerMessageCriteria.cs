@@ -1,0 +1,44 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="GetCustomerMessageCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Anders.Le" date="2013.4.5">Created</change>
+// </history>
+
+
+namespace Apollo.Age.Account.Criterias
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Fanex.NAP.Framework.Data;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class GetCustomerMessageCriteria : CriteriaBase
+    {
+        public override string GetSettingKey()
+        {
+            return "Age_CustomerSelMessages";
+        }
+
+        [SpParam(SqlParamName = "targetID")]
+        public int CustomerId { get; set; }
+
+        [SpParam(SqlParamName = "targetID2")]
+        public string SiteIds { get; set; }
+
+        [SpParam(SqlParamName = "lastPostTime")]
+        public DateTime LastPostTime { get; set; }
+
+        [SpParam(SqlParamName = "totalMessage")]
+        public int TotalMessage { get; set; }
+
+        [SpParam(SqlParamName = "IsTest")]
+        public bool IsTest { get; set; }
+    }
+}
