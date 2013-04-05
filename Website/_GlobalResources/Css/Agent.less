@@ -364,3 +364,168 @@ table {
 	height: 17px;
 	width: 17px;
 }
+
+/* Options for table */
+
+.tblRpt-option-1 {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	color: @grayDark;
+	margin: 0;
+
+	td, th {
+		height: 22px;
+		padding: 2px 4px;
+		white-space: nowrap;
+	}
+	
+	.report-title {
+		#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
+		.box-shadow(0 1px 0 0 #FFF inset);
+
+		td {
+			background: url(img/report-title.gif) no-repeat 5px center;
+			padding: 0 0 0 24px;
+			height: 35px;
+			text-align: left;
+		}
+	}
+
+	thead {
+		td, th {
+			background-color: #707070;
+			border-spacing: 0;
+			border: 1px solid #ccc;
+			border-width: 1px 1px 0 0;	
+			.box-shadow(0 1px 0 #555 inset);			
+			text-align: center;
+			font-weight: bold;
+			text-shadow: 0 1px 0 #333;
+			color: #fff;
+		}
+	}
+
+	tbody {
+		td {
+			border: 1px solid @borderColor;
+			border-width: 1px 1px 0 0;
+
+			.box-shadow(0 1px 0 #FFF inset);
+			text-shadow: 0 1px 0 #FFF;
+		}
+		tr {
+			/*background-color: @rowBackground;
+			&.alt { background-color: @rowAltBackground }*/
+			&.live { background-color: @rowLiveBackground }
+			&.league {
+				#gradient.vertical(#F7F7F7, #EEE);				
+				color: @grayDark;
+				font-weight: bold;
+				text-transform: uppercase;
+				td { padding: 4px 4px 4px 30px }
+			}
+			&:hover { background-color: @rowHoverBackground }
+
+			&.RptFooter:hover {
+				background: @rowTotalBackground;
+			}
+		}
+	}
+
+	.RptFooter {
+		//background: url(../images/bg_f01.jpg) repeat-x center top #783819;
+		background: @rowTotalBackground;
+		color: @white;
+		.bold;
+	}
+	.bl_time {
+		font-size: .9em;
+	}
+	.no_info {
+		.bold;
+		.text-center;
+	}
+}
+
+.tblRpt-option-2 {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	color: @grayDark;
+	margin: 0;
+
+	td, th {
+		height: 22px;
+		padding: 2px 4px;
+		white-space: nowrap;
+	}
+	
+	.report-title {
+		#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
+		.box-shadow(0 1px 0 0 #FFF inset);
+
+		td {
+			background: url(img/report-title.gif) no-repeat 5px center;
+			padding: 0 0 0 24px;
+			height: 35px;
+			text-align: left;
+		}
+	}
+
+	thead {
+		td, th {
+			background-color: #77AAE8;
+			border-spacing: 0;
+			border: 1px solid #B6CFDB;
+			border-width: 1px 1px 0 0;	
+			.box-shadow(0 1px 0 #689BD1 inset);			
+			text-align: center;
+			font-weight: bold;
+			text-shadow: 0 1px 0 #689BD1;
+			color: #fff;
+		}
+	}
+
+	tbody {
+		td {
+			border: 1px solid @borderColor;
+			border-width: 1px 1px 0 0;
+
+			.box-shadow(0 1px 0 #FFF inset);
+			text-shadow: 0 1px 0 #FFF;
+		}
+		tr {
+			/*background-color: @rowBackground;
+			&.alt { background-color: @rowAltBackground }*/
+			&.live { background-color: @rowLiveBackground }
+			&.league {
+				#gradient.vertical(#F7FAFF, #E8F0FF);
+				//background: #F7FAFF;				
+				color: @grayDark;
+				font-weight: bold;
+				text-transform: uppercase;
+				td { padding: 4px 4px 4px 30px }
+			}
+			&:hover { background-color: @rowHoverBackground }
+
+			&.RptFooter:hover {
+				background: @rowTotalBackground;
+			}
+		}
+	}
+
+	.RptFooter {
+		//background: url(../images/bg_f01.jpg) repeat-x center top #783819;
+		background: @rowTotalBackground;
+		color: @white;
+		.bold;
+	}
+	.bl_time {
+		font-size: .9em;
+	}
+	.no_info {
+		.bold;
+		.text-center;
+	}
+}
