@@ -5,58 +5,16 @@
     using System.Linq;
     using System.Text;
 
-    public class UserListViewModel
+    public class AgentListViewModel
     {
-        public int UserId { get; set; }
+        public int AgentId { get; set; }
 
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
-        public int UserLevel { get; set; }
+        public int AgentLevel { get; set; }
 
         public string Status { get; set; }
 
-        public string Group { get; set; }
-
-        public CommissionViewModel Commission { get; set; }
-
-        public SportTypeCommissionViewModel MemberCommission { get; set; }
-
-        public SportTypeCommissionViewModel AgentCommission { get; set; }
-
-        public Share SoccerShare { get; set; }
-    }
-
-    public class CommissionViewModel
-    {
-        public SportTypeCommissionViewModel SportTypeCommission { get; set; }
-
-        public GroupCommissionViewModel GroupCommission { get; set; }
-    }
-
-    public class GroupCommissionViewModel
-    {
-        public decimal GroupA { get; set; }
-
-        public decimal GroupB { get; set; }
-
-        public decimal GroupC { get; set; }
-
-        public decimal GroupD { get; set; }
-    }
-
-    public class SportTypeCommissionViewModel
-    {
-        public decimal Group { get; set; }
-
-        public decimal OneXTwo { get; set; }
-
-        public decimal Other { get; set; }
-
-        public decimal NumberGame { get; set; }
-    }
-
-    public class Share
-    {
         public decimal Handicap { get; set; }
 
         public decimal OverUnder { get; set; }
@@ -64,5 +22,58 @@
         public decimal HandicapLive { get; set; }
 
         public decimal OverUnderLive { get; set; }
+
+        public decimal GroupA { get; set; }
+
+        public decimal GroupB { get; set; }
+
+        public decimal GroupC { get; set; }
+
+        public decimal GroupD { get; set; }
+
+        public decimal OneXTwo { get; set; }
+
+        public decimal NumberGame { get; set; }
+
+        public decimal Other { get; set; }
+
+        public int NumberOfAgent { get; set; }
+
+        public int NumberOfMember { get; set; }
+    }
+
+    public class CustomerListViewModel
+    {
+        public int CustId { get; set; }
+
+        public string Username { get; set; }
+
+        public string Status { get; set; }
+
+        public decimal Handicap { get; set; }
+
+        public decimal OverUnder { get; set; }
+
+        public decimal HandicapLive { get; set; }
+
+        public decimal OverUnderLive { get; set; }
+
+        public string UserGroup { get; set; }
+
+        public decimal CustomerGroup { get; set; }
+
+        public decimal CustomerDiscountOneXTwo { get; set; }
+
+        public decimal CustomerDiscountOther { get; set; }
+
+        public decimal CustDiscountNumberGame { get; set; }
+
+        public decimal AgentGroup { get; set; }
+
+        public decimal AgentDiscountOneXTwo { get; set; }
+
+        public decimal AgentDiscountOther { get; set; }
+
+        public decimal AgentDiscountNumberGame { get; set; }
     }
 }

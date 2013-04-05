@@ -25,6 +25,7 @@ if (typeof jQuery != 'undefined') {
                 var siteRoot = parent.baseUrl;
 
                 if (!siteRoot) siteRoot = parent.parent.baseURL;
+                if (!siteRoot) siteRoot = parent.parent.parent.baseURL;
                 if (!siteRoot) siteRoot = "";
 
                 return siteRoot + url;                
