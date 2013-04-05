@@ -8,19 +8,22 @@
         ACCOUNT.dllIsMember = $("#ddlIsMember");
     },
 
-    getAutoCompleteUrl: function () {
-        alert('asf');
-
-        return APOLLO.resolveUrl("Account/GetSuggestValues" +
-            "?query=" + ACCOUNT.txtUsername.val() +
-            "&isMember=" + ACCOUNT.dllIsMember.val());
-    },
-
     initSearchClick: function () {
         ACCOUNT.ShowSectionTab("custsettings", 1);
 
         ACCOUNT.txtUsername.autocomplete({
-            source: ACCOUNT.getAutoCompleteUrl
+            source: function (request, response) {
+                var url = "Account/GetSuggestValues" +
+                    "?term=" + request.term +
+                    "&isMember=" + (ACCOUNT.dllIsMember.val() == 1);
+
+                $.ajax({
+                    url: APOLLO.resolveUrl(url),
+                    success: function (data) {
+                        return response(data);
+                    }
+                });
+            }
         });
 
         $(".search-button").bind('click', function () {
