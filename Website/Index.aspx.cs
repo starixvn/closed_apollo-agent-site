@@ -7,9 +7,7 @@ public partial class Index : System.Web.UI.Page
 {
     private const string DEFAULT_INDEX = "Message/Portal";
     protected string mainPage = null;
-    protected string baseURL = "";
-    //
-    //
+    //protected string baseURL = string.Empty;
 
     protected override void OnLoad(EventArgs e)
     {
@@ -17,9 +15,11 @@ public partial class Index : System.Web.UI.Page
         {
             mainPage = "_MemberInfo/ChangePassword/ChangePassword.aspx";
         }
+
         mainPage = DEFAULT_INDEX;
         string url = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + HttpContext.Current.Request.ApplicationPath;
-        baseURL = url.LastIndexOf("/", url.Length - 1, 1) != -1 ? url : url + "/";
+        //baseURL = url.LastIndexOf("/", url.Length - 1, 1) != -1 ? url : url + "/";
+        
         // Hot fix for Opera browser (IIS does sniffing user agent)
         Response.ContentType = "text/html";
     }

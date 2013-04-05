@@ -19,7 +19,11 @@ namespace Apollo.Age.Services.Interface
     {
         List<Agent> GetCustomerSearch(ICriteria criteria);
 
+        List<Agent> GetCustomerSearch(bool isMember, string userName, int agentId);
+
         Agent GetCustomerInfo(AccountInfoCriteria criteria);
+
+        Agent GetCustomerInfo(bool isMember, int custId, string userName, int agentId);
 
         List<Agent> GetAgentDownlinePath(ICriteria criteria);
 

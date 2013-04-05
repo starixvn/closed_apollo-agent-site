@@ -18,8 +18,10 @@ namespace Fanex.Age.UI.Reports
 			protected static string s4 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s5{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s6 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s7{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s8 = "\" type=\"text/javascript\"></script>";
+			protected static string s7{get{return AbsoluteUrl("_Components/DateRangeSelect/DateRangeSelect.js", TplSettings.Question);}}
+			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s9{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -34,6 +36,8 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
+					bd.Append(s9);
+					bd.Append(s10);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

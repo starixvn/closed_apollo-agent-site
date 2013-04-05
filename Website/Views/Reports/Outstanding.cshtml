@@ -65,96 +65,15 @@
             decimal shareAmountTotal = 0;
             decimal gameOutstandingTotal = 0;
             decimal gameShareAmountTotal = 0;
-            
-            if (UserSession.Current.AgentLevel != 0 || Model.CurrentAgentId != UserSession.Current.AgentId)
-            {
-                var agentOutStanding = Model.ListOutStanding.SingleOrDefault(x => x.IsAgent == 1);
-                var memberOutstandig = Model.ListOutStanding.SingleOrDefault(x => x.IsAgent == 0);
-                
-                outStandingTotal = 0;
-                shareAmountTotal = 0;
-                gameOutstandingTotal = 0;
-                gameShareAmountTotal = 0;
-                
-                if (agentOutStanding != null)
-                {
-                    outStandingTotal = agentOutStanding.Outstanding;
-                    shareAmountTotal = agentOutStanding.ShareAmount;
-                    gameOutstandingTotal = agentOutStanding.GameOutstanding;
-                    gameShareAmountTotal = agentOutStanding.GameShareAmount;
-            <tr>
-                <td>
-                    <a href="#" id="AgentOutstanding" agentid="@Model.CurrentAgentId" >@Resources.Lang.lblAgentOutstanding</a>
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(agentOutStanding.Outstanding, "en-US")
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(agentOutStanding.ShareAmount, "en-US")
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(agentOutStanding.GameOutstanding, "en-US")
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(agentOutStanding.GameShareAmount, "en-US")
-                </td>
-            </tr>
-                }
-                if (memberOutstandig != null)
-                {
-                    outStandingTotal += memberOutstandig.Outstanding;
-                    shareAmountTotal += memberOutstandig.ShareAmount;
-                    gameOutstandingTotal += memberOutstandig.GameOutstanding;
-                    gameShareAmountTotal += memberOutstandig.GameShareAmount;
-            <tr>
-                <td>
-                    <a href="#" id="MemberOutstanding" agentid="@Model.CurrentAgentId" >@Resources.Lang.lblMemberOutstanding</a>
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(memberOutstandig.Outstanding, "en-US")
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(memberOutstandig.ShareAmount, "en-US")
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(memberOutstandig.GameOutstanding, "en-US")
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(memberOutstandig.GameShareAmount, "en-US")
-                </td>
-            </tr>
-                }
-            <tr class="RptFooter">
-                <td>
-                    @Resources.Lang.total
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(outStandingTotal, "en-US")
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(shareAmountTotal, "en-US")
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(gameOutstandingTotal, "en-US")
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(gameShareAmountTotal, "en-US")
-                </td>
-            </tr>
-            }
-            else
-            {
-                outStandingTotal = 0;
-                shareAmountTotal = 0;
-                gameOutstandingTotal = 0;
-                gameShareAmountTotal = 0;
-                foreach (OutstandingViewModel item in Model.ListOutStanding)
-                {
-                    outStandingTotal += item.Outstanding;
-                    shareAmountTotal += item.ShareAmount;
-                    gameOutstandingTotal += item.GameOutstanding;
-                    gameShareAmountTotal += item.GameShareAmount;
 
+            foreach (OutstandingViewModel item in Model.ListOutStanding)
+            {
+                outStandingTotal += item.Outstanding;
+                shareAmountTotal += item.ShareAmount;
+                gameOutstandingTotal += item.GameOutstanding;
+                gameShareAmountTotal += item.GameShareAmount;
+                if (item.IsAgent == true)
+                {
             <tr>
                 <td>
                     <a href="#" onclick="REPORTS.viewAgent(@item.AgentId);">@item.UserName</a>
@@ -173,6 +92,27 @@
                 </td>
             </tr>
                 }
+                else
+                {
+            <tr>
+                <td>
+                    <a href="#" id="MemberOutstanding" agentid="@Model.CurrentAgentId" >@Resources.Lang.lblMemberOutstanding</a>
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(item.Outstanding, "en-US")
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(item.ShareAmount, "en-US")
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(item.GameOutstanding, "en-US")
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(item.GameShareAmount, "en-US")
+                </td>
+            </tr>
+                }
+            }
             <tr class="RptFooter">
                 <td>
                     @Resources.Lang.total
@@ -190,7 +130,6 @@
                     @Formater.FormatNumber20(gameShareAmountTotal, "en-US")
                 </td>
             </tr>
-            }
         }
         else
         {

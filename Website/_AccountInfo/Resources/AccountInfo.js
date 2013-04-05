@@ -21,6 +21,7 @@ function checkKeyPress(e, textboxCredit) {
             return false;
         }
         if (key == 13) {
+            alert("aa");
             var givencredit = replaceAll(document.getElementById(textboxCredit).value, ",", "");
             if (!isNumeric(givencredit)) {
                 alert(_page.invalidvalue);
