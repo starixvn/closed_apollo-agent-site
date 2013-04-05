@@ -6,10 +6,14 @@
     init: function () {
         ACCOUNT.txtUsername = $("#txtUsername");
         ACCOUNT.dllIsMember = $("#ddlIsMember");
+        ACCOUNT.ageDownLink = $("#agentDownlineLink");
+        ACCOUNT.ddlAgents = $("#ddl-agents");
+
+        
     },
 
     initSearchClick: function () {
-        ACCOUNT.ShowSectionTab("custsettings", 1);
+        ACCOUNT.showSectionTab("custsettings", 1);
 
         ACCOUNT.txtUsername.autocomplete({
             source: function (request, response) {
@@ -27,44 +31,76 @@
         });
 
         $(".ui-corner-all").bind('click', function () {
-            location.href = getAccountInfoUrl();
+            location.href = ACCOUNT.getAccountInfoUrl();
         });
 
-        $("#txtUsername").keypress(function (e) {
+        ACCOUNT.txtUsername.keypress(function (e) {
             if (e.keyCode == '13') {
-                location.href = getAccountInfoUrl();
+                location.href = ACCOUNT.getAccountInfoUrl();
             }
         });
 
         $(".search-button").bind('click', function () {
-            location.href = getAccountInfoUrl();
+            location.href = ACCOUNT.getAccountInfoUrl();
         });
 
         $(".show-section").bind('click', function () {
-            ACCOUNT.ShowSectionTab(this.parentNode.id, $(this).attr("agent-id"));
+            ACCOUNT.showSectionTab(this.parentNode.id, $(this).attr("agent-id"));
         });
 
-        $("#txtUsername").bind('click', function () {
+        ACCOUNT.txtUsername.bind('click', function () {
             if (document.getElementById('txtUsername').value == $("#enterUsernameValue").val()) {
                 document.getElementById('txtUsername').className = 'text_f';
                 document.getElementById('txtUsername').value = '';
             }
         });
-        $("#txtUsername").bind('keydown', function () {
+        ACCOUNT.txtUsername.bind('keydown', function () {
             if (document.getElementById('txtUsername').value == $("#enterUsernameValue").val()) {
                 document.getElementById('txtUsername').className = 'text_f';
                 document.getElementById('txtUsername').value = '';
             }
         });
-        $("#txtUsername").bind('blur', function () {
+        ACCOUNT.txtUsername.bind('blur', function () {
             if (document.getElementById('txtUsername').value == '') {
                 document.getElementById('txtUsername').className = 'text_f1';
                 document.getElementById('txtUsername').value = $("#enterUsernameValue").val();
             }
         });
+
+        ACCOUNT.ageDownLink.click(function (event) {
+            var $this = $(this),
+                agentID = $this.attr('aid'),
+                agentList = ACCOUNT.ddlAgents.find('.agent-list');
+
+            ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'agentId=' + agentID, function (result) {
+                var data = result.Agents;
+
+                agentList.html("<li class='root-agent'>" + data[0][1] + "</li>");
+
+                for (var i = 1; i < data.length; ++i) {
+                    agentList.append(
+                            "<li>" +
+                                "<a href='../_AccountInfo/AccountInfo.aspx" +
+                                    "?IsMember=0" +
+                                    "&CustId=" + data[i][0] +
+                                    "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a>" +
+                            "</li>"
+                        );
+                }
+            });
+
+            ACCOUNT.ddlAgents.fadeIn('fast');
+            event.stopPropagation();
+        });
+
+        $('body, html').on('click', function () {
+            if (ACCOUNT.ageDownLink.length > 0) {
+                ACCOUNT.ddlAgents.fadeOut('fast');
+            }
+        });
     },
     getAccountInfoUrl: function () {
-        return APOLLO.resolveUrl('Account/AccountInfo?userName=' 
+        return APOLLO.resolveUrl('Account/AccountInfo?userName='
         + ACCOUNT.txtUsername.val() + '&isMember=' + ACCOUNT.dllIsMember.val());
     },
     showSectionTab: function (tabId, agentId) {
@@ -92,11 +128,11 @@
                 $("#custsettings-content").hide();
                 $("#agentsTab-content").hide();
                 $("#membersTab-content").show();
-                ACCOUNT.BindMembersList(agentId);
+                ACCOUNT.bindMembersList(agentId);
                 break;
         }
     },
-    BindMembersList: function (agentId) {
+    bindMembersList: function (agentId) {
         var link = "../_AccountInfo/DownlineMemberList.aspx?custid=" + agentId;
         var iframe = document.createElement('iframe');
         iframe.frameBorder = 0;
