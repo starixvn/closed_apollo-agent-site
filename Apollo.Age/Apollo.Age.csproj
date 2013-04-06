@@ -108,7 +108,6 @@
     <Compile Include="Services\Interface\IMemberService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Services\Interface\IReportService.cs" />
-    <Compile Include="Web\RazorExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\Forecast\" />
