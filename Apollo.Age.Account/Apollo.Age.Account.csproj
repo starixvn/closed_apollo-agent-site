@@ -65,6 +65,7 @@
     <Compile Include="Repositories\Impl\CustomerListRepository.cs" />
     <Compile Include="Repositories\Interface\ICustomerListRepository.cs" />
     <Compile Include="Repositories\Interface\IAgentListRepository.cs" />
+    <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\UserListService.cs" />
     <Compile Include="ViewModels\AgentListViewModel.cs" />

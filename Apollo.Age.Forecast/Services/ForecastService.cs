@@ -43,7 +43,7 @@ namespace Apollo.Age.Forecast.Services
             Check.Argument.IsNotNegative(betType, "betType");
             Check.Argument.IsNotNegative(agentId, "agentId");
 
-            return GetReportData<LeagueViewModel>(
+            return GetData<LeagueViewModel>(
                     new GetRunningLeagueCriteria
                     {
                         AgentId = agentId,
@@ -57,7 +57,7 @@ namespace Apollo.Age.Forecast.Services
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(leagueId, "leagueId");
 
-            return GetReportData<Forecast1X2ViewModel>(
+            return GetData<Forecast1X2ViewModel>(
                     new GetForecast1X2GetByLeagueCriteria
                     {
                         AgentId = agentId,
@@ -71,7 +71,7 @@ namespace Apollo.Age.Forecast.Services
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(leagueId, "leagueId");
 
-            return GetReportData<ForecastHandicapOUViewModel>(
+            return GetData<ForecastHandicapOUViewModel>(
                     new GetForecastHandicapOverUnderCriteria
                     {
                         AgentId = agentId,
@@ -90,7 +90,7 @@ namespace Apollo.Age.Forecast.Services
             Check.Argument.IsNotNegative(matchId, "matchId");
             Check.Argument.IsNotNegative(betType, "betType");
 
-            IEnumerable<ForecastMatchViewModel> forecastMatches = GetReportData<ForecastMatchViewModel>(
+            IEnumerable<ForecastMatchViewModel> forecastMatches = GetData<ForecastMatchViewModel>(
                     new GetForecastByMatchCriteria
                     {
                         AgentId = agentId,
@@ -117,7 +117,7 @@ namespace Apollo.Age.Forecast.Services
             Check.Argument.IsNotNegative(matchId, "matchId");
             Check.Argument.IsNotNegative(betType, "betType");
 
-            return GetReportData<Forecast1X2ViewModel>(
+            return GetData<Forecast1X2ViewModel>(
                     new GetForecastByMatchCriteria
                     {
                         AgentId = agentId,
@@ -176,7 +176,7 @@ namespace Apollo.Age.Forecast.Services
 
         public ScoreMapBetTypeViewModel GetScoreMapBetType()
         {
-            IEnumerable<ScoreMapBetType> scoreMapBetTypes = GetReportData<ScoreMapBetType>(new GetScoreMapBetTypesCriteria());
+            IEnumerable<ScoreMapBetType> scoreMapBetTypes = GetData<ScoreMapBetType>(new GetScoreMapBetTypesCriteria());
             ScoreMapBetTypeViewModel scoreMapBetTypeViewModel = new ScoreMapBetTypeViewModel();
             foreach (ScoreMapBetType betType in scoreMapBetTypes)
             {
@@ -194,7 +194,7 @@ namespace Apollo.Age.Forecast.Services
 
         public IEnumerable<ScoreMapMatchViewModel> GetScoreMapMatches(int agentId, int leagueId)
         {
-            IEnumerable<ScoreMapMatchViewModel> scoreMapMatches = GetReportData<ScoreMapMatchViewModel>(
+            IEnumerable<ScoreMapMatchViewModel> scoreMapMatches = GetData<ScoreMapMatchViewModel>(
                     new GetScoreMatchesByLeague
                     {
                         AgentId = agentId,
@@ -289,7 +289,7 @@ namespace Apollo.Age.Forecast.Services
             Check.Argument.IsNotNegative(matchId, "matchId");
             Check.Argument.IsNotNegative(betType, "betType");
 
-            IEnumerable<MatchOddsViewModel> matchOddsViewModels = GetReportData<MatchOddsViewModel>(
+            IEnumerable<MatchOddsViewModel> matchOddsViewModels = GetData<MatchOddsViewModel>(
                     new GetTopOddsByMatchCriteria
                     {
                         BetType = betType,
