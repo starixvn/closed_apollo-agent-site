@@ -14,12 +14,12 @@
     { 
         <td class="r" style="width: 90px">
             <!--HandicapTotalValue-->
-            <a class="fcnum view-bet-list" match-id="@matchId" bet-type="@betType" betlist-type="BettypeMatch" href="javascript:void(0);">@RazorHelper.FormatNegativeNumber(totalOdds)</a>
+            <a class="fcnum view-bet-list" match-id="@matchId" bet-type="@betType" betlist-type="BettypeMatch" href="javascript:void(0);" title="@Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds)</a>
             <!--/HandicapTotalValue-->
         </td>
         <td class="fcbtn">
             <!--HandicapTotalButton-->
-            <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" class="btnInfo view-forecast" ></a>
+            <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" class="btnInfo view-forecast" title="@Resources.Lang.ViewForeCast"></a>
             <!--/HandicapTotalButton-->
         </td>
     }
@@ -91,8 +91,8 @@
     }            
 }
 @RazorHelper.RefreshCountDown("HDPOU", 15, 15)
-<table class="tblRpt">
-    <thead>
+<table class="tblRpt persist-area">
+    <thead class="persist-header">
         <tr>
             <td rowspan="2" style="width: 20px">
                 #
@@ -154,6 +154,7 @@
         $(function () {
             totalBets.InitViewForeCastHandicap();
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>    
 }

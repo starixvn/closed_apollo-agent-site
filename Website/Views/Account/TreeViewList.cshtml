@@ -2,22 +2,22 @@
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
 }
 <ul id="tab-menu">
-    <li class="tab-menu active">
-        <a><i class="icon-align-justify"></i>Menu</a>
+    <li class="tab-menu">
+        <a href="@Url.Action("Menu")" target="menu">
+            <i class="icon-align-justify"></i>Menu</a>
     </li>
     <li class="tab-acc">
         <a href="@Url.Action("AccountInfo")" target="menu">
             <i class="icon-user"></i>Account</a>
     </li>
-    <li class="tab-tree">
-        <a href="@Url.Action("TreeViewList")" target="menu">
+    <li class="tab-tree active">
+        <a>
             <i class="icon-align-left"></i>Agents</a>
     </li>
 </ul>
 
-<ul id="treeview_list" class="tree-sub">   
+<ul id="treeview_list" class="tree-sub" agent-id="@ViewBag.AgentId">   
 </ul>
-<input id="agentId" type="hidden" value="@ViewBag.AgentId"/>
 
 @section foot {
     <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.js"></script>
@@ -27,7 +27,7 @@
             $("#treeview_list").treeview({
                 url: "TreeNodeData",
                 link: "<a href='../_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'> {2} </a>",
-                custid: $("#agentId").val()
+                custid: $("#treeview_list").attr("agent-id")
             });
         });
     </script>

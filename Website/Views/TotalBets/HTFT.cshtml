@@ -5,44 +5,46 @@
 }
 @model IEnumerable<HTFTViewModel>
 @RazorHelper.RefreshCountDown("HTFT", 90, 60)
-<table class="tblRpt" cellpadding="0" cellspacing="1" border="0">
-    <thead class="RptHeader">
-        <td style="width: 20px;">
+<table class="tblRpt persist-area">
+    <thead class="persist-header">
+        <tr class="RptHeader">
+            <td style="width: 20px;">
             @Resources.Lang.no
-        </td>
-        <td style="width: 200px;">
-            @Resources.Lang.home
-        </td>
-        <td style="width: 200px;">
-            @Resources.Lang.away
-        </td>
-        <td style="width: 50px;">
-            @Resources.Lang.hh
-        </td>
-        <td style="width: 50px;">
-            @Resources.Lang.hd
-        </td>
-        <td style="width: 50px;">
-            @Resources.Lang.ha
-        </td>
-        <td style="width: 50px;">
-            @Resources.Lang.dh
-        </td>
-        <td style="width: 50px;">
-            @Resources.Lang.dd
-        </td>
-        <td style="width: 50px;">
-            @Resources.Lang.da
-        </td>
-        <td style="width: 50px;">
-            @Resources.Lang.ah
-        </td>
-        <td style="width: 50px;">
-            @Resources.Lang.ad
-        </td>
-        <td style="width: 50px;">
-            @Resources.Lang.aa
-        </td>
+            </td>
+            <td style="width: 200px;">
+                @Resources.Lang.home
+            </td>
+            <td style="width: 200px;">
+                @Resources.Lang.away
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.hh
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.hd
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.ha
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.dh
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.dd
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.da
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.ah
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.ad
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.aa
+            </td>
+        </tr>
     </thead>
     @{
         
@@ -67,7 +69,9 @@
                         @rowIndex
                     </td>
                     <td class="l">
-                        <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" href="javascript:void(0);">@item.HomeTeam</a>
+                        <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
+                            href="javascript:void(0);" title="@Resources.Lang.ViewBetList">@item.HomeTeam
+                        </a>
                     </td>
                     <td class="l">
                         @item.AwayTeam
@@ -114,6 +118,7 @@
     <script type="text/javascript">
         $(function () {
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>       
 }

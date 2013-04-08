@@ -13,6 +13,7 @@ using System.Web.SessionState;
 using Apollo.Age.Entities;
 using System.Collections;
 using Fanex.Common;
+using Apollo.Age.Account.Services;
 
 public class GetAgentPathList : TplHandler, IReadOnlySessionState
 {
@@ -66,7 +67,7 @@ public class GetAgentPathList : TplHandler, IReadOnlySessionState
 
     public override object InvokeData(Hashtable p)
     {
-        IAgentService service = new AgentService();
+        IAccountService service = new AccountService();
 
         AgentDownlinePathCriteria criteria = new AgentDownlinePathCriteria()
         {
@@ -74,7 +75,7 @@ public class GetAgentPathList : TplHandler, IReadOnlySessionState
             AgentId = this.agentId
         };
 
-        var lstAgents = service.GetAgentDownlinePath(criteria);
+        var lstAgents = service.GetAgentDownlinePath(CurrentUserSession.AgentId, this.agentId);
 
         return lstAgents;
     }

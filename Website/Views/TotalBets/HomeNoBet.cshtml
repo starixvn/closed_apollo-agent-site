@@ -45,7 +45,8 @@
         <td class="r">
             @if(item.BetCountHNB != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB)    
                 </a>
             }
@@ -54,7 +55,8 @@
         <td class="r">
             @if(item.BetCountDNB != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB)
                 </a>
             }
@@ -62,7 +64,8 @@
         <td class="r">
             @if(item.BetCountANB != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNumber(item.HomeOddsANB - item.AwayOddsANB)
                 </a>
             }
@@ -87,8 +90,8 @@
 }
 
 @RazorHelper.RefreshCountDown("HomeNoBet", 15, 0)
-<table class="tblRpt">
-    <thead>
+<table class="tblRpt persist-area">
+    <thead class="persist-header">
         <tr>
             <td rowspan="2" style="width: 20px;">
                 #
@@ -144,6 +147,7 @@
     <script type="text/javascript">
         $(function () {
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>    
 }

@@ -4,8 +4,8 @@
     ViewBag.Title = Resources.Lang.totalgoal;
 }
 @RazorHelper.RefreshCountDown("TotalGoal", 90, 60)
-<table class="tblRpt">
-    <thead>
+<table class="tblRpt persist-area">
+    <thead class="persist-header">
         <tr class="RptHeader">
             <td style="width: 20px;">
                 #
@@ -52,7 +52,8 @@
                     @count
                 </td>
                 <td style="width: 150px;">
-                    <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  href="javascript:void(0);" >
+                    <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
+                        href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                         @item.HomeTeam
                     </a>
                 </td>
@@ -88,6 +89,7 @@
     <script type="text/javascript">
         $(function () {
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>       
 }

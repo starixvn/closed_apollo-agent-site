@@ -17,6 +17,10 @@
 
 /* COMMON */
 
+iframe {
+	border: 0;
+}
+
 html {
 	margin: 0;
 	padding: 0;
@@ -129,6 +133,7 @@ table {
 	border-collapse: collapse;
 	color: @grayDark;
 	margin: 0;
+	width: 100%;
 
 	td, th {
 		height: 22px;
@@ -207,16 +212,15 @@ table {
 	#gradient.vertical(@grayLighter, lighten(@grayLighter,10%));
 	border: 1px solid @grayLight;
 	margin: 10px 0 0 0;
-	padding: 5px 5px 0;
+	padding: 5px;
 
 	input[type=text], select {
 		background-color: #f8f8f8;
 		border: 1px solid @grayLight;
 		border-radius: 2px;
-		box-shadow: 1px 1px 3px #bbb inset;
-		text-align: center;
+		box-shadow: 1px 1px 3px #bbb inset;		
 		width: 57px;
-		padding: 3px 20px 3px 3px;
+		padding: 3px;
 		line-height: 1.2em;
 		font-size: .95em;
 		cursor: default;
@@ -537,7 +541,7 @@ table {
 
 .tblRpt-option-3 {
 	background-color: #fff;
-	border: 1px solid #a7d7f9;
+	border: 1px solid #b7c7cf;
 	border-collapse: collapse;
 	color: @grayDark;
 	margin: 0;
@@ -563,21 +567,21 @@ table {
 
 	thead {
 		td, th {
-			background-color: #77AAE8;
+			background-color: #E6F1F6;
 			border-spacing: 0;
 			border: 1px solid #B6CFDB;
 			border-width: 1px 1px 0 0;	
-			.box-shadow(0 -1px 0 #4D8CCC inset);			
+			.box-shadow(0 1px  0 #fff inset);			
 			text-align: center;
 			font-weight: bold;
-			text-shadow: 0 -1px 0 #5F88B7;
-			color: #fff;
+			text-shadow: 0 1px 0 #FFF;
+			color: #4183C4;
 		}
 	}
 
 	tbody {
 		td {
-			border: 1px solid #a7d7f9;
+			border: 1px solid #b7c7cf;
 			border-width: 1px 1px 0 0;
 			.box-shadow(0 1px 0 #fff inset);
 			text-shadow: 0 1px 0 #FFF;
@@ -585,10 +589,15 @@ table {
 		tr {
 			/*background-color: @rowBackground;
 			&.alt { background-color: @rowAltBackground }*/
-			&.live {background-color: @rowLiveBackground;}
+			&.live {
+				background-color: @rowLiveBackground;
+				td {
+					box-shadow: 0 1px 0 #FFF2ED inset;
+				}
+			}
 			&.league {
-				#gradient.vertical(#E8F0FF, #F7FAFF);
-				//background: #F7FAFF;				
+				//#gradient.vertical(#F6F6F8, #F9F9F9);
+				background: #F8F8F8;				
 				color: @grayDark;
 				font-weight: bold;
 				text-transform: uppercase;

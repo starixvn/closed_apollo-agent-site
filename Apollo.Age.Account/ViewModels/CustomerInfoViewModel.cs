@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace Apollo.Age.Account.ViewModel
+namespace Apollo.Age.Account.ViewModels
 {
     public class CustomerInfoViewModel
     {

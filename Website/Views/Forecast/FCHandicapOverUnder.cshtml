@@ -4,7 +4,11 @@
     ViewBag.Title = Resources.Lang.lblForecast;
     IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
 }
-<div id="content_main" class="pull-left" style="width: 50%">
+@section css
+{
+    <link href="~/_Forecast/Resources/FC.less" rel="Stylesheet" type="text/css" />
+}
+<div id="content_main">
     @RazorHelper.RefreshCountDown("ForeCastHandicapOU", 15, 0)
     <div style="clear: both;">
     </div>

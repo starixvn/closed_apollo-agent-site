@@ -18,8 +18,8 @@
         }            
 }
 @RazorHelper.RefreshCountDown("OutRight", 90, 60)
-<table class="tblRpt" cellpadding="0" cellspacing="1" border="0" style="width: 600px">
-    <thead>
+<table class="tblRpt  persist-area">
+    <thead class="persist-header">
         <tr class="RptHeader">
             <td style="width: 5%;">
                 #
@@ -64,7 +64,9 @@
                     @rowIndex
                 </td>
                 <td class="l">
-                    <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" href="javascript:void(0);">@item.TeamName</a>
+                    <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" title="@Resources.Lang.ViewBetList">@item.TeamName
+                    </a>
                 </td>
                 <td class="fcnum">
                     @RazorHelper.FormatNumber(item.Balance, 2)
@@ -89,6 +91,7 @@
     <script type="text/javascript">
         $(function () {
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>       
 }
