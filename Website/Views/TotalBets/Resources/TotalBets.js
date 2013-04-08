@@ -94,12 +94,12 @@
             clonedHeaderRow = $(".persist-header", this);
             clonedHeaderRow
 	             .before(clonedHeaderRow.clone())
-	             .css("width", clonedHeaderRow.width())
+	             .css({ "width": clonedHeaderRow.width() })
 	             .addClass("floatingHeader")
 	             .removeClass("persist-header");
 
         });
-
+        
         $(window)
 	        .scroll(this.updateTableHeaders)
 	        .trigger("scroll");
@@ -109,7 +109,7 @@
     },
     updateTableHeaders: function () {
         if ($(".persist-area").val() != undefined) {
-            var widthspace = $(".persist-area").width() + 18;
+            var widthspace = $(".persist-area").width();
 
             //            var offsetIE = 0;
             //            if (APOLLO.browser.msie) {
