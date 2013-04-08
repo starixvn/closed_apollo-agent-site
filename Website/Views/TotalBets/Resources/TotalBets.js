@@ -99,7 +99,7 @@
 	             .removeClass("persist-header");
 
         });
-        
+
         $(window)
 	        .scroll(this.updateTableHeaders)
 	        .trigger("scroll");

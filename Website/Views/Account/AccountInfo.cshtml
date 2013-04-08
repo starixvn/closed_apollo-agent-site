@@ -191,30 +191,20 @@
                         }                    
                     </div>
             
-                    <table id="agentsTab-content" class="agent-tab">
-                        <tr>
-                            <td>
-                                @if(Model.HasAgentDownline)
-                                {
-                                    <iframe id='frmDownlineList' name='frmDownlineList'
-                                        src='~/Account/AgentTreeList/@Model.CustId'
-                                        style='width:98%;height: 100%'></iframe>
-                                }
-                                else
-                                {
-                                    <span class="no-data-agent">@Resources.Lang.noInfo</span>
-                                }
-                            </td>
-                        </tr>                
-                    </table>
+                    <div id="agentsTab-content">
+                    @if(Model.HasAgentDownline)
+                    {
+                        <iframe id='frmDownlineList' name='frmDownlineList'
+                            frameborder="0" src='~/Account/AgentTreeList/@Model.CustId'></iframe>
+                    }
+                    else
+                    {
+                        <span class="no-data-agent">@Resources.Lang.noInfo</span>
+                    }
+                    </div>
 
-                    <table id="membersTab-content" class="member-tab">
-                        <tr>
-                            <td>
-                                <div id="iframe-content"></div>
-                            </td>
-                        </tr>
-                    </table>
+                    <div id="membersTab-content">
+                    </div>
                    
                 </div>
             </div>
@@ -247,8 +237,8 @@
     else
     {
         <select id="ddlIsMember" name="isMember">
-            <option value="0" @(Model.IsMember ? string.Empty : "selected") >@Resources.Lang.lblAgent</option>
-            <option value="1" @(Model.IsMember ? "selected" : string.Empty) >@Resources.Lang.lblMember</option>
+            <option value="0" @(Model.IsMember ? string.Empty : "selected=selected") >@Resources.Lang.lblAgent</option>
+            <option value="1" @(Model.IsMember ? "selected=selected" : string.Empty) >@Resources.Lang.lblMember</option>
         </select>
         <input maxlength="50" id="txtUsername" type="text"
             value="@Model.Username" name="userName" />

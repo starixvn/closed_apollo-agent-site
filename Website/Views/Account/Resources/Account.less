@@ -2,14 +2,8 @@
 @lightBlue: #5C8DC9;
 
 html, body {
-	overflow-x: hidden;
-	overflow-y: auto;
 	padding: 0;
 	margin: 0;
-}
-
-body {
-	//line-height: 21px;
 }
 
 /* MENU */
@@ -368,6 +362,16 @@ body {
 					}
 				}
 			}
+
+			#agentsTab-content, #membersTab-content {
+				height: 100%;
+
+				iframe {
+					width: 203px;
+					height: 98%;
+					margin: 5px 0 0 5px;
+				}
+			}
 		}
 	}
 }
@@ -400,4 +404,19 @@ body {
 	background-color: lighten(@orange, 30%);
 	font-weight: bold;
 	color: darken(@orange, 20%);
+}
+
+/* TREE VIEW */
+.treeview {
+	a {
+		padding: 0 0 0 5px;
+		color: @lightBlue;
+	}
+}
+
+#members-list {
+	a {
+		color: @lightBlue;
+		&:hover { color: @orange }
+	}
 }

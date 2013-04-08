@@ -131,16 +131,13 @@
         }
     },
     bindMembersList: function (agentId) {
-        var link =  APOLLO.resolveUrl("_AccountInfo/DownlineMemberList.aspx?custid=" + agentId); 
-        var iframe = document.createElement('iframe');
+        var link = APOLLO.resolveUrl("_AccountInfo/DownlineMemberList.aspx?custid=" + agentId),
+            iframe = document.createElement('iframe');
+
         iframe.frameBorder = 0;
-        iframe.width = "100%";
-        iframe.height = "100%";
-        iframe.id = "randomid";
         iframe.setAttribute("src", link);
 
-        var contentId = $("#iframe-content");
-        contentId.html(iframe);
+        $("#membersTab-content").html(iframe);
     }
 };
 
