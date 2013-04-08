@@ -50,8 +50,9 @@ namespace Apollo.Age.Account.Controllers
             {
                 userName = HttpContext.Session["userName"] != null
                     ? HttpContext.Session["userName"].ToString() : string.Empty;
-                ismember = HttpContext.Session["isMember"] != null
-                    ? (HttpContext.Session["isMember"].ToString() == "1") : false;
+                isMember = HttpContext.Session["isMember"] != null
+                    ? short.Parse(HttpContext.Session["isMember"].ToString()) : short.Parse("0");
+
             }
 
             CustomerInfoViewModel customerInfo = null;
