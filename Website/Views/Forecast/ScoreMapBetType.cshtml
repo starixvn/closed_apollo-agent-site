@@ -1,10 +1,37 @@
 ﻿@using Apollo.Age.Forecast.ViewModels
+@using Apollo.Age.Forecast.Models
 @{
     int haftBetType = 7;
 }
-@helper RenderBetType()
+@helper RenderBetTypeList(List<ScoreMapBetType> betTypes, int haftBetType, bool isLive)
 {
+    int nextCloseIndex = 0;
+    for (int i = 0; i < betTypes.Count; i++)
+    {
+        
+        if (i % haftBetType == 0)
+        {
+            nextCloseIndex = i + haftBetType;
+            @:<tr>
+        }
+        
+        @RenderBetType(betTypes[i], isLive)
+        
+        if (i == nextCloseIndex)
+        {
+            @:</tr>
+        }
+    }
     
+}
+@helper RenderBetType(ScoreMapBetType betType, bool isLive)
+{
+    <td>
+        <input id="bt_@(betType.IsLive)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox">
+        <label for="bt_@(betType.IsLive)_@(betType.TypeId)">
+            @(betType.BetTypeName)
+        </label>
+    </td>
 }
 @model ScoreMapBetTypeViewModel
 <table class="tblRpt check-list">
@@ -18,12 +45,9 @@
         <td id="Td1">
             <table class="reference">
                 @{
-                    if(Model.LiveBetTypes.Any())
+                    if (Model.LiveBetTypes.Any())
                     {
-                        foreach (var betType in Model.LiveBetTypes)
-	                    {
-		                    
-	                    }
+                        @RenderBetTypeList(Model.LiveBetTypes, haftBetType, true)
                     }
                 }
             </table>
@@ -38,8 +62,12 @@
         </td>
         <td id="Td2">
             <table class="reference">
-                <tr>
-                    {DeadBall}</tr>
+                 @{
+                    if (Model.DeadBallBetTypes.Any())
+                    {
+                        @RenderBetTypeList(Model.DeadBallBetTypes, haftBetType, false)
+                    }
+                }
             </table>
         </td>
     </tr>

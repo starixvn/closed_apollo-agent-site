@@ -185,11 +185,12 @@ namespace Apollo.Age.Forecast.Services
             ScoreMapBetTypeViewModel scoreMapBetTypeViewModel = new ScoreMapBetTypeViewModel();
             foreach (ScoreMapBetType betType in scoreMapBetTypes)
             {
-                if (betType.IsLive == true)
+                if (betType.IsLive == 1)
                 {
                     scoreMapBetTypeViewModel.LiveBetTypes.Add(betType);
                 }
-                else
+
+                if (betType.IsDead == 1)
                 {
                     scoreMapBetTypeViewModel.DeadBallBetTypes.Add(betType);
                 }

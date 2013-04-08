@@ -18,8 +18,8 @@ namespace Apollo.Age.Forecast.Models
     public class ScoreMapBetType
     {
         public int TypeId { get; set; }
-        public bool IsLive { get; set; }
-        public bool IsDead { get; set; }
+        public int IsLive { get; set; }
+        public int IsDead { get; set; }
         public bool Id1st { get; set; }
         public string BetTypeName 
         {

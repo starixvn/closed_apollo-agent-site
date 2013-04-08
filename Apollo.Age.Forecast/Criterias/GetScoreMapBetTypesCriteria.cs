@@ -21,6 +21,10 @@ namespace Apollo.Age.Forecast.Criterias
     /// </summary>
     public class GetScoreMapBetTypesCriteria : CriteriaBase
     {
+        public override bool IsValid()
+        {
+            return true;
+        }
         public override string GetSettingKey()
         {
             return "Age_ScoreMap_SelBettype";
