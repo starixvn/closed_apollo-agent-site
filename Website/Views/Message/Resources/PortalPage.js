@@ -7,9 +7,9 @@ var count = 0;
 
 function displayBlocks(style) {
 
-    document.getElementById('balanceInfo').style.display = style;
-    document.getElementById('statistic').style.display = style;
-    document.getElementById('announcement').style.display = style;
+//    document.getElementById('balanceInfo').style.display = style;
+//    document.getElementById('statistic').style.display = style;
+//    document.getElementById('announcement').style.display = style;
 
     //    document.getElementById('balanceInfo').style.display = style;
     //    document.getElementById('statistic').style.display = style;
@@ -114,7 +114,7 @@ function loadAnnouncement(url, firstRun) {
         function (res) {
             count++;
             if (firstRun == true) {
-                document.getElementById('announcement').innerHTML = res.responseText;
+                $('#divAnnouncement').append(res.responseText);
             }
             else {
                 var divMore = document.getElementById('divMore');
@@ -415,4 +415,4 @@ function ShowMoreAnnouncements() {
 //Load all infos
 
 //RegisterStartUp("displayBlocks('none');loadBalanceInfo();loadStatistic();verifyOnlineList();loadAnnouncement('Announcement.aspx?' + _page.key, true);");
-RegisterStartUp("displayBlocks('block');verifyOnlineList();loadAnnouncement('Announcement.aspx?' + _page.key, true);");
+//RegisterStartUp("displayBlocks('block');verifyOnlineList();loadAnnouncement('../Message/Announcement', true);");

@@ -49,15 +49,53 @@ namespace Apollo.Age.Account.Controllers
             return View();
         }
 
+        #region Ajax request
+
         [HttpPost]
         public ActionResult SetReadPriMsg(int messageId)
         {
             if (Request.IsAjaxRequest())
             {
-                return Json(_messageService.UpdateReadMessage(messageId));
+                return Json(_messageService.UpdateReadMessage(this.CurrentSession.AgentId, messageId));
             }
 
             return Json(null);
         }
+
+        //[HttpPost]
+        public ActionResult GetMessage()
+        {
+            int siteId = 3300;
+            int messageType = 3;
+            //if (Request.IsAjaxRequest()) 
+            //{
+            var listPubMessage = _messageService.GetTopPublicMessage(messageType, siteId);
+
+            var listPriMessage = _messageService.GetTopPrivateMessage24(this.CurrentSession.UserId);
+
+            var countPriMessage = _messageService.CountUnreadPrivateMessage(this.CurrentSession.UserId, this.CurrentSession.Username);
+
+            //}
+
+            return Json(null);
+        }
+        #endregion
+
+        //private int RoleToSiteID(int siteId)
+        //{
+        //    if (this.CurrentSession. == (int)UserTypes.Super)
+        //    {
+        //        siteId = 3100;
+        //    }
+        //    else if (CurrentUserSession.RoleId == (int)UserTypes.Master)
+        //    {
+        //        siteId = 3200;
+        //    }
+        //    else if (CurrentUserSession.RoleId == (int)UserTypes.Agent)
+        //    {
+        //        siteId = 3300;
+        //    }
+        //    return siteId;
+        //}
     }
 }
