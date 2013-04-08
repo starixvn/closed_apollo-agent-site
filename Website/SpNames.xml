@@ -139,8 +139,6 @@
 
     <Function Name="Agent-Apollo-Customer Setting">
         <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="REPDB" Plain="0">
-            <Mapping DataField="ParentId" ObjectProperty="Id" />
-            <Mapping DataField="ParentName" ObjectProperty="Username" />
             <Mapping DataField="UserGroup" ObjectProperty="Group" />
         </Setting>
 

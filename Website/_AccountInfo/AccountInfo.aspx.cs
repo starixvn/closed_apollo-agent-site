@@ -18,6 +18,7 @@ namespace Sunplus.Agent.UI._AccountInfo
     using Fanex.Agent.UI._AccountInfo;
     using Fanex.Common;
     using Sunplus.Agent.UI._AccountInfo.AccountInfoBase;
+    using Apollo.Age.Account.Services;
 
     public partial class AccountInfo_Page : AccountInfoBase_Page
     {
@@ -120,18 +121,20 @@ namespace Sunplus.Agent.UI._AccountInfo
                 UserName = this.userNameRequest
             };
 
-            if (this.isMember)
-            {
-                IMemberService service = new MemberService();
-                member = service.GetCustomerInfo(criteria);
-                return member;
-            }
-            else
-            {
-                IAgentService service = new AgentService();
-                agent = service.GetCustomerInfo(criteria);
-                return agent;
-            }
+            IAccountService service = new AccountService();
+
+            //if (this.isMember)
+            //{
+            //    member = service.GetCustomerInfo(criteria);
+            //    return member;
+            //}
+            //else
+            //{
+            //    IAgentService service = new AgentService();
+            //    agent = service.GetCustomerInfo(criteria);
+            //    return agent;
+            //}
+            return null;
         }
 
         #endregion Override

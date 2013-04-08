@@ -11,12 +11,8 @@
 namespace Apollo.Age.Repositories.Impl
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Interface;
-    using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
@@ -37,51 +33,6 @@ namespace Apollo.Age.Repositories.Impl
                         "ParentId",
                         criteria.GetSpParams());
                 }
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public bool IsExistValueSearch(ICriteria criteria)
-        {
-            bool result = false;
-            try
-            {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    result = (bool)db.ExecuteScalar(criteria.GetSpParams());
-                }
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
-        }
-      
-        public IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
-
-            try
-            {
-                if (criteria.IsValid())
-                {
-                    using (var db = new ObjectDb(criteria.GetSettingKey()))
-                    {
-                        var param = criteria.GetSpParams();
-                        var list = db.Query<Member>(param);
-
-                        // get output parameter
-                        criteria.TotalPages = Convert.ToInt32(param["totalpages"]);
-                        return list;
-                    }
-                }
-
-                return new List<Member>();
             }
             catch
             {

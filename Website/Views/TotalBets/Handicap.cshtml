@@ -91,8 +91,8 @@
     }            
 }
 @RazorHelper.RefreshCountDown("HDPOU", 15, 15)
-<table class="tblRpt">
-    <thead>
+<table class="tblRpt persist-area">
+    <thead class="persist-header">
         <tr>
             <td rowspan="2" style="width: 20px">
                 #
@@ -154,6 +154,7 @@
         $(function () {
             totalBets.InitViewForeCastHandicap();
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>    
 }

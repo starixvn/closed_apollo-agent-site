@@ -9,39 +9,7 @@
 
 namespace Apollo.Age.Services.Interface
 {
-    using System.Collections.Generic;
-    using Apollo.Age.Criterias.Accounts;
-    
-    using Apollo.Age.Entities;
-    using Fanex.NAP.Framework.Data;
-
     public interface IAgentService
     {
-        List<Agent> GetCustomerSearch(ICriteria criteria);
-
-        List<Agent> GetCustomerSearch(bool isMember, string userName, int agentId);
-
-        Agent GetCustomerInfo(AccountInfoCriteria criteria);
-
-        Agent GetCustomerInfo(bool isMember, int custId, string userName, int agentId);
-
-        List<Agent> GetAgentDownlinePath(ICriteria criteria);
-
-        /// <summary>
-        ///  get all direct downline of a specified agent
-        /// </summary>
-        /// <param name="agentId"> valid agent id</param>
-        /// <returns></returns>
-        List<Agent> GetDirectDownline(int agentId);
-
-        /// <summary>
-        /// check whether agentid 
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <param name="agentId"></param>
-        /// <returns></returns>
-        bool IsDescendant(int parentId, int agentId);
-
-        IEnumerable<Agent> GetAgents(int id);
     }
 }

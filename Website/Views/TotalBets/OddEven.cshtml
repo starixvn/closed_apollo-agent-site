@@ -92,8 +92,8 @@
     </td>
 }
 @RazorHelper.RefreshCountDown("OddEven", 45, 15)
-<table class="tblRpt" style="width: 100%">
-    <thead>
+<table class="tblRpt persist-area">
+    <thead class="persist-header">
         <tr class="RptHeader">
             <td rowspan="2" style="width: 20px;">
                 #
@@ -206,6 +206,7 @@
         $(function () {
             totalBets.InitViewForecast1x2();
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>       
 }

@@ -9,18 +9,10 @@
 
 namespace Apollo.Age.Repositories.Interface
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Fanex.NAP.Framework.Data;
     using Apollo.Age.Entities;
-    using Apollo.Age.Criterias.Accounts;
+    using Fanex.NAP.Framework.Data;
 
     public interface IMemberRepository : IRepository<Member>
     {
-        IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria);
-
-        bool IsExistValueSearch(ICriteria criteria);
     }
 }

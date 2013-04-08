@@ -11,11 +11,8 @@
 namespace Apollo.Age.Repositories.Impl
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Interface;
-    using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
@@ -45,25 +42,7 @@ namespace Apollo.Age.Repositories.Impl
                 throw;
             }
         }
-
-        public bool IsExistValueSearch(ICriteria criteria)
-        {
-            bool result = false;
-            try
-            {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    result = (bool)db.ExecuteScalar(criteria.GetSpParams());
-                }
-            }
-            catch 
-            {
-                throw;
-            }
-
-            return result;
-        }
-
+        
         public ICommandResult Delete(Agent entity)
         {
             throw new NotImplementedException();
