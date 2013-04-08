@@ -11,6 +11,7 @@
 namespace Apollo.Age.Account.Controllers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -21,10 +22,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
-
-
-    using System.Linq;
-
+    using Sunplus.Agent.Model.Entities;
 
     public class AccountController : BaseController
     {
@@ -161,13 +159,11 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetSuggestValues(string term, bool isMember)
         {
-
             var listValue = isMember
                 ? _memberService.GetCustomerSearch(true, term, base.AgentId)
                     .Select(x => x.Username).ToList()
                 : _agentService.GetCustomerSearch(false, term, base.AgentId)
                     .Select(x => x.Username).ToList();
-
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }

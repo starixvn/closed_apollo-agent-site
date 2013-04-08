@@ -71,7 +71,6 @@
     <Compile Include="ViewModels\AnnouncementViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CustomerInfoViewModel.cs" />
-    <Compile Include="ViewModels\AgentListViewModel.cs" />
     <Compile Include="ViewModels\CustomerListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

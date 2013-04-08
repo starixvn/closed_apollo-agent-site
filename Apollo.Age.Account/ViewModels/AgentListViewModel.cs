@@ -1,18 +1,15 @@
-
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Apollo.Age.Account.ViewModels
+﻿namespace Apollo.Age.Account.ViewModels
 {
+﻿   using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
     public class AgentListViewModel
     {
         public int AgentId { get; set; }
 
         public string Username { get; set; }
-
 
         public Int16 AgentLevel { get; set; }
 
@@ -44,5 +41,4 @@ namespace Apollo.Age.Account.ViewModels
 
         public int NumberOfMember { get; set; }
     }
-
 }
