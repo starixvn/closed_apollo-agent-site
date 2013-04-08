@@ -14,6 +14,8 @@
 
         public int TotalPages { get; set; }
 
+        public int TotalItems { get; set; }
+
         public string UserName { get; set; }
 
         public int PageSize { get; set; }
@@ -21,6 +23,11 @@
         public override string GetSettingKey()
         {
             return "Age_Customer_GetByAgent";
+        }
+
+        public override bool IsValid()
+        {
+            return true;
         }
     }
 }
