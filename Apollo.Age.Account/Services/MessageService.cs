@@ -98,7 +98,7 @@ namespace Apollo.Age.Account.Services
             return false;
         }
 
-        public IEnumerable<MessageViewModel> GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false)
+        public MessageViewModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false)
         {
             char[] separator = new char[] { ',' };
             string[] arraySite = GetParentSitesID(siteId.ToString()).Split(separator);
@@ -118,22 +118,22 @@ namespace Apollo.Age.Account.Services
                 string key = messageType.ToString() + "_" + siteId;
 
                 if (_cache.Contains(key)
-                    && _cache.Get<IEnumerable<MessageViewModel>>(key) != null)
+                    && _cache.Get<MessageViewModel>(key) != null)
                 {
-                    return _cache.Get<IEnumerable<MessageViewModel>>(key);
+                    return _cache.Get<MessageViewModel>(key);
                 }
 
-                var list = this.GetData<MessageViewModel>(criteria);
+                var message = this.GetData<MessageViewModel>(criteria).FirstOrDefault();
 
-                _cache.Set<IEnumerable<MessageViewModel>>(key, list, 30);
+                _cache.Set<MessageViewModel>(key, message, 30);
 
-                return list;
+                return message;
             }
 
             return null;
         }
 
-        public IEnumerable<MessageViewModel> GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false)
+        public MessageViewModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false)
         {
             var criteria = new GetTopPriMessage24Criteria
             {
@@ -146,7 +146,7 @@ namespace Apollo.Age.Account.Services
             {
                 if (this.GetHasPrivateMessage24(userId, isTest))
                 {
-                    return this.GetData<MessageViewModel>(criteria);
+                    return this.GetData<MessageViewModel>(criteria).FirstOrDefault();
                 }
             }
 
