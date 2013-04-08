@@ -44,7 +44,6 @@ namespace Apollo.Age.Account.Controllers
         {
             bool ismember = false;
             int custid = -1;
-            string username = string.Empty;
 
             if (string.IsNullOrWhiteSpace(userName) && !custId.HasValue)
             {
@@ -63,9 +62,8 @@ namespace Apollo.Age.Account.Controllers
 
                 ismember = isMember == 1;
                 custid = custId.HasValue ? custId.Value : -1;
-                username = userName;
 
-                customerInfo = _accountService.GetCustomerInfo(ismember, custid, username, base.AgentId);
+                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, base.AgentId);
                 if (customerInfo == null)
                 {
                     customerInfo = new CustomerInfoViewModel()
@@ -73,7 +71,7 @@ namespace Apollo.Age.Account.Controllers
                         CurrentAgentId = base.AgentId,
                         CustId = -1,
                         IsMember = ismember,
-                        Username = username,
+                        Username = userName,
                     };
                 }
                 else
