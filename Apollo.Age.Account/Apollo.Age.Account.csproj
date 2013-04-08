@@ -56,17 +56,26 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Criterias\AccountInfoCriteria.cs" />
+    <Compile Include="Criterias\AgentDownlineCriteria.cs" />
+    <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentListCriteria.cs" />
+    <Compile Include="Criterias\CustomerExistCriteria.cs" />
     <Compile Include="Criterias\CustomerListCriteria.cs" />
+    <Compile Include="Criterias\CustomerSearchCriteria.cs" />
     <Compile Include="Criterias\GetCustomerMessageCriteria.cs" />
+    <Compile Include="Criterias\MemberDownlineCriteria.cs" />
     <Compile Include="Criterias\UpdateReadMessageCriteria.cs" />
+    <Compile Include="Repositories\Impl\AccountRepository.cs" />
     <Compile Include="Repositories\Impl\AgentListRepository.cs" />
     <Compile Include="Repositories\Impl\CustomerListRepository.cs" />
+    <Compile Include="Repositories\Interface\IAccountRepository.cs" />
     <Compile Include="Repositories\Interface\ICustomerListRepository.cs" />
     <Compile Include="Repositories\Interface\IAgentListRepository.cs" />
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\MessageService.cs" />
-    <Compile Include="Services\AccountService.cs" />
     <Compile Include="ViewModels\AgentListViewModel.cs" />
     <Compile Include="ViewModels\AnnouncementViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

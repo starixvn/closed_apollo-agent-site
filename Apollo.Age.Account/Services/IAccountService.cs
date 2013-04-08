@@ -9,13 +9,19 @@
 
 namespace Apollo.Age.Account.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Criterias.Accounts;
+    using Apollo.Age.Entities;
 
     public interface IAccountService
     {
+        CustomerInfoViewModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId);
 
+        List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria);
+
+        List<Agent> GetAgentDownlinePath(int parentId, int agentId);
+
+        List<Agent> GetDirectDownline(int agentId);
     }
 }

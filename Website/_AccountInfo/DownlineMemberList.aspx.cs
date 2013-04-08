@@ -18,6 +18,7 @@ using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
 using Fanex.Agent.UI._AccountInfo;
 using Fanex.Common;
+using Apollo.Age.Account.Services;
 
 public partial class _AccountInfo_DownlineMemberList : TplPage
 {
@@ -65,7 +66,7 @@ public partial class _AccountInfo_DownlineMemberList : TplPage
 
     public override object InvokeData(Hashtable p)
     {
-        IMemberService service = new MemberService();
+        IAccountService service = new AccountService();
 
         MemberDownlineCriteria criteria = new MemberDownlineCriteria()
         {
