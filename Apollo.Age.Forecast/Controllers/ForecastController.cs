@@ -96,6 +96,20 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         #region Score Map
+
+        public ViewResult ScoreMap(int leagueId, string matchIds, string liveBetTypes, string deadBallBetTypes)
+        {
+            if (!string.IsNullOrEmpty(matchIds))
+            {
+
+            }
+            else
+            {
+                ViewBag.Leagues = _forecastService.GetScoreMapLeagues(base.CurrentSession.AgentId);
+            }
+            return View();
+        }
+
         public ViewResult ScoreMapMatch(int leagueId)
         {
             return View(_forecastService.GetScoreMapMatches(base.AgentId, leagueId));
@@ -104,6 +118,11 @@ namespace Apollo.Age.Forecast.Controllers
         public ViewResult ScoreMapBetType()
         {
             return View(_forecastService.GetScoreMapBetType());
+        }
+
+        public ViewResult ScoreMapLeagues()
+        {
+            return View(_forecastService.GetScoreMapLeagues(base.CurrentSession.AgentId));
         }
 
         public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes)

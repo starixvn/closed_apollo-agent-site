@@ -129,6 +129,10 @@ namespace Apollo.Age.Forecast.Services
 
         public List<ScoreMapResultViewModel> GetScoreMapResults(int agentId, string matchIds, string liveBetTypes, string deadBallBetTypes)
         {
+            Check.Argument.IsNotNegative(agentId, "agentId");
+            Check.Argument.IsNotNull(matchIds, "matchIds");
+            Check.Argument.IsNotNull(liveBetTypes, "liveBetTypes");
+
             //// Get Plain Data From Database
             ScoreMapResult scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
             {
@@ -160,6 +164,7 @@ namespace Apollo.Age.Forecast.Services
                         //// If HomeIndex = 7 Col, then increate Away Row
                         if (homeIndex == scoreMapItem.ScoreMatrix.Length)
                         {
+                            homeIndex = 0;
                             awayIndex++;
                             //// If away row == 7 then break out
                             if (awayIndex == scoreMapItem.ScoreMatrix.Length)
@@ -202,6 +207,15 @@ namespace Apollo.Age.Forecast.Services
                     }
                 );
             return scoreMapMatches.OrderBy(match => match.MatchName);
+        }
+
+        public IEnumerable<LeagueViewModel> GetScoreMapLeagues(int agentId)
+        {
+            Check.Argument.IsNotNegative(agentId, "agentId");
+
+            return GetData<LeagueViewModel>(new GetScoreMapLeaguesCriteria { 
+                AgentId = agentId
+            });
         }
 
         private ForecastMatchWinLostViewModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchViewModel> forecastMatches, int betType, int currentScore)
