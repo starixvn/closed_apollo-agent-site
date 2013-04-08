@@ -62,7 +62,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criterias\Accounts\AccountInfoCriteria.cs" />
+    <Compile Include="Criterias\Accounts\AgentDownlineCriteria.cs" />
+    <Compile Include="Criterias\Accounts\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\Accounts\AgentGetStatusCriteria.cs" />
+    <Compile Include="Criterias\Accounts\CustomerExistCriteria.cs" />
+    <Compile Include="Criterias\Accounts\CustomerSearchCriteria.cs" />
+    <Compile Include="Criterias\Accounts\MemberDownlineCriteria.cs" />
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
     <Compile Include="Criterias\Reports\OutStandings\AgentOutStandingCriteria.cs" />
     <Compile Include="Criterias\Reports\OutStandings\MemberOutStandingCriteria.cs" />
