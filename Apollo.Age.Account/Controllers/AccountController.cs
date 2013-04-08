@@ -8,27 +8,37 @@
 //   <change who="Lewis.Le" date="2013.4.4">Added action: Menu</change>
 // </history>
 
-
 namespace Apollo.Age.Account.Controllers
 {
+    using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
+    using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModel;
+    using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
-    using System.Collections.Generic;
+    using Sunplus.Agent.Model.Entities;
 
     public class AccountController : BaseController
     {
         private readonly IAgentService _agentService;
         private readonly IMemberService _memberService;
+        private readonly AccountService _accountService;
+        private int _agentId;
+        private int _pageIndex;
+        private int _totalPages;
+        private string _username;
+        private int _pageSize;
 
         public AccountController()
         {
             _agentService = new AgentService();
             _memberService = new MemberService();
+            _accountService = new AccountService();
         }
 
         public ActionResult Menu()
@@ -121,7 +131,7 @@ namespace Apollo.Age.Account.Controllers
         public ActionResult SignOut()
         {
             Session.Abandon();
-            FormsAuthentication.SignOut(); 
+            FormsAuthentication.SignOut();
             return Redirect("~/_Authorization/SignIn.aspx");
         }
 
@@ -137,7 +147,7 @@ namespace Apollo.Age.Account.Controllers
             if (isMember == 1)
             {
                 var memberlist = _memberService.GetCustomerSearch(true, term, base.AgentId);
-                memberlist.ForEach(t=> listValue.Add(t.Username));
+                memberlist.ForEach(t => listValue.Add(t.Username));
             }
             else
             {
@@ -146,6 +156,54 @@ namespace Apollo.Age.Account.Controllers
             }
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult AgentList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
+        {
+            _agentId = agentId.HasValue ? agentId.Value : UserSession.Current.AgentId;
+            _pageIndex = pageIndex.HasValue ? pageIndex.Value : 1;
+            _totalPages = totalPages.HasValue ? totalPages.Value : 0;
+            _username = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
+            _pageSize = pageSize.HasValue ? pageSize.Value : 50;
+
+            AgentListCriteria criteria = new AgentListCriteria()
+            {
+                AgentId = _agentId,
+                PageIndex = _pageIndex,
+                TotalPages = _totalPages,
+                UserName = _username,
+                PageSize = _pageSize
+            };
+
+            IEnumerable<AgentListViewModel> models = _accountService.GetAgentList(ref criteria);
+
+            return Json(new
+            {
+                TotalPage = criteria.TotalPages,
+                ListData = models
+            });
+        }
+
+        [HttpPost]
+        public ActionResult CustomerList(int agentId, int pageIndex, int totalPages, string userName, int pageSize)
+        {
+            CustomerListCriteria criteria = new CustomerListCriteria()
+            {
+                AgentId = agentId,
+                PageIndex = pageIndex,
+                TotalPages = totalPages,
+                UserName = userName,
+                PageSize = pageSize
+            };
+
+            IEnumerable<CustomerListViewModel> models = _accountService.GetCustomerList(ref criteria);
+
+            return Json(new
+            {
+                TotalPage = criteria.TotalPages,
+                ListData = models
+            });
         }
 
         //public JsonResult ReCheckIn()

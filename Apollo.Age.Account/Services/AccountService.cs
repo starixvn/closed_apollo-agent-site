@@ -13,14 +13,14 @@
     using Fanex.Common.Helper;
     using Fanex.NAP.Framework.Data;
 
-    public class UserListService : QueryService
+    public class AccountService : QueryService
     {
         private readonly IAgentListRepository _agentListRepository;
         private readonly ICustomerListRepository _customerListRepository;
 
-        public UserListService() : this(null, null) { }
+        public AccountService() : this(null, null) { }
 
-        public UserListService(IAgentListRepository agentListRepository = null, ICustomerListRepository customerListRepository = null)
+        public AccountService(IAgentListRepository agentListRepository = null, ICustomerListRepository customerListRepository = null)
         {
             _agentListRepository = agentListRepository ?? new AgentListRepository();
             _customerListRepository = customerListRepository ?? new CustomerListRepository();
@@ -28,12 +28,12 @@
 
         public IEnumerable<AgentListViewModel> GetAgentList(ref AgentListCriteria criteria)
         {
-            return _agentListRepository.GetAgentList(ref criteria);
+            return _agentListRepository.GetData(ref criteria);
         }
 
         public IEnumerable<CustomerListViewModel> GetCustomerList(ref CustomerListCriteria criteria)
         {
-            return _customerListRepository.GetCustomerList(ref criteria);
+            return _customerListRepository.GetData(ref criteria);
         }
     }
 }

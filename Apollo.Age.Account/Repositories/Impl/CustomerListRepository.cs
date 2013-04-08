@@ -16,7 +16,7 @@
 
     public class CustomerListRepository : RepositoryBase<CustomerListViewModel>, ICustomerListRepository
     {
-        public IEnumerable<CustomerListViewModel> GetCustomerList(ref CustomerListCriteria criteria)
+        public IEnumerable<CustomerListViewModel> GetData(ref CustomerListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
