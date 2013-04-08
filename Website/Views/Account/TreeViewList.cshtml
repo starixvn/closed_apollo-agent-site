@@ -1,6 +1,12 @@
 ﻿@{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
 }
+
+@section head {
+    <link href="~/Views/Account/Resources/treeview.css" rel="stylesheet" type="text/css" />
+}
+
+
 <ul id="tab-menu">
     <li class="tab-menu">
         <a href="@Url.Action("Menu")" target="menu">
@@ -11,23 +17,26 @@
             <i class="icon-user"></i>Account</a>
     </li>
     <li class="tab-tree active">
-        <a>
-            <i class="icon-align-left"></i>Agents</a>
+        <a><i class="icon-align-left"></i>Agents</a>
     </li>
 </ul>
 
-<ul id="treeview_list" class="tree-sub" agent-id="@ViewBag.AgentId">   
-</ul>
+<div id="wrapper">
+    <ul id="agent-list" class="tree-sub" agent-id="@ViewBag.AgentId"></ul>
+</div>
 
 @section foot {
     <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.js"></script>
     <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.async.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#treeview_list").treeview({
+            var agentList = $("#agent-list"),
+                custId = agentList.attr("agent-id");
+
+            agentList.treeview({
                 url: "TreeNodeData",
-                link: "<a href='../_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'> {2} </a>",
-                custid: $("#treeview_list").attr("agent-id")
+                link: "<a href='@Url.Content("~/")_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'>{2}</a>",
+                custid: custId
             });
         });
     </script>
