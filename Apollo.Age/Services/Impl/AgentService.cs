@@ -9,15 +9,9 @@
 
 namespace Apollo.Age.Services.Impl
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Apollo.Age.Criterias.Accounts;
-    using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;
-    using Fanex.Common.Helper;
-    using Fanex.NAP.Framework.Data;
 
     public class AgentService : IAgentService
     {
@@ -26,105 +20,6 @@ namespace Apollo.Age.Services.Impl
         public AgentService(IAgentRepository agentRepository = null)
         {
             _repository = agentRepository ?? new AgentRepository();
-        }
-
-        public List<Agent> GetCustomerSearch(ICriteria criteria)
-        {
-            return _repository.Fetch(criteria).ToList();
-        }
-
-        public List<Agent> GetCustomerSearch(bool isMember, string userName, int agentId)
-        {
-            CustomerSearchCriteria criteria = new CustomerSearchCriteria() { 
-                AgentId = agentId,
-                IsMember = isMember,
-                UserName = userName
-            };
-
-            return _repository.Fetch(criteria).ToList();
-        }
-
-        public Agent GetCustomerInfo(bool isMember, int custId, string userName, int agentId)
-        {
-            CustomerExistCriteria criteriaExist = new CustomerExistCriteria()
-            {
-                CurrentAgentId = agentId,
-                IsMember = isMember,
-                CustId = custId,
-                UserName = userName
-            };
-
-            if (_repository.IsExistValueSearch(criteriaExist))
-            {
-                AccountInfoCriteria criteria = new AccountInfoCriteria()
-                {
-                    CurrentAgentId = agentId,
-                    IsMember = isMember,
-                    CustId = custId,
-                    UserName = userName
-                };
-                return _repository.Get(criteria);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Agent GetCustomerInfo(AccountInfoCriteria criteria)
-        {
-            CustomerExistCriteria criteriaExist = new CustomerExistCriteria
-            {
-                CurrentAgentId = criteria.CurrentAgentId,
-                CustId = criteria.CustId,
-                IsMember = criteria.IsMember,
-                UserName = criteria.UserName
-            };
-
-            if (_repository.IsExistValueSearch(criteriaExist))
-            {
-                return _repository.Get(criteria);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public List<Agent> GetAgentDownlinePath(ICriteria criteria)
-        {
-            return _repository.Fetch(criteria).ToList();
-        }
-
-        /// <summary>
-        ///  get all direct downline of a specified agent
-        /// </summary>
-        /// <param name="agentId"> valid agent id</param>
-        /// <returns></returns>
-        public List<Agent> GetDirectDownline(int agentId)
-        {
-            Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
-
-            return _repository.Fetch(new AgentDownlineCriteria
-            {
-                AgentId = agentId
-            }).ToList();
-        }
-
-        public bool IsDescendant(int parentId, int agentId)
-        {
-            //Check.Argument.IsNotNegativeOrZero(parentId, "parentId");
-            //Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
-
-            return true;
-        }
-
-        public IEnumerable<Agent> GetAgents(int id)
-        {
-            return _repository.Fetch(new AgentDownlineCriteria
-          {
-              AgentId = id
-          });
         }
     }
 }
