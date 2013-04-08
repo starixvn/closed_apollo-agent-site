@@ -16,17 +16,27 @@ var scoreMap = {
         $("#dSelMatch").click(function () {
             var url = scoreMap.BaseLink + 'ScoreMapMatch?leagueId=' + $('#ddlLeague').val();
             $.get(url, function (contentView) {
-                $("#content_main").append(contentView);
+                $("#BoxMatchWL").replaceWith(contentView);
                 var $matchItems = $(".match-item");
                 var $checkAll = $("#chLCheckAll");
                 scoreMap.RegisterCheckAll("#chLCheckAll", ".match-item");
+                $("#closeBoxMatch").click(function () {
+                    $("#BoxMatchWL").hide();
+                });
                 $("#dSubmitInMatch").click(function () {
                     var matchIds = scoreMap.GetIdFromSelectedCheckBox($matchItems.filter(":checked"));
+                    if (matchIds == "") {
+                        $('#msgMatchErr').text("Please choose a Match!");
+                        $('#tblMsgMatch').show();
+                        return;
+                    }
+                    $('#tblMsgMatch').hide();
                     $("#match-ids").val(matchIds);
                     $("#BoxMatchWL").hide();
                     //bet-type-container
                     var url = scoreMap.BaseLink + 'ScoreMapBetType';
                     $.get(url, function (contentView) {
+                        $("#tblLiveDead").show();
                         $("#bet-type-container").html(contentView);
                         //bet-type-live
                         scoreMap.RegisterCheckAll("#chkAllL", ".bet-type-live");
@@ -35,15 +45,57 @@ var scoreMap = {
                 });
             });
         });
-
+        
         $("#dSubmit").click(function () {
+            var betTypesLive = scoreMap.GetIdFromSelectedCheckBox($('.bet-type-live:checked'));
+            var betTypesDead = scoreMap.GetIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
+            if (betTypesLive == "" && betTypesDead == "") {
+                ageMsg.Show("Please choose a bet type", 0);
+                return;
+            }
             var url = scoreMap.BaseLink + 'ScoreMapResult?matchIds=' + $('#match-ids').val()
-            + '&liveBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-live:checked'))
-            + '&deadBallBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
+            + '&liveBetTypes=' + betTypesLive
+            + '&deadBallBetTypes=' + betTypesDead;
             //liveBetTypes
             //deadBallBetTypes
             $.get(url, function (contentView) {
+                ageMsg.Hide();
                 $("#mainContent").html(contentView);
+                // Events
+                scoreMap.RegisterEventsForResultMatch($("#content_main"));
+            });
+        });
+    },
+    RegisterEventsForResultMatch: function (resultContainer) {
+        resultContainer.find(".button_mid").click(function () {
+            var $this = $(this);
+            var spanExpand = $this.find(".span-expand");
+            if (spanExpand.hasClass("lnkGroup")) {
+                spanExpand.removeClass("lnkGroup").addClass("lnkGroupClick");
+            }
+            else {
+                spanExpand.removeClass("lnkGroupClick").addClass("lnkGroup");
+            }
+            $this.parent().find(".scoreMap").toggle();
+        });
+
+        resultContainer.find(".button_right").click(function () {
+            var $this = $(this);
+            var spanButton = $this.find(".refresh-button");
+            if (spanButton.hasClass("lnkRefresh")) {
+                spanButton.removeClass("lnkRefresh").addClass("lnkRefreshClick");
+            }
+            else {
+                spanButton.removeClass("lnkRefreshClick").addClass("lnkRefresh");
+            }
+            var url = scoreMap.BaseLink + 'ScoreMapResult?matchIds=' + $this.attr("match-id")
+                    + '&liveBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-live:checked'))
+                    + '&deadBallBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
+            var matchId = "#RefreshContent" + $this.attr("match-id");
+            //RefreshContent
+            $.get(url, function (contentView) {
+                $this.parent().replaceWith(contentView);
+                scoreMap.RegisterEventsForResultMatch($(matchId));
             });
         });
     },
