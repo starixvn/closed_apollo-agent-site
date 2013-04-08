@@ -3,41 +3,44 @@
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.lblForecast;
     IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
-    int matchId = ViewBag.MatchId != null ? (int) ViewBag.MatchId : 0;
-    int betType = ViewBag.BetType != null ? (int) ViewBag.BetType : 0;
+    int matchId = ViewBag.MatchId != null ? (int)ViewBag.MatchId : 0;
+    int betType = ViewBag.BetType != null ? (int)ViewBag.BetType : 0;
 }
-@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
-<div style="clear:both;"></div>
-@if (matchId == 0)
-{
-    <div id="box_header">
-        <span><b>@Resources.Lang.league</b></span>   
-        <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-        @{
+<div id="content_main" class="pull-left" style="width: 50%">
+    @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
+    <div style="clear: both;">
+    </div>
+    @if (matchId == 0)
+    {
+        <div id="box_header">
+            <span><b>@Resources.Lang.league</b></span>
+            <select id='ddlLeague' name='ddlLeague' style="width: 280px">
+                @{
         foreach (var league in leagues)
         {
-                <option value="@league.LeagueId">@league.LeagueName</option>
+                    <option value="@league.LeagueId">@league.LeagueName</option>
         }
-        }
-        </select>    
-    </div>
-}
-<!--/LimitLeagueList-->
-<table class="tblRpt">
-    <thead>
-        <tr class="RptHeader">
-            <td colspan="2">
-                @Resources.Lang.lblTeam
-            </td>
-            <td colspan="3">
-                @Resources.Lang.lbl1x2
-            </td>
-        </tr>
-    </thead>
-    <tbody id="forecast-body">
-        @*Load Ajax*@
-    </tbody>
-</table>
+                }
+            </select>
+        </div>
+    }
+    <!--/LimitLeagueList-->
+    <table class="tblRpt">
+        <thead>
+            <tr class="RptHeader">
+                <td colspan="2">
+                    @Resources.Lang.lblTeam
+                </td>
+                <td colspan="3">
+                    @Resources.Lang.lbl1x2
+                </td>
+            </tr>
+        </thead>
+        <tbody id="forecast-body">
+            @*Load Ajax*@
+        </tbody>
+    </table>
+</div>
 <!--/Content-->
 @section scripts
 {

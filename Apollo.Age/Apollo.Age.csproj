@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\AppSettings.cs" />
     <Compile Include="Criterias\Accounts\AccountInfoCriteria.cs" />
     <Compile Include="Criterias\Accounts\AgentDownlineCriteria.cs" />
     <Compile Include="Criterias\Accounts\AgentDownlinePathCriteria.cs" />
@@ -71,8 +70,13 @@
     <Compile Include="Criterias\Accounts\CustomerSearchCriteria.cs" />
     <Compile Include="Criterias\Accounts\MemberDownlineCriteria.cs" />
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
+    <Compile Include="Criterias\Reports\OutStandings\AgentOutStandingCriteria.cs" />
+    <Compile Include="Criterias\Reports\OutStandings\MemberOutStandingCriteria.cs" />
+    <Compile Include="Criterias\Reports\OutStandings\OutStandingCriteria.cs" />
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
     <Compile Include="DTO\Accounts\AgentStatus.cs" />
+    <Compile Include="DTO\Accounts\TreeViewNodeDTO.cs" />
+    <Compile Include="DTO\Reports\OutStandingReportDTO.cs" />
     <Compile Include="DTO\Reports\WinlossAgentDTO.cs" />
     <Compile Include="DTO\Reports\WinLossByBetTypeDTO.cs" />
     <Compile Include="Entities\Agent.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enumerations\BetTypes.cs" />
+    <Compile Include="Enumerations\CustomerStatus.cs" />
     <Compile Include="Enumerations\MessageTypes.cs" />
     <Compile Include="Enumerations\SportTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,8 +112,6 @@
     <Compile Include="Services\Interface\ICustomerService.cs" />
     <Compile Include="Services\Interface\IMemberService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
-    <Compile Include="Services\Interface\IReportService.cs" />
-    <Compile Include="Web\RazorExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\Forecast\" />

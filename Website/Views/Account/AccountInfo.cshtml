@@ -128,18 +128,21 @@
                         <span>@Resources.Lang.setting</span>
                     </a>
                 </li>
-             
-                <li id="agentsTab">
-                    <a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
-                        <span>@Resources.Lang.lblAgents</span>
-                    </a>
-                </li>
+                
+                @if(!Model.IsMember)
+                {
+                    <li id="agentsTab">
+                        <a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                            <span>@Resources.Lang.lblAgents</span>
+                        </a>
+                    </li>
 
-                <li id="membersTab">
-                    <a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
-                        <span>@Resources.Lang.lblMembers</span>
-                    </a>
-                </li>
+                    <li id="membersTab">
+                        <a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                            <span>@Resources.Lang.lblMembers</span>
+                        </a>
+                    </li>
+                }
             </ul>
             <div class="content">
                 <div id="custsettings-content">

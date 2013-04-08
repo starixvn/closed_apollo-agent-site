@@ -1,31 +1,27 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AppSettings.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="IForecastRepository.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Ricky.Nguyen" date="2013.3.29">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.4.5">Created</change>
 // </history>
 
 
-namespace Apollo.Age.Core
+namespace Apollo.Age.Forecast.Repositories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Configuration;
+    using Apollo.Age.Forecast.Models;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AppSettings
+    public interface IForecastRepository
     {
-        static AppSettings()
-        {
-            IsLocal = ConfigurationManager.AppSettings["IsLocal"] == "1";
-        }
-
-        public static bool IsLocal { get; private set; } 
+        ScoreMapResult GetScoreMapResult(ICriteria criteria);
     }
 }
