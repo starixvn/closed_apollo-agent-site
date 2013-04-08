@@ -103,16 +103,17 @@ namespace Sunplus.Agent.UI._AccountInfo
                 UserName = this.query
             };
 
-            if (criteria.IsMember)
-            {
-                IMemberService service = new MemberService();
-                return service.GetCustomerSearch(criteria);
-            }
-            else
-            {
-                IAgentService service = new AgentService();
-                return service.GetCustomerSearch(criteria);
-            }
+            //if (criteria.IsMember)
+            //{
+            //    IMemberService service = new MemberService();
+            //    return service.GetCustomerSearch(criteria);
+            //}
+            //else
+            //{
+            //    IAgentService service = new AgentService();
+            //    return service.GetCustomerSearch(criteria);
+            //}
+            return null;
         }
     }
 }

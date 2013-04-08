@@ -17,17 +17,12 @@ namespace Apollo.Age.Account.Controllers
     using System.Web.Security;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Services;
-    using Apollo.Age.Account.ViewModel;
     using Apollo.Age.Account.ViewModels;
-    using Apollo.Age.Services.Impl;
-    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
     using Sunplus.Agent.Model.Entities;
 
     public class AccountController : BaseController
     {
-        private readonly IAgentService _agentService;
-        private readonly IMemberService _memberService;
         private readonly AccountService _accountService;
         private int _agentId;
         private int _pageIndex;
@@ -37,8 +32,6 @@ namespace Apollo.Age.Account.Controllers
 
         public AccountController()
         {
-            _agentService = new AgentService();
-            _memberService = new MemberService();
             _accountService = new AccountService();
         }
 
@@ -51,17 +44,17 @@ namespace Apollo.Age.Account.Controllers
         {
             bool ismember = false;
             int custid = -1;
-            string username = string.Empty;
 
             if (string.IsNullOrWhiteSpace(userName) && !custId.HasValue)
             {
                 userName = HttpContext.Session["userName"] != null
                     ? HttpContext.Session["userName"].ToString() : string.Empty;
-                ismember = HttpContext.Session["isMember"] != null
-                    ? (HttpContext.Session["isMember"].ToString() == "1") : false;
+                isMember = HttpContext.Session["isMember"] != null
+                    ? short.Parse(HttpContext.Session["isMember"].ToString()) : short.Parse("0");
+
             }
 
-            CustomerInfoViewModel viewmodel = null;
+            CustomerInfoViewModel customerInfo = null;
             if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
             {
                 HttpContext.Session["userName"] = userName;
@@ -69,67 +62,25 @@ namespace Apollo.Age.Account.Controllers
 
                 ismember = isMember == 1;
                 custid = custId.HasValue ? custId.Value : -1;
-                username = userName;
 
-                if (ismember)
+                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, base.AgentId);
+                if (customerInfo == null)
                 {
-                    var memberInfo = _memberService.GetCustomerInfo(ismember, custid, username, base.AgentId);
-                    if (memberInfo != null)
+                    customerInfo = new CustomerInfoViewModel()
                     {
-                        viewmodel = new CustomerInfoViewModel()
-                        {
-                            CurrentAgentId = base.AgentId,
-                            IsMember = ismember,
-                            CustId = memberInfo.Id,
-                            Username = memberInfo.Username,
-                            ParentId = memberInfo.Agent.Id,
-                            ParentName = memberInfo.Agent.Username,
-                            Group = memberInfo.Group
-                        };
-                    }
-                    else
-                    {
-                        viewmodel = new CustomerInfoViewModel()
-                        {
-                            CurrentAgentId = base.AgentId,
-                            CustId = -1,
-                            IsMember = ismember,
-                            Username = username,
-                        };
-                    }
+                        CurrentAgentId = base.AgentId,
+                        CustId = -1,
+                        IsMember = ismember,
+                        Username = userName,
+                    };
                 }
                 else
                 {
-                    var agentInfo = _agentService.GetCustomerInfo(ismember, custid, username, base.AgentId);
-                    if (agentInfo != null)
-                    {
-                        viewmodel = new CustomerInfoViewModel()
-                        {
-                            CurrentAgentId = base.AgentId,
-                            IsMember = ismember,
-                            CustId = agentInfo.Id,
-                            Username = agentInfo.Username,
-                            ParentId = agentInfo.Parent.Id,
-                            ParentName = agentInfo.Parent.Username,
-                            HasAgentDownline = agentInfo.HasAgentDownline,
-                            HasMemberDownline = agentInfo.HasMemberDownline,
-                            Level = agentInfo.Level
-                        };
-                    }
-                    else
-                    {
-                        viewmodel = new CustomerInfoViewModel()
-                        {
-                            CurrentAgentId = base.AgentId,
-                            CustId = -1,
-                            IsMember = ismember,
-                            Username = username,
-                        };
-                    }
+                    customerInfo.CurrentAgentId = base.AgentId;
                 }
             }
 
-            return View(viewmodel);
+            return View(customerInfo);
         }
 
         public ViewResult AgentTreeList(int id)
@@ -153,17 +104,21 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult TreeNodeData(int id)
         {
-            var customerList = _agentService.GetDirectDownline(id);
+            var customerList = _accountService.GetDirectDownline(id);
             return Json(customerList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetSuggestValues(string term, bool isMember)
         {
-            var listValue = isMember
-                ? _memberService.GetCustomerSearch(true, term, base.AgentId)
-                    .Select(x => x.Username).ToList()
-                : _agentService.GetCustomerSearch(false, term, base.AgentId)
+            var listValue = _accountService.GetCustomerSearch(isMember, term, base.AgentId)
                     .Select(x => x.Username).ToList();
+
+            return Json(listValue, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAgentDownlinePath(int agentId)
+        {
+            var listValue = _accountService.GetAgentDownlinePath(base.AgentId, agentId).ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
