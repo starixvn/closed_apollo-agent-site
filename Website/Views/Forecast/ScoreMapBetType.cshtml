@@ -1,3 +1,46 @@
-﻿@{
+﻿@using Apollo.Age.Forecast.ViewModels
+@{
+    int haftBetType = 7;
+}
+@helper RenderBetType()
+{
     
 }
+@model ScoreMapBetTypeViewModel
+<table class="tblRpt check-list">
+    <tr>
+        <td>
+            <label class="bold" for="chkAllL">
+                <input type="checkbox" id="chkAllL" />
+                @Resources.Lang.lblLiveBall
+            </label>
+        </td>
+        <td id="Td1">
+            <table class="reference">
+                @{
+                    if(Model.LiveBetTypes.Any())
+                    {
+                        foreach (var betType in Model.LiveBetTypes)
+	                    {
+		                    
+	                    }
+                    }
+                }
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label class="bold" for="chkAllD">
+                <input type="checkbox" id="chkAllD" />
+                @Resources.Lang.lblDeadball
+            </label>
+        </td>
+        <td id="Td2">
+            <table class="reference">
+                <tr>
+                    {DeadBall}</tr>
+            </table>
+        </td>
+    </tr>
+</table>
