@@ -10,11 +10,11 @@
 namespace Apollo.Age.Services.Impl
 {
     using System;
-    using Apollo.Age.Criterias.Accounts;
-    using Apollo.Age.DTO.Accounts;
+    using Apollo.Age.Criterias.Accounts;    
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Fanex.Logging;
+    using Apollo.Age.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -44,7 +44,7 @@ namespace Apollo.Age.Services.Impl
                     AgentUserId = agentUserId
                 });
 
-                if (currentStatus == (int)AgentStatus.Closed)
+                if (currentStatus == (int)CustomerStatus.Closed)
                 {
                     return true;
                 }
@@ -73,7 +73,7 @@ namespace Apollo.Age.Services.Impl
                     AgentUserId = agentUserId
                 });
 
-                if (isMaster == true && currentStatus == (int)AgentStatus.Enable)
+                if (isMaster == true && currentStatus == (int)CustomerStatus.Enable)
                 {
                     return true;
                 }

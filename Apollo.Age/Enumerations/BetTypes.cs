@@ -16,7 +16,7 @@ namespace Apollo.Age.Enumerations
     using System.Text;
 
     /// <summary>
-    /// copied form Sunplus.Agent.Model.BL.Definitions
+    /// copy form Sunplus.Agent.Model.BL.Definitions
     /// </summary>
     public enum BetTypes : int
     {

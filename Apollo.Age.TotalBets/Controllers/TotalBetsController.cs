@@ -31,7 +31,7 @@ namespace Apollo.Age.TotalBets.Controllers
    
         protected IEnumerable<T> GetViewModel<T>(int betType)
         {
-            return _totalBetsService.GetReportData<T>(new TotalBetsCriteria
+            return _totalBetsService.GetData<T>(new TotalBetsCriteria
             {
                 AgentId = base.AgentId,
                 BetType = betType

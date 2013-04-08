@@ -11,15 +11,15 @@ function displayBlocks(style) {
     document.getElementById('statistic').style.display = style;
     document.getElementById('announcement').style.display = style;
 
-//    document.getElementById('balanceInfo').style.display = style;
-//    document.getElementById('statistic').style.display = style;
+    //    document.getElementById('balanceInfo').style.display = style;
+    //    document.getElementById('statistic').style.display = style;
 
-//    if (_page.RemoveOnlineList == false) {
-//        document.getElementById('onlineList').style.display = style;
-//    }
+    //    if (_page.RemoveOnlineList == false) {
+    //        document.getElementById('onlineList').style.display = style;
+    //    }
 
     //    document.getElementById('announcement').style.display = style;
-    
+
 }
 
 function loadBalanceInfo() {
@@ -42,6 +42,7 @@ function loadBalanceInfo() {
         true
     );
 }
+
 function loadStatistic() {
     jx.request(
         'Statistic.aspx?' + _page.key,
@@ -118,14 +119,10 @@ function loadAnnouncement(url, firstRun) {
             else {
                 var divMore = document.getElementById('divMore');
                 if (divMore != null) {
-                    var div = document.createElement('div');
-                    div.innerHTML = res.responseText;
-                    var elements = div.childNodes;
-                    var root = elements[0];
-                    while (root.childNodes.length > 0) {
-                        var divAccouncement = document.getElementById('divAnnouncement');
-                        divAccouncement.insertBefore(root.childNodes[0], divAccouncement.lastChild);
-                    }
+
+                    $('.divMoreRemove').remove();
+                    $('#divAnnouncement').append(res.responseText);
+
                 }
                 else {
                     document.getElementById('announcement').innerHTML = res.responseText;
@@ -207,7 +204,6 @@ function loadOnlineList_Paging(url) {
         true
     );
 }
-
 
 function toogleDiv(divTitle, divContent, imgId, style, div2Closed, div3Closed, imgId2, imgId3, div4Closed, imgId4) {
     if (document.getElementById("newmemH").style.display == "block")
@@ -344,25 +340,26 @@ function verifyOnlineList() {
 }
 
 function ToggleAnnouncementContent(elementId) {
-    var e = document.getElementById(elementId);
-    var icon = e.childNodes[0].childNodes[0];
-    var smallContent = e.childNodes[1].childNodes[0];
-    var fullContent = e.childNodes[1].childNodes[1];
-    if (fullContent.className == 'text_exposed_show') {
-        if (HasClassName(e, 'expanding')) {
-            RemoveClassName(e, 'expanding');
+    var e = $('#' + elementId);
+    var icon = e.find('.toogleIcon');
+    var smallContent = e.find('.small');
+    var fullContent = e.find('.full');
+    console.log(fullContent.attr('class'));
+    if (fullContent.hasClass('text_exposed_show')) {
+        if (e.hasClass('expanding')) {
+            e.removeClass('expanding');
         };
-        smallContent.className = 'text_exposed_show';
-        fullContent.className = 'text_exposed_hide';
+        smallContent.attr('class', 'text_exposed_show small');
+        fullContent.attr('class', 'text_exposed_hide full');
 
-        icon.style.backgroundPosition = '0px 0px';
+        icon.attr('style', 'background-position: 0px 0px;');
     }
     else {
-        AddClassName(e, 'expanding');
-        smallContent.className = 'text_exposed_hide';
-        fullContent.className = "text_exposed_show";
-        icon.style.backgroundPosition = '0px -9px';
-        var isRead = e.getAttribute('isRead');
+        e.addClass('expanding');
+        smallContent.attr('class', 'text_exposed_hide small');
+        fullContent.attr('class', 'text_exposed_show full');
+        icon.attr('style', 'background-position: 0px -9px;');
+        var isRead = e.attr('isRead');
         if (isRead == '0') {
             SetReadPriMsg(elementId);
         }
@@ -370,38 +367,48 @@ function ToggleAnnouncementContent(elementId) {
 }
 
 function SetReadPriMsg(messageId) {
-    var params = ajax.CreateParams();
-    function OnComplete(result) {
-        var errCode = result.errCode;
-        if (errCode == 0) {
-            var e = document.getElementById(messageId);
-            e.style.fontWeight = 'normal';
-            e.setAttribute('isRead', '1');
+
+    var url = "../Message/SetReadPriMsg";
+    url += '?messageId=' + messageId;
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'JSON',
+        success: function (result) {
+            var e = $('#' + messageId);
+            e.attr('style', 'font-weight : normal');
+            e.attr('isRead', '1');
+        },
+        error: function (xhr, status, err) {
+
         }
-    }
-    params += 'messageId=' + messageId;
-    ajax.PostJSON('SetReadPriMsg.ashx', params, OnComplete, true);
+    });
+
 }
+
 var moreIsLoading = false;
 
 function continueExecution() {
     //finish doing things after the pause
     var lastPostTime = getCookie("lastPostTime");
-    var url = location.href;
-    url += '?lastPostTime=' + lastPostTime + '&' + _page.key;
-    url = url.replace('PortalPage.aspx', 'Announcement.aspx');
+
+    var url = "../Message/Announcement";
+    url += '?lastPostTime=' + lastPostTime;
+
     loadAnnouncement(url, false);
-    document.getElementById('divMore').innerHTML = _page.more;
+
     moreIsLoading = false;
 }
-
 
 function ShowMoreAnnouncements() {
     if (!moreIsLoading) {
         moreIsLoading = true;
-        document.getElementById('divMore').innerHTML = "<img src='../PortalPage/Images/loading_2.gif' />";
-        //age.removeEvent(document.getElementById('divMore'), 'click', 'ShowMoreAnnouncements');
+        $('#divMore').attr('class', 'divMoreRemove');
+        document.getElementById('divMore').innerHTML = "<img src='../Views/Message/Images/loading_2.gif' id='imgLoading'/>";
+
         setTimeout(continueExecution, 1000);
+
     }
 }
 

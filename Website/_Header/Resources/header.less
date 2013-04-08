@@ -1,5 +1,6 @@
 ﻿@import "../../_GlobalResources/Css/variables.less";
 @import "../../_GlobalResources/Css/mixins.less";
+@import "../../_GlobalResources/Css/sprites.less";
 
 body {
     padding: 0;
@@ -11,13 +12,8 @@ td {
     padding-right: 2px;
 }
 
-#privateMsgLnk {
-    white-space: nowrap;
-    text-align: center;    
-}
-
 #news_main {
-    height: 53px;
+    height: 100%;
     width: auto;
     overflow: hidden;
     background: @headerBackground;	
@@ -47,16 +43,15 @@ td {
 	}
 
 	#text_news_out {
-		margin-top: 2px;
 		background: url(../../_GlobalResources/Images/line_news.gif) no-repeat right;
-		height: 23px;
+		height: 28px;
 
 		#text_news {
 			height: 28px;
 			margin-right: 26px;
 			float: inherit;
 			padding-right: 28px;
-			line-height: 20px;
+			line-height: 27px;
 			text-align: right;
 
 			.news-scroller {
@@ -78,7 +73,11 @@ td {
 	#button_top {
 		line-height: 18px;
 		padding-left: 5px;
-		margin-top: 2px;
+		margin: 0 19px 0 0;
+		position: relative;
+		cursor: pointer;
+		padding: 3px 0 0;
+		opacity: 0.8;
 
 		a {
 			&.b_top {
@@ -92,6 +91,15 @@ td {
 				&:hover {
 					background: #F2F2F2;
 				} 
+			}
+
+			&#privateMsgLnk {
+				position: absolute;
+				top: -7px;
+				right: -14px;  
+				color: @primaryColor;
+				font-weight: bold; 
+				opacity: 1;
 			}
 		}
 	}	

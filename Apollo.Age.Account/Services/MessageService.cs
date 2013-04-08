@@ -16,17 +16,22 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Account.Criterias;
+    using Fanex.NAP.Framework.Data;
+    using Sunplus.Agent.Model.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MessageService : QueryService
+    public class MessageService : QueryService, IMessageService
     {
-        private const string SiteList = "3000,3300";      
+        private const string SiteList = "3000,3300";
 
-        public IEnumerable<AnnouncementViewModel> GetAnnouncement(int agentId, DateTime lastPostDate, int totalMessage = 10, bool isTest = false)
+        private DynamicRepository _dyanamicRepository = new DynamicRepository();
+
+        public IEnumerable<AnnouncementViewModel> GetAnnouncement(int agentId
+            , DateTime lastPostDate, int totalMessage = 10, bool isTest = false)
         {
-            return this.GetReportData<AnnouncementViewModel>(new GetCustomerMessageCriteria
+            return this.GetData<AnnouncementViewModel>(new GetCustomerMessageCriteria
                 {
                     CustomerId = agentId,
                     SiteIds = SiteList,
@@ -37,6 +42,31 @@ namespace Apollo.Age.Account.Services
         }
 
         public bool UpdateReadMessage(int messsageId)
+        {            
+            var criteria = new UpdateReadMessageCriteria
+            {
+                MessageIds = messsageId.ToString(),
+                CustomerId = UserSession.Current.AgentId, // why we need session here
+                IsAgent = false
+            };
+
+            _dyanamicRepository.Count(criteria);
+
+            return true;
+        }
+
+
+        public int CountUnreadPrivateMessage(int userId, string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateReadPrivateMessage(int userId, string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<dynamic> GetTopPrivateMessage(int userId, bool isTest = false, int latestMessageId = 0)
         {
             throw new NotImplementedException();
         }
