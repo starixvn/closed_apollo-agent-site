@@ -8,28 +8,23 @@
     {
         foreach (var result in Model)
         {
-        
-    
-    <!--RefeshContent-->
+
     <div id="RefreshContent@(result.MatchId)" class="paddingTopMatch">
-        <!--/RefeshContent-->
-        <!--FullSiteMatchName-->
         <div class="button_left">
         </div>
-        <div class="button_mid" onclick="GroupScoreMap('scoreMap@(result.MatchId)')">
+        <div class="button_mid">
             <div style="margin-top: 4px">
-                <span class="lnkGroup" id="lnkGroupscoreMap@(result.MatchId)">
+                <span class="lnkGroup span-expand">
                     @result.HomeName -vs- @result.AwayName
                 </span>
             </div>
         </div>
-        <div class="button_right">
-            <span title="@Resources.Lang.refresh" class="lnkRefresh" onclick="RefreshScoreMap(@(result.MatchId))"
+        <div class="button_right" match-id="@(result.MatchId)">
+            <span title="@Resources.Lang.refresh" class="lnkRefresh refresh-button"
                 id="lnkRefresh@(result.MatchId)"></span>
         </div>
         <div style="clear: both">
         </div>
-        <!--/FullSiteMatchName-->
         <div class="scoreMap" id="scoreMap@(result.MatchId)">
             <table class="tblScoreMap" id="tblSM@(result.MatchId)" cellpadding="0" cellspacing="1" border="0">
                 <thead>
