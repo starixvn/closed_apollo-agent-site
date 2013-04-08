@@ -20,7 +20,7 @@ namespace Apollo.Age.Forecast.Models
         public int TypeId { get; set; }
         public int IsLive { get; set; }
         public int IsDead { get; set; }
-        public bool Id1st { get; set; }
+        public int Id1st { get; set; }
         public string BetTypeName 
         {
             get

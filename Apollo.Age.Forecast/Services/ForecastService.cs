@@ -28,7 +28,7 @@ namespace Apollo.Age.Forecast.Services
     {
         private IForecastRepository _forecastRepository { get; set; }
 
-        public ForecastService()
+        public ForecastService() : this(null)
         {
 
         }
@@ -146,8 +146,11 @@ namespace Apollo.Age.Forecast.Services
             List<ScoreMapResultViewModel> scoreMapViewResult = new List<ScoreMapResultViewModel>();
             int homeIndex = 0;
             int awayIndex = 0;
+            int length = 0;
             foreach (ScoreMapMatch match in scoreMapResult.ScoreMapMatches)
             {
+                homeIndex = 0;
+                awayIndex = 0;
                 ScoreMapResultViewModel scoreMapItem = new ScoreMapResultViewModel
                 {
                     MatchId = match.MatchId,
@@ -155,25 +158,27 @@ namespace Apollo.Age.Forecast.Services
                     AwayName = match.AwayTeam
                 };
                 
-                
+                length = scoreMapItem.ScoreMatrix.GetLength(1);
                 foreach (ScoreMapItem item in scoreMapResult.ScoreMapItems)
                 {
                     if (match.MatchId == item.MatchId)
                     {
+                        scoreMapItem.HasData = true;
                         scoreMapItem.ScoreMatrix[awayIndex, homeIndex++] = item.Total; 
                         //// If HomeIndex = 7 Col, then increate Away Row
-                        if (homeIndex == scoreMapItem.ScoreMatrix.Length)
+                        if (homeIndex == length)
                         {
                             homeIndex = 0;
                             awayIndex++;
                             //// If away row == 7 then break out
-                            if (awayIndex == scoreMapItem.ScoreMatrix.Length)
+                            if (awayIndex == length)
                             {
                                 break;
                             }
                         }
                     }
                 }
+                scoreMapViewResult.Add(scoreMapItem);
             }
 
             return scoreMapViewResult;

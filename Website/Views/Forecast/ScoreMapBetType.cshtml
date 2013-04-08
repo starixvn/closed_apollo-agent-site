@@ -2,6 +2,7 @@
 @using Apollo.Age.Forecast.Models
 @{
     int haftBetType = 7;
+    Layout = null;
 }
 @helper RenderBetTypeList(List<ScoreMapBetType> betTypes, int haftBetType, bool isLive)
 {
@@ -27,8 +28,8 @@
 @helper RenderBetType(ScoreMapBetType betType, bool isLive)
 {
     <td>
-        <input id="bt_@(betType.IsLive)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox">
-        <label for="bt_@(betType.IsLive)_@(betType.TypeId)">
+        <input id="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox" value="@(betType.TypeId + "," + betType.Id1st)">
+        <label for="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)">
             @(betType.BetTypeName)
         </label>
     </td>

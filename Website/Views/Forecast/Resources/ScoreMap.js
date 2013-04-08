@@ -21,12 +21,7 @@ var scoreMap = {
                 var $checkAll = $("#chLCheckAll");
                 scoreMap.RegisterCheckAll("#chLCheckAll", ".match-item");
                 $("#dSubmitInMatch").click(function () {
-                    var selectedMatch = $matchItems.filter(":checked");
-                    var length = selectedMatch.length;
-                    var matchIds = "";
-                    for (var i = 0; i < length; i++) {
-                        matchIds += selectedMatch[i].value + ",";
-                    }
+                    var matchIds = scoreMap.GetIdFromSelectedCheckBox($matchItems.filter(":checked"));
                     $("#match-ids").val(matchIds);
                     $("#BoxMatchWL").hide();
                     //bet-type-container
@@ -41,9 +36,24 @@ var scoreMap = {
             });
         });
 
-        $("#dSubmit").click(function () { 
-            
+        $("#dSubmit").click(function () {
+            var url = scoreMap.BaseLink + 'ScoreMapResult?matchIds=' + $('#match-ids').val()
+            + '&liveBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-live:checked'))
+            + '&deadBallBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
+            //liveBetTypes
+            //deadBallBetTypes
+            $.get(url, function (contentView) {
+                $("#mainContent").html(contentView);
+            });
         });
+    },
+    GetIdFromSelectedCheckBox: function (selectedCheckBox) {
+        var length = selectedCheckBox.length;
+        var ids = "";
+        for (var i = 0; i < length; i++) {
+            ids += selectedCheckBox[i].value + ",";
+        }
+        return ids;
     },
     RegisterCheckAll: function (checkAllId, itemClass) {
         var $matchItems = $(itemClass);

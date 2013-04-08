@@ -1,6 +1,6 @@
 ﻿@using Apollo.Age.Forecast.ViewModels
 @{
-    
+    Layout = null;
 }
 @model IEnumerable<ScoreMapMatchViewModel>
 <div id="BoxMatchWL">
@@ -62,7 +62,7 @@
                                 foreach (var match in Model)
                                 {
                                     <li>
-                                        <input class="hand match-item" type="checkbox" id="chL@(match.MatchId)" value="@(match.MatchId)">
+                                        <input class="hand match-item" type="checkbox" id="chL@(match.MatchId)" value="@(match.MatchId)" />
                                         <label class="hand" for="chL@(match.MatchId)">@(match.MatchName)</label>
                                     </li>
                                 }

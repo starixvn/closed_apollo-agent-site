@@ -32,7 +32,7 @@ namespace Apollo.Age.Forecast.Criterias
 
         public override string GetSettingKey()
         {
-            return "Age_ScoreMap_SelLeague";
+            return "Age_ScoreMap_Result";
         }
 
         public override bool IsValid()
