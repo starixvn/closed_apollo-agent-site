@@ -38,12 +38,27 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult AccountInfo(string userName, short? isMember, int? custId)
         {
+            bool ismember = false;
+            int custid = -1;
+            string username = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(userName) && !custId.HasValue)
+            {
+                userName = HttpContext.Session["userName"] != null
+                    ? HttpContext.Session["userName"].ToString() : string.Empty;
+                ismember = HttpContext.Session["isMember"] != null
+                    ? (HttpContext.Session["isMember"].ToString() == "1") : false;
+            }
+
             CustomerInfoViewModel viewmodel = null;
             if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
             {
-                var ismember = isMember == 1;
-                var custid = custId.HasValue ? custId.Value : -1;
-                var username = userName;
+                HttpContext.Session["userName"] = userName;
+                HttpContext.Session["isMember"] = isMember;
+
+                ismember = isMember == 1;
+                custid = custId.HasValue ? custId.Value : -1;
+                username = userName;
 
                 if (ismember)
                 {

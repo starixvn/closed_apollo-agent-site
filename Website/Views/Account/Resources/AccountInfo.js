@@ -38,14 +38,9 @@
             }
         });
 
-        ACCOUNT.txtUsername.keypress(function (e) {
-            if (e.keyCode == '13') {
-                ACCOUNT.getAccountInfo();
-            }
-        });
 
         $(".search-button").bind('click', function () {
-            ACCOUNT.getAccountInfo();
+            ACCOUNT.getAccountInfo(ACCOUNT.txtUsername.val());
         });
 
         $(".show-section").bind('click', function () {
