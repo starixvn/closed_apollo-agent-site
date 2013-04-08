@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
-    <Compile Include="Controllers\UserListController.cs" />
     <Compile Include="Criterias\AgentListCriteria.cs" />
     <Compile Include="Criterias\CustomerListCriteria.cs" />
     <Compile Include="Criterias\GetCustomerMessageCriteria.cs" />
@@ -67,7 +66,7 @@
     <Compile Include="Repositories\Interface\IAgentListRepository.cs" />
     <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\MessageService.cs" />
-    <Compile Include="Services\UserListService.cs" />
+    <Compile Include="Services\AccountService.cs" />
     <Compile Include="ViewModels\AgentListViewModel.cs" />
     <Compile Include="ViewModels\AnnouncementViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

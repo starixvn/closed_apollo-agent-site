@@ -66,8 +66,8 @@
 }
 
 @RazorHelper.RefreshCountDown("FirstGoal", 90, 45)
-<table class="tblRpt">
-    <thead>
+<table class="tblRpt persist-area">
+    <thead class="persist-header">
         <tr>
             <td style="width: 20px;">
                 #
@@ -118,6 +118,7 @@
     <script type="text/javascript">
         $(function () {
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>    
 }

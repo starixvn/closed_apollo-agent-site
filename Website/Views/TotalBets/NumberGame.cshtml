@@ -170,8 +170,8 @@
 
 @RazorHelper.RefreshCountDown("NumberGame", 60, 0)
 
-<table class="tblRpt c" style="width: 100%">
-    <thead>
+<table class="tblRpt persist-area c">
+    <thead class="persist-header">
         <tr class="RptHeader">
             <td rowspan="2">
                 #
@@ -279,6 +279,7 @@
         $(function () {
             totalBets.InitViewBetListGame();
             totalBets.InitViewBetListNewGame();
+            totalBets.InnitFreeHeader();
         });
     </script>    
 }
