@@ -25,6 +25,7 @@ namespace Apollo.Age.Account.Controllers
         private readonly IAgentService _agentService;
         private readonly IMemberService _memberService;
 
+
         public AccountController()
         {
             _agentService = new AgentService();
@@ -156,6 +157,12 @@ namespace Apollo.Age.Account.Controllers
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
+
+        //public JsonResult GetAgentPathList(int id)
+        //{
+        //    var agentList = _agentService.GetAgentDownlinePath(id);
+        //    return Json(agentList, JsonRequestBehavior.AllowGet);
+        //}
 
         //public JsonResult ReCheckIn()
         //{

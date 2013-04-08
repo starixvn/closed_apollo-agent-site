@@ -2,14 +2,16 @@
 {
     txtUsername: null,
     dllIsMember: null,
+    ageDownLink: null,
+    ddlAgents: null,
+    enterUsernameValue: null,
 
     init: function () {
         ACCOUNT.txtUsername = $("#txtUsername");
         ACCOUNT.dllIsMember = $("#ddlIsMember");
         ACCOUNT.ageDownLink = $("#agentDownlineLink");
         ACCOUNT.ddlAgents = $("#ddl-agents");
-
-        
+        ACCOUNT.enterUsernameValue = $("#enterUsernameValue");
     },
 
     getAccountInfo: function (username) {
@@ -48,21 +50,21 @@
         });
 
         ACCOUNT.txtUsername.bind('click', function () {
-            if (document.getElementById('txtUsername').value == $("#enterUsernameValue").val()) {
-                document.getElementById('txtUsername').className = 'text_f';
-                document.getElementById('txtUsername').value = '';
+            if (ACCOUNT.txtUsername.val() == ACCOUNT.enterUsernameValue.val()) {
+                ACCOUNT.txtUsername.val().addClass = 'text_f';
+                ACCOUNT.txtUsername.val = '';
             }
         });
         ACCOUNT.txtUsername.bind('keydown', function () {
-            if (document.getElementById('txtUsername').value == $("#enterUsernameValue").val()) {
-                document.getElementById('txtUsername').className = 'text_f';
-                document.getElementById('txtUsername').value = '';
+            if (ACCOUNT.txtUsername.val() == ACCOUNT.enterUsernameValue.val()) {
+                ACCOUNT.txtUsername.val().addClass = 'text_f';
+                ACCOUNT.txtUsername.val = '';
             }
         });
         ACCOUNT.txtUsername.bind('blur', function () {
-            if (document.getElementById('txtUsername').value == '') {
-                document.getElementById('txtUsername').className = 'text_f1';
-                document.getElementById('txtUsername').value = $("#enterUsernameValue").val();
+            if (length(ACCOUNT.txtUsername.val()) == 0) {
+                ACCOUNT.txtUsername.val().addClass = 'text_f1';
+                ACCOUNT.txtUsername.val = ACCOUNT.enterUsernameValue.val();
             }
         });
 
