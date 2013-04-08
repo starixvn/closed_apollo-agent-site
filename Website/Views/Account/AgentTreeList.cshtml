@@ -1,17 +1,16 @@
 ﻿@{
     Layout = "~/Views/Account/Shared/_LayoutTreeView.cshtml";
 }
-<ul id="treeview_list" class="tree-tab">   
+<ul id="treeview_list" class="tree-tab" agent-id="@ViewBag.AgentId">   
 </ul>
 
-<input id="agentId" type="hidden" value="@ViewBag.AgentId"/>
 @section foot {
     <script type="text/javascript">
         $(document).ready(function () {
             $("#treeview_list").treeview({
                 url: "../TreeNodeData",
                 link: "<a href='../AccountInfo?IsMember=0&custid={0}&txtUsername={1}' target='menu'> {2} </a>",
-                custid: $("#agentId").val()
+                custid: $("#treeview_list").attr("agent-id")
             });
         });
     </script>
