@@ -65,7 +65,7 @@ namespace Apollo.Age.Forecast.Models
         {
             get
             {
-                if (_matchName != null)
+                if (_matchName == null)
                 {
                     _matchName = HomeTeam + "-vs-" + AwayTeam;
                 }

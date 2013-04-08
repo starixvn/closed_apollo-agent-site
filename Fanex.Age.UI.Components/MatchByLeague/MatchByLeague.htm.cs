@@ -13,7 +13,7 @@ namespace Fanex.Age.UI.Components
 	{
 		public class MatchByLeague_Template : Template
 		{
-			protected static string s0 = "<div id=\"BoxMatchWL\" ><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr height=\"20\"><td id=\"iconSelMatch\">";
+			protected static string s0 = "<div id=\"BoxMatchWL\" style=\"display:none\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr height=\"20\"><td id=\"iconSelMatch\">";
 			protected static string s1{get{return Resources.Lang.SelectMatch;}}
 			protected static string s2 = "</td><td style=\"background-color:#FFEFDE; width:540px\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"40%\" id=\"tblMsgMatch\" style=\"display: none;\"><tr><td class=\"emsg_1_1\">&nbsp;</td><td class=\"emsg_1_2\">&nbsp;</td><td class=\"emsg_1_3\">&nbsp;</td></tr><tr><td valign=\"top\" class=\"emsg_2_1\">&nbsp;</td><td valign=\"top\" id=\"msgMatchErr\" class=\"msgerr\"></td><td class=\"emsg_2_2\">&nbsp;</td></tr><tr><td class=\"emsg_3_1\">&nbsp;</td><td class=\"emsg_3_2\">&nbsp;</td><td class=\"emsg_3_3\">&nbsp;</td></tr></table></td><td id=\"closeBoxMatch\"></td></tr><tr><td id=\"boderBoxMatch\" colspan=\"3\"><div id=\"ContentMatchWL\">";
 			public MatchByLeague_ContentMatch_Block ContentMatch = new MatchByLeague_ContentMatch_Block();
