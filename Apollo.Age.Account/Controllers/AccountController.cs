@@ -44,14 +44,14 @@ namespace Apollo.Age.Account.Controllers
         {
             bool ismember = false;
             int custid = -1;
-            string username = string.Empty;
 
             if (string.IsNullOrWhiteSpace(userName) && !custId.HasValue)
             {
                 userName = HttpContext.Session["userName"] != null
                     ? HttpContext.Session["userName"].ToString() : string.Empty;
-                ismember = HttpContext.Session["isMember"] != null
-                    ? (HttpContext.Session["isMember"].ToString() == "1") : false;
+                isMember = HttpContext.Session["isMember"] != null
+                    ? short.Parse(HttpContext.Session["isMember"].ToString()) : short.Parse("0");
+
             }
 
             CustomerInfoViewModel customerInfo = null;
@@ -62,9 +62,8 @@ namespace Apollo.Age.Account.Controllers
 
                 ismember = isMember == 1;
                 custid = custId.HasValue ? custId.Value : -1;
-                username = userName;
 
-                customerInfo = _accountService.GetCustomerInfo(ismember, custid, username, base.AgentId);
+                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, base.AgentId);
                 if (customerInfo == null)
                 {
                     customerInfo = new CustomerInfoViewModel()
@@ -72,7 +71,7 @@ namespace Apollo.Age.Account.Controllers
                         CurrentAgentId = base.AgentId,
                         CustId = -1,
                         IsMember = ismember,
-                        Username = username,
+                        Username = userName,
                     };
                 }
                 else
@@ -119,8 +118,7 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetAgentDownlinePath(int agentId)
         {
-            var listValue = _accountService.GetAgentDownlinePath(base.AgentId, agentId)
-                    .Select(x => x.Username).ToList();
+            var listValue = _accountService.GetAgentDownlinePath(base.AgentId, agentId).ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }

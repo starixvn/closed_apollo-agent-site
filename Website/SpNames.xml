@@ -333,7 +333,9 @@
 
     <Function Name="Agent-Apollo-ScoreMap">
         <Setting Key="Age_ScoreMap_Result" SpName="Age_ScoreMap_Result" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="REPDB" Plain="0" />
+      <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="REPDB" Plain="0" >
+        <Mapping DataField="1stId" ObjectProperty="Id1st" />
+      </Setting>
         <Setting Key="Age_ScoreMap_SelLeague" SpName="Age_ScoreMap_SelLeague" DbName="REPDB" Plain="0" />
         <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="REPDB" Plain="0" />
     </Function>

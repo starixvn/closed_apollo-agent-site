@@ -1,4 +1,13 @@
-﻿namespace Apollo.Age.Account.Services
+﻿// --------------------------------------------------------------------------
+// <copyright file="AccountService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.4.8">Created</change>
+// </history>
+
+namespace Apollo.Age.Account.Services
 {
     using System.Collections.Generic;
     using System.Linq;

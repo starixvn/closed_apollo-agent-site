@@ -1,3 +1,100 @@
-﻿@{
+﻿@using Apollo.Age.Forecast.ViewModels
+@{
+    Layout = null;
+}
+@model IEnumerable<ScoreMapResultViewModel>
+@{
+    if (Model != null && Model.Any())
+    {
+        foreach (var result in Model)
+        {
+        
     
+    <!--RefeshContent-->
+    <div id="RefreshContent@(result.MatchId)" class="paddingTopMatch">
+        <!--/RefeshContent-->
+        <!--FullSiteMatchName-->
+        <div class="button_left">
+        </div>
+        <div class="button_mid" onclick="GroupScoreMap('scoreMap@(result.MatchId)')">
+            <div style="margin-top: 4px">
+                <span class="lnkGroup" id="lnkGroupscoreMap@(result.MatchId)">
+                    @result.HomeName -vs- @result.AwayName
+                </span>
+            </div>
+        </div>
+        <div class="button_right">
+            <span title="@Resources.Lang.refresh" class="lnkRefresh" onclick="RefreshScoreMap(@(result.MatchId))"
+                id="lnkRefresh@(result.MatchId)"></span>
+        </div>
+        <div style="clear: both">
+        </div>
+        <!--/FullSiteMatchName-->
+        <div class="scoreMap" id="scoreMap@(result.MatchId)">
+            <table class="tblScoreMap" id="tblSM@(result.MatchId)" cellpadding="0" cellspacing="1" border="0">
+                <thead>
+                    <tr class="vsmHomeWay" align="center">
+                        <td rowspan="2" class="smTitle">
+                            @Resources.Lang.away
+                        </td>
+                        <td colspan="7" class="smTitle">
+                            @Resources.Lang.home
+                        </td>
+                    </tr>
+                    <tr class="vsm" align="center">
+                        <td width="13%">
+                            0
+                        </td>
+                        <td width="13%">
+                            1
+                        </td>
+                        <td width="13%">
+                            2
+                        </td>
+                        <td width="13%">
+                            3
+                        </td>
+                        <td width="13%">
+                            4
+                        </td>
+                        <td width="13%">
+                            5
+                        </td>
+                        <td width="13%">
+                            6
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if(result.HasData)
+                        {
+                            var total = result.ScoreMatrix.GetLength(1);
+                            for (int i = 0; i < total; i++)
+                            {
+                                <tr class="vScoreMap" align="center">
+                                    <td class="vsm">
+                                        @(i)
+                                    </td>
+                                    @{
+                                    
+                                        for (int j = 0; j < total; j++)
+                                        {
+                                            <td class='csm'>
+                                                @RazorHelper.FormatPositiveNumber(result.ScoreMatrix[i,j], 0, true)
+                                            </td>
+                                        }
+                                    
+                                        }
+                                </tr>
+                            }
+                        }
+                    
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+        }
+    }
 }

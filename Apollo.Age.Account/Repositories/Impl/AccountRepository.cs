@@ -85,7 +85,6 @@ namespace Apollo.Age.Account.Repositories.Impl
         public IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-
             try
             {
                 if (criteria.IsValid())
