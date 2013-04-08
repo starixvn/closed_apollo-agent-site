@@ -22,5 +22,10 @@
         {
             return "Age_Agent_GetByAgent";
         }
+
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }

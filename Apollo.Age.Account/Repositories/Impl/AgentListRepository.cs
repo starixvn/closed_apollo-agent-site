@@ -16,7 +16,7 @@
 
     public class AgentListRepository : RepositoryBase<AgentListViewModel>, IAgentListRepository
     {
-        public IEnumerable<AgentListViewModel> GetAgentList(ref AgentListCriteria criteria)
+        public IEnumerable<AgentListViewModel> GetData(ref AgentListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 

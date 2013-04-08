@@ -11,6 +11,6 @@
 
     public interface IAgentListRepository : IRepository<AgentListViewModel>
     {
-        IEnumerable<AgentListViewModel> GetAgentList(ref AgentListCriteria criteria);
+        IEnumerable<AgentListViewModel> GetData(ref AgentListCriteria criteria);
     }
 }

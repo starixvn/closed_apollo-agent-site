@@ -11,6 +11,6 @@
 
     public interface ICustomerListRepository : IRepository<CustomerListViewModel>
     {
-        IEnumerable<CustomerListViewModel> GetCustomerList(ref CustomerListCriteria criteria);
+        IEnumerable<CustomerListViewModel> GetData(ref CustomerListCriteria criteria);
     }
 }

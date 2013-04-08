@@ -1,21 +1,39 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AccountService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Quinn.Vo" date="2013.4.8">Created</change>
-// </history>
-
-namespace Apollo.Age.Account.Services
+﻿namespace Apollo.Age.Account.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Repositories.Impl;
+    using Apollo.Age.Account.Repositories.Interface;
+    using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Repositories.Interface;
+    using Apollo.Age.Services.Impl;
+    using Fanex.Common.Helper;
+    using Fanex.NAP.Framework.Data;
 
-    public class AccountService
+    public class AccountService : QueryService
     {
-        
+        private readonly IAgentListRepository _agentListRepository;
+        private readonly ICustomerListRepository _customerListRepository;
+
+        public AccountService() : this(null, null) { }
+
+        public AccountService(IAgentListRepository agentListRepository = null, ICustomerListRepository customerListRepository = null)
+        {
+            _agentListRepository = agentListRepository ?? new AgentListRepository();
+            _customerListRepository = customerListRepository ?? new CustomerListRepository();
+        }
+
+        public IEnumerable<AgentListViewModel> GetAgentList(ref AgentListCriteria criteria)
+        {
+            return _agentListRepository.GetData(ref criteria);
+        }
+
+        public IEnumerable<CustomerListViewModel> GetCustomerList(ref CustomerListCriteria criteria)
+        {
+            return _customerListRepository.GetData(ref criteria);
+        }
     }
 }
