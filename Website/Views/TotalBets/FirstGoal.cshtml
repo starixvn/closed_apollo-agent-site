@@ -35,7 +35,8 @@
             @Html.Raw(item.ShowTime)
         </td>
         <td>
-            <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" href="javascript:void(0);">
+            <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
+                href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                 @item.HomeTeam
             </a>
         </td>
@@ -51,7 +52,8 @@
     </tr>
     <tr>
         <td>
-            <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" href="javascript:void(0);">
+            <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
+                href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                 @item.AwayTeam
             </a>
         </td>

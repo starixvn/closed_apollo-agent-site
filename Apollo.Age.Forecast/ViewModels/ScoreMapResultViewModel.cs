@@ -28,5 +28,6 @@ namespace Apollo.Age.Forecast.ViewModels
         public string HomeName { get; set; }
         public string AwayName { get; set; }
         public decimal[,] ScoreMatrix { get; set; }
+        public bool HasData { get; set; }
     }
 }

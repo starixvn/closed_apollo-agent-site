@@ -2,15 +2,16 @@
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
 }
 <ul id="tab-menu">
-    <li class="tab-menu active">
-        <a><i class="icon-align-justify"></i>Menu</a>
+    <li class="tab-menu">
+        <a href="@Url.Action("Menu")" target="menu">
+            <i class="icon-align-justify"></i>Menu</a>
     </li>
     <li class="tab-acc">
         <a href="@Url.Action("AccountInfo")" target="menu">
             <i class="icon-user"></i>Account</a>
     </li>
-    <li class="tab-tree">
-        <a href="@Url.Action("TreeViewList")" target="menu">
+    <li class="tab-tree active">
+        <a>
             <i class="icon-align-left"></i>Agents</a>
     </li>
 </ul>

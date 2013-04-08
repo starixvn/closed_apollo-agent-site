@@ -237,8 +237,8 @@
     else
     {
         <select id="ddlIsMember" name="isMember">
-            <option value="0" @(Model.IsMember ? string.Empty : "selected") >@Resources.Lang.lblAgent</option>
-            <option value="1" @(Model.IsMember ? "selected" : string.Empty) >@Resources.Lang.lblMember</option>
+            <option value="0" @(Model.IsMember ? string.Empty : "selected=selected") >@Resources.Lang.lblAgent</option>
+            <option value="1" @(Model.IsMember ? "selected=selected" : string.Empty) >@Resources.Lang.lblMember</option>
         </select>
         <input maxlength="50" id="txtUsername" type="text"
             value="@Model.Username" name="userName" />

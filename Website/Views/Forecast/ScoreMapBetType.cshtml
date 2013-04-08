@@ -1,3 +1,75 @@
-﻿@{
+﻿@using Apollo.Age.Forecast.ViewModels
+@using Apollo.Age.Forecast.Models
+@{
+    int haftBetType = 7;
+    Layout = null;
+}
+@helper RenderBetTypeList(List<ScoreMapBetType> betTypes, int haftBetType, bool isLive)
+{
+    int nextCloseIndex = 0;
+    for (int i = 0; i < betTypes.Count; i++)
+    {
+        
+        if (i % haftBetType == 0)
+        {
+            nextCloseIndex = i + haftBetType;
+            @:<tr>
+        }
+        
+        @RenderBetType(betTypes[i], isLive)
+        
+        if (i == nextCloseIndex)
+        {
+            @:</tr>
+        }
+    }
     
 }
+@helper RenderBetType(ScoreMapBetType betType, bool isLive)
+{
+    <td>
+        <input id="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox" value="@(betType.TypeId + "," + betType.Id1st)">
+        <label for="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)">
+            @(betType.BetTypeName)
+        </label>
+    </td>
+}
+@model ScoreMapBetTypeViewModel
+<table class="tblRpt check-list">
+    <tr>
+        <td>
+            <label class="bold" for="chkAllL">
+                <input type="checkbox" id="chkAllL" />
+                @Resources.Lang.lblLiveBall
+            </label>
+        </td>
+        <td id="Td1">
+            <table class="reference">
+                @{
+                    if (Model.LiveBetTypes.Any())
+                    {
+                        @RenderBetTypeList(Model.LiveBetTypes, haftBetType, true)
+                    }
+                }
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label class="bold" for="chkAllD">
+                <input type="checkbox" id="chkAllD" />
+                @Resources.Lang.lblDeadball
+            </label>
+        </td>
+        <td id="Td2">
+            <table class="reference">
+                 @{
+                    if (Model.DeadBallBetTypes.Any())
+                    {
+                        @RenderBetTypeList(Model.DeadBallBetTypes, haftBetType, false)
+                    }
+                }
+            </table>
+        </td>
+    </tr>
+</table>

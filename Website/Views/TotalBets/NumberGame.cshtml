@@ -37,7 +37,8 @@
         <td>
             @if (item.BetCountWarrior2ndBall != 0)
             {
-                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="88" betlist-type="BettypeMatch" is-live="0" bet-team="h" href="javascript:void(0);">
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="88" betlist-type="BettypeMatch" is-live="0" bet-team="h" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.Warrior2ndBall)
                 </a>
             }
@@ -45,7 +46,8 @@
         <td>
             @if (item.BetCountWarrior3rdBall != 0)
             {
-                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="88" betlist-type="BettypeMatch" is-live="0" bet-team="a" href="javascript:void(0);">
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="88" betlist-type="BettypeMatch" is-live="0" bet-team="a" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.Warrior3rdBall)
                 </a>
             }
@@ -53,7 +55,8 @@
         <td>
             @if (item.BetCountOU1stBall != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="81" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="81" betlist-type="BettypeMatch" is-live="0" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.Over1stBall - item.Under1stBall)
                 </a>
             }
@@ -61,7 +64,8 @@
         <td>
             @if (item.BetCountOE1stBall != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="83" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="83" betlist-type="BettypeMatch" is-live="0" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.Odd_1stBall - item.Even1stBall)
                 </a>
             }
@@ -69,7 +73,8 @@
         <td>
             @if (item.BetCountOULastBall != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="82" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="82" betlist-type="BettypeMatch" is-live="0" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OverLastBall - item.UnderLastBall)
                 </a>
             }
@@ -78,7 +83,8 @@
         <td>
             @if (item.BetCountOELastBall != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="84" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="84" betlist-type="BettypeMatch" is-live="0" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OddLastBall - item.EvenLastBall)
                 </a>
             }
@@ -87,7 +93,8 @@
         <td>
             @if (item.BetCountOUNext != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="85" betlist-type="BettypeMatch" is-live="1" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="85" betlist-type="BettypeMatch" is-live="1" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OverNext - item.UnderNext)
                 </a>
             }
@@ -95,7 +102,8 @@
         <td>
             @if (item.BetCountOENext != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="86" betlist-type="BettypeMatch" is-live="1" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="86" betlist-type="BettypeMatch" is-live="1" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OddNext - item.EvenNext)
                 </a>
             }
@@ -103,7 +111,8 @@
         <td>
             @if (item.BetCountHighLow != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="87" betlist-type="BettypeMatch" is-live="1" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="87" betlist-type="BettypeMatch" is-live="1" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.High - item.Low)
                 </a>
             }
@@ -111,7 +120,8 @@
         <td>
             @if (item.BetCountNextComboOverOdd != 0)
             {
-                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="1:1" href="javascript:void(0);">
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="1:1" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NextComboOverOdd)
                 </a>
             }
@@ -119,7 +129,8 @@
         <td>
             @if (item.BetCountNextComboUnderOdd != 0)
             {
-                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="2:1" href="javascript:void(0);">
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="2:1" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NextComboUnderOdd)
                 </a>
             }
@@ -127,7 +138,8 @@
         <td>
             @if (item.BetCountNextComboOverEven != 0)
             {
-                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="1:2" href="javascript:void(0);">
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="1:2" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NextComboOverEven)
                 </a>
             }
@@ -136,7 +148,8 @@
         <td>
             @if (item.BetCountNextComboUnderEven != 0)
             {
-                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="2:2" href="javascript:void(0);">
+                <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="2:2" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NextComboUnderEven)
                 </a>
             }
@@ -144,7 +157,8 @@
         <td>
             @if (item.BetCountOEFullTime != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="86" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="86" betlist-type="BettypeMatch" is-live="0" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OddFullTime - item.EvenFullTime)
                 </a>
             }
@@ -152,7 +166,8 @@
         <td>
             @if (item.BetCountNumberGroupLive != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="90" betlist-type="BettypeMatch" is-live="1" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="90" betlist-type="BettypeMatch" is-live="1" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NumberGroupLive)
                 </a>
             }
@@ -160,7 +175,8 @@
         <td>
             @if (item.BetCountNumberGroupPre != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="90" betlist-type="BettypeMatch" is-live="0" href="javascript:void(0);">
+                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="90" betlist-type="BettypeMatch" is-live="0" 
+                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NumberGroupPre)
                 </a>
             }

@@ -21,7 +21,7 @@ namespace Apollo.Age.Forecast.Criterias
     /// </summary>
     public class GetScoreMapLeaguesCriteria : CriteriaBase
     {
-        public int MatchId { get; set; }
+        public int AgentId { get; set; }
 
         public override string GetSettingKey()
         {
@@ -30,7 +30,7 @@ namespace Apollo.Age.Forecast.Criterias
 
         public override bool IsValid()
         {
-            return MatchId > 0;
+            return AgentId > 0;
         }
     }
 }
