@@ -79,10 +79,9 @@
                         for (var i = 1; i < data.length; ++i) {
                             agentList.append(
                                         "<li>" +
-                                            "<a href='../Account/AccountInfo" +
-                                                "?isMember=0" +
+                                            "<a href='" + APOLLO.resolveUrl("Account/AccountInfo" + "?isMember=0" +
                                                 "&custId=" + data[i].Id +
-                                                "&userName=" + data[i].Username + "'>\\ " + data[i].Username + "</a>" +
+                                                "&userName=" + data[i].Username) + "'>\\ " + data[i].Username + "</a>" +
                                         "</li>"
                                     );
                         }
@@ -90,7 +89,7 @@
 
                 }
             });
-            
+
             ACCOUNT.ddlAgents.fadeIn('fast');
             event.stopPropagation();
         });
@@ -132,7 +131,7 @@
         }
     },
     bindMembersList: function (agentId) {
-        var link = "../_AccountInfo/DownlineMemberList.aspx?custid=" + agentId;
+        var link =  APOLLO.resolveUrl("_AccountInfo/DownlineMemberList.aspx?custid=" + agentId); 
         var iframe = document.createElement('iframe');
         iframe.frameBorder = 0;
         iframe.width = "100%";
@@ -140,9 +139,8 @@
         iframe.id = "randomid";
         iframe.setAttribute("src", link);
 
-        var contentId = document.getElementById("iframe-content");
-        contentId.innerHTML = "";
-        contentId.appendChild(iframe);
+        var contentId = $("#iframe-content");
+        contentId.html(iframe);
     }
 };
 
