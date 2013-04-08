@@ -4,8 +4,8 @@
     ViewBag.Title = Resources.Lang.totalgoal;
 }
 @RazorHelper.RefreshCountDown("TotalGoal", 90, 60)
-<table class="tblRpt">
-    <thead>
+<table class="tblRpt persist-area">
+    <thead class="persist-header">
         <tr class="RptHeader">
             <td style="width: 20px;">
                 #
@@ -88,6 +88,7 @@
     <script type="text/javascript">
         $(function () {
             totalBets.InitViewBetList();
+            totalBets.InnitFreeHeader();
         });
     </script>       
 }
