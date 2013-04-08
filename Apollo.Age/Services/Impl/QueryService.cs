@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
 //   <change who="Anders.Le" date="2013.4.1">Change name from ReportServiceBase to QueryService</change>
+//   <change who="Anders" date="2013.4.8">Change function name from GetReportData to GetData</change>
 // </history>
 
 
@@ -30,7 +31,7 @@ namespace Apollo.Age.Services.Impl
             _repository = repository ?? new DynamicRepository();
         }
 
-        public virtual IEnumerable<T> GetReportData<T>(ICriteria criteria)
+        public virtual IEnumerable<T> GetData<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 

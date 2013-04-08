@@ -11,16 +11,14 @@
 namespace Apollo.Age.Repositories.Impl
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
     using Fanex.Data;
     using System.Data;
     using Fanex.Common.Extensions;
-    using Apollo.Age.DTO.Accounts;
+    using Apollo.Age.Enumerations;
+    
 
     /// <summary>
     /// TODO: Update summary.
@@ -64,11 +62,11 @@ namespace Apollo.Age.Repositories.Impl
                     }
                     else
                     {
-                        return (int)AgentStatus.Closed;
+                        return (int)CustomerStatus.Closed;
                     }
                 }
             }
-            return (int)AgentStatus.Closed;
+            return (int)CustomerStatus.Closed;
         }
 
         public ICommandResult Delete(User entity)

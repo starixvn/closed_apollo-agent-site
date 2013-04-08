@@ -38,7 +38,7 @@ namespace Apollo.Age.Reports.Controllers
 
         private IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath(int agentId)
         {
-            IEnumerable<AgentDownlinePathViewModel> models = _reportService.GetReportData<AgentDownlinePathViewModel>(new AgentDownlinePathCriteria
+            IEnumerable<AgentDownlinePathViewModel> models = _reportService.GetData<AgentDownlinePathViewModel>(new AgentDownlinePathCriteria
             {
                 ParentId = UserSession.Current.AgentId,
                 AgentId = agentId
@@ -53,7 +53,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
 
-            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new OutstandingCriteria
+            IEnumerable<OutstandingViewModel> models = _reportService.GetData<OutstandingViewModel>(new OutstandingCriteria
             {
                 AgentId = currentAgentId
             });
@@ -71,7 +71,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
             // call service to get report data here
-            IEnumerable<OutstandingViewModel> models = _reportService.GetReportData<OutstandingViewModel>(new MemberOutstandingCriteria
+            IEnumerable<OutstandingViewModel> models = _reportService.GetData<OutstandingViewModel>(new MemberOutstandingCriteria
             {
                 AgentId = currentAgentId
             });

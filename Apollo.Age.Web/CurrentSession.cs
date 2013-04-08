@@ -1,0 +1,84 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="IUserSession.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Anders" date="2013.4.6">Created</change>
+// </history>
+
+namespace Apollo.Age.Web
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Runtime.Serialization;
+
+    /// <summary>
+    ///  It contains all properties of an authenticated user
+    ///  The implementation is applied when user config is state server mode
+    /// </summary>
+    public class CurrentSession : ICurrentSession, ISerializable
+    {
+        public CurrentSession(SerializationInfo info, StreamingContext context)
+        {
+            if (ReferenceEquals(null, info))
+                throw new ArgumentNullException("info");
+
+            AgentId = info.GetInt32("AgentId");
+            AgentLevel = info.GetInt16("AgentLevel");
+            AgentName = info.GetString("AgentName");            
+            UserId = info.GetInt32("UserId");
+            Username = info.GetString("Username");
+            IsMaster = info.GetBoolean("IsMaster");
+            CurrencyId = info.GetByte("CurrencyId");
+            MatchLimit = info.GetDecimal("MatchLimit");
+            VirtualMultiplier = info.GetDecimal("VirtualMultiplier");
+            DoubleCommLosing = info.GetBoolean("DoubleCommLosing");
+            Language = info.GetString("Language");
+        }
+
+
+        public int AgentId { get; set; }
+
+        public short AgentLevel { get; set; }
+
+        public string AgentName { get; set; }        
+
+        public int UserId { get; set; }
+
+        public string Username { get; set; }
+
+        public bool IsMaster { get; set; }
+
+        public int CurrencyId { get; set; }        
+
+        public decimal MatchLimit { get; set; }
+
+        public decimal VirtualMultiplier { get; set; }
+
+        public bool DoubleCommLosing { get; set; }        
+
+        public string Language { get; set; }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            if (info == null)
+                throw new ArgumentNullException("info");
+
+            info.AddValue("AgentId", AgentId);
+            info.AddValue("AgentLevel", AgentLevel);
+            info.AddValue("AgentName", AgentName);            
+            info.AddValue("UserId", UserId);
+            info.AddValue("Username", Username);
+            info.AddValue("IsMaster", IsMaster);
+            info.AddValue("CurrencyId", CurrencyId);            
+            info.AddValue("MatchLimit", MatchLimit);
+            info.AddValue("VirtualMultiplier", VirtualMultiplier);
+            info.AddValue("DoubleCommLosing", DoubleCommLosing);            
+            info.AddValue("Language", Language);
+            
+        }
+    }
+}
