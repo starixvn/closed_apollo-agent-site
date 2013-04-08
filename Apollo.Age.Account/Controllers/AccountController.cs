@@ -168,14 +168,24 @@ namespace Apollo.Age.Account.Controllers
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public ActionResult AgentList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
+        public ActionResult AgentList()
         {
-            _agentId = agentId.HasValue ? agentId.Value : UserSession.Current.AgentId;
-            _pageIndex = pageIndex.HasValue ? pageIndex.Value : 1;
-            _totalPages = totalPages.HasValue ? totalPages.Value : 0;
+            return View();
+        }
+
+        public ActionResult CustomerList(int? agentId)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult GetAgentList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
+        {
+            _agentId = !agentId.HasValue ? UserSession.Current.AgentId : agentId.Value;
+            _pageIndex = !pageIndex.HasValue ? 0 : pageIndex.Value;
+            _totalPages = !totalPages.HasValue ? 0 : totalPages.Value;
             _username = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-            _pageSize = pageSize.HasValue ? pageSize.Value : 50;
+            _pageSize = !pageSize.HasValue ? 5 : pageSize.Value;
 
             AgentListCriteria criteria = new AgentListCriteria()
             {
@@ -191,20 +201,30 @@ namespace Apollo.Age.Account.Controllers
             return Json(new
             {
                 TotalPage = criteria.TotalPages,
+                TotalItem = criteria.TotalItems,
+                CurrentPage = _pageIndex,
+                ItemsPerPage = _pageSize,
+                CurrentAgentId = _agentId,
                 ListData = models
             });
         }
 
         [HttpPost]
-        public ActionResult CustomerList(int agentId, int pageIndex, int totalPages, string userName, int pageSize)
+        public JsonResult GetCustomerList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
+            _agentId = !agentId.HasValue ? UserSession.Current.AgentId : agentId.Value;
+            _pageIndex = !pageIndex.HasValue ? 0 : pageIndex.Value;
+            _totalPages = !totalPages.HasValue ? 0 : totalPages.Value;
+            _username = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
+            _pageSize = !pageSize.HasValue ? 50 : pageSize.Value;
+
             CustomerListCriteria criteria = new CustomerListCriteria()
             {
-                AgentId = agentId,
-                PageIndex = pageIndex,
-                TotalPages = totalPages,
-                UserName = userName,
-                PageSize = pageSize
+                AgentId = _agentId,
+                PageIndex = _pageIndex,
+                TotalPages = _totalPages,
+                UserName = _username,
+                PageSize = _pageSize
             };
 
             IEnumerable<CustomerListViewModel> models = _accountService.GetCustomerList(ref criteria);
@@ -212,6 +232,10 @@ namespace Apollo.Age.Account.Controllers
             return Json(new
             {
                 TotalPage = criteria.TotalPages,
+                TotalItem = criteria.TotalItems,
+                CurrentPage = _pageIndex,
+                ItemsPerPage = _pageSize,
+                CurrentAgentId = _agentId,
                 ListData = models
             });
         }
