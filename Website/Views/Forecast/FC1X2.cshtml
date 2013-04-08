@@ -6,6 +6,10 @@
     int matchId = ViewBag.MatchId != null ? (int)ViewBag.MatchId : 0;
     int betType = ViewBag.BetType != null ? (int)ViewBag.BetType : 0;
 }
+@section css
+{
+    <link href="~/_Forecast/Resources/FC.less" rel="Stylesheet" type="text/css" />
+}
 <div id="content_main">
     @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
     <div style="clear: both;">
