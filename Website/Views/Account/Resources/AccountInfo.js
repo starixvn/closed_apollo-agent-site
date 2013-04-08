@@ -51,20 +51,17 @@
 
         ACCOUNT.txtUsername.bind('click', function () {
             if (ACCOUNT.txtUsername.val() == ACCOUNT.enterUsernameValue.val()) {
-                ACCOUNT.txtUsername.val().addClass = 'text_f';
-                ACCOUNT.txtUsername.val = '';
+                ACCOUNT.txtUsername.val('');
             }
         });
         ACCOUNT.txtUsername.bind('keydown', function () {
             if (ACCOUNT.txtUsername.val() == ACCOUNT.enterUsernameValue.val()) {
-                ACCOUNT.txtUsername.val().addClass = 'text_f';
-                ACCOUNT.txtUsername.val = '';
+                ACCOUNT.txtUsername.val('');
             }
         });
         ACCOUNT.txtUsername.bind('blur', function () {
-            if (length(ACCOUNT.txtUsername.val()) == 0) {
-                ACCOUNT.txtUsername.val().addClass = 'text_f1';
-                ACCOUNT.txtUsername.val = ACCOUNT.enterUsernameValue.val();
+            if (ACCOUNT.txtUsername.val().length == 0) {
+                ACCOUNT.txtUsername.val(ACCOUNT.enterUsernameValue.val());
             }
         });
 
@@ -73,23 +70,27 @@
                 agentID = $this.attr('aid'),
                 agentList = ACCOUNT.ddlAgents.find('.agent-list');
 
-            ajax.PostJSON('../_AccountInfo/Handlers/GetAgentPathList.ashx', 'agentId=' + agentID, function (result) {
-                var data = result.Agents;
+            $.ajax({
+                url: APOLLO.resolveUrl('Account/GetAgentDownlinePath?agentId=' + agentID),
+                type: 'GET',
+                success: function (data) {
+                    if (data.length > 0) {
+                        agentList.html("<li class='root-agent'>" + data[0].Username + "</li>");
+                        for (var i = 1; i < data.length; ++i) {
+                            agentList.append(
+                                        "<li>" +
+                                            "<a href='../Account/AccountInfo" +
+                                                "?isMember=0" +
+                                                "&custId=" + data[i].Id +
+                                                "&userName=" + data[i].Username + "'>\\ " + data[i].Username + "</a>" +
+                                        "</li>"
+                                    );
+                        }
+                    }
 
-                agentList.html("<li class='root-agent'>" + data[0][1] + "</li>");
-
-                for (var i = 1; i < data.length; ++i) {
-                    agentList.append(
-                            "<li>" +
-                                "<a href='../_AccountInfo/AccountInfo.aspx" +
-                                    "?IsMember=0" +
-                                    "&CustId=" + data[i][0] +
-                                    "&txtUsername=" + data[i][1] + "'>\\ " + data[i][1] + "</a>" +
-                            "</li>"
-                        );
                 }
             });
-
+            
             ACCOUNT.ddlAgents.fadeIn('fast');
             event.stopPropagation();
         });

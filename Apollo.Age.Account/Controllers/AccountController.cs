@@ -119,8 +119,7 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetAgentDownlinePath(int agentId)
         {
-            var listValue = _accountService.GetAgentDownlinePath(base.AgentId, agentId)
-                    .Select(x => x.Username).ToList();
+            var listValue = _accountService.GetAgentDownlinePath(base.AgentId, agentId).ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
