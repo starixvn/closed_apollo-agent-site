@@ -21,11 +21,16 @@ namespace Apollo.Age.Forecast.ViewModels
 
         public byte SportType { get; set; }
 
+        private string _leagueName;
         public string LeagueName
         {
             get
             {
-                return CacheRef.GetLeagueName(this.LeagueId);
+                if (_leagueName == null)
+                {
+                    _leagueName = CacheRef.GetLeagueName(this.LeagueId);
+                }
+                return _leagueName;
             }
         }
     }
