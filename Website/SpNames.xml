@@ -49,7 +49,20 @@
         <Setting Key="Dot_Msg_SetPriMsgRead" SpName="Dot_Msg_SetPriMsgRead_xtest" DbName="MessageDB" Plain="0" />
         <Setting Key="Dot_Msg_GetPriMsgCount" SpName="Dot_Msg_GetPriMsgCount" DbName="MessageDB" Plain="0" />
         <Setting Key="Dot_Msg_GetTopPriMessage24" SpName="Dot_Msg_GetTopPriMessage24" DbName="MessageDB" Plain="0" />
-        <Setting Key="Acc_Msg_GetTopPubMessage" SpName="Acc_Msg_GetTopPubMessage" DbName="MessageDB" Plain="0" />
+        <Setting Key="Acc_Msg_GetTopPubMessage" SpName="Acc_Msg_GetTopPubMessage" DbName="MessageDB" Plain="0" >
+            <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
+            <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
+            <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
+            <Mapping DataField="Content_jp" ObjectProperty="ContentJP"/>
+            <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
+            <Mapping DataField="Content_it" ObjectProperty="ContentIT"/>
+            <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
+            <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
+            <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
+            <Mapping DataField="Content_id" ObjectProperty="ContentID"/>
+            <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
+            <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
+        </Setting>
 
         <Setting Key="Age_CustomerUpdMessagesRead" SpName="Age_CustomerUpdMessagesRead_xtest" DbName="MessageDB" Plain="0" />
 
