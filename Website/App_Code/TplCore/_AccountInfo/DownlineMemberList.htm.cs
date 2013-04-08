@@ -13,18 +13,16 @@ namespace Fanex.Agent.UI
 	{
 		public class DownlineMemberList_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE HTML><head><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_AccountInfo/Resources/AccountInfo.less", TplSettings.Question);}}
+			protected static string s0 = "<!DOCTYPE HTML><html><head><title></title><link href=\"";
+			protected static string s1{get{return AbsoluteUrl("Views/Account/Resources/Account.less", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_AccountInfo/Resources/styles.less", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s5{get{return AbsoluteUrl("_Components/Paging/Paging.less", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body class=\"member-list\"><ul id=\"members-list\" class=\"member-tab-list\">";
+			protected static string s3{get{return AbsoluteUrl("_Components/Paging/Paging.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><ul id=\"members-list\" class=\"member-tab-list\">";
 			public DownlineMemberList_Content_Block Content = new DownlineMemberList_Content_Block();
 			public DownlineMemberList_NoInfoBlock_Block NoInfoBlock = new DownlineMemberList_NoInfoBlock_Block();
-			protected static string s7 = "</ul></br>";
+			protected static string s5 = "</ul><br />";
 			public DownlineMemberList_PagingControlBlock_Block PagingControlBlock = new DownlineMemberList_PagingControlBlock_Block();
-			protected static string s8 = "</body>";
+			protected static string s6 = "</body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -35,13 +33,11 @@ namespace Fanex.Agent.UI
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
-					bd.Append(s5);
-					bd.Append(s6);
 					if(null != Content) Content.ToString(ref bd);
 					if(null != NoInfoBlock) NoInfoBlock.ToString(ref bd);
-					bd.Append(s7);
+					bd.Append(s5);
 					if(null != PagingControlBlock) PagingControlBlock.ToString(ref bd);
-					bd.Append(s8);
+					bd.Append(s6);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -56,25 +52,25 @@ namespace Fanex.Agent.UI
 
 		public class DownlineMemberList_Content_Block: Block
 		{
-			protected static string s9 = "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&custid=";
+			protected static string s7 = "<li><a href='../_AccountInfo/AccountInfo.aspx?IsMember=1&custid=";
 			public string CustID = "{CustID}";
-			protected static string s10 = "&txtUsername=";
+			protected static string s8 = "&txtUsername=";
 			public string UserName = "{UserName}";
-			protected static string s11 = "' target='menu'> ";
+			protected static string s9 = "' target='menu'> ";
 			public string MemberUserName = "{MemberUserName}";
-			protected static string s12 = " </a></li>";
+			protected static string s10 = " </a></li>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s9);
+					bd.Append(s7);
 					bd.Append(CustID);
-					bd.Append(s10);
+					bd.Append(s8);
 					bd.Append(UserName);
-					bd.Append(s11);
+					bd.Append(s9);
 					bd.Append(MemberUserName);
-					bd.Append(s12);
+					bd.Append(s10);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -82,17 +78,17 @@ namespace Fanex.Agent.UI
 
 		public class DownlineMemberList_NoInfoBlock_Block: Block
 		{
-			protected static string s13 = "<li><span class=\"no-data\">";
-			protected static string s14{get{return Resources.Lang.noInfo;}}
-			protected static string s15 = "</span></li>";
+			protected static string s11 = "<li><span class=\"no-data\">";
+			protected static string s12{get{return Resources.Lang.noInfo;}}
+			protected static string s13 = "</span></li>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s11);
+					bd.Append(s12);
 					bd.Append(s13);
-					bd.Append(s14);
-					bd.Append(s15);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
