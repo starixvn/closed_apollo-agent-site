@@ -4,6 +4,8 @@
     var normal = string.Empty;
     var special = string.Empty;
     var pri = string.Empty;
+    var color = string.Empty;
+    var minDate = new DateTime(DateTime.Now.Year, 1, 01);
 
     switch (Model.PageQuery)
     {
@@ -12,11 +14,14 @@
             break;
         case Constant.SPECIAL:
             special = "current";
+            color = "Red";
             break;
         case Constant.ALLSPECIAL:
             special = "current";
+            color = "Red";
             break;
         case Constant.PRIVATE:
+            color = "Green";
             pri = "current";
             break;
         default:
@@ -44,12 +49,12 @@
                     <div class="date">
                         <label>
                             @Resources.Lang.from</label>
-                        @Html.DatePickerFor(m => m.From)
+                        @Html.DatePickerFor(m => m.From, minDate, DateTime.Now)
                     </div>
                     <div class="date">
                         <label>
                             @Resources.Lang.to</label>
-                        @Html.DatePickerFor(m => m.To)
+                        @Html.DatePickerFor(m => m.To, minDate, DateTime.Now)
                     </div>
                     <!--/DateTimeSearch-->
                     <input type="submit" class="btn" style="width: 55px" id="dSubmit" value="@Resources.Lang.submit"/>
@@ -104,7 +109,7 @@
                                 @itemMessage.PostTime
                             </td>
                             <td class="message_content">
-                                @itemMessage.GetContent()
+                                <font color='@color'>@itemMessage.GetContent()</font>
                             </td>
                         </tr>
                         <!--/MsgContent-->
