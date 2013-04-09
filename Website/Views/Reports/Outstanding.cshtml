@@ -11,25 +11,11 @@
     <link href="~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.less" rel="stylesheet" type="text/css" />
 }
 @model OutstandingDownlinePathDTO
-<div id="divMain">
+<div id="content_main">
     @{
         if (Model.DownlinePath != null && Model.DownlinePath.Any())
         {
-        <div class="boxNavigation" id="divnavigation">
-            @foreach (AgentDownlinePathViewModel item in Model.DownlinePath)
-            {
-                var last = Model.DownlinePath.LastOrDefault();
-                if (last != null && !last.Equals(item))
-                {
-                <a href="#" onclick="REPORTS.viewAgent(@item.Id)">@item.Username</a>
-                <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
-                }
-                else
-                {
-                <span>@item.Username</span>
-                }
-            }
-        </div>
+        @RazorHelper.Navigation(Model.DownlinePath.ToList())
         }
     }
     <table class="tblRpt" style="width: 100%">
@@ -76,7 +62,7 @@
                     {
                     <tr>
                         <td>
-                            <a href="#" onclick="REPORTS.viewAgent(@item.AgentId);">@item.UserName</a>
+                            <a href="#" name="viewagent" agentid="@item.AgentId">@item.UserName</a>
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.Outstanding, "en-US")
@@ -139,8 +125,6 @@
             @RazorHelper.ShowNoInfo(5)
         }
     </table>
-</div>
-<div id="divDetail" style="margin-top: 20px;">
 </div>
 <div id="gridId" class="freegrid  content-grid" style="margin-top: 20px; display: none;">
 </div>

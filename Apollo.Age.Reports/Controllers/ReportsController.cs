@@ -16,6 +16,7 @@ namespace Apollo.Age.Reports.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.DTO;
     using Apollo.Age.Reports.Services;
@@ -49,9 +50,9 @@ namespace Apollo.Age.Reports.Controllers
             _reportService = reportService ?? new OutstandingService();
         }
 
-        private IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath(int agentId)
+        private IEnumerable<Agent> AgentDownlinePath(int agentId)
         {
-            IEnumerable<AgentDownlinePathViewModel> models = _reportService.GetData<AgentDownlinePathViewModel>(new AgentDownlinePathCriteria
+            IEnumerable<Agent> models = _reportService.GetData<Agent>(new AgentDownlinePathCriteria
             {
                 ParentId = CurrentSession.AgentId,
                 AgentId = agentId

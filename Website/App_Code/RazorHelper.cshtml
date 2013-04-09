@@ -1,5 +1,5 @@
 ﻿@helper ShowNoInfo(int colspan, string cssClass = "no_info")
-{
+    {
     <!--NotFoundContent-->
     <tr class="@cssClass">
         <td colspan="@colspan">
@@ -9,7 +9,7 @@
     <!--/NotFoundContent-->
 }
 @helper RefreshCountDown(string refreshCountDownId, int initCountDown = 15, int fromSecond = 15, string onRefresh = "location.reload();")
-{
+    {
     <div class="btnCountDown clearfix">
         <div id="CountDownRefresh" class="btnRefresh" title="@Resources.Lang.refresh" onclick="CountDownRefresh_Refresh();">
         </div>
@@ -20,15 +20,13 @@
         <!--Seconds-->
         @for (int i = 1; i < 6; i++)
         {
-           <div id="option@(i)" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id)">
-            @(fromSecond + i*15)@Resources.Lang.sec
-           </div>
+            <div id="option@(i)" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id)">
+                @(fromSecond + i * 15)@Resources.Lang.sec
+            </div>
         }
-        
         <!--/Seconds-->
     </div>
 
- 
     <script type="text/javascript">
         var refreshCountDownId = "@refreshCountDownId";
         var initCountDown = @initCountDown;
@@ -36,57 +34,70 @@
         var countDownRefreshFunc= "@onRefresh";
     </script>
 }
-
 @helper FormatNegativeNumber(decimal value, byte numDecimals = 0, bool showZero = false)
-{
-    if (value != 0 || showZero)
     {
-        if (Math.Round(value, numDecimals) < 0 || (numDecimals == 0 && value < 0))
+        if (value != 0 || showZero)
         {
-            <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals) </span>       
+            if (Math.Round(value, numDecimals) < 0 || (numDecimals == 0 && value < 0))
+            {
+    <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+    </span>
+            }
+            else
+            {
+    @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+            }
         }
-        else
-        {
-            @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
-        }
-    }
 }
-
 @helper FormatPositiveNumber(decimal value, byte numDecimals = 0, bool showZero = false)
     {
-    if (value != 0 || showZero)
-    {
-        if (Math.Round(value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
-        { 
-            <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals) </span>
+        if (value != 0 || showZero)
+        {
+            if (Math.Round(value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
+            {
+    <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+    </span>
+            }
+            else
+            {
+    @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+            }
         }
-        else
-        { 
-            @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
-        }
-    }
 }
-
 @helper FormatPositiveNumber(decimal? value, byte numDecimals = 0, bool showZero = false)
-{
-    if (value != null && (value.Value != 0 || showZero))
     {
-        if (Math.Round(value.Value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
-        { 
-            <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value.Value, numDecimals) </span>
+        if (value != null && (value.Value != 0 || showZero))
+        {
+            if (Math.Round(value.Value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
+            {
+    <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value.Value, numDecimals)
+    </span>
+            }
+            else
+            {
+    @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+            }
         }
-        else
-        { 
-            @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
-        }
-    }
 }
-
-
 @helper FormatNumber(decimal value, byte numDecimals = 0, bool showZero = false)
     {
-    if (value != 0 || showZero)
+        if (value != 0 || showZero)
+        {
+    @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+        }
+}
+@helper Navigation(List<Apollo.Age.Entities.Agent> Model)
     {
-        @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
-    }
+    <div id="divnavigation" class="boxNavigation">
+        @foreach (Apollo.Age.Entities.Agent item in Model)
+        {
+            var last = Model.LastOrDefault();
+            if (last != null && !last.Equals(item))
+            { <a href="#" name="navigation" agentid="@item.Id">@item.Username</a>
+            <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
+            }
+            else
+            { <span>@item.Username</span> }
+        }
+    </div>
 }

@@ -5,15 +5,6 @@ if (typeof jQuery != 'undefined') {
     REPORTS = function ($) {
         return {
             init: function () {
-                $("#AgentOutstanding").bind('click', function () {
-                    $.get(APOLLO.resolveUrl('Reports/AgentOutstanding'), { 'agentId': $("#AgentOutstanding").attr("agentid") })
-                        .done(function (data) {
-                            $("#gridId").hide();
-                            $('#divDetail').html(data);
-                        });
-                    return false;
-                });
-
                 $("#MemberOutstanding").bind('click', function () {
                     $.ajax({
                         type: "POST",
@@ -33,9 +24,14 @@ if (typeof jQuery != 'undefined') {
                     });
                     return false;
                 });
-            },
-            viewAgent: function (agentId) {
-                location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + agentId);
+
+                $("[name='navigation']").bind('click', function () {
+                    location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
+                });
+
+                $("[name='viewagent']").bind('click', function () {
+                    location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
+                });
             },
             initGrid: function (outstandingData) {
                 var bodyData = [];
