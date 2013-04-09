@@ -24,10 +24,10 @@ namespace Apollo.Age.Account.Controllers
     {
         private MessageService _messageService;
 
-        private readonly const string NORMAL = "normal";
-        private readonly const string SPECIAL = "special";
-        private readonly const string ALLSPECIAL = "allSpecial";
-        private readonly const string PRIVATE = "private";
+        private const string NORMAL = "normal";
+        private const string SPECIAL = "special";
+        private const string ALLSPECIAL = "allSpecial";
+        private const string PRIVATE = "private";
 
         public MessageController() : this(null) { }
 
