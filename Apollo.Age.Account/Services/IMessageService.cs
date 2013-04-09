@@ -12,6 +12,7 @@ namespace Apollo.Age.Account.Services
     using System;
     using System.Collections.Generic;
     using Apollo.Age.Account.ViewModels;
+    using Fanex.NAP.Framework.Data;
 
     public interface IMessageService
     {
@@ -28,5 +29,7 @@ namespace Apollo.Age.Account.Services
         MessageViewModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false);
 
         MessageViewModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false);
+
+        IEnumerable<MessageViewModel> GetMessage(ICriteria criteria);
     }
 }

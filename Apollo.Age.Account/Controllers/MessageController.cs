@@ -16,6 +16,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
     using Sunplus.Agent.Model.Entities;
+    using Apollo.Age.Account.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -53,12 +54,12 @@ namespace Apollo.Age.Account.Controllers
             return View();
         }
 
-        public ViewResult NewMessage(string pageQuery = NORMAL, int extra = 0, DateTime? from = null, DateTime? to = null)
+        public ViewResult NewMessage(GetMessageCriteria criteria)
         {
-            from = from != null ? from : DateTime.Now.AddDays(-3);
-            to = to != null ? to : DateTime.Now;
+            criteria.From = criteria.From != null ? criteria.From : DateTime.Now.AddDays(-3);
+            criteria.To = criteria.To != null ? criteria.To : DateTime.Now;
 
-            if (string.Compare(pageQuery, PRIVATE) == 0 && extra == 1)
+            if (string.Compare(criteria.PageQuery, PRIVATE) == 0 && criteria.Extra == 1)
             {
                 if (UserSession.Current.AdminId < 0)
                 {
@@ -66,7 +67,7 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            return View();
+            return View(criteria);
         }
 
         #region Ajax request
