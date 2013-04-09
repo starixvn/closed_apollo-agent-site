@@ -1,10 +1,230 @@
 @import "../../../_GlobalResources/Css/Agent.less";
 
-select#ddlLeague {
-	width: 280px;
+#box_header {
+	margin-bottom: 10px;
+
+	select#ddlLeague {
+		width: 280px;
+	}
+
+	.btnRefresh {
+		background: url( "Images/Refresh.png" ) no-repeat scroll left top transparent;
+		padding-left:15px;
+		font-weight:bold;
+		color:#90979A;    
+		width:25px;
+		height:25px;
+		cursor:pointer;
+	}
 }
 
-.paddingTopMatch{margin-top:10px;}
+/* Start: Match WL Detail */
+#BoxMatchWL
+{
+    position: absolute;
+    background: @white;
+    width: 713px;
+    border: solid 1px #B7B7B7;
+    left: 10px;
+    top: 97px;
+
+	.boderBoxMatch {
+		background: @tableBackground;
+		text-transform: none;
+		padding: 4px;
+
+
+		.ContentMatchWL {
+			background: @white;
+			width: 692px;
+			max-height: 310px;
+			border: none;
+			overflow: auto;
+			padding: 5px;
+			border: 1px solid #ccc;
+		
+			.ListMatch {			
+				float: left;
+				padding-left: 1px;
+				padding-right: 1px;
+				text-align: left;
+				margin: 0;
+				padding: 0;
+
+				li {
+					list-style: none;
+					float: left;
+					text-align: left;   
+					width: 50%; 
+
+					input, label {
+						vertical-align: middle;
+					}
+				}
+			}
+		}	
+	}	
+
+	.message, #iconSelMatch {
+		.pull-left;
+	}
+
+	#iconSelMatch {
+		background: url("../../../_GlobalResources/Images/letter_icoconts.png") no-repeat scroll 5px center;
+		font-weight: bold;
+		padding: 0 0 0 20px;
+		text-align: left;
+		width:100px;
+		text-transform: none;
+	}
+
+	#closeBoxMatch {
+		background: url("../../../_GlobalResources/Images/icon_close.jpg") no-repeat scroll 5px 2px;
+		font-weight: bold;
+		width:20px;
+		height: 20px;
+		cursor:pointer;
+		text-transform: none;
+		.pull-right;	
+		margin: 3px 4px 0 0;	
+	}
+
+	.poup-title {
+		background: @primaryHeaderBackground;
+	}
+}
+
+#diverrmsg {
+	width: 99%;
+	border: 0;
+	display: none;
+	height: 24px;
+	padding: 5px;
+	margin: 10px 0;
+	border: 1px solid @red;
+
+	.msgerr {
+		padding: 5px 29px;
+	}
+}
+
+#tblLiveDead {
+	display: none;
+
+	#bet-type-container {
+		margin-top: 40px;
+
+		/* End: Box Match by League */
+		table.check-list {
+			background: #ECE9D8;
+			border-spacing: 0;
+			border: 1px solid @borderColor;
+
+			td {
+				padding: 0;
+				border: 1px solid @borderColor;
+				.box-shadow(0 1px 0 #FFF inset);
+				text-shadow: 0 1px 0 #FFF;
+							
+				input {
+					margin: 3px 3px 0 4px;
+				}
+
+				label, input {
+					cursor: pointer;
+				}
+
+				label:hover {
+					text-decoration: none;
+				}
+
+				table.reference {										
+					width: 100%;
+					background: @white;
+
+					td {
+						border: 0;
+						padding: 2px 4px;
+						.box-shadow(none);						
+
+						* {
+							vertical-align: middle;
+						}
+
+						input {
+							margin: 3px 3px 0 4px;
+						}
+					}
+				}
+			}
+		}		
+	}
+	
+	.btn-submit {
+		float: left;
+		margin-top: 7px;
+
+		.btn {
+			border-radius: 0;
+		}
+	}	
+}
+
+#mainContent {
+	.title-scoremap {
+		width: 100%;
+		background: @headerBackground;
+
+		
+		.lnkRefresh {
+			background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;    
+			font-weight:bold;
+			color:#90979A;    
+			margin-top:4px;
+			width:20px;
+			height:20px;
+			cursor:pointer;
+			float:right;
+			padding-right:1px;
+		}
+
+		.lnkRefreshClick {
+			background: url( "Images/Loading.gif" ) no-repeat scroll left top transparent;    
+			font-weight:bold;
+			color:#90979A;    
+			margin-top:4px;
+			width:20px;
+			height:20px;
+			cursor:pointer;
+			float:right;
+			padding-right:1px;
+		}
+
+		.lnkGroup {
+			background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+			background-position: 0 -21px;
+			font-weight:bold;
+			color:#333;    
+			padding-left:25px;
+			padding-top:1px;
+			height:20px;
+			cursor:pointer;
+			float:left;
+		}
+
+		.lnkGroupClick {    
+			background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+			background-position: 0 0px;
+			font-weight:bold;
+			color:#333;    
+			padding-left:25px;
+			padding-top:1px;
+			height:20px;
+			cursor:pointer;
+			float:left;
+		}
+	}
+}
 
 #titleMatch
 {
@@ -16,147 +236,68 @@ select#ddlLeague {
     border: 1px solid #2A2A2A;
     text-shadow: 0 -1px 1px @black;
 	height:20px;
-	
-}
-#titleMatch .matchname{color: @white;font-size:11px;font-weight:normal; padding-left:5px}
 
-.tblScoreMap{border-collapse: collapse;width: 780px;}
-.tblScoreMap td
-{
-	color: @black;
-	padding: 3px 1px 3px 1px;
-	border: solid 1px #999;
-	text-align: center;
-}
-.tblScoreMap tbody tr:hover td {
-    background-color: #d0d3d3;
-}
-.tblScoreMap tbody tr td:hover {
-    background-color: #f8ff8d !important;
+	.matchname {
+		color: @white;
+		font-size:11px;
+		font-weight:normal;
+		padding-left:5px;
+	}	
 }
 
-.scoreMap{padding-top:1px;}
-.vsm {background-color: #DCFFFF; font-weight:bold}
-.vsmHomeWay {background-color: #f6d9b9; font-weight:bold}
-.vScoreMap {background-color: @white; font-weight:bold}
-.csm {background-color: @white !important; font-weight:bold}
+.tblScoreMap {
+	border-collapse: collapse;
+	width: 780px;
+
+	td {
+		color: @black;
+		padding: 3px 1px 3px 1px;
+		border: solid 1px #999;
+		text-align: center;
+	}
+
+	tbody tr:hover td {
+		background-color: #d0d3d3;
+	}
+
+	tbody tr td:hover {
+		background-color: #f8ff8d !important;
+	}
+}
+
+.scoreMap {
+	padding-top:1px;
+}
+
+.vsm {
+	background-color: #DCFFFF;
+	font-weight:bold
+}
+
+.vsmHomeWay {
+	background-color: #f6d9b9;
+	font-weight:bold;
+}
+
+.vScoreMap {
+	background-color: @white;
+	font-weight:bold;
+}
+
+.csm {
+	background-color: @white !important;
+	font-weight:bold;
+}
+
 .even_row
 {
 	background-color: @rowAltBackground;
 }
 
-.btnRefresh
-{
-    background: url( "Images/Refresh.png" ) no-repeat scroll left top transparent;
-    padding-left:15px;
-    font-weight:bold;
-    color:#90979A;    
-    width:25px;
-    height:25px;
-    cursor:pointer;
-}
 
-.lnkRefresh
-{
-    background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;    
-    font-weight:bold;
-    color:#90979A;    
-    margin-top:4px;
-    width:20px;
-    height:20px;
-    cursor:pointer;
-    float:right;
-    padding-right:1px;
-}
-.lnkRefreshClick
-{
-    background: url( "Images/Loading.gif" ) no-repeat scroll left top transparent;    
-    font-weight:bold;
-    color:#90979A;    
-    margin-top:4px;
-    width:20px;
-    height:20px;
-    cursor:pointer;
-    float:right;
-    padding-right:1px;
-}
 
-.lnkGroup
-{
-    background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
-    background-position: 0 -21px;
-    font-weight:bold;
-    color:#333;    
-    padding-left:25px;
-    padding-top:1px;
-    height:20px;
-    cursor:pointer;
-    float:left;
-}
-.lnkGroupClick
-{    
-    background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
-    background-position: 0 0px;
-    font-weight:bold;
-    color:#333;    
-    padding-left:25px;
-    padding-top:1px;
-    height:20px;
-    cursor:pointer;
-    float:left;
-}
 
-/* Start: Match WL Detail */
-#BoxMatchWL
-{
-    position: absolute;
-    background: @white;
-    width: 700px;
-    border: solid 1px #B7B7B7;
-    left: 4px;
-    top: 62px;
-}
 
-#ContentMatchWL
-{
-    background: @white;
-    width: 690px;
-    max-height: 310px;
-    border: none;
-    overflow: auto;
-    padding-right: 1px;
-}
-
-#ContentMatchWL .ListMatch li
-{
-    width: 50%;
-}
-
-#iconSelMatch
-{
-    background: url("../../../_GlobalResources/Images/letter_icoconts.png") no-repeat scroll 5px center #FFEFDE;
-    font-weight: bold;
-    padding: 0 0 0 20px;
-    text-align: left;
-    width:100px;
-    text-transform: none;
-}
-
-#closeBoxMatch
-{
-    background: url("../../../_GlobalResources/Images/icon_close.jpg") no-repeat scroll 5px 2px #FFEFDE;
-    font-weight: bold;
-    width:20px;
-    cursor:pointer;
-    text-transform: none;
-}
-
-#boderBoxMatch
-{
-    background: url("../../../_GlobalResources/Images/global_bg.gif");
-    text-transform: none;
-    padding: 4px;
-}
 
 #SelMatchGroup
 {
@@ -175,6 +316,7 @@ select#ddlLeague {
     width: 700px;
     background-image: url(bg_nav.gif);
 }
+
 .BoxMatch
 {
     width: 799px;
@@ -182,35 +324,9 @@ select#ddlLeague {
     border: none;
     overflow: auto;
     padding-right: 1px;
-}
 
-.BoxMatch .ListMatch li
-{
-    width: 50%;
-}
-
-.ListMatch
-{
-    width: 90%;
-    float: left;
-    padding-left: 1px;
-    padding-right: 1px;
-    text-align: left;
-}
-
-.ListMatch li
-{
-    list-style: none;
-    float: left;
-    text-align: left;    
-}
-/* End: Box Match by League */
-
-table.reference {
-	border: 0;
-	td {
-		border: 0;
-		.box-shadow(none);
+	.ListMatch li {
+		width: 50%;
 	}
 }
 
@@ -221,39 +337,20 @@ table.reference {
 	background: url(images/loading.gif) no-repeat;
 }
 
-.TLiveDead {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-right-color: #C3C3C3;
-    border-right-style: dotted;
-    border-right-width: 1px;
-    border-top-color: #C3C3C3;
-    border-top-style: dotted;
-    border-top-width: 1px;
-    padding-bottom: 3px;
-    padding-right: 2px;
-    padding-top: 3px;
+.TLiveDead {   
+	border: none; 
+    border-right: 1px dotted #C3C3C3;
+    border-top: 1px dotted #C3C3C3;
+    padding-bottom: 3px 2px 3px 2px;
     vertical-align: top;
     min-width:95px;
 }
+
 .RLiveDead {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-right-color: #C3C3C3;
-    border-right-style: dotted;
-    border-right-width: 1px;
-    border-right-color: #C3C3C3;
-    border-right-style: dotted;
-    border-right-width: 1px;
-    padding-bottom: 3px;
-    padding-right: 2px;
-    padding-top: 3px;
+    border: none;
+    border-right: 1px dotted #C3C3C3;
+    border-top: 1px dotted #C3C3C3;
+    padding-bottom: 3px 2px 3px 2px;
     vertical-align: top;
     min-width:95px;
 }
@@ -264,6 +361,7 @@ table.reference {
     height:26px;
     float:left;
 }
+
 .button_mid {
     background: url("Images/center_score.png") repeat-x;
     font-size:12px;
@@ -271,6 +369,7 @@ table.reference {
     height:26px;
     float:left;
 }
+
 .button_right {
     background: url("Images/last_score.png");
     height:26px;

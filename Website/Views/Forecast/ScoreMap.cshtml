@@ -13,61 +13,39 @@
     <link type="text/css" rel="Stylesheet" href="~/Views/Forecast/Resources/ScoreMap.less" />
 }
 <div id="content_main">
-        <div id="box_header">
-            <table style="@(showLeaguesStyle)">
-                <tr>
-                    <td>
-                        <b>@Resources.Lang.league</b>
-                    </td>
-                    <td id="selLeague">
-                        <select id="ddlLeague" name="ddlLeague" style="position: relative;">
-                        @{
-                            if (leagues != null && leagues.Any())
-                            {
-                                foreach (var league in leagues)
-                                {
-                                    <option value="@(league.LeagueId)">@(league.LeagueName)</option>
-                                }
-                            }
+        <div id="box_header" style="@(showLeaguesStyle)" class="clearfix">
+            <div class="boxHeader-element">
+                <label>@Resources.Lang.league</label>
+                <select id="ddlLeague" name="ddlLeague" style="position: relative;">
+                @{
+                    if (leagues != null && leagues.Any())
+                    {
+                        foreach (var league in leagues)
+                        {
+                            <option value="@(league.LeagueId)">@(league.LeagueName)</option>
                         }
-                        </select>
-                    </td>
-                    <td>
-                        <div title="@Resources.Lang.RefreshLeagues" class="btnRefresh" id="RefreshLeagues">&nbsp;</div>
-                    </td>
-                    <td>
-                        <input type="button" class="btn" id="dSelMatch" value="@Resources.Lang.SelectMatch">
-                    </td>
-                    <td>
-                        <span class="pull-left" id="loading"></span>
-                    </td>
-                </tr>
-            </table>
-            <div id="tblLiveDead" style="display:none;">
-                <div id="bet-type-container"></div>
-                <p>
+                    }
+                }
+                </select>
+            </div>
+            <div title="@Resources.Lang.RefreshLeagues" class="btnRefresh" id="RefreshLeagues">&nbsp;</div>
+            <div class="boxHeader-element">
+                <input type="button" class="btn" id="dSelMatch" value="@Resources.Lang.SelectMatch">                
+            </div>
+            <div class="boxHeader-element clearfix">
+                <span class="pull-left" id="loading"></span>
+            </div>            
+            <div id="tblLiveDead">
+                <div id="bet-type-container" class="clearfix"></div>
+                <div class="btn-submit clearfix">
                     <input type="button" value="@Resources.Lang.submit" id="dSubmit" class="btn" />
                     <span id="loadingSubmit"></span>
-                </p>
+                </div>
             </div>
         </div>        
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" id="diverrmsg" style="display: none;">
-            <tr>
-                <td id="msg_1_1" class="emsg_1_1">&nbsp;</td>
-                <td id="msg_1_2" class="emsg_1_2">&nbsp;</td>
-                <td id="msg_1_3" class="emsg_1_3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td id="msg_2_1" valign="top" class="emsg_2_1">&nbsp;</td>
-                <td valign="top" id="spmsgerr" class="msgerr"></td>
-                <td id="msg_2_2" class="emsg_2_2">&nbsp;</td>
-            </tr>
-            <tr>
-                <td id="msg_3_1" class="emsg_3_1">&nbsp;</td>
-                <td id="msg_3_2" class="emsg_3_2">&nbsp;</td>
-                <td id="msg_3_3" class="emsg_3_3">&nbsp;</td>
-            </tr>
-        </table>    
+        <div id="diverrmsg">
+            <span id="spmsgerr" class="msgerr"></span>
+        </div>     
         <div id="mainContent" @*style="width: {mWidth}"*@>
         </div>
         <div id="BoxMatchWL" style="display:none;">

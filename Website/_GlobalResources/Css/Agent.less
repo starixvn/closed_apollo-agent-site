@@ -211,15 +211,18 @@ table {
 		}
 	}
 
-
-	.total {			
-		background: @rowTotalBackground;
-		color: @white;
-		.bold;
+	tfoot {
+		.total {			
+			background: @rowTotalBackground;
+			color: @white;
+			.bold;
+		}
 	}
+
 	.bl_time {
 		font-size: .9em;
 	}
+
 	.no_info {
 		.bold;
 		.text-center;
@@ -242,6 +245,18 @@ table {
 		line-height: 1.2em;
 		font-size: .95em;
 		cursor: default;
+	}
+
+	.boxHeader-element {
+		float: left;
+
+		* {
+			vertical-align: middle;
+		}
+
+		select {
+			margin: 0 5px;
+		}
 	}
 }
 

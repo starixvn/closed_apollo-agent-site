@@ -1,0 +1,27 @@
+﻿@using Apollo.MvcPaging
+@model IPagedList<Apollo.Age.Entities.Member>
+@{
+    Layout = "~/Views/Account/Shared/_Layout.cshtml";
+}
+
+<ul id="members-list" class="member-tab-list">
+    @if (Model != null)
+    {
+        foreach (var member in Model)
+        {
+            <li>
+                <a href='../Account/AccountInfo?IsMember=1&custId=@member.Id&userName=@member.Username' target='menu'> @member.Username </a>
+            </li> 
+        }
+    }
+    else
+    {
+        <li>
+            <span class="no-data">@Resources.Lang.noInfo</span>
+        </li> 
+    }
+</ul>
+<br />
+<div class="pager">
+	@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>
