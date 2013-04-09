@@ -9,11 +9,10 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class GetTopOddsByMatchCriteria : CriteriaBase
     {
         public int MatchId { get; set; }

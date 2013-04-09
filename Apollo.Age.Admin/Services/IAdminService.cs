@@ -1,0 +1,21 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="IAdminService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Lewis.Le" date="2013.4.9">Created</change>
+// </history>
+
+namespace Apollo.Age.Admin.Services
+{
+    using System.Collections.Generic;
+    using Apollo.Age.Admin.ViewModels;
+    using Apollo.Age.Admin.Criterias;
+    using Apollo.Age.Entities;
+
+    public interface IAdminService
+    {
+
+    }
+}

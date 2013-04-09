@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="MoneyLine.aspx.cs" Inherits="Fanex.Age.UI.TotalBets.MoneyLine_Page" %>

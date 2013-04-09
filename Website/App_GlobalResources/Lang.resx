@@ -4239,4 +4239,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="ViewForeCast" xml:space="preserve">
     <value>View Forecast</value>
   </data>
+  <data name="AddNewExchangeRate" xml:space="preserve">
+    <value>Add New Exchange Rate</value>
+  </data>
 </root>

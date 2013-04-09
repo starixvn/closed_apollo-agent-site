@@ -70,6 +70,7 @@
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
     <Compile Include="DTO\Accounts\AgentStatus.cs" />
     <Compile Include="DTO\Accounts\TreeViewNodeDTO.cs" />
+    <Compile Include="DTO\Admin\ExchangeRate\ExchRate.cs" />
     <Compile Include="DTO\Reports\OutStandingReportDTO.cs" />
     <Compile Include="DTO\Reports\WinlossAgentDTO.cs" />
     <Compile Include="DTO\Reports\WinLossByBetTypeDTO.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Repositories\Interface\IMemberRepository.cs" />
     <Compile Include="Services\CacheRef.cs" />
     <Compile Include="Services\Impl\AgentService.cs" />
+    <Compile Include="Services\Impl\CachingService.cs" />
     <Compile Include="Services\Impl\CustomerService.cs" />
     <Compile Include="Services\Impl\MemberService.cs" />
     <Compile Include="Services\Impl\PermissionService.cs" />

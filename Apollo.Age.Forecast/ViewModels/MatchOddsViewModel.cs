@@ -10,11 +10,10 @@
 
 namespace Apollo.Age.Forecast.ViewModels
 {
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class MatchOddsViewModel
     {
         public decimal Hdp1 { get; set; }

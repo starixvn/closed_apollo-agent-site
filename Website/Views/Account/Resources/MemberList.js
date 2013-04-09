@@ -4,7 +4,12 @@ var MEMBERLIST = function ($) {
     return {
         AgentId: null,
         init: function () {
+            MEMBERLIST.AgentId = $("#gridId").attr("agentid");
             MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
+            $("[name='navigation']").bind('click', function () {
+                location.href = APOLLO.resolveUrl("/Account/Agentlist?agentid=" + $(this).attr('agentid'));
+                return false;
+            });
         },
         loadMemberList: function (agentId) {
             $.ajax({
