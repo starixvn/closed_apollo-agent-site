@@ -17,6 +17,8 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Sunplus.Agent.Model.Entities;
     using Apollo.Age.Account.Criterias;
+    using System.Collections.Generic;
+    using Apollo.Age.Account.ViewModels;
 
     /// <summary>
     /// TODO: Update summary.
@@ -29,6 +31,7 @@ namespace Apollo.Age.Account.Controllers
         private const string SPECIAL = "special";
         private const string ALLSPECIAL = "allSpecial";
         private const string PRIVATE = "private";
+        private const int SITEID = 3300;
 
         public MessageController() : this(null) { }
 
@@ -56,8 +59,18 @@ namespace Apollo.Age.Account.Controllers
 
         public ViewResult NewMessage(GetMessageCriteria criteria)
         {
+            var listMessage = new List<MessageViewModel>();
+            int isPublic = 0;
+            int isSpecial = 0;
+            int maxSize = 50;
+
+            criteria.CustId = this.CurrentSession.UserId;
+            criteria.SiteId = _messageService.GetParentSitesID(SITEID.ToString());
+            criteria.Record = maxSize;
+
             criteria.From = criteria.From != null ? criteria.From : DateTime.Now.AddDays(-3);
             criteria.To = criteria.To != null ? criteria.To : DateTime.Now;
+            criteria.PageQuery = string.IsNullOrWhiteSpace(criteria.PageQuery) ? NORMAL : criteria.PageQuery;
 
             if (string.Compare(criteria.PageQuery, PRIVATE) == 0 && criteria.Extra == 1)
             {
@@ -66,6 +79,34 @@ namespace Apollo.Age.Account.Controllers
                     _messageService.UpdateReadPrivateMessage(this.CurrentSession.UserId, this.CurrentSession.Username);
                 }
             }
+
+            if (string.Compare(criteria.PageQuery, SPECIAL) == 0
+                || string.Compare(criteria.PageQuery, ALLSPECIAL) == 0)
+            {
+                isPublic = 2;
+                isSpecial = 1;
+                criteria.From = null;
+                criteria.To = null;
+            }
+
+            if (string.Compare(criteria.PageQuery, NORMAL) == 0)
+            {
+                isPublic = 1;
+                isSpecial = 0;
+            }
+
+            if (string.Compare(criteria.PageQuery, PRIVATE) == 0)
+            {
+                isPublic = 0;
+                isSpecial = 2;
+            }
+
+            criteria.IsPublic = isPublic;
+            criteria.IsSpecial = isSpecial;
+
+            listMessage = _messageService.GetMessage(criteria).ToList();
+
+            ViewBag.Messages = listMessage;
 
             return View(criteria);
         }
@@ -88,7 +129,6 @@ namespace Apollo.Age.Account.Controllers
         [HttpPost]
         public ActionResult GetMessage()
         {
-            int siteId = 3300;
             int messageType = 3;
 
             int userId = this.CurrentSession.UserId;
@@ -99,7 +139,7 @@ namespace Apollo.Age.Account.Controllers
 
             //if (Request.IsAjaxRequest())
             //{
-            var pubMessage = _messageService.GetTopPublicMessage(messageType, siteId);
+            var pubMessage = _messageService.GetTopPublicMessage(messageType, SITEID);
             if (!ReferenceEquals(pubMessage, null))
             {
                 publicMessages[0] = pubMessage.MessageId;
