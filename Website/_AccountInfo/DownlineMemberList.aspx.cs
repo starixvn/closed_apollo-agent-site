@@ -76,7 +76,7 @@ public partial class _AccountInfo_DownlineMemberList : TplPage
             TotalPages = this.totalPage
         };
 
-        membersList = service.GetMemberDownline(ref criteria);
+        membersList = service.GetMemberDownline(this.custId, this.pageIndex, this.pageSize, ref this.totalPage);
 
         this.totalPage = criteria.TotalPages;
         return membersList;

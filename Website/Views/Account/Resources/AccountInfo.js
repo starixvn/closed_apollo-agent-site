@@ -139,7 +139,7 @@
         }
     },
     bindMembersList: function (agentId) {
-        var link = APOLLO.resolveUrl("_AccountInfo/DownlineMemberList.aspx?custid=" + agentId),
+        var link = APOLLO.resolveUrl("Account/MemberDownline?custId=" + agentId),
             iframe = document.createElement('iframe');
 
         iframe.frameBorder = 0;

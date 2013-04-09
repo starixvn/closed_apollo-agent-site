@@ -10,8 +10,10 @@
 
 namespace Fanex.BetList.Age.BetListCmd
 {
+    using System;
     using System.Collections;
     using System.Data;
+    using Apollo.Age.Enumerations;
     using Fanex.BetList.Age.Definition;
     using Sunplus.Agent.Model.BL.BetList;
 
@@ -21,7 +23,7 @@ namespace Fanex.BetList.Age.BetListCmd
     /// </summary>
     public class MixParlayCmd : BetListCmd
     {
-        private int bettype;
+        private string bettype = Convert.ToString((int)BetTypes.None);
         private DataTable result = null;
         private BetListBO betList = null;
         private DataTable outDataTable = null;
@@ -37,7 +39,7 @@ namespace Fanex.BetList.Age.BetListCmd
             this.outDataTable = new DataTable();
         }
 
-        protected int Bettype
+        protected string Bettype
         {
             get { return this.bettype; }
             set { this.bettype = value; }
@@ -45,7 +47,7 @@ namespace Fanex.BetList.Age.BetListCmd
 
         public override void SetParams(Hashtable hash)
         {
-            this.bettype = (int)hash["bettype"];
+            this.bettype = hash["bettype"].ToString();
 
             Title = Resources.Lang.lblMixParlay;
             BetListType = BetListType.Member;
