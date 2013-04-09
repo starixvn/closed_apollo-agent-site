@@ -37,5 +37,7 @@ namespace Apollo.Age.Web
         decimal MatchLimit { get; set; }
 
         decimal VirtualMultiplier { get; set; }
+
+        bool IsSuper { get; set; }
     }
 }

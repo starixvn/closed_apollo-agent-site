@@ -14,13 +14,28 @@ namespace Apollo.Age.Web
     using System.Linq;
     using System.Text;
     using System.Runtime.Serialization;
+using Apollo.Age.Entities;
 
     /// <summary>
     ///  It contains all properties of an authenticated user
     ///  The implementation is applied when user config is state server mode
     /// </summary>
+    [Serializable]
     public class CurrentSession : ICurrentSession, ISerializable
     {
+        public CurrentSession(User user)
+        {
+            AgentId = user.Agent.Id;
+            AgentLevel = user.Agent.Level;
+            AgentName = user.Agent.Username;
+            UserId = user.Id;
+            Username = user.Username;
+            IsMaster = user.IsMaster;
+            MatchLimit = user.Agent.MatchLimit;
+            Language = "en-US"; //get language of user
+            CurrencyId = user.Agent.Currency;
+        }
+
         public CurrentSession(SerializationInfo info, StreamingContext context)
         {
             if (ReferenceEquals(null, info))
@@ -79,6 +94,13 @@ namespace Apollo.Age.Web
             info.AddValue("DoubleCommLosing", DoubleCommLosing);            
             info.AddValue("Language", Language);
             
+        }
+
+
+        public bool IsSuper
+        {
+            get;
+            set;
         }
     }
 }

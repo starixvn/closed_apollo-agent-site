@@ -115,6 +115,8 @@ namespace Sunplus.Agent.UI._Authorization
 
             if (user != null)
             {
+                ICurrentSession currentSession = new CurrentSession(user);
+                Session["Apollo.Age.Web.CurrentSession"] = currentSession;
                 UserSessionService.SetUserSessionValues(session, user);
 
                 

@@ -7,14 +7,14 @@ if (typeof jQuery != 'undefined') {
         };
     } (jQuery);
 
-    $(document).ready(function () {
-        $('.input-date').datepicker();
-
+    $(document).ready(function () {        
+        $('.input-date').datepicker({
+            showOn: "button",
+            buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png"),
+            buttonImageOnly: true
+        });
     });
 }
-
-
-
 
 // Require Core.js
 _focusElementId = -1; // Do not use default focus

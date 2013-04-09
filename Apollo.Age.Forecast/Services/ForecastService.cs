@@ -221,7 +221,7 @@ namespace Apollo.Age.Forecast.Services
 
             return GetData<LeagueViewModel>(new GetScoreMapLeaguesCriteria { 
                 AgentId = agentId
-            });
+            }).OrderBy(league => league.LeagueName);
         }
 
         private ForecastMatchWinLostViewModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchViewModel> forecastMatches, int betType, int currentScore)
