@@ -198,5 +198,15 @@ namespace Apollo.Age.Account.Services
 
             return str2 + siteId;
         }
+
+        public IEnumerable<MessageViewModel> GetMessage(ICriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                return this.GetData<MessageViewModel>(criteria);
+            }
+
+            return null;
+        }
     }
 }

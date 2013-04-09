@@ -1,8 +1,8 @@
 ﻿function initMessage()
 {    
     if (typeof jQuery != 'undefined') {
-        $(document).ready(function () {            
-            $('.input-date').datepicker();
+        $(document).ready(function () {
+            $('.datepicker').datepicker();
         });
     }
 }

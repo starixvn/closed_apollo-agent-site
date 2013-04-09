@@ -1,6 +1,8 @@
-﻿@{
+﻿@{    
     Layout = null;
 }
+@using Apollo.Age.Web.Mvc
+@model GetMessageCriteria
 <!--calendar-include-->
 <link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet"
     type="text/css" />
@@ -8,7 +10,7 @@
 <link href="~/App_Themes/AgencyV2/message.less" rel="stylesheet" type="text/css">
 <div id="page_main">
     <div id="header_main">
-        {messagehistory}
+        @Resources.Lang.messagetitle
     </div>
     <div id="content_main">
         <div id="box_header">
@@ -16,18 +18,18 @@
                 <!--DateTimeSearch-->
                 <div class="date">
                     <label>
-                        {From}</label>
-                    <input id="{txtDate}" class="{TxtDateCls} input-date" value="{currentDate}" type="text"
-                        size="13" name="{txtDate}" />
+                        @Resources.Lang.from</label>
+                    @*<input id="{txtDate}" class="{TxtDateCls} input-date" value="{currentDate}" type="text"
+                        size="13" name="{txtDate}" />*@
+                    @Html.DatePickerFor(m => m.From)
                 </div>
                 <div class="date">
                     <label>
-                        {To}</label>
-                    <input id="{txtDate}" class="{TxtDateCls} input-date" value="{currentDate}" type="text"
-                        size="13" name="{txtDate}" />
+                        @Resources.Lang.to</label>
+                    @Html.DatePickerFor(m => m.To)
                 </div>
                 <!--/DateTimeSearch-->
-                <input type="button" class="btn" style="width: 55px" id="dSubmit" value="{submit}"
+                <input type="button" class="btn" style="width: 55px" id="dSubmit" value="@Resources.Lang.submit"
                     onclick="javascript:showMsg('');" />
             </div>
         </div>
@@ -36,24 +38,25 @@
                 <tr>
                     <td colspan="4" class="tbList">
                         <ul>
-                            <li><a href="javascript:showMsg('normal');"><span>{normaltext}</span></a></li>
-                            <li><span class="line">|</span><a href="javascript:showMsg('special');"><span>{specialtext}</span></a></li>
-                            <li><span class="line">|</span><a href="javascript:showMsg('private');"><span>{personaltext}</span></a></li>
+                            <li id="@(Model.PageQuery == "normalstyle" ? "current" : string.Empty)"><a href="javascript:showMsg('normal');">
+                                <span>@Resources.Lang.normalmessage</span></a></li>
+                            <li><span class="line">|</span><a href="javascript:showMsg('special');"><span>@Resources.Lang.specialmessage</span></a></li>
+                            <li><span class="line">|</span><a href="javascript:showMsg('private');"><span>@Resources.Lang.personalmessage</span></a></li>
                         </ul>
                     </td>
                 </tr>
                 <tr class="RptHeader">
                     <td width="20px">
-                        {No_Header}
+                        @Resources.Lang.no
                     </td>
                     <td width="60px">
-                        {MessageID_Header}
+                        @Resources.Lang.messageIDHeader
                     </td>
                     <td width="80px">
-                        {PostDate_Header}
+                        @Resources.Lang.lblPostdate
                     </td>
                     <td>
-                        {Message_Header}
+                        @Resources.Lang.lblMessage
                     </td>
                 </tr>
             </thead>

@@ -15,7 +15,7 @@ namespace Apollo.Age.Account.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class GetMessageCriteriaCriteria : CriteriaBase
+    public class GetMessageCriteria : CriteriaBase
     {
         public override string GetSettingKey()
         {
@@ -60,10 +60,10 @@ namespace Apollo.Age.Account.Criterias
         public int Record { get; set; }
 
         [SpParam(SqlParamName = "edate")]
-        public DateTime From { get; set; }
+        public DateTime? From { get; set; }
 
         [SpParam(SqlParamName = "fdate")]
-        public DateTime To { get; set; }
+        public DateTime? To { get; set; }
 
         public bool IsTest { get; set; }
 
@@ -74,6 +74,12 @@ namespace Apollo.Age.Account.Criterias
 
         [SpParam(Ignored = true)]
         public int IsSpecial { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string PageQuery { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int Extra { get; set; }
 
         public override bool IsValid()
         {
