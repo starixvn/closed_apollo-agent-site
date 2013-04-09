@@ -63,7 +63,7 @@
     <Compile Include="Criterias\AgentDownlineCriteria.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentListCriteria.cs" />
-    <Compile Include="Criterias\GetMessageCriteriaCriteria.cs" />
+    <Compile Include="Criterias\GetMessageCriteria.cs" />
     <Compile Include="Criterias\SetPriMessageReadCriteria.cs" />
     <Compile Include="Criterias\CustomerExistCriteria.cs" />
     <Compile Include="Criterias\CustomerListCriteria.cs" />
