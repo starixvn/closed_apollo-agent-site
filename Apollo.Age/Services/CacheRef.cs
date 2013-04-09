@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Anders" date="2013.3.30">Created</change>
+//   <change who="Anders" date="2013.3.30">Clone from Sunplus.Agent.Model.dll</change>
 // </history>
 
 namespace Apollo.Age.Services
@@ -12,7 +12,7 @@ namespace Apollo.Age.Services
     using System.Threading;
     using RemotingRef;
 
-    public static class CacheRef
+    public static class CacheRef   
     {        
         public static string CurrentLanguage
         {

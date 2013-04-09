@@ -6,7 +6,7 @@
     using System.Text;
     using Apollo.Age.Services.Impl;
 
-    public class OutstandingService : QueryService
+    public class OutstandingService : ReportService
     {
     }
 }

@@ -706,6 +706,14 @@ function ProcessDownlineForWinlossOnly(fdate, tdate, targetCustId, actionPage, u
     return flag;
 }
 
+function SearchByDate() {
+    var form = document.getElementById("frmmain");
+    if (form) {
+        form.method = "get";
+        form.submit();
+    }
+}
+
 /* End search by date win loss*/
 
 // -- End - Js functions is dedicated to reports (Win Loss and Win Loss Detail) --
