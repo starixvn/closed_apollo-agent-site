@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
 //   <change who="Ricky.Nguyen" date="2013.4.5">Update OU, 1X2, ScoreMap</change>
+//   <change who="Ricky.Nguyen" date="2013.4.9">Update ScoreMap</change>
 // </history>
 
 namespace Apollo.Age.Forecast.Services
@@ -106,7 +107,7 @@ namespace Apollo.Age.Forecast.Services
             }
             catch (Exception ex)
             {
-                //// Log here
+                HandleException(ex);
                 return null;
             }
         }
@@ -224,6 +225,25 @@ namespace Apollo.Age.Forecast.Services
             }).OrderBy(league => league.LeagueName);
         }
 
+        public MatchOddsViewModel GetTopOddsByMatch(int matchId, int betType)
+        {
+            Check.Argument.IsNotNegative(matchId, "matchId");
+            Check.Argument.IsNotNegative(betType, "betType");
+
+            IEnumerable<MatchOddsViewModel> matchOddsViewModels = GetData<MatchOddsViewModel>(
+                    new GetTopOddsByMatchCriteria
+                    {
+                        BetType = betType,
+                        MatchId = matchId
+                    }
+                );
+
+
+            return matchOddsViewModels.ElementAtOrDefault(0);
+        }
+
+        #region Private Methods
+
         private ForecastMatchWinLostViewModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchViewModel> forecastMatches, int betType, int currentScore)
         {
             if (!forecastMatches.Any())
@@ -304,21 +324,7 @@ namespace Apollo.Age.Forecast.Services
             return forecast;
         }
 
-        public MatchOddsViewModel GetTopOddsByMatch(int matchId, int betType)
-        {
-            Check.Argument.IsNotNegative(matchId, "matchId");
-            Check.Argument.IsNotNegative(betType, "betType");
+        #endregion
 
-            IEnumerable<MatchOddsViewModel> matchOddsViewModels = GetData<MatchOddsViewModel>(
-                    new GetTopOddsByMatchCriteria
-                    {
-                        BetType = betType,
-                        MatchId = matchId
-                    }
-                );
-
-
-            return matchOddsViewModels.ElementAtOrDefault(0);
-        }
     }
 }

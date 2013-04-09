@@ -2,9 +2,14 @@
 //// New Code
 var scoreMap = {
     BaseLink: window.rootUrl + 'Forecast/',
+    ViewPartial: false,
     Init: function () {
+        //// Cached jQuery Objects
+        scoreMap.Loading = $("#loading");
+        scoreMap.LoadingSubmit = $("#loadingSubmit");
         var matchIds = $('#match-ids').val();
         if (matchIds != "") {
+            scoreMap.ViewPartial = true;
             scoreMap.LoadBetTypesList(matchIds);
             scoreMap.LoadResults($('#bet-types-live').val(), $('#bet-types-dead').val());
         }
@@ -14,22 +19,20 @@ var scoreMap = {
     },
     ResigterEvents: function () {
         $("#box_header").on("click", "#RefreshLeagues", function () {
-            $("#loading").addClass("loading");
+            scoreMap.Loading.addClass("loading");
             var url = scoreMap.BaseLink + 'ScoreMapLeagues?currentLeagueId=' + $('#ddlLeague').val();
             $.get(url, function (contentView) {
                 $("#selLeague").html(contentView);
-                $("#loading").removeClass("loading");
+                scoreMap.Loading.removeClass("loading");
             });
         });
 
         $("#dSelMatch").click(function () {
-            $("#loading").addClass("loading");
+            scoreMap.Loading.addClass("loading");
             var url = scoreMap.BaseLink + 'ScoreMapMatch?leagueId=' + $('#ddlLeague').val();
             $.get(url, function (contentView) {
-                $("#loading").removeClass("loading");
+                scoreMap.Loading.removeClass("loading");
                 $("#BoxMatchWL").replaceWith(contentView);
-                var $matchItems = $(".match-item");
-                var $checkAll = $("#chLCheckAll");
                 scoreMap.RegisterCheckAll("#chLCheckAll", ".match-item");
                 $("#closeBoxMatch").click(function () {
                     $("#BoxMatchWL").hide();
@@ -40,33 +43,38 @@ var scoreMap = {
             });
         });
 
-        $("#dSubmit").click(function () {
-            scoreMap.LoadResults();
-        });
     },
     LoadBetTypesList: function (matchIds) {
+        $('#tblMsgMatch').hide();
         if (matchIds) {
             matchIds = $('#match-ids').val();
         }
         else {
             matchIds = scoreMap.GetIdFromSelectedCheckBox($(".match-item:checked"));
             $("#match-ids").val(matchIds);
+            $("#BoxMatchWL").hide();
         }
         if (matchIds == "") {
             $('#msgMatchErr').text("Please choose a Match!");
             $('#tblMsgMatch').show();
             return;
         }
-        $('#tblMsgMatch').hide();
-        $("#BoxMatchWL").hide();
-        //bet-type-container
+
         var url = scoreMap.BaseLink + 'ScoreMapBetType';
+        //// If Show In PopUp then add BetType
+        if (scoreMap.ViewPartial) {
+            url += "?liveBetType=" + $('#bet-types-live').val()
+            + "&deadBetType=" + $('#bet-types-dead').val();
+        }
         $.get(url, function (contentView) {
             $("#tblLiveDead").show();
             $("#bet-type-container").html(contentView);
             //bet-type-live
             scoreMap.RegisterCheckAll("#chkAllL", ".bet-type-live");
             scoreMap.RegisterCheckAll("#chkAllD", ".bet-type-deadball");
+            $("#dSubmit").click(function () {
+                scoreMap.LoadResults();
+            });
         });
     },
     LoadResults: function (betTypesLive, betTypesDead) {
@@ -80,15 +88,15 @@ var scoreMap = {
             ageMsg.Show("Please choose a bet type", 0);
             return;
         }
-        $("#loadingSubmit").addClass("loading");
+        scoreMap.LoadingSubmit.addClass("loading");
         var url = scoreMap.BaseLink + 'ScoreMapResult?matchIds=' + $('#match-ids').val()
             + '&liveBetTypes=' + betTypesLive
             + '&deadBallBetTypes=' + betTypesDead;
         $.get(url, function (contentView) {
-            $("#loadingSubmit").removeClass("loading");
+            //// Hide Loading and Hide Message
+            scoreMap.LoadingSubmit.removeClass("loading");
             ageMsg.Hide();
             $("#mainContent").html(contentView);
-            // Events
             scoreMap.RegisterEventsForResultMatch($("#content_main"));
         });
     },
@@ -114,10 +122,11 @@ var scoreMap = {
             else {
                 spanButton.removeClass("lnkRefreshClick").addClass("lnkRefresh");
             }
-            var url = scoreMap.BaseLink + 'ScoreMapResult?matchIds=' + $this.attr("match-id")
-                    + '&liveBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-live:checked'))
+            var attrMatchId = $this.attr("match-id");
+            var url = scoreMap.BaseLink + 'ScoreMapResult?matchIds=' + attrMatchId
+                    +'&liveBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-live:checked'))
                     + '&deadBallBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
-            var matchId = "#RefreshContent" + $this.attr("match-id");
+            var matchId = "#RefreshContent" + attrMatchId;
             //RefreshContent
             $.get(url, function (contentView) {
                 $this.parent().replaceWith(contentView);
