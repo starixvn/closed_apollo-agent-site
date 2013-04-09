@@ -61,7 +61,7 @@ AGE.prototype.Scrolling = function () {
 var timeOutId;
 
 function PrivateMsgLink(url) {
-    
+
     var open = "(",
         close = ")";
     var countText = document.getElementById('privateMsgLnk').innerHTML;
@@ -96,6 +96,7 @@ function GetMessages() {
         // unread_private_messages:'0'
         //}
         try {
+
             var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
             var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
             var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
@@ -116,7 +117,7 @@ function GetMessages() {
 
             if ((publicMessage[MSGID] != null) && (publicMessageId != publicMessage[MSGID])) {
                 document.getElementById('topnews').innerHTML = publicMessage[MSGCONTENT];
-                
+
                 if (publicMessageId > 0) {
                     balloonPopupContent = publicMessage[MSGCONTENT];
                 }
@@ -145,7 +146,15 @@ function GetMessages() {
         setTimeout(GetMessages, (60 * 1000));
     }
 
-    ajax.PostJSON(_page.getBaseURL + '_UserMessage/Handlers/GetMessages.ashx', '', completedGetMessages);
+    $.ajax({
+        url: _page.getBaseURL + '../Website/Message/GetMessage',
+        type: 'POST',
+        dataType: 'JSON',
+        success: completedGetMessages,
+        error: function (xhr, status, err) {
+
+        }
+    });
 }
 
 function ReplaceAll(source, stringToFind, stringToReplace) {

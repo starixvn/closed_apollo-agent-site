@@ -10,13 +10,13 @@
 namespace Apollo.Age.Account.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using Apollo.Age.Web;
+    using System.Web;
     using System.Web.Mvc;
     using Apollo.Age.Account.Services;
-    using System.Web;
+    using Apollo.Age.Web;
+    using Sunplus.Agent.Model.Entities;
+    using Apollo.Age.Account.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -24,6 +24,11 @@ namespace Apollo.Age.Account.Controllers
     public class MessageController : BaseController
     {
         private MessageService _messageService;
+
+        private const string NORMAL = "normal";
+        private const string SPECIAL = "special";
+        private const string ALLSPECIAL = "allSpecial";
+        private const string PRIVATE = "private";
 
         public MessageController() : this(null) { }
 
@@ -49,6 +54,22 @@ namespace Apollo.Age.Account.Controllers
             return View();
         }
 
+        public ViewResult NewMessage(GetMessageCriteria criteria)
+        {
+            criteria.From = criteria.From != null ? criteria.From : DateTime.Now.AddDays(-3);
+            criteria.To = criteria.To != null ? criteria.To : DateTime.Now;
+
+            if (string.Compare(criteria.PageQuery, PRIVATE) == 0 && criteria.Extra == 1)
+            {
+                if (!this.CurrentSession.IsSuper)
+                {
+                    _messageService.UpdateReadPrivateMessage(this.CurrentSession.UserId, this.CurrentSession.Username);
+                }
+            }
+
+            return View(criteria);
+        }
+
         #region Ajax request
 
         [HttpPost]
@@ -56,46 +77,58 @@ namespace Apollo.Age.Account.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return Json(_messageService.UpdateReadMessage(this.CurrentSession.AgentId, messageId));
+                int agentId = this.CurrentSession.AgentId;
+
+                return Json(_messageService.UpdateReadMessage(agentId, messageId));
             }
 
             return Json(null);
         }
 
-        //[HttpPost]
+        [HttpPost]
         public ActionResult GetMessage()
         {
             int siteId = 3300;
             int messageType = 3;
-            //if (Request.IsAjaxRequest()) 
+
+            int userId = this.CurrentSession.UserId;
+            string username = this.CurrentSession.Username;
+
+            object[] publicMessages = new object[3];
+            object[] privateMessages = new object[2];
+
+            //if (Request.IsAjaxRequest())
             //{
-            var listPubMessage = _messageService.GetTopPublicMessage(messageType, siteId);
+            var pubMessage = _messageService.GetTopPublicMessage(messageType, siteId);
+            if (!ReferenceEquals(pubMessage, null))
+            {
+                publicMessages[0] = pubMessage.MessageId;
+                publicMessages[1] = pubMessage.GetContent();
+                publicMessages[2] = "normal";
+                if (pubMessage.IsSticky)
+                {
+                    publicMessages[2] = "allSpecial";
+                }
+            }
 
-            var listPriMessage = _messageService.GetTopPrivateMessage24(this.CurrentSession.UserId);
+            var priMessage = _messageService.GetTopPrivateMessage24(userId);
+            if (!ReferenceEquals(priMessage, null))
+            {
+                privateMessages[0] = priMessage.MessageId;
+                privateMessages[1] = priMessage.GetContent();
+            }
 
-            var countPriMessage = _messageService.CountUnreadPrivateMessage(this.CurrentSession.UserId, this.CurrentSession.Username);
+            var countPriMessage = _messageService.CountUnreadPrivateMessage(userId, username);
 
             //}
 
-            return Json(null);
+            return Json(new
+            {
+                public_message = publicMessages,
+                private_message = privateMessages,
+                unread_private_messages = countPriMessage
+            });
         }
         #endregion
-
-        //private int RoleToSiteID(int siteId)
-        //{
-        //    if (this.CurrentSession. == (int)UserTypes.Super)
-        //    {
-        //        siteId = 3100;
-        //    }
-        //    else if (CurrentUserSession.RoleId == (int)UserTypes.Master)
-        //    {
-        //        siteId = 3200;
-        //    }
-        //    else if (CurrentUserSession.RoleId == (int)UserTypes.Agent)
-        //    {
-        //        siteId = 3300;
-        //    }
-        //    return siteId;
-        //}
     }
 }
