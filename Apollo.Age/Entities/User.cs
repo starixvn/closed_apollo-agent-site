@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
+//   <change who="Anders" date="2013.4.9">Add rule check use super level</change>
 // </history>
 
 namespace Apollo.Age.Entities
@@ -22,6 +23,12 @@ namespace Apollo.Age.Entities
     {
         public bool IsMaster { get; set; }
         public Agent Agent { get; set; }
-        public string PageAcess { get; set; }
+        public bool IsSuper
+        {
+            get
+            {
+                return this.Agent.Level == 0; //&& something else
+            }
+        }
     }
 }

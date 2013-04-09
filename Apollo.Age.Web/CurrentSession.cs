@@ -95,5 +95,12 @@ using Apollo.Age.Entities;
             info.AddValue("Language", Language);
             
         }
+
+
+        public bool IsSuper
+        {
+            get;
+            set;
+        }
     }
 }

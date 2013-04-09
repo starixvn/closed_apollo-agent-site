@@ -13,7 +13,7 @@
 <ul id="menu">
     @foreach (SiteMapNode item in menu.ChildNodes)  //for (int i = 0, l = Model.ChildNodes.Count; i < l; i++)
     {
-        if (item.Roles.Count == 0 /*|| AdminRoles) */)
+        if (item.Roles.Count == 0 || (item.Roles.Count > 0 && Model.IsSuper))
         {
             string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
         
