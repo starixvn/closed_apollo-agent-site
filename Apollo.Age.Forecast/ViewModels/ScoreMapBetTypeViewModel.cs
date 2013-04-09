@@ -10,11 +10,10 @@
 namespace Apollo.Age.Forecast.ViewModels
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Forecast.Models;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ScoreMapBetTypeViewModel
     {
         public ScoreMapBetTypeViewModel()

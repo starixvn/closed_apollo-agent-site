@@ -7,24 +7,23 @@
 //   <change who="Ricky.Nguyen" date="2013.4.5">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.Repositories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Forecast.Models;
-    using Fanex.NAP.Framework.Data;
-    using Fanex.Data;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using Apollo.Age.Forecast.Models;
     using Fanex.Common.Extensions;
+    using Fanex.Data;
+    using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastRepository : IForecastRepository
     {
+        /// <summary>
+        /// Get ScoreMap Result
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         public ScoreMapResult GetScoreMapResult(ICriteria criteria)
         {
             if (criteria.IsValid())
@@ -35,7 +34,8 @@ namespace Apollo.Age.Forecast.Repositories
                     IDataReader reader = objdb.ExecuteReader(criteria.GetSpParams());
                     while (reader.Read())
                     {
-                        scoreMapResult.ScoreMapItems.Add(new ScoreMapItem { 
+                        scoreMapResult.ScoreMapItems.Add(new ScoreMapItem
+                        {
                             MatchId = reader.ToInt("matchid"),
                             Home = reader.ToInt("home"),
                             Away = reader.ToInt("away"),
@@ -46,7 +46,8 @@ namespace Apollo.Age.Forecast.Repositories
                     {
                         while (reader.Read())
                         {
-                            scoreMapResult.ScoreMapMatches.Add(new ScoreMapMatch { 
+                            scoreMapResult.ScoreMapMatches.Add(new ScoreMapMatch
+                            {
                                 MatchId = reader.ToInt("matchid"),
                                 HomeId = reader.ToInt("homeid"),
                                 AwayId = reader.ToInt("awayid")

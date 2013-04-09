@@ -9,11 +9,10 @@
 
 namespace Apollo.Age.Forecast.ViewModels
 {
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class Forecast1X2ViewModel
     {
         public int MatchID { get; set; }

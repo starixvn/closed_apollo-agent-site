@@ -12,15 +12,17 @@
 namespace Apollo.Age.Forecast.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Forecast.ViewModels;
     using Apollo.Age.Web;
-    using Apollo.Age.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastController : BaseController
     {
         private readonly ForecastService _forecastService;
@@ -36,8 +38,9 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         #region Forecast 1X2
+
         /// <summary>
-        /// 
+        /// Get Running League, with BetType
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
@@ -52,50 +55,58 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get Forecast 1x2 Matches
         /// </summary>
         /// <param name="leagueId"></param>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public ActionResult FC1X2Matches(int? leagueId, int? matchId, int betType = (int)BetTypes.FT_1X2 )
+        public ActionResult FC1X2Matches(int? leagueId, int? matchId, int betType = (int)BetTypes.FT_1X2)
         {
             IEnumerable<Forecast1X2ViewModel> forecasts = null;
             if (matchId != null && matchId.Value > 0)
             {
-                forecasts = _forecastService.GetForecast1X2Matches( this.CurrentSession.AgentId, matchId.Value, betType);
+                forecasts = _forecastService.GetForecast1X2Matches(this.CurrentSession.AgentId, matchId.Value, betType);
             }
             else
             {
-                forecasts = _forecastService.GetForecast1x2( this.CurrentSession.AgentId, leagueId.Value);
+                forecasts = _forecastService.GetForecast1x2(this.CurrentSession.AgentId, leagueId.Value);
             }
             return View(forecasts);
         }
 
-        #endregion FC1X2
+        #endregion Forecast 1X2
 
         #region Forecast Handicap, Over/Under
 
+        /// <summary>
+        /// Handicap OU Forecast Page
+        /// </summary>
+        /// <returns></returns>
         public ViewResult FCHandicapOverUnder()
         {
-            // 1: for Hdp/OU/Live
             IEnumerable<LeagueViewModel> leagues = _forecastService.GetRunningLeague(betType: (int)BetTypes.Handicap, agentId: this.CurrentSession.AgentId);
             ViewBag.Leagues = leagues;
             return View();
         }
 
+        /// <summary>
+        /// Get Handicap OU Matches
+        /// </summary>
+        /// <param name="leagueId"></param>
+        /// <returns></returns>
         public ActionResult FCHandicapOverUnderMatches(int leagueId)
         {
             var forecasts = _forecastService.GetForecastHandicapOverUnder(this.CurrentSession.AgentId, leagueId);
             return View(forecasts);
         }
 
-        #endregion Handicap, Over/Under
+        #endregion Forecast Handicap, Over/Under
 
         #region Forecast By Matches
 
         /// <summary>
-        /// 
+        /// Forecast by Match Content Page
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
@@ -107,11 +118,11 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.BetType = betType;
             ViewBag.MatchId = matchId;
             ViewBag.CurrentScore = currentScore;
-            return View(_forecastService.GetForecastMatcheValue( this.CurrentSession.AgentId, matchId, betType, currentScore));
+            return View(_forecastService.GetForecastMatcheValue(this.CurrentSession.AgentId, matchId, betType, currentScore));
         }
 
         /// <summary>
-        /// 
+        /// Forecast By Match Page
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
@@ -125,10 +136,17 @@ namespace Apollo.Age.Forecast.Controllers
             return View();
         }
 
-        #endregion
+        #endregion Forecast By Matches
 
         #region Score Map
 
+        /// <summary>
+        /// Score Map Page, if MatchIds valid, then Render Score Map of these match
+        /// </summary>
+        /// <param name="matchIds"></param>
+        /// <param name="liveBetTypes"></param>
+        /// <param name="deadBallBetTypes"></param>
+        /// <returns></returns>
         public ViewResult ScoreMap(string matchIds = "", string liveBetTypes = "", string deadBallBetTypes = "")
         {
             if (!string.IsNullOrEmpty(matchIds))
@@ -139,17 +157,28 @@ namespace Apollo.Age.Forecast.Controllers
             }
             else
             {
-                ViewBag.Leagues = _forecastService.GetScoreMapLeagues( this.CurrentSession.AgentId);
+                ViewBag.Leagues = _forecastService.GetScoreMapLeagues(this.CurrentSession.AgentId);
             }
             return View();
         }
 
+        /// <summary>
+        /// Match of League
+        /// </summary>
+        /// <param name="leagueId"></param>
+        /// <returns></returns>
         public ViewResult ScoreMapMatch(int leagueId)
         {
             var matches = _forecastService.GetScoreMapMatches(this.CurrentSession.AgentId, leagueId);
             return View(matches);
         }
 
+        /// <summary>
+        /// BetType List
+        /// </summary>
+        /// <param name="liveBetType"></param>
+        /// <param name="deadBetType"></param>
+        /// <returns></returns>
         public ViewResult ScoreMapBetType(int liveBetType = 0, int deadBetType = 0)
         {
             ViewBag.LiveBetType = liveBetType;
@@ -157,17 +186,29 @@ namespace Apollo.Age.Forecast.Controllers
             return View(_forecastService.GetScoreMapBetType());
         }
 
+        /// <summary>
+        /// Load League
+        /// </summary>
+        /// <param name="currentLeagueId"></param>
+        /// <returns></returns>
         public ViewResult ScoreMapLeagues(int currentLeagueId = 0)
         {
             ViewBag.CurrentLeagueId = currentLeagueId;
             return View(_forecastService.GetScoreMapLeagues(this.CurrentSession.AgentId));
         }
 
+        /// <summary>
+        /// Load Score Map Result
+        /// </summary>
+        /// <param name="matchIds"></param>
+        /// <param name="liveBetTypes"></param>
+        /// <param name="deadBallBetTypes"></param>
+        /// <returns></returns>
         public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes)
         {
             return View(_forecastService.GetScoreMapResults(this.CurrentSession.AgentId, matchIds, liveBetTypes, deadBallBetTypes));
         }
 
-        #endregion
+        #endregion Score Map
     }
 }

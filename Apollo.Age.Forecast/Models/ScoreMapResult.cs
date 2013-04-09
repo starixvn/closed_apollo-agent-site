@@ -10,11 +10,10 @@
 namespace Apollo.Age.Forecast.Models
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ScoreMapResult
     {
         public ScoreMapResult()
