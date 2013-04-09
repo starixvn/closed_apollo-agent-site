@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AdminRepository.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="IAdminRepository.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,20 +7,14 @@
 //   <change who="Lewis.Le" date="2013.4.9">Created</change>
 // </history>
 
-namespace Apollo.Age.Admin.Repositories.Impl
+namespace Apollo.Age.Admin.Repositories.Interface
 {
-    using System;
     using System.Collections.Generic;
-    using Apollo.Age.Admin.ViewModels;
     using Apollo.Age.Admin.Criterias;
-    using Apollo.Age.Entities;
-    using Fanex.Common.Helper;
-    using Fanex.Data;
-    using Fanex.NAP.Framework.Data;
-    using Apollo.Age.Admin.Repositories.Interface;
+    using Apollo.Age.DTO.Admin.ExchangeRate;
 
-    public class AdminRepository : IAdminRepository
+    public interface IExchangeRateRepository
     {
-
+        IEnumerable<ExchRate> GetAllExchangeRate(ref GetAllExchangeRateCriteria criteria);
     }
 }
