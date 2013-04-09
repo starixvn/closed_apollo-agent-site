@@ -104,7 +104,7 @@ public partial class zTest_NewMessageForm : TplPage
         TemplateHandler.Assign(ref htmlContent, "invalidDateMessage", Resources.Lang.invalidDateMessage);
         TemplateHandler.Assign(ref htmlContent, "msgType", pageQuery);
 
-        CreateDateRangeSelector(ref htmlContent, "../", 0, "fdate", "tdate", fDate, tDate, false, false, true, true, true, true);
+        CreateDateRangeSelector(ref htmlContent, "../", 0, "fdate", "tdate", fDate, tDate);
 
         GenerateMessage(ref htmlContent, pageQuery, fDate, tDate);
 
@@ -153,7 +153,7 @@ public partial class zTest_NewMessageForm : TplPage
     }
     private void CreateDateRangeSelector(ref string dateRangeTpl, string currentPos, int noDayReset, string fdateId, string tdateId, DateTime fdate, DateTime tdate)
     {
-        // bool noJs = false;
+        bool noJs = false;
         bool showTime = false;
         bool blShowToday = true;
         bool showtdate = true;
