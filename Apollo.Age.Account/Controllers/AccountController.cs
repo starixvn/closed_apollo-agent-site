@@ -30,10 +30,18 @@ namespace Apollo.Age.Account.Controllers
 
         private readonly AccountService _accountService;
         private int _agentId;
-        private int _pageIndex;
-        private int _totalPages;
-        private string _username;
-        private int _pageSize;
+
+        private int? CurrentAgentId
+        {
+            get
+            {
+                return _agentId;
+            }
+            set
+            {
+                _agentId = value.HasValue ? value.Value : CurrentSession.AgentId;
+            }
+        }
 
         public AccountController()
         {
@@ -124,12 +132,14 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult AgentList()
         {
-            return View();
+            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, this.CurrentSession.AgentId).ToList();
+
+            return View(listAgent);
         }
 
         public ActionResult CustomerList(int? agentId)
         {
-            ViewBag.CurrentAgentId = !agentId.HasValue ? UserSession.Current.AgentId : agentId.Value;
+            ViewBag.CurrentAgentId = agentId;
             return View();
         }
 
@@ -143,30 +153,28 @@ namespace Apollo.Age.Account.Controllers
         [HttpPost]
         public JsonResult GetAgentList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
-            _agentId = !agentId.HasValue ? UserSession.Current.AgentId : agentId.Value;
-            _pageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
-            _totalPages = !totalPages.HasValue ? TOTALPAGE : totalPages.Value;
-            _username = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-            _pageSize = !pageSize.HasValue ? PAGESIZE : pageSize.Value;
+            CurrentAgentId = agentId;
+            var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
+            var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
+            var currentPageSize = !pageSize.HasValue ? PAGESIZE : pageSize.Value;
 
             AgentListCriteria criteria = new AgentListCriteria()
             {
-                AgentId = _agentId,
-                PageIndex = _pageIndex,
-                TotalPages = _totalPages,
-                UserName = _username,
-                PageSize = _pageSize
+                AgentId = CurrentAgentId.Value,
+                PageIndex = currentPageIndex,
+                TotalPages = TOTALPAGE,
+                UserName = currentUsername,
+                PageSize = currentPageSize
             };
 
             IEnumerable<AgentListViewModel> models = _accountService.GetAgentList(ref criteria);
 
             return Json(new
             {
-                TotalPage = criteria.TotalPages,
                 TotalItem = criteria.TotalItems,
-                CurrentPage = _pageIndex,
-                ItemsPerPage = _pageSize,
-                CurrentAgentId = _agentId,
+                CurrentPage = currentPageIndex,
+                ItemsPerPage = currentPageSize,
+                CurrentAgentId = CurrentAgentId.Value,
                 ListData = models
             });
         }
@@ -174,30 +182,28 @@ namespace Apollo.Age.Account.Controllers
         [HttpPost]
         public JsonResult GetCustomerList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
-            _agentId = !agentId.HasValue ? UserSession.Current.AgentId : agentId.Value;
-            _pageIndex = !pageIndex.HasValue ? 0 : pageIndex.Value;
-            _totalPages = !totalPages.HasValue ? 0 : totalPages.Value;
-            _username = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-            _pageSize = !pageSize.HasValue ? 50 : pageSize.Value;
+            CurrentAgentId = agentId;
+            var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
+            var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
+            var currentPageSize = !pageSize.HasValue ? PAGESIZE : pageSize.Value;
 
             CustomerListCriteria criteria = new CustomerListCriteria()
             {
-                AgentId = _agentId,
-                PageIndex = _pageIndex,
-                TotalPages = _totalPages,
-                UserName = _username,
-                PageSize = _pageSize
+                AgentId = CurrentAgentId.Value,
+                PageIndex = currentPageIndex,
+                TotalPages = TOTALPAGE,
+                UserName = currentUsername,
+                PageSize = currentPageSize
             };
 
             IEnumerable<CustomerListViewModel> models = _accountService.GetCustomerList(ref criteria);
 
             return Json(new
             {
-                TotalPage = criteria.TotalPages,
                 TotalItem = criteria.TotalItems,
-                CurrentPage = _pageIndex,
-                ItemsPerPage = _pageSize,
-                CurrentAgentId = _agentId,
+                CurrentPage = currentPageIndex,
+                ItemsPerPage = currentPageSize,
+                CurrentAgentId = CurrentAgentId.Value,
                 ListData = models
             });
         }

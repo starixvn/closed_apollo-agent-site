@@ -1,0 +1,133 @@
+﻿@{
+    Layout = "~/Views/Admin/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.Lang.Exchange_Rate;
+    var menu = ViewBag.RootNode; 
+}
+@model List<Fanex.Age.DTO.Admin.ExchangeRate.ExchRate>
+
+<table class="tblRpt">
+    <thead>
+        <tr class="title-bar">
+            <th colspan="7">
+                <div class="excel">
+                    <input src="~/_globalresources/images/excel.gif"
+                        title="@Resources.Lang.exporttoexcel"
+                        alt="@Resources.Lang.exporttoexcel"
+                        type="image" id="btn-excel" name="ExportExcel" />
+
+                    <input src="~/_globalresources/images/icon-add-doc.png"
+                        title="@Resources.Lang.AddNewExchangeRate"
+                        alt="@Resources.Lang.AddNewExchangeRate"
+                        type="image" id="btn-add-new" />
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Resources.Lang.currency
+            </th>
+            <th>
+                @Resources.Lang.MultipliedBy
+            </th>
+            <th>
+                @Resources.Lang.BaseRate
+            </th>
+            <th>
+                @Resources.Lang.MinBet
+            </th>
+            <th>
+                @Resources.Lang.MinBetLive
+            </th>
+            <th>
+                @Resources.Lang.description
+            </th>
+            <th>
+                @Resources.Lang.edit
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @if (Model != null && Model.Any())
+    {
+        int index = 0;
+        string rowClass = string.Empty;
+
+        foreach (var exchRate in Model)
+        {
+            rowClass = ++index % 2 == 0 ? "alt" : string.Empty;
+            
+        <tr class="tbl-data @rowClass">
+            <td class="c">
+                @exchRate.Currency
+            </td>
+            <td class="r">
+                @exchRate.MultipliedBy
+            </td>
+            <td class="r">
+                @exchRate.BaseRate
+            </td>
+            <td class="r">
+                @exchRate.MinBet
+            </td>
+            <td class="r">
+                @exchRate.MinBetLive
+            </td>
+            <td>
+                @exchRate.Description
+            </td>
+            <td class="c">
+                <img eid="@exchRate.ExchangeId" class="btn-edit"
+                    alt="Edit" title="Edit @exchRate.Currency"
+                    src="~/_globalresources/images/icon_edit.png" />
+            </td>
+        </tr>
+        }
+    }
+    else
+    {
+        @RazorHelper.ShowNoInfo(7)
+    }
+    </tbody>
+</table>
+
+
+
+@*<input type="hidden" name="CustId" id="CustId" value="{CustId}" />
+
+<div id="dialog-edit" style="display: none">
+    <table id="editor-wrp">
+        <thead>
+            <tr>
+                <th>
+                    <label for="editor-desc">{static:Resources.Lang.currency}</label>
+                </th>
+                <th>
+                    <label for="editor-desc">{static:Resources.Lang.description}</label>
+                </th>
+                <th>
+                    <label for="editor-mult">{static:Resources.Lang.MultipliedBy}</label>
+                </th>
+                <th>
+                    <label for="editor-base">{static:Resources.Lang.BaseRate}</label>
+                </th>
+                <th>
+                    <label for="editor-minb">{static:Resources.Lang.MinBet}</label>
+                </th>
+                <th>
+                    <label for="editor-minbl">{static:Resources.Lang.MinBetLive}</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" id="editor-curr" /></td>
+                <td><input type="text" id="editor-desc" /></td>
+                <td><input type="number" id="editor-mult" /></td>
+                <td><input type="number" id="editor-base" /></td>
+                <td><input type="number" id="editor-minb" /></td>
+                <td><input type="number" id="editor-minbl" /></td>
+            </tr>
+        </tbody>
+    </table>
+</div>*@

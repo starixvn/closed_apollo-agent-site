@@ -141,6 +141,24 @@ table {
 		white-space: nowrap;
 	}
 	
+	.title-bar {
+		th, td {
+			background-color: #FFEFDE;
+		}
+
+		.excel {
+			float: right;
+			padding: 0;
+
+			input[type=image] {
+				cursor: pointer;
+				outline: none;
+				margin-left: 10px;
+				float: right;
+			}
+		}
+	}
+
 	.report-title {
 		#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
 		.box-shadow(0 1px 0 0 #FFF inset);
@@ -193,8 +211,8 @@ table {
 		}
 	}
 
-	.RptFooter {
-		//background: url(../images/bg_f01.jpg) repeat-x center top #783819;
+
+	.total {			
 		background: @rowTotalBackground;
 		color: @white;
 		.bold;
