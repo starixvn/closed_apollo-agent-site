@@ -285,7 +285,7 @@ function collapseAll(state) {
 
 function openMsg() {
     var baseURL = parent.location.href.substring(0, parent.location.href.lastIndexOf('/') + 1);
-    window.location.href = baseURL + '../Website/Message/NewMessage?pageQuery=normal';
+    window.location.href =  APOLLO.resolveUrl('Message/NewMessage?pageQuery=normal');
 }
 
 var timerID = null;
