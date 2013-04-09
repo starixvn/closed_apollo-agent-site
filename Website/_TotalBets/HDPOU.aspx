@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="HDPOU.aspx.cs" Inherits="Fanex.Age.UI.TotalBets.HDPOU_Page" %>
