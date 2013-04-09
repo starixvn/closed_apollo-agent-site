@@ -62,7 +62,7 @@
                     {
                     <tr>
                         <td>
-                            <a href="#" onclick="REPORTS.viewAgent(@item.AgentId);">@item.UserName</a>
+                            <a href="#" name="viewagent" agentid="@item.AgentId">@item.UserName</a>
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.Outstanding, "en-US")

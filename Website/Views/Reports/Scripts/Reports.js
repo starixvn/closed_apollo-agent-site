@@ -24,9 +24,14 @@ if (typeof jQuery != 'undefined') {
                     });
                     return false;
                 });
-            },
-            viewAgent: function (agentId) {
-                location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + agentId);
+
+                $("[name='navigation']").bind('click', function () {
+                    location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
+                });
+
+                $("[name='viewagent']").bind('click', function () {
+                    location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
+                });
             },
             initGrid: function (outstandingData) {
                 var bodyData = [];
