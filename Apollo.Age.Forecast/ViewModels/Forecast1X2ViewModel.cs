@@ -7,13 +7,8 @@
 //   <change who="Ricky.Nguyen" date="2013.4.2">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Services;
 
     /// <summary>
@@ -22,19 +17,33 @@ namespace Apollo.Age.Forecast.ViewModels
     public class Forecast1X2ViewModel
     {
         public int MatchID { get; set; }
+
         public int HomeId { get; set; }
+
         public int AwayId { get; set; }
+
         public bool LiveIndicator { get; set; }
+
         public short LiveHomeScore { get; set; }
+
         public short LiveAwayScore { get; set; }
+
         public string ShowTime { get; set; }
+
         public string MatchCode { get; set; }
+
         public bool IsNeutral { get; set; }
+
         public decimal? AwayWinLost { get; set; }
+
         public decimal? HomeWinLost { get; set; }
+
         public decimal? DrawWinLost { get; set; }
+
         public decimal? HalfTimeAwayWinLost { get; set; }
+
         public decimal? HalfTimeHomeWinLost { get; set; }
+
         public decimal? HalfTimeDrawWinLost { get; set; }
 
         public string HomeTeam
