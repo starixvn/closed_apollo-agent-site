@@ -52,14 +52,14 @@ var scoreMap = {
         else {
             matchIds = scoreMap.GetIdFromSelectedCheckBox($(".match-item:checked"));
             $("#match-ids").val(matchIds);
-            $("#BoxMatchWL").hide();
+            
         }
         if (matchIds == "") {
             $('#msgMatchErr').text("Please choose a Match!");
             $('#tblMsgMatch').show();
             return;
         }
-
+        $("#BoxMatchWL").hide();
         var url = scoreMap.BaseLink + 'ScoreMapBetType';
         //// If Show In PopUp then add BetType
         if (scoreMap.ViewPartial) {
