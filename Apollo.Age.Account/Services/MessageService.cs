@@ -166,7 +166,7 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
-        private static string GetParentSitesID(string siteId)
+        public string GetParentSitesID(string siteId)
         {
             ArrayList list = new ArrayList();
             int num = 0;

@@ -311,14 +311,14 @@ public partial class zTest_NewMessageForm : TplPage
                 TemplateHandler.Assign(ref strContentRow, "clor-over", AppSettings.RowBgOver);
                 if (counter % 2 == 0)
                 {
-                    TemplateHandler.Assign(ref strContentRow, "row-class", "even_row");
-                    TemplateHandler.Assign(ref strContentRow, "row-over", "live_row");
+                    //TemplateHandler.Assign(ref strContentRow, "row-class", "even_row");
+                    //TemplateHandler.Assign(ref strContentRow, "row-over", "live_row");
                     TemplateHandler.Assign(ref strContentRow, "clor-class", AppSettings.RowBgEven);
                 }
                 else
                 {
-                    TemplateHandler.Assign(ref strContentRow, "row-class", "odd_row");
-                    TemplateHandler.Assign(ref strContentRow, "row-over", "live_row");
+                    //TemplateHandler.Assign(ref strContentRow, "row-class", "odd_row");
+                    //TemplateHandler.Assign(ref strContentRow, "row-over", "live_row");
                     TemplateHandler.Assign(ref strContentRow, "clor-class", AppSettings.RowBgOdd);
                 }
 

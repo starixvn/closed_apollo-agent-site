@@ -96,6 +96,8 @@ namespace Apollo.Age.Account.ViewModels
                 content = this.ContentEN;
             }
 
+            content = content != null ? content : string.Empty;
+
             return content
                 .Replace("@@", betTransId)
                 .Replace("\n", string.Empty)
