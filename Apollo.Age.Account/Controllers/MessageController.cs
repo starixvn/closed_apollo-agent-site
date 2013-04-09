@@ -61,9 +61,9 @@ namespace Apollo.Age.Account.Controllers
 
             if (string.Compare(criteria.PageQuery, PRIVATE) == 0 && criteria.Extra == 1)
             {
-                if (UserSession.Current.AdminId < 0)
+                if (!this.CurrentSession.IsSuper)
                 {
-                    _messageService.UpdateReadPrivateMessage(UserSession.Current.UserId, UserSession.Current.Username);
+                    _messageService.UpdateReadPrivateMessage(this.CurrentSession.UserId, this.CurrentSession.Username);
                 }
             }
 
@@ -77,7 +77,7 @@ namespace Apollo.Age.Account.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                int agentId = UserSession.Current.AgentId;
+                int agentId = this.CurrentSession.AgentId;
 
                 return Json(_messageService.UpdateReadMessage(agentId, messageId));
             }
@@ -91,8 +91,8 @@ namespace Apollo.Age.Account.Controllers
             int siteId = 3300;
             int messageType = 3;
 
-            int userId = UserSession.Current.UserId;
-            string username = UserSession.Current.Username;
+            int userId = this.CurrentSession.UserId;
+            string username = this.CurrentSession.Username;
 
             object[] publicMessages = new object[3];
             object[] privateMessages = new object[2];
