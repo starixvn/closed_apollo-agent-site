@@ -97,11 +97,13 @@ namespace Apollo.Age.Forecast.Controllers
 
         #region Score Map
 
-        public ViewResult ScoreMap(int leagueId = 0, string matchIds = "", string liveBetTypes = "", string deadBallBetTypes = "")
+        public ViewResult ScoreMap(string matchIds = "", string liveBetTypes = "", string deadBallBetTypes = "")
         {
             if (!string.IsNullOrEmpty(matchIds))
             {
-
+                ViewBag.MatchIds = matchIds;
+                ViewBag.LiveBetTypes = liveBetTypes;
+                ViewBag.DeadBallBetTypes = deadBallBetTypes;
             }
             else
             {

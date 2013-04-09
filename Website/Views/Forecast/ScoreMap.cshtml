@@ -4,13 +4,15 @@
     ViewBag.Title = Resources.Lang.lblScoreMap;
     var leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
     var showLeaguesStyle = leagues == null ? "display:none;" : string.Empty;
+    var matchIds = ViewBag.MatchIds;
+    var liveBetTypes = ViewBag.LiveBetTypes;
+    var deadBallBetTypes = ViewBag.DeadBallBetTypes;
 }
 @section css
 {
     <link type="text/css" rel="Stylesheet" href="~/Views/Forecast/Resources/ScoreMap.less" />
 }
 <div id="content_main">
-      <!--LimitLeagueList-->
         <div id="box_header">
             <table style="@(showLeaguesStyle)">
                 <tr>
@@ -49,7 +51,6 @@
                 </p>
             </div>
         </div>            
-        <!--/LimitLeagueList-->
         <div id="mainContent" @*style="width: {mWidth}"*@>
         </div>
         <div id="BoxMatchWL" style="display:none;">
@@ -72,7 +73,9 @@
         <td id="msg_3_3" class="emsg_3_3">&nbsp;</td>
     </tr>
 </table>
-<input id="match-ids" name="MatchIds" type="hidden" value="0" />
+<input id="match-ids" type="hidden" value="@(matchIds)" />
+<input id="bet-types-live" type="hidden" value="@(liveBetTypes)" />
+<input id="bet-types-dead" type="hidden" value="@(deadBallBetTypes)" />
 @section scripts
 {
     <script src="~/Views/Forecast/Resources/ScoreMap.js" type="text/javascript"></script>
