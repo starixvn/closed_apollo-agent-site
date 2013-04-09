@@ -10,6 +10,7 @@ using Sunplus.Agent.Model.BL;
 using Sunplus.Agent.Model.BL.Definitions;
 using Sunplus.Agent.Model.Entities;
 using Sunplus.Agent.Utilities;
+using Apollo.Age.Web;
 
 /*
  * Created 20100126@Lee - Render header page
@@ -33,6 +34,14 @@ namespace Sunplus.Agent.UI._Header
             });
 
                 return Encryption.PearsonEncode(name);
+            }
+        }
+
+        public ICurrentSession CurrentSession
+        {
+            get
+            {
+                return (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
             }
         }
 
@@ -90,8 +99,8 @@ namespace Sunplus.Agent.UI._Header
 
             
 
-            tpl.SetUserName.mainAccName = HttpUtility.HtmlEncode(session.Username);
-            tpl.SetUserName.AgentUsername = HttpUtility.HtmlEncode(session.AgentName);
+            tpl.SetUserName.mainAccName = HttpUtility.HtmlEncode(CurrentSession.Username);
+            tpl.SetUserName.AgentUsername = HttpUtility.HtmlEncode(CurrentSession.AgentName);
 
             #region User Message
 
