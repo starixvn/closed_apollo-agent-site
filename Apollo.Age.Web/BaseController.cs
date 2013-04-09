@@ -18,7 +18,7 @@ namespace Apollo.Age.Web
     using Fanex.Common;
 
     public class BaseController : Controller
-    {        
+    {
         protected int AgentId
         {
             get
@@ -28,7 +28,7 @@ namespace Apollo.Age.Web
         }
 
         /// <summary>
-        ///  
+        ///
         /// </summary>
         protected ICurrentSession CurrentSession
         {
@@ -44,7 +44,7 @@ namespace Apollo.Age.Web
                 {
                     Session["Apollo.Age.Web.CurrentSession"] = value;
                 }
-            }            
+            }
         }
     }
 }

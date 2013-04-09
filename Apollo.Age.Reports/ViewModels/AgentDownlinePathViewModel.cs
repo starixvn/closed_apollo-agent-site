@@ -1,4 +1,13 @@
-﻿namespace Apollo.Age.Reports.ViewModels
+﻿// --------------------------------------------------------------------------
+// <copyright file="OutstandingViewModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry.Nguyen" date="2013.4.9">Created</change>
+// </history>
+
+namespace Apollo.Age.Reports.ViewModels
 {
     using System;
     using System.Collections.Generic;

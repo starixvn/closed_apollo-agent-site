@@ -1,6 +1,7 @@
 ﻿@using Apollo.Age.Reports.ViewModels;
 @using Fanex.Age.Utility;
 @using Sunplus.Agent.Model.Entities;
+@using Apollo.Age.Reports.DTO;
 @{
     ViewBag.Title = Resources.Lang.outstanding;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
@@ -9,7 +10,7 @@
 {
     <link href="~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.less" rel="stylesheet" type="text/css" />
 }
-@model OutstandingDownlinePathViewModel
+@model OutstandingDownlinePathDTO
 <div id="divMain">
     @{
         if (Model.DownlinePath != null && Model.DownlinePath.Any())
