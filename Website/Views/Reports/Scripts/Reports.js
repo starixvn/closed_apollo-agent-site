@@ -6,7 +6,7 @@ if (typeof jQuery != 'undefined') {
         return {
             init: function () {
                 $("#AgentOutstanding").bind('click', function () {
-                    $.get(parent.baseURL + '/Reports/AgentOutstanding', { 'agentId': $("#AgentOutstanding").attr("agentid") })
+                    $.get(APOLLO.resolveUrl('Reports/AgentOutstanding'), { 'agentId': $("#AgentOutstanding").attr("agentid") })
                         .done(function (data) {
                             $("#gridId").hide();
                             $('#divDetail').html(data);
@@ -17,7 +17,7 @@ if (typeof jQuery != 'undefined') {
                 $("#MemberOutstanding").bind('click', function () {
                     $.ajax({
                         type: "POST",
-                        url: parent.baseURL + "/Reports/MemberOutstanding",
+                        url: APOLLO.resolveUrl("Reports/MemberOutstanding"),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: JSON.stringify({ 'agentId': $("#MemberOutstanding").attr("agentid") }),
@@ -35,7 +35,7 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             viewAgent: function (agentId) {
-                location.href = parent.baseURL + "/Reports/Outstanding?agentId=" + agentId;
+                location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + agentId);
             },
             initGrid: function (outstandingData) {
                 var bodyData = [];
@@ -95,7 +95,9 @@ if (typeof jQuery != 'undefined') {
                     footerRows: footerData,
                     fullHeight: true,
                     gridExpandHeight: 250,
-                    marginRight: 0
+                    marginRight: 0,
+                    showColumnsShowHide: false,
+                    columnsNeedHide: [3, 4]
                 };
 
                 $("#gridId").fanexGrid(gridOption);
