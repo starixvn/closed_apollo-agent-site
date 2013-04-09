@@ -1,6 +1,8 @@
 @import "../../../_GlobalResources/Css/Agent.less";
 
 #box_header {
+	margin-bottom: 10px;
+
 	select#ddlLeague {
 		width: 280px;
 	}
@@ -16,7 +18,213 @@
 	}
 }
 
-.paddingTopMatch{margin-top:10px;}
+/* Start: Match WL Detail */
+#BoxMatchWL
+{
+    position: absolute;
+    background: @white;
+    width: 713px;
+    border: solid 1px #B7B7B7;
+    left: 10px;
+    top: 97px;
+
+	.boderBoxMatch {
+		background: @tableBackground;
+		text-transform: none;
+		padding: 4px;
+
+
+		.ContentMatchWL {
+			background: @white;
+			width: 692px;
+			max-height: 310px;
+			border: none;
+			overflow: auto;
+			padding: 5px;
+			border: 1px solid #ccc;
+		
+			.ListMatch {			
+				float: left;
+				padding-left: 1px;
+				padding-right: 1px;
+				text-align: left;
+				margin: 0;
+				padding: 0;
+
+				li {
+					list-style: none;
+					float: left;
+					text-align: left;   
+					width: 50%; 
+
+					input, label {
+						vertical-align: middle;
+					}
+				}
+			}
+		}	
+	}	
+
+	.message, #iconSelMatch {
+		.pull-left;
+	}
+
+	#iconSelMatch {
+		background: url("../../../_GlobalResources/Images/letter_icoconts.png") no-repeat scroll 5px center;
+		font-weight: bold;
+		padding: 0 0 0 20px;
+		text-align: left;
+		width:100px;
+		text-transform: none;
+	}
+
+	#closeBoxMatch {
+		background: url("../../../_GlobalResources/Images/icon_close.jpg") no-repeat scroll 5px 2px;
+		font-weight: bold;
+		width:20px;
+		height: 20px;
+		cursor:pointer;
+		text-transform: none;
+		.pull-right;	
+		margin: 3px 4px 0 0;	
+	}
+
+	.poup-title {
+		background: @primaryHeaderBackground;
+	}
+}
+
+#diverrmsg {
+	width: 99%;
+	border: 0;
+	display: none;
+	height: 24px;
+	padding: 5px;
+	margin: 10px 0;
+	border: 1px solid @red;
+
+	.msgerr {
+		padding: 5px 29px;
+	}
+}
+
+#tblLiveDead {
+	display: none;
+
+	#bet-type-container {
+		margin-top: 40px;
+
+		/* End: Box Match by League */
+		table.check-list {
+			background: #ECE9D8;
+			border-spacing: 0;
+			border: 1px solid @borderColor;
+
+			td {
+				padding: 0;
+				border: 1px solid @borderColor;
+				.box-shadow(0 1px 0 #FFF inset);
+				text-shadow: 0 1px 0 #FFF;
+							
+				input {
+					margin: 3px 3px 0 4px;
+				}
+
+				label, input {
+					cursor: pointer;
+				}
+
+				label:hover {
+					text-decoration: none;
+				}
+
+				table.reference {										
+					width: 100%;
+					background: @white;
+
+					td {
+						border: 0;
+						padding: 2px 4px;
+						.box-shadow(none);						
+
+						* {
+							vertical-align: middle;
+						}
+
+						input {
+							margin: 3px 3px 0 4px;
+						}
+					}
+				}
+			}
+		}		
+	}
+	
+	.btn-submit {
+		float: left;
+		margin-top: 7px;
+
+		.btn {
+			border-radius: 0;
+		}
+	}	
+}
+
+#mainContent {
+	.title-scoremap {
+		width: 100%;
+		background: @headerBackground;
+
+		
+		.lnkRefresh {
+			background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;    
+			font-weight:bold;
+			color:#90979A;    
+			margin-top:4px;
+			width:20px;
+			height:20px;
+			cursor:pointer;
+			float:right;
+			padding-right:1px;
+		}
+
+		.lnkRefreshClick {
+			background: url( "Images/Loading.gif" ) no-repeat scroll left top transparent;    
+			font-weight:bold;
+			color:#90979A;    
+			margin-top:4px;
+			width:20px;
+			height:20px;
+			cursor:pointer;
+			float:right;
+			padding-right:1px;
+		}
+
+		.lnkGroup {
+			background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+			background-position: 0 -21px;
+			font-weight:bold;
+			color:#333;    
+			padding-left:25px;
+			padding-top:1px;
+			height:20px;
+			cursor:pointer;
+			float:left;
+		}
+
+		.lnkGroupClick {    
+			background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+			background-position: 0 0px;
+			font-weight:bold;
+			color:#333;    
+			padding-left:25px;
+			padding-top:1px;
+			height:20px;
+			cursor:pointer;
+			float:left;
+		}
+	}
+}
 
 #titleMatch
 {
@@ -88,122 +296,6 @@
 
 
 
-.lnkRefresh
-{
-    background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;    
-    font-weight:bold;
-    color:#90979A;    
-    margin-top:4px;
-    width:20px;
-    height:20px;
-    cursor:pointer;
-    float:right;
-    padding-right:1px;
-}
-
-.lnkRefreshClick
-{
-    background: url( "Images/Loading.gif" ) no-repeat scroll left top transparent;    
-    font-weight:bold;
-    color:#90979A;    
-    margin-top:4px;
-    width:20px;
-    height:20px;
-    cursor:pointer;
-    float:right;
-    padding-right:1px;
-}
-
-.lnkGroup
-{
-    background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
-    background-position: 0 -21px;
-    font-weight:bold;
-    color:#333;    
-    padding-left:25px;
-    padding-top:1px;
-    height:20px;
-    cursor:pointer;
-    float:left;
-}
-
-.lnkGroupClick
-{    
-    background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
-    background-position: 0 0px;
-    font-weight:bold;
-    color:#333;    
-    padding-left:25px;
-    padding-top:1px;
-    height:20px;
-    cursor:pointer;
-    float:left;
-}
-
-/* Start: Match WL Detail */
-#BoxMatchWL
-{
-    position: absolute;
-    background: @white;
-    width: 702px;
-    border: solid 1px #B7B7B7;
-    left: 10px;
-    top: 97px;
-
-	#boderBoxMatch {
-		background: @tableBackground;
-		text-transform: none;
-		padding: 4px;
-
-
-		#ContentMatchWL {
-			background: @white;
-			width: 690px;
-			max-height: 310px;
-			border: none;
-			overflow: auto;
-			padding-right: 1px;
-			border: 1px solid #ccc;
-		
-			.ListMatch {			
-				float: left;
-				padding-left: 1px;
-				padding-right: 1px;
-				text-align: left;
-
-				li {
-					list-style: none;
-					float: left;
-					text-align: left;   
-					width: 50%; 
-
-					* {
-						vertical-align: middle;
-					}
-				}
-			}
-		}	
-	}
-
-	#iconSelMatch {
-		background: url("../../../_GlobalResources/Images/letter_icoconts.png") no-repeat scroll 5px center #FFEFDE;
-		font-weight: bold;
-		padding: 0 0 0 20px;
-		text-align: left;
-		width:100px;
-		text-transform: none;
-	}
-
-	#closeBoxMatch {
-		background: url("../../../_GlobalResources/Images/icon_close.jpg") no-repeat scroll 5px 2px #FFEFDE;
-		font-weight: bold;
-		width:20px;
-		cursor:pointer;
-		text-transform: none;
-	}
-
-}
-
 
 
 
@@ -235,16 +327,6 @@
 
 	.ListMatch li {
 		width: 50%;
-	}
-}
-
-/* End: Box Match by League */
-
-table.reference {
-	border: 0;
-	td {
-		border: 0;
-		.box-shadow(none);
 	}
 }
 
