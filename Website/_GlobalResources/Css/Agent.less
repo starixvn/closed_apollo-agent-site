@@ -141,6 +141,24 @@ table {
 		white-space: nowrap;
 	}
 	
+	.title-bar {
+		th, td {
+			background-color: #FFEFDE;
+		}
+
+		.excel {
+			float: right;
+			padding: 0;
+
+			input[type=image] {
+				cursor: pointer;
+				outline: none;
+				margin-left: 10px;
+				float: right;
+			}
+		}
+	}
+
 	.report-title {
 		#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
 		.box-shadow(0 1px 0 0 #FFF inset);
@@ -309,7 +327,11 @@ table {
 .MaskLoadingDiv {
 	background: url(../Images/loader3.gif);
 }
-
+.block-ui-loading{
+	width:100px;
+	height:100px;
+	background:url(../Images/loader3.gif);
+}
 .PwdError {
 	background: url(../Images/x5.gif);
 	background-repeat: no-repeat;

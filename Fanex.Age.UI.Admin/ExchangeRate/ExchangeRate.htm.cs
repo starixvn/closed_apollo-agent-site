@@ -98,7 +98,7 @@ namespace Fanex.Age.UI.Admin
 
 		public class ExchangeRate_ExcelContents_Block: Block
 		{
-			protected static string s31 = "<table id=\"tbl-rpt\" class=\"tblRpt\" cellspacing=\"1\"><tr id=\"rowTitle\" class=\"RptTitle\"><td id=\"content_title\" colspan=\"7\">";
+			protected static string s31 = "<table id=\"tbl-rpt\" class=\"tblRpt\" cellspacing=\"1\"><tr class=\"RptTitle\"><td colspan=\"7\">";
 			public ExchangeRate_ExcelContents_ExportExcel_Block ExportExcel = new ExchangeRate_ExcelContents_ExportExcel_Block();
 			protected static string s32 = "</td></tr><tr class=\"RptHeader\"><td>";
 			protected static string s33{get{return Resources.Lang.currency;}}

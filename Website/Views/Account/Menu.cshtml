@@ -11,7 +11,7 @@
     </i>Agents</a> </li>
 </ul>
 <ul id="menu">
-    @foreach (SiteMapNode item in menu.ChildNodes)  //for (int i = 0, l = Model.ChildNodes.Count; i < l; i++)
+    @foreach (SiteMapNode item in menu.ChildNodes)
     {
         if (item.Roles.Count == 0 || (item.Roles.Count > 0 && Model.IsSuper))
         {
@@ -24,10 +24,8 @@
                 if (level == 0 || Model.AgentLevel >= level)
                 { 
                 <div class="submenu">
-                    @foreach (SiteMapNode subItem in item.ChildNodes) //j < item.ChildNodes.Count; j++)
+                    @foreach (SiteMapNode subItem in item.ChildNodes)
                     {
-
-                        //var subItem = item.ChildNodes[j];
                         int bettypeId = 0;
                         string title = string.Empty;
 
