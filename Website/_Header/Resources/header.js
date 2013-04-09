@@ -111,7 +111,7 @@ function GetMessages() {
             var objDiv = age.createElement('div');
 
             //Process Public Message: show new public message and its link to message form
-            var url = "../Website/Message/NewMessage?pageQuery=";
+            var url = APOLLO.resolveUrl("Message/NewMessage?pageQuery=");
             var balloonPopupContent = "";
             url += publicMessage[MSGTYPE];
 
@@ -147,7 +147,7 @@ function GetMessages() {
     }
 
     $.ajax({
-        url: _page.getBaseURL + '../Website/Message/GetMessage',
+        url: APOLLO.resolveUrl('Message/GetMessage'),
         type: 'POST',
         dataType: 'JSON',
         success: completedGetMessages,
