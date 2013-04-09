@@ -49,7 +49,7 @@ var forecastByMatch =
 
 $(function () {
     forecastByMatch.Init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 
 function UpdateForecastValue() {
     RefreshCountDown_Init();

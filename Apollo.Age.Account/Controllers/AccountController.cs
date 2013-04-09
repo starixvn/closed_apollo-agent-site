@@ -7,6 +7,7 @@
 //   <change who="Ricky.Nguyen" date="2013.3.29">Created</change>
 //   <change who="Lewis.Le" date="2013.4.4">Added action: Menu</change>
 //   <change who="Quinn.Vo" date="2013.4.9">Added action: AccountInfo, AgentTreeList, TreeViewList, GetDataByNote, GetSuggestValues, GetAgentDownlinePath</change>
+//   <change who="Quinn.Vo" date="2013.4.9">Added action: MemberDownline </change>
 // </history>
 
 namespace Apollo.Age.Account.Controllers
@@ -21,12 +22,16 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Web;
     using Sunplus.Agent.Model.Entities;
+    using Apollo.MvcPaging;
+    using Apollo.Age.Entities;
 
     public class AccountController : BaseController
     {
         private const int PAGEINDEX = 0; // Current index page
         private const int PAGESIZE = 50; // Maximum items in a page
         private const int TOTALPAGE = 0; // Maximum page total
+
+        private IList<Member> allProducts = new List<Member>();
 
         private readonly AccountService _accountService;
         private int _agentId;
@@ -52,6 +57,15 @@ namespace Apollo.Age.Account.Controllers
         {
             ViewBag.RootNode = SiteMap.RootNode;
             return View(base.CurrentSession);
+        }
+
+        public ActionResult MemberDownline(int custId, int? page)
+        {
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            int totalPage = 0;
+            var memberList = _accountService.GetMemberDownline(custId, currentPageIndex + 1, PAGESIZE, ref totalPage);
+
+            return View(memberList.ToPagedList(currentPageIndex, PAGESIZE, totalPage * PAGESIZE));
         }
 
         public ActionResult AccountInfo(string userName, short? isMember, int? custId)
@@ -130,17 +144,22 @@ namespace Apollo.Age.Account.Controllers
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AgentList()
+        public ActionResult AgentList(int? agentId)
         {
-            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, this.CurrentSession.AgentId).ToList();
+            CurrentAgentId = agentId;
+            ViewBag.CurrentAgentId = CurrentAgentId;
+            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, CurrentAgentId.Value).ToList();
 
             return View(listAgent);
         }
 
         public ActionResult CustomerList(int? agentId)
         {
-            ViewBag.CurrentAgentId = agentId;
-            return View();
+            CurrentAgentId = agentId;
+            ViewBag.CurrentAgentId = CurrentAgentId;
+            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, CurrentAgentId.Value).ToList();
+
+            return View(listAgent);
         }
 
         public JsonResult GetAgentDownlinePath(int agentId)

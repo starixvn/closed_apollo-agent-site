@@ -45,4 +45,4 @@ var fcHandicapOu =
 
 $(function () {
     fcHandicapOu.Init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);

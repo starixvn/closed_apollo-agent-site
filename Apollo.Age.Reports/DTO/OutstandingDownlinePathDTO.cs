@@ -13,6 +13,7 @@ namespace Apollo.Age.Reports.DTO
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Apollo.Age.Entities;
     using Apollo.Age.Reports.ViewModels;
 
     public class OutstandingDownlinePathDTO
@@ -21,6 +22,6 @@ namespace Apollo.Age.Reports.DTO
 
         public IEnumerable<OutstandingViewModel> ListOutStanding { get; set; }
 
-        public IEnumerable<AgentDownlinePathViewModel> DownlinePath { get; set; }
+        public IEnumerable<Agent> DownlinePath { get; set; }
     }
 }

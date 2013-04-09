@@ -139,6 +139,9 @@
     <Content Include="ExtTemplate\Status.htm" />
     <Content Include="ExtTemplate\Trans.htm" />
     <Content Include="ExtTemplate\WinLoss.htm" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.BetList.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.Lang.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.Racing.designer.cs.dll" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\BetList.resx">
@@ -150,6 +153,10 @@
     <ProjectReference Include="..\..\apollo-agent\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
       <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
       <Name>Fanex.Age.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
+      <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
+      <Name>Apollo.Age</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
@@ -178,6 +185,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -69,4 +69,4 @@ var fc1x2 =
 
 $(function () {
     fc1x2.Init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
