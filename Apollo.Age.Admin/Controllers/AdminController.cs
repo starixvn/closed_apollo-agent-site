@@ -18,24 +18,28 @@ namespace Apollo.Age.Admin.Controllers
     using Sunplus.Agent.Model.Entities;
     using Apollo.Age.Admin.Services;
     using Apollo.Age.DTO.Admin.ExchangeRate;
+    using Apollo.Age.Admin.Criterias;
 
     public class AdminController : BaseController
     {
-        private readonly IAdminService _adminService;
+        private readonly IExchangeRateService _exchangeRateService;
 
         public AdminController()
             : this(null) { }
 
-        public AdminController(IAdminService adminService)
+        public AdminController(IExchangeRateService adminService)
         {
-            _adminService = adminService ?? new AdminService();
+            _exchangeRateService = adminService ?? new ExchangeRateService();
         }
 
         public ActionResult ExchangeRate()
         {
-            var exchangeRateList = new List<ExchRate>();
+            var criteria = new GetAllExchangeRateCriteria();
+            var exchangeRateList = _exchangeRateService.GetAll(ref criteria);
 
-            return View();
+            ViewBag.UserId = CurrentSession.UserId;
+
+            return View(exchangeRateList.ToList());
         }
     }
 }

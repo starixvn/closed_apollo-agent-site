@@ -20,9 +20,22 @@ namespace Apollo.Age.Admin.Services
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
+    using Apollo.Age.DTO.Admin.ExchangeRate;
 
-    public class AdminService : ServiceBase, IAdminService
+    public class ExchangeRateService : ServiceBase, IExchangeRateService
     {
+        private readonly IExchangeRateRepository _exchangeRateRepo;
 
+        public ExchangeRateService() : this(null) { }
+
+        public ExchangeRateService(IExchangeRateRepository exchangeRateRepo)
+        {
+            _exchangeRateRepo = exchangeRateRepo ?? new ExchangeRateRepository();
+        }
+
+        public IEnumerable<ExchRate> GetAll(ref GetAllExchangeRateCriteria criteria)
+        {
+            return _exchangeRateRepo.GetAllExchangeRate(ref criteria);
+        }
     }
 }
