@@ -152,6 +152,9 @@ html, body {
 			font-size: 1em;
 			color: @gray;
 		}
+		input[type=text] {
+			font-style: italic;
+		}
 		select {
 			width: 68px;
 			height: 22px;
@@ -366,6 +369,13 @@ html, body {
 
 			#agentsTab-content, #membersTab-content {
 				height: 100%;
+
+				.no-data-agent {
+					text-align: center;
+					font-weight: bold;
+					padding: 10px;
+					color: @orange;
+				}
 
 				iframe {
 					width: 203px;

@@ -2492,7 +2492,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Runner No</value>
   </data>
   <data name="noInfo" xml:space="preserve">
-    <value>No information is available</value>
+    <value>No data is available</value>
   </data>
   <data name="noLimited" xml:space="preserve">
     <value>No limited</value>
