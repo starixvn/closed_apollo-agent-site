@@ -20,6 +20,7 @@ namespace Sunplus.Agent.UI._Authorization
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Services.Impl;
     using Sunplus.Agent.Model.BL;
+    using Apollo.Age.Web;
 
     public partial class SignIn_Page : Fanex.Age.UI.TplPage2
     {
@@ -114,6 +115,8 @@ namespace Sunplus.Agent.UI._Authorization
 
             if (user != null)
             {
+                ICurrentSession currentSession = new CurrentSession(user);
+                Session["Apollo.Age.Web.CurrentSession"] = currentSession;
                 UserSessionService.SetUserSessionValues(session, user);
                 //session.CurrentUser = user;
                 FormsAuthentication.RedirectFromLoginPage(user.Username, false);

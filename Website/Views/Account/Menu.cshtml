@@ -1,39 +1,36 @@
-﻿@model SiteMapNode
+﻿@model ICurrentSession
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
-    var menu = Model.ChildNodes[0];
+    var menu = ViewBag.RootNode; 
 }
-
 <ul id="tab-menu">
-    <li class="tab-menu active">
-        <a><i class="icon-align-justify"></i>Menu</a>
-    </li>
-    <li class="tab-acc">
-        <a href="@Url.Action("AccountInfo")" target="menu">
-            <i class="icon-user"></i>Account</a>
-    </li>
-    <li class="tab-tree">
-        <a href="@Url.Action("TreeViewList")" target="menu">
-            <i class="icon-align-left"></i>Agents</a>
-    </li>
+    <li class="tab-menu active"><a><i class="icon-align-justify"></i>Menu</a> </li>
+    <li class="tab-acc"><a href="@Url.Action("AccountInfo")" target="menu"><i class="icon-user">
+    </i>Account</a> </li>
+    <li class="tab-tree"><a href="@Url.Action("TreeViewList")" target="menu"><i class="icon-align-left">
+    </i>Agents</a> </li>
 </ul>
-
 <ul id="menu">
-    @for (int i = 0; i < menu.ChildNodes.Count; i++)
+    @foreach (SiteMapNode item in menu.ChildNodes)  //for (int i = 0, l = Model.ChildNodes.Count; i < l; i++)
     {
-        var item = menu.ChildNodes[i];
-        string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
+        if (item.Roles.Count == 0 /*|| AdminRoles) */)
+        {
+            string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
         
         <li class="menu-item @activeClass"><a class="menu-item-title">@this.GlobalLangResources(item.Title)</a>
             @if (item.HasChildNodes)
             {
+                var level = Convert.ToInt32(item["Level"]);
+                if (level == 0 || Model.AgentLevel >= level)
+                { 
                 <div class="submenu">
-                    @for (int j = 0; j < item.ChildNodes.Count; j++)
+                    @foreach (SiteMapNode subItem in item.ChildNodes) //j < item.ChildNodes.Count; j++)
                     {
-                        var subItem = item.ChildNodes[j];
+
+                        //var subItem = item.ChildNodes[j];
                         int bettypeId = 0;
-                        string title=string.Empty;
-                        
+                        string title = string.Empty;
+
                         if (subItem.Title.Contains("bettype")
                             && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
                         {
@@ -47,11 +44,12 @@
                         <a href="@subItem.Url" target="main">@title</a>
                     }
                 </div>
+                }
             }
         </li>
+        }
     }
 </ul>
-
 @section foot {
     <script src="~/Views/Account/Resources/Menu.js" type="text/javascript"></script>
 }
