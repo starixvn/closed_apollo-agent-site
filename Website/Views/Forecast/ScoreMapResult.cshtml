@@ -9,7 +9,7 @@
         foreach (var result in Model)
         {
 
-    <div id="RefreshContent@(result.MatchId)" class="paddingTopMatch">
+    <div id="RefreshContent@(result.MatchId)" class="paddingTopMatch clearfix">
         <div class="title-scoremap">
             <span class="collapse-expand lnkGroup span-expand">
                 @result.HomeName -vs- @result.AwayName
@@ -17,41 +17,39 @@
             <span title="@Resources.Lang.refresh" class="refresh-scoremap lnkRefresh refresh-button"
                 id="lnkRefresh@(result.MatchId)" match-id="@(result.MatchId)"></span>
         </div>
-        <div style="clear: both">
-        </div>
         <div class="scoreMap" id="scoreMap@(result.MatchId)">
-            <table class="tblScoreMap" id="tblSM@(result.MatchId)" cellpadding="0" cellspacing="1" border="0">
+            <table class="tblRpt" id="tblSM@(result.MatchId)">
                 <thead>
                     <tr class="vsmHomeWay" align="center">
-                        <td rowspan="2" class="smTitle">
+                        <th rowspan="2" class="smTitle">
                             @Resources.Lang.away
-                        </td>
-                        <td colspan="7" class="smTitle">
+                        </th>
+                        <th colspan="7" class="smTitle">
                             @Resources.Lang.home
-                        </td>
+                        </th>
                     </tr>
-                    <tr class="vsm" align="center">
-                        <td width="13%">
+                    <tr class="vsm">
+                        <th width="13%">
                             0
-                        </td>
-                        <td width="13%">
+                        </th>
+                        <th width="13%">
                             1
-                        </td>
-                        <td width="13%">
+                        </th>
+                        <th width="13%">
                             2
-                        </td>
-                        <td width="13%">
+                        </th>
+                        <th width="13%">
                             3
-                        </td>
-                        <td width="13%">
+                        </th>
+                        <th width="13%">
                             4
-                        </td>
-                        <td width="13%">
+                        </th>
+                        <th width="13%">
                             5
-                        </td>
-                        <td width="13%">
+                        </th>
+                        <th width="13%">
                             6
-                        </td>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

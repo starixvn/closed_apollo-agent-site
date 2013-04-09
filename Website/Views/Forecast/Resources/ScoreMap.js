@@ -105,11 +105,13 @@ var scoreMap = {
             var $this = $(this);
             if ($this.hasClass("lnkGroup")) {
                 $this.removeClass("lnkGroup").addClass("lnkGroupClick");
+                $this.parent().parent().find(".title-scoremap").css({ "border-bottom": "1px solid #ccc" });
             }
             else {
                 $this.removeClass("lnkGroupClick").addClass("lnkGroup");
+                $this.parent().parent().find(".title-scoremap").css({ "border-bottom": "none" });
             }
-            $this.parent().parent().find(".scoreMap").toggle();
+            $this.parent().parent().find(".scoreMap").toggle();            
         });
 
         resultContainer.find(".refresh-scoremap").click(function () {
