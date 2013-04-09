@@ -21,5 +21,6 @@ namespace Apollo.Age.Forecast.Core
     public class Constants
     {
         public const string SCORE_MAP_BETTYPES = "Apollo.Age.Forecast.Services.ForecastService.ScoreMapBetType";
+        public const int FORECAST_RESULT_TABLE_DIMEMSION = 7;
     }
 }

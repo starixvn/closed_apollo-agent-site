@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="HTFT.aspx.cs" Inherits="Fanex.Age.UI.TotalBets.HTFT_Page" %>

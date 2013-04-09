@@ -4,9 +4,43 @@ var AGENTLIST = function ($) {
     return {
         AgentId: null,
         init: function () {
+            AGENTLIST.AgentId = $("#gridId").attr("agentid");
             AGENTLIST.loadAgentList(AGENTLIST.AgentId);
         },
+        loadNavigation: function (agentId) {
+            $.ajax({
+                type: "POST",
+                url: APOLLO.resolveUrl("/Account/GetAgentDownlinePath"),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({ AgentId: agentId }),
+                timeout: 120000,
+                success: function (result) {
+                    var rowLength = result.length;
+                    var template = '';
 
+                    for (var i = 0; i < rowLength; i++) {
+                        if (i == rowLength - 1) {
+                            template += "<span>" + result[i].Username + "</span>";
+                        }
+                        else {
+                            template += "<a href='#' name='navigation' agentid='" + result[i].Id + "' >" + result[i].Username + "</a>";
+                            template += "<img alt='' height='12' width='12' src= '" + APOLLO.resolveUrl("../_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif") + "'/>";
+                        }
+                    }
+                    $("#divnavigation").html(template);
+                    $("[name='navigation']").bind('click', function () {
+                        AGENTLIST.AgentId = $(this).attr('agentid');
+                        AGENTLIST.loadAgentList(AGENTLIST.AgentId);
+                        return false;
+                    });
+                },
+                error: function (event, jqXHR, ajaxSettings) {
+                },
+                complete: function () {
+                }
+            });
+        },
         loadAgentList: function (agentId) {
             $.ajax({
                 type: "POST",
@@ -18,6 +52,7 @@ var AGENTLIST = function ($) {
                 success: function (result) {
                     AGENTLIST.AgentId = result.CurrentAgentId;
                     AGENTLIST.initAgentList(result);
+                    AGENTLIST.loadNavigation(AGENTLIST.AgentId);
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },
@@ -139,7 +174,6 @@ var AGENTLIST = function ($) {
                         gridOption.pagerOption.currentPage = page_index;
                         gridOption.pagerOption.totalItem = result.TotalItem;
                         AGENTLIST.AgentId = result.CurrentAgentId;
-
                         AGENTLIST.initAgentList(result);
                     },
                     error: function (event, jqXHR, ajaxSettings) {
