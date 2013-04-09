@@ -16,5 +16,9 @@ namespace Apollo.Age.Admin.Services
     public interface IExchangeRateService
     {
         IEnumerable<ExchRate> GetAll(ref GetAllExchangeRateCriteria criteria);
+
+        ExchRate GetById(ref GetExchangeRateByIdCriteria criteria);
+
+        void UpdateExchangeRate(ref UpdateExchangeRateCriteria criteria);
     }
 }

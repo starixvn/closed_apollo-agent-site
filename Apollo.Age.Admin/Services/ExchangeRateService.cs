@@ -10,17 +10,11 @@
 namespace Apollo.Age.Admin.Services
 {
     using System.Collections.Generic;
-    using System.Linq;
+    using Apollo.Age.Admin.Criterias;
     using Apollo.Age.Admin.Repositories.Impl;
     using Apollo.Age.Admin.Repositories.Interface;
-    using Apollo.Age.Admin.ViewModels;
-    using Apollo.Age.Admin.Criterias;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Repositories.Impl;
-    using Apollo.Age.Repositories.Interface;
-    using Apollo.Age.Services.Impl;
-    using Fanex.Common.Helper;
     using Apollo.Age.DTO.Admin.ExchangeRate;
+    using Apollo.Age.Services.Impl;
 
     public class ExchangeRateService : ServiceBase, IExchangeRateService
     {
@@ -35,7 +29,17 @@ namespace Apollo.Age.Admin.Services
 
         public IEnumerable<ExchRate> GetAll(ref GetAllExchangeRateCriteria criteria)
         {
-            return _exchangeRateRepo.GetAllExchangeRate(ref criteria);
+            return _exchangeRateRepo.GetAll(ref criteria);
+        }
+
+        public ExchRate GetById(ref GetExchangeRateByIdCriteria criteria)
+        {
+            return _exchangeRateRepo.GetById(ref criteria);
+        }
+
+        public void UpdateExchangeRate(ref UpdateExchangeRateCriteria criteria)
+        {
+            _exchangeRateRepo.UpdateExchangeRate(ref criteria);
         }
     }
 }

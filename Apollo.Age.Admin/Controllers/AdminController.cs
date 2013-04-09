@@ -41,5 +41,44 @@ namespace Apollo.Age.Admin.Controllers
 
             return View(exchangeRateList.ToList());
         }
+
+        public JsonResult UpdateExchangeRate(int exchangeId, string description,
+            double multipliedBy, double baseRate, double minBet, double minBetLive)
+        {
+            var getExchRateByIdCriteria = new GetExchangeRateByIdCriteria { ExchangeId = exchangeId };
+            var exchRateToUpdate = _exchangeRateService.GetById(ref getExchRateByIdCriteria);
+            int errCode = 0;
+            string errMsg = string.Empty;
+
+            if (exchRateToUpdate == null)
+            {
+                // return not found error
+                errCode = 404;
+                errMsg = string.Empty;
+            }
+            else
+            {
+                //description = p["description"] == null ? string.Empty : HttpUtility.HtmlDecode(p["description"].ToString());
+
+                var criteria = new UpdateExchangeRateCriteria
+                {
+                    userId = CurrentSession.UserId,
+                    ip = "",
+                    ExchangeId = exchangeId,
+                    Description = description,
+                    MultipliedBy = multipliedBy,
+                    BaseRate = baseRate,
+                    MinBet = minBet,
+                    MinBetLive = minBetLive
+                };
+
+                _exchangeRateService.UpdateExchangeRate(ref criteria);
+
+                errCode = criteria.ErrCode;
+                errMsg = criteria.ErrMsg;
+            }
+
+            return Json(new { errCode = errCode, errMsg = errMsg });
+        }
     }
 }

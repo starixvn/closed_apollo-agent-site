@@ -162,46 +162,51 @@ namespace Apollo.MvcPaging
 
         private string GeneratePageUrl(int pageNumber)
         {
-            //var viewContext = this.htmlHelper.ViewContext;
-            //var routeDataValues = viewContext.RequestContext.RouteData.Values;
-            //HttpContext.Current
-            //    this.htmlHelper.ViewContext.RequestContext.HttpConte
-            //System.Web.Routing.RouteValueDictionary aaa = this.htmlHelper.ViewContext.RequestContext.RouteData.Values;
-            //var routeDataValues = this.htmlHelper.ViewContext.RequestContext.RouteData.Values;
-            //RouteValueDictionary pageLinkValueDictionary;
-            //// Avoid canonical errors when pageNumber is equal to 1.
-            //if (pageNumber == 1 && !this.pagerOptions.AlwaysAddFirstPageNumber)
-            //{
-            //    pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues);
-            //    if (routeDataValues.ContainsKey(this.pagerOptions.PageRouteValueKey))
-            //    {
-            //        routeDataValues.Remove(this.pagerOptions.PageRouteValueKey);
-            //    }
-            //}
-            //else
-            //{
-            //    pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues) { { this.pagerOptions.PageRouteValueKey, pageNumber } };
-            //}
+            var viewContext = this.htmlHelper.ViewContext;
+            var routeDataValues = viewContext.RequestContext.RouteData.Values;
+          
+            RouteValueDictionary pageLinkValueDictionary;
+            // Avoid canonical errors when pageNumber is equal to 1.
+            if (pageNumber == 1 && !this.pagerOptions.AlwaysAddFirstPageNumber)
+            {
+                pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues);
+                if (routeDataValues.ContainsKey(this.pagerOptions.PageRouteValueKey))
+                {
+                    routeDataValues.Remove(this.pagerOptions.PageRouteValueKey);
+                }
+            }
+            else
+            {
+                pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues) { { this.pagerOptions.PageRouteValueKey, pageNumber } };
+            }
 
-            //// To be sure we get the right route, ensure the controller and action are specified.
-            //if (!pageLinkValueDictionary.ContainsKey("controller") && routeDataValues.ContainsKey("controller"))
-            //{
-            //    pageLinkValueDictionary.Add("controller", routeDataValues["controller"]);
-            //}
-            //if (!pageLinkValueDictionary.ContainsKey("action") && routeDataValues.ContainsKey("action"))
-            //{
-            //    pageLinkValueDictionary.Add("action", routeDataValues["action"]);
-            //}
+            // To be sure we get the right route, ensure the controller and action are specified.
+            if (!pageLinkValueDictionary.ContainsKey("controller") && routeDataValues.ContainsKey("controller"))
+            {
+                pageLinkValueDictionary.Add("controller", routeDataValues["controller"]);
+            }
+            if (!pageLinkValueDictionary.ContainsKey("action") && routeDataValues.ContainsKey("action"))
+            {
+                pageLinkValueDictionary.Add("action", routeDataValues["action"]);
+            }
 
-            //// 'Render' virtual path.
-            ////var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext, pageLinkValueDictionary);
-            //var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(this.htmlHelper.ViewContext.RequestContext, pageLinkValueDictionary);
+            // 'Render' virtual path.
+            //var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext, pageLinkValueDictionary);
+            var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(this.htmlHelper.ViewContext.RequestContext, pageLinkValueDictionary);
 
-            //return virtualPathForArea == null ? null : virtualPathForArea.VirtualPath;
+            var url = virtualPathForArea == null ? null : virtualPathForArea.VirtualPath;
+            if (url != null)
+            {
+                var paramsList = HttpContext.Current.Request.QueryString;
+                foreach (string key in paramsList)
+                {
+                    if (key != "page")
+                    {
+                        url += "&" + key + "=" + paramsList[key];
+                    }
+                }
+            }
 
-            //temp to edit css
-            var url = HttpContext.Current.Request.Url.AbsolutePath + "?custId=" + HttpContext.Current.Request.QueryString["custId"]
-                + "&page=" + pageNumber;
             return url;
         }
     }
