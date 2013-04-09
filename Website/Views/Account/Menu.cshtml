@@ -19,30 +19,31 @@
         
         <li class="menu-item @activeClass"><a class="menu-item-title">@this.GlobalLangResources(item.Title)</a>
             @if (item.HasChildNodes)
-            {
-                var level = Convert.ToInt32(item["Level"]);
-                if (level == 0 || Model.AgentLevel >= level)
-                { 
+            {               
                 <div class="submenu">
                     @foreach (SiteMapNode subItem in item.ChildNodes)
                     {
                         int bettypeId = 0;
                         string title = string.Empty;
-
-                        if (subItem.Title.Contains("bettype")
-                            && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
-                        {
-                            title = CacheRef.GetBettype(bettypeId);
-                        }
-                        else
-                        {
-                            title = this.GlobalLangResources(subItem.Title);
-                        }
                         
+                        // hide member list for user level < 3
+                        var level = Convert.ToInt32(item["Level"]);
+                        if (level == 0 || Model.AgentLevel >= level)
+                        {
+                            if (subItem.Title.Contains("bettype")
+                                && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
+                            {
+                                title = CacheRef.GetBettype(bettypeId);
+                            }
+                            else
+                            {
+                                title = this.GlobalLangResources(subItem.Title);
+                            }
+                        }        
                         <a href="@subItem.Url" target="main">@title</a>
                     }
                 </div>
-                }
+                
             }
         </li>
         }

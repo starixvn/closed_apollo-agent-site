@@ -52,7 +52,7 @@ var scoreMap = {
         else {
             matchIds = scoreMap.GetIdFromSelectedCheckBox($(".match-item:checked"));
             $("#match-ids").val(matchIds);
-            
+
         }
         if (matchIds == "") {
             $('#msgMatchErr').text("Please choose a Match!");
@@ -70,8 +70,8 @@ var scoreMap = {
             $("#tblLiveDead").show();
             $("#bet-type-container").html(contentView);
             //bet-type-live
-            scoreMap.RegisterCheckAll("#chkAllL", ".bet-type-live");
-            scoreMap.RegisterCheckAll("#chkAllD", ".bet-type-deadball");
+            scoreMap.RegisterCheckAll("#chkAllL", ".bet-type-live", true);
+            scoreMap.RegisterCheckAll("#chkAllD", ".bet-type-deadball", true);
             $("#dSubmit").click(function () {
                 scoreMap.LoadResults();
             });
@@ -101,35 +101,33 @@ var scoreMap = {
         });
     },
     RegisterEventsForResultMatch: function (resultContainer) {
-        resultContainer.find(".button_mid").click(function () {
+        resultContainer.find(".collapse-expand").click(function () {
             var $this = $(this);
-            var spanExpand = $this.find(".span-expand");
-            if (spanExpand.hasClass("lnkGroup")) {
-                spanExpand.removeClass("lnkGroup").addClass("lnkGroupClick");
+            if ($this.hasClass("lnkGroup")) {
+                $this.removeClass("lnkGroup").addClass("lnkGroupClick");
             }
             else {
-                spanExpand.removeClass("lnkGroupClick").addClass("lnkGroup");
+                $this.removeClass("lnkGroupClick").addClass("lnkGroup");
             }
-            $this.parent().find(".scoreMap").toggle();
+            $this.parent().parent().find(".scoreMap").toggle();
         });
 
-        resultContainer.find(".button_right").click(function () {
+        resultContainer.find(".refresh-scoremap").click(function () {
             var $this = $(this);
-            var spanButton = $this.find(".refresh-button");
-            if (spanButton.hasClass("lnkRefresh")) {
-                spanButton.removeClass("lnkRefresh").addClass("lnkRefreshClick");
+            if ($this.hasClass("lnkRefresh")) {
+                $this.removeClass("lnkRefresh").addClass("lnkRefreshClick");
             }
             else {
-                spanButton.removeClass("lnkRefreshClick").addClass("lnkRefresh");
+                $this.removeClass("lnkRefreshClick").addClass("lnkRefresh");
             }
             var attrMatchId = $this.attr("match-id");
             var url = scoreMap.BaseLink + 'ScoreMapResult?matchIds=' + attrMatchId
-                    +'&liveBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-live:checked'))
+                    + '&liveBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-live:checked'))
                     + '&deadBallBetTypes=' + scoreMap.GetIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
             var matchId = "#RefreshContent" + attrMatchId;
             //RefreshContent
             $.get(url, function (contentView) {
-                $this.parent().replaceWith(contentView);
+                $this.parent().parent().replaceWith(contentView);
                 scoreMap.RegisterEventsForResultMatch($(matchId));
             });
         });
@@ -142,7 +140,7 @@ var scoreMap = {
         }
         return ids;
     },
-    RegisterCheckAll: function (checkAllId, itemClass) {
+    RegisterCheckAll: function (checkAllId, itemClass, checkAll) {
         var $matchItems = $(itemClass);
         var $checkAll = $(checkAllId);
         $checkAll.click(function () {
@@ -166,6 +164,10 @@ var scoreMap = {
                 }
             }
         });
+
+        if (checkAll && scoreMap.ViewPartial == false) {
+            $checkAll.trigger("click");
+        }
     }
 };
 

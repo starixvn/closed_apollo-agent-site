@@ -10,18 +10,12 @@
         {
 
     <div id="RefreshContent@(result.MatchId)" class="paddingTopMatch">
-        <div class="button_left">
-        </div>
-        <div class="button_mid">
-            <div style="margin-top: 4px">
-                <span class="lnkGroup span-expand">
-                    @result.HomeName -vs- @result.AwayName
-                </span>
-            </div>
-        </div>
-        <div class="button_right" match-id="@(result.MatchId)">
-            <span title="@Resources.Lang.refresh" class="lnkRefresh refresh-button"
-                id="lnkRefresh@(result.MatchId)"></span>
+        <div class="title-scoremap">
+            <span class="collapse-expand lnkGroup span-expand">
+                @result.HomeName -vs- @result.AwayName
+            </span>
+            <span title="@Resources.Lang.refresh" class="refresh-scoremap lnkRefresh refresh-button"
+                id="lnkRefresh@(result.MatchId)" match-id="@(result.MatchId)"></span>
         </div>
         <div style="clear: both">
         </div>
