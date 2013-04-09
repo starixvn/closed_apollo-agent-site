@@ -41,7 +41,7 @@ namespace IBCAgent
                 "UserName", "System.String"
             };
         #endregion
-        
+
         private static string _ConnStringMsg = string.Empty;
         private static IBCMessage.Messenger mgr = null;
 
@@ -162,7 +162,7 @@ namespace IBCAgent
             InitializeMessage();
             mgr.SetReadPriMsg(userID, userName);
         }
-        
+
         public static string GetContentMsg(DataRow msg, string language)
         {
             string content = string.Empty;
@@ -211,7 +211,7 @@ namespace IBCAgent
             {
                 dc = new DataColumn();
                 dc.ColumnName = colNameOfDataTable[idxElement];
-                dc.DataType = Type.GetType(colNameOfDataTable[idxElement+1]);
+                dc.DataType = Type.GetType(colNameOfDataTable[idxElement + 1]);
                 dt.Columns.Add(dc);
             }
 
@@ -240,7 +240,7 @@ namespace IBCAgent
             dr["PostTime"] = msg.PostTime;
             dr["UserId"] = msg.UserId;
             dr["UserName"] = msg.UserName;
-            
+
             dtMsg.Rows.Add(dr);
         }
         public static DataTable ConvertToDataTableForMsg(IBCMessage.Message[] msgOf)
@@ -273,9 +273,9 @@ namespace IBCAgent
             Hashtable htb = new Hashtable();
             htb.Add("messagetype", 3);
             htb.Add("site1", "3000");
-            if(Sunplus.Agent.Model.Entities.UserSession.Current.RoleId==4)
+            if (Sunplus.Agent.Model.Entities.UserSession.Current.RoleId == 4)
                 htb.Add("site2", "3100");
-            else if(Sunplus.Agent.Model.Entities.UserSession.Current.RoleId==3)
+            else if (Sunplus.Agent.Model.Entities.UserSession.Current.RoleId == 3)
                 htb.Add("site2", "3200");
             else
                 htb.Add("site2", "3300");
@@ -328,15 +328,15 @@ namespace IBCAgent
                 row["IsSticky"] = result.ResultSet.Tables[0].Rows[0]["IsSticky"];
                 table.Rows.Add(row);
             }
-                    
+
 
             return table;
-            
+
         }
 
 
         #region Methods is built to use New design
-        
+
         public static DataTable GetBalloonMessage2(int messageType, int siteid, int targetId)
         {
             DataTable returnTable = CreateDataTable();
@@ -449,12 +449,14 @@ namespace IBCAgent
             {
                 result = DNAide.Data.DbHelper.Execute(nSPname, htb);
             }
-            catch 
+            catch
             {
                 return returnTable;
-                
+
             }
-            if (result != null && result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
+            if (result != null
+                && result.ResultSet.Tables.Count > 0
+                && result.ResultSet.Tables[0].Rows.Count > 0)
             {
                 CopyDataTable(result.ResultSet.Tables[0], returnTable);
             }
@@ -525,17 +527,17 @@ namespace IBCAgent
                 (isBatch ? CastAide.AsString(GetValue(row, "Content_th"), string.Empty).Replace("@@", bettransId) : CastAide.AsString(GetValue(row, "Content_th"), string.Empty));
 
             dr["CreateTime"] = CastAide.AsDateTime(GetValue(row, "CreateTime"));
-            dr["CreatorId"] = CastAide.AsInt32(GetValue(row, "Creator")); 
+            dr["CreatorId"] = CastAide.AsInt32(GetValue(row, "Creator"));
             dr["CreatorName"] = CastAide.AsString(GetValue(row, "CreatorName"));
-            dr["IsSticky"] = CastAide.AsBoolean(GetValue(row, "IsSticky")); 
-            dr["LastUpdateName"] = CastAide.AsString(GetValue(row, "LastUpdateName")); 
-            dr["LastUpdateTime"] = CastAide.AsDateTime(GetValue(row, "LastUpdateTime")); 
-            dr["LastUpdator"] = CastAide.AsInt32(GetValue(row, "LastUpdator")); 
-            dr["MessageId"] = CastAide.AsInt32(GetValue(row, "MessageId")); 
-            dr["MessageType"] = CastAide.AsInt32(GetValue(row, "MsgType")); 
+            dr["IsSticky"] = CastAide.AsBoolean(GetValue(row, "IsSticky"));
+            dr["LastUpdateName"] = CastAide.AsString(GetValue(row, "LastUpdateName"));
+            dr["LastUpdateTime"] = CastAide.AsDateTime(GetValue(row, "LastUpdateTime"));
+            dr["LastUpdator"] = CastAide.AsInt32(GetValue(row, "LastUpdator"));
+            dr["MessageId"] = CastAide.AsInt32(GetValue(row, "MessageId"));
+            dr["MessageType"] = CastAide.AsInt32(GetValue(row, "MsgType"));
             //dr["Poster"] = ?;
             dr["PostTime"] = CastAide.AsDateTime(GetValue(row, "PostTime"));
-            dr["UserId"] = CastAide.AsInt32(GetValue(row, "TargetId")); 
+            dr["UserId"] = CastAide.AsInt32(GetValue(row, "TargetId"));
             dr["UserName"] = CastAide.AsInt32(GetValue(row, "UserName"));
 
             dtMsg.Rows.Add(dr);

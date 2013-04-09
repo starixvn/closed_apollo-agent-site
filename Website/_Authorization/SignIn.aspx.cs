@@ -118,6 +118,9 @@ namespace Sunplus.Agent.UI._Authorization
                 ICurrentSession currentSession = new CurrentSession(user);
                 Session["Apollo.Age.Web.CurrentSession"] = currentSession;
                 UserSessionService.SetUserSessionValues(session, user);
+
+                
+
                 //session.CurrentUser = user;
                 FormsAuthentication.RedirectFromLoginPage(user.Username, false);
             }

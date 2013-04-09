@@ -25,8 +25,8 @@ namespace Apollo.Age.Account.Services
 
         bool UpdateReadPrivateMessage(int userId, string username);
 
-        IEnumerable<MessageViewModel> GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false);
+        MessageViewModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false);
 
-        IEnumerable<MessageViewModel> GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false);
+        MessageViewModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false);
     }
 }

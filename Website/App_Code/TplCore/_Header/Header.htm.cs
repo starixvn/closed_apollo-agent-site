@@ -23,9 +23,9 @@ namespace Fanex.Agent.UI
 			public Header_CssAgent_Block CssAgent = new Header_CssAgent_Block();
 			protected static string s5 = "</head><body>";
 			public string flash = "{flash}";
-			protected static string s6 = "<div id=\"banner_main\"><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td colspan=\"2\" class=\"login-bg\"><b style=\"line-height: 2em; color: #555\">This bar is for testing only and will be removed later</b><div class=\"login-info\">";
+			protected static string s6 = "<div id=\"banner_main\"><div id=\"news_main\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td colspan=\"2\" class=\"login-bg\"><b style=\"line-height: 2em; color: #555\">This bar is for testing only and will be removedlater</b><div class=\"login-info\">";
 			protected static string s7{get{return Resources.Lang.lblWebHostLogin;}}
-			protected static string s8 = "<span class=\"username\">";
+			protected static string s8 = " <span class=\"username\">";
 			public Header_SetUserName_Block SetUserName = new Header_SetUserName_Block();
 			protected static string s9 = "</span><a href=\"javascript:top.age.SignOut()\">";
 			protected static string s10{get{return Resources.Lang.ImgLogOut;}}
@@ -46,10 +46,12 @@ namespace Fanex.Agent.UI
 			protected static string s18 = "\" /><input type=\"hidden\" id=\"roleid\" value=\"";
 			public string roleid = "{roleid}";
 			protected static string s19 = "\" /><div id=\"divPopupAd\" style=\"display: none\">Temporary need this tag for other pages work</div><script src=\"";
-			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s22{get{return AbsoluteUrl("_Header/Resources/header.js", TplSettings.Question);}}
-			protected static string s23 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s22{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s24{get{return AbsoluteUrl("_Header/Resources/header.js", TplSettings.Question);}}
+			protected static string s25 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -92,6 +94,8 @@ namespace Fanex.Agent.UI
 					bd.Append(s21);
 					bd.Append(s22);
 					bd.Append(s23);
+					bd.Append(s24);
+					bd.Append(s25);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -106,17 +110,17 @@ namespace Fanex.Agent.UI
 
 		public class Header_CssSuper_Block: Block
 		{
-			protected static string s24 = "<link href=\"";
-			protected static string s25{get{return AbsoluteUrl("_Header/Resources/Header4.less", TplSettings.Question);}}
-			protected static string s26 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s26 = "<link href=\"";
+			protected static string s27{get{return AbsoluteUrl("_Header/Resources/Header4.less", TplSettings.Question);}}
+			protected static string s28 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s24);
-					bd.Append(s25);
 					bd.Append(s26);
+					bd.Append(s27);
+					bd.Append(s28);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -124,17 +128,17 @@ namespace Fanex.Agent.UI
 
 		public class Header_CssMaster_Block: Block
 		{
-			protected static string s27 = "<link href=\"";
-			protected static string s28{get{return AbsoluteUrl("_Header/Resources/Header3.less", TplSettings.Question);}}
-			protected static string s29 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s29 = "<link href=\"";
+			protected static string s30{get{return AbsoluteUrl("_Header/Resources/Header3.less", TplSettings.Question);}}
+			protected static string s31 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s27);
-					bd.Append(s28);
 					bd.Append(s29);
+					bd.Append(s30);
+					bd.Append(s31);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -142,17 +146,17 @@ namespace Fanex.Agent.UI
 
 		public class Header_CssAgent_Block: Block
 		{
-			protected static string s30 = "<link href=\"";
-			protected static string s31{get{return AbsoluteUrl("_Header/Resources/Header2.less", TplSettings.Question);}}
-			protected static string s32 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s32 = "<link href=\"";
+			protected static string s33{get{return AbsoluteUrl("_Header/Resources/Header2.less", TplSettings.Question);}}
+			protected static string s34 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s30);
-					bd.Append(s31);
 					bd.Append(s32);
+					bd.Append(s33);
+					bd.Append(s34);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -161,18 +165,18 @@ namespace Fanex.Agent.UI
 		public class Header_SetUserName_Block: Block
 		{
 			public string mainAccName = "{mainAccName}";
-			protected static string s33 = "<span>(";
+			protected static string s35 = " <span>(";
 			public string AgentUsername = "{AgentUsername}";
-			protected static string s34 = ")</span>";
+			protected static string s36 = ")</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(mainAccName);
-					bd.Append(s33);
+					bd.Append(s35);
 					bd.Append(AgentUsername);
-					bd.Append(s34);
+					bd.Append(s36);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
