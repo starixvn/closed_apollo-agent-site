@@ -171,4 +171,4 @@ var scoreMap = {
 
 $(function () {
     scoreMap.Init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
