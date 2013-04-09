@@ -128,6 +128,17 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost]
+        public ActionResult UpdatePriMsg()
+        {
+            if (Request.IsAjaxRequest())
+            {               
+                return Json(_messageService.UpdateReadPrivateMessage(this.CurrentSession.UserId, this.CurrentSession.Username));
+            }
+
+            return Json(null);
+        }
+
+        [HttpPost]
         public ActionResult GetMessage()
         {
             // Message type from older source code

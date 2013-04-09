@@ -4,7 +4,9 @@
             $('.datepicker').datepicker({
                 showOn: "button",
                 buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png"),
-                buttonImageOnly: true
+                buttonImageOnly: true,
+                maxDate: $('#maxDate').val(),
+                minDate: $('#minDate').val()
             });
 
             $('.pagequery').click(function () {
