@@ -81,8 +81,16 @@ function UpdateCountPrivateMsg() {
         }
     }
 
-    ajax.PostJSON(
-     _page.getBaseURL + '_UserMessage/Handlers/UpdatePrivateMessageCount.ashx', '', completeCountPrivateMsg);
+    var url = APOLLO.resolveUrl("Message/UpdatePriMsg");
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'JSON',
+        success: completeCountPrivateMsg,
+        error: function (xhr, status, err) {
+
+        }
+    });
 }
 
 var publicMessageId = 0; // public message

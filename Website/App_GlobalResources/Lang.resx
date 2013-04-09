@@ -4242,4 +4242,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="AddNewExchangeRate" xml:space="preserve">
     <value>Add New Exchange Rate</value>
   </data>
+  <data name="MessageHistory" xml:space="preserve">
+    <value>Message History</value>
+  </data>
 </root>

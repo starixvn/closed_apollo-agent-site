@@ -72,6 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Criterias\UpdateExchangeRateCriteria.cs" />
+    <Compile Include="Criterias\GetExchangeRateByIdCriteria.cs" />
     <Compile Include="Criterias\GetAllExchangeRateCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\ExchangeRateRepository.cs" />

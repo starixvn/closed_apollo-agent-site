@@ -15,10 +15,12 @@ namespace Apollo.Age.Admin.Repositories.Impl
     using Apollo.Age.DTO.Admin.ExchangeRate;
     using Fanex.Common.Helper;
     using Fanex.Data;
+    using System.Collections;
+    using System;
 
     public class ExchangeRateRepository : IExchangeRateRepository
     {
-        public IEnumerable<ExchRate> GetAllExchangeRate(ref GetAllExchangeRateCriteria criteria)
+        public IEnumerable<ExchRate> GetAll(ref GetAllExchangeRateCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -38,6 +40,24 @@ namespace Apollo.Age.Admin.Repositories.Impl
             {
                 throw;
             }
+        }
+
+        public ExchRate GetById(ref GetExchangeRateByIdCriteria criteria)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void UpdateExchangeRate(ref UpdateExchangeRateCriteria criteria)
+        {
+            Hashtable parameters = criteria.GetSpParams();
+
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(parameters);
+            }
+
+            criteria.ErrCode = Convert.ToInt32(parameters["errcode"]);
+            criteria.ErrMsg = parameters["errmsg"].ToString();
         }
     }
 }

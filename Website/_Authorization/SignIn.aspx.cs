@@ -93,21 +93,21 @@ namespace Sunplus.Agent.UI._Authorization
             string userName = Request["txtUserName"].Trim();
             string passWord = Request["txtPassWord"];
             string language = Request["hidLanguage"];
-            //IUserSession session = CurrentUserSession;
+            IUserSession session = CurrentUserSession;
 
-            ////Get Browser
-            //Hashtable requestInfo = Sunplus.Agent.Model.Services.DeviceService.GetRequestInfo(Request);
+            //Get Browser
+            Hashtable requestInfo = Sunplus.Agent.Model.Services.DeviceService.GetRequestInfo(Request);
 
-            //if (Validation.CheckValidLanguage(language))
-            //{
-            //    session.Language = language;
-            //    session.LangKey = Sunplus.Agent.Model.Common.Language.LangKeyFromCulture(language);
-            //    SetLanguage(language);
-            //}
-            //else
-            //{
-            //    return;
-            //}
+            if (Validation.CheckValidLanguage(language))
+            {
+                session.Language = language;
+                session.LangKey = Sunplus.Agent.Model.Common.Language.LangKeyFromCulture(language);
+                SetLanguage(language);
+            }
+            else
+            {
+                return;
+            }
 
             //  string code = Request["txtCaptcha"];
             _userName = userName;
@@ -119,7 +119,7 @@ namespace Sunplus.Agent.UI._Authorization
                 ICurrentSession currentSession = new CurrentSession(user);
                 Session["Apollo.Age.Web.CurrentSession"] = currentSession;
 
-              // UserSessionService.SetUserSessionValues(session, user);
+               UserSessionService.SetUserSessionValues(session, user);
 
                 
 
