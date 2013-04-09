@@ -5,15 +5,6 @@ if (typeof jQuery != 'undefined') {
     REPORTS = function ($) {
         return {
             init: function () {
-                $("#AgentOutstanding").bind('click', function () {
-                    $.get(APOLLO.resolveUrl('Reports/AgentOutstanding'), { 'agentId': $("#AgentOutstanding").attr("agentid") })
-                        .done(function (data) {
-                            $("#gridId").hide();
-                            $('#divDetail').html(data);
-                        });
-                    return false;
-                });
-
                 $("#MemberOutstanding").bind('click', function () {
                     $.ajax({
                         type: "POST",

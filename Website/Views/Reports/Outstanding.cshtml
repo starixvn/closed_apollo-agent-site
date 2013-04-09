@@ -11,7 +11,7 @@
     <link href="~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.less" rel="stylesheet" type="text/css" />
 }
 @model OutstandingDownlinePathDTO
-<div id="divMain">
+<div id="content_main">
     @{
         if (Model.DownlinePath != null && Model.DownlinePath.Any())
         {
@@ -125,8 +125,6 @@
             @RazorHelper.ShowNoInfo(5)
         }
     </table>
-</div>
-<div id="divDetail" style="margin-top: 20px;">
 </div>
 <div id="gridId" class="freegrid  content-grid" style="margin-top: 20px; display: none;">
 </div>
