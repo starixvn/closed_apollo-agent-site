@@ -37,7 +37,8 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult Menu()
         {
-            return View(SiteMap.RootNode);
+            ViewBag.RootNode = SiteMap.RootNode;
+            return View(base.CurrentSession);
         }
 
         public ActionResult AccountInfo(string userName, short? isMember, int? custId)

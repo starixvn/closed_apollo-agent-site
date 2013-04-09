@@ -113,7 +113,7 @@ namespace Sunplus.Agent.Model.BL
             session.MatchLimit = authenticatedUser.Agent.MatchLimit;
             session.VirtualMultiplier = authenticatedUser.Agent.VirtualMultiplier;
             session.DoubleCommLosing = authenticatedUser.Agent.DoubleCommLosing;
-            session.SubPageAccess = (PageAccess)(authenticatedUser.PageAcess as string);
+            //session.SubPageAccess = (PageAccess)(authenticatedUser.PageAcess as string);
             session.IsLogged = true;
 
             // temporarily use when permission checking is pending

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode title="AGE">
+ <siteMapNode title="AGE">
 
-    <siteMapNode title="Master">
+    <!-- <siteMapNode title="Master">-->
       <!--Totalbets-->
       <siteMapNode title="totalbets" active="true">
         <siteMapNode title="lblHOUL" url="TotalBets/Handicap"></siteMapNode>
@@ -20,7 +20,7 @@
         <siteMapNode title="bettype26" url="_BetList/BetList.aspx?bettype=26&amp;type=Bettype"></siteMapNode>
         <siteMapNode title="bettype27" url="_BetList/BetList.aspx?bettype=27&amp;type=Bettype"></siteMapNode>
         <siteMapNode title="bettype28" url="_BetList/BetList.aspx?bettype=28&amp;type=Bettype"></siteMapNode>
-        <siteMapNode title="numbergame" url="TotalBets/NumberGame"></siteMapNode>
+        <!--<siteMapNode title="numbergame" url="TotalBets/NumberGame"></siteMapNode>-->
       </siteMapNode>
       <!--/Totalbets-->
 
@@ -50,17 +50,17 @@
         <siteMapNode title="lblAgentList" url="_MemberInfo/CustomerList/AgentList.aspx"></siteMapNode>
         <siteMapNode title="lblPlayerList" url="_MemberInfo/CustomerList/MemberList.aspx"></siteMapNode>
         <siteMapNode title="lblPositionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
-        <siteMapNode title="lblMemberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx"></siteMapNode>
+        <siteMapNode title="lblMemberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx" Level="4"></siteMapNode>
         <siteMapNode description="subacc" title="lblShadowList" url="_SubAcc/SubAccList.aspx"></siteMapNode>
       </siteMapNode>
       <!--/MemberInfo-->
 
       <!--Admin-->
-      <siteMapNode title="lblAdmin">
+      <siteMapNode title="lblAdmin" roles="Admin">
         <siteMapNode title="lblExchangeRate" url="_Admin/ExchangeRate/ExchangeRate.aspx"></siteMapNode>
       </siteMapNode>
       <!--/Admin-->
-    </siteMapNode>
+    <!--</siteMapNode>-->
 
   
 
