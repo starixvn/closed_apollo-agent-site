@@ -101,26 +101,24 @@ var scoreMap = {
         });
     },
     RegisterEventsForResultMatch: function (resultContainer) {
-        resultContainer.find("#button_mid").click(function () {
+        resultContainer.find(".collapse-expand").click(function () {
             var $this = $(this);
-            var spanExpand = $this.find(".span-expand");
-            if (spanExpand.hasClass("lnkGroup")) {
-                spanExpand.removeClass("lnkGroup").addClass("lnkGroupClick");
+            if ($this.hasClass("lnkGroup")) {
+                $this.removeClass("lnkGroup").addClass("lnkGroupClick");
             }
             else {
-                spanExpand.removeClass("lnkGroupClick").addClass("lnkGroup");
+                $this.removeClass("lnkGroupClick").addClass("lnkGroup");
             }
-            $this.parent().find(".scoreMap").toggle();
+            $this.parent().parent().find(".scoreMap").toggle();
         });
 
-        resultContainer.find(".title-scoremap").click(function () {
+        resultContainer.find(".refresh-scoremap").click(function () {
             var $this = $(this);
-            var spanButton = $this.find(".refresh-button");
-            if (spanButton.hasClass("lnkRefresh")) {
-                spanButton.removeClass("lnkRefresh").addClass("lnkRefreshClick");
+            if ($this.hasClass("lnkRefresh")) {
+                $this.removeClass("lnkRefresh").addClass("lnkRefreshClick");
             }
             else {
-                spanButton.removeClass("lnkRefreshClick").addClass("lnkRefresh");
+                $this.removeClass("lnkRefreshClick").addClass("lnkRefresh");
             }
             var attrMatchId = $this.attr("match-id");
             var url = scoreMap.BaseLink + 'ScoreMapResult?matchIds=' + attrMatchId
@@ -129,7 +127,7 @@ var scoreMap = {
             var matchId = "#RefreshContent" + attrMatchId;
             //RefreshContent
             $.get(url, function (contentView) {
-                $this.parent().replaceWith(contentView);
+                $this.parent().parent().replaceWith(contentView);
                 scoreMap.RegisterEventsForResultMatch($(matchId));
             });
         });
