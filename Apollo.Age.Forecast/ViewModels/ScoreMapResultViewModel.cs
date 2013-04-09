@@ -10,13 +10,14 @@
 namespace Apollo.Age.Forecast.ViewModels
 {
     using System.Diagnostics.CodeAnalysis;
+    using Apollo.Age.Forecast.Core;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ScoreMapResultViewModel
     {
         public ScoreMapResultViewModel()
         {
-            ScoreMatrix = new decimal[7, 7];
+            ScoreMatrix = new decimal[Constants.FORECAST_RESULT_TABLE_DIMEMSION, Constants.FORECAST_RESULT_TABLE_DIMEMSION];
         }
 
         public int MatchId { get; set; }
