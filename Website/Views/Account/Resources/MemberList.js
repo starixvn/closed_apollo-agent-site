@@ -4,6 +4,7 @@ var MEMBERLIST = function ($) {
     return {
         AgentId: null,
         init: function () {
+            MEMBERLIST.AgentId = $("#gridId").attr("agentid");
             MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
         },
         loadMemberList: function (agentId) {
