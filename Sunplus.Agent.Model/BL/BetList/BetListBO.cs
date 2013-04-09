@@ -483,7 +483,7 @@ namespace Sunplus.Agent.Model.BL.BetList
         /// </summary>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public DataTable GetRunningByBettype(int betType)
+        public DataTable GetRunningByBettype(string betType)
         {
             BetListDAO betListDAO = new BetListDAO();
 
@@ -493,24 +493,6 @@ namespace Sunplus.Agent.Model.BL.BetList
             DataTable runningBets = new DataTable();
 
             runningBets = betListDAO.Age_BetList_TotalBets_SelRunningByBettype(customerId, betType, language);
-
-            return runningBets;
-        }
-
-        /// <summary>
-        /// Get correct score bets
-        /// </summary>
-        /// <param name="betType"></param>
-        /// <returns></returns>
-        public DataTable GetRunningCorrectScore()
-        {
-            BetListDAO betListDAO = new BetListDAO();
-
-            string language = CurrentSession.LangKey;
-            int customerId = CurrentSession.CustId;
-
-            DataTable runningBets = null;
-            runningBets = betListDAO.Age_Betlist_TotalBets_Sel_4_30(customerId, language);
 
             return runningBets;
         }

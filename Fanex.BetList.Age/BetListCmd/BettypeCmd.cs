@@ -10,7 +10,9 @@
 
 namespace Fanex.BetList.Age.BetListCmd
 {
+    using System;
     using System.Data;
+    using Apollo.Age.Enumerations;
     using Fanex.BetList.Age.Definition;
     using Sunplus.Agent.Model.BL.BetList;
     using Sunplus.Agent.Model.BL.Cache;
@@ -23,7 +25,7 @@ namespace Fanex.BetList.Age.BetListCmd
         private DataTable result = null;
         private BetListBO betList = null;
 
-        private int betType = 0;
+        private string betType = Convert.ToString((int)BetTypes.None);
 
         public BettypeCmd(string sessionId)
         {
@@ -34,7 +36,7 @@ namespace Fanex.BetList.Age.BetListCmd
 
         public override void SetParams(System.Collections.Hashtable hash)
         {
-            this.betType = (int)hash["bettype"];
+            this.betType = hash["bettype"].ToString();
             Title = CacheRef.GetBettype(this.betType).ToUpper();
             this.BetListType = BetListType.Member;
         }
