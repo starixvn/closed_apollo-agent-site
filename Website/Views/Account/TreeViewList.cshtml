@@ -34,7 +34,7 @@
                 custId = agentList.attr("agent-id");
 
             agentList.treeview({
-                url: "TreeNodeData",
+                url: "GetDataByNote",
                 link: "<a href='@Url.Content("~/")_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'>{2}</a>",
                 custid: custId
             });
