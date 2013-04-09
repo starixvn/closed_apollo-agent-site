@@ -10,11 +10,7 @@
     <link href="~/_GlobalResources/Js/Fanex.Grid/Fanex.Pagination.less" rel="stylesheet"
         type="text/css" />
 }
-<div id="divnavigation" class="boxNavigation">
-    @{
-
-    }
-</div>
+@RazorHelper.Navigation(Model)
 <div id="gridId" class="freegrid  content-grid" style="margin-top: 20px; display: none;">
 </div>
 @section scripts
