@@ -58,64 +58,7 @@ jQuery(document).ready(function () {
         ExchRate.emptyEditor();
         ExchRate.dialogEdit.find('th:first, td:first').show();
 
-        APOLLO.openDialog(ExchRate.dialogEdit, "Add New Currency",
-                {
-                    buttons: [
-                    {
-                        text: "Submit",
-                        click: function () {
-                            var $this = $(this),
-                                buttons = $this.next('.ui-dialog-buttonpane').find('.ui-button'),
-                                valid = true;
-
-                            ExchRate.editorWrp.find('input:not(#editor-desc)').each(function () {
-                                if (valid) {
-                                    var $this = $(this);
-
-                                    $this.val($.trim($this.val()));
-                                    if ($this.val().length == 0) {
-                                        $this.addClass('input-validation-error');
-                                        valid = false;
-                                    } else {
-                                        $this.removeClass('input-validation-error');
-                                    }
-                                }
-                            });
-
-                            if (valid) {
-                                var url = "../API/InsertExchangeRate.ashx?custId=" + ExchRate.custId +
-                                    "&currency=" + ExchRate.editorCurr.val() +
-                                    "&description=" + ExchRate.editorDesc.val() +
-                                    "&multipliedBy=" + ExchRate.editorMult.val() +
-                                    "&baseRate=" + ExchRate.editorBase.val() +
-                                    "&minBet=" + ExchRate.editorMinb.val() +
-                                    "&minBetLive=" + ExchRate.editorMinbl.val();
-
-                                $.ajax({
-                                    url: url,
-                                    dataType: "json",
-                                    beforeSend: function () {
-                                        $this.addClass('loading');
-                                        buttons.attr('disabled', true).addClass("ui-state-disabled");
-                                    }
-                                }).done(function (data) {
-                                    if (data.errCode == 0) {
-                                        alert('Exchange Rate added successfully!');
-                                        window.location.reload();
-                                    } else {
-                                        alert(data.errMsg);
-                                    }
-                                }).fail(function (jqXHR, textStatus, errorThrown) {
-                                    APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
-                                }).always(function () {
-                                    $this.removeClass('loading');
-                                    buttons.attr('disabled', false).removeClass("ui-state-disabled"); ;
-                                });
-                            }
-                        }
-                    },
-                    { text: "Cancel", click: function () { $(this).dialog("close"); } }]
-                });
+        APOLLO.openDialog(ExchRate.dialogEdit, "Add New Currency");
 
         return false;
     });
@@ -158,15 +101,13 @@ jQuery(document).ready(function () {
         });
 
         if (valid) {
-            var url = "_Admin/API/UpdateExchangeRate.ashx?custId=" + ExchRate.userId +
-                "&exchangeId=" + ExchRate.currEditEid.val() +
+            var url = "Admin/UpdateExchangeRate" +
+                "?exchangeId=" + ExchRate.currEditEid.val() +
                 "&description=" + ExchRate.editorDesc.val() +
                 "&multipliedBy=" + ExchRate.editorMult.val() +
                 "&baseRate=" + ExchRate.editorBase.val() +
                 "&minBet=" + ExchRate.editorMinb.val() +
                 "&minBetLive=" + ExchRate.editorMinbl.val();
-
-            alert(url);
 
             $.ajax({
                 url: APOLLO.resolveUrl(url),
