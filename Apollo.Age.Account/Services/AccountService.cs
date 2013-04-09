@@ -92,9 +92,22 @@ namespace Apollo.Age.Account.Services
             }
         }
 
-        public List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
+        public List<Member> GetMemberDownline(int agentId, int pageIndex, int pageSize, ref int totalPage)
         {
-            return _accountRepository.GetMemberDownline(ref criteria).ToList<Member>();
+            Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
+
+            MemberDownlineCriteria criteria = new MemberDownlineCriteria()
+            {
+                AgentId = agentId,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                TotalPages = totalPage
+            };
+
+            var memberList = _accountRepository.GetMemberDownline(ref criteria).ToList<Member>();
+            totalPage = criteria.TotalPages;
+
+            return memberList;
         }
 
         public List<Agent> GetAgentDownlinePath(int parentId, int agentId)

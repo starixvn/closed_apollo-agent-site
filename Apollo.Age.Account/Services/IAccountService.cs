@@ -18,7 +18,7 @@ namespace Apollo.Age.Account.Services
     {
         CustomerInfoViewModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId);
 
-        List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria);
+        List<Member> GetMemberDownline(int agentId, int pageIndex, int pageSize, ref int totalPage);
 
         List<Agent> GetAgentDownlinePath(int parentId, int agentId);
 
