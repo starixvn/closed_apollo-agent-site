@@ -7,27 +7,26 @@
 //   <change who="Ricky.Nguyen" date="2013.4.5">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.Diagnostics.CodeAnalysis;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ScoreMapResultViewModel
     {
         public ScoreMapResultViewModel()
         {
             ScoreMatrix = new decimal[7, 7];
         }
+
         public int MatchId { get; set; }
+
         public string HomeName { get; set; }
+
         public string AwayName { get; set; }
+
         public decimal[,] ScoreMatrix { get; set; }
+
         public bool HasData { get; set; }
     }
 }

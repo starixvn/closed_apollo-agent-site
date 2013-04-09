@@ -111,7 +111,7 @@ function GetMessages() {
             var objDiv = age.createElement('div');
 
             //Process Public Message: show new public message and its link to message form
-            var url = "Info/NewMessageForm.aspx?pageQuery=";
+            var url = "../Website/Message/NewMessage?pageQuery=";
             var balloonPopupContent = "";
             url += publicMessage[MSGTYPE];
 

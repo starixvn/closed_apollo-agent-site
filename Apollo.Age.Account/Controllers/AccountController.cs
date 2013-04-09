@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.3.29">Created</change>
 //   <change who="Lewis.Le" date="2013.4.4">Added action: Menu</change>
+//   <change who="Quinn.Vo" date="2013.4.9">Added action: AccountInfo, AgentTreeList, TreeViewList, GetDataByNote, GetSuggestValues, GetAgentDownlinePath</change>
 // </history>
 
 namespace Apollo.Age.Account.Controllers
@@ -23,12 +24,24 @@ namespace Apollo.Age.Account.Controllers
 
     public class AccountController : BaseController
     {
+        private const int PAGEINDEX = 0; // Current index page
+        private const int PAGESIZE = 50; // Maximum items in a page
+        private const int TOTALPAGE = 0; // Maximum page total
+
         private readonly AccountService _accountService;
         private int _agentId;
-        private int _pageIndex;
-        private int _totalPages;
-        private string _username;
-        private int _pageSize;
+
+        private int? CurrentAgentId
+        {
+            get
+            {
+                return _agentId;
+            }
+            set
+            {
+                _agentId = value.HasValue ? value.Value : CurrentSession.AgentId;
+            }
+        }
 
         public AccountController()
         {
@@ -51,7 +64,8 @@ namespace Apollo.Age.Account.Controllers
                 userName = HttpContext.Session["userName"] != null
                     ? HttpContext.Session["userName"].ToString() : string.Empty;
                 isMember = HttpContext.Session["isMember"] != null
-                    ? short.Parse(HttpContext.Session["isMember"].ToString()) : short.Parse("0");
+                    ? Fanex.Common.Converter.To<short>(HttpContext.Session["isMember"].ToString())
+                    : Fanex.Common.Converter.To<short>("0");
             }
 
             CustomerInfoViewModel customerInfo = null;
@@ -63,12 +77,12 @@ namespace Apollo.Age.Account.Controllers
                 ismember = isMember == 1;
                 custid = custId.HasValue ? custId.Value : -1;
 
-                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, base.AgentId);
+                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, this.CurrentSession.AgentId);
                 if (customerInfo == null)
                 {
                     customerInfo = new CustomerInfoViewModel()
                     {
-                        CurrentAgentId = base.AgentId,
+                        CurrentAgentId = this.CurrentSession.AgentId,
                         CustId = -1,
                         IsMember = ismember,
                         Username = userName,
@@ -76,7 +90,7 @@ namespace Apollo.Age.Account.Controllers
                 }
                 else
                 {
-                    customerInfo.CurrentAgentId = base.AgentId;
+                    customerInfo.CurrentAgentId = this.CurrentSession.AgentId;
                 }
             }
 
@@ -91,7 +105,7 @@ namespace Apollo.Age.Account.Controllers
 
         public ViewResult TreeViewList()
         {
-            ViewBag.AgentId = base.AgentId;
+            ViewBag.AgentId = this.CurrentSession.AgentId;
             return View();
         }
 
@@ -102,7 +116,7 @@ namespace Apollo.Age.Account.Controllers
             return Redirect("~/_Authorization/SignIn.aspx");
         }
 
-        public JsonResult TreeNodeData(int id)
+        public JsonResult GetDataByNote(int id)
         {
             var customerList = _accountService.GetDirectDownline(id);
             return Json(customerList, JsonRequestBehavior.AllowGet);
@@ -110,7 +124,7 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetSuggestValues(string term, bool isMember)
         {
-            var listValue = _accountService.GetCustomerSearch(isMember, term, base.AgentId)
+            var listValue = _accountService.GetCustomerSearch(isMember, term, this.CurrentSession.AgentId)
                     .Select(x => x.Username).ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
@@ -118,17 +132,20 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult AgentList()
         {
-            return View();
+            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, this.CurrentSession.AgentId).ToList();
+
+            return View(listAgent);
         }
 
         public ActionResult CustomerList(int? agentId)
         {
+            ViewBag.CurrentAgentId = agentId;
             return View();
         }
 
         public JsonResult GetAgentDownlinePath(int agentId)
         {
-            var listValue = _accountService.GetAgentDownlinePath(base.AgentId, agentId).ToList();
+            var listValue = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, agentId).ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
@@ -136,30 +153,28 @@ namespace Apollo.Age.Account.Controllers
         [HttpPost]
         public JsonResult GetAgentList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
-            _agentId = !agentId.HasValue ? UserSession.Current.AgentId : agentId.Value;
-            _pageIndex = !pageIndex.HasValue ? 0 : pageIndex.Value;
-            _totalPages = !totalPages.HasValue ? 0 : totalPages.Value;
-            _username = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-            _pageSize = !pageSize.HasValue ? 5 : pageSize.Value;
+            CurrentAgentId = agentId;
+            var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
+            var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
+            var currentPageSize = !pageSize.HasValue ? PAGESIZE : pageSize.Value;
 
             AgentListCriteria criteria = new AgentListCriteria()
             {
-                AgentId = _agentId,
-                PageIndex = _pageIndex,
-                TotalPages = _totalPages,
-                UserName = _username,
-                PageSize = _pageSize
+                AgentId = CurrentAgentId.Value,
+                PageIndex = currentPageIndex,
+                TotalPages = TOTALPAGE,
+                UserName = currentUsername,
+                PageSize = currentPageSize
             };
 
             IEnumerable<AgentListViewModel> models = _accountService.GetAgentList(ref criteria);
 
             return Json(new
             {
-                TotalPage = criteria.TotalPages,
                 TotalItem = criteria.TotalItems,
-                CurrentPage = _pageIndex,
-                ItemsPerPage = _pageSize,
-                CurrentAgentId = _agentId,
+                CurrentPage = currentPageIndex,
+                ItemsPerPage = currentPageSize,
+                CurrentAgentId = CurrentAgentId.Value,
                 ListData = models
             });
         }
@@ -167,44 +182,30 @@ namespace Apollo.Age.Account.Controllers
         [HttpPost]
         public JsonResult GetCustomerList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
-            _agentId = !agentId.HasValue ? UserSession.Current.AgentId : agentId.Value;
-            _pageIndex = !pageIndex.HasValue ? 0 : pageIndex.Value;
-            _totalPages = !totalPages.HasValue ? 0 : totalPages.Value;
-            _username = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-            _pageSize = !pageSize.HasValue ? 50 : pageSize.Value;
+            CurrentAgentId = agentId;
+            var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
+            var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
+            var currentPageSize = !pageSize.HasValue ? PAGESIZE : pageSize.Value;
 
             CustomerListCriteria criteria = new CustomerListCriteria()
             {
-                AgentId = _agentId,
-                PageIndex = _pageIndex,
-                TotalPages = _totalPages,
-                UserName = _username,
-                PageSize = _pageSize
+                AgentId = CurrentAgentId.Value,
+                PageIndex = currentPageIndex,
+                TotalPages = TOTALPAGE,
+                UserName = currentUsername,
+                PageSize = currentPageSize
             };
 
             IEnumerable<CustomerListViewModel> models = _accountService.GetCustomerList(ref criteria);
 
             return Json(new
             {
-                TotalPage = criteria.TotalPages,
                 TotalItem = criteria.TotalItems,
-                CurrentPage = _pageIndex,
-                ItemsPerPage = _pageSize,
-                CurrentAgentId = _agentId,
+                CurrentPage = currentPageIndex,
+                ItemsPerPage = currentPageSize,
+                CurrentAgentId = CurrentAgentId.Value,
                 ListData = models
             });
         }
-
-        //public JsonResult ReCheckIn()
-        //{
-        //    IUserSession userSession = UserSession.Current;
-        //    Result result = new Result(0, string.Empty);
-        //    if (PermissionService.IsKickOut(userSession.AgentId, userSession.UserId) && !AppSettings.IsLocal)
-        //    {
-        //        result.ErrCode = (int)ErrorType.KickedOut;
-        //    }
-        //    return Json(result);
-
-        //}
     }
 }

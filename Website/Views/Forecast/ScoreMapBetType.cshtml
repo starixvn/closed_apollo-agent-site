@@ -1,10 +1,14 @@
 ﻿@using Apollo.Age.Forecast.ViewModels
 @using Apollo.Age.Forecast.Models
 @{
-    int haftBetType = 7;
     Layout = null;
+    int haftBetType = 6;
+    Layout = null;
+    int liveBetType =ViewBag.LiveBetType;
+    int deadBallBetType = ViewBag.DeadBallBetType;
+    
 }
-@helper RenderBetTypeList(List<ScoreMapBetType> betTypes, int haftBetType, bool isLive)
+@helper RenderBetTypeList(List<ScoreMapBetType> betTypes, int haftBetType, bool isLive, int liveBetType, int deadBallBetType)
 {
     int nextCloseIndex = 0;
     for (int i = 0; i < betTypes.Count; i++)
@@ -16,7 +20,7 @@
             @:<tr>
         }
         
-        @RenderBetType(betTypes[i], isLive)
+        @RenderBetType(betTypes[i], isLive, liveBetType, deadBallBetType)
         
         if (i == nextCloseIndex)
         {
@@ -25,10 +29,19 @@
     }
     
 }
-@helper RenderBetType(ScoreMapBetType betType, bool isLive)
+@helper RenderBetType(ScoreMapBetType betType, bool isLive, int liveBetType, int deadBallBetType)
 {
+    string checkedString = string.Empty;
+    if (isLive && liveBetType != 0 && (liveBetType == betType.TypeId || liveBetType == betType.Id1st))
+    {
+        checkedString = "checked='checked'";
+    }
+    else if(isLive == false && deadBallBetType != 0 && (deadBallBetType == betType.TypeId || deadBallBetType == betType.Id1st))
+    {
+        checkedString = "checked='checked'";
+    }
     <td>
-        <input id="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox" value="@(betType.TypeId + "," + betType.Id1st)">
+        <input id="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox" value="@(betType.TypeId + "," + betType.Id1st)" @(checkedString) />
         <label for="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)">
             @(betType.BetTypeName)
         </label>
@@ -48,7 +61,7 @@
                 @{
                     if (Model.LiveBetTypes.Any())
                     {
-                        @RenderBetTypeList(Model.LiveBetTypes, haftBetType, true)
+                        @RenderBetTypeList(Model.LiveBetTypes, haftBetType, true, liveBetType, deadBallBetType)
                     }
                 }
             </table>
@@ -66,7 +79,7 @@
                  @{
                     if (Model.DeadBallBetTypes.Any())
                     {
-                        @RenderBetTypeList(Model.DeadBallBetTypes, haftBetType, false)
+                        @RenderBetTypeList(Model.DeadBallBetTypes, haftBetType, false, liveBetType, deadBallBetType)
                     }
                 }
             </table>

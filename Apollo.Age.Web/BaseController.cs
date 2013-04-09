@@ -10,25 +10,14 @@
 
 namespace Apollo.Age.Web
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
-    using Fanex.Common;
 
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
-    {        
-        protected int AgentId
-        {
-            get
-            {
-                return Converter.ToInt(HttpContext.Session[HttpContext.Session.SessionID + "_Apollo-AgentId"]);
-            }
-        }
-
+    {
         /// <summary>
-        ///  
+        ///
         /// </summary>
         protected ICurrentSession CurrentSession
         {
@@ -44,7 +33,7 @@ namespace Apollo.Age.Web
                 {
                     Session["Apollo.Age.Web.CurrentSession"] = value;
                 }
-            }            
+            }
         }
     }
 }

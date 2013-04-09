@@ -10,11 +10,10 @@
 
 namespace Apollo.Age.Forecast.ViewModels
 {
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class LeagueViewModel
     {
         public int LeagueId { get; set; }
@@ -22,6 +21,7 @@ namespace Apollo.Age.Forecast.ViewModels
         public byte SportType { get; set; }
 
         private string _leagueName;
+
         public string LeagueName
         {
             get

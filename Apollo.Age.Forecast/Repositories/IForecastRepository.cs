@@ -7,19 +7,13 @@
 //   <change who="Ricky.Nguyen" date="2013.4.5">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.Repositories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Forecast.Models;
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IForecastRepository
     {
         ScoreMapResult GetScoreMapResult(ICriteria criteria);

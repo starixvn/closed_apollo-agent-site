@@ -1,7 +1,16 @@
-using System;
+// --------------------------------------------------------------------------
+// <copyright file="MessageViewModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Edward.Nguyen" date="2013.4.9">Created</change>
+// </history>
 
 namespace Apollo.Age.Account.ViewModels
 {
+    using System;
+
     public class MessageViewModel
     {
         public int MessageId { get; set; }
@@ -95,6 +104,8 @@ namespace Apollo.Age.Account.ViewModels
             {
                 content = this.ContentEN;
             }
+
+            content = content != null ? content : string.Empty;
 
             return content
                 .Replace("@@", betTransId)

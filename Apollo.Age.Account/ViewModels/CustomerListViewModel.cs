@@ -2,17 +2,12 @@
 ﻿namespace Apollo.Age.Account.ViewModels
  {
      using System;
-     using System.Collections.Generic;
-     using System.Linq;
-     using System.Text;
-
 
      public class CustomerListViewModel
      {
          public int CustId { get; set; }
 
          public string Username { get; set; }
-
 
          public Int32 Status { get; set; }
 
@@ -23,7 +18,6 @@
          public Int32 HandicapLive { get; set; }
 
          public Int32 OverUnderLive { get; set; }
-
 
          public string UserGroup { get; set; }
 

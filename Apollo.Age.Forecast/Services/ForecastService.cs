@@ -6,31 +6,31 @@
 // <history>
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
 //   <change who="Ricky.Nguyen" date="2013.4.5">Update OU, 1X2, ScoreMap</change>
+//   <change who="Ricky.Nguyen" date="2013.4.9">Update ScoreMap</change>
 // </history>
 
 namespace Apollo.Age.Forecast.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
-    using Apollo.Age.Services.Impl;
-    using Apollo.Age.Forecast.ViewModels;
     using Apollo.Age.Forecast.Criterias;
-    using Fanex.Common.Helper;
-    using Apollo.Age.Forecast.Repositories;
     using Apollo.Age.Forecast.Models;
+    using Apollo.Age.Forecast.Repositories;
+    using Apollo.Age.Forecast.ViewModels;
+    using Apollo.Age.Services.Impl;
+    using Fanex.Common.Helper;
+    using Apollo.Age.Forecast.Core;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastService : QueryService
     {
         private IForecastRepository _forecastRepository { get; set; }
 
-        public ForecastService() : this(null)
+        public ForecastService()
+            : this(null)
         {
-
         }
 
         public ForecastService(IForecastRepository forecastRepository)
@@ -38,6 +38,12 @@ namespace Apollo.Age.Forecast.Services
             _forecastRepository = _forecastRepository ?? new ForecastRepository();
         }
 
+        /// <summary>
+        /// Running Leagues
+        /// </summary>
+        /// <param name="betType"></param>
+        /// <param name="agentId"></param>
+        /// <returns></returns>
         public IEnumerable<LeagueViewModel> GetRunningLeague(int betType, int agentId)
         {
             Check.Argument.IsNotNegative(betType, "betType");
@@ -52,6 +58,12 @@ namespace Apollo.Age.Forecast.Services
                 );
         }
 
+        /// <summary>
+        /// Forecast 1X2
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="leagueId"></param>
+        /// <returns></returns>
         public IEnumerable<Forecast1X2ViewModel> GetForecast1x2(int agentId, int leagueId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -66,6 +78,12 @@ namespace Apollo.Age.Forecast.Services
                 );
         }
 
+        /// <summary>
+        /// FC Handicap OU
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="leagueId"></param>
+        /// <returns></returns>
         public IEnumerable<ForecastHandicapOUViewModel> GetForecastHandicapOverUnder(int agentId, int leagueId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -84,6 +102,14 @@ namespace Apollo.Age.Forecast.Services
                 );
         }
 
+        /// <summary>
+        /// Forecast Matches
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="matchId"></param>
+        /// <param name="betType"></param>
+        /// <param name="currentScore"></param>
+        /// <returns></returns>
         public ForecastMatchWinLostViewModel GetForecastMatcheValue(int agentId, int matchId, int betType, int currentScore)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -106,11 +132,18 @@ namespace Apollo.Age.Forecast.Services
             }
             catch (Exception ex)
             {
-                //// Log here
+                HandleException(ex);
                 return null;
             }
         }
 
+        /// <summary>
+        /// 1x2 Matches
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="matchId"></param>
+        /// <param name="betType"></param>
+        /// <returns></returns>
         public IEnumerable<Forecast1X2ViewModel> GetForecast1X2Matches(int agentId, int matchId, int betType)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -127,66 +160,89 @@ namespace Apollo.Age.Forecast.Services
                 );
         }
 
+        /// <summary>
+        /// Score Map Results
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="matchIds"></param>
+        /// <param name="liveBetTypes"></param>
+        /// <param name="deadBallBetTypes"></param>
+        /// <returns></returns>
         public List<ScoreMapResultViewModel> GetScoreMapResults(int agentId, string matchIds, string liveBetTypes, string deadBallBetTypes)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNull(matchIds, "matchIds");
             Check.Argument.IsNotNull(liveBetTypes, "liveBetTypes");
-
-            //// Get Plain Data From Database
-            ScoreMapResult scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
-            {
-                AgentId = agentId,
-                MatchIds = matchIds,
-                LiveBetTypes = liveBetTypes,
-                DeadBetTypes = deadBallBetTypes
-            });
-
-            //// Map Data
             List<ScoreMapResultViewModel> scoreMapViewResult = new List<ScoreMapResultViewModel>();
-            int homeIndex = 0;
-            int awayIndex = 0;
-            int length = 0;
-            foreach (ScoreMapMatch match in scoreMapResult.ScoreMapMatches)
+            try
             {
-                homeIndex = 0;
-                awayIndex = 0;
-                ScoreMapResultViewModel scoreMapItem = new ScoreMapResultViewModel
+                //// Get Plain Data From Database
+                ScoreMapResult scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
                 {
-                    MatchId = match.MatchId,
-                    HomeName = match.HomeTeam,
-                    AwayName = match.AwayTeam
-                };
-                
-                length = scoreMapItem.ScoreMatrix.GetLength(1);
-                foreach (ScoreMapItem item in scoreMapResult.ScoreMapItems)
+                    AgentId = agentId,
+                    MatchIds = matchIds,
+                    LiveBetTypes = liveBetTypes,
+                    DeadBetTypes = deadBallBetTypes
+                });
+
+                //// Map Data
+                int homeIndex = 0;
+                int awayIndex = 0;
+                int length = 0;
+                foreach (ScoreMapMatch match in scoreMapResult.ScoreMapMatches)
                 {
-                    if (match.MatchId == item.MatchId)
+                    homeIndex = 0;
+                    awayIndex = 0;
+                    ScoreMapResultViewModel scoreMapItem = new ScoreMapResultViewModel
                     {
-                        scoreMapItem.HasData = true;
-                        scoreMapItem.ScoreMatrix[awayIndex, homeIndex++] = item.Total; 
-                        //// If HomeIndex = 7 Col, then increate Away Row
-                        if (homeIndex == length)
+                        MatchId = match.MatchId,
+                        HomeName = match.HomeTeam,
+                        AwayName = match.AwayTeam
+                    };
+
+                    length = scoreMapItem.ScoreMatrix.GetLength(1);
+                    foreach (ScoreMapItem item in scoreMapResult.ScoreMapItems)
+                    {
+                        if (match.MatchId == item.MatchId)
                         {
-                            homeIndex = 0;
-                            awayIndex++;
-                            //// If away row == 7 then break out
-                            if (awayIndex == length)
+                            scoreMapItem.HasData = true;
+                            scoreMapItem.ScoreMatrix[awayIndex, homeIndex++] = item.Total;
+                            //// If HomeIndex = 7 Col, then increate Away Row
+                            if (homeIndex == length)
                             {
-                                break;
+                                homeIndex = 0;
+                                awayIndex++;
+                                //// If away row == 7 then break out
+                                if (awayIndex == length)
+                                {
+                                    break;
+                                }
                             }
                         }
                     }
+                    scoreMapViewResult.Add(scoreMapItem);
                 }
-                scoreMapViewResult.Add(scoreMapItem);
             }
-
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
             return scoreMapViewResult;
         }
 
+        /// <summary>
+        /// Score Map BetType
+        /// </summary>
+        /// <returns></returns>
         public ScoreMapBetTypeViewModel GetScoreMapBetType()
         {
-            IEnumerable<ScoreMapBetType> scoreMapBetTypes = GetData<ScoreMapBetType>(new GetScoreMapBetTypesCriteria());
+            IEnumerable<ScoreMapBetType> scoreMapBetTypes = CachingService.Get<IEnumerable<ScoreMapBetType>>(Constants.SCORE_MAP_BETTYPES);
+            if (scoreMapBetTypes == null)
+            {
+                scoreMapBetTypes = GetData<ScoreMapBetType>(new GetScoreMapBetTypesCriteria());
+                CachingService.Set<IEnumerable<ScoreMapBetType>>(Constants.SCORE_MAP_BETTYPES, scoreMapBetTypes, new TimeSpan(0,5,0));
+            }
+            
             ScoreMapBetTypeViewModel scoreMapBetTypeViewModel = new ScoreMapBetTypeViewModel();
             foreach (ScoreMapBetType betType in scoreMapBetTypes)
             {
@@ -203,6 +259,12 @@ namespace Apollo.Age.Forecast.Services
             return scoreMapBetTypeViewModel;
         }
 
+        /// <summary>
+        /// Score Map Matches
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="leagueId"></param>
+        /// <returns></returns>
         public IEnumerable<ScoreMapMatchViewModel> GetScoreMapMatches(int agentId, int leagueId)
         {
             IEnumerable<ScoreMapMatchViewModel> scoreMapMatches = GetData<ScoreMapMatchViewModel>(
@@ -215,14 +277,51 @@ namespace Apollo.Age.Forecast.Services
             return scoreMapMatches.OrderBy(match => match.MatchName);
         }
 
+        /// <summary>
+        /// Score Map League
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <returns></returns>
         public IEnumerable<LeagueViewModel> GetScoreMapLeagues(int agentId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
-
-            return GetData<LeagueViewModel>(new GetScoreMapLeaguesCriteria { 
-                AgentId = agentId
-            }).OrderBy(league => league.LeagueName);
+            try
+            {
+                return GetData<LeagueViewModel>(new GetScoreMapLeaguesCriteria
+                {
+                    AgentId = agentId
+                }).OrderBy(league => league.LeagueName);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                return null;
+            }
         }
+
+        /// <summary>
+        /// Get Top Odds
+        /// </summary>
+        /// <param name="matchId"></param>
+        /// <param name="betType"></param>
+        /// <returns></returns>
+        public MatchOddsViewModel GetTopOddsByMatch(int matchId, int betType)
+        {
+            Check.Argument.IsNotNegative(matchId, "matchId");
+            Check.Argument.IsNotNegative(betType, "betType");
+
+            IEnumerable<MatchOddsViewModel> matchOddsViewModels = GetData<MatchOddsViewModel>(
+                    new GetTopOddsByMatchCriteria
+                    {
+                        BetType = betType,
+                        MatchId = matchId
+                    }
+                );
+
+            return matchOddsViewModels.ElementAtOrDefault(0);
+        }
+
+        #region Private Methods
 
         private ForecastMatchWinLostViewModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchViewModel> forecastMatches, int betType, int currentScore)
         {
@@ -304,21 +403,6 @@ namespace Apollo.Age.Forecast.Services
             return forecast;
         }
 
-        public MatchOddsViewModel GetTopOddsByMatch(int matchId, int betType)
-        {
-            Check.Argument.IsNotNegative(matchId, "matchId");
-            Check.Argument.IsNotNegative(betType, "betType");
-
-            IEnumerable<MatchOddsViewModel> matchOddsViewModels = GetData<MatchOddsViewModel>(
-                    new GetTopOddsByMatchCriteria
-                    {
-                        BetType = betType,
-                        MatchId = matchId
-                    }
-                );
-
-
-            return matchOddsViewModels.ElementAtOrDefault(0);
-        }
+        #endregion Private Methods
     }
 }

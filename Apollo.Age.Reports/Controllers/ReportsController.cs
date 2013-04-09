@@ -5,6 +5,8 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.3.29">Created</change>
+//   <change who="Terry.Nguyen" date="2013.04.07">Implement</change>
+//   <change who="Terry.Nguyen" date="2013.04.09">Get AgentID from BaseController</change>
 // </history>
 
 namespace Apollo.Age.Reports.Controllers
@@ -15,32 +17,43 @@ namespace Apollo.Age.Reports.Controllers
     using System.Text;
     using System.Web.Mvc;
     using Apollo.Age.Reports.Criterias;
+    using Apollo.Age.Reports.DTO;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
-    using Sunplus.Agent.Model.Entities;
+    using Apollo.Age.Web;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ReportsController : Controller
+    public class ReportsController : BaseController
     {
         private readonly OutstandingService _reportService;
+        private int _currentAgentId;
 
-        private int currentAgentId;
+        public int? CurrentAgentId
+        {
+            set
+            {
+                _currentAgentId = (value.HasValue ? value.Value : this.CurrentSession.AgentId);
+            }
+            get
+            {
+                return _currentAgentId;
+            }
+        }
 
         public ReportsController() : this(null) { }
 
         public ReportsController(OutstandingService reportService = null)
         {
             _reportService = reportService ?? new OutstandingService();
-            currentAgentId = UserSession.Current.AgentId;
         }
 
         private IEnumerable<AgentDownlinePathViewModel> AgentDownlinePath(int agentId)
         {
             IEnumerable<AgentDownlinePathViewModel> models = _reportService.GetData<AgentDownlinePathViewModel>(new AgentDownlinePathCriteria
             {
-                ParentId = UserSession.Current.AgentId,
+                ParentId = CurrentSession.AgentId,
                 AgentId = agentId
             });
 
@@ -51,29 +64,29 @@ namespace Apollo.Age.Reports.Controllers
 
         public ViewResult Outstanding(int? agentId)
         {
-            currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
+            CurrentAgentId = agentId;
 
             IEnumerable<OutstandingViewModel> models = _reportService.GetData<OutstandingViewModel>(new OutstandingCriteria
             {
-                AgentId = currentAgentId
+                AgentId = CurrentAgentId.Value
             });
 
-            return View(new OutstandingDownlinePathViewModel()
+            return View(new OutstandingDownlinePathDTO()
             {
-                CurrentAgentId = currentAgentId,
+                CurrentAgentId = CurrentAgentId.Value,
                 ListOutStanding = models,
-                DownlinePath = AgentDownlinePath(currentAgentId)
+                DownlinePath = AgentDownlinePath(CurrentAgentId.Value)
             });
         }
 
         [HttpPost]
         public ActionResult MemberOutstanding(int? agentId)
         {
-            currentAgentId = !agentId.HasValue ? currentAgentId : agentId.Value;
+            CurrentAgentId = agentId;
             // call service to get report data here
             IEnumerable<OutstandingViewModel> models = _reportService.GetData<OutstandingViewModel>(new MemberOutstandingCriteria
             {
-                AgentId = currentAgentId
+                AgentId = CurrentAgentId.Value
             });
 
             // Sum total amount
