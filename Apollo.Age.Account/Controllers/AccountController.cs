@@ -24,6 +24,10 @@ namespace Apollo.Age.Account.Controllers
 
     public class AccountController : BaseController
     {
+        private const int PAGEINDEX = 0; // Current index page
+        private const int PAGESIZE = 50; // Maximum items in a page
+        private const int TOTALPAGE = 0; // Maximum page total
+
         private readonly AccountService _accountService;
         private int _agentId;
         private int _pageIndex;
@@ -125,6 +129,7 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult CustomerList(int? agentId)
         {
+            ViewBag.CurrentAgentId = !agentId.HasValue ? UserSession.Current.AgentId : agentId.Value;
             return View();
         }
 
@@ -139,10 +144,10 @@ namespace Apollo.Age.Account.Controllers
         public JsonResult GetAgentList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
             _agentId = !agentId.HasValue ? UserSession.Current.AgentId : agentId.Value;
-            _pageIndex = !pageIndex.HasValue ? 0 : pageIndex.Value;
-            _totalPages = !totalPages.HasValue ? 0 : totalPages.Value;
+            _pageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
+            _totalPages = !totalPages.HasValue ? TOTALPAGE : totalPages.Value;
             _username = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-            _pageSize = !pageSize.HasValue ? 5 : pageSize.Value;
+            _pageSize = !pageSize.HasValue ? PAGESIZE : pageSize.Value;
 
             AgentListCriteria criteria = new AgentListCriteria()
             {
