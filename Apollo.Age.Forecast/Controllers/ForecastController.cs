@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
+//   <change who="Anders.Le" date="2013.4.9">Change the way of AgentId getting</change>
 // </history>
 
 namespace Apollo.Age.Forecast.Controllers
