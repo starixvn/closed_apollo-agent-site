@@ -11,6 +11,7 @@
 namespace Fanex.BetList.Age.BetListCmd
 {
     using System.Data;
+    using Apollo.Age.Enumerations;
     using Fanex.BetList.Age.Definition;
     using Sunplus.Agent.Model.BL.BetList;
     using Sunplus.Agent.Model.BL.Cache;
@@ -38,7 +39,8 @@ namespace Fanex.BetList.Age.BetListCmd
 
         public override object Execute()
         {
-            this.result = this.betList.GetRunningCorrectScore();
+            var betType = string.Format("{0}^{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
+            this.result = this.betList.GetRunningByBettype(betType);
             return this.result;
         }
 

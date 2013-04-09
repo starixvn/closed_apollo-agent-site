@@ -712,6 +712,7 @@ namespace Sunplus.Agent.Model.DL.BetList
                 throw error;
             }
         }
+
         /*
         /// <summary>
         /// Get Running bets by bettype and match for master
@@ -830,6 +831,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             }
         }
         */
+
         #endregion RunningByBettypeAndMatch
 
         #region DailyStatement
@@ -911,62 +913,14 @@ namespace Sunplus.Agent.Model.DL.BetList
         /// <param name="betType"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public DataTable Age_BetList_TotalBets_SelRunningByBettype(int custId, int betType, string language)
+        public DataTable Age_BetList_TotalBets_SelRunningByBettype(int custId, string betType, string language)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("agentid", custId);
-            parameters.Add("bettype", betType);
+            parameters.Add("bettypes", betType);
             parameters.Add("language", language);
 
             return ExecSpTable("Age_BetList_TotalBets_SelRunningByBettype", parameters);
-        }
-        /*
-        /// <summary>
-        /// Get running bets by bet type for master
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="betType"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_BetList_SelRunningByBettype_MAg(int custId, int betType, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("bettype", betType);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_BetList_SelRunningByBettype_MAg", parameters);
-        }
-
-        /// <summary>
-        /// Get running bets by bet type for super
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="betType"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_BetList_SelRunningByBettype_SAg(int custId, int betType, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("custid", custId);
-            parameters.Add("bettype", betType);
-            parameters.Add("language", language);
-
-            return ExecSpTable("Age_BetList_SelRunningByBettype_SAg", parameters);
-        }
-        */
-        /// <summary>
-        /// Get correct score for Agent
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="language"></param>
-        /// <returns></returns>
-        public DataTable Age_Betlist_TotalBets_Sel_4_30(int custId, string language)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("agentid", custId);
-            parameters.Add("language", language);
-            return ExecSpTable("Age_Betlist_TotalBets_Sel_4_30", parameters);
         }
 
         #endregion RunningByBettype
