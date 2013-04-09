@@ -130,17 +130,22 @@ namespace Apollo.Age.Account.Controllers
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AgentList()
+        public ActionResult AgentList(int? agentId)
         {
-            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, this.CurrentSession.AgentId).ToList();
+            CurrentAgentId = agentId;
+            ViewBag.CurrentAgentId = CurrentAgentId;
+            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, CurrentAgentId.Value).ToList();
 
             return View(listAgent);
         }
 
         public ActionResult CustomerList(int? agentId)
         {
-            ViewBag.CurrentAgentId = agentId;
-            return View();
+            CurrentAgentId = agentId;
+            ViewBag.CurrentAgentId = CurrentAgentId;
+            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, CurrentAgentId.Value).ToList();
+
+            return View(listAgent);
         }
 
         public JsonResult GetAgentDownlinePath(int agentId)
