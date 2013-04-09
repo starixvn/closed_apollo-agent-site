@@ -59,5 +59,48 @@ namespace Apollo.Age.Account.ViewModels
         public string BettransID { get; set; }
 
         public int TargetId { get; set; }
+
+        public string GetContent(string language = "")
+        {
+            string content = string.Empty;
+            string betTransId = string.Empty;
+            switch (language)
+            {
+                case "en-US":
+                    content = this.ContentEN;
+                    break;
+                case "th-TH":
+                    content = this.ContentTH;
+                    break;
+                case "zh-CN":
+                    content = this.ContentCS;
+                    break;
+                case "zh-TW":
+                    content = this.ContentCH;
+                    if (string.IsNullOrEmpty(content))
+                    {
+                        content = this.ContentCS;
+                    }
+
+                    break;
+                case "ja-JP":
+                    content = this.ContentJP;
+                    break;
+                case "ko-KR":
+                    content = this.ContentKO;
+                    break;
+            }
+
+            if (string.IsNullOrEmpty(content))
+            {
+                content = this.ContentEN;
+            }
+
+            return content
+                .Replace("@@", betTransId)
+                .Replace("\n", string.Empty)
+                .Replace("\r", string.Empty)
+                .Replace("'", "\'") + string.Empty;
+        }
     }
 }

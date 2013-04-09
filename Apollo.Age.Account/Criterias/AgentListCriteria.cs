@@ -14,6 +14,8 @@
 
         public int TotalPages { get; set; }
 
+        public int TotalItems { get; set; }
+
         public string UserName { get; set; }
 
         public int PageSize { get; set; }
