@@ -17,20 +17,20 @@ public partial class zTest_NewMessageForm : TplPage
 
     public int AgentNumber
     {
-        get 
+        get
         {
             if (Sunplus.Agent.Model.Entities.UserSession.Current.AdminId > 0)
             {
                 return 0;
             }
-            return 1; 
+            return 1;
         }
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
         this.CssGroup = "main";
-         
+
 
         string pageQuery = _ArrParamValue[NORMAL];
         DateTime tDate = DateTime.Now;
@@ -47,7 +47,7 @@ public partial class zTest_NewMessageForm : TplPage
                 userMessageBO.SetReadPriMessage();
             }
         }
-        
+
         this.TplSetContent(GenerateUI(pageQuery, fDate, tDate));
     }
 
@@ -151,8 +151,15 @@ public partial class zTest_NewMessageForm : TplPage
             default: return "E";
         }
     }
-    private void CreateDateRangeSelector(ref string dateRangeTpl, string currentPos, int noDayReset, string fdateId, string tdateId, DateTime fdate, DateTime tdate, bool noJs, bool showTime, bool blShowToday, bool showtdate, bool showOtherDays, bool useMultiLang)
+    private void CreateDateRangeSelector(ref string dateRangeTpl, string currentPos, int noDayReset, string fdateId, string tdateId, DateTime fdate, DateTime tdate)
     {
+        // bool noJs = false;
+        bool showTime = false;
+        bool blShowToday = true;
+        bool showtdate = true;
+        bool showOtherDays = true;
+        bool useMultiLang = true;
+
         try
         {
             TemplateHandler.Assign(ref dateRangeTpl, "{CurrentPos}", currentPos);
@@ -289,7 +296,7 @@ public partial class zTest_NewMessageForm : TplPage
             msgOfRole =
                 IBCAgent.Message.GetMessage(Sunplus.Agent.Model.Entities.UserSession.Current.CustId, siteid, 0, 2, maxsize, FormatHandler.ResetStartDate(fDate).ToString(), FormatHandler.ResetEndDate(tDate).ToString(), AppSettings.IsLocalTest);
         }
-      
+
 
         if ((msgOfRole != null) && (msgOfRole.Rows.Count > 0))
         {

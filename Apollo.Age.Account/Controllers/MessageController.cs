@@ -24,6 +24,11 @@ namespace Apollo.Age.Account.Controllers
     {
         private MessageService _messageService;
 
+        private readonly const string NORMAL = "normal";
+        private readonly const string SPECIAL = "special";
+        private readonly const string ALLSPECIAL = "allSpecial";
+        private readonly const string PRIVATE = "private";
+
         public MessageController() : this(null) { }
 
         public MessageController(MessageService messageService = null)
@@ -45,6 +50,22 @@ namespace Apollo.Age.Account.Controllers
 
         public ViewResult Portal()
         {
+            return View();
+        }
+
+        public ViewResult NewMessage(string pageQuery = NORMAL, int extra = 0, DateTime? from = null, DateTime? to = null)
+        {
+            from = from != null ? from : DateTime.Now.AddDays(-3);
+            to = to != null ? to : DateTime.Now;
+
+            if (string.Compare(pageQuery, PRIVATE) == 0 && extra == 1)
+            {
+                if (UserSession.Current.AdminId < 0)
+                {
+                    _messageService.UpdateReadPrivateMessage(UserSession.Current.UserId, UserSession.Current.Username);
+                }
+            }
+
             return View();
         }
 

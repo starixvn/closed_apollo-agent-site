@@ -63,7 +63,20 @@ namespace Apollo.Age.Account.Services
 
         public bool UpdateReadPrivateMessage(int userId, string username)
         {
-            throw new NotImplementedException();
+            var criteria = new SetPriMessageReadCriteria
+            {
+                UserId = userId,
+                Username = username
+            };
+
+            if (criteria.IsValid())
+            {
+                _dyanamicRepository.Count(criteria);
+
+                return true;
+            }
+
+            return false;
         }
 
         public bool UpdateReadMessage(int userId, int messsageId, bool isAgent = true)

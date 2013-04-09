@@ -17,12 +17,12 @@
     </Function>
 
     <Function Name="Apollo Agent Message">
-        <!--<Setting Key="Dot_Msg_GetPrivateMessage" SpName="Dot_Msg_GetPrivateMessage" DbName="MessageDB" Plain="0" />
-    <Setting Key="Dot_Msg_GetPublicMessage" SpName="Dot_Msg_GetPublicMessage" DbName="MessageDB" Plain="0" />
-    <Setting Key="Dot_Msg_GetNotSpecialMessage" SpName="Dot_Msg_GetNotSpecialMessage" DbName="MessageDB" Plain="0" />
-    <Setting Key="Dot_Msg_GetSpecialMessage" SpName="Dot_Msg_GetSpecialMessage" DbName="MessageDB" Plain="0" />
-    <Setting Key="Dot_Msg_GetMessage" SpName="Dot_Msg_GetMessage" DbName="MessageDB" Plain="0" />
-    <Setting Key="Dot_Msg_GetMessage_Simple" SpName="Dot_Msg_GetMessage_Simple" DbName="MessageDB" Plain="0" />
+        <Setting Key="Dot_Msg_GetPrivateMessage" SpName="Dot_Msg_GetPrivateMessage" DbName="MessageDB" Plain="0" />
+        <Setting Key="Dot_Msg_GetPublicMessage" SpName="Dot_Msg_GetPublicMessage" DbName="MessageDB" Plain="0" />
+        <Setting Key="Dot_Msg_GetNotSpecialMessage" SpName="Dot_Msg_GetNotSpecialMessage" DbName="MessageDB" Plain="0" />
+        <Setting Key="Dot_Msg_GetSpecialMessage" SpName="Dot_Msg_GetSpecialMessage" DbName="MessageDB" Plain="0" />
+        <Setting Key="Dot_Msg_GetMessage" SpName="Dot_Msg_GetMessage" DbName="MessageDB" Plain="0" />
+        <!--<Setting Key="Dot_Msg_GetMessage_Simple" SpName="Dot_Msg_GetMessage_Simple" DbName="MessageDB" Plain="0" />
 
     <Setting Key="Dot_Msg_GetTopPubMessage" SpName="Dot_Msg_GetTopPubMessage" DbName="MessageDB" Plain="0" />
 
@@ -333,9 +333,9 @@
 
     <Function Name="Agent-Apollo-ScoreMap">
         <Setting Key="Age_ScoreMap_Result" SpName="Age_ScoreMap_Result" DbName="REPDB" Plain="0" />
-      <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="REPDB" Plain="0" >
-        <Mapping DataField="1stId" ObjectProperty="Id1st" />
-      </Setting>
+        <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="REPDB" Plain="0" >
+            <Mapping DataField="1stId" ObjectProperty="Id1st" />
+        </Setting>
         <Setting Key="Age_ScoreMap_SelLeague" SpName="Age_ScoreMap_SelLeague" DbName="REPDB" Plain="0" />
         <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="REPDB" Plain="0" />
     </Function>
