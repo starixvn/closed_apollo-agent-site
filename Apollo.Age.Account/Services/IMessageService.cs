@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders" date="2013.4.7">Created</change>
+//   <change who="Edward.Nguyen" date="2013.4.9">Implement</change>
 // </history>
 
 namespace Apollo.Age.Account.Services
