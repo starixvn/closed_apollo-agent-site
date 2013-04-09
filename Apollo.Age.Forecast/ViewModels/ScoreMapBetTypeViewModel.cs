@@ -7,13 +7,9 @@
 //   <change who="Ricky.Nguyen" date="2013.4.5">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.ViewModels
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Forecast.Models;
 
     /// <summary>
@@ -26,8 +22,9 @@ namespace Apollo.Age.Forecast.ViewModels
             LiveBetTypes = new List<ScoreMapBetType>();
             DeadBallBetTypes = new List<ScoreMapBetType>();
         }
-                
+
         public List<ScoreMapBetType> LiveBetTypes { get; set; }
+
         public List<ScoreMapBetType> DeadBallBetTypes { get; set; }
     }
 }

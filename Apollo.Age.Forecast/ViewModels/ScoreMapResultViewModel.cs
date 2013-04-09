@@ -7,14 +7,8 @@
 //   <change who="Ricky.Nguyen" date="2013.4.5">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -24,10 +18,15 @@ namespace Apollo.Age.Forecast.ViewModels
         {
             ScoreMatrix = new decimal[7, 7];
         }
+
         public int MatchId { get; set; }
+
         public string HomeName { get; set; }
+
         public string AwayName { get; set; }
+
         public decimal[,] ScoreMatrix { get; set; }
+
         public bool HasData { get; set; }
     }
 }

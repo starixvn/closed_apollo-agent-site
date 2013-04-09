@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders" date="2013.3.27">Created</change>
+//   <change who="Anders.Le" date="2013.4.9">Change input param of GetViewModel to Enum</change>
 // </history>
 
 namespace Apollo.Age.TotalBets.Controllers
@@ -29,66 +30,72 @@ namespace Apollo.Age.TotalBets.Controllers
             _totalBetsService = new TotalBetsService();
         }
    
-        protected IEnumerable<T> GetViewModel<T>(int betType)
+        /// <summary>
+        /// Get totalbet data by bettype
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="betType"></param>
+        /// <returns></returns>
+        protected IEnumerable<T> GetViewModel<T>(BetTypes betType)
         {
             return _totalBetsService.GetData<T>(new TotalBetsCriteria
             {
-                AgentId = base.AgentId,
-                BetType = betType
+                AgentId = this.CurrentSession.AgentId,
+                BetType = (int)betType
             });
         }
 
         public ViewResult Handicap()
         {
-            var model = GetViewModel<HandicapViewModel>(betType: (int)BetTypes.Handicap);
+            var model = GetViewModel<HandicapViewModel>(BetTypes.Handicap);
             return View(model);
         }
 
         public ViewResult MoneyLine()
         {
-            var model = GetViewModel<MoneyLineViewModel>(betType: (int)BetTypes.Money_Line);
+            var model = GetViewModel<MoneyLineViewModel>(BetTypes.Money_Line);
             return View(model);
         }
 
         public ViewResult TotalGoal()
         {
-            var model = GetViewModel<TotalGoalViewModel>(betType: (int)BetTypes.Total_Goal);
+            var model = GetViewModel<TotalGoalViewModel>(BetTypes.Total_Goal);
             return View(model);
         }
 
         public ViewResult OddEven()
         {
-            var model = GetViewModel<OddEvenViewModel>(betType: (int)BetTypes.Odd_Even);
+            var model = GetViewModel<OddEvenViewModel>(BetTypes.Odd_Even);
             return View(model);
         }
 
         public ViewResult HTFT()
         {
-            var model = GetViewModel<HTFTViewModel>(betType: (int)BetTypes.HT_FT);
+            var model = GetViewModel<HTFTViewModel>(BetTypes.HT_FT);
             return View(model);
         }
 
         public ViewResult OutRight()
         {
-            var model = GetViewModel<OutRightViewModel>(betType: (int)BetTypes.Outright);
+            var model = GetViewModel<OutRightViewModel>(BetTypes.Outright);
             return View(model);
         }
 
-        public ViewResult NumberGame()
-        {
-            var model = GetViewModel<NumberGameViewModel>(betType: 161);
-            return View(model);
-        }
+        //public ViewResult NumberGame()
+        //{
+        //    var model = GetViewModel<NumberGameViewModel>(betType: 161);
+        //    return View(model);
+        //}
 
         public ViewResult HomeNoBet()
         {
-            var model = GetViewModel<HomeNoBetViewModel>(betType: (int)BetTypes.Draw_No_Bet);
+            var model = GetViewModel<HomeNoBetViewModel>(BetTypes.Draw_No_Bet);
             return View(model);
         }
 
         public ViewResult FirstGoal()
         {
-            var model = GetViewModel<FirstGoalViewModel>(betType: (int)BetTypes.First_Goal_Last_Goal);
+            var model = GetViewModel<FirstGoalViewModel>(BetTypes.First_Goal_Last_Goal);
             return View(model);
         }
     }
