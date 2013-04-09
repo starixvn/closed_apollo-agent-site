@@ -13,37 +13,29 @@
     <link type="text/css" rel="Stylesheet" href="~/Views/Forecast/Resources/ScoreMap.less" />
 }
 <div id="content_main">
-        <div id="box_header">
-            <table style="@(showLeaguesStyle)">
-                <tr>
-                    <td>
-                        <b>@Resources.Lang.league</b>
-                    </td>
-                    <td id="selLeague">
-                        <select id="ddlLeague" name="ddlLeague" style="position: relative;">
-                        @{
-                            if (leagues != null && leagues.Any())
-                            {
-                                foreach (var league in leagues)
-                                {
-                                    <option value="@(league.LeagueId)">@(league.LeagueName)</option>
-                                }
-                            }
+        <div id="box_header" style="@(showLeaguesStyle)" class="clearfix">
+            <div class="boxHeader-element">
+                <label>@Resources.Lang.league</label>
+                <select id="ddlLeague" name="ddlLeague" style="position: relative;">
+                @{
+                    if (leagues != null && leagues.Any())
+                    {
+                        foreach (var league in leagues)
+                        {
+                            <option value="@(league.LeagueId)">@(league.LeagueName)</option>
                         }
-                        </select>
-                    </td>
-                    <td>
-                        <div title="@Resources.Lang.RefreshLeagues" class="btnRefresh" id="RefreshLeagues">&nbsp;</div>
-                    </td>
-                    <td>
-                        <input type="button" class="btn" id="dSelMatch" value="@Resources.Lang.SelectMatch">
-                    </td>
-                    <td>
-                        <span class="pull-left" id="loading"></span>
-                    </td>
-                </tr>
-            </table>
-            <div id="tblLiveDead" style="display:none;">
+                    }
+                }
+                </select>
+            </div>
+            <div title="@Resources.Lang.RefreshLeagues" class="btnRefresh" id="RefreshLeagues">&nbsp;</div>
+            <div class="boxHeader-element">
+                <input type="button" class="btn" id="dSelMatch" value="@Resources.Lang.SelectMatch">                
+            </div>
+            <div class="boxHeader-element">
+                <span class="pull-left" id="loading"></span>
+            </div>            
+            <div id="tblLiveDead" style="display:none;" class="clearfix">
                 <div id="bet-type-container"></div>
                 <p>
                     <input type="button" value="@Resources.Lang.submit" id="dSubmit" class="btn" />

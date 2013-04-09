@@ -1,7 +1,19 @@
 @import "../../../_GlobalResources/Css/Agent.less";
 
-select#ddlLeague {
-	width: 280px;
+#box_header {
+	select#ddlLeague {
+		width: 280px;
+	}
+
+	.btnRefresh {
+		background: url( "Images/Refresh.png" ) no-repeat scroll left top transparent;
+		padding-left:15px;
+		font-weight:bold;
+		color:#90979A;    
+		width:25px;
+		height:25px;
+		cursor:pointer;
+	}
 }
 
 .paddingTopMatch{margin-top:10px;}
@@ -16,45 +28,65 @@ select#ddlLeague {
     border: 1px solid #2A2A2A;
     text-shadow: 0 -1px 1px @black;
 	height:20px;
-	
-}
-#titleMatch .matchname{color: @white;font-size:11px;font-weight:normal; padding-left:5px}
 
-.tblScoreMap{border-collapse: collapse;width: 780px;}
-.tblScoreMap td
-{
-	color: @black;
-	padding: 3px 1px 3px 1px;
-	border: solid 1px #999;
-	text-align: center;
-}
-.tblScoreMap tbody tr:hover td {
-    background-color: #d0d3d3;
-}
-.tblScoreMap tbody tr td:hover {
-    background-color: #f8ff8d !important;
+	.matchname {
+		color: @white;
+		font-size:11px;
+		font-weight:normal;
+		padding-left:5px;
+	}	
 }
 
-.scoreMap{padding-top:1px;}
-.vsm {background-color: #DCFFFF; font-weight:bold}
-.vsmHomeWay {background-color: #f6d9b9; font-weight:bold}
-.vScoreMap {background-color: @white; font-weight:bold}
-.csm {background-color: @white !important; font-weight:bold}
+.tblScoreMap {
+	border-collapse: collapse;
+	width: 780px;
+
+	td {
+		color: @black;
+		padding: 3px 1px 3px 1px;
+		border: solid 1px #999;
+		text-align: center;
+	}
+
+	tbody tr:hover td {
+		background-color: #d0d3d3;
+	}
+
+	tbody tr td:hover {
+		background-color: #f8ff8d !important;
+	}
+}
+
+.scoreMap {
+	padding-top:1px;
+}
+
+.vsm {
+	background-color: #DCFFFF;
+	font-weight:bold
+}
+
+.vsmHomeWay {
+	background-color: #f6d9b9;
+	font-weight:bold;
+}
+
+.vScoreMap {
+	background-color: @white;
+	font-weight:bold;
+}
+
+.csm {
+	background-color: @white !important;
+	font-weight:bold;
+}
+
 .even_row
 {
 	background-color: @rowAltBackground;
 }
 
-.btnRefresh
-{
-    background: url( "Images/Refresh.png" ) no-repeat scroll left top transparent;
-    padding-left:15px;
-    font-weight:bold;
-    color:#90979A;    
-    width:25px;
-    height:25px;
-    cursor:pointer;
-}
+
 
 .lnkRefresh
 {
@@ -68,6 +100,7 @@ select#ddlLeague {
     float:right;
     padding-right:1px;
 }
+
 .lnkRefreshClick
 {
     background: url( "Images/Loading.gif" ) no-repeat scroll left top transparent;    
@@ -93,6 +126,7 @@ select#ddlLeague {
     cursor:pointer;
     float:left;
 }
+
 .lnkGroupClick
 {    
     background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
@@ -111,52 +145,67 @@ select#ddlLeague {
 {
     position: absolute;
     background: @white;
-    width: 700px;
+    width: 702px;
     border: solid 1px #B7B7B7;
-    left: 4px;
-    top: 62px;
+    left: 10px;
+    top: 97px;
+
+	#boderBoxMatch {
+		background: @tableBackground;
+		text-transform: none;
+		padding: 4px;
+
+
+		#ContentMatchWL {
+			background: @white;
+			width: 690px;
+			max-height: 310px;
+			border: none;
+			overflow: auto;
+			padding-right: 1px;
+			border: 1px solid #ccc;
+		
+			.ListMatch {			
+				float: left;
+				padding-left: 1px;
+				padding-right: 1px;
+				text-align: left;
+
+				li {
+					list-style: none;
+					float: left;
+					text-align: left;   
+					width: 50%; 
+
+					* {
+						vertical-align: middle;
+					}
+				}
+			}
+		}	
+	}
+
+	#iconSelMatch {
+		background: url("../../../_GlobalResources/Images/letter_icoconts.png") no-repeat scroll 5px center #FFEFDE;
+		font-weight: bold;
+		padding: 0 0 0 20px;
+		text-align: left;
+		width:100px;
+		text-transform: none;
+	}
+
+	#closeBoxMatch {
+		background: url("../../../_GlobalResources/Images/icon_close.jpg") no-repeat scroll 5px 2px #FFEFDE;
+		font-weight: bold;
+		width:20px;
+		cursor:pointer;
+		text-transform: none;
+	}
+
 }
 
-#ContentMatchWL
-{
-    background: @white;
-    width: 690px;
-    max-height: 310px;
-    border: none;
-    overflow: auto;
-    padding-right: 1px;
-}
 
-#ContentMatchWL .ListMatch li
-{
-    width: 50%;
-}
 
-#iconSelMatch
-{
-    background: url("../../../_GlobalResources/Images/letter_icoconts.png") no-repeat scroll 5px center #FFEFDE;
-    font-weight: bold;
-    padding: 0 0 0 20px;
-    text-align: left;
-    width:100px;
-    text-transform: none;
-}
-
-#closeBoxMatch
-{
-    background: url("../../../_GlobalResources/Images/icon_close.jpg") no-repeat scroll 5px 2px #FFEFDE;
-    font-weight: bold;
-    width:20px;
-    cursor:pointer;
-    text-transform: none;
-}
-
-#boderBoxMatch
-{
-    background: url("../../../_GlobalResources/Images/global_bg.gif");
-    text-transform: none;
-    padding: 4px;
-}
 
 #SelMatchGroup
 {
@@ -175,6 +224,7 @@ select#ddlLeague {
     width: 700px;
     background-image: url(bg_nav.gif);
 }
+
 .BoxMatch
 {
     width: 799px;
@@ -182,28 +232,12 @@ select#ddlLeague {
     border: none;
     overflow: auto;
     padding-right: 1px;
+
+	.ListMatch li {
+		width: 50%;
+	}
 }
 
-.BoxMatch .ListMatch li
-{
-    width: 50%;
-}
-
-.ListMatch
-{
-    width: 90%;
-    float: left;
-    padding-left: 1px;
-    padding-right: 1px;
-    text-align: left;
-}
-
-.ListMatch li
-{
-    list-style: none;
-    float: left;
-    text-align: left;    
-}
 /* End: Box Match by League */
 
 table.reference {
@@ -221,39 +255,20 @@ table.reference {
 	background: url(images/loading.gif) no-repeat;
 }
 
-.TLiveDead {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-right-color: #C3C3C3;
-    border-right-style: dotted;
-    border-right-width: 1px;
-    border-top-color: #C3C3C3;
-    border-top-style: dotted;
-    border-top-width: 1px;
-    padding-bottom: 3px;
-    padding-right: 2px;
-    padding-top: 3px;
+.TLiveDead {   
+	border: none; 
+    border-right: 1px dotted #C3C3C3;
+    border-top: 1px dotted #C3C3C3;
+    padding-bottom: 3px 2px 3px 2px;
     vertical-align: top;
     min-width:95px;
 }
+
 .RLiveDead {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-right-color: #C3C3C3;
-    border-right-style: dotted;
-    border-right-width: 1px;
-    border-right-color: #C3C3C3;
-    border-right-style: dotted;
-    border-right-width: 1px;
-    padding-bottom: 3px;
-    padding-right: 2px;
-    padding-top: 3px;
+    border: none;
+    border-right: 1px dotted #C3C3C3;
+    border-top: 1px dotted #C3C3C3;
+    padding-bottom: 3px 2px 3px 2px;
     vertical-align: top;
     min-width:95px;
 }
@@ -264,6 +279,7 @@ table.reference {
     height:26px;
     float:left;
 }
+
 .button_mid {
     background: url("Images/center_score.png") repeat-x;
     font-size:12px;
@@ -271,6 +287,7 @@ table.reference {
     height:26px;
     float:left;
 }
+
 .button_right {
     background: url("Images/last_score.png");
     height:26px;
