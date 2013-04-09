@@ -51,9 +51,11 @@ namespace Apollo.Age.Account.Criterias
             return settingKey;
         }
 
-        public int TargetId { get; set; }
+        [SpParam(SqlParamName = "TargetId")]
+        public int CustId { get; set; }
 
-        public string TargetId2 { get; set; }
+        [SpParam(SqlParamName = "TargetId2")]
+        public string SiteId { get; set; }
 
         public int Special { get; set; }
 
@@ -83,7 +85,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override bool IsValid()
         {
-            return TargetId > 0;
+            return CustId > 0;
         }
     }
 }

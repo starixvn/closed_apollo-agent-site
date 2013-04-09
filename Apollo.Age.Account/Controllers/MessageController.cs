@@ -5,18 +5,21 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.4.4">Created</change>
+//   <change who="Edward.Nguyen" date="2013.4.9">Add Annoucement</change>
+//   <change who="Edward.Nguyen" date="2013.4.9">Add Get Message</change>
 // </history>
 
 namespace Apollo.Age.Account.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
-    using Apollo.Age.Account.Services;
-    using Apollo.Age.Web;
-    using Sunplus.Agent.Model.Entities;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Services;
+    using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -25,10 +28,10 @@ namespace Apollo.Age.Account.Controllers
     {
         private MessageService _messageService;
 
-        private const string NORMAL = "normal";
-        private const string SPECIAL = "special";
-        private const string ALLSPECIAL = "allSpecial";
-        private const string PRIVATE = "private";
+        /// <summary>
+        /// For temp
+        /// </summary>
+        private const int SITEID = 3300;
 
         public MessageController() : this(null) { }
 
@@ -41,7 +44,7 @@ namespace Apollo.Age.Account.Controllers
         {
             var model = _messageService.GetAnnouncement(3, lastPostTime ?? DateTime.Now);
 
-            var cookie = new HttpCookie("lastPostTime", model.Last().PostTime.ToString());
+            var cookie = new HttpCookie(Constant.LASTPOSTTIMEKEY, model.Last().PostTime.ToString());
             HttpContext.Response.Cookies.Set(cookie);
 
             ViewBag.LastPostTime = lastPostTime ?? model.Last().PostTime;
@@ -56,16 +59,55 @@ namespace Apollo.Age.Account.Controllers
 
         public ViewResult NewMessage(GetMessageCriteria criteria)
         {
+            var listMessage = new List<MessageViewModel>();
+            int isPublic = 0;
+            int isSpecial = 0;
+            int maxSize = 50;
+
+            criteria.CustId = this.CurrentSession.UserId;
+            criteria.SiteId = _messageService.GetParentSitesID(SITEID.ToString());
+            criteria.Record = maxSize;
+
             criteria.From = criteria.From != null ? criteria.From : DateTime.Now.AddDays(-3);
             criteria.To = criteria.To != null ? criteria.To : DateTime.Now;
+            criteria.PageQuery = string.IsNullOrWhiteSpace(criteria.PageQuery) ? Constant.NORMAL : criteria.PageQuery;
 
-            if (string.Compare(criteria.PageQuery, PRIVATE) == 0 && criteria.Extra == 1)
+            if (string.Compare(criteria.PageQuery, Constant.PRIVATE) == 0
+                && criteria.Extra == 1)
             {
                 if (!this.CurrentSession.IsSuper)
                 {
                     _messageService.UpdateReadPrivateMessage(this.CurrentSession.UserId, this.CurrentSession.Username);
                 }
             }
+
+            if (string.Compare(criteria.PageQuery, Constant.SPECIAL) == 0
+                || string.Compare(criteria.PageQuery, Constant.ALLSPECIAL) == 0)
+            {
+                isPublic = 2;
+                isSpecial = 1;
+                criteria.From = null;
+                criteria.To = null;
+            }
+
+            if (string.Compare(criteria.PageQuery, Constant.NORMAL) == 0)
+            {
+                isPublic = 1;
+                isSpecial = 0;
+            }
+
+            if (string.Compare(criteria.PageQuery, Constant.PRIVATE) == 0)
+            {
+                isPublic = 0;
+                isSpecial = 2;
+            }
+
+            criteria.IsPublic = isPublic;
+            criteria.IsSpecial = isSpecial;
+
+            listMessage = _messageService.GetMessage(criteria).ToList();
+
+            ViewBag.Messages = listMessage;
 
             return View(criteria);
         }
@@ -88,7 +130,7 @@ namespace Apollo.Age.Account.Controllers
         [HttpPost]
         public ActionResult GetMessage()
         {
-            int siteId = 3300;
+            // Message type from older source code
             int messageType = 3;
 
             int userId = this.CurrentSession.UserId;
@@ -97,17 +139,16 @@ namespace Apollo.Age.Account.Controllers
             object[] publicMessages = new object[3];
             object[] privateMessages = new object[2];
 
-            //if (Request.IsAjaxRequest())
-            //{
-            var pubMessage = _messageService.GetTopPublicMessage(messageType, siteId);
+
+            var pubMessage = _messageService.GetTopPublicMessage(messageType, SITEID);
             if (!ReferenceEquals(pubMessage, null))
             {
                 publicMessages[0] = pubMessage.MessageId;
                 publicMessages[1] = pubMessage.GetContent();
-                publicMessages[2] = "normal";
+                publicMessages[2] = Constant.NORMAL;
                 if (pubMessage.IsSticky)
                 {
-                    publicMessages[2] = "allSpecial";
+                    publicMessages[2] = Constant.ALLSPECIAL;
                 }
             }
 
@@ -119,8 +160,6 @@ namespace Apollo.Age.Account.Controllers
             }
 
             var countPriMessage = _messageService.CountUnreadPrivateMessage(userId, username);
-
-            //}
 
             return Json(new
             {

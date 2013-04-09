@@ -10,9 +10,9 @@
 
 namespace Apollo.Age.Forecast.ViewModels
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    using System.Diagnostics.CodeAnalysis;
+
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastMatchViewModel
     {
         public decimal Offset { get; set; }

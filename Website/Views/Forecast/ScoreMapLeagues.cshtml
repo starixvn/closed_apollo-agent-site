@@ -1,5 +1,6 @@
 @using Apollo.Age.Forecast.ViewModels
 @{
+    Layout = null;
     var currentLeagueSelected = (int?)ViewBag.CurrentLeagueId;
 }
 @model IEnumerable<LeagueViewModel>
@@ -13,7 +14,7 @@
                 @{
                     if(currentLeagueSelected != null && currentLeagueSelected.Value == league.LeagueId)
                     {
-                        @:selected=""
+                        @:selected="selected"
                     }
                     }
                  >@(league.LeagueName)</option>

@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.4.4">Created</change>
+//   <change who="Edward.Nguyen" date="2013.4.9">Implement</change>
 // </history>
 
 namespace Apollo.Age.Account.Services
@@ -166,7 +167,7 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
-        private static string GetParentSitesID(string siteId)
+        public string GetParentSitesID(string siteId)
         {
             ArrayList list = new ArrayList();
             int num = 0;
