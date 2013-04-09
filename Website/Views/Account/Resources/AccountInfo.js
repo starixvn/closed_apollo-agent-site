@@ -66,36 +66,44 @@
         });
 
         ACCOUNT.ageDownLink.click(function (event) {
-            var $this = $(this),
-                agentID = $this.attr('aid'),
+            if (ACCOUNT.ageDownLink.hasClass("is-active")) {
+                ACCOUNT.ageDownLink.removeClass("is-active");
+                ACCOUNT.ddlAgents.fadeOut('fast');
+            }
+            else {
+                var $this = $(this);
+                agentID = $this.attr('aid');
+                $this.addClass("is-active");
                 agentList = ACCOUNT.ddlAgents.find('.agent-list');
 
-            $.ajax({
-                url: APOLLO.resolveUrl('Account/GetAgentDownlinePath?agentId=' + agentID),
-                type: 'GET',
-                success: function (data) {
-                    if (data.length > 0) {
-                        agentList.html("<li class='root-agent'>" + data[0].Username + "</li>");
-                        for (var i = 1; i < data.length; ++i) {
-                            agentList.append(
+                $.ajax({
+                    url: APOLLO.resolveUrl('Account/GetAgentDownlinePath?agentId=' + agentID),
+                    type: 'GET',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            agentList.html("<li class='root-agent'>" + data[0].Username + "</li>");
+                            for (var i = 1; i < data.length; ++i) {
+                                agentList.append(
                                         "<li>" +
                                             "<a href='" + APOLLO.resolveUrl("Account/AccountInfo" + "?isMember=0" +
                                                 "&custId=" + data[i].Id +
                                                 "&userName=" + data[i].Username) + "'>\\ " + data[i].Username + "</a>" +
                                         "</li>"
                                     );
+                            }
                         }
+
                     }
+                });
 
-                }
-            });
-
-            ACCOUNT.ddlAgents.fadeIn('fast');
-            event.stopPropagation();
+                ACCOUNT.ddlAgents.fadeIn('fast');
+                event.stopPropagation();
+            }
         });
 
         $('body, html').on('click', function () {
-            if (ACCOUNT.ageDownLink.length > 0) {
+            if (ACCOUNT.ageDownLink.hasClass("is-active")) {
+                ACCOUNT.ageDownLink.removeClass("is-active");
                 ACCOUNT.ddlAgents.fadeOut('fast');
             }
         });

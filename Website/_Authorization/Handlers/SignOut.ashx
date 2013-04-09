@@ -40,10 +40,11 @@ namespace Sunplus.Agent.UI._Authorization
         public override void RenderResult(ref Fanex.Age.UI.JSONData data)
         {
             Session.Abandon();
+            Response.Cookies.Clear();
             // Clear session ticket
            FormsAuthentication.SignOut(); // Use this command will make the logout function log out all loged in users in the same machine and browser
-
-           FormsAuthentication.RedirectToLoginPage();          
+//           FormsAuthentication.RedirectToLoginPage();                    
+           Response.Redirect(FormsAuthentication.LoginUrl);
            
         }
     }

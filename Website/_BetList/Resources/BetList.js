@@ -216,12 +216,15 @@ function OpenIPInfo(ip) {
 
 function OpenScoreMap(matchIds, bettype, liveindicator) {
     var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
-    var url = age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds +
+//    var url = age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds +
+//            (liveindicator == 1
+//                ? "&bettypes_live=" + bettype + "&bettypes_dead=-1"
+//                : "&bettypes_live=-1&bettypes_dead=" + bettype);
+    var url = age.GetBaseUrl() + "Forecast/ScoreMap?matchIds=" + matchIds +
             (liveindicator == 1
-                ? "&bettypes_live=" + bettype + "&bettypes_dead=-1"
-                : "&bettypes_live=-1&bettypes_dead=" + bettype);
-
-    wnd.open(url, '', 0, 20, 1010, 480);
+                ? "&liveBetTypes=" + bettype
+                : "&deadBallBetTypes=" + bettype);
+    wnd.open(url, '', 0, 20, 900, 480);
 }
 
 RegisterStartUp(InitBetList);

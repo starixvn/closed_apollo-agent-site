@@ -25,7 +25,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#treeview_list").treeview({
-                url: "TreeNodeData",
+                url: "GetDataByNote",
                 link: "<a href='../_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'> {2} </a>",
                 custid: $("#treeview_list").attr("agent-id")
             });
