@@ -22,6 +22,10 @@ if (typeof jQuery != 'undefined') {
             },
 
             resolveUrl: function (url) {
+                if (url.substr(0, 1) == '/') {
+                    url = url.substr(1);
+                }
+
                 var siteRoot = parent.baseUrl;
 
                 if (!siteRoot) siteRoot = parent.parent.baseURL;
