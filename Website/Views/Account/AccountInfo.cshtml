@@ -1,5 +1,5 @@
-﻿@using Apollo.Age.Account.ViewModels
-@model CustomerInfoViewModel
+﻿@using Apollo.Age.Account.Models
+@model CustomerInfoModel
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
 }
@@ -61,7 +61,7 @@
                             }
                             <td class="parent-name">
                                 <a href="javascript:;" id="agentDownlineLink"
-                                    aid="@Model.CustId"
+                                    aid="@Model.ParentId"
                                     title="@Resources.Lang.txtShowUpline"
                                     alt="@Resources.Lang.txtShowUpline">
                                     <div id="ddl-agents">

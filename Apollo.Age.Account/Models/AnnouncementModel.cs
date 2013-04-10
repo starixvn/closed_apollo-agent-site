@@ -8,7 +8,7 @@
 // </history>
 
 
-namespace Apollo.Age.Account.ViewModels
+namespace Apollo.Age.Account.Models
 {
     using System;
     using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Apollo.Age.Account.ViewModels
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AnnouncementViewModel
+    public class AnnouncementModel
     {
         public string BetTransId { get; set; }
 

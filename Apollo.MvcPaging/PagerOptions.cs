@@ -7,10 +7,10 @@ namespace Apollo.MvcPaging
     {
         public static class DefaultDefaults
         {
-            public const int MaxNrOfPages = 2;
-            public const string DisplayTemplate = null;
-            public const bool AlwaysAddFirstPageNumber = false;
-            public const string DefaultPageRouteValueKey = "page";
+            public const int MAXNROFPAGES = 2;
+            public const string DISPLAYTEMPLATE = null;
+            public const bool ALWAYSADDFIRSTPAGENUMBER = false;
+            public const string DEFAULTPAGEROUTEVALUEKEY = "page";
         }
 
         /// <summary>
@@ -19,17 +19,17 @@ namespace Apollo.MvcPaging
         /// </summary>
         public static class Defaults
         {
-            public static int MaxNrOfPages = DefaultDefaults.MaxNrOfPages;
-            public static string DisplayTemplate = DefaultDefaults.DisplayTemplate;
-            public static bool AlwaysAddFirstPageNumber = DefaultDefaults.AlwaysAddFirstPageNumber;
-            public static string DefaultPageRouteValueKey = DefaultDefaults.DefaultPageRouteValueKey;
+            public static int MaxNrOfPages = DefaultDefaults.MAXNROFPAGES;
+            public static string DisplayTemplate = DefaultDefaults.DISPLAYTEMPLATE;
+            public static bool AlwaysAddFirstPageNumber = DefaultDefaults.ALWAYSADDFIRSTPAGENUMBER;
+            public static string DefaultPageRouteValueKey = DefaultDefaults.DEFAULTPAGEROUTEVALUEKEY;
 
             public static void Reset()
             {
-                MaxNrOfPages = DefaultDefaults.MaxNrOfPages;
-                DisplayTemplate = DefaultDefaults.DisplayTemplate;
-                AlwaysAddFirstPageNumber = DefaultDefaults.AlwaysAddFirstPageNumber;
-                DefaultPageRouteValueKey = DefaultDefaults.DefaultPageRouteValueKey;
+                MaxNrOfPages = DefaultDefaults.MAXNROFPAGES;
+                DisplayTemplate = DefaultDefaults.DISPLAYTEMPLATE;
+                AlwaysAddFirstPageNumber = DefaultDefaults.ALWAYSADDFIRSTPAGENUMBER;
+                DefaultPageRouteValueKey = DefaultDefaults.DEFAULTPAGEROUTEVALUEKEY;
             }
         }
 

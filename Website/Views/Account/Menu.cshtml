@@ -26,7 +26,7 @@
                         int bettypeId = 0;
                         string title = string.Empty;
                         
-                        // hide member list for user level < 3
+                        // show memberlist when user's level >= 3
                         var level = Convert.ToInt32(item["Level"]);
                         if (level == 0 || Model.AgentLevel >= level)
                         {

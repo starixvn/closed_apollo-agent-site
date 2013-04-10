@@ -119,6 +119,7 @@
 			background: #ECE9D8;
 			border-spacing: 0;
 			border: 1px solid @borderColor;
+			width: 100%;
 
 			td {
 				padding: 0;
@@ -171,57 +172,95 @@
 }
 
 #mainContent {
-	.title-scoremap {
-		width: 100%;
-		background: @headerBackground;
+	.paddingTopMatch {
+		margin-bottom: 5px;
 
-		
-		.lnkRefresh {
-			background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;    
-			font-weight:bold;
-			color:#90979A;    
-			margin-top:4px;
-			width:20px;
-			height:20px;
-			cursor:pointer;
-			float:right;
-			padding-right:1px;
+		.title-scoremap {
+			width: 68.8%;
+			background: linear-gradient(to bottom, #F8F8F8, #EAEAEA) repeat scroll 0 0 transparent;
+			border: 1px solid @borderColor;
+			border-bottom: none;
+			height: 20px;
+			padding: 5px;
+
+			.lnkRefresh {
+				background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;    
+				font-weight:bold;
+				color:#90979A;    
+				margin-top:4px;
+				width:20px;
+				height:20px;
+				cursor:pointer;
+				float:right;
+				padding-right:1px;
+			}
+
+			.lnkRefreshClick {
+				background: url( "Images/Loading.gif" ) no-repeat scroll left top transparent;    
+				font-weight:bold;
+				color:#90979A;    
+				margin-top:4px;
+				width:20px;
+				height:20px;
+				cursor:pointer;
+				float:right;
+				padding-right:1px;
+			}
+
+			.lnkGroup {
+				background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+				background-position: 0 -21px;
+				font-weight:bold;
+				color: #3684E2;    
+				padding-left:25px;
+				padding-top:1px;
+				height:20px;
+				cursor:pointer;
+				float:left;
+			}
+
+			.lnkGroupClick {    
+				background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+				background-position: 0 0px;
+				font-weight: bold;
+				color: #3684E2;    
+				padding-left: 25px;
+				padding-top: 1px;
+				height: 20px;
+				cursor: pointer;
+				float: left;
+			}
 		}
 
-		.lnkRefreshClick {
-			background: url( "Images/Loading.gif" ) no-repeat scroll left top transparent;    
-			font-weight:bold;
-			color:#90979A;    
-			margin-top:4px;
-			width:20px;
-			height:20px;
-			cursor:pointer;
-			float:right;
-			padding-right:1px;
-		}
+		.scoreMap {
+			.tblRpt {
+				border-top: none;
+				width: 70%;	
+							
+				thead {
+					.vsmHomeWay {
+						background-color: #f6d9b9;
+						font-weight:bold;
+					}
 
-		.lnkGroup {
-			background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
-			background-position: 0 -21px;
-			font-weight:bold;
-			color:#333;    
-			padding-left:25px;
-			padding-top:1px;
-			height:20px;
-			cursor:pointer;
-			float:left;
-		}
+					tr.vsm th {
+						background-color: #ECE9D8;
+						font-weight:bold;
+						text-align: center;
+					}
+				}
 
-		.lnkGroupClick {    
-			background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
-			background-position: 0 0px;
-			font-weight:bold;
-			color:#333;    
-			padding-left:25px;
-			padding-top:1px;
-			height:20px;
-			cursor:pointer;
-			float:left;
+				.vScoreMap {
+					background-color: @white;
+					font-weight:bold;
+
+					.vsm {
+						background-color: #ECE9D8;
+						font-weight:bold;
+						text-align: center;
+					}
+				}	
+			}	
 		}
 	}
 }
@@ -243,40 +282,6 @@
 		font-weight:normal;
 		padding-left:5px;
 	}	
-}
-
-.tblScoreMap {
-	border-collapse: collapse;
-	width: 780px;
-
-	td {
-		color: @black;
-		padding: 3px 1px 3px 1px;
-		border: solid 1px #999;
-		text-align: center;
-	}
-
-	tbody tr:hover td {
-		background-color: #d0d3d3;
-	}
-
-	tbody tr td:hover {
-		background-color: #f8ff8d !important;
-	}
-}
-
-.scoreMap {
-	padding-top:1px;
-}
-
-.vsm {
-	background-color: #DCFFFF;
-	font-weight:bold
-}
-
-.vsmHomeWay {
-	background-color: #f6d9b9;
-	font-weight:bold;
 }
 
 .vScoreMap {

@@ -21,6 +21,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Web;
+    using Apollo.Age.Account.Models;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class MessageController : BaseController
@@ -61,7 +62,7 @@ namespace Apollo.Age.Account.Controllers
 
         public ViewResult NewMessage(GetMessageCriteria criteria)
         {
-            var listMessage = new List<MessageViewModel>();
+            var listMessage = new List<MessageModel>();
             int isPublic = 0;
             int isSpecial = 0;
             int maxSize = 50;

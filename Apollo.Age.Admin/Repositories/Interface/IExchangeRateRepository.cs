@@ -15,6 +15,10 @@ namespace Apollo.Age.Admin.Repositories.Interface
 
     public interface IExchangeRateRepository
     {
-        IEnumerable<ExchRate> GetAllExchangeRate(ref GetAllExchangeRateCriteria criteria);
+        IEnumerable<ExchRate> GetAll(ref GetAllExchangeRateCriteria criteria);
+
+        ExchRate GetById(ref GetExchangeRateByIdCriteria criteria);
+
+        void UpdateExchangeRate(ref UpdateExchangeRateCriteria criteria);
     }
 }

@@ -24,6 +24,7 @@ namespace Apollo.Age.Account.Controllers
     using Sunplus.Agent.Model.Entities;
     using Apollo.MvcPaging;
     using Apollo.Age.Entities;
+    using Apollo.Age.Account.Models;
 
     public class AccountController : BaseController
     {
@@ -82,7 +83,7 @@ namespace Apollo.Age.Account.Controllers
                     : Fanex.Common.Converter.To<short>("0");
             }
 
-            CustomerInfoViewModel customerInfo = null;
+            CustomerInfoModel customerInfo = null;
             if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
             {
                 HttpContext.Session["userName"] = userName;
@@ -94,7 +95,7 @@ namespace Apollo.Age.Account.Controllers
                 customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, this.CurrentSession.AgentId);
                 if (customerInfo == null)
                 {
-                    customerInfo = new CustomerInfoViewModel()
+                    customerInfo = new CustomerInfoModel()
                     {
                         CurrentAgentId = this.CurrentSession.AgentId,
                         CustId = -1,
