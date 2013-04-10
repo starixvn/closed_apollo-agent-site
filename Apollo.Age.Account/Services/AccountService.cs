@@ -21,6 +21,7 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
+    using Apollo.Age.Account.Models;
 
     public class AccountService : ServiceBase, IAccountService
     {
@@ -51,7 +52,7 @@ namespace Apollo.Age.Account.Services
 
         public List<Customer> GetCustomerSearch(bool isMember, string userName, int agentId)
         {
-            Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
+            Check.Argument.IsNotNegative(agentId, "agentId");
 
             CustomerSearchCriteria criteria = new CustomerSearchCriteria()
             {
@@ -63,9 +64,9 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetCustomerSearch(criteria).ToList();
         }
 
-        public CustomerInfoViewModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId)
+        public CustomerInfoModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId)
         {
-            Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
+            Check.Argument.IsNotNegative(agentId, "agentId");
 
             CustomerExistCriteria criteriaExist = new CustomerExistCriteria()
             {
@@ -94,7 +95,7 @@ namespace Apollo.Age.Account.Services
 
         public List<Member> GetMemberDownline(int agentId, int pageIndex, int pageSize, ref int totalPage)
         {
-            Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
+            Check.Argument.IsNotNegative(agentId, "agentId");
 
             MemberDownlineCriteria criteria = new MemberDownlineCriteria()
             {
@@ -112,7 +113,7 @@ namespace Apollo.Age.Account.Services
 
         public List<Agent> GetAgentDownlinePath(int parentId, int agentId)
         {
-            Check.Argument.IsNotNegativeOrZero(parentId, "parentId");
+            Check.Argument.IsNotNegative(parentId, "parentId");
             Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
 
             AgentDownlinePathCriteria criteria = new AgentDownlinePathCriteria()
@@ -125,7 +126,7 @@ namespace Apollo.Age.Account.Services
 
         public List<Agent> GetDirectDownline(int agentId)
         {
-            Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
+            Check.Argument.IsNotNegative(agentId, "agentId");
 
             return _agentRepository.Fetch(new AgentDownlineCriteria
             {
