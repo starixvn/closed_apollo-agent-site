@@ -171,7 +171,7 @@ namespace Fanex.Age.UI.Components
             _template.LimitDateRange.Show();
             _template.LimitDateRange.DateFromText = showDateTo ? Resources.Lang.from : Resources.Lang.date;
             //_template.LimitDateRange.CalendarFrom.CurrentDate = dateFrom;
-
+            _template.LimitDateRange.FromDateValue = Formater.ShortDateFormat(dateFrom);
             if (!showDateTo) _template.LimitDateRange.LimitToDate.Hide();
             else
             {
