@@ -229,27 +229,17 @@
     
     if (Model == null)
     {
-        @*<select id="ddlIsMember" name="isMember">
-            <option value="0" selected="selected">@Resources.Lang.lblAgent</option>
-            <option value="1">@Resources.Lang.lblMember</option>
-        </select>*@
         <input maxlength="50" id="txtUsername" name="userName" class="em"
             type="text" value="@Resources.Lang.enterusername"/>
-        <button type="button" class="btn search-button">
-            <i class="icon-search"></i>
-        </button> 
     }
     else
     {
-        @*<select id="ddlIsMember" name="isMember">
-            <option value="0" @(Model.IsMember ? string.Empty : "selected=selected") >@Resources.Lang.lblAgent</option>
-            <option value="1" @(Model.IsMember ? "selected=selected" : string.Empty) >@Resources.Lang.lblMember</option>
-        </select>*@
-        <input maxlength="50" id="txtUsername" type="text" value="@Model.Username" name="userName" />
-        <button type="button" class="btn search-button">
-            <i class="icon-search"></i>
-        </button>
+        <input maxlength="50" id="txtUsername" type="text"
+            value="@Model.Username" name="userName" />
     }
     
+    <button type="button" class="btn search-button">
+        <i class="icon-search"></i>
+    </button>
     <input id="enterUsernameValue" type="hidden" value="@Resources.Lang.enterusername"/>
 }
