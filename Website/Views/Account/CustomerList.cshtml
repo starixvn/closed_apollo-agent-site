@@ -11,6 +11,12 @@
         type="text/css" />
 }
 @RazorHelper.Navigation(Model)
+<div>
+    <ul class="sub-nav">
+        <li class="active"><a href="#" id="quickLinkAgentList">Agent List</a></li>
+        <li><span class="line">|</span>Member List</li>
+    </ul>
+</div>
 <div id="gridId" class="freegrid  content-grid" agentid='@ViewBag.CurrentAgentId' style="margin-top: 20px; display: none;">
 </div>
 @section scripts

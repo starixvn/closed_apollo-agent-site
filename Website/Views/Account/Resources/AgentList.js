@@ -53,6 +53,10 @@ var AGENTLIST = function ($) {
                     AGENTLIST.AgentId = result.CurrentAgentId;
                     AGENTLIST.initAgentList(result);
                     AGENTLIST.loadNavigation(AGENTLIST.AgentId);
+
+                    $("#quickLinkCustomerList").bind('click', function () {
+                        location.href = APOLLO.resolveUrl("/Account/CustomerList?agentid=" + AGENTLIST.AgentId);
+                    });
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },

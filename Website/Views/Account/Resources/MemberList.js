@@ -22,6 +22,10 @@ var MEMBERLIST = function ($) {
                 success: function (result) {
                     MEMBERLIST.AgentId = result.CurrentAgentId;
                     MEMBERLIST.initMemberList(result);
+
+                    $("#quickLinkAgentList").bind('click', function () {
+                        location.href = APOLLO.resolveUrl("/Account/AgentList?agentid=" + MEMBERLIST.AgentId);
+                    });
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },
