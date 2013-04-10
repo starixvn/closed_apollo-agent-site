@@ -13,7 +13,8 @@
     <link type="text/css" rel="Stylesheet" href="~/Views/Forecast/Resources/ScoreMap.less" />
 }
 <div id="content_main">
-        <div id="box_header" style="@(showLeaguesStyle)" class="clearfix">
+    <div id="box_header" class="clearfix">
+        <div style="@(showLeaguesStyle)">
             <div class="boxHeader-element">
                 <label>@Resources.Lang.league</label>
                 <select id="ddlLeague" name="ddlLeague" style="position: relative;">
@@ -27,29 +28,27 @@
                     }
                 }
                 </select>
-            </div>
-            <div title="@Resources.Lang.RefreshLeagues" class="btnRefresh" id="RefreshLeagues">&nbsp;</div>
+            </div>            
             <div class="boxHeader-element">
                 <input type="button" class="btn" id="dSelMatch" value="@Resources.Lang.SelectMatch">                
             </div>
-            <div class="boxHeader-element clearfix">
-                <span class="pull-left" id="loading"></span>
-            </div>            
-            <div id="tblLiveDead">
-                <div id="bet-type-container" class="clearfix"></div>
-                <div class="btn-submit clearfix">
-                    <input type="button" value="@Resources.Lang.submit" id="dSubmit" class="btn" />
-                    <span id="loadingSubmit"></span>
-                </div>
+            <div title="@Resources.Lang.RefreshLeagues" class="iconRefresh clearfix" id="RefreshLeagues"></div>           
+        </div>                       
+        <div id="tblLiveDead">
+            <div id="bet-type-container" class="clearfix"></div>
+            <div class="btn-submit clearfix">
+                <input type="button" value="@Resources.Lang.submit" id="dSubmit" class="btn" />
+                <span id="loadingSubmit"></span>
             </div>
-        </div>        
-        <div id="diverrmsg">
-            <span id="spmsgerr" class="msgerr"></span>
-        </div>     
-        <div id="mainContent" @*style="width: {mWidth}"*@>
-        </div>
-        <div id="BoxMatchWL" style="display:none;">
-        </div>
+        </div>      
+    </div>
+    <div id="diverrmsg">
+        <span id="spmsgerr" class="msgerr"></span>
+    </div>     
+    <div id="mainContent" @*style="width: {mWidth}"*@>
+    </div>
+    <div id="BoxMatchWL" style="display:none;">
+    </div>
 </div>
 
 <input id="match-ids" type="hidden" value="@(matchIds)" />
