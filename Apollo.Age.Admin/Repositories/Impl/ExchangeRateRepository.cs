@@ -22,8 +22,6 @@ namespace Apollo.Age.Admin.Repositories.Impl
     {
         public IEnumerable<ExchRate> GetAll(ref GetAllExchangeRateCriteria criteria)
         {
-            Check.Argument.IsNotNull(criteria, "criteria");
-
             try
             {
                 if (criteria.IsValid())
@@ -44,20 +42,77 @@ namespace Apollo.Age.Admin.Repositories.Impl
 
         public ExchRate GetById(ref GetExchangeRateByIdCriteria criteria)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        return db.QueryEntity<ExchRate>(criteria.GetSpParams());
+                    }
+                }
+
+                return null;
+            }
+            catch { throw; }
+        }
+
+        public ExchRate GetByCurrency(ref GetExchangeRateByCurrencyCriteria criteria)
+        {
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        return db.QueryEntity<ExchRate>(criteria.GetSpParams());
+                    }
+                }
+
+                return null;
+            }
+            catch { throw; }
+        }
+
+        public void InsertExchangeRate(ref InsertExchangeRateCriteria criteria)
+        {
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    Hashtable parameters = criteria.GetSpParams();
+
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        db.ExecuteNonQuery(parameters);
+                    }
+
+                    criteria.ExchangeId = Convert.ToInt32(parameters["exchangeid"]);
+                    criteria.ErrCode = Convert.ToInt32(parameters["errcode"]);
+                    criteria.ErrMsg = parameters["errmsg"].ToString();
+                }
+            }
+            catch { throw; }
         }
 
         public void UpdateExchangeRate(ref UpdateExchangeRateCriteria criteria)
         {
-            Hashtable parameters = criteria.GetSpParams();
-
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            try
             {
-                db.ExecuteNonQuery(parameters);
-            }
+                if (criteria.IsValid())
+                {
+                    Hashtable parameters = criteria.GetSpParams();
 
-            criteria.ErrCode = Convert.ToInt32(parameters["errcode"]);
-            criteria.ErrMsg = parameters["errmsg"].ToString();
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        db.ExecuteNonQuery(parameters);
+                    }
+
+                    criteria.ErrCode = Convert.ToInt32(parameters["errcode"]);
+                    criteria.ErrMsg = parameters["errmsg"].ToString();
+                }
+            }
+            catch { throw; }
         }
     }
 }
