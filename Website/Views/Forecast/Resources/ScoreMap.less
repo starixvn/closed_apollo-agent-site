@@ -7,14 +7,18 @@
 		width: 280px;
 	}
 
-	.btnRefresh {
-		background: url( "Images/Refresh.png" ) no-repeat scroll left top transparent;
-		padding-left:15px;
-		font-weight:bold;
-		color:#90979A;    
-		width:25px;
-		height:25px;
-		cursor:pointer;
+	.btn {
+		margin: 0 5px 0 3px;
+	}
+
+	.iconRefresh {
+		.pull-left;
+		background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;
+		color: #90979A;    
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+		margin-top: 3px;
 	}
 }
 
@@ -95,7 +99,21 @@
 }
 
 #diverrmsg {
-	width: 99%;
+	width: 68.8%;
+	border: 0;
+	display: none;
+	height: 24px;
+	padding: 5px;
+	margin: 10px 0;
+	border: 1px solid @red;
+
+	.msgerr {
+		padding: 5px 29px;
+	}
+}
+
+#tblMsgMatch {
+	width: 98%;
 	border: 0;
 	display: none;
 	height: 24px;
@@ -208,7 +226,7 @@
 			}
 
 			.lnkGroup {
-				background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+				background: url( "Images/col_score - Copy.gif" ) no-repeat scroll left top transparent;    
 				background-position: 0 -21px;
 				font-weight:bold;
 				color: #3684E2;    
@@ -220,7 +238,7 @@
 			}
 
 			.lnkGroupClick {    
-				background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
+				background: url( "Images/col_score - Copy.gif" ) no-repeat scroll left top transparent;    
 				background-position: 0 0px;
 				font-weight: bold;
 				color: #3684E2;    
@@ -250,16 +268,26 @@
 					}
 				}
 
-				.vScoreMap {
-					background-color: @white;
-					font-weight:bold;
-
-					.vsm {
-						background-color: #ECE9D8;
+				tbody {
+					tr.vScoreMap {
+						background-color: @white;
 						font-weight:bold;
-						text-align: center;
+
+						.vsm {
+							background-color: #ECE9D8;
+							font-weight:bold;
+							text-align: center;
+						}
+
+						&:hover td {
+							background-color: #d0d3d3;
+						}
+
+						td:hover {
+							background-color: #f8ff8d !important;
+						}
 					}
-				}	
+				}					
 			}	
 		}
 	}

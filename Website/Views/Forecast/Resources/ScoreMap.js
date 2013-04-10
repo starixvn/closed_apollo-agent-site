@@ -5,8 +5,6 @@ var scoreMap = {
     ViewPartial: false,
     Init: function () {
         //// Cached jQuery Objects
-        scoreMap.Loading = $("#loading");
-        scoreMap.LoadingSubmit = $("#loadingSubmit");
         var matchIds = $('#match-ids').val();
         if (matchIds != "") {
             scoreMap.ViewPartial = true;
@@ -19,19 +17,15 @@ var scoreMap = {
     },
     ResigterEvents: function () {
         $("#box_header").on("click", "#RefreshLeagues", function () {
-            scoreMap.Loading.addClass("loading");
             var url = scoreMap.BaseLink + 'ScoreMapLeagues?currentLeagueId=' + $('#ddlLeague').val();
             $.get(url, function (contentView) {
                 $("#selLeague").html(contentView);
-                scoreMap.Loading.removeClass("loading");
             });
         });
 
         $("#dSelMatch").click(function () {
-            scoreMap.Loading.addClass("loading");
             var url = scoreMap.BaseLink + 'ScoreMapMatch?leagueId=' + $('#ddlLeague').val();
             $.get(url, function (contentView) {
-                scoreMap.Loading.removeClass("loading");
                 $("#BoxMatchWL").replaceWith(contentView);
                 scoreMap.RegisterCheckAll("#chLCheckAll", ".match-item");
                 $("#closeBoxMatch").click(function () {
@@ -88,13 +82,11 @@ var scoreMap = {
             ageMsg.Show("Please choose a bet type", 0);
             return;
         }
-        scoreMap.LoadingSubmit.addClass("loading");
         var url = scoreMap.BaseLink + 'ScoreMapResult?matchIds=' + $('#match-ids').val()
             + '&liveBetTypes=' + betTypesLive
             + '&deadBallBetTypes=' + betTypesDead;
         $.get(url, function (contentView) {
             //// Hide Loading and Hide Message
-            scoreMap.LoadingSubmit.removeClass("loading");
             ageMsg.Hide();
             $("#mainContent").html(contentView);
             scoreMap.RegisterEventsForResultMatch($("#content_main"));
@@ -111,7 +103,7 @@ var scoreMap = {
                 $this.removeClass("lnkGroupClick").addClass("lnkGroup");
                 $this.parent().parent().find(".title-scoremap").css({ "border-bottom": "none" });
             }
-            $this.parent().parent().find(".scoreMap").toggle();            
+            $this.parent().parent().find(".scoreMap").toggle();
         });
 
         resultContainer.find(".refresh-scoremap").click(function () {

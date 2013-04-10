@@ -5,43 +5,7 @@
 @model IEnumerable<ScoreMapMatchViewModel>
 <div id="BoxMatchWL">
     <div class="poup-title">
-        <div id="iconSelMatch">@Resources.Lang.SelectMatch</div>
-        <div class="message">
-            <table border="0" cellpadding="0" cellspacing="0" width="40%" id="tblMsgMatch" style="display: none;">
-                <tr>
-                    <td class="emsg_1_1">
-                        &nbsp;
-                    </td>
-                    <td class="emsg_1_2">
-                        &nbsp;
-                    </td>
-                    <td class="emsg_1_3">
-                        &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top" class="emsg_2_1">
-                        &nbsp;
-                    </td>
-                    <td valign="top" id="msgMatchErr" class="msgerr">
-                    </td>
-                    <td class="emsg_2_2">
-                        &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td class="emsg_3_1">
-                        &nbsp;
-                    </td>
-                    <td class="emsg_3_2">
-                        &nbsp;
-                    </td>
-                    <td class="emsg_3_3">
-                        &nbsp;
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <div id="iconSelMatch">@Resources.Lang.SelectMatch</div>                
         <div id="closeBoxMatch"></div>
     </div>
     <div class="boderBoxMatch">
@@ -70,6 +34,9 @@
         </div>
         <div align="center" style="padding-top: 5px">
             <input type="button" class="btn" id="dSubmitInMatch" value="@Resources.Lang.select">
+        </div>
+        <div id="tblMsgMatch">
+            <span class="msgerr" id="msgMatchErr">Please choose a bet type</span>
         </div>
     </div>
 </div>
