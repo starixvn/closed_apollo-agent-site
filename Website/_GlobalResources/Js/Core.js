@@ -67,13 +67,15 @@ if (typeof jQuery != 'undefined') {
                 var datePicker = $('.datepicker');
 
                 if (datePicker.length > 0) {
-                    //get minDate, maxDate, disabledDates                   
+                    //get minDate, maxDate, disabledDates                                       
 
+                    var currentDate = datePicker.val();
                     var mindate = datePicker.attr('mindate');
                     var maxdate = datePicker.attr('maxdate');
 
                     datePicker.datepicker({
-                        dateFormat: "MM/dd/yyyy",
+                        defaultDate: currentDate,
+                        dateFormat: "mm/dd/yy",
                         showOn: "button",
                         buttonImageOnly: true,
                         buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png")
