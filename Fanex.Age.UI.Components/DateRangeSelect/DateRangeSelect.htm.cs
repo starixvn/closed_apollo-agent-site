@@ -80,7 +80,7 @@ namespace Fanex.Age.UI.Components
 		{
 			protected static string s6 = "<td id=\"tdfdatetext\"><span id=\"spfdatetext\">";
 			public string DateFromText = "{DateFromText}";
-			protected static string s7 = "</span></td><td id=\"tdFromDateCal\"><input type=\"text\" id=\"fdate\" class=\"input-date\"value=\"";
+			protected static string s7 = "</span></td><td id=\"tdFromDateCal\"><input type=\"text\" id=\"fdate\" name=\"fdate\"class=\"input-date\"value=\"";
 			protected static string s8{get{return DateTime.Today.ToShortDateString();}}
 			protected static string s9 = "\" /></td>";
 			public DateRangeSelect_LimitDateRange_LimitToDate_Block LimitToDate = new DateRangeSelect_LimitDateRange_LimitToDate_Block();
@@ -104,7 +104,7 @@ namespace Fanex.Age.UI.Components
 		{
 			protected static string s10 = "<td id=\"tdtdatetext\"><span id=\"sptdatetext\">";
 			protected static string s11{get{return Resources.Lang.to;}}
-			protected static string s12 = "</span></td><td id=\"tdToDateCal\"><input type=\"text\" id=\"tdate\" class=\"input-date\"value=\"";
+			protected static string s12 = "</span></td><td id=\"tdToDateCal\"><input type=\"text\" id=\"tdate\" name=\"tdate\" class=\"input-date\"value=\"";
 			protected static string s13{get{return DateTime.Today.ToShortDateString();}}
 			protected static string s14 = "\" /></td>";
 			public override void ToString(ref StringBuilder bd)

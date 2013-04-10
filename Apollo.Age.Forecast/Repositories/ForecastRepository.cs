@@ -24,13 +24,13 @@ namespace Apollo.Age.Forecast.Repositories
         /// </summary>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        public ScoreMapResult GetScoreMapResult(ICriteria criteria)
+        public ScoreMapResultModel GetScoreMapResult(ICriteria criteria)
         {
             if (criteria.IsValid())
             {
                 using (ObjectDb objdb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    ScoreMapResult scoreMapResult = new ScoreMapResult();
+                    ScoreMapResultModel scoreMapResult = new ScoreMapResultModel();
                     IDataReader reader = objdb.ExecuteReader(criteria.GetSpParams());
                     while (reader.Read())
                     {

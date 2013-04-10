@@ -7,13 +7,13 @@
 //   <change who="Ricky.Nguyen" date="2013.4.2">Created</change>
 // </history>
 
-namespace Apollo.Age.Forecast.ViewModels
+namespace Apollo.Age.Forecast.Models
 {
     using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
-    public class Forecast1X2ViewModel
+    public class Forecast1X2Model
     {
         public int MatchID { get; set; }
 

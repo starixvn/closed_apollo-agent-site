@@ -707,6 +707,8 @@ function ProcessDownlineForWinlossOnly(fdate, tdate, targetCustId, actionPage, u
 }
 
 function SearchByDate() {
+    // Set Date For Input
+    $("#fdate").attr("value", $("#fdate").val());
     var form = document.getElementById("frmmain");
     if (form) {
         form.method = "get";

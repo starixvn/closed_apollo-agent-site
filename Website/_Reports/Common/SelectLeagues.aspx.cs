@@ -25,7 +25,7 @@ namespace Fanex.Age.UI.Reports.Monitor
             DataTable LeagueByGroup = View as DataTable;
             SelLeague_ContentLeague_Block tpl = new SelLeague_ContentLeague_Block();
 
-            #region League By Group
+            #region LeagueModel By Group
             if (LeagueByGroup.Rows.Count > 0)
             {
                 StringBuilder strGenLeague = new StringBuilder();

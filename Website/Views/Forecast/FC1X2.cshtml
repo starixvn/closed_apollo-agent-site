@@ -1,8 +1,8 @@
-﻿@using Apollo.Age.Forecast.ViewModels
+﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.lblForecast;
-    IEnumerable<LeagueViewModel> leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
+    IEnumerable<LeagueModel> leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     int matchId = ViewBag.MatchId != null ? (int)ViewBag.MatchId : 0;
     int betType = ViewBag.BetType != null ? (int)ViewBag.BetType : 0;
 }

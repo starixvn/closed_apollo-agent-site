@@ -18,7 +18,6 @@ namespace Apollo.Age.Forecast.Services
     using Apollo.Age.Forecast.Criterias;
     using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Repositories;
-    using Apollo.Age.Forecast.ViewModels;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
     using Apollo.Age.Forecast.Core;
@@ -44,12 +43,12 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="betType"></param>
         /// <param name="agentId"></param>
         /// <returns></returns>
-        public IEnumerable<LeagueViewModel> GetRunningLeague(int betType, int agentId)
+        public IEnumerable<LeagueModel> GetRunningLeague(int betType, int agentId)
         {
             Check.Argument.IsNotNegative(betType, "betType");
             Check.Argument.IsNotNegative(agentId, "agentId");
 
-            return GetData<LeagueViewModel>(
+            return GetData<LeagueModel>(
                     new GetRunningLeagueCriteria
                     {
                         AgentId = agentId,
@@ -64,12 +63,12 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="agentId"></param>
         /// <param name="leagueId"></param>
         /// <returns></returns>
-        public IEnumerable<Forecast1X2ViewModel> GetForecast1x2(int agentId, int leagueId)
+        public IEnumerable<Forecast1X2Model> GetForecast1x2(int agentId, int leagueId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(leagueId, "leagueId");
 
-            return GetData<Forecast1X2ViewModel>(
+            return GetData<Forecast1X2Model>(
                     new GetForecast1X2GetByLeagueCriteria
                     {
                         AgentId = agentId,
@@ -84,12 +83,12 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="agentId"></param>
         /// <param name="leagueId"></param>
         /// <returns></returns>
-        public IEnumerable<ForecastHandicapOUViewModel> GetForecastHandicapOverUnder(int agentId, int leagueId)
+        public IEnumerable<ForecastHandicapOUModel> GetForecastHandicapOverUnder(int agentId, int leagueId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(leagueId, "leagueId");
 
-            return GetData<ForecastHandicapOUViewModel>(
+            return GetData<ForecastHandicapOUModel>(
                     new GetForecastHandicapOverUnderCriteria
                     {
                         AgentId = agentId,
@@ -110,13 +109,13 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="betType"></param>
         /// <param name="currentScore"></param>
         /// <returns></returns>
-        public ForecastMatchWinLostViewModel GetForecastMatcheValue(int agentId, int matchId, int betType, int currentScore)
+        public ForecastMatchWinLostModel GetForecastMatcheValue(int agentId, int matchId, int betType, int currentScore)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(matchId, "matchId");
             Check.Argument.IsNotNegative(betType, "betType");
 
-            IEnumerable<ForecastMatchViewModel> forecastMatches = GetData<ForecastMatchViewModel>(
+            IEnumerable<ForecastMatchModel> forecastMatches = GetData<ForecastMatchModel>(
                     new GetForecastByMatchCriteria
                     {
                         AgentId = agentId,
@@ -144,13 +143,13 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public IEnumerable<Forecast1X2ViewModel> GetForecast1X2Matches(int agentId, int matchId, int betType)
+        public IEnumerable<Forecast1X2Model> GetForecast1X2Matches(int agentId, int matchId, int betType)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(matchId, "matchId");
             Check.Argument.IsNotNegative(betType, "betType");
 
-            return GetData<Forecast1X2ViewModel>(
+            return GetData<Forecast1X2Model>(
                     new GetForecastByMatchCriteria
                     {
                         AgentId = agentId,
@@ -168,16 +167,16 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        public List<ScoreMapResultViewModel> GetScoreMapResults(int agentId, string matchIds, string liveBetTypes, string deadBallBetTypes)
+        public List<ScoreMapMatchResultModel> GetScoreMapResults(int agentId, string matchIds, string liveBetTypes, string deadBallBetTypes)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNull(matchIds, "matchIds");
             Check.Argument.IsNotNull(liveBetTypes, "liveBetTypes");
-            List<ScoreMapResultViewModel> scoreMapViewResult = new List<ScoreMapResultViewModel>();
+            List<ScoreMapMatchResultModel> scoreMapViewResult = new List<ScoreMapMatchResultModel>();
             try
             {
                 //// Get Plain Data From Database
-                ScoreMapResult scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
+                ScoreMapResultModel scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
                 {
                     AgentId = agentId,
                     MatchIds = matchIds,
@@ -193,7 +192,7 @@ namespace Apollo.Age.Forecast.Services
                 {
                     homeIndex = 0;
                     awayIndex = 0;
-                    ScoreMapResultViewModel scoreMapItem = new ScoreMapResultViewModel
+                    ScoreMapMatchResultModel scoreMapItem = new ScoreMapMatchResultModel
                     {
                         MatchId = match.MatchId,
                         HomeName = match.HomeTeam,
@@ -234,29 +233,29 @@ namespace Apollo.Age.Forecast.Services
         /// Score Map BetType
         /// </summary>
         /// <returns></returns>
-        public ScoreMapBetTypeViewModel GetScoreMapBetType()
+        public ScoreMapBetTypesModel GetScoreMapBetType()
         {
-            IEnumerable<ScoreMapBetType> scoreMapBetTypes = CachingService.Get<IEnumerable<ScoreMapBetType>>(Constants.SCORE_MAP_BETTYPES);
-            if (scoreMapBetTypes == null)
+            IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = CachingService.Get<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES);
+            if (scoreMapBetTypeList == null)
             {
-                scoreMapBetTypes = GetData<ScoreMapBetType>(new GetScoreMapBetTypesCriteria());
-                CachingService.Set<IEnumerable<ScoreMapBetType>>(Constants.SCORE_MAP_BETTYPES, scoreMapBetTypes, new TimeSpan(0,5,0));
+                scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
+                CachingService.Set<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES, scoreMapBetTypeList, new TimeSpan(0, 5, 0));
             }
             
-            ScoreMapBetTypeViewModel scoreMapBetTypeViewModel = new ScoreMapBetTypeViewModel();
-            foreach (ScoreMapBetType betType in scoreMapBetTypes)
+            ScoreMapBetTypesModel scoreMapBetTypes = new ScoreMapBetTypesModel();
+            foreach (ScoreMapBetTypeModel betType in scoreMapBetTypeList)
             {
                 if (betType.IsLive == 1)
                 {
-                    scoreMapBetTypeViewModel.LiveBetTypes.Add(betType);
+                    scoreMapBetTypes.LiveBetTypes.Add(betType);
                 }
 
                 if (betType.IsDead == 1)
                 {
-                    scoreMapBetTypeViewModel.DeadBallBetTypes.Add(betType);
+                    scoreMapBetTypes.DeadBallBetTypes.Add(betType);
                 }
             }
-            return scoreMapBetTypeViewModel;
+            return scoreMapBetTypes;
         }
 
         /// <summary>
@@ -265,9 +264,9 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="agentId"></param>
         /// <param name="leagueId"></param>
         /// <returns></returns>
-        public IEnumerable<ScoreMapMatchViewModel> GetScoreMapMatches(int agentId, int leagueId)
+        public IEnumerable<ScoreMapMatch> GetScoreMapMatches(int agentId, int leagueId)
         {
-            IEnumerable<ScoreMapMatchViewModel> scoreMapMatches = GetData<ScoreMapMatchViewModel>(
+            IEnumerable<ScoreMapMatch> scoreMapMatches = GetData<ScoreMapMatch>(
                     new GetScoreMatchesByLeague
                     {
                         AgentId = agentId,
@@ -278,16 +277,16 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Score Map League
+        /// Score Map LeagueModel
         /// </summary>
         /// <param name="agentId"></param>
         /// <returns></returns>
-        public IEnumerable<LeagueViewModel> GetScoreMapLeagues(int agentId)
+        public IEnumerable<LeagueModel> GetScoreMapLeagues(int agentId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             try
             {
-                return GetData<LeagueViewModel>(new GetScoreMapLeaguesCriteria
+                return GetData<LeagueModel>(new GetScoreMapLeaguesCriteria
                 {
                     AgentId = agentId
                 }).OrderBy(league => league.LeagueName);
@@ -305,12 +304,12 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public MatchOddsViewModel GetTopOddsByMatch(int matchId, int betType)
+        public MatchOddsModel GetTopOddsByMatch(int matchId, int betType)
         {
             Check.Argument.IsNotNegative(matchId, "matchId");
             Check.Argument.IsNotNegative(betType, "betType");
 
-            IEnumerable<MatchOddsViewModel> matchOddsViewModels = GetData<MatchOddsViewModel>(
+            IEnumerable<MatchOddsModel> matchOddsViewModels = GetData<MatchOddsModel>(
                     new GetTopOddsByMatchCriteria
                     {
                         BetType = betType,
@@ -323,14 +322,14 @@ namespace Apollo.Age.Forecast.Services
 
         #region Private Methods
 
-        private ForecastMatchWinLostViewModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchViewModel> forecastMatches, int betType, int currentScore)
+        private ForecastMatchWinLostModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchModel> forecastMatches, int betType, int currentScore)
         {
             if (!forecastMatches.Any())
             {
                 return null;
             }
 
-            ForecastMatchWinLostViewModel matchWinLost = new ForecastMatchWinLostViewModel();
+            ForecastMatchWinLostModel matchWinLost = new ForecastMatchWinLostModel();
             if (betType == 1 || betType == 7)
             {
                 foreach (var forecastMatch in forecastMatches)
@@ -357,7 +356,7 @@ namespace Apollo.Age.Forecast.Services
             return matchWinLost;
         }
 
-        private decimal GetForecastHandicapValue(ForecastMatchViewModel forecastMatch, int currentScore, int scoreOffset, decimal forecast)
+        private decimal GetForecastHandicapValue(ForecastMatchModel forecastMatch, int currentScore, int scoreOffset, decimal forecast)
         {
             decimal forecastScore = currentScore - forecastMatch.Offset + scoreOffset;
             if (forecastScore > 0 && forecastScore < (decimal)(0.5))
@@ -380,7 +379,7 @@ namespace Apollo.Age.Forecast.Services
             return forecast;
         }
 
-        private decimal GetForecastOverUnderValue(ForecastMatchViewModel forecastMatch, int currentScore, int scoreOffset, decimal forecast)
+        private decimal GetForecastOverUnderValue(ForecastMatchModel forecastMatch, int currentScore, int scoreOffset, decimal forecast)
         {
             decimal forecastScore = currentScore - forecastMatch.Offset + scoreOffset;
             if (forecastScore == (decimal)(0.25))

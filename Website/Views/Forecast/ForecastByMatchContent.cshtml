@@ -1,12 +1,12 @@
-﻿@using Apollo.Age.Forecast.ViewModels
+﻿@using Apollo.Age.Forecast.Models
 @using Apollo.Age.Enumerations;
 @{
-    var oddsByMatch = (MatchOddsViewModel)ViewBag.TopOddsByMatch ?? new MatchOddsViewModel();
+    var oddsByMatch = (MatchOddsModel)ViewBag.TopOddsByMatch ?? new MatchOddsModel();
     var betType = (int)ViewBag.BetType;
     var currentScore = (int)ViewBag.CurrentScore;
     var matchId = (int)ViewBag.MatchId;
 }
-@model ForecastMatchWinLostViewModel
+@model ForecastMatchWinLostModel
 @helper RenderTitle(int betType)
     {
         switch (betType)
