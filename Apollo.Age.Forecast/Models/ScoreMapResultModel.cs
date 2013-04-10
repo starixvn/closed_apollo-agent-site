@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ScoreMapResult.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ScoreMapResultModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -14,9 +14,9 @@ namespace Apollo.Age.Forecast.Models
     using Apollo.Age.Services;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
-    public class ScoreMapResult
+    public class ScoreMapResultModel
     {
-        public ScoreMapResult()
+        public ScoreMapResultModel()
         {
             ScoreMapItems = new List<ScoreMapItem>();
             ScoreMapMatches = new List<ScoreMapMatch>();

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="MoneyLineViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MoneyLineModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -8,11 +8,11 @@
 //   <change who="Ricky.Nguyen" date="2013.4.3">Update Mapping SP Property</change>
 // </history>
 
-namespace Apollo.Age.TotalBets.ViewModels
+namespace Apollo.Age.TotalBets.Models
 {
     using Apollo.Age.Services;
 
-    public class MoneyLineViewModel
+    public class MoneyLineModel
     {
         public string ShowTime { get; set; }
 

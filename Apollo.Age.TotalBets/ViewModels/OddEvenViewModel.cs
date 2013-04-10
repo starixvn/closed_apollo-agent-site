@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="OddEvenViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="OddEvenModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -8,14 +8,14 @@
 //   <change who="Ricky.Nguyen" date="2013.4.3">Update Mapping SP Property</change>
 // </history>
 
-namespace Apollo.Age.TotalBets.ViewModels
+namespace Apollo.Age.TotalBets.Models
 {
     using Apollo.Age.Services;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class OddEvenViewModel
+    public class OddEvenModel
     {
         public string ShowTime { get; set; }
 

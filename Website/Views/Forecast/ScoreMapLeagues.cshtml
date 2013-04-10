@@ -1,9 +1,9 @@
-@using Apollo.Age.Forecast.ViewModels
+@using Apollo.Age.Forecast.Models
 @{
     Layout = null;
     var currentLeagueSelected = (int?)ViewBag.CurrentLeagueId;
 }
-@model IEnumerable<LeagueViewModel>
+@model IEnumerable<LeagueModel>
 <select id="ddlLeague" name="ddlLeague" style="position: relative;">
     @{
         if (Model != null && Model.Any())

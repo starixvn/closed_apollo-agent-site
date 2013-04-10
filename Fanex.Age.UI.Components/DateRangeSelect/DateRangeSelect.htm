@@ -8,7 +8,7 @@
 				<span id="spfdatetext">{DateFromText}</span>
 			</td>
 			<td id="tdFromDateCal">
-				<input type="text" id="fdate" class="input-date"
+				<input type="text" id="fdate" name="fdate"  class="input-date"
                     value="{static:DateTime.Today.ToShortDateString()}" />
 			</td>
 			<!--LimitToDate-->
@@ -16,7 +16,7 @@
 				<span id="sptdatetext">{static:Resources.Lang.to}</span>
 			</td>
 			<td id="tdToDateCal">
-				<input type="text" id="tdate" class="input-date"
+				<input type="text" id="tdate" name="tdate" class="input-date"
                     value="{static:DateTime.Today.ToShortDateString()}" />
 			</td>
 			<!--/LimitToDate-->

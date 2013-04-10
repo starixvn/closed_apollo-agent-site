@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ForecastHandicapOUViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ForecastHandicapOUModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -8,13 +8,13 @@
 //   <change who="Ricky.Nguyen" date="2013.4.5">StyleCop</change>
 // </history>
 
-namespace Apollo.Age.Forecast.ViewModels
+namespace Apollo.Age.Forecast.Models
 {
     using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
-    public class ForecastHandicapOUViewModel
+    public class ForecastHandicapOUModel
     {
         public int MatchId { get; set; }
 

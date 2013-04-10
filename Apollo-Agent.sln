@@ -28,6 +28,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{C99
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "53397"
+		VWDVirtualPath = "/"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.Components", "Fanex.Age.UI.Components\Fanex.Age.UI.Components.csproj", "{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}"

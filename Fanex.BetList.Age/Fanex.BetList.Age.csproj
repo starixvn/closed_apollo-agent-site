@@ -42,8 +42,9 @@
     <Reference Include="Fanex.Data">
       <HintPath>..\..\apollo-agent\Dependencies\Fanex.Data.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI">
-      <HintPath>..\..\apollo-agent\Dependencies\NPOI.dll</HintPath>
+    <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

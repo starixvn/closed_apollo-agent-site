@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Apollo.Age.Account.ViewModels.AnnouncementViewModel>
+﻿@model IEnumerable<AnnouncementModel>
 @{
     Layout = null;
 }
@@ -23,7 +23,7 @@
     <!--DataRow-->
         var ccs = (msgItem.IsRead ? msgItem.GetMessageType : msgItem.GetMessageType + "_unread");
         ccs = index % 2 == 0 ? ccs + " evenRow" : ccs + " oddRow";
-    <div class="@ccs" style="clear:both" id="@msgItem.MessageId.ToString()" onclick="ToggleAnnouncementContent('@msgItem.MessageId');"
+    <div class="@ccs message" style="clear:both" id="@msgItem.MessageId.ToString()" onclick="MessagePortalPage.toggleAnnouncementContent('@msgItem.MessageId');"
         IsRead="@(msgItem.IsRead ? 1 : 0)">
         <div class="divTime">
             <div class="toogleIcon">
@@ -47,7 +47,7 @@
 
     }
     <!--MoreFooter-->    
-    <div id="divMore" onclick="ShowMoreAnnouncements();">
+    <div id="divMore" onclick="MessagePortalPage.showMoreAnnouncements()">
         @Resources.Lang.more
     </div>
     <!--/MoreFooter-->

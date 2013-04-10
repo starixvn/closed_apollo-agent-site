@@ -34,7 +34,6 @@ namespace Fanex.Age.UI.Reports.BetList
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
 
-
     public partial class CancelBetList : TplPage
     {
         int masterId = 0;
@@ -47,7 +46,7 @@ namespace Fanex.Age.UI.Reports.BetList
         CancelBetList_Template tpl = new CancelBetList_Template();
         IBetListCmd command = null;
 
-        bool exportExcel = false;        
+        bool exportExcel = false;
 
         public override void RenderContent(HtmlTextWriter writer)
         {
@@ -80,7 +79,7 @@ namespace Fanex.Age.UI.Reports.BetList
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             ITicketHelper ticketHelper = new TicketHelper();
 
-            #endregion
+            #endregion INIT
 
             if (exportExcel)
             {
@@ -91,7 +90,7 @@ namespace Fanex.Age.UI.Reports.BetList
 
                 builder.BuildWorksheet("CancelBetList", 7);
                 builder.AddCaption(Resources.Lang.voidandreject.ToUpper(), 7);
-                builder.AddHeader(false, false, false, false, true);
+                builder.AddHeader(false, false, true);
 
                 foreach (ITicket ticket in tickets)
                 {
@@ -115,7 +114,7 @@ namespace Fanex.Age.UI.Reports.BetList
                 ms.Dispose();
                 return;
 
-                #endregion
+                #endregion EXPORT EXCEL
             }
             else
             {
@@ -129,9 +128,6 @@ namespace Fanex.Age.UI.Reports.BetList
                 Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
                 Header1_Template betlistHeader = new Header1_Template();
                 betlistHeader.Winloss.Hide();
-                betlistHeader.Super.Hide();
-                betlistHeader.Master.Hide();
-                betlistHeader.Agent.Hide();
 
                 content.Append(betlistOpenTag);
                 content.Append(betlistHeader);
@@ -150,7 +146,6 @@ namespace Fanex.Age.UI.Reports.BetList
                            .AddStake(ticket, "<td class='bl_underdog'>", "</td>")
                            .AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP)
                            .Append("</tr>");
-
                 }
 
                 content.Append(builder.GetBetList());
@@ -164,8 +159,8 @@ namespace Fanex.Age.UI.Reports.BetList
 
                 writer.Write(tpl);
 
-                #endregion
-            }          
+                #endregion RENDER HTML
+            }
         }
 
         protected void ExportToExcel(System.IO.MemoryStream excelStream, string fileName)
@@ -236,7 +231,7 @@ namespace Fanex.Age.UI.Reports.BetList
 
         public override object InvokeData(Hashtable hash)
         {
-            command = BetListFactory.CreateBetList("CancelBetList", CurrentUserSession.NetSessionId, null);            
+            command = BetListFactory.CreateBetList("CancelBetList", CurrentUserSession.NetSessionId, null);
 
             if (command != null)
             {
@@ -281,7 +276,7 @@ namespace Fanex.Age.UI.Reports.BetList
             const String excelHtmlHeader = @"<html>
                     <head>
                         <META http-EQUIV='Content-Type' CONTENT='text/html; charset=unicode-utf8'>
-                        <style>               
+                        <style>
                             body{font-family:Tahoma; font-size:12px; color:#000000; background:#ffffff;}
                             td,table{border-collapse:collapse;border-color:#7C98A4; border-style:Solid; border-width:thin;}
                             .league{color: #000000; background: #aacccc;}
@@ -290,7 +285,7 @@ namespace Fanex.Age.UI.Reports.BetList
                             .bl_underdog{font-weight:bold}
                             .bl_match{white-space: nowrap; width: 200px}
                             .bl_favorite{color: red;font-weight:bold}
-                            a{font-size:12px;text-decoration: none; color: #000}                            
+                            a{font-size:12px;text-decoration: none; color: #000}
                             .r,td.r,td.div{text-align:right;font-size:12px;}
                             .l,td.l{text-align:left;font-size:12px;}
                             .c,td.c{text-align:center;font-size:12px;}
@@ -309,7 +304,6 @@ namespace Fanex.Age.UI.Reports.BetList
                         </table>
                     </body>
                 </html>";
-
 
             StringBuilder content = new StringBuilder();
             content.Append(excelHtmlHeader);

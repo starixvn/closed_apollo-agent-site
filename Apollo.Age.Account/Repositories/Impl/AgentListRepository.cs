@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Repositories.Interface;
-    using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Impl;
@@ -14,9 +14,9 @@
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
-    public class AgentListRepository : RepositoryBase<AgentListViewModel>, IAgentListRepository
+    public class AgentListRepository : RepositoryBase<AgentListModel>, IAgentListRepository
     {
-        public IEnumerable<AgentListViewModel> GetData(ref AgentListCriteria criteria)
+        public IEnumerable<AgentListModel> GetData(ref AgentListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -27,7 +27,7 @@
                     using (var db = new ObjectDb(criteria.GetSettingKey()))
                     {
                         var param = criteria.GetSpParams();
-                        var list = db.Query<AgentListViewModel>(param);
+                        var list = db.Query<AgentListModel>(param);
 
                         // get output parameter
                         criteria.TotalPages = Convert.ToInt32(param["totalpages"]);
@@ -37,7 +37,7 @@
                     }
                 }
 
-                return new List<AgentListViewModel>();
+                return new List<AgentListModel>();
             }
             catch
             {
@@ -45,17 +45,17 @@
             }
         }
 
-        public ICommandResult Delete(AgentListViewModel entity)
+        public ICommandResult Delete(AgentListModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public ICommandResult Insert(AgentListViewModel entity)
+        public ICommandResult Insert(AgentListModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public ICommandResult Update(AgentListViewModel entity)
+        public ICommandResult Update(AgentListModel entity)
         {
             throw new NotImplementedException();
         }

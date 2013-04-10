@@ -561,7 +561,7 @@ namespace Fanex.Age.UI.Reports.Result
 				DataRow[] leagueRows = reportData.Select("sporttype=" + this._sportId.ToString());
 				foreach (DataRow dr in leagueRows)
 				{
-					// League dropdownlist
+					// LeagueModel dropdownlist
 					int leagueId = Convert.ToInt32(dr["leagueid"]);
 
 					if (!leagueIdList.Contains(leagueId))
@@ -612,7 +612,7 @@ namespace Fanex.Age.UI.Reports.Result
 
 				foreach (DataRow dr in leagueList.Rows)
 				{
-					// League dropdownlist
+					// LeagueModel dropdownlist
 					int leagueId = Convert.ToInt32(dr["leagueid"]);
 					leagueOption.LeagueId = leagueId.ToString();
 					leagueOption.LeagueName = Sunplus.Agent.Model.BL.Cache.CacheRef.GetLeagueName(leagueId);
