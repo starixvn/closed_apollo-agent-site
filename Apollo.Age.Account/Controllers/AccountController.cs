@@ -18,12 +18,13 @@ namespace Apollo.Age.Account.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Models;
+
     using Apollo.Age.Account.Services;
-    using Apollo.Age.Account.ViewModels;
-    using Apollo.Age.Web;
-    using Sunplus.Agent.Model.Entities;
-    using Apollo.MvcPaging;
     using Apollo.Age.Entities;
+    using Apollo.Age.Web;
+    using Apollo.MvcPaging;
+    using Sunplus.Agent.Model.Entities;
 
     public class AccountController : BaseController
     {
@@ -82,7 +83,7 @@ namespace Apollo.Age.Account.Controllers
                     : Fanex.Common.Converter.To<short>("0");
             }
 
-            CustomerInfoViewModel customerInfo = null;
+            CustomerInfoModel customerInfo = null;
             if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
             {
                 HttpContext.Session["userName"] = userName;
@@ -94,7 +95,7 @@ namespace Apollo.Age.Account.Controllers
                 customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, this.CurrentSession.AgentId);
                 if (customerInfo == null)
                 {
-                    customerInfo = new CustomerInfoViewModel()
+                    customerInfo = new CustomerInfoModel()
                     {
                         CurrentAgentId = this.CurrentSession.AgentId,
                         CustId = -1,
@@ -138,7 +139,7 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetSuggestValues(string term, bool isMember)
         {
-            var listValue = _accountService.GetCustomerSearch(isMember, term, this.CurrentSession.AgentId)
+            var listValue = _accountService.GetCustomerSuggest(isMember, term, this.CurrentSession.AgentId)
                     .Select(x => x.Username).ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
@@ -186,7 +187,7 @@ namespace Apollo.Age.Account.Controllers
                 PageSize = currentPageSize
             };
 
-            IEnumerable<AgentListViewModel> models = _accountService.GetAgentList(ref criteria);
+            IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
 
             return Json(new
             {
@@ -215,7 +216,7 @@ namespace Apollo.Age.Account.Controllers
                 PageSize = currentPageSize
             };
 
-            IEnumerable<CustomerListViewModel> models = _accountService.GetCustomerList(ref criteria);
+            IEnumerable<CustomerListModel> models = _accountService.GetCustomerList(ref criteria);
 
             return Json(new
             {

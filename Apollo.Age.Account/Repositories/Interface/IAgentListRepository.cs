@@ -5,12 +5,12 @@
     using System.Linq;
     using System.Text;
     using Apollo.Age.Account.Criterias;
-    using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Account.Models;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
 
-    public interface IAgentListRepository : IRepository<AgentListViewModel>
+    public interface IAgentListRepository : IRepository<AgentListModel>
     {
-        IEnumerable<AgentListViewModel> GetData(ref AgentListCriteria criteria);
+        IEnumerable<AgentListModel> GetData(ref AgentListCriteria criteria);
     }
 }

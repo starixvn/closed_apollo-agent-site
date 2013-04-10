@@ -10,13 +10,14 @@
 namespace Apollo.Age.Account.Services
 {
     using System.Collections.Generic;
-    using Apollo.Age.Account.ViewModels;
-    using Apollo.Age.Criterias.Accounts;
+    using Apollo.Age.Account.Models;
     using Apollo.Age.Entities;
 
     public interface IAccountService
     {
-        CustomerInfoViewModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId);
+        List<Customer> GetCustomerSuggest(bool isMember, string userName, int agentId);
+
+        CustomerInfoModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId);
 
         List<Member> GetMemberDownline(int agentId, int pageIndex, int pageSize, ref int totalPage);
 

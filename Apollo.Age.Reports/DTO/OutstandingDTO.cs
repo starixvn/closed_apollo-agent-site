@@ -14,14 +14,22 @@ namespace Apollo.Age.Reports.DTO
     using System.Linq;
     using System.Text;
     using Apollo.Age.Entities;
-    using Apollo.Age.Reports.ViewModels;
+    using Apollo.Age.Reports.Models;
 
-    public class OutstandingDownlinePathDTO
+    public class OutstandingDTO
     {
-        public int CurrentAgentId { get; set; }
+        public bool IsAgent { get; set; }
 
-        public IEnumerable<OutstandingViewModel> ListOutStanding { get; set; }
+        public int AgentId { get; set; }
 
-        public IEnumerable<Agent> DownlinePath { get; set; }
+        public string UserName { get; set; }
+
+        public decimal Outstanding { get; set; }
+
+        public decimal ShareAmount { get; set; }
+
+        public decimal GameOutstanding { get; set; }
+
+        public decimal GameShareAmount { get; set; }
     }
 }
