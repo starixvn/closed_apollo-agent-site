@@ -193,7 +193,9 @@ var AGENTLIST = function ($) {
                     totalItem: agentList.TotalItem,
                     itemsPerPageArray: [50, 100, 500],
                     pagerSelectCallBack: ReRenderAfterPaged
-                }
+                },
+                showColumnsShowHide: false,
+                columnsNeedHide: [12]
             };
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
                 $.ajax({
