@@ -37,7 +37,7 @@ namespace Apollo.Age.Reports.Services
                 dynamic specialDays = CacheManager.Get<dynamic>(BalanceUpdayKey);
                 if (specialDays == null)
                 {
-                    specialDays = this.GetData<dynamic>(new GetSpecialDaysCriteria());
+                    specialDays = this.GetData<dynamic>(new GetSpecialDaysCriteria()).Single();
                     CacheManager.Set<dynamic>(BalanceUpdayKey, specialDays, DateTime.Now.AddMinutes(5));
                 }
 

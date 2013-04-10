@@ -81,6 +81,7 @@
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\Sport.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enumerations\BetTypes.cs" />
     <Compile Include="Enumerations\CustomerStatus.cs" />

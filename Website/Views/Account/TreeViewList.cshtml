@@ -30,11 +30,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var agentList = $("#agent-list"),
-                custId = agentList.attr("agent-id");
+                custId = agentList.attr("agent-id"),
+                appRoot = "@Url.Content("~/")";
 
             agentList.treeview({
-                url: "GetDataByNote",
-                link: "<a href='@Url.Content("~/")_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'>{2}</a>",
+                url: appRoot + "Account/GetDataByNote",
+                link: "<a href='" + appRoot + "_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'>{2}</a>",
                 custid: custId
             });
         });

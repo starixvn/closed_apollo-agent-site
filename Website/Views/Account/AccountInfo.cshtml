@@ -221,18 +221,31 @@
 }
 
 @helper SearchBox()
+<<<<<<< HEAD
     {
         if (Model == null)
         {
         <select id="ddlIsMember" name="isMember">
+=======
+{
+    @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+        new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
+        new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+    }, new { id = "ddlIsMember" })
+    
+    if (Model == null)
+    {
+        @*<select id="ddlIsMember" name="isMember">
+>>>>>>> db9fb70b486dca9277c0348fc07bc653f0ed0009
             <option value="0" selected="selected">@Resources.Lang.lblAgent</option>
             <option value="1">@Resources.Lang.lblMember</option>
-        </select>
-        <input maxlength="50" id="txtUsername" type="text"
-            value="@Resources.Lang.enterusername" name="userName"/>
+        </select>*@
+        <input maxlength="50" id="txtUsername" name="userName" class="em"
+            type="text" value="@Resources.Lang.enterusername"/>
         <button type="button" class="btn search-button">
             <i class="icon-search"></i>
         </button> 
+<<<<<<< HEAD
         }
         else
         {
@@ -242,6 +255,16 @@
         </select>
         <input maxlength="50" id="txtUsername" type="text"
             value="@Model.Username" name="userName" />
+=======
+    }
+    else
+    {
+        @*<select id="ddlIsMember" name="isMember">
+            <option value="0" @(Model.IsMember ? string.Empty : "selected=selected") >@Resources.Lang.lblAgent</option>
+            <option value="1" @(Model.IsMember ? "selected=selected" : string.Empty) >@Resources.Lang.lblMember</option>
+        </select>*@
+        <input maxlength="50" id="txtUsername" type="text" value="@Model.Username" name="userName" />
+>>>>>>> db9fb70b486dca9277c0348fc07bc653f0ed0009
         <button type="button" class="btn search-button">
             <i class="icon-search"></i>
         </button>

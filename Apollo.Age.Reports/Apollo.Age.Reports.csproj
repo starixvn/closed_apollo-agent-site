@@ -77,11 +77,15 @@
     <Compile Include="Criterias\GetSpecialDaysCriteria.cs" />
     <Compile Include="Criterias\MemberOutstandingCriteria.cs" />
     <Compile Include="Criterias\OutstandingCriteria.cs" />
+    <Compile Include="Criterias\ResultGetLeagueBySportCriteria.cs" />
+    <Compile Include="Criterias\ResultGetSportCriteria.cs" />
     <Compile Include="DTO\OutstandingDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\OutstandingService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Models\OutstandingModel.cs" />
+    <Compile Include="Services\ResultService.cs" />
+    <Compile Include="ViewModels\ReportResultViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">

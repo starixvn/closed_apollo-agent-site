@@ -1,230 +1,231 @@
 ﻿function ShowResultWithPicture(showpic) {
-    var url = location.href;
-    location.href = SetParameterValue("showpic", showpic, url);
+	var url = location.href;
+	location.href = SetParameterValue("showpic", showpic, url);
 }
 
-
 function ViewBallNo(id) {
-    // Hide others
-    for (var i = 0; i < 100; i++) {
-        if ('ballNo' + i == id) {
-            continue;
-        }
+	// Hide others
+	for (var i = 0; i < 100; i++) {
+		if ('ballNo' + i == id) {
+			continue;
+		}
 
-        if (document.getElementById('ballNo' + i)) {
-            document.getElementById('ballNo' + i).style.display = 'none';
-        } else {
-            break;
-        }
-    }
+		if (document.getElementById('ballNo' + i)) {
+			document.getElementById('ballNo' + i).style.display = 'none';
+		} else {
+			break;
+		}
+	}
 
-    var display = document.getElementById(id).style.display == 'none';
-    document.getElementById(id).style.left = '190px';
-    document.getElementById(id).style.display = display ? 'block' : 'none';
+	var display = document.getElementById(id).style.display == 'none';
+	document.getElementById(id).style.left = '190px';
+	document.getElementById(id).style.display = display ? 'block' : 'none';
 }
 
 function ViewHandHistory(custid, ibcrefno, currency, tableId, tableName, tournamentId, tournamentName, gameType, betType, date) {
-    var url = '../P2P/HandHistory.aspx?custid=' + custid + '&ibcrefno=' + ibcrefno + '&currency=' + currency + '&tableid=' + tableId + '&tablename=' + tableName + '&tournamentid=' + tournamentId + '&tournamentname=' + tournamentName + '&gametype=' + gameType + '&bettype=' + betType + '&Date=' + date;
-    window.location.href = url;
+	var url = '../P2P/HandHistory.aspx?custid=' + custid + '&ibcrefno=' + ibcrefno + '&currency=' + currency + '&tableid=' + tableId + '&tablename=' + tableName + '&tournamentid=' + tournamentId + '&tournamentname=' + tournamentName + '&gametype=' + gameType + '&bettype=' + betType + '&Date=' + date;
+	window.location.href = url;
 }
 
 function ViewHandHistoryDetail(custid, handNo, handType, currency) {
-    var url = '../P2P/HandHistoryDetail.aspx?custid=' + custid + '&handno=' + handNo + '&handtype=' + handType + '&currency=' + currency;
-    window.location.href = url;
+	var url = '../P2P/HandHistoryDetail.aspx?custid=' + custid + '&handno=' + handNo + '&handtype=' + handType + '&currency=' + currency;
+	window.location.href = url;
 }
 
 function ViewCommissionDetail(ibcrefno, currency, tableId, tableName, tournamentId, tournamentName, gameType, betType) {
-    var url = '../P2P/CommissionDetail.aspx?ibcrefno=' + ibcrefno + '&currency=' + currency + '&tableid=' + tableId + '&tablename=' + tableName + '&tournamentid=' + tournamentId + '&tournamentname=' + tournamentName + '&gametype=' + gameType + '&bettype=' + betType;
-    window.location.href = url;
+	var url = '../P2P/CommissionDetail.aspx?ibcrefno=' + ibcrefno + '&currency=' + currency + '&tableid=' + tableId + '&tablename=' + tableName + '&tournamentid=' + tournamentId + '&tournamentname=' + tournamentName + '&gametype=' + gameType + '&bettype=' + betType;
+	window.location.href = url;
 }
 
 function ViewBetSlip(transid, winlostdate, isrunning, league) {
-    var width = 660;
-    var height = 190;
-    var url = '_BetList/BetSlip.aspx?TransID=' + transid + '&winlostdate=' + winlostdate + '&IsRunning=' + isrunning + '&league=' + league;
-    if (parent.ageWnd) {
-        parent.ageWnd.open(age.GetBaseUrl() + url, '', 50, 100, width, height);
-    }
-    else {
-        ageWnd.open(age.GetBaseUrl() + url, '', 50, 100, width, height);
-    }
+	var width = 660;
+	var height = 190;
+	var url = '_BetList/BetSlip.aspx?TransID=' + transid + '&winlostdate=' + winlostdate + '&IsRunning=' + isrunning + '&league=' + league;
+	if (parent.ageWnd) {
+		parent.ageWnd.open(age.GetBaseUrl() + url, '', 50, 100, width, height);
+	}
+	else {
+		ageWnd.open(age.GetBaseUrl() + url, '', 50, 100, width, height);
+	}
 }
 
 function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
-    if (bettype == 71) {
-        ViewCasinoResult(refno, bettype, username);
-    } else if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
-        ViewMixParlayResult(refno_mixparlay, winlostdate, bettype);
-    } else if (bettype == 1000 || bettype == 1001 || bettype == 1002) {  // P2P Game
-        ViewP2PResult(refno, bettype, username);
-    } else {
-        ViewSportBookResult(matchid, bettype, race, sporttype, league, is_outright, refno);
-    }
+	if (bettype == 71) {
+		ViewCasinoResult(refno, bettype, username);
+	} else if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
+		ViewMixParlayResult(refno_mixparlay, winlostdate, bettype);
+	} else if (bettype == 1000 || bettype == 1001 || bettype == 1002) {  // P2P Game
+		ViewP2PResult(refno, bettype, username);
+	} else {
+		ViewSportBookResult(matchid, bettype, race, sporttype, league, is_outright, refno);
+	}
 }
 
 function ViewMixParlayResult(refno, winlostdate, bettype) {
-    var width = 730;
-    var height = 450;
-    var params = '?refnum=' + refno + '&wldate=' + winlostdate + "&bettype=" + bettype + '&matchid=1';
-    if (ageWnd.loaded) {
-        ageWnd.close();
-    }
-    ageWnd.open(age.GetBaseUrl() + '_Reports/Result/Result.aspx' + params, '', 50, 100, width, height);
+	var width = 730;
+	var height = 450;
+	var params = '?refnum=' + refno + '&wldate=' + winlostdate + "&bettype=" + bettype + '&matchid=1';
+	if (ageWnd.loaded) {
+		ageWnd.close();
+	}
+	ageWnd.open(age.GetBaseUrl() + '_Reports/Result/Result.aspx' + params, '', 50, 100, width, height);
 }
 
 function ViewSportBookResult(matchid, bettype, race, sporttype, league, is_outright, refNo) {
-    var width = 730;
-    var height = 250;
-    var params = '?matchid=' + matchid + '&bettype=' + bettype + '&race=' + race + '&ddlSport=' + sporttype + '&ddlLeague=' + league + '&is_outright=' + is_outright + '&refnum=' + refNo;
+	var width = 730;
+	var height = 250;
+	var params = '?matchid=' + matchid + '&bettype=' + bettype + '&race=' + race + '&ddlSport=' + sporttype + '&ddlLeague=' + league + '&is_outright=' + is_outright + '&refnum=' + refNo;
 
-    if (parent.ageWnd) {
-        parent.ageWnd.open(age.GetBaseUrl() + '_Reports/Result/Result.aspx' + params, '', 50, 100, width, height);
-    }
-    else {
-        ageWnd.open(age.GetBaseUrl() + '_Reports/Result/Result.aspx' + params, '', 50, 100, width, height);
-    }
+	if (parent.ageWnd) {
+		parent.ageWnd.open(age.GetBaseUrl() + '_Reports/Result/Result.aspx' + params, '', 50, 100, width, height);
+	}
+	else {
+		ageWnd.open(age.GetBaseUrl() + '_Reports/Result/Result.aspx' + params, '', 50, 100, width, height);
+	}
 }
 
 function ViewP2PResult(refno, bettype, uname) {
-    var params = '?typegame=p2pgame&ibcrefno=' + refno + '&bettype=' + bettype + '&uname=' + uname;
-    params = SetParameterValue('custid', _page.CustId, params);
-    params = SetParameterValue('fdate', _page.fdate, params);
-    params = SetParameterValue('tdate', _page.tdate, params);
+	var params = '?typegame=p2pgame&ibcrefno=' + refno + '&bettype=' + bettype + '&uname=' + uname;
+	params = SetParameterValue('custid', _page.CustId, params);
+	params = SetParameterValue('fdate', _page.fdate, params);
+	params = SetParameterValue('tdate', _page.tdate, params);
 
-    var url = age.GetBaseUrl() + '_BetList/P2P/TableSession.aspx' + params;
-    window.location.href = url;
+	var url = age.GetBaseUrl() + '_BetList/P2P/TableSession.aspx' + params;
+	window.location.href = url;
 }
 
 function ViewCasinoResult(refno, bettype, uname) {
-    var params = '?typegame=casinogame&ibcrefno=' + refno + '&bettype=' + 'Casino' + '&uname=' + uname;
+	var params = '?typegame=casinogame&ibcrefno=' + refno + '&bettype=' + 'Casino' + '&uname=' + uname;
 
-    if (_page.type != null) {
-        var arrayStatusItem = _page.FilterStatusCollection;
+	if (_page.type != null) {
+		var arrayStatusItem = _page.FilterStatusCollection;
 
-        params = SetParameterValue('type', _page.type, params);
-        params = SetParameterValue('custid', _page.CustId, params);
+		params = SetParameterValue('type', _page.type, params);
+		params = SetParameterValue('custid', _page.CustId, params);
 
-        if (arrayStatusItem != null) {
-            params = SetParameterValue('showSB', arrayStatusItem[1] == "on" ? "1" : "0", params);
-            params = SetParameterValue('showCasino', arrayStatusItem[2] == "on" ? "1" : "0", params);
-            params = SetParameterValue('showRB', arrayStatusItem[3] == "on" ? "1" : "0", params);
-        }
-        params = SetParameterValue('fdate', _page.fdate, params);
-        params = SetParameterValue('tdate', _page.tdate, params);
-        params = SetParameterValue('isHistoryReport', _page.isHistoryReport, params);
-    }
-    var url = age.GetBaseUrl() + 'BetList/ViewCasinoResult.aspx' + params;
-    window.location.href = url;
+		if (arrayStatusItem != null) {
+			params = SetParameterValue('showSB', arrayStatusItem[1] == "on" ? "1" : "0", params);
+			params = SetParameterValue('showCasino', arrayStatusItem[2] == "on" ? "1" : "0", params);
+			params = SetParameterValue('showRB', arrayStatusItem[3] == "on" ? "1" : "0", params);
+		}
+		params = SetParameterValue('fdate', _page.fdate, params);
+		params = SetParameterValue('tdate', _page.tdate, params);
+		params = SetParameterValue('isHistoryReport', _page.isHistoryReport, params);
+	}
+	var url = age.GetBaseUrl() + 'BetList/ViewCasinoResult.aspx' + params;
+	window.location.href = url;
 }
 
 function showMP(transid) {
-    var divEvent = document.getElementById('divEvent_' + transid);
-    if (divEvent.style.display == 'none') {
-        if (divEvent.innerHTML == "") {
-            ajax.Request(age.GetBaseUrl() + "_BetList/MixParlay/MixParlay.aspx", { method: 'get', parameters: 'transid=' + transid,
-                onComplete: function (data) {
-                    divEvent.innerHTML = data.responseText;
-                    divEvent.style.display = '';
-                }
-            })
-        }
-        else {
-            divEvent.style.display = '';
-        }
-    }
-    else {
-        divEvent.style.display = 'none';
-    }
+	var divEvent = document.getElementById('divEvent_' + transid);
+	if (divEvent.style.display == 'none') {
+		if (divEvent.innerHTML == "") {
+			ajax.Request(age.GetBaseUrl() + "_BetList/MixParlay/MixParlay.aspx", { method: 'get', parameters: 'transid=' + transid,
+				onComplete: function (data) {
+					divEvent.innerHTML = data.responseText;
+					divEvent.style.display = '';
+				}
+			})
+		}
+		else {
+			divEvent.style.display = '';
+		}
+	}
+	else {
+		divEvent.style.display = 'none';
+	}
 }
 
 function showCombMP(transid, orderID) {
-    var divEvent = document.getElementById('divEvent_' + transid + orderID);
-    if (divEvent.style.display == 'none') {
-        if (divEvent.innerHTML == "") {
-            ajax.Request(age.GetBaseUrl() + "_BetList/MixParlay/CombinationMixParlay.aspx", { method: 'get', parameters: 'transid=' + transid,
-                onComplete: function (data) {
-                    divEvent.innerHTML = data.responseText;
-                    divEvent.style.display = '';
-                }
-            })
-        }
-        else {
-            divEvent.style.display = '';
-        }
-    }
-    else {
-        divEvent.style.display = 'none';
-    }
+	var divEvent = document.getElementById('divEvent_' + transid + orderID);
+	if (divEvent.style.display == 'none') {
+		if (divEvent.innerHTML == "") {
+			ajax.Request(age.GetBaseUrl() + "_BetList/MixParlay/CombinationMixParlay.aspx", { method: 'get', parameters: 'transid=' + transid,
+				onComplete: function (data) {
+					divEvent.innerHTML = data.responseText;
+					divEvent.style.display = '';
+				}
+			})
+		}
+		else {
+			divEvent.style.display = '';
+		}
+	}
+	else {
+		divEvent.style.display = 'none';
+	}
 }
 
 function showCombMPDetail(refno, winlostdate, transid, betid, custid) {
-    var width = 750;
-    var height = 350;
-    var params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid;
+	var width = 750;
+	var height = 350;
+	var params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid;
 
-    if (parent.ageWnd) {
-        parent.ageWnd.open(age.GetBaseUrl() + '_BetList/MixParlay/CombinationMixParlayDetail.aspx' + params, '', 50, 100, width, height);
-    }
-    else {
-        ageWnd.open(age.GetBaseUrl() + '_BetList/MixParlay/CombinationMixParlayDetail.aspx' + params, '', 50, 100, width, height);
-    }
+	if (parent.ageWnd) {
+		parent.ageWnd.open(age.GetBaseUrl() + '_BetList/MixParlay/CombinationMixParlayDetail.aspx' + params, '', 50, 100, width, height);
+	}
+	else {
+		ageWnd.open(age.GetBaseUrl() + '_BetList/MixParlay/CombinationMixParlayDetail.aspx' + params, '', 50, 100, width, height);
+	}
 }
 
 function InitExcelFunction() {
-    var exportExcelImg = document.getElementById("exporttoexcel");
-    if (exportExcelImg) {
-        function exportExcelImg_OnClick(ev) {
-            var url = location.href;
-            url = SetParameterValue('exporttoexcel.x', 4, url);
-            url = SetParameterValue('exporttoexcel.y', 8, url);
-            location.href = url;
+	var exportExcelImg = document.getElementById("exporttoexcel");
+	if (exportExcelImg) {
+		function exportExcelImg_OnClick(ev) {
+			var url = location.href;
+			url = SetParameterValue('exporttoexcel.x', 4, url);
+			url = SetParameterValue('exporttoexcel.y', 8, url);
+			location.href = url;
 
-            if (IE) {
-                window.event.cancelBubble = true;
-                window.event.returnValue = false;
-            } else {
-                ev.preventDefault();
-                ev.stopPropagation();
-            }
-        }
+			if (IE) {
+				window.event.cancelBubble = true;
+				window.event.returnValue = false;
+			} else {
+				ev.preventDefault();
+				ev.stopPropagation();
+			}
+		}
 
-        age.addEvent(exportExcelImg, 'click', exportExcelImg_OnClick);
+		age.addEvent(exportExcelImg, 'click', exportExcelImg_OnClick);
 
-        exportExcelImg.onblur = function () {
-            document.getElementById("exporttoexcel").focused = false;
-        }
-        exportExcelImg.onfocus = function () {
-            document.getElementById("exporttoexcel").focused = true;
-        }
-    }
+		exportExcelImg.onblur = function () {
+			document.getElementById("exporttoexcel").focused = false;
+		}
+		exportExcelImg.onfocus = function () {
+			document.getElementById("exporttoexcel").focused = true;
+		}
+	}
 }
 
 function InitBetList() {
-    var ageWnd = parent.ageWnd;
+	var ageWnd = parent.ageWnd;
 
-    if (typeof ageWnd != 'undefined' && ageWnd.loaded) {
-        ageWnd.setRect(ageWnd.left, 50, 900, 720);  // resize parent dialog
-        //
-    }
-    document.getElementById("exporttoexcel").style.display = "none";
-    InitExcelFunction();
+	if (typeof ageWnd != 'undefined' && ageWnd.loaded) {
+		ageWnd.setRect(ageWnd.left, 50, 900, 720);  // resize parent dialog
+	}
+
+	if (document.getElementById("exporttoexcel") != null) {
+		document.getElementById("exporttoexcel").style.display = "none";
+	}
+	InitExcelFunction();
 }
 
 function OpenIPInfo(ip) {
-    ageWnd.open(age.GetBaseUrl() + '_IPInfo/IpInfo.aspx?ip=' + ip, '', 300, 100, 400, 170);
+	ageWnd.open(age.GetBaseUrl() + '_IPInfo/IpInfo.aspx?ip=' + ip, '', 300, 100, 400, 170);
 }
 
 function OpenScoreMap(matchIds, bettype, liveindicator) {
-    var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
-//    var url = age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds +
-//            (liveindicator == 1
-//                ? "&bettypes_live=" + bettype + "&bettypes_dead=-1"
-//                : "&bettypes_live=-1&bettypes_dead=" + bettype);
-    var url = age.GetBaseUrl() + "Forecast/ScoreMap?matchIds=" + matchIds +
+	var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
+	//    var url = age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds +
+	//            (liveindicator == 1
+	//                ? "&bettypes_live=" + bettype + "&bettypes_dead=-1"
+	//                : "&bettypes_live=-1&bettypes_dead=" + bettype);
+	var url = age.GetBaseUrl() + "Forecast/ScoreMap?matchIds=" + matchIds +
             (liveindicator == 1
                 ? "&liveBetTypes=" + bettype
                 : "&deadBallBetTypes=" + bettype);
-    wnd.open(url, '', 0, 20, 900, 480);
+	wnd.open(url, '', 0, 20, 900, 480);
 }
 
 RegisterStartUp(InitBetList);
@@ -282,24 +283,24 @@ RegisterStartUp(InitBetList);
 var BETLIST = {};
 
 if (typeof jQuery != "undefined") {
-    BETLIST = function ($) {
-        return {
-            dialogDetails: null,
+	BETLIST = function ($) {
+		return {
+			dialogDetails: null,
 
-            init: function () {
-                BETLIST.dialogDetails = $('#dialog-details');
-            }
-        };
-    } (jQuery);
+			init: function () {
+				BETLIST.dialogDetails = $('#dialog-details');
+			}
+		};
+	} (jQuery);
 
-    $(document).ready(function () {
-        BETLIST.init();
+	$(document).ready(function () {
+		BETLIST.init();
 
-        var viewDetailsLinks = $(".view-detail");
+		var viewDetailsLinks = $(".view-detail");
 
-        if (viewDetailsLinks.length > 0) {
-            viewDetailsLinks.click(function () {
-                var $this = $(this),
+		if (viewDetailsLinks.length > 0) {
+			viewDetailsLinks.click(function () {
+				var $this = $(this),
                     transId = $this.attr("tid"),
                     url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx",
                     ajaxParams = "isSportsbook=1" +
@@ -307,16 +308,16 @@ if (typeof jQuery != "undefined") {
                         "&fromdate=" + _page.fdate +
                         "&toDate=" + _page.tdate;
 
-                ajax.Request(url, {
-                    asynchronous: true,
-                    parameters: ajaxParams,
-                    onComplete: function (data) {
-                        BETLIST.dialogDetails.html(data.responseText);
-                    }
-                });
+				ajax.Request(url, {
+					asynchronous: true,
+					parameters: ajaxParams,
+					onComplete: function (data) {
+						BETLIST.dialogDetails.html(data.responseText);
+					}
+				});
 
-                APOLLO.openDialog(BETLIST.dialogDetails, "Details", { modal: false });
-            });
-        }
-    });
+				APOLLO.openDialog(BETLIST.dialogDetails, "Details", { modal: false });
+			});
+		}
+	});
 }
