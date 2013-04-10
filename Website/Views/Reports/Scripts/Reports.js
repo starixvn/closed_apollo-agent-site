@@ -37,7 +37,8 @@ if (typeof jQuery != 'undefined') {
 			},
 			// View betlist page from report Outstanding
 			viewBetList: function () {
-				location.href = APOLLO.resolveUrl("_Reports/BetList/OutstandingDetail.aspx?custId=" + $(this).attr("data-custid"));
+				var username = $(this).closest('tr').children('td:first').text();
+				location.href = APOLLO.resolveUrl("_Reports/BetList/OutstandingDetail.aspx?custId=" + $(this).attr("data-custid") + "&username=" + username);
 			},
 
 			initGrid: function (outstandingData) {
@@ -82,7 +83,7 @@ if (typeof jQuery != 'undefined') {
                          { HeaderText: "Member", Width: 230, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
                         { HeaderText: "Outstanding", Width: 193, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
                         	CustomCellRender: function (cell) {
-                        		return (cell.Value.Outstanding != 0 ? "<a href='#' class='act-view-betlist' data-custid='" + cell.Value.custid + "'>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>" : numeral(cell.Value.Outstanding).format("0,0.00"));
+                        		return (cell.Value.Outstanding != 0 ? "<a href='#' class='act-view-betlist' data-custid='" + cell.Value.UserId + "'>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>" : numeral(cell.Value.Outstanding).format("0,0.00"));
                         	}
                         },
                         { HeaderText: "Share Amount ", Width: 197, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },

@@ -192,6 +192,11 @@
     <Setting Key="Age_Forecast1x2_SelByLeague_SAg" SpName="Age_Forecast1x2_SelByLeague_SAg" DbName="archive" Plain="0" />
   </Function>-->
 
+  <Function Name="Agent-Apollo-Report-BetList">
+    <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_BetList_GetId" SpName="Age_BetList_GetId" DbName="REPDB" Plain="0" />
+  </Function>
+
   <Function Name="Agent-Apollo-TotalBets-BetList">
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettype" SpName="Age_BetList_TotalBets_SelRunningByBettype" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettypeMatch" SpName="Age_BetList_TotalBets_SelRunningByBettypeMatch" DbName="REPDB" Plain="0" />
