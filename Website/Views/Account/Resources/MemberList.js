@@ -5,23 +5,31 @@ var MEMBERLIST = function ($) {
         AgentId: null,
         init: function () {
             MEMBERLIST.AgentId = $("#gridId").attr("agentid");
-            MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
+            MEMBERLIST.loadMemberList();
             $("[name='navigation']").bind('click', function () {
                 location.href = APOLLO.resolveUrl("/Account/Agentlist?agentid=" + $(this).attr('agentid'));
                 return false;
             });
         },
-        loadMemberList: function (agentId) {
+        loadMemberList: function () {
             $.ajax({
                 type: "POST",
                 url: APOLLO.resolveUrl("/Account/GetCustomerList"),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify({ AgentId: agentId }),
+                data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: $("#txtUserName").val() }),
                 timeout: 120000,
                 success: function (result) {
                     MEMBERLIST.AgentId = result.CurrentAgentId;
                     MEMBERLIST.initMemberList(result);
+
+                    $("#quickLinkAgentList").bind('click', function () {
+                        location.href = APOLLO.resolveUrl("/Account/AgentList?agentid=" + MEMBERLIST.AgentId);
+                    });
+
+                    $("#Search").bind('click', function () {
+                        MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
+                    });
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },
@@ -152,7 +160,7 @@ var MEMBERLIST = function ($) {
 
             $('[name="viewMember"]').bind('click', function () {
                 MEMBERLIST.AgentId = $(this).attr('agentid');
-                MEMBERLIST.loadAgentList(MEMBERLIST.AgentId);
+                MEMBERLIST.loadAgentList();
             });
         }
     };
