@@ -1,10 +1,10 @@
-﻿@using Apollo.Age.TotalBets.ViewModels
+﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.lblHOUL;
 }
 
-@model IEnumerable<HandicapViewModel>
+@model IEnumerable<HandicapModel>
 
 @helper ShowBlock(int betType, int matchId, decimal homeOdds, decimal awayOdds)
 {
@@ -30,7 +30,7 @@
     }
 }
 
-@helper ShowTime(HandicapViewModel item)
+@helper ShowTime(HandicapModel item)
 {
     <td class="c bl_time">
         @if (item.LiveIndicator)
@@ -48,7 +48,7 @@
     </td>
 }
 
-@helper ShowMatch(int index, HandicapViewModel item)
+@helper ShowMatch(int index, HandicapModel item)
 {
     var classRow = string.Empty;
     if (item.LiveIndicator)
@@ -78,7 +78,7 @@
     </tr>           
 }
 
-@helper ShowLeague(int currentLeagueId, HandicapViewModel item)
+@helper ShowLeague(int currentLeagueId, HandicapModel item)
 {
     if (currentLeagueId != item.LeagueId)
     { 

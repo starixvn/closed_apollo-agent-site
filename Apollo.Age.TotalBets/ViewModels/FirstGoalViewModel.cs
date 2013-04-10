@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="FirstGoalViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="FirstGoalModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,11 +7,11 @@
 //   <change who="Quinn.Vo" date="2013.4.1">Created</change>
 // </history>
 
-namespace Apollo.Age.TotalBets.ViewModels
+namespace Apollo.Age.TotalBets.Models
 {
     using Apollo.Age.Services;
 
-    public class FirstGoalViewModel
+    public class FirstGoalModel
     {
         public string ShowTime { get; set; }
 
