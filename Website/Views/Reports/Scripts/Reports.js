@@ -75,7 +75,7 @@ if (typeof jQuery != 'undefined') {
                          { HeaderText: "Member", Width: 230, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
                         { HeaderText: "Outstanding", Width: 193, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
                             CustomCellRender: function (cell) {
-                                return (cell.Value.Outstanding != 0 ? "<a href=''>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>" : numeral(cell.Value.Outstanding).format("0,0.00"));
+                                return (cell.Value.Outstanding != 0 ? "<a href='' custid=" + cell.Value.UserId + " >" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>" : numeral(cell.Value.Outstanding).format("0,0.00"));
                             }
                         },
                         { HeaderText: "Share Amount ", Width: 197, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
