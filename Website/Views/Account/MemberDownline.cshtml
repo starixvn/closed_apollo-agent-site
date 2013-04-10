@@ -5,7 +5,7 @@
 }
 
 <ul id="members-list" class="member-tab-list">
-    @if (Model != null)
+    @if (Model != null && Model.Count() > 0)
     {
         foreach (var member in Model)
         {
@@ -21,7 +21,10 @@
         </li> 
     }
 </ul>
-<br />
-<div class="pager">
-	@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
-</div>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+    </div>
+}

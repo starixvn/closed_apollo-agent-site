@@ -4,6 +4,7 @@ var ExchRate = function ($) {
     return {
         userId: null,
         currEditEid: null,
+        currAction: null,
 
         dialogEdit: null,
         editorWrp: null,
@@ -34,6 +35,7 @@ var ExchRate = function ($) {
         init: function () {
             ExchRate.userId = $('#UserId').val();
             ExchRate.currEditEid = $('#current-edit-eid');
+            ExchRate.currAction = $('#current-action');
 
             ExchRate.dialogEdit = $('#dialog-edit');
             ExchRate.editorWrp = $('#editor-wrp');
@@ -47,6 +49,110 @@ var ExchRate = function ($) {
 
             ExchRate.btnAddNew = $('#btn-add-new');
             ExchRate.btnEdits = $('.btn-edit');
+        },
+
+        addExchRate: function () {
+            var $this = $(this),
+                valid = true;
+
+            ExchRate.editorWrp.find('input:not(#editor-desc)').each(function () {
+                if (valid) {
+                    var $this = $(this);
+
+                    $this.val($.trim($this.val()));
+                    if ($this.val().length == 0) {
+                        $this.addClass('input-validation-error');
+                        valid = false;
+                    } else {
+                        $this.removeClass('input-validation-error');
+                    }
+                }
+            });
+
+            if (valid) {
+                var parent = $this.parents('.ui-dialog-content'),
+                    buttons = $this.parent().children('.ui-button'),
+                    url = "Admin/InsertExchangeRate" +
+                        "?currency=" + ExchRate.editorCurr.val() +
+                        "&description=" + ExchRate.editorDesc.val() +
+                        "&multipliedBy=" + ExchRate.editorMult.val() +
+                        "&baseRate=" + ExchRate.editorBase.val() +
+                        "&minBet=" + ExchRate.editorMinb.val() +
+                        "&minBetLive=" + ExchRate.editorMinbl.val();
+
+                $.ajax({
+                    url: APOLLO.resolveUrl(url),
+                    dataType: "json",
+                    beforeSend: function () {
+                        parent.addClass('loading');
+                        buttons.attr('disabled', true).addClass("ui-state-disabled");
+                    }
+                }).done(function (data) {
+                    if (data.errCode == 0) {
+                        alert('Exchange Rate added successfully!');
+                        window.location.reload();
+                    } else {
+                        alert(data.errMsg);
+                    }
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                }).always(function () {
+                    parent.removeClass('loading');
+                    buttons.attr('disabled', false).removeClass("ui-state-disabled");
+                });
+            }
+        },
+
+        editExchRate: function () {
+            var $this = $(this),
+                valid = true;
+
+            ExchRate.editorWrp.find('input:not(#editor-curr,#editor-desc)').each(function () {
+                if (valid) {
+                    var $this = $(this);
+
+                    $this.val($.trim($this.val()));
+                    if ($this.val().length == 0) {
+                        $this.addClass('input-validation-error');
+                        valid = false;
+                    } else {
+                        $this.removeClass('input-validation-error');
+                    }
+                }
+            });
+
+            if (valid) {
+                var parent = $this.parents('.ui-dialog-content'),
+                    buttons = $this.parent().children('.ui-button'),
+                    url = "Admin/UpdateExchangeRate" +
+                    "?exchangeId=" + ExchRate.currEditEid.val() +
+                    "&description=" + ExchRate.editorDesc.val() +
+                    "&multipliedBy=" + ExchRate.editorMult.val() +
+                    "&baseRate=" + ExchRate.editorBase.val() +
+                    "&minBet=" + ExchRate.editorMinb.val() +
+                    "&minBetLive=" + ExchRate.editorMinbl.val();
+
+                $.ajax({
+                    url: APOLLO.resolveUrl(url),
+                    dataType: "json",
+                    beforeSend: function () {
+                        parent.addClass('loading');
+                        buttons.attr('disabled', true).addClass("ui-state-disabled");
+                    }
+                }).done(function (data) {
+                    if (data.errCode == 0) {
+                        alert('Your changes were saved!');
+                        window.location.reload();
+                    } else {
+                        alert(data.errMsg);
+                    }
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                }).always(function () {
+                    parent.removeClass('loading');
+                    buttons.attr('disabled', false).removeClass("ui-state-disabled");
+                });
+            }
         }
     };
 } (jQuery);
@@ -59,6 +165,7 @@ jQuery(document).ready(function () {
         ExchRate.dialogEdit.find('th:first, td:first').show();
 
         APOLLO.openDialog(ExchRate.dialogEdit, "Add New Currency");
+        ExchRate.currAction.val('add');
 
         return false;
     });
@@ -79,56 +186,16 @@ jQuery(document).ready(function () {
         ExchRate.currEditEid.val(exchId);
 
         APOLLO.openDialog(ExchRate.dialogEdit, "Edit Currency: " + currency);
+        ExchRate.currAction.val('edit');
     });
 
-    $('#btn-submit').button().click(function () {
-        var $this = $(this),
-            buttons = $this.next('.ui-dialog-buttonpane').find('.ui-button'),
-            valid = true;
+    $('#btn-submit').button().click(function (event) {
+        var currAction = ExchRate.currAction.val();
 
-        ExchRate.editorWrp.find('input:not(#editor-curr,#editor-desc)').each(function () {
-            if (valid) {
-                var $this = $(this);
-
-                $this.val($.trim($this.val()));
-                if ($this.val().length == 0) {
-                    $this.addClass('input-validation-error');
-                    valid = false;
-                } else {
-                    $this.removeClass('input-validation-error');
-                }
-            }
-        });
-
-        if (valid) {
-            var url = "Admin/UpdateExchangeRate" +
-                "?exchangeId=" + ExchRate.currEditEid.val() +
-                "&description=" + ExchRate.editorDesc.val() +
-                "&multipliedBy=" + ExchRate.editorMult.val() +
-                "&baseRate=" + ExchRate.editorBase.val() +
-                "&minBet=" + ExchRate.editorMinb.val() +
-                "&minBetLive=" + ExchRate.editorMinbl.val();
-
-            $.ajax({
-                url: APOLLO.resolveUrl(url),
-                dataType: "json",
-                beforeSend: function () {
-                    $this.addClass('loading');
-                    buttons.attr('disabled', true).addClass("ui-state-disabled");
-                }
-            }).done(function (data) {
-                if (data.errCode == 0) {
-                    alert('Your changes were saved!');
-                    window.location.reload();
-                } else {
-                    alert(data.errMsg);
-                }
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
-            }).always(function () {
-                $this.removeClass('loading');
-                buttons.attr('disabled', false).removeClass("ui-state-disabled"); ;
-            });
+        if (currAction == 'edit') {
+            ExchRate.editExchRate.call(this, event);
+        } else {
+            ExchRate.addExchRate.call(this, event);
         }
     });
 

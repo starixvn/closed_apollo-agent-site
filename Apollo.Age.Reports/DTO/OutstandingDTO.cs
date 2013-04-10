@@ -20,7 +20,7 @@ namespace Apollo.Age.Reports.DTO
     {
         public bool IsAgent { get; set; }
 
-        public int AgentId { get; set; }
+        public int UserId { get; set; }
 
         public string UserName { get; set; }
 

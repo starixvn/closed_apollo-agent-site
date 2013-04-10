@@ -97,6 +97,11 @@
     <Compile Include="Repositories\Interface\IReportRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRepository.cs" />
     <Compile Include="Repositories\Interface\IMemberRepository.cs" />
+    <Compile Include="Resources\Lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\CacheRef.cs" />
     <Compile Include="Services\Impl\AgentService.cs" />
     <Compile Include="Services\Impl\CachingService.cs" />
@@ -114,6 +119,12 @@
   <ItemGroup>
     <Folder Include="DTO\Forecast\" />
     <Folder Include="DTO\TotalBets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
