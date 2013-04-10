@@ -15,6 +15,8 @@ namespace Apollo.Age.Account.Services
 
     public interface IAccountService
     {
+        List<Customer> GetCustomerSuggest(bool isMember, string userName, int agentId);
+
         CustomerInfoModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId);
 
         List<Member> GetMemberDownline(int agentId, int pageIndex, int pageSize, ref int totalPage);

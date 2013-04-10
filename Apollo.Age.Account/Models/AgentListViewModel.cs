@@ -1,11 +1,11 @@
-﻿namespace Apollo.Age.Account.ViewModels
+﻿namespace Apollo.Age.Account.Models
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public class AgentListViewModel
+    public class AgentListModel
     {
         public int AgentId { get; set; }
 

@@ -1,9 +1,8 @@
-
-﻿namespace Apollo.Age.Account.ViewModels
+﻿namespace Apollo.Age.Account.Models
  {
      using System;
 
-     public class CustomerListViewModel
+     public class CustomerListModel
      {
          public int CustId { get; set; }
 
@@ -37,6 +36,4 @@
 
          public decimal AgentDiscountNumberGame { get; set; }
      }
-
  }
-

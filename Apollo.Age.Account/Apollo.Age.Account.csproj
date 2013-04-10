@@ -86,11 +86,11 @@
     <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\MessageService.cs" />
-    <Compile Include="ViewModels\AgentListViewModel.cs" />
+    <Compile Include="Models\AgentListViewModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\CustomerInfoModel.cs" />
-    <Compile Include="ViewModels\CustomerListViewModel.cs" />
+    <Compile Include="Models\CustomerListViewModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

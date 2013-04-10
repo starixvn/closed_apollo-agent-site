@@ -12,16 +12,15 @@ namespace Apollo.Age.Account.Services
     using System.Collections.Generic;
     using System.Linq;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Repositories.Impl;
     using Apollo.Age.Account.Repositories.Interface;
-    using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
-    using Apollo.Age.Account.Models;
 
     public class AccountService : ServiceBase, IAccountService
     {
@@ -40,17 +39,17 @@ namespace Apollo.Age.Account.Services
             _agentRepository = _agentRepository ?? new AgentRepository();
         }
 
-        public IEnumerable<AgentListViewModel> GetAgentList(ref AgentListCriteria criteria)
+        public IEnumerable<AgentListModel> GetAgentList(ref AgentListCriteria criteria)
         {
             return _agentListRepository.GetData(ref criteria);
         }
 
-        public IEnumerable<CustomerListViewModel> GetCustomerList(ref CustomerListCriteria criteria)
+        public IEnumerable<CustomerListModel> GetCustomerList(ref CustomerListCriteria criteria)
         {
             return _customerListRepository.GetData(ref criteria);
         }
 
-        public List<Customer> GetCustomerSearch(bool isMember, string userName, int agentId)
+        public List<Customer> GetCustomerSuggest(bool isMember, string userName, int agentId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
 
@@ -61,7 +60,7 @@ namespace Apollo.Age.Account.Services
                 UserName = userName
             };
 
-            return _accountRepository.GetCustomerSearch(criteria).ToList();
+            return _accountRepository.GetCustomerSuggest(criteria).ToList();
         }
 
         public CustomerInfoModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId)
