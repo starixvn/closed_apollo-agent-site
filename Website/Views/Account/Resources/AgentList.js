@@ -69,6 +69,8 @@ var AGENTLIST = function ($) {
                 AGENTLIST.loadAgentList(AGENTLIST.AgentId);
             });
         },
+        bindingEdit: function () {
+        },
         loadAgentList: function () {
             $.ajax({
                 type: "POST",

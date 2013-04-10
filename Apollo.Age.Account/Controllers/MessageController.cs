@@ -47,10 +47,13 @@ namespace Apollo.Age.Account.Controllers
         {
             var model = this._messageService.GetAnnouncement(this.CurrentSession.AgentId, lastPostTime ?? DateTime.Now);
 
-            var cookie = new HttpCookie(Constant.LASTPOSTTIMEKEY, model.Last().PostTime.ToString());
-            HttpContext.Response.Cookies.Set(cookie);
+            if (!ReferenceEquals(model, null) && model.Count() > 0)
+            {
+                var cookie = new HttpCookie(Constant.LASTPOSTTIMEKEY, model.Last().PostTime.ToString());
+                HttpContext.Response.Cookies.Set(cookie);
 
-            ViewBag.LastPostTime = lastPostTime ?? model.Last().PostTime;
+                ViewBag.LastPostTime = lastPostTime ?? model.Last().PostTime;
+            }
 
             return View(model);
         }
