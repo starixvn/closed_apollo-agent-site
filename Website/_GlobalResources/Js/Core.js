@@ -28,7 +28,7 @@ if (typeof jQuery != 'undefined') {
                 if (!siteRoot) siteRoot = parent.parent.parent.baseURL;
                 if (!siteRoot) siteRoot = "";
 
-                return siteRoot + url;                
+                return siteRoot + url;
             },
 
             alertGeneralError: function () {
@@ -60,9 +60,47 @@ if (typeof jQuery != 'undefined') {
                 //                    complete: function () {
                 //                    }
                 //                });
+            },
+
+            initDatePicker: function () {
+
+                var datePicker = $('.datepicker');
+
+                if (datePicker.length > 0) {
+                    //get minDate, maxDate, disabledDates                   
+
+                    var mindate = datePicker.attr('mindate');
+                    var maxdate = datePicker.attr('maxdate');
+
+                    datePicker.datepicker({
+                        dateFormat: "MM/dd/yyyy",
+                        showOn: "button",
+                        buttonImageOnly: true,
+                        buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png")
+                    });
+
+                    if (typeof (initDatePicker) != "function") //check if (isExit include date.filter.js) then (mindate, maxdate include after function initDatePicker)
+                    {
+                        if (mindate != 'null') {
+                            mindate = mindate.split("/");
+                            datePicker.datepicker("option", "minDate", new Date(mindate[2], mindate[0], mindate[1]));
+                        }
+                        if (maxdate != 'null') {
+                            maxdate = maxdate.split("/");
+                            datePicker.datepicker("option", "maxDate", new Date(maxdate[2], maxdate[0], maxdate[1]));
+                        }
+
+                    }
+                }
+
             }
         };
     } (jQuery);
+
+    $(document).ready(function () {
+
+        APOLLO.initDatePicker();
+    });
 }
 
 var matchedBrowser, browserDectect;
