@@ -10,7 +10,7 @@
 namespace Apollo.Age.Account.Repositories.Interface
 {
     using System.Collections.Generic;
-    using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Account.Models;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
@@ -21,7 +21,7 @@ namespace Apollo.Age.Account.Repositories.Interface
 
         IEnumerable<Customer> GetCustomerSearch(ICriteria criteria);
 
-        CustomerInfoViewModel GetCustomerInfo(ICriteria criteria);
+        CustomerInfoModel GetCustomerInfo(ICriteria criteria);
 
         IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria);
     }

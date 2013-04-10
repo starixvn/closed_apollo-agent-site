@@ -12,12 +12,12 @@ namespace Apollo.Age.Account.Services
 {
     using System;
     using System.Collections.Generic;
-    using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Account.Models;
     using Fanex.NAP.Framework.Data;
 
     public interface IMessageService
     {
-        IEnumerable<AnnouncementViewModel> GetAnnouncement(int agentId, DateTime lastPostDate, int totalMessage = 10, bool isTest = false);
+        IEnumerable<AnnouncementModel> GetAnnouncement(int agentId, DateTime lastPostDate, int totalMessage = 10, bool isTest = false);
 
         bool UpdateReadMessage(int userId, int messsageId, bool isAgent = true);
 
@@ -27,10 +27,10 @@ namespace Apollo.Age.Account.Services
 
         bool UpdateReadPrivateMessage(int userId, string username);
 
-        MessageViewModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false);
+        MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false);
 
-        MessageViewModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false);
+        MessageModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false);
 
-        IEnumerable<MessageViewModel> GetMessage(ICriteria criteria);
+        IEnumerable<MessageModel> GetMessage(ICriteria criteria);
     }
 }

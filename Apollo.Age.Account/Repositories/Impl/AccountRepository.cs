@@ -11,8 +11,8 @@ namespace Apollo.Age.Account.Repositories.Impl
 {
     using System;
     using System.Collections.Generic;
+    using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Repositories.Interface;
-    using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Fanex.Common.Helper;
@@ -61,7 +61,7 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
-        public CustomerInfoViewModel GetCustomerInfo(ICriteria criteria)
+        public CustomerInfoModel GetCustomerInfo(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             try
@@ -70,11 +70,11 @@ namespace Apollo.Age.Account.Repositories.Impl
                 {
                     using (var db = new ObjectDb(criteria.GetSettingKey()))
                     {
-                        return db.QueryEntity<CustomerInfoViewModel>(criteria.GetSpParams());
+                        return db.QueryEntity<CustomerInfoModel>(criteria.GetSpParams());
                     }
                 }
 
-                return new CustomerInfoViewModel();
+                return new CustomerInfoModel();
             }
             catch
             {

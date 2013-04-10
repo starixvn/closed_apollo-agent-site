@@ -11,16 +11,14 @@
 namespace Apollo.Age.Account.Services
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using Apollo.Age.Account.ViewModels;
-    using Apollo.Age.Services.Impl;
     using Apollo.Age.Account.Criterias;
-    using Fanex.NAP.Framework.Data;
-    using Sunplus.Agent.Model.Entities;
-    using System.Collections;
+    using Apollo.Age.Account.Models;
+    using Apollo.Age.Services.Impl;
     using Fanex.Caching;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
@@ -33,10 +31,10 @@ namespace Apollo.Age.Account.Services
 
         private ICache _cache = CacheService.CreateInstance(CacheType.MemoryCache);
 
-        public IEnumerable<AnnouncementViewModel> GetAnnouncement(int agentId
+        public IEnumerable<AnnouncementModel> GetAnnouncement(int agentId
             , DateTime lastPostDate, int totalMessage = 10, bool isTest = false)
         {
-            return this.GetData<AnnouncementViewModel>(new GetCustomerMessageCriteria
+            return this.GetData<AnnouncementModel>(new GetCustomerMessageCriteria
                 {
                     CustomerId = agentId,
                     SiteIds = SiteList,
@@ -104,7 +102,7 @@ namespace Apollo.Age.Account.Services
 
             if (criteria.IsValid())
             {
-                var list = this.GetData<MessageViewModel>(criteria);
+                var list = this.GetData<MessageModel>(criteria);
 
                 return list != null && list.Count() > 0;
             }
@@ -112,7 +110,7 @@ namespace Apollo.Age.Account.Services
             return false;
         }
 
-        public MessageViewModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false)
+        public MessageModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false)
         {
             char[] separator = new char[] { ',' };
             string[] arraySite = GetParentSitesID(siteId.ToString()).Split(separator);
@@ -132,14 +130,14 @@ namespace Apollo.Age.Account.Services
                 string key = messageType.ToString() + "_" + siteId;
 
                 if (_cache.Contains(key)
-                    && _cache.Get<MessageViewModel>(key) != null)
+                    && _cache.Get<MessageModel>(key) != null)
                 {
-                    return _cache.Get<MessageViewModel>(key);
+                    return _cache.Get<MessageModel>(key);
                 }
 
-                var message = this.GetData<MessageViewModel>(criteria).FirstOrDefault();
+                var message = this.GetData<MessageModel>(criteria).FirstOrDefault();
 
-                _cache.Set<MessageViewModel>(key, message, 30);
+                _cache.Set<MessageModel>(key, message, 30);
 
                 return message;
             }
@@ -147,7 +145,7 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
-        public MessageViewModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false)
+        public MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false)
         {
             var criteria = new GetTopPriMessage24Criteria
             {
@@ -160,7 +158,7 @@ namespace Apollo.Age.Account.Services
             {
                 if (this.GetHasPrivateMessage24(userId, isTest))
                 {
-                    return this.GetData<MessageViewModel>(criteria).FirstOrDefault();
+                    return this.GetData<MessageModel>(criteria).FirstOrDefault();
                 }
             }
 
@@ -200,11 +198,11 @@ namespace Apollo.Age.Account.Services
             return str2 + siteId;
         }
 
-        public IEnumerable<MessageViewModel> GetMessage(ICriteria criteria)
+        public IEnumerable<MessageModel> GetMessage(ICriteria criteria)
         {
             if (criteria.IsValid())
             {
-                return this.GetData<MessageViewModel>(criteria);
+                return this.GetData<MessageModel>(criteria);
             }
 
             return null;
