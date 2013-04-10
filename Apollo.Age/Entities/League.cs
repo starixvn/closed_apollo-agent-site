@@ -16,7 +16,7 @@ namespace Apollo.Age.Entities
     using System.Text;
     using Apollo.Age.Services;
 
-    public class League 
+    public class League
     {
         public int Id { get; set; }
 

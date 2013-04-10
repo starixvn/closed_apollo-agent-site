@@ -16,23 +16,52 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Web;
     using System.Web.Mvc;
     using Apollo.Age.Reports.Services;
+    using Apollo.Age.Reports.ViewModels;
+    using Apollo.Age.Entities;
 
     public class ResultController : BaseController
     {
-        private readonly ReportService _reportService;
+        private readonly ResultService _resultService;
 
         public ResultController() : this(null) { }
 
-        public ResultController(ReportService reportService = null)
+        public ResultController(ResultService resultService = null)
         {
-            _reportService = reportService ?? new ReportService();
+            _resultService = resultService ?? new ResultService();
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            var balanceUpDay = _reportService.GetBalanceUpDay();
+            return Index(DateTime.Now);
+        }
 
-            return View(balanceUpDay);
+        [HttpPost]
+        public ActionResult Index(DateTime date)
+        {
+            var sports = _resultService.GetResultSports(date);
+            IEnumerable<League> leagues = null;
+
+            if (sports.Any())
+            {
+                leagues = _resultService.GetLeagueBySport(date, sports.First().Id);
+            }
+
+            var balanceUpDay = _resultService.GetBalanceUpDay();
+
+            var viewModel = new ReportResultViewModel
+            {
+                BalanceUpDay = balanceUpDay,
+                SportList = sports,
+                LeagueList = leagues
+            };
+
+            return View(viewModel);
+        }
+        
+        public ActionResult LeagueBySport()
+        {
+            return View();
         }
     }
 }
