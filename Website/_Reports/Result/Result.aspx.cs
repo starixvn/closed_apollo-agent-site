@@ -22,13 +22,14 @@ namespace Fanex.Age.UI.Reports.Result
 	using Sunplus.Agent.Model.BL.Reports;
 	using Sunplus.Agent.Model.Entities.Permission;
 	using Sunplus.Agent.Utilities;
-    using Sunplus.Agent.Model.BL.Definitions;
+	using Sunplus.Agent.Model.BL.Definitions;
 
 	public partial class Result_Page : Reports_Page
 	{
 		public Result_Page()
 		{
-			MIN_REPORT_DATE = Sunplus.Agent.Model.BL.Reports.ReportsBO.BalanceUpDate;
+            MIN_REPORT_DATE = new DateTime(2013, 3, 1);
+			//MIN_REPORT_DATE = Sunplus.Agent.Model.BL.Reports.ReportsBO.BalanceUpDate;
 		}
 
 		#region Variable
@@ -60,33 +61,33 @@ namespace Fanex.Age.UI.Reports.Result
 		/// <param name="writer"></param>
 		public override void RenderContent(HtmlTextWriter writer)
 		{
-            //if (_exportToExcel)
-            //{
-            //    DataTable reportData = (View as Dictionary<string, DataTable>)["ReportData"];
-            //    MemoryStream excelStream = null;
-            //    if (this.isOutright)
-            //    {
-            //        var builder = new Fanex.Age.Excel.Reports.Result.OutrightReportBuilder(this._sportId, this._leagueId, this.bettype, reportData, _dateFrom, _dateTo);
-            //        excelStream = builder.Build();
-            //    }
-            //    else
-            //    {
-            //        var builder = new Fanex.Age.Excel.Reports.Result.ResultReportBuilder(this._sportId, this._leagueId, this.bettype, reportData, _dateFrom, _dateTo);
-            //        excelStream = builder.Build();
-            //    }
+			//if (_exportToExcel)
+			//{
+			//    DataTable reportData = (View as Dictionary<string, DataTable>)["ReportData"];
+			//    MemoryStream excelStream = null;
+			//    if (this.isOutright)
+			//    {
+			//        var builder = new Fanex.Age.Excel.Reports.Result.OutrightReportBuilder(this._sportId, this._leagueId, this.bettype, reportData, _dateFrom, _dateTo);
+			//        excelStream = builder.Build();
+			//    }
+			//    else
+			//    {
+			//        var builder = new Fanex.Age.Excel.Reports.Result.ResultReportBuilder(this._sportId, this._leagueId, this.bettype, reportData, _dateFrom, _dateTo);
+			//        excelStream = builder.Build();
+			//    }
 
-            //    if (excelStream != null)
-            //    {
-            //        ExportToExcel(excelStream, "Result.xls");
-            //        excelStream.Dispose();
-            //        return;
-            //    }
+			//    if (excelStream != null)
+			//    {
+			//        ExportToExcel(excelStream, "Result.xls");
+			//        excelStream.Dispose();
+			//        return;
+			//    }
 
-            //    // Need to render report content only
-            //    this.RenderReportContent(this.tpl.ExcelContents);
-            //    this.ExportToExcel(Response, this.tpl.ExcelContents.ToString(), "Result");
-            //}
-            //else
+			//    // Need to render report content only
+			//    this.RenderReportContent(this.tpl.ExcelContents);
+			//    this.ExportToExcel(Response, this.tpl.ExcelContents.ToString(), "Result");
+			//}
+			//else
 			{
 				// Render Report Header and history message
 				this.RenderReportHeader(this.tpl);
@@ -159,18 +160,18 @@ namespace Fanex.Age.UI.Reports.Result
 
 				switch (this.bettype)
 				{
-                    //case 81:
-                    //case 82:
-                    //case 83:
-                    //case 84:
-                    //case 85:
-                    //case 86:
-                    //case 87:
-                    //case 88:
-                    //case 89:
-                    //case 90:
-                    //    reportData = _ReportBO.SelectMatchForViewNumberGameResult(this._matchId);
-                    //    break;
+					//case 81:
+					//case 82:
+					//case 83:
+					//case 84:
+					//case 85:
+					//case 86:
+					//case 87:
+					//case 88:
+					//case 89:
+					//case 90:
+					//    reportData = _ReportBO.SelectMatchForViewNumberGameResult(this._matchId);
+					//    break;
 					case 9:
 					case 29:
 						// Mix Parlay & System Parlay
@@ -203,23 +204,23 @@ namespace Fanex.Age.UI.Reports.Result
 				DataTable sportList = _ReportBO.GetResultSportByDate(_dateFrom);
 
 				// Delete number game if IsShowNumberGame=false
-                //if (!UserPermission.IsShowNumberGame)
-                //{
-                //    DataRow[] numberGame = sportList.Select("sporttype=" + ((int)Sunplus.Agent.Model.BL.Definitions.SportType.NumberGame).ToString());
-                //    foreach (DataRow dr in numberGame)
-                //    {
-                //        sportList.Rows.Remove(dr);
-                //    }
-                //}
+				//if (!UserPermission.IsShowNumberGame)
+				//{
+				//    DataRow[] numberGame = sportList.Select("sporttype=" + ((int)Sunplus.Agent.Model.BL.Definitions.SportType.NumberGame).ToString());
+				//    foreach (DataRow dr in numberGame)
+				//    {
+				//        sportList.Rows.Remove(dr);
+				//    }
+				//}
 
-                //if (!UserPermission.IsShowLiveCasino)
-                //{
-                //    DataRow[] liveCasino = sportList.Select("sporttype=" + ((int)Sunplus.Agent.Model.BL.Definitions.SportType.LiveCasino).ToString());
-                //    foreach (DataRow dr in liveCasino)
-                //    {
-                //        sportList.Rows.Remove(dr);
-                //    }
-                //}
+				//if (!UserPermission.IsShowLiveCasino)
+				//{
+				//    DataRow[] liveCasino = sportList.Select("sporttype=" + ((int)Sunplus.Agent.Model.BL.Definitions.SportType.LiveCasino).ToString());
+				//    foreach (DataRow dr in liveCasino)
+				//    {
+				//        sportList.Rows.Remove(dr);
+				//    }
+				//}
 
 				viewData.Add("SportList", sportList);
 
@@ -234,37 +235,37 @@ namespace Fanex.Age.UI.Reports.Result
 				viewData.Add("LeagueList", leagueList);
 
 				// Get result data
-                //switch (this._sportId)
-                //{
-                    //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.HorseRacing:
-                    //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.Greyhound:
-                    //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.Harness:
-                    //    reportData = _ReportBO.GetResultHRRaces(_dateFrom, this._sportId, this._leagueId);
-                    //    break;
-                    //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.NumberGame:
-                    //    reportData = _ReportBO.GetResultNumberGameByLeague(_dateFrom, this._leagueId);
-                    //    if (this._leagueId > 0)
-                    //    {
-                    //        reportData = SortData(reportData);
-                    //    }
+				//switch (this._sportId)
+				//{
+					//case (int)Sunplus.Agent.Model.BL.Definitions.SportType.HorseRacing:
+					//case (int)Sunplus.Agent.Model.BL.Definitions.SportType.Greyhound:
+					//case (int)Sunplus.Agent.Model.BL.Definitions.SportType.Harness:
+					//    reportData = _ReportBO.GetResultHRRaces(_dateFrom, this._sportId, this._leagueId);
+					//    break;
+					//case (int)Sunplus.Agent.Model.BL.Definitions.SportType.NumberGame:
+					//    reportData = _ReportBO.GetResultNumberGameByLeague(_dateFrom, this._leagueId);
+					//    if (this._leagueId > 0)
+					//    {
+					//        reportData = SortData(reportData);
+					//    }
 
-                    //    break;
-                    //default:
+					//    break;
+					//default:
 						reportData = _ReportBO.GetResultMatchByLeague(_dateFrom, this._sportId, this._leagueId);
 						if (this._leagueId > 0)
 						{
 							reportData = SortData(reportData);
 						}
 
-            //            break;
-            //    }
-            }
+			//            break;
+			//    }
+			}
 
 			// Check show LiveCasino on Webconfig
-            //if (!UserPermission.IsShowLiveCasino && reportData.Columns.Contains("sporttype"))
-            //{
-            //    reportData = new DataView(reportData, "sporttype <> 162", string.Empty, DataViewRowState.CurrentRows).ToTable();
-            //}
+			//if (!UserPermission.IsShowLiveCasino && reportData.Columns.Contains("sporttype"))
+			//{
+			//    reportData = new DataView(reportData, "sporttype <> 162", string.Empty, DataViewRowState.CurrentRows).ToTable();
+			//}
 
 			viewData.Add("ReportData", reportData);
 			return viewData;
@@ -341,28 +342,28 @@ namespace Fanex.Age.UI.Reports.Result
 				switch (this._sportId)
 				{
 					case (int)SportType.Soccer: 
-                        this.RenderSoccer(reportData, excelBlock);
+						this.RenderSoccer(reportData, excelBlock);
 						break;
 					case (int)SportType.BasketBall:
 					case (int)SportType.Netball:
 					case (int)SportType.FootBall:
 					case (int)SportType.Rugby: 
-                    this.RenderBasketBall(reportData, excelBlock);
+					this.RenderBasketBall(reportData, excelBlock);
 						break;
 					case (int)SportType.IceHockey:
 					case (int)SportType.FieldHockey: 
-                    this.RenderHockey(reportData, excelBlock);
+					this.RenderHockey(reportData, excelBlock);
 						break;
 					case (int)SportType.Tennis: 
-                        this.RenderTennis(reportData, excelBlock);
+						this.RenderTennis(reportData, excelBlock);
 						break;
 					case (int)SportType.VolleyBall:
 					case (int)SportType.Badminton:
 					case (int)SportType.Squash: 
-                    this.RenderBadminton(reportData, excelBlock);
+					this.RenderBadminton(reportData, excelBlock);
 						break;
 					case (int)SportType.BaseBall: 
-                        this.RenderBaseBall(reportData, excelBlock);
+						this.RenderBaseBall(reportData, excelBlock);
 						break;
 					case (int)SportType.Golf:
 					case (int)SportType.Motorsports:
@@ -379,14 +380,14 @@ namespace Fanex.Age.UI.Reports.Result
 					case (int)SportType.Wrestling:
 					case (int)SportType.Winter: this.RenderBilliard(reportData, excelBlock);
 						break;
-                    //case (int)SportType.HorseRacing:
-                    //case (int)SportType.Greyhound:
-                    //case (int)SportType.Harness: this.RenderHorseRacing(reportData, excelBlock);
-                    //    break;
-                    //case (int)SportType.NumberGame: this.RenderNumberGame(reportData, excelBlock);
-                    //    break;
-                    //case (int)SportType.LiveCasino: this.RenderLiveCasino(reportData, excelBlock);
-                    //    break;
+					//case (int)SportType.HorseRacing:
+					//case (int)SportType.Greyhound:
+					//case (int)SportType.Harness: this.RenderHorseRacing(reportData, excelBlock);
+					//    break;
+					//case (int)SportType.NumberGame: this.RenderNumberGame(reportData, excelBlock);
+					//    break;
+					//case (int)SportType.LiveCasino: this.RenderLiveCasino(reportData, excelBlock);
+					//    break;
 					default: this.RenderOtherSport(reportData, excelBlock);
 						break;
 				}

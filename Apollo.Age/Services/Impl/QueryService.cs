@@ -36,7 +36,7 @@ namespace Apollo.Age.Services.Impl
             Check.Argument.IsNotNull(criteria, "criteria");
 
             try
-            {
+            {                
                 if (criteria.IsValid())
                 {
                     return _repository.Fetch<T>(criteria);

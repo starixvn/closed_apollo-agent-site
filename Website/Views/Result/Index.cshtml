@@ -1,0 +1,16 @@
+﻿@using Apollo.Age.Reports.Models;
+@using Fanex.Age.Utility;
+@using Sunplus.Agent.Model.Entities;
+@using Apollo.Age.Reports.DTO;
+@{
+    Page.Title = "Resource.Result";
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+}
+
+@model System.DateTime
+<div id="content_main">
+    @Html.DatePicker("fdate",DateTime.Now, minDate: Model, maxDate: DateTime.Now.Date)    
+    <input id="btnSubmit" value="Resouces.Generate" type="button"/>
+    <input id="btnToday" value="@DateTime.Now.Date.ToString()" type="button" />
+    <input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToString()" type="button"/>
+</div>
