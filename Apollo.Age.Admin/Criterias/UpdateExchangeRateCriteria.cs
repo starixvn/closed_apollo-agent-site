@@ -13,9 +13,9 @@ namespace Apollo.Age.Admin.Criterias
 
     public class UpdateExchangeRateCriteria : CriteriaBase
     {
-        public int userId { get; set; }
+        public int UserId { get; set; }
 
-        public string ip { get; set; }
+        public string IP { get; set; }
 
         public int ExchangeId { get; set; }
 

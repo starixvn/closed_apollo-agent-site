@@ -19,6 +19,10 @@ namespace Apollo.Age.Admin.Repositories.Interface
 
         ExchRate GetById(ref GetExchangeRateByIdCriteria criteria);
 
-        void UpdateExchangeRate(ref UpdateExchangeRateCriteria criteria);
+        ExchRate GetByCurrency(ref GetExchangeRateByCurrencyCriteria criteria);
+
+        void InsertExchangeRate(ref InsertExchangeRateCriteria criteria);
+
+        void UpdateExchangeRate(ref UpdateExchangeRateCriteria criteria);        
     }
 }
