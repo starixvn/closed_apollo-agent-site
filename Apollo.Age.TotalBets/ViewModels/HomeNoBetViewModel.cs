@@ -7,11 +7,11 @@
 //   <change who="Quinn.Vo" date="2013.4.1">Created</change>
 // </history>
 
-namespace Apollo.Age.TotalBets.ViewModels
+namespace Apollo.Age.TotalBets.Models
 {
     using Apollo.Age.Services;
 
-    public class HomeNoBetViewModel
+    public class HomeNoBetModel
     {
         public string ShowTime { get; set; }
 

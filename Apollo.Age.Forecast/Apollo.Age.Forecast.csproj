@@ -77,21 +77,20 @@
     <Compile Include="Criterias\GetScoreMapResultCriteria.cs" />
     <Compile Include="Criterias\GetScoreMatchesByLeague.cs" />
     <Compile Include="Criterias\GetTopOddsByMatchCriteria.cs" />
-    <Compile Include="Models\ScoreMapBetType.cs" />
-    <Compile Include="Models\ScoreMapResult.cs" />
+    <Compile Include="Models\ScoreMapBetTypeModel.cs" />
+    <Compile Include="Models\ScoreMapResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ForecastRepository.cs" />
     <Compile Include="Repositories\IForecastRepository.cs" />
     <Compile Include="Services\ForecastService.cs" />
-    <Compile Include="ViewModels\Forecast1X2ViewModel.cs" />
-    <Compile Include="ViewModels\ForecastHandicapOUViewModel.cs" />
-    <Compile Include="ViewModels\ForecastMatchViewModel.cs" />
-    <Compile Include="ViewModels\ForecastMatchWinLostViewModel.cs" />
-    <Compile Include="ViewModels\LeagueViewModel.cs" />
-    <Compile Include="ViewModels\MatchOddsViewModel.cs" />
-    <Compile Include="ViewModels\ScoreMapBetTypeViewModel.cs" />
-    <Compile Include="ViewModels\ScoreMapMatchViewModel.cs" />
-    <Compile Include="ViewModels\ScoreMapResultViewModel.cs" />
+    <Compile Include="Models\Forecast1X2Model.cs" />
+    <Compile Include="Models\ForecastHandicapOUModel.cs" />
+    <Compile Include="Models\ForecastMatchModel.cs" />
+    <Compile Include="Models\ForecastMatchWinLostModel.cs" />
+    <Compile Include="Models\LeagueModel.cs" />
+    <Compile Include="Models\MatchOddsModel.cs" />
+    <Compile Include="Models\ScoreMapBetTypesModel.cs" />
+    <Compile Include="Models\ScoreMapMatchResultModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">

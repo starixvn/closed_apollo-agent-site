@@ -5,7 +5,7 @@ using Sunplus.Agent.Model.BL.Forecast;
 using System;
 
 /*
- * Created 20110920@Simon - Render Match By League
+ * Created 20110920@Simon - Render Match By LeagueModel
  * Revision:
  * ?@? - ... 
  * 

@@ -1,9 +1,9 @@
-﻿@using Apollo.Age.TotalBets.ViewModels
+﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.htft;
 }
-@model IEnumerable<HTFTViewModel>
+@model IEnumerable<HTFTModel>
 @RazorHelper.RefreshCountDown("HTFT", 90, 60)
 <table class="tblRpt persist-area">
     <thead class="persist-header">

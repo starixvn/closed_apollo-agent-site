@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ScoreMapBetType.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ScoreMapBetTypeModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace Apollo.Age.Forecast.Models
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [Serializable]
-    public class ScoreMapBetType
+    public class ScoreMapBetTypeModel
     {
         public int TypeId { get; set; }
 

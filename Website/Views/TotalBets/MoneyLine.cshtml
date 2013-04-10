@@ -1,11 +1,11 @@
-﻿@using Apollo.Age.TotalBets.ViewModels
+﻿@using Apollo.Age.TotalBets.Models
 @using Fanex.Age.Utility
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.moneyline;
 }
-@model IEnumerable<MoneyLineViewModel>
-@helper ShowLeague(int currentLeagueId, MoneyLineViewModel item)
+@model IEnumerable<MoneyLineModel>
+@helper ShowLeague(int currentLeagueId, MoneyLineModel item)
     {
         if (currentLeagueId != item.LeagueId)
         { 

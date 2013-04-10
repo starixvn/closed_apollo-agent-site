@@ -16,6 +16,6 @@ namespace Apollo.Age.Forecast.Repositories
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IForecastRepository
     {
-        ScoreMapResult GetScoreMapResult(ICriteria criteria);
+        ScoreMapResultModel GetScoreMapResult(ICriteria criteria);
     }
 }
