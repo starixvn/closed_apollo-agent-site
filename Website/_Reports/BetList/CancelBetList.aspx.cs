@@ -36,17 +36,19 @@ namespace Fanex.Age.UI.Reports.BetList
 
     public partial class CancelBetList : TplPage
     {
-        int masterId = 0;
-        int agentId = 0;
-        int memberId = 0;
+        #region Variables
 
-        string option = string.Empty;
-        string title = string.Empty;
+        private int masterId = 0;
+        private int agentId = 0;
+        private int memberId = 0;
 
-        CancelBetList_Template tpl = new CancelBetList_Template();
-        IBetListCmd command = null;
+        private string option = string.Empty;
+        private string title = string.Empty;
 
-        bool exportExcel = false;
+        private CancelBetList_Template tpl = new CancelBetList_Template();
+        private IBetListCmd command = null;
+
+        #endregion Variables
 
         public override void RenderContent(HtmlTextWriter writer)
         {
@@ -81,152 +83,65 @@ namespace Fanex.Age.UI.Reports.BetList
 
             #endregion INIT
 
-            if (exportExcel)
+            #region RENDER HTML
+
+            BetListHTMLFactory factory = new BetListHTMLFactory();
+            BetListHTMLBuilder builder = factory.CreateBuilder();
+
+            StringBuilder content = new StringBuilder();
+
+            Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
+            Header1_Template betlistHeader = new Header1_Template();
+            betlistHeader.Winloss.Hide();
+
+            content.Append(betlistOpenTag);
+            content.Append(betlistHeader);
+            content.Append("<tbody>");
+
+            foreach (ITicket ticket in tickets)
             {
-                #region EXPORT EXCEL
-
-                BetListExcelFactory factory = new BetListExcelFactory();
-                BetListExcelBuilder builder = factory.CreateBuilder();
-
-                builder.BuildWorksheet("CancelBetList", 7);
-                builder.AddCaption(Resources.Lang.voidandreject.ToUpper(), 7);
-                builder.AddHeader(false, false, true);
-
-                foreach (ITicket ticket in tickets)
-                {
-                    index++;
-                    ticketHelper.Index = index;
-
-                    builder.AddNo(index)
-                           .AddMember(ticket, ticketHelper)
-                           .AddTrans(ticket, ticketHelper)
-                           .AddChoice(ticket, ticketHelper, ticketData)
-                           .AddOdds(ticket, ticketData, funcGetOddsTypeName)
-                           .AddStake(ticket)
-                           .AddStatus(ticket, ticketHelper, ticketData, isAdminCanViewVNIP);
-                }
-
-                MemoryStream ms = new MemoryStream();
-                IWorkbook resultWorkbook = builder.GetBetList();
-                resultWorkbook.Write(ms);
-
-                ExportToExcel(ms, "CancelBetList.xls");
-                ms.Dispose();
-                return;
-
-                #endregion EXPORT EXCEL
+                index++;
+                ticketHelper.Index = index;
+                builder.Append(string.Format("<tr id='{0}'>", ticket.TransId))
+                       .AddNo(index, "<td class='w-order'>", "</td>")
+                       .AddMember(ticket, "<td class='c'>", "</td>")
+                       .AddTrans(ticket, "<td class='c'>", "</td>")
+                       .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", false)
+                       .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
+                       .AddStake(ticket, "<td class='bl_underdog'>", "</td>")
+                       .AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP)
+                       .Append("</tr>");
             }
-            else
-            {
-                #region RENDER HTML
 
-                BetListHTMLFactory factory = new BetListHTMLFactory();
-                BetListHTMLBuilder builder = factory.CreateBuilder();
+            content.Append(builder.GetBetList());
+            content.Append("</tbody></table>");
 
-                StringBuilder content = new StringBuilder();
+            tpl.content = content.ToString();
 
-                Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
-                Header1_Template betlistHeader = new Header1_Template();
-                betlistHeader.Winloss.Hide();
+            writer.Write(tpl);
 
-                content.Append(betlistOpenTag);
-                content.Append(betlistHeader);
-                content.Append("<tbody>");
-
-                foreach (ITicket ticket in tickets)
-                {
-                    index++;
-                    ticketHelper.Index = index;
-                    builder.Append(string.Format("<tr id='{0}'>", ticket.TransId))
-                           .AddNo(index, "<td class='w-order'>", "</td>")
-                           .AddMember(ticket, "<td class='c'>", "</td>")
-                           .AddTrans(ticket, "<td class='c'>", "</td>")
-                           .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", false)
-                           .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
-                           .AddStake(ticket, "<td class='bl_underdog'>", "</td>")
-                           .AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP)
-                           .Append("</tr>");
-                }
-
-                content.Append(builder.GetBetList());
-                content.Append("</tbody></table>");
-
-                if (dtDeletedBets.Rows.Count == 0)
-                {
-                    tpl.Options.SetValue("");
-                }
-                tpl.content = content.ToString();
-
-                writer.Write(tpl);
-
-                #endregion RENDER HTML
-            }
-        }
-
-        protected void ExportToExcel(System.IO.MemoryStream excelStream, string fileName)
-        {
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", fileName));
-            Response.Clear();
-            Response.BinaryWrite(excelStream.GetBuffer());
-            Response.End();
+            #endregion RENDER HTML
         }
 
         private void Show_HideComboBox(Dictionary<string, DataTable> results, UserTypes userType)
         {
-            if (results["dtCombo1"] != null && results["dtCombo1"].Rows.Count > 0)
-            {
-                if (CurrentUserSession.IsSuper)
-                {
-                    userType = UserTypes.Super;
+            //if (results["dtCombo1"] != null && results["dtCombo1"].Rows.Count > 0)
+            //{
+            //        tpl.Options.Master.Visible = false;
+            //        tpl.Options.Agent.Visible = false;
+            //        userType = UserTypes.Agent;
 
-                    //modify tables=> new datatable has 2 columns "custid" & "text" (text=username+betcount+Resources.Lang.bet)
-                    results["dtCombo1"] = HtmlGenerator.ModifyDataTable(results["dtCombo1"], string.Empty, "custid", "username", "betcount", Resources.Lang.bet);
-                    results["dtCombo2"] = HtmlGenerator.ModifyDataTable(results["dtCombo2"], Resources.Lang.allagent, "custid", "username", "betcount", Resources.Lang.bet);
-                    results["dtCombo3"] = HtmlGenerator.ModifyDataTable(results["dtCombo3"], Resources.Lang.allmember, "custid", "username", "betcount", Resources.Lang.bet);
+            //        // modify tables=> new datatable has 2 columns "custid" & "text" (text=username+betcount+Resources.Lang.bet)
+            //        results["dtCombo1"] = HtmlGenerator.ModifyDataTable(results["dtCombo1"], string.Empty, "custid", "username", "betcount", Resources.Lang.bet);
 
-                    tpl.Options.Master.option_master = HtmlGenerator.ComboBox("masterId", masterId, results["dtCombo1"], "custid", "text", "selected_Option_master(this)");
-                    tpl.Options.Agent.option_agent = HtmlGenerator.ComboBox("agentId", agentId, results["dtCombo2"], "custid", "text", "selected_Option_agent(this)");
-
-                    if (agentId > 0 && results["dtCombo2"].Rows.Count > 0 && results["dtCombo2"].Select("custid=" + agentId).Length > 0)
-                    {
-                        tpl.Options.Member.option_member = HtmlGenerator.ComboBox("memberId", memberId, results["dtCombo3"], "custid", "text", "selected_Option_member(this)");
-                    }
-                    else
-                    {
-                        tpl.Options.Member.Visible = false;
-                    }
-                }
-                else if (CurrentUserSession.IsMaster)
-                {
-                    tpl.Options.Master.Visible = false;
-                    userType = UserTypes.Master;
-
-                    //modify tables=> new datatable has 2 columns "custid" & "text" (text=username+betcount+Resources.Lang.bet)
-                    results["dtCombo1"] = HtmlGenerator.ModifyDataTable(results["dtCombo1"], string.Empty, "custid", "username", "betcount", Resources.Lang.bet);
-                    results["dtCombo2"] = HtmlGenerator.ModifyDataTable(results["dtCombo2"], Resources.Lang.allmember, "custid", "username", "betcount", Resources.Lang.bet);
-
-                    tpl.Options.Agent.option_agent = HtmlGenerator.ComboBox("agentId", agentId, results["dtCombo1"], "custid", "text", "selected_Option_agent(this)");
-                    tpl.Options.Member.option_member = HtmlGenerator.ComboBox("memberId", memberId, results["dtCombo2"], "custid", "text", "selected_Option_member(this)");
-                }
-                else if (CurrentUserSession.IsAgent)
-                {
-                    tpl.Options.Master.Visible = false;
-                    tpl.Options.Agent.Visible = false;
-                    userType = UserTypes.Agent;
-
-                    //modify tables=> new datatable has 2 columns "custid" & "text" (text=username+betcount+Resources.Lang.bet)
-                    results["dtCombo1"] = HtmlGenerator.ModifyDataTable(results["dtCombo1"], string.Empty, "custid", "username", "betcount", Resources.Lang.bet);
-
-                    tpl.Options.Member.option_member = HtmlGenerator.ComboBox("memberId", memberId, results["dtCombo1"], "custid", "text", "selected_Option_member(this)");
-                }
-            }
-            else //has no item of cancelBet
-            {
-                tpl.Options.Master.Visible = false;
-                tpl.Options.Agent.Visible = false;
-                tpl.Options.Member.Visible = false;
-            }
+            //        tpl.Options.Member.option_member = HtmlGenerator.ComboBox("memberId", memberId, results["dtCombo1"], "custid", "text", "selected_Option_member(this)");
+            //}
+            //else // has no item of cancelBet
+            //{
+            //    tpl.Options.Master.Visible = false;
+            //    tpl.Options.Agent.Visible = false;
+            //    tpl.Options.Member.Visible = false;
+            //}
         }
 
         public override object InvokeData(Hashtable hash)
@@ -240,7 +155,6 @@ namespace Fanex.Age.UI.Reports.BetList
                 hash.Add("masterId", masterId);
 
                 command.SetParams(hash);
-
                 return command.Execute();
             }
 
@@ -252,8 +166,6 @@ namespace Fanex.Age.UI.Reports.BetList
             int.TryParse(Request["masterId"] + string.Empty, out masterId);
             int.TryParse(Request["agentId"] + string.Empty, out agentId);
             int.TryParse(Request["memberId"] + string.Empty, out memberId);
-
-            exportExcel = Request["exporttoexcel.x"] != null ? true : false;
         }
 
         public override object ValidateRequest(Hashtable hash)
@@ -264,54 +176,6 @@ namespace Fanex.Age.UI.Reports.BetList
             }
 
             return null;
-        }
-
-        public void ExportToExcel(HttpResponse Response, string data, string filename)
-        {
-            Response.Clear();
-            Response.AddHeader("content-disposition", "attachment;filename=" + filename.Replace(" ", "") + ".xls");
-            Response.Charset = "utf-8";
-            Response.ContentType = "application/vnd.xls";
-
-            const String excelHtmlHeader = @"<html>
-                    <head>
-                        <META http-EQUIV='Content-Type' CONTENT='text/html; charset=unicode-utf8'>
-                        <style>
-                            body{font-family:Tahoma; font-size:12px; color:#000000; background:#ffffff;}
-                            td,table{border-collapse:collapse;border-color:#7C98A4; border-style:Solid; border-width:thin;}
-                            .league{color: #000000; background: #aacccc;}
-                            td{vertical-align:top;text-align:right;font-size:12px;}
-                            font, div, span{font-size:12px;text-decoration:none;}
-                            .bl_underdog{font-weight:bold}
-                            .bl_match{white-space: nowrap; width: 200px}
-                            .bl_favorite{color: red;font-weight:bold}
-                            a{font-size:12px;text-decoration: none; color: #000}
-                            .r,td.r,td.div{text-align:right;font-size:12px;}
-                            .l,td.l{text-align:left;font-size:12px;}
-                            .c,td.c{text-align:center;font-size:12px;}
-                            .bl_footertotal{background-color:#aaccee}
-                            thead tr th{background-color:#aaccee; font-size:12px;  border-right: thin solid #7C98A4;}
-                            .endTbl{border-color:#ffffff;}
-                        </style>
-                    </head>
-                    <body>
-                    ";
-            const String excelHtmlFooter = @"
-                        <table class='endTbl'>
-                            <tr>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </body>
-                </html>";
-
-            StringBuilder content = new StringBuilder();
-            content.Append(excelHtmlHeader);
-            content.AppendLine(data);
-            content.Append(excelHtmlFooter);
-
-            Response.Write(content);
-            Response.End();
         }
     }
 }

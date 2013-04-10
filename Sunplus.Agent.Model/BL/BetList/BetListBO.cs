@@ -200,15 +200,15 @@ namespace Sunplus.Agent.Model.BL.BetList
         /// <param name="filterParams"></param>
         /// <param name="outDataTable"></param>
         /// <returns></returns>
-        public DataTable GetRunningByDateAndMem(int custId, string userName, DateTime dateFrom, DateTime dateTo, int getAll, ICollection<KeyValuePair<string, bool>> filterParams, out DataTable dataTable)
-        {
-            BetListDAO betListDAO = new BetListDAO();
+        //public DataTable GetRunningByDateAndMem(int custId, string userName, DateTime dateFrom, DateTime dateTo, int getAll, ICollection<KeyValuePair<string, bool>> filterParams, out DataTable dataTable)
+        //{
+        //    BetListDAO betListDAO = new BetListDAO();
 
-            string language = CurrentSession.LangKey;
-            DataTable runningBets = null;
-            runningBets = betListDAO.Age_BetList_SelRunningByDate_Mem(custId, userName, dateFrom, dateTo, language, getAll, filterParams, out dataTable);
-            return runningBets;
-        }
+        //    string language = CurrentSession.LangKey;
+        //    DataTable runningBets = null;
+        //    //runningBets = betListDAO.Age_BetList_SelRunningByDate_Mem(custId, userName, dateFrom, dateTo, language, getAll, filterParams, out dataTable);
+        //    return runningBets;
+        //}
 
         #endregion RunningByDateAndMem
 
@@ -218,21 +218,23 @@ namespace Sunplus.Agent.Model.BL.BetList
         /// Get all bets by date and member
         /// For only agent (Member Outstanding betlist)
         /// </summary>
+        /// <param name="loggedId"></param>
+        /// <param name="mode"></param>
+        /// <param name="agentId"></param>
         /// <param name="custId"></param>
-        /// <param name="userName"></param>
         /// <param name="dateFrom"></param>
         /// <param name="dateTo"></param>
-        /// <param name="filterParams"></param>
+        /// <param name="statusIds"></param>
         /// <param name="outDataTable"></param>
         /// <returns></returns>
-        public DataTable GetAllBetsByDateAndMem(int custId, string userName, DateTime dateFrom, DateTime dateTo, ICollection<KeyValuePair<string, bool>> filterParams, out DataTable outDataTable)
+        public DataTable GetAllBetsByDateAndMem(int agentId, int custId, int mode, DateTime dateFrom, DateTime dateTo, string statusIds, out DataTable outDataTable)
         {
             BetListDAO betListDAO = new BetListDAO();
 
             string language = CurrentSession.LangKey;
             DataTable allBets = null;
-            int agentId = CurrentSession.CustId;
-            allBets = betListDAO.Age_BetList_SelAllByDate_Mem(custId, agentId, userName, dateFrom, dateTo, language, filterParams, out outDataTable);
+            int loggedId = CurrentSession.CustId;
+            allBets = betListDAO.Age_BetList_SelByDateMemStatus(loggedId, mode, agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
             return allBets;
         }
 
