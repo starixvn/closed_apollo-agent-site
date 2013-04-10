@@ -1,9 +1,9 @@
-﻿@using Apollo.Age.Forecast.ViewModels
+﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = null;
 }
-@model IEnumerable<ForecastHandicapOUViewModel>
-@helper ShowTime(ForecastHandicapOUViewModel fcItem)
+@model IEnumerable<ForecastHandicapOUModel>
+@helper ShowTime(ForecastHandicapOUModel fcItem)
     {
     if (fcItem.LiveIndicator)
     {
@@ -18,7 +18,7 @@
     if (Model != null && Model.Any())
     {
 
-        foreach (ForecastHandicapOUViewModel fcItem in Model)
+        foreach (ForecastHandicapOUModel fcItem in Model)
         {
             var offsetHDP = fcItem.LiveHomeScore - fcItem.LiveAwayScore;
             var offsetOU = fcItem.LiveHomeScore + fcItem.LiveAwayScore;

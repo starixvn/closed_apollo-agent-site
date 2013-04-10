@@ -198,11 +198,19 @@ namespace Apollo.MvcPaging
             if (url != null)
             {
                 var paramsList = HttpContext.Current.Request.QueryString;
+                var isExistedParam = url.IndexOf('?') != -1;
                 foreach (string key in paramsList)
                 {
-                    if (key != "page")
+                    if (key != PagerOptions.DefaultDefaults.DEFAULTPAGEROUTEVALUEKEY)
                     {
-                        url += "&" + key + "=" + paramsList[key];
+                        if (isExistedParam)
+                        {
+                            url += "&" + key + "=" + paramsList[key];
+                        }
+                        else
+                        {
+                            url += "?" + key + "=" + paramsList[key];
+                        }
                     }
                 }
             }

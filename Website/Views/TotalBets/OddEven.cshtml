@@ -1,11 +1,11 @@
-﻿@using Apollo.Age.TotalBets.ViewModels
+﻿@using Apollo.Age.TotalBets.Models
 @using Fanex.Age.Utility
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = string.Format("{0} + {1} + {2}/{3}", Resources.Lang.lblOddEven, Resources.Lang.lbl1x2, Resources.Lang.lblDraw, Resources.Lang.lblNoDraw);
 }
-@model IEnumerable<OddEvenViewModel>
-@helper ShowLeague(int currentLeagueId, OddEvenViewModel item)
+@model IEnumerable<OddEvenModel>
+@helper ShowLeague(int currentLeagueId, OddEvenModel item)
     {
         if (currentLeagueId != item.LeagueId)
         { 
@@ -31,7 +31,7 @@
     @RazorHelper.FormatPositiveNumber(winlost, 2)
     }
 }
-@helper Show1x2Button(OddEvenViewModel item, bool isFullTime)
+@helper Show1x2Button(OddEvenModel item, bool isFullTime)
     {
     if (isFullTime)
     {
@@ -76,7 +76,7 @@
        
     }
 }
-@helper ShowTime(OddEvenViewModel item)
+@helper ShowTime(OddEvenModel item)
 {
     <td class="c bl_time">
         @if (item.LiveIndicator)

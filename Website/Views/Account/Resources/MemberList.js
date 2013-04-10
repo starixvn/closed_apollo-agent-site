@@ -5,23 +5,39 @@ var MEMBERLIST = function ($) {
         AgentId: null,
         init: function () {
             MEMBERLIST.AgentId = $("#gridId").attr("agentid");
-            MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
+            MEMBERLIST.loadMemberList();
+            MEMBERLIST.bindingNavigation();
+        },
+        bindingNavigation: function () {
             $("[name='navigation']").bind('click', function () {
                 location.href = APOLLO.resolveUrl("/Account/Agentlist?agentid=" + $(this).attr('agentid'));
                 return false;
             });
         },
-        loadMemberList: function (agentId) {
+        bindingQuickLink: function () {
+            $("#quickLinkAgentList").bind('click', function () {
+                location.href = APOLLO.resolveUrl("/Account/AgentList?agentid=" + MEMBERLIST.AgentId);
+            });
+        },
+        bindingSearch: function () {
+            $("#Search").bind('click', function () {
+                MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
+            });
+        },
+
+        loadMemberList: function () {
             $.ajax({
                 type: "POST",
                 url: APOLLO.resolveUrl("/Account/GetCustomerList"),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify({ AgentId: agentId }),
+                data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: $("#txtUserName").val() }),
                 timeout: 120000,
                 success: function (result) {
                     MEMBERLIST.AgentId = result.CurrentAgentId;
                     MEMBERLIST.initMemberList(result);
+                    MEMBERLIST.bindingQuickLink();
+                    MEMBERLIST.bindingSearch();
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },
@@ -83,7 +99,7 @@ var MEMBERLIST = function ($) {
                          { HeaderText: "#", Width: 50, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: "Edit", Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return "Edit";
+                                 return "<a href='#' name='Edit' custid=" + cell.Value.CustId + " >Edit</a>";
                              }
                          },
                          { HeaderText: "User", Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
@@ -123,7 +139,9 @@ var MEMBERLIST = function ($) {
                     totalItem: memberList.TotalItem,
                     itemsPerPageArray: [50, 100, 500],
                     pagerSelectCallBack: ReRenderAfterPaged
-                }
+                },
+                showColumnsShowHide: false,
+                columnsNeedHide: [8, 12]
             };
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
                 $.ajax({
@@ -149,11 +167,6 @@ var MEMBERLIST = function ($) {
                 return false;
             }
             $("#gridId").fanexGrid(gridOption);
-
-            $('[name="viewMember"]').bind('click', function () {
-                MEMBERLIST.AgentId = $(this).attr('agentid');
-                MEMBERLIST.loadAgentList(MEMBERLIST.AgentId);
-            });
         }
     };
 } (jQuery);

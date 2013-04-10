@@ -1,8 +1,8 @@
-﻿@using Apollo.Age.Forecast.ViewModels
+﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.lblScoreMap;
-    var leagues = (IEnumerable<LeagueViewModel>)ViewBag.Leagues;
+    var leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     var showLeaguesStyle = leagues == null ? "display:none;" : string.Empty;
     var matchIds = ViewBag.MatchIds;
     var liveBetTypes = ViewBag.LiveBetTypes;

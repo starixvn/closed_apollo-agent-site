@@ -215,10 +215,15 @@
   </Function>
 
   <Function Name="Agent-Apollo-Report">
-    <Setting Key="Age_Rpt_Outstanding_Agent" SpName="Age_Rpt_Outstanding_Agent" DbName="REPDB" Plain="0" />
-    <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Rpt_Outstanding_Agent" SpName="Age_Rpt_Outstanding_Agent" DbName="REPDB" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="UserId" />
+    </Setting>
+    <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member" DbName="REPDB" Plain="0">
+      <Mapping DataField="CustId" ObjectProperty="UserId" />
+    </Setting>
     <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Result_SportSelByDate" SpName="Age_Result_SportSelByDate" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Result_LeagueSelByDate" SpName="Age_Result_LeagueSelByDate" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Result_MatchSelByLeague" SpName="Age_Result_MatchSelByLeague" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="REPDB" Plain="0" />

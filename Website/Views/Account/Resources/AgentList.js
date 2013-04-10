@@ -5,15 +5,15 @@ var AGENTLIST = function ($) {
         AgentId: null,
         init: function () {
             AGENTLIST.AgentId = $("#gridId").attr("agentid");
-            AGENTLIST.loadAgentList(AGENTLIST.AgentId);
+            AGENTLIST.loadAgentList();
         },
-        loadNavigation: function (agentId) {
+        loadNavigation: function () {
             $.ajax({
                 type: "POST",
                 url: APOLLO.resolveUrl("/Account/GetAgentDownlinePath"),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify({ AgentId: agentId }),
+                data: JSON.stringify({ AgentId: AGENTLIST.AgentId }),
                 timeout: 120000,
                 success: function (result) {
                     var rowLength = result.length;
@@ -29,11 +29,7 @@ var AGENTLIST = function ($) {
                         }
                     }
                     $("#divnavigation").html(template);
-                    $("[name='navigation']").bind('click', function () {
-                        AGENTLIST.AgentId = $(this).attr('agentid');
-                        AGENTLIST.loadAgentList(AGENTLIST.AgentId);
-                        return false;
-                    });
+                    AGENTLIST.bindingNavigation();
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },
@@ -41,18 +37,58 @@ var AGENTLIST = function ($) {
                 }
             });
         },
-        loadAgentList: function (agentId) {
+        bindingViewAgent: function () {
+            $('[name="viewAgent"]').bind('click', function () {
+                AGENTLIST.AgentId = $(this).attr('agentid');
+                AGENTLIST.loadAgentList();
+                return false;
+            });
+        },
+        bindingViewMember: function () {
+            $('[name="viewMember"]').bind('click', function () {
+                AGENTLIST.AgentId = $(this).attr('agentid');
+                location.href = APOLLO.resolveUrl("/Account/CustomerList?agentId=" + AGENTLIST.AgentId);
+                return false;
+            });
+        },
+        bindingNavigation: function () {
+            $("[name='navigation']").bind('click', function () {
+                AGENTLIST.AgentId = $(this).attr('agentid');
+                AGENTLIST.loadAgentList();
+                return false;
+            });
+        },
+        bindingQuickLink: function () {
+            $("#quickLinkCustomerList").bind('click', function () {
+                location.href = APOLLO.resolveUrl("/Account/CustomerList?agentid=" + AGENTLIST.AgentId);
+                return false;
+            });
+        },
+        bindingSearch: function () {
+            $("#Search").bind('click', function () {
+                AGENTLIST.loadAgentList(AGENTLIST.AgentId);
+            });
+        },
+        bindingEdit: function () {
+        },
+        loadAgentList: function () {
             $.ajax({
                 type: "POST",
                 url: APOLLO.resolveUrl("/Account/GetAgentList"),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify({ AgentId: agentId }),
+                data: JSON.stringify({ AgentId: AGENTLIST.AgentId, Username: $("#txtUserName").val() }),
                 timeout: 120000,
                 success: function (result) {
                     AGENTLIST.AgentId = result.CurrentAgentId;
                     AGENTLIST.initAgentList(result);
-                    AGENTLIST.loadNavigation(AGENTLIST.AgentId);
+                    AGENTLIST.loadNavigation();
+
+                    AGENTLIST.bindingViewAgent();
+                    AGENTLIST.bindingViewMember();
+
+                    AGENTLIST.bindingQuickLink();
+                    AGENTLIST.bindingSearch();
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },
@@ -114,7 +150,7 @@ var AGENTLIST = function ($) {
                          { HeaderText: "#", Width: 50, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: "Edit", Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return "Edit";
+                                 return "<a href='#' name='Edit' agentid=" + cell.Value.AgentId + " >Edit</a>";
                              }
                          },
                          { HeaderText: "User", Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
@@ -159,7 +195,9 @@ var AGENTLIST = function ($) {
                     totalItem: agentList.TotalItem,
                     itemsPerPageArray: [50, 100, 500],
                     pagerSelectCallBack: ReRenderAfterPaged
-                }
+                },
+                showColumnsShowHide: false,
+                columnsNeedHide: [12]
             };
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
                 $.ajax({
@@ -184,18 +222,6 @@ var AGENTLIST = function ($) {
                 return false;
             }
             $("#gridId").fanexGrid(gridOption);
-
-            $('[name="viewAgent"]').bind('click', function () {
-                AGENTLIST.AgentId = $(this).attr('agentid');
-                AGENTLIST.loadAgentList(AGENTLIST.AgentId);
-                return false;
-            });
-
-            $('[name="viewMember"]').bind('click', function () {
-                AGENTLIST.AgentId = $(this).attr('agentid');
-                location.href = APOLLO.resolveUrl("/Account/CustomerList?agentId=" + AGENTLIST.AgentId);
-                return false;
-            });
         }
     };
 } (jQuery);

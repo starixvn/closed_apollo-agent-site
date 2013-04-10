@@ -1,12 +1,12 @@
-﻿@using Apollo.Age.TotalBets.ViewModels
+﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.lblHomeDrawAwayNoBet;
 }
 
-@model IEnumerable<HomeNoBetViewModel>
+@model IEnumerable<HomeNoBetModel>
 
-@helper ShowLeague(int currentLeagueId, HomeNoBetViewModel item)
+@helper ShowLeague(int currentLeagueId, HomeNoBetModel item)
 {
     if (currentLeagueId != item.LeagueId)
     { 
@@ -19,7 +19,7 @@
     }            
 }
 
-@helper ShowMatch(int index, HomeNoBetViewModel item)
+@helper ShowMatch(int index, HomeNoBetModel item)
 {
     var classRow = string.Empty;
     if (item.LiveIndicator)
@@ -73,7 +73,7 @@
     </tr>        
 }
 
-@helper ShowTime(HomeNoBetViewModel item)
+@helper ShowTime(HomeNoBetModel item)
     {
     <td class="c bl_time">
         @if (item.LiveIndicator)

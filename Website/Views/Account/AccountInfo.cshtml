@@ -1,5 +1,5 @@
-﻿@using Apollo.Age.Account.ViewModels
-@model CustomerInfoViewModel
+﻿@using Apollo.Age.Account.Models
+@model CustomerInfoModel
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
 }
@@ -59,15 +59,7 @@
                                     @Resources.Lang.lblParentname:
                                 </td>
                             }
-                            <td class="parent-name">
-                                <a href="javascript:;" id="agentDownlineLink"
-                                    aid="@Model.CustId"
-                                    title="@Resources.Lang.txtShowUpline"
-                                    alt="@Resources.Lang.txtShowUpline">
-                                    <div id="ddl-agents">
-                                        <ul class="agent-list"></ul>
-                                    </div>
-                                </a>
+                            <td class="parent-name">                                
                             @if (Model.CurrentAgentId == Model.ParentId)
                             {
                                 @Model.ParentName
@@ -76,6 +68,14 @@
                             {
                                 var queryStr = string.Format("userName={0}&isMember=0&custId={1}",
                                     Model.ParentName, Model.ParentId);
+                                <a href="javascript:;" id="agentDownlineLink"
+                                    aid="@Model.ParentId"
+                                    title="@Resources.Lang.txtShowUpline"
+                                    alt="@Resources.Lang.txtShowUpline">
+                                    <div id="ddl-agents">
+                                        <ul class="agent-list"></ul>
+                                    </div>
+                                </a>
                                 <a class="view-custinfo" target="menu"
                                     href="@Url.Action("AccountInfo")?@queryStr">@Model.ParentName 
                                 </a>
@@ -128,7 +128,7 @@
                         </a>
                     </li>
                 
-                    @if(!Model.IsMember)
+                    @if (!Model.IsMember)
                     {
                         <li id="agentsTab">
                             <a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
@@ -192,14 +192,14 @@
                     </div>
             
                     <div id="agentsTab-content">
-                    @if(Model.HasAgentDownline)
+                    @if (Model.HasAgentDownline)
                     {
                         <iframe id='frmDownlineList' name='frmDownlineList'
                             frameborder="0" src='~/Account/AgentTreeList/@Model.CustId'></iframe>
                     }
                     else
                     {
-                        <div class="no-data-agent">@Resources.Lang.noInfo</div>
+                        <div class="no-data">@Resources.Lang.noInfo</div>
                     }
                     </div>
 
@@ -221,7 +221,7 @@
 }
 
 @helper SearchBox()
-{
+    {
     if (Model == null)
     {
         <select id="ddlIsMember" name="isMember">

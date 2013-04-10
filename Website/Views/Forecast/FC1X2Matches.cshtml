@@ -1,8 +1,8 @@
-﻿@using Apollo.Age.Forecast.ViewModels
+﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = null;
 }
-@helper ShowTime(Forecast1X2ViewModel fcItem)
+@helper ShowTime(Forecast1X2Model fcItem)
 {
    if (fcItem.LiveIndicator)
     {
@@ -13,12 +13,12 @@
         @Html.Raw(fcItem.ShowTime)
    }    
 }
-@model IEnumerable<Forecast1X2ViewModel>
+@model IEnumerable<Forecast1X2Model>
 @{
     if(Model != null && Model.Any())
     {
         
-        foreach (Forecast1X2ViewModel fcItem in Model)
+        foreach (Forecast1X2Model fcItem in Model)
         {
             <!--RowContent-->
             <tr class="league">

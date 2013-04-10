@@ -7,11 +7,11 @@
 //   <change who="Edward.Nguyen" date="2013.4.9">Created</change>
 // </history>
 
-namespace Apollo.Age.Account.ViewModels
+namespace Apollo.Age.Account.Models
 {
     using System;
 
-    public class MessageViewModel
+    public class MessageModel
     {
         public int MessageId { get; set; }
 

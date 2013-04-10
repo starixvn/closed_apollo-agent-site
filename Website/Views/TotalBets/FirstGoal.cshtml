@@ -1,12 +1,12 @@
-﻿@using Apollo.Age.TotalBets.ViewModels
+﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.fglg;
 }
 
-@model IEnumerable<FirstGoalViewModel>
+@model IEnumerable<FirstGoalModel>
 
-@helper ShowLeague(int currentLeagueId, FirstGoalViewModel item)
+@helper ShowLeague(int currentLeagueId, FirstGoalModel item)
 {
     if (currentLeagueId != item.LeagueId)
     { 
@@ -19,7 +19,7 @@
     }            
 }
 
-@helper ShowMatch(int index, FirstGoalViewModel item)
+@helper ShowMatch(int index, FirstGoalModel item)
 {
     var classRow = string.Empty;
     if (index % 2 == 0)
