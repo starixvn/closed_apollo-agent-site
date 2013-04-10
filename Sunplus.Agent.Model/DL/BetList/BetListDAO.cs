@@ -416,7 +416,7 @@ namespace Sunplus.Agent.Model.DL.BetList
 
         #region RunningByDateAndMem
 
-        public DataTable Age_BetList_SelRunningByDate_Mem(int custId, string userName, DateTime dateFrom, DateTime dateTo, string language, int getAll, ICollection<KeyValuePair<string, bool>> filterParams, out DataTable dataTable)
+        public DataTable Age_BetList_SelByDateMemStatus(int custId, string userName, DateTime dateFrom, DateTime dateTo, string language, int getAll, ICollection<KeyValuePair<string, bool>> filterParams, out DataTable dataTable)
         {
             // Parameters
             Hashtable parameters = new Hashtable();
@@ -432,7 +432,7 @@ namespace Sunplus.Agent.Model.DL.BetList
                 parameters.Add(element.Key, element.Value);
             }
 
-            DataSet result = ExecSpDataset("Age_BetList_SelRunningByDate_Mem", parameters);
+            DataSet result = ExecSpDataset("Age_BetList_SelByDateMemStatus", parameters);
 
             // Check exist a DataTable in DataSet
             if (result.Tables.Count > 0)
@@ -453,23 +453,19 @@ namespace Sunplus.Agent.Model.DL.BetList
 
         #region AllBetsByDateAndMem
 
-        public DataTable Age_BetList_SelAllByDate_Mem(int custId, int agentId, string userName, DateTime dateFrom, DateTime dateTo, string language, ICollection<KeyValuePair<string, bool>> filterParams, out DataTable outDataTable)
+        public DataTable Age_BetList_SelByDateMemStatus(int loggedId, int mode, int agentId, int custId, DateTime dateFrom, DateTime dateTo, string statusIds, out DataTable outDataTable)
         {
             // Parameters
             Hashtable parameters = new Hashtable();
+            parameters.Add("loggedid", loggedId);
+            parameters.Add("mode", mode);
+            parameters.Add("agentid", agentId);
             parameters.Add("custid", custId);
-            parameters.Add("agid", agentId);
             parameters.Add("fromdate", dateFrom);
             parameters.Add("todate", dateTo);
-            parameters.Add("language", language);
-            parameters.Add("username", userName);
+            parameters.Add("statusids", statusIds);
 
-            foreach (KeyValuePair<string, bool> element in filterParams)
-            {
-                parameters.Add(element.Key, element.Value);
-            }
-
-            DataSet result = ExecSpDataset("Age_BetList_SelAllByDate_Mem", parameters);
+            DataSet result = ExecSpDataset("Age_BetList_SelByDateMemStatus", parameters);
 
             // Check exist a DataTable in DataSet
             if (result.Tables.Count > 0)
@@ -480,7 +476,7 @@ namespace Sunplus.Agent.Model.DL.BetList
             else
             {
                 // Throw DataException and log the SP calling
-                DataException error = new DataException("Age_BetList_SelAllByDate_Mem", parameters);
+                DataException error = new DataException("Age_BetList_SelByDateMemStatus", parameters);
                 Logs.Write(error.Message);
                 throw error;
             }
