@@ -26,19 +26,21 @@ namespace Fanex.Age.UI.Reports
 			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
 			protected static string s12 = "\" title=\"";
 			protected static string s13{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s14 = "\"class=\"hand\" style=\"display: none;\" /></div></div>";
-			public CancelBetList_Options_Block Options = new CancelBetList_Options_Block();
-			protected static string s15 = "<div id=\"content_main\">";
+			protected static string s14 = "\"class=\"hand\" style=\"display: none;\" /></div></div><div id=\"box_header\" style=\"width: 100%\"><table class=\"l\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td>";
+			protected static string s15{get{return Resources.Lang.from;}}
+			protected static string s16 = "</td><td width=\"10px;\"></td><td></td><td width=\"10px;\"></td><td>";
+			protected static string s17{get{return Resources.Lang.to;}}
+			protected static string s18 = "</td><td width=\"10px;\"></td><td></td><td width=\"10px;\"></td><td></td><td></td><td></td><td width=\"10px;\"></td><td><div id=\"loading\" class=\"hidden\"></div></td></tr></table></div><div id=\"content_main\">";
 			public string content = "{content}";
-			protected static string s16 = "</div></form></div></body><script src=\"";
-			protected static string s17{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s18 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s19{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s20 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s21{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s22 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s23{get{return AbsoluteUrl("BetList/Resources/CancelBetList.js", TplSettings.Question);}}
-			protected static string s24 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s19 = "</div></form></div></body><script src=\"";
+			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s22{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s24{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
+			protected static string s25 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s26{get{return AbsoluteUrl("BetList/Resources/CancelBetList.js", TplSettings.Question);}}
+			protected static string s27 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -57,18 +59,20 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s12);
 				bd.Append(s13);
 				bd.Append(s14);
-				if(null != Options) Options.ToString(ref bd);
 				bd.Append(s15);
-				bd.Append(content);
 				bd.Append(s16);
 				bd.Append(s17);
 				bd.Append(s18);
+				bd.Append(content);
 				bd.Append(s19);
 				bd.Append(s20);
 				bd.Append(s21);
 				bd.Append(s22);
 				bd.Append(s23);
 				bd.Append(s24);
+				bd.Append(s25);
+				bd.Append(s26);
+				bd.Append(s27);
 				bd.Append(Value);
 			}
 			public string ToString()
@@ -78,94 +82,6 @@ namespace Fanex.Age.UI.Reports
 				return bd.ToString();
 			}
 
-		}
-
-		public class CancelBetList_Options_Block: Block
-		{
-			protected static string s25 = "<div id=\"box_header\" style=\"width: 100%\"><table class=\"l\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr>";
-			public CancelBetList_Options_Master_Block Master = new CancelBetList_Options_Master_Block();
-			public CancelBetList_Options_Agent_Block Agent = new CancelBetList_Options_Agent_Block();
-			public CancelBetList_Options_Member_Block Member = new CancelBetList_Options_Member_Block();
-			protected static string s26 = "<td><div id=\"loading\" class=\"hidden\"></div></td></tr></table></div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s25);
-					if(null != Master) Master.ToString(ref bd);
-					if(null != Agent) Agent.ToString(ref bd);
-					if(null != Member) Member.ToString(ref bd);
-					bd.Append(s26);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class CancelBetList_Options_Master_Block: Block
-		{
-			protected static string s27 = "<td>";
-			protected static string s28{get{return Resources.Lang.master;}}
-			protected static string s29 = "</td><td width=\"10px;\"></td><td id=\"optmaster\">";
-			public string option_master = "{option_master}";
-			protected static string s30 = "</td><td width=\"10px;\"></td>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s27);
-					bd.Append(s28);
-					bd.Append(s29);
-					bd.Append(option_master);
-					bd.Append(s30);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class CancelBetList_Options_Agent_Block: Block
-		{
-			protected static string s31 = "<td id=\"optagent1\">";
-			protected static string s32{get{return Resources.Lang.agent;}}
-			protected static string s33 = "</td><td width=\"10px;\" id=\"optagent2\"></td><td id=\"optagent\">";
-			public string option_agent = "{option_agent}";
-			protected static string s34 = "</td><td width=\"10px;\"></td>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s31);
-					bd.Append(s32);
-					bd.Append(s33);
-					bd.Append(option_agent);
-					bd.Append(s34);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class CancelBetList_Options_Member_Block: Block
-		{
-			protected static string s35 = "<td id=\"optmember1\">";
-			protected static string s36{get{return Resources.Lang.member;}}
-			protected static string s37 = "</td><td width=\"10px;\" id=\"optmember2\"></td><td id=\"optmember\">";
-			public string option_member = "{option_member}";
-			protected static string s38 = "</td><td width=\"10px;\"></td>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s35);
-					bd.Append(s36);
-					bd.Append(s37);
-					bd.Append(option_member);
-					bd.Append(s38);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
 		}
 
 	}

@@ -3,6 +3,7 @@
 var AGENTLIST = function ($) {
     return {
         AgentId: null,
+        EditAgentId: null,
         init: function () {
             AGENTLIST.AgentId = $("#gridId").attr("agentid");
             AGENTLIST.loadAgentList();
@@ -70,6 +71,36 @@ var AGENTLIST = function ($) {
             });
         },
         bindingEdit: function () {
+            $("[name='Edit']").mouseover(function () {
+                var pos = $(this).offset();
+                var eWidth = $(this).outerWidth();
+                var mWidth = $("#menuedit").outerWidth();
+                var left = (pos.left + eWidth) + "px";
+                var top = 3 + pos.top + "px";
+                $("#commission").attr("agentId", $(this).attr('agentid'));
+                $("#betsetting").attr("agentId", $(this).attr('agentid'));
+
+                $("#menuedit").css({
+                    position: 'absolute',
+                    zIndex: 5000,
+                    left: left,
+                    top: top
+                });
+                $("#menuedit").show();
+            }).mouseout(function () {
+                $("#menuedit").hide();
+            });
+            $("#commission").unbind('click').bind('click', function () {
+                // Code here
+            });
+            $("#betsetting").unbind('click').bind('click', function () {
+                // Code here
+            });
+            $("#menuedit").mouseover(function () {
+                $(this).show();
+            }).mouseout(function () {
+                $(this).hide();
+            });
         },
         loadAgentList: function () {
             $.ajax({
@@ -86,6 +117,7 @@ var AGENTLIST = function ($) {
 
                     AGENTLIST.bindingViewAgent();
                     AGENTLIST.bindingViewMember();
+                    AGENTLIST.bindingEdit();
 
                     AGENTLIST.bindingQuickLink();
                     AGENTLIST.bindingSearch();

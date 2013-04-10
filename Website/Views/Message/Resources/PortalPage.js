@@ -46,7 +46,7 @@ var MessagePortalPage = function ($) {
                 }
             });
         },
-       
+
         openMsg: function () {
             var baseURL = parent.location.href.substring(0, parent.location.href.lastIndexOf('/') + 1);
             window.location.href = APOLLO.resolveUrl('Message/NewMessage?pageQuery=normal');
@@ -119,5 +119,14 @@ $(document).ready(function () {
     $('.pagequery').click(function () {
         var value = $(this).attr('query');
         MessagePortalPage.showMsg(value);
+    });
+
+    $(document).delegate('#divMore', 'click', function () {
+        MessagePortalPage.showMoreAnnouncements();
+    });
+
+    $(document).delegate('.message', 'click', function () {
+        var messageId = $(this).attr('id');
+        MessagePortalPage.toggleAnnouncementContent(messageId);
     });
 });
