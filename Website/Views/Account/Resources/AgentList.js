@@ -29,16 +29,44 @@ var AGENTLIST = function ($) {
                         }
                     }
                     $("#divnavigation").html(template);
-                    $("[name='navigation']").bind('click', function () {
-                        AGENTLIST.AgentId = $(this).attr('agentid');
-                        AGENTLIST.loadAgentList();
-                        return false;
-                    });
+                    AGENTLIST.bindingNavigation();
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },
                 complete: function () {
                 }
+            });
+        },
+        bindingViewAgent: function () {
+            $('[name="viewAgent"]').bind('click', function () {
+                AGENTLIST.AgentId = $(this).attr('agentid');
+                AGENTLIST.loadAgentList();
+                return false;
+            });
+        },
+        bindingViewMember: function () {
+            $('[name="viewMember"]').bind('click', function () {
+                AGENTLIST.AgentId = $(this).attr('agentid');
+                location.href = APOLLO.resolveUrl("/Account/CustomerList?agentId=" + AGENTLIST.AgentId);
+                return false;
+            });
+        },
+        bindingNavigation: function () {
+            $("[name='navigation']").bind('click', function () {
+                AGENTLIST.AgentId = $(this).attr('agentid');
+                AGENTLIST.loadAgentList();
+                return false;
+            });
+        },
+        bindingQuickLink: function () {
+            $("#quickLinkCustomerList").bind('click', function () {
+                location.href = APOLLO.resolveUrl("/Account/CustomerList?agentid=" + AGENTLIST.AgentId);
+                return false;
+            });
+        },
+        bindingSearch: function () {
+            $("#Search").bind('click', function () {
+                AGENTLIST.loadAgentList(AGENTLIST.AgentId);
             });
         },
         loadAgentList: function () {
@@ -54,13 +82,11 @@ var AGENTLIST = function ($) {
                     AGENTLIST.initAgentList(result);
                     AGENTLIST.loadNavigation();
 
-                    $("#quickLinkCustomerList").bind('click', function () {
-                        location.href = APOLLO.resolveUrl("/Account/CustomerList?agentid=" + AGENTLIST.AgentId);
-                    });
+                    AGENTLIST.bindingViewAgent();
+                    AGENTLIST.bindingViewMember();
 
-                    $("#Search").bind('click', function () {
-                        AGENTLIST.loadAgentList(AGENTLIST.AgentId);
-                    });
+                    AGENTLIST.bindingQuickLink();
+                    AGENTLIST.bindingSearch();
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },
@@ -122,7 +148,7 @@ var AGENTLIST = function ($) {
                          { HeaderText: "#", Width: 50, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: "Edit", Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return "Edit";
+                                 return "<a href='#' name='Edit' agentid=" + cell.Value.AgentId + " >Edit</a>";
                              }
                          },
                          { HeaderText: "User", Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
@@ -192,18 +218,6 @@ var AGENTLIST = function ($) {
                 return false;
             }
             $("#gridId").fanexGrid(gridOption);
-
-            $('[name="viewAgent"]').bind('click', function () {
-                AGENTLIST.AgentId = $(this).attr('agentid');
-                AGENTLIST.loadAgentList();
-                return false;
-            });
-
-            $('[name="viewMember"]').bind('click', function () {
-                AGENTLIST.AgentId = $(this).attr('agentid');
-                location.href = APOLLO.resolveUrl("/Account/CustomerList?agentId=" + AGENTLIST.AgentId);
-                return false;
-            });
         }
     };
 } (jQuery);
