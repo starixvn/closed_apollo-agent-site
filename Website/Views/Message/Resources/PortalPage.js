@@ -1,282 +1,215 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 
+var MessagePortalPage = function ($) {
 
-var PortalPage_Paging = null;
-var PortalPage_Paging_OL = null;
-var count = 0;
+    return {
 
-function loadAnnouncement(url, firstRun) {
-    if (firstRun == true) {
-        setCookie('lastPostTime', '');
-        setCookie('moreIsVisible', '');
-    }
-    jx.request(
-        url,
-        function (res) {
-            count++;
-            if (firstRun == true) {
-                $('#divAnnouncement').append(res.responseText);
-            }
-            else {
-                var divMore = document.getElementById('divMore');
-                if (divMore != null) {
+        timerID: null,
 
-                    $('.divMoreRemove').remove();
-                    $('#divAnnouncement').append(res.responseText);
+        moreIsLoading: false,
 
-                }
-                else {
-                    document.getElementById('announcement').innerHTML = res.responseText;
-                }
-            }
+        imagePath: null,
 
-            var moreIsVisible = getCookie('moreIsVisible');
-            if (moreIsVisible == 'False') {
-                var divMore = document.getElementById('divMore');
-                if (divMore != null) {
-                    divMore.style.display = 'none';
-                }
-            }
-
-            if (_page.RemoveOnlineList == true && count == 3) {
-                count = 0;
-                displayBlocks('block');
-            }
-            else if (count == 4) {
-                count = 0;
-                displayBlocks('block');
-            }
-            if (document.getElementById('PortalPage_Paging'))
-                PortalPage_Paging = new Paging('PortalPage_Paging');
+        Init: function () {
+            MessagePortalPage.imagePath = APOLLO.resolveUrl('Views/Message/Images/loading_2.gif');
         },
-        'post',
-        '',
-        true
-    );
-}
 
-function loadAnnouncement_Paging(url) {
-    jx.request(
-        url,
-        function (res) {
-            document.getElementById('announcement').innerHTML = res.responseText;
-            if (document.getElementById('PortalPage_Paging'))
-                PortalPage_Paging = new Paging('PortalPage_Paging');
+        LoadAnnouncement: function () {
+
+            var lastPostTime = getCookie("lastPostTime");
+
+            var url = APOLLO.resolveUrl("Message/Announcement?lastPostTime=" + lastPostTime);
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'HTML',
+                success: function (res) {
+                    var divMore = $('#divMore');
+                    if (divMore != null) {
+                        $('.divMoreRemove').remove();
+                        $('#divAnnouncement').append(res);
+                    }
+                    else {
+                        $('#announcement').append(res);
+                    }
+
+                    var moreIsVisible = getCookie('moreIsVisible');
+                    if (moreIsVisible == 'False') {
+                        var divMore = $('#divMore');
+                        if (divMore != null) {
+                            divMore.hide();
+                        }
+                    }
+                },
+                error: function (xhr, status, err) {
+                }
+            });
         },
-        'get',
-        '',
-        true
-    );
-}
 
-function toogleDiv(divTitle, divContent, imgId, style, div2Closed, div3Closed, imgId2, imgId3, div4Closed, imgId4) {
-    if (document.getElementById("newmemH").style.display == "block")
-        document.getElementById("newmemH").style.display = "none";
+        ToogleDiv: function (divTitle, divContent, imgId, style, div2Closed, div3Closed, imgId2, imgId3, div4Closed, imgId4) {
+            if (document.getElementById("newmemH").style.display == "block")
+                document.getElementById("newmemH").style.display = "none";
 
-    var state = document.getElementById(divContent).style.display;
-    if (style != null)
-        state = style;
+            var state = document.getElementById(divContent).style.display;
+            if (style != null)
+                state = style;
 
-    if (div2Closed != null) {
-        document.getElementById((div2Closed + 'T')).className = "sectionClose";
-        document.getElementById(imgId2).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/collapse.png";
-        document.getElementById(div2Closed).style.display = "none";
-    }
-    if (div3Closed != null) {
-        document.getElementById((div3Closed + 'T')).className = "sectionClose";
-        document.getElementById(imgId3).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/collapse.png";
-        document.getElementById(div3Closed).style.display = "none";
-    }
-    if (div4Closed != null) {
-        document.getElementById((div4Closed + 'T')).className = "sectionClose";
-        document.getElementById(imgId4).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/collapse.png";
-        document.getElementById(div4Closed).style.display = "none";
-    }
+            if (div2Closed != null) {
+                document.getElementById((div2Closed + 'T')).className = "sectionClose";
+                document.getElementById(imgId2).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/collapse.png";
+                document.getElementById(div2Closed).style.display = "none";
+            }
+            if (div3Closed != null) {
+                document.getElementById((div3Closed + 'T')).className = "sectionClose";
+                document.getElementById(imgId3).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/collapse.png";
+                document.getElementById(div3Closed).style.display = "none";
+            }
+            if (div4Closed != null) {
+                document.getElementById((div4Closed + 'T')).className = "sectionClose";
+                document.getElementById(imgId4).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/collapse.png";
+                document.getElementById(div4Closed).style.display = "none";
+            }
 
-    if (state != null && state == "none") {
-        document.getElementById(divTitle).className = "sectionOpen";
-        document.getElementById(divContent).style.display = "block";
+            if (state != null && state == "none") {
+                document.getElementById(divTitle).className = "sectionOpen";
+                document.getElementById(divContent).style.display = "block";
 
-        if ((divTitle == "newmemT" ||
+                if ((divTitle == "newmemT" ||
             divTitle == "top10T" ||
             divTitle == "highestT") && document.getElementById(divContent).innerHTML == "") {
-            document.getElementById(imgId).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/loading.gif";
-        }
+                    document.getElementById(imgId).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/loading.gif";
+                }
 
-        if (divContent == "top10") {
-            if (document.getElementById('top10').innerHTML == "")
-                loadStatistic_Top10();
-            else
-                document.getElementById('imgTop10').src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/expand.png";
-        }
-        else if (divContent == "highest") {
-            if (document.getElementById('highest').innerHTML == "")
-                loadStatistic_Highest();
-            else
-                document.getElementById('imgHighest').src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/expand.png";
-        }
-        else if (divContent == "newmem") {
-            document.getElementById("newmemH").style.display = "block";
-            if (document.getElementById('newmem').innerHTML == "" && document.getElementById('newmemVal').innerHTML != "0")
-                loadStatistic_Newmem();
-            else
-                document.getElementById('imgNewmem').src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/expand.png";
-        }
-        else {
-            document.getElementById('imgACS').src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/expand.png";
-        }
-    }
-    else {
-        document.getElementById(divTitle).className = "sectionClose";
-        document.getElementById(imgId).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/collapse.png";
+                if (divContent == "top10") {
+                    if (document.getElementById('top10').innerHTML == "")
+                        loadStatistic_Top10();
+                    else
+                        document.getElementById('imgTop10').src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/expand.png";
+                }
+                else if (divContent == "highest") {
+                    if (document.getElementById('highest').innerHTML == "")
+                        loadStatistic_Highest();
+                    else
+                        document.getElementById('imgHighest').src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/expand.png";
+                }
+                else if (divContent == "newmem") {
+                    document.getElementById("newmemH").style.display = "block";
+                    if (document.getElementById('newmem').innerHTML == "" && document.getElementById('newmemVal').innerHTML != "0")
+                        loadStatistic_Newmem();
+                    else
+                        document.getElementById('imgNewmem').src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/expand.png";
+                }
+                else {
+                    document.getElementById('imgACS').src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/expand.png";
+                }
+            }
+            else {
+                document.getElementById(divTitle).className = "sectionClose";
+                document.getElementById(imgId).src = age.GetBaseUrl().substring(0, age.GetBaseUrl().lastIndexOf('(') - 2) + "_Reports/PortalPage/Images/collapse.png";
 
-        document.getElementById(divContent).style.display = "none";
+                document.getElementById(divContent).style.display = "none";
 
-        if (divContent == "newmem") {
-            document.getElementById("newmemH").style.display = "none";
-        }
-    }
+                if (divContent == "newmem") {
+                    document.getElementById("newmemH").style.display = "none";
+                }
+            }
 
-    document.getElementById(divContent).style.position = "absolute";
-}
-
-function collapseAll(state) {
-    toogleDiv('ACST', 'ACS', 'imgACS', state);
-    toogleDiv('top10T', 'top10', 'imgTop10', state);
-    toogleDiv('highestT', 'highest', 'imgHighest', state);
-    toogleDiv('newmemT', 'newmem', 'imgNewmem', state);
-}
-
-function openMsg() {
-    var baseURL = parent.location.href.substring(0, parent.location.href.lastIndexOf('/') + 1);
-    window.location.href =  APOLLO.resolveUrl('Message/NewMessage?pageQuery=normal');
-}
-
-var timerID = null;
-
-function hideDiv() {
-    clearTimeout(timerID);
-    collapseAll('block');
-}
-
-function divOnMouseOut() {
-    timerID = setTimeout(hideDiv, 10000);
-}
-
-function divOnMouseOver() {
-    clearTimeout(timerID);
-    timerID = null;
-}
-
-//Paging content
-Paging.prototype.Go = function (index) {
-    if (this.rowcount <= 0) return;
-
-    if (!index) { // Get from textbox
-        index = document.getElementById('txt' + this.id).value;
-    }
-
-    if (index <= 0) index = 1;
-
-    if (index > 0 && index <= this.pagecount) {
-        this.currentindex = index;
-        var tmp = location.href;
-        if (tmp.indexOf('?') >= 0)
-            tmp = tmp.substring(0, tmp.indexOf('?'));
-
-        tmp += '?pageIndex=' + this.currentindex + '&pageSize=' + this.pagesize + '&' + _page.key;
-
-        if (this.id == 'PortalPage_Paging') {
-            tmp = tmp.replace('PortalPage.aspx', 'Announcement.aspx');
-            loadAnnouncement_Paging(tmp);
-        }
-        else if (this.id == 'PortalPage_Paging_OL') {
-            tmp = tmp.replace('PortalPage.aspx', 'OnlineList.aspx');
-            loadOnlineList_Paging(tmp);
-        }
-    }
-}
-
-function verifyOnlineList() {
-    if (_page.RemoveOnlineList == false) {
-        loadOnlineList('OnlineList.aspx?' + _page.key);
-    }
-}
-
-function ToggleAnnouncementContent(elementId) {
-    var e = $('#' + elementId);
-    var icon = e.find('.toogleIcon');
-    var smallContent = e.find('.small');
-    var fullContent = e.find('.full');
-    console.log(fullContent.attr('class'));
-    if (fullContent.hasClass('text_exposed_show')) {
-        if (e.hasClass('expanding')) {
-            e.removeClass('expanding');
-        };
-        smallContent.attr('class', 'text_exposed_show small');
-        fullContent.attr('class', 'text_exposed_hide full');
-
-        icon.attr('style', 'background-position: 0px 0px;');
-    }
-    else {
-        e.addClass('expanding');
-        smallContent.attr('class', 'text_exposed_hide small');
-        fullContent.attr('class', 'text_exposed_show full');
-        icon.attr('style', 'background-position: 0px -9px;');
-        var isRead = e.attr('isRead');
-        if (isRead == '0') {
-            SetReadPriMsg(elementId);
-        }
-    }
-}
-
-function SetReadPriMsg(messageId) {
-
-    var url = "../Message/SetReadPriMsg";
-    url += '?messageId=' + messageId;
-
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'JSON',
-        success: function (result) {
-            var e = $('#' + messageId);
-            e.attr('style', 'font-weight : normal');
-            e.attr('isRead', '1');
+            document.getElementById(divContent).style.position = "absolute";
         },
-        error: function (xhr, status, err) {
 
+        CollapseAll: function (state) {
+            MessagePortalPageToogleDiv('ACST', 'ACS', 'imgACS', state);
+            MessagePortalPage.ToogleDiv('top10T', 'top10', 'imgTop10', state);
+            MessagePortalPage.ToogleDiv('highestT', 'highest', 'imgHighest', state);
+            MessagePortalPage.ToogleDiv('newmemT', 'newmem', 'imgNewmem', state);
+        },
+
+        OpenMsg: function () {
+            var baseURL = parent.location.href.substring(0, parent.location.href.lastIndexOf('/') + 1);
+            window.location.href = APOLLO.resolveUrl('Message/NewMessage?pageQuery=normal');
+        },
+
+        HideDiv: function () {
+            clearTimeout(MessagePortalPage.timerID);
+            MessagePortalPage.CollapseAll('block');
+        },
+
+        DivOnMouseOut: function () {
+            MessagePortalPage.timerID = setTimeout(MessagePortalPage.HideDiv, 10000);
+        },
+
+        DivOnMouseOver: function () {
+            clearTimeout(MessagePortalPage.timerID);
+            MessagePortalPage.timerID = null;
+        },
+
+        ToggleAnnouncementContent: function (elementId) {
+            var e = $('#' + elementId);
+            var icon = e.find('.toogleIcon');
+            var smallContent = e.find('.small');
+            var fullContent = e.find('.full');
+
+            if (fullContent.hasClass('text_exposed_show')) {
+                if (e.hasClass('expanding')) {
+                    e.removeClass('expanding');
+                };
+                smallContent.attr('class', 'text_exposed_show small');
+                fullContent.attr('class', 'text_exposed_hide full');
+
+                icon.attr('style', 'background-position: 0px 0px;');
+            }
+            else {
+                e.addClass('expanding');
+                smallContent.attr('class', 'text_exposed_hide small');
+                fullContent.attr('class', 'text_exposed_show full');
+                icon.attr('style', 'background-position: 0px -9px;');
+                var isRead = e.attr('isRead');
+                if (isRead == '0') {
+                    MessagePortalPage.SetReadPriMsg(elementId);
+                }
+            }
+        },
+
+        SetReadPriMsg: function (messageId) {
+
+            var url = APOLLO.resolveUrl("Message/SetReadPriMsg?messageId=") + messageId;
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'JSON',
+                success: function (result) {
+                    var e = $('#' + messageId);
+                    e.attr('style', 'font-weight : normal');
+                    e.attr('isRead', '1');
+                },
+                error: function (xhr, status, err) {
+                }
+            });
+        },
+
+        ShowMoreAnnouncements: function () {
+            if (!MessagePortalPage.moreIsLoading) {
+                $('#divMore').addClass('divMoreRemove');
+                $('#divMore').append("<img src='" + MessagePortalPage.imagePath + "' id='imgLoading'/>");
+
+                setTimeout(MessagePortalPage.LoadAnnouncement, 1000);
+            }
+        },
+
+        showMsg: function (value) {
+            $('#PageQuery').val(value);
+            $('form').submit();
         }
-    });
-
-}
-
-var moreIsLoading = false;
-
-function continueExecution() {
-    //finish doing things after the pause
-    var lastPostTime = getCookie("lastPostTime");
-
-    var url = "../Message/Announcement";
-    url += '?lastPostTime=' + lastPostTime;
-
-    loadAnnouncement(url, false);
-
-    moreIsLoading = false;
-}
-
-function ShowMoreAnnouncements() {
-    if (!moreIsLoading) {
-        moreIsLoading = true;
-        $('#divMore').attr('class', 'divMoreRemove');
-        document.getElementById('divMore').innerHTML = "<img src='../Views/Message/Images/loading_2.gif' id='imgLoading'/>";
-
-        setTimeout(continueExecution, 1000);
-
     }
-}
+} (jQuery);
 
-//Load all infos
+$(document).ready(function () {
+    MessagePortalPage.Init();
 
-//RegisterStartUp("displayBlocks('none');loadBalanceInfo();loadStatistic();verifyOnlineList();loadAnnouncement('Announcement.aspx?' + _page.key, true);");
-//RegisterStartUp("displayBlocks('block');verifyOnlineList();loadAnnouncement('../Message/Announcement', true);");
+    $('.pagequery').click(function () {
+        var value = $(this).attr('query');
+        MessagePortalPage.showMsg(value);
+    });
+});

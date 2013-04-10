@@ -1,6 +1,6 @@
 ﻿@{    
     Layout = null;
-    var listMessage = ViewBag.Messages != null ? ViewBag.Messages : new List<MessageViewModel>();
+    var listMessage = ViewBag.Messages != null ? ViewBag.Messages : new List<MessageModel>();
     var normal = string.Empty;
     var special = string.Empty;
     var pri = string.Empty;
@@ -50,12 +50,12 @@
                     <div class="date">
                         <label>
                             @Resources.Lang.from</label>
-                        @Html.DatePickerFor(m => m.From)
+                        @Html.DatePickerFor(m => m.From, minDate, maxDate)
                     </div>
                     <div class="date">
                         <label>
                             @Resources.Lang.to</label>
-                        @Html.DatePickerFor(m => m.To)
+                        @Html.DatePickerFor(m => m.To, minDate, maxDate)
                     </div>
                     <!--/DateTimeSearch-->
                     <input type="submit" class="btn" style="width: 55px" id="dSubmit" value="@Resources.Lang.submit"/>
@@ -96,10 +96,9 @@
             foreach (var itemMessage in listMessage)
             {
                 count++;
-                string colorClass = count % 2 == 0 ? "#FAF9EE" : "#F6F8F9";
-                string colorOver = "#f8ff8d";
+                string colorClass = count % 2 == 0 ? "#FAF9EE" : "#F6F8F9";                
                         <!--MsgContent-->
-                        <tr bgcolor="@colorClass" onmouseover="bgColor='@colorOver'" onmouseout="bgColor='@colorClass'">
+                        <tr bgcolor="@colorClass">
                             <td class="w_order_ms">
                                 @count
                             </td>
@@ -132,9 +131,7 @@
 </div>
 <input type="hidden" name="eroMeg" id="eroMeg" value="@Resources.Lang.invalidDateMessage">
 <input type="hidden" name="msgType" id="msgType" value="{msgType}">
-@Html.Hidden("minDate", minDate)
-@Html.Hidden("maxDate", maxDate)
 <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
 <script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
 <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
-<script src="~/Views/Message/Resources/message.js" type="text/javascript"></script>
+<script src="~/Views/Message/Resources/PortalPage.js" type="text/javascript"></script>
