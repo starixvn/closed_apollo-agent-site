@@ -10,13 +10,13 @@ var MEMBERLIST = function ($) {
         },
         bindingNavigation: function () {
             $("[name='navigation']").bind('click', function () {
-                location.href = APOLLO.resolveUrl("/Account/Agentlist?agentid=" + $(this).attr('agentid'));
+                location.href = APOLLO.resolveUrl("Account/Agentlist?agentid=" + $(this).attr('agentid'));
                 return false;
             });
         },
         bindingQuickLink: function () {
             $("#quickLinkAgentList").bind('click', function () {
-                location.href = APOLLO.resolveUrl("/Account/AgentList?agentid=" + MEMBERLIST.AgentId);
+                location.href = APOLLO.resolveUrl("Account/AgentList?agentid=" + MEMBERLIST.AgentId);
             });
         },
         bindingSearch: function () {
@@ -24,26 +24,57 @@ var MEMBERLIST = function ($) {
                 MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
             });
         },
+        bindingEdit: function () {
+            $("[name='Edit']").mouseover(function () {
+                var pos = $(this).offset();
+                var eWidth = $(this).outerWidth();
+                var mWidth = $("#menuedit").outerWidth();
+                var left = (pos.left + eWidth) + "px";
+                var top = 3 + pos.top + "px";
+                $("#commission").attr("custid", $(this).attr('custid'));
+                $("#betsetting").attr("custid", $(this).attr('custid'));
 
+                $("#menuedit").css({
+                    position: 'absolute',
+                    zIndex: 5000,
+                    left: left,
+                    top: top
+                });
+                $("#menuedit").show();
+            }).mouseout(function () {
+                $("#menuedit").hide();
+            });
+            $("#commission").unbind('click').bind('click', function () {
+                // Code here
+            });
+            $("#betsetting").unbind('click').bind('click', function () {
+                // Code here
+            });
+            $("#menuedit").mouseover(function () {
+                $(this).show();
+            }).mouseout(function () {
+                $(this).hide();
+            });
+        },
         loadMemberList: function () {
             $.ajax({
                 type: "POST",
-                url: APOLLO.resolveUrl("/Account/GetCustomerList"),
+                url: APOLLO.resolveUrl("Account/GetCustomerList"),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: $("#txtUserName").val() }),
-                timeout: 120000,
-                success: function (result) {
+                timeout: 120000
+            })
+                .done(function (result) {
                     MEMBERLIST.AgentId = result.CurrentAgentId;
                     MEMBERLIST.initMemberList(result);
+                    MEMBERLIST.bindingEdit();
                     MEMBERLIST.bindingQuickLink();
                     MEMBERLIST.bindingSearch();
-                },
-                error: function (event, jqXHR, ajaxSettings) {
-                },
-                complete: function () {
-                }
-            });
+                })
+                .fail(function (event, jqXHR, ajaxSettings) {
+                    APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
+                });
         },
         initMemberList: function (memberList) {
             var bodyData = [];
@@ -146,24 +177,23 @@ var MEMBERLIST = function ($) {
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
                 $.ajax({
                     type: "POST",
-                    url: APOLLO.resolveUrl("/Account/GetCustomerList"),
+                    url: APOLLO.resolveUrl("Account/GetCustomerList"),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify({ agentId: MEMBERLIST.AgentId, pageIndex: page_index, pageSize: itemsPerPage }),
-                    timeout: 120000,
-                    success: function (result) {
+                    timeout: 120000
+                })
+                    .done(function (result) {
                         gridOption.pagerOption.itemsPerPage = itemsPerPage;
                         gridOption.pagerOption.currentPage = page_index;
                         gridOption.pagerOption.totalItem = result.TotalItem;
                         MEMBERLIST.AgentId = result.CurrentAgentId;
 
                         MEMBERLIST.initMemberList(result);
-                    },
-                    error: function (event, jqXHR, ajaxSettings) {
-                    },
-                    complete: function () {
-                    }
-                });
+                    })
+                    .fail(function (event, jqXHR, ajaxSettings) {
+                        APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
+                    });
                 return false;
             }
             $("#gridId").fanexGrid(gridOption);
