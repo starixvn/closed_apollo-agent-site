@@ -21,26 +21,7 @@ namespace Apollo.Age.Account.Repositories.Impl
 
     public class AccountRepository : IAccountRepository
     {
-        public bool IsExistValueSearch(ICriteria criteria)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
-            bool result = false;
-            try
-            {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    result = (bool)db.ExecuteScalar(criteria.GetSpParams());
-                }
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
-        }
-
-        public IEnumerable<Customer> GetCustomerSearch(ICriteria criteria)
+        public IEnumerable<Customer> GetCustomerSuggest(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             try
@@ -59,6 +40,25 @@ namespace Apollo.Age.Account.Repositories.Impl
             {
                 throw;
             }
+        }
+
+        public bool IsExistValueSearch(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            bool result = false;
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    result = (bool)db.ExecuteScalar(criteria.GetSpParams());
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return result;
         }
 
         public CustomerInfoModel GetCustomerInfo(ICriteria criteria)

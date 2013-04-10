@@ -139,7 +139,7 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetSuggestValues(string term, bool isMember)
         {
-            var listValue = _accountService.GetCustomerSearch(isMember, term, this.CurrentSession.AgentId)
+            var listValue = _accountService.GetCustomerSuggest(isMember, term, this.CurrentSession.AgentId)
                     .Select(x => x.Username).ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
