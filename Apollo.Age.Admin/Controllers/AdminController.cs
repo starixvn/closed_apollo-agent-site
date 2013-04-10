@@ -9,16 +9,12 @@
 
 namespace Apollo.Age.Admin.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
-    using System.Web.Security;
-    using Apollo.Age.Web;
-    using Sunplus.Agent.Model.Entities;
-    using Apollo.Age.Admin.Services;
-    using Apollo.Age.DTO.Admin.ExchangeRate;
     using Apollo.Age.Admin.Criterias;
+    using Apollo.Age.Admin.Services;
+    using Apollo.Age.Web;
+    using System.Threading;
 
     public class AdminController : BaseController
     {
@@ -42,6 +38,55 @@ namespace Apollo.Age.Admin.Controllers
             return View(exchangeRateList.ToList());
         }
 
+        public JsonResult InsertExchangeRate(string currency, string description,
+            double multipliedBy, double baseRate, double minBet, double minBetLive)
+        {
+            int errCode = 0;
+            string errMsg = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(currency))
+            {
+                errCode = 20;
+                errMsg = string.Format(Resources.Lang.FieldIsRequiredTpl, Resources.Lang.currency);
+            }
+            else // checks if currency existed
+            {
+                currency = currency.Trim();
+
+                var getExchRateByCurrencyCriteria =
+                    new GetExchangeRateByCurrencyCriteria { Currency = currency };
+                var exchRateToUpdate =
+                    _exchangeRateService.GetByCurrency(ref getExchRateByCurrencyCriteria);
+
+                if (exchRateToUpdate != null)
+                {
+                    errCode = 30;
+                    errMsg = string.Format(Resources.Lang.NameExistedTpl, currency);
+                }
+                else
+                {
+                    var criteria = new InsertExchangeRateCriteria
+                    {
+                        Currency = currency,
+                        UserId = CurrentSession.UserId,
+                        IP = RequestIP,
+                        Description = description,
+                        MultipliedBy = multipliedBy,
+                        BaseRate = baseRate,
+                        MinBet = minBet,
+                        MinBetLive = minBetLive
+                    };
+
+                    _exchangeRateService.InsertExchangeRate(ref criteria);
+
+                    errCode = criteria.ErrCode;
+                    errMsg = criteria.ErrMsg;
+                }
+            }
+
+            return Json(new { errCode = errCode, errMsg = errMsg }, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult UpdateExchangeRate(int exchangeId, string description,
             double multipliedBy, double baseRate, double minBet, double minBetLive)
         {
@@ -58,12 +103,10 @@ namespace Apollo.Age.Admin.Controllers
             }
             else
             {
-                //description = p["description"] == null ? string.Empty : HttpUtility.HtmlDecode(p["description"].ToString());
-
                 var criteria = new UpdateExchangeRateCriteria
                 {
-                    userId = CurrentSession.UserId,
-                    ip = "",
+                    UserId = CurrentSession.UserId,
+                    IP = RequestIP,
                     ExchangeId = exchangeId,
                     Description = description,
                     MultipliedBy = multipliedBy,
@@ -78,7 +121,7 @@ namespace Apollo.Age.Admin.Controllers
                 errMsg = criteria.ErrMsg;
             }
 
-            return Json(new { errCode = errCode, errMsg = errMsg });
+            return Json(new { errCode = errCode, errMsg = errMsg }, JsonRequestBehavior.AllowGet);
         }
     }
 }
