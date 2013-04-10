@@ -23,8 +23,7 @@
     <!--DataRow-->
         var ccs = (msgItem.IsRead ? msgItem.GetMessageType : msgItem.GetMessageType + "_unread");
         ccs = index % 2 == 0 ? ccs + " evenRow" : ccs + " oddRow";
-    <div class="@ccs message" style="clear:both" id="@msgItem.MessageId.ToString()" onclick="MessagePortalPage.toggleAnnouncementContent('@msgItem.MessageId');"
-        IsRead="@(msgItem.IsRead ? 1 : 0)">
+    <div class="@ccs message" style="clear:both" id="@msgItem.MessageId.ToString()" IsRead="@(msgItem.IsRead ? 1 : 0)">
         <div class="divTime">
             <div class="toogleIcon">
             </div>
@@ -47,7 +46,7 @@
 
     }
     <!--MoreFooter-->    
-    <div id="divMore" onclick="MessagePortalPage.showMoreAnnouncements()">
+    <div id="divMore">
         @Resources.Lang.more
     </div>
     <!--/MoreFooter-->
