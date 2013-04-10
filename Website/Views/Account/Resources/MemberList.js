@@ -6,11 +6,25 @@ var MEMBERLIST = function ($) {
         init: function () {
             MEMBERLIST.AgentId = $("#gridId").attr("agentid");
             MEMBERLIST.loadMemberList();
+            MEMBERLIST.bindingNavigation();
+        },
+        bindingNavigation: function () {
             $("[name='navigation']").bind('click', function () {
                 location.href = APOLLO.resolveUrl("/Account/Agentlist?agentid=" + $(this).attr('agentid'));
                 return false;
             });
         },
+        bindingQuickLink: function () {
+            $("#quickLinkAgentList").bind('click', function () {
+                location.href = APOLLO.resolveUrl("/Account/AgentList?agentid=" + MEMBERLIST.AgentId);
+            });
+        },
+        bindingSearch: function () {
+            $("#Search").bind('click', function () {
+                MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
+            });
+        },
+
         loadMemberList: function () {
             $.ajax({
                 type: "POST",
@@ -22,14 +36,8 @@ var MEMBERLIST = function ($) {
                 success: function (result) {
                     MEMBERLIST.AgentId = result.CurrentAgentId;
                     MEMBERLIST.initMemberList(result);
-
-                    $("#quickLinkAgentList").bind('click', function () {
-                        location.href = APOLLO.resolveUrl("/Account/AgentList?agentid=" + MEMBERLIST.AgentId);
-                    });
-
-                    $("#Search").bind('click', function () {
-                        MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
-                    });
+                    MEMBERLIST.bindingQuickLink();
+                    MEMBERLIST.bindingSearch();
                 },
                 error: function (event, jqXHR, ajaxSettings) {
                 },
@@ -91,7 +99,7 @@ var MEMBERLIST = function ($) {
                          { HeaderText: "#", Width: 50, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: "Edit", Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return "Edit";
+                                 return "<a href='#' name='Edit' custid=" + cell.Value.CustId + " >Edit</a>";
                              }
                          },
                          { HeaderText: "User", Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
@@ -157,11 +165,6 @@ var MEMBERLIST = function ($) {
                 return false;
             }
             $("#gridId").fanexGrid(gridOption);
-
-            $('[name="viewMember"]').bind('click', function () {
-                MEMBERLIST.AgentId = $(this).attr('agentid');
-                MEMBERLIST.loadAgentList();
-            });
         }
     };
 } (jQuery);
