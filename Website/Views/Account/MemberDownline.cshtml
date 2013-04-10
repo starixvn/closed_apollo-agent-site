@@ -10,7 +10,7 @@
         foreach (var member in Model)
         {
             <li>
-                <a href='../Account/AccountInfo?IsMember=1&custId=@member.Id&userName=@member.Username' target='menu'> @member.Username </a>
+                <a href='~/Account/AccountInfo?IsMember=1&custId=@member.Id&userName=@member.Username' target='menu'> @member.Username </a>
             </li> 
         }
     }

@@ -100,7 +100,7 @@
                 @if (!Model.IsMember && Model.HasAgentDownline)
                 {
                     <a class="lnk-agent-list" 
-                        target="main" href="../_MemberInfo/CustomerList/AgentList.aspx?custid=@Model.CustId&us=@Model.Username">
+                        target="main" href="~/Account/AgentList?agentid=@Model.CustId">
                         @Resources.Lang.lblAgentList
                     </a>
                 }
@@ -108,7 +108,7 @@
                 @if (!Model.IsMember && Model.HasMemberDownline)
                 {
                     <a class="lnk-member-list" 
-                        target="main" href="../_MemberInfo/CustomerList/MemberList.aspx?custid=@Model.CustId&us=@Model.Username">
+                        target="main" href="~/Account/CustomerList?agentid=@Model.CustId">
                         @Resources.Lang.lblPlayerList
                     </a>
                 }
@@ -148,44 +148,44 @@
                         @if (Model.IsMember)
                         {
                             <a class="lnk-setting" target="main"
-                                href="../_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
+                                href="~/_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
                                 @Resources.Lang.lblEditSB
                             </a>
         
                             <a class="lnk-setting" target="main"
-                                href="../_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
+                                href="~/_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
                                 @Resources.Lang.lbleditbetsetting
                             </a>
         
                             <a class="lnk-setting" target="main"
-                                href="../_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
+                                href="~/_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
                                 @Resources.Lang.lbleditcomm
                             </a>
         
                             <a class="lnk-setting" target="main"
-                                href="../_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
+                                href="~/_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
                                 @Resources.Lang.lblEditPositionTalking
                             </a>
                         }
                         else
                         {
                             <a class="lnk-setting" target="main"
-                                href="../_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
+                                href="~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
                                 @Resources.Lang.lblEditSB
                             </a>
         
                             <a class="lnk-setting" target="main"
-                                href="../_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
+                                href="~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
                                 @Resources.Lang.lbleditbetsetting
                             </a>
         
                             <a class="lnk-setting" target="main"
-                                href="../_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
+                                href="~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
                                 @Resources.Lang.lbleditcomm
                             </a>
         
                             <a class="lnk-setting" target="main"
-                                href="../_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
+                                href="~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
                                 @Resources.Lang.lblEditPositionTalking
                             </a>
                         }                    
@@ -222,8 +222,8 @@
 
 @helper SearchBox()
     {
-    if (Model == null)
-    {
+        if (Model == null)
+        {
         <select id="ddlIsMember" name="isMember">
             <option value="0" selected="selected">@Resources.Lang.lblAgent</option>
             <option value="1">@Resources.Lang.lblMember</option>
@@ -233,19 +233,19 @@
         <button type="button" class="btn search-button">
             <i class="icon-search"></i>
         </button> 
-    }
-    else
-    {
+        }
+        else
+        {
         <select id="ddlIsMember" name="isMember">
-            <option value="0" @(Model.IsMember ? string.Empty : "selected=selected") >@Resources.Lang.lblAgent</option>
-            <option value="1" @(Model.IsMember ? "selected=selected" : string.Empty) >@Resources.Lang.lblMember</option>
+            <option value="0" @(Model.IsMember ? string.Empty : "selected=selected")>@Resources.Lang.lblAgent</option>
+            <option value="1" @(Model.IsMember ? "selected=selected" : string.Empty)>@Resources.Lang.lblMember</option>
         </select>
         <input maxlength="50" id="txtUsername" type="text"
             value="@Model.Username" name="userName" />
         <button type="button" class="btn search-button">
             <i class="icon-search"></i>
         </button>
-    }
+        }
     
     <input id="enterUsernameValue" type="hidden" value="@Resources.Lang.enterusername"/>
 }
