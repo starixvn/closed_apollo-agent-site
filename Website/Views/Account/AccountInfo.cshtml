@@ -3,63 +3,53 @@
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
 }
-
 <ul id="tab-menu">
-    <li class="tab-menu">
-        <a href="@Url.Action("Menu")" target="menu">
-            <i class="icon-align-justify"></i>Menu</a>
-    </li>
-    <li class="tab-acc active">
-        <a>
-            <i class="icon-user"></i>Account</a>
-    </li>
-    <li class="tab-tree">
-        <a href="@Url.Action("TreeViewList")" target="menu">
-            <i class="icon-align-left"></i>Agents</a>
-    </li>
+    <li class="tab-menu"><a href="@Url.Action("Menu")" target="menu"><i class="icon-align-justify">
+    </i>Menu</a> </li>
+    <li class="tab-acc active"><a><i class="icon-user"></i>Account</a> </li>
+    <li class="tab-tree"><a href="@Url.Action("TreeViewList")" target="menu"><i class="icon-align-left">
+    </i>Agents</a> </li>
 </ul>
-
 <div id="wrapper">
-
     <div class="search-box">
         @SearchBox()
         @if (Model != null)
         {
             if (Model.CustId > 0)
             {
-                <table class="cust-info">
-                    <tbody>
-                        <tr>
-                            @if (Model.IsMember)
-                            {
-                                <td class="agent-lbl">
-                                    @Resources.Lang.lblMember:
-                                </td>
-                            }
-                            else
-                            {
-                                <td class="agent-lbl">
-                                    @Resources.Lang.agent:
-                                </td>
-                            }
-                            <td class="agent-name">
-                                @Model.Username
+            <table class="cust-info">
+                <tbody>
+                    <tr>
+                        @if (Model.IsMember)
+                        {
+                            <td class="agent-lbl">
+                                @Resources.Lang.lblMember:
                             </td>
-                        </tr> 
-                        <tr>
-                            @if (Model.IsMember)
-                            {
-                                <td class="parent-lbl">
-                                    @Resources.Lang.agent:
-                                </td>
-                            }
-                            else
-                            {
-                                <td class="parent-lbl">
-                                    @Resources.Lang.lblParentname:
-                                </td>
-                            }
-                            <td class="parent-name">                                
+                        }
+                        else
+                        {
+                            <td class="agent-lbl">
+                                @Resources.Lang.agent:
+                            </td>
+                        }
+                        <td class="agent-name">
+                            @Model.Username
+                        </td>
+                    </tr>
+                    <tr>
+                        @if (Model.IsMember)
+                        {
+                            <td class="parent-lbl">
+                                @Resources.Lang.agent:
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="parent-lbl">
+                                @Resources.Lang.lblParentname:
+                            </td>
+                        }
+                        <td class="parent-name">
                             @if (Model.CurrentAgentId == Model.ParentId)
                             {
                                 @Model.ParentName
@@ -73,125 +63,112 @@
                                     title="@Resources.Lang.txtShowUpline"
                                     alt="@Resources.Lang.txtShowUpline">
                                     <div id="ddl-agents">
-                                        <ul class="agent-list"></ul>
+                                        <ul class="agent-list">
+                                        </ul>
                                     </div>
                                 </a>
                                 <a class="view-custinfo" target="menu"
-                                    href="@Url.Action("AccountInfo")?@queryStr">@Model.ParentName 
+                                    href="@Url.Action("AccountInfo")?@queryStr">@Model.ParentName
                                 </a>
-                            }      
-                            </td>
-                        </tr>                                        
-                    </tbody>
-                </table>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             }
             else
             {
-                <div class="errMsg">@Resources.Lang.usernamenotexisted</div> 
+            <div class="errMsg">@Resources.Lang.usernamenotexisted</div> 
             }
         }
     </div>
-
     @if (Model != null)
     {
         if (Model.CustId > 0)
         {
-            <div class="clearfix">
-                @if (!Model.IsMember && Model.HasAgentDownline)
-                {
-                    <a class="lnk-agent-list" 
+        <div class="clearfix">
+            @if (!Model.IsMember && Model.HasAgentDownline)
+            {
+                <a class="lnk-agent-list" 
                         target="main" href="~/Account/AgentList?agentid=@Model.CustId">
-                        @Resources.Lang.lblAgentList
-                    </a>
-                }
-            
-                @if (!Model.IsMember && Model.HasMemberDownline)
-                {
-                    <a class="lnk-member-list" 
+                    @Resources.Lang.lblAgentList
+                </a>
+            }
+            @if (!Model.IsMember && Model.HasMemberDownline)
+            {
+                <a class="lnk-member-list" 
                         target="main" href="~/Account/CustomerList?agentid=@Model.CustId">
-                        @Resources.Lang.lblPlayerList
-                    </a>
-                }
-
-                @if (Model.IsMember)
+                    @Resources.Lang.lblPlayerList
+                </a>
+            }
+            @if (Model.IsMember)
+            {
+                <a class="lnk-betlist" target="main" href="javascript:void(0);">
+                    @Resources.Lang.BetList
+                </a>
+            }
+        </div>
+        <div id="agent-setting">
+            <ul class="tabs">
+                <li id="custsettings" class="current"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                    <span>@Resources.Lang.setting</span> </a></li>
+                @if (!Model.IsMember)
                 {
-                    <a class="lnk-betlist" target="main" href="javascript:void(0);">
-                        @Resources.Lang.BetList
-                    </a>
-                }
-            </div>
-            <div id="agent-setting">
-                <ul class="tabs">                
-                    <li id="custsettings" class="current">
-                        <a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
-                            <span>@Resources.Lang.setting</span>
-                        </a>
-                    </li>
-                
-                    @if (!Model.IsMember)
-                    {
-                        <li id="agentsTab">
-                            <a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
-                                <span>@Resources.Lang.lblAgents</span>
-                            </a>
-                        </li>
+                    <li id="agentsTab"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                        <span>@Resources.Lang.lblAgents</span> </a></li>
 
-                        <li id="membersTab">
-                            <a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
-                                <span>@Resources.Lang.lblMembers</span>
-                            </a>
-                        </li>
-                    }
-                </ul>
-                <div class="content">
-                    <div id="custsettings-content">
-                        @if (Model.IsMember)
-                        {
-                            <a class="lnk-setting" target="main"
+                    <li id="membersTab"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                        <span>@Resources.Lang.lblMembers</span> </a></li>
+                }
+            </ul>
+            <div class="content">
+                <div id="custsettings-content">
+                    @if (Model.IsMember)
+                    {
+                        <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
-                                @Resources.Lang.lblEditSB
-                            </a>
+                            @Resources.Lang.lblEditSB
+                        </a>
         
-                            <a class="lnk-setting" target="main"
+                        <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
-                                @Resources.Lang.lbleditbetsetting
-                            </a>
+                            @Resources.Lang.lbleditbetsetting
+                        </a>
         
-                            <a class="lnk-setting" target="main"
+                        <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
-                                @Resources.Lang.lbleditcomm
-                            </a>
+                            @Resources.Lang.lbleditcomm
+                        </a>
         
-                            <a class="lnk-setting" target="main"
+                        <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
-                                @Resources.Lang.lblEditPositionTalking
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="lnk-setting" target="main"
+                            @Resources.Lang.lblEditPositionTalking
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
-                                @Resources.Lang.lblEditSB
-                            </a>
+                            @Resources.Lang.lblEditSB
+                        </a>
         
-                            <a class="lnk-setting" target="main"
+                        <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
-                                @Resources.Lang.lbleditbetsetting
-                            </a>
+                            @Resources.Lang.lbleditbetsetting
+                        </a>
         
-                            <a class="lnk-setting" target="main"
+                        <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
-                                @Resources.Lang.lbleditcomm
-                            </a>
+                            @Resources.Lang.lbleditcomm
+                        </a>
         
-                            <a class="lnk-setting" target="main"
+                        <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
-                                @Resources.Lang.lblEditPositionTalking
-                            </a>
-                        }                    
-                    </div>
-            
-                    <div id="agentsTab-content">
+                            @Resources.Lang.lblEditPositionTalking
+                        </a>
+                    }
+                </div>
+                <div id="agentsTab-content">
                     @if (Model.HasAgentDownline)
                     {
                         <iframe id='frmDownlineList' name='frmDownlineList'
@@ -201,74 +178,39 @@
                     {
                         <div class="no-data">@Resources.Lang.noInfo</div>
                     }
-                    </div>
-
-                    <div id="membersTab-content">
-                    </div>
-                   
+                </div>
+                <div id="membersTab-content">
                 </div>
             </div>
+        </div>
         }
     }
-
 </div>
-
 @section foot
 {
     <script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
     <script src="~/Views/Account/Resources/AccountInfo.js" type="text/javascript"></script>
 }
-
 @helper SearchBox()
-<<<<<<< HEAD
-    {
-        if (Model == null)
-        {
-        <select id="ddlIsMember" name="isMember">
-=======
 {
     @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
         new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
         new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
     }, new { id = "ddlIsMember" })
-    
+
     if (Model == null)
     {
-        @*<select id="ddlIsMember" name="isMember">
->>>>>>> db9fb70b486dca9277c0348fc07bc653f0ed0009
-            <option value="0" selected="selected">@Resources.Lang.lblAgent</option>
-            <option value="1">@Resources.Lang.lblMember</option>
-        </select>*@
-        <input maxlength="50" id="txtUsername" name="userName" class="em"
-            type="text" value="@Resources.Lang.enterusername"/>
-        <button type="button" class="btn search-button">
-            <i class="icon-search"></i>
-        </button> 
-<<<<<<< HEAD
-        }
-        else
-        {
-        <select id="ddlIsMember" name="isMember">
-            <option value="0" @(Model.IsMember ? string.Empty : "selected=selected")>@Resources.Lang.lblAgent</option>
-            <option value="1" @(Model.IsMember ? "selected=selected" : string.Empty)>@Resources.Lang.lblMember</option>
-        </select>
         <input maxlength="50" id="txtUsername" type="text"
-            value="@Model.Username" name="userName" />
-=======
-    }
+            value="@Resources.Lang.enterusername" name="userName" />
+        }
     else
     {
-        @*<select id="ddlIsMember" name="isMember">
-            <option value="0" @(Model.IsMember ? string.Empty : "selected=selected") >@Resources.Lang.lblAgent</option>
-            <option value="1" @(Model.IsMember ? "selected=selected" : string.Empty) >@Resources.Lang.lblMember</option>
-        </select>*@
-        <input maxlength="50" id="txtUsername" type="text" value="@Model.Username" name="userName" />
->>>>>>> db9fb70b486dca9277c0348fc07bc653f0ed0009
-        <button type="button" class="btn search-button">
-            <i class="icon-search"></i>
-        </button>
-        }
-    
+        <input maxlength="50" id="txtUsername" type="text"
+            value="@Model.Username" name="userName" />
+    }
+    <button type="button" class="btn search-button">
+        <i class="icon-search"></i>
+    </button>
     <input id="enterUsernameValue" type="hidden" value="@Resources.Lang.enterusername"/>
 }
