@@ -6,11 +6,37 @@
     Page.Title = "Resource.Result";
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
-
-@model System.DateTime
+@model Apollo.Age.Reports.ViewModels.ReportResultViewModel
+@using(Html.BeginForm())
+{
 <div id="content_main">
-    @Html.DatePicker("fdate",DateTime.Now, minDate: Model, maxDate: DateTime.Now.Date)    
-    <input id="btnSubmit" value="Resouces.Generate" type="button"/>
-    <input id="btnToday" value="@DateTime.Now.Date.ToString()" type="button" />
-    <input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToString()" type="button"/>
+    <div id="box_header">
+        @Html.DatePicker("date", DateTime.Now, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
+        <input id="btnSubmit" value="Resouces.Generate" type="submit" />
+        <input id="btnToday" value="@DateTime.Now.Date.ToString()" type="button" />
+        <input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToString()" type="button"/>
+    </div>
+    @if (Model.SportList.Any())
+    { 
+        <table class="tblRpt">
+            <tr>
+                <td>
+                    {static:Resources.Lang.sport}
+                </td>
+                <td id="selSport">
+                    @Html.DropDownList("ddlSport", Model.SportSelectListItem)
+                </td>
+                <td width="10">
+                    &nbsp;
+                </td>
+                <td>
+                    {static:Resources.Lang.league}
+                </td>
+                <td id="selLeague" name="selLeague">
+                    @Html.DropDownList("ddlLeague", Model.LeagueSelectListItem)                    
+                </td>
+            </tr>
+        </table>
+    }
 </div>
+} 

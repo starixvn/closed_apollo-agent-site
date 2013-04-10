@@ -222,9 +222,17 @@
       <Mapping DataField="CustId" ObjectProperty="UserId" />
     </Setting>
     <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding" DbName="REPDB" Plain="0" />
-    <Setting Key="Age_Result_SportSelByDate" SpName="Age_Result_SportSelByDate" DbName="REPDB" Plain="0" />
+      <Setting Key="Age_Result_SportSelByDate" SpName="Age_Result_SportSelByDate" DbName="REPDB" Plain="0" >
+          <Mapping DataField="sporttype" ObjectProperty="Id"/>
+          <Mapping DataField="sportname" ObjectProperty="Name"/>
+      </Setting>
     <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright" DbName="REPDB" Plain="0" />
-    <Setting Key="Age_Result_LeagueSelByDate" SpName="Age_Result_LeagueSelByDate" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Result_LeagueSelByDate" SpName="Age_Result_LeagueSelByDate" DbName="REPDB" Plain="0" >
+     
+        <Mapping DataField="leaguename" ObjectProperty="Id"/>
+        <Mapping DataField="leagueid" ObjectProperty="Name"/>
+
+    </Setting>
     <Setting Key="Age_Result_MatchSelByLeague" SpName="Age_Result_MatchSelByLeague" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="REPDB" Plain="0" />
   </Function>
