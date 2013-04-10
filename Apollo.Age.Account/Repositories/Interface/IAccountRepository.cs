@@ -17,9 +17,9 @@ namespace Apollo.Age.Account.Repositories.Interface
 
     public interface IAccountRepository
     {
-        bool IsExistValueSearch(ICriteria criteria);
+        IEnumerable<Customer> GetCustomerSuggest(ICriteria criteria);
 
-        IEnumerable<Customer> GetCustomerSearch(ICriteria criteria);
+        bool IsExistValueSearch(ICriteria criteria);
 
         CustomerInfoModel GetCustomerInfo(ICriteria criteria);
 

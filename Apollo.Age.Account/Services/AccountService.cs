@@ -49,7 +49,7 @@ namespace Apollo.Age.Account.Services
             return _customerListRepository.GetData(ref criteria);
         }
 
-        public List<Customer> GetCustomerSearch(bool isMember, string userName, int agentId)
+        public List<Customer> GetCustomerSuggest(bool isMember, string userName, int agentId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
 
@@ -60,7 +60,7 @@ namespace Apollo.Age.Account.Services
                 UserName = userName
             };
 
-            return _accountRepository.GetCustomerSearch(criteria).ToList();
+            return _accountRepository.GetCustomerSuggest(criteria).ToList();
         }
 
         public CustomerInfoModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId)
