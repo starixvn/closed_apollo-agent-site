@@ -27,5 +27,10 @@ namespace Apollo.Age.Reports.Criterias
         public byte SportType { get; set; }
 
         public bool IsShowAll { get; set; }
+
+        public override bool IsValid()
+        {
+            return this.EventDate <= DateTime.Now;
+        }
     }
 }

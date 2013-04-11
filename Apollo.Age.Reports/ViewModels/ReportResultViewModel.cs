@@ -24,6 +24,7 @@ namespace Apollo.Age.Reports.ViewModels
     public class ReportResultViewModel
     {
         public DateTime BalanceUpDay { get; set; }
+        public DateTime EventDate { get; set; }
         public IEnumerable<Sport> SportList { get; set; }
         public IEnumerable<League> LeagueList { get; set; }
 
@@ -39,20 +40,6 @@ namespace Apollo.Age.Reports.ViewModels
 
                 return selectItemList;
             }
-        }
-
-        public IEnumerable<SelectListItem> LeagueSelectListItem
-        {
-            get
-            {
-                var selectItemList = LeagueList.Select(sport => new SelectListItem
-                {
-                    Value = sport.Id.ToString(),
-                    Text = CacheRef.GetLeagueName(sport.Id)
-                }).ToList<SelectListItem>();
-
-                return selectItemList;
-            }
-        }
+        }    
     }
 }

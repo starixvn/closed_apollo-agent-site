@@ -18,6 +18,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Entities;
+    using Apollo.Age.Services;
 
     public class ResultController : BaseController
     {
@@ -39,28 +40,34 @@ namespace Apollo.Age.Reports.Controllers
         [HttpPost]
         public ActionResult Index(DateTime date)
         {
-            var sports = _resultService.GetResultSports(date);
-            IEnumerable<League> leagues = null;
-
-            if (sports.Any())
-            {
-                leagues = _resultService.GetLeagueBySport(date, sports.First().Id);
-            }
-
             var balanceUpDay = _resultService.GetBalanceUpDay();
+            
+            var sports = _resultService.GetResultSports(date);       
 
             var viewModel = new ReportResultViewModel
             {
                 BalanceUpDay = balanceUpDay,
                 SportList = sports,
-                LeagueList = leagues
+                EventDate = date
             };
 
             return View(viewModel);
-        }
-        
-        public ActionResult LeagueBySport()
+        }      
+
+        public JsonResult League(DateTime date, byte sportId)
         {
+            // not add select all item yet
+            var leagues = _resultService.GetLeagueBySport(date, sportId);
+            leagues = leagues.Select(l => new League
+             {
+                 Id = l.Id,
+                 Name = CacheRef.GetLeagueName(l.Id)
+             });
+            return Json(leagues, JsonRequestBehavior.AllowGet);
+        }
+
+        public ViewResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
+        {            
             return View();
         }
     }
