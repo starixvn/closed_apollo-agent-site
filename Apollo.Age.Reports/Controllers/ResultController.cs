@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ResultController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ResultsController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -20,14 +20,15 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Entities;
     using Apollo.Age.Services;
     using Fanex.Common.Extensions;
+using Apollo.Age.Reports.Models;
 
-    public class ResultController : BaseController
+    public class ResultsController : BaseController
     {
         private readonly ResultService _resultService;
 
-        public ResultController() : this(null) { }
+        public ResultsController() : this(null) { }
 
-        public ResultController(ResultService resultService = null)
+        public ResultsController(ResultService resultService = null)
         {
             _resultService = resultService ?? new ResultService();
         }
@@ -80,9 +81,20 @@ namespace Apollo.Age.Reports.Controllers
             return Json(leagues, JsonRequestBehavior.AllowGet);
         }
 
-        public ViewResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
+        public ActionResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
         {
-            return View();
+            var matchResults = _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+            return RedirectToAction("Soccer", matchResults);
+        }
+
+        public ActionResult Soccer(IEnumerable<MatchResultModel> matchResults)
+        {
+            if (matchResults != null && matchResults.Any())
+            {
+                matchResults = matchResults.OrderBy(match => match.LeagueId);
+            }
+
+            return View(matchResults);
         }
     }
 }

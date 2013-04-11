@@ -820,7 +820,10 @@ namespace Fanex.Age.UI.Reports.Result
 
 					rowBlock.ColorClass = i % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
 					rowBlock.KickOffTime = Formater.FullDateFormat2Line(dr["kickofftime"]);
-					rowBlock.EventStatus = this.MapEventStatusString(dr["eventstatus"].ToString(), dr.Table.Columns.Contains("IsPending") ? Convert.ToBoolean(dr["IsPending"]) : false, dr.Table.Columns.Contains("IsHTCal") ? Convert.ToBoolean(dr["IsHTCal"]) : false, dr.Table.Columns.Contains("calculate") ? Convert.ToBoolean(dr["calculate"]) : false);
+					rowBlock.EventStatus = this.MapEventStatusString(dr["eventstatus"].ToString()
+                        , dr.Table.Columns.Contains("IsPending") 
+                        ? Convert.ToBoolean(dr["IsPending"]) : false, dr.Table.Columns.Contains("IsHTCal") 
+                        ? Convert.ToBoolean(dr["IsHTCal"]) : false, dr.Table.Columns.Contains("calculate") ? Convert.ToBoolean(dr["calculate"]) : false);
 
 					// Home and away team
 					string homeTeamText = string.Empty, awayTeamText = string.Empty;
@@ -2156,8 +2159,10 @@ namespace Fanex.Age.UI.Reports.Result
 			// Home and away team
 			string homeTeam = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : string.Empty);
 			string awayTeam = Sunplus.Agent.Model.BL.Cache.CacheRef.GetTeamName(dr["awayid"]);
+
 			int homeScore = Convert.IsDBNull(dr["finalhomescore"]) ? 0 : Convert.ToInt32(dr["finalhomescore"]);
 			int awayScore = Convert.IsDBNull(dr["finalawayscore"]) ? 0 : Convert.ToInt32(dr["finalawayscore"]);
+
 			if (homeScore > awayScore)
 			{
 				homeTeamText = string.Format("<b>{0}</b>", homeTeam);

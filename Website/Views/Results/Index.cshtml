@@ -29,17 +29,16 @@
             <span>{static:Resources.Lang.league} </span>
             <span id="panelLeague">
                 <select name="ddlLeague" id="ddlLeague">
-                </select>                
-            </span>
-            
+                </select>
+            </span>          
+            <br />
+            <div id="resultContainer">
+            </div>          
         }
     </div>
 }
-<script>
-    window.rootUrl = '@Url.Content("~")';
-
-</script>
+@Html.Hidden("ApoRoot", Url.Content("~/"))
 <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
 <script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
 <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
-<script src="~/Views/Result/Resources/ReportResult.js" type="text/javascript"></script>
+<script src="~/Views/Results/Resources/ReportResult.js" type="text/javascript"></script>
