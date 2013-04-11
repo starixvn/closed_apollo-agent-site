@@ -23,6 +23,7 @@ var AGENTLIST = function ($) {
                     for (var i = 0; i < rowLength; i++) {
                         if (i == rowLength - 1) {
                             template += "<span>" + result[i].Username + "</span>";
+                            $("#currusername").html(result[i].Username);
                         }
                         else {
                             template += "<a href='#' name='navigation' agentid='" + result[i].Id + "' >" + result[i].Username + "</a>";
@@ -46,7 +47,8 @@ var AGENTLIST = function ($) {
         bindingViewMember: function () {
             $('[name="viewMember"]').unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
-                location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId);
+
+                location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId + "&username=" + $(this).attr('username'));
                 return false;
             });
         },
@@ -204,7 +206,7 @@ var AGENTLIST = function ($) {
                          },
                          { HeaderText: LANGUAGES.NumberOfMember, Width: 150, Name: "NumberOfMember", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.NumberOfMember != 0 ? "<a href='#' name='viewMember' agentId=" + cell.Value.AgentId + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember);
+                                 return (cell.Value.NumberOfMember != 0 ? "<a href='#' name='viewMember' agentId=" + cell.Value.AgentId + " username=" + cell.Value.Username + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember);
                              }
                          },
                          { HeaderText: LANGUAGES.GroupA, Width: 150, Name: "GroupA", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
@@ -224,7 +226,7 @@ var AGENTLIST = function ($) {
                 showFooter: false,
                 fullHeight: true,
                 gridExpandHeight: 250,
-                numberOfFrozenColumn: 6,
+                numberOfFrozenColumn: 3,
                 marginRight: 0,
                 showPager: true,
                 customPager: true,
