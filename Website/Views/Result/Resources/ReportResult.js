@@ -1,7 +1,4 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
-
-
 var ReportResult = {
     init: function () {
         $("#ddlSport").change(function () {
@@ -15,19 +12,29 @@ var ReportResult = {
             sportId = $("#ddlSport").val();
         }
 
-        if (sportId != undefined) {
-            var date = $("#date").val();
-            $.getJSON(APOLLO.resolveUrl("League"), { "date": date, "sportId": sportId })
+        var dropDownLanguage = $("#ddlLeague");
+
+        if (dropDownLanguage.length > 0) {
+
+            if (sportId != undefined) {
+
+                dropDownLanguage.prop('disabled', 'disabled');
+
+                var date = $("#date").val();
+                $.getJSON(APOLLO.resolveUrl("League"), { "date": date, "sportId": sportId })
             .done(function (data) {
-                // clean and rebind with data get by new selected sportid
-                $("#ddlLeague").empty();                
+                // clean and rebind with data get by new selected sportid                
+                dropDownLanguage.empty();
                 $.each(data, function (i, item) {
-                    $("#ddlLeague").append($('<option>', {
+                    dropDownLanguage.append($('<option>', {
                         value: item.Id,
                         text: item.Name
                     }));
                 });
+
+                dropDownLanguage.removeAttr('disabled');
             });
+            }
         }
     }
 };
