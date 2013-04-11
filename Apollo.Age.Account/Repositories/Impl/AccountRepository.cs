@@ -107,5 +107,62 @@ namespace Apollo.Age.Account.Repositories.Impl
                 throw;
             }
         }
+
+        public IEnumerable<AgentListModel> GetAgentList(ref Criterias.AgentListCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var param = criteria.GetSpParams();
+                        var list = db.Query<AgentListModel>(param);
+
+                        // get output parameter
+                        criteria.TotalPages = Convert.ToInt32(param["totalpages"]);
+                        criteria.TotalItems = Convert.ToInt32(param["totalitems"]);
+
+                        return list;
+                    }
+                }
+
+                return new List<AgentListModel>();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<MemberListModel> GetMemberList(ref Criterias.CustomerListCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var param = criteria.GetSpParams();
+                        var list = db.Query<MemberListModel>(param);
+
+                        // get output parameter
+                        criteria.TotalPages = Convert.ToInt32(param["totalpages"]);
+                        criteria.TotalItems = Convert.ToInt32(param["totalitems"]);
+                        return list;
+                    }
+                }
+
+                return new List<MemberListModel>();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

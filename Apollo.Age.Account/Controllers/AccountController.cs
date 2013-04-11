@@ -211,7 +211,7 @@ namespace Apollo.Age.Account.Controllers
                 PageSize = currentPageSize
             };
 
-            IEnumerable<CustomerListModel> models = _accountService.GetCustomerList(ref criteria);
+            IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
             return Json(new
             {
