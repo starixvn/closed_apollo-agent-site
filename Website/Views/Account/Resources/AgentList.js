@@ -265,4 +265,4 @@ var AGENTLIST = function ($) {
 
 $(document).ready(function () {
     AGENTLIST.init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
