@@ -1,48 +1,50 @@
 ﻿/* File Created: April 3, 2013 */
-
-var fcHandicapOu =
-{
-    CurrentLeague: 0,
-    Init: function () {
-        fcHandicapOu.CurrentLeague = $('#ddlLeague').val();
-        if (fcHandicapOu.CurrentLeague) {
-            $('#ddlLeague').on("change", function () {
+if (typeof jQuery != 'undefined') {
+    var FCHANDICAPOU = function ($) {
+        return {
+            currentLeague: 0,
+            init: function () {
+                FCHANDICAPOU.currentLeague = $('#ddlLeague').val();
+                if (FCHANDICAPOU.currentLeague) {
+                    $('#ddlLeague').on("change", function () {
+                        var $this = $(this);
+                        FCHANDICAPOU.currentLeague = $this.val();
+                        if (FCHANDICAPOU.currentLeague) {
+                            FCHANDICAPOU.changeLeague();
+                        }
+                    });
+                    FCHANDICAPOU.changeLeague();
+                }
+            },
+            registerEvents: function () {
+                $('#forecast-body')
+            .off("click")
+            .on("click", ".view-forecast-detail", function () {
                 var $this = $(this);
-                fcHandicapOu.CurrentLeague = $this.val();
-                if (fcHandicapOu.CurrentLeague) {
-                    fcHandicapOu.ChangeLeague();
-                }
+                if (countDownTimer != null) clearTimeout(countDownTimer);
+                var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
+                + '&betType=' + $this.attr("bet-type"));
+                //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
+                //location.href = url;
+                ageWnd.openDialog(url, '', {
+                    width: 680,
+                    height: 300,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function (event, ui) {
+                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+                    }
+                });
             });
-            fcHandicapOu.ChangeLeague();
+            },
+            changeLeague: function () {
+                var url = APOLLO.resolveUrl('Forecast/FCHandicapOverUnderMatches?leagueId=' + FCHANDICAPOU.currentLeague);
+                $("#forecast-body").load(url);
+                FCHANDICAPOU.registerEvents();
+            }
         }
-    },
-    RegisterEvents: function () {
-        $('#forecast-body')
-        .off("click")
-        .on("click", ".view-forecast-detail", function () {
-            var $this = $(this);
-            if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url =APOLLO.resolveUrl('Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
-            + '&betType=' + $this.attr("bet-type"));
-            //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
-            //location.href = url;
-            ageWnd.openDialog(url, '', {
-                width: 680,
-                height: 300,
-                position: { my: "top+50", at: "center top", of: window },
-                close: function (event, ui) {
-                    countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-                }
-            });
-        });
-    },
-    ChangeLeague: function () {
-        var url = APOLLO.resolveUrl('Forecast/FCHandicapOverUnderMatches?leagueId=' + fcHandicapOu.CurrentLeague);
-        $("#forecast-body").load(url);
-        fcHandicapOu.RegisterEvents();
-    }
-};
+    } (jQuery);
 
-$(function () {
-    fcHandicapOu.Init();
-}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    $(function () {
+        FCHANDICAPOU.init();
+    }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+};
