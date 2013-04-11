@@ -21,7 +21,7 @@
                 <div>
                     @Resources.Lang.username</div>
                 <div>
-                    <input type="text" autocomplete="off" id="txtUserName" name="txtUserName" class="text_italic"
+                    <input type="text" autocomplete="off" id="txtUserName" value="@Resources.Lang.enterusername" name="txtUserName" class="text_italic"
                         style="width: 145px;" /></div>
                 <div>
                     <input type="button" value="Submit" id="Search"></div>
@@ -35,9 +35,18 @@
             </div>
         </div>
     </div>
+    <script language="javascript" type="text/javascript">
+        var BASELANGUAGES = function () {
+            return {
+                EnterUsername: "@Resources.Lang.enterusername"
+
+            };
+        } ();
+    </script>
     <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
+    <script src="~/Views/Account/Resources/AccountList.js" type="text/javascript"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
