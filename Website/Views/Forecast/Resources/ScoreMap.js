@@ -125,6 +125,16 @@ var scoreMap = {
                 scoreMap.RegisterEventsForResultMatch($(matchId));
             });
         });
+        //.hover-highlight
+        resultContainer.find(".scoreMap tbody .csm")
+        .mouseover(function () {
+            var $this = $(this);
+            $this.parent().parent().parent().find("th." + $this.attr("class-hover")).addClass("hover-highlight");
+        })
+        .mouseout(function () {
+            var $this = $(this);
+            $this.parent().parent().parent().find("th." + $this.attr("class-hover")).removeClass("hover-highlight");
+        });
     },
     GetIdFromSelectedCheckBox: function (selectedCheckBox) {
         var length = selectedCheckBox.length;
