@@ -1,6 +1,10 @@
-﻿@{    
-    Layout = null;
-    var listMessage = ViewBag.Messages != null ? ViewBag.Messages : new List<MessageModel>();
+﻿@using Apollo.Age.Web.Mvc
+@model GetMessageCriteria
+@{    
+    Layout = "~/Views/Message/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.Lang.messagetitle;
+
+    var listMessage = ViewBag.Messages ?? new List<MessageModel>();
     var normal = string.Empty;
     var special = string.Empty;
     var pri = string.Empty;
@@ -30,108 +34,95 @@
             break;
     }
 }
-@using Apollo.Age.Web.Mvc
-@model GetMessageCriteria
-<!--calendar-include-->
-<link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet"
-    type="text/css" />
-<!--/calendar-include-->
-<link href="~/App_Themes/AgencyV2/message.less" rel="stylesheet" type="text/css">
-<div id="page_main">
-    <div id="header_main">
-        @Resources.Lang.messagetitle
-    </div>
-    @using (Html.BeginForm("NewMessage", "Message", FormMethod.Get))
-    { 
-        <div id="content_main">
-            <div id="box_header">
-                <div class="date-range">
-                    <!--DateTimeSearch-->
-                    <div class="date">
-                        <label>
-                            @Resources.Lang.from</label>
-                        @Html.DatePickerFor(m => m.From, minDate, maxDate)
-                    </div>
-                    <div class="date">
-                        <label>
-                            @Resources.Lang.to</label>
-                        @Html.DatePickerFor(m => m.To, minDate, maxDate)
-                    </div>
-                    <!--/DateTimeSearch-->
-                    <input type="submit" class="btn" style="width: 55px" id="dSubmit" value="@Resources.Lang.submit"/>
+@section head {
+    <link href="~/App_Themes/AgencyV2/message.less" rel="stylesheet" type="text/css">
+}
+@using (Html.BeginForm("NewMessage", "Message", FormMethod.Get))
+{ 
+    <div id="content_main">
+        <div id="box_header">
+            <div class="date-range">
+                <!--DateTimeSearch-->
+                <div class="date">
+                    <label>
+                        @Resources.Lang.from</label>
+                    @Html.DatePickerFor(m => m.From, minDate, maxDate)
                 </div>
+                <div class="date">
+                    <label>
+                        @Resources.Lang.to</label>
+                    @Html.DatePickerFor(m => m.To, minDate, maxDate)
+                </div>
+                <!--/DateTimeSearch-->
+                <input type="submit" class="btn" style="width: 55px" id="dSubmit" value="@Resources.Lang.submit"/>
             </div>
-            <table class="tblRpt">
-                <thead>
-                    <tr>
-                        <td colspan="4" class="tbList">
-                            <ul>
-                                <li id="@normal"><a href="#" query="@Constant.NORMAL" class="pagequery"><span>@Resources.Lang.normalmessage</span></a></li>
-                                <li id="@special"><span class="line">|</span><a href="#" query="@Constant.SPECIAL" class="pagequery"><span>@Resources.Lang.specialmessage</span></a></li>
-                                <li id="@pri"><span class="line">|</span><a href="#" query="@Constant.PRIVATE" class="pagequery"><span>@Resources.Lang.personalmessage</span></a></li>
-                                @Html.HiddenFor(m => m.PageQuery)
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr class="RptHeader">
-                        <td width="20px">
-                            @Resources.Lang.no
-                        </td>
-                        <td width="60px">
-                            @Resources.Lang.messageIDHeader
-                        </td>
-                        <td width="80px">
-                            @Resources.Lang.lblPostdate
-                        </td>
-                        <td>
-                            @Resources.Lang.lblMessage
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-        int count = 0;
-        if (!ReferenceEquals(listMessage, null) && listMessage.Count > 0)
-        {
-            foreach (var itemMessage in listMessage)
-            {
-                count++;
-                string colorClass = count % 2 == 0 ? "#FAF9EE" : "#F6F8F9";                
-                        <!--MsgContent-->
-                        <tr bgcolor="@colorClass">
-                            <td class="w_order_ms">
-                                @count
-                            </td>
-                            <td class="c_ms">
-                                @itemMessage.MessageId
-                            </td>
-                            <td class="bl_time_ms">
-                                @itemMessage.PostTime
-                            </td>
-                            <td class="message_content">
-                                <font color='@color'>@itemMessage.GetContent()</font>
-                            </td>
-                        </tr>
-                        <!--/MsgContent-->
-            }
-        }
-        else
-        {
-                        <tr class="bg_white c">
-                            <td colspan="4" class="nobold">@Resources.Lang.noInfo
-                            </td>
-                        </tr>
-
-        }
-                    }
-                </tbody>
-            </table>
         </div>
+        <table class="tblRpt">
+            <thead>
+                <tr>
+                    <td colspan="4" class="tbList">
+                        <ul>
+                            <li id="@normal"><a href="#" query="@Constant.NORMAL" class="pagequery"><span>@Resources.Lang.normalmessage</span></a></li>
+                            <li id="@special"><span class="line">|</span><a href="#" query="@Constant.SPECIAL" class="pagequery"><span>@Resources.Lang.specialmessage</span></a></li>
+                            <li id="@pri"><span class="line">|</span><a href="#" query="@Constant.PRIVATE" class="pagequery"><span>@Resources.Lang.personalmessage</span></a></li>
+                            @Html.HiddenFor(m => m.PageQuery)
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="RptHeader">
+                    <td width="20px">
+                        @Resources.Lang.no
+                    </td>
+                    <td width="60px">
+                        @Resources.Lang.messageIDHeader
+                    </td>
+                    <td width="80px">
+                        @Resources.Lang.lblPostdate
+                    </td>
+                    <td>
+                        @Resources.Lang.lblMessage
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+    int count = 0;
+    if (!ReferenceEquals(listMessage, null) && listMessage.Count > 0)
+    {
+        foreach (var itemMessage in listMessage)
+        {
+            count++;
+            string colorClass = count % 2 == 0 ? "#FAF9EE" : "#F6F8F9";                
+                    <!--MsgContent-->
+                    <tr bgcolor="@colorClass">
+                        <td class="w_order_ms">
+                            @count
+                        </td>
+                        <td class="c_ms">
+                            @itemMessage.MessageId
+                        </td>
+                        <td class="bl_time_ms">
+                            @itemMessage.PostTime
+                        </td>
+                        <td class="message_content">
+                            <font color='@color'>@itemMessage.GetContent()</font>
+                        </td>
+                    </tr>
+                    <!--/MsgContent-->
+        }
     }
-</div>
+    else
+    {
+                    <tr class="bg_white c">
+                        <td colspan="4" class="nobold">@Resources.Lang.noInfo
+                        </td>
+                    </tr>
+
+    }
+                }
+            </tbody>
+        </table>
+    </div>
+}
 <input type="hidden" name="eroMeg" id="eroMeg" value="@Resources.Lang.invalidDateMessage">
 <input type="hidden" name="msgType" id="msgType" value="{msgType}">
-<script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-<script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
-<script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
-<script src="~/Views/Message/Resources/PortalPage.js" type="text/javascript"></script>

@@ -90,7 +90,9 @@
     </tr>
     }            
 }
+
 @RazorHelper.RefreshCountDown("HDPOU", 15, 15)
+
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
@@ -147,6 +149,7 @@
         }
     </tbody>
 </table>
+
 @section scripts
 {
     <script type="text/javascript">
@@ -157,4 +160,3 @@
         }).ajaxStart($.blockUI).ajaxStop($.unblockUI); ;
     </script>    
 }
-

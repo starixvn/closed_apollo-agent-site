@@ -12,13 +12,13 @@
         type="text/css" />
 }
 @RazorHelper.Navigation(Model)
-<div>
+<div class="table-header">
     <ul class="sub-nav">
         <li class="active"><a href="#" id="quickLinkAgentList">@Resources.Lang.lblAgentList</a></li>
-        <li><span class="line">|</span>@Resources.Lang.lblPlayerList</li>
+        <li><span class="line"></span>@Resources.Lang.lblPlayerList</li>
     </ul>
 </div>
-<div id="gridId" class="freegrid  content-grid" agentid='@ViewBag.CurrentAgentId' username='@ViewBag.CurrentUsername' style="margin-top: 20px; display: none;">
+<div id="gridId" class="freegrid  content-grid" agentid='@ViewBag.CurrentAgentId' username='@ViewBag.CurrentUsername'>
 </div>
 @section scripts
 {

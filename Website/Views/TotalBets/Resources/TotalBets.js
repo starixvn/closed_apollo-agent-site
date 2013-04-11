@@ -5,6 +5,7 @@ var TOTALBETS = function ($) {
         initViewForeCastHandicap: function () {
             $(".tblRpt").on("click", "a.view-forecast", function () {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
+
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type"));
@@ -19,6 +20,7 @@ var TOTALBETS = function ($) {
                 });
             });
         },
+
         initViewBetList: function () {
             $(".tblRpt").on("click", "a.view-bet-list", function () {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
@@ -37,6 +39,7 @@ var TOTALBETS = function ($) {
                 });
             });
         },
+
         initViewBetListGame: function () {
             $(".tblRpt").on("click", "a.view-bet-list", function () {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
@@ -55,6 +58,7 @@ var TOTALBETS = function ($) {
                 });
             });
         },
+
         initViewBetListNewGame: function () {
             $(".tblRpt").on("click", "a.view-bet-list-new-game", function () {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
@@ -74,6 +78,7 @@ var TOTALBETS = function ($) {
                 });
             });
         },
+
         initViewForecast1x2: function () {
             $(".tblRpt").on("click", "a.view-forecast", function () {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
@@ -90,6 +95,7 @@ var TOTALBETS = function ($) {
                 });
             });
         },
+
         innitFreeHeader: function () {
             var clonedHeaderRow;
             $(".persist-area").each(function () {
@@ -109,6 +115,7 @@ var TOTALBETS = function ($) {
                 TOTALBETS.updateTableHeaders();
             });
         },
+
         updateTableHeaders: function () {
             if ($(".persist-area").val() != undefined) {
                 var widthspace = $(".persist-area").width();

@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ResultController.cs" />
+    <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\GetSpecialDaysCriteria.cs" />
     <Compile Include="Criterias\MatchEnteredCriteria.cs" />

@@ -51,6 +51,8 @@ if (typeof jQuery != 'undefined') {
 
     $(function () {
         FORECASTBYMATCH.init();
+
+    $('#header_main').hide();
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
 function UpdateForecastValue() {
