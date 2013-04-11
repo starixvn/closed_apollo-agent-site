@@ -149,13 +149,12 @@
 </table>
 @section scripts
 {
-    <script src="~/Views/TotalBets/Resources/TotalBets.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(function () {
+        $(document).ready(function () {
             TOTALBETS.initViewForeCastHandicap();
             TOTALBETS.initViewBetList();
             TOTALBETS.innitFreeHeader();
-        });
+        }).ajaxStart($.blockUI).ajaxStop($.unblockUI); ;
     </script>    
 }
 
