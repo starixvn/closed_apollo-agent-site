@@ -13,7 +13,7 @@ namespace Apollo.Age.Reports.Models
 
     public class MatchEnteredModel
     {
-        public int SportTypeId { get; set; }
+        public byte SportTypeId { get; set; }
 
         public int YesterdayEntered { get; set; }
 

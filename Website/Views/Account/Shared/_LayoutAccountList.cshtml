@@ -10,10 +10,12 @@
 <body>
     <div id="page_main">
         <div id="header_main">
-            <div class="header-title">@ViewBag.HeaderTitle <span id="currUsername"></span>
+            <div class="header-title">
+                <span class="upper">@Resources.Lang.lblCustomerInfomation</span>
+                @ViewBag.HeaderTitle
+                <span id="currUsername"></span>
             </div>
-            <div class="edit-setting">
-            </div>
+            <div class="edit-setting"></div>
         </div>
         <div id="content_main">
             <div id="box_header">
@@ -31,11 +33,10 @@
         </div>
     </div>
     @Html.Hidden("ApoRoot", Url.Content("~/"))
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript">
         var BASELANGUAGES = function () {
             return {
                 EnterUsername: "@Resources.Lang.enterusername"
-
             };
         } ();
     </script>
