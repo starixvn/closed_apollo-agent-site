@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 //// New Code
 var scoreMap = {
-    BaseLink: window.rootUrl + 'Forecast/',
+    BaseLink: APOLLO.resolveUrl('Forecast/'),
     ViewPartial: false,
     Init: function () {
         //// Cached jQuery Objects
