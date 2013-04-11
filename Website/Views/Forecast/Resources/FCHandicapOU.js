@@ -22,8 +22,8 @@ var fcHandicapOu =
         .on("click", ".view-forecast-detail", function () {
             var $this = $(this);
             if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url = window.rootUrl + 'Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
-            + '&betType=' + $this.attr("bet-type");
+            var url =APOLLO.resolveUrl('Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
+            + '&betType=' + $this.attr("bet-type"));
             //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
             //location.href = url;
             ageWnd.openDialog(url, '', {
@@ -37,7 +37,7 @@ var fcHandicapOu =
         });
     },
     ChangeLeague: function () {
-        var url = window.rootUrl + 'Forecast/FCHandicapOverUnderMatches?leagueId=' + fcHandicapOu.CurrentLeague;
+        var url = APOLLO.resolveUrl('Forecast/FCHandicapOverUnderMatches?leagueId=' + fcHandicapOu.CurrentLeague);
         $("#forecast-body").load(url);
         fcHandicapOu.RegisterEvents();
     }
