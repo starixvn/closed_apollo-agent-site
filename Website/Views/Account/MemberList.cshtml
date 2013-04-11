@@ -1,6 +1,7 @@
 ﻿@using Apollo.Age.Entities;
 @{
     ViewBag.Title = "Customer List";
+    ViewBag.HeaderTitle = Resources.Lang.lblCustomerOf;
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
 @model List<Agent>
@@ -17,7 +18,7 @@
         <li><span class="line">|</span>@Resources.Lang.lblPlayerList</li>
     </ul>
 </div>
-<div id="gridId" class="freegrid  content-grid" agentid='@ViewBag.CurrentAgentId' style="margin-top: 20px; display: none;">
+<div id="gridId" class="freegrid  content-grid" agentid='@ViewBag.CurrentAgentId' username='@ViewBag.CurrentUsername' style="margin-top: 20px; display: none;">
 </div>
 @section scripts
 {

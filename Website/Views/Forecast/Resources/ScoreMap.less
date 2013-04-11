@@ -2,23 +2,28 @@
 
 #box_header {
 	margin-bottom: 10px;
+	padding: 0;
 
-	select#ddlLeague {
-		width: 280px;
-	}
+	.scoremap-filter {
+		margin: 5px;
 
-	.btn {
-		margin: 0 5px 0 3px;
-	}
+		select#ddlLeague {
+			width: 280px;
+		}
 
-	.iconRefresh {
-		.pull-left;
-		background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;
-		color: #90979A;    
-		width: 16px;
-		height: 16px;
-		cursor: pointer;
-		margin-top: 3px;
+		.btn {
+			margin: 0 5px 0 3px;
+		}
+
+		.iconRefresh {
+			.pull-left;
+			background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;
+			color: #90979A;    
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+			margin-top: 3px;
+		}
 	}
 }
 
@@ -130,7 +135,7 @@
 	display: none;
 
 	#bet-type-container {
-		margin-top: 40px;
+		margin: 5px 5px 0 5px;
 
 		/* End: Box Match by League */
 		table.check-list {
@@ -181,7 +186,7 @@
 	
 	.btn-submit {
 		float: left;
-		margin-top: 7px;
+		margin: 5px;
 
 		.btn {
 			border-radius: 0;
@@ -283,7 +288,7 @@
 							text-align: center;
 						}
 
-						&:hover td {
+						&:hover td.vsm {
 							background-color: #d0d3d3;
 						}
 
