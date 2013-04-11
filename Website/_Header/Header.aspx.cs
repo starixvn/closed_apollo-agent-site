@@ -111,6 +111,8 @@ namespace Sunplus.Agent.UI._Header
 
             #endregion User Message
 
+            tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
+
             writer.Write(tpl);
         }
 

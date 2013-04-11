@@ -33,23 +33,25 @@ namespace Fanex.Agent.UI
 			public string scrollMessage = "{scrollMessage}";
 			protected static string s12 = "</a></div></div></div></td><td><div id=\"button_top\" class=\"icon-envelope\"><a id=\"privateMsgLnk\" onclick=\"Change2Menu('Message/NewMessage?pageQuery=private', this)\">&nbsp;&nbsp;";
 			public string priMsgCount = "{priMsgCount}";
-			protected static string s13 = "</a></div></td></tr></table></div></div><input type=\"hidden\" id=\"showFlashAccInfo\" value=\"1\" /><input type=\"hidden\" id=\"ctime\" value=\"";
+			protected static string s13 = "</a></div></td></tr></table></div></div>";
+			public Header_HiddenFields_Block HiddenFields = new Header_HiddenFields_Block();
+			protected static string s14 = "<input type=\"hidden\" id=\"showFlashAccInfo\" value=\"1\" /><input type=\"hidden\" id=\"ctime\" value=\"";
 			public string ctime = "{ctime}";
-			protected static string s14 = "\" /><input type=\"hidden\" id=\"cdate\" value=\"";
+			protected static string s15 = "\" /><input type=\"hidden\" id=\"cdate\" value=\"";
 			public string cdate = "{cdate}";
-			protected static string s15 = "\" /><input type=\"hidden\" id=\"userid\" value=\"";
+			protected static string s16 = "\" /><input type=\"hidden\" id=\"userid\" value=\"";
 			public string userid = "{userid}";
-			protected static string s16 = "\" /><input type=\"hidden\" id=\"subaccid\" value=\"";
+			protected static string s17 = "\" /><input type=\"hidden\" id=\"subaccid\" value=\"";
 			public string subaccid = "{subaccid}";
-			protected static string s17 = "\" /><input type=\"hidden\" id=\"roleid\" value=\"";
+			protected static string s18 = "\" /><input type=\"hidden\" id=\"roleid\" value=\"";
 			public string roleid = "{roleid}";
-			protected static string s18 = "\" /><div id=\"divPopupAd\" style=\"display: none\">Temporary need this tag for other pages work</div><script src=\"";
-			protected static string s19{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
-			protected static string s20 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s21{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s22 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s23{get{return AbsoluteUrl("_Header/Resources/header.js", TplSettings.Question);}}
-			protected static string s24 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s19 = "\" /><div id=\"divPopupAd\" style=\"display: none\">Temporary need this tag for other pages work</div><script src=\"";
+			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
+			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s22{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s24{get{return AbsoluteUrl("_Header/Resources/header.js", TplSettings.Question);}}
+			protected static string s25 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -76,22 +78,24 @@ namespace Fanex.Agent.UI
 					bd.Append(s12);
 					bd.Append(priMsgCount);
 					bd.Append(s13);
-					bd.Append(ctime);
+					if(null != HiddenFields) HiddenFields.ToString(ref bd);
 					bd.Append(s14);
-					bd.Append(cdate);
+					bd.Append(ctime);
 					bd.Append(s15);
-					bd.Append(userid);
+					bd.Append(cdate);
 					bd.Append(s16);
-					bd.Append(subaccid);
+					bd.Append(userid);
 					bd.Append(s17);
-					bd.Append(roleid);
+					bd.Append(subaccid);
 					bd.Append(s18);
+					bd.Append(roleid);
 					bd.Append(s19);
 					bd.Append(s20);
 					bd.Append(s21);
 					bd.Append(s22);
 					bd.Append(s23);
 					bd.Append(s24);
+					bd.Append(s25);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -106,17 +110,17 @@ namespace Fanex.Agent.UI
 
 		public class Header_CssSuper_Block: Block
 		{
-			protected static string s25 = "<link href=\"";
-			protected static string s26{get{return AbsoluteUrl("_Header/Resources/Header4.less", TplSettings.Question);}}
-			protected static string s27 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s26 = "<link href=\"";
+			protected static string s27{get{return AbsoluteUrl("_Header/Resources/Header4.less", TplSettings.Question);}}
+			protected static string s28 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s25);
 					bd.Append(s26);
 					bd.Append(s27);
+					bd.Append(s28);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -124,17 +128,17 @@ namespace Fanex.Agent.UI
 
 		public class Header_CssMaster_Block: Block
 		{
-			protected static string s28 = "<link href=\"";
-			protected static string s29{get{return AbsoluteUrl("_Header/Resources/Header3.less", TplSettings.Question);}}
-			protected static string s30 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s29 = "<link href=\"";
+			protected static string s30{get{return AbsoluteUrl("_Header/Resources/Header3.less", TplSettings.Question);}}
+			protected static string s31 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s28);
 					bd.Append(s29);
 					bd.Append(s30);
+					bd.Append(s31);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -142,17 +146,17 @@ namespace Fanex.Agent.UI
 
 		public class Header_CssAgent_Block: Block
 		{
-			protected static string s31 = "<link href=\"";
-			protected static string s32{get{return AbsoluteUrl("_Header/Resources/Header2.less", TplSettings.Question);}}
-			protected static string s33 = "\" rel=\"stylesheet\" type=\"text/css\" />";
+			protected static string s32 = "<link href=\"";
+			protected static string s33{get{return AbsoluteUrl("_Header/Resources/Header2.less", TplSettings.Question);}}
+			protected static string s34 = "\" rel=\"stylesheet\" type=\"text/css\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s31);
 					bd.Append(s32);
 					bd.Append(s33);
+					bd.Append(s34);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -161,18 +165,36 @@ namespace Fanex.Agent.UI
 		public class Header_SetUserName_Block: Block
 		{
 			public string mainAccName = "{mainAccName}";
-			protected static string s34 = " <span>(";
+			protected static string s35 = " <span>(";
 			public string AgentUsername = "{AgentUsername}";
-			protected static string s35 = ")</span>";
+			protected static string s36 = ")</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(mainAccName);
-					bd.Append(s34);
-					bd.Append(AgentUsername);
 					bd.Append(s35);
+					bd.Append(AgentUsername);
+					bd.Append(s36);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class Header_HiddenFields_Block: Block
+		{
+			protected static string s37 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			public string ApoRoot = "{ApoRoot}";
+			protected static string s38 = "\" />";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s37);
+					bd.Append(ApoRoot);
+					bd.Append(s38);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
