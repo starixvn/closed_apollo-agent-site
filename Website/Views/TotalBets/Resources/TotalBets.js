@@ -1,6 +1,6 @@
-﻿var totalBets =
+﻿var TOTALBETS =
 {
-    InitViewForeCastHandicap: function () {
+    initViewForeCastHandicap: function () {
         $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
@@ -17,7 +17,7 @@
             });
         });
     },
-    InitViewBetList: function () {
+    initViewBetList: function () {
         $(".tblRpt").on("click", "a.view-bet-list", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
@@ -35,7 +35,7 @@
             });
         });
     },
-    InitViewBetListGame: function () {
+    initViewBetListGame: function () {
         $(".tblRpt").on("click", "a.view-bet-list", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
@@ -53,7 +53,7 @@
             });
         });
     },
-    InitViewBetListNewGame: function () {
+    initViewBetListNewGame: function () {
         $(".tblRpt").on("click", "a.view-bet-list-new-game", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
@@ -72,7 +72,7 @@
             });
         });
     },
-    InitViewForecast1x2: function () {
+    initViewForecast1x2: function () {
         $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
             var url = APOLLO.resolveUrl('Forecast/FC1X2?'
@@ -88,7 +88,7 @@
             });
         });
     },
-    InnitFreeHeader: function () {
+    innitFreeHeader: function () {
         var clonedHeaderRow;
         $(".persist-area").each(function () {
             clonedHeaderRow = $(".persist-header", this);
@@ -101,21 +101,15 @@
         });
 
         $(window)
-	        .scroll(this.updateTableHeaders)
+	        .scroll(TOTALBETS.updateTableHeaders)
 	        .trigger("scroll");
         $(window).resize(function () {
-            updateTableHeaders();
+            TOTALBETS.updateTableHeaders();
         });
     },
     updateTableHeaders: function () {
         if ($(".persist-area").val() != undefined) {
             var widthspace = $(".persist-area").width();
-
-            //            var offsetIE = 0;
-            //            if (APOLLO.browser.msie) {
-            //                offsetIE = -10;
-            //                console.log(APOLLO.browser.version)
-            //            }
 
             $('.floatingHeader').width(widthspace);
             var left = $('table thead tr:first').position()["left"];
@@ -123,8 +117,8 @@
                 var el = $(this),
                     offset = el.offset(),
                     scrollTop = $(window).scrollTop(),
-                    floatingHeader = $(".floatingHeader", this)
-                if ((scrollTop > offset.top - 60) && (scrollTop < offset.top + el.height())) {
+                    floatingHeader = $(".floatingHeader", this);
+                if ((scrollTop > offset.top) && (scrollTop < offset.top + el.height())) {
                     floatingHeader.css({
                         "visibility": "visible",
                         "left": (left - $(window).scrollLeft())
