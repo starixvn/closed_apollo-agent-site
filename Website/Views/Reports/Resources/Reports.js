@@ -75,13 +75,13 @@
                         ],
                 columns: [
 
-                         { HeaderText: LANGUAGES.Member, Width: 230, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
-                        { HeaderText: LANGUAGES.Outstanding, Width: 193, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
+                         { HeaderText: LANGUAGES.Member, Width: 370, Name: "Member", HeaderAlign: "center", CellAlign: "left" },
+                        { HeaderText: LANGUAGES.Outstanding, Width: 313, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
                             CustomCellRender: function (cell) {
                                 return (cell.Value.Outstanding != 0 ? "<a href='#' class='act-view-betlist' data-custid='" + cell.Value.UserId + "'>" + numeral(cell.Value.Outstanding).format("0,0.00") + "</a>" : numeral(cell.Value.Outstanding).format("0,0.00"));
                             }
                         },
-                        { HeaderText: LANGUAGES.ShareAmount, Width: 197, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: LANGUAGES.ShareAmount, Width: 295, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                         { HeaderText: LANGUAGES.Outstanding, Width: 195, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00",
                             CustomCellRender: function (cell) {
                                 return (cell.Value.GameOutstanding != 0 ? "<a href=''>" + numeral(cell.Value.GameOutstanding).format("0,0.00") + "</a>" : numeral(cell.Value.GameOutstanding).format("0,0.00"));

@@ -8,25 +8,32 @@
     @RenderSection("css", required: false)
 </head>
 <body>
-    <div>
-        <span>@ViewBag.HeaderTitle</span> <span><a href="#" class="abc"></a></span>
-    </div>
-    <div id="box_header">
-        <div>
-            @Resources.Lang.username</div>
-        <div>
-            <input type="text" autocomplete="off" id="txtUserName" name="txtUserName" class="text_italic"
-                style="width: 145px;" /></div>
-        <div>
-            <input type="button" value="Submit" id="Search"></div>
-    </div>
-    @RenderBody()
-    <div id="menuedit" style="display: none; border: 1px solid #000; background-color: Gray">
-        <div>
-            <a href="#" id="commission">@Resources.Lang.commission</a></div>
-        <div>
-            <a href="#" id="betsetting">@Resources.Lang.lblBetSetting</a></div>
-    </div>
+    <div id="page_main">
+        <div id="header_main">
+           <span>@ViewBag.HeaderTitle</span> <span><a href="#" class="abc"></a></span>
+        </div>
+        <div id="content_main">
+            <div id="box_header">
+                <div>
+                    @Resources.Lang.username</div>
+                <div>
+                    <input type="text" autocomplete="off" id="txtUserName" name="txtUserName" class="text_italic"
+                        style="width: 145px;" /></div>
+                <div>
+                    <input type="button" value="Submit" id="Search"></div>
+            </div>
+
+            @RenderBody()
+
+            <div id="menuedit" style="display: none; border: 1px solid #000; background-color: Gray">
+                <div>
+                    <a href="#" id="commission">@Resources.Lang.commission</a></div>
+                <div>
+                    <a href="#" id="betsetting">@Resources.Lang.lblBetSetting</a></div>
+            </div>
+        </div>
+    </div>    
+   
     <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
