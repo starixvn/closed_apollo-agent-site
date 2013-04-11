@@ -224,6 +224,7 @@ var AGENTLIST = function ($) {
                 showFooter: false,
                 fullHeight: true,
                 gridExpandHeight: 250,
+                numberOfFrozenColumn: 6,
                 marginRight: 0,
                 showPager: true,
                 customPager: true,
@@ -232,6 +233,7 @@ var AGENTLIST = function ($) {
                     currentPage: agentList.CurrentPage,
                     totalItem: agentList.TotalItem,
                     itemsPerPageArray: [50, 100, 500],
+
                     pagerSelectCallBack: ReRenderAfterPaged
                 },
                 showColumnsShowHide: false,

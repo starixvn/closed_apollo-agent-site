@@ -163,6 +163,7 @@ var MEMBERLIST = function ($) {
                 showFooter: false,
                 fullHeight: true,
                 gridExpandHeight: 250,
+                numberOfFrozenColumn: 5,
                 marginRight: 0,
                 showPager: true,
                 customPager: true,
