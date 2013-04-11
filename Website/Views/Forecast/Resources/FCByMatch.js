@@ -4,7 +4,7 @@ var forecastByMatch =
     MatchId: matchId,
     BetType: betType,
     CurrentScore: currentScore,
-    ContentLink: window.rootUrl + 'Forecast/ForecastByMatchContent',
+    ContentLink: APOLLO.resolveUrl('Forecast/ForecastByMatchContent'),
     Init: function () {
         forecastByMatch.LoadContentView();
     },
@@ -24,9 +24,9 @@ var forecastByMatch =
         //// Register View BestList
         $('#forecast-body .view-bet-list').click(function () {
             var $this = $(this);
-            var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
+            var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
             + '&betType=' + $this.attr("bet-type")
-            + '&type=BettypeMatch';
+            + '&type=BettypeMatch');
             location.href = url;
         });
 

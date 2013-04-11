@@ -3,9 +3,9 @@
     InitViewForeCastHandicap: function () {
         $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url = window.rootUrl + 'Forecast/ForecastByMatch?'
+            var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
             + 'matchId=' + $(this).attr("match-id")
-            + '&betType=' + $(this).attr("bet-type");
+            + '&betType=' + $(this).attr("bet-type"));
 
             ageWnd.openDialog(url, '', {
                 width: 665,
@@ -20,9 +20,9 @@
     InitViewBetList: function () {
         $(".tblRpt").on("click", "a.view-bet-list", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
+            var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type")
-            + '&type=' + $(this).attr("betlist-type");
+            + '&type=' + $(this).attr("betlist-type"));
 
             //location.href = url;
             ageWnd.openDialog(url, '', {
@@ -38,10 +38,10 @@
     InitViewBetListGame: function () {
         $(".tblRpt").on("click", "a.view-bet-list", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
+            var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type")
             + '&type=' + $(this).attr("betlist-type")
-            + '&islive=' + $(this).attr("is-live");
+            + '&islive=' + $(this).attr("is-live"));
             //location.href = url;
             ageWnd.openDialog(url, '', {
                 width: 930,
@@ -56,11 +56,11 @@
     InitViewBetListNewGame: function () {
         $(".tblRpt").on("click", "a.view-bet-list-new-game", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
+            var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
             + '&betType=' + $(this).attr("bet-type")
             + '&type=' + $(this).attr("betlist-type")
             + '&islive=' + $(this).attr("is-live")
-            + '&betteam=' + $(this).attr("bet-team");
+            + '&betteam=' + $(this).attr("bet-team"));
             //location.href = url;
             ageWnd.openDialog(url, '', {
                 width: 930,
@@ -75,9 +75,9 @@
     InitViewForecast1x2: function () {
         $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
-            var url = window.rootUrl + 'Forecast/FC1X2?'
+            var url = APOLLO.resolveUrl('Forecast/FC1X2?'
             + 'matchId=' + $(this).attr("match-id")
-            + '&betType=' + $(this).attr("bet-type");
+            + '&betType=' + $(this).attr("bet-type"));
             ageWnd.openDialog(url, '', {
                 width: 350,
                 height: 520,
