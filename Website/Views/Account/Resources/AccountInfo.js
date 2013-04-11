@@ -37,7 +37,8 @@
             },
             select: function (event, ui) {
                 ACCOUNT.getAccountInfo(ui.item.value);
-            }
+            },
+            position: { my: "right top", at: "right bottom" }
         });
 
 

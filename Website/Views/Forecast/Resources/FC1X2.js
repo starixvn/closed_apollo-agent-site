@@ -5,7 +5,7 @@ var fc1x2 =
     CurrentLeague: 0,
     MatchId: matchId,
     BetType: betType,
-    Link: window.rootUrl + 'Forecast/FC1X2Matches',
+    Link: APOLLO.resolveUrl('Forecast/FC1X2Matches'),
     Init: function () {
         if (fc1x2.MatchId > 0) {
             fc1x2.LoadMatch();
@@ -32,9 +32,9 @@ var fc1x2 =
             var $this = $(this);
             if (isLoadNewPopup) {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
-                var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
+                var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
             + '&betType=' + $this.attr("bet-type")
-            + '&type=BettypeMatch';
+            + '&type=BettypeMatch');
 
                 //location.href = url;
                 ageWnd.openDialog(url, '', {
@@ -47,9 +47,9 @@ var fc1x2 =
                 });
             }
             else {
-                var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + fc1x2.MatchId
+                var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + fc1x2.MatchId
                 + '&betType=' + fc1x2.BetType
-                + '&type=BettypeMatch';
+                + '&type=BettypeMatch');
                 location.href = url;
             }
         });

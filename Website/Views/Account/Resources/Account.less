@@ -385,33 +385,16 @@ html, body {
 }
 
 /* AUTO-COMPLETE */
-.shadow {
-	visibility: hidden;
-	.output {
-		background-color: #eee;
-		border-top: 1px solid #ccc;
-		cursor: default;
+.ui-autocomplete.ui-menu {
+	.border-radius(0);
+	padding: 0;
 
-		.opOut, .opOver {
-			border: 1px solid #ccc;
-			border-top-color: #fff;
-			padding: 0 5px;
-			min-width: 126px;
-		}
-		.opOver {
-			background-color: @lightBlue;
-			border-color: #fff @lightBlue @lightBlue @lightBlue;
-			color: #fff;
+	.ui-menu-item {
+		a {
+			white-space: nowrap;
+			.border-radius(0);
 		}
 	}
-}
-
-.errMsg {
-	margin-top: 5px;
-	padding: 0 10px;
-	background-color: lighten(@orange, 30%);
-	font-weight: bold;
-	color: darken(@orange, 20%);
 }
 
 /* TREE VIEW */
@@ -437,15 +420,15 @@ html, body {
 	margin-bottom: 45px;
 }
 
-/* Pager */
+/* PAGER */
 .pager {
 	position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #fff;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #fff;
 	margin: 5px 0 0;
-	padding: 10px 5px 5px;
+	padding: 10px 0 5px;
 	color: #707070;
 
 	span, a {
@@ -453,7 +436,7 @@ html, body {
 		border: 1px solid #CCC;
 		.box-shadow(0 1px 0 #FFF inset);
 		margin: 0 2px;
-		padding: 3px 6px;
+		padding: 3px 4px;
 		color: #707070;
 		text-decoration: none;
 		.transition(all 0.15s ease-in-out 0s);

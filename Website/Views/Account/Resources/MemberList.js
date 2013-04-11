@@ -205,4 +205,4 @@ var MEMBERLIST = function ($) {
 
 $(document).ready(function () {
     MEMBERLIST.init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
