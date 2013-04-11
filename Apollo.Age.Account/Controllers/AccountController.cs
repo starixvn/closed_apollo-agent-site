@@ -19,20 +19,15 @@ namespace Apollo.Age.Account.Controllers
     using System.Web.Security;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
-
     using Apollo.Age.Account.Services;
-    using Apollo.Age.Entities;
     using Apollo.Age.Web;
     using Apollo.MvcPaging;
-    using Sunplus.Agent.Model.Entities;
 
     public class AccountController : BaseController
     {
         private const int PAGEINDEX = 0; // Current index page
         private const int PAGESIZE = 50; // Maximum items in a page
-        private const int TOTALPAGE = 0; // Maximum page total
-
-        private IList<Member> allProducts = new List<Member>();
+        private const int TOTALPAGE = 0; // Maximum page totals
 
         private readonly AccountService _accountService;
         private int _agentId;
