@@ -12,9 +12,14 @@ namespace Apollo.Age.Account.Services
     using System.Collections.Generic;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Entities;
+    using Apollo.Age.Account.Criterias;
 
     public interface IAccountService
     {
+        IEnumerable<AgentListModel> GetAgentList(ref AgentListCriteria criteria);
+
+        IEnumerable<MemberListModel> GetCustomerList(ref CustomerListCriteria criteria);
+
         List<Customer> GetCustomerSuggest(bool isMember, string userName, int agentId);
 
         CustomerInfoModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId);

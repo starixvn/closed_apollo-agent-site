@@ -29,7 +29,7 @@ namespace Apollo.Age.Account.Controllers
         private const int PAGESIZE = 50; // Maximum items in a page
         private const int TOTALPAGE = 0; // Maximum page totals
 
-        private readonly AccountService _accountService;
+        private readonly IAccountService _accountService;
         private int _agentId;
 
         private int? CurrentAgentId
