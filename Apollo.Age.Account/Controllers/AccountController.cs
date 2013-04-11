@@ -154,7 +154,7 @@ namespace Apollo.Age.Account.Controllers
             return View(listAgent);
         }
 
-        public ActionResult CustomerList(int? agentId)
+        public ActionResult MemberList(int? agentId)
         {
             CurrentAgentId = agentId;
             ViewBag.CurrentAgentId = CurrentAgentId;
@@ -200,7 +200,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetCustomerList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
+        public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
             CurrentAgentId = agentId;
             var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;

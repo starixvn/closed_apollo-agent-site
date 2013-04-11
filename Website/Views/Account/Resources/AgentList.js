@@ -37,34 +37,34 @@ var AGENTLIST = function ($) {
                 });
         },
         bindingViewAgent: function () {
-            $('[name="viewAgent"]').bind('click', function () {
+            $('[name="viewAgent"]').unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
                 AGENTLIST.loadAgentList();
                 return false;
             });
         },
         bindingViewMember: function () {
-            $('[name="viewMember"]').bind('click', function () {
+            $('[name="viewMember"]').unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
-                location.href = APOLLO.resolveUrl("Account/CustomerList?agentId=" + AGENTLIST.AgentId);
+                location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId);
                 return false;
             });
         },
         bindingNavigation: function () {
-            $("[name='navigation']").bind('click', function () {
+            $("[name='navigation']").unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
                 AGENTLIST.loadAgentList();
                 return false;
             });
         },
         bindingQuickLink: function () {
-            $("#quickLinkCustomerList").bind('click', function () {
-                location.href = APOLLO.resolveUrl("Account/CustomerList?agentid=" + AGENTLIST.AgentId);
+            $("#quickLinkCustomerList").unbind('click').bind('click', function () {
+                location.href = APOLLO.resolveUrl("Account/MemberList?agentid=" + AGENTLIST.AgentId);
                 return false;
             });
         },
         bindingSearch: function () {
-            $("#Search").bind('click', function () {
+            $("#Search").unbind('click').bind('click', function () {
                 AGENTLIST.loadAgentList(AGENTLIST.AgentId);
             });
         },
@@ -173,51 +173,51 @@ var AGENTLIST = function ($) {
                                  {
                                      Columns: [
                                             { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
-                                            { HeaderText: "Edit", Name: "Edit", MergeRowNumber: 2 },
-                                            { HeaderText: "Username", Name: "Username", MergeRowNumber: 2 },
-                                            { HeaderText: "Status", Name: "Status", MergeRowNumber: 2 },
-                                            { HeaderText: "NumberOfAgent", Name: "NumberOfAgent", MergeRowNumber: 2 },
-                                            { HeaderText: "NumberOfMember", Name: "NumberOfMember", MergeRowNumber: 2 },
-                                            { HeaderText: "Commission(%)", Name: "GroupA", MergeColNumber: 7 },
-                                            { HeaderText: "Soccer Share(%)", Name: "Handicap", MergeColNumber: 4 }
+                                            { HeaderText: LANGUAGES.Edit, Name: "Edit", MergeRowNumber: 2 },
+                                            { HeaderText: LANGUAGES.Username, Name: "Username", MergeRowNumber: 2 },
+                                            { HeaderText: LANGUAGES.Status, Name: "Status", MergeRowNumber: 2 },
+                                            { HeaderText: LANGUAGES.NumberOfAgent, Name: "NumberOfAgent", MergeRowNumber: 2 },
+                                            { HeaderText: LANGUAGES.NumberOfMember, Name: "NumberOfMember", MergeRowNumber: 2 },
+                                            { HeaderText: LANGUAGES.Commission, Name: "GroupA", MergeColNumber: 7 },
+                                            { HeaderText: LANGUAGES.SoccerShare, Name: "Handicap", MergeColNumber: 4 }
 
                                         ]
                                  }
                         ],
                 columns: [
                          { HeaderText: "#", Width: 50, Name: "No", HeaderAlign: "center", CellAlign: "center" },
-                         { HeaderText: "Edit", Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
+                         { HeaderText: LANGUAGES.Edit, Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
                                  return "<a href='#' name='Edit' agentid=" + cell.Value.AgentId + " agentlevel=" + cell.Value.AgentLevel + " >Edit</a>";
                              }
                          },
-                         { HeaderText: "User", Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
-                         { HeaderText: "Status", Width: 150, Name: "Status", HeaderAlign: "center", CellAlign: "center",
+                         { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
+                         { HeaderText: LANGUAGES.Status, Width: 150, Name: "Status", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
                                  return (cell.Value.Status == 0 ? "Active" : (cell.Value.Status == 1 ? "Suspended" : "Closed"));
                              }
                          },
-                         { HeaderText: "Agents", Width: 150, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
+                         { HeaderText: LANGUAGES.NumberOfAgent, Width: 150, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
                                  return (cell.Value.NumberOfAgent != 0 ? "<a name='viewAgent' href='#' agentId=" + cell.Value.AgentId + ">" + cell.Value.NumberOfAgent + "</a>" : cell.Value.NumberOfAgent);
                              }
                          },
-                         { HeaderText: "Members", Width: 150, Name: "NumberOfMember", HeaderAlign: "center", CellAlign: "center",
+                         { HeaderText: LANGUAGES.NumberOfMember, Width: 150, Name: "NumberOfMember", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
                                  return (cell.Value.NumberOfMember != 0 ? "<a href='#' name='viewMember' agentId=" + cell.Value.AgentId + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember);
                              }
                          },
-                         { HeaderText: "GroupA", Width: 150, Name: "GroupA", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "GroupB", Width: 150, Name: "GroupB", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "GroupC", Width: 150, Name: "GroupC", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "GroupD", Width: 150, Name: "GroupD", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "1X2", Width: 150, Name: "OneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "Other", Width: 150, Name: "Other", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "NumberGame", Width: 150, Name: "NumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "HDP", Width: 150, Name: "Handicap", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "O/U", Width: 150, Name: "OverUnder", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "HDP Live", Width: 150, Name: "HandicapLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: "O/U Live", Width: 150, Name: "OverUnderLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                         { HeaderText: LANGUAGES.GroupA, Width: 150, Name: "GroupA", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.GroupB, Width: 150, Name: "GroupB", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.GroupC, Width: 150, Name: "GroupC", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.GroupD, Width: 150, Name: "GroupD", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.OneXTwo, Width: 150, Name: "OneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.Other, Width: 150, Name: "Other", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.NumberGame, Width: 150, Name: "NumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.Handicap, Width: 150, Name: "Handicap", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.OverUnder, Width: 150, Name: "OverUnder", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.HandicapLive, Width: 150, Name: "HandicapLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.OverUnderLive, Width: 150, Name: "OverUnderLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
 
                         ],
                 bodyRows: bodyData,
