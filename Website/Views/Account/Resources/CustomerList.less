@@ -68,6 +68,7 @@
 			border: 1px solid @headerBorderColor;
 			padding: 5px;
 			margin: 0;
+			display: none;
 
 			li {
 				background:  url(Images/edit-menu.gif) no-repeat left center;
@@ -100,7 +101,6 @@
 		
 				a:hover {	
 					color: @hoverLinkRedColor;
-					padding-right: 5px;	
 				}
 		
 				&.active {
@@ -108,7 +108,12 @@
 				}	
 
 				#quickLinkCustomerList:before {
-					margin: 0 5px;
+					margin: 0 5px 0 0;
+					content: "|";
+				}
+
+				#quickLinkAgentList:after {
+					margin: 0 0 0 5px;
 					content: "|";
 				}
 			}
