@@ -26,34 +26,37 @@ var MEMBERLIST = function ( $ ) {
             } );
         },
         bindingEdit: function () {
+            var menuEdit = $( "#menuedit" );
+            var commission = $( "#commission" );
+            var betsetting = $( "#betsetting" );
             $( "[name='Edit']" ).mouseover( function () {
                 var pos = $( this ).offset();
                 var eWidth = $( this ).outerWidth();
                 var mWidth = $( "#menuedit" ).outerWidth();
                 var left = ( pos.left + eWidth ) + "px";
                 var top = 3 + pos.top + "px";
-                $( "#commission" ).attr( "custid", $( this ).attr( 'custid' ) );
-                $( "#betsetting" ).attr( "custid", $( this ).attr( 'custid' ) );
+                commission.attr( "custid", $( this ).attr( 'custid' ) );
+                betsetting.attr( "custid", $( this ).attr( 'custid' ) );
 
-                $( "#menuedit" ).css( {
+                menuEdit.css( {
                     position: 'absolute',
                     zIndex: 5000,
                     left: left,
                     top: top
                 } );
-                $( "#menuedit" ).show();
+                menuEdit.show();
             } ).mouseout( function () {
-                $( "#menuedit" ).hide();
+                menuEdit.hide();
             } );
-            $( "#commission" ).unbind( 'click' ).bind( 'click', function () {
+            commission.unbind( 'click' ).bind( 'click', function () {
                 console.log( $( this ).attr( "custid" ) );
                 // Code here
             } );
-            $( "#betsetting" ).unbind( 'click' ).bind( 'click', function () {
+            betsetting.unbind( 'click' ).bind( 'click', function () {
                 console.log( $( this ).attr( "custid" ) );
                 // Code here
             } );
-            $( "#menuedit" ).mouseover( function () {
+            menuEdit.mouseover( function () {
                 $( this ).show();
             } ).mouseout( function () {
                 $( this ).hide();

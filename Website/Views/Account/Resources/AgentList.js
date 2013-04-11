@@ -71,41 +71,44 @@ var AGENTLIST = function ( $ ) {
             } );
         },
         bindingEdit: function () {
+            var menuEdit = $( "#menuedit" );
+            var commission = $( "#commission" );
+            var betsetting = $( "#betsetting" );
             $( "[name='Edit']" ).mouseover( function () {
                 var pos = $( this ).offset();
                 var eWidth = $( this ).outerWidth();
-                var mWidth = $( "#menuedit" ).outerWidth();
+                var mWidth = menuEdit.outerWidth();
                 var left = ( pos.left + eWidth ) + "px";
                 var top = 3 + pos.top + "px";
                 var agentid = $( this ).attr( 'agentid' );
                 var agentlevel = $( this ).attr( 'agentlevel' );
-                $( "#commission" ).attr( "agentId", agentid );
-                $( "#betsetting" ).attr( "agentId", agentid );
+                commission.attr( "agentId", agentid );
+                betsetting.attr( "agentId", agentid );
 
-                $( "#commission" ).attr( "agentlevel", agentlevel );
-                $( "#betsetting" ).attr( "agentlevel", agentlevel );
+                commission.attr( "agentlevel", agentlevel );
+                betsetting.attr( "agentlevel", agentlevel );
 
-                $( "#menuedit" ).css( {
+                menuEdit.css( {
                     position: 'absolute',
                     zIndex: 5000,
                     left: left,
                     top: top
                 } );
-                $( "#menuedit" ).show();
+                menuEdit.show();
             } ).mouseout( function () {
-                $( "#menuedit" ).hide();
+                menuEdit.hide();
             } );
-            $( "#commission" ).unbind( 'click' ).bind( 'click', function () {
+            commission.unbind( 'click' ).bind( 'click', function () {
                 console.log( $( this ).attr( "agentid" ) );
                 console.log( $( this ).attr( "agentlevel" ) );
                 // Code here
             } );
-            $( "#betsetting" ).unbind( 'click' ).bind( 'click', function () {
+            betsetting.unbind( 'click' ).bind( 'click', function () {
                 console.log( $( this ).attr( "agentid" ) );
                 console.log( $( this ).attr( "agentlevel" ) );
                 // Code here
             } );
-            $( "#menuedit" ).mouseover( function () {
+            menuEdit.mouseover( function () {
                 $( this ).show();
             } ).mouseout( function () {
                 $( this ).hide();
