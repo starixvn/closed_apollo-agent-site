@@ -9,13 +9,18 @@
 
 namespace Apollo.Age.Reports.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using Fanex.NAP.Framework.Data;
 
-    public class MatchEnteredCriteria
+    public class MatchEnteredCriteria : CriteriaBase
     {
+        public override string GetSettingKey()
+        {
+            return "Age_Rpt_MatchSelResultEntered";
+        }
 
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }

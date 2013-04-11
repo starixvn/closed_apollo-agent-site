@@ -29,6 +29,7 @@ namespace Apollo.Age.Reports.Controllers
     public class ReportsController : BaseController
     {
         private readonly OutstandingService _reportService;
+        private readonly IWinlossService _winlossService;
         private int _currentAgentId;
 
         public int? CurrentAgentId
@@ -48,6 +49,7 @@ namespace Apollo.Age.Reports.Controllers
         public ReportsController(OutstandingService reportService = null)
         {
             _reportService = reportService ?? new OutstandingService();
+            _winlossService = _winlossService ?? new WinlossService();
         }
 
         private IEnumerable<Agent> AgentDownlinePath(int agentId)
@@ -116,8 +118,9 @@ namespace Apollo.Age.Reports.Controllers
 
         public ViewResult MatchEntered()
         {
+            var matchEnteredList = _winlossService.GetMatchEntered();
 
-            return View();
+            return View(matchEnteredList);
         }
 
         #endregion
