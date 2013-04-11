@@ -5,6 +5,7 @@ var MEMBERLIST = function ($) {
         AgentId: null,
         init: function () {
             MEMBERLIST.AgentId = $("#gridId").attr("agentid");
+            $("#currusername").html($("#gridId").attr("username"));
             MEMBERLIST.loadMemberList();
             MEMBERLIST.bindingNavigation();
         },
@@ -163,6 +164,7 @@ var MEMBERLIST = function ($) {
                 showFooter: false,
                 fullHeight: true,
                 gridExpandHeight: 250,
+                numberOfFrozenColumn: 3,
                 marginRight: 0,
                 showPager: true,
                 customPager: true,
@@ -205,4 +207,4 @@ var MEMBERLIST = function ($) {
 
 $(document).ready(function () {
     MEMBERLIST.init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
