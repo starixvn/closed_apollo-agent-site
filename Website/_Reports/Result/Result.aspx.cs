@@ -28,8 +28,7 @@ namespace Fanex.Age.UI.Reports.Result
 	{
 		public Result_Page()
 		{
-            MIN_REPORT_DATE = new DateTime(2013, 3, 1);
-			//MIN_REPORT_DATE = Sunplus.Agent.Model.BL.Reports.ReportsBO.BalanceUpDate;
+			MIN_REPORT_DATE = Sunplus.Agent.Model.BL.Reports.ReportsBO.BalanceUpDate;
 		}
 
 		#region Variable
@@ -1257,7 +1256,7 @@ namespace Fanex.Age.UI.Reports.Result
 				Result.ResultTennis_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultTennis_RowData_League_Block();
 				Result.ResultTennis_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultTennis_RowData_Row_Block();
 
-				setDetailData = _ReportBO.SelectSetDetailForViewResult(this._matchId, refNo.ToString());
+                setDetailData = _ReportBO.SelectMatchForViewResult(this._matchId, refNo.ToString());
 
 				if (setDetailData != null && setDetailData.Rows.Count > 0)
 				{

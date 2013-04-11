@@ -22,17 +22,34 @@ if (typeof jQuery != 'undefined') {
             },
 
             resolveUrl: function (url) {
-                if (url.substr(0, 1) == '/') {
+                var apoRoot = $('#ApoRoot');
+
+                if (apoRoot.length == 0) {
+                    if (typeof console != undefined) {
+                        console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
+                        return "";
+                    }
+                }
+
+                if (url.substr(0, 2) == '~/') {
+                    url = url.substr(2);
+                } else if (url.substr(0, 1) == '/') {
                     url = url.substr(1);
                 }
 
-                var siteRoot = parent.baseUrl;
+                return apoRoot.val() + url;
 
-                if (!siteRoot) siteRoot = parent.parent.baseURL;
-                if (!siteRoot) siteRoot = parent.parent.parent.baseURL;
-                if (!siteRoot) siteRoot = "";
+                //                if (url.substr(0, 1) == '/') {
+                //                    url = url.substr(1);
+                //                }
 
-                return siteRoot + url;
+                //                var siteRoot = parent.baseUrl;
+
+                //                if (!siteRoot) siteRoot = parent.parent.baseURL;
+                //                if (!siteRoot) siteRoot = parent.parent.parent.baseURL;
+                //                if (!siteRoot) siteRoot = "";
+
+                //                return siteRoot + url;
             },
 
             alertGeneralError: function () {

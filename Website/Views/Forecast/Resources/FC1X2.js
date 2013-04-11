@@ -1,40 +1,40 @@
 ﻿/* File Created: April 3, 2013 */
-
-var fc1x2 =
-{
-    CurrentLeague: 0,
-    MatchId: matchId,
-    BetType: betType,
-    Link: window.rootUrl + 'Forecast/FC1X2Matches',
-    Init: function () {
-        if (fc1x2.MatchId > 0) {
-            fc1x2.LoadMatch();
-        }
-        else {
-            fc1x2.CurrentLeague = $('#ddlLeague').val();
-            if (fc1x2.CurrentLeague) {
-                $('#ddlLeague').on("change", function () {
-                    var $this = $(this);
-                    fc1x2.CurrentLeague = $this.val();
-                    if (fc1x2.CurrentLeague) {
-                        fc1x2.ChangeLeague();
+if (typeof jQuery != 'undefined') {
+    var FC1X2 = function ($) {
+        return {
+            currentLeague: 0,
+            matchId: matchId,
+            betType: betType,
+            link: APOLLO.resolveUrl('Forecast/FC1X2Matches'),
+            init: function () {
+                if (FC1X2.matchId > 0) {
+                    FC1X2.loadMatch();
+                }
+                else {
+                    FC1X2.currentLeague = $('#ddlLeague').val();
+                    if (FC1X2.currentLeague) {
+                        $('#ddlLeague').on("change", function () {
+                            var $this = $(this);
+                            FC1X2.currentLeague = $this.val();
+                            if (FC1X2.currentLeague) {
+                                FC1X2.changeLeague();
+                            }
+                        });
+                        FC1X2.changeLeague();
                     }
-                });
-                fc1x2.ChangeLeague();
-            }
-        }
-    },
-    RegisterEvents: function (isLoadNewPopup) {
+                }
+            },
+            registerEvents: function (isLoadNewPopup) {
 
-        $('#forecast-body')
+                $('#forecast-body')
         .off("click")
         .on("click", ".view-bet-list", function () {
             var $this = $(this);
             if (isLoadNewPopup) {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
-                var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
+                var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
             + '&betType=' + $this.attr("bet-type")
-            + '&type=BettypeMatch';
+            + '&type=betTypeMatch');
 
                 //location.href = url;
                 ageWnd.openDialog(url, '', {
@@ -47,26 +47,28 @@ var fc1x2 =
                 });
             }
             else {
-                var url = window.rootUrl + '_BetList/BetList.aspx?matchId=' + fc1x2.MatchId
-                + '&betType=' + fc1x2.BetType
-                + '&type=BettypeMatch';
+                var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + FC1X2.matchId
+                + '&betType=' + FC1X2.betType
+                + '&type=betTypeMatch');
                 location.href = url;
             }
         });
 
-    },
-    ChangeLeague: function () {
-        var url = fc1x2.Link + '?leagueId=' + fc1x2.CurrentLeague;
-        $("#forecast-body").load(url);
-        fc1x2.RegisterEvents(true);
-    },
-    LoadMatch: function () {
-        var url = fc1x2.Link + '?matchId=' + fc1x2.MatchId + '&betType=' + fc1x2.BetType;
-        $("#forecast-body").load(url);
-        fc1x2.RegisterEvents(false);
-    }
-};
+            },
+            changeLeague: function () {
+                var url = FC1X2.link + '?leagueId=' + FC1X2.currentLeague;
+                $("#forecast-body").load(url);
+                FC1X2.registerEvents(true);
+            },
+            loadMatch: function () {
+                var url = FC1X2.link + '?matchId=' + FC1X2.matchId + '&betType=' + FC1X2.betType;
+                $("#forecast-body").load(url);
+                FC1X2.registerEvents(false);
+            }
+        };
+    } (jQuery);
 
-$(function () {
-    fc1x2.Init();
-}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    $(function () {
+        FC1X2.init();
+    }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+};

@@ -2,23 +2,27 @@
 
 #box_header {
 	margin-bottom: 10px;
+	padding: 0;
 
-	select#ddlLeague {
-		width: 280px;
-	}
+	.scoremap-filter {
+		margin: 5px;
 
-	.btn {
-		margin: 0 5px 0 3px;
-	}
+		select#ddlLeague {
+			width: 280px;
+		}
 
-	.iconRefresh {
-		.pull-left;
-		background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;
-		color: #90979A;    
-		width: 16px;
-		height: 16px;
-		cursor: pointer;
-		margin-top: 3px;
+		.btn {
+			margin: 0 5px 0 3px;
+		}
+
+		.iconRefresh {
+			.pull-left;
+			background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+			margin-top: 3px;
+		}
 	}
 }
 
@@ -28,7 +32,7 @@
     position: absolute;
     background: @white;
     width: 713px;
-    border: solid 1px #B7B7B7;
+    border: solid 1px @borderColor;
     left: 10px;
     top: 97px;
 
@@ -130,11 +134,11 @@
 	display: none;
 
 	#bet-type-container {
-		margin-top: 40px;
+		margin: 5px 5px 0 5px;
 
 		/* End: Box Match by League */
 		table.check-list {
-			background: #ECE9D8;
+			background: @secondColor;
 			border-spacing: 0;
 			border: 1px solid @borderColor;
 			width: 100%;
@@ -181,7 +185,7 @@
 	
 	.btn-submit {
 		float: left;
-		margin-top: 7px;
+		margin: 5px;
 
 		.btn {
 			border-radius: 0;
@@ -255,14 +259,9 @@
 				border-top: none;
 				width: 70%;	
 							
-				thead {
-					.vsmHomeWay {
-						background-color: #f6d9b9;
-						font-weight:bold;
-					}
-
+				thead {					
 					tr.vsm th {
-						background-color: #ECE9D8;
+						background-color: @secondColor;
 						font-weight:bold;
 						text-align: center;
 					}
@@ -278,17 +277,17 @@
 						font-weight:bold;
 
 						.vsm {
-							background-color: #ECE9D8;
+							background-color: @secondColor;
 							font-weight:bold;
 							text-align: center;
 						}
 
-						&:hover td {
+						&:hover td.vsm {
 							background-color: #d0d3d3;
 						}
 
 						td:hover {
-							background-color: #f8ff8d !important;
+							background-color: @rowHoverBackground;
 						}
 					}
 				}					

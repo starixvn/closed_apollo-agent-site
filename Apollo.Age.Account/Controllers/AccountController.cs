@@ -19,23 +19,20 @@ namespace Apollo.Age.Account.Controllers
     using System.Web.Security;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
-
     using Apollo.Age.Account.Services;
-    using Apollo.Age.Entities;
     using Apollo.Age.Web;
     using Apollo.MvcPaging;
-    using Sunplus.Agent.Model.Entities;
+    using Fanex.Common;
 
     public class AccountController : BaseController
     {
         private const int PAGEINDEX = 0; // Current index page
         private const int PAGESIZE = 50; // Maximum items in a page
-        private const int TOTALPAGE = 0; // Maximum page total
+        private const int TOTALPAGE = 0; // Maximum page totals
 
-        private IList<Member> allProducts = new List<Member>();
-
-        private readonly AccountService _accountService;
+        private readonly IAccountService _accountService;
         private int _agentId;
+        private string _username;
 
         private int? CurrentAgentId
         {
@@ -46,6 +43,18 @@ namespace Apollo.Age.Account.Controllers
             set
             {
                 _agentId = value.HasValue ? value.Value : CurrentSession.AgentId;
+            }
+        }
+
+        private string CurrentUsername
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                _username = string.IsNullOrWhiteSpace(value) ? CurrentSession.AgentName : value;
             }
         }
 
@@ -79,11 +88,12 @@ namespace Apollo.Age.Account.Controllers
                 userName = HttpContext.Session["userName"] != null
                     ? HttpContext.Session["userName"].ToString() : string.Empty;
                 isMember = HttpContext.Session["isMember"] != null
-                    ? Fanex.Common.Converter.To<short>(HttpContext.Session["isMember"].ToString())
-                    : Fanex.Common.Converter.To<short>("0");
+                    ? Converter.To<short>(HttpContext.Session["isMember"])
+                    : Converter.To<short>("0");
             }
 
             CustomerInfoModel customerInfo = null;
+
             if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
             {
                 HttpContext.Session["userName"] = userName;
@@ -92,7 +102,9 @@ namespace Apollo.Age.Account.Controllers
                 ismember = isMember == 1;
                 custid = custId.HasValue ? custId.Value : -1;
 
-                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, this.CurrentSession.AgentId);
+                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName,
+                    this.CurrentSession.AgentId);
+
                 if (customerInfo == null)
                 {
                     customerInfo = new CustomerInfoModel()
@@ -154,10 +166,14 @@ namespace Apollo.Age.Account.Controllers
             return View(listAgent);
         }
 
-        public ActionResult CustomerList(int? agentId)
+        public ActionResult MemberList(int? agentId, string username)
         {
             CurrentAgentId = agentId;
+            CurrentUsername = username;
+
             ViewBag.CurrentAgentId = CurrentAgentId;
+            ViewBag.CurrentUsername = CurrentUsername;
+
             var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, CurrentAgentId.Value).ToList();
 
             return View(listAgent);
@@ -200,7 +216,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetCustomerList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
+        public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
             CurrentAgentId = agentId;
             var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
@@ -216,7 +232,7 @@ namespace Apollo.Age.Account.Controllers
                 PageSize = currentPageSize
             };
 
-            IEnumerable<CustomerListModel> models = _accountService.GetCustomerList(ref criteria);
+            IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
             return Json(new
             {

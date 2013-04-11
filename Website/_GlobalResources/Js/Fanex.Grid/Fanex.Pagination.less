@@ -2,15 +2,14 @@
 @import "../../Css/mixins.less";
 
 #pagination {
-    font-size: 0.9em;
+    font-size: 1em;
     color: @textColor;
     font-family: @fontFamily;
     padding-left: 10px;
 
 	a {
 		text-decoration: none;
-		color: #616161;
-		border-radius: 2px;
+		color: @linkColor;
 		text-align: center;		
 	}
 
@@ -19,8 +18,9 @@
 		background: #77AAE8;
 		color: #fff;
 		margin-right: 2px;
-		font-size: 0.7em;
-		text-shadow: 0 1px 0 #5F88B7
+		font-size: 1em;
+		text-shadow: 0 1px 0 #5F88B7;
+		padding: 2px 6px;
 	}
 
 	 a, span {
@@ -33,16 +33,21 @@
 
 	a.prev, a.next, span.prev, span.next {
 		font-weight: bold;
-		font-size: 0.7em;
+		font-weight: bold;
+		background: #77AAE8;
+		color: #fff;
+		margin-right: 2px;
+		font-size: 1em;
+		text-shadow: 0 1px 0 #5F88B7;
+		padding: 2px 6px;
 	}
 
 	#itemperpage {
 		float: left;
-		padding: 1px;
 		border: 1px solid #969696;
-		outline: 0 none;
-		border-radius: 3px;
-		margin-left: 6px;
+		outline: 0 none;		
+		padding: 1px;
+		margin: 1px 0 0 6px;
 		font-size: 0.9em;
 	}
 
@@ -96,7 +101,6 @@
 		background: -moz-linear-gradient(#f1f1f1, #f2f2f2) #e6e6e6;
 		background: -webkit-linear-gradient(#f1f1f1, #f2f2f2) #e6e6e6;
 		border: 1px solid #969696;
-		border-radius: 2px;
 		box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset;
 		display: none;
 		padding: 0px !important;
