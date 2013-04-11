@@ -45,9 +45,11 @@ var MEMBERLIST = function ($) {
                 $("#menuedit").hide();
             });
             $("#commission").unbind('click').bind('click', function () {
+                console.log($(this).attr("custid"));
                 // Code here
             });
             $("#betsetting").unbind('click').bind('click', function () {
+                console.log($(this).attr("custid"));
                 // Code here
             });
             $("#menuedit").mouseover(function () {
