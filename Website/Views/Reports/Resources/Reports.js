@@ -8,15 +8,16 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify({ 'agentId': $("#MemberOutstanding").attr("agentid") }),
-                    timeout: 120000,
-                    success: function (result) {
+                    timeout: 120000
+                })
+
+                    .done(function (result) {
                         REPORTS.initGrid(result);
-                    },
-                    error: function (event, jqXHR, ajaxSettings) {
-                    },
-                    complete: function () {
-                    }
-                });
+                    })
+
+                    .fail(function (event, jqXHR, ajaxSettings) {
+                        APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
+                    });
                 return false;
             });
 
