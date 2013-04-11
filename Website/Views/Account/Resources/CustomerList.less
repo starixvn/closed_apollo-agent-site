@@ -1,0 +1,116 @@
+﻿@import "../../../_GlobalResources/Css/Agent.less";
+
+#page_main {	
+
+	#header_main {
+		padding: 17px 0 22px;
+		margin-bottom: 10px;
+
+		.header-title {
+			float: left;
+		}	
+
+		.edit-setting {
+			float: left;
+			margin-left: 5px;
+			background: url(Images/icon-edit-setting.png) no-repeat;
+			height: 12px;
+			margin-left: 5px;
+			margin: 3px 0 0 5px;
+			width: 12px;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
+
+	#content_main {
+		#box_header {
+			margin: 10px 0;
+			.clearfix;
+
+			.text_italic {
+				width: 125px;
+				font-style: italic;
+				margin: 0 2px;
+			}
+		}
+
+		.boxNavigation {	
+			line-height: 18px;
+			padding-left: 6px;	
+			margin-top: 10px;
+			border-left: 5px solid #878787;
+			border-bottom: none;
+
+			img {
+				vertical-align: middle;
+				margin: 0 5px;
+			}
+		}
+
+		.edit-setting {
+			float: left;
+			background: url(Images/edit.png) no-repeat;
+			padding: 8px;
+			margin: 3px 0 0 17px;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+
+		ul.edit-menu {
+			background: @secondColor;
+			border: 1px solid @headerBorderColor;
+			padding: 5px;
+			margin: 0;
+
+			li {
+				background:  url(Images/edit-menu.gif) no-repeat left center;
+				padding: 3px 3px 3px 20px;
+				margin: 0;
+
+				&:hover {
+					background: url(Images/edit_disabled.gif)  no-repeat left center;
+				}
+			}
+			
+		}
+	}
+
+	.table-header {
+		background: @primaryHeaderBackground;
+		border: 1px solid @borderColor;
+		border-bottom: none;
+		margin-top: 10px;
+		height: 30px;
+
+		ul.sub-nav {
+			margin: 5px;
+
+			li {
+				list-style: none;
+				float: left;
+				padding-right: 5px;	
+		
+				a:hover {	
+					color: @hoverLinkRedColor;
+					padding-right: 5px;	
+				}
+		
+				&.active {
+					font-weight: bold;
+				}	
+
+				#quickLinkCustomerList:before {
+					margin: 0 5px;
+					content: "|";
+				}
+			}
+		}
+	}	
+}

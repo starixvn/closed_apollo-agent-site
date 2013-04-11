@@ -4,35 +4,31 @@
     <title>@ViewBag.Title</title>
     <link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet"
         type="text/css" />
-    <link href="~/_GlobalResources/Css/Agent.less" rel="stylesheet" type="text/css" />
+    <link href="~/Views/Account/Resources/CustomerList.less" rel="stylesheet" type="text/css" />
     @RenderSection("css", required: false)
 </head>
 <body>
     <div id="page_main">
         <div id="header_main">
-            <div class="header-title">@ViewBag.HeaderTitle <span id="currusername"></span>
+            <div class="header-title">@ViewBag.HeaderTitle <span id="currUsername"></span>
             </div>
-            <div class="edit-setting">
-                Edit</div>
-            <span></span><span><a href="#" class="abc"></a></span>
+            <div class="edit-setting"></div>
         </div>
         <div id="content_main">
             <div id="box_header">
-                <div>
-                    @Resources.Lang.username</div>
-                <div>
-                    <input type="text" autocomplete="off" id="txtUserName" name="txtUserName" class="text_italic"
-                        style="width: 145px;" /></div>
-                <div>
-                    <input type="button" value="Submit" id="Search"></div>
+                <div class="boxHeader-element">
+                    <label>@Resources.Lang.username</label>
+                    <input type="text" autocomplete="off" id="txtUserName" name="txtUserName" class="text_italic"/>
+                    <input type="button" value="Submit" id="Search" class="btn"> 
+                </div>      
             </div>
             @RenderBody()
-            <div id="menuedit" style="display: none; border: 1px solid #000; background-color: Gray">
-                <div>
-                    <a href="#" id="commission">@Resources.Lang.commission</a></div>
-                <div>
-                    <a href="#" id="betsetting">@Resources.Lang.lblBetSetting</a></div>
-            </div>
+            <ul id="menuedit" class="edit-menu">
+                <li>
+                    <a href="#" id="commission">@Resources.Lang.commission</a></li>
+                <li>
+                    <a href="#" id="betsetting">@Resources.Lang.lblBetSetting</a></li>
+            </ul>
         </div>
     </div>
     <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>

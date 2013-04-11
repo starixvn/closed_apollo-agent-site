@@ -133,7 +133,7 @@ var MEMBERLIST = function ($) {
                          { HeaderText: "#", Width: 50, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return "<a href='#' name='Edit' custid=" + cell.Value.CustId + " >Edit</a>";
+                                 return "<a href='#' class='edit-setting' custid=" + cell.Value.CustId + " ></a>";
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
