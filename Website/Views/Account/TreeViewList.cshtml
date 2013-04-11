@@ -35,7 +35,7 @@
 
             agentList.treeview({
                 url: appRoot + "Account/GetDataByNote",
-                link: "<a href='" + appRoot + "_MemberInfo/CustomerList/AgentList.aspx?custid={0}&us={1}' target='main'>{2}</a>",
+                link: "<a href='" + appRoot + "Account/AgentList?agentid={0}' target='main'>{1}</a>",
                 custid: custId
             });
         });

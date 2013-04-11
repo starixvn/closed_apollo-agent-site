@@ -22,6 +22,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
     using Apollo.MvcPaging;
+    using Fanex.Common;
 
     public class AccountController : BaseController
     {
@@ -74,11 +75,12 @@ namespace Apollo.Age.Account.Controllers
                 userName = HttpContext.Session["userName"] != null
                     ? HttpContext.Session["userName"].ToString() : string.Empty;
                 isMember = HttpContext.Session["isMember"] != null
-                    ? Fanex.Common.Converter.To<short>(HttpContext.Session["isMember"].ToString())
-                    : Fanex.Common.Converter.To<short>("0");
+                    ? Converter.To<short>(HttpContext.Session["isMember"])
+                    : Converter.To<short>("0");
             }
 
             CustomerInfoModel customerInfo = null;
+
             if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
             {
                 HttpContext.Session["userName"] = userName;
@@ -87,7 +89,9 @@ namespace Apollo.Age.Account.Controllers
                 ismember = isMember == 1;
                 custid = custId.HasValue ? custId.Value : -1;
 
-                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, this.CurrentSession.AgentId);
+                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName,
+                    this.CurrentSession.AgentId);
+
                 if (customerInfo == null)
                 {
                     customerInfo = new CustomerInfoModel()

@@ -158,4 +158,3 @@ if(document.getElementById("mobileId")!=undefined)
 }
 // Register start up
 RegisterStartUp('InitLogin()');
-
