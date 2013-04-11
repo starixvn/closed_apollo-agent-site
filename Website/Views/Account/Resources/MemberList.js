@@ -130,14 +130,14 @@ var MEMBERLIST = function ($) {
                                  }
                         ],
                 columns: [
-                         { HeaderText: "#", Width: 50, Name: "No", HeaderAlign: "center", CellAlign: "center" },
-                         { HeaderText: LANGUAGES.Edit, Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
+                         { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
+                         { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return "<a href='#' class='edit-setting' custid=" + cell.Value.CustId + " ></a>";
+                                 return "<a href='#' class='edit-setting' name='Edit' custid=" + cell.Value.CustId + " ></a>";
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
-                         { HeaderText: LANGUAGES.Status, Width: 150, Name: "Status", HeaderAlign: "center", CellAlign: "center",
+                         { HeaderText: LANGUAGES.Status, Width: 50, Name: "Status", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
                                  return (cell.Value.Status == 0 ? "Active" : (cell.Value.Status == 1 ? "Suspended" : "Closed"));
                              }
