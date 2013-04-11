@@ -14,7 +14,6 @@ if (typeof jQuery != 'undefined') {
                         data: JSON.stringify({ 'agentId': $("#MemberOutstanding").attr("agentid") }),
                         timeout: 120000,
                         success: function (result) {
-                            $("#divDetail").html(null);
                             REPORTS.initGrid(result);
                         },
                         error: function (event, jqXHR, ajaxSettings) {
