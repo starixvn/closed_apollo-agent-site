@@ -19,23 +19,18 @@ namespace Apollo.Age.Account.Controllers
     using System.Web.Security;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
-
     using Apollo.Age.Account.Services;
-    using Apollo.Age.Entities;
     using Apollo.Age.Web;
     using Apollo.MvcPaging;
-    using Sunplus.Agent.Model.Entities;
     using Fanex.Common;
 
     public class AccountController : BaseController
     {
         private const int PAGEINDEX = 0; // Current index page
         private const int PAGESIZE = 50; // Maximum items in a page
-        private const int TOTALPAGE = 0; // Maximum page total
+        private const int TOTALPAGE = 0; // Maximum page totals
 
-        private IList<Member> allProducts = new List<Member>();
-
-        private readonly AccountService _accountService;
+        private readonly IAccountService _accountService;
         private int _agentId;
 
         private int? CurrentAgentId
@@ -158,7 +153,7 @@ namespace Apollo.Age.Account.Controllers
             return View(listAgent);
         }
 
-        public ActionResult CustomerList(int? agentId)
+        public ActionResult MemberList(int? agentId)
         {
             CurrentAgentId = agentId;
             ViewBag.CurrentAgentId = CurrentAgentId;
@@ -204,7 +199,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetCustomerList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
+        public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
             CurrentAgentId = agentId;
             var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
@@ -220,7 +215,7 @@ namespace Apollo.Age.Account.Controllers
                 PageSize = currentPageSize
             };
 
-            IEnumerable<CustomerListModel> models = _accountService.GetCustomerList(ref criteria);
+            IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
             return Json(new
             {
