@@ -24,29 +24,23 @@ namespace Apollo.Age.Account.Services
 
     public class AccountService : ServiceBase, IAccountService
     {
-        private readonly IAgentListRepository _agentListRepository;
-        private readonly ICustomerListRepository _customerListRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IAgentRepository _agentRepository;
 
-        public AccountService() : this(null, null) { }
-
-        public AccountService(IAgentListRepository agentListRepository = null, ICustomerListRepository customerListRepository = null)
+        public AccountService()
         {
-            _agentListRepository = agentListRepository ?? new AgentListRepository();
-            _customerListRepository = customerListRepository ?? new CustomerListRepository();
             _accountRepository = _accountRepository ?? new AccountRepository();
             _agentRepository = _agentRepository ?? new AgentRepository();
         }
 
         public IEnumerable<AgentListModel> GetAgentList(ref AgentListCriteria criteria)
         {
-            return _agentListRepository.GetData(ref criteria);
+            return _accountRepository.GetAgentList(ref criteria);
         }
 
-        public IEnumerable<CustomerListModel> GetCustomerList(ref CustomerListCriteria criteria)
+        public IEnumerable<MemberListModel> GetCustomerList(ref CustomerListCriteria criteria)
         {
-            return _customerListRepository.GetData(ref criteria);
+            return _accountRepository.GetMemberList(ref criteria);
         }
 
         public List<Customer> GetCustomerSuggest(bool isMember, string userName, int agentId)

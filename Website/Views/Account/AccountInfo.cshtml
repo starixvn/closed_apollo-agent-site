@@ -12,7 +12,9 @@
 </ul>
 <div id="wrapper">
     <div class="search-box">
-        @SearchBox()
+        <div class="clearfix">
+            @SearchBox()
+        </div>
         @if (Model != null)
         {
             if (Model.CustId > 0)
@@ -97,7 +99,7 @@
             @if (!Model.IsMember && Model.HasMemberDownline)
             {
                 <a class="lnk-member-list" 
-                        target="main" href="~/Account/CustomerList?agentid=@Model.CustId">
+                        target="main" href="~/Account/MemberList?agentid=@Model.CustId">
                     @Resources.Lang.lblPlayerList
                 </a>
             }
@@ -194,18 +196,23 @@
 }
 @helper SearchBox()
 {
-    @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-        new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
-        new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
-    }, new { id = "ddlIsMember" })
-
     if (Model == null)
     {
+        @Html.DropDownList("IsMember", new List<SelectListItem> {
+            new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
+            new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+        }, new { id = "ddlIsMember" })
+
         <input maxlength="50" id="txtUsername" type="text"
             value="@Resources.Lang.enterusername" name="userName" />
-        }
+    }
     else
     {
+        @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+            new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
+            new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+        }, new { id = "ddlIsMember" })
+
         <input maxlength="50" id="txtUsername" type="text"
             value="@Model.Username" name="userName" />
     }

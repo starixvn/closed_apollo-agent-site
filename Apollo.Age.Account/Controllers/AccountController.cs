@@ -22,6 +22,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
     using Apollo.MvcPaging;
+    using Fanex.Common;
 
     public class AccountController : BaseController
     {
@@ -29,7 +30,7 @@ namespace Apollo.Age.Account.Controllers
         private const int PAGESIZE = 50; // Maximum items in a page
         private const int TOTALPAGE = 0; // Maximum page totals
 
-        private readonly AccountService _accountService;
+        private readonly IAccountService _accountService;
         private int _agentId;
 
         private int? CurrentAgentId
@@ -74,11 +75,12 @@ namespace Apollo.Age.Account.Controllers
                 userName = HttpContext.Session["userName"] != null
                     ? HttpContext.Session["userName"].ToString() : string.Empty;
                 isMember = HttpContext.Session["isMember"] != null
-                    ? Fanex.Common.Converter.To<short>(HttpContext.Session["isMember"].ToString())
-                    : Fanex.Common.Converter.To<short>("0");
+                    ? Converter.To<short>(HttpContext.Session["isMember"])
+                    : Converter.To<short>("0");
             }
 
             CustomerInfoModel customerInfo = null;
+
             if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
             {
                 HttpContext.Session["userName"] = userName;
@@ -87,7 +89,9 @@ namespace Apollo.Age.Account.Controllers
                 ismember = isMember == 1;
                 custid = custId.HasValue ? custId.Value : -1;
 
-                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName, this.CurrentSession.AgentId);
+                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName,
+                    this.CurrentSession.AgentId);
+
                 if (customerInfo == null)
                 {
                     customerInfo = new CustomerInfoModel()
@@ -149,7 +153,7 @@ namespace Apollo.Age.Account.Controllers
             return View(listAgent);
         }
 
-        public ActionResult CustomerList(int? agentId)
+        public ActionResult MemberList(int? agentId)
         {
             CurrentAgentId = agentId;
             ViewBag.CurrentAgentId = CurrentAgentId;
@@ -195,7 +199,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetCustomerList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
+        public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
             CurrentAgentId = agentId;
             var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
@@ -211,7 +215,7 @@ namespace Apollo.Age.Account.Controllers
                 PageSize = currentPageSize
             };
 
-            IEnumerable<CustomerListModel> models = _accountService.GetCustomerList(ref criteria);
+            IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
             return Json(new
             {

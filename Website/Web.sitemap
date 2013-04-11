@@ -48,7 +48,7 @@
     <!--MemberInfo-->
     <siteMapNode title="lblMemberInfo">
       <siteMapNode title="lblAgentList" url="Account/AgentList"></siteMapNode>
-      <siteMapNode title="lblPlayerList" url="Account/CustomerList" Level="4"></siteMapNode>
+      <siteMapNode title="lblPlayerList" url="Account/MemberList" Level="4"></siteMapNode>
       <siteMapNode title="lblPositionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
       <siteMapNode title="lblMemberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx" ></siteMapNode>
       <!--<siteMapNode description="subacc" title="lblShadowList" url="_SubAcc/SubAccList.aspx"></siteMapNode>-->

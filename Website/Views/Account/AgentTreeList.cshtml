@@ -7,10 +7,14 @@
 @section foot {
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#treeview_list").treeview({
-                url: "../GetDataByNote",
-                link: "<a href='~/Account/AccountInfo?IsMember=0&custid={0}&txtUsername={1}' target='menu'> {2} </a>",
-                custid: $("#treeview_list").attr("agent-id")
+            var treeList = $("#treeview_list"),
+                custId = treeList.attr("agent-id"),
+                appRoot = "@Url.Content("~/")";
+
+            treeList.treeview({
+                url: appRoot + "Account/GetDataByNote",
+                link: "<a href='" + appRoot + "Account/AccountInfo?IsMember=0&custid={0}&txtUsername={1}' target='menu'> {2} </a>",
+                custid: custId
             });
         });
     </script>

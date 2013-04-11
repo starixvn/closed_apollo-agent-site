@@ -10,6 +10,7 @@
 namespace Apollo.Age.Account.Repositories.Interface
 {
     using System.Collections.Generic;
+    using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
@@ -24,5 +25,9 @@ namespace Apollo.Age.Account.Repositories.Interface
         CustomerInfoModel GetCustomerInfo(ICriteria criteria);
 
         IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria);
+
+        IEnumerable<AgentListModel> GetAgentList(ref AgentListCriteria criteria);
+
+        IEnumerable<MemberListModel> GetMemberList(ref CustomerListCriteria criteria);
     }
 }

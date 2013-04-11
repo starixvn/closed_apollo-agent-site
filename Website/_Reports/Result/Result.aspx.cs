@@ -28,8 +28,7 @@ namespace Fanex.Age.UI.Reports.Result
 	{
 		public Result_Page()
 		{
-            MIN_REPORT_DATE = new DateTime(2013, 3, 1);
-			//MIN_REPORT_DATE = Sunplus.Agent.Model.BL.Reports.ReportsBO.BalanceUpDate;
+			MIN_REPORT_DATE = Sunplus.Agent.Model.BL.Reports.ReportsBO.BalanceUpDate;
 		}
 
 		#region Variable

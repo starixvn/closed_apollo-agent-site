@@ -1057,7 +1057,12 @@
                 if (options.customPager && options.customPager == true) {
                     pagerOption =
                     {
-                        callback: options.pagerOption.pagerSelectCallBack
+                        callback: function (page_index, itemsPerPage, jq) {
+                            if (me.Options.pagerOption.itemsPerPage != itemsPerPage) {
+                                page_index = 0;
+                            }
+                            options.pagerOption.pagerSelectCallBack(page_index, itemsPerPage, jq);
+                        }
                     };
                 }
                 else {
