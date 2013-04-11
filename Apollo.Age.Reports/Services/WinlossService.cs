@@ -51,7 +51,7 @@ namespace Apollo.Age.Reports.Services
                                 matchEntered = null;
                             }
 
-                            if(enteredDTO.IsToday)
+                            if(enteredDTO.IsToday == 1)
                             {
                                 matchEntered = new MatchEnteredModel(){
                                     SportTypeId = enteredDTO.SportType,
@@ -67,6 +67,8 @@ namespace Apollo.Age.Reports.Services
                                     YesterdayNonEntered = enteredDTO.NonEntered
                                 };
                             }
+
+                            sportType = enteredDTO.SportType;
                         }
                     }
 

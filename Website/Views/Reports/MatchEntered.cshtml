@@ -1,0 +1,97 @@
+﻿@using Apollo.Age.Reports.Models
+@using Fanex.Age.Utility
+@{
+    ViewBag.Title = Resources.Lang.agentwinloss;
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+}
+
+@model List<MatchEnteredModel>
+<link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" 
+rel="stylesheet" type="text/css" />
+<link href="~/Views/Reports/Resources/Reports.less" 
+rel="stylesheet" type="text/css" />
+
+<div id="box_header">
+    <div class="filter-submit">
+         <div class="inline-control">
+            <label for="dateFrom"> @Resources.Lang.from </label>
+            @Html.DatePicker("dateFrom", DateTime.Now)
+         </div> 
+         <div class="inline-control">
+            <label for="dateFrom"> @Resources.Lang.to </label>
+            @Html.DatePicker("dateTo", DateTime.Now)
+         </div>       
+         <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
+    </div>
+</div>
+
+<br />
+<table class="tblRpt">
+    <thead>
+        <tr>
+            <td rowspan="2">
+                @Resources.Lang.Sports 
+            </td>
+            <td colspan="2">
+                @Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
+            </td>
+            <td colspan="2">
+                @Formater.ShortDateFormat(DateTime.Now)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Resources.Lang.entered
+            </td>
+            <td>
+                @Resources.Lang.nonentered
+            </td>
+            <td>
+                @Resources.Lang.entered
+            </td>
+            <td>
+                @Resources.Lang.nonentered
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.SportTypeName
+                        </td>
+                        <td class="fcnum r">
+                            @item.YesterdayEntered
+                        </td>
+                        <td class="fcnum r">
+                            @item.YesterdayNonEntered
+                        </td>
+                        <td class="fcnum r">
+                            @item.TodayEntered
+                        </td>
+                        <td class="fcnum r">
+                            @item.TodayNonEntered
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="no_info">
+                    <td colspan="5"> @Resources.Lang.noInfo </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr class="no_info">
+                <td colspan="5"> @Resources.Lang.noInfo </td>
+            </tr>
+        }
+    </tbody>
+</table>
