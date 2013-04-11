@@ -22,6 +22,23 @@ if (typeof jQuery != 'undefined') {
             },
 
             resolveUrl: function (url) {
+                //                var apoRoot = $('#ApoRoot');
+
+                //                if (apoRoot.length == 0) {
+                //                    if (typeof console != undefined) {
+                //                        console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
+                //                        return "";
+                //                    }
+                //                }
+
+                //                if (url.substr(0, 2) == '~/') {
+                //                    url = url.substr(2);
+                //                } else if (url.substr(0, 1) == '/') {
+                //                    url = url.substr(1);
+                //                }
+
+                //                return apoRoot.val() + url;
+
                 if (url.substr(0, 1) == '/') {
                     url = url.substr(1);
                 }
