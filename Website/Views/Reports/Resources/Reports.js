@@ -110,4 +110,4 @@ if (typeof jQuery != 'undefined') {
 }
 $(document).ready(function () {
     REPORTS.init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
