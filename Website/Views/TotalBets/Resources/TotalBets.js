@@ -3,9 +3,10 @@
     initViewForeCastHandicap: function () {
         $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
+
             var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
-            + 'matchId=' + $(this).attr("match-id")
-            + '&betType=' + $(this).attr("bet-type"));
+                + 'matchId=' + $(this).attr("match-id")
+                + '&betType=' + $(this).attr("bet-type"));
 
             ageWnd.openDialog(url, '', {
                 width: 665,
@@ -17,6 +18,7 @@
             });
         });
     },
+
     initViewBetList: function () {
         $(".tblRpt").on("click", "a.view-bet-list", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
@@ -35,6 +37,7 @@
             });
         });
     },
+
     initViewBetListGame: function () {
         $(".tblRpt").on("click", "a.view-bet-list", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
@@ -53,6 +56,7 @@
             });
         });
     },
+
     initViewBetListNewGame: function () {
         $(".tblRpt").on("click", "a.view-bet-list-new-game", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
@@ -72,6 +76,7 @@
             });
         });
     },
+
     initViewForecast1x2: function () {
         $(".tblRpt").on("click", "a.view-forecast", function () {
             if (countDownTimer != null) clearTimeout(countDownTimer);
@@ -88,6 +93,7 @@
             });
         });
     },
+
     innitFreeHeader: function () {
         var clonedHeaderRow;
         $(".persist-area").each(function () {
@@ -107,6 +113,7 @@
             TOTALBETS.updateTableHeaders();
         });
     },
+
     updateTableHeaders: function () {
         if ($(".persist-area").val() != undefined) {
             var widthspace = $(".persist-area").width();
@@ -139,4 +146,3 @@
         }
     }
 };
-

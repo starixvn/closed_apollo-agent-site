@@ -49,6 +49,8 @@ var forecastByMatch =
 
 $(function () {
     forecastByMatch.Init();
+
+    $('#header_main').hide();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 
 function UpdateForecastValue() {
