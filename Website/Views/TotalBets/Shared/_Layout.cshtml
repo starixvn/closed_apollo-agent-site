@@ -6,14 +6,15 @@
     <title>@ViewBag.Title - Total Bets</title>
     
     <link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.less" rel="stylesheet" type="text/css" />
-    <link href="~/Views/TotalBets/Resources/TotalBets.less" rel="Stylesheet" type="text/css" />
     <link href="~/_Components/RefreshCountDown/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
+    <link href="~/Views/TotalBets/Resources/TotalBets.less" rel="Stylesheet" type="text/css" />
 
     @RenderSection("css", required: false)
 </head>
 <body>
     <div id="page_main">
         <div id="header_main">
+            <span class="upper">@Resources.Lang.totalbets</span>
             @ViewBag.Title
         </div>
         <div id="content_main">
