@@ -97,7 +97,7 @@
             @if (!Model.IsMember && Model.HasMemberDownline)
             {
                 <a class="lnk-member-list" 
-                        target="main" href="~/Account/CustomerList?agentid=@Model.CustId">
+                        target="main" href="~/Account/MemberList?agentid=@Model.CustId">
                     @Resources.Lang.lblPlayerList
                 </a>
             }
