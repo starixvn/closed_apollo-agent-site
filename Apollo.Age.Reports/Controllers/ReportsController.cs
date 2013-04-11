@@ -111,5 +111,15 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #endregion Outstanding Report
+
+        #region Agent Win Loss Report
+
+        public ViewResult MatchEntered()
+        {
+
+            return View();
+        }
+
+        #endregion
     }
 }
