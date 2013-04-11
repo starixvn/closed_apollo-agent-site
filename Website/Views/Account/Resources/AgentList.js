@@ -75,8 +75,13 @@ var AGENTLIST = function ($) {
                 var mWidth = $("#menuedit").outerWidth();
                 var left = (pos.left + eWidth) + "px";
                 var top = 3 + pos.top + "px";
-                $("#commission").attr("agentId", $(this).attr('agentid'));
-                $("#betsetting").attr("agentId", $(this).attr('agentid'));
+                var agentid = $(this).attr('agentid');
+                var agentlevel = $(this).attr('agentlevel');
+                $("#commission").attr("agentId", agentid);
+                $("#betsetting").attr("agentId", agentid);
+
+                $("#commission").attr("agentlevel", agentlevel);
+                $("#betsetting").attr("agentlevel", agentlevel);
 
                 $("#menuedit").css({
                     position: 'absolute',
@@ -89,9 +94,13 @@ var AGENTLIST = function ($) {
                 $("#menuedit").hide();
             });
             $("#commission").unbind('click').bind('click', function () {
+                console.log($(this).attr("agentid"));
+                console.log($(this).attr("agentlevel"));
                 // Code here
             });
             $("#betsetting").unbind('click').bind('click', function () {
+                console.log($(this).attr("agentid"));
+                console.log($(this).attr("agentlevel"));
                 // Code here
             });
             $("#menuedit").mouseover(function () {
@@ -179,7 +188,7 @@ var AGENTLIST = function ($) {
                          { HeaderText: "#", Width: 50, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: "Edit", Width: 50, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return "<a href='#' name='Edit' agentid=" + cell.Value.AgentId + " >Edit</a>";
+                                 return "<a href='#' name='Edit' agentid=" + cell.Value.AgentId + " agentlevel=" + cell.Value.AgentLevel + " >Edit</a>";
                              }
                          },
                          { HeaderText: "User", Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
