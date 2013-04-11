@@ -4248,4 +4248,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="Forecast" xml:space="preserve">
     <value>Forecast</value>
   </data>
+  <data name="Sports" xml:space="preserve">
+    <value>Sports</value>
+  </data>
 </root>
