@@ -1,0 +1,192 @@
+﻿@using Apollo.Age.Reports.ViewModels
+@{
+    ViewBag.Title = Resources.Lang.agentwinloss;
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+}
+
+@model AgentWinlossViewModel
+
+<div id="box_header">
+    <div class="filter-submit">
+         <div class="inline-control">
+            @Html.LabelFor(m => m.FromDate, @Resources.Lang.from)
+            @Html.DatePickerFor(m => m.FromDate)
+         </div> 
+         <div class="inline-control">
+            @Html.LabelFor(m => m.ToDate, @Resources.Lang.to)
+            @Html.DatePickerFor(m => m.ToDate)
+         </div>       
+         <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
+    </div>
+</div>
+<br />
+
+<table class="tblRpt">
+@if (Model.IsSupper)
+{
+    <thead>
+        <tr>
+            <td rowspan="2">
+                @Resources.Lang.AgentLevel1
+            </td>
+            <td rowspan="2">
+                @Resources.Lang.lblSoccerPT
+            </td>
+            <td colspan="2">
+                @Resources.Lang.turnover
+            </td>
+            <td colspan="2">
+                @Resources.Lang.company
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Resources.Lang.total
+            </td>
+            <td>
+                @Resources.Lang.Actual
+            </td>
+            <td>
+                @Resources.Lang.lblWinLoss
+            </td>
+            <td>
+                @Resources.Lang.lblComm
+            </td>
+            <td>
+                @Resources.Lang.total
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.AgentWinLossList != null)
+        {
+            if (Model.AgentWinLossList.Any())
+            {
+                var list = Model.AgentWinLossList;
+                foreach (var item in list)
+                {
+                    <tr>
+                        <td>
+                            @item.AgentName
+                        </td>
+                        <td class="r fcnum">
+                            @item.SoccerShare
+                        </td>
+                        <td class="r fcnum">
+                            @item.Turnover
+                        </td>
+                        <td class="r fcnum">
+                            @item.ActualTO
+                        </td>
+                        <td class="r fcnum">
+                            @item.AWinLoss
+                        </td>
+                        <td class="r fcnum">
+                            @item.AComm
+                        </td>
+                        <td class="r fcnum">
+                            @item.ATotal
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="no_info">
+                    <td colspan="7"> @Resources.Lang.noInfo </td>
+                </tr> 
+            }
+        }
+        else
+        {
+            <tr class="no_info">
+                <td colspan="7"> @Resources.Lang.noInfo </td>
+            </tr> 
+        }
+    </tbody>
+}
+else
+{
+     <thead>
+        <tr>
+            <td rowspan="2">
+            </td>
+            <td rowspan="2">
+                @Resources.Lang.lblSoccerPT
+            </td>
+            <td colspan="2">
+                @Resources.Lang.turnover
+            </td>
+            <td colspan="2">
+                @Resources.Lang.company
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Resources.Lang.total
+            </td>
+            <td>
+                @Resources.Lang.Actual
+            </td>
+            <td>
+                @Resources.Lang.lblWinLoss
+            </td>
+            <td>
+                @Resources.Lang.lblComm
+            </td>
+            <td>
+                @Resources.Lang.total
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.AgentWinLossList != null)
+        {
+            if (Model.AgentWinLossList.Any())
+            {
+                var list = Model.AgentWinLossList;
+                foreach (var item in list)
+                {
+                    <tr>
+                        <td>
+                            @item.AgentName
+                        </td>
+                        <td class="r fcnum">
+                            @item.SoccerShare
+                        </td>
+                        <td class="r fcnum">
+                            @item.Turnover
+                        </td>
+                        <td class="r fcnum">
+                            @item.ActualTO
+                        </td>
+                        <td class="r fcnum">
+                            @item.AWinLoss
+                        </td>
+                        <td class="r fcnum">
+                            @item.AComm
+                        </td>
+                        <td class="r fcnum">
+                            @item.ATotal
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="no_info">
+                    <td colspan="7"> @Resources.Lang.noInfo </td>
+                </tr> 
+            }
+        }
+        else
+        {
+            <tr class="no_info">
+                <td colspan="7"> @Resources.Lang.noInfo </td>
+            </tr> 
+        }
+    </tbody>
+}
+
+
+</table>
