@@ -111,6 +111,7 @@ if (typeof jQuery != 'undefined') {
 							maxdate = maxdate.split("/");
 							datePicker.datepicker("option", "maxDate", new Date(maxdate[2], maxdate[0], maxdate[1]));
 						}
+                        datePicker.datepicker("option", "buttonText", "Select date");
 					}
 				}
 			}

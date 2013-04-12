@@ -1,0 +1,81 @@
+﻿@import "../../../_GlobalResources/Css/agent.less";
+@import "../../../_GlobalResources/Css/calendar.less";
+
+#box_header {
+	padding: 5px;
+	margin-bottom: 10px;
+	
+	.date-range {
+		* {
+			vertical-align: middle;
+		}
+
+		.date {
+			float: left;
+			margin-right: 5px;
+
+			input {
+				margin: 0 2px;
+			}
+
+			img.ui-datepicker-trigger {
+				margin-left: 0;
+			}
+		}
+	}	
+}
+
+.tblRpt {
+	font-size: 1em;
+
+	tbody td {
+		white-space: inherit;
+	}
+
+	td {
+		&.tbList {
+			#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+
+			ul {				
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+
+				li {					
+					display: inline;
+					padding: 0;
+
+					a {						
+						float: left;						
+						margin-right: 2px;
+
+						span {							
+							font-weight: normal;												
+							padding: 2px 0px;
+							float: none;							
+						}
+
+						a:hover {
+							background-position: 0% -20px;
+
+							span {
+								background-position: 100% -20px;
+								color: #F00;
+							}
+						}											
+					}
+
+					&.line a:before, &.line a:after {
+						margin: 0 5px;
+						content: "|";
+					}					
+
+					&#current a {		
+						color: @textColor;
+						font-weight: bold;
+					}
+				}		
+			}
+		}
+	}
+}
