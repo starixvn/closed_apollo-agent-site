@@ -1,5 +1,4 @@
 ﻿@import "../../../_globalresources/css/agent.less";
-@lightBlue: #5C8DC9;
 
 html, body {
 	padding: 0;
@@ -52,9 +51,12 @@ html, body {
 		}
 
 		&.active {
-			background-color: #fff;
-			border-top: 2px solid @primaryColor;
+			
+			// backup red themes			
+			//border-top: 2px solid @primaryColor;
+			border-top: 2px solid @gray;
 			border-bottom: 1px solid transparent;
+			background-color: #fff;
 						
 			a {
 				padding: 9px 0 6px;
@@ -71,7 +73,6 @@ html, body {
 		display: block;
 		font-weight: bold;	
 		min-height: 30px;
-		border-top: 1px solid #fff;
 		border-bottom: 1px solid #ccc;
 
 		.menu-item-title {
@@ -82,9 +83,12 @@ html, body {
 			cursor: pointer;
 			//.transition(all .3s);
 
-			&:hover {
-				background-color: @primaryColor;
-				color: #fff;
+			&:hover {				
+				// backup red themes
+				//color: #fff;
+				//background-color: @primaryColor;
+				color: @gray;
+				background-color: @grayLighter;
 			}
 		}
 
@@ -99,7 +103,9 @@ html, body {
 				padding: 0 5px;
 				display: block;
 				font-size: .9em;
-				color: @gray;				
+				// backup red themes
+				//color: @gray;		
+				color: @linkColor;		
 
 				&:before {
 					content: '+';
@@ -108,19 +114,25 @@ html, body {
 				}
 
 				&:hover {
-					//background-image: url(img/submenu-bullet-o.jpg);
-					color: @primaryColor;
+					//background-image: url(img/submenu-bullet-o.jpg);					
 					//text-decoration: underline;
+					color: @hoverLinkYellowColor;
 				}
 			}
 		}
 
 		&.active {
 			.menu-item-title {
-				background-color: @primaryColor;
-				color: #fff;
+				// backup red themes
+				//background-color: @primaryColor;
+				//color: #fff;
+				background: @grayLighter;
 			}
-			.submenu { border-top-color: @primaryColor }
+			.submenu { 
+				// backup red themes
+				//border-top-color: @primaryColor
+				border-top-color: @borderColor;
+			}
 		}
 	}
 }
@@ -193,7 +205,10 @@ html, body {
 		.parent-name {
 			a {
 				//float: right;
-				color: @lightBlue;
+				// backup red themes
+				//color: @lightBlue;
+				color: @linkColor;
+
 				&:hover { color: @orange }
 			}
 		}
@@ -360,9 +375,16 @@ html, body {
 					float: left;
 					clear: both;
 					padding: 2px 0;
-					color: @lightBlue;
+					// backup red themes
+					//color: @lightBlue;
+					color: @linkColor;
 					
-					&:hover { color: @orange }
+					&:hover { 
+						// backup red themes
+						//color: @orange;
+						color: @hoverLinkYellowColor;
+					}
+
 					&:before {
 						content: '+';
 						float: left;
@@ -388,7 +410,9 @@ html, body {
 	text-align: center;
 	font-weight: bold;
 	padding: 10px;
-	color: @orange;
+	// backup red themes
+	//color: @orange;
+	color: @hoverLinkYellowColor;
 }
 
 /* AUTO-COMPLETE */
@@ -408,14 +432,22 @@ html, body {
 .treeview {
 	a {
 		padding: 0 0 0 5px;
-		color: @lightBlue;
+		// backup red themes
+		//color: @lightBlue;
+		color: @linkColor;
 	}
 }
 
 #members-list, #agent-list {
 	a {
-		color: @lightBlue;
-		&:hover { color: @orange }
+		// backup red themes
+		//color: @lightBlue;
+		color: @linkColor;
+		&:hover { 
+			// backup red themes
+			//color: @orange;
+			color: @hoverLinkYellowColor;
+		}
 	}
 }
 
