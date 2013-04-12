@@ -453,12 +453,11 @@ namespace Sunplus.Agent.Model.DL.BetList
 
         #region AllBetsByDateAndMem
 
-        public DataTable Age_BetList_SelByDateMemStatus(int loggedId, int mode, int agentId, int custId, DateTime dateFrom, DateTime dateTo, string statusIds, out DataTable outDataTable)
+        public DataTable Age_BetList_SelByDateMemStatus(int loggedId, int agentId, int custId, DateTime dateFrom, DateTime dateTo, string statusIds, out DataTable outDataTable)
         {
             // Parameters
             Hashtable parameters = new Hashtable();
             parameters.Add("loggedid", loggedId);
-            parameters.Add("mode", mode);
             parameters.Add("agentid", agentId);
             parameters.Add("custid", custId);
             parameters.Add("fromdate", dateFrom);
