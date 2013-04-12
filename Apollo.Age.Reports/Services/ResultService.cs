@@ -16,6 +16,7 @@ namespace Apollo.Age.Reports.Services
     using System.Text;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
+    using Apollo.Age.Reports.Models;
 
     /// <summary>
     /// TODO: Update summary.
@@ -37,15 +38,32 @@ namespace Apollo.Age.Reports.Services
             return sports;
         }
 
-        public IEnumerable<League> GetLeagueBySport(DateTime eventDate, byte sportType=0, string language = "E", bool isSowTestData=false)
+        public IEnumerable<League> GetLeagueBySport(DateTime eventDate, byte sportType = 0, string language = "E", bool isSowTestData = false)
         {
-            var leagues = GetData<League>(new ResultGetLeagueBySportCriteria { 
+            var leagues = GetData<League>(new ResultGetLeagueBySportCriteria
+            {
                 EventDate = eventDate,
                 SportType = sportType,
                 IsShowAll = isSowTestData
             });
 
             return leagues;
+        }
+
+        public IEnumerable<MatchResultModel> GetMatchResult(DateTime date, byte sportType, int custId, int leagueId = 0, string language = "E")
+        {
+            var criteria = new GetMatchResultCriteria
+                    {
+                        EventDate = date,
+                        SportId = sportType,
+                        CustId = custId,
+                        LeagueId = leagueId,
+                        Language = language
+                    };
+
+            var matchResult = GetData<MatchResultModel>(criteria);
+            
+            return matchResult;
         }
     }
 }

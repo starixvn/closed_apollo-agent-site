@@ -20,17 +20,19 @@ namespace Fanex.Age.UI.Reports
 			public string title = "{title}";
 			protected static string s5 = "</div><div id=\"content_main\">";
 			public string content = "{content}";
-			protected static string s6 = "</div><div id=\"dialog-details\"></div></div></form></body><script src=\"";
-			protected static string s7{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
-			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
-			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s15{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
-			protected static string s16 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s6 = "</div><div id=\"dialog-details\"></div></div>";
+			public OutstandingDetail_HiddenFields_Block HiddenFields = new OutstandingDetail_HiddenFields_Block();
+			protected static string s7 = "</form></body><script src=\"";
+			protected static string s8{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
+			protected static string s9 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
+			protected static string s11 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s14{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s16{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
+			protected static string s17 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -43,6 +45,7 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s5);
 				bd.Append(content);
 				bd.Append(s6);
+				if(null != HiddenFields) HiddenFields.ToString(ref bd);
 				bd.Append(s7);
 				bd.Append(s8);
 				bd.Append(s9);
@@ -53,6 +56,7 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s14);
 				bd.Append(s15);
 				bd.Append(s16);
+				bd.Append(s17);
 				bd.Append(Value);
 			}
 			public string ToString()
@@ -62,6 +66,24 @@ namespace Fanex.Age.UI.Reports
 				return bd.ToString();
 			}
 
+		}
+
+		public class OutstandingDetail_HiddenFields_Block: Block
+		{
+			protected static string s18 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			public string ApoRoot = "{ApoRoot}";
+			protected static string s19 = "\" />";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s18);
+					bd.Append(ApoRoot);
+					bd.Append(s19);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
 		}
 
 	}

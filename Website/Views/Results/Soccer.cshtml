@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Apollo.Age.Reports.Models.MatchResultModel>
+<table class="tblRpt">
+    <thead>
+        <tr class="RptHeader">
+            <td style="width: 90px" columnname="kickofftime">
+                {static:Resources.Lang.kickofftime}
+            </td>
+            <td>
+                {static:Resources.Lang.match}
+            </td>
+            <td style="width: 70px;">
+                {static:Resources.Lang.firsthalfscore}
+            </td>
+            <td class="nowrap" style="width: 70px;">
+                {static:Resources.Lang.finalscore}
+            </td>
+            <td class="nowrap" style="width: 60px;">
+                {static:Resources.Lang.status}
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        { 
+            <!--RowData-->
+            <!--League-->
+            <tr>
+                <td colspan="5" class="league" style="padding-left: 20px">
+                    {LeagueName}
+                </td>
+            </tr>
+            <!--/League-->
+            
+            foreach (var result in Model)
+            { 
+            <!--Row-->
+                <tr>
+                    <td class="bl_time_nowrap" rowspan="2">
+                        @result.KickoffTime {KickOffTime}
+                    </td>
+                    <td class="l">                        
+                        {Home}
+                        <!--LimitFGHome-->
+                        <div class="first_goal">
+                            &nbsp;</div>
+                        <!--/LimitFGHome-->
+                        <!--LimitLGHome-->
+                        <div class="last_goal">
+                            &nbsp;</div>
+                        <!--/LimitLGHome-->
+                    </td>
+                    <td>
+                        {HTHomeScore}
+                    </td>
+                    <td>
+                        {FTHomeScore}
+                    </td>
+                    <td rowspan="2">
+                        {EventStatus}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="l">
+                        {Away}
+                        <!--LimitFGAway-->
+                        <div class="first_goal">
+                            &nbsp;</div>
+                        <!--/LimitFGAway-->
+                        <!--LimitLGAway-->
+                        <div class="last_goal">
+                            &nbsp;</div>
+                        <!--/LimitLGAway-->
+                    </td>
+                    <td>
+                        {HTAwayScore}
+                    </td>
+                    <td>
+                        {FTAwayScore}
+                    </td>
+                </tr>
+    
+            <!--/Row-->
+            }
+            <!--/RowData-->           
+        }
+        else
+        { 
+            @RazorHelper.ShowNoInfo(colspan: 5);
+        }
+    </tbody>
+</table>

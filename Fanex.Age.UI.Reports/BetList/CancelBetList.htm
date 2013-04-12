@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>{static:Resources.Lang.voidandreject}</title>
-    <link href="../Resources/Reports.less" rel="stylesheet" type="text/css" />
+    <link href="../../_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css"
+        rel="stylesheet" type="text/css" />
     <link href="../../_BetList/Resources/BetList.less" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -16,49 +17,55 @@
                     class="hand" style="display: none;" />
             </div>
         </div>
-        <div id="box_header" style="width: 100%">
-            <table class="l" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td>
-                        {static:Resources.Lang.from}
-                    </td>
-                    <td width="10px;">
-                    </td>
-                    <td>
-                    </td>
-                    <td width="10px;">
-                    </td>
-                    <td>
-                        {static:Resources.Lang.to}
-                    </td>
-                    <td width="10px;">
-                    </td>
-                    <td>
-                    </td>
-                    <td width="10px;">
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td width="10px;">
-                    </td>
-                    <td>
-                        <div id="loading" class="hidden">
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
         <div id="content_main">
+            <div id="box_header">
+                <table class="l" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td>
+                            {static:Resources.Lang.from}
+                        </td>
+                        <td width="10px;">
+                        </td>
+                        <td>
+                        </td>
+                        <td width="10px;">
+                        </td>
+                        <td>
+                            {static:Resources.Lang.to}
+                        </td>
+                        <td width="10px;">
+                        </td>
+                        <td>
+                        </td>
+                        <td width="10px;">
+                        </td>
+                        <td>
+                            <select id="userType">
+                            </select>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td width="10px;">
+                        </td>
+                        <td>
+                            <div id="loading" class="hidden">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
             {content}</div>
+        <!--HiddenFields-->
+        <input type="hidden" id="ApoRoot" value="{ApoRoot}" />
+        <!--/HiddenFields-->
     </form>
     </div>
 </body>
+<script src="../../_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+<script src="../../_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js" type="text/javascript"></script>
 <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
 <script src="../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
-<script src="../Resources/Reports.js" type="text/javascript"></script>
 <script src="Resources/CancelBetList.js" type="text/javascript"></script>
 </html>

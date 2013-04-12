@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ResultController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ResultsController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -19,14 +19,17 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Entities;
     using Apollo.Age.Services;
+    using Fanex.Common.Extensions;
+    using Apollo.Age.Reports.Models;
+    using Apollo.Age.Enumerations;
 
-    public class ResultController : BaseController
+    public class ResultsController : BaseController
     {
         private readonly ResultService _resultService;
 
-        public ResultController() : this(null) { }
+        public ResultsController() : this(null) { }
 
-        public ResultController(ResultService resultService = null)
+        public ResultsController(ResultService resultService = null)
         {
             _resultService = resultService ?? new ResultService();
         }
@@ -41,8 +44,8 @@ namespace Apollo.Age.Reports.Controllers
         public ActionResult Index(DateTime date)
         {
             var balanceUpDay = _resultService.GetBalanceUpDay();
-            
-            var sports = _resultService.GetResultSports(date);       
+
+            var sports = _resultService.GetResultSports(date);
 
             var viewModel = new ReportResultViewModel
             {
@@ -52,23 +55,54 @@ namespace Apollo.Age.Reports.Controllers
             };
 
             return View(viewModel);
-        }      
+        }
 
         public JsonResult League(DateTime date, byte sportId)
         {
             // not add select all item yet
-            var leagues = _resultService.GetLeagueBySport(date, sportId);
-            leagues = leagues.Select(l => new League
-             {
-                 Id = l.Id,
-                 Name = CacheRef.GetLeagueName(l.Id)
-             });
+            var leaguesBySport = _resultService.GetLeagueBySport(date, sportId);
+            List<League> leagues = new List<League>();
+            leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
+
+            leaguesBySport.ForEach((item) => leagues.Add(new League
+            {
+                Id = item.Id,
+                Name = CacheRef.GetLeagueName(item.Id)
+            }));
+
+            //leaguesBySport = leaguesBySport
+            //    .Select(l => new League
+            // {
+            //     Id = l.Id,
+            //     Name = CacheRef.GetLeagueName(l.Id)
+            // });
+
+
+
             return Json(leagues, JsonRequestBehavior.AllowGet);
         }
 
-        public ViewResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
-        {            
-            return View();
+        public ActionResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
+        {
+            var matchResults = _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+            if (matchResults != null && matchResults.Any())
+            {
+                matchResults = matchResults.OrderBy(match => match.LeagueId);
+            }
+
+            string viewName = ((SportTypes)sportId).ToString();
+
+            return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
+
+        //public ActionResult Soccer(IEnumerable<MatchResultModel> matchResults)
+        //{
+        //    if (matchResults != null && matchResults.Any())
+        //    {
+        //        matchResults = matchResults.OrderBy(match => match.LeagueId);
+        //    }
+
+        //    return View(matchResults);
+        //}
     }
 }

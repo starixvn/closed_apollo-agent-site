@@ -118,6 +118,7 @@ namespace Fanex.Age.UI.Reports.BetList
             builder.Append("</tbody></table>");
 
             tpl.content = builder.GetBetList();
+            tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             writer.Write(tpl);
         }
 
@@ -138,7 +139,7 @@ namespace Fanex.Age.UI.Reports.BetList
         public override object InvokeData(System.Collections.Hashtable p)
         {
             betList = new BetListBO(CurrentUserSession.NetSessionId);
-            dtResult = betList.GetAllBetsByDateAndMem(-1, custid, 2, dateFrom, dateTo, statusIds, out outDataTable);
+            dtResult = betList.GetAllBetsByDateAndMem(-1, custid, dateFrom, dateTo, statusIds, out outDataTable);
             return dtResult != null ? dtResult : new DataTable();
         }
 

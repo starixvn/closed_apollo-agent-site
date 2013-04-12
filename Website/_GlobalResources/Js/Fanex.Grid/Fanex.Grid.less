@@ -249,10 +249,12 @@
 		z-index: 3;
 	}
 
-	thead th, .grid-fixed-table thead th {
+	.free-top-left thead th, .grid-fixed-table thead th {
 		overflow: hidden;
 		vertical-align: middle;
-		border: solid 1px #c5c5c5;
+		border: 1px solid @borderColor;
+		border-width: 1px 1px 0 0;
+		.box-shadow(0 1px 0 #FFF inset);
 		border-top: none;
 		border-left: none;
 		font-weight: normal;
@@ -262,7 +264,7 @@
 		height: 21px;
 	}
 
-	.free-top-left table thead th, .col_header table thead th {
+	table thead th, .col_header table thead th {
 		background-color: @primaryHeaderBackground;
 		border-spacing: 0;
 		border: 1px solid @borderColor;
@@ -474,11 +476,11 @@
 	}
 
 	tr.highlight-row:hover td {
-		 background-color: #FBF0B9 !important;
+		 background-color: @rowHoverBackground;
 	}
 
 	.mousehoverbeyond td {
-    	background-color: #E2FFFF !important;
+    	background-color: @rowHoverBackground;
 	}
 
 	.border-right-highlight {

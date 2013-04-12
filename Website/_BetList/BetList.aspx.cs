@@ -211,6 +211,7 @@ namespace Sunplus.Agent.UI._BetList
             content.Append("</tbody>");
 
             tpl.content = content.ToString();
+            tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             writer.Write(tpl);
 
             RegisterJavascriptObject("type", type);
