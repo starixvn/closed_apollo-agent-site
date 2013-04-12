@@ -34,7 +34,7 @@ namespace Fanex.Age.UI.Reports.BetList
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
 
-    public partial class CancelBetList : TplPage
+    public partial class BetList : TplPage
     {
         #region Variables
 
@@ -54,6 +54,7 @@ namespace Fanex.Age.UI.Reports.BetList
         {
             #region INIT
 
+            this.BoxFilter();
             Dictionary<string, DataTable> results = View as Dictionary<string, DataTable>;
             UserTypes userType = UserTypes.Unknown;
 
@@ -65,8 +66,6 @@ namespace Fanex.Age.UI.Reports.BetList
                 tickets = TicketTransformer.Transform(dtDeletedBets);
                 dtDeletedBets.Dispose();
             }
-
-            Show_HideComboBox(results, userType);
             DataTable betTransm = command.OutDataTable();
             List<ITicketData> ticketData = new List<ITicketData>();
 
@@ -117,14 +116,19 @@ namespace Fanex.Age.UI.Reports.BetList
             content.Append("</tbody></table>");
 
             tpl.content = content.ToString();
-
+            tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             writer.Write(tpl);
 
             #endregion RENDER HTML
         }
 
-        private void Show_HideComboBox(Dictionary<string, DataTable> results, UserTypes userType)
+        private void BoxFilter()
         {
+            tpl.Filter.valueFromDate = DateTime.Now.AddDays(-3).ToShortDateString();
+            tpl.Filter.valueToDate = DateTime.Now.ToShortDateString();
+            tpl.Filter.valueMinDate = DateTime.Now.AddMonths(-3).ToShortDateString();
+            tpl.Filter.valueMaxDate = DateTime.Now.AddMonths(1).ToShortDateString();
+            tpl.Filter.username = UserSession.Current.Username;
             //if (results["dtCombo1"] != null && results["dtCombo1"].Rows.Count > 0)
             //{
             //        tpl.Options.Master.Visible = false;

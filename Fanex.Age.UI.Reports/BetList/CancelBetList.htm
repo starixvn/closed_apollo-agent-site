@@ -18,44 +18,36 @@
             </div>
         </div>
         <div id="content_main">
+            <!--Filter-->
             <div id="box_header">
-                <table class="l" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                        <td>
-                            {static:Resources.Lang.from}
-                        </td>
-                        <td width="10px;">
-                        </td>
-                        <td>
-                        </td>
-                        <td width="10px;">
-                        </td>
-                        <td>
-                            {static:Resources.Lang.to}
-                        </td>
-                        <td width="10px;">
-                        </td>
-                        <td>
-                        </td>
-                        <td width="10px;">
-                        </td>
-                        <td>
-                            <select id="userType">
-                            </select>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td width="10px;">
-                        </td>
-                        <td>
-                            <div id="loading" class="hidden">
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <div class="date-range">
+                    <div class="date">
+                        <label>
+                            {static:Resources.Lang.from}</label>
+                        <input type="text" id="fromDate" name="fromDate" class="datepicker" value="{valueFromDate}"
+                            mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
+                    </div>
+                    <div class="date">
+                        <label>
+                            {static:Resources.Lang.to}</label>
+                        <input type="text" id="toDate" name="toDate" class="datepicker" value="{valueToDate}"
+                            mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
+                    </div>
+                    <div class="date">
+                        <select id="userType" style="width: 72px;">
+                            <option value="0">{static:Resources.Lang.member}</option>
+                            <option value="1">{static:Resources.Lang.agent}</option>
+                        </select>
+                    </div>
+                    <div class="date">
+                        <input type="text" id="username" name="username" value="{username}" maxlength="50"
+                            style="width: 100px;" /></div>
+                    <div>
+                        <input type="button" class="btn" id="dSubmit" value="Submit">
+                    </div>
+                </div>
             </div>
+            <!--/Filter-->
             {content}</div>
         <!--HiddenFields-->
         <input type="hidden" id="ApoRoot" value="{ApoRoot}" />
@@ -64,8 +56,8 @@
     </div>
 </body>
 <script src="../../_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+<script src="../../_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
 <script src="../../_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js" type="text/javascript"></script>
 <script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
 <script src="../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
-<script src="Resources/CancelBetList.js" type="text/javascript"></script>
 </html>
