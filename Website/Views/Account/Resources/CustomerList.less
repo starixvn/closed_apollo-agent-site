@@ -64,7 +64,9 @@
 		}
 
 		ul.edit-menu {
-			background: @secondColor;
+			// backup red themes
+			//background: @secondColor;
+			background: lighten(@primaryColor, 40%);
 			border: 1px solid @headerBorderColor;
 			padding: 5px;
 			margin: 0;
@@ -77,6 +79,10 @@
 
 				&:hover {
 					background: url(Images/edit_disabled.gif)  no-repeat left center;
+				}
+				
+				a:hover {
+					color: @hoverLinkYellowColor;
 				}
 			}
 			
@@ -109,12 +115,13 @@
 					&:hover {	
 						// backup red themes
 						//color: @hoverLinkRedColor;
-						color: @primaryHeaderColor;
+						color: @white;
 					}
 				}
 		
 				&.active {
 					font-weight: bold;
+					color: @white;
 				}	
 
 				#quickLinkCustomerList:before {

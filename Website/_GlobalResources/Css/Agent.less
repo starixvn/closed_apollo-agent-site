@@ -179,7 +179,10 @@ table {
 	}
 
 	.report-title {
-		#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
+		// backup red themes
+		//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
+		#gradient.vertical(#6B6B6B, @secondColor);
+		color: @primaryHeaderColor;	
 		.box-shadow(0 1px 0 0 #FFF inset);
 
 		td {
@@ -232,14 +235,20 @@ table {
 	}
 
 	tfoot {
-		.total {			
-			background: @rowTotalBackground;
+		.total {	
+			// backup red themes		
+			//background: @rowTotalBackground;
+			//color: @white;
+			background: @grayLight;
 			color: @white;
 			.bold;
 
 			td {
-				border: 1px solid darken(@rowTotalBackground, 10%);
-				text-shadow: none;
+				// backup red themes
+				//border: 1px solid darken(@rowTotalBackground, 10%);
+				//text-shadow: none;
+				border: 1px solid @tableRptBorderColor;
+				text-shadow: 0 1px #888;
 			}
 		}
 	}

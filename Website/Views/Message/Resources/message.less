@@ -59,29 +59,21 @@
 							float: none;							
 						}
 
-						a:hover {
-							background-position: 0% -20px;
-							color: @primaryHeaderColor;
-
-							span {
-								background-position: 100% -20px;
-								color: #F00;
-							}
+						&:hover {							
+							color: @white;
 						}											
 					}
 
 					&.line a:before, &.line a:after {
 						margin: 0 5px;
 						content: "|";
-						color: @linkColor;
 						font-weight: normal;
-						color: lighten(@primaryColor, 30%);
 					}					
 
 					&#current a {	
 						// backup red themes	
 						//color: @textColor;
-						color: lighten(@primaryColor, 30%);
+						color: @white;
 						font-weight: bold;
 					}
 				}		
