@@ -15,22 +15,23 @@
 @orangeLight:           #FF9933;
 @orangeLighter:         #EF7805;
 
-@primaryColor:			#CD4F50;
-@secondColor:			#ECE9D8;
+@primaryColor:			#B39C74;
+@secondColor:			#363636;
 @borderColor:			#ccc;
 
 // Text Color
 // --------------------------------------------------
 @textColor:             #171717;
-@titleColor:            @primaryColor;
+@titleColor:            @gray;
 @textYellow:			#FDC46E;
 
 // Links
 // -------------------------
-@linkColor:             @blueDark;
+@linkColor:             #0066CC;
 @hoverLinkColor:		@red;
 @hoverLinkOrangeColor:  @orangeLighter;
 @hoverLinkRedColor:		@primaryColor;
+@hoverLinkYellowColor:	darken(@primaryColor, 10%);
 
 // Font
 // -------------------------
@@ -41,13 +42,13 @@
 // Table
 // -------------------------
 @tableBackground:			#F3F3F3;
-@primaryHeaderBackground:	darken(@tableBackground, 5%);
-@primaryHeaderColor:		@primaryHeaderBackground;
+@primaryHeaderBackground:	#363636;
+@primaryHeaderColor:		#FFFFEB;
 @secondHeaderBackground:	#C7C7C7;
 @secondHeaderColor:			#323435;
-@tableRptBorderColor:		lighten(@grayDark, 10%);
+@tableRptBorderColor:		#363636;
 
-@rowBackground:				#F6F8F9;
+@rowBackground:				#fff;
 @rowAltBackground:			#faf9ee;
 @rowLiveBackground:			#fdc;
 @rowHoverBackground:		#FBF0B9;
@@ -61,13 +62,13 @@
 
 // Header
 // -------------------------		
-@headerBackground:			@secondColor;
-@headerBorderColor:			#CCC194;
+@headerBackground:			#CCCCCC;
+@headerBorderColor:			darken(#CCCCCC, 10%);
 
 // Calendar
 // -------------------------		
 @calanderBackground:		#fff;
-@calanderBorderColor:		#DB8973;
+@calanderBorderColor:		@grayLight;
 @calanderTextColor:			#707070;
-@todayBackground:			#DE8B74;
+@todayBackground:			@grayLight;
 @dateHoverBackground:		#77AAE8;

@@ -34,7 +34,8 @@
     width: 713px;
     border: solid 1px @borderColor;
     left: 10px;
-    top: 97px;
+    //top: 97px;
+	top: 55px;
 
 	.boderBoxMatch {
 		background: @tableBackground;
@@ -138,7 +139,7 @@
 
 		/* End: Box Match by League */
 		table.check-list {
-			background: @secondColor;
+			background: lighten(@primaryColor, 35%);
 			border-spacing: 0;
 			border: 1px solid @borderColor;
 			width: 100%;
@@ -198,15 +199,20 @@
 		margin-bottom: 5px;
 
 		.title-scoremap {
-			width: 68.8%;
-			background: linear-gradient(to bottom, #F8F8F8, #EAEAEA) repeat scroll 0 0 transparent;
-			border: 1px solid @borderColor;
+			width: 68.8%;			
+			// backup red themes
+			//border: 1px solid @borderColor;
+			//background: linear-gradient(to bottom, #F8F8F8, #EAEAEA);
+			border: 1px solid @tableRptBorderColor;
+			#gradient.vertical(#6B6B6B, @secondColor);
 			border-bottom: none;
 			height: 20px;
 			padding: 5px;
 
 			.lnkRefresh {
-				background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;    
+				//backup red themes
+				//background: url( "Images/iLoading.png" ) no-repeat scroll left top;    
+				background: url( "Images/iLoadingWhite.png" ) no-repeat scroll left top; 
 				font-weight:bold;
 				color:#90979A;    
 				margin-top:4px;
@@ -233,7 +239,9 @@
 				background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
 				background-position: 0 -21px;
 				font-weight:bold;
-				color: #3684E2;    
+				// backup red themes
+				//color: #3684E2;
+				color: @white;    
 				padding-left:25px;
 				padding-top:1px;
 				height:20px;
@@ -245,7 +253,9 @@
 				background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
 				background-position: 0 0px;
 				font-weight: bold;
-				color: #3684E2;    
+				// backup red themes
+				//color: #3684E2;
+				color: @white;    
 				padding-left: 25px;
 				padding-top: 1px;
 				height: 20px;
@@ -258,16 +268,25 @@
 			.tblRpt {
 				border-top: none;
 				width: 70%;	
+				margin: 0;
 							
 				thead {					
 					tr.vsm th {
-						background-color: @secondColor;
+						// backup red themes
+						//background-color: @secondColor;
+						background-color: lighten(@primaryColor, 35%);
 						font-weight:bold;
 						text-align: center;
+						color: @textColor;
+						text-shadow: none;
 					}
 
 					tr.vsm th.hover-highlight {
 						background-color: #d0d3d3;
+					}
+
+					tr.vsmHomeWay th {
+						box-shadow: 0 1px #555555;
 					}
 				}
 
@@ -277,7 +296,9 @@
 						font-weight:bold;
 
 						.vsm {
-							background-color: @secondColor;
+							// backup red themes
+							//background-color: @secondColor;
+							background-color: lighten(@primaryColor, 35%);
 							font-weight:bold;
 							text-align: center;
 						}

@@ -34,7 +34,9 @@
 
 	td {
 		&.tbList {
-			#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+			// backup red themes
+			//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+			#gradient.vertical(#6B6B6B, @secondColor);
 
 			ul {				
 				list-style-type: none;
@@ -44,10 +46,12 @@
 				li {					
 					display: inline;
 					padding: 0;
+					font-weight: normal;
 
 					a {						
 						float: left;						
 						margin-right: 2px;
+						color: lighten(@primaryColor, 30%);
 
 						span {							
 							font-weight: normal;												
@@ -55,23 +59,21 @@
 							float: none;							
 						}
 
-						a:hover {
-							background-position: 0% -20px;
-
-							span {
-								background-position: 100% -20px;
-								color: #F00;
-							}
+						&:hover {							
+							color: @white;
 						}											
 					}
 
 					&.line a:before, &.line a:after {
 						margin: 0 5px;
 						content: "|";
+						font-weight: normal;
 					}					
 
-					&#current a {		
-						color: @textColor;
+					&#current a {	
+						// backup red themes	
+						//color: @textColor;
+						color: @white;
 						font-weight: bold;
 					}
 				}		

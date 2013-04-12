@@ -98,7 +98,7 @@ if (typeof jQuery != 'undefined') {
                     var $this = $(this);
                     if ($this.hasClass("lnkGroup")) {
                         $this.removeClass("lnkGroup").addClass("lnkGroupClick");
-                        $this.parent().parent().find(".title-scoremap").css({ "border-bottom": "1px solid #ccc" });
+                        $this.parent().parent().find(".title-scoremap").css({ "border-bottom": "1px solid #363636" });
                     }
                     else {
                         $this.removeClass("lnkGroupClick").addClass("lnkGroup");

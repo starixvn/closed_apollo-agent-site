@@ -1,27 +1,7 @@
-﻿//Cancelled Bets report
-function selected_Option_master(e) {
+﻿function selected_Option_member(e) {
 	var form = $("frmCancelBetList");
 	if (form) {
 		var loading = $("loading");
-		//if (loading) { loading.className = "loading1"; }
-		form.submit();
-	}
-}
-
-function selected_Option_agent(e) {
-	var form = $("frmCancelBetList");
-	if (form) {
-		var loading = $("loading");
-		//if (loading) { loading.className = "loading1"; }
-		form.submit();
-	}
-}
-
-function selected_Option_member(e) {
-	var form = $("frmCancelBetList");
-	if (form) {
-		var loading = $("loading");
-		//if (loading) { loading.className = "loading1"; }
 		form.submit();
 	}
 }

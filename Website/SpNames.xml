@@ -226,7 +226,9 @@
         <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member" DbName="REPDB" Plain="0">
             <Mapping DataField="CustId" ObjectProperty="UserId" />
         </Setting>
-        <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding" DbName="REPDB" Plain="0" />
+        <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding" DbName="REPDB" Plain="0">
+            <Mapping DataField="AgentId" ObjectProperty="UserId" />
+        </Setting>
         <Setting Key="Age_Result_SportSelByDate" SpName="Age_Result_SportSelByDate" DbName="REPDB" Plain="0" >
             <Mapping DataField="sporttype" ObjectProperty="Id"/>            
         </Setting>
