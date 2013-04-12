@@ -19,19 +19,21 @@ namespace Fanex.Age.UI.Reports
 			protected static string s4 = "\"rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s5{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
 			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmBetList\" method=\"get\"><div id=\"page_main\"><div id=\"header_main\">";
-			protected static string s7{get{return Resources.Lang.voidandreject;}}
-			protected static string s8 = "<div class=\"divBoxRight\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
-			protected static string s9{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s10 = "\"nofocus=\"true\" src=\"";
-			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
-			protected static string s12 = "\" title=\"";
-			protected static string s13{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s14 = "\"class=\"hand\" style=\"display: none;\" /></div></div><div id=\"content_main\">";
+			public string title = "{title}";
+			protected static string s7 = "<div class=\"divBoxRight\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
+			protected static string s8{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s9 = "\"nofocus=\"true\" src=\"";
+			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
+			protected static string s11 = "\" title=\"";
+			protected static string s12{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s13 = "\"class=\"hand\" /></div></div><div id=\"content_main\">";
 			public CancelBetList_Filter_Block Filter = new CancelBetList_Filter_Block();
 			public string content = "{content}";
-			protected static string s15 = "</div>";
+			protected static string s14 = "<div id=\"dialog-details\"></div></div>";
 			public CancelBetList_HiddenFields_Block HiddenFields = new CancelBetList_HiddenFields_Block();
-			protected static string s16 = "</form></div></body><script src=\"";
+			protected static string s15 = "<input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
+			public string pageType = "{pageType}";
+			protected static string s16 = "\" /></form></div></body><script src=\"";
 			protected static string s17{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s18 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s19{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
@@ -54,6 +56,7 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s4);
 				bd.Append(s5);
 				bd.Append(s6);
+				bd.Append(title);
 				bd.Append(s7);
 				bd.Append(s8);
 				bd.Append(s9);
@@ -61,11 +64,12 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s11);
 				bd.Append(s12);
 				bd.Append(s13);
-				bd.Append(s14);
 				if(null != Filter) Filter.ToString(ref bd);
 				bd.Append(content);
-				bd.Append(s15);
+				bd.Append(s14);
 				if(null != HiddenFields) HiddenFields.ToString(ref bd);
+				bd.Append(s15);
+				bd.Append(pageType);
 				bd.Append(s16);
 				bd.Append(s17);
 				bd.Append(s18);

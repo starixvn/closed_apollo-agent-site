@@ -10,11 +10,11 @@
     <form id="frmBetList" method="get">
     <div id="page_main">
         <div id="header_main">
-            {static:Resources.Lang.voidandreject}
+            {title}
             <div class="divBoxRight">
                 <input type="image" id="exporttoexcel" name="exporttoexcel" alt="{static:Resources.Lang.exporttoexcel}"
                     nofocus="true" src="../../_GlobalResources/Images/excel.gif" title="{static:Resources.Lang.exporttoexcel}"
-                    class="hand" style="display: none;" />
+                    class="hand" />
             </div>
         </div>
         <div id="content_main">
@@ -48,10 +48,14 @@
                 </div>
             </div>
             <!--/Filter-->
-            {content}</div>
+            {content}
+            <div id="dialog-details">
+            </div>
+        </div>
         <!--HiddenFields-->
         <input type="hidden" id="ApoRoot" value="{ApoRoot}" />
         <!--/HiddenFields-->
+        <input type="hidden" id="type" name="type" value="{pageType}" />
     </form>
     </div>
 </body>
