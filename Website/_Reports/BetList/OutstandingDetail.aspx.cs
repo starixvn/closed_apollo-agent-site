@@ -118,6 +118,7 @@ namespace Fanex.Age.UI.Reports.BetList
             builder.Append("</tbody></table>");
 
             tpl.content = builder.GetBetList();
+            tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             writer.Write(tpl);
         }
 

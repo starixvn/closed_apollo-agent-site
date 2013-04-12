@@ -26,11 +26,11 @@ namespace Fanex.Age.UI.Reports
 			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
 			protected static string s12 = "\" title=\"";
 			protected static string s13{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s14 = "\"class=\"hand\" style=\"display: none;\" /></div></div><div id=\"box_header\" style=\"width: 100%\"><table class=\"l\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td>";
+			protected static string s14 = "\"class=\"hand\" style=\"display: none;\" /></div></div><div id=\"content_main\"><div id=\"box_header\"><table class=\"l\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td>";
 			protected static string s15{get{return Resources.Lang.from;}}
 			protected static string s16 = "</td><td width=\"10px;\"></td><td></td><td width=\"10px;\"></td><td>";
 			protected static string s17{get{return Resources.Lang.to;}}
-			protected static string s18 = "</td><td width=\"10px;\"></td><td></td><td width=\"10px;\"></td><td></td><td></td><td></td><td width=\"10px;\"></td><td><div id=\"loading\" class=\"hidden\"></div></td></tr></table></div><div id=\"content_main\">";
+			protected static string s18 = "</td><td width=\"10px;\"></td><td></td><td width=\"10px;\"></td><td></td><td></td><td></td><td width=\"10px;\"></td><td><div id=\"loading\" class=\"hidden\"></div></td></tr></table></div>";
 			public string content = "{content}";
 			protected static string s19 = "</div></form></div></body><script src=\"";
 			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}

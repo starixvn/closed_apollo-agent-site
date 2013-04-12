@@ -302,7 +302,7 @@ if (typeof jQuery != "undefined") {
 			viewDetailsLinks.click(function () {
 				var $this = $(this),
                     transId = $this.attr("tid"),
-                    url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx",
+                    url = APOLLO.resolveUrl("~/_BetList/ViewDetail.aspx"),
                     ajaxParams = "isSportsbook=1" +
                         "&transid=" + transId +
                         "&fromdate=" + _page.fdate +
