@@ -20,7 +20,8 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Entities;
     using Apollo.Age.Services;
     using Fanex.Common.Extensions;
-using Apollo.Age.Reports.Models;
+    using Apollo.Age.Reports.Models;
+    using Apollo.Age.Enumerations;
 
     public class ResultsController : BaseController
     {
@@ -61,7 +62,7 @@ using Apollo.Age.Reports.Models;
             // not add select all item yet
             var leaguesBySport = _resultService.GetLeagueBySport(date, sportId);
             List<League> leagues = new List<League>();
-            leagues.Add(new League { Id = -1, Name = Resources.Lang.allleague });
+            leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
 
             leaguesBySport.ForEach((item) => leagues.Add(new League
             {
@@ -84,17 +85,24 @@ using Apollo.Age.Reports.Models;
         public ActionResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
         {
             var matchResults = _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
-            return RedirectToAction("Soccer", matchResults);
-        }
-
-        public ActionResult Soccer(IEnumerable<MatchResultModel> matchResults)
-        {
             if (matchResults != null && matchResults.Any())
             {
                 matchResults = matchResults.OrderBy(match => match.LeagueId);
             }
 
-            return View(matchResults);
+            string viewName = ((SportTypes)sportId).ToString();
+
+            return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
+
+        //public ActionResult Soccer(IEnumerable<MatchResultModel> matchResults)
+        //{
+        //    if (matchResults != null && matchResults.Any())
+        //    {
+        //        matchResults = matchResults.OrderBy(match => match.LeagueId);
+        //    }
+
+        //    return View(matchResults);
+        //}
     }
 }
