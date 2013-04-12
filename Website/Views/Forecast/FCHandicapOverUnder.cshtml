@@ -1,7 +1,8 @@
 ﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.lblForecast;
+    ViewBag.Title = Resources.Lang.lblHOUL;
+    
     IEnumerable<LeagueModel> leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
 }
 @section css
@@ -10,8 +11,7 @@
 }
 <div id="content_main">
     @RazorHelper.RefreshCountDown("ForeCastHandicapOU", 15, 0)
-    <div style="clear: both;">
-    </div>
+
     <div id="box_header">
         <table>
             <tr>
