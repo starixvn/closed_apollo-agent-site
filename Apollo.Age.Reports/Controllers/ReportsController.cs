@@ -22,6 +22,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Reports.ViewModels;
 
     /// <summary>
     /// TODO: Update summary.
@@ -121,6 +122,33 @@ namespace Apollo.Age.Reports.Controllers
             var matchEnteredList = _winlossService.GetMatchEntered();
 
             return View(matchEnteredList);
+        }
+
+        public ViewResult AgentWinloss(DateTime fromDate, DateTime toDate)
+        {
+            var agentWinlossList = _winlossService.GetAgentWinloss(this.CurrentSession.AgentId, fromDate, toDate);
+
+            var agentWinlossViewModel = new AgentWinlossViewModel() { 
+                FromDate = fromDate,
+                ToDate = toDate,
+                AgentWinLossList = agentWinlossList
+            };
+
+            return View(agentWinlossViewModel);
+        }
+
+        public ViewResult MemberWinloss(DateTime fromDate, DateTime toDate)
+        {
+            var memberWinlossList = _winlossService.GetMemberWinloss(this.CurrentSession.AgentId, fromDate, toDate);
+
+            var memberWinlossViewModel = new MemberWinlossViewModel()
+            {
+                FromDate = fromDate,
+                ToDate = toDate,
+                MemberWinLossList = memberWinlossList
+            };
+
+            return View(memberWinlossViewModel);
         }
 
         #endregion
