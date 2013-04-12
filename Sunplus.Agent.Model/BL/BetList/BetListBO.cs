@@ -218,8 +218,6 @@ namespace Sunplus.Agent.Model.BL.BetList
         /// Get all bets by date and member
         /// For only agent (Member Outstanding betlist)
         /// </summary>
-        /// <param name="loggedId"></param>
-        /// <param name="mode"></param>
         /// <param name="agentId"></param>
         /// <param name="custId"></param>
         /// <param name="dateFrom"></param>
@@ -227,14 +225,14 @@ namespace Sunplus.Agent.Model.BL.BetList
         /// <param name="statusIds"></param>
         /// <param name="outDataTable"></param>
         /// <returns></returns>
-        public DataTable GetAllBetsByDateAndMem(int agentId, int custId, int mode, DateTime dateFrom, DateTime dateTo, string statusIds, out DataTable outDataTable)
+        public DataTable GetAllBetsByDateAndMem(int agentId, int custId, DateTime dateFrom, DateTime dateTo, string statusIds, out DataTable outDataTable)
         {
             BetListDAO betListDAO = new BetListDAO();
 
             string language = CurrentSession.LangKey;
             DataTable allBets = null;
             int loggedId = CurrentSession.CustId;
-            allBets = betListDAO.Age_BetList_SelByDateMemStatus(loggedId, mode, agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
+            allBets = betListDAO.Age_BetList_SelByDateMemStatus(loggedId, agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
             return allBets;
         }
 
