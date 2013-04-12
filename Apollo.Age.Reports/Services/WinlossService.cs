@@ -9,6 +9,7 @@
 
 namespace Apollo.Age.Reports.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Apollo.Age.Reports.Criterias;
@@ -77,6 +78,35 @@ namespace Apollo.Age.Reports.Services
             }
 
             return matchEnteredList;
+        }
+
+        public List<AgentWinlossModel> GetAgentWinloss(int agentId, DateTime fromDate, DateTime toDate)
+        {
+            var criteria = new AgentWinlossCriteria() { 
+                AgentId = agentId,
+                FromDate = fromDate,
+                ToDate = toDate,
+                BalanceUpDay = fromDate
+            };
+
+            var agentWinlossList = this.GetData<AgentWinlossModel>(criteria).ToList();
+
+            return agentWinlossList;
+        }
+
+        public List<MemberWinlossModel> GetMemberWinloss(int agentId, DateTime fromDate, DateTime toDate)
+        {
+            var criteria = new MemberWinlossCriteria()
+            {
+                AgentId = agentId,
+                FromDate = fromDate,
+                ToDate = toDate,
+                BalanceUpDay = fromDate
+            };
+
+            var memberWinlossList = this.GetData<MemberWinlossModel>(criteria).ToList();
+
+            return memberWinlossList;
         }
     }
 }

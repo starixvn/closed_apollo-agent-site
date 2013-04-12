@@ -9,11 +9,16 @@
 
 namespace Apollo.Age.Reports.Services
 {
+    using System;
     using System.Collections.Generic;
     using Apollo.Age.Reports.Models;
 
     public interface IWinlossService
     {
         List<MatchEnteredModel> GetMatchEntered();
+
+        List<AgentWinlossModel> GetAgentWinloss(int agentId, DateTime fromDate, DateTime toDate);
+
+        List<MemberWinlossModel> GetMemberWinloss(int agentId, DateTime fromDate, DateTime toDate);
     }
 }
