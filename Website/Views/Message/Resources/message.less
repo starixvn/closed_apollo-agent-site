@@ -34,7 +34,9 @@
 
 	td {
 		&.tbList {
-			#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+			// backup red themes
+			//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+			#gradient.vertical(#6B6B6B, @secondColor);
 
 			ul {				
 				list-style-type: none;
@@ -49,6 +51,7 @@
 					a {						
 						float: left;						
 						margin-right: 2px;
+						color: lighten(@primaryColor, 30%);
 
 						span {							
 							font-weight: normal;												
@@ -58,6 +61,7 @@
 
 						a:hover {
 							background-position: 0% -20px;
+							color: @primaryHeaderColor;
 
 							span {
 								background-position: 100% -20px;
@@ -71,10 +75,13 @@
 						content: "|";
 						color: @linkColor;
 						font-weight: normal;
+						color: lighten(@primaryColor, 30%);
 					}					
 
-					&#current a {		
-						color: @textColor;
+					&#current a {	
+						// backup red themes	
+						//color: @textColor;
+						color: lighten(@primaryColor, 30%);
 						font-weight: bold;
 					}
 				}		

@@ -84,8 +84,11 @@
 	}
 
 	.table-header {
-		#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
-		border: 1px solid @borderColor;
+		// backup red themes
+		//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
+		//border: 1px solid @borderColor;
+		#gradient.vertical(#6B6B6B, @secondColor);
+		color: @primaryHeaderColor;		
 		border-bottom: none;
 		margin-top: 10px;
 		height: 25px;
@@ -93,14 +96,21 @@
 
 		ul.sub-nav {
 			margin: 2px 5px;
+			padding: 2px 0;
 
 			li {
 				list-style: none;
 				float: left;
-				padding-right: 5px;	
-		
-				a:hover {	
-					color: @hoverLinkRedColor;
+				padding-right: 5px;				
+				
+				a {
+					color: lighten(@primaryColor, 30%);
+
+					&:hover {	
+						// backup red themes
+						//color: @hoverLinkRedColor;
+						color: @primaryHeaderColor;
+					}
 				}
 		
 				&.active {
