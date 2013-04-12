@@ -73,8 +73,8 @@ table {
 	color: @grayDark;
 	cursor: pointer;
 
-	&:hover { #gradient.vertical(@grayLighter, @borderColor) }
-	&:focus, &:active { #gradient.vertical(@borderColor, @grayLighter) }
+	&:hover, &:focus { #gradient.vertical(@grayLighter, @borderColor) }
+	&:active { #gradient.vertical(@borderColor, @grayLighter) }
 }
 
 .editBtn,
