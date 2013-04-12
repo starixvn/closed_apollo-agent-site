@@ -1,8 +1,9 @@
 ﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.lblForecast;
-    IEnumerable<LeagueModel> leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
+    ViewBag.Title = Resources.Lang.lbl1x2;
+
+    var leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     int matchId = ViewBag.MatchId != null ? (int)ViewBag.MatchId : 0;
     int betType = ViewBag.BetType != null ? (int)ViewBag.BetType : 0;
 }
@@ -12,23 +13,19 @@
 }
 <div id="content_main">
     @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
-    <div style="clear: both;">
-    </div>
     @if (matchId == 0)
     {
         <div id="box_header">
             <span><b>@Resources.Lang.league</b></span>
             <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-                @{
-        foreach (var league in leagues)
-        {
+                @foreach (var league in leagues)
+                {
                     <option value="@league.LeagueId">@league.LeagueName</option>
-        }
                 }
             </select>
         </div>
     }
-    <!--/LimitLeagueList-->
+    
     <table class="tblRpt">
         <thead>
             <tr class="RptHeader">
@@ -41,11 +38,10 @@
             </tr>
         </thead>
         <tbody id="forecast-body">
-            @*Load Ajax*@
+            @*Ajax Content*@
         </tbody>
     </table>
 </div>
-<!--/Content-->
 @section scripts
 {
     <script type="text/javascript">
