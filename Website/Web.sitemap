@@ -36,7 +36,9 @@
     <siteMapNode title="reports">
       <siteMapNode title="agentwinloss" url="_Reports/Common/MatchResultEntered.aspx"></siteMapNode>
       <siteMapNode title="lblAgentOutstanding" url="Reports/Outstanding"></siteMapNode>
-        <!--<siteMapNode title="lblMatchWinLostDetail" url="_Reports/MatchWinloss/MatchWinLossDetail.aspx"></siteMapNode>
+      <siteMapNode title="lblCancelledBets" url="_Reports/BetList/BetList.aspx?type=cancel"></siteMapNode>
+      <siteMapNode title="transaction" url="_Reports/BetList/BetList.aspx?type=transaction"></siteMapNode>
+      <!--<siteMapNode title="lblMatchWinLostDetail" url="_Reports/MatchWinloss/MatchWinLossDetail.aspx"></siteMapNode>
       <siteMapNode title="lblWinLossByBettype" url="_Reports/Winloss/WinLossByBettypeMaster.aspx"></siteMapNode>
       <siteMapNode description="Consolidated" title="consolidatedreport" url="_Reports/Consolidated/Daily_Consolidated.aspx"></siteMapNode>
       <siteMapNode title="lblCommissionByBettype" url="_Reports/Commission/CommissionByBettype.aspx"></siteMapNode>
@@ -49,7 +51,7 @@
     <siteMapNode title="lblMemberInfo">
       <siteMapNode title="lblAgentList" url="Account/AgentList"></siteMapNode>
       <siteMapNode title="lblPlayerList" url="Account/MemberList" Level="4"></siteMapNode>
-        <!--<siteMapNode title="lblPositionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
+      <!--<siteMapNode title="lblPositionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
       <siteMapNode title="lblMemberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx" ></siteMapNode>
       <siteMapNode description="subacc" title="lblShadowList" url="_SubAcc/SubAccList.aspx"></siteMapNode>-->
     </siteMapNode>

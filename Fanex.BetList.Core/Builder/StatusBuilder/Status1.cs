@@ -41,11 +41,11 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// <returns></returns>
         public virtual Status_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP)
         {
-            string ticketBetStatus = ticket.Status.ToLower();
+            string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
             Template.result = ticketBetStatus;
             string result = string.Empty;
 
-            switch (ticket.Status.ToLower())
+            switch (ticketBetStatus)
             {
                 case BetStatus.Running:
                     result = CoreBetList.running;
@@ -77,7 +77,6 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
             {
                 Template.result = result;
             }
-
 
             if (ticketBetStatus.Equals(BetStatus.Running) || ticketBetStatus.Equals(BetStatus.Waiting) || ticketBetStatus.Equals(BetStatus.Void) || ticketBetStatus.Equals(BetStatus.Reject) || ticketBetStatus.Equals(BetStatus.Refund))
             {

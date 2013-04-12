@@ -8,6 +8,7 @@
 namespace Sunplus.Agent.Model.BL.BetList
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Data.DNAide;
@@ -229,11 +230,28 @@ namespace Sunplus.Agent.Model.BL.BetList
         {
             BetListDAO betListDAO = new BetListDAO();
 
-            string language = CurrentSession.LangKey;
             DataTable allBets = null;
             int loggedId = CurrentSession.CustId;
             allBets = betListDAO.Age_BetList_SelByDateMemStatus(loggedId, agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
             return allBets;
+        }
+
+        public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId)
+        {
+            BetListDAO betListDAO = new BetListDAO();
+
+            Hashtable output = new Hashtable();
+            output = betListDAO.Age_BetList_GetId(loggedId, isAgent, username);
+
+            if ((int)output["errcode"] > 0)
+            {
+                agentId = custId = -1;
+            }
+            else
+            {
+                agentId = (int)output["agentid"];
+                custId = (int)output["custid"];
+            }
         }
 
         #endregion AllBetsByDateAndMem

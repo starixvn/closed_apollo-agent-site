@@ -481,6 +481,21 @@ namespace Sunplus.Agent.Model.DL.BetList
             }
         }
 
+        public Hashtable Age_BetList_GetId(int loggedId, bool isAgent, string username)
+        {
+            // Parameters
+            Hashtable parameters = new Hashtable();
+            parameters.Add("loggedid", loggedId);
+            parameters.Add("isagent", isAgent);
+            parameters.Add("username", username);
+            parameters.Add("agentid", -1);
+            parameters.Add("custid", -1);
+            parameters.Add("errcode", 0);
+            parameters.Add("errmsg", string.Empty);
+
+            return ExecSpHashtable("Age_BetList_GetId", parameters);
+        }
+
         #endregion AllBetsByDateAndMem
 
         #region DeletedBets
