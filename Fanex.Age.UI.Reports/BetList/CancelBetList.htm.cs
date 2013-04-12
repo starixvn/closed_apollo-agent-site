@@ -15,8 +15,8 @@ namespace Fanex.Age.UI.Reports
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.voidandreject;}}
 			protected static string s2 = "</title><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("Resources/Reports.less", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
+			protected static string s4 = "\"rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s5{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
 			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmCancelBetList\" method=\"get\"><div id=\"page_main\"><div id=\"header_main\">";
 			protected static string s7{get{return Resources.Lang.voidandreject;}}
@@ -26,21 +26,25 @@ namespace Fanex.Age.UI.Reports
 			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
 			protected static string s12 = "\" title=\"";
 			protected static string s13{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s14 = "\"class=\"hand\" style=\"display: none;\" /></div></div><div id=\"box_header\" style=\"width: 100%\"><table class=\"l\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td>";
+			protected static string s14 = "\"class=\"hand\" style=\"display: none;\" /></div></div><div id=\"content_main\"><div id=\"box_header\"><table class=\"l\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td>";
 			protected static string s15{get{return Resources.Lang.from;}}
 			protected static string s16 = "</td><td width=\"10px;\"></td><td></td><td width=\"10px;\"></td><td>";
 			protected static string s17{get{return Resources.Lang.to;}}
-			protected static string s18 = "</td><td width=\"10px;\"></td><td></td><td width=\"10px;\"></td><td></td><td></td><td></td><td width=\"10px;\"></td><td><div id=\"loading\" class=\"hidden\"></div></td></tr></table></div><div id=\"content_main\">";
+			protected static string s18 = "</td><td width=\"10px;\"></td><td></td><td width=\"10px;\"></td><td><select id=\"userType\"></select></td><td></td><td></td><td width=\"10px;\"></td><td><div id=\"loading\" class=\"hidden\"></div></td></tr></table></div>";
 			public string content = "{content}";
-			protected static string s19 = "</div></form></div></body><script src=\"";
-			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s22{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s24{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
-			protected static string s25 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s26{get{return AbsoluteUrl("BetList/Resources/CancelBetList.js", TplSettings.Question);}}
-			protected static string s27 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s19 = "</div>";
+			public CancelBetList_HiddenFields_Block HiddenFields = new CancelBetList_HiddenFields_Block();
+			protected static string s20 = "</form></div></body><script src=\"";
+			protected static string s21{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
+			protected static string s22 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s23{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
+			protected static string s24 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s25{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s26 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s27{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s28 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s29{get{return AbsoluteUrl("BetList/Resources/CancelBetList.js", TplSettings.Question);}}
+			protected static string s30 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -65,6 +69,7 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s18);
 				bd.Append(content);
 				bd.Append(s19);
+				if(null != HiddenFields) HiddenFields.ToString(ref bd);
 				bd.Append(s20);
 				bd.Append(s21);
 				bd.Append(s22);
@@ -73,6 +78,9 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s25);
 				bd.Append(s26);
 				bd.Append(s27);
+				bd.Append(s28);
+				bd.Append(s29);
+				bd.Append(s30);
 				bd.Append(Value);
 			}
 			public string ToString()
@@ -82,6 +90,24 @@ namespace Fanex.Age.UI.Reports
 				return bd.ToString();
 			}
 
+		}
+
+		public class CancelBetList_HiddenFields_Block: Block
+		{
+			protected static string s31 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			public string ApoRoot = "{ApoRoot}";
+			protected static string s32 = "\" />";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s31);
+					bd.Append(ApoRoot);
+					bd.Append(s32);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
 		}
 
 	}

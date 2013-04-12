@@ -42,10 +42,10 @@ function ViewBetSlip(transid, winlostdate, isrunning, league) {
 	var height = 190;
 	var url = '_BetList/BetSlip.aspx?TransID=' + transid + '&winlostdate=' + winlostdate + '&IsRunning=' + isrunning + '&league=' + league;
 	if (parent.ageWnd) {
-		parent.ageWnd.open(age.GetBaseUrl() + url, '', 50, 100, width, height);
+		parent.ageWnd.open(APOLLO.resolveUrl("~/" + url), '', 50, 100, width, height);
 	}
 	else {
-		ageWnd.open(age.GetBaseUrl() + url, '', 50, 100, width, height);
+		ageWnd.open(APOLLO.resolveUrl("~/" + url), '', 50, 100, width, height);
 	}
 }
 
@@ -68,7 +68,7 @@ function ViewMixParlayResult(refno, winlostdate, bettype) {
 	if (ageWnd.loaded) {
 		ageWnd.close();
 	}
-	ageWnd.open(age.GetBaseUrl() + '_Reports/Result/Result.aspx' + params, '', 50, 100, width, height);
+	ageWnd.open(APOLLO.resolveUrl("~/_Reports/Result/Result.aspx" + params), '', 50, 100, width, height);
 }
 
 function ViewSportBookResult(matchid, bettype, race, sporttype, league, is_outright, refNo) {
@@ -77,50 +77,18 @@ function ViewSportBookResult(matchid, bettype, race, sporttype, league, is_outri
 	var params = '?matchid=' + matchid + '&bettype=' + bettype + '&race=' + race + '&ddlSport=' + sporttype + '&ddlLeague=' + league + '&is_outright=' + is_outright + '&refnum=' + refNo;
 
 	if (parent.ageWnd) {
-		parent.ageWnd.open(age.GetBaseUrl() + '_Reports/Result/Result.aspx' + params, '', 50, 100, width, height);
+		parent.ageWnd.open(APOLLO.resolveUrl("~/_Reports/Result/Result.aspx" + params), '', 50, 100, width, height);
 	}
 	else {
-		ageWnd.open(age.GetBaseUrl() + '_Reports/Result/Result.aspx' + params, '', 50, 100, width, height);
+		ageWnd.open(APOLLO.resolveUrl("~/_Reports/Result/Result.aspx" + params), '', 50, 100, width, height);
 	}
-}
-
-function ViewP2PResult(refno, bettype, uname) {
-	var params = '?typegame=p2pgame&ibcrefno=' + refno + '&bettype=' + bettype + '&uname=' + uname;
-	params = SetParameterValue('custid', _page.CustId, params);
-	params = SetParameterValue('fdate', _page.fdate, params);
-	params = SetParameterValue('tdate', _page.tdate, params);
-
-	var url = age.GetBaseUrl() + '_BetList/P2P/TableSession.aspx' + params;
-	window.location.href = url;
-}
-
-function ViewCasinoResult(refno, bettype, uname) {
-	var params = '?typegame=casinogame&ibcrefno=' + refno + '&bettype=' + 'Casino' + '&uname=' + uname;
-
-	if (_page.type != null) {
-		var arrayStatusItem = _page.FilterStatusCollection;
-
-		params = SetParameterValue('type', _page.type, params);
-		params = SetParameterValue('custid', _page.CustId, params);
-
-		if (arrayStatusItem != null) {
-			params = SetParameterValue('showSB', arrayStatusItem[1] == "on" ? "1" : "0", params);
-			params = SetParameterValue('showCasino', arrayStatusItem[2] == "on" ? "1" : "0", params);
-			params = SetParameterValue('showRB', arrayStatusItem[3] == "on" ? "1" : "0", params);
-		}
-		params = SetParameterValue('fdate', _page.fdate, params);
-		params = SetParameterValue('tdate', _page.tdate, params);
-		params = SetParameterValue('isHistoryReport', _page.isHistoryReport, params);
-	}
-	var url = age.GetBaseUrl() + 'BetList/ViewCasinoResult.aspx' + params;
-	window.location.href = url;
 }
 
 function showMP(transid) {
 	var divEvent = document.getElementById('divEvent_' + transid);
 	if (divEvent.style.display == 'none') {
 		if (divEvent.innerHTML == "") {
-			ajax.Request(age.GetBaseUrl() + "_BetList/MixParlay/MixParlay.aspx", { method: 'get', parameters: 'transid=' + transid,
+			ajax.Request(APOLLO.resolveUrl("~/_BetList/MixParlay/MixParlay.aspx"), { method: 'get', parameters: 'transid=' + transid,
 				onComplete: function (data) {
 					divEvent.innerHTML = data.responseText;
 					divEvent.style.display = '';
@@ -140,7 +108,7 @@ function showCombMP(transid, orderID) {
 	var divEvent = document.getElementById('divEvent_' + transid + orderID);
 	if (divEvent.style.display == 'none') {
 		if (divEvent.innerHTML == "") {
-			ajax.Request(age.GetBaseUrl() + "_BetList/MixParlay/CombinationMixParlay.aspx", { method: 'get', parameters: 'transid=' + transid,
+			ajax.Request(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlay.aspx"), { method: 'get', parameters: 'transid=' + transid,
 				onComplete: function (data) {
 					divEvent.innerHTML = data.responseText;
 					divEvent.style.display = '';
@@ -162,10 +130,10 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid) {
 	var params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid;
 
 	if (parent.ageWnd) {
-		parent.ageWnd.open(age.GetBaseUrl() + '_BetList/MixParlay/CombinationMixParlayDetail.aspx' + params, '', 50, 100, width, height);
+		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), '', 50, 100, width, height);
 	}
 	else {
-		ageWnd.open(age.GetBaseUrl() + '_BetList/MixParlay/CombinationMixParlayDetail.aspx' + params, '', 50, 100, width, height);
+		ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), '', 50, 100, width, height);
 	}
 }
 
@@ -212,73 +180,19 @@ function InitBetList() {
 }
 
 function OpenIPInfo(ip) {
-	ageWnd.open(age.GetBaseUrl() + '_IPInfo/IpInfo.aspx?ip=' + ip, '', 300, 100, 400, 170);
+	ageWnd.open(APOLLO.resolveUrl("~/_IPInfo/IpInfo.aspx?ip=" + ip), '', 300, 100, 400, 170);
 }
 
 function OpenScoreMap(matchIds, bettype, liveindicator) {
 	var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
-	//    var url = age.GetBaseUrl() + "_Forecast/ScoreMap.aspx?leagueId=-1&matchIds=" + matchIds +
-	//            (liveindicator == 1
-	//                ? "&bettypes_live=" + bettype + "&bettypes_dead=-1"
-	//                : "&bettypes_live=-1&bettypes_dead=" + bettype);
-	var url = age.GetBaseUrl() + "Forecast/ScoreMap?matchIds=" + matchIds +
+	var url = APOLLO.resolveUrl("~/Forecast/ScoreMap?matchIds=" + matchIds +
             (liveindicator == 1
                 ? "&liveBetTypes=" + bettype
-                : "&deadBallBetTypes=" + bettype);
+                : "&deadBallBetTypes=" + bettype));
 	wnd.open(url, '', 0, 20, 900, 480);
 }
 
 RegisterStartUp(InitBetList);
-
-//function getOffset(el) {
-//    var _x = 0;
-//    var _y = 0;
-//    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
-//        _x += el.offsetLeft - el.scrollLeft;
-//        _y += el.offsetTop - el.scrollTop;
-//        el = el.offsetParent;
-//    }
-//    return { top: _y, left: _x };
-//}
-//var BetList = {
-//    showCommDetail: function (transId, event) {
-//        // console.log(transId);
-//        var pnlDetails = document.getElementById("divDetail");
-//        if (pnlDetails != undefined) {
-//            pnlDetails.style.display = 'block';
-//            var tableMain = document.getElementById("hor-minimalist-a");
-//            if (tableMain != undefined) {
-//                var lastRowIndex = tableMain.rows.length - 1;
-//                if (event.pageY > getOffset(tableMain.rows[lastRowIndex]).top) {
-//                    pnlDetails.style.top = (event.pageY - 100) + "px";
-//                }
-//                else {
-//                    pnlDetails.style.top = (event.pageY) + "px";
-//                }
-//            }
-//            else {
-//                pnlDetails.style.top = (event.pageY) + "px";
-//            }
-//            var ajaxParameters = "transid=" + transId + "&fromdate=" + _page.fdate + "&toDate=" + _page.tdate + "&isSportsbook=1";
-//            var url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx";
-//            ajax.Request(url,
-//                {
-//                    asynchronous: true,
-//                    parameters: ajaxParameters,
-//                    onComplete: function (data) {
-//                        document.getElementById('detail-content').innerHTML = data.responseText;
-//                    }
-//                }
-//           );
-//        }
-//    },
-//    hideCommDetail: function (transId, event) {
-//        var pnlDetails = document.getElementById("divDetail");
-//        if (pnlDetails != undefined) {
-//            pnlDetails.style.display = 'none';
-//        }
-//    }
-//};
 
 var BETLIST = {};
 
@@ -302,7 +216,7 @@ if (typeof jQuery != "undefined") {
 			viewDetailsLinks.click(function () {
 				var $this = $(this),
                     transId = $this.attr("tid"),
-                    url = age.GetBaseUrl() + "_BetList/ViewDetail.aspx",
+                    url = APOLLO.resolveUrl("~/_BetList/ViewDetail.aspx"),
                     ajaxParams = "isSportsbook=1" +
                         "&transid=" + transId +
                         "&fromdate=" + _page.fdate +
