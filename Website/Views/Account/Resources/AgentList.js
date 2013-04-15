@@ -24,8 +24,8 @@ var AGENTLIST = function ( $ ) {
                         if ( i == rowLength - 1 ) {
                             template += "<span>" + result[i].Username + "</span>";
                             $( "#currUsername" ).html( result[i].Username );
-                            $( ".edit-setting" ).attr( "agentid", result[i].Id );
-                            $( ".edit-setting" ).attr( "agentlevel", result[i].Level );
+                            //$( ".edit-setting" ).attr( "agentid", result[i].Id );
+                            // $( ".edit-setting" ).attr( "agentlevel", result[i].Level );
                         }
                         else {
                             template += "<a href='#' name='navigation' agentid='" + result[i].Id + "' >" + result[i].Username + "</a>";
@@ -159,7 +159,7 @@ var AGENTLIST = function ( $ ) {
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
-                            { Name: "Status", Value: current },
+                            { Name: "Status", Value: current.Status },
                             { Name: "NumberOfAgent", Value: current },
                             { Name: "NumberOfMember", Value: current },
                             { Name: "GroupA", Value: current.GroupA },
