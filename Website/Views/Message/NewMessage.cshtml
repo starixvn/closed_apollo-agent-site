@@ -45,13 +45,12 @@
             <div class="date">
                 <label>
                     @Resources.Lang.from</label>
-                @*@Html.DatePickerFor(m => m.From, minDate, maxDate)*@
-                @Html.DatePickerFor(m => m.From)
+                @Html.DatePickerFor(m => m.From, format: null, minDate: minDate, maxDate: maxDate)
             </div>
             <div class="date">
                 <label>
                     @Resources.Lang.to</label>
-                @*@Html.DatePickerFor(m => m.To, minDate, maxDate)*@
+                @Html.DatePickerFor(m => m.To, format: null, minDate: minDate, maxDate: maxDate)
             </div>
             <!--/DateTimeSearch-->
             <input type="submit" class="btn" style="width: 55px" id="dSubmit" value="@Resources.Lang.submit"/>

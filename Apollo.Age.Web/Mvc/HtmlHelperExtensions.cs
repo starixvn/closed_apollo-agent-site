@@ -21,62 +21,136 @@ namespace Apollo.Age.Web.Mvc
 
     public static class HtmlHelperExtensions
     {
-        #region Date Picker
+        #region DatePickerFor
 
-        public static MvcHtmlString DatePickerFor<TModel, TValue>(
-            this HtmlHelper<TModel> html,
-            Expression<Func<TModel, TValue>> expression,
-            DateTime? minDate = null,
-            DateTime? maxDate = null,
-            string formatDate = "MM/dd/yyyy",
-            IEnumerable<DateTime> unavailDates = null)
+        public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression)
         {
-            var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
-            DateTime? value = DateTime.Now;
+            return htmlHelper.DatePickerFor(expression, format: null);
+        }
 
-            if (metaData.Model is Nullable<DateTime> || metaData.Model is DateTime)
+        public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression, string format)
+        {
+            return htmlHelper.DatePickerFor(expression, format, minDate: null, maxDate: null);
+        }
+
+        public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression, string format,
+            DateTime? minDate, DateTime? maxDate)
+        {
+            return htmlHelper.DatePickerFor(expression, format, minDate, maxDate,
+                unavailableDates: null);
+        }
+
+        public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression, string format,
+            DateTime? minDate, DateTime? maxDate, IEnumerable<DateTime> unavailableDates)
+        {
+            return htmlHelper.DatePickerFor(expression, format, minDate, maxDate,
+                unavailableDates, (IDictionary<string, object>)null);
+        }
+
+        public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression, string format,
+            DateTime? minDate, DateTime? maxDate,
+            IEnumerable<DateTime> unavailableDates, object htmlAttributes)
+        {
+            return htmlHelper.DatePickerFor(expression, format,
+                minDate, maxDate, unavailableDates,
+                HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+        }
+
+        public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression, string format,
+            DateTime? minDate, DateTime? maxDate,
+            IEnumerable<DateTime> unavailableDates,
+            IDictionary<string, object> htmlAttributes)
+        {
+            if (string.IsNullOrWhiteSpace(format))
             {
-                value = (DateTime?)metaData.Model;
+                format = "MM/dd/yyyy";
+            }
+
+            //var value = date.HasValue ? date.Value.ToString(formatDate) : string.Empty;
+
+            htmlAttributes = htmlAttributes ?? new Dictionary<string, object>();
+
+            if (htmlAttributes.ContainsKey("class"))
+            {
+                htmlAttributes["class"] += " datepicker";
             }
             else
             {
-                value = null;
+                htmlAttributes.Add("class", "datepicker");
             }
 
-            return html.DatePicker(metaData.PropertyName, value, minDate, maxDate, formatDate, unavailDates);
+            #region min/max date
+            if (minDate != null)
+            {
+                htmlAttributes.Add("mindate", minDate);
+            }
+
+            if (maxDate != null)
+            {
+                htmlAttributes.Add("maxdate", maxDate);
+            }
+            #endregion
+
+            #region unavailable dates
+            if (unavailableDates != null && unavailableDates.Any())
+            {
+                htmlAttributes.Add("disabledDates",
+                    string.Join(",", unavailableDates.Select(d => d.ToString("MM/dd/yyyy"))));
+            }
+            #endregion
+
+            ModelMetadata metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+            return DatePickerHelper(htmlHelper, metadata,
+                ExpressionHelper.GetExpressionText(expression),
+                format, htmlAttributes);
         }
 
-        public static MvcHtmlString DatePicker(
-           this HtmlHelper htmlHelper,
-           string name,
-           DateTime? date,
-           DateTime? minDate = null,
-           DateTime? maxDate = null,
-           string formatDate = "MM/dd/yyyy",
-           IEnumerable<DateTime> unavailDates = null)
+        private static MvcHtmlString DatePickerHelper(HtmlHelper htmlHelper, ModelMetadata metadata,
+            string name, string format, IDictionary<string, object> htmlAttributes)
         {
-            if (string.IsNullOrWhiteSpace(formatDate))
+            string fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
+
+            if (String.IsNullOrEmpty(fullName))
             {
-                throw new ArgumentNullException("formatDate cannot be blank");
+                throw new ArgumentException(Resources.Common_NullOrEmpty, "name");
             }
 
-            string disabledDate = (unavailDates != null && unavailDates.Count() > 0)
-                ? string.Join(",", unavailDates.Select(d => d.ToString("MM/dd/yyyy")))
-                : string.Empty;
+            TagBuilder tagBuilder = new TagBuilder("input");
+            tagBuilder.MergeAttributes(htmlAttributes);
+            tagBuilder.MergeAttribute("type", HtmlHelper.GetInputTypeString(InputType.Text));
+            tagBuilder.MergeAttribute("name", fullName, true);
 
-            var htmlAttribute = new
+            DateTime? dateValue = null;
+            if (metadata.Model is Nullable<DateTime> || metadata.Model is DateTime)
             {
-                @class = "datepicker",
-                mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("MM/dd/yyyy") : "null",
-                maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("MM/dd/yyyy") : "null",
-                disabledDate = disabledDate
-            };
+                dateValue = (DateTime?)metadata.Model;
+            }
+            tagBuilder.MergeAttribute("value",
+                dateValue.HasValue ? dateValue.Value.ToString(format) : string.Empty, true);
+            tagBuilder.GenerateId(fullName);
 
-            var dateValue = date.HasValue ? date.Value.ToString(formatDate) : string.Empty;
-            var textbox = htmlHelper.TextBox(name, dateValue, htmlAttribute);
+            ModelState modelState;
+            if (htmlHelper.ViewData.ModelState.TryGetValue(fullName, out modelState))
+            {
+                // If there are any errors for a named field, we add the css attribute.
+                if (modelState.Errors.Count > 0)
+                {
+                    tagBuilder.AddCssClass(HtmlHelper.ValidationInputCssClassName);
+                }
+            }
 
-            return MvcHtmlString.Create(textbox.ToString());
+            tagBuilder.MergeAttributes(htmlHelper.GetUnobtrusiveValidationAttributes(name, metadata));
+
+            return new MvcHtmlString(tagBuilder.ToString(TagRenderMode.SelfClosing));
         }
+
+        #endregion
 
         /// <summary>
         /// year picker
@@ -118,8 +192,6 @@ namespace Apollo.Age.Web.Mvc
             var dropDownList = htmlHelper.DropDownList(name, list, new { @class = "yearpicker" });
             return MvcHtmlString.Create(dropDownList.ToString());
         }
-
-        #endregion
 
         #region Dropdownlist
 
