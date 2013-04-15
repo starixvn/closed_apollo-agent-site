@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="OutstandingDetail.aspx.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BetListOnMember.aspx.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
@@ -9,13 +9,16 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-namespace Fanex.Age.UI.Reports.BetList
+namespace Sunplus.Agent.UI._BetList
 {
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Text;
     using System.Web.UI;
+    using Fanex.Age.UI.Components;
+    using Fanex.Age.UI.Reports;
+    using Fanex.Age.UI.Reports.BetList;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Age.DTO;
@@ -26,9 +29,10 @@ namespace Fanex.Age.UI.Reports.BetList
     using Fanex.BetList.Core.TicketHelper;
     using Sunplus.Agent.Model.BL.BetList;
     using Sunplus.Agent.Model.BL.Forecast;
+    using Sunplus.Agent.Model.BL.Reports;
     using Sunplus.Agent.Model.Entities;
 
-    public partial class OutstandingDetail_Page : WinlossReports_Page
+    public partial class BetListOnMember : WinlossReports_Page
     {
         #region Variables
 
@@ -128,11 +132,11 @@ namespace Fanex.Age.UI.Reports.BetList
 
             if (Request["custid"] != null && Request["username"] != null)
             {
-                int.TryParse(Request["custid"] + string.Empty, out custid);
-                username = Request["username"] + string.Empty;
+                int.TryParse(Request["custid"], out custid);
+                username = Request["username"];
             }
 
-            dateFrom = Sunplus.Agent.Model.BL.Reports.ReportsBO.MoveBetsDate;
+            dateFrom = ReportsBO.MoveBetsDate;
             dateTo = DateTime.Now;
         }
 
@@ -145,6 +149,10 @@ namespace Fanex.Age.UI.Reports.BetList
 
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
+            if (string.IsNullOrEmpty(Request["custid"]) && string.IsNullOrEmpty(Request["username"]))
+            {
+                return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
+            }
             return null;
         }
 
