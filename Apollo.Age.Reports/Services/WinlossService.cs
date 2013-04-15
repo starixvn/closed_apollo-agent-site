@@ -13,29 +13,29 @@ namespace Apollo.Age.Reports.Services
     using System.Collections.Generic;
     using System.Linq;
     using Apollo.Age.Reports.Criterias;
-    using Apollo.Age.Reports.DTO;
     using Apollo.Age.Reports.Models;
+    using Apollo.Age.Reports.ViewModels;
 
     public class WinLossService : ReportService, IWinLossService
     {
-        public List<MatchEnteredModel> GetMatchEntered()
+        public List<MatchEnteredViewModel> GetMatchEntered()
         {
-            var matchEnteredList = this.GetData<MatchEnteredDTO>(new MatchEnteredCriteria()).ToList();
+            var matchEnteredList = this.GetData<MatchEnteredModel>(new MatchEnteredCriteria()).ToList();
 
             return ConvertToMatchEnteredModel(matchEnteredList);
         }
 
-        private List<MatchEnteredModel> ConvertToMatchEnteredModel(List<MatchEnteredDTO> enteredDTOList)
+        private List<MatchEnteredViewModel> ConvertToMatchEnteredModel(List<MatchEnteredModel> enteredDTOList)
         {
-            List<MatchEnteredModel> matchEnteredList = null;
+            List<MatchEnteredViewModel> matchEnteredList = null;
 
             if (enteredDTOList != null)
             {
                 if (enteredDTOList.Any())
                 {
                     var sportType = -1;
-                    MatchEnteredModel matchEntered = null;
-                    matchEnteredList = new List<MatchEnteredModel>();
+                    MatchEnteredViewModel matchEntered = null;
+                    matchEnteredList = new List<MatchEnteredViewModel>();
 
                     foreach (var enteredDTO in enteredDTOList)
                     {
@@ -54,7 +54,8 @@ namespace Apollo.Age.Reports.Services
 
                             if(enteredDTO.IsToday == 1)
                             {
-                                matchEntered = new MatchEnteredModel(){
+                                matchEntered = new MatchEnteredViewModel()
+                                {
                                     SportTypeId = enteredDTO.SportType,
                                     TodayEntered = enteredDTO.Entered,
                                     TodayNonEntered = enteredDTO.NonEntered
@@ -62,7 +63,8 @@ namespace Apollo.Age.Reports.Services
                             }
                             else
                             {
-                                matchEntered = new MatchEnteredModel(){
+                                matchEntered = new MatchEnteredViewModel()
+                                {
                                     SportTypeId = enteredDTO.SportType,
                                     YesterdayEntered = enteredDTO.Entered,
                                     YesterdayNonEntered = enteredDTO.NonEntered

@@ -18,7 +18,6 @@ namespace Apollo.Age.Reports.Controllers
     using System.Web.Mvc;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
-    using Apollo.Age.Reports.DTO;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;

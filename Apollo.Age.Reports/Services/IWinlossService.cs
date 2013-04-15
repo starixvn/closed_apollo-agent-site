@@ -12,10 +12,11 @@ namespace Apollo.Age.Reports.Services
     using System;
     using System.Collections.Generic;
     using Apollo.Age.Reports.Models;
+    using Apollo.Age.Reports.ViewModels;
 
     public interface IWinLossService
     {
-        List<MatchEnteredModel> GetMatchEntered();
+        List<MatchEnteredViewModel> GetMatchEntered();
 
         List<AgentWinLossModel> GetAgentWinLoss(int agentId, DateTime fromDate, DateTime toDate);
 
