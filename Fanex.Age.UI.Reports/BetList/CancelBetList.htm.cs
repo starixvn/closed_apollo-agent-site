@@ -112,13 +112,9 @@ namespace Fanex.Age.UI.Reports
 			protected string t0_valueMinDate;
 			protected static string s38 = "\" maxdate=\"";
 			protected string t1_valueMaxDate;
-			protected static string s39 = "\" /></div><div class=\"date\"><select id=\"userType\" name=\"userType\" style=\"width: 72px;\"><option value=\"1\">";
-			protected static string s40{get{return Resources.Lang.agent;}}
-			protected static string s41 = "</option><option value=\"0\">";
-			protected static string s42{get{return Resources.Lang.member;}}
-			protected static string s43 = "</option></select></div><div class=\"date\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
-			public string username = "{username}";
-			protected static string s44 = "\" maxlength=\"50\"style=\"width: 100px;\" /></div><div><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"Submit\"></div></div></div>";
+			protected static string s39 = "\" /></div>";
+			public CancelBetList_Filter_User_Block User = new CancelBetList_Filter_User_Block();
+			protected static string s40 = "<div><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"Submit\"></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -141,12 +137,30 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s38);
 					bd.Append(valueMaxDate);
 					bd.Append(s39);
+					if(null != User) User.ToString(ref bd);
 					bd.Append(s40);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class CancelBetList_Filter_User_Block: Block
+		{
+			protected static string s41 = "<div class=\"date\">";
+			public string option_user = "{option_user}";
+			protected static string s42 = "</div><div class=\"date\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
+			public string username = "{username}";
+			protected static string s43 = "\" maxlength=\"50\"style=\"width: 100px;\" /></div>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
 					bd.Append(s41);
+					bd.Append(option_user);
 					bd.Append(s42);
-					bd.Append(s43);
 					bd.Append(username);
-					bd.Append(s44);
+					bd.Append(s43);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -154,17 +168,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CancelBetList_HiddenFields_Block: Block
 		{
-			protected static string s45 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			protected static string s44 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s46 = "\" />";
+			protected static string s45 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s45);
+					bd.Append(s44);
 					bd.Append(ApoRoot);
-					bd.Append(s46);
+					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

@@ -166,8 +166,7 @@ namespace Sunplus.Agent.UI._BetList
             var forecastBO = new ForecastBO(UserSession.Current.NetSessionId);
             List<int> lstScoremap = forecastBO.GetListBetTypeScoreMap();
             bool isShowScoremap;
-            bool deviceMode = ((BetListType)bettype & BetListType.SmartPhone) != BetListType.SmartPhone;
-
+        
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             var ticketHelper = new TicketHelper();
             var factory = new BetListHTMLFactory();
@@ -176,7 +175,7 @@ namespace Sunplus.Agent.UI._BetList
             foreach (ITicket ticket in tickets)
             {
                 isShowScoremap = lstScoremap.Contains(ticket.BetTypeId)
-                    && ticket.Status.Equals(BetStatus.Running) && deviceMode;
+                    && ticket.Status.Equals(BetStatus.Running);
 
                 ticketHelper.Index = ++index;
 

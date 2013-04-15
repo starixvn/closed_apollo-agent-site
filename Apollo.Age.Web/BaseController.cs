@@ -13,6 +13,7 @@ namespace Apollo.Age.Web
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Net;
+    using System.Web;
     using System.Web.Mvc;
     using Fanex.Common.Extensions;
 
@@ -68,6 +69,11 @@ namespace Apollo.Age.Web
 
                 return IP.Trim();
             }
+        }
+
+        protected string GetResourceData( string key)
+        {
+            return System.Web.HttpContext.GetGlobalResourceObject("Lang", key) as string;
         }
     }
 }

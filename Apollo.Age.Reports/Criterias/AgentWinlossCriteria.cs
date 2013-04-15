@@ -12,7 +12,7 @@ namespace Apollo.Age.Reports.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
-    public class AgentWinlossCriteria : CriteriaBase
+    public class AgentWinLossCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 
@@ -24,7 +24,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override string GetSettingKey()
         {
-            return "Age_Rpt_WinLoss_Agent";
+            return "Age_Rpt_WinLoss";
         }
 
         public override bool IsValid()

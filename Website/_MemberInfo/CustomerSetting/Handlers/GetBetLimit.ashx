@@ -27,55 +27,55 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             try
             {
                 //// Get Data
-                IUserSession userSession = UserSession.Current;
-                ICustomerSettingService customerService = new CustomerSettingService();
-                string currentUserName = userSession.Username;
-                int custId = userSession.AgentId;
-                int roleId = (int)customerService.GetRoleFromAgentLevel(userSession.AgentLevel);
-                int targetRoleId, targetCustId = Converter.ToInt(context.Request["targetCustId"]);
-                string agentLevel = context.Request["agentLevel"];
-                if (agentLevel != null)
-                {
-                    targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(agentLevel));
-                }
-                else
-                {
-                    targetRoleId = (int)Role.Member;
-                }
-                SettingContext settingContext = new SettingContext
-                {
-                    CustId = custId,
-                    TargetCustId = targetCustId,
-                    ActorCustId = custId,
-                    RoleId = roleId,
-                    TargetRoleId = targetRoleId,
-                    FormSetting = (int)FormSettingType.BetLimit
-                };
-                IList<BettingLimit> betLimits = customerService.GetBettingLimitSettingForUpdating(settingContext);
+                //IUserSession userSession = UserSession.Current;
+                //ICustomerSettingService customerService = new CustomerSettingService();
+                //string currentUserName = userSession.Username;
+                //int custId = userSession.AgentId;
+                //int roleId = (int)customerService.GetRoleFromAgentLevel(userSession.AgentLevel);
+                //int targetRoleId, targetCustId = Converter.ToInt(context.Request["targetCustId"]);
+                //string agentLevel = context.Request["agentLevel"];
+                //if (agentLevel != null)
+                //{
+                //    targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(agentLevel));
+                //}
+                //else
+                //{
+                //    targetRoleId = (int)Role.Member;
+                //}
+                //SettingContext settingContext = new SettingContext
+                //{
+                //    CustId = custId,
+                //    TargetCustId = targetCustId,
+                //    ActorCustId = custId,
+                //    RoleId = roleId,
+                //    TargetRoleId = targetRoleId,
+                //    FormSetting = (int)FormSettingType.BetLimit
+                //};
+                //IList<BettingLimit> betLimits = customerService.GetBettingLimitSettingForUpdating(settingContext);
 
-                // Format Language
-                CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
-                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
-                Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
-                Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
-                SetBetLimitLanguage(settingContext, betLimits);
+                //// Format Language
+                //CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+                //Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
+                //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
+                //Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+                //Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+                //SetBetLimitLanguage(settingContext, betLimits);
 
-                //// Format Json
-                JsonSerializerSettings settings = new JsonSerializerSettings();
-                settings.NullValueHandling = NullValueHandling.Ignore;
-                settings.Formatting = Formatting.Indented;
+                ////// Format Json
+                //JsonSerializerSettings settings = new JsonSerializerSettings();
+                //settings.NullValueHandling = NullValueHandling.Ignore;
+                //settings.Formatting = Formatting.Indented;
 
-                //// Response
-                context.Response.ContentType = "text/javascript";
-                context.Response.Cache.SetNoStore();
-                //// Response Bet Limit Object
-                context.Response.Write("var betLimits = ");
-                context.Response.Write(JsonConvert.SerializeObject(betLimits, settings));
-                context.Response.Write(";\n");
-                //// Return Setting Context Object
-                context.Response.Write("var settingContext = ");
-                context.Response.Write(JsonConvert.SerializeObject(settingContext, settings));
+                ////// Response
+                //context.Response.ContentType = "text/javascript";
+                //context.Response.Cache.SetNoStore();
+                ////// Response Bet Limit Object
+                //context.Response.Write("var betLimits = ");
+                //context.Response.Write(JsonConvert.SerializeObject(betLimits, settings));
+                //context.Response.Write(";\n");
+                ////// Return Setting Context Object
+                //context.Response.Write("var settingContext = ");
+                //context.Response.Write(JsonConvert.SerializeObject(settingContext, settings));
             }
             catch (Exception ex)
             {

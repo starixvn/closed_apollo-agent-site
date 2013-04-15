@@ -13,29 +13,29 @@ namespace Apollo.Age.Reports.Services
     using System.Collections.Generic;
     using System.Linq;
     using Apollo.Age.Reports.Criterias;
-    using Apollo.Age.Reports.DTO;
     using Apollo.Age.Reports.Models;
+    using Apollo.Age.Reports.ViewModels;
 
-    public class WinlossService : ReportService, IWinlossService
+    public class WinLossService : ReportService, IWinLossService
     {
-        public List<MatchEnteredModel> GetMatchEntered()
+        public List<MatchEnteredViewModel> GetMatchEntered()
         {
-            var matchEnteredList = this.GetData<MatchEnteredDTO>(new MatchEnteredCriteria()).ToList();
+            var matchEnteredList = this.GetData<MatchEnteredModel>(new MatchEnteredCriteria()).ToList();
 
             return ConvertToMatchEnteredModel(matchEnteredList);
         }
 
-        private List<MatchEnteredModel> ConvertToMatchEnteredModel(List<MatchEnteredDTO> enteredDTOList)
+        private List<MatchEnteredViewModel> ConvertToMatchEnteredModel(List<MatchEnteredModel> enteredDTOList)
         {
-            List<MatchEnteredModel> matchEnteredList = null;
+            List<MatchEnteredViewModel> matchEnteredList = null;
 
             if (enteredDTOList != null)
             {
                 if (enteredDTOList.Any())
                 {
                     var sportType = -1;
-                    MatchEnteredModel matchEntered = null;
-                    matchEnteredList = new List<MatchEnteredModel>();
+                    MatchEnteredViewModel matchEntered = null;
+                    matchEnteredList = new List<MatchEnteredViewModel>();
 
                     foreach (var enteredDTO in enteredDTOList)
                     {
@@ -54,7 +54,8 @@ namespace Apollo.Age.Reports.Services
 
                             if(enteredDTO.IsToday == 1)
                             {
-                                matchEntered = new MatchEnteredModel(){
+                                matchEntered = new MatchEnteredViewModel()
+                                {
                                     SportTypeId = enteredDTO.SportType,
                                     TodayEntered = enteredDTO.Entered,
                                     TodayNonEntered = enteredDTO.NonEntered
@@ -62,7 +63,8 @@ namespace Apollo.Age.Reports.Services
                             }
                             else
                             {
-                                matchEntered = new MatchEnteredModel(){
+                                matchEntered = new MatchEnteredViewModel()
+                                {
                                     SportTypeId = enteredDTO.SportType,
                                     YesterdayEntered = enteredDTO.Entered,
                                     YesterdayNonEntered = enteredDTO.NonEntered
@@ -80,23 +82,23 @@ namespace Apollo.Age.Reports.Services
             return matchEnteredList;
         }
 
-        public List<AgentWinlossModel> GetAgentWinloss(int agentId, DateTime fromDate, DateTime toDate)
+        public List<AgentWinLossModel> GetAgentWinLoss(int agentId, DateTime fromDate, DateTime toDate)
         {
-            var criteria = new AgentWinlossCriteria() { 
+            var criteria = new AgentWinLossCriteria() { 
                 AgentId = agentId,
                 FromDate = fromDate,
                 ToDate = toDate,
                 BalanceUpDay = fromDate
             };
 
-            var agentWinlossList = this.GetData<AgentWinlossModel>(criteria).ToList();
+            var agentWinLossList = this.GetData<AgentWinLossModel>(criteria).ToList();
 
-            return agentWinlossList;
+            return agentWinLossList;
         }
 
-        public List<MemberWinlossModel> GetMemberWinloss(int agentId, DateTime fromDate, DateTime toDate)
+        public List<MemberWinLossModel> GetMemberWinLoss(int agentId, DateTime fromDate, DateTime toDate)
         {
-            var criteria = new MemberWinlossCriteria()
+            var criteria = new MemberWinLossCriteria()
             {
                 AgentId = agentId,
                 FromDate = fromDate,
@@ -104,9 +106,9 @@ namespace Apollo.Age.Reports.Services
                 BalanceUpDay = fromDate
             };
 
-            var memberWinlossList = this.GetData<MemberWinlossModel>(criteria).ToList();
+            var memberWinLossList = this.GetData<MemberWinLossModel>(criteria).ToList();
 
-            return memberWinlossList;
+            return memberWinLossList;
         }
     }
 }
