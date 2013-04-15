@@ -35,10 +35,10 @@
 
     <!--Report-->
     <siteMapNode title="reports">
-      <siteMapNode title="agentwinloss" url="_Reports/Common/MatchResultEntered.aspx"></siteMapNode>
+      <siteMapNode title="agentwinloss" url="Reports/MatchEntered"></siteMapNode>
       <siteMapNode title="lblAgentOutstanding" url="Reports/Outstanding"></siteMapNode>
-      <siteMapNode title="lblCancelledBets" url="_Reports/BetList/BetList.aspx?type=cancel"></siteMapNode>
-      <siteMapNode title="transaction" url="_Reports/BetList/BetList.aspx?type=transaction"></siteMapNode>
+      <siteMapNode title="lblCancelledBets" url="_BetList/BetListTransaction.aspx?type=cancel"></siteMapNode>
+      <siteMapNode title="transaction" url="_BetList/BetListTransaction.aspx?type=transaction"></siteMapNode>
       <!--<siteMapNode title="lblMatchWinLostDetail" url="_Reports/MatchWinloss/MatchWinLossDetail.aspx"></siteMapNode>
       <siteMapNode title="lblWinLossByBettype" url="_Reports/Winloss/WinLossByBettypeMaster.aspx"></siteMapNode>
       <siteMapNode description="Consolidated" title="consolidatedreport" url="_Reports/Consolidated/Daily_Consolidated.aspx"></siteMapNode>

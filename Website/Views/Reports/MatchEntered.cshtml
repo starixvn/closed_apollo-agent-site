@@ -9,19 +9,18 @@
 
 <div id="box_header">
     <div class="filter-submit">
-         <div class="inline-control">
+        <div class="inline-control">
             <label for="dateFrom"> @Resources.Lang.from </label>
             @Html.DatePicker("FromDate", DateTime.Now)
-         </div> 
-         <div class="inline-control">
+        </div> 
+        <div class="inline-control">
             <label for="dateFrom"> @Resources.Lang.to </label>
             @Html.DatePicker("ToDate", DateTime.Now)
-         </div>       
-         <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
+        </div>
+        <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
     </div>
 </div>
 
-<br />
 <table class="tblRpt">
     <thead>
         <tr>
@@ -94,5 +93,5 @@
 
 @section scripts
 {
-    <script src="~/View/Reports/Resources/WinLoss.js" type="text/javascript"></script>
+    <script src="~/Views/Reports/Resources/WinLoss.js" type="text/javascript"></script>
 }

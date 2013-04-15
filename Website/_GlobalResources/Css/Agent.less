@@ -241,14 +241,19 @@ table {
 			//color: @white;
 			background: @rowTotalBackground;
 			color: @white;
-			.bold;
 
 			td {
 				// backup red themes
 				//border: 1px solid darken(@rowTotalBackground, 10%);
 				//text-shadow: none;
+				border: 1px solid @borderColor;		
+				text-shadow: none;		
+			}
+
+			&.no-result {
+				background: @white;
+				color: @grayDark;
 				border: 1px solid @tableRptBorderColor;
-				text-shadow: 0 1px #888;
 			}
 		}
 	}
@@ -272,13 +277,19 @@ table {
 	input[type=text], select {
 		background-color: #f8f8f8;
 		border: 1px solid @grayLight;
-		border-radius: 2px;
+		//border-radius: 2px;
 		box-shadow: 1px 1px 3px #bbb inset;		
 		width: 60px;
 		padding: 3px;
 		line-height: 1.2em;
 		font-size: .95em;
 		cursor: default;
+		height: 15px;
+	}
+
+	select {		
+		padding: 2px 3px;
+		height: 22px;
 	}
 
 	.boxHeader-element {

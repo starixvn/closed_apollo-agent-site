@@ -1,6 +1,6 @@
 ﻿@using Apollo.Age.Reports.ViewModels
 @{
-    ViewBag.Title = Resources.Lang.agentwinloss;
+    ViewBag.Title = Resources.Lang.memberwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
 
@@ -19,7 +19,6 @@
          <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
     </div>
 </div>
-<br />
 
 <table class="tblRpt">
     <thead>
@@ -101,37 +100,37 @@
                 <tr>
                     <td>
                         <a href="#">
-                            @item.AgentName
+                            @item.MemberName
                         </a>
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @item.SoccerShare
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.Turnover, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.ActualTO, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.WinLoss, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.MemComm, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r bold">
                         @RazorHelper.FormatNumber(item.MemTotal, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.AWinLoss, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.AComm, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r bold">
                         @RazorHelper.FormatNumber(item.ATotal, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r bold">
                         @RazorHelper.FormatNumber(item.UplineTotal, 2, true)
                     </td>
                 </tr>
@@ -144,31 +143,31 @@
                     </td>
                     <td>
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalTurnover, 2, true)
                     </td>
-                    <td>
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalActual, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalMWinLoss, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalMComm, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalMTotal, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalAWinLoss, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalAComm, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalATotal, 2, true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalUpline, 2, true)
                     </td>
                 </tr>
@@ -188,5 +187,5 @@
 
 @section scripts
 {
-    <script src="~/View/Reports/Resources/WinLoss.js" type="text/javascript"></script>
+    <script src="~/Views/Reports/Resources/WinLoss.js" type="text/javascript"></script>
 }

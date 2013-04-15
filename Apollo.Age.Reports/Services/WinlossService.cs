@@ -84,7 +84,7 @@ namespace Apollo.Age.Reports.Services
 
         public List<AgentWinLossModel> GetAgentWinLoss(int agentId, DateTime fromDate, DateTime toDate)
         {
-            var criteria = new AgentWinlossCriteria() { 
+            var criteria = new AgentWinLossCriteria() { 
                 AgentId = agentId,
                 FromDate = fromDate,
                 ToDate = toDate,
@@ -98,7 +98,7 @@ namespace Apollo.Age.Reports.Services
 
         public List<MemberWinLossModel> GetMemberWinLoss(int agentId, DateTime fromDate, DateTime toDate)
         {
-            var criteria = new MemberWinlossCriteria()
+            var criteria = new MemberWinLossCriteria()
             {
                 AgentId = agentId,
                 FromDate = fromDate,
