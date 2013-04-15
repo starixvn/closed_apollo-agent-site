@@ -1,8 +1,4 @@
-﻿
-//@import "../../_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.less";
-//@import "../../_GlobalResources/Css/Agent.less";
-
-#content_title {
+﻿#content_title {
     background-color: #FFEFDE;
 }
 #content_title .export-excel {

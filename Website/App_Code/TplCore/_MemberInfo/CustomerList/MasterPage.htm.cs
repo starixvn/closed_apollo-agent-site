@@ -14,7 +14,7 @@ namespace Fanex.Agent.UI
 		public class MasterPage_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.less", TplSettings.Question);}}
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
 			protected static string s2 = "\"rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_MemberInfo/CustomerList/Resources/CustomerList.less", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
