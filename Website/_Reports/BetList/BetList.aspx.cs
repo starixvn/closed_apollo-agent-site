@@ -191,7 +191,14 @@ namespace Fanex.Age.UI.Reports.BetList
             betList.GetUserIdByUserName(CurrentUserSession.CustId, userType, username, out agentId, out custId, out errorCode);
             if (errorCode == 0)
             {
-                dtResult = betList.GetAllBetsByDateAndMem(agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
+                if (pageType == "transaction")
+                {
+                    dtResult = betList.GetAllBetsTransactionByDateAndMem(agentId, custId, dateFrom, dateTo, ReportsBO.MoveBetsDate, statusIds, out outDataTable);
+                }
+                else
+                {
+                    dtResult = betList.GetAllBetsByDateAndMem(agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
+                }
             }
             return dtResult != null ? dtResult : new DataTable();
         }

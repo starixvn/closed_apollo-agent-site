@@ -236,6 +236,16 @@ namespace Sunplus.Agent.Model.BL.BetList
             return allBets;
         }
 
+        public DataTable GetAllBetsTransactionByDateAndMem(int agentId, int custId, DateTime dateFrom, DateTime dateTo, DateTime moveBetDay, string statusIds, out DataTable outDataTable)
+        {
+            BetListDAO betListDAO = new BetListDAO();
+
+            DataTable allBets = null;
+            int loggedId = CurrentSession.CustId;
+            allBets = betListDAO.Age_BetList_SelTransaction(loggedId, agentId, custId, dateFrom, dateTo, moveBetDay, statusIds, out outDataTable);
+            return allBets;
+        }
+
         public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
             BetListDAO betListDAO = new BetListDAO();
