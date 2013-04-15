@@ -84,7 +84,7 @@
     <Compile Include="Criterias\ResultGetLeagueBySportCriteria.cs" />
     <Compile Include="Criterias\ResultGetSportCriteria.cs" />
     <Compile Include="DTO\MatchEnteredDTO.cs" />
-    <Compile Include="DTO\OutstandingDTO.cs" />
+    <Compile Include="Models\OutstandingModel.cs" />
     <Compile Include="Models\AgentWinlossModel.cs" />
     <Compile Include="Models\MatchEnteredModel.cs" />
     <Compile Include="Models\MatchResultModel.cs" />
@@ -93,7 +93,7 @@
     <Compile Include="Services\IWinlossService.cs" />
     <Compile Include="Services\OutstandingService.cs" />
     <Compile Include="Services\ReportService.cs" />
-    <Compile Include="Models\OutstandingModel.cs" />
+    <Compile Include="ViewModels\OutstandingViewModel.cs" />
     <Compile Include="Services\ResultService.cs" />
     <Compile Include="Services\WinlossService.cs" />
     <Compile Include="ViewModels\AgentWinlossViewModel.cs" />

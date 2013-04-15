@@ -17,7 +17,7 @@ namespace Fanex.BetList.Age
 			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
 			protected static string s2 = "\"rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s3{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\" style=\"display: block;\">";
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
 			public string title = "{title}";
 			protected static string s5 = "<input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" src=\"";
 			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}

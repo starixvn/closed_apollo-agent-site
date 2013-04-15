@@ -10,7 +10,8 @@
       <siteMapNode title="OE1x2DND" url="TotalBets/OddEven"></siteMapNode>
       <siteMapNode title="correctscore" url="_BetList/BetList.aspx?type=CorrectScore"></siteMapNode>
       <siteMapNode title="totalgoal" url="TotalBets/TotalGoal"></siteMapNode>
-      <siteMapNode title="parlay" url="_BetList/BetList.aspx?type=MixParlay"></siteMapNode>
+      <siteMapNode title="lblMixParlay" url="_BetList/BetList.aspx?type=MixParlay"></siteMapNode>
+      <siteMapNode title="lblSystemParlay" url="_BetList/BetList.aspx?type=CombMixParlayBetList"></siteMapNode>
       <siteMapNode title="lblOutRight" url="TotalBets/OutRight"></siteMapNode>
       <siteMapNode title="htft" url="TotalBets/HTFT"></siteMapNode>
       <siteMapNode title="fglg" url="TotalBets/FirstGoal"></siteMapNode>
