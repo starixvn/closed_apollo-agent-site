@@ -13,17 +13,17 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class ResultBaseBall_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt\"><tr class=\"RptHeader\"><td style=\"width: 90px\" columnname=\"kickofftime\">";
+			protected static string s0 = "<table class=\"tblRpt\"><thead><tr><th style=\"width: 90px\" columnname=\"kickofftime\">";
 			protected static string s1{get{return Resources.Lang.kickofftime;}}
-			protected static string s2 = "</td><td>";
+			protected static string s2 = "</th><th>";
 			protected static string s3{get{return Resources.Lang.events;}}
-			protected static string s4 = "</td><td style=\"width: 18px;\">1</td><td style=\"width: 18px;\">2</td><td style=\"width: 18px;\">3</td><td style=\"width: 18px;\">4</td><td style=\"width: 18px;\">5</td><td style=\"width: 18px;\">6</td><td style=\"width: 18px;\">7</td><td style=\"width: 18px;\">8</td><td style=\"width: 18px;\">9</td><td style=\"width: 18px;\">E.I</td><td style=\"width: 70px;\">";
+			protected static string s4 = "</th><th style=\"width: 18px;\">1</th><th style=\"width: 18px;\">2</th><th style=\"width: 18px;\">3</th><th style=\"width: 18px;\">4</th><th style=\"width: 18px;\">5</th><th style=\"width: 18px;\">6</th><th style=\"width: 18px;\">7</th><th style=\"width: 18px;\">8</th><th style=\"width: 18px;\">9</th><th style=\"width: 18px;\">E.I</th><th style=\"width: 70px;\">";
 			protected static string s5{get{return Resources.Lang.lblHTScore;}}
-			protected static string s6 = "</td><td style=\"width: 70px;\">";
+			protected static string s6 = "</th><th style=\"width: 70px;\">";
 			protected static string s7{get{return Resources.Lang.finalscore;}}
-			protected static string s8 = "</td><td style=\"width: 70px;\">";
+			protected static string s8 = "</th><th style=\"width: 70px;\">";
 			protected static string s9{get{return Resources.Lang.status;}}
-			protected static string s10 = "</td></tr>";
+			protected static string s10 = "</th></tr></thead>";
 			public ResultBaseBall_RowData_Block RowData = new ResultBaseBall_RowData_Block();
 			public ResultBaseBall_LimitNotFound_Block LimitNotFound = new ResultBaseBall_LimitNotFound_Block();
 			protected static string s11 = "</table>";
