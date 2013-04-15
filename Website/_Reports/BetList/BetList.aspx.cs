@@ -50,7 +50,10 @@ namespace Fanex.Age.UI.Reports.BetList
         private DateTime dateFrom, dateTo;
         private int agentId, custId;
         private bool userType = false;
+        private string pageType = string.Empty;
         private string statusIds = string.Empty;
+        private bool isShowAgentPT = true;
+        private bool isShowWinLost = true;
 
         #endregion Variables
 
@@ -86,7 +89,11 @@ namespace Fanex.Age.UI.Reports.BetList
 
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
             Header1_Template betlistHeader = new Header1_Template();
-            betlistHeader.Winloss.Hide();
+            if (!isShowAgentPT)
+            {
+                betlistHeader.Agent.Hide();
+                betlistHeader.Winloss.Hide();
+            }
 
             content.Append(betlistOpenTag);
             content.Append(betlistHeader);
@@ -102,9 +109,22 @@ namespace Fanex.Age.UI.Reports.BetList
                        .AddTrans(ticket, "<td class='c'>", "</td>")
                        .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", false)
                        .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
-                       .AddStake(ticket, "<td class='bl_underdog'>", "</td>")
-                       .AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP)
-                       .Append("</tr>");
+                       .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
+
+                if (isShowWinLost)
+                {
+                    builder.AddWinLoss(ticket, "<td class='r nowrap'>", "</td>");
+                }
+
+                builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
+
+                if (isShowAgentPT)
+                {
+                    builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
+                    builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
+                }
+
+                builder.Append("</tr>");
             }
 
             content.Append(builder.GetBetList());
@@ -124,6 +144,7 @@ namespace Fanex.Age.UI.Reports.BetList
             tpl.Filter.valueMinDate = DateTime.Now.AddMonths(-3).ToShortDateString();
             tpl.Filter.valueMaxDate = DateTime.Now.AddMonths(1).ToShortDateString();
             tpl.Filter.username = username;
+            tpl.pageType = pageType;
         }
 
         public override object InvokeData(Hashtable hash)
@@ -136,7 +157,29 @@ namespace Fanex.Age.UI.Reports.BetList
 
         public override void ProcessRequest(ref Hashtable hash)
         {
-            statusIds = string.Format("{0}^{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
+            pageType = Request["type"];
+
+            if (pageType == "cancel")
+            {
+                tpl.title = Resources.Lang.voidandreject;
+                isShowAgentPT = isShowWinLost = false;
+                statusIds = string.Format("{0}^{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
+            }
+            else if (pageType == "transaction")
+            {
+                tpl.title = Resources.Lang.transaction;
+                isShowWinLost = true;
+                statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}^{6}^{7}",
+                    (int)Apollo.Age.Enumerations.BetStatus.Void,
+                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                    (int)Apollo.Age.Enumerations.BetStatus.Running,
+                    (int)Apollo.Age.Enumerations.BetStatus.Waiting,
+                    (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                    (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                    (int)Apollo.Age.Enumerations.BetStatus.Won,
+                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
+            }
+
             dateFrom = GetDateTimeRequest("fromDate", DateTime.Now.AddDays(-3));
             dateTo = GetDateTimeRequest("toDate", DateTime.Now);
             username = this.GetStringRequest("username", UserSession.Current.AgentName);
@@ -154,6 +197,10 @@ namespace Fanex.Age.UI.Reports.BetList
 
         public override object ValidateRequest(Hashtable hash)
         {
+            if (string.IsNullOrEmpty(Request["type"]))
+            {
+                return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
+            }
             return null;
         }
     }
