@@ -236,7 +236,7 @@ namespace Sunplus.Agent.Model.BL.BetList
             return allBets;
         }
 
-        public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId)
+        public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
             BetListDAO betListDAO = new BetListDAO();
 
@@ -245,10 +245,12 @@ namespace Sunplus.Agent.Model.BL.BetList
 
             if ((int)output["errcode"] > 0)
             {
+                errorCode = (int)output["errcode"];
                 agentId = custId = -1;
             }
             else
             {
+                errorCode = 0;
                 agentId = (int)output["agentid"];
                 custId = (int)output["custid"];
             }

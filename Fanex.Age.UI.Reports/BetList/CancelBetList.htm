@@ -33,15 +33,14 @@
                         <input type="text" id="toDate" name="toDate" class="datepicker" value="{valueToDate}"
                             mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
                     </div>
+                    <!--User-->
                     <div class="date">
-                        <select id="userType" name="userType" style="width: 72px;">
-                            <option value="1">{static:Resources.Lang.agent}</option>
-                            <option value="0">{static:Resources.Lang.member}</option>
-                        </select>
+                        {option-user}
                     </div>
                     <div class="date">
                         <input type="text" id="username" name="username" value="{username}" maxlength="50"
                             style="width: 100px;" /></div>
+                    <!--/User-->
                     <div>
                         <input type="button" class="btn act-submit" id="dSubmit" value="Submit">
                     </div>

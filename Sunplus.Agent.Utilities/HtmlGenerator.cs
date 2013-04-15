@@ -3,28 +3,23 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-
 /*
  * Created 20100404@Lee - Html controls generator
  * Revision:
- * ?@? - ... 
- * 
+ * ?@? - ...
+ *
  */
 
 namespace Sunplus.Agent.Utilities
 {
-
     public class HtmlGenerator
     {
-
         #region Combobox
 
         public static string ComboBox(string id, object selectedValue, IEnumerable<object> dataSource, string onchange)
         {
             StringBuilder builder = new StringBuilder(200);
-
             builder.Append("<select id=\"" + id + "\" name=\"" + id + "\"");
-
             if (null != onchange)
             {
                 builder.Append(" onchange=\"");
@@ -135,10 +130,12 @@ namespace Sunplus.Agent.Utilities
 
             return builder.ToString();
         }
+
         public static string ComboBox(string id, double selectedValue, double min, double max, double step, bool withButton, string onchange)
         {
-            return ComboBox(id, selectedValue, min, max, step, withButton, onchange); 
+            return ComboBox(id, selectedValue, min, max, step, withButton, onchange);
         }
+
         public static string ComboBox(string id, double selectedValue, bool disabled, double min, double max, double step, string onchange)
         {
             if (0 == step) throw new DivideByZeroException();
@@ -160,7 +157,6 @@ namespace Sunplus.Agent.Utilities
 
             if (min <= max)
             {
-
                 if (max == min)
                     maxEqualMin = true;
 
@@ -220,14 +216,21 @@ namespace Sunplus.Agent.Utilities
         /// <param name="data">First column/ Second column indicate value/text</param>
         /// <param name="onchange"></param>
         /// <returns></returns>
-        public static string ComboBox(string id, object selectedValue, DataTable data, string valueColumnName, string textColumnName, string onchange)
+        public static string ComboBox(string id, object selectedValue, DataTable data, string valueColumnName, string textColumnName, string onchange, int width = 0)
         {
             if (null == data) return null;
             DataRowCollection rows = data.Rows;
 
             StringBuilder builder = new StringBuilder(200);
 
-            builder.Append("<select id=\"" + id + "\" name=\"" + id + "\"");
+            if (width > 0)
+            {
+                builder.Append("<select id=\"" + id + "\" name=\"" + id + "\" style=\"width:" + width + "px\"");
+            }
+            else
+            {
+                builder.Append("<select id=\"" + id + "\" name=\"" + id + "\"");
+            }
 
             if (null != onchange)
             {
@@ -308,7 +311,6 @@ namespace Sunplus.Agent.Utilities
             return builder.ToString();
         }
 
-
         /// <summary>
         /// Generate combo box for position taking / commission.
         /// </summary>
@@ -359,7 +361,7 @@ namespace Sunplus.Agent.Utilities
             return builder.ToString();
         }
 
-        public static DataTable ModifyDataTable(DataTable data, string textAdd,string valueColumnName, string textColumnName1, string textColumnName2,string lblResource)
+        public static DataTable ModifyDataTable(DataTable data, string textAdd, string valueColumnName, string textColumnName1, string textColumnName2, string lblResource)
         {
             if (null == data) return null;
 
@@ -368,7 +370,7 @@ namespace Sunplus.Agent.Utilities
             DataColumn col2 = new DataColumn("text", typeof(string));
             newDT.Columns.Add(col1);
             newDT.Columns.Add(col2);
-            
+
             if (!string.IsNullOrEmpty(textAdd))
             {
                 DataRow rowAdd = newDT.NewRow();
@@ -390,7 +392,6 @@ namespace Sunplus.Agent.Utilities
             return newDT;
         }
 
-        #endregion
-
+        #endregion Combobox
     }
 }
