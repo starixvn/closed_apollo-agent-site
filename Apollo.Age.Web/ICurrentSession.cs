@@ -28,7 +28,7 @@ namespace Apollo.Age.Web
 
         bool IsMaster { get; set; }
 
-        bool IsSuper { get; set; }
+        bool IsSuper { get; }
 
         int CurrencyId { get; set; }
 

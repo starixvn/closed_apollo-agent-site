@@ -31,7 +31,6 @@ namespace Apollo.Age.Web
             UserId = user.Id;
             Username = user.Username;
             IsMaster = user.IsMaster;
-            IsSuper = user.IsSuper;
             MatchLimit = user.Agent.MatchLimit;
             Language = "en-US"; //get language of user
             CurrencyId = user.Agent.Currency;
@@ -48,7 +47,6 @@ namespace Apollo.Age.Web
             UserId = info.GetInt32("UserId");
             Username = info.GetString("Username");
             IsMaster = info.GetBoolean("IsMaster");
-            IsSuper = info.GetBoolean("IsSuper");
             CurrencyId = info.GetByte("CurrencyId");
             MatchLimit = info.GetDecimal("MatchLimit");
             VirtualMultiplier = info.GetDecimal("VirtualMultiplier");
@@ -67,7 +65,6 @@ namespace Apollo.Age.Web
             info.AddValue("UserId", UserId);
             info.AddValue("Username", Username);
             info.AddValue("IsMaster", IsMaster);
-            info.AddValue("IsSuper", IsSuper);
             info.AddValue("CurrencyId", CurrencyId);
             info.AddValue("MatchLimit", MatchLimit);
             info.AddValue("VirtualMultiplier", VirtualMultiplier);
@@ -87,7 +84,10 @@ namespace Apollo.Age.Web
 
         public bool IsMaster { get; set; }
 
-        public bool IsSuper { get; set; }
+        public bool IsSuper
+        {
+            get { return AgentLevel == 0; }
+        }
 
         public int CurrencyId { get; set; }
 
