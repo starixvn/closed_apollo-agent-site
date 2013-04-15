@@ -77,9 +77,10 @@ html, body {
 
 	.menu-item {
 		display: block;
-		font-weight: bold;	
+		// backup red themes
+		//font-weight: bold;	
 		min-height: 30px;
-		border-bottom: 1px solid #ccc;
+		border-bottom: 1px solid @borderColor;
 
 		.menu-item-title {
 			display: block;
@@ -99,14 +100,14 @@ html, body {
 		}
 
 		.submenu {
-			border-top: 1px solid #CCC;
+			border-top: 1px solid @borderColor;
 			padding: 3px 3px 3px 8px;
 			.clearfix;
 			display: none;
 
 			a {
 				//background: url(img/submenu-bullet.jpg) no-repeat left;
-				padding: 0 5px;
+				padding: 1px 5px;
 				display: block;
 				font-size: .9em;
 				// backup red themes
@@ -160,7 +161,7 @@ html, body {
 		padding: 10px 5px;
 
 		input[type=text], select {
-			border: 1px solid #ccc;
+			border: 1px solid @borderColor;
 			float: left;
 			margin: 0;
 			padding: 2px;
@@ -181,7 +182,7 @@ html, body {
 			float: left;
 			margin: 0;
 			padding: 0 0 3px;
-			border-color: #ccc;
+			border-color: @borderColor;
 			border-left: 0;
 			.border-radius(0);
 			.box-shadow(none);
@@ -199,7 +200,8 @@ html, body {
 	.cust-info {
 		margin-top: 5px;
 		width: 202px;
-		font-weight: bold;
+		// backup red themes
+		//font-weight: bold;
 
 		.agent-lbl, .parent-lbl {
 			
@@ -280,27 +282,35 @@ html, body {
 	.lnk-agent-list, .lnk-member-list, .lnk-betlist {
 		background-clip: border-box;
 		background-position: left bottom, right top, 0 0px, 0 0;
-		.border-radius(2px);
-		
-		display: inline-block;
-		
+		// backup red themes
+		//.border-radius(2px);		
+		display: inline-block;		
 		margin: 0 0 0 8px;
 		padding: 2px 8px;
 		
 		text-transform: uppercase;
-		color: #f5f5f5;
-		font-weight: bold;
+		// backup red themes
+		//font-weight: bold;
+		//color: #f5f5f5;
+		color: @grayDark;		
 		transition: background-position 1s ease 0s;
 
 		/* SKY COLOR */
-		background-color: #7FB2F0;
-		background-image: url(images/bubbleButton.png), url(images/bubbleButton.png), linear-gradient(to bottom, #7FB2F0 0%, #6EA1E0 100%);
-		border: 1px solid #548ACC;
-		.box-shadow(~"0 1px 0 #A7C4E7 inset, 0 0 0 3px #e5e5e5");
-		text-shadow: 0 1px 0 #548ACC;
+		// backup red themes
+		//background-color: #7FB2F0;
+		background-image: linear-gradient(to bottom, white, #DDDDDD);
+		//background-image: url(images/bubbleButton.png), url(images/bubbleButton.png), linear-gradient(to bottom, #7FB2F0 0%, #6EA1E0 100%);
+		//border: 1px solid #548ACC;
+		border: 1px solid #999999;
+		.box-shadow(~"0 0 0 3px #e5e5e5");
+		// backup red themes
+		//text-shadow: 0 1px 0 #548ACC;
 
 		&:hover {
-			background-position: left top, right bottom, 0 0px, 0 0;
+			// backup red themes
+			//background-position: left top, right bottom, 0 0px, 0 0;
+			background-color: #E0E0E0;
+			background: linear-gradient(to bottom, #EEEEEE, #CCCCCC);
 			text-decoration: none;
 		}
 		&:active {
@@ -310,7 +320,7 @@ html, body {
 	}
 
 	.lnk-member-list {
-		margin: 0 0 0 25px;
+		margin: 0 0 0 20px;
 	}
 
 	#agent-setting {
@@ -333,7 +343,9 @@ html, body {
 
 				a {		
 					#gradient.vertical(lighten(@grayLighter, 20%), @grayLighter);
-					border: 1px solid darken(@grayLighter, 10%);
+					// backup red themes
+					//border: 1px solid darken(@grayLighter, 10%);
+					border: 1px solid @borderLightColor;
 					.border-radius(2px 2px 0 0);
 					
 					color: @gray;
@@ -368,7 +380,7 @@ html, body {
 			right: 0;
 			z-index: 10;
 
-			border: 1px solid @borderColor;
+			border: 1px solid @borderLightColor;
 			margin: 0;
 			padding: 0;
 			overflow: auto;
