@@ -35,7 +35,7 @@
 
     <!--Report-->
     <siteMapNode title="reports">
-      <siteMapNode title="agentwinloss" url="_Reports/Common/MatchResultEntered.aspx"></siteMapNode>
+      <siteMapNode title="agentwinloss" url="Reports/MatchEntered"></siteMapNode>
       <siteMapNode title="lblAgentOutstanding" url="Reports/Outstanding"></siteMapNode>
       <siteMapNode title="lblCancelledBets" url="_BetList/BetListTransaction.aspx?type=cancel"></siteMapNode>
       <siteMapNode title="transaction" url="_BetList/BetListTransaction.aspx?type=transaction"></siteMapNode>
