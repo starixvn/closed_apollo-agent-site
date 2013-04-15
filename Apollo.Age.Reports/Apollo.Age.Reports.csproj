@@ -74,12 +74,12 @@
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ResultController.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
-    <Compile Include="Criterias\AgentWinlossCriteria.cs" />
+    <Compile Include="Criterias\AgentWinLossCriteria.cs" />
     <Compile Include="Criterias\GetMatchResultCriteria.cs" />
     <Compile Include="Criterias\GetSpecialDaysCriteria.cs" />
     <Compile Include="Criterias\MatchEnteredCriteria.cs" />
     <Compile Include="Criterias\MemberOutstandingCriteria.cs" />
-    <Compile Include="Criterias\MemberWinlossCriteria.cs" />
+    <Compile Include="Criterias\MemberWinLossCriteria.cs" />
     <Compile Include="Criterias\OutstandingCriteria.cs" />
     <Compile Include="Criterias\ResultGetLeagueBySportCriteria.cs" />
     <Compile Include="Criterias\ResultGetSportCriteria.cs" />

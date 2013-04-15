@@ -1,17 +1,27 @@
-﻿var REPORTS = function ($) {
+﻿var WINLOSS = function ($) {
     return {
+        FromDate: null,
+        ToDate: null,
+
         init: function () {
+            console.log($("#FromDate").val());
+            FromDate = $("#FromDate");
+            ToDate = $("#ToDate");
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
+                var url = APOLLO.resolveUrl('Reports/WinLoss?fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
+                location.href = url;
+            });
 
-                console.log($("#FromDate").val());
-                console.log($("#ToDate").val());
+            $(".navigation").bind('click', function () {
+                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?agentId=' + $(this).attr("agentid") + '&fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
+                location.href = url;
             });
         }
-        
+
     };
 } (jQuery);
 
 $(document).ready(function () {
-    REPORTS.init();
-}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    WINLOSS.init();
+});

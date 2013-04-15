@@ -12,7 +12,7 @@ namespace Apollo.Age.Reports.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
-    public class MemberWinlossCriteria : CriteriaBase
+    public class MemberWinLossCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 

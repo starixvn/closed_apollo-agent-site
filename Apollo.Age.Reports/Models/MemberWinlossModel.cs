@@ -13,7 +13,7 @@ namespace Apollo.Age.Reports.Models
     {
         public int MemberId { get; set; }
 
-        public int MemberName { get; set; }
+        public string MemberName { get; set; }
 
         public decimal WinLoss { get; set; }
 

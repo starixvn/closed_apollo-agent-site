@@ -17,7 +17,7 @@ namespace Apollo.Age.Reports.Models
 
         public string AgentName { get; set; }
 
-        public int SoccerShare { get; set; }
+        public short SoccerShare { get; set; }
 
         public decimal Turnover { get; set; }
 
