@@ -20,7 +20,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.ViewData;
     using System.Globalization;
     using System.Threading;
-using Newtonsoft.Json;
+    using Newtonsoft.Json;
     using Fanex.CustSetting.Models;
 
     /// <summary>
@@ -43,6 +43,11 @@ using Newtonsoft.Json;
         #endregion
 
         #region Actions
+
+        public ActionResult EditBetSetting()
+        {
+            return View("~/Views/Account/EditBetSetting.cshtml");
+        }
 
         public ActionResult GetBetLimit(int targetCustId, int? agentLevel)
         {
