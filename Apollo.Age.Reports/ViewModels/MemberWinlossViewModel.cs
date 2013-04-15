@@ -11,6 +11,7 @@ namespace Apollo.Age.Reports.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
 
     public class MemberWinLossViewModel
@@ -24,5 +25,7 @@ namespace Apollo.Age.Reports.ViewModels
         public DateTime ToDate { get; set; }
 
         public List<MemberWinLossModel> MemberWinLossList { get; set; }
+
+        public List<Agent> DownlinePath { get; set; }
     }
 }

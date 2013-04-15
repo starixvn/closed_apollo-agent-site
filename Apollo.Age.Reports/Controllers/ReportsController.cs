@@ -127,6 +127,7 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult WinLoss(DateTime fromDate, DateTime toDate)
         {
             var agentWinLossList = _winLossService.GetAgentWinLoss(this.CurrentSession.AgentId, fromDate, toDate);
+            var modelAgentDownLine = AgentDownlinePath(this.CurrentSession.AgentId).ToList();
 
             var agentWinLossViewModel = new AgentWinLossViewModel()
             {
@@ -135,15 +136,17 @@ namespace Apollo.Age.Reports.Controllers
                 AgentName = this.CurrentSession.AgentName,
                 FromDate = fromDate,
                 ToDate = toDate,
-                AgentWinLossList = agentWinLossList
+                AgentWinLossList = agentWinLossList,
+                DownlinePath = modelAgentDownLine
             };
 
-            return View("AgentWinLoss", agentWinLossList);
+            return View("AgentWinLoss", agentWinLossViewModel);
         }
 
         public ViewResult AgentWinLoss(int agentId, string agentName, DateTime fromDate, DateTime toDate)
         {
             var agentWinLossList = _winLossService.GetAgentWinLoss(agentId, fromDate, toDate);
+            var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
 
             var agentWinLossViewModel = new AgentWinLossViewModel() {
                 IsSuper = false,
@@ -151,7 +154,8 @@ namespace Apollo.Age.Reports.Controllers
                 AgentName = agentName,
                 FromDate = fromDate,
                 ToDate = toDate,
-                AgentWinLossList = agentWinLossList
+                AgentWinLossList = agentWinLossList,
+                DownlinePath = modelAgentDownLine
             };
 
             return View(agentWinLossViewModel);
@@ -160,13 +164,15 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult MemberWinLoss(int agentId, string agentName, DateTime fromDate, DateTime toDate)
         {
             var memberWinLossList = _winLossService.GetMemberWinLoss(agentId, fromDate, toDate);
+            var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
 
             var memberWinLossViewModel = new MemberWinLossViewModel()
             {
                 AgentName = agentName,
                 FromDate = fromDate,
                 ToDate = toDate,
-                MemberWinLossList = memberWinLossList
+                MemberWinLossList = memberWinLossList,
+                DownlinePath = modelAgentDownLine
             };
 
             return View(memberWinLossViewModel);

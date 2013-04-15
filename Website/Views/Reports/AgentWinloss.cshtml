@@ -1,4 +1,5 @@
 ﻿@using Apollo.Age.Reports.ViewModels
+@using Fanex.Age.Utility
 @{
     ViewBag.Title = Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
@@ -6,6 +7,13 @@
 
 @model AgentWinLossViewModel
 
+@if (Model.DownlinePath != null)
+{
+    if (Model.DownlinePath.Any())
+    {
+        @RazorHelper.Navigation(Model.DownlinePath)
+    }
+}
 <div id="box_header">
     <div class="filter-submit">
          <div class="inline-control">
@@ -19,7 +27,6 @@
          <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
     </div>
 </div>
-<br />
 
 <table class="tblRpt">
 @if (Model.IsSuper)
@@ -67,27 +74,26 @@
                 {
                     <tr>
                         <td>
-                            <a href="~/Reports/AgentWinLoss?agentId=@item.AgentId&agentName=@item.AgentName
-                                &fromDate=@Model.FromDate&toDate=@Model.ToDate">
+                            <a href="~/Reports/AgentWinLoss?agentId=@item.AgentId&agentName=@item.AgentName&fromDate=@Model.FromDate&toDate=@Model.ToDate">
                                 @item.AgentName
                             </a>
                         </td>
-                        <td class="r fcnum">
+                        <td class="r">
                             @item.SoccerShare
                         </td>
-                        <td class="r fcnum">
+                        <td class="r">
                             @RazorHelper.FormatNumber(item.Turnover, numDecimals: 2, showZero: true)
                         </td>
-                        <td class="r fcnum">
+                        <td class="r">
                             @RazorHelper.FormatNumber(item.ActualTO, numDecimals: 2, showZero: true)
                         </td>
-                        <td class="r fcnum">
+                        <td class="r">
                             @RazorHelper.FormatNumber(item.AWinLoss, numDecimals: 2, showZero: true)
                         </td>
-                        <td class="r fcnum">
+                        <td class="r">
                             @RazorHelper.FormatNumber(item.AComm, numDecimals: 2, showZero: true)
                         </td>
-                        <td class="r fcnum">
+                        <td class="r bold">
                             @RazorHelper.FormatNumber(item.ATotal, numDecimals: 2, showZero: true)
                         </td>
                     </tr>
@@ -173,8 +179,7 @@ else
                     @if (item.IsAgent)
                     {
                         <td>
-                            <a href="~/Reports/AgentWinLoss?agentId=@item.AgentId&agentName=@item.AgentName
-                                &fromDate=@Model.FromDate&toDate=@Model.ToDate">
+                            <a href="~/Reports/AgentWinLoss?agentId=@item.AgentId&agentName=@item.AgentName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
                                 @item.AgentName
                             </a>
                         </td>
@@ -182,34 +187,33 @@ else
                     else
                     {
                         <td>
-                            <a href="~/Reports/MemberWinLoss?agentId=@item.AgentId&agentName=@item.AgentName
-                                &fromDate=@Model.FromDate&toDate=@Model.ToDate">
+                            <a href="~/Reports/MemberWinLoss?agentId=@Model.AgentId&agentName=@Model.AgentName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
                                 @Resources.Lang.lblMemberWinLoss
                             </a>
                         </td>
                     }
-                    <td class="r fcnum">
+                    <td class="r">
                         @item.SoccerShare
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.Turnover, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.ActualTO, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r bold">
                         @RazorHelper.FormatNumber(item.GrossTotal, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.AWinLoss, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(item.AComm, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r bold">
                         @RazorHelper.FormatNumber(item.ATotal, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r bold">
                         @RazorHelper.FormatNumber(item.UplineTotal, numDecimals: 2, showZero: true)
                     </td>
                 </tr>
@@ -222,25 +226,25 @@ else
                     </td>
                     <td>
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalTurnover, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalActual, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalGross, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalAWinLoss, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalAComm, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalATotal, numDecimals: 2, showZero: true)
                     </td>
-                    <td class="r fcnum">
+                    <td class="r">
                         @RazorHelper.FormatNumber(totalUpline, numDecimals: 2, showZero: true)
                     </td>
                 </tr>
@@ -261,5 +265,5 @@ else
 
 @section scripts
 {
-    <script src="~/View/Reports/Resources/WinLoss.js" type="text/javascript"></script>
+    <script src="~/Views/Reports/Resources/WinLoss.js" type="text/javascript"></script>
 }
