@@ -3,4 +3,11 @@
     Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
 }
 
- 
+<div id="bettingLimitContainer">
+</div>
+
+@section scripts
+{
+    <script src="~/CustomerSetting/GetBetLimit?targetCustId=@(ViewBag.CustId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
+    <script src="~/Views/Account/Resources/EditBetLimit.js" type="text/javascript"></script>
+}

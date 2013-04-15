@@ -44,8 +44,11 @@ namespace Apollo.Age.Account.Controllers
 
         #region Actions
 
-        public ActionResult EditBetSetting()
+        public ActionResult EditBetSetting(int custId, string userName, int? agentLevel)
         {
+            ViewBag.CustId = custId;
+            ViewBag.UserName = userName;
+            ViewBag.AgentLevel = agentLevel;
             return View("~/Views/Account/EditBetSetting.cshtml");
         }
 
@@ -118,6 +121,12 @@ namespace Apollo.Age.Account.Controllers
             return ReturnResult(result);
         }
 
+        public ActionResult LanguageObject()
+        {
+            var language = string.Format("var Language = {0}", this.GetLanguageObject());
+            return JavaScript(language);
+        }
+
         #endregion
 
         #region Private Methods
@@ -161,16 +170,14 @@ namespace Apollo.Age.Account.Controllers
 
         private int GetTargetRoleIdFromAgenLevel(int? agentLevel)
         {
-            var targetRoleId = 0;
             if (agentLevel != null)
             {
-                targetRoleId = this.GetRoleFromAgentLevel(agentLevel.Value);
+                return this.GetRoleFromAgentLevel(agentLevel.Value);
             }
             else
             {
-                targetRoleId = (int)Role.Member;
+                return (int)Role.Member;
             }
-            return targetRoleId;
         }
 
         private void SetPositionTakingLanguage(PositionTakingSetting positionTakingSetting)
@@ -221,6 +228,7 @@ namespace Apollo.Age.Account.Controllers
         private string GetLanguageObject()
         {
             StringBuilder language = new StringBuilder();
+            language.AppendLine("{");
             language.AppendLine(this.SetValue("MIN_BET", Resources.Lang.lblMinBet));
             language.AppendLine(this.SetValue("PRESET_POSITION", "Preset Position"));
             language.AppendLine(this.SetValue("POSITION_TAKING", Resources.Lang.positiontaking));
@@ -289,7 +297,7 @@ namespace Apollo.Age.Account.Controllers
             language.AppendLine(this.SetValue("MAIN_SHARE_HOLDER_SHARE", "Main Shareholder Share"));
             language.AppendLine(this.SetValue("SHARE_HOLDER_SHARE", "Shareholder Share"));
             language.AppendLine(this.SetValue("MAIN_AGENT_SHARE", "Main Agent Share"));
-
+            language.AppendLine("};");
             return language.ToString();
         }
 
