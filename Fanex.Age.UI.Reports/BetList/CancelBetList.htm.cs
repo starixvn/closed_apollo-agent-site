@@ -18,20 +18,22 @@ namespace Fanex.Age.UI.Reports
 			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
 			protected static string s4 = "\"rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s5{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
-			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmCancelBetList\" method=\"get\"><div id=\"page_main\"><div id=\"header_main\">";
-			protected static string s7{get{return Resources.Lang.voidandreject;}}
-			protected static string s8 = "<div class=\"divBoxRight\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
-			protected static string s9{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s10 = "\"nofocus=\"true\" src=\"";
-			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
-			protected static string s12 = "\" title=\"";
-			protected static string s13{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s14 = "\"class=\"hand\" style=\"display: none;\" /></div></div><div id=\"content_main\">";
+			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmBetList\" method=\"get\"><div id=\"page_main\"><div id=\"header_main\">";
+			public string title = "{title}";
+			protected static string s7 = "<div class=\"divBoxRight\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
+			protected static string s8{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s9 = "\"nofocus=\"true\" src=\"";
+			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
+			protected static string s11 = "\" title=\"";
+			protected static string s12{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s13 = "\"class=\"hand\" /></div></div><div id=\"content_main\">";
 			public CancelBetList_Filter_Block Filter = new CancelBetList_Filter_Block();
 			public string content = "{content}";
-			protected static string s15 = "</div>";
+			protected static string s14 = "<div id=\"dialog-details\"></div></div>";
 			public CancelBetList_HiddenFields_Block HiddenFields = new CancelBetList_HiddenFields_Block();
-			protected static string s16 = "</form></div></body><script src=\"";
+			protected static string s15 = "<input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
+			public string pageType = "{pageType}";
+			protected static string s16 = "\" /></form></div></body><script src=\"";
 			protected static string s17{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s18 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s19{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
@@ -41,7 +43,9 @@ namespace Fanex.Age.UI.Reports
 			protected static string s23{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s24 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s25{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s26 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s26 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s27{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
+			protected static string s28 = "\" type=\"text/javascript\"></script></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -52,6 +56,7 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s4);
 				bd.Append(s5);
 				bd.Append(s6);
+				bd.Append(title);
 				bd.Append(s7);
 				bd.Append(s8);
 				bd.Append(s9);
@@ -59,11 +64,12 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s11);
 				bd.Append(s12);
 				bd.Append(s13);
-				bd.Append(s14);
 				if(null != Filter) Filter.ToString(ref bd);
 				bd.Append(content);
-				bd.Append(s15);
+				bd.Append(s14);
 				if(null != HiddenFields) HiddenFields.ToString(ref bd);
+				bd.Append(s15);
+				bd.Append(pageType);
 				bd.Append(s16);
 				bd.Append(s17);
 				bd.Append(s18);
@@ -75,6 +81,8 @@ namespace Fanex.Age.UI.Reports
 				bd.Append(s24);
 				bd.Append(s25);
 				bd.Append(s26);
+				bd.Append(s27);
+				bd.Append(s28);
 				bd.Append(Value);
 			}
 			public string ToString()
@@ -88,57 +96,57 @@ namespace Fanex.Age.UI.Reports
 
 		public class CancelBetList_Filter_Block: Block
 		{
-			protected static string s27 = "<div id=\"box_header\"><div class=\"date-range\"><div class=\"date\"><label>";
-			protected static string s28{get{return Resources.Lang.from;}}
-			protected static string s29 = "</label><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
+			protected static string s29 = "<div id=\"box_header\"><div class=\"date-range\"><div class=\"date\"><label>";
+			protected static string s30{get{return Resources.Lang.from;}}
+			protected static string s31 = "</label><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
-			protected static string s30 = "\"mindate=\"";
+			protected static string s32 = "\"mindate=\"";
 			public string valueMinDate = "{valueMinDate}";
-			protected static string s31 = "\" maxdate=\"";
+			protected static string s33 = "\" maxdate=\"";
 			public string valueMaxDate = "{valueMaxDate}";
-			protected static string s32 = "\" /></div><div class=\"date\"><label>";
-			protected static string s33{get{return Resources.Lang.to;}}
-			protected static string s34 = "</label><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
+			protected static string s34 = "\" /></div><div class=\"date\"><label>";
+			protected static string s35{get{return Resources.Lang.to;}}
+			protected static string s36 = "</label><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
 			public string valueToDate = "{valueToDate}";
-			protected static string s35 = "\"mindate=\"";
+			protected static string s37 = "\"mindate=\"";
 			protected string t0_valueMinDate;
-			protected static string s36 = "\" maxdate=\"";
+			protected static string s38 = "\" maxdate=\"";
 			protected string t1_valueMaxDate;
-			protected static string s37 = "\" /></div><div class=\"date\"><select id=\"userType\" style=\"width: 72px;\"><option value=\"0\">";
-			protected static string s38{get{return Resources.Lang.member;}}
-			protected static string s39 = "</option><option value=\"1\">";
+			protected static string s39 = "\" /></div><div class=\"date\"><select id=\"userType\" name=\"userType\" style=\"width: 72px;\"><option value=\"1\">";
 			protected static string s40{get{return Resources.Lang.agent;}}
-			protected static string s41 = "</option></select></div><div class=\"date\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
+			protected static string s41 = "</option><option value=\"0\">";
+			protected static string s42{get{return Resources.Lang.member;}}
+			protected static string s43 = "</option></select></div><div class=\"date\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
 			public string username = "{username}";
-			protected static string s42 = "\" maxlength=\"50\"style=\"width: 100px;\" /></div><div><input type=\"button\" class=\"btn\" id=\"dSubmit\" value=\"Submit\"></div></div></div>";
+			protected static string s44 = "\" maxlength=\"50\"style=\"width: 100px;\" /></div><div><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"Submit\"></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s27);
-					bd.Append(s28);
 					bd.Append(s29);
-					bd.Append(valueFromDate);
 					bd.Append(s30);
-					bd.Append(valueMinDate);
 					bd.Append(s31);
-					bd.Append(valueMaxDate);
+					bd.Append(valueFromDate);
 					bd.Append(s32);
-					bd.Append(s33);
-					bd.Append(s34);
-					bd.Append(valueToDate);
-					bd.Append(s35);
 					bd.Append(valueMinDate);
-					bd.Append(s36);
+					bd.Append(s33);
 					bd.Append(valueMaxDate);
+					bd.Append(s34);
+					bd.Append(s35);
+					bd.Append(s36);
+					bd.Append(valueToDate);
 					bd.Append(s37);
+					bd.Append(valueMinDate);
 					bd.Append(s38);
+					bd.Append(valueMaxDate);
 					bd.Append(s39);
 					bd.Append(s40);
 					bd.Append(s41);
-					bd.Append(username);
 					bd.Append(s42);
+					bd.Append(s43);
+					bd.Append(username);
+					bd.Append(s44);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -146,17 +154,17 @@ namespace Fanex.Age.UI.Reports
 
 		public class CancelBetList_HiddenFields_Block: Block
 		{
-			protected static string s43 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			protected static string s45 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s44 = "\" />";
+			protected static string s46 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s43);
+					bd.Append(s45);
 					bd.Append(ApoRoot);
-					bd.Append(s44);
+					bd.Append(s46);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

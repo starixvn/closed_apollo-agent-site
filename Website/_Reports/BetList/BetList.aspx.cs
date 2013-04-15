@@ -1,11 +1,10 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="CancelBetList.aspx.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BetList.aspx.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
 // <history>
-//     <change who="Thai" date="2010.10.30">Create</change>
-//     <change who="Marc.Bui" date="2013.02.28">Create</change>
+//     <change who="Kaden.Trinh" date="2013.01.12">Create</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -30,6 +29,7 @@ namespace Fanex.Age.UI.Reports.BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
     using NPOI.SS.UserModel;
+    using Sunplus.Agent.Model.BL.BetList;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
@@ -38,15 +38,22 @@ namespace Fanex.Age.UI.Reports.BetList
     {
         #region Variables
 
-        private int masterId = 0;
-        private int agentId = 0;
-        private int memberId = 0;
+        private DataTable dtResult = null;
+        private BetListBO betList = null;
+        private DataTable outDataTable = null;
 
-        private string option = string.Empty;
         private string title = string.Empty;
-
         private CancelBetList_Template tpl = new CancelBetList_Template();
         private IBetListCmd command = null;
+
+        private string username = string.Empty;
+        private DateTime dateFrom, dateTo;
+        private int agentId, custId;
+        private bool userType = false;
+        private string pageType = string.Empty;
+        private string statusIds = string.Empty;
+        private bool isShowAgentPT = true;
+        private bool isShowWinLost = true;
 
         #endregion Variables
 
@@ -58,22 +65,13 @@ namespace Fanex.Age.UI.Reports.BetList
             Dictionary<string, DataTable> results = View as Dictionary<string, DataTable>;
             UserTypes userType = UserTypes.Unknown;
 
-            DataTable dtDeletedBets = results["dtDeletedBets"];
-            IList<ITicket> tickets = new List<ITicket>();
+            DataTable betListData = View as DataTable;
+            IList<ITicket> tickets = TicketTransformer.Transform(betListData);
+            betListData.Dispose();
 
-            if (dtDeletedBets != null)
-            {
-                tickets = TicketTransformer.Transform(dtDeletedBets);
-                dtDeletedBets.Dispose();
-            }
-            DataTable betTransm = command.OutDataTable();
-            List<ITicketData> ticketData = new List<ITicketData>();
-
-            if (betTransm != null)
-            {
-                ticketData = TicketDataTransformer.Transform(betTransm);
-                betTransm.Dispose();
-            }
+            DataTable betTransm = outDataTable == null ? new DataTable() : outDataTable;
+            List<ITicketData> ticketData = TicketDataTransformer.Transform(betTransm);
+            betTransm.Dispose();
 
             int index = 0;
             bool isAdminCanViewVNIP = UserSession.Current.IsAdminCanViewVNIP;
@@ -91,7 +89,11 @@ namespace Fanex.Age.UI.Reports.BetList
 
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
             Header1_Template betlistHeader = new Header1_Template();
-            betlistHeader.Winloss.Hide();
+            if (!isShowAgentPT)
+            {
+                betlistHeader.Agent.Hide();
+                betlistHeader.Winloss.Hide();
+            }
 
             content.Append(betlistOpenTag);
             content.Append(betlistHeader);
@@ -107,9 +109,22 @@ namespace Fanex.Age.UI.Reports.BetList
                        .AddTrans(ticket, "<td class='c'>", "</td>")
                        .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", false)
                        .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
-                       .AddStake(ticket, "<td class='bl_underdog'>", "</td>")
-                       .AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP)
-                       .Append("</tr>");
+                       .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
+
+                if (isShowWinLost)
+                {
+                    builder.AddWinLoss(ticket, "<td class='r nowrap'>", "</td>");
+                }
+
+                builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
+
+                if (isShowAgentPT)
+                {
+                    builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
+                    builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
+                }
+
+                builder.Append("</tr>");
             }
 
             content.Append(builder.GetBetList());
@@ -124,61 +139,68 @@ namespace Fanex.Age.UI.Reports.BetList
 
         private void BoxFilter()
         {
-            tpl.Filter.valueFromDate = DateTime.Now.AddDays(-3).ToShortDateString();
-            tpl.Filter.valueToDate = DateTime.Now.ToShortDateString();
+            tpl.Filter.valueFromDate = dateFrom.ToShortDateString();
+            tpl.Filter.valueToDate = dateTo.ToShortDateString();
             tpl.Filter.valueMinDate = DateTime.Now.AddMonths(-3).ToShortDateString();
             tpl.Filter.valueMaxDate = DateTime.Now.AddMonths(1).ToShortDateString();
-            tpl.Filter.username = UserSession.Current.Username;
-            //if (results["dtCombo1"] != null && results["dtCombo1"].Rows.Count > 0)
-            //{
-            //        tpl.Options.Master.Visible = false;
-            //        tpl.Options.Agent.Visible = false;
-            //        userType = UserTypes.Agent;
-
-            //        // modify tables=> new datatable has 2 columns "custid" & "text" (text=username+betcount+Resources.Lang.bet)
-            //        results["dtCombo1"] = HtmlGenerator.ModifyDataTable(results["dtCombo1"], string.Empty, "custid", "username", "betcount", Resources.Lang.bet);
-
-            //        tpl.Options.Member.option_member = HtmlGenerator.ComboBox("memberId", memberId, results["dtCombo1"], "custid", "text", "selected_Option_member(this)");
-            //}
-            //else // has no item of cancelBet
-            //{
-            //    tpl.Options.Master.Visible = false;
-            //    tpl.Options.Agent.Visible = false;
-            //    tpl.Options.Member.Visible = false;
-            //}
+            tpl.Filter.username = username;
+            tpl.pageType = pageType;
         }
 
         public override object InvokeData(Hashtable hash)
         {
-            command = BetListFactory.CreateBetList("CancelBetList", CurrentUserSession.NetSessionId, null);
-
-            if (command != null)
-            {
-                hash.Add("memberId", memberId);
-                hash.Add("agentId", agentId);
-                hash.Add("masterId", masterId);
-
-                command.SetParams(hash);
-                return command.Execute();
-            }
-
-            return null;
+            betList = new BetListBO(CurrentUserSession.NetSessionId);
+            betList.GetUserIdByUserName(CurrentUserSession.CustId, userType, username, out agentId, out custId);
+            dtResult = betList.GetAllBetsByDateAndMem(agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
+            return dtResult != null ? dtResult : new DataTable();
         }
 
         public override void ProcessRequest(ref Hashtable hash)
         {
-            int.TryParse(Request["masterId"] + string.Empty, out masterId);
-            int.TryParse(Request["agentId"] + string.Empty, out agentId);
-            int.TryParse(Request["memberId"] + string.Empty, out memberId);
+            pageType = Request["type"];
+
+            if (pageType == "cancel")
+            {
+                tpl.title = Resources.Lang.voidandreject;
+                isShowAgentPT = isShowWinLost = false;
+                statusIds = string.Format("{0}^{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
+            }
+            else if (pageType == "transaction")
+            {
+                tpl.title = Resources.Lang.transaction;
+                isShowWinLost = true;
+                statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}^{6}^{7}",
+                    (int)Apollo.Age.Enumerations.BetStatus.Void,
+                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                    (int)Apollo.Age.Enumerations.BetStatus.Running,
+                    (int)Apollo.Age.Enumerations.BetStatus.Waiting,
+                    (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                    (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                    (int)Apollo.Age.Enumerations.BetStatus.Won,
+                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
+            }
+
+            dateFrom = GetDateTimeRequest("fromDate", DateTime.Now.AddDays(-3));
+            dateTo = GetDateTimeRequest("toDate", DateTime.Now);
+            username = this.GetStringRequest("username", UserSession.Current.AgentName);
+            userType = GetBooleanRequest("userType", true);
+        }
+
+        private string GetStringRequest(string name, string defaultValue)
+        {
+            if (Request[name] == null)
+            {
+                return defaultValue;
+            }
+            return Request[name];
         }
 
         public override object ValidateRequest(Hashtable hash)
         {
-            if (memberId < 0 || agentId < 0 || masterId < 0)
+            if (string.IsNullOrEmpty(Request["type"]))
             {
                 return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
             }
-
             return null;
         }
     }

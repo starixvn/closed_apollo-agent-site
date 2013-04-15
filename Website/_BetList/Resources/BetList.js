@@ -37,18 +37,6 @@ function ViewCommissionDetail(ibcrefno, currency, tableId, tableName, tournament
 	window.location.href = url;
 }
 
-function ViewBetSlip(transid, winlostdate, isrunning, league) {
-	var width = 660;
-	var height = 190;
-	var url = '_BetList/BetSlip.aspx?TransID=' + transid + '&winlostdate=' + winlostdate + '&IsRunning=' + isrunning + '&league=' + league;
-	if (parent.ageWnd) {
-		parent.ageWnd.open(APOLLO.resolveUrl("~/" + url), '', 50, 100, width, height);
-	}
-	else {
-		ageWnd.open(APOLLO.resolveUrl("~/" + url), '', 50, 100, width, height);
-	}
-}
-
 function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
 	if (bettype == 71) {
 		ViewCasinoResult(refno, bettype, username);
@@ -211,6 +199,7 @@ if (typeof jQuery != "undefined") {
 		BETLIST.init();
 
 		var viewDetailsLinks = $(".view-detail");
+		var submit = $(".act-submit");
 
 		if (viewDetailsLinks.length > 0) {
 			viewDetailsLinks.click(function () {
@@ -231,6 +220,12 @@ if (typeof jQuery != "undefined") {
 				});
 
 				APOLLO.openDialog(BETLIST.dialogDetails, "Details", { modal: false });
+			});
+		}
+
+		if (submit.length > 0) {
+			submit.click(function () {
+				$("#frmBetList").submit();
 			});
 		}
 	});

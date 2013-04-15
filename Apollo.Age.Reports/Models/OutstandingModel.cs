@@ -23,6 +23,8 @@ namespace Apollo.Age.Reports.Models
     {
         public int CurrentAgentId { get; set; }
 
+        public int AgentLevel { get; set; }
+
         public IEnumerable<OutstandingDTO> ListOutStanding { get; set; }
 
         public IEnumerable<Agent> DownlinePath { get; set; }
