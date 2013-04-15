@@ -6,22 +6,18 @@
 }
 
 @model List<MatchEnteredModel>
-<link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" 
-rel="stylesheet" type="text/css" />
-<link href="~/Views/Reports/Resources/Reports.less" 
-rel="stylesheet" type="text/css" />
 
 <div id="box_header">
     <div class="filter-submit">
          <div class="inline-control">
             <label for="dateFrom"> @Resources.Lang.from </label>
-            @Html.DatePicker("dateFrom", DateTime.Now)
+            @Html.DatePicker("FromDate", DateTime.Now)
          </div> 
          <div class="inline-control">
             <label for="dateFrom"> @Resources.Lang.to </label>
-            @Html.DatePicker("dateTo", DateTime.Now)
+            @Html.DatePicker("ToDate", DateTime.Now)
          </div>       
-         <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
+         <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
     </div>
 </div>
 
@@ -95,3 +91,8 @@ rel="stylesheet" type="text/css" />
         }
     </tbody>
 </table>
+
+@section scripts
+{
+    <script src="~/View/Reports/Resources/WinLoss.js" type="text/javascript"></script>
+}
