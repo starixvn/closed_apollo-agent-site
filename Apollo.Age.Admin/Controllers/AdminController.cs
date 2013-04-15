@@ -28,6 +28,7 @@ namespace Apollo.Age.Admin.Controllers
             _exchangeRateService = adminService ?? new ExchangeRateService();
         }
 
+        [NonAction]
         public ActionResult ExchangeRate()
         {
             var criteria = new GetAllExchangeRateCriteria();
@@ -38,6 +39,7 @@ namespace Apollo.Age.Admin.Controllers
             return View(exchangeRateList.ToList());
         }
 
+        [NonAction]
         public JsonResult InsertExchangeRate(string currency, string description,
             double multipliedBy, double baseRate, double minBet, double minBetLive)
         {
@@ -87,6 +89,7 @@ namespace Apollo.Age.Admin.Controllers
             return Json(new { errCode = errCode, errMsg = errMsg }, JsonRequestBehavior.AllowGet);
         }
 
+        [NonAction]
         public JsonResult UpdateExchangeRate(int exchangeId, string description,
             double multipliedBy, double baseRate, double minBet, double minBetLive)
         {

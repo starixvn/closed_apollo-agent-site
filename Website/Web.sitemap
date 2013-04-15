@@ -59,10 +59,9 @@
     <!--/MemberInfo-->
 
     <!--Admin-->
-    <siteMapNode title="lblAdmin">
-      <!--<siteMapNode title="lblExchangeRate" url="_Admin/ExchangeRate/ExchangeRate.aspx"></siteMapNode>-->
+    <!--<siteMapNode title="lblAdmin">
       <siteMapNode title="lblExchangeRate" url="Admin/ExchangeRate"></siteMapNode>
-    </siteMapNode>
+    </siteMapNode>-->
     <!--/Admin-->
     <!--</siteMapNode>-->
 
