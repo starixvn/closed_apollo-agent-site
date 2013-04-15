@@ -24,6 +24,8 @@ var AGENTLIST = function ( $ ) {
                         if ( i == rowLength - 1 ) {
                             template += "<span>" + result[i].Username + "</span>";
                             $( "#currUsername" ).html( result[i].Username );
+                            $( ".edit-setting" ).attr( "agentid", result[i].Id );
+                            $( ".edit-setting" ).attr( "agentlevel", result[i].Level );
                         }
                         else {
                             template += "<a href='#' name='navigation' agentid='" + result[i].Id + "' >" + result[i].Username + "</a>";
@@ -58,6 +60,9 @@ var AGENTLIST = function ( $ ) {
                 AGENTLIST.loadAgentList();
                 return false;
             } );
+
+            $( ".edit-setting" ).mouseover( function () {
+            } );
         },
         bindingQuickLink: function () {
             $( "#quickLinkCustomerList" ).unbind( 'click' ).bind( 'click', function () {
@@ -70,11 +75,11 @@ var AGENTLIST = function ( $ ) {
                 AGENTLIST.loadAgentList( AGENTLIST.AgentId );
             } );
         },
-        bindingEdit: function () {
+        initMenuPopup: function ( els ) {
             var menuEdit = $( "#menuedit" );
             var commission = $( "#commission" );
             var betsetting = $( "#betsetting" );
-            $( "[name='Edit']" ).mouseover( function () {
+            els.mouseover( function () {
                 var pos = $( this ).offset();
                 var eWidth = $( this ).outerWidth();
                 var mWidth = menuEdit.outerWidth();
@@ -113,6 +118,10 @@ var AGENTLIST = function ( $ ) {
             } ).mouseout( function () {
                 $( this ).hide();
             } );
+        },
+        bindingEdit: function () {
+            AGENTLIST.initMenuPopup( $( "[name='Edit']" ) );
+            AGENTLIST.initMenuPopup( $( ".edit-setting" ) );
         },
         loadAgentList: function () {
             $.ajax( {

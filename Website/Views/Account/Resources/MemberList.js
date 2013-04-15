@@ -25,14 +25,14 @@ var MEMBERLIST = function ( $ ) {
                 MEMBERLIST.loadMemberList( MEMBERLIST.AgentId );
             } );
         },
-        bindingEdit: function () {
+        initMenuPopup: function ( els ) {
             var menuEdit = $( "#menuedit" );
             var commission = $( "#commission" );
             var betsetting = $( "#betsetting" );
-            $( "[name='Edit']" ).mouseover( function () {
+            els.mouseover( function () {
                 var pos = $( this ).offset();
                 var eWidth = $( this ).outerWidth();
-                var mWidth = $( "#menuedit" ).outerWidth();
+                var mWidth = menuEdit.outerWidth();
                 var left = ( pos.left + eWidth ) + "px";
                 var top = 3 + pos.top + "px";
                 commission.attr( "custid", $( this ).attr( 'custid' ) );
@@ -61,6 +61,10 @@ var MEMBERLIST = function ( $ ) {
             } ).mouseout( function () {
                 $( this ).hide();
             } );
+        },
+        bindingEdit: function () {
+            MEMBERLIST.initMenuPopup( $( "[name='Edit']" ) );
+            MEMBERLIST.initMenuPopup( $( ".edit-setting" ) );
         },
         loadMemberList: function () {
             $.ajax( {
