@@ -28,6 +28,8 @@ namespace Apollo.Age.Web
 
         bool IsMaster { get; set; }
 
+        bool IsSuper { get; set; }
+
         int CurrencyId { get; set; }
 
         bool DoubleCommLosing { get; set; }
@@ -36,8 +38,6 @@ namespace Apollo.Age.Web
 
         decimal MatchLimit { get; set; }
 
-        decimal VirtualMultiplier { get; set; }
-
-        bool IsSuper { get; set; }
+        decimal VirtualMultiplier { get; set; }        
     }
 }

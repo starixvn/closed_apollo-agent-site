@@ -13,11 +13,12 @@
 <ul id="menu">
     @foreach (SiteMapNode item in menu.ChildNodes)
     {
-        if (item.Roles.Count == 0 || (item.Roles.Count > 0 && Model.IsSuper))
+        if (!Model.IsSuper || (Model.IsSuper && item.Title != "totalbets"))
         {
             string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
         
-        <li class="menu-item @activeClass"><a class="menu-item-title">@this.GlobalLangResources(item.Title)</a>
+        <li class="menu-item @activeClass">
+            <a class="menu-item-title">@this.GlobalLangResources(item.Title)</a>
             @if (item.HasChildNodes)
             {               
                 <div class="submenu">
@@ -25,7 +26,7 @@
                     {
                         int bettypeId = 0;
                         string title = string.Empty;
-                        
+
                         // show memberlist when user's level >= 3
                         var level = Convert.ToInt32(item["Level"]);
                         if (level == 0 || Model.AgentLevel >= level)
