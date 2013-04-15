@@ -116,6 +116,7 @@ namespace Fanex.Age.UI.Reports.Result
 				}
 
 				this.RenderHiddenField(this.tpl);
+                tpl.ApoRoot = Page.ResolveUrl("~/");
 
 				writer.Write(this.tpl);
 			}

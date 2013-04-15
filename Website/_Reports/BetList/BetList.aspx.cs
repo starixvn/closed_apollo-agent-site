@@ -22,6 +22,7 @@ namespace Fanex.Age.UI.Reports.BetList
     using Fanex.BetList.Age.BetListCmd;
     using Fanex.BetList.Age.BetListExcelBuilderExt;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
+    using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Age.DTO;
     using Fanex.BetList.Age.ExtTemplate;
     using Fanex.BetList.Core.Builder;
@@ -31,6 +32,7 @@ namespace Fanex.Age.UI.Reports.BetList
     using NPOI.SS.UserModel;
     using Sunplus.Agent.Model.BL.BetList;
     using Sunplus.Agent.Model.BL.Definitions;
+    using Sunplus.Agent.Model.BL.Reports;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
 
@@ -126,7 +128,7 @@ namespace Fanex.Age.UI.Reports.BetList
 
                 builder.Append("</tr>");
             }
-
+            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
 
@@ -139,19 +141,65 @@ namespace Fanex.Age.UI.Reports.BetList
 
         private void BoxFilter()
         {
-            tpl.Filter.valueFromDate = dateFrom.ToShortDateString();
+            var selectedUserType = "0";
+            if (userType)
+            {
+                selectedUserType = "1";
+            }
+            tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
+            tpl.Filter.valueFromDate = ReportsBO.MoveBetsDate.ToShortDateString();
             tpl.Filter.valueToDate = dateTo.ToShortDateString();
             tpl.Filter.valueMinDate = DateTime.Now.AddMonths(-3).ToShortDateString();
             tpl.Filter.valueMaxDate = DateTime.Now.AddMonths(1).ToShortDateString();
-            tpl.Filter.username = username;
+            tpl.Filter.User.username = username;
             tpl.pageType = pageType;
+        }
+
+        private DataTable CreateUserTypeOption()
+        {
+            DataTable dt = new DataTable();
+            DataColumn column;
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "value";
+            dt.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "text";
+            dt.Columns.Add(column);
+
+            DataRow row;
+
+            row = dt.NewRow();
+            row["value"] = "1";
+            row["text"] = Resources.Lang.agent;
+            dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["value"] = "0";
+            row["text"] = Resources.Lang.member;
+            dt.Rows.Add(row);
+
+            return dt;
         }
 
         public override object InvokeData(Hashtable hash)
         {
+            int errorCode;
             betList = new BetListBO(CurrentUserSession.NetSessionId);
-            betList.GetUserIdByUserName(CurrentUserSession.CustId, userType, username, out agentId, out custId);
-            dtResult = betList.GetAllBetsByDateAndMem(agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
+            betList.GetUserIdByUserName(CurrentUserSession.CustId, userType, username, out agentId, out custId, out errorCode);
+            if (errorCode == 0)
+            {
+                if (pageType == "transaction")
+                {
+                    dtResult = betList.GetAllBetsTransactionByDateAndMem(agentId, custId, dateFrom, dateTo, ReportsBO.MoveBetsDate, statusIds, out outDataTable);
+                }
+                else
+                {
+                    dtResult = betList.GetAllBetsByDateAndMem(agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
+                }
+            }
             return dtResult != null ? dtResult : new DataTable();
         }
 
@@ -180,7 +228,7 @@ namespace Fanex.Age.UI.Reports.BetList
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
 
-            dateFrom = GetDateTimeRequest("fromDate", DateTime.Now.AddDays(-3));
+            dateFrom = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
             dateTo = GetDateTimeRequest("toDate", DateTime.Now);
             username = this.GetStringRequest("username", UserSession.Current.AgentName);
             userType = GetBooleanRequest("userType", true);
