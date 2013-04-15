@@ -137,7 +137,7 @@
     </BetTypeGroup>
   </SportType>
 
-  <SportType id="161" name="Number Game" isLive="false" collapsed="true"  resourcekey="numbergame">
+  <!--<SportType id="161" name="Number Game" isLive="false" collapsed="true"  resourcekey="numbergame">
     <BetTypeGroup>
       <BetType id="81" name="1st/Last O/U" resourcekey="firstlastoverunder">
       </BetType>
@@ -149,7 +149,7 @@
       </BetType>
     </BetTypeGroup>
   </SportType>
-  
+
   <SportType id="161" name="Number Game" isLive="true" collapsed="true"  resourcekey="numbergame">
     <BetTypeGroup>
       <BetType id="85" name="Over/Under" resourcekey="lblOverUnder">
@@ -163,5 +163,5 @@
       <BetType id="90" name="Number Group" resourcekey="numberGroup">
       </BetType>
     </BetTypeGroup>
-  </SportType>
+  </SportType>-->
 </PTGrid>

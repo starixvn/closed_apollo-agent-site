@@ -74,6 +74,14 @@ namespace Apollo.Age.Account.Controllers
             return ReturnResult(result);
         }
 
+        public ActionResult EditCommissionSetting(int custId, string userName, int? agentLevel, string userGroup)
+        {
+            ViewBag.CustId = custId;
+            ViewBag.UserName = userName;
+            ViewBag.AgentLevel = agentLevel;
+            ViewBag.UserGroup = userGroup;
+            return View("~/Views/Account/EditCommission.cshtml");
+        }
 
         public ActionResult GetCommissionSetting(int targetCustId, int? agentLevel, string ugroup)
         {
@@ -97,6 +105,14 @@ namespace Apollo.Age.Account.Controllers
         {
             Result result = _customerSettingService.UpdateCommissionSetting(settingContext, commissionSetting);
             return ReturnResult(result);
+        }
+
+        public ActionResult EditPositionTaking(int custId, string userName, int? agentLevel)
+        {
+            ViewBag.CustId = custId;
+            ViewBag.UserName = userName;
+            ViewBag.AgentLevel = agentLevel;
+            return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
         public ActionResult GetPositionTaking(int targetCustId, int? agentLevel)
