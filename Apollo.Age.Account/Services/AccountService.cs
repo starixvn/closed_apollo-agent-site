@@ -107,7 +107,7 @@ namespace Apollo.Age.Account.Services
         public List<Agent> GetAgentDownlinePath(int parentId, int agentId)
         {
             Check.Argument.IsNotNegative(parentId, "parentId");
-            Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
+            Check.Argument.IsNotNegative(agentId, "agentId");
 
             AgentDownlinePathCriteria criteria = new AgentDownlinePathCriteria()
             {
