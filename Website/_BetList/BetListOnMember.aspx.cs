@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="OutstandingDetail.aspx.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BetListOnMember.aspx.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
@@ -9,7 +9,7 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-namespace Fanex.Age.UI.Reports.BetList
+namespace Sunplus.Agent.UI._BetList
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +17,8 @@ namespace Fanex.Age.UI.Reports.BetList
     using System.Text;
     using System.Web.UI;
     using Fanex.Age.UI.Components;
+    using Fanex.Age.UI.Reports;
+    using Fanex.Age.UI.Reports.BetList;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Age.DTO;
@@ -30,7 +32,7 @@ namespace Fanex.Age.UI.Reports.BetList
     using Sunplus.Agent.Model.BL.Reports;
     using Sunplus.Agent.Model.Entities;
 
-    public partial class OutstandingDetail_Page : WinlossReports_Page
+    public partial class BetListOnMember : WinlossReports_Page
     {
         #region Variables
 
