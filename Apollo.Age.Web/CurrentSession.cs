@@ -14,7 +14,7 @@ namespace Apollo.Age.Web
     using System.Linq;
     using System.Text;
     using System.Runtime.Serialization;
-using Apollo.Age.Entities;
+    using Apollo.Age.Entities;
 
     /// <summary>
     ///  It contains all properties of an authenticated user
@@ -31,6 +31,7 @@ using Apollo.Age.Entities;
             UserId = user.Id;
             Username = user.Username;
             IsMaster = user.IsMaster;
+            IsSuper = user.IsSuper;
             MatchLimit = user.Agent.MatchLimit;
             Language = "en-US"; //get language of user
             CurrencyId = user.Agent.Currency;
@@ -43,39 +44,17 @@ using Apollo.Age.Entities;
 
             AgentId = info.GetInt32("AgentId");
             AgentLevel = info.GetInt16("AgentLevel");
-            AgentName = info.GetString("AgentName");            
+            AgentName = info.GetString("AgentName");
             UserId = info.GetInt32("UserId");
             Username = info.GetString("Username");
             IsMaster = info.GetBoolean("IsMaster");
+            IsSuper = info.GetBoolean("IsSuper");
             CurrencyId = info.GetByte("CurrencyId");
             MatchLimit = info.GetDecimal("MatchLimit");
             VirtualMultiplier = info.GetDecimal("VirtualMultiplier");
             DoubleCommLosing = info.GetBoolean("DoubleCommLosing");
             Language = info.GetString("Language");
         }
-
-
-        public int AgentId { get; set; }
-
-        public short AgentLevel { get; set; }
-
-        public string AgentName { get; set; }        
-
-        public int UserId { get; set; }
-
-        public string Username { get; set; }
-
-        public bool IsMaster { get; set; }
-
-        public int CurrencyId { get; set; }        
-
-        public decimal MatchLimit { get; set; }
-
-        public decimal VirtualMultiplier { get; set; }
-
-        public bool DoubleCommLosing { get; set; }        
-
-        public string Language { get; set; }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -84,23 +63,40 @@ using Apollo.Age.Entities;
 
             info.AddValue("AgentId", AgentId);
             info.AddValue("AgentLevel", AgentLevel);
-            info.AddValue("AgentName", AgentName);            
+            info.AddValue("AgentName", AgentName);
             info.AddValue("UserId", UserId);
             info.AddValue("Username", Username);
             info.AddValue("IsMaster", IsMaster);
-            info.AddValue("CurrencyId", CurrencyId);            
+            info.AddValue("IsSuper", IsSuper);
+            info.AddValue("CurrencyId", CurrencyId);
             info.AddValue("MatchLimit", MatchLimit);
             info.AddValue("VirtualMultiplier", VirtualMultiplier);
-            info.AddValue("DoubleCommLosing", DoubleCommLosing);            
+            info.AddValue("DoubleCommLosing", DoubleCommLosing);
             info.AddValue("Language", Language);
-            
         }
 
+        public int AgentId { get; set; }
 
-        public bool IsSuper
-        {
-            get;
-            set;
-        }
+        public short AgentLevel { get; set; }
+
+        public string AgentName { get; set; }
+
+        public int UserId { get; set; }
+
+        public string Username { get; set; }
+
+        public bool IsMaster { get; set; }
+
+        public bool IsSuper { get; set; }
+
+        public int CurrencyId { get; set; }
+
+        public decimal MatchLimit { get; set; }
+
+        public decimal VirtualMultiplier { get; set; }
+
+        public bool DoubleCommLosing { get; set; }
+
+        public string Language { get; set; }
     }
 }
