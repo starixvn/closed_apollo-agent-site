@@ -1,7 +1,7 @@
-﻿@using Apollo.Age.Reports.Models;
+﻿@using Apollo.Age.Reports.ViewModels;
+@using Apollo.Age.Reports.Models;
 @using Fanex.Age.Utility;
 @using Sunplus.Agent.Model.Entities;
-@using Apollo.Age.Reports.DTO;
 @{
     ViewBag.Title = Resources.Lang.outstanding;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
@@ -10,8 +10,7 @@
 {
     <link href="~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.less" rel="stylesheet" type="text/css" />
 }
-@model OutstandingModel
-
+@model OutstandingViewModel
 @{
     if (Model.DownlinePath != null && Model.DownlinePath.Any())
     {
@@ -52,7 +51,7 @@
         decimal gameOutstandingTotal = 0;
         decimal gameShareAmountTotal = 0;
         <tbody>
-            @foreach (OutstandingDTO item in Model.ListOutStanding)
+            @foreach (OutstandingModel item in Model.ListOutStanding)
             {
                 outStandingTotal += item.Outstanding;
                 shareAmountTotal += item.ShareAmount;
@@ -100,6 +99,8 @@
                 }
             }
         </tbody>
+            if (Model.AgentLevel != 0)
+            {
         <tfoot>
             <tr class="total">
                 <td>
@@ -119,13 +120,13 @@
                 </td>
             </tr>
         </tfoot>
+            }
     }
     else
     {
         @RazorHelper.ShowNoInfo(5)
     }
 </table>
-
 <div id="gridId" class="freegrid  content-grid" style="margin-top: 20px; display: none;">
 </div>
 @section scripts

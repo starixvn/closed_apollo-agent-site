@@ -25,14 +25,14 @@ var MEMBERLIST = function ( $ ) {
                 MEMBERLIST.loadMemberList( MEMBERLIST.AgentId );
             } );
         },
-        bindingEdit: function () {
+        initMenuPopup: function ( els ) {
             var menuEdit = $( "#menuedit" );
             var commission = $( "#commission" );
             var betsetting = $( "#betsetting" );
-            $( "[name='Edit']" ).mouseover( function () {
+            els.mouseover( function () {
                 var pos = $( this ).offset();
                 var eWidth = $( this ).outerWidth();
-                var mWidth = $( "#menuedit" ).outerWidth();
+                var mWidth = menuEdit.outerWidth();
                 var left = ( pos.left + eWidth ) + "px";
                 var top = 3 + pos.top + "px";
                 commission.attr( "custid", $( this ).attr( 'custid' ) );
@@ -62,6 +62,10 @@ var MEMBERLIST = function ( $ ) {
                 $( this ).hide();
             } );
         },
+        bindingEdit: function () {
+            MEMBERLIST.initMenuPopup( $( "[name='Edit']" ) );
+            MEMBERLIST.initMenuPopup( $( ".edit-setting" ) );
+        },
         loadMemberList: function () {
             $.ajax( {
                 type: "POST",
@@ -74,7 +78,7 @@ var MEMBERLIST = function ( $ ) {
                 .done( function ( result ) {
                     MEMBERLIST.AgentId = result.CurrentAgentId;
                     MEMBERLIST.initMemberList( result );
-                    MEMBERLIST.bindingEdit();
+
                     MEMBERLIST.bindingQuickLink();
                     MEMBERLIST.bindingSearch();
                 } )
@@ -142,25 +146,25 @@ var MEMBERLIST = function ( $ ) {
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                          { HeaderText: LANGUAGES.Status, Width: 50, Name: "Status", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function ( cell ) {
-                                 return ( cell.Value.Status == 0 ? "Active" : ( cell.Value.Status == 1 ? "Suspended" : "Closed" ) );
+                                 return ( cell.Value.Status == 1 ? LANGUAGES.Active : ( cell.Value.Status == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked ) );
                              }
                          },
-                         { HeaderText: LANGUAGES.Group, Width: 150, Name: "UserGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.Group, Width: 100, Name: "UserGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
 
-                         { HeaderText: LANGUAGES.Group, Width: 150, Name: "AgentGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.OneXTwo, Width: 150, Name: "AgentOneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.Other, Width: 150, Name: "AgentOther", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.NumberGame, Width: 150, Name: "AgentNumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.Group, Width: 100, Name: "AgentGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.OneXTwo, Width: 100, Name: "AgentOneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.Other, Width: 100, Name: "AgentOther", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.NumberGame, Width: 100, Name: "AgentNumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
 
-                         { HeaderText: LANGUAGES.Group, Width: 150, Name: "CustomerGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.OneXTwo, Width: 150, Name: "CustomerOneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.Other, Width: 150, Name: "CustomerOther", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.NumberGame, Width: 150, Name: "CustomerNumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.Group, Width: 100, Name: "CustomerGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.OneXTwo, Width: 100, Name: "CustomerOneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.Other, Width: 100, Name: "CustomerOther", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.NumberGame, Width: 100, Name: "CustomerNumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
 
-                         { HeaderText: LANGUAGES.Handicap, Width: 150, Name: "Handicap", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.OverUnder, Width: 150, Name: "OverUnder", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.HandicapLive, Width: 150, Name: "HandicapLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.OverUnderLive, Width: 150, Name: "OverUnderLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                         { HeaderText: LANGUAGES.Handicap, Width: 100, Name: "Handicap", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.OverUnder, Width: 100, Name: "OverUnder", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.HandicapLive, Width: 100, Name: "HandicapLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.OverUnderLive, Width: 100, Name: "OverUnderLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
 
                         ],
                 bodyRows: bodyData,
@@ -204,6 +208,8 @@ var MEMBERLIST = function ( $ ) {
                 return false;
             }
             $( "#gridId" ).fanexGrid( gridOption );
+
+            MEMBERLIST.bindingEdit();
         }
     };
 } ( jQuery );

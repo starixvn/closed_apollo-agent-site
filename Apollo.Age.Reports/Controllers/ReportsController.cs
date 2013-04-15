@@ -21,8 +21,8 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.DTO;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
-    using Apollo.Age.Web;
     using Apollo.Age.Reports.ViewModels;
+    using Apollo.Age.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -69,17 +69,18 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult Outstanding(int? agentId)
         {
             CurrentAgentId = agentId;
-
-            IEnumerable<OutstandingDTO> models = _reportService.GetData<OutstandingDTO>(new OutstandingCriteria
+            IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
+            IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
             {
                 AgentId = CurrentAgentId.Value
             });
 
-            return View(new OutstandingModel()
+            return View(new OutstandingViewModel()
             {
                 CurrentAgentId = CurrentAgentId.Value,
                 ListOutStanding = models,
-                DownlinePath = AgentDownlinePath(CurrentAgentId.Value)
+                DownlinePath = modelAgentDownLine,
+                AgentLevel = modelAgentDownLine.LastOrDefault().Level
             });
         }
 
@@ -88,16 +89,16 @@ namespace Apollo.Age.Reports.Controllers
         {
             CurrentAgentId = agentId;
             // call service to get report data here
-            IEnumerable<OutstandingDTO> models = _reportService.GetData<OutstandingDTO>(new MemberOutstandingCriteria
+            IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new MemberOutstandingCriteria
             {
                 AgentId = CurrentAgentId.Value
             });
 
             // Sum total amount
-            OutstandingDTO totalModels = new OutstandingDTO();
+            OutstandingModel totalModels = new OutstandingModel();
             if (models != null && models.Any())
             {
-                foreach (OutstandingDTO item in models)
+                foreach (OutstandingModel item in models)
                 {
                     totalModels.Outstanding += item.Outstanding;
                     totalModels.ShareAmount += item.ShareAmount;
@@ -172,6 +173,6 @@ namespace Apollo.Age.Reports.Controllers
             return View(memberWinLossViewModel);
         }
 
-        #endregion
+        #endregion Agent Win Loss Report
     }
 }

@@ -27,29 +27,16 @@ if (typeof jQuery != 'undefined') {
                 if (apoRoot.length == 0) {
                     if (typeof console != undefined) {
                         console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
-                        return "";
                     }
+                } else {
+                    if (url.substr(0, 2) == '~/') {
+                        url = url.substr(2);
+                    } else if (url.substr(0, 1) == '/') {
+                        url = url.substr(1);
+                    }
+
+                    return apoRoot.val() + url;
                 }
-
-                if (url.substr(0, 2) == '~/') {
-                    url = url.substr(2);
-                } else if (url.substr(0, 1) == '/') {
-                    url = url.substr(1);
-                }
-
-                return apoRoot.val() + url;
-
-                //                if (url.substr(0, 1) == '/') {
-                //                    url = url.substr(1);
-                //                }
-
-                //                var siteRoot = parent.baseUrl;
-
-                //                if (!siteRoot) siteRoot = parent.parent.baseURL;
-                //                if (!siteRoot) siteRoot = parent.parent.parent.baseURL;
-                //                if (!siteRoot) siteRoot = "";
-
-                //                return siteRoot + url;
             },
 
             alertGeneralError: function () {
@@ -84,35 +71,61 @@ if (typeof jQuery != 'undefined') {
             },
 
             initDatePicker: function () {
-                var datePicker = $('.datepicker');
+                var datePickers = $('.datepicker');
 
-                if (datePicker.length > 0) {
+                if (datePickers.length > 0) {
                     //get minDate, maxDate, disabledDates
 
-                    var currentDate = datePicker.val();
-                    var mindate = datePicker.attr('mindate');
-                    var maxdate = datePicker.attr('maxdate');
+                    datePickers.each(function () {
+                        var $this = $(this),
+                            limitDate = function (limit) { // limit: mindate/maxdate
+                                var _limit = $this.attr(limit);
 
-                    datePicker.datepicker({
-                        defaultDate: currentDate,
-                        dateFormat: "mm/dd/yy",
-                        showOn: "button",
-                        buttonImageOnly: true,
-                        buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png")
+                                if (_limit) { // if limit attribute exists
+                                    _limit = _limit.split("/");
+
+                                    var year = _limit[2],
+                                        month = _limit[0],
+                                        day = _limit[1];
+
+                                    return new Date(year, month, day);
+                                }
+
+                                return null;
+                            },
+                            shiftDate = function (increment) {
+                                var currDate = $this.datepicker('getDate'),
+                                    d = currDate.getDate() + increment,
+                                    m = currDate.getMonth(),
+                                    y = currDate.getFullYear();
+
+                                $this.datepicker('setDate', new Date(y, m, d));
+                            };
+
+                        $this.datepicker({
+                            defaultDate: new Date($this.val()),
+                            dateFormat: "mm/dd/yy",
+                            showOn: "button",
+                            buttonImageOnly: true,
+                            buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png"),
+                            buttonText: "Select Date",
+                            minDate: limitDate("mindate"),
+                            maxDate: limitDate("maxdate")
+                        }).keydown(function (e) {
+                            var arrow = { left: 37, up: 38, right: 39, down: 40 };
+
+                            switch (e.keyCode) {
+                                case arrow.up:
+                                    shiftDate(1);
+                                    break;
+                                //console.info($this.datepicker("getDate"));                          
+                                case arrow.down:
+                                    shiftDate(-1);
+                                    break;
+                            }
+                        });
+
                     });
-
-                    if (typeof (initDatePicker) != "function") //check if (isExit include date.filter.js) then (mindate, maxdate include after function initDatePicker)
-                    {
-                        if (mindate != 'null') {
-                            mindate = mindate.split("/");
-                            datePicker.datepicker("option", "minDate", new Date(mindate[2], mindate[0], mindate[1]));
-                        }
-                        if (maxdate != 'null') {
-                            maxdate = maxdate.split("/");
-                            datePicker.datepicker("option", "maxDate", new Date(maxdate[2], maxdate[0], maxdate[1]));
-                        }
-                        datePicker.datepicker("option", "buttonText", "Select date");
-                    }
                 }
             }
         };

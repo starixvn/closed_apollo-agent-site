@@ -100,7 +100,7 @@ namespace Sunplus.Agent.UI._BetList
                 #endregion Total ticket
             }
 
-            builder.Append("<tfoot><tr class='RptFooter'>");
+            builder.Append("<tfoot><tr class='total'>");
             builder.Append(string.Format("<td class='r underdog' style='vertical-align:middle' colspan='2'>{0}</td>", Resources.Lang.total));
 
             if (isShowAgentPT)

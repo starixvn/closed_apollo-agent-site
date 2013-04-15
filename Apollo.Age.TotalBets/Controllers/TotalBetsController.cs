@@ -10,16 +10,13 @@
 
 namespace Apollo.Age.TotalBets.Controllers
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Web;
-    using Apollo.Age.TotalBets.Services;
     using System.Web.Mvc;
-    using Apollo.Age.TotalBets.Models;
-    using Apollo.Age.TotalBets.Criterias;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.TotalBets.Criterias;
+    using Apollo.Age.TotalBets.Models;
+    using Apollo.Age.TotalBets.Services;
+    using Apollo.Age.Web;
 
     public class TotalBetsController : BaseController
     {
@@ -30,6 +27,14 @@ namespace Apollo.Age.TotalBets.Controllers
             _totalBetsService = new TotalBetsService();
         }
    
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (CurrentSession.IsSuper)
+            {
+                filterContext.Result = new HttpNotFoundResult();
+            }
+        }
+
         /// <summary>
         /// Get totalbet data by bettype
         /// </summary>

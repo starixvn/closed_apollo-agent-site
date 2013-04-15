@@ -66,6 +66,7 @@ namespace Apollo.Age.Account.Controllers
         public ActionResult Menu()
         {
             ViewBag.RootNode = SiteMap.RootNode;
+
             return View(base.CurrentSession);
         }
 
