@@ -9,7 +9,7 @@
 
 namespace Apollo.Age.Reports.Models
 {
-    public class AgentWinlossModel
+    public class AgentWinLossModel
     {
         public bool IsAgent { get; set; }
 

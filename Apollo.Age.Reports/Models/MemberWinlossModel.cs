@@ -9,8 +9,12 @@
 
 namespace Apollo.Age.Reports.Models
 {
-    public class MemberWinlossModel : AgentWinlossModel
+    public class MemberWinLossModel : AgentWinLossModel
     {
+        public int MemberId { get; set; }
+
+        public int MemberName { get; set; }
+
         public decimal WinLoss { get; set; }
 
         public decimal MemComm { get; set; }

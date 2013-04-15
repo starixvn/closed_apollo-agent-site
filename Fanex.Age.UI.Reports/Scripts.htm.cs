@@ -20,7 +20,7 @@ namespace Fanex.Age.UI.Reports
 			protected static string s6 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s7{get{return AbsoluteUrl("_Components/DateRangeSelect/DateRangeSelect.js", TplSettings.Question);}}
 			protected static string s8 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s9{get{return AbsoluteUrl("Resources/Reports.js", TplSettings.Question);}}
+			protected static string s9{get{return AbsoluteUrl("_Reports/Resources/Reports.js", TplSettings.Question);}}
 			protected static string s10 = "\" type=\"text/javascript\"></script>";
 			public override void ToString(ref StringBuilder bd)
 			{

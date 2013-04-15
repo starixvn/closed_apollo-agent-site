@@ -13,12 +13,16 @@ namespace Apollo.Age.Reports.ViewModels
     using System.Collections.Generic;
     using Apollo.Age.Reports.Models;
 
-    public class MemberWinlossViewModel
+    public class MemberWinLossViewModel
     {
+        public int AgentId { get; set; }
+
+        public string AgentName { get; set; }
+
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
 
-        public List<MemberWinlossModel> MemberWinLossList { get; set; }
+        public List<MemberWinLossModel> MemberWinLossList { get; set; }
     }
 }

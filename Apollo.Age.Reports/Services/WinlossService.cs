@@ -16,7 +16,7 @@ namespace Apollo.Age.Reports.Services
     using Apollo.Age.Reports.DTO;
     using Apollo.Age.Reports.Models;
 
-    public class WinlossService : ReportService, IWinlossService
+    public class WinLossService : ReportService, IWinLossService
     {
         public List<MatchEnteredModel> GetMatchEntered()
         {
@@ -80,7 +80,7 @@ namespace Apollo.Age.Reports.Services
             return matchEnteredList;
         }
 
-        public List<AgentWinlossModel> GetAgentWinloss(int agentId, DateTime fromDate, DateTime toDate)
+        public List<AgentWinLossModel> GetAgentWinLoss(int agentId, DateTime fromDate, DateTime toDate)
         {
             var criteria = new AgentWinlossCriteria() { 
                 AgentId = agentId,
@@ -89,12 +89,12 @@ namespace Apollo.Age.Reports.Services
                 BalanceUpDay = fromDate
             };
 
-            var agentWinlossList = this.GetData<AgentWinlossModel>(criteria).ToList();
+            var agentWinLossList = this.GetData<AgentWinLossModel>(criteria).ToList();
 
-            return agentWinlossList;
+            return agentWinLossList;
         }
 
-        public List<MemberWinlossModel> GetMemberWinloss(int agentId, DateTime fromDate, DateTime toDate)
+        public List<MemberWinLossModel> GetMemberWinLoss(int agentId, DateTime fromDate, DateTime toDate)
         {
             var criteria = new MemberWinlossCriteria()
             {
@@ -104,9 +104,9 @@ namespace Apollo.Age.Reports.Services
                 BalanceUpDay = fromDate
             };
 
-            var memberWinlossList = this.GetData<MemberWinlossModel>(criteria).ToList();
+            var memberWinLossList = this.GetData<MemberWinLossModel>(criteria).ToList();
 
-            return memberWinlossList;
+            return memberWinLossList;
         }
     }
 }
