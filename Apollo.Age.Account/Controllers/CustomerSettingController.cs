@@ -1,0 +1,297 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="CustomerSettingController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Ricky.Nguyen" date="2013.4.15">Created</change>
+// </history>
+
+
+namespace Apollo.Age.Account.Controllers
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Apollo.Age.Web;
+    using System.Web.Mvc;
+    using Fanex.CustSetting.Service;
+    using Fanex.CustSetting.ViewData;
+    using System.Globalization;
+    using System.Threading;
+using Newtonsoft.Json;
+    using Fanex.CustSetting.Models;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class CustomerSettingController : BaseController
+    {
+        private readonly ICustomerSettingService _customerSettingService;
+
+        #region Ctor
+        public CustomerSettingController()
+            : this(null)
+        {
+        }
+
+        public CustomerSettingController(ICustomerSettingService customerSettingService)
+        {
+            _customerSettingService = customerSettingService ?? new CustomerSettingService();
+        }
+        #endregion
+
+        #region Actions
+
+        public ActionResult GetBetLimit(int targetCustId, int? agentLevel)
+        {
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentLevel, FormSettingType.BetLimit);
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
+            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetBetLimitLanguage(settingContext, betLimits);
+
+            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
+            string jsString = string.Format("var betLimits = {0} ;\n var settingContext = {1} ;",
+                JsonConvert.SerializeObject(betLimits, jsonSetting),
+                JsonConvert.SerializeObject(settingContext, jsonSetting));
+
+            return JavaScript(jsString);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateBetLimit(SettingContext settingContext, IList<BettingLimit> betLimits)
+        {
+            Result result = _customerSettingService.UpdateBettingLimitSetting(settingContext, betLimits);
+            return ReturnResult(result);
+        }
+
+
+        public ActionResult GetCommissionSetting(int targetCustId, int? agentLevel, string ugroup)
+        {
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentLevel, FormSettingType.Commission);
+            CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
+            if (ugroup != null)
+            {
+                commissionSetting.UserGroup = ugroup;
+            }
+
+            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
+            string jsString = string.Format("var commissionSetting = {0} ;\n var settingContext = {1} ;",
+                JsonConvert.SerializeObject(commissionSetting, jsonSetting),
+                JsonConvert.SerializeObject(settingContext, jsonSetting));
+
+            return JavaScript(jsString);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCommissionSetting(SettingContext settingContext, CommissionSetting commissionSetting)
+        {
+            Result result = _customerSettingService.UpdateCommissionSetting(settingContext, commissionSetting);
+            return ReturnResult(result);
+        }
+
+        public ActionResult GetPositionTaking(int targetCustId, int? agentLevel)
+        {
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentLevel, FormSettingType.PositionTaking);
+            PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
+            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetPositionTakingLanguage(positionTakingSetting);
+
+            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
+            string jsString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
+                JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
+                JsonConvert.SerializeObject(settingContext, jsonSetting));
+
+            return JavaScript(jsString);
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
+        {
+            Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
+            return ReturnResult(result);
+        }
+
+        #endregion
+
+        #region Private Methods
+        private int GetRoleFromAgentLevel(int agentLevel)
+        {
+            switch (agentLevel)
+            {
+                case 0:
+                    return (int)Role.Super;
+                case 1:
+                    return (int)Role.MainShareHolder;
+                default:
+                    return (int)Role.Agent;
+            }
+        }
+
+        private void SetBetLimitLanguage(SettingContext settingContext, IList<BettingLimit> betLimits)
+        {
+            foreach (Fanex.CustSetting.ViewData.BettingLimit bettingLimitItem in betLimits)
+            {
+                bettingLimitItem.Name = base.GetResourceData(bettingLimitItem.ResourceKey);
+            }
+        }
+
+        private void SetCurrentLanguage(string language)
+        {
+            CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+            Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+        }
+
+        private JsonSerializerSettings GetJsonSetting()
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.Formatting = Formatting.Indented;
+            return settings;
+        }
+
+        private int GetTargetRoleIdFromAgenLevel(int? agentLevel)
+        {
+            var targetRoleId = 0;
+            if (agentLevel != null)
+            {
+                targetRoleId = this.GetRoleFromAgentLevel(agentLevel.Value);
+            }
+            else
+            {
+                targetRoleId = (int)Role.Member;
+            }
+            return targetRoleId;
+        }
+
+        private void SetPositionTakingLanguage(PositionTakingSetting positionTakingSetting)
+        {
+            // Set language for SportType Name on SportTypes
+            string betTypeName = string.Empty;
+            string bettypeTitle = string.Empty;
+            foreach (Fanex.CustSetting.ViewData.SportType sportTypeItem in positionTakingSetting.SportTypes)
+            {
+                sportTypeItem.Name = this.GetResourceData(sportTypeItem.ResourceKey);
+                foreach (Fanex.CustSetting.ViewData.BetTypeGroup betTypeGroupItem in sportTypeItem.BetTypeGroups)
+                {
+                    foreach (Fanex.CustSetting.ViewData.BetType betTypeItem in betTypeGroupItem.BetTypes)
+                    {
+                        betTypeName = bettypeTitle = base.GetResourceData(betTypeItem.ResourceKey);
+                        betTypeItem.Name = betTypeName;
+                        betTypeItem.Title = bettypeTitle;
+                    }
+                }
+            }
+        }
+
+        private JsonResult ReturnResult(Result result)
+        {
+            if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFAULT)
+            {
+                return Json(new Result(result.ErrCode, result.ErrMsg));
+            }
+            else
+            {
+                return Json(new Result(0, Resources.Lang.updatesuccessfull));
+            }
+        }
+
+        private SettingContext GetCurrentSettingContext(int targetCustId, int? agentLevel, FormSettingType formSettingType)
+        {
+            return new SettingContext
+            {
+                CustId = base.CurrentSession.AgentId,
+                TargetCustId = targetCustId,
+                ActorCustId = base.CurrentSession.AgentId,
+                RoleId = this.GetRoleFromAgentLevel(base.CurrentSession.AgentLevel),
+                TargetRoleId = this.GetTargetRoleIdFromAgenLevel(agentLevel),
+                FormSetting = (int)formSettingType
+            };
+        }
+
+        private string GetLanguageObject()
+        {
+            StringBuilder language = new StringBuilder();
+            language.AppendLine(this.SetValue("MIN_BET", Resources.Lang.lblMinBet));
+            language.AppendLine(this.SetValue("PRESET_POSITION", "Preset Position"));
+            language.AppendLine(this.SetValue("POSITION_TAKING", Resources.Lang.positiontaking));
+            language.AppendLine(this.SetValue("MAX_POSITION", "Max Position"));
+            language.AppendLine(this.SetValue("MAX_BET", Resources.Lang.lblMaxBet));
+            language.AppendLine(this.SetValue("MAX_PER_MATCH", Resources.Lang.lblMaxPerMatch));
+            language.AppendLine(this.SetValue("MAX_PER_BALL", Resources.Lang.maxperball));
+            language.AppendLine(this.SetValue("BETTING_LIMIT", "Bet Limit"));//"Bet Setting"
+            language.AppendLine(this.SetValue("DEAD_BALL", Resources.Lang.lblDeadball));
+            language.AppendLine(this.SetValue("LIVE", Resources.Lang.lblLive));
+            language.AppendLine(this.SetValue("DEAD_BALL_VN", Resources.Lang.lblDeadball));
+            language.AppendLine(this.SetValue("LIVE_VN", Resources.Lang.lblLive));
+            language.AppendLine(this.SetValue("EDIT", Resources.Lang.edit));
+            language.AppendLine(this.SetValue("AGENT", Resources.Lang.agent));
+            language.AppendLine(this.SetValue("INCORRECT_MIN_BET", Resources.Lang.alertIncorrectMinBet));
+            language.AppendLine(this.SetValue("INCORRECT_MAX_BET", Resources.Lang.alertIncorrectMaxBet));
+            language.AppendLine(this.SetValue("INCORRECT_MAX_PER_MATCH", Resources.Lang.alertIncorrectMaxPerMatch));
+            language.AppendLine(this.SetValue("INCORRECT_MAX_PER_BALL", Resources.Lang.alertIncorrectMaxPerBall));
+            language.AppendLine(this.SetValue("MIN_BET_GREATER_THAN_MIN_MIN_BET", string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}")));
+            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MAX_MAX_BET", string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}")));
+            language.AppendLine(this.SetValue("MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET", Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}")));
+            language.AppendLine(this.SetValue("MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET", Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}")));
+            language.AppendLine(this.SetValue("MIN_POSITION", Resources.Lang.labelMinPosition));
+            language.AppendLine(this.SetValue("COPY_FROM", Resources.Lang.copyFrom));
+            language.AppendLine(this.SetValue("OTHER_BET_TYPE_OF", Resources.Lang.otherBetTypesOf));
+            language.AppendLine(this.SetValue("COPY_ALL_HINT", Resources.Lang.copyAllHint));
+            language.AppendLine(this.SetValue("COPY_ALL_OTHER_POSITION_TAKING_FROM", Resources.Lang.copyAllPositionTakingFrom));
+            language.AppendLine(this.SetValue("COPY_ALL_POSITION_TAKING_FROM", Resources.Lang.copyPositionTakingFrom));
+            language.AppendLine(this.SetValue("COPY_ALL_BETTING_LIMIT_FROM", Resources.Lang.copyAllBetSettingFromExcludingNG));
+            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_BET", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet));
+            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall));
+            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_BET_AFTER_COPY", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet));
+            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetValue("MIN_BET_GREATER_THAN_MIN_MIN_BET_AFTER_COPY", string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}")));
+            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MAX_MAX_BET_AFTER_COPY", string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}")));
+            language.AppendLine(this.SetValue("MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET_AFTER_COPY", Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}")));
+
+            // Set language to validation value on form.
+            //IUserSession userSession = UserSession.Current;
+
+            language.AppendLine(this.SetValue("YES", Resources.Lang.lblYes));
+            language.AppendLine(this.SetValue("NO", Resources.Lang.lblNo));
+            //language.AppendLine(this.SetValue("REQUIRE_VALIDATION_CODE", Resources.Lang.errRequireValidationCode));
+            language.AppendLine(this.SetValue("BASKETBALL", Resources.Lang.Basketball));
+            language.AppendLine(this.SetValue("SOCCER", Resources.Lang.soccer));
+            language.AppendLine(this.SetValue("POSITION_SETTING_HEADER", Resources.Lang.lblPositionTaking));
+            language.AppendLine(this.SetValue("BET_SETTING_HEADER", Resources.Lang.lblBetSetting));
+            language.AppendLine(this.SetValue("COMMISSION_SETTING_HEADER", Resources.Lang.commission));
+            language.AppendLine(this.SetValue("GROUP_A", Resources.Lang.lblGroupa));
+            language.AppendLine(this.SetValue("GROUP_B", Resources.Lang.lblGroupb));
+            language.AppendLine(this.SetValue("GROUP_C", Resources.Lang.lblGroupc));
+            language.AppendLine(this.SetValue("GROUP_D", Resources.Lang.lblGroupd));
+            language.AppendLine(this.SetValue("_1X2", Resources.Lang.lbl1x2));
+            language.AppendLine(this.SetValue("OTHERS_COM", Resources.Lang.other));
+            language.AppendLine(this.SetValue("NUMBER_GAME", Resources.Lang.numbergame));
+            language.AppendLine(this.SetValue("ASIAN_HDC_OU_OE", Resources.Lang.lblAsianHDC_OU_OE));
+            language.AppendLine(this.SetValue("MEMBER_GROUP", "Member Group"));
+            language.AppendLine(this.SetValue("COMM_FOR_AGENT", "Comm for Agent"));
+            language.AppendLine(this.SetValue("COMM_FOR_MEMBER", "Comm for Member"));
+            language.AppendLine(this.SetValue("GROUP", Resources.Lang.group));
+
+            language.AppendLine(this.SetValue("AGENT_SHARE", "Agent Share"));
+            language.AppendLine(this.SetValue("MAIN_SHARE_HOLDER_SHARE", "Main Shareholder Share"));
+            language.AppendLine(this.SetValue("SHARE_HOLDER_SHARE", "Shareholder Share"));
+            language.AppendLine(this.SetValue("MAIN_AGENT_SHARE", "Main Agent Share"));
+
+            return language.ToString();
+        }
+
+        private string SetValue(string key, string value)
+        {
+            return string.Format("{0} : \"{1}\",", key, value.Replace("\"", "\\\""));
+        }
+        #endregion
+    }
+}
