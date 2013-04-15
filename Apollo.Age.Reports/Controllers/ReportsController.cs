@@ -21,8 +21,8 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.DTO;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
-    using Apollo.Age.Web;
     using Apollo.Age.Reports.ViewModels;
+    using Apollo.Age.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -69,7 +69,7 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult Outstanding(int? agentId)
         {
             CurrentAgentId = agentId;
-
+            IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
             IEnumerable<OutstandingDTO> models = _reportService.GetData<OutstandingDTO>(new OutstandingCriteria
             {
                 AgentId = CurrentAgentId.Value
@@ -79,7 +79,8 @@ namespace Apollo.Age.Reports.Controllers
             {
                 CurrentAgentId = CurrentAgentId.Value,
                 ListOutStanding = models,
-                DownlinePath = AgentDownlinePath(CurrentAgentId.Value)
+                DownlinePath = modelAgentDownLine,
+                AgentLevel = modelAgentDownLine.LastOrDefault().Level
             });
         }
 
@@ -128,7 +129,8 @@ namespace Apollo.Age.Reports.Controllers
         {
             var agentWinlossList = _winlossService.GetAgentWinloss(this.CurrentSession.AgentId, fromDate, toDate);
 
-            var agentWinlossViewModel = new AgentWinlossViewModel() { 
+            var agentWinlossViewModel = new AgentWinlossViewModel()
+            {
                 FromDate = fromDate,
                 ToDate = toDate,
                 AgentWinLossList = agentWinlossList
@@ -151,6 +153,6 @@ namespace Apollo.Age.Reports.Controllers
             return View(memberWinlossViewModel);
         }
 
-        #endregion
+        #endregion Agent Win Loss Report
     }
 }
