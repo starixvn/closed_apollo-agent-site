@@ -17,9 +17,10 @@ public partial class Index : System.Web.UI.Page
         }
 
         mainPage = DEFAULT_INDEX;
-        string url = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + HttpContext.Current.Request.ApplicationPath;
+        string url = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) +
+            HttpContext.Current.Request.ApplicationPath;
         //baseURL = url.LastIndexOf("/", url.Length - 1, 1) != -1 ? url : url + "/";
-        
+
         // Hot fix for Opera browser (IIS does sniffing user agent)
         Response.ContentType = "text/html";
     }
