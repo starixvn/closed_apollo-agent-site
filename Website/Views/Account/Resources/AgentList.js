@@ -128,10 +128,6 @@ var AGENTLIST = function ( $ ) {
                     AGENTLIST.initAgentList( result );
                     AGENTLIST.loadNavigation();
 
-                    AGENTLIST.bindingViewAgent();
-                    AGENTLIST.bindingViewMember();
-                    AGENTLIST.bindingEdit();
-
                     AGENTLIST.bindingQuickLink();
                     AGENTLIST.bindingSearch();
                 } )
@@ -266,6 +262,10 @@ var AGENTLIST = function ( $ ) {
                 return false;
             }
             $( "#gridId" ).fanexGrid( gridOption );
+
+            AGENTLIST.bindingViewAgent();
+            AGENTLIST.bindingViewMember();
+            AGENTLIST.bindingEdit();
         }
     };
 } ( jQuery );

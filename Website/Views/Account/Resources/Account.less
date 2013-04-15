@@ -8,7 +8,8 @@ html, body {
 /* MENU */
 
 #tab-menu {		
-	#gradient.vertical(#F8F8F8, #EAEAEA);
+	//#gradient.vertical(#F8F8F8, #EAEAEA);
+	#gradient.vertical(#F8F8F8, #E5E5E5);
 	text-align: center;
 	.clearfix;
 	margin-top: 1px;
@@ -33,6 +34,7 @@ html, body {
 			color: #707070;
 			text-transform: uppercase;
 			font-size: .85em;
+			font-weight: bold;
 
 			i {
 				margin: -2px 3px 0 0;
@@ -45,7 +47,6 @@ html, body {
 				// backup red themes
 				//color: @primaryColor;
 				color: @secondColor;
-				font-weight: bold;
 
 				i {
 					// backup red themes
@@ -56,11 +57,8 @@ html, body {
 			}
 		}
 
-		&.active {
-			
-			// backup red themes			
-			//border-top: 2px solid @primaryColor;
-			border-top: 2px solid @gray;
+		&.active {		
+			border-top: 2px solid @secondColor;
 			border-bottom: 1px solid transparent;
 			background-color: #fff;
 						
@@ -236,8 +234,11 @@ html, body {
 				display: none;
 				padding: 5px;
 
-				background-color: #ECE9D8;
-				border: 1px solid darken(#ECE9D8, 20%);
+				// backup red themes
+				//background-color: #ECE9D8;
+				//border: 1px solid darken(#ECE9D8, 20%);
+				background-color: lighten(@primaryColor, 40%);
+				border: 1px solid @headerBorderColor;
 
 				li {
 					display: block;

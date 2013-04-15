@@ -70,12 +70,12 @@ namespace Apollo.Age.Reports.Controllers
         {
             CurrentAgentId = agentId;
             IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
-            IEnumerable<OutstandingDTO> models = _reportService.GetData<OutstandingDTO>(new OutstandingCriteria
+            IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
             {
                 AgentId = CurrentAgentId.Value
             });
 
-            return View(new OutstandingModel()
+            return View(new OutstandingViewModel()
             {
                 CurrentAgentId = CurrentAgentId.Value,
                 ListOutStanding = models,
@@ -89,16 +89,16 @@ namespace Apollo.Age.Reports.Controllers
         {
             CurrentAgentId = agentId;
             // call service to get report data here
-            IEnumerable<OutstandingDTO> models = _reportService.GetData<OutstandingDTO>(new MemberOutstandingCriteria
+            IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new MemberOutstandingCriteria
             {
                 AgentId = CurrentAgentId.Value
             });
 
             // Sum total amount
-            OutstandingDTO totalModels = new OutstandingDTO();
+            OutstandingModel totalModels = new OutstandingModel();
             if (models != null && models.Any())
             {
-                foreach (OutstandingDTO item in models)
+                foreach (OutstandingModel item in models)
                 {
                     totalModels.Outstanding += item.Outstanding;
                     totalModels.ShareAmount += item.ShareAmount;

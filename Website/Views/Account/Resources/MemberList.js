@@ -74,7 +74,7 @@ var MEMBERLIST = function ( $ ) {
                 .done( function ( result ) {
                     MEMBERLIST.AgentId = result.CurrentAgentId;
                     MEMBERLIST.initMemberList( result );
-                    MEMBERLIST.bindingEdit();
+
                     MEMBERLIST.bindingQuickLink();
                     MEMBERLIST.bindingSearch();
                 } )
@@ -204,6 +204,8 @@ var MEMBERLIST = function ( $ ) {
                 return false;
             }
             $( "#gridId" ).fanexGrid( gridOption );
+
+            MEMBERLIST.bindingEdit();
         }
     };
 } ( jQuery );

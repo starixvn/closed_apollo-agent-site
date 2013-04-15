@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="OutStandingViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="OutstandingDownlinePathDTO.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Anders.Le" date="2013.3.29">Created</change>
+//   <change who="Terry.Nguyen" date="2013.4.9">Created</change>
 // </history>
 
 namespace Apollo.Age.Reports.Models
@@ -14,19 +14,21 @@ namespace Apollo.Age.Reports.Models
     using System.Linq;
     using System.Text;
     using Apollo.Age.Entities;
-    using Apollo.Age.Reports.DTO;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class OutstandingModel
     {
-        public int CurrentAgentId { get; set; }
+        public bool IsAgent { get; set; }
 
-        public int AgentLevel { get; set; }
+        public int UserId { get; set; }
 
-        public IEnumerable<OutstandingDTO> ListOutStanding { get; set; }
+        public string UserName { get; set; }
 
-        public IEnumerable<Agent> DownlinePath { get; set; }
+        public decimal Outstanding { get; set; }
+
+        public decimal ShareAmount { get; set; }
+
+        public decimal GameOutstanding { get; set; }
+
+        public decimal GameShareAmount { get; set; }
     }
 }
