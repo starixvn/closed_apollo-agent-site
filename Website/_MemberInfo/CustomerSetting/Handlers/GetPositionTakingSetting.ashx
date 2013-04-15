@@ -24,54 +24,54 @@ namespace Sunplus.Agent.UI._MemberInfo.CustomerSetting.Handlers
             try
             {
                 //// Get Data
-                IUserSession userSession = UserSession.Current;
-                ICustomerSettingService customerService = new CustomerSettingService();
-                string currentUserName = userSession.Username;
-                int custId = userSession.AgentId;
-                int roleId = (int)customerService.GetRoleFromAgentLevel(userSession.AgentLevel);
-                int targetCustId = Converter.ToInt(context.Request["targetCustId"]);
-                int targetRoleId;
-                string agentLevel = context.Request["agentLevel"];
-                if (agentLevel != null)
-                {
-                    targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(agentLevel));
-                }
-                else
-                {
-                    targetRoleId = (int)Role.Member;
-                }
-                SettingContext settingContext = new SettingContext
-                {
-                    CustId = custId,
-                    TargetCustId = targetCustId,
-                    ActorCustId = custId,
-                    RoleId = roleId,
-                    TargetRoleId = targetRoleId,
-                    FormSetting = (int)FormSettingType.PositionTaking,
-                    Language = userSession.Language
-                };
-                PositionTakingSetting positionTakingSetting = customerService.GetPositionTakingSettingForUpdating(settingContext);
+                //IUserSession userSession = UserSession.Current;
+                //ICustomerSettingService customerService = new CustomerSettingService();
+                //string currentUserName = userSession.Username;
+                //int custId = userSession.AgentId;
+                //int roleId = (int)customerService.GetRoleFromAgentLevel(userSession.AgentLevel);
+                //int targetCustId = Converter.ToInt(context.Request["targetCustId"]);
+                //int targetRoleId;
+                //string agentLevel = context.Request["agentLevel"];
+                //if (agentLevel != null)
+                //{
+                //    targetRoleId = (int)customerService.GetRoleFromAgentLevel(Converter.ToInt(agentLevel));
+                //}
+                //else
+                //{
+                //    targetRoleId = (int)Role.Member;
+                //}
+                //SettingContext settingContext = new SettingContext
+                //{
+                //    CustId = custId,
+                //    TargetCustId = targetCustId,
+                //    ActorCustId = custId,
+                //    RoleId = roleId,
+                //    TargetRoleId = targetRoleId,
+                //    FormSetting = (int)FormSettingType.PositionTaking,
+                //    Language = userSession.Language
+                //};
+                //PositionTakingSetting positionTakingSetting = customerService.GetPositionTakingSettingForUpdating(settingContext);
 
-                //// Format Language
-                CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
-                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
-                Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
-                Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
-                SetPTLanguage(settingContext, positionTakingSetting);
+                ////// Format Language
+                //CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+                //Thread.CurrentThread.CurrentUICulture = new CultureInfo(userSession.Language);
+                //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(userSession.Language);
+                //Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+                //Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+                //SetPTLanguage(settingContext, positionTakingSetting);
 
-                //// Format Json
-                JsonSerializerSettings settings = new JsonSerializerSettings();
-                settings.NullValueHandling = NullValueHandling.Ignore;
-                settings.Formatting = Formatting.Indented;
+                ////// Format Json
+                //JsonSerializerSettings settings = new JsonSerializerSettings();
+                //settings.NullValueHandling = NullValueHandling.Ignore;
+                //settings.Formatting = Formatting.Indented;
 
-                //// Response
-                context.Response.Write("var positionTakingSetting = ");
-                context.Response.Write(JsonConvert.SerializeObject(positionTakingSetting, settings));
+                ////// Response
+                //context.Response.Write("var positionTakingSetting = ");
+                //context.Response.Write(JsonConvert.SerializeObject(positionTakingSetting, settings));
 
-                context.Response.Write(";\n");
-                context.Response.Write("var settingContext = ");
-                context.Response.Write(JsonConvert.SerializeObject(settingContext, settings));
+                //context.Response.Write(";\n");
+                //context.Response.Write("var settingContext = ");
+                //context.Response.Write(JsonConvert.SerializeObject(settingContext, settings));
             }
             catch (Exception ex)
             {

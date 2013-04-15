@@ -38,6 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.CustSetting">
+      <HintPath>..\Dependencies\Fanex.CustSetting.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.60, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
@@ -45,6 +48,9 @@
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Dependencies\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Constant.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerSettingController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Criterias\AccountInfoCriteria.cs" />
     <Compile Include="Criterias\AgentDownlineCriteria.cs" />

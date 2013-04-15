@@ -481,6 +481,35 @@ namespace Sunplus.Agent.Model.DL.BetList
             }
         }
 
+        public DataTable Age_BetList_SelTransaction(int loggedId, int agentId, int custId, DateTime dateFrom, DateTime dateTo, DateTime moveBetDay, string statusIds, out DataTable outDataTable)
+        {
+            // Parameters
+            Hashtable parameters = new Hashtable();
+            parameters.Add("loggedid", loggedId);
+            parameters.Add("agentid", agentId);
+            parameters.Add("custid", custId);
+            parameters.Add("fromdate", dateFrom);
+            parameters.Add("todate", dateTo);
+            parameters.Add("statusids", statusIds);
+            parameters.Add("movebetsday", moveBetDay);
+
+            DataSet result = ExecSpDataset("Age_BetList_SelTransaction", parameters);
+
+            // Check exist a DataTable in DataSet
+            if (result.Tables.Count > 0)
+            {
+                outDataTable = result.Tables.Count > 1 ? result.Tables[01] : new DataTable();
+                return result.Tables[0];
+            }
+            else
+            {
+                // Throw DataException and log the SP calling
+                DataException error = new DataException("Age_BetList_SelTransaction", parameters);
+                Logs.Write(error.Message);
+                throw error;
+            }
+        }
+
         public Hashtable Age_BetList_GetId(int loggedId, bool isAgent, string username)
         {
             // Parameters
