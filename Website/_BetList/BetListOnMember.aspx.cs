@@ -6,6 +6,7 @@
 // <history>
 //     <change who="Kaden.Trinh" date="2013.04.10">Create</change>
 //     <change who="Kaden.Trinh" date="2013.04.10">Implement betlist Outstanding</change>
+//     <change who="Kaden.Trinh" date="2013.04.16">Implement betlist Account Info</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -54,7 +55,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             #region INIT
 
-            var tpl = new BetListTransaction_Template();
+            var tpl = new BetListOnMember_Template();
             tpl.title = Resources.Lang.lblBetLists + " - " + username;
             if (pageType != "accountinfo")
             {
@@ -62,7 +63,11 @@ namespace Sunplus.Agent.UI._BetList
             }
             else
             {
-                tpl.Filter.User.Hide();
+                tpl.HiddenFields.username = username;
+                tpl.HiddenFields.custId = custid.ToString();
+                tpl.Filter.valueFromDate = ReportsBO.MoveBetsDate.ToShortDateString();
+                tpl.Filter.valueToDate = dateTo.ToShortDateString();
+                tpl.HiddenFields.pageType = pageType;
             }
             // Render Content
             DataTable betListData = View as DataTable;
@@ -126,10 +131,10 @@ namespace Sunplus.Agent.UI._BetList
                 builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
                 builder.Append("</tr>");
             }
-
+            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
+            tpl.content = builder.GetBetList();
             builder.Append("</tbody></table>");
 
-            tpl.content = builder.GetBetList();
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             writer.Write(tpl);
         }
@@ -164,8 +169,8 @@ namespace Sunplus.Agent.UI._BetList
                 username = Request["username"];
             }
 
-            dateFrom = ReportsBO.MoveBetsDate;
-            dateTo = DateTime.Now;
+            dateFrom = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
+            dateTo = GetDateTimeRequest("toDate", DateTime.Now);
         }
 
         public override object InvokeData(System.Collections.Hashtable p)
