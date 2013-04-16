@@ -16,13 +16,17 @@
 }
 <div id="box_header">
     <div class="filter-submit">
+        @{
+            var maxDate = DateTime.Now;
+            var minDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3);
+        }
          <div class="inline-control">
             @Html.LabelFor(m => m.FromDate, @Resources.Lang.from)
-            @Html.DatePickerFor(m => m.FromDate, DateTime.Now.AddDays(1 - DateTime.Now.Day).AddMonths(-3), DateTime.Now)
+            @Html.DatePickerFor(m => m.FromDate, minDate, maxDate)
          </div> 
          <div class="inline-control">
             @Html.LabelFor(m => m.ToDate, @Resources.Lang.to)
-            @Html.DatePickerFor(m => m.ToDate, DateTime.Now.AddDays(1 - DateTime.Now.Day).AddMonths(-3), DateTime.Now)
+            @Html.DatePickerFor(m => m.ToDate, minDate, maxDate)
          </div>       
          <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
     </div>
