@@ -155,6 +155,13 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(language);
         }
 
+        [HttpPost]
+        public ActionResult UpdateAllSetting(SettingContext settingContext,CommissionSetting commissionSetting,  IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        {
+            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
+            return ReturnResult(result);
+        }
+
         #endregion
 
         #region Private Methods
