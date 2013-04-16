@@ -7,6 +7,23 @@
     <link href="~/Views/Account/Resources/CustomerList.less" rel="stylesheet" type="text/css" />
     @RenderSection("css", required: false)
 </head>
+<!-- Piwik -->
+<script type="text/javascript">
+    var pkBaseURL = ( ( "https:" == document.location.protocol ) ? "https://10.18.200.204:7777/" : "http://10.18.200.204:7777/" );
+    document.write( unescape( "%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E" ) );
+</script>
+<script type="text/javascript">
+    try {
+        var piwikTracker = Piwik.getTracker( pkBaseURL + "piwik.php", 5 );
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+    } catch ( err ) { }
+</script>
+<noscript>
+    <p>
+        <img src="http://10.18.200.204:7777/piwik.php?idsite=5" style="border: 0" alt="" /></p>
+</noscript>
+<!-- End Piwik Tracking Code -->
 <body>
     <div id="page_main">
         <div id="header_main">
@@ -15,7 +32,7 @@
                 @ViewBag.HeaderTitle
                 <span id="currUsername"></span>
             </div>
-            <div class="edit-setting">
+            <div class="edit-setting" id="quickLinkEditSetting">
             </div>
         </div>
         <div id="content_main">
