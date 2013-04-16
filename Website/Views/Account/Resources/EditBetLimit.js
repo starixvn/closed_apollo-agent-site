@@ -58,6 +58,7 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
+        settingContext.IsSimpleMode = true;
         BETLIMIT.init(settingContext, betLimits);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 };

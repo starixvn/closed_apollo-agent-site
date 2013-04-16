@@ -7,7 +7,6 @@ if (typeof jQuery != 'undefined') {
             commissionSettingElement: null,
             commissionSetting: null,
             init: function (settingContext, customerCommission) {
-
                 EDITCOMMISSION.settingContext = settingContext;
                 Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);
                 EDITCOMMISSION.commissionSetting = customerCommission;
@@ -57,6 +56,7 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
+        settingContext.IsSimpleMode = true;
         EDITCOMMISSION.init(settingContext, commissionSetting);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
