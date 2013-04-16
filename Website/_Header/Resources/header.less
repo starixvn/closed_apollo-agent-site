@@ -21,6 +21,11 @@ td {
 	.login-bg {
 		background: @white;
 		border-bottom: 1px solid @headerBorderColor;
+
+		b {
+			line-height: 2em;
+			color: #555;
+		}
 	}
 	.login-info {		
 		float: right;		
@@ -44,10 +49,12 @@ td {
 
 	#text_news_out {		
 		height: 29px;
+		width: 100%;
+		position: relative;
 
 		#text_news {
 			height: 28px;
-			margin-right: 10px;
+			margin-right: 75px;
 			float: inherit;
 			line-height: 27px;
 			text-align: right;
@@ -70,44 +77,65 @@ td {
 				}
 			}
 		}
-	}
-	
-	#button_top {
-		line-height: 18px;
-		padding-left: 5px;
-		margin: 0 19px 0 0;
-		position: relative;
-		cursor: pointer;
-		padding: 3px 0 0;
-		opacity: 0.8;
 
-		a {
-			&.b_top {
-				#gradient .vertical(#fff, #E6E6E6);
-				color: @grayDark;
-				cursor: pointer;
-				text-indent: 2;
-				text-decoration: none;
-				padding: 2px 4px 2px 4px;
+		#button_top {
+			position: absolute;
+			right: 51px;
+			top: 7px;
+			cursor: pointer;
+
+			a {
+				&.b_top {
+					#gradient .vertical(#fff, #E6E6E6);
+					color: @grayDark;
+					cursor: pointer;
+					text-indent: 2;
+					text-decoration: none;
+					padding: 2px 4px 2px 4px;
 	
-				&:hover {
-					background: #F2F2F2;
-				} 
+					&:hover {
+						background: #F2F2F2;
+					} 
+				}
+
+				&#privateMsgLnk {
+					position: absolute;
+					top: -8px;
+					right: -13px;  
+					color: @red;
+					font-weight: bold; 
+					opacity: 1;
+					font-size: 0.7em;
+
+				}
 			}
 
-			&#privateMsgLnk {
-				position: absolute;
-				top: -7px;
-				right: -12px;  
-				color: @red;
-				font-weight: bold; 
-				opacity: 1;
-				// backup red themes
-				//font-size: 0.8em;
-				font-size: 0.7em;
-
+			&:hover {
+				opacity: 0.8;
 			}
 		}
+		
+		.home-page {
+			background: #888;
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			width: 34px;			
+			border: 1px solid #777;		
+			border-width: 0 1px;	
+			
+			.icon-home {
+				cursor: pointer;				
+				position: absolute;
+				right: 9px;
+				top: 6px;
+
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+		}	
 	}	
 }
 
