@@ -77,8 +77,14 @@ var AGENTLIST = function ( $ ) {
         },
         initMenuPopup: function ( els ) {
             var menuEdit = $( "#menuedit" );
+
             var commission = $( "#commission" );
             var betsetting = $( "#betsetting" );
+            var sharesetting = $( "#sharesetting" );
+            els.unbind( 'click' ).bind( 'click', function () {
+                // code here $(this).xxxx
+            } );
+
             els.mouseover( function () {
                 var pos = $( this ).offset();
                 var eWidth = $( this ).outerWidth();
@@ -87,11 +93,14 @@ var AGENTLIST = function ( $ ) {
                 var top = 3 + pos.top + "px";
                 var agentid = $( this ).attr( 'agentid' );
                 var agentlevel = $( this ).attr( 'agentlevel' );
+
                 commission.attr( "agentId", agentid );
                 betsetting.attr( "agentId", agentid );
+                sharesetting.attr( "agentId", agentid );
 
                 commission.attr( "agentlevel", agentlevel );
                 betsetting.attr( "agentlevel", agentlevel );
+                sharesetting.attr( "agentlevel", agentlevel );
 
                 menuEdit.css( {
                     position: 'absolute',
@@ -121,7 +130,7 @@ var AGENTLIST = function ( $ ) {
         },
         bindingEdit: function () {
             AGENTLIST.initMenuPopup( $( "[name='Edit']" ) );
-            AGENTLIST.initMenuPopup( $( ".edit-setting" ) );
+            AGENTLIST.initMenuPopup( $( "#quickLinkEditSetting" ) );
         },
         loadAgentList: function () {
             $.ajax( {
