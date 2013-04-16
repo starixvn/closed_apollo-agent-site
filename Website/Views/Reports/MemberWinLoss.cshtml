@@ -11,11 +11,11 @@
     <div class="filter-submit">
          <div class="inline-control">
             @Html.LabelFor(m => m.FromDate, @Resources.Lang.from)
-            @Html.DatePickerFor(m => m.FromDate)
+            @Html.DatePickerFor(m => m.FromDate, DateTime.Now.AddDays(1 - DateTime.Now.Day).AddMonths(-3), DateTime.Now)
          </div> 
          <div class="inline-control">
             @Html.LabelFor(m => m.ToDate, @Resources.Lang.to)
-            @Html.DatePickerFor(m => m.ToDate)
+            @Html.DatePickerFor(m => m.ToDate, DateTime.Now.AddDays(1 - DateTime.Now.Day).AddMonths(-3), DateTime.Now)
          </div>       
          <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
     </div>
