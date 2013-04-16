@@ -7,6 +7,7 @@
 //   <change who="Anders.Le" date="2013.3.29">Created</change>
 //   <change who="Terry.Nguyen" date="2013.04.07">Implement</change>
 //   <change who="Terry.Nguyen" date="2013.04.09">Get AgentID from BaseController</change>
+//   <change who="Quinn.Vo" date="2013.04.16">Add Action: MatchEntered, AgentWinLoss, MemberWinLoss</change>
 // </history>
 
 namespace Apollo.Age.Reports.Controllers
