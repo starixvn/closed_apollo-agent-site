@@ -108,8 +108,8 @@ var AGENTLIST = function ($) {
                 var url = APOLLO.resolveUrl("CustomerSetting/EditCommissionSetting?custId=" + $this.attr("agentid")
                 + "&agentLevel=" + $this.attr("agentlevel"));
                 APOLLO.openDialogFrame(url, '', {
-                    width: 930,
-                    height: 770,
+                    width: 1015,
+                    height: 300,
                     position: { my: "top+50", at: "center top", of: window },
                     close: function (event, ui) {
                     }
@@ -120,8 +120,8 @@ var AGENTLIST = function ($) {
                 var url = APOLLO.resolveUrl("CustomerSetting/EditBetSetting?custId=" + $this.attr("agentid")
                 + "&agentLevel=" + $this.attr("agentlevel"));
                 APOLLO.openDialogFrame(url, '', {
-                    width: 930,
-                    height: 770,
+                    width: 1015,
+                    height: 600,
                     position: { my: "top+50", at: "center top", of: window },
                     close: function (event, ui) {
                     }
