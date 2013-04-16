@@ -50,43 +50,32 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model != null)
+        @if (Model != null && Model.Any())
         {
-            if (Model.Any())
+            foreach (var item in Model)
             {
-                foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @item.SportTypeName
-                        </td>
-                        <td class="fcnum r">
-                            @item.YesterdayEntered
-                        </td>
-                        <td class="fcnum r">
-                            @item.YesterdayNonEntered
-                        </td>
-                        <td class="fcnum r">
-                            @item.TodayEntered
-                        </td>
-                        <td class="fcnum r">
-                            @item.TodayNonEntered
-                        </td>
-                    </tr>
-                }
-            }
-            else
-            {
-                <tr class="no_info">
-                    <td colspan="5"> @Resources.Lang.noInfo </td>
+                <tr>
+                    <td>
+                        @item.SportTypeName
+                    </td>
+                    <td class="fcnum r">
+                        @item.YesterdayEntered
+                    </td>
+                    <td class="fcnum r">
+                        @item.YesterdayNonEntered
+                    </td>
+                    <td class="fcnum r">
+                        @item.TodayEntered
+                    </td>
+                    <td class="fcnum r">
+                        @item.TodayNonEntered
+                    </td>
                 </tr>
             }
         }
         else
         {
-            <tr class="no_info">
-                <td colspan="5"> @Resources.Lang.noInfo </td>
-            </tr>
+            @RazorHelper.ShowNoInfo(5) 
         }
     </tbody>
 </table>
