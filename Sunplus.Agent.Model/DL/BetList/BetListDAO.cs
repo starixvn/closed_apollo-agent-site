@@ -1122,16 +1122,15 @@ namespace Sunplus.Agent.Model.DL.BetList
 
         # region Agent Viewdetail
 
-        public DataTable Age_BetList_AgentDetail(long transId, long agentId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay, bool showSB, bool showNG)
+        public DataTable Age_BetList_AgentDetail(long transId, long loggedId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay)
         {
             Hashtable parameters = new Hashtable();
             parameters.Add("transid", transId);
-            parameters.Add("agentid", agentId);
+            parameters.Add("loggedid", loggedId);
             parameters.Add("fromdate", fromDate);
             parameters.Add("todate", toDate);
             parameters.Add("movebetsday", moveBetsDay);
-            parameters.Add("showsb", showSB);
-            parameters.Add("showng", showNG);
+
             return ExecSpTable("Age_BetList_AgentDetail", parameters);
         }
 

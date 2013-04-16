@@ -140,15 +140,18 @@ namespace Sunplus.Agent.UI._BetList
         private void BoxFilter()
         {
             var selectedUserType = "0";
+            var maxDate = DateTime.Now;
+
             if (userType)
             {
                 selectedUserType = "1";
             }
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
             tpl.Filter.valueFromDate = ReportsBO.MoveBetsDate.ToShortDateString();
+
             tpl.Filter.valueToDate = dateTo.ToShortDateString();
-            tpl.Filter.valueMinDate = DateTime.Now.AddMonths(-3).ToShortDateString();
-            tpl.Filter.valueMaxDate = DateTime.Now.AddMonths(1).ToShortDateString();
+            tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
+            tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
             tpl.Filter.User.username = username;
             tpl.HiddenFields.pageType = pageType;
         }
@@ -198,7 +201,7 @@ namespace Sunplus.Agent.UI._BetList
                     dtResult = betList.GetAllBetsByDateAndMem(agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
                 }
             }
-            return dtResult != null ? dtResult : new DataTable();
+            return dtResult == null ? new DataTable() : dtResult;
         }
 
         public override void ProcessRequest(ref Hashtable hash)
