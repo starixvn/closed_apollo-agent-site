@@ -36,7 +36,8 @@ if (typeof jQuery != 'undefined') {
                         noty({ text: data.ErrMsg, type: 'success' });
                         EDITCOMMISSION.completeUpdate();
                     } else {
-                        noty({ text: data.ErrMsg, type: 'error' });
+                        noty({ text: APOLLO.generalErrorMsg, type: 'error' });
+                        APOLLO.console.error(data.ErrMsg);
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
@@ -58,6 +59,4 @@ if (typeof jQuery != 'undefined') {
     $(function () {
         EDITCOMMISSION.init(settingContext, commissionSetting);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
-
 }
-
