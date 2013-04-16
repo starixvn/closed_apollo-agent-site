@@ -7,6 +7,7 @@
 //   <change who="Anders.Le" date="2013.3.29">Created</change>
 //   <change who="Terry.Nguyen" date="2013.04.07">Implement</change>
 //   <change who="Terry.Nguyen" date="2013.04.09">Get AgentID from BaseController</change>
+//   <change who="Quinn.Vo" date="2013.04.16">Add Action: MatchEntered, AgentWinLoss, MemberWinLoss</change>
 // </history>
 
 namespace Apollo.Age.Reports.Controllers
@@ -124,32 +125,17 @@ namespace Apollo.Age.Reports.Controllers
             return View(matchEnteredList);
         }
 
-        public ViewResult WinLoss(DateTime fromDate, DateTime toDate)
+        public ViewResult AgentWinLoss(int? id, string name, DateTime fromDate, DateTime toDate)
         {
-            var agentWinLossList = _winLossService.GetAgentWinLoss(this.CurrentSession.AgentId, fromDate, toDate);
-            var modelAgentDownLine = AgentDownlinePath(this.CurrentSession.AgentId).ToList();
+            var agentId = id.HasValue ? id.Value : this.CurrentSession.AgentId;
+            var agentName = string.IsNullOrWhiteSpace(name)? this.CurrentSession.AgentName : name;
+            var isSuper = agentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 
-            var agentWinLossViewModel = new AgentWinLossViewModel()
-            {
-                IsSuper = this.CurrentSession.IsSuper,
-                AgentId = this.CurrentSession.AgentId,
-                AgentName = this.CurrentSession.AgentName,
-                FromDate = fromDate,
-                ToDate = toDate,
-                AgentWinLossList = agentWinLossList,
-                DownlinePath = modelAgentDownLine
-            };
-
-            return View("AgentWinLoss", agentWinLossViewModel);
-        }
-
-        public ViewResult AgentWinLoss(int agentId, string agentName, DateTime fromDate, DateTime toDate)
-        {
             var agentWinLossList = _winLossService.GetAgentWinLoss(agentId, fromDate, toDate);
             var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
 
             var agentWinLossViewModel = new AgentWinLossViewModel() {
-                IsSuper = false,
+                IsSuper = isSuper,
                 AgentId = agentId,
                 AgentName = agentName,
                 FromDate = fromDate,
