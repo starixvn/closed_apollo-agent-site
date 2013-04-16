@@ -13,7 +13,6 @@
             });
 
             $(".navigation").bind('click', function () {
-                alert($(this).html());
                 var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html() + '&fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
                 location.href = url;
             });
