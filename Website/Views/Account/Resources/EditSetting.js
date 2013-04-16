@@ -58,7 +58,7 @@ if (typeof jQuery != 'undefined') {
         }
     } (jQuery);
 
-    $(function () { 
-        
+    $(function () {
+        EDITSETTING.init();
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
