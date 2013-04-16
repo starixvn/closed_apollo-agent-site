@@ -98,9 +98,9 @@ namespace Fanex.Age.UI.Reports
 			protected static string s16 = "<div id=\"box_header\">";
 			public Fanex.Age.UI.Components.DateRangeSelect_Control DateRangeSelect{get {return _DateRangeSelect != null ? _DateRangeSelect : _DateRangeSelect = new Fanex.Age.UI.Components.DateRangeSelect_Control(this,false,DateTime.Today,DateTime.Today);}}
 			protected Fanex.Age.UI.Components.DateRangeSelect_Control _DateRangeSelect;
-			protected static string s17 = "<input type=\"button\" class=\"btn\" id=\"btResultType\" value=\"";
+			protected static string s17 = "<input type=\"button\" class=\"btn\" id=\"btResultType\"value=\"";
 			public string ResultType = "{ResultType}";
-			protected static string s18 = "\" onclick=\"DisableButton(); Result_ToggleResultType();\" /></div>";
+			protected static string s18 = "\" onclick=\"DisableButton(); Result_ToggleResultType();\"style=\"float: left;margin-top: 1px\" /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
