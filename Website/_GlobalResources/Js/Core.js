@@ -9,6 +9,7 @@ if (typeof jQuery != 'undefined') {
                 modal: true,
                 width: 'auto'
             },
+
             openDialog: function (target, title, options) {
                 options = options || {};
                 if (title) options.title = title;
@@ -20,7 +21,9 @@ if (typeof jQuery != 'undefined') {
             openDialogFrame: function (url, title, options) {
                 var frame = $("#apo-dialog-frame");
 
-                if (frame.length == 0) {
+                if (frame.length > 0) {
+                    frame.children('iframe').attr('src', url);
+                } else {
                     frame =
 		            '<div id="apo-dialog-frame">' +
 			            '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
@@ -37,7 +40,7 @@ if (typeof jQuery != 'undefined') {
                 var apoRoot = $('#ApoRoot');
 
                 if (apoRoot.length == 0) {
-                    if (typeof console != undefined) {
+                    if (typeof console != 'undefined') {
                         console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
                     }
                 } else {
@@ -51,11 +54,26 @@ if (typeof jQuery != 'undefined') {
                 }
             },
 
+            generalErrorMsg: 'Your request is temporarily cannot be processed, please try again later!',
             alertGeneralError: function () {
-                alert('Your request is temporarily cannot be processed, please try again later!');
+                alert(generalErrorMsg);
             },
             handleAjaxError: function (jqXHR, textStatus, errorThrown) {
                 APOLLO.alertGeneralError();
+            },
+
+            console: {
+                write: function (msg, consoleFunc) {
+                    if (typeof console != 'undefined') {
+                        consoleFunc(msg);
+                    } else {
+                        alert(msg);
+                    }
+                },
+                log: function (msg) { APOLLO.console.write(msg, console.log) },
+                info: function (msg) { APOLLO.console.write(msg, console.info) },
+                warn: function (msg) { APOLLO.console.write(msg, console.warn) },
+                error: function (msg) { APOLLO.console.write(msg, console.error) }
             },
 
             parseJSON: function (value) {
@@ -100,7 +118,7 @@ if (typeof jQuery != 'undefined') {
                                         month = _limit[0],
                                         day = _limit[1];
 
-                                    return new Date(year, month, day);
+                                    return new Date(year, month - 1, day);
                                 }
 
                                 return null;
@@ -130,7 +148,7 @@ if (typeof jQuery != 'undefined') {
                                 case arrow.up:
                                     shiftDate(1);
                                     break;
-                                //console.info($this.datepicker("getDate"));                            
+                                //console.info($this.datepicker("getDate"));                                                  
                                 case arrow.down:
                                     shiftDate(-1);
                                     break;

@@ -3892,7 +3892,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Roulette</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>Agent PT</value>
+    <value>Agent Share</value>
   </data>
   <data name="masterPT" xml:space="preserve">
     <value>Master PT</value>
