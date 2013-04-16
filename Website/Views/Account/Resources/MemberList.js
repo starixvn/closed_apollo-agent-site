@@ -1,124 +1,135 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 
-var MEMBERLIST = function ($) {
+var MEMBERLIST = function ( $ ) {
     return {
         AgentId: null,
         init: function () {
-            MEMBERLIST.AgentId = $("#gridId").attr("agentid");
-            $("#currUsername").html($("#gridId").attr("username"));
+            MEMBERLIST.AgentId = $( "#gridId" ).attr( "agentid" );
+            $( "#currUsername" ).html( $( "#gridId" ).attr( "username" ) );
             MEMBERLIST.loadMemberList();
             MEMBERLIST.bindingNavigation();
         },
         bindingNavigation: function () {
-            $("[name='navigation']").unbind('click').bind('click', function () {
-                location.href = APOLLO.resolveUrl("Account/Agentlist?agentid=" + $(this).attr('agentid'));
+            $( "[name='navigation']" ).unbind( 'click' ).bind( 'click', function () {
+                location.href = APOLLO.resolveUrl( "Account/Agentlist?agentid=" + $( this ).attr( 'agentid' ) );
                 return false;
-            });
+            } );
         },
         bindingQuickLink: function () {
-            $("#quickLinkAgentList").unbind('click').bind('click', function () {
-                location.href = APOLLO.resolveUrl("Account/AgentList?agentid=" + MEMBERLIST.AgentId);
-            });
+            $( "#quickLinkAgentList" ).unbind( 'click' ).bind( 'click', function () {
+                location.href = APOLLO.resolveUrl( "Account/AgentList?agentid=" + MEMBERLIST.AgentId );
+            } );
         },
         bindingSearch: function () {
-            $("#Search").unbind('click').bind('click', function () {
-                MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
-            });
+            $( "#Search" ).unbind( 'click' ).bind( 'click', function () {
+                MEMBERLIST.loadMemberList( MEMBERLIST.AgentId );
+            } );
         },
-        initMenuPopup: function (els) {
-            var menuEdit = $("#menuedit");
-            var commission = $("#commission");
-            var betsetting = $("#betsetting");
-            els.mouseover(function () {
-                var pos = $(this).offset();
-                var eWidth = $(this).outerWidth();
+        initMenuPopup: function ( els ) {
+            var menuEdit = $( "#menuedit" );
+            var commission = $( "#commission" );
+            var betsetting = $( "#betsetting" );
+            var sharesetting = $( "#sharesetting" );
+            els.unbind( 'click' ).bind( 'click', function () {
+                //code here
+            } );
+            els.mouseover( function () {
+                var pos = $( this ).offset();
+                var eWidth = $( this ).outerWidth();
                 var mWidth = menuEdit.outerWidth();
-                var left = (pos.left + eWidth) + "px";
+                var left = ( pos.left + eWidth ) + "px";
                 var top = 3 + pos.top + "px";
-                commission.attr("custid", $(this).attr('custid'));
+                commission.attr( "custid", $( this ).attr( 'custid' ) );
                 commission.attr( "username", $( this ).attr( 'username' ) );
                 commission.attr( "usergroup", $( this ).attr( 'usergroup' ) );
 
-                betsetting.attr("custid", $(this).attr('custid'));
+                betsetting.attr( "custid", $( this ).attr( 'custid' ) );
                 betsetting.attr( "username", $( this ).attr( 'username' ) );
                 betsetting.attr( "usergroup", $( this ).attr( 'usergroup' ) );
 
-                menuEdit.css({
+                sharesetting.attr( "custid", $( this ).attr( 'custid' ) );
+                sharesetting.attr( "username", $( this ).attr( 'username' ) );
+                sharesetting.attr( "usergroup", $( this ).attr( 'usergroup' ) );
+
+                menuEdit.css( {
                     position: 'absolute',
                     zIndex: 5000,
                     left: left,
                     top: top
-                });
+                } );
                 menuEdit.show();
-            }).mouseout(function () {
+            } ).mouseout( function () {
                 menuEdit.hide();
-            });
-            commission.unbind('click').bind('click', function () {
-                var $this = $(this);
-                var url = APOLLO.resolveUrl("CustomerSetting/EditCommissionSetting?custId=" + $this.attr("custid")
-                + "&userName" + $this.attr("username")
-                + "&userGroup=" + $this.attr("usergroup"));
-                APOLLO.openDialogFrame(url, '', {
+            } );
+            commission.unbind( 'click' ).bind( 'click', function () {
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditCommissionSetting?custId=" + $this.attr( "custid" )
+                + "&userName" + $this.attr( "username" )
+                + "&userGroup=" + $this.attr( "usergroup" ) );
+                APOLLO.openDialogFrame( url, '', {
                     width: 1015,
                     height: 300,
                     position: { my: "top+50", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function ( event, ui ) {
                     }
-                });
+                } );
 
                 // Code here
-            });
-            betsetting.unbind('click').bind('click', function () {
-                var $this = $(this);
-                var url = APOLLO.resolveUrl("CustomerSetting/EditBetSetting?custId=" + $this.attr("custid")
-                + "&userName" + $this.attr("username"));
-                APOLLO.openDialogFrame(url, '', {
+            } );
+            betsetting.unbind( 'click' ).bind( 'click', function () {
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditBetSetting?custId=" + $this.attr( "custid" )
+                + "&userName" + $this.attr( "username" ) );
+                APOLLO.openDialogFrame( url, '', {
                     width: 1015,
                     height: 600,
                     position: { my: "top+50", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function ( event, ui ) {
                     }
-                });
-            });
-            menuEdit.mouseover(function () {
-                $(this).show();
-            }).mouseout(function () {
-                $(this).hide();
-            });
+                } );
+            } );
+            sharesetting.unbind( 'click' ).bind( 'click', function () {
+            } );
+
+            menuEdit.mouseover( function () {
+                $( this ).show();
+            } ).mouseout( function () {
+                $( this ).hide();
+            } );
         },
         bindingEdit: function () {
-            MEMBERLIST.initMenuPopup($("[name='Edit']"));
-            MEMBERLIST.initMenuPopup($(".edit-setting"));
+            MEMBERLIST.initMenuPopup( $( "[name='Edit']" ) );
+            MEMBERLIST.initMenuPopup( $( ".edit-setting" ) );
         },
         loadMemberList: function () {
-            $.ajax({
+            $.ajax( {
                 type: "POST",
-                url: APOLLO.resolveUrl("Account/GetMemberList"),
+                url: APOLLO.resolveUrl( "Account/GetMemberList" ),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: $("#txtUserName").val() == BASELANGUAGES.EnterUsername ? "" : $("#txtUserName").val() }),
+                data: JSON.stringify( { AgentId: MEMBERLIST.AgentId, Username: $( "#txtUserName" ).val() == BASELANGUAGES.EnterUsername ? "" : $( "#txtUserName" ).val() } ),
                 timeout: 120000
-            })
-                .done(function (result) {
+            } )
+                .done( function ( result ) {
                     MEMBERLIST.AgentId = result.CurrentAgentId;
-                    MEMBERLIST.initMemberList(result);
+                    MEMBERLIST.initMemberList( result );
 
                     MEMBERLIST.bindingQuickLink();
                     MEMBERLIST.bindingSearch();
-                })
-                .fail(function (event, jqXHR, ajaxSettings) {
-                    APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
-                });
+                } )
+                .fail( function ( event, jqXHR, ajaxSettings ) {
+                    APOLLO.handleAjaxError( event, jqXHR, ajaxSettings );
+                } );
         },
-        initMemberList: function (memberList) {
+        initMemberList: function ( memberList ) {
             var bodyData = [];
 
             var rowLength = memberList.ListData.length;
-            var counter = (memberList.CurrentPage * memberList.ItemsPerPage);
-            for (var i = 0; i < rowLength; i++) {
+            var counter = ( memberList.CurrentPage * memberList.ItemsPerPage );
+            for ( var i = 0; i < rowLength; i++ ) {
                 var current = memberList.ListData[i];
                 counter++;
-                bodyData.push({
+                bodyData.push( {
                     Columns:
                         [
                             { Name: "No", Value: counter },
@@ -139,7 +150,7 @@ var MEMBERLIST = function ($) {
                             { Name: "HandicapLive", Value: current.HandicapLive },
                             { Name: "OverUnderLive", Value: current.OverUnderLive }
                         ]
-                });
+                } );
             }
 
             var gridOption = {
@@ -163,14 +174,14 @@ var MEMBERLIST = function ($) {
                 columns: [
                          { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
-                             CustomCellRender: function (cell) {
+                             CustomCellRender: function ( cell ) {
                                  return "<a href='#' class='edit-setting' name='Edit' usergroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " custid=" + cell.Value.CustId + " ></a>";
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                          { HeaderText: LANGUAGES.Status, Width: 50, Name: "Status", HeaderAlign: "center", CellAlign: "center",
-                             CustomCellRender: function (cell) {
-                                 return (cell.Value.Status == 1 ? LANGUAGES.Active : (cell.Value.Status == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked));
+                             CustomCellRender: function ( cell ) {
+                                 return ( cell.Value.Status == 1 ? LANGUAGES.Active : ( cell.Value.Status == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked ) );
                              }
                          },
                          { HeaderText: LANGUAGES.Group, Width: 100, Name: "UserGroup", HeaderAlign: "center", CellAlign: "center" },
@@ -209,34 +220,34 @@ var MEMBERLIST = function ($) {
                 showColumnsShowHide: false,
                 columnsNeedHide: [8, 12]
             };
-            function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
-                $.ajax({
+            function ReRenderAfterPaged( page_index, itemsPerPage, jq ) {
+                $.ajax( {
                     type: "POST",
-                    url: APOLLO.resolveUrl("Account/GetMemberList"),
+                    url: APOLLO.resolveUrl( "Account/GetMemberList" ),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: JSON.stringify({ agentId: MEMBERLIST.AgentId, pageIndex: page_index, pageSize: itemsPerPage }),
+                    data: JSON.stringify( { agentId: MEMBERLIST.AgentId, pageIndex: page_index, pageSize: itemsPerPage } ),
                     timeout: 120000
-                })
-                    .done(function (result) {
+                } )
+                    .done( function ( result ) {
                         gridOption.pagerOption.itemsPerPage = itemsPerPage;
                         gridOption.pagerOption.currentPage = page_index;
                         gridOption.pagerOption.totalItem = result.TotalItem;
                         MEMBERLIST.AgentId = result.CurrentAgentId;
 
-                        MEMBERLIST.initMemberList(result);
-                    })
-                    .fail(function (event, jqXHR, ajaxSettings) {
-                        APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
-                    });
+                        MEMBERLIST.initMemberList( result );
+                    } )
+                    .fail( function ( event, jqXHR, ajaxSettings ) {
+                        APOLLO.handleAjaxError( event, jqXHR, ajaxSettings );
+                    } );
                 return false;
             }
-            $("#gridId").fanexGrid(gridOption);
+            $( "#gridId" ).fanexGrid( gridOption );
 
             MEMBERLIST.bindingEdit();
         }
     };
-} (jQuery);
+} ( jQuery );
 
 $( document ).ready( function () {
     MEMBERLIST.init();

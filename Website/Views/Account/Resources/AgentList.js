@@ -136,6 +136,8 @@ var AGENTLIST = function ( $ ) {
                     }
                 } );
             } );
+            sharesetting.unbind( 'click' ).bind( 'click', function () {
+            } );
             menuEdit.mouseover( function () {
                 $( this ).show();
             } ).mouseout( function () {
