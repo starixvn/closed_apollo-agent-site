@@ -9,6 +9,7 @@ if (typeof jQuery != 'undefined') {
                 modal: true,
                 width: 'auto'
             },
+
             openDialog: function (target, title, options) {
                 options = options || {};
                 if (title) options.title = title;
