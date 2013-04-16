@@ -29,7 +29,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            return (ToDate >= FromDate && ToDate >= BalanceUpDay);
+            return (ToDate >= FromDate);
         }
     }
 }
