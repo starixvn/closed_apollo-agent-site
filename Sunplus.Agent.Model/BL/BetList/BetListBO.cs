@@ -762,12 +762,11 @@ namespace Sunplus.Agent.Model.BL.BetList
 
         # region Agent Viewdetail
 
-        public DataTable GetAgentPTComm(long transId)
+        public DataTable GetAgentPTComm(long transId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay)
         {
             BetListDAO dao = new BetListDAO();
             DataTable ptComm = new DataTable();
-            //ptComm = dao.Acc_BetList_AgentDetail(transId, agentId, fromDate, toDate, moveBetsDay, showSB, showNG);
-            ptComm = dao.Age_BetList_TotalBets_AgentDetail(transId, CurrentSession.CustId);
+            ptComm = dao.Age_BetList_AgentDetail(transId, CurrentSession.CustId, fromDate, toDate, moveBetsDay);
             return ptComm;
         }
 

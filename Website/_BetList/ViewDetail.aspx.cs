@@ -67,7 +67,6 @@ namespace Sunplus.Agent.UI._BetList
             content.Append(betlistOpenTag);
 
             content.Append(header);
-            
 
             ITicketHelper ticketHelper = new TicketHelper();
             BetListHTMLFactory factory = new BetListHTMLFactory();
@@ -75,11 +74,8 @@ namespace Sunplus.Agent.UI._BetList
             ITicket totalTicket = new Ticket();
             if (tickets.Count > 0)
             {
-                
             }
-            
 
-            
             if (tickets.Count > 0)
             {
                 content.Append("<tbody>");
@@ -130,7 +126,6 @@ namespace Sunplus.Agent.UI._BetList
                 content.Append(builder.GetBetList());
                 content.Append("</table>");
             }
-            
 
             tpl.content = content.ToString();
             writer.Write(tpl);
@@ -158,7 +153,7 @@ namespace Sunplus.Agent.UI._BetList
             try
             {
                 BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
-                return bo.GetAgentPTComm(transID);
+                return bo.GetAgentPTComm(transID, fromDate, toDate, ReportsBO.MoveBetsDate);
             }
             catch (Exception ex)
             {
