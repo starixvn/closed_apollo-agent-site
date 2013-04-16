@@ -90,8 +90,8 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         public static BetListHTMLBuilder AddAgentComm(this BetListHTMLBuilder factory, ITicket ticket, List<ITicketData> ticketData, bool hideDetail, string openTag, string closeTag)
         {
             IAgentComm agentCommBuilder = CreateAgentCommBuilder(ticket.BetTypeId);
-            string agentPT = agentCommBuilder.Render(ticket, ticketData, hideDetail);
-            factory.Append(string.Join(null, new string[] { openTag, agentPT, closeTag }));
+            string agentCom = agentCommBuilder.Render(ticket, ticketData, hideDetail);
+            factory.Append(string.Join(null, new string[] { openTag, agentCom, closeTag }));
 
             return factory;
         }
