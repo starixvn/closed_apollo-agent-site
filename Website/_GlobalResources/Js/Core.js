@@ -20,7 +20,7 @@ if (typeof jQuery != 'undefined') {
             openDialogFrame: function(url, title, options) {
                 var frame =
 		            '<div>' +
-			            '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>' +
+			            '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
 		            '</div>';
 
                 return APOLLO.openDialog(frame, title, options);
