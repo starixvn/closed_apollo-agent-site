@@ -30,19 +30,29 @@ if (typeof jQuery != 'undefined') {
                         data: JSON.stringify({
                             settingContext: BETLIMIT.settingContext,
                             betLimits: BETLIMIT.betLimitElement.Save()
-                        }),
-                        success: function (data) {
-                            ageMsg.ShowMsgs(data.ErrMsg, 1);
-                        },
-                        error: function () {
-                            ageMsg.ShowMsgs(data.ErrMsg);
+                        })
+                    }).done(function (data) {
+                        if (data.ErrCode == 0) {
+                            noty({ text: data.ErrMsg, type: 'success' });
+                            BETLIMIT.completeUpdate();
+                        } else {
+                            noty({ text: data.ErrMsg, type: 'error' });
                         }
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
                     });
 
                 }
             },
             completeUpdate: function (result) {
-                
+                setTimeout(function () {
+                    if (typeof (parent.MEMBERLIST) != 'undefined') {
+                        parent.MEMBERLIST.loadMemberList();
+                    }
+                    else if (typeof (parent.AGENTLIST) != 'undefined') {
+                        parent.AGENTLIST.loadAgentList();
+                    }
+                }, 3000);
             }
         };
     } (jQuery);

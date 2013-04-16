@@ -43,7 +43,14 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             completeUpdate: function (result) {
-                
+                setTimeout(function () {
+                    if (typeof (parent.MEMBERLIST) != 'undefined') {
+                        parent.MEMBERLIST.loadMemberList();
+                    }
+                    else if (typeof (parent.AGENTLIST) != 'undefined') {
+                        parent.AGENTLIST.loadAgentList();
+                    }
+                }, 3000);
             }
         }
     } (jQuery);
