@@ -3,15 +3,23 @@
 var MEMBERLIST = function ( $ ) {
     return {
         AgentId: null,
+        AgentLevel: null,
         init: function () {
             MEMBERLIST.AgentId = $( "#gridId" ).attr( "agentid" );
+            MEMBERLIST.AgentLevel = $( "#gridId" ).attr( "agentlevel" );
             $( "#currUsername" ).html( $( "#gridId" ).attr( "username" ) );
             MEMBERLIST.loadMemberList();
             MEMBERLIST.bindingNavigation();
+            MEMBERLIST.bindingQuickiLinkEditSetting( MEMBERLIST.AgentId, MEMBERLIST.AgentLevel );
+        },
+        bindingQuickiLinkEditSetting: function ( agentId, agentLevel ) {
+            var $quickLinkEditSetting = $( "#quickLinkEditSetting" );
+            $quickLinkEditSetting.attr( "agentid", agentId );
+            $quickLinkEditSetting.attr( "agentlevel", agentLevel );
         },
         bindingNavigation: function () {
             $( "[name='navigation']" ).unbind( 'click' ).bind( 'click', function () {
-                location.href = APOLLO.resolveUrl( "Account/Agentlist?agentid=" + $( this ).attr( 'agentid' ) );
+                location.href = APOLLO.resolveUrl( "Account/Agentlist?agentid=" + MEMBERLIST.AgentId );
                 return false;
             } );
         },
@@ -25,24 +33,23 @@ var MEMBERLIST = function ( $ ) {
                 MEMBERLIST.loadMemberList( MEMBERLIST.AgentId );
             } );
         },
-        initMenuPopup: function ( els ) {
+        initMenuPopup: function ( els, isEditAgent ) {
             var menuEdit = $( "#menuedit" );
             var commission = $( "#commission" );
             var betsetting = $( "#betsetting" );
             var sharesetting = $( "#sharesetting" );
             els.unbind( 'click' ).bind( 'click', function () {
-                var $this = $(this);
-                var url = APOLLO.resolveUrl("CustomerSetting/EditAllSetting?custId=" + $this.attr("custid")
-                + "&userName=" + $this.attr("username")
-                + "&userGroup=" + $this.attr("usergroup"));
-                APOLLO.openDialogFrame(url, '', {
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditAllSetting?custId=" + $this.attr( "custid" )
+                                + "&userName=" + $this.attr( "username" )
+                                + "&userGroup=" + $this.attr( "usergroup" ) );
+                APOLLO.openDialogFrame( url, '', {
                     width: 1020,
                     height: 800,
                     position: { my: "top+50", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function ( event, ui ) {
                     }
-                });
-
+                } );
             } );
             els.mouseover( function () {
                 var pos = $( this ).offset();
@@ -50,18 +57,36 @@ var MEMBERLIST = function ( $ ) {
                 var mWidth = menuEdit.outerWidth();
                 var left = ( pos.left + eWidth ) + "px";
                 var top = 3 + pos.top + "px";
-                commission.attr( "custid", $( this ).attr( 'custid' ) );
-                commission.attr( "username", $( this ).attr( 'username' ) );
-                commission.attr( "usergroup", $( this ).attr( 'usergroup' ) );
+                if ( isEditAgent ) {
+                    var agentId = $( this ).attr( 'agentid' );
+                    var agentLevel = $( this ).attr( 'agentlevel' );
 
-                betsetting.attr( "custid", $( this ).attr( 'custid' ) );
-                betsetting.attr( "username", $( this ).attr( 'username' ) );
-                betsetting.attr( "usergroup", $( this ).attr( 'usergroup' ) );
+                    commission.attr( "agentid", agentId );
+                    commission.attr( "agentlevel", agentLevel );
 
-                sharesetting.attr( "custid", $( this ).attr( 'custid' ) );
-                sharesetting.attr( "username", $( this ).attr( 'username' ) );
-                sharesetting.attr( "usergroup", $( this ).attr( 'usergroup' ) );
+                    betsetting.attr( "agentid", agentId );
+                    betsetting.attr( "agentlevel", agentLevel );
 
+                    sharesetting.attr( "agentid", agentId );
+                    sharesetting.attr( "agentlevel", agentLevel );
+                }
+                else {
+                    var custId = $( this ).attr( 'custid' );
+                    var username = $( this ).attr( 'username' );
+                    var usergroup = $( this ).attr( 'usergroup' );
+
+                    commission.attr( "custid", custId );
+                    commission.attr( "username", username );
+                    commission.attr( "usergroup", usergroup );
+
+                    betsetting.attr( "custid", custId );
+                    betsetting.attr( "username", username );
+                    betsetting.attr( "usergroup", usergroup );
+
+                    sharesetting.attr( "custid", custId );
+                    sharesetting.attr( "username", username );
+                    sharesetting.attr( "usergroup", usergroup );
+                }
                 menuEdit.css( {
                     position: 'absolute',
                     zIndex: 5000,
@@ -119,8 +144,8 @@ var MEMBERLIST = function ( $ ) {
             } );
         },
         bindingEdit: function () {
-            MEMBERLIST.initMenuPopup( $( "[name='Edit']" ) );
-            MEMBERLIST.initMenuPopup( $( ".edit-setting" ) );
+            MEMBERLIST.initMenuPopup( $( "[name='Edit']" ), false );
+            MEMBERLIST.initMenuPopup( $( "#quickLinkEditSetting" ), true );
         },
         loadMemberList: function () {
             $.ajax( {
