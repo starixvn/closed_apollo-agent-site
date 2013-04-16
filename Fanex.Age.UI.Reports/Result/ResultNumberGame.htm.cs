@@ -13,23 +13,23 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class ResultNumberGame_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt\"><tr class=\"RptHeader\"><td style=\"width: 90px\" columnname=\"kickofftime\">";
+			protected static string s0 = "<table class=\"tblRpt\"><thead><tr><th style=\"width: 90px\" columnname=\"kickofftime\">";
 			protected static string s1{get{return Resources.Lang.kickofftime;}}
-			protected static string s2 = "</td><td style=\"width: 75px\">";
+			protected static string s2 = "</th><th style=\"width: 75px\">";
 			protected static string s3{get{return Resources.Lang.match;}}
-			protected static string s4 = "</td><td style=\"width: 235px;\">";
+			protected static string s4 = "</th><th style=\"width: 235px;\">";
 			protected static string s5{get{return Resources.Lang.result;}}
-			protected static string s6 = "</td><td style=\"width: 60px;\">";
+			protected static string s6 = "</th><th style=\"width: 60px;\">";
 			protected static string s7{get{return Resources.Lang.warrior;}}
-			protected static string s8 = "</td><td style=\"width: 40px;\">";
+			protected static string s8 = "</th><th style=\"width: 40px;\">";
 			protected static string s9{get{return Resources.Lang.lblOEFT;}}
-			protected static string s10 = "</td><td style=\"width: 40px;\">";
+			protected static string s10 = "</th><th style=\"width: 40px;\">";
 			protected static string s11{get{return Resources.Lang.lbl1stBall;}}
-			protected static string s12 = "</td><td style=\"width: 50px;\">";
+			protected static string s12 = "</th><th style=\"width: 50px;\">";
 			protected static string s13{get{return Resources.Lang.lastball;}}
-			protected static string s14 = "</td><td style=\"width: 60px;\">";
+			protected static string s14 = "</th><th style=\"width: 60px;\">";
 			protected static string s15{get{return Resources.Lang.status;}}
-			protected static string s16 = "</td></tr>";
+			protected static string s16 = "</th></tr></thead>";
 			public ResultNumberGame_Content_Block Content = new ResultNumberGame_Content_Block();
 			protected static string s17 = "</table>";
 			public override void ToString(ref StringBuilder bd)

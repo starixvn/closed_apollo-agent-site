@@ -43,7 +43,8 @@ namespace Sunplus.Agent.UI._BetList
         private int custid;
         private string username = string.Empty;
         private DateTime dateFrom, dateTo;
-        private string statusIds = "0^1"; // running, waiting
+        private string statusIds = string.Empty;
+        private string pageType = string.Empty;
 
         #endregion Variables
 
@@ -53,9 +54,16 @@ namespace Sunplus.Agent.UI._BetList
         {
             #region INIT
 
-            var tpl = new OutstandingDetail_Template();
+            var tpl = new BetListTransaction_Template();
             tpl.title = Resources.Lang.lblBetLists + " - " + username;
-
+            if (pageType != "accountinfo")
+            {
+                tpl.Filter.Hide();
+            }
+            else
+            {
+                tpl.Filter.User.Hide();
+            }
             // Render Content
             DataTable betListData = View as DataTable;
             IList<ITicket> tickets = TicketTransformer.Transform(betListData);
@@ -129,6 +137,26 @@ namespace Sunplus.Agent.UI._BetList
         public override void ProcessRequest(ref System.Collections.Hashtable hash)
         {
             base.ProcessRequest(ref hash);
+            pageType = Request["type"];
+
+            if (pageType == "accountinfo")
+            {
+                statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}^{6}^{7}",
+                   (int)Apollo.Age.Enumerations.BetStatus.Void,
+                   (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                   (int)Apollo.Age.Enumerations.BetStatus.Running,
+                   (int)Apollo.Age.Enumerations.BetStatus.Waiting,
+                   (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                   (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                   (int)Apollo.Age.Enumerations.BetStatus.Won,
+                   (int)Apollo.Age.Enumerations.BetStatus.Lose);
+            }
+            else
+            {
+                statusIds = string.Format("{0}^{1}",
+                   (int)Apollo.Age.Enumerations.BetStatus.Running,
+                   (int)Apollo.Age.Enumerations.BetStatus.Waiting);
+            }
 
             if (Request["custid"] != null && Request["username"] != null)
             {

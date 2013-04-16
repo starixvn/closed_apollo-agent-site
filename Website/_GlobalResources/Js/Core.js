@@ -17,6 +17,14 @@ if (typeof jQuery != 'undefined') {
 
                 return target.dialog($.extend({}, APOLLO.dialogOpt, options));
             },
+            openDialogFrame: function(url, title, options) {
+                var frame =
+		            '<div>' +
+			            '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>' +
+		            '</div>';
+
+                return APOLLO.openDialog(frame, title, options);
+            },
             closeDialog: function (target) {
                 target.dialog("close");
             },

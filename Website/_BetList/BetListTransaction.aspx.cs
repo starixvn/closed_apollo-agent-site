@@ -43,7 +43,7 @@ namespace Sunplus.Agent.UI._BetList
         private DataTable outDataTable = null;
 
         private string title = string.Empty;
-        private CancelBetList_Template tpl = new CancelBetList_Template();
+        private BetListTransaction_Template tpl = new BetListTransaction_Template();
         private IBetListCmd command = null;
 
         private string username = string.Empty;
