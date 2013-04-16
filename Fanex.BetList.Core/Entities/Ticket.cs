@@ -58,7 +58,7 @@ namespace Fanex.BetList.Core.Entities
 
         public decimal Winlost { get; set; }
 
-        public decimal AgentWinlost { get; set; }
+        public decimal AWinlost { get; set; }
 
         public decimal MasterWinlost { get; set; }
 
@@ -82,7 +82,7 @@ namespace Fanex.BetList.Core.Entities
 
         public decimal SuperPositionTaking { get; set; }
 
-        public decimal AgentDiscount { get; set; }
+        public decimal ADiscount { get; set; }
 
         public decimal MasterDiscount { get; set; }
 
