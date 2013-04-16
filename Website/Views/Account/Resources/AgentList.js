@@ -113,14 +113,28 @@ var AGENTLIST = function ( $ ) {
                 menuEdit.hide();
             } );
             commission.unbind( 'click' ).bind( 'click', function () {
-                console.log( $( this ).attr( "agentid" ) );
-                console.log( $( this ).attr( "agentlevel" ) );
-                // Code here
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditCommissionSetting?custId=" + $this.attr( "agentid" )
+                + "&agentLevel=" + $this.attr( "agentlevel" ) );
+                APOLLO.openDialogFrame( url, '', {
+                    width: 1015,
+                    height: 300,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function ( event, ui ) {
+                    }
+                } );
             } );
             betsetting.unbind( 'click' ).bind( 'click', function () {
-                console.log( $( this ).attr( "agentid" ) );
-                console.log( $( this ).attr( "agentlevel" ) );
-                // Code here
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditBetSetting?custId=" + $this.attr( "agentid" )
+                + "&agentLevel=" + $this.attr( "agentlevel" ) );
+                APOLLO.openDialogFrame( url, '', {
+                    width: 1015,
+                    height: 600,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function ( event, ui ) {
+                    }
+                } );
             } );
             menuEdit.mouseover( function () {
                 $( this ).show();
