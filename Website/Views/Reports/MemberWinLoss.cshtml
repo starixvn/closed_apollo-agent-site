@@ -69,114 +69,107 @@
             </th>
         </tr>
     </thead>
-    @if (Model.MemberWinLossList != null)
+    @if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
     {
-        if (Model.MemberWinLossList.Any())
-        {
-            var list = Model.MemberWinLossList;
-            decimal totalTurnover = 0;
-            decimal totalActual = 0;
-            decimal totalMWinLoss = 0;
-            decimal totalMComm = 0;
-            decimal totalMTotal = 0;
-            decimal totalAWinLoss = 0;
-            decimal totalAComm = 0;
-            decimal totalATotal = 0;
-            decimal totalUpline = 0;
+        var list = Model.MemberWinLossList;
+        decimal totalTurnover = 0;
+        decimal totalActual = 0;
+        decimal totalMWinLoss = 0;
+        decimal totalMComm = 0;
+        decimal totalMTotal = 0;
+        decimal totalAWinLoss = 0;
+        decimal totalAComm = 0;
+        decimal totalATotal = 0;
+        decimal totalUpline = 0;
             
-            <tbody>
-            @foreach (var item in list)
-            {
-                totalTurnover += item.Turnover;
-                totalActual += item.ActualTO;
-                totalMWinLoss += item.WinLoss;
-                totalMComm += item.MemComm;
-                totalMTotal += item.MemTotal;
-                totalAWinLoss += item.AWinLoss;
-                totalAComm += item.AComm;
-                totalATotal += item.ATotal;
-                totalUpline += item.UplineTotal;
-                
-                <tr>
-                    <td>
-                        <a href="#">
-                            @item.MemberName
-                        </a>
-                    </td>
-                    <td class="r">
-                        @item.SoccerShare
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(item.Turnover, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(item.ActualTO, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(item.WinLoss, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(item.MemComm, 2, true)
-                    </td>
-                    <td class="r bold">
-                        @RazorHelper.FormatNumber(item.MemTotal, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(item.AWinLoss, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(item.AComm, 2, true)
-                    </td>
-                    <td class="r bold">
-                        @RazorHelper.FormatNumber(item.ATotal, 2, true)
-                    </td>
-                    <td class="r bold">
-                        @RazorHelper.FormatNumber(item.UplineTotal, 2, true)
-                    </td>
-                </tr>
-            }
-            </tbody>
-            <tfoot>
-                <tr class="total">
-                    <td> 
-                        @Resources.Lang.total 
-                    </td>
-                    <td>
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(totalTurnover, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(totalActual, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(totalMWinLoss, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(totalMComm, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(totalMTotal, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(totalAWinLoss, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(totalAComm, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(totalATotal, 2, true)
-                    </td>
-                    <td class="r">
-                        @RazorHelper.FormatNumber(totalUpline, 2, true)
-                    </td>
-                </tr>
-            </tfoot>
-        }
-        else
+        <tbody>
+        @foreach (var item in list)
         {
-            @RazorHelper.ShowNoInfo(11)
+            totalTurnover += item.Turnover;
+            totalActual += item.ActualTO;
+            totalMWinLoss += item.WinLoss;
+            totalMComm += item.MemComm;
+            totalMTotal += item.MemTotal;
+            totalAWinLoss += item.AWinLoss;
+            totalAComm += item.AComm;
+            totalATotal += item.ATotal;
+            totalUpline += item.UplineTotal;
+                
+            <tr>
+                <td>
+                    <a href="#">
+                        @item.MemberName
+                    </a>
+                </td>
+                <td class="r">
+                    @item.SoccerShare
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(item.Turnover, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(item.ActualTO, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(item.WinLoss, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(item.MemComm, 2, true)
+                </td>
+                <td class="r bold">
+                    @RazorHelper.FormatNumber(item.MemTotal, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(item.AWinLoss, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(item.AComm, 2, true)
+                </td>
+                <td class="r bold">
+                    @RazorHelper.FormatNumber(item.ATotal, 2, true)
+                </td>
+                <td class="r bold">
+                    @RazorHelper.FormatNumber(item.UplineTotal, 2, true)
+                </td>
+            </tr>
         }
+        </tbody>
+        <tfoot>
+            <tr class="total">
+                <td> 
+                    @Resources.Lang.total 
+                </td>
+                <td>
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(totalTurnover, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(totalActual, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(totalMWinLoss, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(totalMComm, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(totalMTotal, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(totalAWinLoss, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(totalAComm, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(totalATotal, 2, true)
+                </td>
+                <td class="r">
+                    @RazorHelper.FormatNumber(totalUpline, 2, true)
+                </td>
+            </tr>
+        </tfoot>
     }
     else
     {
