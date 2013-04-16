@@ -253,7 +253,10 @@ table {
 			&.no-result {
 				background: @white;
 				color: @grayDark;
-				border: 1px solid @tableRptBorderColor;
+
+				td {
+					border-color: @tableRptBorderColor;
+				}
 			}
 		}
 	}

@@ -18,12 +18,14 @@ if (typeof jQuery != 'undefined') {
                 return target.dialog($.extend({}, APOLLO.dialogOpt, options));
             },
             openDialogFrame: function (url, title, options) {
-                //var frame = $("#dialog-frame");
+                var frame = $("#apo-dialog-frame");
 
-                var frame =
-		            '<div id="dialog-frame">' +
+                if (frame.length == 0) {
+                    frame =
+		            '<div id="apo-dialog-frame">' +
 			            '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
 		            '</div>';
+                }
 
                 return APOLLO.openDialog(frame, title, options);
             },
@@ -128,7 +130,7 @@ if (typeof jQuery != 'undefined') {
                                 case arrow.up:
                                     shiftDate(1);
                                     break;
-                                //console.info($this.datepicker("getDate"));                           
+                                //console.info($this.datepicker("getDate"));                            
                                 case arrow.down:
                                     shiftDate(-1);
                                     break;
