@@ -101,3 +101,29 @@
         }
     </div>
 }
+@helper Navigation(List<Apollo.Age.Entities.Agent> Model, bool linkLastItem)
+    {
+        if (linkLastItem)
+        {
+    <div id="divnavigation" class="boxNavigation">
+        @foreach (Apollo.Age.Entities.Agent item in Model)
+        {
+            var last = Model.LastOrDefault();
+            if (last != null && !last.Equals(item))
+            {
+            <a href="javascript:void(0);" name="navigation" class="navigation" agentid="@item.Id">@item.Username</a>
+            <img alt="" height="12" width="12" src="~/_MemberInfo/CustomerList/Resources/Images/breadcrumb.gif" />
+            }
+            else
+            {
+            <a href="javascript:void(0);" name="navigation" class="navigation" agentid="@item.Id">@item.Username</a>
+            }
+        }
+    </div>
+        }
+        else
+        {
+            RazorHelper.Navigation(Model);
+
+        }
+}
