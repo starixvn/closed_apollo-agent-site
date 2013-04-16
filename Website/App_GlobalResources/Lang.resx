@@ -4266,10 +4266,13 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="stopped" xml:space="preserve">
     <value>Stopped</value>
   </data>
- <data name="GrossTotal" xml:space="preserve">
+  <data name="GrossTotal" xml:space="preserve">
     <value>Gross Total</value>
   </data>
   <data name="UplineTotal" xml:space="preserve">
     <value>Upline Total</value>
+  </data>
+  <data name="sharesetting" xml:space="preserve">
+    <value>Share Setting</value>
   </data>
 </root>

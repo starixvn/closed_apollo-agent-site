@@ -13,17 +13,17 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class ResultLiveCasino_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt\"><tr class=\"RptHeader\"><td style=\"width: 90px\" columnname=\"kickofftime\">";
+			protected static string s0 = "<table class=\"tblRpt\"><thead><tr><th style=\"width: 90px\" columnname=\"kickofftime\">";
 			protected static string s1{get{return Resources.Lang.kickofftime;}}
-			protected static string s2 = "</td><td>";
+			protected static string s2 = "</th><th>";
 			protected static string s3{get{return Resources.Lang.gameTypeAndTableNumber;}}
-			protected static string s4 = "</td><td style=\"width: 70px;\">";
+			protected static string s4 = "</th><th style=\"width: 70px;\">";
 			protected static string s5{get{return Resources.Lang.finalscore;}}
-			protected static string s6 = "</td><td style=\"width: 200px;\">";
+			protected static string s6 = "</th><th style=\"width: 200px;\">";
 			protected static string s7{get{return Resources.Lang.result;}}
-			protected static string s8 = "</td><td style=\"width: 65px;\">";
+			protected static string s8 = "</th><th style=\"width: 65px;\">";
 			protected static string s9{get{return Resources.Lang.status;}}
-			protected static string s10 = "</td></tr>";
+			protected static string s10 = "</th></tr></thead>";
 			public ResultLiveCasino_RowData_Block RowData = new ResultLiveCasino_RowData_Block();
 			public ResultLiveCasino_LimitNotFound_Block LimitNotFound = new ResultLiveCasino_LimitNotFound_Block();
 			protected static string s11 = "</table>";

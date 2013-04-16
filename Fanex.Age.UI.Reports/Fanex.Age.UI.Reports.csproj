@@ -67,7 +67,7 @@
   <ItemGroup>
     <Content Include="BetList\BetListSections.htm" />
     <Content Include="BetList\BetSummary.htm" />
-    <Content Include="BetList\CancelBetList.htm" />
+    <Content Include="BetList\BetListTransaction.htm" />
     <Content Include="BetList\DailyStatement.htm" />
     <Content Include="BetList\OutstandingDetail.htm" />
     <Content Include="CasinoWinloss\CSWinlossAgent.htm" />
@@ -153,8 +153,8 @@
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
     <Compile Include="BetList\BetListSections.htm.cs" />
+    <Compile Include="BetList\BetListTransaction.htm.cs" />
     <Compile Include="BetList\BetSummary.htm.cs" />
-    <Compile Include="BetList\CancelBetList.htm.cs" />
     <Compile Include="BetList\DailyStatement.htm.cs" />
     <Compile Include="BetList\OutstandingDetail.htm.cs" />
     <Compile Include="CasinoWinloss\CSWinlossAgent.htm.cs" />

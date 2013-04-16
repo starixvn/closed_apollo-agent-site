@@ -13,19 +13,19 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class ResultNoInfoHR_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt\"><tr class=\"RptHeader\"><td style=\"white-space: nowrap; width: 90px\">";
+			protected static string s0 = "<table class=\"tblRpt\"><thead><tr><th style=\"white-space: nowrap; width: 90px\">";
 			protected static string s1{get{return Resources.Lang.lblRace;}}
-			protected static string s2 = "</td><td style=\"white-space: nowrap;\">";
+			protected static string s2 = "</th><th style=\"white-space: nowrap;\">";
 			protected static string s3{get{return Resources.Lang.lblStartTime;}}
-			protected static string s4 = "</td><td style=\"width: 60px;\">";
+			protected static string s4 = "</th><th style=\"width: 60px;\">";
 			protected static string s5{get{return Resources.Lang.Place;}}
-			protected static string s6 = "</td><td style=\"width: 60px;\">";
+			protected static string s6 = "</th><th style=\"width: 60px;\">";
 			protected static string s7{get{return Resources.Lang.lblHorseNo;}}
-			protected static string s8 = "</td><td style=\"width: 60px;\">";
+			protected static string s8 = "</th><th style=\"width: 60px;\">";
 			protected static string s9{get{return Resources.Lang.lblHorseName;}}
-			protected static string s10 = "</td><td style=\"white-space: nowrap; width: 70px;\">";
+			protected static string s10 = "</th><th style=\"white-space: nowrap; width: 70px;\">";
 			protected static string s11{get{return Resources.Lang.status;}}
-			protected static string s12 = "</td></tr><tr class=\"no_info\"><td colspan=\"6\">";
+			protected static string s12 = "</th></tr></thead><tr class=\"no_info\"><td colspan=\"6\">";
 			protected static string s13{get{return Resources.Lang.noInfo;}}
 			protected static string s14 = "</td></tr></table>";
 			public override void ToString(ref StringBuilder bd)

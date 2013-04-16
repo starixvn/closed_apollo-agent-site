@@ -24,8 +24,8 @@ var AGENTLIST = function ( $ ) {
                         if ( i == rowLength - 1 ) {
                             template += "<span>" + result[i].Username + "</span>";
                             $( "#currUsername" ).html( result[i].Username );
-                            $( ".edit-setting" ).attr( "agentid", result[i].Id );
-                            $( ".edit-setting" ).attr( "agentlevel", result[i].Level );
+                            $( "#quickLinkEditSetting" ).attr( "agentid", result[i].Id );
+                            $( "#quickLinkEditSetting" ).attr( "agentlevel", result[i].Level );
                         }
                         else {
                             template += "<a href='#' name='navigation' agentid='" + result[i].Id + "' >" + result[i].Username + "</a>";
@@ -77,8 +77,14 @@ var AGENTLIST = function ( $ ) {
         },
         initMenuPopup: function ( els ) {
             var menuEdit = $( "#menuedit" );
+
             var commission = $( "#commission" );
             var betsetting = $( "#betsetting" );
+            var sharesetting = $( "#sharesetting" );
+            els.unbind( 'click' ).bind( 'click', function () {
+                // code here $(this).xxxx
+            } );
+
             els.mouseover( function () {
                 var pos = $( this ).offset();
                 var eWidth = $( this ).outerWidth();
@@ -87,11 +93,14 @@ var AGENTLIST = function ( $ ) {
                 var top = 3 + pos.top + "px";
                 var agentid = $( this ).attr( 'agentid' );
                 var agentlevel = $( this ).attr( 'agentlevel' );
+
                 commission.attr( "agentId", agentid );
                 betsetting.attr( "agentId", agentid );
+                sharesetting.attr( "agentId", agentid );
 
                 commission.attr( "agentlevel", agentlevel );
                 betsetting.attr( "agentlevel", agentlevel );
+                sharesetting.attr( "agentlevel", agentlevel );
 
                 menuEdit.css( {
                     position: 'absolute',
@@ -104,14 +113,30 @@ var AGENTLIST = function ( $ ) {
                 menuEdit.hide();
             } );
             commission.unbind( 'click' ).bind( 'click', function () {
-                console.log( $( this ).attr( "agentid" ) );
-                console.log( $( this ).attr( "agentlevel" ) );
-                // Code here
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditCommissionSetting?custId=" + $this.attr( "agentid" )
+                + "&agentLevel=" + $this.attr( "agentlevel" ) );
+                APOLLO.openDialogFrame( url, '', {
+                    width: 1015,
+                    height: 300,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function ( event, ui ) {
+                    }
+                } );
             } );
             betsetting.unbind( 'click' ).bind( 'click', function () {
-                console.log( $( this ).attr( "agentid" ) );
-                console.log( $( this ).attr( "agentlevel" ) );
-                // Code here
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditBetSetting?custId=" + $this.attr( "agentid" )
+                + "&agentLevel=" + $this.attr( "agentlevel" ) );
+                APOLLO.openDialogFrame( url, '', {
+                    width: 1015,
+                    height: 600,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function ( event, ui ) {
+                    }
+                } );
+            } );
+            sharesetting.unbind( 'click' ).bind( 'click', function () {
             } );
             menuEdit.mouseover( function () {
                 $( this ).show();
@@ -121,7 +146,7 @@ var AGENTLIST = function ( $ ) {
         },
         bindingEdit: function () {
             AGENTLIST.initMenuPopup( $( "[name='Edit']" ) );
-            AGENTLIST.initMenuPopup( $( ".edit-setting" ) );
+            AGENTLIST.initMenuPopup( $( "#quickLinkEditSetting" ) );
         },
         loadAgentList: function () {
             $.ajax( {
@@ -159,7 +184,7 @@ var AGENTLIST = function ( $ ) {
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
-                            { Name: "Status", Value: current },
+                            { Name: "Status", Value: current.Status },
                             { Name: "NumberOfAgent", Value: current },
                             { Name: "NumberOfMember", Value: current },
                             { Name: "GroupA", Value: current.GroupA },

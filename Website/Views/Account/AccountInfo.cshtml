@@ -80,7 +80,7 @@
             }
             else
             {
-            <div class="errMsg">@Resources.Lang.usernamenotexisted</div> 
+            <div class="errMsg">@Resources.Lang.usernamenotexisted</div>
             }
         }
     </div>
@@ -91,21 +91,21 @@
         <div class="clearfix">
             @if (!Model.IsMember && Model.HasAgentDownline)
             {
-                <a class="lnk-agent-list" 
+                <a class="lnk-agent-list"
                         target="main" href="~/Account/AgentList?agentid=@Model.CustId">
                     @Resources.Lang.lblAgentList
                 </a>
             }
             @if (!Model.IsMember && Model.HasMemberDownline)
             {
-                <a class="lnk-member-list" 
+                <a class="lnk-member-list"
                         target="main" href="~/Account/MemberList?agentid=@Model.CustId">
                     @Resources.Lang.lblPlayerList
                 </a>
             }
             @if (Model.IsMember)
             {
-                <a class="lnk-betlist" target="main" href="~/Reports/MatchEntered">
+                <a class="lnk-betlist" target="main" href="~/_BetList/BetListOnMember.aspx?custId=@Model.CustId&username=@Model.Username&type=accountinfo">
                     @Resources.Lang.BetList
                 </a>
             }
@@ -131,17 +131,17 @@
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
                             @Resources.Lang.lblEditSB
                         </a>
-        
+
                         <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
                             @Resources.Lang.lbleditbetsetting
                         </a>
-        
+
                         <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
                             @Resources.Lang.lbleditcomm
                         </a>
-        
+
                         <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
                             @Resources.Lang.lblEditPositionTalking
@@ -153,17 +153,17 @@
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
                             @Resources.Lang.lblEditSB
                         </a>
-        
+
                         <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
                             @Resources.Lang.lbleditbetsetting
                         </a>
-        
+
                         <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
                             @Resources.Lang.lbleditcomm
                         </a>
-        
+
                         <a class="lnk-setting" target="main"
                                 href="~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
                             @Resources.Lang.lblEditPositionTalking
@@ -195,27 +195,27 @@
     <script src="~/Views/Account/Resources/AccountInfo.js" type="text/javascript"></script>
 }
 @helper SearchBox()
-{
-    if (Model == null)
     {
-        @Html.DropDownList("IsMember", new List<SelectListItem> {
+        if (Model == null)
+        {
+    @Html.DropDownList("IsMember", new List<SelectListItem> {
             new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
             new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
         }, new { id = "ddlIsMember" })
 
-        <input maxlength="50" id="txtUsername" type="text"
+    <input maxlength="50" id="txtUsername" type="text"
             value="@Resources.Lang.enterusername" name="userName" />
-    }
-    else
-    {
-        @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+        }
+        else
+        {
+    @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
             new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
             new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
         }, new { id = "ddlIsMember" })
 
-        <input maxlength="50" id="txtUsername" type="text"
+    <input maxlength="50" id="txtUsername" type="text"
             value="@Model.Username" name="userName" />
-    }
+        }
     <button type="button" class="btn search-button">
         <i class="icon-search"></i>
     </button>

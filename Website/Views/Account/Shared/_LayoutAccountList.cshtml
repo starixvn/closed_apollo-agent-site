@@ -7,15 +7,32 @@
     <link href="~/Views/Account/Resources/CustomerList.less" rel="stylesheet" type="text/css" />
     @RenderSection("css", required: false)
 </head>
+<!-- Piwik -->
+<script type="text/javascript">
+    var pkBaseURL = ( ( "https:" == document.location.protocol ) ? "https://10.18.200.204:7777/" : "http://10.18.200.204:7777/" );
+    document.write( unescape( "%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E" ) );
+</script>
+<script type="text/javascript">
+    try {
+        var piwikTracker = Piwik.getTracker( pkBaseURL + "piwik.php", 5 );
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+    } catch ( err ) { }
+</script>
+<noscript>
+    <p>
+        <img src="http://10.18.200.204:7777/piwik.php?idsite=5" style="border: 0" alt="" /></p>
+</noscript>
+<!-- End Piwik Tracking Code -->
 <body>
     <div id="page_main">
         <div id="header_main">
             <div class="header-title">
-                <span class="upper">@Resources.Lang.lblCustomerInfomation</span>
+                @*<span class="upper">@Resources.Lang.lblCustomerInfomation</span>*@
                 @ViewBag.HeaderTitle
                 <span id="currUsername"></span>
             </div>
-            <div class="edit-setting">
+            <div class="edit-setting" id="quickLinkEditSetting">
             </div>
         </div>
         <div id="content_main">
@@ -30,6 +47,7 @@
             <ul id="menuedit" class="edit-menu">
                 <li><a href="#" id="commission">@Resources.Lang.commission</a></li>
                 <li><a href="#" id="betsetting">@Resources.Lang.lblBetSetting</a></li>
+                <li><a href="#" id="sharesetting">@Resources.Lang.sharesetting</a></li>
             </ul>
         </div>
     </div>
@@ -42,6 +60,7 @@
         } ();
     </script>
     <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
     <script src="~/Views/Account/Resources/AccountList.js" type="text/javascript"></script>

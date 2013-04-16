@@ -10,7 +10,7 @@ namespace Fanex.Age.UI.Reports
 	using BetList;
 	namespace BetList
 	{
-		public class CancelBetList_Template : Template
+		public class BetListTransaction_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title>";
 			protected static string s1{get{return Resources.Lang.voidandreject;}}
@@ -27,10 +27,10 @@ namespace Fanex.Age.UI.Reports
 			protected static string s11 = "\" title=\"";
 			protected static string s12{get{return Resources.Lang.exporttoexcel;}}
 			protected static string s13 = "\"class=\"hand\" /></div></div><div id=\"content_main\">";
-			public CancelBetList_Filter_Block Filter = new CancelBetList_Filter_Block();
+			public BetListTransaction_Filter_Block Filter = new BetListTransaction_Filter_Block();
 			public string content = "{content}";
 			protected static string s14 = "<div id=\"dialog-details\"></div></div>";
-			public CancelBetList_HiddenFields_Block HiddenFields = new CancelBetList_HiddenFields_Block();
+			public BetListTransaction_HiddenFields_Block HiddenFields = new BetListTransaction_HiddenFields_Block();
 			protected static string s15 = "<input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
 			public string pageType = "{pageType}";
 			protected static string s16 = "\" /></form></div></body><script src=\"";
@@ -94,7 +94,7 @@ namespace Fanex.Age.UI.Reports
 
 		}
 
-		public class CancelBetList_Filter_Block: Block
+		public class BetListTransaction_Filter_Block: Block
 		{
 			protected static string s29 = "<div id=\"box_header\"><div class=\"date-range\"><div class=\"date\"><label>";
 			protected static string s30{get{return Resources.Lang.from;}}
@@ -113,7 +113,7 @@ namespace Fanex.Age.UI.Reports
 			protected static string s38 = "\" maxdate=\"";
 			protected string t1_valueMaxDate;
 			protected static string s39 = "\" /></div>";
-			public CancelBetList_Filter_User_Block User = new CancelBetList_Filter_User_Block();
+			public BetListTransaction_Filter_User_Block User = new BetListTransaction_Filter_User_Block();
 			protected static string s40 = "<div><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"Submit\"></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -144,7 +144,7 @@ namespace Fanex.Age.UI.Reports
 			}
 		}
 
-		public class CancelBetList_Filter_User_Block: Block
+		public class BetListTransaction_Filter_User_Block: Block
 		{
 			protected static string s41 = "<div class=\"date\">";
 			public string option_user = "{option_user}";
@@ -166,7 +166,7 @@ namespace Fanex.Age.UI.Reports
 			}
 		}
 
-		public class CancelBetList_HiddenFields_Block: Block
+		public class BetListTransaction_HiddenFields_Block: Block
 		{
 			protected static string s44 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";

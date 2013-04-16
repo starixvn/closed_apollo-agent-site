@@ -13,17 +13,17 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class ResultHorseRacing_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt\"><tr class=\"RptHeader\"><td style=\"width: 90px; white-space: nowrap;\" colspan=\"3\">";
+			protected static string s0 = "<table class=\"tblRpt\"><thead><tr><th style=\"width: 90px; white-space: nowrap;\" colspan=\"3\">";
 			protected static string s1{get{return Resources.Lang.lblRace;}}
-			protected static string s2 = "</td><td style=\"width: 120px; white-space: nowrap;\">";
+			protected static string s2 = "</th><th style=\"width: 120px; white-space: nowrap;\">";
 			protected static string s3{get{return Resources.Lang.result;}}
-			protected static string s4 = "</td><td style=\"width: 60px;\">";
+			protected static string s4 = "</th><th style=\"width: 60px;\">";
 			protected static string s5{get{return Resources.Lang.WinHR;}}
-			protected static string s6 = "</td><td style=\"width: 60px;\">";
+			protected static string s6 = "</th><th style=\"width: 60px;\">";
 			protected static string s7{get{return Resources.Lang.Place;}}
-			protected static string s8 = "</td><td class=\"nowrap\">";
+			protected static string s8 = "</th><th class=\"nowrap\">";
 			protected static string s9{get{return Resources.Lang.status;}}
-			protected static string s10 = "</td></tr>";
+			protected static string s10 = "</th></tr></thead>";
 			public ResultHorseRacing_RowData_Block RowData = new ResultHorseRacing_RowData_Block();
 			public ResultHorseRacing_LimitNotFound_Block LimitNotFound = new ResultHorseRacing_LimitNotFound_Block();
 			protected static string s11 = "</table>";

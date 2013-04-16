@@ -29,6 +29,10 @@ var MEMBERLIST = function ( $ ) {
             var menuEdit = $( "#menuedit" );
             var commission = $( "#commission" );
             var betsetting = $( "#betsetting" );
+            var sharesetting = $( "#sharesetting" );
+            els.unbind( 'click' ).bind( 'click', function () {
+                //code here
+            } );
             els.mouseover( function () {
                 var pos = $( this ).offset();
                 var eWidth = $( this ).outerWidth();
@@ -36,7 +40,16 @@ var MEMBERLIST = function ( $ ) {
                 var left = ( pos.left + eWidth ) + "px";
                 var top = 3 + pos.top + "px";
                 commission.attr( "custid", $( this ).attr( 'custid' ) );
+                commission.attr( "username", $( this ).attr( 'username' ) );
+                commission.attr( "usergroup", $( this ).attr( 'usergroup' ) );
+
                 betsetting.attr( "custid", $( this ).attr( 'custid' ) );
+                betsetting.attr( "username", $( this ).attr( 'username' ) );
+                betsetting.attr( "usergroup", $( this ).attr( 'usergroup' ) );
+
+                sharesetting.attr( "custid", $( this ).attr( 'custid' ) );
+                sharesetting.attr( "username", $( this ).attr( 'username' ) );
+                sharesetting.attr( "usergroup", $( this ).attr( 'usergroup' ) );
 
                 menuEdit.css( {
                     position: 'absolute',
@@ -49,13 +62,35 @@ var MEMBERLIST = function ( $ ) {
                 menuEdit.hide();
             } );
             commission.unbind( 'click' ).bind( 'click', function () {
-                console.log( $( this ).attr( "custid" ) );
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditCommissionSetting?custId=" + $this.attr( "custid" )
+                + "&userName" + $this.attr( "username" )
+                + "&userGroup=" + $this.attr( "usergroup" ) );
+                APOLLO.openDialogFrame( url, '', {
+                    width: 1015,
+                    height: 300,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function ( event, ui ) {
+                    }
+                } );
+
                 // Code here
             } );
             betsetting.unbind( 'click' ).bind( 'click', function () {
-                console.log( $( this ).attr( "custid" ) );
-                // Code here
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditBetSetting?custId=" + $this.attr( "custid" )
+                + "&userName" + $this.attr( "username" ) );
+                APOLLO.openDialogFrame( url, '', {
+                    width: 1015,
+                    height: 600,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function ( event, ui ) {
+                    }
+                } );
             } );
+            sharesetting.unbind( 'click' ).bind( 'click', function () {
+            } );
+
             menuEdit.mouseover( function () {
                 $( this ).show();
             } ).mouseout( function () {
@@ -140,7 +175,7 @@ var MEMBERLIST = function ( $ ) {
                          { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function ( cell ) {
-                                 return "<a href='#' class='edit-setting' name='Edit' custid=" + cell.Value.CustId + " ></a>";
+                                 return "<a href='#' class='edit-setting' name='Edit' usergroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " custid=" + cell.Value.CustId + " ></a>";
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
@@ -149,7 +184,7 @@ var MEMBERLIST = function ( $ ) {
                                  return ( cell.Value.Status == 1 ? LANGUAGES.Active : ( cell.Value.Status == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked ) );
                              }
                          },
-                         { HeaderText: LANGUAGES.Group, Width: 100, Name: "UserGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.Group, Width: 100, Name: "UserGroup", HeaderAlign: "center", CellAlign: "center" },
 
                          { HeaderText: LANGUAGES.Group, Width: 100, Name: "AgentGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.OneXTwo, Width: 100, Name: "AgentOneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
