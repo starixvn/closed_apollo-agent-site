@@ -9,6 +9,7 @@ if (typeof jQuery != 'undefined') {
                 modal: true,
                 width: 'auto'
             },
+
             openDialog: function (target, title, options) {
                 options = options || {};
                 if (title) options.title = title;
@@ -100,7 +101,7 @@ if (typeof jQuery != 'undefined') {
                                         month = _limit[0],
                                         day = _limit[1];
 
-                                    return new Date(year, month, day);
+                                    return new Date(year, month - 1, day);
                                 }
 
                                 return null;
@@ -130,7 +131,7 @@ if (typeof jQuery != 'undefined') {
                                 case arrow.up:
                                     shiftDate(1);
                                     break;
-                                //console.info($this.datepicker("getDate"));                            
+                                //console.info($this.datepicker("getDate"));                             
                                 case arrow.down:
                                     shiftDate(-1);
                                     break;

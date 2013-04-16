@@ -155,6 +155,22 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(language);
         }
 
+        public ActionResult EditAllSetting(int custId, string userName, int? agentLevel, string userGroup)
+        {
+            ViewBag.CustId = custId;
+            ViewBag.UserName = userName;
+            ViewBag.AgentLevel = agentLevel;
+            ViewBag.UserGroup = userGroup;
+            return View("~/Views/Account/EditSetting.cshtml");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateAllSetting(SettingContext settingContext,CommissionSetting commissionSetting,  IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        {
+            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
+            return ReturnResult(result);
+        }
+
         #endregion
 
         #region Private Methods

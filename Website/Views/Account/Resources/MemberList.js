@@ -31,7 +31,18 @@ var MEMBERLIST = function ( $ ) {
             var betsetting = $( "#betsetting" );
             var sharesetting = $( "#sharesetting" );
             els.unbind( 'click' ).bind( 'click', function () {
-                //code here
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CustomerSetting/EditAllSetting?custId=" + $this.attr("custid")
+                + "&userName=" + $this.attr("username")
+                + "&userGroup=" + $this.attr("usergroup"));
+                APOLLO.openDialogFrame(url, '', {
+                    width: 1020,
+                    height: 800,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function (event, ui) {
+                    }
+                });
+
             } );
             els.mouseover( function () {
                 var pos = $( this ).offset();
