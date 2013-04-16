@@ -29,6 +29,10 @@ var MEMBERLIST = function ( $ ) {
             var menuEdit = $( "#menuedit" );
             var commission = $( "#commission" );
             var betsetting = $( "#betsetting" );
+            var sharesetting = $( "#sharesetting" );
+            els.unbind( 'click' ).bind( 'click', function () {
+                //code here
+            } );
             els.mouseover( function () {
                 var pos = $( this ).offset();
                 var eWidth = $( this ).outerWidth();
@@ -43,6 +47,10 @@ var MEMBERLIST = function ( $ ) {
                 betsetting.attr( "username", $( this ).attr( 'username' ) );
                 betsetting.attr( "usergroup", $( this ).attr( 'usergroup' ) );
 
+                sharesetting.attr( "custid", $( this ).attr( 'custid' ) );
+                sharesetting.attr( "username", $( this ).attr( 'username' ) );
+                sharesetting.attr( "usergroup", $( this ).attr( 'usergroup' ) );
+
                 menuEdit.css( {
                     position: 'absolute',
                     zIndex: 5000,
@@ -54,17 +62,45 @@ var MEMBERLIST = function ( $ ) {
                 menuEdit.hide();
             } );
             commission.unbind( 'click' ).bind( 'click', function () {
-                console.log( $( this ).attr( "custid" ) );
-                console.log( $( this ).attr( "username" ) );
-                console.log( $( this ).attr( "usergroup" ) );
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditCommissionSetting?custId=" + $this.attr( "custid" )
+                + "&userName" + $this.attr( "username" )
+                + "&userGroup=" + $this.attr( "usergroup" ) );
+                APOLLO.openDialogFrame( url, '', {
+                    width: 1015,
+                    height: 300,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function ( event, ui ) {
+                    }
+                } );
+
                 // Code here
             } );
             betsetting.unbind( 'click' ).bind( 'click', function () {
-                console.log( $( this ).attr( "custid" ) );
-                console.log( $( this ).attr( "username" ) );
-                console.log( $( this ).attr( "usergroup" ) );
-                // Code here
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditBetSetting?custId=" + $this.attr( "custid" )
+                + "&userName" + $this.attr( "username" ) );
+                APOLLO.openDialogFrame( url, '', {
+                    width: 1015,
+                    height: 600,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function ( event, ui ) {
+                    }
+                } );
             } );
+            sharesetting.unbind( 'click' ).bind( 'click', function () {
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditPositionTaking?custId=" + $this.attr( "custid" )
+                + "&userName=" + $this.attr( "username" ) );
+                APOLLO.openDialogFrame( url, '', {
+                    width: 1020,
+                    height: 800,
+                    position: { my: "top+10", at: "center top", of: window },
+                    close: function ( event, ui ) {
+                    }
+                } );
+            } );
+
             menuEdit.mouseover( function () {
                 $( this ).show();
             } ).mouseout( function () {
@@ -111,18 +147,18 @@ var MEMBERLIST = function ( $ ) {
                             { Name: "Username", Value: current.Username },
                             { Name: "Status", Value: current },
                             { Name: "UserGroup", Value: current.UserGroup },
-                            { Name: "AgentGroup", Value: current.AgentGroup },
-                            { Name: "AgentOneXTwo", Value: current.AgentDiscountOneXTwo },
-                            { Name: "AgentOther", Value: current.AgentDiscountOther },
-                            { Name: "AgentNumberGame", Value: current.AgentDiscountNumberGame },
-                            { Name: "CustomerGroup", Value: current.CustomerGroup },
-                            { Name: "CustomerOneXTwo", Value: current.CustomerDiscountOneXTwo },
-                            { Name: "CustomerOther", Value: current.CustomerDiscountOther },
-                            { Name: "CustomerNumberGame", Value: current.CustDiscountNumberGame },
-                            { Name: "Handicap", Value: current.Handicap },
-                            { Name: "OverUnder", Value: current.OverUnder },
-                            { Name: "HandicapLive", Value: current.HandicapLive },
-                            { Name: "OverUnderLive", Value: current.OverUnderLive }
+                            { Name: "AgentGroup", Value: current.AgentGroup * 100 },
+                            { Name: "AgentOneXTwo", Value: current.AgentDiscountOneXTwo * 100 },
+                            { Name: "AgentOther", Value: current.AgentDiscountOther * 100 },
+                            { Name: "AgentNumberGame", Value: current.AgentDiscountNumberGame * 100 },
+                            { Name: "CustomerGroup", Value: current.CustomerGroup * 100 },
+                            { Name: "CustomerOneXTwo", Value: current.CustomerDiscountOneXTwo * 100 },
+                            { Name: "CustomerOther", Value: current.CustomerDiscountOther * 100 },
+                            { Name: "CustomerNumberGame", Value: current.CustDiscountNumberGame * 100 },
+                            { Name: "Handicap", Value: current.Handicap / 100 },
+                            { Name: "OverUnder", Value: current.OverUnder / 100 },
+                            { Name: "HandicapLive", Value: current.HandicapLive / 100 },
+                            { Name: "OverUnderLive", Value: current.OverUnderLive / 100 }
                         ]
                 } );
             }

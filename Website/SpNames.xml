@@ -336,9 +336,33 @@
   </Function>
 
   <Function Name="Agent-Apollo-DownlinesInfo">
-    <Setting Key="Age_Agent_GetByAgent" SpName="Age_Agent_GetByAgent" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Agent_GetByAgent" SpName="Age_Agent_GetByAgent" DbName="REPDB" Plain="0" >
+      <Mapping DataField="Discount1x2" ObjectProperty="OneXTwo" />
+      <Mapping DataField="DiscountOther" ObjectProperty="Other" />
+      <Mapping DataField="DiscountNumberGame" ObjectProperty="NumberGame" />
+      <Mapping DataField="HDP_PositionTaking" ObjectProperty="Handicap" />
+      <Mapping DataField="OU_PositionTaking" ObjectProperty="OverUnder" />
+      <Mapping DataField="HDP_PositionTaking_Live" ObjectProperty="HandicapLive" />
+      <Mapping DataField="OU_PositionTaking_Live" ObjectProperty="OverUnderLive" />
+    </Setting>
     <Setting Key="Age_Customer_GetByAgent" SpName="Age_Customer_GetByAgent" DbName="REPDB" Plain="0">
-      <Mapping DataField="UGroup" ObjectProperty="UserGroup" />
+      <Mapping DataField="CustId" ObjectProperty="CustId"/>
+      <Mapping DataField="Username" ObjectProperty="Username"/>
+      <Mapping DataField="Active" ObjectProperty="Status"/>
+      <Mapping DataField="HDP_Soccer_PT" ObjectProperty="Handicap"/>
+      <Mapping DataField="OU_Soccer_PT" ObjectProperty="OverUnder"/>
+      <Mapping DataField="HDP_Soccer_PT_Live" ObjectProperty="HandicapLive"/>
+      <Mapping DataField="OU_Soccer_PT_Live" ObjectProperty="OverUnderLive"/>
+      <Mapping DataField="UGroup" ObjectProperty="UserGroup"/>
+      <Mapping DataField="CustGroup" ObjectProperty="CustomerGroup"/>
+      <Mapping DataField="CustDiscount1x2" ObjectProperty="CustomerDiscountOneXTwo"/>
+      <Mapping DataField="CustDiscountOther" ObjectProperty="CustomerDiscountOther"/>
+      <Mapping DataField="CustDiscountNumberGame" ObjectProperty="CustDiscountNumberGame"/>
+      <Mapping DataField="AgentGroup" ObjectProperty="AgentGroup"/>
+      <Mapping DataField="AgentDiscount1x2" ObjectProperty="AgentDiscountOneXTwo"/>
+      <Mapping DataField="AgentDiscountOther" ObjectProperty="AgentDiscountOther"/>
+      <Mapping DataField="AgentDiscountNumberGame" ObjectProperty="AgentDiscountNumberGame"/>
+
     </Setting>
     <Setting Key="Age_AgentUser_GetByAgent" SpName="Age_AgentUser_GetByAgent" DbName="REPDB" Plain="0" />
     <Setting Key="Acc_AgentUser_UpdatePermission" SpName="Acc_AgentUser_UpdatePermission" DbName="CustDB" Plain="0" />

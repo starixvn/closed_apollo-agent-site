@@ -88,7 +88,7 @@ namespace Apollo.Age.Reports.Services
                 AgentId = agentId,
                 FromDate = fromDate,
                 ToDate = toDate,
-                BalanceUpDay = fromDate
+                BalanceUpDay = this.GetBalanceUpDay()
             };
 
             var agentWinLossList = this.GetData<AgentWinLossModel>(criteria).ToList();
@@ -103,7 +103,7 @@ namespace Apollo.Age.Reports.Services
                 AgentId = agentId,
                 FromDate = fromDate,
                 ToDate = toDate,
-                BalanceUpDay = fromDate
+                BalanceUpDay = this.GetBalanceUpDay()
             };
 
             var memberWinLossList = this.GetData<MemberWinLossModel>(criteria).ToList();
