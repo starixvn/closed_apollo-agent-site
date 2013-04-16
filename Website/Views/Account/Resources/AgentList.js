@@ -82,7 +82,16 @@ var AGENTLIST = function ( $ ) {
             var betsetting = $( "#betsetting" );
             var sharesetting = $( "#sharesetting" );
             els.unbind( 'click' ).bind( 'click', function () {
-                // code here $(this).xxxx
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CustomerSetting/EditAllSetting?custId=" + $this.attr("agentid")
+                + "&agentLevel=" + $this.attr("agentlevel"));
+                APOLLO.openDialogFrame(url, '', {
+                    width: 1020,
+                    height: 800,
+                    position: { my: "top+10", at: "center top", of: window },
+                    close: function (event, ui) {
+                    }
+                });
             } );
 
             els.mouseover( function () {

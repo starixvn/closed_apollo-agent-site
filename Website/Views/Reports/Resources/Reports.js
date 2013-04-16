@@ -95,7 +95,7 @@
                 showColumnsShowHide: false,
                 columnsNeedHide: [3, 4]
             };
-
+            $( "#agentOutstanding" ).hide();
             $( "#gridId" ).fanexGrid( gridOption );
         }
     };

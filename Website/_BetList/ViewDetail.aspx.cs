@@ -67,51 +67,70 @@ namespace Sunplus.Agent.UI._BetList
             content.Append(betlistOpenTag);
 
             content.Append(header);
-            content.Append("<tbody>");
+            
 
             ITicketHelper ticketHelper = new TicketHelper();
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicket totalTicket = new Ticket();
-            foreach (ITicket ticket in tickets)
+            if (tickets.Count > 0)
             {
-                index++;
-                ticketHelper.Index = index;
+                
+            }
+            
 
-                builder.Append("<tr>")
-                    .AddMember(ticket, "<td class='c' style='vertical-align:middle'>", "</td>")
-                    .AddNo(ticket.AgentLevel, "<td class='c' style='vertical-align:middle'>", "</td>");
+            
+            if (tickets.Count > 0)
+            {
+                content.Append("<tbody>");
+                foreach (ITicket ticket in tickets)
+                {
+                    index++;
+                    ticketHelper.Index = index;
+
+                    builder.Append("<tr>")
+                        .AddMember(ticket, "<td class='c' style='vertical-align:middle'>", "</td>")
+                        .AddNo(ticket.AgentLevel, "<td class='c' style='vertical-align:middle'>", "</td>");
+
+                    if (isShowAgentPT)
+                    {
+                        builder.AddAgentPT(ticket, null, "<td class='r'>", "</td>");
+                        builder.AddAgentComm(ticket, null, true, "<td class='r'>", "</td>");
+                    }
+                    builder.Append("</tr>");
+
+                    #region Total ticket
+
+                    totalTicket.Comm += ticket.Comm;
+                    totalTicket.AComm += ticket.AComm;
+                    totalTicket.APositionTaking += ticket.APositionTaking;
+                    totalTicket.AgentWinlost += ticket.AgentWinlost;
+                    totalTicket.Status = ticket.Status;
+
+                    #endregion Total ticket
+                }
+                builder.Append("<tfoot><tr class='total'>");
+                builder.Append(string.Format("<td class='c' colspan='2'>{0}</td>", Resources.Lang.total));
 
                 if (isShowAgentPT)
                 {
-                    builder.AddAgentPT(ticket, null, "<td class='r'>", "</td>");
-                    builder.AddAgentComm(ticket, null, true, "<td class='r'>", "</td>");
+                    builder.AddAgentPT(totalTicket, null, "<td class='r'>", "</td>");
+                    builder.AddAgentComm(totalTicket, null, true, "<td class='r'>", "</td>");
                 }
-                builder.Append("</tr>");
 
-                #region Total ticket
-
-                totalTicket.Comm += ticket.Comm;
-                totalTicket.AComm += ticket.AComm;
-                totalTicket.APositionTaking += ticket.APositionTaking;
-                totalTicket.AgentWinlost += ticket.AgentWinlost;
-                totalTicket.Status = ticket.Status;
-
-                #endregion Total ticket
+                builder.Append("</tr></tfoot>");
+                content.Append(builder.GetBetList());
+                content.Append("</tbody></table>");
             }
-
-            builder.Append("<tfoot><tr class='total'>");
-            builder.Append(string.Format("<td class='r underdog' style='vertical-align:middle' colspan='2'>{0}</td>", Resources.Lang.total));
-
-            if (isShowAgentPT)
+            else
             {
-                builder.AddAgentPT(totalTicket, null, "<td class='r'>", "</td>");
-                builder.AddAgentComm(totalTicket, null, true, "<td class='r'>", "</td>");
+                builder.Append("<tfoot><tr class='total no-result'>");
+                builder.Append(string.Format("<td class='c' colspan='4'>{0}</td>", Resources.Lang.noInfo));
+                builder.Append("</tr></tfoot>");
+                content.Append(builder.GetBetList());
+                content.Append("</table>");
             }
-
-            builder.Append("</tr></tfoot>");
-            content.Append(builder.GetBetList());
-            content.Append("</tbody></table>");
+            
 
             tpl.content = content.ToString();
             writer.Write(tpl);
