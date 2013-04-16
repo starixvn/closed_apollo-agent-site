@@ -88,7 +88,17 @@ var MEMBERLIST = function ( $ ) {
                     }
                 } );
             } );
-            sharesetting.unbind( 'click' ).bind( 'click', function () {
+            sharesetting.unbind('click').bind('click', function () {
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CustomerSetting/EditPositionTaking?custId=" + $this.attr("custid")
+                + "&userName=" + $this.attr("username"));
+                APOLLO.openDialogFrame(url, '', {
+                    width: 1020,
+                    height: 800,
+                    position: { my: "top+10", at: "center top", of: window },
+                    close: function (event, ui) {
+                    }
+                });
             } );
 
             menuEdit.mouseover( function () {
@@ -137,18 +147,18 @@ var MEMBERLIST = function ( $ ) {
                             { Name: "Username", Value: current.Username },
                             { Name: "Status", Value: current },
                             { Name: "UserGroup", Value: current.UserGroup },
-                            { Name: "AgentGroup", Value: current.AgentGroup },
-                            { Name: "AgentOneXTwo", Value: current.AgentDiscountOneXTwo },
-                            { Name: "AgentOther", Value: current.AgentDiscountOther },
-                            { Name: "AgentNumberGame", Value: current.AgentDiscountNumberGame },
-                            { Name: "CustomerGroup", Value: current.CustomerGroup },
-                            { Name: "CustomerOneXTwo", Value: current.CustomerDiscountOneXTwo },
-                            { Name: "CustomerOther", Value: current.CustomerDiscountOther },
-                            { Name: "CustomerNumberGame", Value: current.CustDiscountNumberGame },
-                            { Name: "Handicap", Value: current.Handicap },
-                            { Name: "OverUnder", Value: current.OverUnder },
-                            { Name: "HandicapLive", Value: current.HandicapLive },
-                            { Name: "OverUnderLive", Value: current.OverUnderLive }
+                            { Name: "AgentGroup", Value: current.AgentGroup * 100 },
+                            { Name: "AgentOneXTwo", Value: current.AgentDiscountOneXTwo * 100 },
+                            { Name: "AgentOther", Value: current.AgentDiscountOther * 100 },
+                            { Name: "AgentNumberGame", Value: current.AgentDiscountNumberGame * 100 },
+                            { Name: "CustomerGroup", Value: current.CustomerGroup * 100 },
+                            { Name: "CustomerOneXTwo", Value: current.CustomerDiscountOneXTwo * 100 },
+                            { Name: "CustomerOther", Value: current.CustomerDiscountOther * 100 },
+                            { Name: "CustomerNumberGame", Value: current.CustDiscountNumberGame * 100 },
+                            { Name: "Handicap", Value: current.Handicap / 100 },
+                            { Name: "OverUnder", Value: current.OverUnder / 100 },
+                            { Name: "HandicapLive", Value: current.HandicapLive / 100 },
+                            { Name: "OverUnderLive", Value: current.OverUnderLive / 100 }
                         ]
                 } );
             }

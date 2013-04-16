@@ -136,7 +136,17 @@ var AGENTLIST = function ( $ ) {
                     }
                 } );
             } );
-            sharesetting.unbind( 'click' ).bind( 'click', function () {
+            sharesetting.unbind('click').bind('click', function () {
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CustomerSetting/EditPositionTaking?custId=" + $this.attr("agentid")
+                + "&agentLevel=" + $this.attr("agentlevel"));
+                APOLLO.openDialogFrame(url, '', {
+                    width: 1020,
+                    height: 800,
+                    position: { my: "top+10", at: "center top", of: window },
+                    close: function (event, ui) {
+                    }
+                });
             } );
             menuEdit.mouseover( function () {
                 $( this ).show();
@@ -187,17 +197,17 @@ var AGENTLIST = function ( $ ) {
                             { Name: "Status", Value: current.Status },
                             { Name: "NumberOfAgent", Value: current },
                             { Name: "NumberOfMember", Value: current },
-                            { Name: "GroupA", Value: current.GroupA },
-                            { Name: "GroupB", Value: current.GroupB },
-                            { Name: "GroupC", Value: current.GroupC },
-                            { Name: "GroupD", Value: current.GroupD },
-                            { Name: "OneXTwo", Value: current.OneXTwo },
-                            { Name: "Other", Value: current.Other },
-                            { Name: "NumberGame", Value: current.NumberGame },
-                            { Name: "Handicap", Value: current.Handicap },
-                            { Name: "OverUnder", Value: current.OverUnder },
-                            { Name: "HandicapLive", Value: current.HandicapLive },
-                            { Name: "OverUnderLive", Value: current.OverUnderLive }
+                            { Name: "GroupA", Value: current.GroupA * 100 },
+                            { Name: "GroupB", Value: current.GroupB * 100 },
+                            { Name: "GroupC", Value: current.GroupC * 100 },
+                            { Name: "GroupD", Value: current.GroupD * 100 },
+                            { Name: "OneXTwo", Value: current.OneXTwo * 100 },
+                            { Name: "Other", Value: current.Other * 100 },
+                            { Name: "NumberGame", Value: current.NumberGame * 100 },
+                            { Name: "Handicap", Value: current.Handicap / 100 },
+                            { Name: "OverUnder", Value: current.OverUnder / 100 },
+                            { Name: "HandicapLive", Value: current.HandicapLive / 100 },
+                            { Name: "OverUnderLive", Value: current.OverUnderLive / 100 }
                         ]
                 } );
             }
@@ -251,7 +261,7 @@ var AGENTLIST = function ( $ ) {
                          { HeaderText: LANGUAGES.NumberGame, Width: 100, Name: "NumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.Handicap, Width: 100, Name: "Handicap", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.OverUnder, Width: 100, Name: "OverUnder", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.HandicapLive, Width: 100, Name: "HandicapLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.HandicapLive, Width: 100, Name: "HandicapLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.0" },
                          { HeaderText: LANGUAGES.OverUnderLive, Width: 100, Name: "OverUnderLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
 
                         ],
