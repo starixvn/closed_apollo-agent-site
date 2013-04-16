@@ -1,4 +1,5 @@
 ﻿@using Apollo.Age.Reports.ViewModels
+@using Fanex.Age.Utility
 @{
     ViewBag.Title = Resources.Lang.memberwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
@@ -97,7 +98,7 @@
                 
             <tr>
                 <td>
-                    <a href="#">
+                    <a href="~/_BetList/BetListOnMember.aspx?custId=@item.MemberId&username=@item.MemberName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
                         @item.MemberName
                     </a>
                 </td>
