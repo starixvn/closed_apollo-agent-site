@@ -41,7 +41,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             }
             else
             {
-                Template.AgentPTValue.agentPT_value = ConvertByBetType.PtValue(ticket.AgentWinlost);
+                Template.AgentPTValue.agentPT_value = ConvertByBetType.PtValue(ticket.AWinlost);
             }
 
             return Template;

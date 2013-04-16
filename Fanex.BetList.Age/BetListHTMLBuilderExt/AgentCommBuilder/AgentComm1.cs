@@ -40,10 +40,10 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             }
             else
             {
-                Template.AgentCommValue.agentComm_value = ConvertByBetType.Comm(ticket.Comm);
+                Template.AgentCommValue.agentComm_value = ConvertByBetType.Comm(ticket.AComm);
             }
 
-            Template.AgentComm.agentComm_setting = (ticket.CommStatus == "1" ? string.Join(null, new string[] { "2x ", ConvertByBetType.Comm_Percentage(ticket.AgentDiscount) }) : string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.AgentDiscount) })) + "%";
+            Template.AgentComm.agentComm_setting = (ticket.CommStatus == "1" ? string.Join(null, new string[] { "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount) }) : string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.ADiscount) })) + "%";
             if (hideDetail)
             {
                 Template.ViewDetail.Visible = false;
