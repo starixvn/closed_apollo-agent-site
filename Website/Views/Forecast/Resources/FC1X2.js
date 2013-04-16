@@ -33,7 +33,7 @@ if (typeof jQuery != 'undefined') {
         		if (countDownTimer != null) clearTimeout(countDownTimer);
         		var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
             + '&betType=' + $this.attr("bet-type")
-            + '&type=BetTypeMatch');
+            + '&type=BettypeMatch');
 
         		//location.href = url;
         		ageWnd.openDialog(url, '', {
@@ -48,7 +48,7 @@ if (typeof jQuery != 'undefined') {
         	else {
         		var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + FC1X2.matchId
                 + '&betType=' + FC1X2.betType
-                + '&type=BetTypeMatch');
+                + '&type=BettypeMatch');
         		location.href = url;
         	}
         });
