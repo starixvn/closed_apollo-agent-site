@@ -74,7 +74,7 @@
                 {
                     <tr>
                         <td>
-                            <a href="~/Reports/AgentWinLoss?agentId=@item.AgentId&agentName=@item.AgentName&fromDate=@Model.FromDate&toDate=@Model.ToDate">
+                            <a href="~/Reports/AgentWinLoss?id=@item.AgentId&name=@item.AgentName&fromDate=@Model.FromDate&toDate=@Model.ToDate">
                                 @item.AgentName
                             </a>
                         </td>
@@ -179,7 +179,7 @@ else
                     @if (item.IsAgent)
                     {
                         <td>
-                            <a href="~/Reports/AgentWinLoss?agentId=@item.AgentId&agentName=@item.AgentName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
+                            <a href="~/Reports/AgentWinLoss?id=@item.AgentId&name=@item.AgentName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
                                 @item.AgentName
                             </a>
                         </td>

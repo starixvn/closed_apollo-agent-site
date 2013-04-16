@@ -44,6 +44,8 @@ namespace Apollo.Age.Account.Controllers
 
         #region Actions
 
+        #region Bet Setting
+
         public ActionResult EditBetSetting(int custId, string userName, int? agentLevel)
         {
             ViewBag.CustId = custId;
@@ -73,6 +75,10 @@ namespace Apollo.Age.Account.Controllers
             Result result = _customerSettingService.UpdateBettingLimitSetting(settingContext, betLimits);
             return ReturnResult(result);
         }
+
+        #endregion
+
+        #region Commission Setting
 
         public ActionResult EditCommissionSetting(int custId, string userName, int? agentLevel, string userGroup)
         {
@@ -107,6 +113,10 @@ namespace Apollo.Age.Account.Controllers
             return ReturnResult(result);
         }
 
+        #endregion
+
+        #region Position Taking
+
         public ActionResult EditPositionTaking(int custId, string userName, int? agentLevel)
         {
             ViewBag.CustId = custId;
@@ -137,6 +147,8 @@ namespace Apollo.Age.Account.Controllers
             return ReturnResult(result);
         }
 
+        #endregion
+
         public ActionResult LanguageObject()
         {
             var language = string.Format("var Language = {0}", this.GetLanguageObject());
@@ -146,6 +158,7 @@ namespace Apollo.Age.Account.Controllers
         #endregion
 
         #region Private Methods
+
         private int GetRoleFromAgentLevel(int agentLevel)
         {
             switch (agentLevel)
@@ -230,7 +243,7 @@ namespace Apollo.Age.Account.Controllers
 
         private SettingContext GetCurrentSettingContext(int targetCustId, int? agentLevel, FormSettingType formSettingType)
         {
-            return new SettingContext
+            SettingContext settingContex = new SettingContext
             {
                 CustId = base.CurrentSession.AgentId,
                 TargetCustId = targetCustId,
@@ -239,88 +252,96 @@ namespace Apollo.Age.Account.Controllers
                 TargetRoleId = this.GetTargetRoleIdFromAgenLevel(agentLevel),
                 FormSetting = (int)formSettingType
             };
+
+            if(settingContex.TargetRoleId == (int)Role.Member)
+            {
+                settingContex.RoleId = (int)Role.Agent;
+            }
+
+            return settingContex;
         }
 
         private string GetLanguageObject()
         {
             StringBuilder language = new StringBuilder();
             language.AppendLine("{");
-            language.AppendLine(this.SetValue("MIN_BET", Resources.Lang.lblMinBet));
-            language.AppendLine(this.SetValue("PRESET_POSITION", "Preset Position"));
-            language.AppendLine(this.SetValue("POSITION_TAKING", Resources.Lang.positiontaking));
-            language.AppendLine(this.SetValue("MAX_POSITION", "Max Position"));
-            language.AppendLine(this.SetValue("MAX_BET", Resources.Lang.lblMaxBet));
-            language.AppendLine(this.SetValue("MAX_PER_MATCH", Resources.Lang.lblMaxPerMatch));
-            language.AppendLine(this.SetValue("MAX_PER_BALL", Resources.Lang.maxperball));
-            language.AppendLine(this.SetValue("BETTING_LIMIT", "Bet Limit"));//"Bet Setting"
-            language.AppendLine(this.SetValue("DEAD_BALL", Resources.Lang.lblDeadball));
-            language.AppendLine(this.SetValue("LIVE", Resources.Lang.lblLive));
-            language.AppendLine(this.SetValue("DEAD_BALL_VN", Resources.Lang.lblDeadball));
-            language.AppendLine(this.SetValue("LIVE_VN", Resources.Lang.lblLive));
-            language.AppendLine(this.SetValue("EDIT", Resources.Lang.edit));
-            language.AppendLine(this.SetValue("AGENT", Resources.Lang.agent));
-            language.AppendLine(this.SetValue("INCORRECT_MIN_BET", Resources.Lang.alertIncorrectMinBet));
-            language.AppendLine(this.SetValue("INCORRECT_MAX_BET", Resources.Lang.alertIncorrectMaxBet));
-            language.AppendLine(this.SetValue("INCORRECT_MAX_PER_MATCH", Resources.Lang.alertIncorrectMaxPerMatch));
-            language.AppendLine(this.SetValue("INCORRECT_MAX_PER_BALL", Resources.Lang.alertIncorrectMaxPerBall));
-            language.AppendLine(this.SetValue("MIN_BET_GREATER_THAN_MIN_MIN_BET", string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}")));
-            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MAX_MAX_BET", string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}")));
-            language.AppendLine(this.SetValue("MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET", Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}")));
-            language.AppendLine(this.SetValue("MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET", Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}")));
-            language.AppendLine(this.SetValue("MIN_POSITION", Resources.Lang.labelMinPosition));
-            language.AppendLine(this.SetValue("COPY_FROM", Resources.Lang.copyFrom));
-            language.AppendLine(this.SetValue("OTHER_BET_TYPE_OF", Resources.Lang.otherBetTypesOf));
-            language.AppendLine(this.SetValue("COPY_ALL_HINT", Resources.Lang.copyAllHint));
-            language.AppendLine(this.SetValue("COPY_ALL_OTHER_POSITION_TAKING_FROM", Resources.Lang.copyAllPositionTakingFrom));
-            language.AppendLine(this.SetValue("COPY_ALL_POSITION_TAKING_FROM", Resources.Lang.copyPositionTakingFrom));
-            language.AppendLine(this.SetValue("COPY_ALL_BETTING_LIMIT_FROM", Resources.Lang.copyAllBetSettingFromExcludingNG));
-            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_BET", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet));
-            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch));
-            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall));
-            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
-            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_BET_AFTER_COPY", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet));
-            language.AppendLine(this.SetValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch));
-            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
-            language.AppendLine(this.SetValue("MIN_BET_GREATER_THAN_MIN_MIN_BET_AFTER_COPY", string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}")));
-            language.AppendLine(this.SetValue("MAX_BET_LOWER_THAN_MAX_MAX_BET_AFTER_COPY", string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}")));
-            language.AppendLine(this.SetValue("MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET_AFTER_COPY", Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}")));
+            language.AppendLine(this.SetLanguageStringValue("MIN_BET", Resources.Lang.lblMinBet));
+            language.AppendLine(this.SetLanguageStringValue("PRESET_POSITION", "Preset Position"));
+            language.AppendLine(this.SetLanguageStringValue("POSITION_TAKING", Resources.Lang.positiontaking));
+            language.AppendLine(this.SetLanguageStringValue("MAX_POSITION", "Max Position"));
+            language.AppendLine(this.SetLanguageStringValue("MAX_BET", Resources.Lang.lblMaxBet));
+            language.AppendLine(this.SetLanguageStringValue("MAX_PER_MATCH", Resources.Lang.lblMaxPerMatch));
+            language.AppendLine(this.SetLanguageStringValue("MAX_PER_BALL", Resources.Lang.maxperball));
+            language.AppendLine(this.SetLanguageStringValue("BETTING_LIMIT", "Bet Limit"));//"Bet Setting"
+            language.AppendLine(this.SetLanguageStringValue("DEAD_BALL", Resources.Lang.lblDeadball));
+            language.AppendLine(this.SetLanguageStringValue("LIVE", Resources.Lang.lblLive));
+            language.AppendLine(this.SetLanguageStringValue("DEAD_BALL_VN", Resources.Lang.lblDeadball));
+            language.AppendLine(this.SetLanguageStringValue("LIVE_VN", Resources.Lang.lblLive));
+            language.AppendLine(this.SetLanguageStringValue("EDIT", Resources.Lang.edit));
+            language.AppendLine(this.SetLanguageStringValue("AGENT", Resources.Lang.agent));
+            language.AppendLine(this.SetLanguageStringValue("INCORRECT_MIN_BET", Resources.Lang.alertIncorrectMinBet));
+            language.AppendLine(this.SetLanguageStringValue("INCORRECT_MAX_BET", Resources.Lang.alertIncorrectMaxBet));
+            language.AppendLine(this.SetLanguageStringValue("INCORRECT_MAX_PER_MATCH", Resources.Lang.alertIncorrectMaxPerMatch));
+            language.AppendLine(this.SetLanguageStringValue("INCORRECT_MAX_PER_BALL", Resources.Lang.alertIncorrectMaxPerBall));
+            language.AppendLine(this.SetLanguageStringValue("MIN_BET_GREATER_THAN_MIN_MIN_BET", string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}")));
+            language.AppendLine(this.SetLanguageStringValue("MAX_BET_LOWER_THAN_MAX_MAX_BET", string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}")));
+            language.AppendLine(this.SetLanguageStringValue("MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET", Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}")));
+            language.AppendLine(this.SetLanguageStringValue("MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET", Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}")));
+            language.AppendLine(this.SetLanguageStringValue("MIN_POSITION", Resources.Lang.labelMinPosition));
+            language.AppendLine(this.SetLanguageStringValue("COPY_FROM", Resources.Lang.copyFrom));
+            language.AppendLine(this.SetLanguageStringValue("OTHER_BET_TYPE_OF", Resources.Lang.otherBetTypesOf));
+            language.AppendLine(this.SetLanguageStringValue("COPY_ALL_HINT", Resources.Lang.copyAllHint));
+            language.AppendLine(this.SetLanguageStringValue("COPY_ALL_OTHER_POSITION_TAKING_FROM", Resources.Lang.copyAllPositionTakingFrom));
+            language.AppendLine(this.SetLanguageStringValue("COPY_ALL_POSITION_TAKING_FROM", Resources.Lang.copyPositionTakingFrom));
+            language.AppendLine(this.SetLanguageStringValue("COPY_ALL_BETTING_LIMIT_FROM", Resources.Lang.copyAllBetSettingFromExcludingNG));
+            language.AppendLine(this.SetLanguageStringValue("MIN_BET_LOWER_THAN_MIN_MAX_BET", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet));
+            language.AppendLine(this.SetLanguageStringValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetLanguageStringValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall));
+            language.AppendLine(this.SetLanguageStringValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetLanguageStringValue("MIN_BET_LOWER_THAN_MIN_MAX_BET_AFTER_COPY", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet));
+            language.AppendLine(this.SetLanguageStringValue("MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY", Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetLanguageStringValue("MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY", Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch));
+            language.AppendLine(this.SetLanguageStringValue("MIN_BET_GREATER_THAN_MIN_MIN_BET_AFTER_COPY", string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}")));
+            language.AppendLine(this.SetLanguageStringValue("MAX_BET_LOWER_THAN_MAX_MAX_BET_AFTER_COPY", string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}")));
+            language.AppendLine(this.SetLanguageStringValue("MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET_AFTER_COPY", Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}")));
 
             // Set language to validation value on form.
             //IUserSession userSession = UserSession.Current;
 
-            language.AppendLine(this.SetValue("YES", Resources.Lang.lblYes));
-            language.AppendLine(this.SetValue("NO", Resources.Lang.lblNo));
-            //language.AppendLine(this.SetValue("REQUIRE_VALIDATION_CODE", Resources.Lang.errRequireValidationCode));
-            language.AppendLine(this.SetValue("BASKETBALL", Resources.Lang.Basketball));
-            language.AppendLine(this.SetValue("SOCCER", Resources.Lang.soccer));
-            language.AppendLine(this.SetValue("POSITION_SETTING_HEADER", Resources.Lang.lblPositionTaking));
-            language.AppendLine(this.SetValue("BET_SETTING_HEADER", Resources.Lang.lblBetSetting));
-            language.AppendLine(this.SetValue("COMMISSION_SETTING_HEADER", Resources.Lang.commission));
-            language.AppendLine(this.SetValue("GROUP_A", Resources.Lang.lblGroupa));
-            language.AppendLine(this.SetValue("GROUP_B", Resources.Lang.lblGroupb));
-            language.AppendLine(this.SetValue("GROUP_C", Resources.Lang.lblGroupc));
-            language.AppendLine(this.SetValue("GROUP_D", Resources.Lang.lblGroupd));
-            language.AppendLine(this.SetValue("_1X2", Resources.Lang.lbl1x2));
-            language.AppendLine(this.SetValue("OTHERS_COM", Resources.Lang.other));
-            language.AppendLine(this.SetValue("NUMBER_GAME", Resources.Lang.numbergame));
-            language.AppendLine(this.SetValue("ASIAN_HDC_OU_OE", Resources.Lang.lblAsianHDC_OU_OE));
-            language.AppendLine(this.SetValue("MEMBER_GROUP", "Member Group"));
-            language.AppendLine(this.SetValue("COMM_FOR_AGENT", "Comm for Agent"));
-            language.AppendLine(this.SetValue("COMM_FOR_MEMBER", "Comm for Member"));
-            language.AppendLine(this.SetValue("GROUP", Resources.Lang.group));
+            language.AppendLine(this.SetLanguageStringValue("YES", Resources.Lang.lblYes));
+            language.AppendLine(this.SetLanguageStringValue("NO", Resources.Lang.lblNo));
+            //language.AppendLine(this.SetLanguageStringValue("REQUIRE_VALIDATION_CODE", Resources.Lang.errRequireValidationCode));
+            language.AppendLine(this.SetLanguageStringValue("BASKETBALL", Resources.Lang.Basketball));
+            language.AppendLine(this.SetLanguageStringValue("SOCCER", Resources.Lang.soccer));
+            language.AppendLine(this.SetLanguageStringValue("POSITION_SETTING_HEADER", Resources.Lang.lblPositionTaking));
+            language.AppendLine(this.SetLanguageStringValue("BET_SETTING_HEADER", Resources.Lang.lblBetSetting));
+            language.AppendLine(this.SetLanguageStringValue("COMMISSION_SETTING_HEADER", Resources.Lang.commission));
+            language.AppendLine(this.SetLanguageStringValue("GROUP_A", Resources.Lang.lblGroupa));
+            language.AppendLine(this.SetLanguageStringValue("GROUP_B", Resources.Lang.lblGroupb));
+            language.AppendLine(this.SetLanguageStringValue("GROUP_C", Resources.Lang.lblGroupc));
+            language.AppendLine(this.SetLanguageStringValue("GROUP_D", Resources.Lang.lblGroupd));
+            language.AppendLine(this.SetLanguageStringValue("_1X2", Resources.Lang.lbl1x2));
+            language.AppendLine(this.SetLanguageStringValue("OTHERS_COM", Resources.Lang.other));
+            language.AppendLine(this.SetLanguageStringValue("NUMBER_GAME", Resources.Lang.numbergame));
+            language.AppendLine(this.SetLanguageStringValue("ASIAN_HDC_OU_OE", Resources.Lang.lblAsianHDC_OU_OE));
+            language.AppendLine(this.SetLanguageStringValue("MEMBER_GROUP", "Member Group"));
+            language.AppendLine(this.SetLanguageStringValue("COMM_FOR_AGENT", "Comm for Agent"));
+            language.AppendLine(this.SetLanguageStringValue("COMM_FOR_MEMBER", "Comm for Member"));
+            language.AppendLine(this.SetLanguageStringValue("GROUP", Resources.Lang.group));
 
-            language.AppendLine(this.SetValue("AGENT_SHARE", "Agent Share"));
-            language.AppendLine(this.SetValue("MAIN_SHARE_HOLDER_SHARE", "Main Shareholder Share"));
-            language.AppendLine(this.SetValue("SHARE_HOLDER_SHARE", "Shareholder Share"));
-            language.AppendLine(this.SetValue("MAIN_AGENT_SHARE", "Main Agent Share"));
+            language.AppendLine(this.SetLanguageStringValue("AGENT_SHARE", "Agent Share"));
+            language.AppendLine(this.SetLanguageStringValue("MAIN_SHARE_HOLDER_SHARE", "Main Shareholder Share"));
+            language.AppendLine(this.SetLanguageStringValue("SHARE_HOLDER_SHARE", "Shareholder Share"));
+            language.AppendLine(this.SetLanguageStringValue("MAIN_AGENT_SHARE", "Main Agent Share"));
             language.AppendLine("};");
             return language.ToString();
         }
 
-        private string SetValue(string key, string value)
+        private string SetLanguageStringValue(string key, string value)
         {
             return string.Format("{0} : \"{1}\",", key, value.Replace("\"", "\\\""));
         }
+
         #endregion
     }
 }
