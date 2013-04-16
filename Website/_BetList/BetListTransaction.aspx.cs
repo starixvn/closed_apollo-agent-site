@@ -150,7 +150,7 @@ namespace Sunplus.Agent.UI._BetList
             tpl.Filter.valueMinDate = DateTime.Now.AddMonths(-3).ToShortDateString();
             tpl.Filter.valueMaxDate = DateTime.Now.AddMonths(1).ToShortDateString();
             tpl.Filter.User.username = username;
-            tpl.pageType = pageType;
+            tpl.HiddenFields.pageType = pageType;
         }
 
         private DataTable CreateUserTypeOption()
