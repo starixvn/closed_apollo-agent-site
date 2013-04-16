@@ -8,8 +8,11 @@
             ToDate = $("#ToDate");
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
-                if (true) {
-                    noty({ text: LANGUAGES.MessageValidateDate, type: 'error' });
+                var fromDate = new Date(FromDate.val());
+                var toDate = new Date(ToDate.val());
+
+                if (toDate < fromDate) {
+                    noty({ text: LANGUAGES.MessageValidateDate, type: 'warn' });
                 }
                 else {
                     var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
