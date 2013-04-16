@@ -59,10 +59,13 @@ namespace Sunplus.Agent.UI._BetList
             tpl.title = Resources.Lang.lblBetLists + " - " + username;
             if (pageType == "accountinfo" || pageType == "report")
             {
+                var maxDate = DateTime.Now;
                 tpl.HiddenFields.username = username;
                 tpl.HiddenFields.custId = custid.ToString();
                 tpl.Filter.valueFromDate = dateFrom.ToShortDateString();
                 tpl.Filter.valueToDate = dateTo.ToShortDateString();
+                tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
+                tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
                 tpl.HiddenFields.pageType = pageType;
             }
             else
@@ -177,7 +180,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             betList = new BetListBO(CurrentUserSession.NetSessionId);
             dtResult = betList.GetAllBetsByDateAndMem(-1, custid, dateFrom, dateTo, statusIds, out outDataTable);
-            return dtResult != null ? dtResult : new DataTable();
+            return dtResult == null ? new DataTable() : dtResult;
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)

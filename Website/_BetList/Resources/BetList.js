@@ -205,12 +205,12 @@ if (typeof jQuery != "undefined") {
 			viewDetailsLinks.click(function () {
 				var $this = $(this),
                     transId = $this.attr("tid"),
+					fromDate = $("#fromDate").val(),
+					toDate = $("#toDate").val(),
                     url = APOLLO.resolveUrl("~/_BetList/ViewDetail.aspx"),
-                    ajaxParams = "isSportsbook=1" +
-                        "&transid=" + transId +
-                        "&fromdate=" + _page.fdate +
-                        "&toDate=" + _page.tdate;
-
+                    ajaxParams = "transid=" + transId +
+                        "&fromdate=" + fromDate +
+                        "&toDate=" + toDate;
 				ajax.Request(url, {
 					asynchronous: true,
 					parameters: ajaxParams,
