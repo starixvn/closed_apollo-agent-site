@@ -25,7 +25,7 @@ if (typeof jQuery != 'undefined') {
                             noty({ text: data.ErrMsg, type: 'success' });
                             EDITSETTING.completeUpdate();
                         } else {
-                            noty({ text: data.ErrMsg, type: 'error' });
+                            noty({ text: APOLLO.generalErrorMsg, type: 'error' });
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
