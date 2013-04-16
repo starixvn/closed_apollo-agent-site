@@ -19,6 +19,7 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Reports;
     using Fanex.Age.UI.Reports.BetList;
+    using Fanex.Age.Utility;
     using Fanex.BetList.Age.BetListCmd;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
@@ -32,7 +33,6 @@ namespace Sunplus.Agent.UI._BetList
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.BL.Reports;
     using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Utilities;
 
     public partial class BetListTransaction : WinlossReports_Page
     {
