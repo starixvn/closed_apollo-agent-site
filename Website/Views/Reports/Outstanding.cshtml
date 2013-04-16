@@ -14,7 +14,7 @@
 @{
     if (Model.DownlinePath != null && Model.DownlinePath.Any())
     {
-    @RazorHelper.Navigation(Model.DownlinePath.ToList())
+    @RazorHelper.Navigation(Model.DownlinePath.ToList(), true)
     }
 }
 <div id="agentOutstanding">
