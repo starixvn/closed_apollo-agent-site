@@ -180,7 +180,7 @@ namespace Apollo.Age.Account.Controllers
             return View(listAgent);
         }
 
-        public ActionResult MemberList(int? agentId, string username, int agentlevel)
+        public ActionResult MemberList(int? agentId, string username, int? agentlevel)
         {
             CurrentAgentId = agentId;
             CurrentUsername = username;
