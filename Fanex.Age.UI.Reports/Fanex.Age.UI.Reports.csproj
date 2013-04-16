@@ -69,7 +69,7 @@
     <Content Include="BetList\BetSummary.htm" />
     <Content Include="BetList\BetListTransaction.htm" />
     <Content Include="BetList\DailyStatement.htm" />
-    <Content Include="BetList\OutstandingDetail.htm" />
+    <Content Include="BetList\BetListOnMember.htm" />
     <Content Include="CasinoWinloss\CSWinlossAgent.htm" />
     <Content Include="CasinoWinloss\CSWinlossDetailAgent.htm" />
     <Content Include="CasinoWinloss\CSWinlossDetailMaster.htm" />
@@ -152,11 +152,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
+    <Compile Include="BetList\BetListOnMember.htm.cs" />
     <Compile Include="BetList\BetListSections.htm.cs" />
     <Compile Include="BetList\BetListTransaction.htm.cs" />
     <Compile Include="BetList\BetSummary.htm.cs" />
     <Compile Include="BetList\DailyStatement.htm.cs" />
-    <Compile Include="BetList\OutstandingDetail.htm.cs" />
     <Compile Include="CasinoWinloss\CSWinlossAgent.htm.cs" />
     <Compile Include="CasinoWinloss\CSWinlossDetailAgent.htm.cs" />
     <Compile Include="CasinoWinloss\CSWinlossDetailMaster.htm.cs" />

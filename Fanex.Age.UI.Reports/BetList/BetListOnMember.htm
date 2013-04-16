@@ -1,0 +1,61 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>{static:Resources.Lang.voidandreject}</title>
+    <link href="../../_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css"
+        rel="stylesheet" type="text/css" />
+    <link href="../../_BetList/Resources/BetList.less" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="frmBetList" method="get">
+    <div id="page_main">
+        <div id="header_main">
+            {title}
+            <div class="divBoxRight">
+                <input type="image" id="exporttoexcel" name="exporttoexcel" alt="{static:Resources.Lang.exporttoexcel}"
+                    nofocus="true" src="../../_GlobalResources/Images/excel.gif" title="{static:Resources.Lang.exporttoexcel}"
+                    class="hand" />
+            </div>
+        </div>
+        <div id="content_main">
+            <!--Filter-->
+            <div id="box_header">
+                <div class="date-range">
+                    <div class="date">
+                        <label>
+                            {static:Resources.Lang.from}</label>
+                        <input type="text" id="fromDate" name="fromDate" class="datepicker" value="{valueFromDate}"
+                            mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
+                    </div>
+                    <div class="date">
+                        <label>
+                            {static:Resources.Lang.to}</label>
+                        <input type="text" id="toDate" name="toDate" class="datepicker" value="{valueToDate}"
+                            mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
+                    </div>
+                    <div>
+                        <input type="button" class="btn act-submit" id="dSubmit" value="Submit">
+                    </div>
+                </div>
+            </div>
+            <!--/Filter-->
+            {content}
+            <div id="dialog-details">
+            </div>
+        </div>
+        <!--HiddenFields-->
+        <input type="hidden" id="ApoRoot" value="{ApoRoot}" />
+        <input type="hidden" id="type" name="type" value="{pageType}" />
+        <input type="hidden" id="username" name="username" value="{username}" />
+        <input type="hidden" id="custId" name="custId" value="{custId}" />
+        <!--/HiddenFields-->
+    </form>
+    </div>
+</body>
+<script src="../../_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+<script src="../../_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
+<script src="../../_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js" type="text/javascript"></script>
+<script src="../../_GlobalResources/Js/Core.js" type="text/javascript"></script>
+<script src="../../_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
+<script src="../../_BetList/Resources/BetList.js" type="text/javascript"></script>
+</html>
