@@ -57,17 +57,17 @@ namespace Sunplus.Agent.UI._BetList
 
             var tpl = new BetListOnMember_Template();
             tpl.title = Resources.Lang.lblBetLists + " - " + username;
-            if (pageType != "accountinfo")
-            {
-                tpl.Filter.Hide();
-            }
-            else
+            if (pageType == "accountinfo" || pageType == "report")
             {
                 tpl.HiddenFields.username = username;
                 tpl.HiddenFields.custId = custid.ToString();
-                tpl.Filter.valueFromDate = ReportsBO.MoveBetsDate.ToShortDateString();
+                tpl.Filter.valueFromDate = dateFrom.ToShortDateString();
                 tpl.Filter.valueToDate = dateTo.ToShortDateString();
                 tpl.HiddenFields.pageType = pageType;
+            }
+            else
+            {
+                tpl.Filter.Hide();
             }
             // Render Content
             DataTable betListData = View as DataTable;
@@ -144,7 +144,7 @@ namespace Sunplus.Agent.UI._BetList
             base.ProcessRequest(ref hash);
             pageType = Request["type"];
 
-            if (pageType == "accountinfo")
+            if (pageType == "accountinfo" || pageType == "report")
             {
                 statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}^{6}^{7}",
                    (int)Apollo.Age.Enumerations.BetStatus.Void,

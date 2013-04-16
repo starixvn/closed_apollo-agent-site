@@ -4,7 +4,6 @@
         ToDate: null,
 
         init: function () {
-            console.log($("#FromDate").val());
             FromDate = $("#FromDate");
             ToDate = $("#ToDate");
             // Agent WinLoss Report
@@ -14,7 +13,7 @@
             });
 
             $(".navigation").bind('click', function () {
-                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?agentId=' + $(this).attr("agentid") + '&fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
+                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html() + '&fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
                 location.href = url;
             });
         }
