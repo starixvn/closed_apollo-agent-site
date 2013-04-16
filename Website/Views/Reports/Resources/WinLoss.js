@@ -9,7 +9,7 @@
             ToDate = $("#ToDate");
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
-                var url = APOLLO.resolveUrl('Reports/WinLoss?fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
+                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
                 location.href = url;
             });
 

@@ -88,7 +88,17 @@ var MEMBERLIST = function ( $ ) {
                     }
                 } );
             } );
-            sharesetting.unbind( 'click' ).bind( 'click', function () {
+            sharesetting.unbind('click').bind('click', function () {
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CustomerSetting/EditPositionTaking?custId=" + $this.attr("custid")
+                + "&userName=" + $this.attr("username"));
+                APOLLO.openDialogFrame(url, '', {
+                    width: 1020,
+                    height: 800,
+                    position: { my: "top+10", at: "center top", of: window },
+                    close: function (event, ui) {
+                    }
+                });
             } );
 
             menuEdit.mouseover( function () {
