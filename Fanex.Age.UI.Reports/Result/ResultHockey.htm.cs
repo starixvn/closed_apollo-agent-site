@@ -13,23 +13,23 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class ResultHockey_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt\"><tr class=\"RptHeader\"><td style=\"width: 80px\" columnname=\"kickofftime\">";
+			protected static string s0 = "<table class=\"tblRpt\"><thead><tr><th style=\"width: 80px\" columnname=\"kickofftime\">";
 			protected static string s1{get{return Resources.Lang.kickofftime;}}
-			protected static string s2 = "</td><td>";
+			protected static string s2 = "</th><th>";
 			protected static string s3{get{return Resources.Lang.match;}}
-			protected static string s4 = "</td><td style=\"width: 30px;\">";
+			protected static string s4 = "</th><th style=\"width: 30px;\">";
 			protected static string s5{get{return Resources.Lang.P1;}}
-			protected static string s6 = "</td><td style=\"width: 30px;\">";
+			protected static string s6 = "</th><th style=\"width: 30px;\">";
 			protected static string s7{get{return Resources.Lang.P2;}}
-			protected static string s8 = "</td><td style=\"width: 30px;\">";
+			protected static string s8 = "</th><th style=\"width: 30px;\">";
 			protected static string s9{get{return Resources.Lang.P3;}}
-			protected static string s10 = "</td><td style=\"width: 30px;\">";
+			protected static string s10 = "</th><th style=\"width: 30px;\">";
 			protected static string s11{get{return Resources.Lang.OT;}}
-			protected static string s12 = "</td><td class=\"nowrap\" style=\"width: 50px;\">";
+			protected static string s12 = "</th><th class=\"nowrap\" style=\"width: 50px;\">";
 			protected static string s13{get{return Resources.Lang.finalscore;}}
-			protected static string s14 = "</td><td style=\"width: 70px;\">";
+			protected static string s14 = "</th><th style=\"width: 70px;\">";
 			protected static string s15{get{return Resources.Lang.status;}}
-			protected static string s16 = "</td></tr>";
+			protected static string s16 = "</th></tr></thead>";
 			public ResultHockey_RowData_Block RowData = new ResultHockey_RowData_Block();
 			public ResultHockey_LimitNotFound_Block LimitNotFound = new ResultHockey_LimitNotFound_Block();
 			protected static string s17 = "</table>";

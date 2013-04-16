@@ -13,15 +13,15 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class ResultBilliard_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt\"><tr class=\"RptHeader\"><td style=\"white-space: nowrap; width: 90px\" columnname=\"kickofftime\">";
+			protected static string s0 = "<table class=\"tblRpt\"><thead><tr><th style=\"white-space: nowrap; width: 90px\" columnname=\"kickofftime\">";
 			protected static string s1{get{return Resources.Lang.kickofftime;}}
-			protected static string s2 = "</td><td style=\"width: 380px;\">";
+			protected static string s2 = "</th><th style=\"width: 380px;\">";
 			protected static string s3{get{return Resources.Lang.match;}}
-			protected static string s4 = "</td><td style=\"width: 60px;\">";
+			protected static string s4 = "</th><th style=\"width: 60px;\">";
 			protected static string s5{get{return Resources.Lang.finalscore;}}
-			protected static string s6 = "</td><td style=\"white-space: nowrap; width: 70px;\">";
+			protected static string s6 = "</th><th style=\"white-space: nowrap; width: 70px;\">";
 			protected static string s7{get{return Resources.Lang.status;}}
-			protected static string s8 = "</td></tr>";
+			protected static string s8 = "</th></tr></thead>";
 			public ResultBilliard_RowData_Block RowData = new ResultBilliard_RowData_Block();
 			public ResultBilliard_LimitNotFound_Block LimitNotFound = new ResultBilliard_LimitNotFound_Block();
 			protected static string s9 = "</table>";

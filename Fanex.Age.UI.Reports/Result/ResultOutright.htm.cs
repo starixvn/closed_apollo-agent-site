@@ -13,13 +13,13 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class ResultOutright_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt\"><tr class=\"RptHeader\"><td style=\"width: 18%\" columnname=\"eventdate\">";
+			protected static string s0 = "<table class=\"tblRpt\"><thead><tr><th style=\"width: 18%\" columnname=\"eventdate\">";
 			protected static string s1{get{return Resources.Lang.time;}}
-			protected static string s2 = "</td><td style=\"width: 70%\">";
+			protected static string s2 = "</th><th style=\"width: 70%\">";
 			protected static string s3{get{return Resources.Lang.lblTeam;}}
-			protected static string s4 = "</td><td style=\"width: 20%\">";
+			protected static string s4 = "</th><th style=\"width: 20%\">";
 			protected static string s5{get{return Resources.Lang.result;}}
-			protected static string s6 = "</td></tr>";
+			protected static string s6 = "</th></tr></thead>";
 			public ResultOutright_RowData_Block RowData = new ResultOutright_RowData_Block();
 			public ResultOutright_LimitNotFound_Block LimitNotFound = new ResultOutright_LimitNotFound_Block();
 			protected static string s7 = "</table>";

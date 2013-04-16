@@ -13,17 +13,17 @@ namespace Fanex.Age.UI.Reports
 	{
 		public class ResultNoInfo_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt\"><tr class=\"RptHeader\"><td width=\"95\">";
+			protected static string s0 = "<table class=\"tblRpt\"><thead><tr><th width=\"95\">";
 			protected static string s1{get{return Resources.Lang.kickofftime;}}
-			protected static string s2 = "</td><td width=\"250\">";
+			protected static string s2 = "</th><th width=\"250\">";
 			protected static string s3{get{return Resources.Lang.match;}}
-			protected static string s4 = "</td><td class=\"nowrap\">";
+			protected static string s4 = "</th><th class=\"nowrap\">";
 			protected static string s5{get{return Resources.Lang.firsthalfscore;}}
-			protected static string s6 = "</td><td class=\"nowrap\">";
+			protected static string s6 = "</th><th class=\"nowrap\">";
 			protected static string s7{get{return Resources.Lang.finalscore;}}
-			protected static string s8 = "</td><td class=\"nowrap\">";
+			protected static string s8 = "</th><th class=\"nowrap\">";
 			protected static string s9{get{return Resources.Lang.status;}}
-			protected static string s10 = "</td></tr><tr class=\"no_info\"><td colspan=\"5\">";
+			protected static string s10 = "</th></tr></thead><tr class=\"no_info\"><td colspan=\"5\">";
 			protected static string s11{get{return Resources.Lang.noInfo;}}
 			protected static string s12 = "</td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
