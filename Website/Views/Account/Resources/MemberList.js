@@ -54,16 +54,31 @@ var MEMBERLIST = function ($) {
                 menuEdit.hide();
             });
             commission.unbind('click').bind('click', function () {
-                console.log($(this).attr("custid"));
-                console.log( $( this ).attr( "username" ) );
-                console.log( $( this ).attr( "usergroup" ) );
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CustomerSetting/EditCommissionSetting?custId=" + $this.attr("custid")
+                + "&userName" + $this.attr("username")
+                + "&userGroup=" + $this.attr("usergroup"));
+                APOLLO.openDialogFrame(url, '', {
+                    width: 1015,
+                    height: 300,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function (event, ui) {
+                    }
+                });
+
                 // Code here
             });
             betsetting.unbind('click').bind('click', function () {
-                console.log($(this).attr("custid"));
-                console.log( $( this ).attr( "username" ) );
-                console.log( $( this ).attr( "usergroup" ) );
-                // Code here
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CustomerSetting/EditBetSetting?custId=" + $this.attr("custid")
+                + "&userName" + $this.attr("username"));
+                APOLLO.openDialogFrame(url, '', {
+                    width: 1015,
+                    height: 600,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function (event, ui) {
+                    }
+                });
             });
             menuEdit.mouseover(function () {
                 $(this).show();
