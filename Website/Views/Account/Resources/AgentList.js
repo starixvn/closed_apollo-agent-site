@@ -51,7 +51,7 @@ var AGENTLIST = function ($) {
             $('[name="viewMember"]').unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
 
-                location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId + "&username=" + $(this).attr('username'));
+                location.href = APOLLO.resolveUrl( "Account/MemberList?agentId=" + AGENTLIST.AgentId + "&username=" + $( this ).attr( 'username' ) + "&agentlevel=" + $( this ).attr( 'agentlevel' ) );
                 return false;
             });
         },
@@ -60,9 +60,6 @@ var AGENTLIST = function ($) {
                 AGENTLIST.AgentId = $(this).attr('agentid');
                 AGENTLIST.loadAgentList();
                 return false;
-            });
-
-            $(".edit-setting").mouseover(function () {
             });
         },
         bindingQuickLink: function () {
@@ -83,16 +80,16 @@ var AGENTLIST = function ($) {
             var betsetting = $("#betsetting");
             var sharesetting = $("#sharesetting");
             els.unbind('click').bind('click', function () {
-                var $this = $(this);
-                var url = APOLLO.resolveUrl("CustomerSetting/EditAllSetting?custId=" + $this.attr("agentid")
-                + "&agentLevel=" + $this.attr("agentlevel"));
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditAllSetting?custId=" + $this.attr( "agentid" )
+                + "&agentLevel=" + $this.attr( "agentlevel" ) );
                 AGENTLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
                     width: 1020,
                     height: 800,
                     position: { my: "top+10", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function ( event, ui ) {
                     }
-                });
+                } );
             });
 
             els.mouseover(function () {
@@ -146,17 +143,17 @@ var AGENTLIST = function ($) {
                     }
                 });
             });
-            sharesetting.unbind('click').bind('click', function () {
-                var $this = $(this);
-                var url = APOLLO.resolveUrl("CustomerSetting/EditPositionTaking?custId=" + $this.attr("agentid")
-                + "&agentLevel=" + $this.attr("agentlevel"));
+            sharesetting.unbind( 'click' ).bind( 'click', function () {
+                var $this = $( this );
+                var url = APOLLO.resolveUrl( "CustomerSetting/EditPositionTaking?custId=" + $this.attr( "agentid" )
+                + "&agentLevel=" + $this.attr( "agentlevel" ) );
                 AGENTLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
                     width: 1020,
                     height: 800,
                     position: { my: "top+10", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function ( event, ui ) {
                     }
-                });
+                } );
             });
             menuEdit.mouseover(function () {
                 $(this).show();
@@ -262,7 +259,7 @@ var AGENTLIST = function ($) {
                          },
                          { HeaderText: LANGUAGES.NumberOfMember, Width: 70, Name: "NumberOfMember", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.NumberOfMember != 0 ? "<a href='#' name='viewMember' agentId=" + cell.Value.AgentId + " username=" + cell.Value.Username + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember);
+                                 return ( cell.Value.NumberOfMember != 0 ? "<a href='#' name='viewMember' agentlevel=" + cell.Value.AgentLevel + " agentId=" + cell.Value.AgentId + " username=" + cell.Value.Username + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember );
                              }
                          },
                          { HeaderText: LANGUAGES.GroupA, Width: 100, Name: "GroupA", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },

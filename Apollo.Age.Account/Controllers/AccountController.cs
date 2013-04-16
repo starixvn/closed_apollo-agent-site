@@ -33,6 +33,7 @@ namespace Apollo.Age.Account.Controllers
         private readonly IAccountService _accountService;
         private int _agentId;
         private string _username;
+        private int _agentLevel;
 
         private int? CurrentAgentId
         {
@@ -55,6 +56,18 @@ namespace Apollo.Age.Account.Controllers
             set
             {
                 _username = string.IsNullOrWhiteSpace(value) ? CurrentSession.AgentName : value;
+            }
+        }
+
+        private int? CurrentAgentLevel
+        {
+            get
+            {
+                return _agentLevel;
+            }
+            set
+            {
+                _agentLevel = value.HasValue ? value.Value : CurrentSession.AgentLevel;
             }
         }
 
@@ -167,13 +180,15 @@ namespace Apollo.Age.Account.Controllers
             return View(listAgent);
         }
 
-        public ActionResult MemberList(int? agentId, string username)
+        public ActionResult MemberList(int? agentId, string username, int agentlevel)
         {
             CurrentAgentId = agentId;
             CurrentUsername = username;
+            CurrentAgentLevel = agentlevel;
 
             ViewBag.CurrentAgentId = CurrentAgentId;
             ViewBag.CurrentUsername = CurrentUsername;
+            ViewBag.CurrentAgentLevel = CurrentAgentLevel;
 
             var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, CurrentAgentId.Value).ToList();
 
