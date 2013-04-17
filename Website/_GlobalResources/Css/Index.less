@@ -29,10 +29,24 @@ iframe { border: 0 }
 	border-right: 1px solid #ccc;
 }
 
+
+
 .mainpage {
 	background: url(img/bg-mainpage.png) repeat-y;
 	top: @headerHeight + 1;
 	left: @menuWidth + 1;
 	right: 0;
 	padding: 0 5px 10px;
+}
+
+/* Fix layout for IE7 */
+
+.ie7 {
+	.menu{
+		height: 850px;
+	}
+
+	.mainpage {
+		height: 850px;
+	}
 }
