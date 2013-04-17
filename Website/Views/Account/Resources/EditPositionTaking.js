@@ -6,7 +6,12 @@ if (typeof jQuery != 'undefined') {
             settingContext: null,
             positionTakingElement: null,
             positionTakingSetting: null,
-            init: function (settingContext, positionTakingSetting) {
+            currentIsSimpleMode: true,
+            initOthers: function (isSimpleMode) {
+                settingContext.IsSimpleMode = isSimpleMode;
+                EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
+            },
+            init: function (settingContext, positionTakingSetting, isUpdateAllSetting) {
 
                 EDITPOSITIONTAKING.settingContext = settingContext;
                 Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);
@@ -16,9 +21,27 @@ if (typeof jQuery != 'undefined') {
                 positionTakingContainer.innerHTML = "";
                 EDITPOSITIONTAKING.positionTakingElement.Render(positionTakingContainer);
 
+                if (isUpdateAllSetting) return;
+
                 //// Register Event
                 $("#btnSubmitFooter").click(function () {
                     EDITPOSITIONTAKING.updatePositionTakingSetting();
+                });
+
+                $(".setting-mode #simple-mode").unbind("click").click(function () {
+                    if (EDITPOSITIONTAKING.currentIsSimpleMode) return;
+                    $(this).removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
+                    EDITPOSITIONTAKING.currentIsSimpleMode = true;
+                    EDITPOSITIONTAKING.initOthers(true);
+                });
+
+                $(".setting-mode #advanced-mode").unbind("click").click(function () {
+                    if (EDITPOSITIONTAKING.currentIsSimpleMode == false) return;
+                    $(this).removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
+                    EDITPOSITIONTAKING.currentIsSimpleMode = false;
+                    EDITPOSITIONTAKING.initOthers(false);
                 });
             },
             updatePositionTakingSetting: function () {
@@ -56,6 +79,7 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
+        settingContext.IsSimpleMode = true;
         EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
     

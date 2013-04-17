@@ -2,9 +2,32 @@
 if (typeof jQuery != 'undefined') {
     var EDITSETTING = function ($) {
         return {
-            init: function() {
+            currentIsSimpleMode: true,
+            initOthers: function (isSimpleMode) {
+                settingContext.IsSimpleMode = isSimpleMode;
+                BETLIMIT.init(settingContext, betLimits, true);
+                EDITCOMMISSION.init(settingContext, commissionSetting, true);
+                EDITPOSITIONTAKING.init(settingContext, positionTakingSetting, true);
+            },
+            init: function () {
                 $("#btnSubmitFooter").unbind("click").click(function () {
                     EDITSETTING.saveSetting();
+                });
+
+                $(".setting-mode #simple-mode").unbind("click").click(function () {
+                    if (EDITSETTING.currentIsSimpleMode) return;
+                    $(this).removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
+                    EDITSETTING.currentIsSimpleMode = true;
+                    EDITSETTING.initOthers(true);
+                });
+
+                $(".setting-mode #advanced-mode").unbind("click").click(function () {
+                    if (EDITSETTING.currentIsSimpleMode == false) return;
+                    $(this).removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
+                    EDITSETTING.currentIsSimpleMode = false;
+                    EDITSETTING.initOthers(false);
                 });
             },
             saveSetting: function () {
