@@ -26,7 +26,7 @@ namespace Apollo.Age.Forecast.Criterias
 
         public override bool IsValid()
         {
-            return AgentId > 0 && !string.IsNullOrWhiteSpace(BetTypes);
+            return !string.IsNullOrWhiteSpace(BetTypes);
         }
     }
 }

@@ -3,10 +3,15 @@
 if (typeof jQuery != 'undefined') {
     var EDITCOMMISSION = function ($) {
         return {
+            currentIsSimpleMode: true,
+            initOthers: function (isSimpleMode) {
+                settingContext.IsSimpleMode = isSimpleMode;
+                EDITCOMMISSION.init(settingContext, commissionSetting);
+            },
             settingContext: null,
             commissionSettingElement: null,
             commissionSetting: null,
-            init: function (settingContext, customerCommission) {
+            init: function (settingContext, customerCommission, isUpdateAllSetting) {
                 EDITCOMMISSION.settingContext = settingContext;
                 Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);
                 EDITCOMMISSION.commissionSetting = customerCommission;
@@ -15,9 +20,27 @@ if (typeof jQuery != 'undefined') {
                 commissionSettingContainer.innerHTML = "";
                 EDITCOMMISSION.commissionSettingElement.Render(commissionSettingContainer);
 
+                if (isUpdateAllSetting) return;
+
                 //// Register Event
                 $("#btnSubmitFooter").click(function () {
                     EDITCOMMISSION.updatecommissionSetting();
+                });
+
+                $(".setting-mode #simple-mode").unbind("click").click(function () {
+                    if (EDITCOMMISSION.currentIsSimpleMode) return;
+                    $(this).removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
+                    EDITCOMMISSION.currentIsSimpleMode = true;
+                    EDITCOMMISSION.initOthers(true);
+                });
+
+                $(".setting-mode #advanced-mode").unbind("click").click(function () {
+                    if (EDITCOMMISSION.currentIsSimpleMode == false) return;
+                    $(this).removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
+                    EDITCOMMISSION.currentIsSimpleMode = false;
+                    EDITCOMMISSION.initOthers(false);
                 });
             },
             updatecommissionSetting: function () {
