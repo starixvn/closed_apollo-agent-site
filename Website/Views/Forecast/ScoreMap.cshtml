@@ -15,42 +15,47 @@
 <div id="content_main">
     <div id="box_header" class="clearfix">
         <div style="@(showLeaguesStyle)" class="scoremap-filter clearfix">
-            <div class="boxHeader-element">
-                <label>@Resources.Lang.league</label>
-                <select id="ddlLeague" name="ddlLeague" style="position: relative;">
-                @{
-                    if (leagues != null && leagues.Any())
-                    {
-                        foreach (var league in leagues)
+            @{
+                if (leagues != null && leagues.Any())
+                {
+                <div class="boxHeader-element">
+                    <label>@Resources.Lang.league</label>
+                    <select id="ddlLeague" name="ddlLeague" style="position: relative;">
+                        @foreach (var league in leagues)
                         {
                             <option value="@(league.LeagueId)">@(league.LeagueName)</option>
                         }
-                    }
+                    </select>
+                </div>            
+                <div class="boxHeader-element">
+                    <input type="button" class="btn" id="dSelMatch" value="@Resources.Lang.SelectMatch">
+                </div>
+                <div title="@Resources.Lang.RefreshLeagues" class="iconRefresh clearfix" id="RefreshLeagues">
+                </div>  
                 }
-                </select>
-            </div>            
-            <div class="boxHeader-element">
-                <input type="button" class="btn" id="dSelMatch" value="@Resources.Lang.SelectMatch">                
-            </div>
-            <div title="@Resources.Lang.RefreshLeagues" class="iconRefresh clearfix" id="RefreshLeagues"></div>           
-        </div>                       
+                else
+                {
+                    <label>There is no @Resources.Lang.league availble!</label>
+                }
+            }
+        </div>
         <div id="tblLiveDead">
-            <div id="bet-type-container" class="clearfix"></div>
+            <div id="bet-type-container" class="clearfix">
+            </div>
             <div class="btn-submit clearfix">
                 <input type="button" value="@Resources.Lang.submit" id="dSubmit" class="btn" />
                 <span id="loadingSubmit"></span>
             </div>
-        </div>      
+        </div>
     </div>
     <div id="diverrmsg">
         <span id="spmsgerr" class="msgerr"></span>
-    </div>     
+    </div>
     <div id="mainContent" @*style="width: {mWidth}"*@>
     </div>
-    <div id="BoxMatchWL" style="display:none;">
+    <div id="BoxMatchWL" style="display: none;">
     </div>
 </div>
-
 <input id="match-ids" type="hidden" value="@(matchIds)" />
 <input id="bet-types-live" type="hidden" value="@(liveBetTypes)" />
 <input id="bet-types-dead" type="hidden" value="@(deadBallBetTypes)" />

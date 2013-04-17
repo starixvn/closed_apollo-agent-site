@@ -126,7 +126,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             // Add new customer (both systems)
             EDIT_PT: 1,
             // Edit PT of existing customer (both systems)
-            EDIT_MIN_PT: 2,
+            EDIT_NON_DIRECT: 2,
             // Edit Min PT in Agency
             EDIT_MIN_MAX_PT: 3 // Edit Min/Max PT in Accounting
         },
@@ -641,6 +641,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 var result = [];
                 if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == true) {
                     var currentPtValue = this.SaveSimpleMode();
+                    if (currentPtValue == null) return null;
                     var sportTypeLength = this.sportTypes.length;
                     for (var sportTypeIndex = 0; sportTypeIndex < sportTypeLength; sportTypeIndex++) {
                         var currentBetTypeGroups = this.sportTypes[sportTypeIndex].BetTypeGroups;
@@ -688,20 +689,21 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 var top = 0;
 
                 for (var i = this.copiedItem.sportId + 1; i < count; i++) {
-                    if (this.items[i].copiedItem != null && this.items[i].copiedItem.sportId == this.copiedItem.sportId) {
-                        hint += '<li>' + this.items[i].name + '</li>';
-                        top += 18;
-                    }
+                    //if (this.items[i].copiedItem != null && this.items[i].copiedItem.sportId == this.copiedItem.sportId) {
+                    hint += '<li>' + this.items[i].name + '</li>';
+                    top += 18;
+                    //}
                 }
                 hint = hint + '</ul></div>';
-                top = top + 40;
+                top = top + 80;
+                var height = top - 20;
                 // Show tooltip
                 //Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 10, -top - 54, top + 20, top, 30000);
                 //show: function (elementInput, message, xPos, pointerXPos, yPos, pointerYPos, height, timeout) {
                 if (this.copiedItem.sportId == 2) {
-                    top += 20;
+                    top += 15;
                 }
-                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 50, top - 130, -10, top, 80000, true);
+                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 50, top - 130, -10, height, 10000, true);
             },
             this.Render = function (owner) {
                 var box = null;
@@ -789,7 +791,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         //                            hideHintTimeout = setTimeout(Validators.hide, 1000);
                         //                        }
                         cloneFromSoccer.onclick = function () {
-                            //                            Validators.hide();
+                            Validators.hide();
                             //                            var count = items.length;
                             //                            cloneFromSoccer.firstChild.checked = !cloneFromSoccer.firstChild.checked;
                             //                            cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
@@ -826,7 +828,9 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             //                                    };
                             //                                }
                             //                            };
-
+                            cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
+                            cloneFromSoccer.parent.activeCopiedTitle = "{0} {1}".Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                            cloneFromSoccer.parent.items[0].Toggle(true); // Expand
                             var c = elements.length;
                             var currentCopyBetType = elements[0].betTypeGroupElements[0].betTypeElements[0];
                             var sportTypes = elements;
@@ -864,7 +868,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         };
                         // Basketball
                         cloneFromBasketball.onclick = function () {
-                            //                            Validators.hide();
+                            Validators.hide();
                             //                            var count = items.length;
                             //                            cloneFromBasketball.firstChild.checked = !cloneFromBasketball.firstChild.checked;
                             //                            cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
@@ -904,6 +908,9 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             //                                    };
                             //                                }
                             //                            };
+                            cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
+                            cloneFromBasketball.parent.activeCopiedTitle = "{0} {1}".Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                            cloneFromBasketball.parent.items[2].Toggle(true); // Expand
                             var c = elements.length;
                             var currentCopyBetType = elements[2].betTypeGroupElements[0].betTypeElements[0];
                             var sportTypes = elements;
@@ -951,7 +958,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     var formId = Fanex.CustSetting.CURRENT_CONTEXT.FormId;
                     var roleId = Fanex.CustSetting.CURRENT_CONTEXT.RoleId; //(this.context.TargetRoleId == 1 || formId != Fanex.CustSetting.FormTypes.EDIT_PT) ? this.context.RoleId : 0;
                     var targetRoleId = Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId;
-                    var method = this['RenderSimpleMode_'.concat(roleId, '_', targetRoleId, '_', 1)];
+                    var method = this['RenderSimpleMode_'.concat(roleId, '_', targetRoleId, '_', formId)];
                     if (typeof (method) == "function") {
                         box.appendChild(method.call(this, owner));
                     }

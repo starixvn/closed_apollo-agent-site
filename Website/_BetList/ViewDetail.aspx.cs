@@ -32,7 +32,7 @@ namespace Sunplus.Agent.UI._BetList
         private Int64 agentID = 0;
         private DateTime fromDate = DateTime.Now;
         private DateTime toDate = DateTime.Now;
-        private bool isSportsbook = false;
+        private bool isReportWinloss = false;
         IBetListCmd command = null;
 
         #endregion Define variable
@@ -72,9 +72,6 @@ namespace Sunplus.Agent.UI._BetList
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicket totalTicket = new Ticket();
-            if (tickets.Count > 0)
-            {
-            }
 
             if (tickets.Count > 0)
             {
@@ -102,6 +99,7 @@ namespace Sunplus.Agent.UI._BetList
                     totalTicket.AComm += ticket.AComm;
                     totalTicket.ADiscount += ticket.ADiscount;
                     totalTicket.Status = ticket.Status;
+                    totalTicket.AgentLevel = ticket.AgentLevel;
 
                     #endregion Total ticket
                 }
@@ -138,6 +136,7 @@ namespace Sunplus.Agent.UI._BetList
             Int64.TryParse(Request["transId"], out transID);
             fromDate = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
+            isReportWinloss = GetStringRequest("type", string.Empty) == "report" ? true : false;
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
@@ -149,7 +148,7 @@ namespace Sunplus.Agent.UI._BetList
         public override object InvokeData(System.Collections.Hashtable p)
         {
             BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
-            DataTable dtResult = bo.GetAgentPTComm(transID, fromDate, toDate, ReportsBO.MoveBetsDate);
+            DataTable dtResult = bo.GetAgentPTComm(transID, fromDate, toDate, ReportsBO.MoveBetsDate, isReportWinloss);
             return dtResult == null ? new DataTable() : dtResult;
         }
 

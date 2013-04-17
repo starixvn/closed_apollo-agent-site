@@ -202,7 +202,7 @@
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettype" SpName="Age_BetList_TotalBets_SelRunningByBettype" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettypeMatch" SpName="Age_BetList_TotalBets_SelRunningByBettypeMatch" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_AgentDetail" SpName="Age_BetList_AgentDetail" DbName="REPDB" Plain="0" />
-
+    <Setting Key="Age_BetList_AgentDetail_Winloss" SpName="Age_BetList_AgentDetail_Winloss" DbName="REPDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-Customer Setting">

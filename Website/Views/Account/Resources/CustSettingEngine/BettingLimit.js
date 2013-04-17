@@ -25,6 +25,9 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         Validators.animate(elementInput);
     };
     this.Validate = function () {
+
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return true;
+
         var c = this.items.length;
         var isSimpleMode = Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode;
         if (isSimpleMode) {
@@ -53,15 +56,15 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                 var maxBet = parseFloat(item.maxBetElement.value, true);
                 var maxPerMatch = parseFloat(item.maxPerMatchElement.value, true);
                 if (minBet > maxBet) {
-                    this.ValidateMessage(item.minBetElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_BET.Format(isSimpleMode ? Language.SPORT_BOOK : item.Name));
+                    this.ValidateMessage(item.minBetElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_BET.Format(item.Name));
                     return false;
                 }
                 if (minBet > maxPerMatch) {
-                    this.ValidateMessage(item.minBetElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(isSimpleMode ? Language.SPORT_BOOK : item.Name));
+                    this.ValidateMessage(item.minBetElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(item.Name));
                     return false;
                 }
                 if (maxBet > maxPerMatch) {
-                    this.ValidateMessage(item.maxBetElement, Language.MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(isSimpleMode ? Language.SPORT_BOOK : item.Name));
+                    this.ValidateMessage(item.maxBetElement, Language.MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(item.Name));
                     return false;
                 }
                 // Check minbet < minbetmax
@@ -139,6 +142,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
     };
     this.Save = function () {
         var bettingLimits = [];
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return null;
         if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode) {
             //Fanex.RoundNumber(parseFloat(this.items[copiedItem.SportId].minBetElement.value, true), 1)
             var minBetValue = Fanex.RoundNumber(parseFloat(this.items[0].minBetElement.value, true), 1);
@@ -240,7 +244,9 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         };
         return false;
     };
-    this.Render = function (owner, hideTextBox) {
+    this.Render = function (owner) {
+        var context = Fanex.CustSetting.CURRENT_CONTEXT;
+        var isEditNonDirectMember = context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
         var hasNumberGame = this.HasNumberGame();
         var container = document.createElement("DIV");
         container.className = Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode ? "" : "betting-limit-container-header";
@@ -310,10 +316,10 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                 }
                 // Current value
                 // Show label instead to TextBox
-                if (hideTextBox) {
+                if (isEditNonDirectMember) {
                     var minBetBox = document.createElement("DIV");
                     minBetBox.innerHTML = ''.FormatNumber(item.MinBet);
-                    minBetBox.className = "BettingLimitLabel";
+                    minBetBox.className = "betting-limit-label";
                     box2.appendChild(minBetBox);
                     minBetHeader.className = "betting-limit-header-top";
                 }
@@ -344,10 +350,10 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
 
                 // Current value
                 // Show label instead to TextBox
-                if (hideTextBox) {
+                if (isEditNonDirectMember) {
                     var maxBetBox = document.createElement("DIV");
                     maxBetBox.innerHTML = ''.FormatNumber(item.MaxBet);
-                    maxBetBox.className = "BettingLimitLabel";
+                    maxBetBox.className = "betting-limit-label";
                     box2.appendChild(maxBetBox);
                     maxBetHeader.className = "betting-limit-header-top";
                 }
@@ -378,10 +384,10 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
 
                 // Current value
                 // Show label instead to TextBox
-                if (hideTextBox) {
+                if (isEditNonDirectMember) {
                     var maxPerMatchBox = document.createElement("DIV");
                     maxPerMatchBox.innerHTML = ''.FormatNumber(item.MaxPerMatch);
-                    maxPerMatchBox.className = "BettingLimitLabel";
+                    maxPerMatchBox.className = "betting-limit-label";
                     box2.appendChild(maxPerMatchBox);
                     if (showLimitBox) {
                         maxPerMatchHeader.className = "betting-limit-header-top";
@@ -471,9 +477,9 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                 clear.style.clear = "both";
                 box.appendChild(clear);
             }
-            box.className = (showLimitBox || hideTextBox) ? "betting-limit" : "betting-limit4";
+            box.className = (showLimitBox || isEditNonDirectMember) ? "betting-limit" : "betting-limit4";
             if (typeof (owner) == 'object') {
-                if (!hideTextBox) {
+                if (!isEditNonDirectMember) {
                     var headerSoccer = this.items[0].header;
                     var headerBasketBall = this.items[1].header;
                     headerSoccer.className = headerBasketBall.className = "betting-limit-header-copied";
@@ -527,20 +533,23 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
 
             var item = this.items[0];
             //// Min Bet
-            item.minBetElement = this.RenderBetLimitBlock(trSetting,
+            item.minBetElement = this.RenderBetLimitBlock(isEditNonDirectMember,
+            trSetting,
             Language.MIN_BET,
             item.MinBetMax == 0 ? '' : '>= '.FormatNumber(item.MinBetMax),
             item.MinBet,
             false);
 
             //// Max Bet
-            item.maxBetElement = this.RenderBetLimitBlock(trSetting,
+            item.maxBetElement = this.RenderBetLimitBlock(isEditNonDirectMember,
+            trSetting,
             Language.MAX_BET,
             item.MaxBetMin == 0 ? '' : '<= '.FormatNumber(item.MaxBetMin),
             item.MaxBet, false);
 
             /// Max Per Match
-            item.maxPerMatchElement = this.RenderBetLimitBlock(trSetting,
+            item.maxPerMatchElement = this.RenderBetLimitBlock(isEditNonDirectMember,
+            trSetting,
             Language.MAX_PER_MATCH,
             item.MaxPerMatchMin == 0 ? '' : '<= '.FormatNumber(item.MaxPerMatchMin),
             item.MaxPerMatch,
@@ -551,25 +560,31 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         }
         return box;
     },
-    this.RenderBetLimitBlock = function (parentElement, minMaxText, constrainText, betLimitValue, isMaxPerMatch) {
+    this.RenderBetLimitBlock = function (isEditNonDirectMember, parentElement, minMaxText, constrainText, betLimitValue, isMaxPerMatch) {
         /// Max Per Match
         var betSettingContainer = document.createElement("TD");
-        betSettingContainer.className = "bet-limit-value";
-        betSettingContainer.innerHTML = minMaxText + ' ';
-        parentElement.appendChild(betSettingContainer);
+        if (isEditNonDirectMember) {
+            betSettingContainer.className = "bet-limit-text";
+            betSettingContainer.innerHTML = minMaxText + ' = '.FormatNumber(betLimitValue);
+            parentElement.appendChild(betSettingContainer);
+        }
+        else {
+            betSettingContainer.className = "bet-limit-value";
+            betSettingContainer.innerHTML = minMaxText + ' ';
+            parentElement.appendChild(betSettingContainer);
 
-        var inputValue = document.createElement("INPUT");
-        inputValue.type = "text";
-        inputValue.className = "bet-limit-input";
-        inputValue.onkeyup = function (event) { Fanex.FormatNumber(event, true); };
-        inputValue.value = ''.FormatNumber(betLimitValue);
-        betSettingContainer.appendChild(inputValue);
+            var inputValue = document.createElement("INPUT");
+            inputValue.type = "text";
+            inputValue.className = "bet-limit-input";
+            inputValue.onkeyup = function (event) { Fanex.FormatNumber(event, true); };
+            inputValue.value = ''.FormatNumber(betLimitValue);
+            betSettingContainer.appendChild(inputValue);
 
-        var constrainBetSettingContainer = document.createElement("TD");
-        constrainBetSettingContainer.className = "bet-limit-constrain";
-        constrainBetSettingContainer.innerHTML = constrainText;
-        parentElement.appendChild(constrainBetSettingContainer);
-
+            var constrainBetSettingContainer = document.createElement("TD");
+            constrainBetSettingContainer.className = "bet-limit-constrain";
+            constrainBetSettingContainer.innerHTML = constrainText;
+            parentElement.appendChild(constrainBetSettingContainer);
+        }
         return inputValue;
     }
 }

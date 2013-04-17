@@ -158,7 +158,7 @@ namespace Fanex.BetList.Core.Utils
             return returnValue;
         }
 
-        #endregion
+        #endregion [f_GetOddsByBettype], [f_ShowOddsByBettype], [f_GetChoice]
 
         /// <summary>
         /// HDPs the specified value.
@@ -182,7 +182,7 @@ namespace Fanex.BetList.Core.Utils
             if (d < 0)
             {
                 return string.Format(minus, string.Format(Formatter.DECIMAL_FORMAT3, d));
-            }            
+            }
             else
             {
                 return string.Format(Formatter.DECIMAL_FORMAT3, d);
@@ -337,7 +337,7 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>System.String.</returns>
         public static string Pt(object value)
         {
-            return (Cast.AsDecimal(value) * 100).ToString("N0");
+            return (Cast.AsDecimal(value) * 100).ToString("N2");
         }
 
         /// <summary>

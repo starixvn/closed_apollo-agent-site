@@ -19,16 +19,17 @@ if (typeof jQuery != 'undefined') {
 				return target.dialog($.extend({}, APOLLO.dialogOpt, options));
 			},
 			openDialogFrame: function (url, title, options) {
-				var frame = $("#apo-dialog-frame");
+                //// Do not change
+			    var frame = $("#apo-dialog-frame");
 
-				if (frame.length > 0) {
-					frame.children('iframe').attr('src', url);
-				} else {
-					frame =
-					'<div id="apo-dialog-frame">' +
-						'<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
-					'</div>';
-				}
+			    var frameHtml = '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>';
+
+			    if (frame.length > 0) {
+			        frame.html(frameHtml);
+			    } else {
+			        frame = '<div id="apo-dialog-frame">' + frameHtml + '</div>';
+			    }
+
 
 				return APOLLO.openDialog(frame, title, options);
 			},
