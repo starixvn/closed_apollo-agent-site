@@ -4,19 +4,16 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Kaden.Trinh" date="2013.04.09">Created and Implement</change>
+//   <change who="Kaden.Trinh" date="2013.04.17">Created and Implement</change>
 // </history>
-namespace Apollo.Age.BetList.Repositories
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
-    /// <summary>
-    /// Interface BetList
-    /// </summary>
+namespace Apollo.Age.BetList.Repositories.Interface
+{
+    using Apollo.Age.BetList.Criterias;
+    using Apollo.Age.BetList.Models;
+
     public interface IBetListRepository
     {
+        TicketResult GetDetailAgentComm(BetListCriteria criteria);
     }
 }
