@@ -19,13 +19,13 @@ var AGENTLIST = function ( $ ) {
                 .done( function ( result ) {
                     var rowLength = result.length;
                     var template = '';
-
+                    var $quickLinkEditSetting = $( "#quickLinkEditSetting" );
                     for ( var i = 0; i < rowLength; i++ ) {
                         if ( i == rowLength - 1 ) {
                             template += "<span>" + result[i].Username + "</span>";
                             $( "#currUsername" ).html( result[i].Username );
-                            $( "#quickLinkEditSetting" ).attr( "agentid", result[i].Id );
-                            $( "#quickLinkEditSetting" ).attr( "agentlevel", result[i].Level );
+                            $quickLinkEditSetting.attr( "agentid", result[i].Id );
+                            $quickLinkEditSetting.attr( "agentlevel", result[i].Level );
                         }
                         else {
                             template += "<a href='#' name='navigation' agentid='" + result[i].Id + "' >" + result[i].Username + "</a>";
@@ -92,13 +92,14 @@ var AGENTLIST = function ( $ ) {
             } );
 
             els.mouseover( function () {
-                var pos = $( this ).offset();
-                var eWidth = $( this ).outerWidth();
+                var $this = $( this );
+                var pos = $this.offset();
+                var eWidth = $this.outerWidth();
                 var mWidth = menuEdit.outerWidth();
                 var left = ( pos.left + eWidth ) + "px";
                 var top = 3 + pos.top + "px";
-                var agentid = $( this ).attr( 'agentid' );
-                var agentlevel = $( this ).attr( 'agentlevel' );
+                var agentid = $this.attr( 'agentid' );
+                var agentlevel = $this.attr( 'agentlevel' );
 
                 commission.attr( "agentId", agentid );
                 betsetting.attr( "agentId", agentid );

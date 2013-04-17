@@ -52,14 +52,16 @@ var MEMBERLIST = function ( $ ) {
                 } );
             } );
             els.mouseover( function () {
-                var pos = $( this ).offset();
-                var eWidth = $( this ).outerWidth();
+                var $this = $( this );
+                var pos = $this.offset();
+                var eWidth = $this.outerWidth();
                 var mWidth = menuEdit.outerWidth();
                 var left = ( pos.left + eWidth ) + "px";
                 var top = 3 + pos.top + "px";
+
                 if ( isEditAgent ) {
-                    var agentId = $( this ).attr( 'agentid' );
-                    var agentLevel = $( this ).attr( 'agentlevel' );
+                    var agentId = $this.attr( 'agentid' );
+                    var agentLevel = $this.attr( 'agentlevel' );
 
                     commission.attr( "agentid", agentId );
                     commission.attr( "agentlevel", agentLevel );
@@ -71,9 +73,9 @@ var MEMBERLIST = function ( $ ) {
                     sharesetting.attr( "agentlevel", agentLevel );
                 }
                 else {
-                    var custId = $( this ).attr( 'custid' );
-                    var username = $( this ).attr( 'username' );
-                    var usergroup = $( this ).attr( 'usergroup' );
+                    var custId = $this.attr( 'custid' );
+                    var username = $this.attr( 'username' );
+                    var usergroup = $this.attr( 'usergroup' );
 
                     commission.attr( "custid", custId );
                     commission.attr( "username", username );
