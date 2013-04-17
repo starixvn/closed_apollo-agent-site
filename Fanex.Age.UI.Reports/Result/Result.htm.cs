@@ -95,7 +95,7 @@ namespace Fanex.Age.UI.Reports
 
 		public class Result_HeaderRegion_Block: Block
 		{
-			protected static string s16 = "<div id=\"box_header\">";
+			protected static string s16 = "<div id=\"box_header\" class=\"clearfix\">";
 			public Fanex.Age.UI.Components.DateRangeSelect_Control DateRangeSelect{get {return _DateRangeSelect != null ? _DateRangeSelect : _DateRangeSelect = new Fanex.Age.UI.Components.DateRangeSelect_Control(this,false,DateTime.Today,DateTime.Today);}}
 			protected Fanex.Age.UI.Components.DateRangeSelect_Control _DateRangeSelect;
 			protected static string s17 = "<input type=\"button\" class=\"btn\" id=\"btResultType\"value=\"";

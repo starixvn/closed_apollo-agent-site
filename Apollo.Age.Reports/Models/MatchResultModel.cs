@@ -11,9 +11,6 @@
 namespace Apollo.Age.Reports.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Services;
 
     /// <summary>
@@ -26,6 +23,14 @@ namespace Apollo.Age.Reports.Models
         public string BetStatus { get; set; }
 
         public int LeagueId { get; set; }
+
+        public string LeagueName
+        {
+            get
+            {
+                return CacheRef.GetLeagueName(this.LeagueId);
+            }
+        }
 
         public int MatchId { get; set; }
 
@@ -78,6 +83,5 @@ namespace Apollo.Age.Reports.Models
         public bool Calculate { get; set; }
 
         public bool IsPending { get; set; }
-
     }
 }

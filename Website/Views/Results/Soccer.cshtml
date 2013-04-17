@@ -1,87 +1,43 @@
-﻿@model IEnumerable<Apollo.Age.Reports.Models.MatchResultModel>
+﻿@using Apollo.Age.Reports.Models
+@using Apollo.Age.Reports.Core
+
+@model IEnumerable<MatchResultModel>
+
 <table class="tblRpt">
     <thead>
         <tr class="RptHeader">
             <td style="width: 90px" columnname="kickofftime">
-                {static:Resources.Lang.kickofftime}
+                @Resources.Lang.kickofftime
             </td>
             <td>
-                {static:Resources.Lang.match}
+                @Resources.Lang.match
             </td>
             <td style="width: 70px;">
-                {static:Resources.Lang.firsthalfscore}
+                @Resources.Lang.firsthalfscore
             </td>
             <td class="nowrap" style="width: 70px;">
-                {static:Resources.Lang.finalscore}
+                @Resources.Lang.finalscore
             </td>
             <td class="nowrap" style="width: 60px;">
-                {static:Resources.Lang.status}
+                @Resources.Lang.status
             </td>
         </tr>
     </thead>
     <tbody>
         @if (Model != null && Model.Any())
-        { 
-            <!--RowData-->
-            <!--League-->
-            <tr>
-                <td colspan="5" class="league" style="padding-left: 20px">
-                    {LeagueName}
-                </td>
-            </tr>
-            <!--/League-->
-            
-            foreach (var result in Model)
-            { 
-            <!--Row-->
-                <tr>
-                    <td class="bl_time_nowrap" rowspan="2">
-                        @result.KickoffTime {KickOffTime}
-                    </td>
-                    <td class="l">                        
-                        {Home}
-                        <!--LimitFGHome-->
-                        <div class="first_goal">
-                            &nbsp;</div>
-                        <!--/LimitFGHome-->
-                        <!--LimitLGHome-->
-                        <div class="last_goal">
-                            &nbsp;</div>
-                        <!--/LimitLGHome-->
-                    </td>
-                    <td>
-                        {HTHomeScore}
-                    </td>
-                    <td>
-                        {FTHomeScore}
-                    </td>
-                    <td rowspan="2">
-                        {EventStatus}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="l">
-                        {Away}
-                        <!--LimitFGAway-->
-                        <div class="first_goal">
-                            &nbsp;</div>
-                        <!--/LimitFGAway-->
-                        <!--LimitLGAway-->
-                        <div class="last_goal">
-                            &nbsp;</div>
-                        <!--/LimitLGAway-->
-                    </td>
-                    <td>
-                        {HTAwayScore}
-                    </td>
-                    <td>
-                        {FTAwayScore}
-                    </td>
-                </tr>
-    
-            <!--/Row-->
+        {
+            int rowIndex = 0;
+            int currentLeagueId = 0;
+
+            foreach (var item in Model)
+            {
+                rowIndex++;
+
+                @ShowLeague(currentLeagueId, item)
+                @ShowMatch(rowIndex, item)
+
+                currentLeagueId = item.LeagueId;
             }
-            <!--/RowData-->           
         }
         else
         { 
@@ -89,3 +45,190 @@
         }
     </tbody>
 </table>
+
+@helper ShowLeague(int currentLeagueId, MatchResultModel item)
+    {
+        if (currentLeagueId != item.LeagueId)
+        { 
+    <!--LeagueContents-->
+    <tr class="league">
+        <td colspan="6">
+            @item.LeagueName
+        </td>
+    </tr>
+        }            
+}
+
+@helper ShowMatch(int index, MatchResultModel item)
+    {
+        var classRow = string.Empty;
+        if (index % 2 == 0)
+        {
+            classRow = "class=alt";
+        }
+    
+    <tr @classRow>
+        <td rowspan="2">
+            @item.KickoffTime
+        </td>
+        <td>
+            @if (item.FinalHomeScore > item.FinalAwayScore)
+            {
+                <b>
+                    @item.HomeTeam
+                </b>
+            }
+            else
+            {
+                @item.HomeTeam
+            }
+            
+            @FirstAndLastGoal(item, isRowHome: true)
+
+        </td>
+
+        @BindScore(item, isRowHome: true)
+
+        <td rowspan="2">
+            @Html.Raw(item.EventStatus)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @if (item.FinalHomeScore < item.FinalAwayScore)
+            {
+                <b>
+                    @item.AwayTeam
+                </b>
+            }
+            else
+            {
+                @item.AwayTeam
+            }
+
+            @if (!string.IsNullOrEmpty(item.BetStatus) && item.BetStatus.Contains(":"))
+            {
+
+            }
+
+            @FirstAndLastGoal(item, isRowHome: false)
+
+        </td>
+        @BindScore(item, isRowHome: false)
+    </tr>
+}
+
+@helper FirstAndLastGoal(MatchResultModel item, bool isRowHome)
+    {
+        // Base on [BetStatus] to get First/Last Goal
+        // Example [BetStatus] = "FL:1-2"
+
+        if (!string.IsNullOrEmpty(item.BetStatus) && item.BetStatus.Contains(":"))
+        {
+            var valueArr = item.BetStatus.Split(':');
+            if (string.Compare(valueArr[0], "FL", true) == 0)
+            {
+                var firstGoal = valueArr[1].Split('-')[0];
+                var lastGoal = valueArr[1].Split('-')[1];
+
+                if (isRowHome)
+                {
+                    if (firstGoal == "1")
+                    {
+                    <div class="first_goal">&nbsp;</div>
+                    }
+                    if (lastGoal == "1")
+                    {
+                    <div class="last_goal">&nbsp;</div>
+                    }
+                }
+                else
+                {
+                    if (firstGoal == "2")
+                    {
+                    <div class="first_goal">&nbsp;</div>
+                    }
+                    if (lastGoal == "2")
+                    {
+                    <div class="last_goal">&nbsp;</div>
+                    }
+                }
+            }
+        }
+}
+
+@helper BindScore(MatchResultModel item, bool isRowHome)
+{
+    if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
+    {
+        <td>
+            @Resources.Lang.lblNA
+        </td>
+        <td>
+            @Resources.Lang.lblNA
+        </td>
+    }
+    else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
+    {
+        if (isRowHome)
+        {
+            <td>
+                @item.HalfTimeHomeScore
+            </td>
+            <td>
+                @item.FinalHomeScore
+            </td>
+        }
+        else
+        {
+            <td>
+                @Resources.Lang.lblNA
+            </td>
+            <td>
+                @Resources.Lang.lblNA
+            </td>
+        }
+    }
+    else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_HT)
+    {
+        if (isRowHome)
+        {
+            <td>
+                @Resources.Lang.lblNA
+            </td>
+            <td>
+                @Resources.Lang.lblNA
+            </td>
+        }
+        else
+        {
+            <td>
+                @item.HalfTimeAwayScore
+            </td>
+            <td>
+                @item.FinalAwayScore
+            </td>
+        }
+    }
+    else
+    {
+        if (isRowHome)
+        {
+            <td>
+                @item.HalfTimeHomeScore
+            </td>
+            <td>
+                @item.FinalHomeScore
+            </td>
+        }
+        else
+        {
+            <td>
+                @item.HalfTimeAwayScore
+            </td>
+            <td>
+                @item.FinalAwayScore
+            </td>
+        }
+    }
+}

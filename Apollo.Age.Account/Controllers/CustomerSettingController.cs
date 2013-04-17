@@ -10,27 +10,23 @@
 
 namespace Apollo.Age.Account.Controllers
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Globalization;
     using System.Text;
-    using Apollo.Age.Web;
+    using System.Threading;
     using System.Web.Mvc;
+    using Apollo.Age.Web;
+    using Fanex.CustSetting.Models;
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
-    using System.Globalization;
-    using System.Threading;
     using Newtonsoft.Json;
-    using Fanex.CustSetting.Models;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class CustomerSettingController : BaseController
     {
         private readonly ICustomerSettingService _customerSettingService;
 
-        #region Ctor
+        #region Ctors
+
         public CustomerSettingController()
             : this(null)
         {
@@ -40,6 +36,7 @@ namespace Apollo.Age.Account.Controllers
         {
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
         }
+
         #endregion
 
         #region Actions
@@ -117,6 +114,28 @@ namespace Apollo.Age.Account.Controllers
 
         #region Position Taking
 
+        /// <summary>
+        /// Views "share info" from logged-in agent to selected (searched) agent/member
+        /// </summary>
+        /// <param name="username">selected agent/member username</param>
+        public ActionResult ViewShare(string username)
+        {
+            ViewBag.UserName = username;
+            ViewBag.UserId = CurrentSession.UserId;
+            ViewBag.AgentLevel = CurrentSession.AgentLevel;
+
+            return View("~/Views/Account/ViewShare.cshtml");
+        }
+
+        public ActionResult ViewCommission(string username)
+        {
+            ViewBag.UserName = username;
+            ViewBag.UserId = CurrentSession.UserId;
+            ViewBag.AgentLevel = CurrentSession.AgentLevel;
+
+            return View("~/Views/Account/ViewCommission.cshtml");
+        }
+
         public ActionResult EditPositionTaking(int custId, string userName, int? agentLevel)
         {
             ViewBag.CustId = custId;
@@ -173,7 +192,7 @@ namespace Apollo.Age.Account.Controllers
 
         #endregion
 
-        #region Private Methods
+        #region Helpers
 
         private int GetRoleFromAgentLevel(int agentLevel)
         {

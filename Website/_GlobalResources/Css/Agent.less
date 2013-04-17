@@ -55,26 +55,6 @@ table {
 	border-collapse: collapse;
 }
 
-.btn {
-	height: 22px;
-	margin: 0 5px 0 0;
-	padding: 2px 6px;
-
-	#gradient.vertical(#fff, #ddd);
-	border: 1px solid @grayLight;
-	.box-shadow(1px 1px 0 @grayLighter);
-	.transition(background-color 0.15s ease-in-out 0s);
-
-	font-family: @fontFamily;
-	font-size: 0.9em;	
-	text-transform: uppercase;
-	color: @grayDark;
-	cursor: pointer;
-
-	&:hover, &:focus { #gradient.vertical(@grayLighter, @borderColor) }
-	&:active { #gradient.vertical(@borderColor, @grayLighter) }
-}
-
 .editBtn,
 .editBtnDisabled,
 .viewBtn,
@@ -248,40 +228,85 @@ table {
 }
 
 #box_header {
-	#gradient.vertical(@grayLighter, lighten(@grayLighter,10%));
-	border: 1px solid @grayLight;
 	margin: 10px 0 0 0;
-	padding: 5px;
-	.clearfix;
+	padding: 0;
+
+	label {
+		font-weight: bold;
+		color: @grayDark;
+		cursor: pointer;
+		width: 50px;
+	}
 
 	input[type=text], select {
 		background-color: #f8f8f8;
 		border: 1px solid @grayLight;
-		box-shadow: 1px 1px 3px #bbb inset;		
-		width: 60px;
-		padding: 3px;
+		.box-shadow(1px 1px 3px #bbb inset);
+		
 		line-height: 1.2em;
 		font-size: .8em;
 		cursor: default;
+		
+		padding: 3px;
+		width: 60px;
 		height: 13px;
 	}
 
 	select {		
 		padding: 2px 3px;
+		width: 100px;
 		height: 21px;
 	}
 
-	.boxHeader-element {
-		float: left;
+	.row {
+		.clearfix;
+		margin: 0 0 10px 0;
 
-		* {
-			vertical-align: middle;
-		}
+		.cell {
+			float: left;
+			margin: 0 5px 0 0;
 
-		select {
-			margin: 0 5px;
+			.label, .editor {
+				float: left;
+				padding-right: 5px;
+			}
+
+			.label {
+				
+			}
+
+			.editor {
+			
+			}
+
+			* {
+				vertical-align: middle;
+			}
 		}
 	}
+}
+
+.btn {
+	height: 22px;
+	margin: 0;
+	padding: 2px 6px 3px;
+
+	#gradient.vertical(#eee, #ddd);
+	border: 1px solid @grayLight;
+	.border-radius(2px);
+	.box-shadow(~"1px 1px 0 white inset,1px 1px 0px rgba(0,0,0,0.1)");
+	.transition(all 0.2s);
+
+	font-family: @fontFamily;
+	font-size: 0.9em;	
+	text-transform: uppercase;
+	color: @gray;
+	font-weight: bold;
+	text-shadow: 1px 1px 0 #f3f3f3;
+	cursor: pointer;
+
+	&:hover, &:focus { #gradient.vertical(#ddd, #ccc) }
+	&:active { #gradient.vertical(#ccc, #ddd) }
 }
 
 /* DATE RANGE CONTROL */
