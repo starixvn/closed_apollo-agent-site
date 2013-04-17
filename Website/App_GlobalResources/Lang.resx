@@ -4275,4 +4275,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="sharesetting" xml:space="preserve">
     <value>Share Setting</value>
   </data>
+  <data name="lblNA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
 </root>
