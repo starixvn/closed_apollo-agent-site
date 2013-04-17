@@ -1134,6 +1134,18 @@ namespace Sunplus.Agent.Model.DL.BetList
             return ExecSpTable("Age_BetList_AgentDetail", parameters);
         }
 
+        public DataTable Age_BetList_AgentDetail_Winloss(long transId, long loggedId, DateTime fromDate, DateTime toDate, DateTime moveBetsDay)
+        {
+            Hashtable parameters = new Hashtable();
+            parameters.Add("transid", transId);
+            parameters.Add("loggedid", loggedId);
+            parameters.Add("fromdate", fromDate);
+            parameters.Add("todate", toDate);
+            parameters.Add("movebetsday", moveBetsDay);
+
+            return ExecSpTable("Age_BetList_AgentDetail_Winloss", parameters);
+        }
+
         public DataTable Age_BetList_TotalBets_AgentDetail(long transId, long agentId)
         {
             Hashtable parameters = new Hashtable();

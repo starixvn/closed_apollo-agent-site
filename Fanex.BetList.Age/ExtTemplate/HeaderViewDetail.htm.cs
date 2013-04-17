@@ -12,11 +12,23 @@ namespace Fanex.BetList.Age
 	{
 		public class HeaderViewDetail_Template : Template
 		{
-			protected static string s0 = "<thead><tr><th>Agent</th><th style=\"min-width: 100px;\">Agent PT</th><th style=\"min-width: 100px;\">Agent Comm</th></tr></thead>";
+			protected static string s0 = "<thead><tr><th>";
+			protected static string s1{get{return Resources.Lang.agent;}}
+			protected static string s2 = "</th><th style=\"min-width: 100px;\">";
+			protected static string s3{get{return Resources.BetList.agentPT;}}
+			protected static string s4 = "</th><th style=\"min-width: 100px;\">";
+			protected static string s5{get{return Resources.BetList.agentComm;}}
+			protected static string s6 = "</th></tr></thead>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				bd.Append(s0);
+				bd.Append(s1);
+				bd.Append(s2);
+				bd.Append(s3);
+				bd.Append(s4);
+				bd.Append(s5);
+				bd.Append(s6);
 				bd.Append(Value);
 			}
 			public string ToString()

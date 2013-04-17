@@ -11,9 +11,6 @@
 namespace Apollo.Age.Reports.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Services;
 
     /// <summary>
@@ -86,50 +83,5 @@ namespace Apollo.Age.Reports.Models
         public bool Calculate { get; set; }
 
         public bool IsPending { get; set; }
-
-        #region for soccer
-        // for soccer
-        public bool IsHomeFirstGoal { get; internal set; }
-
-        public bool IsHomeLastGoal { get; internal set; }
-
-        public bool IsAwayFirstGoal { get; internal set; }
-
-        public bool IsAwayLastGoal { get; internal set; }
-
-        // Base on [BetStatus] to get First/Last Goal
-        // Example [BetStatus] = "FL:1-2"
-        public void SetFirstAndLastGoal()
-        {
-            if (!string.IsNullOrEmpty(this.BetStatus) && this.BetStatus.Contains(":"))
-            {
-                var valueArr = this.BetStatus.Split(':');
-                if (string.Compare(valueArr[0], "FL", true) == 0)
-                {
-                    var firstGoal = valueArr[1].Split('-')[0];
-                    var lastGoal = valueArr[1].Split('-')[1];
-                    if (firstGoal == "1")
-                    {
-                        IsHomeFirstGoal = true;
-                    }
-
-                    if (firstGoal == "2")
-                    {
-                        IsAwayFirstGoal = true;
-                    }
-
-                    if (lastGoal == "1")
-                    {
-                        IsHomeLastGoal = true;
-                    }
-
-                    if (lastGoal == "2")
-                    {
-                        IsAwayLastGoal = true;
-                    }
-                }
-            }
-        }
-        #endregion
     }
 }

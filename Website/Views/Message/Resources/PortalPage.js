@@ -34,6 +34,9 @@ var MessagePortalPage = function ($) {
                         $('#announcement').append(res);
                     }
 
+                    var divAnnouncement = document.getElementById("divAnnouncement");
+                    divAnnouncement.scrollTop = divAnnouncement.scrollHeight;
+
                     var moreIsVisible = getCookie('moreIsVisible');
                     if (moreIsVisible == 'False') {
                         var divMore = $('#divMore');
