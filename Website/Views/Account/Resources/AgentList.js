@@ -3,8 +3,10 @@
 var AGENTLIST = function ( $ ) {
     return {
         AgentId: null,
+        IsSuper: false,
         init: function () {
             AGENTLIST.AgentId = $( "#gridId" ).attr( "agentid" );
+            AGENTLIST.loadNavigation();
             AGENTLIST.loadAgentList();
         },
         loadNavigation: function () {
@@ -13,7 +15,8 @@ var AGENTLIST = function ( $ ) {
                 url: APOLLO.resolveUrl( "Account/GetAgentDownlinePath" ),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify( { AgentId: AGENTLIST.AgentId } ),
+                data: JSON.stringify( { agentId: AGENTLIST.AgentId } ),
+                async: false,
                 timeout: 120000
             } )
                 .done( function ( result ) {
@@ -25,6 +28,8 @@ var AGENTLIST = function ( $ ) {
                         if ( i == rowLength - 1 ) {
                             template += "<span>" + result[i].Username + "</span>";
                             $( "#currUsername" ).html( result[i].Username );
+                            AGENTLIST.IsSuper = ( result[i].Level == 0 );
+
                             $quickLinkEditSetting.attr( "agentid", result[i].Id );
                             $quickLinkEditSetting.attr( "agentlevel", result[i].Level );
                         }
@@ -165,8 +170,8 @@ var AGENTLIST = function ( $ ) {
             } );
         },
         bindingEdit: function () {
-            AGENTLIST.initMenuPopup( $( "[name='Edit']" ) );
-            AGENTLIST.initMenuPopup( $( "#quickLinkEditSetting" ) );
+            // AGENTLIST.initMenuPopup( $( "[name='Edit']" ) );
+            // AGENTLIST.initMenuPopup( $( "#quickLinkEditSetting" ) );
         },
         loadAgentList: function () {
             $.ajax( {
@@ -174,13 +179,14 @@ var AGENTLIST = function ( $ ) {
                 url: APOLLO.resolveUrl( "Account/GetAgentList" ),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
+                async: false,
                 data: JSON.stringify( { AgentId: AGENTLIST.AgentId, Username: $( "#txtUserName" ).val() == BASELANGUAGES.EnterUsername ? "" : $( "#txtUserName" ).val() } ),
                 timeout: 120000
             } )
                 .done( function ( result ) {
                     AGENTLIST.AgentId = result.CurrentAgentId;
-                    AGENTLIST.initAgentList( result );
                     AGENTLIST.loadNavigation();
+                    AGENTLIST.initAgentList( result );
 
                     AGENTLIST.bindingQuickLink();
                     AGENTLIST.bindingSearch();
@@ -198,13 +204,14 @@ var AGENTLIST = function ( $ ) {
             for ( var i = 0; i < rowLength; i++ ) {
                 var current = agentList.ListData[i];
                 counter++;
-                bodyData.push( {
+                var currentRow = {
                     Columns:
                         [
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
                             { Name: "Status", Value: current.Status },
+                            { Name: "BetStatus", Value: current.BetStatus },
                             { Name: "NumberOfAgent", Value: current },
                             { Name: "NumberOfMember", Value: current },
                             { Name: "GroupA", Value: current.GroupA * 100 },
@@ -212,34 +219,42 @@ var AGENTLIST = function ( $ ) {
                             { Name: "GroupC", Value: current.GroupC * 100 },
                             { Name: "GroupD", Value: current.GroupD * 100 },
                             { Name: "OneXTwo", Value: current.OneXTwo * 100 },
-                            { Name: "Other", Value: current.Other * 100 },
-                            { Name: "NumberGame", Value: current.NumberGame * 100 },
-                            { Name: "Handicap", Value: current.Handicap / 100 },
-                            { Name: "OverUnder", Value: current.OverUnder / 100 },
-                            { Name: "HandicapLive", Value: current.HandicapLive / 100 },
-                            { Name: "OverUnderLive", Value: current.OverUnderLive / 100 }
+                            { Name: "Other", Value: current.Other * 100 }
                         ]
-                } );
+                };
+
+                if ( AGENTLIST.IsSuper ) {
+                    currentRow.Columns.push( { Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 } );
+                }
+                else {
+                    currentRow.Columns.push( { Name: "HandicapTakenShare", Value: current.HandicapTakenShare / 100 } );
+                    currentRow.Columns.push( { Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 } );
+                }
+
+                bodyData.push( currentRow );
             }
 
-            var gridOption = {
-                customizeHeader: true,
-                groupHeaderRows: [
-                                 {
-                                     Columns: [
-                                            { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
-                                            { HeaderText: LANGUAGES.Edit, Name: "Edit", MergeRowNumber: 2 },
-                                            { HeaderText: LANGUAGES.Username, Name: "Username", MergeRowNumber: 2 },
-                                            { HeaderText: LANGUAGES.Status, Name: "Status", MergeRowNumber: 2 },
-                                            { HeaderText: LANGUAGES.NumberOfAgent, Name: "NumberOfAgent", MergeRowNumber: 2 },
-                                            { HeaderText: LANGUAGES.NumberOfMember, Name: "NumberOfMember", MergeRowNumber: 2 },
-                                            { HeaderText: LANGUAGES.Commission, Name: "GroupA", MergeColNumber: 7 },
-                                            { HeaderText: LANGUAGES.SoccerShare, Name: "Handicap", MergeColNumber: 4 }
+            var currentHeaderColumns = [{
+                Columns: [
+                            { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
+                            { HeaderText: LANGUAGES.Edit, Name: "Edit", MergeRowNumber: 2 },
+                            { HeaderText: LANGUAGES.Username, Name: "Username", MergeRowNumber: 2 },
+                            { HeaderText: LANGUAGES.Status, Name: "Status", MergeRowNumber: 2 },
+                            { HeaderText: LANGUAGES.BetStatus, Name: "BetStatus", MergeRowNumber: 2 },
+                            { HeaderText: LANGUAGES.NumberOfAgent, Name: "NumberOfAgent", MergeRowNumber: 2 },
+                            { HeaderText: LANGUAGES.NumberOfMember, Name: "NumberOfMember", MergeRowNumber: 2 },
+                            { HeaderText: LANGUAGES.Commission, Name: "GroupA", MergeColNumber: 6 }
 
-                                        ]
-                                 }
-                        ],
-                columns: [
+                        ]
+            }];
+            if ( AGENTLIST.IsSuper ) {
+                currentHeaderColumns[0].Columns.push( { HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapGivenShare", MergeRowNumber: 2 } );
+            }
+            else {
+                currentHeaderColumns[0].Columns.push( { HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapGivenShare", MergeColNumber: 2 } );
+            }
+
+            var currentContentColumns = [
                          { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function ( cell ) {
@@ -247,11 +262,16 @@ var AGENTLIST = function ( $ ) {
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
-                         { HeaderText: LANGUAGES.Status, Width: 50, Name: "Status", HeaderAlign: "center", CellAlign: "center",
+                         { HeaderText: LANGUAGES.Status, Width: 100, Name: "Status", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function ( cell ) {
                                  return ( cell.Value.Status == 1 ? LANGUAGES.Active : ( cell.Value.Status == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked ) );
                              }
                          },
+                          { HeaderText: LANGUAGES.BetStatus, Width: 100, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
+                              CustomCellRender: function ( cell ) {
+                                  return ( cell.Value.BetStatus == 1 ? LANGUAGES.Active : ( cell.Value.BetStatus == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked ) );
+                              }
+                          },
                          { HeaderText: LANGUAGES.NumberOfAgent, Width: 70, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function ( cell ) {
                                  return ( cell.Value.NumberOfAgent != 0 ? "<a name='viewAgent' href='#' agentId=" + cell.Value.AgentId + ">" + cell.Value.NumberOfAgent + "</a>" : cell.Value.NumberOfAgent );
@@ -267,14 +287,19 @@ var AGENTLIST = function ( $ ) {
                          { HeaderText: LANGUAGES.GroupC, Width: 100, Name: "GroupC", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.GroupD, Width: 100, Name: "GroupD", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.OneXTwo, Width: 100, Name: "OneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.Other, Width: 100, Name: "Other", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.NumberGame, Width: 100, Name: "NumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.Handicap, Width: 100, Name: "Handicap", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.OverUnder, Width: 100, Name: "OverUnder", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.HandicapLive, Width: 100, Name: "HandicapLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.0" },
-                         { HeaderText: LANGUAGES.OverUnderLive, Width: 100, Name: "OverUnderLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
-
-                        ],
+                         { HeaderText: LANGUAGES.Other, Width: 100, Name: "Other", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                        ];
+            if ( AGENTLIST.IsSuper ) {
+                currentContentColumns.push( { HeaderText: LANGUAGES.GivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" } );
+            }
+            else {
+                currentContentColumns.push( { HeaderText: LANGUAGES.GivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" } );
+                currentContentColumns.push( { HeaderText: LANGUAGES.TakenShare, Width: 100, Name: "HandicapTakenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" } );
+            }
+            var gridOption = {
+                customizeHeader: true,
+                groupHeaderRows: currentHeaderColumns,
+                columns: currentContentColumns,
                 bodyRows: bodyData,
                 showFooter: false,
                 fullHeight: true,
@@ -283,16 +308,15 @@ var AGENTLIST = function ( $ ) {
                 marginRight: 0,
                 showPager: true,
                 customPager: true,
+                showColumnsShowHide: !AGENTLIST.IsSuper,
+                columnsNeedHide: [6],
                 pagerOption: {
                     itemsPerPage: agentList.ItemsPerPage,
                     currentPage: agentList.CurrentPage,
                     totalItem: agentList.TotalItem,
-                    itemsPerPageArray: [50, 100, 500],
-
+                    itemsPerPageArray: [10, 20, 50, 100, 200, 500],
                     pagerSelectCallBack: ReRenderAfterPaged
-                },
-                showColumnsShowHide: false,
-                columnsNeedHide: [12]
+                }
             };
             function ReRenderAfterPaged( page_index, itemsPerPage, jq ) {
                 $.ajax( {
@@ -300,6 +324,7 @@ var AGENTLIST = function ( $ ) {
                     url: APOLLO.resolveUrl( "Account/GetAgentList" ),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
+                    async: false,
                     data: JSON.stringify( { agentId: AGENTLIST.AgentId, pageIndex: page_index, pageSize: itemsPerPage } ),
                     timeout: 120000
                 } )
