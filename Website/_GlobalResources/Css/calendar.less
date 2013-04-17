@@ -1,31 +1,29 @@
-﻿@import "variables.less";
-@import "mixins.less";
-/* Customize calander */
+﻿/* CUSTOMIZE CALENDAR */
 
-.ui-corner-all, .ui-corner-bottom,
-.ui-corner-right, .ui-corner-br,
-.ui-corner-left, .ui-corner-bl,
-.ui-corner-tr, .ui-corner-top,
- .ui-corner-tl {
+@calendarBackground:		#fff;
+@calendarBorderColor:		#888;
+@calendarTextColor:			#707070;
+@todayBackground:			#999;
+@dateHoverBackground:		#77AAE8;
+
+.ui-corner-all,
+.ui-corner-top, .ui-corner-bottom, .ui-corner-right, .ui-corner-left,
+ .ui-corner-bl, .ui-corner-br, .ui-corner-tr, .ui-corner-tl {
 	.border-radius(0);
 }
 
-.ui-corner-all, .ui-corner-bottom,
-.ui-corner-right, .ui-corner-br,
-.ui-corner-left, .ui-corner-bl,
-.ui-corner-tr, .ui-corner-tl {
-	.border-radius(0);
+.ui-datepicker-trigger {
+	cursor: pointer;
 }
 
 .ui-datepicker {
 	border: 2px solid @calendarBorderColor;	
 	width: 16em;
 	background: @calendarBackground;
-	//top: 63.5px !important;
 
 	.ui-datepicker-title {
 		font-size: 0.9em;
-		color: @gray;
+		color: #555;
 	}
 
 	th {
@@ -41,7 +39,7 @@
 
 		&:hover {
 			background: @dateHoverBackground;
-			color: @white;			
+			color: #fff;			
 		}
 	}
 	.ui-datepicker-header {		
@@ -50,16 +48,16 @@
 	
 	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 		background: none;
-		border: none;
+		border: 0;
 		font-size: 0.9em;
 	}
 	.ui-widget-header .ui-icon {
-		background-image: url("jquery-ui-1.10.2/apollo/images/ui-icons_454545_256x240.png");
+		background-image: url(jquery-ui-1.10.2/apollo/images/ui-icons_454545_256x240.png);
 	}
 	
 	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
 		background: @todayBackground;
-		color: @white;
+		color: #fff;
 	}
 
 	.ui-icon-circle-triangle-w {
@@ -76,7 +74,7 @@
 	.ui-state-focus,
 	.ui-widget-content .ui-state-focus,
 	.ui-widget-header .ui-state-focus {		
-		background: @white;
+		background: #fff;
 		font-weight: normal;		
 	}
 
@@ -85,6 +83,7 @@
 		margin: 1px;
 		border: none;
 		opacity: 0.6;
+		filter: ~"alpha(opacity=60)";
 		cursor: pointer;
 	}
 }
