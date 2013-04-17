@@ -51,9 +51,9 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditBetSetting.cshtml");
         }
 
-        public ActionResult GetBetLimit(int targetCustId, int? agentLevel)
+        public ActionResult GetBetLimit(int targetCustId,int? agentId, int? agentLevel)
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentLevel, FormSettingType.BetLimit);
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId,agentId, agentLevel, FormSettingType.BetLimit);
             IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
@@ -86,9 +86,9 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditCommission.cshtml");
         }
 
-        public ActionResult GetCommissionSetting(int targetCustId, int? agentLevel, string ugroup)
+        public ActionResult GetCommissionSetting(int targetCustId, int? agentId, int? agentLevel, string ugroup)
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentLevel, FormSettingType.Commission);
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId,agentId, agentLevel, FormSettingType.Commission);
             CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
             if (ugroup != null)
             {
@@ -144,9 +144,9 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult GetPositionTaking(int targetCustId, int? agentLevel)
+        public ActionResult GetPositionTaking(int targetCustId, int? agentId, int? agentLevel)
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentLevel, FormSettingType.PositionTaking);
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId,agentId, agentLevel, FormSettingType.PositionTaking);
             PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetPositionTakingLanguage(positionTakingSetting);
@@ -174,12 +174,13 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(language);
         }
 
-        public ActionResult EditAllSetting(int custId, string userName, int? agentLevel, string userGroup)
+        public ActionResult EditAllSetting(int custId, string userName,int? agentId, int? agentLevel, string userGroup)
         {
             ViewBag.CustId = custId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.UserGroup = userGroup;
+            ViewBag.CurentParentAgentId = agentId;
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
@@ -276,7 +277,7 @@ namespace Apollo.Age.Account.Controllers
             }
         }
 
-        private SettingContext GetCurrentSettingContext(int targetCustId, int? agentLevel, FormSettingType formSettingType)
+        private SettingContext GetCurrentSettingContext(int targetCustId,int? agentId, int? agentLevel, FormSettingType formSettingType)
         {
             SettingContext settingContex = new SettingContext
             {
@@ -285,12 +286,18 @@ namespace Apollo.Age.Account.Controllers
                 ActorCustId = base.CurrentSession.AgentId,
                 RoleId = this.GetRoleFromAgentLevel(base.CurrentSession.AgentLevel),
                 TargetRoleId = this.GetTargetRoleIdFromAgenLevel(agentLevel),
-                FormSetting = (int)formSettingType
+                FormSetting = (int)formSettingType,
+                FormId = FormType.EditPT
             };
 
             if(settingContex.TargetRoleId == (int)Role.Member)
             {
                 settingContex.RoleId = (int)Role.Agent;
+            }
+
+            if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
+            {
+                settingContex.FormId = FormType.EditMemberNonDirect;
             }
 
             return settingContex;
