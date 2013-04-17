@@ -62,9 +62,6 @@ table {
 
 	#gradient.vertical(#fff, #ddd);
 	border: 1px solid @grayLight;
-	// backup red themes
-	//font-weight: bold;
-	//.border-radius(2px);
 	.box-shadow(1px 1px 0 @grayLighter);
 	.transition(background-color 0.15s ease-in-out 0s);
 
@@ -104,10 +101,7 @@ table {
 #header_main {	
 	padding: 16px 0 1px;
 	margin:  0 10px 10px;
-	// backup red themes
-	//border-bottom: 1px solid @titleColor;
 	border-bottom: 1px solid @secondColor;
-	//.box-shadow(0 3px 0 #F3F3F3);
 	text-transform: uppercase;
 	color: @titleColor;
 	font-size: 1.2em;
@@ -115,17 +109,9 @@ table {
 
 	.upper {
 		display: inline-block;
-		// backup red themes
-		//background: @primaryColor;
 		background: @secondColor;
 		color: #fff;
 		padding: 0 10px;
-		/*&:after {
-			content: "//";
-			display: inline-block;
-			margin: 0 8px 0 10px;
-			font-size: 1.6em;
-		}*/
 	}
 }
 
@@ -178,9 +164,7 @@ table {
 		}
 	}
 
-	.report-title {
-		// backup red themes
-		//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);
+	.report-title {		
 		#gradient.vertical(#6B6B6B, @secondColor);
 		color: @primaryHeaderColor;	
 		.box-shadow(0 1px 0 0 #FFF inset);
@@ -201,23 +185,21 @@ table {
 		td, th {
 			background-color: @primaryHeaderBackground;
 			border-spacing: 0;
-			border: 1px solid @grayLight;
+			border: 1px solid @tableRptBorderColor;
 			border-width: 1px 1px 0 0;
 			text-align: center;
 			font-weight: bold;
 			color: @primaryHeaderColor;
-			text-shadow: 0 1px 0 #555;			
+			text-shadow: 0 1px 0 #333;			
 		}
 	}
 
 	tbody {
 		td {
-			border: 1px solid @tableRptBorderColor;
+			border: 1px solid @grayLight;
 			border-width: 1px 1px 0 0;
 		}
-		tr {
-			/*background-color: @rowBackground;
-			&.alt { background-color: @rowAltBackground }*/
+		tr {			
 			&.live { background-color: @rowLiveBackground }
 			&.league {
 				#gradient.vertical(#F1E5D5, #F8F1E9);
@@ -235,17 +217,11 @@ table {
 	}
 
 	tfoot {
-		.total {	
-			// backup red themes		
-			//background: @rowTotalBackground;
-			//color: @white;
+		.total {			
 			background: @rowTotalBackground;
 			color: @white;
 
-			td {
-				// backup red themes
-				//border: 1px solid darken(@rowTotalBackground, 10%);
-				//text-shadow: none;
+			td {				
 				border: 1px solid @borderColor;		
 				text-shadow: none;		
 			}
@@ -281,7 +257,6 @@ table {
 	input[type=text], select {
 		background-color: #f8f8f8;
 		border: 1px solid @grayLight;
-		//border-radius: 2px;
 		box-shadow: 1px 1px 3px #bbb inset;		
 		width: 60px;
 		padding: 3px;

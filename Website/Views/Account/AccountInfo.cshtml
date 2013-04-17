@@ -6,9 +6,9 @@
 <ul id="tab-menu">
     <li class="tab-menu"><a href="@Url.Action("Menu")" target="menu"><i class="icon-align-justify">
     </i>Menu</a> </li>
-    <li class="tab-acc active"><a><i class="icon-user"></i>Account</a> </li>
-    <li class="tab-tree"><a href="@Url.Action("TreeViewList")" target="menu"><i class="icon-align-left">
-    </i>Agents</a> </li>
+    <li class="tab-tree"><a href="@Url.Action("TreeViewList")" target="menu"><i class="icon-user"></i>Account</a> </li>
+    <li class="tab-acc active"><a><i class="icon-search">
+    </i>Search</a> </li>
 </ul>
 <div id="wrapper">
     <div class="search-box">
@@ -128,44 +128,44 @@
                     @if (Model.IsMember)
                     {
                         <a class="lnk-setting" target="main"
-                                href="~/_MemberInfo/CustomerSetting/Pages/EditMemberSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
+                                href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&userGroup=@Model.Group">
                             @Resources.Lang.lblEditSB
                         </a>
 
                         <a class="lnk-setting" target="main"
-                                href="~/_MemberInfo/CustomerSetting/Pages/EditMemberCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
+                                href="~/CustomerSetting/EditBetSetting?custId=@Model.CustId&userName=@Model.Username">
                             @Resources.Lang.lbleditbetsetting
                         </a>
 
                         <a class="lnk-setting" target="main"
-                                href="~/_MemberInfo/CustomerSetting/Pages/EditMemberBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
+                                href="~/CustomerSetting/EditCommissionSetting?custId=@Model.CustId&userName=@Model.Username&userGroup=@Model.Group">
                             @Resources.Lang.lbleditcomm
                         </a>
 
                         <a class="lnk-setting" target="main"
-                                href="~/_MemberInfo/CustomerSetting/Pages/EditMemberPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&ugroup=@Model.Group">
+                                href="~/CustomerSetting/EditPositionTaking?custId=@Model.CustId&userName=@Model.Username">
                             @Resources.Lang.lblEditPositionTalking
                         </a>
                     }
                     else
                     {
                         <a class="lnk-setting" target="main"
-                                href="~/_MemberInfo/CustomerSetting/Pages/EditAgentSetting.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
+                                href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
                             @Resources.Lang.lblEditSB
                         </a>
 
                         <a class="lnk-setting" target="main"
-                                href="~/_MemberInfo/CustomerSetting/Pages/EditAgentCommission.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
+                                href="~/CustomerSetting/EditBetSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
                             @Resources.Lang.lbleditbetsetting
                         </a>
 
                         <a class="lnk-setting" target="main"
-                                href="~/_MemberInfo/CustomerSetting/Pages/EditAgentBetLimit.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
+                                href="~/CustomerSetting/EditCommissionSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
                             @Resources.Lang.lbleditcomm
                         </a>
 
                         <a class="lnk-setting" target="main"
-                                href="~/_MemberInfo/CustomerSetting/Pages/EditAgentPositionTaking.aspx?custId=@Model.CustId&username=@Model.Username&showheader=1&agentlevel=@Model.Level">
+                                href="~/CustomerSetting/EditPositionTaking?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
                             @Resources.Lang.lblEditPositionTalking
                         </a>
                     }

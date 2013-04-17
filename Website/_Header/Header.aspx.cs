@@ -97,8 +97,6 @@ namespace Sunplus.Agent.UI._Header
             tpl.cdate = DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8");
             tpl.ctime = DateTime.Now.AddHours(12).ToString("H-m-s-tt");
 
-            
-
             tpl.SetUserName.mainAccName = HttpUtility.HtmlEncode(CurrentSession.Username);
             tpl.SetUserName.AgentUsername = HttpUtility.HtmlEncode(CurrentSession.AgentName);
 
@@ -111,7 +109,7 @@ namespace Sunplus.Agent.UI._Header
 
             #endregion User Message
 
-            tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
+            tpl.ApoRoot = Page.ResolveUrl("~/");
 
             writer.Write(tpl);
         }

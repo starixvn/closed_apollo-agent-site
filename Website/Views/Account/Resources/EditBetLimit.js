@@ -30,46 +30,35 @@ if (typeof jQuery != 'undefined') {
                         data: JSON.stringify({
                             settingContext: BETLIMIT.settingContext,
                             betLimits: BETLIMIT.betLimitElement.Save()
-                        }),
-                        success: function (data) {
-                            ageMsg.ShowMsgs(data.ErrMsg, 1);
-                        },
-                        error: function () {
-                            ageMsg.ShowMsgs(data.ErrMsg);
+                        })
+                    }).done(function (data) {
+                        if (data.ErrCode == 0) {
+                            noty({ text: data.ErrMsg, type: 'success' });
+                            BETLIMIT.completeUpdate();
+                        } else {
+                            noty({ text: APOLLO.generalErrorMsg, type: 'error' });
                         }
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
                     });
 
                 }
             },
             completeUpdate: function (result) {
-                //                var errMsg = result.errMsg;
-                //                if (result.errCode == 0) {
-                //                    age.UnLock();
-                //                    ageMsg.Show(errMsg, 1);
-                //                    window.scroll(0, 0);
-
-                //                    setTimeout(function () {
-                //                        if (isReloadParent > 0) {
-                //                            parent.window.location.reload();
-                //                        }
-                //                        else {
-                //                            window.location.reload();
-                //                        }
-                //                    }, 1000);
-
-                //                    return;
-                //                }
-                //                else {
-                //                    age.UnLock();
-                //                    ageMsg.Show(errMsg);
-                //                    window.scroll(0, 0);
-                //                    return;
-                //                }
+                setTimeout(function () {
+                    if (typeof (parent.MEMBERLIST) != 'undefined') {
+                        parent.MEMBERLIST.loadMemberList();
+                    }
+                    else if (typeof (parent.AGENTLIST) != 'undefined') {
+                        parent.AGENTLIST.loadAgentList();
+                    }
+                }, 3000);
             }
         };
     } (jQuery);
 
     $(function () {
+        settingContext.IsSimpleMode = true;
         BETLIMIT.init(settingContext, betLimits);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 };

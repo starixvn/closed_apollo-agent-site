@@ -85,8 +85,7 @@ namespace Sunplus.Agent.UI._BetList
                     ticketHelper.Index = index;
 
                     builder.Append("<tr>")
-                        .AddMember(ticket, "<td class='c' style='vertical-align:middle'>", "</td>")
-                        .AddNo(ticket.AgentLevel, "<td class='c' style='vertical-align:middle'>", "</td>");
+                        .AddMember(ticket, "<td class='c' style='vertical-align:middle'>", "</td>");
 
                     if (isShowAgentPT)
                     {
@@ -97,16 +96,17 @@ namespace Sunplus.Agent.UI._BetList
 
                     #region Total ticket
 
-                    totalTicket.Comm += ticket.Comm;
+                    totalTicket.AWinlost += Convert.ToDecimal(ConvertByBetType.PtValue(ticket.AWinlost));
+                    totalTicket.APositionTaking += Convert.ToDecimal(ConvertByBetType.Pt(ticket.APositionTaking)) / 100;
+
                     totalTicket.AComm += ticket.AComm;
-                    totalTicket.APositionTaking += ticket.APositionTaking;
-                    totalTicket.AgentWinlost += ticket.AgentWinlost;
+                    totalTicket.ADiscount += ticket.ADiscount;
                     totalTicket.Status = ticket.Status;
 
                     #endregion Total ticket
                 }
                 builder.Append("<tfoot><tr class='total'>");
-                builder.Append(string.Format("<td class='c' colspan='2'>{0}</td>", Resources.Lang.total));
+                builder.Append(string.Format("<td class='c'>{0}</td>", Resources.Lang.total));
 
                 if (isShowAgentPT)
                 {
@@ -136,10 +136,8 @@ namespace Sunplus.Agent.UI._BetList
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
             Int64.TryParse(Request["transId"], out transID);
-            Int64.TryParse(Request["agentId"], out agentID);
-            DateTime.TryParse(Request["fromDate"], out fromDate);
-            DateTime.TryParse(Request["toDate"], out toDate);
-            bool.TryParse(Request["isSportsbook"], out isSportsbook);
+            fromDate = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
+            toDate = GetDateTimeRequest("toDate", DateTime.Now);
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
@@ -150,17 +148,9 @@ namespace Sunplus.Agent.UI._BetList
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            try
-            {
-                BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
-                return bo.GetAgentPTComm(transID, fromDate, toDate, ReportsBO.MoveBetsDate);
-            }
-            catch (Exception ex)
-            {
-                //writelog
-            }
-
-            return null;
+            BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
+            DataTable dtResult = bo.GetAgentPTComm(transID, fromDate, toDate, ReportsBO.MoveBetsDate);
+            return dtResult == null ? new DataTable() : dtResult;
         }
 
         private object RenderNoInfo()
