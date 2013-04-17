@@ -45,7 +45,7 @@ var REPORTRESULTMODULE = (function () {
             if (resultContainer.length > 0) {
 
                 var sportId = sportDropDownList.val();
-                var leagueId = leagueDropDownList.val();                
+                var leagueId = leagueDropDownList.val();
                 
                 if (sportId != null) {
                     $.get(APOLLO.resolveUrl("~/Results/MatchResult"),

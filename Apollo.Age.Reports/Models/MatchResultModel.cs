@@ -27,6 +27,14 @@ namespace Apollo.Age.Reports.Models
 
         public int LeagueId { get; set; }
 
+        public string LeagueName
+        {
+            get
+            {
+                return CacheRef.GetLeagueName(this.LeagueId);
+            }
+        }
+
         public int MatchId { get; set; }
 
         public string LColor { get; set; }
@@ -79,5 +87,49 @@ namespace Apollo.Age.Reports.Models
 
         public bool IsPending { get; set; }
 
+        #region for soccer
+        // for soccer
+        public bool IsHomeFirstGoal { get; internal set; }
+
+        public bool IsHomeLastGoal { get; internal set; }
+
+        public bool IsAwayFirstGoal { get; internal set; }
+
+        public bool IsAwayLastGoal { get; internal set; }
+
+        // Base on [BetStatus] to get First/Last Goal
+        // Example [BetStatus] = "FL:1-2"
+        public void SetFirstAndLastGoal()
+        {
+            if (!string.IsNullOrEmpty(this.BetStatus) && this.BetStatus.Contains(":"))
+            {
+                var valueArr = this.BetStatus.Split(':');
+                if (string.Compare(valueArr[0], "FL", true) == 0)
+                {
+                    var firstGoal = valueArr[1].Split('-')[0];
+                    var lastGoal = valueArr[1].Split('-')[1];
+                    if (firstGoal == "1")
+                    {
+                        IsHomeFirstGoal = true;
+                    }
+
+                    if (firstGoal == "2")
+                    {
+                        IsAwayFirstGoal = true;
+                    }
+
+                    if (lastGoal == "1")
+                    {
+                        IsHomeLastGoal = true;
+                    }
+
+                    if (lastGoal == "2")
+                    {
+                        IsAwayLastGoal = true;
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }
