@@ -32,7 +32,7 @@ namespace Apollo.Age.Forecast.Criterias
 
         public override bool IsValid()
         {
-            return AgentId > 0 && !string.IsNullOrEmpty(MatchIds);
+            return !string.IsNullOrEmpty(MatchIds);
         }
     }
 }

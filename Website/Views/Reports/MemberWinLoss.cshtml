@@ -7,6 +7,11 @@
 
 @model MemberWinLossViewModel
 
+@if (Model.DownlinePath != null && Model.DownlinePath.Any())
+{
+    @RazorHelper.Navigation(Model.DownlinePath)
+}
+
 <div id="box_header">
     <div class="filter-submit">
         @{

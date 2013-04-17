@@ -3,7 +3,6 @@
 var AGENTLIST = function ($) {
     return {
         AgentId: null,
-        currentPopUp: null,
         init: function () {
             AGENTLIST.AgentId = $("#gridId").attr("agentid");
             AGENTLIST.loadAgentList();
@@ -20,6 +19,15 @@ var AGENTLIST = function ($) {
                 .done(function (result) {
                     var rowLength = result.length;
                     var template = '';
+<<<<<<< HEAD
+                    var $quickLinkEditSetting = $( "#quickLinkEditSetting" );
+                    for ( var i = 0; i < rowLength; i++ ) {
+                        if ( i == rowLength - 1 ) {
+                            template += "<span>" + result[i].Username + "</span>";
+                            $( "#currUsername" ).html( result[i].Username );
+                            $quickLinkEditSetting.attr( "agentid", result[i].Id );
+                            $quickLinkEditSetting.attr( "agentlevel", result[i].Level );
+=======
 
                     for (var i = 0; i < rowLength; i++) {
                         if (i == rowLength - 1) {
@@ -27,6 +35,7 @@ var AGENTLIST = function ($) {
                             $("#currUsername").html(result[i].Username);
                             $("#quickLinkEditSetting").attr("agentid", result[i].Id);
                             $("#quickLinkEditSetting").attr("agentlevel", result[i].Level);
+>>>>>>> 542ba492ba6f4bbc49f7972426055871e02d5a10
                         }
                         else {
                             template += "<a href='#' name='navigation' agentid='" + result[i].Id + "' >" + result[i].Username + "</a>";
@@ -92,14 +101,26 @@ var AGENTLIST = function ($) {
                 } );
             });
 
+<<<<<<< HEAD
+            els.mouseover( function () {
+                var $this = $( this );
+                var pos = $this.offset();
+                var eWidth = $this.outerWidth();
+=======
             els.mouseover(function () {
                 var pos = $(this).offset();
                 var eWidth = $(this).outerWidth();
+>>>>>>> 542ba492ba6f4bbc49f7972426055871e02d5a10
                 var mWidth = menuEdit.outerWidth();
                 var left = (pos.left + eWidth) + "px";
                 var top = 3 + pos.top + "px";
+<<<<<<< HEAD
+                var agentid = $this.attr( 'agentid' );
+                var agentlevel = $this.attr( 'agentlevel' );
+=======
                 var agentid = $(this).attr('agentid');
                 var agentlevel = $(this).attr('agentlevel');
+>>>>>>> 542ba492ba6f4bbc49f7972426055871e02d5a10
 
                 commission.attr("agentId", agentid);
                 betsetting.attr("agentId", agentid);
@@ -185,9 +206,6 @@ var AGENTLIST = function ($) {
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
                 });
-            if (AGENTLIST.currentPopUp != null) {
-                APOLLO.closeDialog(AGENTLIST.currentPopUp);
-            }
         },
 
         initAgentList: function (agentList) {

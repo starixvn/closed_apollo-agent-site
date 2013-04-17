@@ -7,13 +7,11 @@
 
 @model AgentWinLossViewModel
 
-@if (Model.DownlinePath != null)
+@if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
-    if (Model.DownlinePath.Any())
-    {
-        @RazorHelper.Navigation(Model.DownlinePath)
-    }
+    @RazorHelper.Navigation(Model.DownlinePath)
 }
+
 <div id="box_header">
     <div class="filter-submit">
         @{

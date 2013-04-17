@@ -7,7 +7,7 @@ namespace Apollo.MvcPaging
     {
         public static class DefaultDefaults
         {
-            public const int MAXNROFPAGES = 2;
+            public const int MAXNROFPAGES = 3;
             public const string DISPLAYTEMPLATE = null;
             public const bool ALWAYSADDFIRSTPAGENUMBER = false;
             public const string DEFAULTPAGEROUTEVALUEKEY = "page";
