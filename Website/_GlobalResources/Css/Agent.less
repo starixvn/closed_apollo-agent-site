@@ -231,30 +231,55 @@ table {
 	margin: 10px 0 0 0;
 	padding: 0;
 
+	label {
+		font-weight: bold;
+		color: @grayDark;
+		cursor: pointer;
+		width: 50px;
+	}
+
 	input[type=text], select {
 		background-color: #f8f8f8;
 		border: 1px solid @grayLight;
-		box-shadow: 1px 1px 3px #bbb inset;		
-		width: 60px;
-		padding: 3px;
+		.box-shadow(1px 1px 3px #bbb inset);
+		
 		line-height: 1.2em;
 		font-size: .8em;
 		cursor: default;
+		
+		padding: 3px;
+		width: 60px;
 		height: 13px;
 	}
 
 	select {		
 		padding: 2px 3px;
+		width: 100px;
 		height: 21px;
 	}
 
 	.row {
 		.clearfix;
+		margin: 0 0 10px 0;
+
 		.cell {
 			float: left;
 			margin: 0 5px 0 0;
+
+			.label, .editor {
+				float: left;
+				padding-right: 5px;
+			}
+
+			.label {
+				
+			}
+
+			.editor {
+			
+			}
+
 			* {
-				display: inline-block;
 				vertical-align: middle;
 			}
 		}

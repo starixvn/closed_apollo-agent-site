@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ResultController.cs" />
+    <Compile Include="Core\Constants.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentWinLossCriteria.cs" />
     <Compile Include="Criterias\GetMatchResultCriteria.cs" />

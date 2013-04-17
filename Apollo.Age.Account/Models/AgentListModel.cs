@@ -13,15 +13,13 @@
 
         public Int16 AgentLevel { get; set; }
 
-        public Int32 Status { get; set; }
+        public byte Status { get; set; }
 
-        public Int32 Handicap { get; set; }
+        public byte BetStatus { get; set; }
 
-        public Int32 OverUnder { get; set; }
+        public Int32 HandicapTakenShare { get; set; }
 
-        public Int32 HandicapLive { get; set; }
-
-        public Int32 OverUnderLive { get; set; }
+        public Int32 HandicapGivenShare { get; set; }
 
         public decimal GroupA { get; set; }
 
@@ -32,8 +30,6 @@
         public decimal GroupD { get; set; }
 
         public decimal OneXTwo { get; set; }
-
-        public decimal NumberGame { get; set; }
 
         public decimal Other { get; set; }
 

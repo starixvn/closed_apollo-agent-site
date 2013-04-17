@@ -4275,4 +4275,28 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="sharesetting" xml:space="preserve">
     <value>Share Setting</value>
   </data>
+  <data name="ViewCommission" xml:space="preserve">
+    <value>View Commission</value>
+  </data>
+  <data name="ViewShare" xml:space="preserve">
+    <value>View Share</value>
+  </data>
+  <data name="betstatus" xml:space="preserve">
+    <value>Bet Status</value>
+  </data>
+  <data name="givenshare" xml:space="preserve">
+    <value>Given Share</value>
+  </data>
+  <data name="soccerdeadballhdp" xml:space="preserve">
+    <value>Soccer Deadball HDP(%)</value>
+  </data>
+  <data name="takenshare" xml:space="preserve">
+    <value>Taken Share</value>
+  </data>
+  <data name="lblNA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="soccerdeadballhdptakenshare" xml:space="preserve">
+    <value>Soccer Deadball HDP Taken Share(%)</value>
+  </data>
 </root>
