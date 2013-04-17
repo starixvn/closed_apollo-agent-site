@@ -29,5 +29,9 @@ namespace Apollo.Age.Account.Services
         List<Agent> GetAgentDownlinePath(int parentId, int agentId);
 
         List<Agent> GetDirectDownline(int agentId);
+
+        List<AgentShareModel> GetAgentShare(int actorAgentId, int agentId, string userName, byte sportType, int betType);
+
+        List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, byte sportType, int betType);
     }
 }

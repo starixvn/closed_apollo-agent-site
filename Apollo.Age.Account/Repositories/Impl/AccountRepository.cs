@@ -164,5 +164,51 @@ namespace Apollo.Age.Account.Repositories.Impl
                 throw;
             }
         }
+
+        public IEnumerable<AgentShareModel> GetAgentShare(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var list = db.Query<AgentShareModel>(criteria.GetSpParams());
+
+                        return list;
+                    }
+                }
+
+                return new List<AgentShareModel>();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<MemberShareModel> GetMemberShare(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var list = db.Query<MemberShareModel>(criteria.GetSpParams());
+
+                        return list;
+                    }
+                }
+
+                return new List<MemberShareModel>();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
