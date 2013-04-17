@@ -19,9 +19,6 @@ html, body {
 		border: 1px solid @borderColor;
 		border-width: 1px 0 1px 1px;
 
-		&.tab-menu	{ width: 58px }
-		&.tab-acc	{ width: 75px }
-		&.tab-tree	{ width: 85px }
 		&.tab-menu, &.tab-acc, &.tab-tree {
 			&.active, &:hover {			
 				a {
@@ -45,6 +42,10 @@ html, body {
 				}
 			}
 		}
+
+		&.tab-menu	{ width: 58px; }
+		&.tab-acc	{ width: 75px; }
+		&.tab-tree	{ width: 85px; }
 
 		&:first-child { border-left: 0 }
 		&:last-child { border-right: 0 }
@@ -143,7 +144,7 @@ html, body {
 			margin: 0;
 			padding: 2px;
 			width: 100px;
-			height: 16px;			
+			height: 15px;			
 			line-height: 1.2em;
 			font-size: 1em;
 			color: @gray;
@@ -335,7 +336,6 @@ html, body {
 			left: 0;
 			right: 0;
 			z-index: 10;
-
 			border: 1px solid @borderLightColor;
 			margin: 0;
 			padding: 0;
@@ -350,15 +350,12 @@ html, body {
 					clear: both;
 					padding: 2px 0;
 					color: @linkColor;
+					background: url(Images/icon-sub-menu.png) left center no-repeat;
+					padding-left: 18px;
+					width: 100%;
 					
 					&:hover { 
 						color: @hoverLinkYellowColor;
-					}
-
-					&:before {
-						content: '+';
-						float: left;
-						margin-right: 5px;
 					}
 				}
 			}
@@ -472,6 +469,21 @@ html, body {
 
 /* Fix layout for IE7 */
 
-.ie7 #menu {
-	min-height: 600px;
+.ie7 {
+	#menu {
+		min-height: 600px;	
+	}
+	#wrapper #agent-setting {
+		position: fixed;
+		top: 170px;
+
+		.content {
+			#agentsTab-content, #membersTab-content {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+			}
+		}
+	}
 }
