@@ -520,8 +520,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             tableShareSetting.appendChild(trSetting)
             // Share Settings
             var presetLabel = document.createElement("TD");
-            presetLabel.innerHTML = Language.SPORT_BOOK;
-            presetLabel.title = Language.SPORT_BOOK;
+            presetLabel.innerHTML = Language.SOCCER;
+            presetLabel.title = Language.SOCCER;
             presetLabel.className = "share-setting-label";
             trSetting.appendChild(presetLabel);
 
