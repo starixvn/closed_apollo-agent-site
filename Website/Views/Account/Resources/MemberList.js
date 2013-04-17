@@ -147,6 +147,12 @@ var MEMBERLIST = function ( $ ) {
             } );
         },
         bindingEdit: function () {
+            $( "[name='Edit']" ).unbind( 'click' ).bind( 'click', function () {
+                // Edit Member
+            } );
+            $( "#quickLinkEditSetting" ).unbind( 'click' ).bind( 'click', function () {
+                // Edit Agent
+            } );
             // MEMBERLIST.initMenuPopup( $( "[name='Edit']" ), false );
             // MEMBERLIST.initMenuPopup( $( "#quickLinkEditSetting" ), true );
         },

@@ -170,6 +170,12 @@ var AGENTLIST = function ( $ ) {
             } );
         },
         bindingEdit: function () {
+            $( "[name='Edit']" ).unbind( 'click' ).bind( 'click', function () {
+                // Edit Agent
+            } );
+            $( "#quickLinkEditSetting" ).unbind( 'click' ).bind( 'click', function () {
+                // Edit Uplilne Agent
+            } );
             // AGENTLIST.initMenuPopup( $( "[name='Edit']" ) );
             // AGENTLIST.initMenuPopup( $( "#quickLinkEditSetting" ) );
         },
