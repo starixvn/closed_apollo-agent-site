@@ -28,7 +28,7 @@ var commissionSettingData = {
                 DiscountA: 0.252,
                 DiscountB: 0.35,
                 DiscountC: 0.45,
-                DiscountD: 0.55,
+                DiscountD: 0.55
              }
      }, {
         Group: "",

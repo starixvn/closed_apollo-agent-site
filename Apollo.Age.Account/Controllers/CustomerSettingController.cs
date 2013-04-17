@@ -282,9 +282,9 @@ namespace Apollo.Age.Account.Controllers
             StringBuilder language = new StringBuilder();
             language.AppendLine("{");
             language.AppendLine(this.SetLanguageStringValue("MIN_BET", Resources.Lang.lblMinBet));
-            language.AppendLine(this.SetLanguageStringValue("PRESET_POSITION", "Preset Position"));
+            language.AppendLine(this.SetLanguageStringValue("PRESET_POSITION", "Max Upper Share (%)"));
             language.AppendLine(this.SetLanguageStringValue("POSITION_TAKING", Resources.Lang.positiontaking));
-            language.AppendLine(this.SetLanguageStringValue("MAX_POSITION", "Max Position"));
+            language.AppendLine(this.SetLanguageStringValue("MAX_POSITION", "Max Given Share (%)"));
             language.AppendLine(this.SetLanguageStringValue("MAX_BET", Resources.Lang.lblMaxBet));
             language.AppendLine(this.SetLanguageStringValue("MAX_PER_MATCH", Resources.Lang.lblMaxPerMatch));
             language.AppendLine(this.SetLanguageStringValue("MAX_PER_BALL", Resources.Lang.maxperball));
@@ -303,7 +303,7 @@ namespace Apollo.Age.Account.Controllers
             language.AppendLine(this.SetLanguageStringValue("MAX_BET_LOWER_THAN_MAX_MAX_BET", string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}")));
             language.AppendLine(this.SetLanguageStringValue("MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET", Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}")));
             language.AppendLine(this.SetLanguageStringValue("MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET", Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}")));
-            language.AppendLine(this.SetLanguageStringValue("MIN_POSITION", Resources.Lang.labelMinPosition));
+            language.AppendLine(this.SetLanguageStringValue("MIN_POSITION", "Min Given Share (%)"));// Resources.Lang.labelMinPosition));
             language.AppendLine(this.SetLanguageStringValue("COPY_FROM", Resources.Lang.copyFrom));
             language.AppendLine(this.SetLanguageStringValue("OTHER_BET_TYPE_OF", Resources.Lang.otherBetTypesOf));
             language.AppendLine(this.SetLanguageStringValue("COPY_ALL_HINT", Resources.Lang.copyAllHint));
@@ -349,6 +349,8 @@ namespace Apollo.Age.Account.Controllers
             language.AppendLine(this.SetLanguageStringValue("MAIN_SHARE_HOLDER_SHARE", "Main Shareholder Share"));
             language.AppendLine(this.SetLanguageStringValue("SHARE_HOLDER_SHARE", "Shareholder Share"));
             language.AppendLine(this.SetLanguageStringValue("MAIN_AGENT_SHARE", "Main Agent Share"));
+            language.AppendLine(this.SetLanguageStringValue("SIMPLE_MODE_MAX_POSITION", "Given Share (%)"));
+            language.AppendLine(this.SetLanguageStringValue("SIMPLE_MODE_PRESET_POSITION", "Taken Share (%)"));
             language.AppendLine("};");
             return language.ToString();
         }
