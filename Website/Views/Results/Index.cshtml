@@ -11,21 +11,21 @@
     <div id="content_main">
         <div id="box_header">
             @Html.DatePicker("date", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
-            <input id="btnSubmit" value="Resouces.Generate" type="submit" />
-            <input id="btnToday" value="@DateTime.Now.Date.ToString()" type="submit" />
-            <input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToString()" type="submit"/>
+            <input id="btnSubmit" value="@Resources.Lang.Generate" type="submit" />
+            <input id="btnToday" value="@Formater.ShortDateFormat(DateTime.Now)" type="submit" />
+            <input id="btnYesterday" value="@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))" type="submit"/>
         </div>
         @if (Model.SportList.Any())
         { 
         
                 
-            <span>{static:Resources.Lang.sport} </span>
+            <span>@Resources.Lang.sport </span>
                 
             <span>
                 @Html.DropDownList("ddlSport", Model.SportSelectListItem)
             </span>
 
-            <span>{static:Resources.Lang.league} </span>
+            <span>@Resources.Lang.league </span>
             <span id="panelLeague">
                 <select name="ddlLeague" id="ddlLeague">
                     <option value="0">   </option>
