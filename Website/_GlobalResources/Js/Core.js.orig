@@ -10,6 +10,7 @@ if (typeof jQuery != 'undefined') {
 				modal: true,
 				width: 'auto'
 			},
+
 			openDialog: function (target, title, options) {
 				options = options || {};
 				if (title) options.title = title;
@@ -17,6 +18,20 @@ if (typeof jQuery != 'undefined') {
 				if (target instanceof jQuery == false) target = $(target);
 
 				return target.dialog($.extend({}, APOLLO.dialogOpt, options));
+			},
+			openDialogFrame: function (url, title, options) {
+				var frame = $("#apo-dialog-frame");
+
+				if (frame.length > 0) {
+					frame.children('iframe').attr('src', url);
+				} else {
+					frame =
+					'<div id="apo-dialog-frame">' +
+						'<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>' +
+					'</div>';
+				}
+
+				return APOLLO.openDialog(frame, title, options);
 			},
 			closeDialog: function (target) {
 				target.dialog("close");
@@ -26,38 +41,40 @@ if (typeof jQuery != 'undefined') {
 				var apoRoot = $('#ApoRoot');
 
 				if (apoRoot.length == 0) {
-					if (typeof console != undefined) {
+					if (typeof console != 'undefined') {
 						console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
-						return "";
 					}
+				} else {
+					if (url.substr(0, 2) == '~/') {
+						url = url.substr(2);
+					} else if (url.substr(0, 1) == '/') {
+						url = url.substr(1);
+					}
+
+					return apoRoot.val() + url;
 				}
-
-				if (url.substr(0, 2) == '~/') {
-					url = url.substr(2);
-				} else if (url.substr(0, 1) == '/') {
-					url = url.substr(1);
-				}
-
-				return apoRoot.val() + url;
-
-				//                if (url.substr(0, 1) == '/') {
-				//                    url = url.substr(1);
-				//                }
-
-				//                var siteRoot = parent.baseUrl;
-
-				//                if (!siteRoot) siteRoot = parent.parent.baseURL;
-				//                if (!siteRoot) siteRoot = parent.parent.parent.baseURL;
-				//                if (!siteRoot) siteRoot = "";
-
-				//                return siteRoot + url;
 			},
 
+			generalErrorMsg: 'Your request is temporarily cannot be processed, please try again later!',
 			alertGeneralError: function () {
-				alert('Your request is temporarily cannot be processed, please try again later!');
+				alert(generalErrorMsg);
 			},
 			handleAjaxError: function (jqXHR, textStatus, errorThrown) {
 				APOLLO.alertGeneralError();
+			},
+
+			console: {
+				write: function (msg, consoleFunc) {
+					if (typeof console != 'undefined') {
+						consoleFunc(msg);
+					} else {
+						alert(msg);
+					}
+				},
+				log: function (msg) { APOLLO.console.write(msg, console.log) },
+				info: function (msg) { APOLLO.console.write(msg, console.info) },
+				warn: function (msg) { APOLLO.console.write(msg, console.warn) },
+				error: function (msg) { APOLLO.console.write(msg, console.error) }
 			},
 
 			parseJSON: function (value) {
@@ -85,34 +102,61 @@ if (typeof jQuery != 'undefined') {
 			},
 
 			initDatePicker: function () {
-				var datePicker = $('.datepicker');
+				var datePickers = $('.datepicker');
 
-				if (datePicker.length > 0) {
+				if (datePickers.length > 0) {
 					//get minDate, maxDate, disabledDates
 
-					var currentDate = datePicker.val();
-					var mindate = datePicker.attr('mindate');
-					var maxdate = datePicker.attr('maxdate');
+					datePickers.each(function () {
+						var $this = $(this),
+							limitDate = function (limit) { // limit: mindate/maxdate
+								var _limit = $this.attr(limit);
 
-					datePicker.datepicker({
-						defaultDate: currentDate,
-						dateFormat: "mm/dd/yy",
-						showOn: "button",
-						buttonImageOnly: true,
-						buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png")
+								if (_limit) { // if limit attribute exists
+									_limit = _limit.split("/");
+
+									var year = _limit[2],
+										month = _limit[0],
+										day = _limit[1];
+
+									return new Date(year, month - 1, day);
+								}
+
+								return null;
+							},
+							shiftDate = function (increment) {
+								var currDate = $this.datepicker('getDate'),
+									d = currDate.getDate() + increment,
+									m = currDate.getMonth(),
+									y = currDate.getFullYear();
+
+								$this.datepicker('setDate', new Date(y, m, d));
+							};
+
+						$this.datepicker({
+							defaultDate: new Date($this.val()),
+							dateFormat: "mm/dd/yy",
+							showOn: "button",
+							buttonImageOnly: true,
+							buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png"),
+							buttonText: "Select Date",
+							minDate: limitDate("mindate"),
+							maxDate: limitDate("maxdate")
+						}).keydown(function (e) {
+							var arrow = { left: 37, up: 38, right: 39, down: 40 };
+
+							switch (e.keyCode) {
+								case arrow.up:
+									shiftDate(1);
+									break;
+								//console.info($this.datepicker("getDate"));                                                  
+								case arrow.down:
+									shiftDate(-1);
+									break;
+							}
+						});
+
 					});
-
-					if (typeof (initDatePicker) != "function") //check if (isExit include date.filter.js) then (mindate, maxdate include after function initDatePicker)
-					{
-						if (mindate != 'null') {
-							mindate = mindate.split("/");
-							datePicker.datepicker("option", "minDate", new Date(mindate[2], mindate[0], mindate[1]));
-						}
-						if (maxdate != 'null') {
-							maxdate = maxdate.split("/");
-							datePicker.datepicker("option", "maxDate", new Date(maxdate[2], maxdate[0], maxdate[1]));
-						}
-					}
 				}
 			}
 		};
@@ -130,6 +174,7 @@ if (typeof jQuery != 'undefined') {
                 modal: true,
                 width: 'auto'
             },
+
             openDialog: function (target, title, options) {
                 options = options || {};
                 if (title) options.title = title;
@@ -137,6 +182,19 @@ if (typeof jQuery != 'undefined') {
                 if (target instanceof jQuery == false) target = $(target);
 
                 return target.dialog($.extend({}, APOLLO.dialogOpt, options));
+            },
+            openDialogFrame: function (url, title, options) {
+                var frame = $("#apo-dialog-frame");
+
+                var frameHtml = '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>';
+
+                if (frame.length > 0) {
+                    frame.html(frameHtml);
+                } else {
+                    frame = '<div id="apo-dialog-frame">' + frameHtml + '</div>';
+                }
+
+                return APOLLO.openDialog(frame, title, options);
             },
             closeDialog: function (target) {
                 target.dialog("close");
@@ -146,38 +204,40 @@ if (typeof jQuery != 'undefined') {
                 var apoRoot = $('#ApoRoot');
 
                 if (apoRoot.length == 0) {
-                    if (typeof console != undefined) {
+                    if (typeof console != 'undefined') {
                         console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
-                        return "";
                     }
+                } else {
+                    if (url.substr(0, 2) == '~/') {
+                        url = url.substr(2);
+                    } else if (url.substr(0, 1) == '/') {
+                        url = url.substr(1);
+                    }
+
+                    return apoRoot.val() + url;
                 }
-
-                if (url.substr(0, 2) == '~/') {
-                    url = url.substr(2);
-                } else if (url.substr(0, 1) == '/') {
-                    url = url.substr(1);
-                }
-
-                return apoRoot.val() + url;
-
-                //                if (url.substr(0, 1) == '/') {
-                //                    url = url.substr(1);
-                //                }
-
-                //                var siteRoot = parent.baseUrl;
-
-                //                if (!siteRoot) siteRoot = parent.parent.baseURL;
-                //                if (!siteRoot) siteRoot = parent.parent.parent.baseURL;
-                //                if (!siteRoot) siteRoot = "";
-
-                //                return siteRoot + url;
             },
 
+            generalErrorMsg: 'Your request is temporarily cannot be processed, please try again later!',
             alertGeneralError: function () {
-                alert('Your request is temporarily cannot be processed, please try again later!');
+                alert(generalErrorMsg);
             },
             handleAjaxError: function (jqXHR, textStatus, errorThrown) {
                 APOLLO.alertGeneralError();
+            },
+
+            console: {
+                write: function (msg, consoleFunc) {
+                    if (typeof console != 'undefined') {
+                        consoleFunc(msg);
+                    } else {
+                        alert(msg);
+                    }
+                },
+                log: function (msg) { APOLLO.console.write(msg, console.log) },
+                info: function (msg) { APOLLO.console.write(msg, console.info) },
+                warn: function (msg) { APOLLO.console.write(msg, console.warn) },
+                error: function (msg) { APOLLO.console.write(msg, console.error) }
             },
 
             parseJSON: function (value) {
@@ -205,48 +265,70 @@ if (typeof jQuery != 'undefined') {
             },
 
             initDatePicker: function () {
+                var datePickers = $('.datepicker');
 
-                var datePicker = $('.datepicker');
+                if (datePickers.length > 0) {
+                    //get minDate, maxDate, disabledDates
 
-                if (datePicker.length > 0) {
-                    //get minDate, maxDate, disabledDates                                       
+                    datePickers.each(function () {
+                        var $this = $(this),
+                            limitDate = function (limit) { // limit: mindate/maxdate
+                                var _limit = $this.attr(limit);
 
-                    var currentDate = datePicker.val();
-                    var mindate = datePicker.attr('mindate');
-                    var maxdate = datePicker.attr('maxdate');
+                                if (_limit) { // if limit attribute exists
+                                    _limit = _limit.split("/");
 
-                    datePicker.datepicker({
-                        defaultDate: currentDate,
-                        dateFormat: "mm/dd/yy",
-                        showOn: "button",
-                        buttonImageOnly: true,
-                        buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png")
+                                    var year = _limit[2],
+                                        month = _limit[0],
+                                        day = _limit[1];
+
+                                    return new Date(year, month - 1, day);
+                                }
+
+                                return null;
+                            },
+                            shiftDate = function (increment) {
+                                var currDate = $this.datepicker('getDate'),
+                                    d = currDate.getDate() + increment,
+                                    m = currDate.getMonth(),
+                                    y = currDate.getFullYear();
+
+                                $this.datepicker('setDate', new Date(y, m, d));
+                            };
+
+                        $this.datepicker({
+                            defaultDate: new Date($this.val()),
+                            dateFormat: "mm/dd/yy",
+                            showOn: "button",
+                            buttonImageOnly: true,
+                            buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png"),
+                            buttonText: "Select Date",
+                            minDate: limitDate("mindate"),
+                            maxDate: limitDate("maxdate")
+                        }).keydown(function (e) {
+                            var arrow = { left: 37, up: 38, right: 39, down: 40 };
+
+                            switch (e.keyCode) {
+                                case arrow.up:
+                                    shiftDate(1);
+                                    break;
+                                //console.info($this.datepicker("getDate"));                                                    
+                                case arrow.down:
+                                    shiftDate(-1);
+                                    break;
+                            }
+                        });
+
                     });
-
-                    if (typeof (initDatePicker) != "function") //check if (isExit include date.filter.js) then (mindate, maxdate include after function initDatePicker)
-                    {
-                        if (mindate != 'null') {
-                            mindate = mindate.split("/");
-                            datePicker.datepicker("option", "minDate", new Date(mindate[2], mindate[0], mindate[1]));
-                        }
-                        if (maxdate != 'null') {
-                            maxdate = maxdate.split("/");
-                            datePicker.datepicker("option", "maxDate", new Date(maxdate[2], maxdate[0], maxdate[1]));
-                        }
-
-                        datePicker.datepicker("option", "buttonText", "Select date");
-                    }
                 }
-
             }
         };
     } (jQuery);
 
     $(document).ready(function () {
-
         APOLLO.initDatePicker();
     });
->>>>>>> a0a8b7582d1d0c373e4266471a706e32cd277d76
+>>>>>>> f58b766bf0c0590252919154c04a6c9b14843bbb
 }
 
 var matchedBrowser, browserDectect;
@@ -258,11 +340,11 @@ function ubMatch(ua) {
 	ua = ua.toLowerCase();
 
 	var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
-        /(webkit)[ \/]([\w.]+)/.exec(ua) ||
-        /(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
-        /(msie) ([\w.]+)/.exec(ua) ||
-        ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
-        [];
+		/(webkit)[ \/]([\w.]+)/.exec(ua) ||
+		/(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
+		/(msie) ([\w.]+)/.exec(ua) ||
+		ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
+		[];
 
 	return {
 		browserDectect: match[1] || "",
@@ -302,13 +384,13 @@ String.prototype.replaceAll = function (token, newToken, ignoreCase) {
 			_token = token.toLowerCase();
 
 			while ((
-                i = str.toLowerCase().indexOf(
-                    token, i >= 0 ? i + newToken.length : 0
-                )) !== -1
-            ) {
+				i = str.toLowerCase().indexOf(
+					token, i >= 0 ? i + newToken.length : 0
+				)) !== -1
+			) {
 				str = str.substring(0, i) +
-                    newToken +
-                    str.substring(i + token.length);
+					newToken +
+					str.substring(i + token.length);
 			}
 		} else {
 			return this.split(token).join(newToken);
@@ -474,7 +556,7 @@ function RemoveClassName(element, className) {
 	var elementClassName = element.className;
 	if (typeof elementClassName == 'undefined') return false;
 	element.className = element.className.replace(
-    new RegExp("(^|\\s+)" + className + "(\\s+|$)"), ' ');
+	new RegExp("(^|\\s+)" + className + "(\\s+|$)"), ' ');
 	return element;
 }
 // !!!IMPORTANT: This function is reserved for system management, do not use it.
@@ -605,7 +687,7 @@ AGE.prototype.firstFormElement = function (tag) {
 		var c = items.length > 5 ? 5 : items.length;
 		for (var i = 0; i < c; i++) {
 			if (!items[i].getAttribute('noFocus') && // property indicate do not focus on this item
-            !items[i].disabled && items[i].type != 'hidden' && !items[i].readonly && items[i].type != 'checkbox' && items[i].type != 'radio') {
+			!items[i].disabled && items[i].type != 'hidden' && !items[i].readonly && items[i].type != 'checkbox' && items[i].type != 'radio') {
 				return items[i];
 			}
 		}
@@ -858,7 +940,7 @@ AJAX.prototype.Request = function (url, options) {
 	//options:{method:'get/post',asynchronous:true/false,parameters:'var3=val3&var4=val4',onComplete:function(data){}}
 	var method = 'post';
 	var callback = function () { },
-        params = null;
+		params = null;
 	var async = true;
 	if (options) {
 		if (typeof options.method != 'undefined') method = options.method;
@@ -979,7 +1061,7 @@ function _startup() {
 			if (item) item.focus();
 		}
 		catch (e)
-        { }
+		{ }
 	}
 	else if (_focusElement != -1) {
 		var _focusElement = document.getElementById(_focusElementId);
@@ -1081,11 +1163,15 @@ AGE.prototype.Invalidate = function () {
 // SignOut
 AGE.prototype.SignOut = function () {
 	var index = window;
+
 	while (index != index.parent) // Jump out
 	{
 		index = index.parent;
 	}
-	index.location = this.GetBaseUrl() + '_Authorization/Handlers/SignOut.ashx';
+	//index.location = this.GetBaseUrl() + '_Authorization/Handlers/SignOut.ashx';
+	var signOutUrl = APOLLO.resolveUrl('~/_Authorization/Handlers/SignOut.ashx');
+	index.location = signOutUrl;
+
 	if (index.location.href.indexOf('https://imb.') == 0) {
 		index.close();
 	}

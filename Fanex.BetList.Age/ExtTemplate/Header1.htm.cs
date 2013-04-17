@@ -15,7 +15,7 @@ namespace Fanex.BetList.Age
 			protected static string s0 = "<thead><tr>";
 			public Header1_No_Block No = new Header1_No_Block();
 			public Header1_Member_Block Member = new Header1_Member_Block();
-			protected static string s1 = "<th style=\"width: 110px;\">";
+			protected static string s1 = "<th style=\"width: 140px;\">";
 			protected static string s2{get{return Resources.BetList.transtime;}}
 			protected static string s3 = "</th><th>";
 			protected static string s4{get{return Resources.BetList.choice;}}

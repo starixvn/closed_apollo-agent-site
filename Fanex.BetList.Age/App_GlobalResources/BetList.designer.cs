@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent PT.
+        ///   Looks up a localized string similar to Agent Share.
         /// </summary>
         internal static string agentPT {
             get {
