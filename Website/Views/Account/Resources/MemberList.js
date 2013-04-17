@@ -220,7 +220,7 @@ var MEMBERLIST = function ( $ ) {
                                             { HeaderText: LANGUAGES.Group, Name: "UserGroup", MergeRowNumber: 2 },
                                             { HeaderText: LANGUAGES.AgentCommission, Name: "AgentGroup", MergeColNumber: 3 },
                                             { HeaderText: LANGUAGES.MemberCommission, Name: "CustomerGroup", MergeColNumber: 3 },
-                                            { HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapTakenShare", MergeRowNumber: 2 },
+                                            { HeaderText: LANGUAGES.SoccerDeadballHDPTakenShare, Name: "HandicapTakenShare", MergeRowNumber: 2 },
 
                                         ]
                                  }
@@ -253,7 +253,7 @@ var MEMBERLIST = function ( $ ) {
                          { HeaderText: LANGUAGES.OneXTwo, Width: 100, Name: "CustomerOneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.Other, Width: 100, Name: "CustomerOther", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
 
-                         { HeaderText: LANGUAGES.SoccerDeadballHDP, Width: 100, Name: "HandicapTakenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.SoccerDeadballHDPTakenShare, Width: 150, Name: "HandicapTakenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
 
                         ],
                 bodyRows: bodyData,
