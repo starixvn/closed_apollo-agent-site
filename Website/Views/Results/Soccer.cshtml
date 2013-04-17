@@ -3,10 +3,6 @@
 
 @model IEnumerable<MatchResultModel>
 
-@{
-    var temp = string.Empty;
-}
-
 <table class="tblRpt">
     <thead>
         <tr class="RptHeader">
@@ -163,7 +159,7 @@
 
 @helper BindScore(MatchResultModel item, bool isRowHome)
 {
-    if (item.EventStatus == Constants.REFUND)
+    if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
     {
         <td>
             @Resources.Lang.lblNA
@@ -172,7 +168,7 @@
             @Resources.Lang.lblNA
         </td>
     }
-    else if (item.EventStatus == Constants.REFUND_FT)
+    else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
     {
         if (isRowHome)
         {
@@ -193,7 +189,7 @@
             </td>
         }
     }
-    else if (item.EventStatus == Constants.REFUND_HT)
+    else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_HT)
     {
         if (isRowHome)
         {
