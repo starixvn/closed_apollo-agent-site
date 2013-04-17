@@ -42,7 +42,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             {
                 Template.AgentCommValue.agentComm_value = ConvertByBetType.Comm(ticket.AComm);
             }
-            if (ticket.ADiscount == null)
+            if (ticket.AgentLevel == 0)
             {
                 Template.AgentComm.agentComm_setting = "N/A";
             }
