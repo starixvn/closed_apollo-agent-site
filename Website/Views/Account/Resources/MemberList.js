@@ -3,7 +3,7 @@
 var MEMBERLIST = function ( $ ) {
     return {
         AgentId: null,
-        currentPopUp : null,
+        currentPopUp: null,
         AgentLevel: null,
         init: function () {
             MEMBERLIST.AgentId = $( "#gridId" ).attr( "agentid" );
@@ -44,7 +44,7 @@ var MEMBERLIST = function ( $ ) {
                 var url = APOLLO.resolveUrl( "CustomerSetting/EditAllSetting?custId=" + $this.attr( "custid" )
                                 + "&userName=" + $this.attr( "username" )
                                 + "&userGroup=" + $this.attr( "usergroup" ) );
-                AGENTLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
+                AGENTLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
                     width: 1020,
                     height: 800,
                     position: { my: "top+50", at: "center top", of: window },
@@ -105,7 +105,7 @@ var MEMBERLIST = function ( $ ) {
                 var url = APOLLO.resolveUrl( "CustomerSetting/EditCommissionSetting?custId=" + $this.attr( "custid" )
                 + "&userName" + $this.attr( "username" )
                 + "&userGroup=" + $this.attr( "usergroup" ) );
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
+                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
                     width: 1015,
                     height: 300,
                     position: { my: "top+50", at: "center top", of: window },
@@ -119,7 +119,7 @@ var MEMBERLIST = function ( $ ) {
                 var $this = $( this );
                 var url = APOLLO.resolveUrl( "CustomerSetting/EditBetSetting?custId=" + $this.attr( "custid" )
                 + "&userName" + $this.attr( "username" ) );
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
+                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
                     width: 1015,
                     height: 600,
                     position: { my: "top+50", at: "center top", of: window },
@@ -131,7 +131,7 @@ var MEMBERLIST = function ( $ ) {
                 var $this = $( this );
                 var url = APOLLO.resolveUrl( "CustomerSetting/EditPositionTaking?custId=" + $this.attr( "custid" )
                 + "&userName=" + $this.attr( "username" ) );
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
+                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
                     width: 1020,
                     height: 800,
                     position: { my: "top+10", at: "center top", of: window },
@@ -147,8 +147,8 @@ var MEMBERLIST = function ( $ ) {
             } );
         },
         bindingEdit: function () {
-            MEMBERLIST.initMenuPopup( $( "[name='Edit']" ), false );
-            MEMBERLIST.initMenuPopup( $( "#quickLinkEditSetting" ), true );
+            // MEMBERLIST.initMenuPopup( $( "[name='Edit']" ), false );
+            // MEMBERLIST.initMenuPopup( $( "#quickLinkEditSetting" ), true );
         },
         loadMemberList: function () {
             $.ajax( {
@@ -168,10 +168,10 @@ var MEMBERLIST = function ( $ ) {
                 } )
                 .fail( function ( event, jqXHR, ajaxSettings ) {
                     APOLLO.handleAjaxError( event, jqXHR, ajaxSettings );
-                });
-                if (MEMBERLIST.currentPopUp != null) {
-                    APOLLO.closeDialog(MEMBERLIST.currentPopUp);
-                }
+                } );
+            if ( MEMBERLIST.currentPopUp != null ) {
+                APOLLO.closeDialog( MEMBERLIST.currentPopUp );
+            }
         },
         initMemberList: function ( memberList ) {
             var bodyData = [];
@@ -187,20 +187,16 @@ var MEMBERLIST = function ( $ ) {
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
-                            { Name: "Status", Value: current },
+                            { Name: "Status", Value: current.Status },
+                            { Name: "BetStatus", Value: current.BetStatus },
                             { Name: "UserGroup", Value: current.UserGroup },
                             { Name: "AgentGroup", Value: current.AgentGroup * 100 },
                             { Name: "AgentOneXTwo", Value: current.AgentDiscountOneXTwo * 100 },
                             { Name: "AgentOther", Value: current.AgentDiscountOther * 100 },
-                            { Name: "AgentNumberGame", Value: current.AgentDiscountNumberGame * 100 },
                             { Name: "CustomerGroup", Value: current.CustomerGroup * 100 },
                             { Name: "CustomerOneXTwo", Value: current.CustomerDiscountOneXTwo * 100 },
                             { Name: "CustomerOther", Value: current.CustomerDiscountOther * 100 },
-                            { Name: "CustomerNumberGame", Value: current.CustDiscountNumberGame * 100 },
-                            { Name: "Handicap", Value: current.Handicap / 100 },
-                            { Name: "OverUnder", Value: current.OverUnder / 100 },
-                            { Name: "HandicapLive", Value: current.HandicapLive / 100 },
-                            { Name: "OverUnderLive", Value: current.OverUnderLive / 100 }
+                            { Name: "HandicapTakenShare", Value: current.HandicapTakenShare / 100 },
                         ]
                 } );
             }
@@ -214,11 +210,11 @@ var MEMBERLIST = function ( $ ) {
                                             { HeaderText: LANGUAGES.Edit, Name: "Edit", MergeRowNumber: 2 },
                                             { HeaderText: LANGUAGES.Username, Name: "Username", MergeRowNumber: 2 },
                                             { HeaderText: LANGUAGES.Status, Name: "Status", MergeRowNumber: 2 },
+                                            { HeaderText: LANGUAGES.BetStatus, Name: "BetStatus", MergeRowNumber: 2 },
                                             { HeaderText: LANGUAGES.Group, Name: "UserGroup", MergeRowNumber: 2 },
-
-                                            { HeaderText: LANGUAGES.AgentCommission, Name: "AgentGroup", MergeColNumber: 4 },
-                                            { HeaderText: LANGUAGES.MemberCommission, Name: "CustomerGroup", MergeColNumber: 4 },
-                                            { HeaderText: LANGUAGES.SoccerShare, Name: "Handicap", MergeColNumber: 4 }
+                                            { HeaderText: LANGUAGES.AgentCommission, Name: "AgentGroup", MergeColNumber: 3 },
+                                            { HeaderText: LANGUAGES.MemberCommission, Name: "CustomerGroup", MergeColNumber: 3 },
+                                            { HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapTakenShare", MergeRowNumber: 2 },
 
                                         ]
                                  }
@@ -236,22 +232,22 @@ var MEMBERLIST = function ( $ ) {
                                  return ( cell.Value.Status == 1 ? LANGUAGES.Active : ( cell.Value.Status == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked ) );
                              }
                          },
+                         { HeaderText: LANGUAGES.BetStatus, Width: 100, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
+                             CustomCellRender: function ( cell ) {
+                                 return ( cell.Value.BetStatus == 1 ? LANGUAGES.Active : ( cell.Value.BetStatus == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked ) );
+                             }
+                         },
                          { HeaderText: LANGUAGES.Group, Width: 100, Name: "UserGroup", HeaderAlign: "center", CellAlign: "center" },
 
                          { HeaderText: LANGUAGES.Group, Width: 100, Name: "AgentGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.OneXTwo, Width: 100, Name: "AgentOneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.Other, Width: 100, Name: "AgentOther", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.NumberGame, Width: 100, Name: "AgentNumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
 
                          { HeaderText: LANGUAGES.Group, Width: 100, Name: "CustomerGroup", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.OneXTwo, Width: 100, Name: "CustomerOneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
                          { HeaderText: LANGUAGES.Other, Width: 100, Name: "CustomerOther", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.NumberGame, Width: 100, Name: "CustomerNumberGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
 
-                         { HeaderText: LANGUAGES.Handicap, Width: 100, Name: "Handicap", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.OverUnder, Width: 100, Name: "OverUnder", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.HandicapLive, Width: 100, Name: "HandicapLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.OverUnderLive, Width: 100, Name: "OverUnderLive", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                         { HeaderText: LANGUAGES.SoccerDeadballHDP, Width: 100, Name: "HandicapTakenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
 
                         ],
                 bodyRows: bodyData,
@@ -268,9 +264,7 @@ var MEMBERLIST = function ( $ ) {
                     totalItem: memberList.TotalItem,
                     itemsPerPageArray: [50, 100, 500],
                     pagerSelectCallBack: ReRenderAfterPaged
-                },
-                showColumnsShowHide: false,
-                columnsNeedHide: [8, 12]
+                }
             };
             function ReRenderAfterPaged( page_index, itemsPerPage, jq ) {
                 $.ajax( {
