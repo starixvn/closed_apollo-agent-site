@@ -12,31 +12,50 @@
     <div id="box_header">
         <div class="row">
             <div class="cell">
-                @Html.DatePicker("EventDate", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
+                <div class="label">
+                    <label for="EventDate">@Resources.Lang.date</label>
+                </div>
+                <div class="editor">
+                    @Html.DatePicker("EventDate", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
+                </div>
             </div>
             <div class="cell">
-                <input id="btnSubmit" value="@Resources.Lang.Generate" type="submit" class="btn" />
-                <input id="btnToday" value="@DateTime.Now.Date.ToShortDateString()" type="submit" class="btn" />
-                <input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToShortDateString()" type="submit" class="btn"/>
+                <div class="editor">
+                    <input id="btnSubmit" value="@Resources.Lang.Generate" type="submit" class="btn" />
+                    <input id="btnToday" value="@DateTime.Now.Date.ToShortDateString()" type="submit" class="btn" />
+                    <input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToShortDateString()" type="submit" class="btn"/>
+                </div>
             </div>
         </div>
+    
+    @if (Model.SportList.Any())
+    {
+        <div class="row">
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlSport">@Resources.Lang.sport</label>
+                </div>
+                <div class="editor">
+                    @Html.DropDownList("ddlSport", Model.SportSelectListItem)
+                </div>
+            </div>
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlLeague">@Resources.Lang.league</label>
+                </div>
+                <div class="editor">
+                    @Html.DropDownList("ddlLeague",
+                        new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
+                        new { style = "width: 500px" })
+                </div>
+            </div>
+        </div>
+    }
     </div>
+    
     if (Model.SportList.Any())
-    { 
-        <span>@Resources.Lang.sport</span>
-                
-        <span>
-            @Html.DropDownList("ddlSport", Model.SportSelectListItem)
-        </span>
-
-        <span>@Resources.Lang.league</span>
-        <span id="panelLeague">
-            <select name="ddlLeague" id="ddlLeague">
-                <option value="0"></option>
-            </select>
-        </span>          
-        <br />
-        <div id="resultContainer"></div>
+    {
+    <div id="resultContainer"></div>
     }
 }
 @Html.Hidden("ApoRoot", Url.Content("~/"))
