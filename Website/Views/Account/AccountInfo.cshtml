@@ -150,24 +150,34 @@
                     else
                     {
                         <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
+                            href="~/CustomerSetting/ViewShare?username=@Model.Username">
+                            @Resources.Lang.ViewShare
+                        </a>
+                        
+                        <a class="lnk-setting" target="main"
+                            href="~/CustomerSetting/ViewCommission?username=@Model.Username">
+                            @Resources.Lang.ViewCommission
+                        </a>
+                        
+                        @*<a class="lnk-setting" target="main"
+                            href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
                             @Resources.Lang.lblEditSB
                         </a>
 
                         <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditBetSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
+                            href="~/CustomerSetting/EditBetSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
                             @Resources.Lang.lbleditbetsetting
                         </a>
 
                         <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditCommissionSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
+                            href="~/CustomerSetting/EditCommissionSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
                             @Resources.Lang.lbleditcomm
                         </a>
 
                         <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditPositionTaking?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
+                            href="~/CustomerSetting/EditPositionTaking?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
                             @Resources.Lang.lblEditPositionTalking
-                        </a>
+                        </a>*@
                     }
                 </div>
                 <div id="agentsTab-content">
