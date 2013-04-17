@@ -24,7 +24,7 @@ namespace Apollo.Age.Forecast.Criterias
 
         public override bool IsValid()
         {
-            return AgentId > 0;
+            return true;
         }
     }
 }
