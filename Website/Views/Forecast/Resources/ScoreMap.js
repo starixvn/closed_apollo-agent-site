@@ -80,7 +80,8 @@ if (typeof jQuery != 'undefined') {
                     betTypesDead = SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
                 }
                 if (betTypesLive == "" && betTypesDead == "") {
-                    ageMsg.Show("Please choose a bet type", 0);
+                    ageMsg.Show("Please choose a bet type!", 0);
+                    $("#mainContent").html('');
                     return;
                 }
                 var url = SCOREMAP.baseLink + 'ScoreMapResult?matchIds=' + $('#match-ids').val()

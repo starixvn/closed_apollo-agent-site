@@ -57,7 +57,7 @@ namespace Sunplus.Agent.UI._BetList
 
             var tpl = new BetListOnMember_Template();
             tpl.title = Resources.Lang.lblBetLists + " - " + username;
-            if (pageType == "accountinfo" || pageType == "report")
+            if (pageType == "accountinfo")
             {
                 var maxDate = DateTime.Now;
                 tpl.HiddenFields.username = username;

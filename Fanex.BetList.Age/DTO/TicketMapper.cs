@@ -57,7 +57,7 @@ namespace Fanex.BetList.Age.DTO
 
             {"Winlost","winlost"},
 
-            {"AgentWinlost","awinlost"},
+            {"AWinlost","awinlost"},
 
             {"MasterWinlost","mwinlost"},
 
@@ -79,7 +79,7 @@ namespace Fanex.BetList.Age.DTO
 
             {"SuperPositionTaking","spositiontaking"},
 
-            {"AgentDiscount","adiscount"},
+            {"ADiscount","adiscount"},
 
             {"MasterDiscount","mdiscount"},
 

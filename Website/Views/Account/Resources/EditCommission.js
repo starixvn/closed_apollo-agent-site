@@ -3,11 +3,15 @@
 if (typeof jQuery != 'undefined') {
     var EDITCOMMISSION = function ($) {
         return {
+            currentIsSimpleMode: true,
+            initOthers: function (isSimpleMode) {
+                settingContext.IsSimpleMode = isSimpleMode;
+                EDITCOMMISSION.init(settingContext, commissionSetting);
+            },
             settingContext: null,
             commissionSettingElement: null,
             commissionSetting: null,
-            init: function (settingContext, customerCommission) {
-
+            init: function (settingContext, customerCommission, isUpdateAllSetting) {
                 EDITCOMMISSION.settingContext = settingContext;
                 Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);
                 EDITCOMMISSION.commissionSetting = customerCommission;
@@ -16,9 +20,27 @@ if (typeof jQuery != 'undefined') {
                 commissionSettingContainer.innerHTML = "";
                 EDITCOMMISSION.commissionSettingElement.Render(commissionSettingContainer);
 
+                if (isUpdateAllSetting) return;
+
                 //// Register Event
                 $("#btnSubmitFooter").click(function () {
                     EDITCOMMISSION.updatecommissionSetting();
+                });
+
+                $(".setting-mode #simple-mode").unbind("click").click(function () {
+                    if (EDITCOMMISSION.currentIsSimpleMode) return;
+                    $(this).removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
+                    EDITCOMMISSION.currentIsSimpleMode = true;
+                    EDITCOMMISSION.initOthers(true);
+                });
+
+                $(".setting-mode #advanced-mode").unbind("click").click(function () {
+                    if (EDITCOMMISSION.currentIsSimpleMode == false) return;
+                    $(this).removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
+                    EDITCOMMISSION.currentIsSimpleMode = false;
+                    EDITCOMMISSION.initOthers(false);
                 });
             },
             updatecommissionSetting: function () {
@@ -34,6 +56,7 @@ if (typeof jQuery != 'undefined') {
                 }).done(function (data) {
                     if (data.ErrCode == 0) {
                         noty({ text: data.ErrMsg, type: 'success' });
+                        EDITCOMMISSION.completeUpdate();
                     } else {
                         noty({ text: APOLLO.generalErrorMsg, type: 'error' });
                         APOLLO.console.error(data.ErrMsg);
@@ -43,35 +66,20 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             completeUpdate: function (result) {
-                //                var errMsg = result.errMsg;
-                //                if (result.errCode == 0) {
-                //                    age.UnLock();
-                //                    //            AddPopupHeight(50);
-                //                    ageMsg.Show(errMsg, 1);
-                //                    window.scroll(0, 0);
-                //                    setTimeout(function () {
-                //                        if (isReloadParent > 0) {
-                //                            parent.window.location.reload();
-                //                        }
-                //                        else {
-                //                            window.location.reload();
-                //                        }
-                //                    }, 1000);
-
-                //                    return;
-                //                }
-                //                else {
-                //                    age.UnLock();
-                //                    //            AddPopupHeight(50);
-                //                    ageMsg.Show(errMsg);
-                //                    window.scroll(0, 0);
-                //                    return;
-                //                }
+                setTimeout(function () {
+                    if (typeof (parent.MEMBERLIST) != 'undefined') {
+                        parent.MEMBERLIST.loadMemberList();
+                    }
+                    else if (typeof (parent.AGENTLIST) != 'undefined') {
+                        parent.AGENTLIST.loadAgentList();
+                    }
+                }, 3000);
             }
         }
     } (jQuery);
 
     $(function () {
+        settingContext.IsSimpleMode = true;
         EDITCOMMISSION.init(settingContext, commissionSetting);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }

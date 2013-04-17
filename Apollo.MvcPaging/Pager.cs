@@ -57,7 +57,7 @@ namespace Apollo.MvcPaging
                 else if (above > (pageCount - 2))
                 {
                     above = pageCount;
-                    below = (pageCount - nrOfPagesToDisplay + 1);
+                    below = (pageCount - nrOfPagesToDisplay + 1 -1);
                 }
 
                 start = below;
@@ -67,13 +67,13 @@ namespace Apollo.MvcPaging
             if (start > 1)
             {
                 model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 1, DisplayText = "1", Url = generateUrl(1) });
-                if (start > 3)
-                {
-                    model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 2, DisplayText = "2", Url = generateUrl(2) });
-                }
+                //if (start > 3)
+                //{
+                //    model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 2, DisplayText = "2", Url = generateUrl(2) });
+                //}
                 if (start > 2)
                 {
-                    model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "..." });
+                    model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = ".." });
                 }
             }
 
@@ -92,12 +92,12 @@ namespace Apollo.MvcPaging
             {
                 if (end < pageCount - 1)
                 {
-                    model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "..." });
+                    model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = ".." });
                 }
-                if (pageCount - 2 > end)
-                {
-                    model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString(), Url = generateUrl(pageCount - 1) });
-                }
+                //if (pageCount - 2 > end)
+                //{
+                //    model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString(), Url = generateUrl(pageCount - 1) });
+                //}
 
                 model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString(), Url = generateUrl(pageCount) });
             }

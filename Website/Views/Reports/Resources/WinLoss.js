@@ -8,8 +8,16 @@
             ToDate = $("#ToDate");
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
-                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
-                location.href = url;
+                var fromDate = new Date(FromDate.val());
+                var toDate = new Date(ToDate.val());
+
+                if (toDate < fromDate) {
+                    noty({ text: LANGUAGES.MessageValidateDate, type: 'warn' });
+                }
+                else {
+                    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
+                    location.href = url;
+                }
             });
 
             $(".navigation").bind('click', function () {

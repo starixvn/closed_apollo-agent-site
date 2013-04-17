@@ -147,8 +147,7 @@ if (typeof jQuery != 'undefined') {
 							switch (e.keyCode) {
 								case arrow.up:
 									shiftDate(1);
-									break;
-								//console.info($this.datepicker("getDate"));                                                  
+									break;                                                  
 								case arrow.down:
 									shiftDate(-1);
 									break;

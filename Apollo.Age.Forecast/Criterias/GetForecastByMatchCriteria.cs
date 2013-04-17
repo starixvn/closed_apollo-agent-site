@@ -44,7 +44,7 @@ namespace Apollo.Age.Forecast.Criterias
 
         public override bool IsValid()
         {
-            return AgentId > 0 && MatchId > 0 && BetType > 0;
+            return MatchId > 0 && BetType > 0;
         }
     }
 }

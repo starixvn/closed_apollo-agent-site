@@ -4,22 +4,31 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - Total Bets</title>
-    <link href="~/Views/Account/Resources/CustSettingEngine/Core.less" rel="stylesheet" type="text/css" />
-    <link href="~/Views/Account/Resources/CustSettingEngine/CoreOverride.less" rel="stylesheet" type="text/css" />
+    <link href="~/Views/Account/Resources/CustSettingEngine/Core.less" rel="stylesheet"
+        type="text/css" />
+    <link href="~/Views/Account/Resources/CustSettingEngine/CoreOverride.less" rel="stylesheet"
+        type="text/css" />
     @RenderSection("css", required: false)
 </head>
 <body>
-    <div id="settingContainer">
-       @RenderBody()
+    <div id="page_main">
+        <div id="header_main">
+            @ViewBag.Title
+        </div>
+        <div id="content_main">
+            <div class="setting-mode">
+                <span id="simple-mode" class="deactive-mode">Simple Mode</span> | <span class="active-mode" id="advanced-mode"> Advance Mode</span>
+            </div>
+            <div id="settingContainer">
+                @RenderBody()
+            </div>
+            <div class="btnLeft">
+                <button id="btnSubmitFooter" class="btn">
+                    @Resources.Lang.update</button>
+            </div>
+        </div>
     </div>
-    <div class="btnLeft">
-        <button id="btnSubmitFooter" class="btn">
-            @Resources.Lang.update</button>
-    </div>
-    
-
     @Html.Hidden("ApoRoot", Url.Content("~/"))
-
     <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
     <script src="~/_GlobalResources/Js/noty/jquery.noty.min.js" type="text/javascript"></script>

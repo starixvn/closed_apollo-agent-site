@@ -951,7 +951,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     var formId = Fanex.CustSetting.CURRENT_CONTEXT.FormId;
                     var roleId = Fanex.CustSetting.CURRENT_CONTEXT.RoleId; //(this.context.TargetRoleId == 1 || formId != Fanex.CustSetting.FormTypes.EDIT_PT) ? this.context.RoleId : 0;
                     var targetRoleId = Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId;
-                    var method = this['RenderSimpleMode_'.concat(roleId, '_', targetRoleId, '_', formId)];
+                    var method = this['RenderSimpleMode_'.concat(roleId, '_', targetRoleId, '_', 1)];
                     if (typeof (method) == "function") {
                         box.appendChild(method.call(this, owner));
                     }
