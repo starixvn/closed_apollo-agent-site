@@ -3,7 +3,7 @@ var reportResultModule = (function () {
 
     var sportDropDownList = $("#ddlSport");
     var leagueDropDownList = $("#ddlLeague");
-    var date = $("#date").val();
+    var date = $("#EventDate").val();
     var me = this;
 
     return {
