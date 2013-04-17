@@ -7,12 +7,12 @@
 //   <change who="Edward.Nguyen" date="2013.4.9">Created</change>
 // </history>
 
-namespace Apollo.Age.Account
+namespace Apollo.Age.Account.Core
 {
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public static class Constant
+    public static class Constants
     {
         public const string NORMAL = "normal";
 
