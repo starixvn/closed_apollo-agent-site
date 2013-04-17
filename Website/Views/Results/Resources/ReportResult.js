@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-var REPORTRESULTMODULE = (function () {
+
+var REPORT_RESULTS = (function () {
 
     var sportDropDownList = $("#ddlSport");
     var leagueDropDownList = $("#ddlLeague");
@@ -9,12 +10,12 @@ var REPORTRESULTMODULE = (function () {
     return {
         init: function () {
             sportDropDownList.change(function () {
-                REPORTRESULTMODULE.bindLeague();
-                REPORTRESULTMODULE.showMatchResult();
+                REPORT_RESULTS.bindLeague();
+                REPORT_RESULTS.showMatchResult();
             });
 
             leagueDropDownList.change(function () {
-                REPORTRESULTMODULE.showMatchResult();
+                REPORT_RESULTS.showMatchResult();
             });
         },
         bindLeague: function () {
@@ -61,6 +62,6 @@ var REPORTRESULTMODULE = (function () {
 })();
 
 $(function () {
-    REPORTRESULTMODULE.init();
-    REPORTRESULTMODULE.bindLeague();
+    REPORT_RESULTS.init();
+    REPORT_RESULTS.bindLeague();
 });
