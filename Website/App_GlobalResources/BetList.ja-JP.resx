@@ -337,9 +337,9 @@
     <value>No Tiebreak</value>
   </data>
   <data name="agentComm" xml:space="preserve">
-    <value>Agent Com</value>
+    <value>Agent Comm</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>Agent PT</value>
+    <value>Agent Share</value>
   </data>
 </root>
