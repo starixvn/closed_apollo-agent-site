@@ -1,44 +1,47 @@
 ﻿@using Apollo.Age.Reports.Models;
 @using Fanex.Age.Utility;
 @using Sunplus.Agent.Model.Entities;
+@using Apollo.Age.Reports.ViewModels;
 @{
-    Page.Title = "Resource.Result";
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.Lang.result;
 }
-@model Apollo.Age.Reports.ViewModels.ReportResultViewModel
+@model ReportResultViewModel
 @using (Html.BeginForm())
 {
-    <div id="content_main">
-        <div id="box_header">
-            @Html.DatePicker("date", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
-            <input id="btnSubmit" value="@Resources.Lang.Generate" type="submit" />
-            <input id="btnToday" value="@Formater.ShortDateFormat(DateTime.Now)" type="submit" />
-            <input id="btnYesterday" value="@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))" type="submit"/>
+    <div id="box_header">
+        <div class="row">
+            <div class="cell">
+                @Html.DatePicker("EventDate", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
+            </div>
+            <div class="cell">
+                <input id="btnSubmit" value="@Resources.Lang.Generate" type="submit" class="btn" />
+                <input id="btnToday" value="@DateTime.Now.Date.ToShortDateString()" type="submit" class="btn" />
+                <input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToShortDateString()" type="submit" class="btn"/>
+            </div>
         </div>
-        @if (Model.SportList.Any())
-        { 
-        
-                
-            <span>@Resources.Lang.sport </span>
-                
-            <span>
-                @Html.DropDownList("ddlSport", Model.SportSelectListItem)
-            </span>
-
-            <span>@Resources.Lang.league </span>
-            <span id="panelLeague">
-                <select name="ddlLeague" id="ddlLeague">
-                    <option value="0">   </option>
-                </select>
-            </span>          
-            <br />
-            <div id="resultContainer">
-            </div>          
-        }
     </div>
+    if (Model.SportList.Any())
+    { 
+        <span>@Resources.Lang.sport</span>
+                
+        <span>
+            @Html.DropDownList("ddlSport", Model.SportSelectListItem)
+        </span>
+
+        <span>@Resources.Lang.league</span>
+        <span id="panelLeague">
+            <select name="ddlLeague" id="ddlLeague">
+                <option value="0"></option>
+            </select>
+        </span>          
+        <br />
+        <div id="resultContainer"></div>
+    }
 }
 @Html.Hidden("ApoRoot", Url.Content("~/"))
-<script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-<script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
-<script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
-<script src="~/Views/Results/Resources/ReportResult.js" type="text/javascript"></script>
+
+@section scripts
+{
+    <script src="~/Views/Results/Resources/ReportResult.js" type="text/javascript"></script>
+}

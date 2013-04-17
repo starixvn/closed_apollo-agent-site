@@ -5,6 +5,10 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders" date="2013.4.9">Created</change>
+//   <change who="Lewis" date="2013.4.17">
+//      + Added BalanceUpDay
+//      + Refactored Index (involved in implementing Index.cshtml)
+//   </change>
 // </history>
 
 namespace Apollo.Age.Reports.Controllers
@@ -12,20 +16,23 @@ namespace Apollo.Age.Reports.Controllers
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using Apollo.Age.Web;
     using System.Web.Mvc;
+    using Apollo.Age.Entities;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
-    using Apollo.Age.Entities;
     using Apollo.Age.Services;
+    using Apollo.Age.Web;
     using Fanex.Common.Extensions;
-    using Apollo.Age.Reports.Models;
-    using Apollo.Age.Enumerations;
 
     public class ResultsController : BaseController
     {
         private readonly ResultService _resultService;
+
+        protected DateTime BalanceUpDay
+        {
+            get { return _resultService.GetBalanceUpDay(); }
+        }
 
         public ResultsController() : this(null) { }
 
@@ -41,17 +48,13 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(DateTime date)
+        public ActionResult Index(DateTime eventDate)
         {
-            var balanceUpDay = _resultService.GetBalanceUpDay();
-
-            var sports = _resultService.GetResultSports(date);
-
             var viewModel = new ReportResultViewModel
             {
-                BalanceUpDay = balanceUpDay,
-                SportList = sports,
-                EventDate = date
+                BalanceUpDay = BalanceUpDay,
+                SportList = _resultService.GetResultSports(eventDate),
+                EventDate = eventDate
             };
 
             return View(viewModel);
