@@ -207,10 +207,12 @@ if (typeof jQuery != "undefined") {
                     transId = $this.attr("tid"),
 					fromDate = $("#fromDate").val(),
 					toDate = $("#toDate").val(),
+					type = $("#type").val(),
                     url = APOLLO.resolveUrl("~/_BetList/ViewDetail.aspx"),
                     ajaxParams = "transid=" + transId +
                         "&fromdate=" + fromDate +
-                        "&toDate=" + toDate;
+                        "&toDate=" + toDate +
+						"&type=" + type;
 				ajax.Request(url, {
 					asynchronous: true,
 					parameters: ajaxParams,
