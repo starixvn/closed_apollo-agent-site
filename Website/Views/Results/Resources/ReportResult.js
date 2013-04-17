@@ -1,20 +1,21 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-var reportResultModule = (function () {
+
+var REPORT_RESULTS = (function () {
 
     var sportDropDownList = $("#ddlSport");
     var leagueDropDownList = $("#ddlLeague");
-    var date = $("#date").val();
+    var date = $("#EventDate").val();
     var me = this;
 
     return {
         init: function () {
             sportDropDownList.change(function () {
-                me.bindLeague();
-                me.showMatchResult();
+                REPORT_RESULTS.bindLeague();
+                REPORT_RESULTS.showMatchResult();
             });
 
             leagueDropDownList.change(function () {
-                me.showMatchResult();
+                REPORT_RESULTS.showMatchResult();
             });
         },
         bindLeague: function () {
@@ -45,7 +46,7 @@ var reportResultModule = (function () {
             if (resultContainer.length > 0) {
 
                 var sportId = sportDropDownList.val();
-                var leagueId = leagueDropDownList.val();                
+                var leagueId = leagueDropDownList.val();
                 
                 if (sportId != null) {
                     $.get(APOLLO.resolveUrl("~/Results/MatchResult"),
@@ -61,6 +62,6 @@ var reportResultModule = (function () {
 })();
 
 $(function () {
-    reportResultModule.init();    
-    reportResultModule.bindLeague();
+    REPORT_RESULTS.init();
+    REPORT_RESULTS.bindLeague();
 });
