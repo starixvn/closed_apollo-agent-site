@@ -9,11 +9,12 @@
 
 namespace Apollo.Age.BetList.Repositories.Interface
 {
+    using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
+    using Fanex.BetList.Core.Entities;
 
     public interface IBetListRepository
     {
-        TicketResult GetDetailAgentComm(BetListCriteria criteria);
+        IList<ITicket> GetDetailAgentComm(BetListCriteria criteria);
     }
 }

@@ -10,11 +10,12 @@
 
 namespace Apollo.Age.BetList.Services
 {
+    using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Repositories.Impl;
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Services.Impl;
+    using Fanex.BetList.Core.Entities;
 
     /// <summary>
     /// BetList Service
@@ -40,7 +41,7 @@ namespace Apollo.Age.BetList.Services
             this._betListRepository = this._betListRepository ?? new BetListRepository();
         }
 
-        public TicketResult GetDetailAgentComm(BetListCriteria criteria)
+        public IList<ITicket> GetDetailAgentComm(BetListCriteria criteria)
         {
             return this._betListRepository.GetDetailAgentComm(criteria);
         }
