@@ -21,7 +21,10 @@ namespace Apollo.Age.Account.Criterias
             return "Dot_Msg_GetTopPriMessage24";
         }
 
+        [SpParam(SqlParamName = "TargetId")]
         public int UserId { get; set; }
+
+        public bool IsAgent { get; set; }
 
         [SpParam(SqlParamName = "LatestMsgID")]
         public int LastMessageId { get; set; }

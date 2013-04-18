@@ -151,7 +151,8 @@ namespace Apollo.Age.Account.Services
             {
                 UserId = userId,
                 LastMessageId = latestMessageId,
-                IsTest = isTest
+                IsTest = isTest,
+                IsAgent = true
             };
 
             if (criteria.IsValid())
