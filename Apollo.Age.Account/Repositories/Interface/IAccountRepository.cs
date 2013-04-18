@@ -29,5 +29,9 @@ namespace Apollo.Age.Account.Repositories.Interface
         IEnumerable<AgentListModel> GetAgentList(ref AgentListCriteria criteria);
 
         IEnumerable<MemberListModel> GetMemberList(ref CustomerListCriteria criteria);
+
+        IEnumerable<AgentShareModel> GetAgentShare(ICriteria criteria);
+
+        IEnumerable<MemberShareModel> GetMemberShare(ICriteria criteria);
     }
 }

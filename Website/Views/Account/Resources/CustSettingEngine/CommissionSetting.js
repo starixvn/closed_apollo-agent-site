@@ -19,6 +19,8 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.group = ["a", "b", "c", "d"];
     this.groupSelect = null;
     this.Save = function () {
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return null;
+
         if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             this.items[0].DiscountA = this.spinBoxItems[0].getValue();
             this.items[0].DiscountB = this.spinBoxItems[3].getValue();
@@ -113,36 +115,32 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
         trBox.appendChild(tdValue);
     };
-    this.RenderPlayerCom = function (textName, discount, uplineDiscount) {
+    this.RenderPlayerCom = function (isEditNonDirectMember, textName, discount, uplineDiscount) {
         var trBox = document.createElement("TR");
         var tdTextBox = document.createElement("TD");
         tdTextBox.innerHTML = textName;
         tdTextBox.className = "group-name";
         trBox.appendChild(tdTextBox);
 
-//        var tdGroupValue2 = document.createElement("TD");
-//        tdGroupValue2.className = "agent-com";
-//        var groupText = document.createElement("INPUT");
-//        groupText.type = "Text";
-//        groupText.disabled = true;
-//        groupText.value = uplineDiscount + Fanex.CustSetting.COM_LAST_LETTER;
-//        tdGroupValue2.appendChild(groupText);
-        //        trBox.appendChild(tdGroupValue2);
-        
 
         var tdValue = document.createElement("TD");
         tdValue.className = "commission-select member-com";
-        var comContainer1 = document.createElement("DIV");
-        comContainer1.className = 'commission-spin-box';
-        tdValue.appendChild(comContainer1);
-        var comSpinBox1 = this.RenderSpinBox(comContainer1, discount, uplineDiscount);
-        this.spinBoxItems.push(comSpinBox1);
+        if (isEditNonDirectMember) {
+            tdValue.innerHTML = ' &nbsp; ' + discount;
+        }
+        else {
+            var comContainer1 = document.createElement("DIV");
+            comContainer1.className = 'commission-spin-box';
+            tdValue.appendChild(comContainer1);
+            var comSpinBox1 = this.RenderSpinBox(comContainer1, discount, uplineDiscount);
+            this.spinBoxItems.push(comSpinBox1);
+            var maxSpan = document.createElement("SPAN");
+            maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 3);
+            maxSpan.className = "upline-agent-share";
+            comContainer1.appendChild(maxSpan);
+        }
         trBox.appendChild(tdValue);
-
-        var maxSpan = document.createElement("SPAN");
-        maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 3);
-        maxSpan.className = "upline-agent-share";
-        comContainer1.appendChild(maxSpan);
+        
 
         return trBox;
     };
@@ -163,7 +161,9 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         var box = document.createElement("TABLE");
         bodyContainer.appendChild(box);
 
-        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
+        var context = Fanex.CustSetting.CURRENT_CONTEXT;
+        var isEditNonDirectMember = context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
+        if (context.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";
             var trBox = document.createElement("TR");
             var groupCom = this.items[0];
@@ -189,19 +189,20 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             box.className = "commission-setting-table-player";
 
             //// Header Text
-//            var headerTr = document.createElement("TR");
-//            var tdComName = document.createElement("TH");
-//            tdComName.innerHTML = Language.MEMBER_GROUP;
-//            headerTr.appendChild(tdComName);
-//            tdComName = document.createElement("TH");
-//            headerTr.appendChild(tdComName);
-//            tdComName = document.createElement("TH");
-//            tdComName.innerHTML = Language.COMM_FOR_AGENT;
-//            headerTr.appendChild(tdComName);
-//            tdComName = document.createElement("TH");
-//            tdComName.innerHTML = Language.COMM_FOR_MEMBER;
-//            headerTr.appendChild(tdComName);
-//            box.appendChild(headerTr);
+            var headerTr = document.createElement("TR");
+            var tdComName = document.createElement("TH");
+            tdComName.innerHTML = Language.MEMBER_GROUP;
+            headerTr.appendChild(tdComName);
+            //            tdComName = document.createElement("TH");
+            //            headerTr.appendChild(tdComName);
+            //            tdComName = document.createElement("TH");
+            //            tdComName.innerHTML = Language.COMM_FOR_AGENT;
+            //            headerTr.appendChild(tdComName);
+            tdComName = document.createElement("TH");
+            tdComName.innerHTML = Language.COMM_FOR_MEMBER;
+            tdComName.setAttribute("colspan", 2);
+            headerTr.appendChild(tdComName);
+            box.appendChild(headerTr);
 
             //// User Group
             var trGroup = document.createElement("TR");
@@ -215,70 +216,79 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 tdGroupText.setAttribute("rowspan", 3);
             }
             trGroup.appendChild(tdGroupText);
-            var groupSelect = document.createElement("SELECT");
-            var groupCount = this.group.length;
-            for (var groupIndex = 0; groupIndex < groupCount; groupIndex++) {
-                var currentGroup = this.group[groupIndex];
-                var option = document.createElement("OPTION");
-                option.setAttribute("value", currentGroup.toLowerCase());
-                option.innerHTML = currentGroup.toLowerCase();
-                groupSelect.appendChild(option);
+            if (isEditNonDirectMember) {
+                tdGroupText.innerHTML += ' ' + this.currentGroup.toUpperCase();
             }
-            groupSelect.value = this.currentGroup;
-            this.groupSelect = groupSelect;
-            tdGroupText.appendChild(groupSelect);
+            else {
+                var groupSelect = document.createElement("SELECT");
+                var groupCount = this.group.length;
+                for (var groupIndex = 0; groupIndex < groupCount; groupIndex++) {
+                    var currentGroup = this.group[groupIndex];
+                    var option = document.createElement("OPTION");
+                    option.setAttribute("value", currentGroup.toLowerCase());
+                    option.innerHTML = currentGroup.toLowerCase();
+                    groupSelect.appendChild(option);
+                }
+                groupSelect.value = this.currentGroup;
+                this.groupSelect = groupSelect;
+                tdGroupText.appendChild(groupSelect);
+            }
 
             var tdGroupText1 = document.createElement("TD");
-            tdGroupText1.innerHTML = Language.ASIAN_HDC_OU_OE;
+            tdGroupText1.innerHTML = Language.ASIAN_HDC_OU_OE + ' &nbsp; ';
             tdGroupText1.className = "group-name";
             trGroup.appendChild(tdGroupText1);
 
-//            var tdGroupValue2 = document.createElement("TD");
-//            tdGroupValue2.className = "agent-com";
-//            var groupText1 = document.createElement("INPUT");
-//            groupText1.type = "Text";
-//            groupText1.disabled = true;
-//            groupText1.value = this.GetUplineGroupDiscountForMember(this.currentGroup).Upline.Discount + Fanex.CustSetting.COM_LAST_LETTER;
-//            tdGroupValue2.appendChild(groupText1);
-//            trGroup.appendChild(tdGroupValue2);
+            //            var tdGroupValue2 = document.createElement("TD");
+            //            tdGroupValue2.className = "agent-com";
+            //            var groupText1 = document.createElement("INPUT");
+            //            groupText1.type = "Text";
+            //            groupText1.disabled = true;
+            //            groupText1.value = this.GetUplineGroupDiscountForMember(this.currentGroup).Upline.Discount + Fanex.CustSetting.COM_LAST_LETTER;
+            //            tdGroupValue2.appendChild(groupText1);
+            //            trGroup.appendChild(tdGroupValue2);
 
-
+            var currentSelectGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
             var tdMemberValue = document.createElement("TD");
             tdMemberValue.className = "commission-select member-com";
-            var comContainer = document.createElement("DIV");
-            comContainer.className = "commission-spin-box";
-            tdMemberValue.appendChild(comContainer);
-            var currentSelectGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
+            if (isEditNonDirectMember) {
+                tdMemberValue.innerHTML = ' &nbsp; ' + currentSelectGroup.Discount.toString();
+            }
+            else {
+                var comContainer = document.createElement("DIV");
+                comContainer.className = "commission-spin-box";
+                tdMemberValue.appendChild(comContainer);
+
+                var comSpinBox = this.RenderSpinBox(comContainer, currentSelectGroup.Discount, currentSelectGroup.Upline.Discount);
+                this.spinBoxItems.push(comSpinBox);
+                var maxSpan = document.createElement("SPAN");
+                maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentSelectGroup.Upline.Discount, 3);
+                maxSpan.className = "upline-agent-share";
+                comContainer.appendChild(maxSpan);
+            }
             trGroup.appendChild(tdMemberValue);
-            var comSpinBox = this.RenderSpinBox(comContainer, currentSelectGroup.Discount, currentSelectGroup.Upline.Discount);
-            this.spinBoxItems.push(comSpinBox);
-
-
-            var maxSpan = document.createElement("SPAN");
-            maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentSelectGroup.Upline.Discount, 3);
-            maxSpan.className = "upline-agent-share";
-            comContainer.appendChild(maxSpan);
 
             //// Onchange Group
             var self = this;
             var saveItems = this.items;
-            groupSelect.onchange = function (event) {
-                var currentValue = this.value;
-                var selectedCom = self.GetUplineGroupDiscountForMember(currentValue);
-                //groupText1.value = selectedCom.Upline.Discount + Fanex.CustSetting.COM_LAST_LETTER;
-                comSpinBox.updateAndSetMaxValue(selectedCom.Upline.Discount);
-                maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, selectedCom.Upline.Discount, 3);
-                self.addEventConstrain(comSpinBox, selectedCom.Upline.Discount);
-            };
+            if (!isEditNonDirectMember) {
+                groupSelect.onchange = function (event) {
+                    var currentValue = this.value;
+                    var selectedCom = self.GetUplineGroupDiscountForMember(currentValue);
+                    //groupText1.value = selectedCom.Upline.Discount + Fanex.CustSetting.COM_LAST_LETTER;
+                    maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, selectedCom.Upline.Discount, 3);
+                    self.addEventConstrain(comSpinBox, selectedCom.Upline.Discount);
+                };
+            }
 
 
             box.appendChild(trGroup);
 
             //// Other Com
-            box.appendChild(this.RenderPlayerCom(Language._1X2, this.items[2].Discount, this.items[2].Upline.DiscountA));
-            box.appendChild(this.RenderPlayerCom(Language.OTHERS_COM, this.items[1].Discount, this.items[1].Upline.DiscountA));
+            box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ' &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA));
+            box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ' &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA));
             if (hasNumberGameSection) {
-                box.appendChild(this.RenderPlayerCom(Language.NUMBER_GAME, this.items[3].Discount, this.items[3].Upline.DiscountA));
+                box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.NUMBER_GAME + ' &nbsp; ', this.items[3].Discount, this.items[3].Upline.DiscountA));
             }
 
             container.appendChild(bodyContainer);

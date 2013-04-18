@@ -75,6 +75,7 @@
     <Compile Include="DTO\Reports\WinlossAgentDTO.cs" />
     <Compile Include="DTO\Reports\WinLossByBetTypeDTO.cs" />
     <Compile Include="Entities\Agent.cs" />
+    <Compile Include="Entities\BetType.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\ICustomer.cs" />
