@@ -28,6 +28,8 @@ namespace Apollo.Age.BetList.Criterias
 
         public long TransId { get; set; }
 
+        public bool IsWinLoss { get; set; }
+
         public bool IsExportExcel { get; set; }
 
         public string StatusIds { get; set; }
