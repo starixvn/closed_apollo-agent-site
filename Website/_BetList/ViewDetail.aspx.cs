@@ -104,7 +104,7 @@ namespace Sunplus.Agent.UI._BetList
                     #endregion Total ticket
                 }
                 builder.Append("<tfoot><tr class='total'>");
-                builder.Append(string.Format("<td class='c'>{0}</td>", Resources.Lang.total));
+                builder.Append(string.Format("<td class='c bold'>{0}</td>", Resources.Lang.total));
 
                 if (isShowAgentPT)
                 {
