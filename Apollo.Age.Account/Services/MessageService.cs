@@ -92,12 +92,13 @@ namespace Apollo.Age.Account.Services
             return true;
         }
 
-        public bool GetHasPrivateMessage24(int userId, bool isTest = false)
+        public bool GetHasPrivateMessage24(int userId, bool isTest = false, bool isAgent = true)
         {
             var criteria = new GetHasPriMessage24Criteria
             {
                 UserId = userId,
-                IsTest = isTest
+                IsTest = isTest,
+                IsAgent = isAgent
             };
 
             if (criteria.IsValid())
@@ -145,14 +146,14 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
-        public MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false)
+        public MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false, bool isAgent = true)
         {
             var criteria = new GetTopPriMessage24Criteria
             {
                 UserId = userId,
                 LastMessageId = latestMessageId,
                 IsTest = isTest,
-                IsAgent = true
+                IsAgent = isAgent
             };
 
             if (criteria.IsValid())

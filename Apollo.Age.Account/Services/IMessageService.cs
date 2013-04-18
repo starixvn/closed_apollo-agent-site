@@ -21,13 +21,13 @@ namespace Apollo.Age.Account.Services
 
         bool UpdateReadMessage(int userId, int messsageId, bool isAgent = true);
 
-        bool GetHasPrivateMessage24(int userId, bool isTest = false);
+        bool GetHasPrivateMessage24(int userId, bool isTest = false, bool isAgent = true);
 
         int CountUnreadPrivateMessage(int userId, string username);
 
         bool UpdateReadPrivateMessage(int userId, string username);
 
-        MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false);
+        MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false, bool isAgent = true);
 
         MessageModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false);
 
