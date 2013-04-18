@@ -33,5 +33,9 @@ namespace Apollo.Age.Account.Repositories.Interface
         IEnumerable<AgentShareModel> GetAgentShare(ICriteria criteria);
 
         IEnumerable<MemberShareModel> GetMemberShare(ICriteria criteria);
+
+        IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria);
+
+        IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria);
     }
 }

@@ -27,58 +27,45 @@
 }
 
 .tblRpt {
-	font-size: 1em;
-
 	tbody td {
-		white-space: inherit;
+		white-space: normal;
 	}
 
-	td {
-		&.tbList {
-			// backup red themes
-			//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
-			#gradient.vertical(#6B6B6B, @secondColor);
+	.tbList {
+		// backup red themes
+		//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+		#gradient.vertical(#777, #555);
+		text-align: left;
 
-			ul {				
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
+		ul {				
+			li {					
+				display: inline-block;
+				font-weight: normal;
+				padding: 8px 20px 10px 0;
 
-				li {					
-					display: inline;
+				a {
+					display: inline-block;
 					padding: 0;
-					font-weight: normal;
+					//color: lighten(@primaryColor, 40%);
+					color: #fff;
 
-					a {						
-						float: left;						
-						margin-right: 2px;
-						color: lighten(@primaryColor, 30%);
-
-						span {							
-							font-weight: normal;												
-							padding: 2px 0px;
-							float: none;							
-						}
-
-						&:hover {							
-							color: @white;
-						}											
+					span {							
+						font-weight: normal;												
+						padding: 2px 0px;
+						float: none;							
 					}
 
-					&.line a:before, &.line a:after {
-						margin: 0 5px;
-						content: "|";
-						font-weight: normal;
-					}					
+					&:hover {
+						border-bottom: 1px solid #fff;
+					}											
+				}					
 
-					&#current a {	
-						// backup red themes	
-						//color: @textColor;
-						color: @white;
-						font-weight: bold;
-					}
-				}		
-			}
+				&#current a {	
+					// backup red themes	
+					//color: @textColor;
+					border-bottom: 1px solid #fff;
+				}
+			}		
 		}
 	}
 }

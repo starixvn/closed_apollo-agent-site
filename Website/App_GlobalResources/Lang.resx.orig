@@ -432,7 +432,7 @@
     <value>Bingo</value>
   </data>
   <data name="bingoPositionTaking" xml:space="preserve">
-    <value>Bingo Position Taking (%)</value>
+    <value>Bingo Share (%)</value>
   </data>
   <data name="bonusFreeSpin" xml:space="preserve">
     <value>Bonus Free Spin</value>
@@ -468,7 +468,7 @@
     <value>Casino Games</value>
   </data>
   <data name="casinoPositionTaking" xml:space="preserve">
-    <value>Casino Position Taking (%)</value>
+    <value>Casino Share (%)</value>
   </data>
   <data name="choice" xml:space="preserve">
     <value>Choice</value>
@@ -1787,7 +1787,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Master Win Lost Detail</value>
   </data>
   <data name="lblMatchWinLostDetail" xml:space="preserve">
-    <value>Match Win Loss Detail</value>
+    <value>Match Win Loss Details</value>
   </data>
   <data name="lblMax" xml:space="preserve">
     <value>Max</value>
@@ -1835,7 +1835,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Member Commission</value>
   </data>
   <data name="lblMemberInfo" xml:space="preserve">
-    <value>Account Information</value>
+    <value>Customer Information</value>
   </data>
   <data name="lblMemberMax" xml:space="preserve">
     <value>Mem. Max Credit</value>
@@ -1982,16 +1982,16 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Position</value>
   </data>
   <data name="lblPositionTaking" xml:space="preserve">
-    <value>Position Taking (%)</value>
+    <value>Share (%)</value>
   </data>
   <data name="lblPositionTakingAgent" xml:space="preserve">
-    <value>Agent Position Taking</value>
+    <value>Agent Share</value>
   </data>
   <data name="lblPositionTakingMaster" xml:space="preserve">
-    <value>Master Position Taking</value>
+    <value>Master Share</value>
   </data>
   <data name="lblPositionTakingSuper" xml:space="preserve">
-    <value>Super Position Taking</value>
+    <value>Super Share</value>
   </data>
   <data name="lblPostdate" xml:space="preserve">
     <value>Post date</value>
@@ -2492,7 +2492,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Runner No</value>
   </data>
   <data name="noInfo" xml:space="preserve">
-    <value>No information is available</value>
+    <value>No data is available</value>
   </data>
   <data name="noLimited" xml:space="preserve">
     <value>No limited</value>
@@ -2672,7 +2672,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Politics</value>
   </data>
   <data name="positiontaking" xml:space="preserve">
-    <value>Position Taking</value>
+    <value>Share</value>
   </data>
   <data name="postponed" xml:space="preserve">
     <value>Postponed</value>
@@ -3230,7 +3230,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Update Min/Max Bet</value>
   </data>
   <data name="UpdatePositionTaking" xml:space="preserve">
-    <value>Update Positon Taking</value>
+    <value>Update Share Setting</value>
   </data>
   <data name="updatesuccessfull" xml:space="preserve">
     <value>Updated successfully!</value>
@@ -3639,7 +3639,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Live Casino</value>
   </data>
   <data name="PositionTakingCommission" xml:space="preserve">
-    <value>Position Taking/Commission</value>
+    <value>Share/Commission</value>
   </data>
   <data name="SuperAutoPresetPT" xml:space="preserve">
     <value>Super Auto Preset PT</value>
@@ -3648,7 +3648,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Master Auto Preset PT</value>
   </data>
   <data name="SavePositionTakingCommission" xml:space="preserve">
-    <value>Save Position Taking/Commission</value>
+    <value>Save Share/Commission</value>
   </data>
   <data name="EditLiveCasino" xml:space="preserve">
     <value>Edit Live Casino</value>
@@ -3813,13 +3813,13 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>{0} position taking setting is being applied to:</value>
   </data>
   <data name="copyAllPositionTakingFrom" xml:space="preserve">
-    <value>Copy all below position taking settings from {0} {1}</value>
+    <value>Copy all below share settings from {0} {1}</value>
   </data>
   <data name="copyFrom" xml:space="preserve">
     <value>Copy from {0}</value>
   </data>
   <data name="copyPositionTakingFrom" xml:space="preserve">
-    <value>Copy {0} position taking settings from {1}</value>
+    <value>Copy {0} share settings from {1}</value>
   </data>
   <data name="labelMinPosition" xml:space="preserve">
     <value>Min Position</value>
@@ -3892,7 +3892,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Roulette</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>Agent PT</value>
+    <value>Agent Share</value>
   </data>
   <data name="masterPT" xml:space="preserve">
     <value>Master PT</value>
@@ -3925,7 +3925,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Edit Multiple Virtual Sports</value>
   </data>
   <data name="savePositionTaking" xml:space="preserve">
-    <value>Save Position Taking</value>
+    <value>Save Share</value>
   </data>
   <data name="saveStatus" xml:space="preserve">
     <value>Save Status</value>
@@ -4093,7 +4093,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Member Commission (%)</value>
   </data>
   <data name="lblSoccerPT" xml:space="preserve">
-    <value>Soccer PT (%)</value>
+    <value>Soccer Share (%)</value>
   </data>
   <data name="hdpLive" xml:space="preserve">
     <value>HDP Live</value>
@@ -4152,10 +4152,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblCustomerOf" xml:space="preserve">
     <value>Customer List Of</value>
   </data>
-<<<<<<< HEAD
-  <data name="Exchange_Rate" xml:space="preserve">
-    <value>Exchange Rate</value>
-=======
   <data name="betlimit" xml:space="preserve">
     <value>Bet Limit</value>
   </data>
@@ -4176,6 +4172,132 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblShadowName" xml:space="preserve">
     <value>Shadow Name</value>
->>>>>>> 18dac05d4e1029d84d19e17a93b7fc6683150775
+  </data>
+  <data name="Exchange_Rate" xml:space="preserve">
+    <value>Exchange Rate</value>
+  </data>
+  <data name="lblEditPositionTalking" xml:space="preserve">
+    <value>Edit Position Taking</value>
+  </data>
+  <data name="BaseRate" xml:space="preserve">
+    <value>Base Rate</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="MinBet" xml:space="preserve">
+    <value>Min Bet</value>
+  </data>
+  <data name="MinBetLive" xml:space="preserve">
+    <value>Min Bet Live</value>
+  </data>
+  <data name="MultipliedBy" xml:space="preserve">
+    <value>Multiplied By</value>
+  </data>
+  <data name="ExchangeRate" xml:space="preserve">
+    <value>Exchange Rate</value>
+  </data>
+  <data name="lblDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="txtShowUpline" xml:space="preserve">
+    <value>Show Upline</value>
+  </data>
+  <data name="minBetShouldBeLessThanOrEqualToMaxPerBall" xml:space="preserve">
+    <value>{0} - The Min Bet should be less than or equal to Max Per Ball</value>
+  </data>
+  <data name="lblHotLine" xml:space="preserve">
+    <value>Hotline:</value>
+  </data>
+  <data name="lblPhone1" xml:space="preserve">
+    <value>(63) 99917 88888</value>
+  </data>
+  <data name="lblPhone2" xml:space="preserve">
+    <value>(63) 91542 22222</value>
+  </data>
+  <data name="lblWebHostLogin" xml:space="preserve">
+    <value>Webhost Login:</value>
+  </data>
+  <data name="EntityDoesNotExistTpl" xml:space="preserve">
+    <value>{0} does not exist</value>
+  </data>
+  <data name="FieldIsRequiredTpl" xml:space="preserve">
+    <value>'{0}' is required</value>
+  </data>
+  <data name="NameExistedTpl" xml:space="preserve">
+    <value>'{0}' existed</value>
+  </data>
+  <data name="lblParentname" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="ShareAmount" xml:space="preserve">
+    <value>Share Amount</value>
+  </data>
+  <data name="ViewBetList" xml:space="preserve">
+    <value>View Bet List</value>
+  </data>
+  <data name="ViewForeCast" xml:space="preserve">
+    <value>View Forecast</value>
+  </data>
+  <data name="AddNewExchangeRate" xml:space="preserve">
+    <value>Add New Exchange Rate</value>
+  </data>
+  <data name="MessageHistory" xml:space="preserve">
+    <value>Message History</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>Forecast</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>Sports</value>
+  </data>
+  <data name="transaction" xml:space="preserve">
+    <value>Transaction</value>
+  </data>
+  <data name="Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="locked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="stopped" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="GrossTotal" xml:space="preserve">
+    <value>Gross Total</value>
+  </data>
+  <data name="UplineTotal" xml:space="preserve">
+    <value>Upline Total</value>
+  </data>
+  <data name="sharesetting" xml:space="preserve">
+    <value>Share Setting</value>
+  </data>
+<<<<<<< HEAD
+  <data name="ViewCommission" xml:space="preserve">
+    <value>View Commission</value>
+  </data>
+  <data name="ViewShare" xml:space="preserve">
+    <value>View Share</value>
+=======
+  <data name="betstatus" xml:space="preserve">
+    <value>Bet Status</value>
+  </data>
+  <data name="givenshare" xml:space="preserve">
+    <value>Given Share</value>
+  </data>
+  <data name="soccerdeadballhdp" xml:space="preserve">
+    <value>Soccer Deadball HDP(%)</value>
+  </data>
+  <data name="takenshare" xml:space="preserve">
+    <value>Taken Share</value>
+  </data>
+
+
+  <data name="lblNA" xml:space="preserve">
+    <value>N/A</value>
+>>>>>>> 603a0a9db8512a36458e3c7b576fc5452e3a04e3
   </data>
 </root>

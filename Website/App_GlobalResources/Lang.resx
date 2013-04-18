@@ -1684,7 +1684,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Game Type Name</value>
   </data>
   <data name="lblGroupa" xml:space="preserve">
-    <value>Group A</value>
+    <value>Group A (%)</value>
   </data>
   <data name="lblGroupb" xml:space="preserve">
     <value>Group B</value>
@@ -4298,5 +4298,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="soccerdeadballhdptakenshare" xml:space="preserve">
     <value>Soccer Deadball HDP Taken Share(%)</value>
+  </data>
+  <data name="TicketCancelled" xml:space="preserve">
+    <value>Ticket Cancelled</value>
   </data>
 </root>

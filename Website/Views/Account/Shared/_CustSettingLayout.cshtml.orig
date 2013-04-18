@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<!--[if IE 7 ]> <html class="ie7 ie" lang="en"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie8 ie" lang="en"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie9 ie" lang="en"> <![endif]-->
+<!--[if (gt IE 9)]><!--> <html class="ie10 ie" lang="en"> <!--<![endif]-->
+<!--[if !(IE)]> <html lang="en"><![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+<<<<<<< HEAD
+    <title>@ViewBag.Title</title>
+    <link href="~/Views/Account/Resources/CustSettingEngine/Core.less" rel="stylesheet"
+=======
+    <title>@ViewBag.Title - Total Bets</title>
+    <link href="~/Views/Account/Resources/CustSettingEngine/Core.less?ver=1" rel="stylesheet"
+>>>>>>> 6a74b6fa6705c0b6fea54e3b4e02a578c6f9cd70
+        type="text/css" />
+    <link href="~/Views/Account/Resources/CustSettingEngine/CoreOverride.less" rel="stylesheet"
+        type="text/css" />
+    @RenderSection("css", required: false)
+</head>
+<body>
+    @RazorHelper.Piwik()
+    <div id="page_main">
+        <div id="header_main">
+            @ViewBag.Title
+        </div>
+        <div id="content_main">
+            <div class="setting-mode">
+                <span id="simple-mode" class="deactive-mode">Simple Mode</span> | <span class="active-mode" id="advanced-mode"> Advance Mode</span>
+            </div>
+            <div id="settingContainer">
+                @RenderBody()
+            </div>
+            <div class="btnLeft">
+                <button id="btnSubmitFooter" class="btn" style="display:none;">
+                    @Resources.Lang.update</button>
+            </div>
+        </div>
+    </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/noty/jquery.noty.min.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
+    <script src="~/Views/Account/Resources/CustSettingEngine/Core.js" type="text/javascript"></script>
+    <script src="~/Views/Account/Resources/CustSettingEngine/PTSetting.js" type="text/javascript"></script>
+    <script src="~/Views/Account/Resources/CustSettingEngine/BettingLimit.js" type="text/javascript"></script>
+    <script src="~/Views/Account/Resources/CustSettingEngine/BetType.js" type="text/javascript"></script>
+    <script src="~/Views/Account/Resources/CustSettingEngine/BetTypeGroup.js" type="text/javascript"></script>
+    <script src="~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js" type="text/javascript"></script>
+    <script src="~/CustomerSetting/LanguageObject" type="text/javascript"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
