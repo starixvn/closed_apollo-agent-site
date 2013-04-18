@@ -110,6 +110,7 @@ namespace Apollo.Age.Account.Controllers
 
             criteria.IsPublic = isPublic;
             criteria.Special = special;
+            criteria.IsAgent = true;
 
             listMessage = this._messageService.GetMessage(criteria).ToList();
 
