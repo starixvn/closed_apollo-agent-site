@@ -102,6 +102,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         var minValue = minSpinBox.getValue();
         var presetValue = presetSpinBox.getValue();
         if (maxValue > currentPt.Upline.Max) {
+            maxValue = currentPt.Upline.Max;
             maxSpinBox.setValue(currentPt.Upline.Max);
             presetSpinBox.setValue(0);
         }
@@ -413,6 +414,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         maxSpinBox.setValue(maxValue);
         var presetValue = presetSpinBox.getValue();
         if (maxValue > currentPtValue.Upline.Max) {
+            maxValue = currentPtValue.Upline.Max;
             maxSpinBox.setValue(currentPtValue.Upline.Max);
             presetSpinBox.setValue(0);
         }
