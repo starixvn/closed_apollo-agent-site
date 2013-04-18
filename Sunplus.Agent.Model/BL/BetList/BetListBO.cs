@@ -768,7 +768,7 @@ namespace Sunplus.Agent.Model.BL.BetList
             DataTable ptComm = new DataTable();
             if (isWinLoss)
             {
-                ptComm = dao.Age_BetList_AgentDetail(transId, CurrentSession.CustId, fromDate, toDate, moveBetsDay);
+                ptComm = dao.Age_BetList_AgentDetail_Winloss(transId, CurrentSession.CustId, fromDate, toDate, moveBetsDay);
             }
             else
             {

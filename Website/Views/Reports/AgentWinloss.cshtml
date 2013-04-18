@@ -7,28 +7,40 @@
 
 @model AgentWinLossViewModel
 
-@if (Model.DownlinePath != null && Model.DownlinePath.Any())
-{
-    @RazorHelper.Navigation(Model.DownlinePath)
-}
-
 <div id="box_header">
-    <div class="filter-submit">
+    <div class="row">
         @{
             var maxDate = DateTime.Now;
             var minDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3);
         }
-         <div class="inline-control">
-            @Html.LabelFor(m => m.FromDate, @Resources.Lang.from)
-            @Html.DatePickerFor(m => m.FromDate, minDate, maxDate)
-         </div> 
-         <div class="inline-control">
-            @Html.LabelFor(m => m.ToDate, @Resources.Lang.to)
-            @Html.DatePickerFor(m => m.ToDate, minDate, maxDate)
-         </div>       
-         <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
+        <div class="cell">
+            <div class="label">
+                @Html.LabelFor(m => m.FromDate, @Resources.Lang.from)            
+            </div>
+            <div class="editor">
+                @Html.DatePickerFor(m => m.FromDate, minDate, maxDate)
+            </div>
+        </div>
+        <div class="cell">
+            <div class="label">
+                @Html.LabelFor(m => m.ToDate, @Resources.Lang.to)           
+            </div>
+            <div class="editor">
+                @Html.DatePickerFor(m => m.ToDate, minDate, maxDate)
+            </div>
+        </div>
+        <div class="cell">
+            <div class="editor">
+                <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
+            </div>
+        </div>
     </div>
 </div>
+
+@if (Model.DownlinePath != null && Model.DownlinePath.Any())
+{
+    @RazorHelper.Navigation(Model.DownlinePath)
+}
 
 <table class="tblRpt">
 @if (Model.IsSuper)

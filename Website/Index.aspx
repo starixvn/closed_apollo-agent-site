@@ -1,7 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="Index.aspx.cs" Inherits="Index" %>
 
 <!DOCTYPE html>
-<html>
+<!--[if IE 7 ]> <html class="ie7 ie"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie8 ie"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie9 ie"> <![endif]-->
+<!--[if (gt IE 9)]><!--> <html class="ie10 ie"> <!--<![endif]-->
+<!--[if !(IE)]> <html><![endif]-->
 <head>
     <title></title>
     <link href="<%= Page.ResolveUrl("~/_GlobalResources/Css/Index.less")%>" rel="stylesheet" type="text/css" />
