@@ -12,7 +12,6 @@ using Apollo.Age.BetList.Services;
 using Apollo.Age.Web;
 using Fanex.Age.UI.Components;
 using Fanex.Agent.UI._BetList;
-using Fanex.BetList.Age.BetListCmd;
 using Fanex.BetList.Age.BetListHTMLBuilderExt;
 using Fanex.BetList.Age.Definition;
 using Fanex.BetList.Age.DTO;
@@ -37,26 +36,8 @@ namespace Sunplus.Agent.UI._BetList
         private DateTime fromDate = DateTime.Now;
         private DateTime toDate = DateTime.Now;
         private bool isReportWinloss = false;
-        IBetListCmd command = null;
 
         #endregion Define variable
-
-        protected ICurrentSession CurrentSession
-        {
-            get
-            {
-                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
-
-                return currentSession;
-            }
-            set
-            {
-                if (value is ICurrentSession)
-                {
-                    Session["Apollo.Age.Web.CurrentSession"] = value;
-                }
-            }
-        }
 
         public override void RenderContent(HtmlTextWriter writer)
         {
@@ -171,6 +152,23 @@ namespace Sunplus.Agent.UI._BetList
             };
             var mainTickets = betListService.GetDetailAgentComm(criteria);
             return mainTickets;
+        }
+
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
+
+                return currentSession;
+            }
+            set
+            {
+                if (value is ICurrentSession)
+                {
+                    Session["Apollo.Age.Web.CurrentSession"] = value;
+                }
+            }
         }
 
         private object RenderNoInfo()

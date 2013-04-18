@@ -13,8 +13,6 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Web;
-    using Fanex.BetList.Age.BetListCmd;
-    using Fanex.BetList.Age.Definition;
 
     /// <summary>
     /// BetList Controller
@@ -22,7 +20,6 @@ namespace Apollo.Age.BetList.Controllers
     public class BetListController : BaseController
     {
         private readonly BetListService _betListService;
-        IBetListCmd command = null;
 
         public BetListController()
         {

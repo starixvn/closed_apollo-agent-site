@@ -12,14 +12,14 @@ namespace Fanex.BetList.Age.BetListCmd
 {
     using System.Collections;
     using System.Data;
+    using Apollo.Age.Web;
     using Fanex.BetList.Age.Definition;
-    using Sunplus.Agent.Model.Entities;
 
     public interface IBetListCmd
     {
         string Title { get; set; }
 
-        IUserSession CurrentUserSession { get; }
+        ICurrentSession CurrentUserSession { get; }
 
         BetListType BetListType { get; set; }
 
@@ -30,4 +30,3 @@ namespace Fanex.BetList.Age.BetListCmd
         DataTable OutDataTable();
     }
 }
-

@@ -24,6 +24,6 @@ namespace Apollo.Age.BetList.Models
 
         public IList<ITicket> TicketList { get; set; }
 
-        public IList<ITicketData> TicketDataList { get; set; }
+        public List<ITicketData> TicketDataList { get; set; }
     }
 }
