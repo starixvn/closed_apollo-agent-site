@@ -51,6 +51,8 @@
             decimal shareAmountTotal = 0;
             decimal gameOutstandingTotal = 0;
             decimal gameShareAmountTotal = 0;
+            int i = 1;
+            string rowClass = string.Empty;
             <tbody>
                 @foreach (OutstandingModel item in Model.ListOutStanding)
                 {
@@ -58,9 +60,11 @@
                     shareAmountTotal += item.ShareAmount;
                     gameOutstandingTotal += item.GameOutstanding;
                     gameShareAmountTotal += item.GameShareAmount;
-                    if (item.IsAgent == true)
+                    rowClass = i++ % 2 == 0 ? "class='alt'" : string.Empty;
+                    
+                    if (item.IsAgent)
                     {
-                    <tr>
+                    <tr @Html.Raw(rowClass)>
                         <td>
                             <a href="#" name="viewagent" agentid="@item.UserId">@item.UserName</a>
                         </td>
@@ -80,7 +84,7 @@
                     }
                     else
                     {
-                    <tr>
+                    <tr @Html.Raw(rowClass)>
                         <td>
                             <a href="#" id="MemberOutstanding" agentid="@Model.CurrentAgentId" >@Resources.Lang.lblMemberOutstanding</a>
                         </td>
@@ -97,7 +101,7 @@
                             @Formater.FormatNumber20(item.GameShareAmount, "en-US")
                         </td>
                     </tr>
-                    }
+                    }                   
                 }
             </tbody>
                 if (Model.AgentLevel != 0)
