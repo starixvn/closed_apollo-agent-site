@@ -1,9 +1,9 @@
-﻿@using Fanex.CustSetting.ViewData
-@{
-    ViewBag.Title = string.Format("View Commission [{0}]", ViewBag.Username);
+﻿@{
+    ViewBag.Title = "View Commission";
     Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
+    int index = 1;
 }
-@model CommissionSetting
+@model IEnumerable<CustomerCommissionModel>
 
 <table class="tbl-cust-setting">
     <thead>
@@ -18,20 +18,18 @@
         </tr>
     </thead>
     <tbody>
-    @for (int i = 0; i < 6; i++)
+    @foreach(var comm in Model)
     {
-        var comm1 = Model.CommissionItems[0];
-        var comm2 = Model.CommissionItems[1];
-        var comm3 = Model.CommissionItems[2];
+        string rowClass = index++ % 2 == 0 ? "class='alt'" : string.Empty;
         
-        <tr>
-            <td>Agent Name</td>
-            <td>@RazorHelper.FormatNumber(comm1.DiscountA, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm1.DiscountB, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm1.DiscountC, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm1.DiscountD, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm3.DiscountA, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm2.DiscountA, numDecimals: 2, showZero: true)</td>
+        <tr @Html.Raw(rowClass)>
+            <td>@comm.Username</td>
+            <td>@RazorHelper.FormatNumber(comm.DiscountA, numDecimals: 2, showZero: true)</td>
+            <td>@RazorHelper.FormatNumber(comm.DiscountB, numDecimals: 2, showZero: true)</td>
+            <td>@RazorHelper.FormatNumber(comm.DiscountC, numDecimals: 2, showZero: true)</td>
+            <td>@RazorHelper.FormatNumber(comm.DiscountD, numDecimals: 2, showZero: true)</td>
+            <td>@RazorHelper.FormatNumber(comm.Discount1x2, numDecimals: 2, showZero: true)</td>
+            <td>@RazorHelper.FormatNumber(comm.DiscountOthers, numDecimals: 2, showZero: true)</td>
         </tr>
     }
     </tbody>
