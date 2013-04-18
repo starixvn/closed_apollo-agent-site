@@ -32,7 +32,7 @@ namespace Apollo.Age.Account.Criterias
                     break;
 
                 default:
-                    switch (this.IsSpecial)
+                    switch (this.Special)
                     {
                         case 0:
                             settingKey = "Dot_Msg_GetNotSpecialMessage";
@@ -61,10 +61,10 @@ namespace Apollo.Age.Account.Criterias
 
         public int Record { get; set; }
 
-        [SpParam(SqlParamName = "edate")]
+        [SpParam(SqlParamName = "sdate")]
         public DateTime? From { get; set; }
 
-        [SpParam(SqlParamName = "fdate")]
+        [SpParam(SqlParamName = "edate")]
         public DateTime? To { get; set; }
 
         public bool IsTest { get; set; }
@@ -72,10 +72,7 @@ namespace Apollo.Age.Account.Criterias
         public int MatchId { get; set; }
 
         [SpParam(Ignored = true)]
-        public int IsPublic { get; set; }
-
-        [SpParam(Ignored = true)]
-        public int IsSpecial { get; set; }
+        public int IsPublic { get; set; }        
 
         [SpParam(Ignored = true)]
         public string PageQuery { get; set; }

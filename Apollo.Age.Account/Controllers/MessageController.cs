@@ -67,7 +67,7 @@ namespace Apollo.Age.Account.Controllers
         {
             var listMessage = new List<MessageModel>();
             int isPublic = 0;
-            int isSpecial = 0;
+            int special = 0;
             int maxSize = 50;
 
             criteria.CustId = this.CurrentSession.UserId;
@@ -91,7 +91,7 @@ namespace Apollo.Age.Account.Controllers
                 || string.Compare(criteria.PageQuery, Constants.ALLSPECIAL) == 0)
             {
                 isPublic = 2;
-                isSpecial = 1;
+                special = 1;
                 criteria.From = null;
                 criteria.To = null;
             }
@@ -99,17 +99,17 @@ namespace Apollo.Age.Account.Controllers
             if (string.Compare(criteria.PageQuery, Constants.NORMAL) == 0)
             {
                 isPublic = 1;
-                isSpecial = 0;
+                special = 0;
             }
 
             if (string.Compare(criteria.PageQuery, Constants.PRIVATE) == 0)
             {
                 isPublic = 0;
-                isSpecial = 2;
+                special = 2;
             }
 
             criteria.IsPublic = isPublic;
-            criteria.IsSpecial = isSpecial;
+            criteria.Special = special;
 
             listMessage = this._messageService.GetMessage(criteria).ToList();
 
