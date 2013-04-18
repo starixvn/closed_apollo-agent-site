@@ -65,7 +65,6 @@ namespace Apollo.Age.Account.Controllers
 
         public ViewResult NewMessage(GetMessageCriteria criteria)
         {
-            var listMessage = new List<MessageModel>();
             int isPublic = 0;
             int special = 0;
             int maxSize = 50;
@@ -111,9 +110,7 @@ namespace Apollo.Age.Account.Controllers
             criteria.IsPublic = isPublic;
             criteria.Special = special;
 
-            listMessage = this._messageService.GetMessage(criteria).ToList();
-
-            ViewBag.Messages = listMessage;
+            ViewBag.Messages = (_messageService.GetMessage(criteria) ?? new List<MessageModel>()).ToList();
 
             return View(criteria);
         }

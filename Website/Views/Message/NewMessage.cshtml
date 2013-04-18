@@ -1,138 +1,130 @@
 ﻿@using Apollo.Age.Web.Mvc
 @model GetMessageCriteria
 @{    
-    Layout = "~/Views/Message/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.messagetitle;
+	Layout = "~/Views/Message/Shared/_Layout.cshtml";
+	ViewBag.Title = Resources.Lang.messagetitle;
 
-    var listMessage = ViewBag.Messages ?? new List<MessageModel>();
-    var normal = string.Empty;
-    var special = string.Empty;
-    var pri = string.Empty;
-    var color = string.Empty;
-    var minDate = new DateTime(DateTime.Now.Year, 1, 1);
-    var maxDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1);
+	var listMessage = ViewBag.Messages ?? new List<MessageModel>();
+	var normal = string.Empty;
+	var special = string.Empty;
+	var pri = string.Empty;
+	var color = string.Empty;
+	var minDate = new DateTime(DateTime.Now.Year, 1, 1);
+	var maxDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1);
 
-    switch (Model.PageQuery)
-    {
-        case Constants.NORMAL:
-            normal = "current";
-            break;
-        case Constants.SPECIAL:
-            special = "current";
-            color = "Red";
-            break;
-        case Constants.ALLSPECIAL:
-            special = "current";
-            color = "Red";
-            break;
-        case Constants.PRIVATE:
-            color = "Green";
-            pri = "current";
-            break;
-        default:
-            normal = "current";
-            break;
-    }
+	switch (Model.PageQuery)
+	{
+		case Constants.NORMAL:
+			normal = "current";
+			break;
+		case Constants.SPECIAL:
+			special = "current";
+			color = "Red";
+			break;
+		case Constants.ALLSPECIAL:
+			special = "current";
+			color = "Red";
+			break;
+		case Constants.PRIVATE:
+			color = "Green";
+			pri = "current";
+			break;
+		default:
+			normal = "current";
+			break;
+	}
 }
 @section head {
-    <link href="~/Views/Message/Resources/Message.less" rel="stylesheet" type="text/css">
+	<link href="~/Views/Message/Resources/Message.less" rel="stylesheet" type="text/css">
 }
 @using (Html.BeginForm("NewMessage", "Message", FormMethod.Get))
 {   
-    <div id="box_header">
-        <div class="row">
-            @*DateTimeSearch*@
-            <div class="cell">
-                <div class="label">
-                    <label for="">
-                    @Resources.Lang.from</label>
-                </div>
-                <div class="editor">
-                    @Html.DatePickerFor(m => m.From, minDate: minDate, maxDate: maxDate)
-                </div>
-            </div>
-            <div class="cell">
-                <div class="label">
-                    <label>
-                    @Resources.Lang.to</label>
-                </div>
-                <div class="editor">
-                    @Html.DatePickerFor(m => m.To, minDate: minDate, maxDate: maxDate)
-                </div>
-            @*/DateTimeSearch*@
-            <div class="cell">
-                <div class="editor">
-			<input type="submit" class="btn" id="dSubmit" value="@Resources.Lang.submit"/>
-                </div>
-            </div>
-        </div>        
-    </div>
-    <table class="tblRpt">
-        <thead>
-            <tr>
-                <th colspan="4" class="tbList">
-                    <ul>
-                        <li id="@normal">
-                        <li id="@special" class="line"><span class="line">|</span><a href="#" query="@Constants.SPECIAL" class="pagequery">@Resources.Lang.specialmessage</a></li>
-                        <li id="@pri"><span class="line">|</span><a href="#" query="@Constants.PRIVATE" class="pagequery">@Resources.Lang.personalmessage</a></li>
-                        </li>
-                        <li id="@special">
-                            <a href="#" query="@Constants.SPECIAL" class="pagequery">
-                                @Resources.Lang.specialmessage</a>
-                        </li>
-                        <li id="@pri">
-                            <a href="#" query="@Constants.PRIVATE" class="pagequery">
-                                @Resources.Lang.personalmessage</a>
-                        </li>
-                        @Html.HiddenFor(m => m.PageQuery)
-                    </ul>
-                </th>
-            </tr>
-            <tr>
-                <th style="width: 20px">
-                    @Resources.Lang.no
-                </th>
-                <th style="width: 60px">
-                    @Resources.Lang.messageIDHeader
-                </th>
-                <th style="width: 80px">
-                    @Resources.Lang.lblPostdate
-                </th>
-                <th>
-                    @Resources.Lang.lblMessage
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-    @{
-        int count = 0;
-        if (!ReferenceEquals(listMessage, null) && listMessage.Count > 0)
-        {
-            foreach (var itemMessage in listMessage)
-            {
-                count++;
-            @*MsgContent*@
-            <tr>
-                <td class="c">
-                    @count
-                </td>
-                <td class="c">
-                    @itemMessage.MessageId
-                </td>
-                <td class="c">
-                    @itemMessage.PostTime
-                </td>
-                <td class="message_content">@itemMessage.GetContent()
-                </td>
-            </tr>
-            @*/MsgContent*@
-            }
-        }
-        else
-        {
-            @RazorHelper.ShowNoInfo(4)
-        }
-    }
-        </tbody>
-    </table>
+	<div id="box_header">
+		<div class="row">
+			<div class="cell">
+				<div class="label">
+					<label for="From">
+						@Resources.Lang.from</label>
+				</div>
+				<div class="editor">
+					@Html.DatePickerFor(m => m.From, minDate: minDate, maxDate: maxDate)
+				</div>
+			</div>
+			<div class="cell">
+				<div class="label">
+					<label for="To">
+						@Resources.Lang.to</label>
+				</div>
+				<div class="editor">
+					@Html.DatePickerFor(m => m.To, minDate: minDate, maxDate: maxDate)
+				</div>
+				<div class="cell">
+					<div class="editor">
+						<input type="submit" class="btn" id="dSubmit" value="@Resources.Lang.submit"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<table class="tblRpt">
+		<thead>
+			<tr>
+				<th colspan="4" class="tbList">
+					<ul>
+						<li id="@normal"><a href="#" query="@Constants.NORMAL" class="pagequery">
+							@Resources.Lang.normalmessage</a> </li>
+						<li id="@special"><a href="#" query="@Constants.SPECIAL" class="pagequery">
+							@Resources.Lang.specialmessage</a> </li>
+						<li id="@pri"><a href="#" query="@Constants.PRIVATE" class="pagequery">
+							@Resources.Lang.personalmessage</a> </li>
+						@Html.HiddenFor(m => m.PageQuery)
+					</ul>
+				</th>
+			</tr>
+			<tr>
+				<th style="width: 20px">
+					@Resources.Lang.no
+				</th>
+				<th style="width: 60px">
+					@Resources.Lang.messageIDHeader
+				</th>
+				<th style="width: 80px">
+					@Resources.Lang.lblPostdate
+				</th>
+				<th>
+					@Resources.Lang.lblMessage
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@{
+	int count = 0;
+	if (!ReferenceEquals(listMessage, null) && listMessage.Count > 0)
+	{
+		foreach (var itemMessage in listMessage)
+		{
+			count++;
+				<tr>
+					<td class="c">
+						@count
+					</td>
+					<td class="c">
+						@itemMessage.MessageId
+					</td>
+					<td class="c">
+						@itemMessage.PostTime
+					</td>
+					<td class="message_content">@itemMessage.GetContent()
+					</td>
+				</tr>
+		}
+	}
+	else
+	{
+				@RazorHelper.ShowNoInfo(4)
+	}
+			}
+		</tbody>
+	</table>
 }
