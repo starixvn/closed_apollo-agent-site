@@ -3,27 +3,25 @@
 #box_header {
 	margin-bottom: 10px;
 	padding: 0;
-
-	.scoremap-filter {
-		margin: 5px;
-
-		select#ddlLeague {
-			width: 280px;
-		}
-
-		.btn {
-			margin: 0 5px 0 3px;
-		}
-
-		.iconRefresh {
-			.pull-left;
-			background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;
-			width: 16px;
-			height: 16px;
-			cursor: pointer;
-			margin-top: 3px;
-		}
+	width: 100%;
+	
+	select#ddlLeague {
+		width: 280px;
 	}
+
+	.btn {
+		margin: 0 5px 0 3px;
+	}
+
+	.iconRefresh {
+		.pull-left;
+		background: url( "Images/iLoading.png" ) no-repeat scroll left top transparent;
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+		margin-top: 3px;
+	}
+	
 }
 
 /* Start: Match WL Detail */
@@ -34,7 +32,7 @@
     width: 713px;
     border: solid 1px @borderColor;
     left: 10px;
-    top: 95px;
+    top: 90px;
 
 	.boderBoxMatch {
 		background: @tableBackground;
@@ -70,6 +68,11 @@
 					}
 				}
 			}
+		}
+		
+		.btn-select {
+			text-align: center;
+			margin: 10px;
 		}	
 	}	
 
@@ -103,7 +106,7 @@
 }
 
 #diverrmsg {
-	width: 68.8%;
+	width: 700px;
 	border: 0;
 	display: none;
 	height: 24px;
@@ -133,10 +136,9 @@
 
 #tblLiveDead {
 	display: none;
+	margin-top: 21px;
 
 	#bet-type-container {
-		margin: 5px 5px 0 5px;
-
 		/* End: Box Match by League */
 		table.check-list {
 			background: lighten(@primaryColor, 35%);
@@ -150,13 +152,16 @@
 				border: 1px solid @borderColor;
 				.box-shadow(0 1px 0 #FFF inset);
 				text-shadow: 0 1px 0 #FFF;
+				vertical-align: middle;
 							
 				input {
-					margin: 3px 3px 0 4px;
+					margin: 0 3px 0 4px;
 				}
 
 				label, input {
 					cursor: pointer;
+					float: none;	
+					vertical-align: middle;				
 				}
 
 				label:hover {
@@ -177,7 +182,11 @@
 						}
 
 						input {
-							margin: 3px 3px 0 4px;
+							margin: 0 3px 0 4px;
+						}
+
+						label {
+							font-weight: normal;
 						}
 					}
 				}
@@ -187,31 +196,13 @@
 	
 	.btn-submit {
 		float: left;
-		margin: 5px;
+		margin: 10px 0;
 
 		.btn {
 			border-radius: 0;
+			margin: 0;
 		}
 	}	
-}
-
-.ie {
-	#tblLiveDead {
-		#bet-type-container {
-			table.check-list {
-				table.reference {
-					td {
-						line-height: 23px;
-						padding: 0;
-
-						label {
-							margin-right: 0;
-						}
-					}
-				}							
-			}
-		}
-	}
 }
 
 #mainContent {
@@ -224,7 +215,7 @@
 			//border: 1px solid @borderColor;
 			//background: linear-gradient(to bottom, #F8F8F8, #EAEAEA);
 			border: 1px solid @tableRptBorderColor;
-			#gradient.vertical(#6B6B6B, @secondColor);
+			background: #565656;
 			border-bottom: none;
 			height: 20px;
 			padding: 5px;
@@ -333,6 +324,27 @@
 					}
 				}					
 			}	
+		}
+	}
+}
+
+/* Fix IE */
+
+.ie {
+	#tblLiveDead {
+		#bet-type-container {
+			table.check-list {
+				table.reference {
+					td {
+						line-height: 23px;
+						padding: 0;
+
+						label {
+							margin-right: 0;
+						}
+					}
+				}							
+			}
 		}
 	}
 }

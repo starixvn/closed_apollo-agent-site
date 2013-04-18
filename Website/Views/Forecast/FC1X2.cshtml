@@ -16,25 +16,33 @@
     @if (matchId == 0)
     {
         <div id="box_header">
-            <span><b>@Resources.Lang.league</b></span>
-            <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-                @foreach (var league in leagues)
-                {
-                    <option value="@league.LeagueId">@league.LeagueName</option>
-                }
-            </select>
+            <div class="row">
+                <div class="cell">
+                    <div class="label">
+                        <label for="ddlLeague">@Resources.Lang.league</label>
+                    </div>
+                    <div class="editor">
+                        <select id='ddlLeague' name='ddlLeague' style="width: 280px">
+                            @foreach (var league in leagues)
+                            {
+                                <option value="@league.LeagueId">@league.LeagueName</option>
+                            }
+                        </select>
+                    </div>
+                </div>                
+            </div>
         </div>
     }
     
     <table class="tblRpt">
         <thead>
-            <tr class="RptHeader">
-                <td colspan="2">
+            <tr>
+                <th colspan="2">
                     @Resources.Lang.lblTeam
-                </td>
-                <td colspan="3">
+                </th>
+                <th colspan="3">
                     @Resources.Lang.lbl1x2
-                </td>
+                </th>
             </tr>
         </thead>
         <tbody id="forecast-body">

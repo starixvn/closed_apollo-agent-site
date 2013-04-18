@@ -20,15 +20,23 @@
                 @ViewBag.HeaderTitle
                 <span id="currUsername"></span>
             </div>
-            <div class="edit-setting" id="quickLinkEditSetting">
+            <div class="edit-setting icon-pencil" id="quickLinkEditSetting">
             </div>
         </div>
         <div id="content_main">
             <div id="box_header">
-                <div class="boxHeader-element">
-                    <label>@Resources.Lang.username</label>
-                    <input type="text" autocomplete="off" id="txtUserName" value="@Resources.Lang.enterusername" name="txtUserName" class="text_italic"/>
-                    <input type="button" value="Submit" id="Search" class="btn" />
+                <div class="row">
+                    <div class="cell">
+                        <div class="label">
+                            <label for="txtUserName">@Resources.Lang.username</label>
+                        </div>
+                        <div class="editor">
+                            <input type="text" autocomplete="off" id="txtUserName" value="@Resources.Lang.enterusername" name="txtUserName" class="text_italic"/>
+                        </div>
+                        <div class="editor">
+                            <input type="button" value="Submit" id="Search" class="btn" />
+                        </div>
+                    </div>
                 </div>
             </div>
             @RenderBody()

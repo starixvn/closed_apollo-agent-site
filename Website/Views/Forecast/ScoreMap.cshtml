@@ -14,24 +14,30 @@
 }
 <div id="content_main">
     <div id="box_header" class="clearfix">
-        <div style="@(showLeaguesStyle)" class="scoremap-filter clearfix">
+        <div style="@(showLeaguesStyle)">
             @{
                 if (leagues != null && leagues.Any())
                 {
-                <div class="boxHeader-element">
-                    <label>@Resources.Lang.league</label>
-                    <select id="ddlLeague" name="ddlLeague" style="position: relative;">
-                        @foreach (var league in leagues)
-                        {
-                            <option value="@(league.LeagueId)">@(league.LeagueName)</option>
-                        }
-                    </select>
-                </div>            
-                <div class="boxHeader-element">
-                    <input type="button" class="btn" id="dSelMatch" value="@Resources.Lang.SelectMatch">
-                </div>
-                <div title="@Resources.Lang.RefreshLeagues" class="iconRefresh clearfix" id="RefreshLeagues">
-                </div>  
+                <div class="row">
+                    <div class="cell">
+                        <div class="label">
+                            <label for="ddlLeague">@Resources.Lang.league</label>
+                        </div>
+                        <div class="editor">
+                           <select id="ddlLeague" name="ddlLeague" style="position: relative;">
+                                @foreach (var league in leagues)
+                                {
+                                    <option value="@(league.LeagueId)">@(league.LeagueName)</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="editor">
+                            <input type="button" class="btn" id="dSelMatch" value="@Resources.Lang.SelectMatch">
+                        </div>
+                        <div title="@Resources.Lang.RefreshLeagues" class="iconRefresh clearfix" id="RefreshLeagues">
+                        </div>  
+                    </div>                    
+                </div>               
                 }
                 else
                 {
