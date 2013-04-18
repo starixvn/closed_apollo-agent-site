@@ -13,12 +13,12 @@
     @RazorHelper.RefreshCountDown("ForeCastHandicapOU", 15, 0)
 
     <div id="box_header">
-        <table>
-            <tr>
-                <td>
-                    <b>@Resources.Lang.league</b>
-                </td>
-                <td id="selLeague">
+        <div class="row">
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlLeague">@Resources.Lang.league</label>
+                </div>
+                <div class="editor" id="selLeague">
                     <select id='ddlLeague' name='ddlLeague' style="width: 280px">
                         @{
                             foreach (var league in leagues)
@@ -27,9 +27,9 @@
                             }
                         }
                     </select>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>            
+        </div>
     </div>
     <!--/LimitLeagueList-->
     <table class="tblRpt">

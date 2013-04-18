@@ -126,5 +126,42 @@ namespace Apollo.Age.Account.Services
                 AgentId = agentId
             }).ToList();
         }
+
+        public List<AgentShareModel> GetAgentShare(int actorAgentId, int agentId, string userName, byte sportType, int betType)
+        {
+            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
+            Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
+            Check.Argument.IsNotNegative(sportType, "sportType");
+            Check.Argument.IsNotNegative(betType, "betType");
+
+            var criteria = new AgentShareCriteria() { 
+                ActorAgentId = actorAgentId,
+                AgentId = agentId,
+                Username = userName,
+                SporType = sportType,
+                BetType = betType
+            };
+
+            return _accountRepository.GetAgentShare(criteria).ToList();
+        }
+
+        public List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, byte sportType, int betType)
+        {
+            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
+            Check.Argument.IsNotNegativeOrZero(memberId, "memberId");
+            Check.Argument.IsNotNegative(sportType, "sportType");
+            Check.Argument.IsNotNegative(betType, "betType");
+
+            var criteria = new MemberShareCriteria()
+            {
+                ActorAgentId = actorAgentId,
+                CustId = memberId,
+                Username = userName,
+                SporType = sportType,
+                BetType = betType
+            };
+
+            return _accountRepository.GetMemberShare(criteria).ToList();
+        }
     }
 }

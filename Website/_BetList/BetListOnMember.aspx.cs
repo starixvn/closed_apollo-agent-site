@@ -138,6 +138,7 @@ namespace Sunplus.Agent.UI._BetList
             tpl.content = builder.GetBetList();
             builder.Append("</tbody></table>");
 
+            tpl.HiddenFields.pageType = pageType;
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             writer.Write(tpl);
         }

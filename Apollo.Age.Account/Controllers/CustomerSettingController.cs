@@ -51,9 +51,9 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditBetSetting.cshtml");
         }
 
-        public ActionResult GetBetLimit(int targetCustId, int? agentLevel)
+        public ActionResult GetBetLimit(int targetCustId,int? agentId, int? agentLevel)
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentLevel, FormSettingType.BetLimit);
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId,agentId, agentLevel, FormSettingType.BetLimit);
             IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
@@ -86,9 +86,9 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditCommission.cshtml");
         }
 
-        public ActionResult GetCommissionSetting(int targetCustId, int? agentLevel, string ugroup)
+        public ActionResult GetCommissionSetting(int targetCustId, int? agentId, int? agentLevel, string ugroup)
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentLevel, FormSettingType.Commission);
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId,agentId, agentLevel, FormSettingType.Commission);
             CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
             if (ugroup != null)
             {
@@ -135,9 +135,9 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult GetPositionTaking(int targetCustId, int? agentLevel)
+        public ActionResult GetPositionTaking(int targetCustId, int? agentId, int? agentLevel)
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentLevel, FormSettingType.PositionTaking);
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId,agentId, agentLevel, FormSettingType.PositionTaking);
             PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetPositionTakingLanguage(positionTakingSetting);
@@ -194,12 +194,13 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(language);
         }
 
-        public ActionResult EditAllSetting(int custId, string userName, int? agentLevel, string userGroup)
+        public ActionResult EditAllSetting(int custId, string userName,int? agentId, int? agentLevel, string userGroup)
         {
             ViewBag.CustId = custId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.UserGroup = userGroup;
+            ViewBag.CurentParentAgentId = agentId;
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
@@ -294,7 +295,7 @@ namespace Apollo.Age.Account.Controllers
             }
         }
 
-        private SettingContext GetCurrentSettingContext(int targetCustId, int? agentLevel, FormSettingType formSettingType)
+        private SettingContext GetCurrentSettingContext(int targetCustId,int? agentId, int? agentLevel, FormSettingType formSettingType)
         {
             SettingContext settingContex = new SettingContext
             {
@@ -303,12 +304,18 @@ namespace Apollo.Age.Account.Controllers
                 ActorCustId = base.CurrentSession.AgentId,
                 RoleId = this.GetRoleFromAgentLevel(base.CurrentSession.AgentLevel),
                 TargetRoleId = this.GetTargetRoleIdFromAgenLevel(agentLevel),
-                FormSetting = (int)formSettingType
+                FormSetting = (int)formSettingType,
+                FormId = FormType.EditPT
             };
 
             if (settingContex.TargetRoleId == (int)Role.Member)
             {
                 settingContex.RoleId = (int)Role.Agent;
+            }
+
+            if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
+            {
+                settingContex.FormId = FormType.EditMemberNonDirect;
             }
 
             return settingContex;
@@ -319,9 +326,9 @@ namespace Apollo.Age.Account.Controllers
             StringBuilder language = new StringBuilder();
             language.AppendLine("{");
             language.AppendLine(this.SetLanguageStringValue("MIN_BET", Resources.Lang.lblMinBet));
-            language.AppendLine(this.SetLanguageStringValue("PRESET_POSITION", "Preset Position"));
+            language.AppendLine(this.SetLanguageStringValue("PRESET_POSITION", "Max Upper Share (%)"));
             language.AppendLine(this.SetLanguageStringValue("POSITION_TAKING", Resources.Lang.positiontaking));
-            language.AppendLine(this.SetLanguageStringValue("MAX_POSITION", "Max Position"));
+            language.AppendLine(this.SetLanguageStringValue("MAX_POSITION", "Max Given Share (%)"));
             language.AppendLine(this.SetLanguageStringValue("MAX_BET", Resources.Lang.lblMaxBet));
             language.AppendLine(this.SetLanguageStringValue("MAX_PER_MATCH", Resources.Lang.lblMaxPerMatch));
             language.AppendLine(this.SetLanguageStringValue("MAX_PER_BALL", Resources.Lang.maxperball));
@@ -340,7 +347,7 @@ namespace Apollo.Age.Account.Controllers
             language.AppendLine(this.SetLanguageStringValue("MAX_BET_LOWER_THAN_MAX_MAX_BET", string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}")));
             language.AppendLine(this.SetLanguageStringValue("MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET", Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}")));
             language.AppendLine(this.SetLanguageStringValue("MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET", Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}")));
-            language.AppendLine(this.SetLanguageStringValue("MIN_POSITION", Resources.Lang.labelMinPosition));
+            language.AppendLine(this.SetLanguageStringValue("MIN_POSITION", "Min Given Share (%)"));// Resources.Lang.labelMinPosition));
             language.AppendLine(this.SetLanguageStringValue("COPY_FROM", Resources.Lang.copyFrom));
             language.AppendLine(this.SetLanguageStringValue("OTHER_BET_TYPE_OF", Resources.Lang.otherBetTypesOf));
             language.AppendLine(this.SetLanguageStringValue("COPY_ALL_HINT", Resources.Lang.copyAllHint));
@@ -386,6 +393,8 @@ namespace Apollo.Age.Account.Controllers
             language.AppendLine(this.SetLanguageStringValue("MAIN_SHARE_HOLDER_SHARE", "Main Shareholder Share"));
             language.AppendLine(this.SetLanguageStringValue("SHARE_HOLDER_SHARE", "Shareholder Share"));
             language.AppendLine(this.SetLanguageStringValue("MAIN_AGENT_SHARE", "Main Agent Share"));
+            language.AppendLine(this.SetLanguageStringValue("SIMPLE_MODE_MAX_POSITION", "Given Share (%)"));
+            language.AppendLine(this.SetLanguageStringValue("SIMPLE_MODE_PRESET_POSITION", "Taken Share (%)"));
             language.AppendLine("};");
             return language.ToString();
         }

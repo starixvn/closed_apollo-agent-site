@@ -1,5 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en-us">
+<!--[if IE 7 ]> <html class="ie7 ie" lang="en-us"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie8 ie" lang="en-us"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie9 ie" lang="en-us"> <![endif]-->
+<!--[if (gt IE 9)]><!--> <html class="ie10 ie" lang="en-us"> <!--<![endif]-->
+<!--[if !(IE)]> <html lang="en"><![endif]-->
 <head>
     <title>@ViewBag.Title</title>
     <link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet"
@@ -16,15 +20,23 @@
                 @ViewBag.HeaderTitle
                 <span id="currUsername"></span>
             </div>
-            <div class="edit-setting" id="quickLinkEditSetting">
+            <div class="edit-setting icon-pencil" id="quickLinkEditSetting">
             </div>
         </div>
         <div id="content_main">
             <div id="box_header">
-                <div class="boxHeader-element">
-                    <label>@Resources.Lang.username</label>
-                    <input type="text" autocomplete="off" id="txtUserName" value="@Resources.Lang.enterusername" name="txtUserName" class="text_italic"/>
-                    <input type="button" value="Submit" id="Search" class="btn" />
+                <div class="row">
+                    <div class="cell">
+                        <div class="label">
+                            <label for="txtUserName">@Resources.Lang.username</label>
+                        </div>
+                        <div class="editor">
+                            <input type="text" autocomplete="off" id="txtUserName" value="@Resources.Lang.enterusername" name="txtUserName" class="text_italic"/>
+                        </div>
+                        <div class="editor">
+                            <input type="button" value="Submit" id="Search" class="btn" />
+                        </div>
+                    </div>
                 </div>
             </div>
             @RenderBody()

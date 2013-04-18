@@ -6,6 +6,10 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Apollo.Age.BetList.Criterias;
+using Apollo.Age.BetList.Models;
+using Apollo.Age.BetList.Services;
+using Apollo.Age.Web;
 using Fanex.Age.UI.Components;
 using Fanex.Agent.UI._BetList;
 using Fanex.BetList.Age.BetListCmd;
@@ -32,31 +36,39 @@ namespace Sunplus.Agent.UI._BetList
         private Int64 agentID = 0;
         private DateTime fromDate = DateTime.Now;
         private DateTime toDate = DateTime.Now;
-        private bool isSportsbook = false;
+        private bool isReportWinloss = false;
         IBetListCmd command = null;
 
         #endregion Define variable
+
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
+
+                return currentSession;
+            }
+            set
+            {
+                if (value is ICurrentSession)
+                {
+                    Session["Apollo.Age.Web.CurrentSession"] = value;
+                }
+            }
+        }
 
         public override void RenderContent(HtmlTextWriter writer)
         {
             #region INIT
 
+            HeaderViewDetail_Template header = new HeaderViewDetail_Template();
+            int index = 0;
             bool isShowAgentPT = true;
 
-            DataTable betListData = View as DataTable;
-            IList<ITicket> tickets = new List<ITicket>();
-
-            if (betListData != null)
-            {
-                tickets = TicketTransformer.Transform(betListData);
-                betListData.Dispose();
-            }
+            var tickets = View as IList<ITicket>;
 
             #endregion INIT
-
-            HeaderViewDetail_Template header = new HeaderViewDetail_Template();
-
-            int index = 0;
 
             #region RENDER HTML
 
@@ -72,9 +84,6 @@ namespace Sunplus.Agent.UI._BetList
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             ITicket totalTicket = new Ticket();
-            if (tickets.Count > 0)
-            {
-            }
 
             if (tickets.Count > 0)
             {
@@ -102,11 +111,12 @@ namespace Sunplus.Agent.UI._BetList
                     totalTicket.AComm += ticket.AComm;
                     totalTicket.ADiscount += ticket.ADiscount;
                     totalTicket.Status = ticket.Status;
+                    totalTicket.AgentLevel = ticket.AgentLevel;
 
                     #endregion Total ticket
                 }
                 builder.Append("<tfoot><tr class='total'>");
-                builder.Append(string.Format("<td class='c'>{0}</td>", Resources.Lang.total));
+                builder.Append(string.Format("<td class='c bold'>{0}</td>", Resources.Lang.total));
 
                 if (isShowAgentPT)
                 {
@@ -138,6 +148,7 @@ namespace Sunplus.Agent.UI._BetList
             Int64.TryParse(Request["transId"], out transID);
             fromDate = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
+            isReportWinloss = GetStringRequest("type", string.Empty) == "report" ? true : false;
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
@@ -148,9 +159,18 @@ namespace Sunplus.Agent.UI._BetList
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            BetListBO bo = new BetListBO(CurrentUserSession.NetSessionId);
-            DataTable dtResult = bo.GetAgentPTComm(transID, fromDate, toDate, ReportsBO.MoveBetsDate);
-            return dtResult == null ? new DataTable() : dtResult;
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
+            {
+                LoggedId = CurrentSession.AgentId,
+                TransId = transID,
+                FromDate = fromDate,
+                ToDate = toDate,
+                MoveBetsDay = ReportsBO.MoveBetsDate,
+                IsWinLoss = isReportWinloss
+            };
+            var mainTickets = betListService.GetDetailAgentComm(criteria);
+            return mainTickets;
         }
 
         private object RenderNoInfo()
