@@ -20,26 +20,26 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using Apollo.Age.Account.Services;
 
     public class CustomerSettingController : BaseController
     {
+        private readonly IAccountService _accountService;
         private readonly ICustomerSettingService _customerSettingService;
 
         #region Ctors
 
         public CustomerSettingController()
-            : this(null)
-        {
-        }
+            : this(null, null) { }
 
-        public CustomerSettingController(ICustomerSettingService customerSettingService)
+        public CustomerSettingController(IAccountService accountService,
+            ICustomerSettingService customerSettingService)
         {
+            _accountService = accountService ?? new AccountService();
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
         }
 
         #endregion
-
-        #region Actions
 
         #region Bet Setting
 
@@ -112,28 +112,19 @@ namespace Apollo.Age.Account.Controllers
 
         #endregion
 
-        #region Position Taking
+        #region Share [Position Taking]
 
         /// <summary>
         /// Views "share info" from logged-in agent to selected (searched) agent/member
         /// </summary>
-        /// <param name="username">selected agent/member username</param>
-        public ActionResult ViewShare(string username)
+        /// <param name="id">id of selected agent/member</param>
+        /// <param name="isMember">indicates whether the customer is agent or member</param>
+        public ActionResult ViewShare(int id, bool isMember)
         {
-            ViewBag.UserName = username;
             ViewBag.UserId = CurrentSession.UserId;
             ViewBag.AgentLevel = CurrentSession.AgentLevel;
 
             return View("~/Views/Account/ViewShare.cshtml");
-        }
-
-        public ActionResult ViewCommission(string username)
-        {
-            ViewBag.UserName = username;
-            ViewBag.UserId = CurrentSession.UserId;
-            ViewBag.AgentLevel = CurrentSession.AgentLevel;
-
-            return View("~/Views/Account/ViewCommission.cshtml");
         }
 
         public ActionResult EditPositionTaking(int custId, string userName, int? agentLevel)
@@ -168,6 +159,35 @@ namespace Apollo.Age.Account.Controllers
 
         #endregion
 
+        #region Commission
+        
+        /// <summary>
+        /// Views commission from logged-in agent to selected (searched) agent/member
+        /// </summary>
+        /// <param name="id">id of selected agent/member</param>
+        /// <param name="isMember">indicates whether the customer is agent or member</param>
+        public ActionResult ViewCommission(int id, bool isMember)
+        {
+            var customerInfo = _accountService
+                .GetCustomerInfo(isMember, id, string.Empty, CurrentSession.AgentId);
+
+            if (customerInfo == null)
+            {
+                return HttpNotFound();
+            }
+
+            CommissionSetting commSetting = _customerSettingService
+                .GetCommissionSettingForUpdating(new SettingContext { TargetCustId = id });
+
+            ViewBag.Username = customerInfo.Username;
+            //ViewBag.UserId = CurrentSession.UserId;
+            //ViewBag.AgentLevel = CurrentSession.AgentLevel;
+
+            return View("~/Views/Account/ViewCommission.cshtml", commSetting);
+        }
+
+        #endregion
+
         public ActionResult LanguageObject()
         {
             var language = string.Format("var Language = {0}", this.GetLanguageObject());
@@ -184,13 +204,11 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateAllSetting(SettingContext settingContext,CommissionSetting commissionSetting,  IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
         {
             Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
             return ReturnResult(result);
         }
-
-        #endregion
 
         #region Helpers
 
@@ -288,7 +306,7 @@ namespace Apollo.Age.Account.Controllers
                 FormSetting = (int)formSettingType
             };
 
-            if(settingContex.TargetRoleId == (int)Role.Member)
+            if (settingContex.TargetRoleId == (int)Role.Member)
             {
                 settingContex.RoleId = (int)Role.Agent;
             }
