@@ -39,10 +39,10 @@ var MEMBERLIST = function ($) {
                                 + "&userName=" + $this.attr("username")
                                 + "&userGroup=" + $this.attr("usergroup")
                                 + "&agentId=" + $("#gridId").attr("agentid"));
-            MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
-                width: 1020,
-                height: 800,
-                position: { my: "top+50", at: "center top", of: window },
+            MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Member Setting - ' + $this.attr("username"), {
+                width: 1015,
+                height: 450,
+                position: { my: "top+25%", at: "center top", of: window },
                 close: function (event, ui) {
                 }
             });
@@ -111,7 +111,7 @@ var MEMBERLIST = function ($) {
                 MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
                     width: 1015,
                     height: 300,
-                    position: { my: "top+50", at: "center top", of: window },
+                    position: { my: "top+25%", at: "center top", of: window },
                     close: function (event, ui) {
                     }
                 });
@@ -125,7 +125,7 @@ var MEMBERLIST = function ($) {
                 MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
                     width: 1015,
                     height: 600,
-                    position: { my: "top+50", at: "center top", of: window },
+                    position: { my: "top+25%", at: "center top", of: window },
                     close: function (event, ui) {
                     }
                 });
@@ -135,9 +135,9 @@ var MEMBERLIST = function ($) {
                 var url = APOLLO.resolveUrl("CustomerSetting/EditPositionTaking?custId=" + $this.attr("custid")
                 + "&userName=" + $this.attr("username"));
                 MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
-                    width: 1020,
-                    height: 800,
-                    position: { my: "top+10", at: "center top", of: window },
+                    width: 1015,
+                    height: 450,
+                    position: { my: "top+25%", at: "center top", of: window },
                     close: function (event, ui) {
                     }
                 });
@@ -158,10 +158,10 @@ var MEMBERLIST = function ($) {
                 var $this = $(this);
                 var url = APOLLO.resolveUrl("CustomerSetting/EditAllSetting?custId=" + $this.attr("agentid")
                 + "&agentLevel=" + $this.attr("agentlevel"));
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
-                    width: 1020,
-                    height: 800,
-                    position: { my: "top+10", at: "center top", of: window },
+                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Agent Setting ', {
+                    width: 1015,
+                    height: 450,
+                    position: { my: "top+25%", at: "center top", of: window },
                     close: function (event, ui) {
                     }
                 });

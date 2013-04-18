@@ -47,13 +47,20 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         };
     };
     this.addEventConstrain = function (spinBoxElement, uplineDiscount) {
-        spinBoxElement.input.onchange = function (event) {
-            var currentComValue = spinBoxElement.getValue();
-            if (currentComValue > uplineDiscount) {
-                spinBoxElement.setValue(uplineDiscount);
-            }
-            spinBoxElement.setValue(currentComValue);
-        };
+//        spinBoxElement.input.onchange = function (event) {
+//            var currentComValue = spinBoxElement.getValue();
+//            if (currentComValue > uplineDiscount) {
+//                spinBoxElement.setValue(uplineDiscount);
+//            }
+//            else {
+//                spinBoxElement.setValue(currentComValue);
+//            }
+        //        };
+        spinBoxElement.updateMaxValue(uplineDiscount);
+        var currentComValue = spinBoxElement.getValue();
+        if (currentComValue > uplineDiscount) {
+            spinBoxElement.setValue(uplineDiscount);
+        }
     };
     this.GetUplineGroupDiscountForMember = function (group) {
         var groupCom = this.items[0];
@@ -140,7 +147,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             comContainer1.appendChild(maxSpan);
         }
         trBox.appendChild(tdValue);
-        
+
 
         return trBox;
     };
@@ -277,6 +284,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     var selectedCom = self.GetUplineGroupDiscountForMember(currentValue);
                     //groupText1.value = selectedCom.Upline.Discount + Fanex.CustSetting.COM_LAST_LETTER;
                     maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, selectedCom.Upline.Discount, 3);
+
                     self.addEventConstrain(comSpinBox, selectedCom.Upline.Discount);
                 };
             }
