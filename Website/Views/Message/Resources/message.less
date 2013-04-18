@@ -3,6 +3,7 @@
 
 #box_header {
 	padding: 5px;
+	margin-bottom: 10px;
 	
 	.date-range {
 		* {
@@ -26,57 +27,45 @@
 }
 
 .tblRpt {
-	font-size: 1em;
-	margin-top: 0;
-
 	tbody td {
-		white-space: inherit;
+		white-space: normal;
 	}
 
-	td {
-		&.tbList {
-			// backup red themes
-			//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
-			//#gradient.vertical(#6B6B6B, @secondColor);
-			background: #565656;
+	.tbList {
+		// backup red themes
+		//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+		#gradient.vertical(#777, #555);
+		text-align: left;
 
-			ul {				
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
+		ul {				
+			li {					
+				display: inline-block;
+				font-weight: normal;
+				padding: 8px 20px 10px 0;
 
-				li {					
-					display: inline;
+				a {
+					display: inline-block;
 					padding: 0;
-					font-weight: normal;
+					//color: lighten(@primaryColor, 40%);
+					color: #fff;
 
-					a {						
-						float: left;						
-						margin-right: 2px;
-						color: lighten(@primaryColor, 30%);
-
-						span {							
-							font-weight: normal;												
-							padding: 2px 0px;
-							float: none;							
-						}
-
-						&:hover {							
-							color: @white;
-						}											
+					span {							
+						font-weight: normal;												
+						padding: 2px 0px;
+						float: none;							
 					}
 
-					&#current a {
-						font-weight: bold;
-						color: @white;
-					}
+					&:hover {
+						border-bottom: 1px solid #fff;
+					}											
+				}					
 
-					.line {
-						margin: 0 5px 0 0;
-						float: left;
-					}
-				}		
-			}
+				&#current a {	
+					// backup red themes	
+					//color: @textColor;
+					border-bottom: 1px solid #fff;
+				}
+			}		
 		}
 	}
 }

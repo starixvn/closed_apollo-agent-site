@@ -150,12 +150,12 @@
                     else
                     {
                         <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/ViewShare?username=@Model.Username">
+                            href="~/CustomerSetting/ViewShare?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
                             @Resources.Lang.ViewShare
                         </a>
                         
                         <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/ViewCommission?username=@Model.Username">
+                            href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
                             @Resources.Lang.ViewCommission
                         </a>
                         
