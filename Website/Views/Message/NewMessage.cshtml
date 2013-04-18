@@ -40,21 +40,32 @@
 @using (Html.BeginForm("NewMessage", "Message", FormMethod.Get))
 {   
     <div id="box_header">
-        <div class="date-range">
+        <div class="row">
             @*DateTimeSearch*@
-            <div class="date">
-                <label>
+            <div class="cell">
+                <div class="label">
+                    <label for="">
                     @Resources.Lang.from</label>
-                @Html.DatePickerFor(m => m.From, minDate: minDate, maxDate: maxDate)
+                </div>
+                <div class="editor">
+                    @Html.DatePickerFor(m => m.From, minDate: minDate, maxDate: maxDate)
+                </div>
             </div>
-            <div class="date">
-                <label>
+            <div class="cell">
+                <div class="label">
+                    <label>
                     @Resources.Lang.to</label>
-                @Html.DatePickerFor(m => m.To, minDate: minDate, maxDate: maxDate)
-            </div>
+                </div>
+                <div class="editor">
+                    @Html.DatePickerFor(m => m.To, minDate: minDate, maxDate: maxDate)
+                </div>
             @*/DateTimeSearch*@
-            <input type="submit" class="btn" id="dSubmit" value="@Resources.Lang.submit"/>
-        </div>
+            <div class="cell">
+                <div class="editor">
+			<input type="submit" class="btn" id="dSubmit" value="@Resources.Lang.submit"/>
+                </div>
+            </div>
+        </div>        
     </div>
     <table class="tblRpt">
         <thead>
@@ -62,8 +73,8 @@
                 <th colspan="4" class="tbList">
                     <ul>
                         <li id="@normal">
-                            <a href="#" query="@Constants.NORMAL" class="pagequery">
-                                @Resources.Lang.normalmessage</a>
+                        <li id="@special" class="line"><span class="line">|</span><a href="#" query="@Constants.SPECIAL" class="pagequery">@Resources.Lang.specialmessage</a></li>
+                        <li id="@pri"><span class="line">|</span><a href="#" query="@Constants.PRIVATE" class="pagequery">@Resources.Lang.personalmessage</a></li>
                         </li>
                         <li id="@special">
                             <a href="#" query="@Constants.SPECIAL" class="pagequery">

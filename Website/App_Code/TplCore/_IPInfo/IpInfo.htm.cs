@@ -14,8 +14,8 @@ namespace Fanex.Agent.UI
 		public class IpInfo_Template : Template
 		{
 			protected static string s0 = "<!DOCTYPE HTML><html><head><title></title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_IPInfo/Resources/IpInfo.css", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><table width=\"100%\" class=\"\" cellpadding=\"1\" cellspacing=\"0\"><tr><td>";
+			protected static string s1{get{return AbsoluteUrl("_IPInfo/Resources/IpInfo.less", TplSettings.Question);}}
+			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><table class=\"tblRpt\"><tr><td>";
 			public string lblip = "{lblip}";
 			protected static string s3 = "</td><td class=\"tdvalue\">";
 			public string ip = "{ip}";

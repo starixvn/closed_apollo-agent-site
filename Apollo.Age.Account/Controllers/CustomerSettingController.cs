@@ -405,8 +405,8 @@ namespace Apollo.Age.Account.Controllers
             language.AppendLine(this.SetLanguageStringValue("GROUP_B", Resources.Lang.lblGroupb));
             language.AppendLine(this.SetLanguageStringValue("GROUP_C", Resources.Lang.lblGroupc));
             language.AppendLine(this.SetLanguageStringValue("GROUP_D", Resources.Lang.lblGroupd));
-            language.AppendLine(this.SetLanguageStringValue("_1X2", Resources.Lang.lbl1x2));
-            language.AppendLine(this.SetLanguageStringValue("OTHERS_COM", Resources.Lang.other));
+            language.AppendLine(this.SetLanguageStringValue("_1X2", Resources.Lang.lbl1x2Comm));
+            language.AppendLine(this.SetLanguageStringValue("OTHERS_COM", Resources.Lang.lblOtherComm));
             language.AppendLine(this.SetLanguageStringValue("NUMBER_GAME", Resources.Lang.numbergame));
             language.AppendLine(this.SetLanguageStringValue("ASIAN_HDC_OU_OE", Resources.Lang.lblAsianHDC_OU_OE));
             language.AppendLine(this.SetLanguageStringValue("MEMBER_GROUP", "Member Group"));
