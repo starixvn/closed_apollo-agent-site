@@ -8,12 +8,12 @@
 // </history>
 namespace Apollo.Age.BetList.Services
 {
-    using System;
+    using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
+    using Fanex.BetList.Core.Entities;
 
-    internal interface IBetListService
+    public interface IBetListService
     {
-        TicketResult GetDetailAgentComm(BetListCriteria criteria);
+        IList<ITicket> GetDetailAgentComm(BetListCriteria criteria);
     }
 }
