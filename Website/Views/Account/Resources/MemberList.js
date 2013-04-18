@@ -248,12 +248,12 @@ var MEMBERLIST = function ($) {
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                          { HeaderText: LANGUAGES.Status, Width: 50, Name: "Status", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.Status == 1 ? LANGUAGES.Active : (cell.Value.Status == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked));
+                                 return (cell.Value.Status == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value.Status == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : "<span class='lock'>" + LANGUAGES.Locked + "</span>"));
                              }
                          },
                          { HeaderText: LANGUAGES.BetStatus, Width: 100, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.BetStatus == 1 ? LANGUAGES.Active : (cell.Value.BetStatus == 2 ? LANGUAGES.Stopped : LANGUAGES.Locked));
+                                 return (cell.Value.BetStatus == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value.BetStatus == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : "<span class='lock'>" + LANGUAGES.Locked + "</span>"));
                              }
                          },
                          { HeaderText: LANGUAGES.Group, Width: 100, Name: "UserGroup", HeaderAlign: "center", CellAlign: "center" },

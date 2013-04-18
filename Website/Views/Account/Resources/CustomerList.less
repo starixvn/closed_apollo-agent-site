@@ -63,6 +63,20 @@
 			}
 			
 		}
+
+		.freegrid  {
+			.active {
+				color: @green;
+			}
+
+			.stop {
+				color: @orangeLighter;
+			}
+
+			.lock {
+				color: @red;
+			}
+		}		
 	}
 
 	.tab-header {
@@ -85,6 +99,7 @@
 				
 				a {
 					color: lighten(@primaryColor, 30%);
+					text-shadow: 0 1px 0 #333333;
 
 					&:hover {	
 						color: @white;
@@ -94,6 +109,7 @@
 				&.active {
 					font-weight: bold;
 					color: @white;
+					text-shadow: 0 1px 0 #333333;
 				}	
 
 				.line {
