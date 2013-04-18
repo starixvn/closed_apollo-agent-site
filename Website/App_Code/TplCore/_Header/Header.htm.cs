@@ -29,9 +29,9 @@ namespace Fanex.Agent.UI
 			public Header_SetUserName_Block SetUserName = new Header_SetUserName_Block();
 			protected static string s9 = "</span><a href=\"javascript:top.age.SignOut()\">";
 			protected static string s10{get{return Resources.Lang.ImgLogOut;}}
-			protected static string s11 = "</a></div></div><div id=\"text_news_out\" onclick=\"Change2Menu('Message/NewMessage', this)\"><div id=\"text_news\" id=\"text_news\"><div id=\"scroller\" class=\"news-scroller\"><a id=\"topnews\" href=\"javascript:;\">";
+			protected static string s11 = "</a></div></div><div id=\"text_news_out\" onclick=\"Change2Menu('Message/NewMessage?PageQuery=private', this)\"><div id=\"text_news\" id=\"text_news\"><div id=\"scroller\" class=\"news-scroller\"><a id=\"topnews\" href=\"javascript:;\">";
 			public string scrollMessage = "{scrollMessage}";
-			protected static string s12 = "</a></div></div><span id=\"button_top\" class=\"icon-envelope\"><a id=\"privateMsgLnk\" onclick=\"Change2Menu('Message/NewMessage?pageQuery=private', this)\">&nbsp;&nbsp;";
+			protected static string s12 = "</a></div></div><span id=\"button_top\" class=\"icon-envelope\"><a id=\"privateMsgLnk\" onclick=\"Change2Menu('Message/NewMessage?PageQuery=private', this)\">&nbsp;&nbsp;";
 			public string priMsgCount = "{priMsgCount}";
 			protected static string s13 = "</a></span><a class=\"home-page\" href=\"";
 			public string ApoRoot = "{ApoRoot}";
