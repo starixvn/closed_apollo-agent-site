@@ -36,7 +36,9 @@ if (typeof jQuery != 'undefined') {
 			closeDialog: function (target) {
 				target.dialog("close");
 			},
-
+            setDialogHeight: function(target, height) {
+                target.dialog("option", "height", height);
+            },
 			resolveUrl: function (url) {
 				var apoRoot = $('#ApoRoot');
 

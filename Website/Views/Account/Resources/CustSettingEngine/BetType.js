@@ -432,16 +432,12 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     this.SaveSimpleMode = function () {
         var presetValue = presetSpinBox.getValue();
         var maxValue = maxSpinBox.getValue();
-        if (currentPtValue.Preset != presetValue
-        || currentPtValue.Max != maxValue) {
+       
             return {
                 Max: maxValue,
                 Preset: presetValue
             };
-        }
-        else {
-            return null;
-        }
+       
     };
 
     return tableShareSetting;
@@ -487,14 +483,11 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
     // Get updated data
     this.SaveSimpleMode = function () {
         var maxValue = maxSpinBox.getValue();
-        if (currentPtValue.Max != maxValue) {
+       
             return {
                 Max: maxValue
             };
-        }
-        else {
-            return null;
-        }
+    
     };
 
     return tableShareSetting;
@@ -541,14 +534,9 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     // Get updated data
     this.SaveSimpleMode = function () {
         var value = valueSpinBox.getValue();
-        if (currentPtValue.Value != value) {
-            return {
+                   return {
                 Value: value
             };
-        }
-        else {
-            return null;
-        }
     };
 
     return tableShareSetting;

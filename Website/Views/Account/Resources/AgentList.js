@@ -148,8 +148,8 @@ var AGENTLIST = function ($) {
                 + "&agentLevel=" + $this.attr("agentlevel"));
                 AGENTLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
                     width: 1020,
-                    height: 800,
-                    position: { my: "top+10", at: "center top", of: window },
+                    height: 450,
+                    position: { my: "top+25%", at: "center top", of: window },
                     close: function (event, ui) {
                     }
                 });
@@ -164,9 +164,9 @@ var AGENTLIST = function ($) {
             var url = APOLLO.resolveUrl("CustomerSetting/EditAllSetting?custId=" + $this.attr("agentid")
                 + "&agentLevel=" + $this.attr("agentlevel"));
             AGENTLIST.currentPopUp = APOLLO.openDialogFrame(url, '', {
-                width: 1020,
-                height: 800,
-                position: { my: "top+10", at: "center top", of: window },
+                width: 1030,
+                height: 450,
+                position: { my: "top+25%", at: "center top", of: window },
                 close: function (event, ui) {
                 }
             });
@@ -323,6 +323,7 @@ var AGENTLIST = function ($) {
                 customPager: true,
                 showColumnsShowHide: !AGENTLIST.IsSuper,
                 columnsNeedHide: [6],
+                showDistinctRow: true,
                 pagerOption: {
                     itemsPerPage: agentList.ItemsPerPage,
                     currentPage: agentList.CurrentPage,

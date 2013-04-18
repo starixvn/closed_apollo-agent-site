@@ -13,13 +13,13 @@ if (typeof jQuery != 'undefined') {
                 $("#btnSubmitFooter").unbind("click").click(function () {
                     EDITSETTING.saveSetting();
                 });
-
                 $(".setting-mode #simple-mode").unbind("click").click(function () {
                     if (EDITSETTING.currentIsSimpleMode) return;
                     $(this).removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
                     EDITSETTING.currentIsSimpleMode = true;
                     EDITSETTING.initOthers(true);
+                    EDITSETTING.setDialogHeight(true);
                 });
 
                 $(".setting-mode #advanced-mode").unbind("click").click(function () {
@@ -28,6 +28,7 @@ if (typeof jQuery != 'undefined') {
                     $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
                     EDITSETTING.currentIsSimpleMode = false;
                     EDITSETTING.initOthers(false);
+                    EDITSETTING.setDialogHeight(false);
                 });
             },
             saveSetting: function () {
@@ -45,17 +46,17 @@ if (typeof jQuery != 'undefined') {
                         })
                     }).done(function (data) {
                         if (data.ErrCode == 0) {
-                            noty({ text: data.ErrMsg, type: 'success' });
+                            noty({ text: data.ErrMsg, type: 'success', timeout: 5000 });
                             EDITSETTING.completeUpdate();
                         } else {
-                            noty({ text: APOLLO.generalErrorMsg, type: 'error' });
+                            noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
                     });
                 }
             },
-            CompleteUpdate: function (result) {
+            completeUpdate: function (result) {
                 setTimeout(function () {
                     if (typeof (parent.MEMBERLIST) != 'undefined') {
                         parent.MEMBERLIST.loadMemberList();
@@ -64,11 +65,35 @@ if (typeof jQuery != 'undefined') {
                         parent.AGENTLIST.loadAgentList();
                     }
                 }, 3000);
+            },
+            setDialogHeight: function (isSimpleMode) {
+                var currentList = null;
+                if (typeof (parent.MEMBERLIST) != 'undefined') {
+                    currentList = parent.MEMBERLIST;
+                }
+                else if (typeof (parent.AGENTLIST) != 'undefined') {
+                    currentList = parent.AGENTLIST;
+                }
+                if (isSimpleMode == true) {
+                    currentList.currentPopUp.dialog("option", {
+                        height: 450,
+                        position: { my: "top+25%", at: "center top", of: parent.window }
+                    }
+                );
+                }
+                else {
+                    currentList.currentPopUp.dialog("option", {
+                        height: 750,
+                        position: { my: "top+10", at: "center top", of: parent.window }
+                    }
+                );
+                }
             }
         }
     } (jQuery);
 
     $(function () {
         EDITSETTING.init();
+        $("#btnSubmitFooter").show();
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }

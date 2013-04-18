@@ -642,19 +642,20 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == true) {
                     var currentPtValue = this.SaveSimpleMode();
                     if (currentPtValue == null) return null;
-                    var sportTypeLength = this.sportTypes.length;
+                    var sportTypes = Fanex.CloneObject(this.sportTypes);
+                    var sportTypeLength = sportTypes.length;
                     for (var sportTypeIndex = 0; sportTypeIndex < sportTypeLength; sportTypeIndex++) {
-                        var currentBetTypeGroups = this.sportTypes[sportTypeIndex].BetTypeGroups;
+                        var currentBetTypeGroups = sportTypes[sportTypeIndex].BetTypeGroups;
                         var betTypeGroupLength = currentBetTypeGroups.length;
                         for (var btGroupIndex = 0; btGroupIndex < betTypeGroupLength; btGroupIndex++) {
                             var currentBetTypes = currentBetTypeGroups[btGroupIndex].BetTypes;
                             var betTypeLength = currentBetTypes.length;
                             for (var btIndex = 0; btIndex < betTypeLength; btIndex++) {
-                                this.sportTypes[sportTypeIndex].BetTypeGroups[btGroupIndex].BetTypes[btIndex].Pt = currentPtValue;
+                                sportTypes[sportTypeIndex].BetTypeGroups[btGroupIndex].BetTypes[btIndex].Pt = currentPtValue;
                             }
                         }
                     }
-                    result = this.sportTypes;
+                    result = sportTypes;
                 }
                 else {
                     var count = this.items.length;
