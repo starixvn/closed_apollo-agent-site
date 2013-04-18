@@ -70,10 +70,6 @@
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
-      <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
-      <Name>Fanex.BetList.Age</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
       <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
       <Name>Fanex.BetList.Core</Name>
