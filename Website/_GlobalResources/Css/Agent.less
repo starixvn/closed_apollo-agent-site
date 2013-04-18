@@ -159,7 +159,7 @@ table {
 		}
 	}
 
-	td, th {		
+	th {		
 		text-shadow: 0 1px 0 #FFF;
 	}
 
@@ -178,8 +178,7 @@ table {
 
 	tbody {
 		td {
-			border: 1px solid @grayLight;
-			border-width: 1px 1px 0 0;
+			border: 1px solid @grayLight;			
 		}
 		tr {			
 			&.live { background-color: @rowLiveBackground }
@@ -275,20 +274,16 @@ table {
 			.label, .editor {
 				float: left;
 				padding-right: 5px;
-			}
 
-			.label {
-				
-			}
-
-			.editor {
-				img {
-					margin-left: 2px;
+				* {
+					vertical-align: middle;
 				}
 			}
 
-			* {
-				vertical-align: top;
+			.label {
+			}
+
+			.editor {
 			}
 		}
 	}

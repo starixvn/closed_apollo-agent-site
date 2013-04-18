@@ -72,6 +72,8 @@
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentListCriteria.cs" />
     <Compile Include="Criterias\AgentShareCriteria.cs" />
+    <Compile Include="Criterias\GetCommissionToMemberCriteria.cs" />
+    <Compile Include="Criterias\GetCommissionToAgentCriteria.cs" />
     <Compile Include="Criterias\GetMessageCriteria.cs" />
     <Compile Include="Criterias\MemberShareCriteria.cs" />
     <Compile Include="Criterias\SetPriMessageReadCriteria.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Criterias\MemberDownlineCriteria.cs" />
     <Compile Include="Criterias\UpdateReadMessageCriteria.cs" />
     <Compile Include="Models\AgentShareModel.cs" />
+    <Compile Include="Models\CustomerCommissionModel.cs" />
     <Compile Include="Models\MemberShareModel.cs" />
     <Compile Include="Repositories\Impl\AccountRepository.cs" />
     <Compile Include="Repositories\Interface\IAccountRepository.cs" />
