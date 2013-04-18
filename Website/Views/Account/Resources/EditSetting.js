@@ -74,19 +74,19 @@ if (typeof jQuery != 'undefined') {
                 else if (typeof (parent.AGENTLIST) != 'undefined') {
                     currentList = parent.AGENTLIST;
                 }
-                if (isSimpleMode == true) {
-                    currentList.currentPopUp.dialog("option", {
-                        height: 450,
-                        position: { my: "top+25%", at: "center top", of: parent.window }
+                if (currentList != null) {
+                    if (isSimpleMode == true) {
+                        currentList.currentPopUp.dialog("option", {
+                            height: 450,
+                            position: { my: "top+25%", at: "center top", of: parent.window }
+                        });
                     }
-                );
-                }
-                else {
-                    currentList.currentPopUp.dialog("option", {
-                        height: 750,
-                        position: { my: "top+10", at: "center top", of: parent.window }
+                    else {
+                        currentList.currentPopUp.dialog("option", {
+                            height: 750,
+                            position: { my: "top+10", at: "center top", of: parent.window }
+                        });
                     }
-                );
                 }
             }
         }
