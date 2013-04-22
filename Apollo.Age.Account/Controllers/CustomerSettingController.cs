@@ -12,20 +12,16 @@ namespace Apollo.Age.Account.Controllers
 {
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Text;
     using System.Threading;
     using System.Web.Mvc;
+    using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Services;
+    using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Web;
     using Fanex.CustSetting.Models;
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
-    using Apollo.Age.Account.Services;
-    using Apollo.Age.Account.Criterias;
-    using Apollo.Age.Account.Models;
-    using System.Linq;
-    using Apollo.Age.Account.ViewModels;
 
     public class CustomerSettingController : BaseController
     {
@@ -98,43 +94,26 @@ namespace Apollo.Age.Account.Controllers
             var customerInfo = _accountService
                 .GetCustomerInfo(model.IsMember, model.Id, model.Username, CurrentSession.AgentId);
 
-            if (customerInfo == null)
+            if (customerInfo != null)
             {
-                return HttpNotFound();
+                model.Username = customerInfo.Username;
+                model.Group = customerInfo.Group;
+                model.CommissionList = model.IsMember
+                    ? _accountService.GetCommissionToMember(
+                    new GetCommissionToMemberCriteria
+                    {
+                        ActorAgentId = CurrentSession.AgentId,
+                        CustId = customerInfo.CustId,
+                        Username = customerInfo.Username
+                    })
+                    : _accountService.GetCommissionToAgent(
+                    new GetCommissionToAgentCriteria
+                    {
+                        ActorAgentId = CurrentSession.AgentId,
+                        AgentId = customerInfo.CustId,
+                        Username = customerInfo.Username
+                    });
             }
-
-            model.Username = customerInfo.Username;
-            model.CommissionList = model.IsMember
-                ? _accountService.GetCommissionToMember(
-                new GetCommissionToMemberCriteria
-                {
-                    ActorAgentId = CurrentSession.AgentId,
-                    CustId = customerInfo.CustId,
-                    Username = customerInfo.Username
-                })
-                : _accountService.GetCommissionToAgent(
-                new GetCommissionToAgentCriteria
-                {
-                    ActorAgentId = CurrentSession.AgentId,
-                    AgentId = customerInfo.CustId,
-                    Username = customerInfo.Username
-                });
-
-            //model.CommissionList = model.IsMember
-            //    ? _accountService.GetCommissionToMember(
-            //    new GetCommissionToMemberCriteria
-            //    {
-            //        ActorAgentId = CurrentSession.AgentId,
-            //        CustId = model.Id,
-            //        Username = model.Username
-            //    })
-            //    : _accountService.GetCommissionToAgent(
-            //    new GetCommissionToAgentCriteria
-            //    {
-            //        ActorAgentId = CurrentSession.AgentId,
-            //        AgentId = model.Id,
-            //        Username = model.Username
-            //    });
 
             return View("~/Views/Account/ViewCommission.cshtml", model);
         }
