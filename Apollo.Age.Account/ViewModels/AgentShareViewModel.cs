@@ -66,7 +66,7 @@ namespace Apollo.Age.Account.ViewModels
                     Text = bettype.IsLive ? (Resources.Lang.lblLiveBall + " " + CacheRef.GetBettype(bettype.Id))
                         : (bettype.IsDead ? (Resources.Lang.lblDeadball + " " + CacheRef.GetBettype(bettype.Id))
                         : CacheRef.GetBettype(bettype.Id))
-                }).ToList<SelectListItem>().OrderByDescending(t => t.Value);
+                }).ToList<SelectListItem>();
 
                 return selectItemList;
             }
