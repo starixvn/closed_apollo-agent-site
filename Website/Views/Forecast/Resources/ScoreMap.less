@@ -210,19 +210,14 @@
 		margin-bottom: 5px;
 
 		.title-scoremap {
-			width: 700px;			
-			// backup red themes
-			//border: 1px solid @borderColor;
-			//background: linear-gradient(to bottom, #F8F8F8, #EAEAEA);
+			width: 700px;
 			border: 1px solid @tableRptBorderColor;
 			background: #565656;
 			border-bottom: none;
 			height: 20px;
 			padding: 5px;
 
-			.lnkRefresh {
-				//backup red themes
-				//background: url( "Images/iLoading.png" ) no-repeat scroll left top;    
+			.lnkRefresh {    
 				background: url( "Images/iLoadingWhite.png" ) no-repeat scroll left top; 
 				font-weight:bold;
 				color:#90979A;    
@@ -250,8 +245,6 @@
 				background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
 				background-position: 0 -21px;
 				font-weight:bold;
-				// backup red themes
-				//color: #3684E2;
 				color: @white;    
 				padding-left:25px;
 				padding-top:1px;
@@ -264,8 +257,6 @@
 				background: url( "Images/col_score.png" ) no-repeat scroll left top transparent;    
 				background-position: 0 0px;
 				font-weight: bold;
-				// backup red themes
-				//color: #3684E2;
 				color: @white;    
 				padding-left: 25px;
 				padding-top: 1px;
@@ -283,8 +274,6 @@
 							
 				thead {					
 					tr.vsm th {
-						// backup red themes
-						//background-color: @secondColor;
 						background-color: lighten(@primaryColor, 35%);
 						font-weight:bold;
 						text-align: center;
@@ -302,24 +291,32 @@
 				}
 
 				tbody {
-					tr.vScoreMap {
-						background-color: @white;
-						//font-weight:bold;
-
-						.vsm {
-							// backup red themes
-							//background-color: @secondColor;
-							background-color: lighten(@primaryColor, 35%);
-							font-weight:bold;
+					tr {
+						&.vScoreMap {
+							background-color: @white;
 							text-align: center;
+
+							.vsm {								
+								background-color: lighten(@primaryColor, 35%);
+								font-weight:bold;
+								text-align: center;
+							}
+
+							&:hover td.vsm {
+								background-color: #d0d3d3;
+							}
+
+							td:hover {
+								background-color: @rowHoverBackground;
+							}
 						}
 
-						&:hover td.vsm {
-							background-color: #d0d3d3;
-						}
+						&.alt {
+							background: @rowAltBackground;
 
-						td:hover {
-							background-color: @rowHoverBackground;
+							.vsm  {
+								background-color: lighten(@primaryColor, 35%);
+							}	
 						}
 					}
 				}					

@@ -109,6 +109,7 @@ namespace Apollo.Age.Account.Controllers
 
             criteria.IsPublic = isPublic;
             criteria.Special = special;
+            criteria.IsAgent = true;
 
             ViewBag.Messages = (_messageService.GetMessage(criteria) ?? new List<MessageModel>()).ToList();
 

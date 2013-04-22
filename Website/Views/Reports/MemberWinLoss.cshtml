@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = Resources.Lang.memberwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    int i = 1;
+    string rowClass = string.Empty;
 }
 
 @model MemberWinLossViewModel
@@ -102,7 +104,7 @@
         decimal totalAWinLoss = 0;
         decimal totalAComm = 0;
         decimal totalATotal = 0;
-        decimal totalUpline = 0;
+        decimal totalUpline = 0;        
             
         <tbody>
         @foreach (var item in list)
@@ -116,8 +118,9 @@
             totalAComm += item.AComm;
             totalATotal += item.ATotal;
             totalUpline += item.UplineTotal;
+            rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
                 
-            <tr>
+            <tr @Html.Raw(rowClass)>
                 <td>
                     <a href="~/_BetList/BetListOnMember.aspx?custId=@item.MemberId&username=@item.MemberName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
                         @item.MemberName

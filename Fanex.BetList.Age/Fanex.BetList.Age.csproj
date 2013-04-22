@@ -74,21 +74,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="BetListCmd\BetListFactory.cs" />
-    <Compile Include="BetListCmd\BettypeCmd.cs" />
-    <Compile Include="BetListCmd\BettypeMatchCmd.cs" />
-    <Compile Include="BetListCmd\BLDailySTCmd.cs" />
-    <Compile Include="BetListCmd\CancelBetListCmd.cs" />
-    <Compile Include="BetListCmd\CombMixParlayBetListCmd.cs" />
-    <Compile Include="BetListCmd\CombMixParlayBetListDetailCmd.cs" />
-    <Compile Include="BetListCmd\CorrectScoreCmd.cs" />
-    <Compile Include="BetListCmd\MixParlayBetListCmd.cs" />
-    <Compile Include="BetListCmd\MixParlayByMatchCmd.cs" />
-    <Compile Include="BetListCmd\MixParlayCmd.cs" />
-    <Compile Include="BetListCmd\RacingBettypeMatchCmd.cs" />
-    <Compile Include="BetListCmd\RunningBettypeMatchCmd.cs" />
-    <Compile Include="BetListCmd\WLByBettypeMatchCmd.cs" />
-    <Compile Include="BetListCmd\WLByDateCmd.cs" />
     <Compile Include="BetListExcelBuilderExt\BetListExcelBuilderExt.cs" />
     <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\AgentComm1.cs" />
     <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\IAgentComm.cs" />
@@ -105,9 +90,7 @@
     <Compile Include="BetListHTMLBuilderExt\NoBuilder\No1.cs" />
     <Compile Include="BetListHTMLBuilderExt\WinLostBuilder\IWinLost.cs" />
     <Compile Include="BetListHTMLBuilderExt\WinLostBuilder\WinLost1.cs" />
-    <Compile Include="BetListCmd\BetListCmd.cs" />
     <Compile Include="Definition\BetListType.cs" />
-    <Compile Include="BetListCmd\IBetListCmd.cs" />
     <Compile Include="DTO\TicketMapper.cs" />
     <Compile Include="DTO\TicketDataMapper.cs" />
     <Compile Include="DTO\TicketDataTransformer.cs" />
@@ -155,6 +138,14 @@
       <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
       <Name>Fanex.Age.Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.BetList\Apollo.Age.BetList.csproj">
+      <Project>{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}</Project>
+      <Name>Apollo.Age.BetList</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
+      <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
+      <Name>Apollo.Age.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
@@ -162,10 +153,6 @@
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\apollo-agent\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
-      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
-      <Name>Sunplus.Agent.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
       <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
@@ -189,6 +176,7 @@
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BetListCmd\" />
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

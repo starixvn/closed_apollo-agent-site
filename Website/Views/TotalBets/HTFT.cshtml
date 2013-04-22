@@ -5,7 +5,7 @@
 }
 @model IEnumerable<HTFTModel>
 @RazorHelper.RefreshCountDown("HTFT", 90, 60)
-<table class="tblRpt persist-area">
+<table class="tblRpt persist-area no-border-bottom">
     <thead class="persist-header">
         <tr class="RptHeader">
             <td style="width: 20px;">
@@ -56,7 +56,7 @@
             foreach (var item in Model)
             {
                 rowIndex++;
-                if (rowIndex % 2 == 0)
+                if (rowIndex % 2 != 0)
                 {
                     classRow = "r alt";
                 }

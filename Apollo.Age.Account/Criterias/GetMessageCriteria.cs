@@ -57,6 +57,8 @@ namespace Apollo.Age.Account.Criterias
         [SpParam(SqlParamName = "TargetId2")]
         public string SiteId { get; set; }
 
+        public bool IsAgent { get; set; }
+
         public int Special { get; set; }
 
         public int Record { get; set; }
@@ -72,7 +74,7 @@ namespace Apollo.Age.Account.Criterias
         public int MatchId { get; set; }
 
         [SpParam(Ignored = true)]
-        public int IsPublic { get; set; }        
+        public int IsPublic { get; set; }
 
         [SpParam(Ignored = true)]
         public string PageQuery { get; set; }

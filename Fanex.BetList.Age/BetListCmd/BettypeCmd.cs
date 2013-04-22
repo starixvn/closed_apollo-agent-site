@@ -13,9 +13,8 @@ namespace Fanex.BetList.Age.BetListCmd
     using System;
     using System.Data;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Services;
     using Fanex.BetList.Age.Definition;
-    using Sunplus.Agent.Model.BL.BetList;
-    using Sunplus.Agent.Model.BL.Cache;
 
     /// <summary>
     /// Summary description for BettypeCmd
@@ -23,14 +22,12 @@ namespace Fanex.BetList.Age.BetListCmd
     public class BettypeCmd : BetListCmd
     {
         private DataTable result = null;
-        private BetListBO betList = null;
 
         private string betType = Convert.ToString((int)BetTypes.None);
 
         public BettypeCmd(string sessionId)
         {
             this.result = new DataTable();
-            this.betList = new BetListBO(sessionId);
             Title = Resources.BetList.correctscore;
         }
 

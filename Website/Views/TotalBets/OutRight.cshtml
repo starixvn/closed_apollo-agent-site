@@ -42,24 +42,15 @@
             if (Model != null && Model.Any())
             {
                 int rowIndex = 0;
-                int currentLeagueId = 0;
-                var classRow = string.Empty;
+                int currentLeagueId = 0;               
                 
                 foreach (var item in Model)
                 {
                     rowIndex++;
 
-                    if (rowIndex % 2 == 0)
-                    {
-                        classRow = "alt";
-                    }
-                    else
-                    {
-                        classRow = string.Empty;
-                    }
             @ShowLeague(currentLeagueId, item)  
             <!--MatchContents-->
-            <tr class="r @classRow">
+            <tr class="r">
                 <td class="w-order">
                     @rowIndex
                 </td>

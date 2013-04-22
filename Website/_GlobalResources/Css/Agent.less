@@ -159,7 +159,7 @@ table {
 		}
 	}
 
-	td, th {		
+	th {		
 		text-shadow: 0 1px 0 #FFF;
 	}
 
@@ -176,8 +176,7 @@ table {
 
 	tbody {
 		td {
-			border: 1px solid @grayLight;
-			border-width: 1px 1px 0 0;
+			border: 1px solid @grayLight;			
 		}
 		tr {			
 			&.live { background-color: @rowLiveBackground }
@@ -195,7 +194,7 @@ table {
 			}
 
 			&.alt {
-				background-color: @rowBackground;
+				background: @rowAltBackground;
 				&:hover { background-color: @rowHoverBackground }
 			}
 		}
@@ -283,6 +282,10 @@ table {
 			}
 
 			.editor {
+
+				img.ui-datepicker-trigger {
+					margin-left: 2px;
+				}
 			}
 		}
 	}

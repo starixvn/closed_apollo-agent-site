@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    int i = 1;
+    string rowClass = string.Empty;
 }
 
 @model AgentWinLossViewModel
@@ -81,10 +83,13 @@
     <tbody>
         @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
         {
-            var list = Model.AgentWinLossList;
+            var list = Model.AgentWinLossList;            
+            
             foreach (var item in list)
             {
-                <tr>
+                rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+                
+                <tr @Html.Raw(rowClass)>
                     <td>
                         <a href="~/Reports/AgentWinLoss?id=@item.AgentId&name=@item.AgentName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
                             @item.AgentName
@@ -179,8 +184,9 @@ else
             totalAComm += item.AComm;
             totalATotal += item.ATotal;
             totalUpline += item.UplineTotal;
+            rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
                 
-            <tr>
+            <tr @Html.Raw(rowClass)>
                 @if (item.IsAgent)
                 {
                     <td>
