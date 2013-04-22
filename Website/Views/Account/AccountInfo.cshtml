@@ -142,9 +142,13 @@
                             @Resources.Lang.lblEditSB
                         </a>
 
-                        <a class="lnk-setting" target="main"
+                        @*<a class="lnk-setting" target="main"
                                 href="~/CustomerSetting/EditBetSetting?custId=@Model.CustId&userName=@Model.Username">
                             @Resources.Lang.lbleditbetsetting
+                        </a>*@
+                        
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&userName=@Model.Username&sportType=1&betType=1&isLive=false">
+                            @Resources.Lang.ViewShare
                         </a>
 
                         <a class="lnk-setting" target="main"
@@ -164,7 +168,6 @@
                             @Resources.Lang.lblEditSB
                         </a>
 						
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=9&userName=testcs-8-9&sportType=1&betType=1&isLive=false">
                             @Resources.Lang.ViewShare
                         </a>
                         <a class="lnk-setting" target="main"

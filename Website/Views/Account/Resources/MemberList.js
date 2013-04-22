@@ -47,107 +47,6 @@ var MEMBERLIST = function ( $ ) {
                 }
             } );
         },
-        initMenuPopup: function ( els, isEditAgent ) {
-            var menuEdit = $( "#menuedit" );
-            var commission = $( "#commission" );
-            var betsetting = $( "#betsetting" );
-            var sharesetting = $( "#sharesetting" );
-            els.unbind( 'click' ).bind( 'click', function () {
-            } );
-            els.mouseover( function () {
-                var $this = $( this );
-                var pos = $this.offset();
-                var eWidth = $this.outerWidth();
-                var mWidth = menuEdit.outerWidth();
-                var left = ( pos.left + eWidth ) + "px";
-                var top = 3 + pos.top + "px";
-
-                if ( isEditAgent ) {
-                    var agentId = $this.attr( 'agentid' );
-                    var agentLevel = $this.attr( 'agentlevel' );
-
-                    commission.attr( "agentid", agentId );
-                    commission.attr( "agentlevel", agentLevel );
-
-                    betsetting.attr( "agentid", agentId );
-                    betsetting.attr( "agentlevel", agentLevel );
-
-                    sharesetting.attr( "agentid", agentId );
-                    sharesetting.attr( "agentlevel", agentLevel );
-                }
-                else {
-                    var custId = $this.attr( 'custid' );
-                    var username = $this.attr( 'username' );
-                    var usergroup = $this.attr( 'usergroup' );
-
-                    commission.attr( "custid", custId );
-                    commission.attr( "username", username );
-                    commission.attr( "usergroup", usergroup );
-
-                    betsetting.attr( "custid", custId );
-                    betsetting.attr( "username", username );
-                    betsetting.attr( "usergroup", usergroup );
-
-                    sharesetting.attr( "custid", custId );
-                    sharesetting.attr( "username", username );
-                    sharesetting.attr( "usergroup", usergroup );
-                }
-                menuEdit.css( {
-                    position: 'absolute',
-                    zIndex: 5000,
-                    left: left,
-                    top: top
-                } );
-                menuEdit.show();
-            } ).mouseout( function () {
-                menuEdit.hide();
-            } );
-            commission.unbind( 'click' ).bind( 'click', function () {
-                var $this = $( this );
-                var url = APOLLO.resolveUrl( "CustomerSetting/EditCommissionSetting?custId=" + $this.attr( "custid" )
-                + "&userName" + $this.attr( "username" )
-                + "&userGroup=" + $this.attr( "usergroup" ) );
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
-                    width: 1015,
-                    height: 300,
-                    position: { my: "top+25%", at: "center top", of: window },
-                    close: function ( event, ui ) {
-                    }
-                } );
-
-                // Code here
-            } );
-            betsetting.unbind( 'click' ).bind( 'click', function () {
-                var $this = $( this );
-                var url = APOLLO.resolveUrl( "CustomerSetting/EditBetSetting?custId=" + $this.attr( "custid" )
-                + "&userName" + $this.attr( "username" ) );
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
-                    width: 1015,
-                    height: 600,
-                    position: { my: "top+25%", at: "center top", of: window },
-                    close: function ( event, ui ) {
-                    }
-                } );
-            } );
-            sharesetting.unbind( 'click' ).bind( 'click', function () {
-                var $this = $( this );
-                var url = APOLLO.resolveUrl( "CustomerSetting/EditPositionTaking?custId=" + $this.attr( "custid" )
-                + "&userName=" + $this.attr( "username" ) );
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
-                    width: 1015,
-                    height: 450,
-                    position: { my: "top+25%", at: "center top", of: window },
-                    close: function ( event, ui ) {
-                    }
-                } );
-            } );
-
-            menuEdit.mouseover( function () {
-                $( this ).show();
-            } ).mouseout( function () {
-                $( this ).hide();
-            } );
-        },
         bindingEdit: function () {
             $( "[name='Edit']" ).unbind( 'click' ).bind( 'click', function () {
                 MEMBERLIST.editCustomerSetting( $( this ) );
@@ -165,8 +64,6 @@ var MEMBERLIST = function ( $ ) {
                     }
                 } );
             } );
-            // MEMBERLIST.initMenuPopup( $( "[name='Edit']" ), false );
-            // MEMBERLIST.initMenuPopup( $( "#quickLinkEditSetting" ), true );
         },
         loadMemberList: function () {
             $.ajax( {

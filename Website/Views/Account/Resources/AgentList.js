@@ -6,7 +6,7 @@ var AGENTLIST = function ( $ ) {
         IsSuper: false,
         init: function () {
             AGENTLIST.AgentId = $( "#gridId" ).attr( "agentid" );
-            AGENTLIST.loadNavigation();
+            AGENTLIST.bindingNavigation();
             AGENTLIST.loadAgentList();
         },
         loadNavigation: function () {
@@ -78,88 +78,6 @@ var AGENTLIST = function ( $ ) {
                 AGENTLIST.loadAgentList( AGENTLIST.AgentId );
             } );
         },
-        initMenuPopup: function ( els ) {
-            var menuEdit = $( "#menuedit" );
-
-            var commission = $( "#commission" );
-            var betsetting = $( "#betsetting" );
-            var sharesetting = $( "#sharesetting" );
-            els.unbind( 'click' ).bind( 'click', function () {
-                AGENTLIST.editAgentSetting( $( this ) );
-            } );
-
-            els.mouseover( function () {
-                var $this = $( this );
-                var pos = $this.offset();
-                var eWidth = $this.outerWidth();
-
-                var mWidth = menuEdit.outerWidth();
-                var left = ( pos.left + eWidth ) + "px";
-                var top = 3 + pos.top + "px";
-
-                var agentid = $this.attr( 'agentid' );
-                var agentlevel = $this.attr( 'agentlevel' );
-
-                commission.attr( "agentId", agentid );
-                betsetting.attr( "agentId", agentid );
-                sharesetting.attr( "agentId", agentid );
-
-                commission.attr( "agentlevel", agentlevel );
-                betsetting.attr( "agentlevel", agentlevel );
-                sharesetting.attr( "agentlevel", agentlevel );
-
-                menuEdit.css( {
-                    position: 'absolute',
-                    zIndex: 5000,
-                    left: left,
-                    top: top
-                } );
-                menuEdit.show();
-            } ).mouseout( function () {
-                menuEdit.hide();
-            } );
-            commission.unbind( 'click' ).bind( 'click', function () {
-                var $this = $( this );
-                var url = APOLLO.resolveUrl( "CustomerSetting/EditCommissionSetting?custId=" + $this.attr( "agentid" )
-                + "&agentLevel=" + $this.attr( "agentlevel" ) );
-                AGENTLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
-                    width: 1015,
-                    height: 300,
-                    position: { my: "top+50", at: "center top", of: window },
-                    close: function ( event, ui ) {
-                    }
-                } );
-            } );
-            betsetting.unbind( 'click' ).bind( 'click', function () {
-                var $this = $( this );
-                var url = APOLLO.resolveUrl( "CustomerSetting/EditBetSetting?custId=" + $this.attr( "agentid" )
-                + "&agentLevel=" + $this.attr( "agentlevel" ) );
-                AGENTLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
-                    width: 1015,
-                    height: 600,
-                    position: { my: "top+50", at: "center top", of: window },
-                    close: function ( event, ui ) {
-                    }
-                } );
-            } );
-            sharesetting.unbind( 'click' ).bind( 'click', function () {
-                var $this = $( this );
-                var url = APOLLO.resolveUrl( "CustomerSetting/EditPositionTaking?custId=" + $this.attr( "agentid" )
-                + "&agentLevel=" + $this.attr( "agentlevel" ) );
-                AGENTLIST.currentPopUp = APOLLO.openDialogFrame( url, '', {
-                    width: 1015,
-                    height: 450,
-                    position: { my: "top+25%", at: "center top", of: window },
-                    close: function ( event, ui ) {
-                    }
-                } );
-            } );
-            menuEdit.mouseover( function () {
-                $( this ).show();
-            } ).mouseout( function () {
-                $( this ).hide();
-            } );
-        },
         editAgentSetting: function ( $this ) {
             var url = APOLLO.resolveUrl( "CustomerSetting/EditAllSetting?custId=" + $this.attr( "agentid" )
                 + "&agentLevel=" + $this.attr( "agentlevel" ) );
@@ -180,8 +98,6 @@ var AGENTLIST = function ( $ ) {
                 // Edit Uplilne Agent
                 AGENTLIST.editAgentSetting( $( this ) );
             } );
-            // AGENTLIST.initMenuPopup( $( "[name='Edit']" ) );
-            // AGENTLIST.initMenuPopup( $( "#quickLinkEditSetting" ) );
         },
         loadAgentList: function () {
             $.ajax( {

@@ -143,7 +143,6 @@ namespace Apollo.Age.Account.Services
         public List<AgentShareModel> GetAgentShare(int actorAgentId, int agentId, string userName, short sportType, short betType, bool isLive)
         {
             Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-            Check.Argument.IsNotNegativeOrZero(agentId, "agentId");
             Check.Argument.IsNotNegative(sportType, "sportType");
             Check.Argument.IsNotNegative(betType, "betType");
 
@@ -162,7 +161,6 @@ namespace Apollo.Age.Account.Services
         public List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, short sportType, short betType, bool isLive)
         {
             Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-            Check.Argument.IsNotNegativeOrZero(memberId, "memberId");
             Check.Argument.IsNotNegative(sportType, "sportType");
             Check.Argument.IsNotNegative(betType, "betType");
 

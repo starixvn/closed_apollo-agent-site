@@ -127,7 +127,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 ticketHelper.Index = ++index;
 
-                builder.Append(string.Format("<tr id='{0}'>", ticket.TransId))
+                builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
                        .AddNo(index, "<td class='c'>", "</td>");
 
                 if (isShowMember)
@@ -218,6 +218,18 @@ namespace Sunplus.Agent.UI._BetList
             {
                 bettype = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
                 title = CacheRef.GetBettype(bettype).ToUpper();
+            }
+            else
+            {
+                if (Request["leagueName"] != null)
+                {
+                    title =
+                    title = string.Format("{0} - {1}", Request["leagueName"].ToUpper(), CacheRef.GetBettype(bettype).ToUpper());
+                }
+                else
+                {
+                    title = CacheRef.GetBettype(bettype).ToUpper();
+                }
             }
         }
 
