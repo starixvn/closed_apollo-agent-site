@@ -63,7 +63,15 @@ a {
 	border-bottom: 1px solid #b7c7cf;
 }
 
+/* FIX IE */
 .ie8 .floatingHeader {
 	top: -10px;
 	left: 11px !important;
 }
+
+.ie7 {
+	thead.floatingHeader {
+		position: relative;
+		top: ~"expression(this.offsetParent.scrollTop)";
+	}
+} 

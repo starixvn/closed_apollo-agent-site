@@ -130,17 +130,17 @@ var TOTALBETS = function ($) {
                         offset = el.offset(),
                         scrollTop = $(window).scrollTop(),
                         floatingHeader = $(".floatingHeader", this);
-                    if ((scrollTop > offset.top) && (scrollTop < offset.top + el.height())) {                        
+                    if ((scrollTop > offset.top) && (scrollTop < offset.top + el.height())) {
                         floatingHeader.css({
                             "visibility": "visible",
                             "left": (left - $(window).scrollLeft()),
                             "z-index": "34"
                         });
-                    } else {                        
+                    } else {
                         floatingHeader.css({
                             "visibility": "hidden"
                         });
-                    };                   
+                    };
                 });
 
                 var i = 0;
