@@ -168,7 +168,7 @@ var MEMBERLIST = function ( $ ) {
                 bodyRows: bodyData,
                 showFooter: false,
                 fullHeight: true,
-                gridExpandHeight: 250,
+                gridExpandHeight: 170,
                 numberOfFrozenColumn: 3,
                 marginRight: 0,
                 showPager: true,
