@@ -45,12 +45,13 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public ViewResult FC1X2(int? matchId, int betType = (int)BetTypes.FT_1X2)
+        public ViewResult FC1X2(int? matchId, int betType = (int)BetTypes.FT_1X2, string leagueName = "")
         {
             IEnumerable<LeagueModel> leagues = _forecastService.GetRunningLeague(betType, agentId: this.CurrentSession.AgentId);
             ViewBag.Leagues = leagues;
             ViewBag.MatchId = matchId;
             ViewBag.BetType = betType;
+            ViewBag.LeagueName = leagueName;
             return View();
         }
 
@@ -128,11 +129,12 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="betType"></param>
         /// <param name="currentScore"></param>
         /// <returns></returns>
-        public ViewResult ForecastByMatch(int matchId, int betType = (int)BetTypes.Handicap, int currentScore = 0)
+        public ViewResult ForecastByMatch(int matchId, int betType = (int)BetTypes.Handicap, int currentScore = 0, string leagueName = "")
         {
             ViewBag.BetType = betType;
             ViewBag.MatchId = matchId;
             ViewBag.CurrentScore = currentScore;
+            ViewBag.LeagueName = leagueName;
             return View();
         }
 

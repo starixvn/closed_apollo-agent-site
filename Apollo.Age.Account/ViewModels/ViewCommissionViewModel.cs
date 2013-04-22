@@ -18,6 +18,8 @@ namespace Apollo.Age.Account.ViewModels
 
         public string Username { get; set; }
 
+        public string Group { get; set; }
+
         public bool IsMember { get; set; }
 
         public IEnumerable<CustomerCommissionModel> CommissionList { get; set; }

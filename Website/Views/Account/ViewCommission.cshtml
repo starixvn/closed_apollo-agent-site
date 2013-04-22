@@ -2,7 +2,7 @@
 @{
 	ViewBag.Title = "View Commission";
 	Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
-	int index = 1;
+	int index = 0;
 }
 @model ViewCommissionViewModel
 
@@ -29,28 +29,67 @@
 	<thead>
 		<tr>
 			<th></th>
-			<th>@Resources.Lang.group A</th>
-			<th>@Resources.Lang.group B</th>
-			<th>@Resources.Lang.group C</th>
-			<th>@Resources.Lang.group D</th>
-			<th>1x2</th>
-			<th>@Resources.Lang.Others</th>
+			<th>@Resources.Lang.group A (%)</th>
+			<th>@Resources.Lang.group B (%)</th>
+			<th>@Resources.Lang.group C (%)</th>
+			<th>@Resources.Lang.group D (%)</th>
+			<th>1x2 (%)</th>
+			<th>@Resources.Lang.Others (%)</th>
 		</tr>
 	</thead>
 	<tbody>
-	@foreach(var comm in Model.CommissionList)
+	@if (Model.CommissionList != null && Model.CommissionList.Any())
 	{
-		string rowClass = index++ % 2 != 0 ? "class='alt'" : string.Empty;
-		
+		int lastIndex = Model.CommissionList.Count();
+
+		foreach (var comm in Model.CommissionList)
+		{
+			string rowClass = index++ % 2 == 0 ? "class='alt'" : string.Empty;
+
 		<tr @Html.Raw(rowClass)>
 			<td class="em-row l">@comm.Username</td>
-			<td>@RazorHelper.FormatNumber(comm.DiscountA, numDecimals: 2, showZero: true)</td>
-			<td>@RazorHelper.FormatNumber(comm.DiscountB, numDecimals: 2, showZero: true)</td>
-			<td>@RazorHelper.FormatNumber(comm.DiscountC, numDecimals: 2, showZero: true)</td>
-			<td>@RazorHelper.FormatNumber(comm.DiscountD, numDecimals: 2, showZero: true)</td>
-			<td>@RazorHelper.FormatNumber(comm.Discount1x2, numDecimals: 2, showZero: true)</td>
-			<td>@RazorHelper.FormatNumber(comm.DiscountOthers, numDecimals: 2, showZero: true)</td>
+			@if (index == lastIndex && Model.IsMember)
+			{
+			<td>
+				@if (Model.Group == "a")
+				{
+					@RazorHelper.FormatComm(comm.DiscountA)
+				}
+			</td>
+			<td>
+				@if (Model.Group == "b")
+				{
+					@RazorHelper.FormatComm(comm.DiscountB)
+				}
+			</td>
+			<td>
+				@if (Model.Group == "c")
+				{
+					@RazorHelper.FormatComm(comm.DiscountC)
+				}
+			</td>
+			<td>
+				@if (Model.Group == "d")
+				{
+					@RazorHelper.FormatComm(comm.DiscountD)
+				}
+			</td>
+			}
+			else
+			{
+			<td>@RazorHelper.FormatComm(comm.DiscountA)</td>
+			<td>@RazorHelper.FormatComm(comm.DiscountB)</td>
+			<td>@RazorHelper.FormatComm(comm.DiscountC)</td>
+			<td>@RazorHelper.FormatComm(comm.DiscountD)</td>
+			}
+			<td>@RazorHelper.FormatComm(comm.Discount1x2)</td>
+			<td>@RazorHelper.FormatComm(comm.DiscountOthers)</td>
 		</tr>
+		}
+	}
+ else
+ {
+		@RazorHelper.ShowNoInfo(7)
 	}
 	</tbody>
 </table>
