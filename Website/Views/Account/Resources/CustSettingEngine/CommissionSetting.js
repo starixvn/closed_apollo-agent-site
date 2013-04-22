@@ -116,7 +116,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         this.spinBoxItems.push(comSpinBox);
 
         var maxSpan = document.createElement("SPAN");
-        maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 3);
+        maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
         maxSpan.className = "upline-agent-share";
         comContainer.appendChild(maxSpan);
 
@@ -142,7 +142,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             var comSpinBox1 = this.RenderSpinBox(comContainer1, discount, uplineDiscount);
             this.spinBoxItems.push(comSpinBox1);
             var maxSpan = document.createElement("SPAN");
-            maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 3);
+            maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
             maxSpan.className = "upline-agent-share";
             comContainer1.appendChild(maxSpan);
         }
@@ -269,7 +269,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 var comSpinBox = this.RenderSpinBox(comContainer, currentSelectGroup.Discount, currentSelectGroup.Upline.Discount);
                 this.spinBoxItems.push(comSpinBox);
                 var maxSpan = document.createElement("SPAN");
-                maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentSelectGroup.Upline.Discount, 3);
+                maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentSelectGroup.Upline.Discount, 2);
                 maxSpan.className = "upline-agent-share";
                 comContainer.appendChild(maxSpan);
             }
@@ -283,7 +283,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     var currentValue = this.value;
                     var selectedCom = self.GetUplineGroupDiscountForMember(currentValue);
                     //groupText1.value = selectedCom.Upline.Discount + Fanex.CustSetting.COM_LAST_LETTER;
-                    maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, selectedCom.Upline.Discount, 3);
+                    maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, selectedCom.Upline.Discount, 2);
 
                     self.addEventConstrain(comSpinBox, selectedCom.Upline.Discount);
                 };

@@ -1082,7 +1082,9 @@ Fanex.CustSetting.Spinner.prototype = {
         else {
             currentValue = currentTextValue;
         }
-        return parseFloat(currentValue);
+        var currentParseValue = parseFloat(currentValue);
+        if (isNaN(currentParseValue)) currentParseValue = 0;
+        return currentParseValue;
     },
     setValue: function (value) {
 
