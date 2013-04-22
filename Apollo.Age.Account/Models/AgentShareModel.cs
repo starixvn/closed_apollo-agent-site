@@ -13,10 +13,10 @@ namespace Apollo.Age.Account.Models
     {
         public string Username { get; set; }
 
-        public decimal TakenShare { get; set; }
+        public short TakenShare { get; set; }
 
-        public decimal MaxGiven { get; set; }
+        public short MaxGiven { get; set; }
 
-        public decimal MinGiven { get; set; }
+        public short MinGiven { get; set; }
     }
 }

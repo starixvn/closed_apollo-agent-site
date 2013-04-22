@@ -11,6 +11,6 @@ namespace Apollo.Age.Account.Models
 {
     public class MemberShareModel : AgentShareModel
     {
-        public decimal TakenShareMember { get; set; }
+        public short TakenShareMember { get; set; }
     }
 }

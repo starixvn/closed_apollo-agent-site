@@ -8,11 +8,12 @@ var TOTALBETS = function ($) {
 
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
                 + 'matchId=' + $(this).attr("match-id")
-                + '&betType=' + $(this).attr("bet-type"));
+                + '&betType=' + $(this).attr("bet-type")
+                 + '&leagueName=' + $(this).attr("league-name"));
 
-                ageWnd.openDialog(url, 'Forecast', {
+                ageWnd.openDialog(url, 'FORECAST', {
                     width: 665,
-                    height: 320,
+                    height: 350,
                     position: { my: "top+50", at: "center top", of: window },
                     close: function (event, ui) {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
@@ -26,10 +27,10 @@ var TOTALBETS = function ($) {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
                 var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
-                + '&type=' + $(this).attr("betlist-type"))
-                + '&leagueName=' + $(this).attr("league-name");
+                + '&type=' + $(this).attr("betlist-type")
+                + '&leagueName=' + $(this).attr("league-name"));
 
-                ageWnd.openDialog(url, "Bet List", {
+                ageWnd.openDialog(url, "BET LIST", {
                     width: 930,
                     height: 770,
                     position: { my: "top+50", at: "center top", of: window },
@@ -85,10 +86,11 @@ var TOTALBETS = function ($) {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
                 var url = APOLLO.resolveUrl('Forecast/FC1X2?'
                 + 'matchId=' + $(this).attr("match-id")
-                + '&betType=' + $(this).attr("bet-type"));
-                ageWnd.openDialog(url, 'Forecast', {
+                + '&betType=' + $(this).attr("bet-type")
+                + '&leagueName=' + $(this).attr("league-name"));
+                ageWnd.openDialog(url, 'FORECAST', {
                     width: 350,
-                    height: 520,
+                    height: 600,
                     position: { my: "top+50", at: "center top", of: window },
                     close: function (event, ui) {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
