@@ -81,7 +81,7 @@ var AGENTLIST = function ( $ ) {
         editAgentSetting: function ( $this ) {
             var url = APOLLO.resolveUrl( "CustomerSetting/EditAllSetting?custId=" + $this.attr( "agentid" )
                 + "&agentLevel=" + $this.attr( "agentlevel" ) );
-            AGENTLIST.currentPopUp = APOLLO.openDialogFrame( url, 'Edit Agent Setting ', {
+            AGENTLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Agent Setting - ' + $this.attr('username'), {
                 width: 970,
                 height: 450,
                 position: { my: "top+25%", at: "center top", of: window },
