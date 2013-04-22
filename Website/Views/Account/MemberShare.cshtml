@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Member Share";
-    Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
+    Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
 }
 
 @model MemberShareViewModel
@@ -13,7 +13,7 @@
     {
         <div class="inline-control">
             @Html.LabelFor(m => m.SportType, @Resources.Lang.SportType)
-            @Html.DropDownListFor(m=>m.SportType, Model.SportSelectListItem)
+            @Html.DropDownListFor(m => m.SportType, Model.SportSelectListItem, new { id = "ddlSportType" })
         </div>
     }
     
@@ -21,7 +21,7 @@
     {
         <div class="inline-control">
             @Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)
-            @Html.DropDownListFor(m => m.BetType, Model.BetTypeSelectListItem)
+            @Html.DropDownListFor(m => m.BetType, Model.BetTypeSelectListItem, new { id = "ddlBetType" })
         </div>
     }
     <div class="inline-control">
@@ -29,7 +29,7 @@
             new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
             new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
         }, new { id = "ddlIsMember" })
-        @Html.TextBoxFor(m=>m.Username)
+        @Html.TextBoxFor(m => m.Username, new { id = "txtUsername" })
     </div>
     <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
 </div>
