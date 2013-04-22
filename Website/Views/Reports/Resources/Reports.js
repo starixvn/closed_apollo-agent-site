@@ -90,7 +90,7 @@
                 showFooter: true,
                 footerRows: footerData,
                 fullHeight: true,
-                gridExpandHeight: 150,
+                gridExpandHeight: 100,
                 marginRight: 0,
                 showColumnsShowHide: false,
                 columnsNeedHide: [3, 4],
