@@ -7,7 +7,6 @@
 //   <change who="Ricky.Nguyen" date="2013.4.9">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Forecast.Core
 {
     using System;
@@ -21,6 +20,7 @@ namespace Apollo.Age.Forecast.Core
     public class Constants
     {
         public const string SCORE_MAP_BETTYPES = "Apollo.Age.Forecast.Services.ForecastService.ScoreMapBetType";
+        public const string SCORE_MAP_BETTYPES_LIST = "Apollo.Age.Forecast.Services.ForecastService.ScoreMapBetType.List";
         public const int FORECAST_RESULT_TABLE_DIMEMSION = 7;
     }
 }

@@ -1,0 +1,79 @@
+﻿@using Apollo.Age.Account.ViewModels
+@using Fanex.Age.Utility
+
+@{
+    ViewBag.Title = "Agent Share";
+    Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
+}
+
+@model AgentShareViewModel
+
+<div class="filter-submit">
+    @if (Model.SportList.Any())
+    {
+        <div class="inline-control">
+            @Html.LabelFor(m => m.SportType, @Resources.Lang.SportType)
+            @Html.DropDownListFor(m=>m.SportType, Model.SportSelectListItem)
+        </div>
+    }
+    
+    @if (Model.BetTypeList.Any())
+    {
+        <div class="inline-control">
+            @Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)
+            @Html.DropDownListFor(m => m.BetType, Model.BetTypeSelectListItem)
+        </div>
+    }
+    <div class="inline-control">
+        @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+            new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
+            new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+        }, new { id = "ddlIsMember" })
+        @Html.TextBoxFor(m=>m.Username)
+    </div>
+    <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
+</div>
+
+<table class="tblRpt">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Resources.Lang.TakenShareText
+            </th>
+            <th>
+                @Resources.Lang.MaxGivenShare
+            </th>
+            <th>
+                @Resources.Lang.MinGivenShare
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.AgentShareModelList != null && Model.AgentShareModelList.Any())
+        {
+            foreach(var item in Model.AgentShareModelList)
+            {
+                <tr>
+                    <td class="black-colum">
+                        @item.Username
+                    </td>
+                    <td class="r">
+                        @Formater.DecFormat(item.TakenShare,decDigits: 2)
+                    </td>
+                    <td class="r">
+                        @Formater.DecFormat(item.MaxGiven,decDigits: 2)
+                    </td>
+                    <td class="r">
+                        @Formater.DecFormat(item.MinGiven,decDigits: 2)
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(4) 
+        }
+    </tbody>
+</table>

@@ -15,6 +15,7 @@ namespace Apollo.Age.Account.Controllers
     using System.Text;
     using System.Threading;
     using System.Web.Mvc;
+    using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
     using Fanex.CustSetting.Models;
     using Fanex.CustSetting.Service;
@@ -24,6 +25,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using System.Linq;
+    using Apollo.Age.Account.ViewModels;
 
     public class CustomerSettingController : BaseController
     {
@@ -85,46 +87,56 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="id">id of selected agent/member</param>
         /// <param name="isMember">indicates whether the customer is agent or member</param>
-        public ActionResult ViewCommission(int id, bool isMember)
+        public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
+            if (!string.IsNullOrWhiteSpace(model.Username))
+            {
+                // force search by username only
+                model.Id = -1;
+            }
+
             var customerInfo = _accountService
-                .GetCustomerInfo(isMember, id, string.Empty, CurrentSession.AgentId);
+                .GetCustomerInfo(model.IsMember, model.Id, model.Username, CurrentSession.AgentId);
 
             if (customerInfo == null)
             {
                 return HttpNotFound();
             }
 
-            IEnumerable<CustomerCommissionModel> custCommList = null;
+            model.Username = customerInfo.Username;
+            model.CommissionList = model.IsMember
+                ? _accountService.GetCommissionToMember(
+                new GetCommissionToMemberCriteria
+                {
+                    ActorAgentId = CurrentSession.AgentId,
+                    CustId = customerInfo.CustId,
+                    Username = customerInfo.Username
+                })
+                : _accountService.GetCommissionToAgent(
+                new GetCommissionToAgentCriteria
+                {
+                    ActorAgentId = CurrentSession.AgentId,
+                    AgentId = customerInfo.CustId,
+                    Username = customerInfo.Username
+                });
 
-            if (isMember)
-            {
-                custCommList = _accountService.GetCommissionToMember(
-                    new GetCommissionToMemberCriteria
-                    {
-                        ActorAgentId = CurrentSession.AgentId,
-                        CustId = id,
-                        Username = string.Empty
-                    });
-            }
-            else
-            {
-                custCommList = _accountService.GetCommissionToAgent(
-                    new GetCommissionToAgentCriteria
-                    {
-                        ActorAgentId = CurrentSession.AgentId,
-                        AgentId = id,
-                        Username = string.Empty
-                    });
-            }
+            //model.CommissionList = model.IsMember
+            //    ? _accountService.GetCommissionToMember(
+            //    new GetCommissionToMemberCriteria
+            //    {
+            //        ActorAgentId = CurrentSession.AgentId,
+            //        CustId = model.Id,
+            //        Username = model.Username
+            //    })
+            //    : _accountService.GetCommissionToAgent(
+            //    new GetCommissionToAgentCriteria
+            //    {
+            //        ActorAgentId = CurrentSession.AgentId,
+            //        AgentId = model.Id,
+            //        Username = model.Username
+            //    });
 
-            //CommissionSetting commSetting = _customerSettingService
-            //    .GetCommissionSettingForUpdating(new SettingContext { TargetCustId = id });
-            //ViewBag.Username = customerInfo.Username;
-            //ViewBag.UserId = CurrentSession.UserId;
-            //ViewBag.AgentLevel = CurrentSession.AgentLevel;
-
-            return View("~/Views/Account/ViewCommission.cshtml", custCommList);
+            return View("~/Views/Account/ViewCommission.cshtml", model);
         }
 
         public ActionResult EditCommissionSetting(int custId, string userName, int? agentLevel, string userGroup)
@@ -167,9 +179,62 @@ namespace Apollo.Age.Account.Controllers
         /// <summary>
         /// Views "share info" from logged-in agent to selected (searched) agent/member
         /// </summary>
-        /// <param name="id">id of selected agent/member</param>
-        /// <param name="isMember">indicates whether the customer is agent or member</param>
-        public ActionResult ViewShare(int id, bool isMember)
+        /// <param name="username">selected agent/member username</param>
+        public ActionResult AgentShare(int? agentId, string userName, short sportType, short betType, bool isLive)
+        {
+            var agentShareModelList = _accountService.GetAgentShare(
+                this.CurrentSession.AgentId,
+                agentId.HasValue ? agentId.Value : -1,
+                userName,
+                sportType,
+                betType,
+                isLive);
+
+            var sportList = _accountService.GetAllSportType();
+            var betTypeList = _accountService.GetBetTypeBySport(sportType);
+
+            var agentShareViewModel = new AgentShareViewModel()
+            {
+                IsMember = false,
+                Username = userName,
+                SportType = sportType,
+                BetType = betType,
+                SportList = sportList,
+                BetTypeList = betTypeList,
+                AgentShareModelList = agentShareModelList
+            };
+
+            return View("~/Views/Account/AgentShare.cshtml", agentShareViewModel);
+        }
+
+        public ActionResult MemberShare(int? memberId, string userName, short sportType, short betType, bool isLive)
+        {
+            var memberShareModelList = _accountService.GetMemberShare(
+                this.CurrentSession.AgentId,
+                memberId.HasValue ? memberId.Value : -1,
+                userName,
+                sportType,
+                betType,
+                isLive);
+
+            var sportList = _accountService.GetAllSportType();
+            var betTypeList = _accountService.GetBetTypeBySport(sportType);
+
+            var memberShareViewModel = new MemberShareViewModel()
+            {
+                IsMember = true,
+                Username = userName,
+                SportType = sportType,
+                BetType = betType,
+                SportList = sportList,
+                BetTypeList = betTypeList,
+                MemberShareModelList = memberShareModelList
+            };
+
+            return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
+        }
+
+        public ActionResult ViewShare(string username)
         {
             ViewBag.UserId = CurrentSession.UserId;
             ViewBag.AgentLevel = CurrentSession.AgentLevel;

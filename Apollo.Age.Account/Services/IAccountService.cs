@@ -31,12 +31,17 @@ namespace Apollo.Age.Account.Services
 
         List<Agent> GetDirectDownline(int agentId);
 
-        List<AgentShareModel> GetAgentShare(int actorAgentId, int agentId, string userName, byte sportType, int betType);
+        List<AgentShareModel> GetAgentShare(int actorAgentId, int agentId, string userName, short sportType, short betType, bool isLive);
 
-        List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, byte sportType, int betType);
+        List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, short sportType, short betType, bool isLive);
+
+        List<Sport> GetAllSportType();
+
+        List<BetType> GetBetTypeBySport(short sportId);
 
         IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria);
 
         IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria);
+
     }
 }
