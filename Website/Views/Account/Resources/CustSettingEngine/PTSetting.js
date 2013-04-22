@@ -14,8 +14,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
         PT_STEP: 0.01,
         PT_DECIMALS: 2,
         PT_MAX_LENGTH: 6,
-        COMMISSION_STEP: 0.001,
-        COMMISSION_DECIMALS: 3,
+        COMMISSION_STEP: 0.01,
+        COMMISSION_DECIMALS: 2,
         MIN_PT_BOX_WIDTH: 156,
         SPINNER_BOX_WIDTH: 60,
         PT_LAST_LETTER: '',
@@ -398,10 +398,22 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             var betTypesLength = betTypes.length;
                             for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                 var betType = betTypes[betTypeIndex];
-                                if (betType.minSpinBox) betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                if (betType.maxSpinBox) betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
-                                if (betType.presetSpinBox) betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
-                                if (betType.ptSpinBox) betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
+                                if (betType.maxSpinBox) {
+                                    betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
+                                    betType.maxSpinBox.input.onchange();
+                                }
+                                if (betType.minSpinBox) {
+                                    betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
+                                    betType.minSpinBox.input.onchange();
+                                }
+                                if (betType.presetSpinBox) {
+                                    betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
+                                    betType.presetSpinBox.input.onchange();
+                                }
+                                if (betType.ptSpinBox) {
+                                    betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
+                                    betType.ptSpinBox.input.onchange();
+                                }
                             }
                             //};
                         };
@@ -844,13 +856,13 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                     var betTypesLength = betTypes.length;
                                     for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                         var betType = betTypes[betTypeIndex];
-                                        if (betType.minSpinBox) {
-                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                            betType.minSpinBox.input.onchange();
-                                        }
                                         if (betType.maxSpinBox) {
                                             betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
                                             betType.maxSpinBox.input.onchange();
+                                        }
+                                        if (betType.minSpinBox) {
+                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
+                                            betType.minSpinBox.input.onchange();
                                         }
                                         if (betType.presetSpinBox) {
                                             betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
@@ -924,10 +936,22 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                     var betTypesLength = betTypes.length;
                                     for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                         var betType = betTypes[betTypeIndex];
-                                        if (betType.minSpinBox) betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                        if (betType.maxSpinBox) betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
-                                        if (betType.presetSpinBox) betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
-                                        if (betType.ptSpinBox) betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
+                                        if (betType.maxSpinBox) {
+                                            betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
+                                            betType.maxSpinBox.input.onchange();
+                                        }
+                                        if (betType.minSpinBox) {
+                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
+                                            betType.minSpinBox.input.onchange();
+                                        }
+                                        if (betType.presetSpinBox) {
+                                            betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
+                                            betType.presetSpinBox.input.onchange();
+                                        }
+                                        if (betType.ptSpinBox) {
+                                            betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
+                                            betType.ptSpinBox.input.onchange();
+                                        }
                                     }
                                 }
 

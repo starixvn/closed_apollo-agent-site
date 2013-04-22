@@ -19,9 +19,11 @@ namespace Apollo.Age.Account.Criterias
 
         public string Username { get; set; }
 
-        public byte SporType { get; set; }
+        public short SportType { get; set; }
 
-        public int BetType { get; set; }
+        public short BetType { get; set; }
+
+        public bool IsLive { get; set; }
 
         public override string GetSettingKey()
         {
