@@ -26,7 +26,8 @@ if (typeof jQuery != 'undefined') {
 					var $this = $(this);
 					var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
             + '&betType=' + $this.attr("bet-type")
-            + '&type=BettypeMatch');
+            + '&type=BettypeMatch'
+            + '&leagueName=' + leagueName);
 					location.href = url;
 				});
 

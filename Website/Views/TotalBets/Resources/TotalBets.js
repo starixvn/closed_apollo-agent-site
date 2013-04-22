@@ -10,7 +10,7 @@ var TOTALBETS = function ($) {
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type"));
 
-                ageWnd.openDialog(url, 'Forecast', {
+                ageWnd.openDialog(url, 'FORECAST', {
                     width: 665,
                     height: 320,
                     position: { my: "top+50", at: "center top", of: window },
@@ -29,7 +29,7 @@ var TOTALBETS = function ($) {
                 + '&type=' + $(this).attr("betlist-type"))
                 + '&leagueName=' + $(this).attr("league-name");
 
-                ageWnd.openDialog(url, "Bet List", {
+                ageWnd.openDialog(url, "BET LIST", {
                     width: 930,
                     height: 770,
                     position: { my: "top+50", at: "center top", of: window },
@@ -86,7 +86,7 @@ var TOTALBETS = function ($) {
                 var url = APOLLO.resolveUrl('Forecast/FC1X2?'
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type"));
-                ageWnd.openDialog(url, 'Forecast', {
+                ageWnd.openDialog(url, 'FORECAST', {
                     width: 350,
                     height: 520,
                     position: { my: "top+50", at: "center top", of: window },
