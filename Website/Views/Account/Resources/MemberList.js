@@ -40,8 +40,8 @@ var MEMBERLIST = function ( $ ) {
                                 + "&userGroup=" + $this.attr( "usergroup" )
                                 + "&agentId=" + $( "#gridId" ).attr( "agentid" ) );
             MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, 'Edit Member Setting - ' + $this.attr( "username" ), {
-                width: 1030,
-                height: 500,
+                width: 970,
+                height: 450,
                 position: { my: "top+25%", at: "center top", of: window },
                 close: function ( event, ui ) {
                 }
@@ -57,7 +57,7 @@ var MEMBERLIST = function ( $ ) {
                 var url = APOLLO.resolveUrl( "CustomerSetting/EditAllSetting?custId=" + $this.attr( "agentid" )
                 + "&agentLevel=" + $this.attr( "agentlevel" ) );
                 MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, 'Edit Agent Setting ', {
-                    width: 1015,
+                    width: 970,
                     height: 450,
                     position: { my: "top+25%", at: "center top", of: window },
                     close: function ( event, ui ) {

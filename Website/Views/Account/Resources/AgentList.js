@@ -81,8 +81,8 @@ var AGENTLIST = function ( $ ) {
         editAgentSetting: function ( $this ) {
             var url = APOLLO.resolveUrl( "CustomerSetting/EditAllSetting?custId=" + $this.attr( "agentid" )
                 + "&agentLevel=" + $this.attr( "agentlevel" ) );
-            AGENTLIST.currentPopUp = APOLLO.openDialogFrame( url, 'Edit Agent Setting ', {
-                width: 1030,
+            AGENTLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Agent Setting - ' + $this.attr('username'), {
+                width: 970,
                 height: 450,
                 position: { my: "top+25%", at: "center top", of: window },
                 close: function ( event, ui ) {
@@ -187,7 +187,7 @@ var AGENTLIST = function ( $ ) {
                          { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function ( cell ) {
-                                 return "<a href='#' class='edit-setting icon-pencil' name='Edit' agentid=" + cell.Value.AgentId + " agentlevel=" + cell.Value.AgentLevel + " ></a>";
+                                 return "<a href='#' class='edit-setting icon-pencil' name='Edit' username=" + cell.Value.Username + " agentid=" + cell.Value.AgentId + " agentlevel=" + cell.Value.AgentLevel + " ></a>";
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
