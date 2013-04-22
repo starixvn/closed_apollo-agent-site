@@ -13,19 +13,19 @@ var VIEWSHARE = function ($) {
             });
 
             $("#btnSubmit").bind('click', function () {
+                console.log(isMember.val());
                 var betTypeId = betType.val();
                 if (betTypeId.indexOf("-") > -1) {
                     var arrBetType = betTypeId.split("-");
                     var url = "";
-                    if (isMember.val() == "0") {
-                        url = APOLLO.resolveUrl('CustomerSetting/AgentShare?agentId=-1&userName='
-                            + userName.val().trim() + "&sportType=" + sportType.val() + "&betType=" + arrBetType[1]
-                            + "&isLive=" + (arrBetType[0] == "0" ? false : true));
-                    }
-                    else {
+                    if (isMember.val() == "true") {
                         url = APOLLO.resolveUrl('CustomerSetting/MemberShare?memberId=-1&userName='
                             + userName.val().trim() + "&sportType=" + sportType.val() + "&betType=" + arrBetType[1]
-                            + "&isLive=" + (arrBetType[0] == "0" ? false : true));
+                            + "&isLive=" + (arrBetType[0] != "0"));                    }
+                    else {
+                        url = APOLLO.resolveUrl('CustomerSetting/AgentShare?agentId=-1&userName='
+                            + userName.val().trim() + "&sportType=" + sportType.val() + "&betType=" + arrBetType[1]
+                            + "&isLive=" + (arrBetType[0] != "0"));
                     }
 
                     if (url.length > 0) {

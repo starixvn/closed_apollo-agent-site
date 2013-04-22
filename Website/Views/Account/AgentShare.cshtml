@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Account.ViewModels
 @using Fanex.Age.Utility
+@using Apollo.Age.Account.Core
 
 @{
     ViewBag.Title = "Agent Share";
@@ -38,8 +39,8 @@
 		<div class="cell">
 			<div class="editor">
 				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-					new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
-					new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+					new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent },
+					new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
 				}, new { id = "ddlIsMember" })
 				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername" })
 				<input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
@@ -74,15 +75,21 @@
                     <td class="em-row l">
                         @item.Username
                     </td>
+                    @if (item.AgentLevel == Constants.MAIN_SHAREHOLDER_LEVEL)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td class="r">
+                            @Formater.FormatNumber20(item.TakenShare / 100, Formater.CULT_NAME_ENG)
+                        </td>
+                    }
                     <td class="r">
-                        @Formater.DecFormat(item.TakenShare / 100, decDigits: 2)
+                        @Formater.FormatNumber20(item.MaxGiven / 100, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @*@Formater.DecFormat(item.MaxGiven,decDigits: 2)*@
-                        @RazorHelper.FormatNumber(item.MaxGiven / 100, numDecimals: 2, showZero: true)
-                    </td>
-                    <td class="r">
-                        @Formater.DecFormat(item.MinGiven / 100, decDigits: 2)
+                        @Formater.FormatNumber20(item.MinGiven / 100, Formater.CULT_NAME_ENG)
                     </td>
                 </tr>
 			}
