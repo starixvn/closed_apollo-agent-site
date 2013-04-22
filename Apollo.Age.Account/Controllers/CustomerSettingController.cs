@@ -31,7 +31,6 @@ namespace Apollo.Age.Account.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly ICustomerSettingService _customerSettingService;
-        private readonly IAccountService _accountService;
 
         #region Ctors
 
@@ -43,7 +42,6 @@ namespace Apollo.Age.Account.Controllers
         {
             _accountService = accountService ?? new AccountService();
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
-            _accountService = _accountService ?? new AccountService();
         }
 
         #endregion
