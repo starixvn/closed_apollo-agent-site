@@ -28,8 +28,9 @@ var TOTALBETS = function ($) {
                 + '&betType=' + $(this).attr("bet-type")
                 + '&type=' + $(this).attr("betlist-type"));
 
-                //location.href = url;
-                ageWnd.openDialog(url, 'Bet List', {
+                var title = $(this).attr("league-name") + " - " + $(this).attr("bet-type-name");
+
+                ageWnd.openDialog(url, title, {
                     width: 930,
                     height: 770,
                     position: { my: "top+50", at: "center top", of: window },
@@ -47,8 +48,9 @@ var TOTALBETS = function ($) {
                 + '&betType=' + $(this).attr("bet-type")
                 + '&type=' + $(this).attr("betlist-type")
                 + '&islive=' + $(this).attr("is-live"));
-                //location.href = url;
-                ageWnd.openDialog(url, 'Bet List', {
+                var title = $(this).attr("league-name") + "-" + $(this).attr("bet-type-name");
+
+                ageWnd.openDialog(url, title, {
                     width: 930,
                     height: 770,
                     position: { my: "top+50", at: "center top", of: window },

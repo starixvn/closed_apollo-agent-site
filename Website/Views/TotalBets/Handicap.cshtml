@@ -6,7 +6,7 @@
 
 @model IEnumerable<HandicapModel>
 
-@helper ShowBlock(int betType, int matchId, decimal homeOdds, decimal awayOdds)
+@helper ShowBlock(int betType, int matchId, decimal homeOdds, decimal awayOdds, string leagueName, string betTypeName)
 {
     var totalOdds = homeOdds - awayOdds;
         
@@ -14,12 +14,14 @@
     { 
         <td class="r" style="width: 90px">
             <!--HandicapTotalValue-->
-            <a class="fcnum view-bet-list" match-id="@matchId" bet-type="@betType" betlist-type="BettypeMatch" href="javascript:void(0);" title="@Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds)</a>
+            <a class="fcnum view-bet-list" match-id="@matchId" bet-type="@betType" 
+            betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds)</a>
             <!--/HandicapTotalValue-->
         </td>
         <td class="fcbtn">
             <!--HandicapTotalButton-->
-            <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" class="btnInfo view-forecast" title="@Resources.Lang.ViewForeCast"></a>
+            <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" 
+            class="btnInfo view-forecast" title="@Resources.Lang.ViewForeCast"></a>
             <!--/HandicapTotalButton-->
         </td>
     }
@@ -68,10 +70,10 @@
         <td>
             @item.HomeTeam -vs- @item.AwayTeam
         </td>
-        @ShowBlock(1, item.MatchId, item.HomeOddsHandicap, item.AwayOddsHandicap)
-        @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder)
-        @ShowBlock(7, item.MatchId, item.HomeOddsHalfTimeHandicap, item.AwayOddsHalfTimeHandicap)
-        @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder)
+        @ShowBlock(1, item.MatchId, item.HomeOddsHandicap, item.AwayOddsHandicap, item.LeagueName, Resources.Lang.lblHandicapFC)
+        @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder, item.LeagueName, Resources.Lang.lblOU)
+        @ShowBlock(7, item.MatchId, item.HomeOddsHalfTimeHandicap, item.AwayOddsHalfTimeHandicap, item.LeagueName, Resources.Lang.lbl1stHdp)
+        @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Resources.Lang.lbl1stOU)
     </tr>           
 }
 
