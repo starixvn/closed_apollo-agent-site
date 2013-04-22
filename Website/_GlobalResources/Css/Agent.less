@@ -248,7 +248,6 @@ table {
 		font-weight: bold;
 		color: @grayDark;
 		cursor: pointer;
-		width: 50px;
 	}
 
 	input[type=text], select {
@@ -257,17 +256,17 @@ table {
 		.box-shadow(1px 1px 3px #bbb inset);
 		
 		line-height: 1.2em;
-		font-size: .8em;
+		font-size: .9em;
 		cursor: default;
 		
 		padding: 3px;
 		width: 100px;
-		height: 13px;
+		height: 15px;
 	}
 
 	select {		
-		padding: 2px 3px;
-		height: 21px;
+		padding: 4px 3px 2px;
+		height: 23px;
 	}
 
 	.row {
@@ -282,16 +281,17 @@ table {
 				float: left;
 				padding-right: 5px;
 
+				label {
+					float: left;
+					margin-top: 1px;
+				}
+
 				* {
 					vertical-align: middle;
 				}
 			}
 
-			.label {
-			}
-
 			.editor {
-
 				img.ui-datepicker-trigger {
 					margin-left: 2px;
 				}
@@ -301,7 +301,7 @@ table {
 }
 
 .btn {
-	height: 21px;
+	height: 23px;
 	margin: 0;
 	padding: 2px 6px 3px;
 
