@@ -91,18 +91,11 @@
                 foreach (var item in Model)
                 {
                     rowIndex++;
-                    if (rowIndex % 2 != 0)
-                    {
-                        classRow = "alt";
-                    }
-                    else
-                    {
-                        classRow = string.Empty;
-                    }
+                   
             @ShowLeague(currentLeagueId, item)  
             
             <!--MatchContents-->
-            <tr class='r @classRow'>
+            <tr class='r'>
                 <td class="w-order">
                     @rowIndex
                 </td>
