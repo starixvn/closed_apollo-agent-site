@@ -87,46 +87,56 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="id">id of selected agent/member</param>
         /// <param name="isMember">indicates whether the customer is agent or member</param>
-        public ActionResult ViewCommission(int id, bool isMember)
+        public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
+            if (!string.IsNullOrWhiteSpace(model.Username))
+            {
+                // force search by username only
+                model.Id = -1;
+            }
+
             var customerInfo = _accountService
-                .GetCustomerInfo(isMember, id, string.Empty, CurrentSession.AgentId);
+                .GetCustomerInfo(model.IsMember, model.Id, model.Username, CurrentSession.AgentId);
 
             if (customerInfo == null)
             {
                 return HttpNotFound();
             }
 
-            IEnumerable<CustomerCommissionModel> custCommList = null;
+            model.Username = customerInfo.Username;
+            model.CommissionList = model.IsMember
+                ? _accountService.GetCommissionToMember(
+                new GetCommissionToMemberCriteria
+                {
+                    ActorAgentId = CurrentSession.AgentId,
+                    CustId = customerInfo.CustId,
+                    Username = customerInfo.Username
+                })
+                : _accountService.GetCommissionToAgent(
+                new GetCommissionToAgentCriteria
+                {
+                    ActorAgentId = CurrentSession.AgentId,
+                    AgentId = customerInfo.CustId,
+                    Username = customerInfo.Username
+                });
 
-            if (isMember)
-            {
-                custCommList = _accountService.GetCommissionToMember(
-                    new GetCommissionToMemberCriteria
-                    {
-                        ActorAgentId = CurrentSession.AgentId,
-                        CustId = id,
-                        Username = string.Empty
-                    });
-            }
-            else
-            {
-                custCommList = _accountService.GetCommissionToAgent(
-                    new GetCommissionToAgentCriteria
-                    {
-                        ActorAgentId = CurrentSession.AgentId,
-                        AgentId = id,
-                        Username = string.Empty
-                    });
-            }
+            //model.CommissionList = model.IsMember
+            //    ? _accountService.GetCommissionToMember(
+            //    new GetCommissionToMemberCriteria
+            //    {
+            //        ActorAgentId = CurrentSession.AgentId,
+            //        CustId = model.Id,
+            //        Username = model.Username
+            //    })
+            //    : _accountService.GetCommissionToAgent(
+            //    new GetCommissionToAgentCriteria
+            //    {
+            //        ActorAgentId = CurrentSession.AgentId,
+            //        AgentId = model.Id,
+            //        Username = model.Username
+            //    });
 
-            //CommissionSetting commSetting = _customerSettingService
-            //    .GetCommissionSettingForUpdating(new SettingContext { TargetCustId = id });
-            //ViewBag.Username = customerInfo.Username;
-            //ViewBag.UserId = CurrentSession.UserId;
-            //ViewBag.AgentLevel = CurrentSession.AgentLevel;
-
-            return View("~/Views/Account/ViewCommission.cshtml", custCommList);
+            return View("~/Views/Account/ViewCommission.cshtml", model);
         }
 
         public ActionResult EditCommissionSetting(int custId, string userName, int? agentLevel, string userGroup)

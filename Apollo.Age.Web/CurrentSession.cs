@@ -12,8 +12,8 @@ namespace Apollo.Age.Web
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Runtime.Serialization;
+    using System.Text;
     using Apollo.Age.Entities;
 
     /// <summary>
@@ -98,5 +98,14 @@ namespace Apollo.Age.Web
         public bool DoubleCommLosing { get; set; }
 
         public string Language { get; set; }
+
+        /// <summary>
+        /// True indicate admin user can view VN ip.
+        /// </summary>
+        public bool IsAdminCanViewVNIP
+        {
+            get;
+            set;
+        }
     }
 }

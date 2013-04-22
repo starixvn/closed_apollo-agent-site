@@ -15,12 +15,12 @@ namespace Apollo.Age.Forecast.Services
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using Apollo.Age.Forecast.Core;
     using Apollo.Age.Forecast.Criterias;
     using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Repositories;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
-    using Apollo.Age.Forecast.Core;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastService : QueryService
@@ -230,6 +230,32 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
+        /// Bet Type List Score Map
+        /// </summary>
+        /// <returns></returns>
+        public List<int> GetListScoreMapBetType()
+        {
+            var oldBetTypeIds = CachingService.Get<List<int>>(Constants.SCORE_MAP_BETTYPES_LIST);
+            if (oldBetTypeIds == null)
+            {
+                IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
+                var betTypeIds = new List<int>();
+                foreach (var betType in scoreMapBetTypeList)
+                {
+                    betTypeIds.Add(betType.TypeId);
+                    if (betType.Id1st != 0)
+                    {
+                        betTypeIds.Add(betType.Id1st);
+                    }
+                }
+                CachingService.Set<List<int>>(Constants.SCORE_MAP_BETTYPES_LIST, betTypeIds, TimeSpan.FromHours(2));
+                return betTypeIds;
+            }
+
+            return oldBetTypeIds as List<int>;
+        }
+
+        /// <summary>
         /// Score Map BetType
         /// </summary>
         /// <returns></returns>
@@ -241,7 +267,7 @@ namespace Apollo.Age.Forecast.Services
                 scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
                 CachingService.Set<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES, scoreMapBetTypeList, new TimeSpan(0, 5, 0));
             }
-            
+
             ScoreMapBetTypesModel scoreMapBetTypes = new ScoreMapBetTypesModel();
             foreach (ScoreMapBetTypeModel betType in scoreMapBetTypeList)
             {

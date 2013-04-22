@@ -31,17 +31,13 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Sunplus.Agent.Model.BL.BetList;
-    using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.BL.Reports;
-    using Sunplus.Agent.Model.Entities;
 
     public partial class BetListTransaction : WinlossReports_Page
     {
         #region Variables
 
         private DataTable dtResult = null;
-        private BetListBO betList = null;
         private DataTable outDataTable = null;
 
         private string title = string.Empty;
@@ -64,14 +60,13 @@ namespace Sunplus.Agent.UI._BetList
 
             this.BoxFilter();
             Dictionary<string, DataTable> results = View as Dictionary<string, DataTable>;
-            UserTypes userType = UserTypes.Unknown;
 
             var ticketResult = View as TicketResult;
             var tickets = ticketResult.TicketList;
             var ticketData = ticketResult.TicketDataList;
 
             int index = 0;
-            bool isAdminCanViewVNIP = false; //UserSession.Current.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = CurrentSession.IsAdminCanViewVNIP;
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             ITicketHelper ticketHelper = new TicketHelper();
 
@@ -240,7 +235,7 @@ namespace Sunplus.Agent.UI._BetList
 
             fromDate = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
-            username = this.GetStringRequest("username", UserSession.Current.AgentName);
+            username = this.GetStringRequest("username", CurrentSession.AgentName);
             userType = GetBooleanRequest("userType", true);
         }
 
