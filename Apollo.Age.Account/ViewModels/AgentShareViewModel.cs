@@ -52,7 +52,7 @@ namespace Apollo.Age.Account.ViewModels
             {
                 var selectItemList = BetTypeList.Select(bettype => new SelectListItem
                 {
-                    Value = bettype.IsLive ? ("1" + bettype.Id.ToString()) : ("0" + bettype.Id.ToString()),
+                    Value = bettype.IsLive ? ("1-" + bettype.Id.ToString()) : ("0-" + bettype.Id.ToString()),
                     Text = bettype.IsLive ? (Resources.Lang.lblLiveBall + " " + CacheRef.GetBettype(bettype.Id))
                         : (bettype.IsDead ? (Resources.Lang.lblDeadball + " " + CacheRef.GetBettype(bettype.Id))
                         : CacheRef.GetBettype(bettype.Id))
