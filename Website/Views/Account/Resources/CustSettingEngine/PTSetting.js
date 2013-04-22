@@ -398,13 +398,13 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             var betTypesLength = betTypes.length;
                             for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                 var betType = betTypes[betTypeIndex];
-                                if (betType.minSpinBox) {
-                                    betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                    betType.minSpinBox.input.onchange();
-                                }
                                 if (betType.maxSpinBox) {
                                     betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
                                     betType.maxSpinBox.input.onchange();
+                                }
+                                if (betType.minSpinBox) {
+                                    betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
+                                    betType.minSpinBox.input.onchange();
                                 }
                                 if (betType.presetSpinBox) {
                                     betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
@@ -856,13 +856,13 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                     var betTypesLength = betTypes.length;
                                     for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                         var betType = betTypes[betTypeIndex];
-                                        if (betType.minSpinBox) {
-                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                            betType.minSpinBox.input.onchange();
-                                        }
                                         if (betType.maxSpinBox) {
                                             betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
                                             betType.maxSpinBox.input.onchange();
+                                        }
+                                        if (betType.minSpinBox) {
+                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
+                                            betType.minSpinBox.input.onchange();
                                         }
                                         if (betType.presetSpinBox) {
                                             betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
@@ -936,10 +936,22 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                     var betTypesLength = betTypes.length;
                                     for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                         var betType = betTypes[betTypeIndex];
-                                        if (betType.minSpinBox) betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                        if (betType.maxSpinBox) betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
-                                        if (betType.presetSpinBox) betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
-                                        if (betType.ptSpinBox) betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
+                                        if (betType.maxSpinBox) {
+                                            betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
+                                            betType.maxSpinBox.input.onchange();
+                                        }
+                                        if (betType.minSpinBox) {
+                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
+                                            betType.minSpinBox.input.onchange();
+                                        }
+                                        if (betType.presetSpinBox) {
+                                            betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
+                                            betType.presetSpinBox.input.onchange();
+                                        }
+                                        if (betType.ptSpinBox) {
+                                            betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
+                                            betType.ptSpinBox.input.onchange();
+                                        }
                                     }
                                 }
 
