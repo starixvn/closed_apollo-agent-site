@@ -41,7 +41,7 @@ var MEMBERLIST = function ( $ ) {
                                 + "&agentId=" + $( "#gridId" ).attr( "agentid" ) );
             MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, 'Edit Member Setting - ' + $this.attr( "username" ), {
                 width: 970,
-                height: 500,
+                height: 450,
                 position: { my: "top+25%", at: "center top", of: window },
                 close: function ( event, ui ) {
                 }

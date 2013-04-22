@@ -62,23 +62,6 @@ namespace Sunplus.Agent.UI._BetList
 
             #region Customize
 
-            if (type.Equals("MixParlay"))
-            {
-                title = string.Join(null, new string[]{Resources.Lang.lblMixParlay,
-                                                         "&nbsp;|&nbsp; ",
-                                                         "<a href=\"BetList.aspx?type=CombMixParlayBetList\">",
-                                                         Resources.Lang.lblSystemParlay,
-                                                         "</a>"});
-            }
-            else if (type.Equals("CombMixParlayBetList"))
-            {
-                title = string.Join(null, new string[]{ "<a href=\"BetList.aspx?type=MixParlay\">",
-                                                         Resources.Lang.lblMixParlay,
-                                                         "</a>",
-                                                         "&nbsp;|&nbsp; ",
-                                                         Resources.Lang.lblSystemParlay});
-            }
-
             short excelColumns = 11;
             Header1_Template betlistHeader = new Header1_Template();
 
@@ -214,10 +197,10 @@ namespace Sunplus.Agent.UI._BetList
                 bettype = Convert.ToString((int)BetTypes.Mix_Parlay);
                 title = CacheRef.GetBettype(bettype).ToUpper();
             }
-            else if (type.ToLower().Equals("combinationmixparlay"))
+            else if (type.ToLower().Equals("combmixparlaybetlist"))
             {
                 bettype = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
-                title = CacheRef.GetBettype(bettype).ToUpper();
+                title = Resources.Lang.lblSystemParlay.ToUpper();
             }
             else
             {

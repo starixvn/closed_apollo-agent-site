@@ -19,6 +19,8 @@ namespace Apollo.Age.BetList.Repositories.Interface
     {
         IList<ITicket> GetDetailAgentComm(BetListCriteria criteria);
 
+        IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria);
+
         TicketResult GetBetListData(BetListCriteria criteria, string uspKey);
 
         TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria);
