@@ -12,12 +12,13 @@ if (typeof jQuery != 'undefined') {
                     FC1X2.loadMatch();
                 }
                 else {
+                    FC1X2.cuurentLeagueName = $('#ddlLeague option:selected').text();
                     FC1X2.currentLeague = $('#ddlLeague').val();
                     if (FC1X2.currentLeague) {
                         $('#ddlLeague').on("change", function () {
                             var $this = $(this);
                             FC1X2.currentLeague = $this.val();
-                            FC1X2.cuurentLeagueName = $this.text();
+                            FC1X2.cuurentLeagueName = $('#ddlLeague option:selected').text();
                             if (FC1X2.currentLeague) {
                                 FC1X2.changeLeague();
                             }
@@ -41,8 +42,8 @@ if (typeof jQuery != 'undefined') {
                 //location.href = url;
                 ageWnd.openDialog(url, 'BET LIST', {
                     width: 930,
-                    height: 770,
-                    position: { my: "top+50", at: "center top", of: window },
+                    height: 700,
+                    position: { my: "top+30", at: "center top", of: window },
                     close: function (event, ui) {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
@@ -51,7 +52,8 @@ if (typeof jQuery != 'undefined') {
             else {
                 var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + FC1X2.matchId
                 + '&betType=' + FC1X2.betType
-                + '&type=BettypeMatch');
+                + '&type=BettypeMatch'
+                + '&leagueName=' + FC1X2.cuurentLeagueName);
                 location.href = url;
             }
         });
