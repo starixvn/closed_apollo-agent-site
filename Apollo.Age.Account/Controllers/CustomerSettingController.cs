@@ -234,12 +234,12 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
         }
 
-        public ActionResult ViewShare(string username)
+        public JsonResult GetBetType(short sportId)
         {
-            ViewBag.UserId = CurrentSession.UserId;
-            ViewBag.AgentLevel = CurrentSession.AgentLevel;
+            var view = new AgentShareViewModel();
+            view.BetTypeList = _accountService.GetBetTypeBySport(sportId);
 
-            return View("~/Views/Account/ViewShare.cshtml");
+            return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult EditPositionTaking(int custId, string userName, int? agentLevel)
