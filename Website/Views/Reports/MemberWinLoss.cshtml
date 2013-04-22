@@ -3,32 +3,46 @@
 @{
     ViewBag.Title = Resources.Lang.memberwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    int i = 1;
+    string rowClass = string.Empty;
 }
 
 @model MemberWinLossViewModel
+
+<div id="box_header">
+    <div class="row">
+        @{
+            var maxDate = DateTime.Now;
+            var minDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3);
+        }
+        <div class="cell">
+            <div class="label">
+                @Html.LabelFor(m => m.FromDate, @Resources.Lang.from)         
+            </div>
+            <div class="editor">
+               @Html.DatePickerFor(m => m.FromDate, minDate, maxDate)
+            </div>
+        </div>
+        <div class="cell">
+            <div class="label">
+               @Html.LabelFor(m => m.ToDate, @Resources.Lang.to)   
+            </div>
+            <div class="editor">
+                @Html.DatePickerFor(m => m.ToDate, minDate, maxDate)
+            </div>
+        </div>
+        <div class="cell">
+            <div class="editor">
+                <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
+            </div>
+        </div>
+    </div>
+</div>
 
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath)
 }
-
-<div id="box_header">
-    <div class="filter-submit">
-        @{
-            var maxDate = DateTime.Now;
-            var minDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3);
-        }
-         <div class="inline-control">
-            @Html.LabelFor(m => m.FromDate, @Resources.Lang.from)
-            @Html.DatePickerFor(m => m.FromDate, minDate, maxDate)
-         </div> 
-         <div class="inline-control">
-            @Html.LabelFor(m => m.ToDate, @Resources.Lang.to)
-            @Html.DatePickerFor(m => m.ToDate, minDate, maxDate)
-         </div>       
-         <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.Generate" />
-    </div>
-</div>
 
 <table class="tblRpt">
     <thead>
@@ -90,7 +104,7 @@
         decimal totalAWinLoss = 0;
         decimal totalAComm = 0;
         decimal totalATotal = 0;
-        decimal totalUpline = 0;
+        decimal totalUpline = 0;        
             
         <tbody>
         @foreach (var item in list)
@@ -104,8 +118,9 @@
             totalAComm += item.AComm;
             totalATotal += item.ATotal;
             totalUpline += item.UplineTotal;
+            rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
                 
-            <tr>
+            <tr @Html.Raw(rowClass)>
                 <td>
                     <a href="~/_BetList/BetListOnMember.aspx?custId=@item.MemberId&username=@item.MemberName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
                         @item.MemberName

@@ -28,18 +28,23 @@ namespace Apollo.Age.BetList.Criterias
 
         public long TransId { get; set; }
 
+        public int MatchId { get; set; }
+
+        public bool IsWinLoss { get; set; }
+
         public bool IsExportExcel { get; set; }
 
         public string StatusIds { get; set; }
 
+        public string Bettypes { get; set; }
+
+        public string BetTeam { get; set; }
+
+        public int? LiveIndicator { get; set; }
+
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
-
-        public override string GetSettingKey()
-        {
-            return "Age_BetList_AgentDetail";
-        }
 
         public override bool IsValid()
         {

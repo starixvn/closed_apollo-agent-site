@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Quinn.Vo" date="2013.4.8">Created</change>
+//   <change who="Lewis.Le" date="2013.4.18">Added GetCommissionToMember, GetCommissionToAgent</change>
 // </history>
 
 namespace Apollo.Age.Account.Services
@@ -178,6 +179,19 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberShare(criteria).ToList();
         }
 
+        public IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            return _accountRepository.GetCommissionToMember(criteria);
+        }
+
+        public IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            return _accountRepository.GetCommissionToAgent(criteria);
+        }
         public List<Sport> GetAllSportType()
         {
             var sportList = new List<Sport>();

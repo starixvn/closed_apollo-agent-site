@@ -37,15 +37,15 @@
         <siteMapNode title="reports">
             <siteMapNode title="agentwinloss" url="Reports/MatchEntered"></siteMapNode>
             <siteMapNode title="lblAgentOutstanding" url="Reports/Outstanding"></siteMapNode>
-            <siteMapNode title="lblCancelledBets" url="_BetList/BetListTransaction.aspx?type=cancel"></siteMapNode>
+            <siteMapNode title="TicketCancelled" url="_BetList/BetListTransaction.aspx?type=cancel"></siteMapNode>
             <siteMapNode title="transaction" url="_BetList/BetListTransaction.aspx?type=transaction"></siteMapNode>
             <!--<siteMapNode title="lblMatchWinLostDetail" url="_Reports/MatchWinloss/MatchWinLossDetail.aspx"></siteMapNode>
-      <siteMapNode title="lblWinLossByBettype" url="_Reports/Winloss/WinLossByBettypeMaster.aspx"></siteMapNode>
-      <siteMapNode description="Consolidated" title="consolidatedreport" url="_Reports/Consolidated/Daily_Consolidated.aspx"></siteMapNode>
-      <siteMapNode title="lblCommissionByBettype" url="_Reports/Commission/CommissionByBettype.aspx"></siteMapNode>
-      <siteMapNode title="lblCancelledBets" url="_Reports/BetList/CancelBetList.aspx"></siteMapNode>-->
+              <siteMapNode title="lblWinLossByBettype" url="_Reports/Winloss/WinLossByBettypeMaster.aspx"></siteMapNode>
+              <siteMapNode description="Consolidated" title="consolidatedreport" url="_Reports/Consolidated/Daily_Consolidated.aspx"></siteMapNode>
+              <siteMapNode title="lblCommissionByBettype" url="_Reports/Commission/CommissionByBettype.aspx"></siteMapNode>
+              <siteMapNode title="lblCancelledBets" url="_Reports/BetList/CancelBetList.aspx"></siteMapNode>-->
             <siteMapNode title="result" url="_Reports/Result/Result.aspx"></siteMapNode>
-            <!--<siteMapNode title="result" url="Results"></siteMapNode>-->
+            <siteMapNode title="result" url="Results"></siteMapNode>
         </siteMapNode>
         <!--/Report-->
 

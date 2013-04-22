@@ -1,9 +1,13 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<!--[if IE 7 ]> <html class="ie7 ie" lang="en"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie8 ie" lang="en"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie9 ie" lang="en"> <![endif]-->
+<!--[if (gt IE 9)]><!--> <html class="ie10 ie" lang="en"> <!--<![endif]-->
+<!--[if !(IE)]> <html lang="en"><![endif]-->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title - Total Bets</title>
+    <title>@ViewBag.Title</title>
     <link href="~/Views/Account/Resources/CustSettingEngine/Core.less?ver=1" rel="stylesheet"
         type="text/css" />
     <link href="~/Views/Account/Resources/CustSettingEngine/CoreOverride.less" rel="stylesheet"
@@ -24,7 +28,7 @@
                 @RenderBody()
             </div>
             <div class="btnLeft">
-                <button id="btnSubmitFooter" class="btn">
+                <button id="btnSubmitFooter" class="btn" style="display:none;">
                     @Resources.Lang.update</button>
             </div>
         </div>

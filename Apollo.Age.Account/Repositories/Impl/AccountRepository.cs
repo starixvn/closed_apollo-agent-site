@@ -11,6 +11,7 @@ namespace Apollo.Age.Account.Repositories.Impl
 {
     using System;
     using System.Collections.Generic;
+    using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Repositories.Interface;
     using Apollo.Age.Criterias.Accounts;
@@ -108,7 +109,7 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
-        public IEnumerable<AgentListModel> GetAgentList(ref Criterias.AgentListCriteria criteria)
+        public IEnumerable<AgentListModel> GetAgentList(ref AgentListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -137,7 +138,7 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
-        public IEnumerable<MemberListModel> GetMemberList(ref Criterias.CustomerListCriteria criteria)
+        public IEnumerable<MemberListModel> GetMemberList(ref CustomerListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -204,6 +205,50 @@ namespace Apollo.Age.Account.Repositories.Impl
                 }
 
                 return new List<MemberShareModel>();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        return db.Query<CustomerCommissionModel>(criteria.GetSpParams());
+                    }
+                }
+
+                return new List<CustomerCommissionModel>();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        return db.Query<CustomerCommissionModel>(criteria.GetSpParams());
+                    }
+                }
+
+                return new List<CustomerCommissionModel>();
             }
             catch
             {

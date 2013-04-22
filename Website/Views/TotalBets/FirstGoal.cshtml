@@ -20,14 +20,8 @@
 }
 
 @helper ShowMatch(int index, FirstGoalModel item)
-{
-    var classRow = string.Empty;
-    if (index % 2 == 0)
-    {
-        classRow = "class=alt";
-    }
-
-    <tr @classRow>
+{    
+    <tr>
         <td class="c" rowspan="2">
             @index
         </td>
@@ -96,7 +90,7 @@
         {
             int rowIndex = 0;
             int currentLeagueId = 0;
-
+            string rowClass = string.Empty;
             foreach (var item in Model)
             {
                 rowIndex++;

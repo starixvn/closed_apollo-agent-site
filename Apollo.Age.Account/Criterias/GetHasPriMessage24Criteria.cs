@@ -21,8 +21,11 @@ namespace Apollo.Age.Account.Criterias
             return "Dot_Msg_HasPriMessage24";
         }
 
+        [SpParam(SqlParamName = "TargetId")]
         public int UserId { get; set; }
-      
+
+        public bool IsAgent { get; set; }
+
         public bool IsTest { get; set; }
 
         public override bool IsValid()

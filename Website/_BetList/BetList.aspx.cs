@@ -17,27 +17,23 @@ namespace Sunplus.Agent.UI._BetList
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Data;
-    using System.IO;
     using System.Text;
-    using System.Web;
     using System.Web.UI;
+    using Apollo.Age.BetList.Criterias;
+    using Apollo.Age.BetList.Models;
+    using Apollo.Age.BetList.Services;
+    using Apollo.Age.Enumerations;
+    using Apollo.Age.Web;
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Reports;
-    using Fanex.BetList.Age.BetListCmd;
-    using Fanex.BetList.Age.BetListExcelBuilderExt;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
-    using Fanex.BetList.Age.DTO;
     using Fanex.BetList.Age.ExtTemplate;
-    using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using NPOI.SS.UserModel;
     using Sunplus.Agent.Model.BL.Forecast;
     using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Utilities;
 
     public partial class BetList_Page : WinlossReports_Page
     {
@@ -45,10 +41,10 @@ namespace Sunplus.Agent.UI._BetList
 
         private string type = string.Empty;
         private string title = string.Empty;
-        private int custId;
-        private int bettype;
-        private DateTime dateFrom, dateTo;
-        private IBetListCmd command = null;
+        private int custId, matchId, live;
+        private string bettype, betTeam;
+        private DateTime dateFrom = DateTime.Now;
+        private DateTime dateTo = DateTime.Now;
 
         #endregion Variables
 
@@ -56,61 +52,21 @@ namespace Sunplus.Agent.UI._BetList
         {
             #region INIT
 
-            BetListType betlistType = this.SetBetListType();
-
-            bool isShowWinLost = true,
+            bool isShowWinLost = false,
                  isShowAgentPT = true,
                  isShowMember = true;
 
-            if ((betlistType & BetListType.Canceled) == BetListType.Canceled)
-            {
-                isShowWinLost = isShowAgentPT = false;
-            }
-            else
-            {
-                if ((betlistType & BetListType.Winlost) != BetListType.Winlost)
-                {
-                    isShowWinLost = false;
-                }
-
-                if ((betlistType & BetListType.Member) != BetListType.Member)
-                {
-                    isShowMember = false;
-                }
-
-                if ((betlistType & BetListType.DailyStatement) == BetListType.DailyStatement)
-                {
-                    isShowAgentPT = false;
-                }
-            }
-
-            DataTable betListData = View as DataTable;
-            IList<ITicket> tickets = new List<ITicket>();
-
-            if (betListData != null)
-            {
-                tickets = TicketTransformer.Transform(betListData);
-                betListData.Dispose();
-            }
-
-            DataTable commandData = command.OutDataTable();
-            List<ITicketData> ticketData = new List<ITicketData>();
-
-            if (commandData != null)
-            {
-                ticketData = TicketDataTransformer.Transform(commandData);
-                commandData.Dispose();
-            }
+            var ticketResult = View as TicketResult;
+            var tickets = ticketResult.TicketList;
+            var ticketData = ticketResult.TicketDataList;
 
             #endregion INIT
 
             #region Customize
 
-            string reportTitle = string.Empty;
-
             if (type.Equals("MixParlay"))
             {
-                reportTitle = string.Join(null, new string[]{Resources.Lang.lblMixParlay,
+                title = string.Join(null, new string[]{Resources.Lang.lblMixParlay,
                                                          "&nbsp;|&nbsp; ",
                                                          "<a href=\"BetList.aspx?type=CombMixParlayBetList\">",
                                                          Resources.Lang.lblSystemParlay,
@@ -118,15 +74,11 @@ namespace Sunplus.Agent.UI._BetList
             }
             else if (type.Equals("CombMixParlayBetList"))
             {
-                reportTitle = string.Join(null, new string[]{ "<a href=\"BetList.aspx?type=MixParlay\">",
+                title = string.Join(null, new string[]{ "<a href=\"BetList.aspx?type=MixParlay\">",
                                                          Resources.Lang.lblMixParlay,
                                                          "</a>",
                                                          "&nbsp;|&nbsp; ",
                                                          Resources.Lang.lblSystemParlay});
-            }
-            else
-            {
-                reportTitle = string.IsNullOrEmpty(command.Title) ? Resources.Lang.BetList : command.Title;
             }
 
             short excelColumns = 11;
@@ -153,11 +105,11 @@ namespace Sunplus.Agent.UI._BetList
             #endregion Customize
 
             int index = 0;
-            bool isAdminCanViewVNIP = UserSession.Current.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = false; //UserSession.Current.IsAdminCanViewVNIP;
 
             #region RENDER HTML
 
-            var tpl = new BetListTemplate { title = reportTitle };
+            var tpl = new BetListTemplate { title = title };
             var content = new StringBuilder();
 
             content.Append(betlistHeader);
@@ -166,7 +118,7 @@ namespace Sunplus.Agent.UI._BetList
             var forecastBO = new ForecastBO(UserSession.Current.NetSessionId);
             List<int> lstScoremap = forecastBO.GetListBetTypeScoreMap();
             bool isShowScoremap;
-        
+
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             var ticketHelper = new TicketHelper();
             var factory = new BetListHTMLFactory();
@@ -175,7 +127,7 @@ namespace Sunplus.Agent.UI._BetList
             foreach (ITicket ticket in tickets)
             {
                 isShowScoremap = lstScoremap.Contains(ticket.BetTypeId)
-                    && ticket.Status.Equals(BetStatus.Running);
+                    && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
 
                 ticketHelper.Index = ++index;
 
@@ -204,7 +156,7 @@ namespace Sunplus.Agent.UI._BetList
                 builder.Append("</tr>");
             }
 
-            builder.AddFooter(tickets, string.Empty, string.Empty, (BetListType)betlistType);
+            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
 
             content.Append(builder.GetBetList());
             content.Append("</tbody>");
@@ -224,34 +176,28 @@ namespace Sunplus.Agent.UI._BetList
 
         public override object InvokeData(Hashtable hash)
         {
-            DataTable dtResult = null;
-
-            command = BetListFactory.CreateBetList(type, CurrentUserSession.NetSessionId, _permission);
-            if (command != null)
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
             {
-                // MixParlay list
-                if (type.Equals("MixParlay"))
-                {
-                    hash.Add("bettype", 9);
-                }
-                // Combination MP list
-                else if (type.Equals("CombMixParlayBetList"))
-                {
-                    hash.Add("bettype", 29);
-                }
-                else
-                {
-                    hash.Add("custid", custId);
-                    hash.Add("fdate", dateFrom);
-                    hash.Add("tdate", dateTo);
-                    hash.Add("bettype", bettype);
-                }
+                LoggedId = CurrentSession.AgentId,
+                Bettypes = bettype,
+                MatchId = matchId,
+                LiveIndicator = live,
+                BetTeam = betTeam
+            };
 
-                command.SetParams(hash);
-                dtResult = command.Execute() as DataTable;
+            TicketResult mainTickets;
+
+            if (matchId > 0)
+            {
+                mainTickets = betListService.GetRunningByBettypeAndMatch(criteria);
+            }
+            else
+            {
+                mainTickets = betListService.GetRunningByBettype(criteria);
             }
 
-            return dtResult;
+            return mainTickets;
         }
 
         public override void ProcessRequest(ref Hashtable hash)
@@ -259,32 +205,25 @@ namespace Sunplus.Agent.UI._BetList
             base.ProcessRequest(ref hash);
 
             type = Request["type"];
+            bettype = GetStringRequest("bettype", string.Empty);
+            betTeam = GetStringRequest("betteam", string.Empty);
+            matchId = GetIntRequest("matchid", 0);
+            live = GetIntRequest("islive", 0);
 
-            if (!type.Equals("MixParlay") && !type.Equals("CombinationMixParlay"))
+            if (type.ToLower().Equals("correctscore"))
             {
-                if (Request["fdate"] == null || Request["tdate"] == null)
-                {
-                    hash.Add("DateIsNull", true);
-                }
-
-                int.TryParse(Request["custid"] + string.Empty, out custId);
-                int.TryParse(Request["bettype"] + string.Empty, out bettype);
-                dateFrom = Cast.AsDateTime(Request["fdate"]);
-                dateTo = Cast.AsDateTime(Request["tdate"]);
-
-                hash.Add("language", Request["lang"] + string.Empty);
-                hash.Add("username", Request["username"] + string.Empty);
-                hash.Add("race", Request["race"] + string.Empty);
-                hash.Add("matchid", Request["matchid"] != null ? int.Parse(Request["matchid"]) : 0);
-                hash.Add("leagueid", Request["leagueid"] != null ? int.Parse(Request["leagueid"]) : 0);
-                hash.Add("islive", Request["islive"] != null ? int.Parse(Request["islive"]) : 0);
-                hash.Add("transtype", Request["transtype"] != null ? int.Parse(Request["transtype"]) : 0);
-                hash.Add("betteam", Request["betteam"] + string.Empty);
+                title = CacheRef.GetBettype((int)BetTypes.Correct_Score).ToUpper();
+                bettype = string.Format("{0}^{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
             }
-            else
+            else if (type.ToLower().Equals("mixparlay"))
             {
-                dateFrom = DateTime.Now;
-                dateTo = DateTime.Now;
+                bettype = Convert.ToString((int)BetTypes.Mix_Parlay);
+                title = CacheRef.GetBettype(bettype).ToUpper();
+            }
+            else if (type.ToLower().Equals("combinationmixparlay"))
+            {
+                bettype = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
+                title = CacheRef.GetBettype(bettype).ToUpper();
             }
         }
 
@@ -317,16 +256,21 @@ namespace Sunplus.Agent.UI._BetList
             return null;
         }
 
-        private BetListType SetBetListType()
+        protected ICurrentSession CurrentSession
         {
-            BetListType betListType = command.BetListType;
-
-            if (Request["racing"] != null && Request["racing"].ToString().Equals("1"))
+            get
             {
-                betListType |= BetListType.Winlost;
-            }
+                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
 
-            return betListType;
+                return currentSession;
+            }
+            set
+            {
+                if (value is ICurrentSession)
+                {
+                    Session["Apollo.Age.Web.CurrentSession"] = value;
+                }
+            }
         }
     }
 }

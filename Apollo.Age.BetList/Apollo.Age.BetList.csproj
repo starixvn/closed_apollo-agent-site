@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Common">
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data">
       <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
     </Reference>
@@ -54,7 +57,6 @@
     <Compile Include="Repositories\Impl\BetListRepository.cs" />
     <Compile Include="Repositories\Interface\IBetListRepository.cs" />
     <Compile Include="Services\BetListService.cs" />
-    <Compile Include="Repositories\Impl\CollectionHelper.cs" />
     <Compile Include="Services\IBetListService.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />
   </ItemGroup>
@@ -67,10 +69,6 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
-      <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
-      <Name>Fanex.BetList.Age</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
       <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>

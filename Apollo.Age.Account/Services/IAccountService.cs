@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Quinn.Vo" date="2013.4.8">Created</change>
+//   <change who="Lewis.Le" date="2013.4.18">Added GetCommissionToMember, GetCommissionToAgent</change>
 // </history>
 
 namespace Apollo.Age.Account.Services
@@ -32,10 +33,18 @@ namespace Apollo.Age.Account.Services
 
         List<AgentShareModel> GetAgentShare(int actorAgentId, int agentId, string userName, short sportType, short betType, bool isLive);
 
+<<<<<<< HEAD
         List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, short sportType, short betType, bool isLive);
 
         List<Sport> GetAllSportType();
 
         List<BetType> GetBetTypeBySport(short sportId);
+=======
+        List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, byte sportType, int betType);
+
+        IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria);
+
+        IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria);
+>>>>>>> 4f838be64eacfb0816d5467b14aff56e1f23ae5a
     }
 }

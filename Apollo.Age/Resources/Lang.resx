@@ -1210,7 +1210,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>1 X 2</value>
   </data>
   <data name="lbl1x2Comm" xml:space="preserve">
-    <value>1x2 Comm</value>
+    <value>1x2 (%) </value>
   </data>
   <data name="lbl1x2_1st" xml:space="preserve">
     <value>1st 1 X 2</value>
@@ -1684,16 +1684,16 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Game Type Name</value>
   </data>
   <data name="lblGroupa" xml:space="preserve">
-    <value>Group A</value>
+    <value>Group A (%) </value>
   </data>
   <data name="lblGroupb" xml:space="preserve">
-    <value>Group B</value>
+    <value>Group B (%) </value>
   </data>
   <data name="lblGroupc" xml:space="preserve">
-    <value>Group C</value>
+    <value>Group C (%) </value>
   </data>
   <data name="lblGroupd" xml:space="preserve">
-    <value>Group D</value>
+    <value>Group D (%) </value>
   </data>
   <data name="lblGroupSetting" xml:space="preserve">
     <value>Group Setting</value>
@@ -1940,7 +1940,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Or</value>
   </data>
   <data name="lblOtherComm" xml:space="preserve">
-    <value>Others Comm</value>
+    <value>Others (%) </value>
   </data>
   <data name="lblOtherTypes" xml:space="preserve">
     <value>Other Bettypes</value>

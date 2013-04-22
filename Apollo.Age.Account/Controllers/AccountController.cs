@@ -92,13 +92,13 @@ namespace Apollo.Age.Account.Controllers
             return View(memberList.ToPagedList(currentPageIndex, PAGESIZE, totalPage * PAGESIZE));
         }
 
-        public ActionResult AccountInfo(string userName, short? isMember, int? custId)
+        public ActionResult AccountInfo(string username, short? isMember, int? custId)
         {
             bool ismember = false;
             int custid = -1;
-            if (string.IsNullOrWhiteSpace(userName) && !custId.HasValue)
+            if (string.IsNullOrWhiteSpace(username) && !custId.HasValue)
             {
-                userName = HttpContext.Session["userName"] != null
+                username = HttpContext.Session["userName"] != null
                     ? HttpContext.Session["userName"].ToString() : string.Empty;
                 isMember = HttpContext.Session["isMember"] != null
                     ? Converter.To<short>(HttpContext.Session["isMember"])
@@ -107,15 +107,15 @@ namespace Apollo.Age.Account.Controllers
 
             CustomerInfoModel customerInfo = null;
 
-            if (!string.IsNullOrWhiteSpace(userName) || custId.HasValue)
+            if (!string.IsNullOrWhiteSpace(username) || custId.HasValue)
             {
-                HttpContext.Session["userName"] = userName;
+                HttpContext.Session["userName"] = username;
                 HttpContext.Session["isMember"] = isMember;
 
                 ismember = isMember == 1;
                 custid = custId.HasValue ? custId.Value : -1;
 
-                customerInfo = _accountService.GetCustomerInfo(ismember, custid, userName,
+                customerInfo = _accountService.GetCustomerInfo(ismember, custid, username,
                     this.CurrentSession.AgentId);
 
                 if (customerInfo == null)
@@ -125,7 +125,7 @@ namespace Apollo.Age.Account.Controllers
                         CurrentAgentId = this.CurrentSession.AgentId,
                         CustId = -1,
                         IsMember = ismember,
-                        Username = userName,
+                        Username = username,
                     };
                 }
                 else
