@@ -6,7 +6,7 @@ var AGENTLIST = function ( $ ) {
         IsSuper: false,
         init: function () {
             AGENTLIST.AgentId = $( "#gridId" ).attr( "agentid" );
-            AGENTLIST.loadNavigation();
+            AGENTLIST.bindingNavigation();
             AGENTLIST.loadAgentList();
         },
         loadNavigation: function () {
