@@ -31,7 +31,7 @@
 				<label for="ddlBetType">@Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)</label>
 			</div>
             <div class="editor">
-				@Html.DropDownListFor(m => m.BetType, Model.BetTypeSelectListItem,
+				@Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
 					new { id = "ddlBetType", style = "width: 160px" })
             </div>
 		</div>
@@ -42,7 +42,7 @@
 					new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent },
 					new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
 				}, new { id = "ddlIsMember" })
-				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername" })
+				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50" })
 				<input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
             </div>
         </div>
