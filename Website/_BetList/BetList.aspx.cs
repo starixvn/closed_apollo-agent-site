@@ -221,7 +221,15 @@ namespace Sunplus.Agent.UI._BetList
             }
             else
             {
-                title = CacheRef.GetBettype(bettype).ToUpper();
+                if (Request["leagueName"] != null)
+                {
+                    title =
+                    title = string.Format("{0} - {1}", Request["leagueName"].ToUpper(), CacheRef.GetBettype(bettype).ToUpper());
+                }
+                else
+                {
+                    title = CacheRef.GetBettype(bettype).ToUpper();
+                }
             }
         }
 
