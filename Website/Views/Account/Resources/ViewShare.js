@@ -13,7 +13,6 @@ var VIEWSHARE = function ($) {
             });
 
             $("#btnSubmit").bind('click', function () {
-                console.log(isMember.val());
                 var betTypeId = betType.val();
                 if (betTypeId.indexOf("-") > -1) {
                     var arrBetType = betTypeId.split("-");

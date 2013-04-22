@@ -8,6 +8,7 @@ if (typeof jQuery != 'undefined') {
             cuurentLeagueName: initLeagueName,
             link: APOLLO.resolveUrl('Forecast/FC1X2Matches'),
             init: function () {
+                parent.$(".ui-dialog .ui-dialog-title").text("FORECAST");
                 if (FC1X2.matchId > 0) {
                     FC1X2.loadMatch();
                 }
@@ -54,6 +55,7 @@ if (typeof jQuery != 'undefined') {
                 + '&betType=' + FC1X2.betType
                 + '&type=BettypeMatch'
                 + '&leagueName=' + FC1X2.cuurentLeagueName);
+                parent.$(".ui-dialog .ui-dialog-title").text("BET LIST");
                 location.href = url;
             }
         });
