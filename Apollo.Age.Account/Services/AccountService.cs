@@ -252,7 +252,7 @@ namespace Apollo.Age.Account.Services
                 betTypeList = sport.BetTypeList;
             }
 
-            return betTypeList;
+            return betTypeList.OrderByDescending(t=>t.IsLive).ToList();
         }
     }
 }
