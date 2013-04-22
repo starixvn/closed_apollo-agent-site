@@ -15,15 +15,18 @@ namespace Apollo.Age.Account.Controllers
     using System.Text;
     using System.Threading;
     using System.Web.Mvc;
+    using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
     using Fanex.CustSetting.Models;
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using Apollo.Age.Account.ViewModels;
 
     public class CustomerSettingController : BaseController
     {
         private readonly ICustomerSettingService _customerSettingService;
+        private readonly IAccountService _accountService;
 
         #region Ctors
 
@@ -35,6 +38,7 @@ namespace Apollo.Age.Account.Controllers
         public CustomerSettingController(ICustomerSettingService customerSettingService)
         {
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
+            _accountService = _accountService ?? new AccountService();
         }
 
         #endregion
@@ -118,6 +122,60 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) agent/member
         /// </summary>
         /// <param name="username">selected agent/member username</param>
+        public ActionResult AgentShare(int? agentId, string userName, short sportType, short betType, bool isLive)
+        {
+            var agentShareModelList = _accountService.GetAgentShare(
+                this.CurrentSession.AgentId,
+                agentId.HasValue ? agentId.Value : -1,
+                userName,
+                sportType,
+                betType,
+                isLive);
+
+            var sportList = _accountService.GetAllSportType();
+            var betTypeList = _accountService.GetBetTypeBySport(sportType);
+
+            var agentShareViewModel = new AgentShareViewModel()
+            {
+                IsMember = false,
+                Username = userName,
+                SportType = sportType,
+                BetType = betType,
+                SportList = sportList,
+                BetTypeList = betTypeList,
+                AgentShareModelList = agentShareModelList
+            };
+
+            return View("~/Views/Account/AgentShare.cshtml", agentShareViewModel);
+        }
+
+        public ActionResult MemberShare(int? memberId, string userName, short sportType, short betType, bool isLive)
+        {
+            var memberShareModelList = _accountService.GetMemberShare(
+                this.CurrentSession.AgentId,
+                memberId.HasValue ? memberId.Value : -1,
+                userName,
+                sportType,
+                betType,
+                isLive);
+
+            var sportList = _accountService.GetAllSportType();
+            var betTypeList = _accountService.GetBetTypeBySport(sportType);
+
+            var memberShareViewModel = new MemberShareViewModel()
+            {
+                IsMember = true,
+                Username = userName,
+                SportType = sportType,
+                BetType = betType,
+                SportList = sportList,
+                BetTypeList = betTypeList,
+                MemberShareModelList = memberShareModelList
+            };
+
+            return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
+        }
+
         public ActionResult ViewShare(string username)
         {
             ViewBag.UserName = username;

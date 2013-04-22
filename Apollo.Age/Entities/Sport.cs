@@ -24,5 +24,7 @@ namespace Apollo.Age.Entities
         public byte Id { get; set; }
 
         public string Name { get; set; }
+
+        public List<BetType> BetTypeList { get; set; }
     }
 }

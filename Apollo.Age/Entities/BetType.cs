@@ -14,5 +14,9 @@ namespace Apollo.Age.Entities
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public bool IsLive { get; set; }
+
+        public bool IsDead { get; set; }
     }
 }

@@ -149,11 +149,12 @@
                     }
                     else
                     {
-                        <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/ViewShare?username=@Model.Username">
+                        @*<a class="lnk-setting" target="main" href="javascript:void(0);">
+                            @Resources.Lang.ViewShare
+                        </a>*@
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=9&userName=testcs-8-9&sportType=1&betType=1&isLive=false">
                             @Resources.Lang.ViewShare
                         </a>
-                        
                         <a class="lnk-setting" target="main"
                             href="~/CustomerSetting/ViewCommission?username=@Model.Username">
                             @Resources.Lang.ViewCommission

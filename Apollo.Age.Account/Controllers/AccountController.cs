@@ -23,8 +23,6 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.MvcPaging;
     using Fanex.Common;
-    using Apollo.Age.Account.ViewModels;
-    using Apollo.Age.Entities;
 
     public class AccountController : BaseController
     {
@@ -98,7 +96,6 @@ namespace Apollo.Age.Account.Controllers
         {
             bool ismember = false;
             int custid = -1;
-
             if (string.IsNullOrWhiteSpace(userName) && !custId.HasValue)
             {
                 userName = HttpContext.Session["userName"] != null
@@ -159,7 +156,7 @@ namespace Apollo.Age.Account.Controllers
             return Redirect("~/_Authorization/SignIn.aspx");
         }
 
-        public JsonResult GetDataByNote(int id)
+        public JsonResult GetDataByNode(int id)
         {
             var customerList = _accountService.GetDirectDownline(id);
             return Json(customerList, JsonRequestBehavior.AllowGet);
@@ -260,57 +257,6 @@ namespace Apollo.Age.Account.Controllers
                 CurrentAgentId = CurrentAgentId.Value,
                 ListData = models
             });
-        }
-
-        public ActionResult AgentShare(int? agentId, string userName, byte sportType, int betType)
-        {
-            var agentShareModelList = _accountService.GetAgentShare(
-                this.CurrentSession.AgentId,
-                agentId.HasValue ? agentId.Value : -1, 
-                userName, 
-                sportType, 
-                betType);
-
-            var sportList = new List<Sport>();
-            var betTypeList = new List<BetType>();
-
-            var agentShareViewModel = new AgentShareViewModel() { 
-                IsAgent = true,
-                Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                SportList = sportList,
-                BetTypeList = betTypeList,
-                AgentShareModelList = agentShareModelList
-            };
-
-            return View(agentShareViewModel);
-        }
-
-        public ActionResult MemberShare(int? memberId, string userName, byte sportType, int betType)
-        {
-            var memberShareModelList = _accountService.GetMemberShare(
-                this.CurrentSession.AgentId,
-                memberId.HasValue ? memberId.Value : -1, 
-                userName, 
-                sportType, 
-                betType);
-
-            var sportList = new List<Sport>();
-            var betTypeList = new List<BetType>();
-
-            var memberShareViewModel = new MemberShareViewModel()
-            {
-                IsAgent = true,
-                Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                SportList = sportList,
-                BetTypeList = betTypeList,
-                MemberShareModelList = memberShareModelList
-            };
-
-            return View(memberShareViewModel);
         }
     }
 }
