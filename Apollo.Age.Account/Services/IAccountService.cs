@@ -31,9 +31,9 @@ namespace Apollo.Age.Account.Services
 
         List<Agent> GetDirectDownline(int agentId);
 
-        List<AgentShareModel> GetAgentShare(int actorAgentId, int agentId, string userName, short sportType, short betType, bool isLive);
+        List<AgentShareModel> GetAgentShare(AgentShareCriteria criteria);
 
-        List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, short sportType, short betType, bool isLive);
+        List<MemberShareModel> GetMemberShare(MemberShareCriteria criteria);
 
         List<Sport> GetAllSportType();
 
