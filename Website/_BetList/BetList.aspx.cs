@@ -219,6 +219,10 @@ namespace Sunplus.Agent.UI._BetList
                 bettype = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
                 title = CacheRef.GetBettype(bettype).ToUpper();
             }
+            else
+            {
+                title = CacheRef.GetBettype(bettype).ToUpper();
+            }
         }
 
         public override object ValidateRequest(Hashtable p)
