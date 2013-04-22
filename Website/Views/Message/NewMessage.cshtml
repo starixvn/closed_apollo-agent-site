@@ -102,10 +102,13 @@
 	int count = 0;
 	if (!ReferenceEquals(listMessage, null) && listMessage.Count > 0)
 	{
+        string rowClass = string.Empty;
+        
 		foreach (var itemMessage in listMessage)
 		{
 			count++;
-				<tr>
+            rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
+				<tr @Html.Raw(rowClass)>
 					<td class="c">
 						@count
 					</td>

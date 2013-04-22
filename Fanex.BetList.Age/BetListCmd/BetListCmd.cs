@@ -12,18 +12,21 @@ namespace Fanex.BetList.Age.BetListCmd
 {
     using System.Collections;
     using System.Data;
+    using System.Web;
+    using Apollo.Age.Web;
     using Fanex.BetList.Age.Definition;
-    using Sunplus.Agent.Model.Entities;
 
     public abstract class BetListCmd : IBetListCmd
     {
         public string Title { get; set; }
 
-        public IUserSession CurrentUserSession
+        public ICurrentSession CurrentUserSession
         {
             get
             {
-                return UserSession.Current;
+                ICurrentSession currentSession = (ICurrentSession)HttpContext.Current.Session["Apollo.Age.Web.CurrentSession"];
+
+                return currentSession;
             }
         }
 

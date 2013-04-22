@@ -93,7 +93,8 @@
                 gridExpandHeight: 250,
                 marginRight: 0,
                 showColumnsShowHide: false,
-                columnsNeedHide: [3, 4]
+                columnsNeedHide: [3, 4],
+                bodyRowHeight: 28
             };
             $( "#agentOutstanding" ).hide();
             $( "#gridId" ).fanexGrid( gridOption );

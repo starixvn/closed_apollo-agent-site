@@ -87,7 +87,7 @@
             
             foreach (var item in list)
             {
-                rowClass = i++ % 2 == 0 ? "class='alt'" : string.Empty;
+                rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
                 
                 <tr @Html.Raw(rowClass)>
                     <td>
@@ -184,7 +184,7 @@ else
             totalAComm += item.AComm;
             totalATotal += item.ATotal;
             totalUpline += item.UplineTotal;
-            rowClass = i++ % 2 == 0 ? "class='alt'" : string.Empty;
+            rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
                 
             <tr @Html.Raw(rowClass)>
                 @if (item.IsAgent)

@@ -16,14 +16,16 @@ namespace Sunplus.Agent.UI._BetList
     using System.Data;
     using System.Text;
     using System.Web.UI;
+    using Apollo.Age.BetList.Criterias;
+    using Apollo.Age.BetList.Models;
+    using Apollo.Age.BetList.Services;
+    using Apollo.Age.Web;
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Reports;
     using Fanex.Age.UI.Reports.BetList;
     using Fanex.Age.Utility;
-    using Fanex.BetList.Age.BetListCmd;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
-    using Fanex.BetList.Age.DTO;
     using Fanex.BetList.Age.ExtTemplate;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -44,10 +46,9 @@ namespace Sunplus.Agent.UI._BetList
 
         private string title = string.Empty;
         private BetListTransaction_Template tpl = new BetListTransaction_Template();
-        private IBetListCmd command = null;
 
         private string username = string.Empty;
-        private DateTime dateFrom, dateTo;
+        private DateTime fromDate, toDate;
         private int agentId, custId;
         private bool userType = false;
         private string pageType = string.Empty;
@@ -65,16 +66,12 @@ namespace Sunplus.Agent.UI._BetList
             Dictionary<string, DataTable> results = View as Dictionary<string, DataTable>;
             UserTypes userType = UserTypes.Unknown;
 
-            DataTable betListData = View as DataTable;
-            IList<ITicket> tickets = TicketTransformer.Transform(betListData);
-            betListData.Dispose();
-
-            DataTable betTransm = outDataTable == null ? new DataTable() : outDataTable;
-            List<ITicketData> ticketData = TicketDataTransformer.Transform(betTransm);
-            betTransm.Dispose();
+            var ticketResult = View as TicketResult;
+            var tickets = ticketResult.TicketList;
+            var ticketData = ticketResult.TicketDataList;
 
             int index = 0;
-            bool isAdminCanViewVNIP = UserSession.Current.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = false; //UserSession.Current.IsAdminCanViewVNIP;
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             ITicketHelper ticketHelper = new TicketHelper();
 
@@ -126,7 +123,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 builder.Append("</tr>");
             }
-            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
+            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member | BetListType.Winlost);
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
 
@@ -149,7 +146,7 @@ namespace Sunplus.Agent.UI._BetList
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
             tpl.Filter.valueFromDate = ReportsBO.MoveBetsDate.ToShortDateString();
 
-            tpl.Filter.valueToDate = dateTo.ToShortDateString();
+            tpl.Filter.valueToDate = toDate.ToShortDateString();
             tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
             tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
             tpl.Filter.User.username = username;
@@ -187,21 +184,33 @@ namespace Sunplus.Agent.UI._BetList
 
         public override object InvokeData(Hashtable hash)
         {
+            var betListService = new BetListService();
+            TicketResult mainTickets = new TicketResult();
             int errorCode;
-            betList = new BetListBO(CurrentUserSession.NetSessionId);
-            betList.GetUserIdByUserName(CurrentUserSession.CustId, userType, username, out agentId, out custId, out errorCode);
+            betListService.GetUserIdByUserName(CurrentSession.AgentId, userType, username, out agentId, out custId, out errorCode);
             if (errorCode == 0)
             {
+                var criteria = new BetListCriteria
+                {
+                    LoggedId = CurrentSession.AgentId,
+                    AgentId = agentId,
+                    CustId = custId,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    StatusIds = statusIds,
+                    MoveBetsDay = ReportsBO.MoveBetsDate
+                };
+
                 if (pageType == "transaction")
                 {
-                    dtResult = betList.GetAllBetsTransactionByDateAndMem(agentId, custId, dateFrom, dateTo, ReportsBO.MoveBetsDate, statusIds, out outDataTable);
+                    mainTickets = betListService.GetAllBetsTransactionByDateAndMem(criteria);
                 }
                 else
                 {
-                    dtResult = betList.GetAllBetsByDateAndMem(agentId, custId, dateFrom, dateTo, statusIds, out outDataTable);
+                    mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
                 }
             }
-            return dtResult == null ? new DataTable() : dtResult;
+            return mainTickets;
         }
 
         public override void ProcessRequest(ref Hashtable hash)
@@ -229,19 +238,10 @@ namespace Sunplus.Agent.UI._BetList
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
 
-            dateFrom = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
-            dateTo = GetDateTimeRequest("toDate", DateTime.Now);
+            fromDate = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
+            toDate = GetDateTimeRequest("toDate", DateTime.Now);
             username = this.GetStringRequest("username", UserSession.Current.AgentName);
             userType = GetBooleanRequest("userType", true);
-        }
-
-        private string GetStringRequest(string name, string defaultValue)
-        {
-            if (Request[name] == null)
-            {
-                return defaultValue;
-            }
-            return Request[name];
         }
 
         public override object ValidateRequest(Hashtable hash)
@@ -251,6 +251,32 @@ namespace Sunplus.Agent.UI._BetList
                 return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
             }
             return null;
+        }
+
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
+
+                return currentSession;
+            }
+            set
+            {
+                if (value is ICurrentSession)
+                {
+                    Session["Apollo.Age.Web.CurrentSession"] = value;
+                }
+            }
+        }
+
+        private string GetStringRequest(string name, string defaultValue)
+        {
+            if (Request[name] == null)
+            {
+                return defaultValue;
+            }
+            return Request[name];
         }
     }
 }
