@@ -3,12 +3,15 @@ if (typeof jQuery != 'undefined') {
     var FCHANDICAPOU = function ($) {
         return {
             currentLeague: 0,
+            currentLeagueName: leagueName,
             init: function () {
                 FCHANDICAPOU.currentLeague = $('#ddlLeague').val();
                 if (FCHANDICAPOU.currentLeague) {
+                    FCHANDICAPOU.currentLeagueName = $('#ddlLeague option:selected').text();
                     $('#ddlLeague').on("change", function () {
                         var $this = $(this);
                         FCHANDICAPOU.currentLeague = $this.val();
+                        FCHANDICAPOU.currentLeagueName = $('#ddlLeague option:selected').text();
                         if (FCHANDICAPOU.currentLeague) {
                             FCHANDICAPOU.changeLeague();
                         }
@@ -23,7 +26,8 @@ if (typeof jQuery != 'undefined') {
                 var $this = $(this);
                 if (countDownTimer != null) clearTimeout(countDownTimer);
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
-                + '&betType=' + $this.attr("bet-type"));
+                + '&betType=' + $this.attr("bet-type")
+                + '&leagueName=' + FCHANDICAPOU.currentLeagueName);
                 //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
                 //location.href = url;
                 ageWnd.openDialog(url, 'FORECAST', {
