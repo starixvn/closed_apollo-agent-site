@@ -13,12 +13,12 @@
 namespace Sunplus.Agent.UI._BetList
 {
     using System;
-    using System.Collections.Generic;
     using System.Data;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Services;
+    using Apollo.Age.Forecast.Services;
     using Apollo.Age.Web;
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Reports;
@@ -30,17 +30,13 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Sunplus.Agent.Model.BL.BetList;
-    using Sunplus.Agent.Model.BL.Forecast;
     using Sunplus.Agent.Model.BL.Reports;
-    using Sunplus.Agent.Model.Entities;
 
     public partial class BetListOnMember : WinlossReports_Page
     {
         #region Variables
 
         private DataTable dtResult = null;
-        private BetListBO betList = null;
         private DataTable outDataTable = null;
 
         private int custid;
@@ -90,11 +86,10 @@ namespace Sunplus.Agent.UI._BetList
 
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
 
-            ForecastBO bo = new ForecastBO(UserSession.Current.NetSessionId);
-            List<int> lstScoremap = bo.GetListBetTypeScoreMap();
-
+            var forecastService = new ForecastService();
+            var listBetType = forecastService.GetListScoreMapBetType();
             bool isShowScoremap;
-            bool isAdminCanViewVNIP = false; //UserSession.Current.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = CurrentSession.IsAdminCanViewVNIP;
 
             #endregion INIT
 
@@ -105,14 +100,9 @@ namespace Sunplus.Agent.UI._BetList
 
             foreach (ITicket ticket in tickets)
             {
-                if (lstScoremap.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running))
-                {
-                    isShowScoremap = true;
-                }
-                else
-                {
-                    isShowScoremap = false;
-                }
+                isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
+
+
 
                 ticketHelper.Index = index++;
                 builder

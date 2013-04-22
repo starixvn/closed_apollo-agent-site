@@ -16,13 +16,13 @@ namespace Sunplus.Agent.UI._BetList
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
     using System.Text;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Forecast.Services;
     using Apollo.Age.Web;
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Reports;
@@ -32,8 +32,6 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Sunplus.Agent.Model.BL.Forecast;
-    using Sunplus.Agent.Model.Entities;
 
     public partial class BetList_Page : WinlossReports_Page
     {
@@ -104,9 +102,6 @@ namespace Sunplus.Agent.UI._BetList
 
             #endregion Customize
 
-            int index = 0;
-            bool isAdminCanViewVNIP = false; //UserSession.Current.IsAdminCanViewVNIP;
-
             #region RENDER HTML
 
             var tpl = new BetListTemplate { title = title };
@@ -115,9 +110,11 @@ namespace Sunplus.Agent.UI._BetList
             content.Append(betlistHeader);
             content.Append("<tbody>");
 
-            var forecastBO = new ForecastBO(UserSession.Current.NetSessionId);
-            List<int> lstScoremap = forecastBO.GetListBetTypeScoreMap();
+            var forecastService = new ForecastService();
+            var listBetType = forecastService.GetListScoreMapBetType();
             bool isShowScoremap;
+            int index = 0;
+            bool isAdminCanViewVNIP = CurrentSession.IsAdminCanViewVNIP;
 
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             var ticketHelper = new TicketHelper();
@@ -126,8 +123,7 @@ namespace Sunplus.Agent.UI._BetList
 
             foreach (ITicket ticket in tickets)
             {
-                isShowScoremap = lstScoremap.Contains(ticket.BetTypeId)
-                    && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
+                isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
 
                 ticketHelper.Index = ++index;
 
@@ -168,8 +164,6 @@ namespace Sunplus.Agent.UI._BetList
             RegisterJavascriptObject("type", type);
             RegisterJavascriptObject("fdate", dateFrom.ToShortDateString());
             RegisterJavascriptObject("tdate", dateTo.ToShortDateString());
-            RegisterJavascriptObject("isHistoryReport", base._isHistoryReport == true ? 1 : 0);
-            RenderFilterElementNames();
 
             #endregion RENDER HTML
         }
