@@ -38,7 +38,7 @@
         <td style="width: 70px">
             <!--OneXTwoValue-->
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="5" betlist-type="BettypeMatch" 
-                href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lbl1x2" title="@Resources.Lang.ViewBetList">
                 @RazorHelper.FormatNumber(item.OneXTwoTotal, showZero: item.BetCount1X2 != 0)
             </a>
             <!--/OneXTwoValue-->
@@ -59,7 +59,7 @@
         <td style="width: 70px">
             <!--OneXTwoFirstHalfValue-->
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="15" betlist-type="BettypeMatch" 
-                href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lbl1x2_1st" title="@Resources.Lang.ViewBetList">
                 @RazorHelper.FormatNumber(item.OneXTwoFirstHalf, showZero: item.BetCount1X2HalfTime != 0)
             </a>
             <!--/OneXTwoFirstHalfValue-->
@@ -168,7 +168,7 @@
                 <td>
                     <!--OddEvenValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="2" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" title="@Resources.Lang.ViewBetList"> 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblOddEven" title="@Resources.Lang.ViewBetList"> 
                         @RazorHelper.FormatNegativeNumber(item.OddEvenTotal, showZero: item.BetCountOddEven != 0)
                     </a>
                     <!--/OddEvenValue-->
@@ -177,7 +177,7 @@
                 <td style="width: 86px">
                     <!--DNDValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="123" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblHomeDrawAwayNoBet" title="@Resources.Lang.ViewBetList">
                         @RazorHelper.FormatNumber(item.DrawNoDrawTotal, showZero: item.BetCountDrawNoDraw != 0)
                     </a>
                     <!--/DNDValue-->
@@ -185,7 +185,7 @@
                 <td>
                     <!--OddEvenFirstHalfValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="12" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblOddEven_1st" title="@Resources.Lang.ViewBetList">
                         @RazorHelper.FormatNegativeNumber(item.OddEvenFirstHalf, showZero: item.BetCountHalfTimeOddEven != 0)
                     </a>
                     <!--/OddEvenFirstHalfValue-->
