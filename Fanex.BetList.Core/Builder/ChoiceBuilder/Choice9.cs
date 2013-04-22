@@ -35,8 +35,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             string mixParlay = string.Join(
                                                 null,
-                                                new string[] 
-                                                { 
+                                                new string[]
+                                                {
                                                     "<a id=\"hidden0\" href=\"javascript:showMP(&quot;",
                                                     ticket.TransId.ToString(),
                                                     "&quot;,&quot;",
@@ -44,10 +44,10 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     "&quot;);\">",
                                                     betTypeName,
                                                     "</a>",
-                                                    "<br/><br/>", 
+                                                    "<br/><br/>",
                                                     "<div id=\"divEvent_",
                                                     ticket.TransId.ToString(),
-                                                    "\" style=\"display: none\" ></div>" 
+                                                    "\" style=\"display: none\" ></div>"
                                                 }
                                           );
 
@@ -59,7 +59,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
-            IRichTextString rtfChoice = new  HSSFRichTextString(App_GlobalResources.CoreLang.lblMixParlay);
+            IRichTextString rtfChoice = new HSSFRichTextString(App_GlobalResources.CoreLang.lblMixParlay);
             lstRTFChoices.Add(rtfChoice);
             return lstRTFChoices;
         }

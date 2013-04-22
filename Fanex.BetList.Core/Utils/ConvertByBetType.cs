@@ -298,7 +298,7 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>System.String.</returns>
         public static string Comm_Percentage(object value)
         {
-            return string.Format(Formatter.DECIMAL_FORMAT2, Cast.AsDecimal(value) * 100);
+            return (Cast.AsDecimal(value) * 100).ToString("N2");
         }
 
         /// <summary>

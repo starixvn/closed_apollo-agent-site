@@ -35,9 +35,29 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 using (var db = new ObjectDb(uspKey))
                 {
                     var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
-                    var ticketResult = new TicketResult();
+                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                    return this.ReadTicket(mainTable);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
-                    // Main ticket list
+        /// <summary>
+        /// Get detail ticket mix-parlay
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria)
+        {
+            var uspKey = "Age_BetList_SelParlayDetail";
+            try
+            {
+                using (var db = new ObjectDb(uspKey))
+                {
+                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                     return this.ReadTicket(mainTable);
                 }
@@ -119,6 +139,15 @@ namespace Apollo.Age.BetList.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get UserId By Username
+        /// </summary>
+        /// <param name="loggedId"></param>
+        /// <param name="isAgent"></param>
+        /// <param name="username"></param>
+        /// <param name="agentId"></param>
+        /// <param name="custId"></param>
+        /// <param name="errorCode"></param>
         public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
             var uspKey = "Age_BetList_GetId";
