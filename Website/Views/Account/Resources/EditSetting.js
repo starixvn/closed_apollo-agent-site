@@ -17,6 +17,7 @@ if (typeof jQuery != 'undefined') {
                     if (EDITSETTING.currentIsSimpleMode) return;
                     $(this).removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
+                    $("#settingContainer .edit-setting-warning").show();
                     EDITSETTING.currentIsSimpleMode = true;
                     EDITSETTING.initOthers(true);
                     EDITSETTING.setDialogHeight(true);
@@ -26,6 +27,7 @@ if (typeof jQuery != 'undefined') {
                     if (EDITSETTING.currentIsSimpleMode == false) return;
                     $(this).removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
+                    $("#settingContainer .edit-setting-warning").hide();
                     EDITSETTING.currentIsSimpleMode = false;
                     EDITSETTING.initOthers(false);
                     EDITSETTING.setDialogHeight(false);
