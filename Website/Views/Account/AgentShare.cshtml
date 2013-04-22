@@ -22,12 +22,12 @@
                 @if (Model.BetTypeList.Any())
                 {
                         @Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)
-                        @Html.DropDownListFor(m => m.BetType, Model.BetTypeSelectListItem, new { id = "ddlBetType" })
+                        @Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem, new { id = "ddlBetType" })
                 }
                 
-                @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-                    new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
-                    new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+                @Html.DropDownList("IsMember", new List<SelectListItem> {
+                    new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent, Selected= true},
+                    new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
                 }, new { id = "ddlIsMember" })
                 @Html.TextBoxFor(m => m.Username, new { id = "txtUsername" })
     
@@ -64,14 +64,13 @@
                         @item.Username
                     </td>
                     <td class="r">
-                        @Formater.DecFormat(item.TakenShare/100,decDigits: 2)
+                        @Formater.FormatNumber20(item.TakenShare / 100, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @*@Formater.DecFormat(item.MaxGiven,decDigits: 2)*@
-                        @RazorHelper.FormatNumber(item.MaxGiven / 100, numDecimals: 2, showZero: true)
+                        @Formater.FormatNumber20(item.MaxGiven / 100, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.DecFormat(item.MinGiven / 100, decDigits: 2)
+                        @Formater.FormatNumber20(item.MinGiven / 100, Formater.CULT_NAME_ENG)
                     </td>
                 </tr>
             }

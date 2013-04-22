@@ -199,6 +199,7 @@ namespace Apollo.Age.Account.Controllers
                 Username = userName,
                 SportType = sportType,
                 BetType = betType,
+                IsLive = isLive,
                 SportList = sportList,
                 BetTypeList = betTypeList,
                 AgentShareModelList = agentShareModelList
@@ -226,6 +227,7 @@ namespace Apollo.Age.Account.Controllers
                 Username = userName,
                 SportType = sportType,
                 BetType = betType,
+                IsLive = isLive,
                 SportList = sportList,
                 BetTypeList = betTypeList,
                 MemberShareModelList = memberShareModelList
