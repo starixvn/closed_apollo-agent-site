@@ -132,39 +132,20 @@ namespace Apollo.Age.Account.Services
             }).ToList();
         }
 
-        public List<AgentShareModel> GetAgentShare(int actorAgentId, int agentId, string userName, short sportType, short betType, bool isLive)
+        public List<AgentShareModel> GetAgentShare(AgentShareCriteria criteria)
         {
-            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-            Check.Argument.IsNotNegative(sportType, "sportType");
-            Check.Argument.IsNotNegative(betType, "betType");
-
-            var criteria = new AgentShareCriteria() { 
-                ActorAgentId = actorAgentId,
-                AgentId = agentId,
-                Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                IsLive = isLive
-            };
+            Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
+            Check.Argument.IsNotNegative(criteria.SportType, "sportType");
+            Check.Argument.IsNotNegative(criteria.BetType, "betType");
 
             return _accountRepository.GetAgentShare(criteria).ToList();
         }
 
-        public List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, short sportType, short betType, bool isLive)
+        public List<MemberShareModel> GetMemberShare(MemberShareCriteria criteria)
         {
-            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-            Check.Argument.IsNotNegative(sportType, "sportType");
-            Check.Argument.IsNotNegative(betType, "betType");
-
-            var criteria = new MemberShareCriteria()
-            {
-                ActorAgentId = actorAgentId,
-                CustId = memberId,
-                Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                IsLive = isLive
-            };
+            Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
+            Check.Argument.IsNotNegative(criteria.SportType, "sportType");
+            Check.Argument.IsNotNegative(criteria.BetType, "betType");
 
             return _accountRepository.GetMemberShare(criteria).ToList();
         }

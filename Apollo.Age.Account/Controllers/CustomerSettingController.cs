@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.4.15">Created</change>
+//   <change who="Quinn.Vo" date="2013.4.22">Add Action: AgentShare, MemberShare, GetBetType</change>
 // </history>
 
 
@@ -161,13 +162,16 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="username">selected agent/member username</param>
         public ActionResult AgentShare(int? agentId, string userName, short sportType, short betType, bool isLive)
         {
-            var agentShareModelList = _accountService.GetAgentShare(
-                this.CurrentSession.AgentId,
-                agentId.HasValue ? agentId.Value : -1,
-                userName,
-                sportType,
-                betType,
-                isLive);
+            var criteria = new AgentShareCriteria() {
+                ActorAgentId = this.CurrentSession.AgentId,
+                AgentId = agentId.HasValue ? agentId.Value : -1,
+                Username = userName,
+                SportType = sportType,
+                BetType = betType,
+                IsLive = isLive
+            };
+
+            var agentShareModelList = _accountService.GetAgentShare(criteria);
 
             var sportList = _accountService.GetAllSportType();
             var betTypeList = _accountService.GetBetTypeBySport(sportType);
@@ -189,13 +193,17 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult MemberShare(int? memberId, string userName, short sportType, short betType, bool isLive)
         {
-            var memberShareModelList = _accountService.GetMemberShare(
-                this.CurrentSession.AgentId,
-                memberId.HasValue ? memberId.Value : -1,
-                userName,
-                sportType,
-                betType,
-                isLive);
+            var criteria = new MemberShareCriteria()
+            {
+                ActorAgentId = this.CurrentSession.AgentId,
+                CustId = memberId.HasValue ? memberId.Value : -1,
+                Username = userName,
+                SportType = sportType,
+                BetType = betType,
+                IsLive = isLive
+            };
+
+            var memberShareModelList = _accountService.GetMemberShare(criteria);
 
             var sportList = _accountService.GetAllSportType();
             var betTypeList = _accountService.GetBetTypeBySport(sportType);
