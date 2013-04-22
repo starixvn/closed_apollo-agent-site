@@ -19,6 +19,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Services;
+    using Apollo.Age.Reports.Services;
     using Apollo.Age.Web;
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Reports;
@@ -31,7 +32,6 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Sunplus.Agent.Model.BL.Reports;
 
     public partial class BetListTransaction : WinlossReports_Page
     {
@@ -51,6 +51,7 @@ namespace Sunplus.Agent.UI._BetList
         private string statusIds = string.Empty;
         private bool isShowAgentPT = true;
         private bool isShowWinLost = true;
+        private DateTime moveBetsDay;
 
         #endregion Variables
 
@@ -95,7 +96,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 index++;
                 ticketHelper.Index = index;
-                builder.Append(string.Format("<tr id='{0}'>", ticket.TransId))
+                builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
                        .AddNo(index, "<td class='w-order'>", "</td>")
                        .AddMember(ticket, "<td class='c'>", "</td>")
                        .AddTrans(ticket, "<td class='c'>", "</td>")
@@ -139,8 +140,7 @@ namespace Sunplus.Agent.UI._BetList
                 selectedUserType = "1";
             }
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
-            tpl.Filter.valueFromDate = ReportsBO.MoveBetsDate.ToShortDateString();
-
+            tpl.Filter.valueFromDate = moveBetsDay.ToShortDateString();
             tpl.Filter.valueToDate = toDate.ToShortDateString();
             tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
             tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
@@ -183,6 +183,7 @@ namespace Sunplus.Agent.UI._BetList
             TicketResult mainTickets = new TicketResult();
             int errorCode;
             betListService.GetUserIdByUserName(CurrentSession.AgentId, userType, username, out agentId, out custId, out errorCode);
+
             if (errorCode == 0)
             {
                 var criteria = new BetListCriteria
@@ -193,7 +194,7 @@ namespace Sunplus.Agent.UI._BetList
                     FromDate = fromDate,
                     ToDate = toDate,
                     StatusIds = statusIds,
-                    MoveBetsDay = ReportsBO.MoveBetsDate
+                    MoveBetsDay = moveBetsDay
                 };
 
                 if (pageType == "transaction")
@@ -210,6 +211,9 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void ProcessRequest(ref Hashtable hash)
         {
+            var reportService = new ReportService();
+            moveBetsDay = reportService.MoveBetsDay();
+
             pageType = Request["type"];
 
             if (pageType == "cancel")
@@ -233,7 +237,7 @@ namespace Sunplus.Agent.UI._BetList
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
 
-            fromDate = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
+            fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
             username = this.GetStringRequest("username", CurrentSession.AgentName);
             userType = GetBooleanRequest("userType", true);

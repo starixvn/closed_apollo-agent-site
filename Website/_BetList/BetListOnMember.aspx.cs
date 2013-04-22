@@ -19,6 +19,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
+    using Apollo.Age.Reports.Services;
     using Apollo.Age.Web;
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Reports;
@@ -30,7 +31,6 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Sunplus.Agent.Model.BL.Reports;
 
     public partial class BetListOnMember : WinlossReports_Page
     {
@@ -102,11 +102,9 @@ namespace Sunplus.Agent.UI._BetList
             {
                 isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
 
-
-
                 ticketHelper.Index = index++;
                 builder
-                    .Append(string.Format("<tr id='r{0}'>", ticket.TransId))
+                    .Append(string.Format("<tr id='r{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
                     .AddNo(index, "<td class='w-order'>", "</td>");
 
                 builder
@@ -160,7 +158,8 @@ namespace Sunplus.Agent.UI._BetList
                 username = Request["username"];
             }
 
-            fromDate = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
+            var reportService = new ReportService();
+            fromDate = GetDateTimeRequest("fromDate", reportService.MoveBetsDay());
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
         }
 
