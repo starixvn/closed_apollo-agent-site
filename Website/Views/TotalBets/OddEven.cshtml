@@ -48,7 +48,7 @@
             @if (item.OneXTwoTotal != 0)
             { 
                 <!--OneXTwoButton-->
-                <a match-id="@item.MatchId" bet-type="5" href="javascript:void(0);" class="btnInfo view-forecast" title="@Resources.Lang.ViewForeCast"></a>
+                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="5" href="javascript:void(0);" class="btnInfo view-forecast" title="@Resources.Lang.ViewForeCast"></a>
                 <!--/OneXTwoButton-->
             }
         </td>
@@ -69,7 +69,7 @@
             @if (item.OneXTwoFirstHalf != 0)
             {
                 <!--OneXTwoFirstHalfButton-->
-                <a match-id="@item.MatchId" bet-type="15" href="javascript:void(0);" class="btnInfo view-forecast" title="@Resources.Lang.ViewForeCast"></a>
+                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="15" href="javascript:void(0);" class="btnInfo view-forecast" title="@Resources.Lang.ViewForeCast"></a>
             }
             <!--/OneXTwoFirstHalfButton-->
         </td>
