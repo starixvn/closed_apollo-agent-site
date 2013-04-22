@@ -18,5 +18,7 @@ namespace Apollo.Age.Account.Models
         public short MaxGiven { get; set; }
 
         public short MinGiven { get; set; }
+
+        public short AgentLevel { get; set; }
     }
 }

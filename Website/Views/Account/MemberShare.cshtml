@@ -11,27 +11,38 @@
 
 <div id="box_header">
     <div class="row">
+		@if (Model.SportList.Any())
+		{
         <div class="cell">
+			
+			<div class="label">
+				<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Resources.Lang.SportType)</label>
+			</div>
             <div class="editor">
-                @if (Model.SportList.Any())
-                {
-                        @Html.LabelFor(m => m.SportType, @Resources.Lang.SportType)
-                        @Html.DropDownListFor(m => m.SportType, Model.SportSelectListItem, new { id = "ddlSportType" })
-                }
-    
-                @if (Model.BetTypeList.Any())
-                {
-                        @Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)
-                        @Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem, new { id = "ddlBetType" })
-                }
-                
-                @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-                    new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent },
-                    new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
-                }, new { id = "ddlIsMember" })
-                @Html.TextBoxFor(m => m.Username, new { id = "txtUsername" })
-    
-                <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
+				@Html.DropDownListFor(m => m.SportType, Model.SportSelectListItem, new { id = "ddlSportType" })
+            </div>
+		</div>
+		}
+		@if (Model.BetTypeList.Any())
+        {
+		<div class="cell">
+			<div class="label">
+				<label for="ddlBetType">@Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)</label>
+			</div>
+            <div class="editor">
+				@Html.DropDownListFor(m => m.BetType, Model.BetTypeSelectListItem,
+					new { id = "ddlBetType", style = "width: 160px" })
+            </div>
+		</div>
+		}
+		<div class="cell">
+			<div class="editor">
+				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+					new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent },
+					new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
+				}, new { id = "ddlIsMember" })
+				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername" })
+				<input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
             </div>
         </div>
     </div>
@@ -67,9 +78,16 @@
                     <td class="em-row l">
                         @item.Username
                     </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.TakenShare / 100, Formater.CULT_NAME_ENG)
-                    </td>
+                    @if (item.AgentLevel == Constants.MAIN_SHAREHOLDER_LEVEL)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td class="r">
+                            @Formater.FormatNumber20(item.TakenShare / 100, Formater.CULT_NAME_ENG)
+                        </td>
+                    }
                     <td class="r">
                         @Formater.FormatNumber20(item.MaxGiven / 100, Formater.CULT_NAME_ENG)
                     </td>
