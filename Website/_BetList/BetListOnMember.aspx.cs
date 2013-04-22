@@ -15,14 +15,16 @@ namespace Sunplus.Agent.UI._BetList
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Text;
     using System.Web.UI;
+    using Apollo.Age.BetList.Criterias;
+    using Apollo.Age.BetList.Models;
+    using Apollo.Age.BetList.Services;
+    using Apollo.Age.Web;
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Reports;
     using Fanex.Age.UI.Reports.BetList;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
-    using Fanex.BetList.Age.DTO;
     using Fanex.BetList.Age.ExtTemplate;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -43,7 +45,7 @@ namespace Sunplus.Agent.UI._BetList
 
         private int custid;
         private string username = string.Empty;
-        private DateTime dateFrom, dateTo;
+        private DateTime fromDate, toDate;
         private string statusIds = string.Empty;
         private string pageType = string.Empty;
 
@@ -62,8 +64,8 @@ namespace Sunplus.Agent.UI._BetList
                 var maxDate = DateTime.Now;
                 tpl.HiddenFields.username = username;
                 tpl.HiddenFields.custId = custid.ToString();
-                tpl.Filter.valueFromDate = dateFrom.ToShortDateString();
-                tpl.Filter.valueToDate = dateTo.ToShortDateString();
+                tpl.Filter.valueFromDate = fromDate.ToShortDateString();
+                tpl.Filter.valueToDate = toDate.ToShortDateString();
                 tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
                 tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
                 tpl.HiddenFields.pageType = pageType;
@@ -72,16 +74,11 @@ namespace Sunplus.Agent.UI._BetList
             {
                 tpl.Filter.Hide();
             }
+
             // Render Content
-            DataTable betListData = View as DataTable;
-            IList<ITicket> tickets = TicketTransformer.Transform(betListData);
-            betListData.Dispose();
-
-            StringBuilder content = new StringBuilder();
-
-            DataTable betTransm = outDataTable == null ? new DataTable() : outDataTable;
-            List<ITicketData> ticketData = TicketDataTransformer.Transform(betTransm);
-            betTransm.Dispose();
+            var ticketResult = View as TicketResult;
+            var tickets = ticketResult.TicketList;
+            var ticketData = ticketResult.TicketDataList;
 
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
@@ -97,7 +94,7 @@ namespace Sunplus.Agent.UI._BetList
             List<int> lstScoremap = bo.GetListBetTypeScoreMap();
 
             bool isShowScoremap;
-            bool isAdminCanViewVNIP = UserSession.Current.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = false; //UserSession.Current.IsAdminCanViewVNIP;
 
             #endregion INIT
 
@@ -173,15 +170,24 @@ namespace Sunplus.Agent.UI._BetList
                 username = Request["username"];
             }
 
-            dateFrom = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
-            dateTo = GetDateTimeRequest("toDate", DateTime.Now);
+            fromDate = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
+            toDate = GetDateTimeRequest("toDate", DateTime.Now);
         }
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
-            betList = new BetListBO(CurrentUserSession.NetSessionId);
-            dtResult = betList.GetAllBetsByDateAndMem(-1, custid, dateFrom, dateTo, statusIds, out outDataTable);
-            return dtResult == null ? new DataTable() : dtResult;
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
+            {
+                AgentId = -1,
+                LoggedId = CurrentSession.AgentId,
+                CustId = custid,
+                FromDate = fromDate,
+                ToDate = toDate,
+                StatusIds = statusIds
+            };
+            var mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+            return mainTickets;
         }
 
         public override object ValidateRequest(System.Collections.Hashtable p)
@@ -194,5 +200,22 @@ namespace Sunplus.Agent.UI._BetList
         }
 
         #endregion Override
+
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
+
+                return currentSession;
+            }
+            set
+            {
+                if (value is ICurrentSession)
+                {
+                    Session["Apollo.Age.Web.CurrentSession"] = value;
+                }
+            }
+        }
     }
 }

@@ -57,9 +57,13 @@
                         if(result.HasData)
                         {
                             var total = result.ScoreMatrix.GetLength(1);
+                            string rowClass = string.Empty;
+                            
                             for (int i = 0; i < total; i++)
                             {
-                                <tr class="vScoreMap" align="center">
+                                rowClass = i % 2 == 0 ? "alt" : string.Empty;
+                                
+                                <tr class="vScoreMap @rowClass">
                                     <td class="vsm">
                                         @(i)
                                     </td>
