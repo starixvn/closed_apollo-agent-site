@@ -85,7 +85,7 @@ if (typeof jQuery != 'undefined') {
                     }
                     else {
                         currentList.currentPopUp.dialog("option", {
-                            height: 800,
+                            height: 720,
                             position: { my: "top+10", at: "center top", of: parent.window }
                         });
                     }
