@@ -11,7 +11,6 @@ using Apollo.Age.BetList.Models;
 using Apollo.Age.BetList.Services;
 using Apollo.Age.Web;
 using Fanex.Age.UI.Components;
-using Fanex.Agent.UI._BetList;
 using Fanex.BetList.Age.BetListHTMLBuilderExt;
 using Fanex.BetList.Age.Definition;
 using Fanex.BetList.Age.DTO;
@@ -90,7 +89,7 @@ namespace Sunplus.Agent.UI._BetList
                     totalTicket.APositionTaking += Convert.ToDecimal(ConvertByBetType.Pt(ticket.APositionTaking)) / 100;
 
                     totalTicket.AComm += ticket.AComm;
-                    totalTicket.ADiscount += ticket.ADiscount;
+                    totalTicket.ADiscount += Convert.ToDecimal(ConvertByBetType.Comm_Percentage(ticket.ADiscount)) / 100;
                     totalTicket.Status = ticket.Status;
                     totalTicket.AgentLevel = ticket.AgentLevel;
 

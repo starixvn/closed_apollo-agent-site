@@ -54,6 +54,16 @@ namespace Apollo.Age.BetList.Services
         }
 
         /// <summary>
+        /// Get detail ticket mix-parlay
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria)
+        {
+            return this._betListRepository.GetMixParlayDetailTicket(criteria);
+        }
+
+        /// <summary>
         /// Get betlist running on Total Bets menu
         /// </summary>
         /// <param name="criteria"></param>
