@@ -26,11 +26,10 @@ var TOTALBETS = function ($) {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
                 var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
-                + '&type=' + $(this).attr("betlist-type"));
+                + '&type=' + $(this).attr("betlist-type"))
+                + '&leagueName=' + $(this).attr("league-name");
 
-                var title = $(this).attr("league-name") + " - " + $(this).attr("bet-type-name");
-
-                ageWnd.openDialog(url, title, {
+                ageWnd.openDialog(url, "Bet List", {
                     width: 930,
                     height: 770,
                     position: { my: "top+50", at: "center top", of: window },
