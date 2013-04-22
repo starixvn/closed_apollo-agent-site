@@ -132,6 +132,10 @@
                             @Resources.Lang.lblEditSB
                         </a>
 						
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&userName=@Model.Username&sportType=1&betType=1&isLive=false">
+                            @Resources.Lang.ViewShare
+                        </a>
+						
                         <a class="lnk-setting" target="main"
                             href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
                             @Resources.Lang.ViewCommission
@@ -145,10 +149,6 @@
                         @*<a class="lnk-setting" target="main"
                                 href="~/CustomerSetting/EditBetSetting?custId=@Model.CustId&userName=@Model.Username">
                             @Resources.Lang.lbleditbetsetting
-                        </a>*@
-                        
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&userName=@Model.Username&sportType=1&betType=1&isLive=false">
-                            @Resources.Lang.ViewShare
                         </a>
 
                         <a class="lnk-setting" target="main"
@@ -167,7 +167,7 @@
                             href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
                             @Resources.Lang.lblEditSB
                         </a>
-						
+						<a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&userName=@Model.Username&sportType=1&betType=1&isLive=false">
                             @Resources.Lang.ViewShare
                         </a>
                         <a class="lnk-setting" target="main"

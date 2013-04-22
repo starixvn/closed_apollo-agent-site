@@ -205,9 +205,9 @@ table {
 			background: @rowTotalBackground;
 			color: @white;
 
-			td {				
-				border: 1px solid @borderColor;		
-				text-shadow: none;		
+			td {
+				border: 1px solid @borderColor;
+				text-shadow: none;
 			}
 
 			&.no-result {
@@ -233,6 +233,9 @@ table {
 	&.no-border-bottom {
 		tr td {
 			border-width: 0 1px 0 0; 
+		}
+		thead td, thead th, tbody .em-row {
+			border: 1px solid @tableRptBorderColor;
 		}
 	}
 }
