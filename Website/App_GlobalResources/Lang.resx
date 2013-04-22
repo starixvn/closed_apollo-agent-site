@@ -4302,4 +4302,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="TicketCancelled" xml:space="preserve">
     <value>Ticket Cancelled</value>
   </data>
+  <data name="Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
 </root>

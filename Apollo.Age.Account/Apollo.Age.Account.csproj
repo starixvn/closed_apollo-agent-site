@@ -103,6 +103,7 @@
     <Compile Include="Models\MemberListModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="ViewModels\AgentShareViewModel.cs" />
+    <Compile Include="ViewModels\ViewCommissionViewModel.cs" />
     <Compile Include="ViewModels\MemberShareViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

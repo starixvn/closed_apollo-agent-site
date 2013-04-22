@@ -1,36 +1,56 @@
-﻿@{
-    ViewBag.Title = "View Commission";
-    Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
-    int index = 1;
+﻿@using Apollo.Age.Account.ViewModels
+@{
+	ViewBag.Title = "View Commission";
+	Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
+	int index = 1;
 }
-@model IEnumerable<CustomerCommissionModel>
+@model ViewCommissionViewModel
 
-<table class="tbl-cust-setting">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Group A</th>
-            <th>Group B</th>
-            <th>Group C</th>
-            <th>Group D</th>
-            <th>1x2</th>
-            <th>Other</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach(var comm in Model)
-    {
-        string rowClass = index++ % 2 == 0 ? "class='alt'" : string.Empty;
-        
-        <tr @Html.Raw(rowClass)>
-            <td>@comm.Username</td>
-            <td>@RazorHelper.FormatNumber(comm.DiscountA, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm.DiscountB, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm.DiscountC, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm.DiscountD, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm.Discount1x2, numDecimals: 2, showZero: true)</td>
-            <td>@RazorHelper.FormatNumber(comm.DiscountOthers, numDecimals: 2, showZero: true)</td>
-        </tr>
-    }
-    </tbody>
+@using (Html.BeginForm())
+{
+<div id="box_header">
+	<div class="row">
+		<div class="cell">
+			<div class="editor">
+				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem>
+					{
+						new SelectListItem { Value = "false", Text = Resources.Lang.agent },
+						new SelectListItem { Value = "true", Text = Resources.Lang.member }
+					})
+				@Html.TextBoxFor(m => m.Username, new { style = "width: 200px" })
+				<input type="submit" id="btnSubmit" class="btn" value="@Resources.Lang.submit" />
+			</div>
+		</div>
+	</div>
+</div>
+}
+
+<table class="tbl-cust-setting" style="width: auto">
+	<thead>
+		<tr>
+			<th></th>
+			<th>@Resources.Lang.group A</th>
+			<th>@Resources.Lang.group B</th>
+			<th>@Resources.Lang.group C</th>
+			<th>@Resources.Lang.group D</th>
+			<th>1x2</th>
+			<th>@Resources.Lang.Others</th>
+		</tr>
+	</thead>
+	<tbody>
+	@foreach(var comm in Model.CommissionList)
+	{
+		string rowClass = index++ % 2 != 0 ? "class='alt'" : string.Empty;
+		
+		<tr @Html.Raw(rowClass)>
+			<td class="em-row l">@comm.Username</td>
+			<td>@RazorHelper.FormatNumber(comm.DiscountA, numDecimals: 2, showZero: true)</td>
+			<td>@RazorHelper.FormatNumber(comm.DiscountB, numDecimals: 2, showZero: true)</td>
+			<td>@RazorHelper.FormatNumber(comm.DiscountC, numDecimals: 2, showZero: true)</td>
+			<td>@RazorHelper.FormatNumber(comm.DiscountD, numDecimals: 2, showZero: true)</td>
+			<td>@RazorHelper.FormatNumber(comm.Discount1x2, numDecimals: 2, showZero: true)</td>
+			<td>@RazorHelper.FormatNumber(comm.DiscountOthers, numDecimals: 2, showZero: true)</td>
+		</tr>
+	}
+	</tbody>
 </table>

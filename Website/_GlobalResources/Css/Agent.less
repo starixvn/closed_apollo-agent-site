@@ -3,18 +3,18 @@
 @import "sprites.less";
 
 /* UTILITIES */
-.pull-right			{ float: right }
-.pull-left			{ float: left }
-.hide				{ display: none }
-.show				{ display: block }
-.invisible			{ visibility: hidden }
-.text-left,.l       { text-align: left }
-.text-right,.r      { text-align: right }
-.text-center,.c     { text-align: center } 
-.bold,.b			{ font-weight: bold }
-.em					{ font-style: italic }
-.nowrap				{ white-space: nowrap }
-.red-num			{ color: red }
+.pull-right			{ float: right !important }
+.pull-left			{ float: left !important }
+.hide				{ display: none !important }
+.show				{ display: block !important }
+.invisible			{ visibility: hidden !important }
+.text-left,.l       { text-align: left !important }
+.text-right,.r      { text-align: right !important }
+.text-center,.c     { text-align: center !important } 
+.bold,.b			{ font-weight: bold !important }
+.em					{ font-style: italic !important }
+.nowrap				{ white-space: nowrap !important }
+.red-num			{ color: red !important }
 
 /* COMMON */
 
@@ -163,17 +163,15 @@ table {
 		text-shadow: 0 1px 0 #FFF;
 	}
 
-	thead {
-		td, th {
-			background-color: @primaryHeaderBackground;
-			border-spacing: 0;
-			border: 1px solid @tableRptBorderColor;
-			border-width: 1px 1px 0 0;
-			text-align: center;
-			font-weight: bold;
-			color: @primaryHeaderColor;
-			text-shadow: 0 1px 0 #333;			
-		}
+	thead td, thead th, tbody .em-row {
+		background-color: @primaryHeaderBackground;
+		border-spacing: 0;
+		border: 1px solid @tableRptBorderColor;
+		border-width: 1px 1px 0 0;
+		text-align: center;
+		font-weight: bold;
+		color: @primaryHeaderColor;
+		text-shadow: 0 1px 0 #333;			
 	}
 
 	tbody {
@@ -193,11 +191,12 @@ table {
 			&:hover { background-color: @rowHoverBackground }
 
 			&.RptFooter:hover {
-				background: @rowTotalBackground;
+				background-color: @rowTotalBackground;
 			}
 
 			&.alt {
-				background: @rowBackground;
+				background-color: @rowBackground;
+				&:hover { background-color: @rowHoverBackground }
 			}
 		}
 	}
@@ -254,13 +253,12 @@ table {
 		cursor: default;
 		
 		padding: 3px;
-		width: 60px;
+		width: 100px;
 		height: 13px;
 	}
 
 	select {		
 		padding: 2px 3px;
-		width: 100px;
 		height: 21px;
 	}
 
