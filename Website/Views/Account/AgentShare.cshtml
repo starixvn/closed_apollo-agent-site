@@ -4,37 +4,40 @@
 @{
     ViewBag.Title = "Agent Share";
     Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
+    int index = 1;
 }
 
 @model AgentShareViewModel
 
-<div class="filter-submit">
-    @if (Model.SportList.Any())
-    {
-        <div class="inline-control">
-            @Html.LabelFor(m => m.SportType, @Resources.Lang.SportType)
-            @Html.DropDownListFor(m => m.SportType, Model.SportSelectListItem, new { id = "ddlSportType" })
-        </div>
-    }
+<div id="box_header">
+    <div class="row">
+        <div class="cell">
+            <div class="editor">
+                @if (Model.SportList.Any())
+                {
+                        @Html.LabelFor(m => m.SportType, @Resources.Lang.SportType)
+                        @Html.DropDownListFor(m => m.SportType, Model.SportSelectListItem, new { id = "ddlSportType" })
+                }
     
-    @if (Model.BetTypeList.Any())
-    {
-        <div class="inline-control">
-            @Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)
-            @Html.DropDownListFor(m => m.BetType, Model.BetTypeSelectListItem, new { id = "ddlBetType" })
+                @if (Model.BetTypeList.Any())
+                {
+                        @Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)
+                        @Html.DropDownListFor(m => m.BetType, Model.BetTypeSelectListItem, new { id = "ddlBetType" })
+                }
+                
+                @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+                    new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
+                    new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+                }, new { id = "ddlIsMember" })
+                @Html.TextBoxFor(m => m.Username, new { id = "txtUsername" })
+    
+                <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
+            </div>
         </div>
-    }
-    <div class="inline-control">
-        @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-            new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
-            new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
-        }, new { id = "ddlIsMember" })
-        @Html.TextBoxFor(m => m.Username, new { id = "txtUsername" })
     </div>
-    <input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
 </div>
 
-<table class="tblRpt">
+<table class="tbl-cust-setting no-border-bottom">
     <thead>
         <tr>
             <th>
@@ -55,18 +58,20 @@
         {
             foreach(var item in Model.AgentShareModelList)
             {
-                <tr>
-                    <td class="black-colum">
+                string rowClass = index++ % 2 != 0 ? "class='alt'" : string.Empty;
+                <tr @Html.Raw(rowClass)>
+                    <td class="em-row l">
                         @item.Username
                     </td>
                     <td class="r">
-                        @Formater.DecFormat(item.TakenShare,decDigits: 2)
+                        @Formater.DecFormat(item.TakenShare/100,decDigits: 2)
                     </td>
                     <td class="r">
-                        @Formater.DecFormat(item.MaxGiven,decDigits: 2)
+                        @*@Formater.DecFormat(item.MaxGiven,decDigits: 2)*@
+                        @RazorHelper.FormatNumber(item.MaxGiven / 100, numDecimals: 2, showZero: true)
                     </td>
                     <td class="r">
-                        @Formater.DecFormat(item.MinGiven,decDigits: 2)
+                        @Formater.DecFormat(item.MinGiven / 100, decDigits: 2)
                     </td>
                 </tr>
             }
