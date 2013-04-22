@@ -10,7 +10,7 @@ var TOTALBETS = function ($) {
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type"));
 
-                ageWnd.openDialog(url, '', {
+                ageWnd.openDialog(url, 'Forecast', {
                     width: 665,
                     height: 320,
                     position: { my: "top+50", at: "center top", of: window },
@@ -29,7 +29,7 @@ var TOTALBETS = function ($) {
                 + '&type=' + $(this).attr("betlist-type"));
 
                 //location.href = url;
-                ageWnd.openDialog(url, '', {
+                ageWnd.openDialog(url, 'Bet List', {
                     width: 930,
                     height: 770,
                     position: { my: "top+50", at: "center top", of: window },
@@ -48,7 +48,7 @@ var TOTALBETS = function ($) {
                 + '&type=' + $(this).attr("betlist-type")
                 + '&islive=' + $(this).attr("is-live"));
                 //location.href = url;
-                ageWnd.openDialog(url, '', {
+                ageWnd.openDialog(url, 'Bet List', {
                     width: 930,
                     height: 770,
                     position: { my: "top+50", at: "center top", of: window },
@@ -68,7 +68,7 @@ var TOTALBETS = function ($) {
                 + '&islive=' + $(this).attr("is-live")
                 + '&betteam=' + $(this).attr("bet-team"));
                 //location.href = url;
-                ageWnd.openDialog(url, '', {
+                ageWnd.openDialog(url, 'Bet List', {
                     width: 930,
                     height: 770,
                     position: { my: "top+50", at: "center top", of: window },
@@ -85,7 +85,7 @@ var TOTALBETS = function ($) {
                 var url = APOLLO.resolveUrl('Forecast/FC1X2?'
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type"));
-                ageWnd.openDialog(url, '', {
+                ageWnd.openDialog(url, 'Forecast', {
                     width: 350,
                     height: 520,
                     position: { my: "top+50", at: "center top", of: window },
