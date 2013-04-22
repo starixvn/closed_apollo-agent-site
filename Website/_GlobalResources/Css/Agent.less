@@ -176,7 +176,7 @@ table {
 
 	tbody {
 		td {
-			border: 1px solid @grayLight;			
+			border: 1px solid @grayLight;
 		}
 		tr {			
 			&.live { background-color: @rowLiveBackground }
@@ -201,7 +201,7 @@ table {
 	}
 
 	tfoot {
-		.total {			
+		.total {
 			background: @rowTotalBackground;
 			color: @white;
 
@@ -228,6 +228,12 @@ table {
 	.no_info {
 		.bold;
 		.text-center;
+	}
+
+	&.no-border-bottom {
+		tr td {
+			border-width: 0 1px 0 0; 
+		}
 	}
 }
 
