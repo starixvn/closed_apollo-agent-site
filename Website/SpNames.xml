@@ -111,7 +111,7 @@
             <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
             <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
         </Setting>
-        <Setting Key="Dot_Msg_SetPriMsgRead" SpName="Dot_Msg_SetPriMsgRead_xtest" DbName="MessageDB" Plain="0" />
+        <Setting Key="Dot_Msg_SetPriMsgRead" SpName="Dot_Msg_SetPriMsgRead" DbName="MessageDB" Plain="0" />
         <Setting Key="Dot_Msg_GetPriMsgCount" SpName="Dot_Msg_GetPriMsgCount" DbName="MessageDB" Plain="0" />
         <Setting Key="Dot_Msg_GetTopPriMessage24" SpName="Dot_Msg_GetTopPriMessage24" DbName="MessageDB" Plain="0" />
         <Setting Key="Acc_Msg_GetTopPubMessage" SpName="Acc_Msg_GetTopPubMessage" DbName="MessageDB" Plain="0" >
