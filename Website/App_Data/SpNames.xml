@@ -277,6 +277,7 @@
     <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss" DbName="REPDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="AgentName"/>
       <Mapping DataField="PositionTaking" ObjectProperty="SoccerShare"/>
+      <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
     </Setting>
     <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member" DbName="REPDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="MemberName"/>
