@@ -282,6 +282,19 @@ namespace Apollo.Age.Account.Controllers
             return ReturnResult(result);
         }
 
+
+        public ActionResult ViewAllSetting()
+        {
+            ViewBag.CustId = CurrentSession.AgentId;
+            ViewBag.UserName = CurrentSession.Username;
+            ViewBag.AgentLevel = CurrentSession.AgentLevel;
+            ViewBag.UserGroup = string.Empty;
+            ViewBag.CurentParentAgentId = CurrentSession.AgentId;
+            ViewBag.IsViewShareSetting = true;
+            return View("~/Views/Account/ViewSetting.cshtml");
+        }
+                
+
         #endregion
 
         #region Helpers
@@ -389,6 +402,11 @@ namespace Apollo.Age.Account.Controllers
             if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
             {
                 settingContex.FormId = FormType.EditMemberNonDirect;
+            }
+
+            if (agentId != null && targetCustId != 0 && agentId.Value == targetCustId)
+            {
+                settingContex.FormId = FormType.ViewAllSetting;
             }
 
             return settingContex;

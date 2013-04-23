@@ -81,7 +81,7 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
-        settingContext.IsSimpleMode = true;
+        settingContext.IsSimpleMode = isSimpleMode;
         BETLIMIT.init(settingContext, betLimits);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 };
