@@ -119,7 +119,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 builder.Append("</tr>");
             }
-            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member | BetListType.Winlost);
+            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
 
