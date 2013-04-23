@@ -13,9 +13,9 @@
 }
 @RazorHelper.Navigation(Model)
 <div class="tab-header">
-    <ul class="sub-nav">
-        <li class="active">@Resources.Lang.lblAgentList</li>
-        <li><span class="line">|</span><a href="#" id="quickLinkCustomerList">@Resources.Lang.lblPlayerList</a></li>
+    <ul>
+        <li id="current"><a href="#">@Resources.Lang.lblAgentList</a></li>
+        <li><a href="#" id="quickLinkCustomerList">@Resources.Lang.lblPlayerList</a></li>
     </ul>
 </div>
 <div id="gridId" class="freegrid  content-grid" agentid='@ViewBag.CurrentAgentId'>
@@ -27,7 +27,7 @@
             return {
                 Username: "@Resources.Lang.usernameEdited",
                 Status: "@Resources.Lang.status",
-                BetStatus :"@Resources.Lang.betstatus",
+                BetStatus: "@Resources.Lang.betstatus",
                 Edit: "@Resources.Lang.edit",
                 NumberOfAgent: "@Resources.Lang.lblAgent",
                 NumberOfMember: "@Resources.Lang.lblMember",
@@ -41,7 +41,7 @@
                 Other: "@Resources.Lang.other",
                 TakenShare: "@Resources.Lang.takenshare",
                 GivenShare: "@Resources.Lang.givenshare",
-                SoccerDeadballHDP : "@Resources.Lang.soccerdeadballhdp",
+                SoccerDeadballHDP: "@Resources.Lang.soccerdeadballhdp",
                 Stopped: "@Resources.Lang.stopped",
                 Locked: "@Resources.Lang.locked",
                 Active: "@Resources.Lang.lblActive"

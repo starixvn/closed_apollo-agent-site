@@ -987,8 +987,8 @@
                     }
                     else {
                         //// Show No Info on the main table
-                        bodyRowsHtml.push(me.RenderEmptyRow(options.columns[0].Name, '', options.numberOfFrozenColumn, 'no-data-frozen', true));
-                        bodyFrozenHtml.push(me.RenderEmptyRow(options.columns[0].Name, '', options.numberOfFrozenColumn, '', false));
+                        bodyRowsHtml.push(me.RenderEmptyRow(options.columns[0].Name, '&nbsp;', options.numberOfFrozenColumn, 'no-data-frozen', true));
+                        bodyFrozenHtml.push(me.RenderEmptyRow(options.columns[0].Name, '&nbsp;', options.numberOfFrozenColumn, '', false));
                     }
                 }
                 else {
