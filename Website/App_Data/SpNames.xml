@@ -192,6 +192,8 @@
   </Function>-->
 
   <Function Name="Agent-Apollo-Report-BetList">
+    <Setting Key="Age_BetList_SelWinloss_Old" SpName="Age_BetList_SelWinloss_Old" DbName="ARCHIVEDB" Plain="0" />
+    <Setting Key="Age_BetList_SelWinloss" SpName="Age_BetList_SelWinloss" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_SelTransaction" SpName="Age_BetList_SelTransaction" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_GetId" SpName="Age_BetList_GetId" DbName="REPDB" Plain="0" />
