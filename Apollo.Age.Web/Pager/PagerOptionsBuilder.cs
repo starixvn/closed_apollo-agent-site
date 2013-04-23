@@ -2,7 +2,7 @@
 using System.Web.Mvc.Ajax;
 using System.Web.Routing;
 
-namespace Apollo.Age.Web
+namespace Apollo.Age.Web.Pager
 {
     public class PagerOptionsBuilder
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace Apollo.Age.Web
+namespace Apollo.Age.Web.Pager
 {
     using System;
     using System.Collections.Generic;

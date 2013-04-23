@@ -1,4 +1,4 @@
-﻿namespace Apollo.Age.Web
+﻿namespace Apollo.Age.Web.Pager
 {
     using System.Collections.Generic;
     public interface IPagedList
