@@ -8,6 +8,7 @@
 //   <change who="Lewis.Le" date="2013.4.4">Added action: Menu</change>
 //   <change who="Quinn.Vo" date="2013.4.9">Added action: AccountInfo, AgentTreeList, TreeViewList, GetDataByNote, GetSuggestValues, GetAgentDownlinePath</change>
 //   <change who="Quinn.Vo" date="2013.4.9">Added action: MemberDownline </change>
+//   <change who="Anders.Le" date="2013.4.23">Rename namespace of pager</change>
 // </history>
 
 namespace Apollo.Age.Account.Controllers
@@ -21,7 +22,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
-    using Apollo.MvcPaging;
+    using Apollo.Age.Web.Pager;
     using Fanex.Common;
 
     public class AccountController : BaseController
