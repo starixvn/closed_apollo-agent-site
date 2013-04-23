@@ -21,7 +21,7 @@ namespace Fanex.BetList.Core
 			public Choice_Handicap_Block Handicap = new Choice_Handicap_Block();
 			public Choice_OddMixParlay_Block OddMixParlay = new Choice_OddMixParlay_Block();
 			public Choice_Score_Block Score = new Choice_Score_Block();
-			protected static string s2 = "</span><div class=\"bettype bold\">";
+			protected static string s2 = "</span><div class=\"bettype bold\">&nbsp;";
 			public string betTypeName = "{betTypeName}";
 			protected static string s3 = "</div><div class=\"match\">";
 			public string homeTeam = "{homeTeam}";
@@ -100,7 +100,7 @@ namespace Fanex.BetList.Core
 
 		public class Choice_Handicap_Block: Block
 		{
-			protected static string s11 = "<span class='handicap'>";
+			protected static string s11 = "<span class='handicap'>&nbsp;";
 			public string handicap = "{handicap}";
 			public Choice_Handicap_Odds_Block Odds = new Choice_Handicap_Odds_Block();
 			protected static string s12 = "</span>";
@@ -148,7 +148,7 @@ namespace Fanex.BetList.Core
 		{
 			protected static string s15 = "<span class=\"";
 			public string scoreClassName = "favorite";
-			protected static string s16 = "\">[";
+			protected static string s16 = "\">&nbsp;[";
 			public string homeScore = "{homeScore}";
 			protected static string s17 = "-";
 			public string awayScore = "{awayScore}";
