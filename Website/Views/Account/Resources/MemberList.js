@@ -5,18 +5,21 @@ var MEMBERLIST = function ( $ ) {
         AgentId: null,
         currentPopUp: null,
         AgentLevel: null,
+        Username: null,
         init: function () {
             MEMBERLIST.AgentId = $( "#gridId" ).attr( "agentid" );
             MEMBERLIST.AgentLevel = $( "#gridId" ).attr( "agentlevel" );
-            $( "#currUsername" ).html( $( "#gridId" ).attr( "username" ) );
+            MEMBERLIST.Username = $( "#gridId" ).attr( "username" );
+            $( "#currUsername" ).html( MEMBERLIST.Username );
             MEMBERLIST.loadMemberList();
             MEMBERLIST.bindingNavigation();
-            MEMBERLIST.bindingQuickiLinkEditSetting( MEMBERLIST.AgentId, MEMBERLIST.AgentLevel );
+            MEMBERLIST.bindingQuickiLinkEditSetting( MEMBERLIST.AgentId, MEMBERLIST.AgentLevel, MEMBERLIST.Username );
         },
-        bindingQuickiLinkEditSetting: function ( agentId, agentLevel ) {
+        bindingQuickiLinkEditSetting: function ( agentId, agentLevel, username ) {
             var $quickLinkEditSetting = $( "#quickLinkEditSetting" );
             $quickLinkEditSetting.attr( "agentid", agentId );
             $quickLinkEditSetting.attr( "agentlevel", agentLevel );
+            $quickLinkEditSetting.attr( "username", username );
         },
         bindingNavigation: function () {
             $( "[name='navigation']" ).unbind( 'click' ).bind( 'click', function () {
