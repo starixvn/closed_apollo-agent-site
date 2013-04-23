@@ -541,47 +541,8 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
 };
 
 //// View Setting
-Fanex.CustSetting.BetType.prototype.Render_2_2_3 = function (owner) { // a1
-    box = document.createElement("DIV");
-    var currentPt = this.pt;
-    // Bet type header
-    var header = document.createElement("DIV");
-    header.innerHTML = this.name;
-    header.title = this.title;
-    header.className = "bet-type-header";
-    box.appendChild(header); // Header bet type name
-    header.style.minWidth = this.minWidth + 'px';
 
-    //// Given share
-    var maxContainer = document.createElement("DIV");
-    maxContainer.className = "bet-type-select-label";
-    maxContainer.innerHTML = this.pt.Max;
-    box.appendChild(maxContainer);
-
-    //// Taken Share
-    var presetContainer = document.createElement("DIV");
-    presetContainer.className = "bet-type-select-label";
-    presetContainer.innerHTML = this.pt.Preset;
-    box.appendChild(presetContainer);
-
-    //// Min Share
-
-    var minContainer = document.createElement("DIV");
-    minContainer.className = "bet-type-select-label";
-    minContainer.innerHTML = this.pt.Min;
-    box.appendChild(minContainer);
-
-    box.id = "e$" + this.suffixId;
-    box.className = "pt-box";
-
-    // Get updated data
-    this.Save = function () {
-            return null;
-    }
-
-    return box;
-};
-
+Fanex.CustSetting.BetType.prototype.Render_2_2_3 =
 Fanex.CustSetting.BetType.prototype.Render_3_3_3 = function (owner) {
     box = document.createElement("DIV");
     var currentPt = this.pt;

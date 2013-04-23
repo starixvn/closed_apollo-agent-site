@@ -29,7 +29,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
 	return box;
 };
 
-Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_3 =
+
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) { 
@@ -62,6 +62,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     return box;
 };
 
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_3 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_3_3 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_1 = function (owner) {
     var box = document.createElement("DIV");

@@ -99,7 +99,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         this.addEventConstrain(spinBox, uplineDiscount);
         return spinBox;
     };
-    this.RenderAgentCom = function (trBox, textName, discount, uplineDiscount) {
+    this.RenderAgentCom = function (trBox, textName, discount, uplineDiscount, disable) {
         var tdTextBox = document.createElement("TD");
         tdTextBox.innerHTML = textName + ' :';
         tdTextBox.className = "commission-text";
@@ -121,16 +121,23 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             this.spinBoxItems.push(comSpinBox);
 
             var maxSpan = document.createElement("SPAN");
-            maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
+
             maxSpan.className = "upline-agent-share";
             comContainer.appendChild(maxSpan);
+            if (disable) {
+                comSpinBox.input.setAttribute("disabled", "disabled");
+                maxSpan.innerHTML = '[0]';
+            }
+            else {
+                maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
+            }
         }
 
 
         trBox.appendChild(tdValue);
 
     };
-    this.RenderPlayerCom = function (isEditNonDirectMember, textName, discount, uplineDiscount) {
+    this.RenderPlayerCom = function (isEditNonDirectMember, textName, discount, uplineDiscount, disable) {
         var trBox = document.createElement("TR");
         var tdTextBox = document.createElement("TD");
         tdTextBox.innerHTML = textName;
@@ -153,6 +160,13 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
             maxSpan.className = "upline-agent-share";
             comContainer1.appendChild(maxSpan);
+            if (disable) {
+                comSpinBox1.input.setAttribute("disabled", "disabled");
+                maxSpan.innerHTML = '[0]';
+            }
+            else {
+                maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
+            }
         }
         trBox.appendChild(tdValue);
 
@@ -185,14 +199,14 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             this.RenderAgentCom(trBox, Language.GROUP_A, groupCom.DiscountA, groupCom.Upline.DiscountA);
             this.RenderAgentCom(trBox, Language.GROUP_C, groupCom.DiscountC, groupCom.Upline.DiscountC);
             var group1X2 = this.items[2];
-            this.RenderAgentCom(trBox, Language._1X2, group1X2.DiscountA, group1X2.Upline.DiscountA);
+            this.RenderAgentCom(trBox, Language._1X2, group1X2.DiscountA, group1X2.Upline.DiscountA, true);
             box.appendChild(trBox);
             trBox = document.createElement("TR");
 
             this.RenderAgentCom(trBox, Language.GROUP_B, groupCom.DiscountB, groupCom.Upline.DiscountB);
-            this.RenderAgentCom(trBox, Language.GROUP_D, groupCom.DiscountD, groupCom.Upline.DiscountD);
+            this.RenderAgentCom(trBox, Language.GROUP_D, groupCom.DiscountD, groupCom.Upline.DiscountD, true);
             var groupOther = this.items[1];
-            this.RenderAgentCom(trBox, Language.OTHERS_COM, groupOther.DiscountA, groupOther.Upline.DiscountA);
+            this.RenderAgentCom(trBox, Language.OTHERS_COM, groupOther.DiscountA, groupOther.Upline.DiscountA, true);
             if (this.hasNumberGameSection) {
                 var groupNumberGame = this.items[3];
                 this.RenderAgentCom(trBox, Language.NUMBER_GAME, groupNumberGame.DiscountA, groupNumberGame.Upline.DiscountA);
@@ -301,8 +315,8 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             box.appendChild(trGroup);
 
             //// Other Com
-            box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ' &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA));
-            box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ' &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA));
+            box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ' &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA, true));
+            box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ' &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA, true));
             if (hasNumberGameSection) {
                 box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.NUMBER_GAME + ' &nbsp; ', this.items[3].Discount, this.items[3].Upline.DiscountA));
             }
