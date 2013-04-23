@@ -79,24 +79,23 @@
 		}		
 	}
 
-	.tab-header {
-		// backup red themes		
+	.tab-header {	
 		#gradient.vertical(#777, #555);
 		text-align: left;
 		height: 40px;
 		margin-top: 10px;
 		width: 100.2%;
+
 		ul {	
 			padding-left:10px;			
 			li {					
-				display: inline-block;
+				float: left;
 				font-weight: normal;
 				padding: 8px 20px 10px 0;
 
 				a {
 					display: inline-block;
 					padding: 0;
-					//color: lighten(@primaryColor, 40%);
 					color: #fff;
 
 					span {							
@@ -111,8 +110,6 @@
 				}					
 
 				&#current a {	
-					// backup red themes	
-					//color: @textColor;
 					border-bottom: 1px solid #fff;
 				}
 			}		
