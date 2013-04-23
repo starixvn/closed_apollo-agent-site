@@ -59,7 +59,7 @@ var MEMBERLIST = function ( $ ) {
                 var $this = $( this );
                 var url = APOLLO.resolveUrl( "CustomerSetting/EditAllSetting?custId=" + $this.attr( "agentid" )
                 + "&agentLevel=" + $this.attr( "agentlevel" ) );
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Agent Setting - ' + $this.attr('username'), {
+                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, 'Edit Agent Setting - ' + $this.attr( 'username' ), {
                     width: 970,
                     height: 450,
                     position: { my: "top+25%", at: "center top", of: window },
@@ -141,7 +141,7 @@ var MEMBERLIST = function ( $ ) {
                          { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function ( cell ) {
-                                 return "<a href='#' class='edit-setting icon-pencil' name='Edit' usergroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " custid=" + cell.Value.CustId + " ></a>";
+                                 return "<a href='#' title='" + LANGUAGES.EditSetting + "' class='edit-setting icon-pencil' name='Edit' usergroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " custid=" + cell.Value.CustId + " ></a>";
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },

@@ -18,30 +18,30 @@
     }
 }
 <div id="agentOutstanding">
-    <table class="tblRpt" style="width: 100%">
+    <table class="tblRpt">
         <thead>
             <tr>
-                <th rowspan="2" style="width: 200px;">
+                <th rowspan="2" style="width: 150px;">
                     @Resources.Lang.agent
                 </th>
-                <th colspan="2" style="width: 170px;">
+                <th colspan="2" style="width: 200px;">
                     @Resources.Lang.sportBook
                 </th>
-                <th colspan="2" style="width: 170px; display: none">
+                <th colspan="2" style="width: 200px; display: none">
                     @Resources.Lang.numbergame
                 </th>
             </tr>
             <tr>
-                <th style="width: 170px;">
+                <th style="width: 200px;">
                     @Resources.Lang.outstanding
                 </th>
-                <th style="width: 170px;">
+                <th style="width: 200px;">
                     @Resources.Lang.ShareAmount
                 </th>
-                <th style="width: 170px; display: none">
+                <th style="width: 200px; display: none">
                     @Resources.Lang.outstanding
                 </th>
-                <th style="width: 170px; display: none">
+                <th style="width: 200px; display: none">
                     @Resources.Lang.ShareAmount
                 </th>
             </tr>
@@ -67,7 +67,7 @@
                     {
                     <tr @Html.Raw(rowClass)>
                         <td>
-                            <a href="#" name="viewagent" agentid="@item.UserId">@item.UserName</a>
+                            <a href="#" name="viewagent" agentid="@item.UserId" title="@Resources.Lang.lblViewAgentDownline">@item.UserName</a>
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.Outstanding, "en-US")
@@ -87,7 +87,7 @@
                     {
                     <tr @Html.Raw(rowClass)>
                         <td>
-                            <a href="#" id="MemberOutstanding" agentid="@Model.CurrentAgentId" >@Resources.Lang.lblMemberOutstanding</a>
+                            <a href="#" id="MemberOutstanding" agentid="@Model.CurrentAgentId"  title="@Resources.Lang.lblViewMemberOutstanding">@Resources.Lang.lblMemberOutstanding</a>
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.Outstanding, "en-US")
@@ -145,8 +145,8 @@
                 NumberGame: "@Resources.Lang.numbergame",
                 Outstanding: "@Resources.Lang.outstanding",
                 ShareAmount: "@Resources.Lang.ShareAmount",
-                Member: "@Resources.Lang.lblMember"
-
+                Member: "@Resources.Lang.lblMember",
+                ViewBetlist: "@Resources.Lang.lblViewBetlist"
             };
         } ();
     </script>
