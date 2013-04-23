@@ -79,7 +79,7 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
-        settingContext.IsSimpleMode = true;
+        settingContext.IsSimpleMode = isSimpleMode;
         EDITCOMMISSION.init(settingContext, commissionSetting);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
