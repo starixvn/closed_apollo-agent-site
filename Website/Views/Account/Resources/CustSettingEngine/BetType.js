@@ -8,6 +8,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Require Fanex.CustSetting na
 // [RoleId_] is optional
 // Call method by Method.call(this, arg1, arg2...)
 
+Fanex.CustSetting.BetType.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     box = document.createElement("DIV");
@@ -334,6 +335,8 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     return box;
 };
 
+//// Simple Mode
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_2_1 =
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_2_1 =
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     //box.appendChild(tableShareSetting);
@@ -465,7 +468,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
     trSetting.appendChild(valueContainer);
     var maxSpinBox = Fanex.CustSetting.PT_RenderSpinner(valueContainer,
                     {
-                        minimum: 0,
+                        minimum: currentPtValue.Upline.Min,
                         maximum: currentPtValue.Upline.Max,
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
@@ -475,7 +478,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
     var uplineMaxSpan = document.createElement("SPAN");
-    uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPtValue.Upline.Max);
+    uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPtValue.Upline.Min, currentPtValue.Upline.Max);
     uplineMaxSpan.className = "upline-agent-share";
     valueContainer.appendChild(uplineMaxSpan);
 
@@ -535,4 +538,81 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     };
 
     return tableShareSetting;
+};
+
+//// View Setting
+Fanex.CustSetting.BetType.prototype.Render_2_2_3 = function (owner) { // a1
+    box = document.createElement("DIV");
+    var currentPt = this.pt;
+    // Bet type header
+    var header = document.createElement("DIV");
+    header.innerHTML = this.name;
+    header.title = this.title;
+    header.className = "bet-type-header";
+    box.appendChild(header); // Header bet type name
+    header.style.minWidth = this.minWidth + 'px';
+
+    //// Given share
+    var maxContainer = document.createElement("DIV");
+    maxContainer.className = "bet-type-select-label";
+    maxContainer.innerHTML = this.pt.Max;
+    box.appendChild(maxContainer);
+
+    //// Taken Share
+    var presetContainer = document.createElement("DIV");
+    presetContainer.className = "bet-type-select-label";
+    presetContainer.innerHTML = this.pt.Preset;
+    box.appendChild(presetContainer);
+
+    //// Min Share
+
+    var minContainer = document.createElement("DIV");
+    minContainer.className = "bet-type-select-label";
+    minContainer.innerHTML = this.pt.Min;
+    box.appendChild(minContainer);
+
+    box.id = "e$" + this.suffixId;
+    box.className = "pt-box";
+
+    // Get updated data
+    this.Save = function () {
+            return null;
+    }
+
+    return box;
+};
+
+Fanex.CustSetting.BetType.prototype.Render_3_3_3 = function (owner) {
+    box = document.createElement("DIV");
+    var currentPt = this.pt;
+    // Bet type header
+    var header = document.createElement("DIV");
+    header.innerHTML = this.name;
+    header.title = this.title;
+    header.className = "bet-type-header";
+    box.appendChild(header); // Header bet type name
+    header.style.minWidth = this.minWidth + 'px';
+
+    //// Given share
+    var maxContainer = document.createElement("DIV");
+    maxContainer.className = "bet-type-select-label";
+    maxContainer.innerHTML = this.pt.Max;
+    box.appendChild(maxContainer);
+
+    //// Min Share
+
+    var minContainer = document.createElement("DIV");
+    minContainer.className = "bet-type-select-label";
+    minContainer.innerHTML = this.pt.Min;
+    box.appendChild(minContainer);
+
+    box.id = "e$" + this.suffixId;
+    box.className = "pt-box";
+
+    // Get updated data
+    this.Save = function () {
+        return null;
+    }
+
+    return box;
 };

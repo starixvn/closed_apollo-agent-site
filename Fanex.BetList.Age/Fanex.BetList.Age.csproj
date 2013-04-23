@@ -49,13 +49,11 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TplCore">
-      <HintPath>..\..\apollo-agent\Dependencies\TplCore.dll</HintPath>
+    <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\TplCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -153,10 +151,6 @@
     <ProjectReference Include="..\..\apollo-agent\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
       <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
       <Name>Fanex.Age.Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.BetList\Apollo.Age.BetList.csproj">
-      <Project>{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}</Project>
-      <Name>Apollo.Age.BetList</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>

@@ -8,28 +8,27 @@
 <%@ Import Namespace="Sunplus.Agent.Utilities" %>
 <%@ Import Namespace="Sunplus.Agent.Model.Entities" %>
 <%@ Import Namespace="Sunplus.Agent.Model.BL.Authorization" %>
-
 <script RunAt="server">
 
     public static void RegisterGlobalFilters(GlobalFilterCollection filters)
     {
         filters.Add(new HandleErrorAttribute());
     }
-    
+
     static void RegisterRoutes(RouteCollection routes)
     {
         routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
         routes.IgnoreRoute("{*allaspx}", new { allaspx = @".*\.aspx(/.*)?" });
         routes.IgnoreRoute("{*allashx}", new { allashx = @".*\.ashx(/.*)?" });
         routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
-        
+
         routes.MapRoute(
-             "Default", // Route name  
-             "{controller}/{action}/{id}", // URL with parameters  
+             "Default", // Route name
+             "{controller}/{action}/{id}", // URL with parameters
              new { controller = "Home", action = "Index", id = UrlParameter.Optional }
          );
     }
-    
+
     void Application_Start(object sender, EventArgs e)
     {
 
@@ -87,16 +86,17 @@
 
     void Application_AcquireRequestState(object sender, EventArgs e)
     {
+
         if (!(HttpContext.Current.Handler is IRequiresSessionState)) return;
 
         // Validate request & session
         string executeFileName = Request.AppRelativeCurrentExecutionFilePath;
         bool isNewSession = executeFileName.EndsWith("SignIn.aspx")
             || executeFileName.EndsWith("ProcessAdminLogin.ashx")
-            || executeFileName.EndsWith("ProcessAfterLogin.ashx")            
+            || executeFileName.EndsWith("ProcessAfterLogin.ashx")
             || executeFileName.EndsWith("Captcha.ashx")
             || executeFileName.EndsWith("ChartImg.axd");
-        
+
         //if (UserSession.Current.UserId <= 0 && !isNewSession)
         //{
         //    Response.Redirect("~/_Authorization/SignIn.aspx", true);
