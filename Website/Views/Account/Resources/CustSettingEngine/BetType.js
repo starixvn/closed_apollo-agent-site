@@ -8,6 +8,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Require Fanex.CustSetting na
 // [RoleId_] is optional
 // Call method by Method.call(this, arg1, arg2...)
 
+Fanex.CustSetting.BetType.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     box = document.createElement("DIV");
@@ -335,6 +336,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
 };
 
 //// Simple Mode
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_2_1 =
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_2_1 =
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     //box.appendChild(tableShareSetting);

@@ -30,6 +30,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
 };
 
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_3 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) { 
     var box = document.createElement("DIV");
