@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc.Ajax;
 
-namespace Apollo.Age.Web
+namespace Apollo.Age.Web.Pager
 {
     public class PaginationModel
     {
