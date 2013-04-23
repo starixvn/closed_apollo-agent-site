@@ -91,7 +91,7 @@
         if (executeFileName.IndexOf("UnderMaintenance") == -1)
         {
             UnderMaintenanceService maintenanceService = new UnderMaintenanceService();
-            var maintenanceInfo = maintenanceService.UnderMaintenanceInfo;
+            var maintenanceInfo = maintenanceService.MaintenanceInfo;
             if (maintenanceInfo.IsDownTime)
                 Response.Redirect("~/Home/UnderMaintenance");
         }
