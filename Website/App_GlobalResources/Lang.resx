@@ -3807,7 +3807,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>DND</value>
   </data>
   <data name="copyAllBetSettingFromExcludingNG" xml:space="preserve">
-    <value>Copy all below bet settings from {0} (excluding Number Game)</value>
+    <value>Copy all below bet settings from {0}</value>
   </data>
   <data name="copyAllHint" xml:space="preserve">
     <value>{0} position taking setting is being applied to:</value>
