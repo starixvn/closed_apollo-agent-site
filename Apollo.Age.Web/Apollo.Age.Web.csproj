@@ -69,6 +69,13 @@
     <Compile Include="HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
+    <Compile Include="Pager\IPagedList.cs" />
+    <Compile Include="Pager\PagedList.cs" />
+    <Compile Include="Pager\Pager.cs" />
+    <Compile Include="Pager\PagerOptions.cs" />
+    <Compile Include="Pager\PagerOptionsBuilder.cs" />
+    <Compile Include="Pager\PaginationModel.cs" />
+    <Compile Include="Pager\PagingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
