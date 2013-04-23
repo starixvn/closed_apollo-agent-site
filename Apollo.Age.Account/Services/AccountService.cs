@@ -48,47 +48,58 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberList(ref criteria);
         }
 
-        public List<Customer> GetCustomerSuggest(bool isMember, string userName, int agentId)
+        public List<Agent> GetAgentByUsername(int actorAgentId, string username)
         {
-            Check.Argument.IsNotNegative(agentId, "agentId");
+            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
 
-            CustomerSearchCriteria criteria = new CustomerSearchCriteria()
+            GetAgentByUsernameCriteria criteria = new GetAgentByUsernameCriteria()
             {
-                AgentId = agentId,
-                IsMember = isMember,
-                UserName = userName
+                ActorAgentId = actorAgentId,
+                Username = username
             };
 
-            return _accountRepository.GetCustomerSuggest(criteria).ToList();
+            return _accountRepository.GetAgentByUsername(criteria).ToList();
         }
 
-        public CustomerInfoModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId)
+        public List<Member> GetMemberByUsername(int actorAgentId, string username)
         {
-            Check.Argument.IsNotNegative(agentId, "agentId");
+            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
 
-            CustomerExistCriteria criteriaExist = new CustomerExistCriteria()
+            GetMemberByUsernameCriteria criteria = new GetMemberByUsernameCriteria()
             {
-                CurrentAgentId = agentId,
-                IsMember = isMember,
-                CustId = custId,
-                UserName = userName
+                ActorAgentId = actorAgentId,
+                Username = username
             };
 
-            if (_accountRepository.IsExistValueSearch(criteriaExist))
+            return _accountRepository.GetMemberByUsername(criteria).ToList();
+        }
+
+        public CustomerInfoModel GetAgentInfo(int actorAgentId, int agentId, string username)
+        {
+            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
+
+            AgentInfoCriteria criteria = new AgentInfoCriteria()
             {
-                AccountInfoCriteria criteria = new AccountInfoCriteria()
-                {
-                    CurrentAgentId = agentId,
-                    IsMember = isMember,
-                    CustId = custId,
-                    UserName = userName
-                };
-                return _accountRepository.GetCustomerInfo(criteria);
-            }
-            else
+                ActorAgentId = actorAgentId,
+                AgentId = agentId,
+                Username = username
+            };
+
+            return _accountRepository.GetCustomerInfo(criteria);
+        }
+
+        public CustomerInfoModel GetMemberInfo(int actorAgentId, int custId, string username)
+        {
+            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
+
+            MemberInfoCriteria criteria = new MemberInfoCriteria()
             {
-                return null;
-            }
+                ActorAgentId = actorAgentId,
+                CustId = custId,
+                Username = username
+            };
+
+            return _accountRepository.GetCustomerInfo(criteria);
         }
 
         public List<Member> GetMemberDownline(int agentId, int pageIndex, int pageSize, ref int totalPage)

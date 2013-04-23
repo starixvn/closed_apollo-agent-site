@@ -16,36 +16,54 @@ var ACCOUNT = function ($) {
             ACCOUNT.enterUsernameValue = $("#enterUsernameValue");
         },
 
-        getAccountInfo: function (username) {
-            location.href = APOLLO.resolveUrl('Account/AccountInfo?userName='
-            + username + '&isMember=' + ACCOUNT.dllIsMember.val());
+        getAccountInfo: function (custId, username) {
+            var url = "";
+            if (ACCOUNT.dllIsMember.val() == "true") {
+                url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
+            }
+            else {
+                url = 'Account/AgentInfo?agentid=' + custId + '&username=' + username
+            }
+
+            location.href = APOLLO.resolveUrl(url);
         },
 
         initSearchClick: function () {
-            ACCOUNT.showSectionTab("custsettings", 1);
+            ACCOUNT.showSectionTab("custsettings", 1); // 1: default is show setting tab
 
             ACCOUNT.txtUsername.autocomplete({
                 source: function (request, response) {
-                    var url = "Account/GetSuggestValues" +
-                    "?term=" + request.term +
-                    "&isMember=" + (ACCOUNT.dllIsMember.val() == 1);
+                    var url = "";
+                    if (ACCOUNT.dllIsMember.val() == "true") {
+                        url = "Account/GetMemberByUsername?username=" + request.term;
+                    }
+                    else {
+                        url = "Account/GetAgentByUsername?username=" + request.term;
+                    }
 
                     $.ajax({
                         url: APOLLO.resolveUrl(url),
                         success: function (data) {
-                            return response(data);
+                            var found = $.map(data, function (item) {
+                                return {
+                                    label: item.Username,
+                                    value: item.Id
+                                }
+                            });
+
+                            return response(found);
                         }
                     });
                 },
                 select: function (event, ui) {
-                    ACCOUNT.getAccountInfo(ui.item.value);
+                    ACCOUNT.getAccountInfo(ui.item.value, ui.item.label);
                 },
                 position: { my: "right top", at: "right bottom" }
             });
 
 
             $(".search-button").bind('click', function () {
-                ACCOUNT.getAccountInfo(ACCOUNT.txtUsername.val());
+                ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val()); // -1: only search username
             });
 
             $(".show-section").bind('click', function () {
@@ -88,14 +106,12 @@ var ACCOUNT = function ($) {
                                 for (var i = 1; i < data.length; ++i) {
                                     agentList.append(
                                         "<li>" +
-                                            "<a href='" + APOLLO.resolveUrl("Account/AccountInfo" + "?isMember=0" +
-                                                "&custId=" + data[i].Id +
-                                                "&userName=" + data[i].Username) + "'>\\ " + data[i].Username + "</a>" +
+                                            "<a href='" + APOLLO.resolveUrl("Account/AgentInfo" + "?agentid=" + data[i].Id +
+                                                "&username=" + data[i].Username) + "'>\\ " + data[i].Username + "</a>" +
                                         "</li>"
                                     );
                                 }
                             }
-
                         }
                     });
 
@@ -142,7 +158,7 @@ var ACCOUNT = function ($) {
             }
         },
         bindMembersList: function (agentId) {
-            var link = APOLLO.resolveUrl("Account/MemberDownline?custId=" + agentId),
+            var link = APOLLO.resolveUrl("Account/MemberDownline?agentId=" + agentId),
             iframe = document.createElement('iframe');
 
             iframe.frameBorder = 0;

@@ -206,8 +206,14 @@
   </Function>
 
   <Function Name="Agent-Apollo-Customer Setting">
-    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="REPDB" Plain="0">
-      <Mapping DataField="UserGroup" ObjectProperty="Group" />
+    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo_xtest" DbName="REPDB" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="ParentId" />
+      <Mapping DataField="UGroup" ObjectProperty="Group" />
+    </Setting>
+
+    <Setting Key="Age_Agent_GetAllInfo" SpName="Age_Agent_GetAllInfo" DbName="REPDB" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="CustId" />
+      <Mapping DataField="AgentLevel" ObjectProperty="Level" />
     </Setting>
 
     <Setting Key="Age_Customer_GetAgentDownline" SpName="Age_Customer_GetAgentDownline" DbName="REPDB" Plain="0" />
@@ -216,8 +222,12 @@
       <Mapping DataField="AgentLevel" ObjectProperty="Level" />
     </Setting>
     <Setting Key="Age_Customer_GetMemberDownline" SpName="Age_Customer_GetMemberDownline" DbName="REPDB" Plain="0" />
-    <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="REPDB" Plain="0" />
-    <Setting Key="Age_Customer_IsExistValueSearch" SpName="Age_Customer_IsExistValueSearch" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Agent_GetByUsername" SpName="Age_Agent_GetByUsername" DbName="REPDB" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_Customer_GetByUsername" SpName="Age_Customer_GetByUsername" DbName="REPDB" Plain="0">
+      <Mapping DataField="CustId" ObjectProperty="Id" />
+    </Setting>
   </Function>
 
   <Function Name="Agent-Apollo-Report">
