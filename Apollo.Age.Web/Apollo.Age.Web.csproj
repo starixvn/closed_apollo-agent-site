@@ -52,7 +52,7 @@
     <Compile Include="CurrentSession.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
-    <Compile Include="Models\UnderMaintenanceModel.cs" />
+    <Compile Include="ViewModels\UnderMaintenanceViewModel.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Pager\IPagedList.cs" />
     <Compile Include="Pager\PagedList.cs" />
