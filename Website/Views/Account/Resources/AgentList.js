@@ -49,6 +49,7 @@ var AGENTLIST = function ( $ ) {
         bindingViewAgent: function () {
             $( '[name="viewAgent"]' ).unbind( 'click' ).bind( 'click', function () {
                 AGENTLIST.AgentId = $( this ).attr( 'agentid' );
+                $( "#txtUserName" ).val( BASELANGUAGES.EnterUsername );
                 AGENTLIST.loadAgentList();
                 return false;
             } );
