@@ -130,7 +130,6 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void ProcessRequest(ref System.Collections.Hashtable hash)
         {
-            base.ProcessRequest(ref hash);
             pageType = Request["type"];
 
             if (pageType == "accountinfo" || pageType == "report")
