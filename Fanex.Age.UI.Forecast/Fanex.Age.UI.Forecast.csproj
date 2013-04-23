@@ -57,7 +57,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TplCore">
+    <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\TplCore.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -80,7 +81,6 @@
   <ItemGroup>
     <Compile Include="Scripts.htm.cs" />
     <Compile Include="Styles.htm.cs" />
-    <Content Include="App_Code\TplCore\FCAH.htm.cs" />
     <Compile Include="App_GlobalResources\Lang.designer.cs">
       <DependentUpon>Lang.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -104,6 +104,9 @@
       <Project>{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}</Project>
       <Name>Fanex.Age.UI.Components</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -54,8 +54,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TplCore">
-      <HintPath>..\..\apollo-agent\Dependencies\TplCore.dll</HintPath>
+    <Reference Include="TplBuilder, Version=1.0.4811.28423, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\TplBuilder2010\TplBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\TplCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
