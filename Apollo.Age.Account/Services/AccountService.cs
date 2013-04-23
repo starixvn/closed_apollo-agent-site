@@ -24,18 +24,10 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
     using Fanex.Common;
+    using Apollo.Age.Account.Core;
 
     public class AccountService : ServiceBase, IAccountService
     {
-        private const string PATH_XML = "\\CustSettingEngine\\PTGrid.xml";
-        private const string SPORT_TYPE_NODE_XML = "PTGrid/SportType";
-        private const string BET_TYPE_NODE_XML = "BetTypeGroup/BetType";
-        private const string ATTRIBUTE_SPORT_ID = "id";
-        private const string ATTRIBUTE_BETTYPE_ID = "id";
-        private const string ATTRIBUTE_SPORT_NAME = "name";
-        private const string ATTRIBUTE_BETTYPE_NAME = "name";
-        private const string ATTRIBUTE_SPORT_LIVE = "isLive";
-
         private readonly IAccountRepository _accountRepository;
         private readonly IAgentRepository _agentRepository;
 
@@ -140,39 +132,20 @@ namespace Apollo.Age.Account.Services
             }).ToList();
         }
 
-        public List<AgentShareModel> GetAgentShare(int actorAgentId, int agentId, string userName, short sportType, short betType, bool isLive)
+        public List<AgentShareModel> GetAgentShare(AgentShareCriteria criteria)
         {
-            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-            Check.Argument.IsNotNegative(sportType, "sportType");
-            Check.Argument.IsNotNegative(betType, "betType");
-
-            var criteria = new AgentShareCriteria() { 
-                ActorAgentId = actorAgentId,
-                AgentId = agentId,
-                Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                IsLive = isLive
-            };
+            Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
+            Check.Argument.IsNotNegative(criteria.SportType, "sportType");
+            Check.Argument.IsNotNegative(criteria.BetType, "betType");
 
             return _accountRepository.GetAgentShare(criteria).ToList();
         }
 
-        public List<MemberShareModel> GetMemberShare(int actorAgentId, int memberId, string userName, short sportType, short betType, bool isLive)
+        public List<MemberShareModel> GetMemberShare(MemberShareCriteria criteria)
         {
-            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-            Check.Argument.IsNotNegative(sportType, "sportType");
-            Check.Argument.IsNotNegative(betType, "betType");
-
-            var criteria = new MemberShareCriteria()
-            {
-                ActorAgentId = actorAgentId,
-                CustId = memberId,
-                Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                IsLive = isLive
-            };
+            Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
+            Check.Argument.IsNotNegative(criteria.SportType, "sportType");
+            Check.Argument.IsNotNegative(criteria.BetType, "betType");
 
             return _accountRepository.GetMemberShare(criteria).ToList();
         }
@@ -190,20 +163,21 @@ namespace Apollo.Age.Account.Services
 
             return _accountRepository.GetCommissionToAgent(criteria);
         }
+
         public List<Sport> GetAllSportType()
         {
             var sportList = new List<Sport>();
             XmlDocument xmlDoc = new XmlDocument();
 
-            xmlDoc.Load(System.AppDomain.CurrentDomain.BaseDirectory + PATH_XML);
+            xmlDoc.Load(System.AppDomain.CurrentDomain.BaseDirectory + Constants.PATH_XML);
 
-            foreach (XmlNode sportTypeNode in xmlDoc.SelectNodes(@SPORT_TYPE_NODE_XML))
+            foreach (XmlNode sportTypeNode in xmlDoc.SelectNodes(@Constants.SPORT_TYPE_NODE_XML))
             {
-                if (sportTypeNode.Attributes[ATTRIBUTE_SPORT_ID].Value != null 
-                    && sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value != null)
+                if (sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_ID].Value != null
+                    && sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_NAME].Value != null)
                 {
-                    var isLive = Converter.ToBool(sportTypeNode.Attributes[ATTRIBUTE_SPORT_LIVE].Value);
-                    var sportId = Converter.To<byte>(sportTypeNode.Attributes[ATTRIBUTE_SPORT_ID].Value);
+                    var isLive = Converter.ToBool(sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_LIVE].Value);
+                    var sportId = Converter.To<byte>(sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_ID].Value);
 
                     var sport = sportList.Where(t => t.Id == sportId).SingleOrDefault();
 
@@ -212,7 +186,7 @@ namespace Apollo.Age.Account.Services
                         sport = new Sport()
                         {
                             Id = sportId,
-                            Name = sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value.ToString(),
+                            Name = sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_NAME].Value.ToString(),
                             BetTypeList = new List<BetType>()
                         };
 
@@ -220,34 +194,33 @@ namespace Apollo.Age.Account.Services
                     }
 
                     // bet type
-                    foreach (XmlNode betTypeNode in sportTypeNode.SelectNodes(@BET_TYPE_NODE_XML))
+                    foreach (XmlNode betTypeNode in sportTypeNode.SelectNodes(@Constants.BET_TYPE_NODE_XML))
                     {
-                        if (betTypeNode.Attributes[ATTRIBUTE_BETTYPE_ID].Value != null
-                            && betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value != null)
+                        if (betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value != null
+                            && betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_NAME].Value != null)
                         {
-                            var betTypeId = Converter.ToInt(betTypeNode.Attributes[ATTRIBUTE_BETTYPE_ID].Value);
+                            var betTypeId = Converter.ToInt(betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value);
                             var betType = sport.BetTypeList.Where(t => t.Id == betTypeId).SingleOrDefault();
 
                             if (betType == null)
                             {
                                 betType = new BetType()
                                 {
-                                    Id = Converter.ToInt(betTypeNode.Attributes[ATTRIBUTE_BETTYPE_ID].Value),
-                                    Name = betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
+                                    Id = Converter.ToInt(betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value),
+                                    Name = betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
                                     IsLive = isLive,
                                     IsDead = false
                                 };
                             }
                             else
                             {
-                                //sport.BetTypeList.Where(t => t.Id == betTypeId).SingleOrDefault().IsDead = isLive;
                                 betType.IsDead = isLive;
                                 betType.IsLive = !isLive;
 
                                 betType = new BetType()
                                 {
-                                    Id = Converter.ToInt(betTypeNode.Attributes[ATTRIBUTE_BETTYPE_ID].Value),
-                                    Name = betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
+                                    Id = Converter.ToInt(betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value),
+                                    Name = betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
                                     IsLive = isLive,
                                     IsDead = !isLive
                                 };
@@ -279,7 +252,7 @@ namespace Apollo.Age.Account.Services
                 betTypeList = sport.BetTypeList;
             }
 
-            return betTypeList;
+            return betTypeList.OrderByDescending(t=>t.IsLive).ToList();
         }
     }
 }

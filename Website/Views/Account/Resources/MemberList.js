@@ -5,18 +5,21 @@ var MEMBERLIST = function ( $ ) {
         AgentId: null,
         currentPopUp: null,
         AgentLevel: null,
+        Username: null,
         init: function () {
             MEMBERLIST.AgentId = $( "#gridId" ).attr( "agentid" );
             MEMBERLIST.AgentLevel = $( "#gridId" ).attr( "agentlevel" );
-            $( "#currUsername" ).html( $( "#gridId" ).attr( "username" ) );
+            MEMBERLIST.Username = $( "#gridId" ).attr( "username" );
+            $( "#currUsername" ).html( MEMBERLIST.Username );
             MEMBERLIST.loadMemberList();
             MEMBERLIST.bindingNavigation();
-            MEMBERLIST.bindingQuickiLinkEditSetting( MEMBERLIST.AgentId, MEMBERLIST.AgentLevel );
+            MEMBERLIST.bindingQuickiLinkEditSetting( MEMBERLIST.AgentId, MEMBERLIST.AgentLevel, MEMBERLIST.Username );
         },
-        bindingQuickiLinkEditSetting: function ( agentId, agentLevel ) {
+        bindingQuickiLinkEditSetting: function ( agentId, agentLevel, username ) {
             var $quickLinkEditSetting = $( "#quickLinkEditSetting" );
             $quickLinkEditSetting.attr( "agentid", agentId );
             $quickLinkEditSetting.attr( "agentlevel", agentLevel );
+            $quickLinkEditSetting.attr( "username", username );
         },
         bindingNavigation: function () {
             $( "[name='navigation']" ).unbind( 'click' ).bind( 'click', function () {
@@ -41,7 +44,7 @@ var MEMBERLIST = function ( $ ) {
                                 + "&agentId=" + $( "#gridId" ).attr( "agentid" ) );
             MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, 'Edit Member Setting - ' + $this.attr( "username" ), {
                 width: 970,
-                height: 500,
+                height: 450,
                 position: { my: "top+25%", at: "center top", of: window },
                 close: function ( event, ui ) {
                 }
@@ -56,7 +59,7 @@ var MEMBERLIST = function ( $ ) {
                 var $this = $( this );
                 var url = APOLLO.resolveUrl( "CustomerSetting/EditAllSetting?custId=" + $this.attr( "agentid" )
                 + "&agentLevel=" + $this.attr( "agentlevel" ) );
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame( url, 'Edit Agent Setting ', {
+                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Agent Setting - ' + $this.attr('username'), {
                     width: 970,
                     height: 450,
                     position: { my: "top+25%", at: "center top", of: window },
@@ -168,7 +171,7 @@ var MEMBERLIST = function ( $ ) {
                 bodyRows: bodyData,
                 showFooter: false,
                 fullHeight: true,
-                gridExpandHeight: 250,
+                gridExpandHeight: 170,
                 numberOfFrozenColumn: 3,
                 marginRight: 0,
                 showPager: true,

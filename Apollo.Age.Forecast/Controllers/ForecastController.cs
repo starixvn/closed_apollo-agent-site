@@ -84,10 +84,11 @@ namespace Apollo.Age.Forecast.Controllers
         /// Handicap OU Forecast Page
         /// </summary>
         /// <returns></returns>
-        public ViewResult FCHandicapOverUnder()
+        public ViewResult FCHandicapOverUnder(string leagueName = "")
         {
             IEnumerable<LeagueModel> leagues = _forecastService.GetRunningLeague(betType: (int)BetTypes.Handicap, agentId: this.CurrentSession.AgentId);
             ViewBag.Leagues = leagues;
+            ViewBag.LeagueName = leagueName;
             return View();
         }
 

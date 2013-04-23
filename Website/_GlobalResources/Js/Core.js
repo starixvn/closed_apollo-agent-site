@@ -19,9 +19,8 @@ if (typeof jQuery != 'undefined') {
 				return target.dialog($.extend({}, APOLLO.dialogOpt, options));
 			},
 			openDialogFrame: function (url, title, options) {
-                //// Do not change
+                //// DO NOT CHANGE ////
 			    var frame = $("#apo-dialog-frame");
-
 			    var frameHtml = '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>';
 
 			    if (frame.length > 0) {
@@ -29,7 +28,6 @@ if (typeof jQuery != 'undefined') {
 			    } else {
 			        frame = '<div id="apo-dialog-frame">' + frameHtml + '</div>';
 			    }
-
 
 				return APOLLO.openDialog(frame, title, options);
 			},

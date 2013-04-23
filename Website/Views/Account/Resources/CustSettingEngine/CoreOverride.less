@@ -2,150 +2,119 @@
 @import "../../../../_globalresources/css/agent.less";
 
 /* File Created: March 13, 2013 */
-.betting-limit-item
-{
+.betting-limit-item {
     padding: 1px 2px 2px 2px;
 }
-.pt-grid, .betting-limit-container-header, .commission-container-header, .commission-setting-table-player, .commission-setting-table-player tr td
-{
-    border: 1px solid #7C796E;
+
+.pt-grid, .betting-limit-container-header, .commission-container-header,
+.commission-setting-table-player, .commission-setting-table-player tr td {
+    border: 1px solid @borderColor;
 }
-.pt-grid-header
-{
-    background: none repeat scroll 0 0 #5B584D;
+
+.pt-grid-header {
+    background: @primaryHeaderBackground;
     color: @white;
+	font-size: 1.1em;
 }
-.pt-sport-label, .pt-sport-label2, .bet-type-select, .bet-type-label
-{
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
-    color: @white;
+
+.pt-sport-label, .pt-sport-label2, .bet-type-select, .bet-type-label {
+    border-left: 1px solid @borderColor;
+	border-top: 1px solid @borderColor;
+    color: #333;
 }
-.pt-sport
-{
-    background-color: #7C796E;
-    border-bottom: 1px solid #B7B7B7;
-    border-right: 1px solid #B7B7B7;
-    border-top: 1px solid #B7B7B7;
+
+.pt-sport {
+    background-color: #ccc;
+    border: 1px solid @borderColor;
+    border-left: none;
 }
+
 .upline-agent-share {
-	color: #171717;
-}
-.pt-sport-copied
-{
-    background: #7C796E url(Images/copyUnChecked.png) no-repeat right top;
-}
-.pt-sport-edit
-{
-    background: #7C796E url(Images/edit.png) no-repeat right top;
+	color: @textColor;
 }
 
-.save-component-setting
-{
-    background: #5B584D url(Images/info_black.png) no-repeat right top;
+.pt-sport-copied {
+    background: url(Images/copyUnChecked.png) no-repeat right top;
 }
 
-.pt-sport-edit-copied
-{
-    background: #7C796E url(Images/copy.png) no-repeat right top;
+.pt-sport-edit {
+    background: url(Images/edit.png) no-repeat right top;
 }
 
-.pt-sport-copied-active
-{
-    background: #7C796E url(Images/copyChecked.png) no-repeat right top;
+.save-component-setting {
+    background: url(Images/info_black.png) no-repeat right top;
 }
 
-.pt-group, .pt-group2, .pt-box
-{
-    background-color: #F4F1E0;
+.pt-sport-edit-copied {
+    background: url(Images/copy.png) no-repeat right top;
 }
 
-.bet-type-header, .group-label, .group-label2, .group-set-label
-{
-    background-color: #FFEFCF;
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
+.pt-sport-copied-active {
+    background: url(Images/copyChecked.png) no-repeat right top;
 }
 
-.bet-type-header2
-{
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
+.pt-group, .pt-group2, .pt-box {
+    background-color: @white;
 }
 
-.bet-type-header-active
-{
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
+.bet-type-header, .group-label, .group-label2, .group-set-label {
+    background-color: lighten(@primaryColor, 35%);
+    border-left: 1px solid @borderColor;
+    border-top: 1px solid @borderColor;
 }
 
-.bet-type-inactive
-{
+.bet-type-header2, .bet-type-header-active, .betting-limit-item-no-info,
+.betting-limit-header-copied, .betting-limit-header-copied-active {
+    border-left: 1px solid @borderColor;
+    border-top: 1px solid @borderColor;
+}
+
+.bet-type-inactive {
     background-color: #DDD !important;
     cursor: default;
 }
 
-.betting-limit, .betting-limit4
-{
-    background-color: #FFEFCF;
-    border-bottom: 1px solid #7C796E;
-    border-right: 1px solid #7C796E;
+.betting-limit, .betting-limit4 {
+    background-color: lighten(@primaryColor, 35%);
+    border-bottom: 1px solid @borderColor;
+    border-right: 1px solid @borderColor;
 }
 
-.betting-limit-item, .betting-limit-item4, .betting-limit-item9, .betting-limit-item92, .betting-limit-label
-{
-    background-color: #F4F1E0;
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
+.betting-limit-item, .betting-limit-item4, .betting-limit-item9, .betting-limit-item92, .betting-limit-label {
+    background-color: @white;
+    border-left: 1px solid @borderColor;
+    border-top: 1px solid @borderColor;
 }
-.betting-limit-item5
-{
+
+.betting-limit-item5 {
     background-color: #DDDDDD;
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
-}
-.betting-limit-item-no-info
-{
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
-}
-.betting-limit-item2-no-info
-{
-    border-top: 1px solid #7C796E;
-}
-.betting-limit-item2
-{
-    background-color: #F4F1E0;
-    border-top: 1px solid #7C796E;
+    border-left: 1px solid @borderColor;
+    border-top: 1px solid @borderColor;
 }
 
-.betting-limit-header, .betting-limit-header-top, .betting-limit-header2, .betting-limit-header-top9, .betting-limit-header-top4, .betting-limit-header-top5
-{
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
+.betting-limit-item2-no-info {
+    border-top: 1px solid @borderColor;
 }
 
-.betting-limit-header-copied
-{
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
+.betting-limit-item2 {
+    background-color: @white;
+    border-top: 1px solid @borderColor;
 }
 
-.betting-limit-header-copied-active
-{
-    border-left: 1px solid #7C796E;
-    border-top: 1px solid #7C796E;
+.betting-limit-header, .betting-limit-header-top,
+.betting-limit-header2, .betting-limit-header-top9,
+.betting-limit-header-top4, .betting-limit-header-top5 {
+    border-left: 1px solid @borderColor;
+    border-top: 1px solid @borderColor;
 }
 
-.commission-setting-table, .commission-setting-table-player
-{
-    background-color: #F4F1E0;
+.commission-setting-table, .commission-setting-table-player {
+    background-color: lighten(@primaryColor, 35%);
 }
 
-.commission-setting-table-player tr th
-{
-    background: none repeat scroll 0 0 #7C796E;
-    border: 1px solid #7C796E;
+.commission-setting-table-player tr th {
+    background: none repeat scroll 0 0 @borderColor;
+    border: 1px solid @borderColor;
 }
 
 .margin-top-12 {
@@ -156,65 +125,72 @@
 	margin-top: 5px;
 	margin-bottom: 5px;
 	width: 915px;
+
+	#commissionSettingContainer, #bettingLimitContainer, #ptContainer {
+		margin-top:5px;
+	}
+
+	.edit-setting-warning {
+		font-style: italic;
+		color: @orange;
+	}
 }
 
-#settingContainer #commissionSettingContainer, #settingContainer #bettingLimitContainer, 
-#settingContainer #ptContainer
-{
-	margin-top:5px;
+
+.simple-mode-container {
+
+	.share-setting-table {
+		width: 100%;
+	}
+
+	.share-setting-table tr td {
+		border: 1px solid @borderColor;
+	}
+
+	.share-setting-label {
+		background-color: lighten(@primaryColor, 35%);
+		border: 1px solid @borderColor;
+	}
+
+	.share-setting-value {
+		border: 1px solid @borderColor;
+	}
+
+	.bet-limit-value {
+		border: 1px solid @borderColor;
+		border-right: none;
+	}
+
+	.bet-limit-constrain {
+		border: 1px solid @borderColor;
+		border-left: none;
+	}
+
+	.bet-limit-text {
+		border: 1px solid @borderColor;
+		background-color: #F4F1E0;
+	}
+} 
+
+.setting-mode {
+	margin-bottom: 10px;
+
+	.active-mode{
+		color: @linkColor;
+		cursor: pointer;
+	}
+
+	.deactive-mode {
+		color: @borderColor;
+		cursor: default;
+	}
+
 }
 
-#settingContainer .edit-setting-warning
-{
-	font-weight: bold;
-	color: Orange;
+.share-setting-value input {
+	margin-left: 2px;
 }
 
-.simple-mode-container .share-setting-table {
-	width: 100%;
-}
-
-.simple-mode-container .share-setting-table tr td {
-	border: 1px solid #7C796E;
-}
-
-.simple-mode-container .share-setting-label {
-	background-color: #FFEFCF;
-    border: 1px solid #7C796E;
-}
-
-.simple-mode-container .share-setting-value {
-    border: 1px solid #7C796E;
-}
-
-.simple-mode-container .bet-limit-value 
-{
-	border-top: 1px solid #7C796E;
-	border-bottom: 1px solid #7C796E;
-	border-left: 1px solid #7C796E;
-}
-
-.simple-mode-container .bet-limit-constrain 
-{
-	border-top: 1px solid #7C796E;
-	border-bottom: 1px solid #7C796E;
-	border-right: 1px solid #7C796E;
-}
-
-.setting-mode .active-mode
-{
-	color: @linkColor;
-	cursor: pointer;
-}
-
-.setting-mode .deactive-mode
-{
-	color: #7C796E !important;
-	cursor: default !important;
-}
-
-.simple-mode-container .bet-limit-text 
-{
-	border: 1px solid #7C796E;
-	background-color: #F4F1E0;
+.pt-sport-label, .pt-sport-label2 {
+	border-top: none;
 }

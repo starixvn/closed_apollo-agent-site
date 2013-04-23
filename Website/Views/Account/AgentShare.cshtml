@@ -1,8 +1,9 @@
 ﻿@using Apollo.Age.Account.ViewModels
 @using Fanex.Age.Utility
+@using Apollo.Age.Account.Core
 
 @{
-    ViewBag.Title = "Agent Share";
+    ViewBag.Title = Resources.Lang.ViewShare;
     Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
     int index = 0;
 }
@@ -30,7 +31,7 @@
 				<label for="ddlBetType">@Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)</label>
 			</div>
             <div class="editor">
-				@Html.DropDownListFor(m => m.BetType, Model.BetTypeSelectListItem,
+				@Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
 					new { id = "ddlBetType", style = "width: 160px" })
             </div>
 		</div>
@@ -38,17 +39,17 @@
 		<div class="cell">
 			<div class="editor">
 				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-					new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
-					new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+					new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent },
+					new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
 				}, new { id = "ddlIsMember" })
-				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername" })
+				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50" })
 				<input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
             </div>
         </div>
     </div>
 </div>
 
-<table class="tbl-cust-setting no-border-bottom">
+<table class="tbl-cust-setting no-border-bottom" style="width:auto; min-width: 692px;">
     <thead>
         <tr>
             <th>
@@ -74,15 +75,21 @@
                     <td class="em-row l">
                         @item.Username
                     </td>
+                    @if (item.AgentLevel == Constants.MAIN_SHAREHOLDER_LEVEL)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td class="r">
+                            @Formater.FormatNumber20(item.TakenShare / 100, Formater.CULT_NAME_ENG)
+                        </td>
+                    }
                     <td class="r">
-                        @Formater.DecFormat(item.TakenShare / 100, decDigits: 2)
+                        @Formater.FormatNumber20(item.MaxGiven / 100, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @*@Formater.DecFormat(item.MaxGiven,decDigits: 2)*@
-                        @RazorHelper.FormatNumber(item.MaxGiven / 100, numDecimals: 2, showZero: true)
-                    </td>
-                    <td class="r">
-                        @Formater.DecFormat(item.MinGiven / 100, decDigits: 2)
+                        @Formater.FormatNumber20(item.MinGiven / 100, Formater.CULT_NAME_ENG)
                     </td>
                 </tr>
 			}

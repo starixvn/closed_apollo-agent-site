@@ -35,6 +35,7 @@ if (typeof jQuery != 'undefined') {
             },
             saveSetting: function () {
                 if (BETLIMIT.betLimitElement.Validate()) {
+                    $("#btnSubmitFooter").attr("disabled", "disabled");
                     $.ajax({
                         url: APOLLO.resolveUrl('CustomerSetting/UpdateAllSetting'),
                         type: 'POST',
@@ -48,13 +49,15 @@ if (typeof jQuery != 'undefined') {
                         })
                     }).done(function (data) {
                         if (data.ErrCode == 0) {
-                            noty({ text: data.ErrMsg, type: 'success', timeout: 5000 });
+                            noty({ text: data.ErrMsg, type: 'success', timeout: 500000 });
                             EDITSETTING.completeUpdate();
                         } else {
                             noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                    }).always(function () {
+                        $("#btnSubmitFooter").removeAttr("disabled");
                     });
                 }
             },
@@ -79,7 +82,7 @@ if (typeof jQuery != 'undefined') {
                 if (currentList != null) {
                     if (isSimpleMode == true) {
                         currentList.currentPopUp.dialog("option", {
-                            height: 500,
+                            height: 450,
                             position: { my: "top+25%", at: "center top", of: parent.window }
                         });
                     }

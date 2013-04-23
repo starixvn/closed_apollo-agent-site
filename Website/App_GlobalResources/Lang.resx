@@ -1198,13 +1198,13 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>1st Half</value>
   </data>
   <data name="lbl1stHdp" xml:space="preserve">
-    <value>1st Hdp</value>
+    <value>1st Handicap</value>
   </data>
   <data name="lbl1stMoneyLine" xml:space="preserve">
     <value>1st Money Line</value>
   </data>
   <data name="lbl1stOU" xml:space="preserve">
-    <value>1st OU</value>
+    <value>1st Over/Under</value>
   </data>
   <data name="lbl1x2" xml:space="preserve">
     <value>1 X 2</value>
@@ -1684,7 +1684,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Game Type Name</value>
   </data>
   <data name="lblGroupa" xml:space="preserve">
-    <value>Group A (%)</value>
+    <value>Group A</value>
   </data>
   <data name="lblGroupb" xml:space="preserve">
     <value>Group B</value>
@@ -3807,7 +3807,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>DND</value>
   </data>
   <data name="copyAllBetSettingFromExcludingNG" xml:space="preserve">
-    <value>Copy all below bet settings from {0} (excluding Number Game)</value>
+    <value>Copy all below bet settings from {0}</value>
   </data>
   <data name="copyAllHint" xml:space="preserve">
     <value>{0} position taking setting is being applied to:</value>
