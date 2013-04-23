@@ -973,7 +973,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     //Fanex.CustSetting.SPINNER_BOX_WIDTH = 80;
                     //// Position Taking Header
                     var header = document.createElement("DIV");
-                    header.innerHTML = Language.POSITION_SETTING_HEADER;
+                    header.innerHTML = Language.POSITION_SETTING_SIMPLE_MODE_HEADER;
                     header.className = "pt-grid-header";
                     var saveButton = document.createElement("SPAN");
                     saveButton.className = "save-component-setting";
