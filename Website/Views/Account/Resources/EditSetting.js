@@ -35,6 +35,7 @@ if (typeof jQuery != 'undefined') {
             },
             saveSetting: function () {
                 if (BETLIMIT.betLimitElement.Validate()) {
+                    $("#btnSubmitFooter").attr("disabled", "disabled");
                     $.ajax({
                         url: APOLLO.resolveUrl('CustomerSetting/UpdateAllSetting'),
                         type: 'POST',
@@ -55,6 +56,8 @@ if (typeof jQuery != 'undefined') {
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                    }).always(function () {
+                        $("#btnSubmitFooter").removeAttr("disabled");
                     });
                 }
             },

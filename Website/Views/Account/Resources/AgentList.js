@@ -32,6 +32,7 @@ var AGENTLIST = function ( $ ) {
 
                             $quickLinkEditSetting.attr( "agentid", result[i].Id );
                             $quickLinkEditSetting.attr( "agentlevel", result[i].Level );
+                            $quickLinkEditSetting.attr( "username", result[i].Username );
                         }
                         else {
                             template += "<a href='#' name='navigation' agentid='" + result[i].Id + "' >" + result[i].Username + "</a>";
@@ -48,6 +49,7 @@ var AGENTLIST = function ( $ ) {
         bindingViewAgent: function () {
             $( '[name="viewAgent"]' ).unbind( 'click' ).bind( 'click', function () {
                 AGENTLIST.AgentId = $( this ).attr( 'agentid' );
+                $( "#txtUserName" ).val( BASELANGUAGES.EnterUsername );
                 AGENTLIST.loadAgentList();
                 return false;
             } );

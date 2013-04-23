@@ -223,8 +223,8 @@
 		if (Model == null)
 		{
     @Html.DropDownList("IsMember", new List<SelectListItem> {
-            new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
-            new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+            new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent },
+            new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
         }, new { id = "ddlIsMember" })
 
     <input maxlength="50" id="txtUsername" type="text"
@@ -233,8 +233,8 @@
 		else
 		{
     @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-            new SelectListItem { Value = "0", Text = Resources.Lang.lblAgent },
-            new SelectListItem { Value = "1", Text = Resources.Lang.lblMember }
+            new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent },
+            new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
         }, new { id = "ddlIsMember" })
 
     <input maxlength="50" id="txtUsername" type="text"
