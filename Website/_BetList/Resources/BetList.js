@@ -220,8 +220,7 @@ if (typeof jQuery != "undefined") {
 						BETLIST.dialogDetails.html(data.responseText);
 					}
 				});
-
-				APOLLO.openDialog(BETLIST.dialogDetails, "Details", { modal: false });
+				APOLLO.openDialog(BETLIST.dialogDetails, "Details", { modal: false, width: 450});
 			});
 		}
 
