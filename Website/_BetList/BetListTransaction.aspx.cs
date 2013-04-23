@@ -119,7 +119,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 builder.Append("</tr>");
             }
-            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member | BetListType.Winlost);
+            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
 
@@ -140,8 +140,8 @@ namespace Sunplus.Agent.UI._BetList
                 selectedUserType = "1";
             }
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
-            tpl.Filter.valueFromDate = moveBetsDay.ToShortDateString();
-            tpl.Filter.valueToDate = toDate.ToShortDateString();
+            tpl.Filter.valueFromDate = fromDate.ToString("MM/dd/yyyy");
+            tpl.Filter.valueToDate = toDate.ToString("MM/dd/yyyy");
             tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
             tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
             tpl.Filter.User.username = username;

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FileDB>
+  <PopupAnnouncement id="20121019" width="460" height="220" top="110" left="350">
+    <en-US src="_Announcement/Template/en_US/PopupFlashFrameAgent.html">
+      Dear valued agents,<br /><br />
+      We wish to announce the launching of our number game new bet type – <strong>Number wheel</strong> with effect from <strong>24/08/2012</strong>, by default all settings copy from Number Game - Next Combo.<br /><br />
+      Should you wish to have different settings for your downlines, please go to number game setting page. Thanks
+    </en-US>
+    <zh-CN src="_Announcement/Template/zh_CN/PopupFlashFrameAgent.html">
+      敬爱的代理们,<br /><br />
+      我们很荣幸的宣布，我们将于<strong>24/08/2012</strong> 隆重推出百练赛的新赌注类型 - <strong>数盘</strong>。基本的系统预设值是根据数字游戏（百练赛）的下一球组合<br /><br />
+      若您需要更改下线设定，请到数字游戏（百练赛）的设定页面。谢谢
+    </zh-CN>
+    <zh-TW src="_Announcement/Template/zh_TW/PopupFlashFrameAgent.html">
+      敬愛的代理們,<br /><br />
+      我們很榮幸的宣布，我們將於<strong>24/08/2012</strong> 隆重推出百練賽的新賭注類型- <strong>數盤</strong>。基本的系統預設值是根據数字游戏（百练赛）的下一球组合<br /><br />
+      若您需要更改下線設定，請到數字遊戲（百練賽）的設定頁面。謝謝
+    </zh-TW>
+    <ja-JP src="_Announcement/Template/ja_JP/PopupFlashFrameAgent.html">
+      Dear valued agents,<br /><br />
+      We wish to announce the launching of our number game new bet type – <strong>Number wheel</strong> with effect from <strong>24/08/2012</strong>, by default all settings copy from Number Game - Next Combo.<br /><br />
+      Should you wish to have different settings for your downlines, please go to number game setting page. Thanks
+    </ja-JP>
+    <ko-KR src="_Announcement/Template/ko_KR/PopupFlashFrameAgent.html">
+      Dear valued agents,<br /><br />
+      We wish to announce the launching of our number game new bet type – <strong>Number wheel</strong> with effect from <strong>24/08/2012</strong>, by default all settings copy from Number Game - Next Combo.<br /><br />
+      Should you wish to have different settings for your downlines, please go to number game setting page. Thanks
+    </ko-KR>
+    <th-TH src="_Announcement/Template/th_TH/PopupFlashFrameAgent.html">
+      Dear valued agents,<br /><br />
+      We wish to announce the launching of our number game new bet type – <strong>Number wheel</strong> with effect from <strong>24/08/2012</strong>, by default all settings copy from Number Game - Next Combo.<br /><br />
+      Should you wish to have different settings for your downlines, please go to number game setting page. Thanks
+    </th-TH>
+  </PopupAnnouncement>
+</FileDB>

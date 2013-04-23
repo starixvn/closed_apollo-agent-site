@@ -12,16 +12,15 @@ namespace Sunplus.Agent.UI._Authorization
     using System.Configuration;
     using System.Web;
     using System.Web.Security;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
+    using Apollo.Age.Web;
     using Fanex.Age.UI;
+    using Fanex.Agent.UI._Authorization;
+    using Sunplus.Agent.Model.BL;
     using Sunplus.Agent.Model.BL.Authorization;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
-    using Fanex.Agent.UI._Authorization;
-
-    using Apollo.Age.Services.Interface;
-    using Apollo.Age.Services.Impl;
-    using Sunplus.Agent.Model.BL;
-    using Apollo.Age.Web;
 
     public partial class SignIn_Page : Fanex.Age.UI.TplPage2
     {
@@ -238,15 +237,7 @@ namespace Sunplus.Agent.UI._Authorization
 
             RegisterJavascriptObject("ip", Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP());
 
-            // Default Korean language for ISPO site
-            if (Sunplus.Agent.Model.BL.Definitions.AppSettings.IsISPOSite)
-            {
-                CurrentUserSession.Language = "ko-KR";
-            }
-            else
-            {
-                RegisterJavascriptObject("language", 0);
-            }
+            RegisterJavascriptObject("language", 0);
 
             SignIn_Template tpl = new SignIn_Template();
             tpl.username_value = _userName;

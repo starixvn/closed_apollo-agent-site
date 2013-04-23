@@ -34,7 +34,7 @@
                             if (subItem.Title.Contains("bettype")
                                 && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
                             {
-                                title = CacheRef.GetBettype(bettypeId);
+                                title = Apollo.Age.Services.CacheRef.GetBettype(bettypeId);
                             }
                             else
                             {

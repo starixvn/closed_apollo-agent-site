@@ -123,12 +123,9 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
         },
         FormTypes: {
             ADD: 0,
-            // Add new customer (both systems)
             EDIT_PT: 1,
-            // Edit PT of existing customer (both systems)
             EDIT_NON_DIRECT: 2,
-            // Edit Min PT in Agency
-            EDIT_MIN_MAX_PT: 3 // Edit Min/Max PT in Accounting
+            VIEW_SETTING: 3
         },
         Context: function (currentContext) {
             this.RoleId = currentContext.RoleId;
@@ -342,7 +339,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         betItem.parent = this; // Keep reference to current bet type group
                         betItem.showButtons = (i == 0);
                         //betItem.minWidth = (betItem.showButtons) ? (140) : betItem.minWidth;
-                        betItem.minWidth = (count == 1) ? (250) : betItem.minWidth;
+                        //betItem.minWidth = (count == 1) ? (250) : betItem.minWidth;
                         totalGroupWidth += betItem.minWidth + 5; // Padding left 2, padding right 2 and border 1
                         var element = betItem.Render(box);
                         if (element != null) {
@@ -359,63 +356,65 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 if (box != null) {
                     if (this.elements.length > 1) {
                         var elements = this.elements;
-                        // Copy all check box
-                        var copyCheck = document.createElement("INPUT");
-                        copyCheck.type = "checkbox";
-                        copyCheck.id = copyCheck.name = "c$" + this.betTypes[0].Id + "$" + this.betTypes[0].SportId + "$" + (this.isLive ? "0" : "1");
-                        var copyDiv = document.createElement("DIV");
-                        copyDiv.appendChild(copyCheck);
-                        copyDiv.className = "pt-check-copied";
-                        this.elements[0].firstChild.title = Language.COPY_FROM.Format(this.betTypes[0].Name);
-                        this.elements[0].firstChild.className = "bet-type-header2";
-                        this.elements[0].firstChild.appendChild(copyDiv);
-                        copyCheck.label = this.elements[0].firstChild;
-                        copyCheck.parent = this;
-                        var items = this.items;
-                        copyCheck.label.onclick = function () {
-                            //                            if (copyCheck.parent.parent.copiedItem != null) { // Return when already existed copied item
-                            //                                return;
-                            //                            };
-                            //                            var count = elements.length;
-                            //                            copyCheck.checked = !copyCheck.checked;
-                            //                            copyCheck.parent.copiedFromFirst = copyCheck.checked;
-                            //                            if (copyCheck.checked) {
-                            //                                var copiedItem = {
-                            //                                    sportId: items[0].sportId,
-                            //                                    id: items[0].id,
-                            //                                    isLive: items[0].isLive
-                            //                                };
-                            //                                copyCheck.parent.copiedItem = copiedItem; // First bet type item
-                            //                                copyCheck.parent.Inactive(copiedItem);
-                            //                                copyCheck.label.className = "bet-type-header-active";
-                            //                            } else {
-                            //                                copyCheck.parent.copiedItem = null;
-                            //                                copyCheck.parent.Active();
-                            //                                copyCheck.label.className = "bet-type-header2";
-                            //                            }
-                            var currentCopyBetType = elements[0];
-                            var betTypes = elements;
-                            var betTypesLength = betTypes.length;
-                            for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
-                                var betType = betTypes[betTypeIndex];
-                                if (betType.maxSpinBox) {
-                                    betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
-                                    betType.maxSpinBox.input.onchange();
+                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                            // Copy all check box
+                            var copyCheck = document.createElement("INPUT");
+                            copyCheck.type = "checkbox";
+                            copyCheck.id = copyCheck.name = "c$" + this.betTypes[0].Id + "$" + this.betTypes[0].SportId + "$" + (this.isLive ? "0" : "1");
+                            var copyDiv = document.createElement("DIV");
+                            copyDiv.appendChild(copyCheck);
+                            copyDiv.className = "pt-check-copied";
+                            this.elements[0].firstChild.title = Language.COPY_FROM.Format(this.betTypes[0].Name);
+                            this.elements[0].firstChild.className = "bet-type-header2";
+                            this.elements[0].firstChild.appendChild(copyDiv);
+                            copyCheck.label = this.elements[0].firstChild;
+                            copyCheck.parent = this;
+                            var items = this.items;
+                            copyCheck.label.onclick = function () {
+                                //                            if (copyCheck.parent.parent.copiedItem != null) { // Return when already existed copied item
+                                //                                return;
+                                //                            };
+                                //                            var count = elements.length;
+                                //                            copyCheck.checked = !copyCheck.checked;
+                                //                            copyCheck.parent.copiedFromFirst = copyCheck.checked;
+                                //                            if (copyCheck.checked) {
+                                //                                var copiedItem = {
+                                //                                    sportId: items[0].sportId,
+                                //                                    id: items[0].id,
+                                //                                    isLive: items[0].isLive
+                                //                                };
+                                //                                copyCheck.parent.copiedItem = copiedItem; // First bet type item
+                                //                                copyCheck.parent.Inactive(copiedItem);
+                                //                                copyCheck.label.className = "bet-type-header-active";
+                                //                            } else {
+                                //                                copyCheck.parent.copiedItem = null;
+                                //                                copyCheck.parent.Active();
+                                //                                copyCheck.label.className = "bet-type-header2";
+                                //                            }
+                                var currentCopyBetType = elements[0];
+                                var betTypes = elements;
+                                var betTypesLength = betTypes.length;
+                                for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
+                                    var betType = betTypes[betTypeIndex];
+                                    if (betType.maxSpinBox) {
+                                        betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
+                                        betType.maxSpinBox.input.onchange();
+                                    }
+                                    if (betType.minSpinBox) {
+                                        betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
+                                        betType.minSpinBox.input.onchange();
+                                    }
+                                    if (betType.presetSpinBox) {
+                                        betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
+                                        betType.presetSpinBox.input.onchange();
+                                    }
+                                    if (betType.ptSpinBox) {
+                                        betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
+                                        betType.ptSpinBox.input.onchange();
+                                    }
                                 }
-                                if (betType.minSpinBox) {
-                                    betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                    betType.minSpinBox.input.onchange();
-                                }
-                                if (betType.presetSpinBox) {
-                                    betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
-                                    betType.presetSpinBox.input.onchange();
-                                }
-                                if (betType.ptSpinBox) {
-                                    betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
-                                    betType.ptSpinBox.input.onchange();
-                                }
-                            }
-                            //};
+                                //};
+                            };
                         };
                     };
                     this.minWidth = totalGroupWidth;
@@ -524,72 +523,74 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     header.className = (this.id == 2) ? "pt-sport-label2" : "pt-sport-label"; // Basketball sport id == 2 has 2 buttons
                     header.parent = this;
                     box.appendChild(header);
-                    // Copy from sport
-                    var copyCheck = document.createElement("INPUT");
-                    copyCheck.type = "checkbox";
-                    copyCheck.id = copyCheck.name = "cp$" + this.id; // Copy from sport check box
-                    copyCheck.className = "pt-check-copied";
-                    var copyDiv = document.createElement("DIV");
-                    copyDiv.appendChild(copyCheck);
-                    copyDiv.parent = this;
-                    var minWidth = (this.id == 2) ? (this.minWidth - 72) : this.minWidth - 40; // Basketball sport id == 2 has 2 buttons
-                    if ((this.id == 1 && this.isLive == false) || this.id == 2) { // For Soccer and Basketball
-                        copyDiv.className = "pt-sport-copied";
-                        copyDiv.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(this.name, this.betTypeGroups[0].BetTypes[0].Name);
-                        if (this.id == 2) {
-                            // Add more Edit button for Basketball, because Basketball also have Copy button
-                            var copyCheck2 = document.createElement("INPUT");
-                            copyCheck2.type = "checkbox";
-                            copyCheck2.id = copyCheck2.name = "c2p$" + this.id; // Copy from sport check box
-                            copyCheck2.className = "pt-check-copied";
-                            var editDiv = document.createElement("DIV");
-                            editDiv.appendChild(copyCheck2);
-                            editDiv.parent = this;
-                            editDiv.className = "pt-sport-copied-inactive";
-                            editDiv.onclick = function () {
-                                //                                editDiv.parent.Toggle(true); // Expand
-                                //                                if (editDiv.parent.parent.copiedItem == null) return;
-                                //                                var actived = (editDiv.className == "pt-sport-edit-copied");
-                                //                                if (!actived) {
-                                //                                    editDiv.parent.Active(); // Active
-                                //                                } else {
-                                //                                    editDiv.parent.Inactive(editDiv.parent.parent.copiedItem);
-                                //                                };
-                                //                                editDiv.className = actived ? "pt-sport-edit" : "pt-sport-edit-copied";
-                                //                                if (editDiv.parent.parent.activeCopiedTitle) {
-                                //                                    editDiv.title = actived ? Language.EDIT : Language.COPY_ALL_POSITION_TAKING_FROM.Format(editDiv.parent.name, editDiv.parent.parent.activeCopiedTitle);
-                                //                                };
+                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                        // Copy from sport
+                        var copyCheck = document.createElement("INPUT");
+                        copyCheck.type = "checkbox";
+                        copyCheck.id = copyCheck.name = "cp$" + this.id; // Copy from sport check box
+                        copyCheck.className = "pt-check-copied";
+                        var copyDiv = document.createElement("DIV");
+                        copyDiv.appendChild(copyCheck);
+                        copyDiv.parent = this;
+                        var minWidth = (this.id == 2) ? (this.minWidth - 72) : this.minWidth - 40; // Basketball sport id == 2 has 2 buttons
+                        if ((this.id == 1 && this.isLive == false) || this.id == 2) { // For Soccer and Basketball
+                            copyDiv.className = "pt-sport-copied";
+                            copyDiv.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(this.name, this.betTypeGroups[0].BetTypes[0].Name);
+                            if (this.id == 2) {
+                                // Add more Edit button for Basketball, because Basketball also have Copy button
+                                var copyCheck2 = document.createElement("INPUT");
+                                copyCheck2.type = "checkbox";
+                                copyCheck2.id = copyCheck2.name = "c2p$" + this.id; // Copy from sport check box
+                                copyCheck2.className = "pt-check-copied";
+                                var editDiv = document.createElement("DIV");
+                                editDiv.appendChild(copyCheck2);
+                                editDiv.parent = this;
+                                editDiv.className = "pt-sport-copied-inactive";
+                                editDiv.onclick = function () {
+                                    //                                editDiv.parent.Toggle(true); // Expand
+                                    //                                if (editDiv.parent.parent.copiedItem == null) return;
+                                    //                                var actived = (editDiv.className == "pt-sport-edit-copied");
+                                    //                                if (!actived) {
+                                    //                                    editDiv.parent.Active(); // Active
+                                    //                                } else {
+                                    //                                    editDiv.parent.Inactive(editDiv.parent.parent.copiedItem);
+                                    //                                };
+                                    //                                editDiv.className = actived ? "pt-sport-edit" : "pt-sport-edit-copied";
+                                    //                                if (editDiv.parent.parent.activeCopiedTitle) {
+                                    //                                    editDiv.title = actived ? Language.EDIT : Language.COPY_ALL_POSITION_TAKING_FROM.Format(editDiv.parent.name, editDiv.parent.parent.activeCopiedTitle);
+                                    //                                };
+                                }
+                                this.editButton = editDiv; // Keep reference for implementation in parent level
+                                box.appendChild(editDiv);
                             }
-                            this.editButton = editDiv; // Keep reference for implementation in parent level
-                            box.appendChild(editDiv);
-                        }
-                    } else {
-                        copyDiv.className = "pt-sport-copied-inactive";
-                        copyDiv.onclick = function () {
-                            //                            copyDiv.parent.Toggle(true); // Expand
-                            //                            if (copyDiv.parent.parent.copiedItem == null) return;
-                            //                            var actived = (copyDiv.className == "pt-sport-edit-copied");
-                            //                            if (!actived) {
-                            //                                copyDiv.parent.Active(); // Active
-                            //                            } else {
-                            //                                copyDiv.parent.Inactive(copyDiv.parent.parent.copiedItem);
-                            //                            };
-                            //                            copyDiv.className = actived ? "pt-sport-edit" : "pt-sport-edit-copied";
-                            //                            if (copyDiv.parent.parent.activeCopiedTitle) {
-                            //                                copyDiv.title = actived ? Language.EDIT : Language.COPY_ALL_POSITION_TAKING_FROM.Format(copyDiv.parent.name, copyDiv.parent.parent.activeCopiedTitle);
-                            //                            };
+                        } else {
+                            copyDiv.className = "pt-sport-copied-inactive";
+                            copyDiv.onclick = function () {
+                                //                            copyDiv.parent.Toggle(true); // Expand
+                                //                            if (copyDiv.parent.parent.copiedItem == null) return;
+                                //                            var actived = (copyDiv.className == "pt-sport-edit-copied");
+                                //                            if (!actived) {
+                                //                                copyDiv.parent.Active(); // Active
+                                //                            } else {
+                                //                                copyDiv.parent.Inactive(copyDiv.parent.parent.copiedItem);
+                                //                            };
+                                //                            copyDiv.className = actived ? "pt-sport-edit" : "pt-sport-edit-copied";
+                                //                            if (copyDiv.parent.parent.activeCopiedTitle) {
+                                //                                copyDiv.title = actived ? Language.EDIT : Language.COPY_ALL_POSITION_TAKING_FROM.Format(copyDiv.parent.name, copyDiv.parent.parent.activeCopiedTitle);
+                                //                            };
 
+                            };
                         };
-                    };
-                    // Handle default collapse / expand
-                    if (this.collapsed) {
-                        box2.style.display = "none"; // box2 contains PT setting
-                    } else {
-                        header.style.minWidth = minWidth + "px";
+                        // Handle default collapse / expand
+                        if (this.collapsed) {
+                            box2.style.display = "none"; // box2 contains PT setting
+                        } else {
+                            header.style.minWidth = minWidth + "px";
+                        }
+                        this.cloneObjectButton = copyDiv; // Keep reference for implementation in parent level
+                        copyDiv.appendChild(copyCheck);
+                        box.appendChild(copyDiv);
                     }
-                    this.cloneObjectButton = copyDiv; // Keep reference for implementation in parent level
-                    copyDiv.appendChild(copyCheck);
-                    box.appendChild(copyDiv);
                     // Event click to collapse sportType
                     this.Toggle = function (expanded) {
                         var collapsed = false;
@@ -708,7 +709,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     //}
                 }
                 hint = hint + '</ul></div>';
-                top = top + 80;
+                top = top + 78;
                 var height = top - 20;
                 // Show tooltip
                 //Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 10, -top - 54, top + 20, top, 30000);
@@ -716,7 +717,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 if (this.copiedItem.sportId == 2) {
                     top += 15;
                 }
-                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 50, top - 130, -10, height, 10000, true);
+                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 25, top - 130, -10, height, 10000, true);
             },
             this.Render = function (owner) {
                 var box = null;
@@ -758,206 +759,208 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         box.className = "pt-grid";
                         var items = this.items;
                         var elements = this.elements;
-                        // Implementation for clone button of Soccer 1 and Basketball 2
-                        var cloneFromSoccer = this.items[0].cloneObjectButton;
-                        var cloneFromBasketball = this.items[2].cloneObjectButton;
-                        var editBasketball = this.items[2].editButton;
-                        var copiedItemSoccer = {
-                            sportId: 1,
-                            id: 1,
-                            isLive: false
-                        };
-                        var copiedItemBasketball = {
-                            sportId: 2,
-                            id: 1,
-                            isLive: false
-                        };
-                        cloneFromSoccer.parent = cloneFromBasketball.parent = this;
-                        var hideHintTimeout = 0;
-                        // Soccer
-                        //                        cloneFromBasketball.onmouseover = function () {
-                        //                            if (cloneFromBasketball.parent.copiedItem != null && cloneFromBasketball.parent.copiedItem.sportId == 2) {
-                        //                                if (hideHintTimeout != 0) {
-                        //                                    clearTimeout(hideHintTimeout);
-                        //                                }
-                        //                                cloneFromBasketball.parent.ShowCloneHint();
-                        //                            }
-                        //                        }
-                        //                        cloneFromBasketball.onmouseout = function () {
-                        //                            if (hideHintTimeout != 0) {
-                        //                                clearTimeout(hideHintTimeout);
-                        //                            }
-                        //                            hideHintTimeout = setTimeout(Validators.hide, 1000);
-                        //                        }
-                        //                        cloneFromSoccer.onmouseover = function () {
-                        //                            if (cloneFromSoccer.parent.copiedItem != null && cloneFromSoccer.parent.copiedItem.sportId == 1) {
-                        //                                if (hideHintTimeout != 0) {
-                        //                                    clearTimeout(hideHintTimeout);
-                        //                                }
-                        //                                cloneFromSoccer.parent.ShowCloneHint();
-                        //                            }
-                        //                        }
-                        //                        cloneFromSoccer.onmouseout = function () {
-                        //                            if (hideHintTimeout != 0) {
-                        //                                clearTimeout(hideHintTimeout);
-                        //                            }
-                        //                            hideHintTimeout = setTimeout(Validators.hide, 1000);
-                        //                        }
-                        cloneFromSoccer.onclick = function () {
-                            Validators.hide();
-                            //                            var count = items.length;
-                            //                            cloneFromSoccer.firstChild.checked = !cloneFromSoccer.firstChild.checked;
-                            //                            cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
-                            //                            cloneFromSoccer.parent.activeCopiedTitle = "{0} {1}".Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                            //                            cloneFromSoccer.className = cloneFromSoccer.firstChild.checked ? "pt-sport-copied-active" : "pt-sport-copied";
-                            //                            cloneFromSoccer.parent.items[0].Toggle(true); // Expand
-                            //                            // Rollback Basketball
-                            //                            if (cloneFromBasketball.firstChild.checked) {
-                            //                                cloneFromBasketball.className = "pt-sport-copied";
-                            //                                cloneFromBasketball.firstChild.checked = false;
-                            //                                cloneFromBasketball.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[1].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                            //                            }
-                            //                            // Show / Hide edit button of Basketball
-                            //                            if (cloneFromSoccer.firstChild.checked) {
-                            //                                editBasketball.className = "pt-sport-edit";
-                            //                                editBasketball.title = Language.EDIT;
-                            //                                cloneFromSoccer.title = String.Empty; // Language.UNCOPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[0].name, items[0].betTypeGroupSets[0].BetTypeGroups[0].BetTypes[0].Name);
-                            //                            } else {
-                            //                                editBasketball.className = "pt-sport-copied-inactive";
-                            //                                cloneFromSoccer.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                            //                            }
-                            //                            for (var i = 0; i < count; i++) {
-                            //                                if (cloneFromSoccer.firstChild.checked) {
-                            //                                    items[i].Inactive(Fanex.CloneObject(copiedItemSoccer));
-                            //                                } else {
-                            //                                    items[i].Active();
-                            //                                    cloneFromSoccer.parent.copiedItem = null;
+                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                            // Implementation for clone button of Soccer 1 and Basketball 2
+                            var cloneFromSoccer = this.items[0].cloneObjectButton;
+                            var cloneFromBasketball = this.items[2].cloneObjectButton;
+                            var editBasketball = this.items[2].editButton;
+                            var copiedItemSoccer = {
+                                sportId: 1,
+                                id: 1,
+                                isLive: false
+                            };
+                            var copiedItemBasketball = {
+                                sportId: 2,
+                                id: 1,
+                                isLive: false
+                            };
+                            cloneFromSoccer.parent = cloneFromBasketball.parent = this;
+                            var hideHintTimeout = 0;
+                            // Soccer
+                            //                        cloneFromBasketball.onmouseover = function () {
+                            //                            if (cloneFromBasketball.parent.copiedItem != null && cloneFromBasketball.parent.copiedItem.sportId == 2) {
+                            //                                if (hideHintTimeout != 0) {
+                            //                                    clearTimeout(hideHintTimeout);
                             //                                }
-                            //                                if (i > 0 && i != 2) {
-                            //                                    items[i].cloneObjectButton.className = cloneFromSoccer.firstChild.checked ? "pt-sport-edit" : "pt-sport-copied-inactive";
-                            //                                    items[i].cloneObjectButton.title = cloneFromSoccer.firstChild.checked ? Language.EDIT : String.Empty;
-                            //                                    if (cloneFromSoccer.firstChild.checked) {
-                            //                                        //items[i].Toggle(false);
-                            //                                    };
+                            //                                cloneFromBasketball.parent.ShowCloneHint();
+                            //                            }
+                            //                        }
+                            //                        cloneFromBasketball.onmouseout = function () {
+                            //                            if (hideHintTimeout != 0) {
+                            //                                clearTimeout(hideHintTimeout);
+                            //                            }
+                            //                            hideHintTimeout = setTimeout(Validators.hide, 1000);
+                            //                        }
+                            //                        cloneFromSoccer.onmouseover = function () {
+                            //                            if (cloneFromSoccer.parent.copiedItem != null && cloneFromSoccer.parent.copiedItem.sportId == 1) {
+                            //                                if (hideHintTimeout != 0) {
+                            //                                    clearTimeout(hideHintTimeout);
                             //                                }
-                            //                            };
-                            cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
-                            cloneFromSoccer.parent.activeCopiedTitle = "{0} {1}".Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                            cloneFromSoccer.parent.items[0].Toggle(true); // Expand
-                            var c = elements.length;
-                            var currentCopyBetType = elements[0].betTypeGroupElements[0].betTypeElements[0];
-                            var sportTypes = elements;
-                            var sportTypesLength = elements.length;
-                            for (var sportTypeIndex = 0; sportTypeIndex < sportTypesLength; sportTypeIndex++) {
-                                var betTypeGroups = sportTypes[sportTypeIndex].betTypeGroupElements;
-                                var betTypeGroupsLength = betTypeGroups.length;
-                                for (var betTypeGroupIndex = 0; betTypeGroupIndex < betTypeGroupsLength; betTypeGroupIndex++) {
-                                    var betTypes = betTypeGroups[betTypeGroupIndex].betTypeElements;
-                                    var betTypesLength = betTypes.length;
-                                    for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
-                                        var betType = betTypes[betTypeIndex];
-                                        if (betType.maxSpinBox) {
-                                            betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
-                                            betType.maxSpinBox.input.onchange();
-                                        }
-                                        if (betType.minSpinBox) {
-                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                            betType.minSpinBox.input.onchange();
-                                        }
-                                        if (betType.presetSpinBox) {
-                                            betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
-                                            betType.presetSpinBox.input.onchange();
-                                        }
-                                        if (betType.ptSpinBox) {
-                                            betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
-                                            betType.ptSpinBox.input.onchange();
+                            //                                cloneFromSoccer.parent.ShowCloneHint();
+                            //                            }
+                            //                        }
+                            //                        cloneFromSoccer.onmouseout = function () {
+                            //                            if (hideHintTimeout != 0) {
+                            //                                clearTimeout(hideHintTimeout);
+                            //                            }
+                            //                            hideHintTimeout = setTimeout(Validators.hide, 1000);
+                            //                        }
+                            cloneFromSoccer.onclick = function () {
+                                Validators.hide();
+                                //                            var count = items.length;
+                                //                            cloneFromSoccer.firstChild.checked = !cloneFromSoccer.firstChild.checked;
+                                //                            cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
+                                //                            cloneFromSoccer.parent.activeCopiedTitle = "{0} {1}".Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                //                            cloneFromSoccer.className = cloneFromSoccer.firstChild.checked ? "pt-sport-copied-active" : "pt-sport-copied";
+                                //                            cloneFromSoccer.parent.items[0].Toggle(true); // Expand
+                                //                            // Rollback Basketball
+                                //                            if (cloneFromBasketball.firstChild.checked) {
+                                //                                cloneFromBasketball.className = "pt-sport-copied";
+                                //                                cloneFromBasketball.firstChild.checked = false;
+                                //                                cloneFromBasketball.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[1].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                //                            }
+                                //                            // Show / Hide edit button of Basketball
+                                //                            if (cloneFromSoccer.firstChild.checked) {
+                                //                                editBasketball.className = "pt-sport-edit";
+                                //                                editBasketball.title = Language.EDIT;
+                                //                                cloneFromSoccer.title = String.Empty; // Language.UNCOPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[0].name, items[0].betTypeGroupSets[0].BetTypeGroups[0].BetTypes[0].Name);
+                                //                            } else {
+                                //                                editBasketball.className = "pt-sport-copied-inactive";
+                                //                                cloneFromSoccer.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                //                            }
+                                //                            for (var i = 0; i < count; i++) {
+                                //                                if (cloneFromSoccer.firstChild.checked) {
+                                //                                    items[i].Inactive(Fanex.CloneObject(copiedItemSoccer));
+                                //                                } else {
+                                //                                    items[i].Active();
+                                //                                    cloneFromSoccer.parent.copiedItem = null;
+                                //                                }
+                                //                                if (i > 0 && i != 2) {
+                                //                                    items[i].cloneObjectButton.className = cloneFromSoccer.firstChild.checked ? "pt-sport-edit" : "pt-sport-copied-inactive";
+                                //                                    items[i].cloneObjectButton.title = cloneFromSoccer.firstChild.checked ? Language.EDIT : String.Empty;
+                                //                                    if (cloneFromSoccer.firstChild.checked) {
+                                //                                        //items[i].Toggle(false);
+                                //                                    };
+                                //                                }
+                                //                            };
+                                cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
+                                cloneFromSoccer.parent.activeCopiedTitle = "{0} {1}".Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                cloneFromSoccer.parent.items[0].Toggle(true); // Expand
+                                var c = elements.length;
+                                var currentCopyBetType = elements[0].betTypeGroupElements[0].betTypeElements[0];
+                                var sportTypes = elements;
+                                var sportTypesLength = elements.length;
+                                for (var sportTypeIndex = 0; sportTypeIndex < sportTypesLength; sportTypeIndex++) {
+                                    var betTypeGroups = sportTypes[sportTypeIndex].betTypeGroupElements;
+                                    var betTypeGroupsLength = betTypeGroups.length;
+                                    for (var betTypeGroupIndex = 0; betTypeGroupIndex < betTypeGroupsLength; betTypeGroupIndex++) {
+                                        var betTypes = betTypeGroups[betTypeGroupIndex].betTypeElements;
+                                        var betTypesLength = betTypes.length;
+                                        for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
+                                            var betType = betTypes[betTypeIndex];
+                                            if (betType.maxSpinBox) {
+                                                betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
+                                                betType.maxSpinBox.input.onchange();
+                                            }
+                                            if (betType.minSpinBox) {
+                                                betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
+                                                betType.minSpinBox.input.onchange();
+                                            }
+                                            if (betType.presetSpinBox) {
+                                                betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
+                                                betType.presetSpinBox.input.onchange();
+                                            }
+                                            if (betType.ptSpinBox) {
+                                                betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
+                                                betType.ptSpinBox.input.onchange();
+                                            }
                                         }
                                     }
+
                                 }
 
-                            }
-
-                            cloneFromSoccer.parent.ShowCloneHint();
-                        };
-                        // Basketball
-                        cloneFromBasketball.onclick = function () {
-                            Validators.hide();
-                            //                            var count = items.length;
-                            //                            cloneFromBasketball.firstChild.checked = !cloneFromBasketball.firstChild.checked;
-                            //                            cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
-                            //                            cloneFromBasketball.parent.activeCopiedTitle = "{0} {1}".Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                            //                            cloneFromBasketball.className = cloneFromBasketball.firstChild.checked ? "pt-sport-copied-active" : "pt-sport-copied";
-                            //                            cloneFromBasketball.parent.items[1].Toggle(true); // Expand
-                            //                            // Rollback Soccer
-                            //                            if (cloneFromSoccer.firstChild.checked) {
-                            //                                items[0].Active();
-                            //                                items[1].Active();
-                            //                                cloneFromSoccer.className = "pt-sport-copied";
-                            //                                cloneFromSoccer.firstChild.checked = false;
-                            //                                cloneFromSoccer.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                            //                            };
-                            //                            // Hide edit button of Basketball
-                            //                            if (cloneFromBasketball.firstChild.checked) {
-                            //                                editBasketball.className = "pt-sport-copied-inactive";
-                            //                                cloneFromBasketball.title = String.Empty; // Language.UNCOPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[1].name, items[0].betTypeGroupSets[0].BetTypeGroups[0].BetTypes[0].Name);
-                            //                            } else {
-                            //                                cloneFromBasketball.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                            //                            }
-                            //                            for (var i = 2; i < count; i++) {
-                            //                                if (cloneFromBasketball.firstChild.checked) {
-                            //                                    items[i].Inactive(Fanex.CloneObject(copiedItemBasketball));
-                            //                                    if (i > 2) {
-                            //                                        items[i].cloneObjectButton.className = "pt-sport-edit";
-                            //                                    }
-                            //                                } else {
-                            //                                    items[i].Active();
-                            //                                    cloneFromBasketball.parent.copiedItem = null;
-                            //                                }
-                            //                                if (i > 2) {
-                            //                                    items[i].cloneObjectButton.className = cloneFromBasketball.firstChild.checked ? "pt-sport-edit" : "pt-sport-copied-inactive";
-                            //                                    items[i].cloneObjectButton.title = cloneFromBasketball.firstChild.checked ? Language.EDIT : String.Empty;
-                            //                                    if (cloneFromBasketball.firstChild.checked) {
-                            //                                        //items[i].Toggle(false);
-                            //                                    };
-                            //                                }
-                            //                            };
-                            cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
-                            cloneFromBasketball.parent.activeCopiedTitle = "{0} {1}".Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                            cloneFromBasketball.parent.items[2].Toggle(true); // Expand
-                            var c = elements.length;
-                            var currentCopyBetType = elements[2].betTypeGroupElements[0].betTypeElements[0];
-                            var sportTypes = elements;
-                            var sportTypesLength = elements.length;
-                            for (var sportTypeIndex = 2; sportTypeIndex < sportTypesLength; sportTypeIndex++) {
-                                var betTypeGroups = sportTypes[sportTypeIndex].betTypeGroupElements;
-                                var betTypeGroupsLength = betTypeGroups.length;
-                                for (var betTypeGroupIndex = 0; betTypeGroupIndex < betTypeGroupsLength; betTypeGroupIndex++) {
-                                    var betTypes = betTypeGroups[betTypeGroupIndex].betTypeElements;
-                                    var betTypesLength = betTypes.length;
-                                    for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
-                                        var betType = betTypes[betTypeIndex];
-                                        if (betType.maxSpinBox) {
-                                            betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
-                                            betType.maxSpinBox.input.onchange();
-                                        }
-                                        if (betType.minSpinBox) {
-                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                            betType.minSpinBox.input.onchange();
-                                        }
-                                        if (betType.presetSpinBox) {
-                                            betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
-                                            betType.presetSpinBox.input.onchange();
-                                        }
-                                        if (betType.ptSpinBox) {
-                                            betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
-                                            betType.ptSpinBox.input.onchange();
+                                cloneFromSoccer.parent.ShowCloneHint();
+                            };
+                            // Basketball
+                            cloneFromBasketball.onclick = function () {
+                                Validators.hide();
+                                //                            var count = items.length;
+                                //                            cloneFromBasketball.firstChild.checked = !cloneFromBasketball.firstChild.checked;
+                                //                            cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
+                                //                            cloneFromBasketball.parent.activeCopiedTitle = "{0} {1}".Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                //                            cloneFromBasketball.className = cloneFromBasketball.firstChild.checked ? "pt-sport-copied-active" : "pt-sport-copied";
+                                //                            cloneFromBasketball.parent.items[1].Toggle(true); // Expand
+                                //                            // Rollback Soccer
+                                //                            if (cloneFromSoccer.firstChild.checked) {
+                                //                                items[0].Active();
+                                //                                items[1].Active();
+                                //                                cloneFromSoccer.className = "pt-sport-copied";
+                                //                                cloneFromSoccer.firstChild.checked = false;
+                                //                                cloneFromSoccer.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                //                            };
+                                //                            // Hide edit button of Basketball
+                                //                            if (cloneFromBasketball.firstChild.checked) {
+                                //                                editBasketball.className = "pt-sport-copied-inactive";
+                                //                                cloneFromBasketball.title = String.Empty; // Language.UNCOPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[1].name, items[0].betTypeGroupSets[0].BetTypeGroups[0].BetTypes[0].Name);
+                                //                            } else {
+                                //                                cloneFromBasketball.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                //                            }
+                                //                            for (var i = 2; i < count; i++) {
+                                //                                if (cloneFromBasketball.firstChild.checked) {
+                                //                                    items[i].Inactive(Fanex.CloneObject(copiedItemBasketball));
+                                //                                    if (i > 2) {
+                                //                                        items[i].cloneObjectButton.className = "pt-sport-edit";
+                                //                                    }
+                                //                                } else {
+                                //                                    items[i].Active();
+                                //                                    cloneFromBasketball.parent.copiedItem = null;
+                                //                                }
+                                //                                if (i > 2) {
+                                //                                    items[i].cloneObjectButton.className = cloneFromBasketball.firstChild.checked ? "pt-sport-edit" : "pt-sport-copied-inactive";
+                                //                                    items[i].cloneObjectButton.title = cloneFromBasketball.firstChild.checked ? Language.EDIT : String.Empty;
+                                //                                    if (cloneFromBasketball.firstChild.checked) {
+                                //                                        //items[i].Toggle(false);
+                                //                                    };
+                                //                                }
+                                //                            };
+                                cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
+                                cloneFromBasketball.parent.activeCopiedTitle = "{0} {1}".Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                cloneFromBasketball.parent.items[2].Toggle(true); // Expand
+                                var c = elements.length;
+                                var currentCopyBetType = elements[2].betTypeGroupElements[0].betTypeElements[0];
+                                var sportTypes = elements;
+                                var sportTypesLength = elements.length;
+                                for (var sportTypeIndex = 2; sportTypeIndex < sportTypesLength; sportTypeIndex++) {
+                                    var betTypeGroups = sportTypes[sportTypeIndex].betTypeGroupElements;
+                                    var betTypeGroupsLength = betTypeGroups.length;
+                                    for (var betTypeGroupIndex = 0; betTypeGroupIndex < betTypeGroupsLength; betTypeGroupIndex++) {
+                                        var betTypes = betTypeGroups[betTypeGroupIndex].betTypeElements;
+                                        var betTypesLength = betTypes.length;
+                                        for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
+                                            var betType = betTypes[betTypeIndex];
+                                            if (betType.maxSpinBox) {
+                                                betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
+                                                betType.maxSpinBox.input.onchange();
+                                            }
+                                            if (betType.minSpinBox) {
+                                                betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
+                                                betType.minSpinBox.input.onchange();
+                                            }
+                                            if (betType.presetSpinBox) {
+                                                betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
+                                                betType.presetSpinBox.input.onchange();
+                                            }
+                                            if (betType.ptSpinBox) {
+                                                betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
+                                                betType.ptSpinBox.input.onchange();
+                                            }
                                         }
                                     }
-                                }
 
-                            }
-                            cloneFromBasketball.parent.ShowCloneHint();
-                        };
+                                }
+                                cloneFromBasketball.parent.ShowCloneHint();
+                            };
+                        }
                         this.DOM = box;
                         // Append or return the object
                         if (typeof (owner) == 'object') {
@@ -973,7 +976,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     //Fanex.CustSetting.SPINNER_BOX_WIDTH = 80;
                     //// Position Taking Header
                     var header = document.createElement("DIV");
-                    header.innerHTML = Language.POSITION_SETTING_HEADER;
+                    header.innerHTML = Language.POSITION_SETTING_SIMPLE_MODE_HEADER;
                     header.className = "pt-grid-header";
                     var saveButton = document.createElement("SPAN");
                     saveButton.className = "save-component-setting";
@@ -1111,11 +1114,11 @@ Fanex.CustSetting.Spinner.prototype = {
         }
 
 
-        if (fractional.length > 0) {
-            while (fractional[fractional.length - 1] == '0') {
-                fractional = fractional.substring(0, fractional.length - 1);
-            }
-        }
+//        if (fractional.length > 0) {
+//            while (fractional[fractional.length - 1] == '0') {
+//                fractional = fractional.substring(0, fractional.length - 1);
+//            }
+//        }
 
         // set the value
         this.input.value = sign + integer + ((this.options.decimals > 0 && fractional.length > 0) ? '.' + fractional : '') + (this.lastLetter != null ? this.lastLetter : '');
