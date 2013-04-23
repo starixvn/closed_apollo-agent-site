@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criterias\Accounts\AgentGetStatusCriteria.cs" />
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
     <Compile Include="Criterias\Reports\OutStandings\AgentOutStandingCriteria.cs" />

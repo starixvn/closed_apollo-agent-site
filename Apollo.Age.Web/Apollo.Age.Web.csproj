@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Common">
       <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
     </Reference>
@@ -62,12 +66,16 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UMControllerLibrary">
+      <HintPath>..\Dependencies\UMControllerLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseController.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
+    <Compile Include="Models\UnderMaintenanceModel.cs" />
     <Compile Include="Mvc\Copy of HtmlHelperExtensions.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

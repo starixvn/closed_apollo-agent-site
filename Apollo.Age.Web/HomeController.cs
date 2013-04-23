@@ -11,12 +11,20 @@ namespace Apollo.Age.Web
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Web.Services;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class HomeController : BaseController
     {
+        private readonly UnderMaintenanceService maintenanceService;
+
+        public HomeController()
+        {
+            maintenanceService = new UnderMaintenanceService();
+        }
+
         public ActionResult Index()
         {
             return Redirect("~/Index.aspx");
@@ -24,7 +32,11 @@ namespace Apollo.Age.Web
 
         public ActionResult UnderMaintenance()
         {
-            return PartialView();
+            var maintenanceInfo = maintenanceService.UnderMaintenanceInfo;
+            if (maintenanceInfo.IsDownTime)
+                return View(maintenanceInfo);
+            else
+                return Redirect("~/Index.aspx");
         }
     }
 }
