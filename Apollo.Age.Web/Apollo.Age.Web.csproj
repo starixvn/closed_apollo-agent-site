@@ -68,7 +68,6 @@
     <Compile Include="CurrentSession.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
-    <Compile Include="Mvc\Copy of HtmlHelperExtensions.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
