@@ -26,10 +26,10 @@ public static class AppSession
         }
     }
 
-    public static bool IsCasinoInDBDisabled
-    {
-        get { return (bool)(AccountInfo.Age_CustomerSelStatus(Sunplus.Agent.Model.Entities.UserSession.Current.CustId).ResultSet.Tables[0].Rows[0]["disablecasino"]); }
-    }
+    //public static bool IsCasinoInDBDisabled
+    //{
+    //    get { return (bool)(AccountInfo.Age_CustomerSelStatus(Sunplus.Agent.Model.Entities.UserSession.Current.CustId).ResultSet.Tables[0].Rows[0]["disablecasino"]); }
+    //}
     
 
     public static Hashtable RequestQueryString
