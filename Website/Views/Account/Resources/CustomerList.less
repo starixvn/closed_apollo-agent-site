@@ -1,11 +1,12 @@
 ﻿@import "../../../_GlobalResources/Css/Agent.less";
 
 #page_main {	
+	width: 99%;
 
 	#header_main {
 		padding: 17px 0 22px;
 		margin-bottom: 10px;
-
+		width: 100%;
 		.header-title {
 			float: left;
 		}	
@@ -79,24 +80,23 @@
 		}		
 	}
 
-	.tab-header {
-		// backup red themes		
+	.tab-header {	
 		#gradient.vertical(#777, #555);
 		text-align: left;
 		height: 40px;
 		margin-top: 10px;
 		width: 100.2%;
+
 		ul {	
 			padding-left:10px;			
 			li {					
-				display: inline-block;
+				float: left;
 				font-weight: normal;
 				padding: 8px 20px 10px 0;
 
 				a {
 					display: inline-block;
 					padding: 0;
-					//color: lighten(@primaryColor, 40%);
 					color: #fff;
 
 					span {							
@@ -111,11 +111,19 @@
 				}					
 
 				&#current a {	
-					// backup red themes	
-					//color: @textColor;
 					border-bottom: 1px solid #fff;
 				}
 			}		
 		}		
+	}
+}
+
+/* FIX IE */
+
+.ie7 #page_main {
+	width: 98%;
+
+	.tab-header {
+		width: 100.2%;
 	}
 }
