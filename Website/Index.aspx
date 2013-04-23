@@ -14,14 +14,12 @@
         // For caching in child frames
         window.cachePage = new Array();
         window.cacheData = new Array();
-
-        //window.baseURL = '<%=Page.ResolveUrl("~/")%>';
     </script>
 </head>
 <body>
     <form id="agentSite" runat="server">
         <div class="header">
-            <iframe src="_Header/Header.aspx" id="frHeader" name="frHeader"
+            <iframe src="Account/TopBar" id="frHeader" name="frHeader"
                 width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
         </div>
         <div class="menu">
