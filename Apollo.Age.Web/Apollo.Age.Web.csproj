@@ -69,7 +69,6 @@
     </Compile>
     <Compile Include="RazorExtensions.cs" />
     <Compile Include="Services\UnderMaintenanceService.cs" />
-    <Compile Include="ViewModels\UnderMaintenanceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
