@@ -1,0 +1,32 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="GetRunningLeagueCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Anders.Le" date="2013.4.1">Created</change>
+// </history>
+
+namespace Apollo.Age.Forecast.Criterias
+{
+    using System.Diagnostics.CodeAnalysis;
+    using Fanex.NAP.Framework.Data;
+
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    public class GetRunningLeagueCriteria : CriteriaBase
+    {
+        public int AgentId { get; set; }
+
+        public string BetTypes { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "Age_League_GetRunning";
+        }
+
+        public override bool IsValid()
+        {
+            return !string.IsNullOrWhiteSpace(BetTypes);
+        }
+    }
+}
