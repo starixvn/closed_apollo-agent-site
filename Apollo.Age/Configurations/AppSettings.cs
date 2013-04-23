@@ -10,7 +10,7 @@
     {
         public static string GetValue(string key)
         {
-            return ConfigurationManager.AppSettings[key];
+            return ConfigurationSettings.AppSettings[key];
         }
 
         public static string UnderMaintenanceUrl
