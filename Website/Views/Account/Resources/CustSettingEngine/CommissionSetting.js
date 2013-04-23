@@ -47,14 +47,14 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         };
     };
     this.addEventConstrain = function (spinBoxElement, uplineDiscount) {
-//        spinBoxElement.input.onchange = function (event) {
-//            var currentComValue = spinBoxElement.getValue();
-//            if (currentComValue > uplineDiscount) {
-//                spinBoxElement.setValue(uplineDiscount);
-//            }
-//            else {
-//                spinBoxElement.setValue(currentComValue);
-//            }
+        //        spinBoxElement.input.onchange = function (event) {
+        //            var currentComValue = spinBoxElement.getValue();
+        //            if (currentComValue > uplineDiscount) {
+        //                spinBoxElement.setValue(uplineDiscount);
+        //            }
+        //            else {
+        //                spinBoxElement.setValue(currentComValue);
+        //            }
         //        };
         spinBoxElement.updateMaxValue(uplineDiscount);
         var currentComValue = spinBoxElement.getValue();
@@ -104,6 +104,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         tdTextBox.innerHTML = textName + ' :';
         tdTextBox.className = "commission-text";
         trBox.appendChild(tdTextBox);
+
         var tdValue = document.createElement("TD");
         tdValue.className = "commission-select";
         var comContainer2 = document.createElement("DIV");
@@ -112,15 +113,22 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         comContainer.className = 'commission-spin-box';
         comContainer2.appendChild(comContainer);
         tdValue.appendChild(comContainer2);
-        var comSpinBox = this.RenderSpinBox(comContainer, discount, uplineDiscount);
-        this.spinBoxItems.push(comSpinBox);
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+            comContainer.innerHTML = " " + discount;
+        }
+        else {
+            var comSpinBox = this.RenderSpinBox(comContainer, discount, uplineDiscount);
+            this.spinBoxItems.push(comSpinBox);
 
-        var maxSpan = document.createElement("SPAN");
-        maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
-        maxSpan.className = "upline-agent-share";
-        comContainer.appendChild(maxSpan);
+            var maxSpan = document.createElement("SPAN");
+            maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
+            maxSpan.className = "upline-agent-share";
+            comContainer.appendChild(maxSpan);
+        }
+
 
         trBox.appendChild(tdValue);
+
     };
     this.RenderPlayerCom = function (isEditNonDirectMember, textName, discount, uplineDiscount) {
         var trBox = document.createElement("TR");

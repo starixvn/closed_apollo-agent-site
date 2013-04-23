@@ -179,8 +179,6 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void ProcessRequest(ref Hashtable hash)
         {
-            base.ProcessRequest(ref hash);
-
             type = Request["type"];
             bettype = GetStringRequest("bettype", string.Empty);
             betTeam = GetStringRequest("betteam", string.Empty);

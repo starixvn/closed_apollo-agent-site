@@ -79,7 +79,7 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
-        settingContext.IsSimpleMode = true;
+        settingContext.IsSimpleMode = isSimpleMode;
         EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
     
