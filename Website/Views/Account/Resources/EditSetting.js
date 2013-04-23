@@ -49,7 +49,7 @@ if (typeof jQuery != 'undefined') {
                         })
                     }).done(function (data) {
                         if (data.ErrCode == 0) {
-                            noty({ text: data.ErrMsg, type: 'success', timeout: 5000 });
+                            noty({ text: data.ErrMsg, type: 'success', timeout: 500000 });
                             EDITSETTING.completeUpdate();
                         } else {
                             noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
