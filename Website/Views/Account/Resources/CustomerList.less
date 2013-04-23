@@ -1,11 +1,12 @@
 ﻿@import "../../../_GlobalResources/Css/Agent.less";
 
 #page_main {	
+	width: 99%;
 
 	#header_main {
 		padding: 17px 0 22px;
 		margin-bottom: 10px;
-
+		width: 100%;
 		.header-title {
 			float: left;
 		}	
@@ -114,5 +115,15 @@
 				}
 			}		
 		}		
+	}
+}
+
+/* FIX IE */
+
+.ie7 #page_main {
+	width: 98%;
+
+	.tab-header {
+		width: 100.2%;
 	}
 }
