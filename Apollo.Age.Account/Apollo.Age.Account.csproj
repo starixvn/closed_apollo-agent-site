@@ -56,8 +56,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -114,10 +112,6 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
-      <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
-      <Name>Fanex.Age.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
       <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
