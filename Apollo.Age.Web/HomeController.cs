@@ -21,5 +21,10 @@ namespace Apollo.Age.Web
         {
             return Redirect("~/Index.aspx");
         }
+
+        public ActionResult UnderMaintenance()
+        {
+            return PartialView();
+        }
     }
 }
