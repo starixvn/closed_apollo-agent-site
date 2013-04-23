@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Common">
       <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
     </Reference>
@@ -39,12 +43,16 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="UMControllerLibrary">
+      <HintPath>..\Dependencies\UMControllerLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseController.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
+    <Compile Include="Models\UnderMaintenanceModel.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Pager\IPagedList.cs" />
     <Compile Include="Pager\PagedList.cs" />
@@ -61,7 +69,6 @@
     </Compile>
     <Compile Include="RazorExtensions.cs" />
     <Compile Include="Services\UnderMaintenanceService.cs" />
-    <Compile Include="ViewModels\UnderMaintenanceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">

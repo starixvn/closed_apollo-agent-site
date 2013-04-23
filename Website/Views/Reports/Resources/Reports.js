@@ -76,15 +76,15 @@
                         ],
                 columns: [
 
-                         { HeaderText: LANGUAGES.Member, Width: 370, Name: "Member", HeaderAlign: "center", CellAlign: "left",
+                         { HeaderText: LANGUAGES.Member, Width: 150, Name: "Member", HeaderAlign: "center", CellAlign: "left",
                              CustomCellRender: function ( cell ) {
-                                 return ( cell.Value.Outstanding != 0 ? "<a href='#' class='act-view-betlist' data-custid='" + cell.Value.UserId + "'>" + cell.Value.UserName + "</a>" : cell.Value.UserName );
+                                 return ( cell.Value.Outstanding != 0 ? "<a href='#' class='act-view-betlist' data-custid='" + cell.Value.UserId + "' title='" + LANGUAGES.ViewBetlist + "' >" + cell.Value.UserName + "</a>" : cell.Value.UserName );
                              }
                          },
-                        { HeaderText: LANGUAGES.Outstanding, Width: 313, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                        { HeaderText: LANGUAGES.ShareAmount, Width: 295, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                        { HeaderText: LANGUAGES.Outstanding, Width: 195, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                        { HeaderText: LANGUAGES.ShareAmount, Width: 180, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                        { HeaderText: LANGUAGES.Outstanding, Width: 200, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: LANGUAGES.ShareAmount, Width: 200, Name: "ShareAmount", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: LANGUAGES.Outstanding, Width: 200, Name: "OutstandingGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                        { HeaderText: LANGUAGES.ShareAmount, Width: 200, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ],
                 bodyRows: bodyData,
                 showFooter: true,

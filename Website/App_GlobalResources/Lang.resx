@@ -4320,4 +4320,25 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="TakenShareText" xml:space="preserve">
     <value>Taken Share (%)</value>
   </data>
+  <data name="lblViewAllSetting" xml:space="preserve">
+    <value>View All Setting</value>
+  </data>
+  <data name="lblEditSetting" xml:space="preserve">
+    <value>Edit Setting</value>
+  </data>
+  <data name="lblMemberListOf" xml:space="preserve">
+    <value>Member List Of</value>
+  </data>
+  <data name="lblViewAgentDownline" xml:space="preserve">
+    <value>View Agent's Downline</value>
+  </data>
+  <data name="lblViewBetlist" xml:space="preserve">
+    <value>View Member's Bet List</value>
+  </data>
+  <data name="lblViewMember" xml:space="preserve">
+    <value>View Member</value>
+  </data>
+  <data name="lblViewMemberOutstanding" xml:space="preserve">
+    <value>View Member's Outstanding</value>
+  </data>
 </root>
