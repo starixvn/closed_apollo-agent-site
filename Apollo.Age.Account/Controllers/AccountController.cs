@@ -77,6 +77,11 @@ namespace Apollo.Age.Account.Controllers
             _accountService = new AccountService();
         }
 
+        public ActionResult TopBar()
+        {
+            return View(base.CurrentSession);
+        }
+
         public ActionResult Menu()
         {
             ViewBag.RootNode = SiteMap.RootNode;
