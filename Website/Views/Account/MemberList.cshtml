@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Entities;
 @{
-    ViewBag.Title = "Customer List";
-    ViewBag.HeaderTitle = Resources.Lang.lblCustomerOf;
+    ViewBag.Title = Resources.Lang.lblPlayerList;
+    ViewBag.HeaderTitle = Resources.Lang.lblMemberListOf;
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
 @model List<Agent>
@@ -38,7 +38,8 @@
                 Stopped: "@Resources.Lang.stopped",
                 Locked: "@Resources.Lang.locked",
                 Active: "@Resources.Lang.lblActive",
-                SoccerDeadballHDPTakenShare: "@Resources.Lang.soccerdeadballhdptakenshare"
+                SoccerDeadballHDPTakenShare: "@Resources.Lang.soccerdeadballhdptakenshare",
+                EditSetting: "@Resources.Lang.lblEditSetting"
 
             };
         } ( jQuery );

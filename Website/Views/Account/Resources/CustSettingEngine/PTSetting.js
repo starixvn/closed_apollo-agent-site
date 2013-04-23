@@ -1114,11 +1114,11 @@ Fanex.CustSetting.Spinner.prototype = {
         }
 
 
-        if (fractional.length > 0) {
-            while (fractional[fractional.length - 1] == '0') {
-                fractional = fractional.substring(0, fractional.length - 1);
-            }
-        }
+//        if (fractional.length > 0) {
+//            while (fractional[fractional.length - 1] == '0') {
+//                fractional = fractional.substring(0, fractional.length - 1);
+//            }
+//        }
 
         // set the value
         this.input.value = sign + integer + ((this.options.decimals > 0 && fractional.length > 0) ? '.' + fractional : '') + (this.lastLetter != null ? this.lastLetter : '');

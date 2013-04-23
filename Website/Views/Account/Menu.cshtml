@@ -40,7 +40,13 @@
                             {
                                 title = this.GlobalLangResources(subItem.Title);
                             }
-                        }        
+                        }
+
+                        var hideWhenSuper = Convert.ToBoolean(subItem["hideWhenSuper"]);
+                        if (Model.AgentLevel == 0 && hideWhenSuper) 
+                        {
+                            continue;
+                        }
                         <a href="@subItem.Url" target="main">@title</a>
                     }
                 </div>

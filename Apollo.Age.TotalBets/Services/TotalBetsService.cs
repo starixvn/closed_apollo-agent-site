@@ -14,8 +14,7 @@ namespace Apollo.Age.TotalBets.Services
     using System.Linq;
     using System.Text;
     using Fanex.NAP.Framework.Data;
-    using Fanex.Logging;
-    using Fanex.Common.Helper;
+ 
     using Apollo.Age.Services.Impl;
     
 

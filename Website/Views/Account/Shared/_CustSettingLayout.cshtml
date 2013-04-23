@@ -1,8 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@{
+    bool isViewSetting = ViewBag.IsViewShareSetting ?? false;
+}
+<!DOCTYPE html>
 <!--[if IE 7 ]> <html class="ie7 ie" lang="en-us"> <![endif]-->
 <!--[if IE 8 ]> <html class="ie8 ie" lang="en-us"> <![endif]-->
 <!--[if IE 9 ]> <html class="ie9 ie" lang="en-us"> <![endif]-->
-<!--[if (gt IE 9)]><!--> <html class="ie10 ie" lang="en-us"> <!--<![endif]-->
+<!--[if (gt IE 9)]><!-->
+<html class="ie10 ie" lang="en-us">
+<!--<![endif]-->
 <!--[if !(IE)]> <html lang="en-us"><![endif]-->
 <head>
     <meta charset="utf-8" />
@@ -17,21 +22,36 @@
 <body>
     @RazorHelper.Piwik()
     <div id="page_main">
-       @* <div id="header_main">
-            @ViewBag.Title
-        </div>*@
+        @if (isViewSetting)
+        { 
+            <div id="header_main">
+                @ViewBag.Title
+            </div>
+        }
         <div id="content_main">
-            <div class="setting-mode">
-                <span id="simple-mode" class="deactive-mode">Simple Mode</span> | <span class="active-mode" id="advanced-mode"> Advance Mode</span>
-            </div>
-            <div id="settingContainer">
-                <div class="edit-setting-warning">※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well.</div>
-                @RenderBody()
-            </div>
-            <div class="btnLeft">
-                <button id="btnSubmitFooter" class="btn" style="display:none;">
-                    @Resources.Lang.update</button>
-            </div>
+            @if (isViewSetting)
+            {
+                <div id="settingContainer">
+                    @RenderBody()
+                </div>
+            }
+            else
+            {
+                <div class="setting-mode">
+                    <span id="simple-mode" class="deactive-mode">Simple Mode</span> | <span class="active-mode"
+                        id="advanced-mode">Advance Mode</span>
+                </div>
+                <div id="settingContainer">
+                    <div class="edit-setting-warning">
+                        ※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes
+                        as well.</div>
+                    @RenderBody()
+                </div>
+                <div class="btnLeft">
+                    <button id="btnSubmitFooter" class="btn" style="display: none;">
+                        @Resources.Lang.update</button>
+                </div>
+            }
         </div>
     </div>
     @Html.Hidden("ApoRoot", Url.Content("~/"))
@@ -45,7 +65,8 @@
     <script src="~/Views/Account/Resources/CustSettingEngine/BetType.js" type="text/javascript"></script>
     <script src="~/Views/Account/Resources/CustSettingEngine/BetTypeGroup.js" type="text/javascript"></script>
     <script src="~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js" type="text/javascript"></script>
-     <script type="text/javascript">
+    <script type="text/javascript">
+         var isSimpleMode = @(isViewSetting ? "false" : "true");
          var Language =
         {
             MIN_BET: "@(Resources.Lang.lblMinBet)",

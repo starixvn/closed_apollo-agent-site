@@ -7,10 +7,18 @@
 
     public class UnderMaintenanceViewModel
     {
-        public bool IsUM { get; set; }
+        public UnderMaintenanceViewModel()
+        {
+            IsDownTime = false;
+            var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);
+            StartTime = nowHour.ToShortTimeString();
+            EndTime = nowHour.AddHours(1).ToShortTimeString();
+        }
 
-        public DateTime StartTime { get; set; }
+        public bool IsDownTime { get; set; }
 
-        public DateTime EndTime { get; set; }
+        public string StartTime { get; set; }
+
+        public string EndTime { get; set; }
     }
 }
