@@ -1,9 +1,8 @@
-﻿@{
-
-}
+﻿@using Apollo.Age.Web.Models
+@model UnderMaintenanceModel
 <div class="UnderMaintenance">
     <h2>
         UNDER MAITENANCE</h2>
-    We are having server maintenance, website will be unavailable from&nbsp;<b>5:30AM</b>
-    &nbsp;to&nbsp;<b>10:30AM</b>&nbsp;. Sorry for the inconveniences caused!
+    We are having server maintenance, website will be unavailable from&nbsp;<b>@Model.StartTime</b>
+    &nbsp;to&nbsp;<b>@Model.EndTime</b>&nbsp;. Sorry for the inconveniences caused!
 </div>
