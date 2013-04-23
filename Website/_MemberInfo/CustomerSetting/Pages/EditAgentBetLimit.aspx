@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EditAgentBetLimit.aspx.cs" Inherits="_MemberInfo_CustomerSetting_Pages_EditAgentBetLimit" %>
