@@ -103,7 +103,12 @@ namespace Apollo.Age.Account.Controllers
             HttpContext.Session["username"] = username;
             HttpContext.Session["isMember"] = "false";
 
-            var agentInfo = _accountService.GetAgentInfo(this.CurrentSession.AgentId, agentId, username);
+            var agentInfo = _accountService.GetAgentInfo(new GetAgentInfoCriteria
+            {
+                ActorAgentId = CurrentSession.AgentId,
+                AgentId = agentId,
+                Username = username
+            });
 
             if (agentInfo == null)
             {
@@ -129,7 +134,12 @@ namespace Apollo.Age.Account.Controllers
             HttpContext.Session["username"] = username;
             HttpContext.Session["isMember"] = "true";
 
-            var memberInfo = _accountService.GetMemberInfo(this.CurrentSession.AgentId, custId, username);
+            var memberInfo = _accountService.GetMemberInfo(new GetMemberInfoCriteria
+            {
+                ActorAgentId = CurrentSession.AgentId,
+                CustId = custId,
+                Username = username
+            });
 
             if (memberInfo == null)
             {
@@ -200,7 +210,7 @@ namespace Apollo.Age.Account.Controllers
         public JsonResult GetDataByNode(int agentId)
         {
             var customerList = _accountService.GetDirectDownline(agentId)
-                .Select(x => new { x.Id, x.Username, x.HasAgentDownline});
+                .Select(x => new { x.Id, x.Username, x.HasAgentDownline });
             return Json(customerList, JsonRequestBehavior.AllowGet);
         }
 
