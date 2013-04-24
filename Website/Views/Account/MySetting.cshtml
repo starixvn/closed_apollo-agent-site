@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = string.Format("Agent {0} Setting", ViewBag.UserName);
+    ViewBag.Title = string.Format(Resources.Lang.lblFormatAgentSetting, ViewBag.UserName);
     Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
 }
 <div id="commissionSettingContainer">
@@ -16,4 +16,5 @@
     <script src="~/Views/Account/Resources/EditCommission.js" type="text/javascript"></script>
     <script src="~/CustomerSetting/GetBetLimit?targetCustId=@(ViewBag.CustId)&agentLevel=@(ViewBag.AgentLevel)&agentId=@(ViewBag.CurentParentAgentId)" type="text/javascript"></script>
     <script src="~/Views/Account/Resources/EditBetLimit.js" type="text/javascript"></script>
+    <script src="~/Views/Account/Resources/EditSetting.js" type="text/javascript"></script>
 }

@@ -547,7 +547,6 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
 };
 
 //// View Setting
-
 Fanex.CustSetting.BetType.prototype.Render_2_2_3 =
 Fanex.CustSetting.BetType.prototype.Render_3_3_3 = function (owner) {
     box = document.createElement("DIV");
@@ -582,4 +581,33 @@ Fanex.CustSetting.BetType.prototype.Render_3_3_3 = function (owner) {
     }
 
     return box;
+};
+
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_3 =
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_3_3 = function (owner) {
+    var currentPtValue = this.currentPtValue;
+    var tableShareSetting = document.createElement("TABLE");
+    tableShareSetting.className = "share-setting-table";
+    var boxTBody = document.createElement("TBODY");
+    tableShareSetting.appendChild(boxTBody);
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
+
+    var maxLabel = document.createElement("TD");
+    maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
+    maxLabel.title = Language.SIMPLE_MODE_MAX_POSITION;
+    maxLabel.className = "share-setting-label";
+    trSetting.appendChild(maxLabel);
+
+    var maxContainer = document.createElement("TD");
+    maxContainer.className = "share-setting-value";
+    maxContainer.innerHTML = " " + currentPtValue.Max;
+    trSetting.appendChild(maxContainer);
+
+    // Get updated data
+    this.SaveSimpleMode = function () {
+        return null;
+    };
+
+    return tableShareSetting;
 };
