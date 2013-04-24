@@ -39,13 +39,12 @@
             else
             {
                 <div class="setting-mode">
-                    <span id="simple-mode" class="deactive-mode">Simple Mode</span> | <span class="active-mode"
-                        id="advanced-mode">Advance Mode</span>
+                    <span id="simple-mode" class="deactive-mode">@Resources.Lang.lblSimpleModel</span> | <span class="active-mode"
+                        id="advanced-mode">@Resources.Lang.lblAdvancedMode</span>
                 </div>
                 <div id="settingContainer">
                     <div class="edit-setting-warning">
-                        ※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes
-                        as well.</div>
+                        @Resources.Lang.lblWarningEditSetting</div>
                     @RenderBody()
                 </div>
                 <div class="btnLeft">
@@ -74,16 +73,16 @@
             MAX_BET: "@(Resources.Lang.lblMaxBet)",
             MAX_PER_MATCH: "@(Resources.Lang.lblMaxPerMatch)",
             MAX_PER_BALL: "@(Resources.Lang.maxperball)",
-            BETTING_LIMIT: "Bet Limit",
+            BETTING_LIMIT: "@(Resources.Lang.betlimit)",
             DEAD_BALL: "@(Resources.Lang.lblDeadball)",
             LIVE: "@(Resources.Lang.lblLive)",
             DEAD_BALL_VN: "@(Resources.Lang.lblDeadball)",
             LIVE_VN: "@(Resources.Lang.lblLive)",
-            MIN_POSITION: "Min Given Share (%)",
-            MAX_POSITION: "Max Given Share (%)",
-            SIMPLE_MODE_MAX_POSITION: "Given Share (%)",
-            SIMPLE_MODE_PRESET_POSITION: "Taken Share (%)",
-            PRESET_POSITION: "Max Taken Share (%)",
+            MIN_POSITION: "@(Resources.Lang.lblMinGivenShare)",
+            MAX_POSITION: "@(Resources.Lang.lblMaxGivenShare)",
+            SIMPLE_MODE_MAX_POSITION: "@(Resources.Lang.lblGivenShare)",
+            SIMPLE_MODE_PRESET_POSITION: "@(Resources.Lang.lblTakenShare)",
+            PRESET_POSITION: "@(Resources.Lang.lblMaxTakenShare)",
             POSITION_TAKING: "@(Resources.Lang.positiontaking)",
             COPY_FROM: "@(Resources.Lang.copyFrom)",
             COPY_ALL_OTHER_POSITION_TAKING_FROM: "@(Resources.Lang.copyAllPositionTakingFrom)",
@@ -101,12 +100,6 @@
             MIN_BET_GREATER_THAN_MIN_MIN_BET: '@(string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}"))',
             MAX_BET_LOWER_THAN_MAX_MAX_BET: '@(string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}"))',
             MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET: '@(Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}"))',
-//            MIN_BET_LOWER_THAN_MIN_MAX_BET_AFTER_COPY: "{0} - The Min Bet should be less than or equal to Max Bet after copied",
-//            MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY: "{0} - The Min Bet should be less than or equal to Max Per Match after copied",
-//            MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET_AFTER_COPY: "{0} - The Max Bet should be less than or equal to Max Per Match after copied",
-//            MIN_BET_GREATER_THAN_MIN_MIN_BET_AFTER_COPY: "Min Bet must be greater than or equal to {0} after copied",
-//            MAX_BET_LOWER_THAN_MAX_MAX_BET_AFTER_COPY: "Max Bet must be less than or equal to {0} after copied",
-//            MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET_AFTER_COPY: "Max Per Match must be less than or equal to {0} after copied",
             MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET: '@(Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}"))',
             MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL: '@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall)',
             //	WANT_TO_UPDATE_ALL_MEMBER_POSITION_TAKING: "Do you want to update all member's position taking to:",
@@ -114,10 +107,10 @@
             NO: "@(Resources.Lang.lblNo)",
             BASKETBALL: "@(Resources.Lang.Basketball)",
             SOCCER: "@(Resources.Lang.soccer)",
-            POSITION_SETTING_HEADER: "Share Setting ",
-            POSITION_SETTING_SIMPLE_MODE_HEADER: "Share Setting (Soccer Deadball Handicap) ",
+            POSITION_SETTING_HEADER: "@(Resources.Lang.lblShareSetting)",
+            POSITION_SETTING_SIMPLE_MODE_HEADER: "@(Resources.Lang.lblShareSettingSimpleMode)",
             BET_SETTING_HEADER: "@(Resources.Lang.lblBetSetting)",
-            COMMISSION_SETTING_HEADER: "Commission Setting",
+            COMMISSION_SETTING_HEADER: "@(Resources.Lang.lblCommissionSetting)",
             //// commission setting text 
             GROUP_A: "@(Resources.Lang.lblGroupa) (%) ",
             GROUP_B: "@(Resources.Lang.lblGroupb) (%) ",
@@ -127,17 +120,14 @@
             OTHERS_COM: "@(Resources.Lang.lblOtherComm) (%) ",
             NUMBER_GAME: "@(Resources.Lang.numbergame)",
             ASIAN_HDC_OU_OE: "@(Resources.Lang.lblAsianHDC_OU_OE) (%)",
-            MEMBER_GROUP: "Commission Group",
-            COMM_FOR_AGENT: "Comm for Agent",
-            COMM_FOR_MEMBER: "Member Commission",
+            MEMBER_GROUP: "@(Resources.Lang.lblCommissionGroup)",
+            COMM_FOR_AGENT: "",
+            COMM_FOR_MEMBER: "@(Resources.Lang.lblMemberCommission)",
             GROUP: "@(Resources.Lang.group)",
-            AGENT_SHARE: "Agent Share",
-            MAIN_SHARE_HOLDER_SHARE: "Main Shareholder Share",
-            SHARE_HOLDER_SHARE: "Shareholder Share",
-            MAIN_AGENT_SHARE: "Main Agent Share",
-            SPORT_BOOK: "Sportsbook",
-            SIMPLE_MODE_MAX_POSITION: "Given Share (%)",
-            SIMPLE_MODE_PRESET_POSITION: "Taken Share (%)"
+            AGENT_SHARE: "@(Resources.Lang.lblAgentShare)",
+            SPORT_BOOK: "@(Resources.Lang.sportBook)",
+            SIMPLE_MODE_MAX_POSITION: "@(Resources.Lang.lblGivenShare)",
+            SIMPLE_MODE_PRESET_POSITION: "@(Resources.Lang.lblTakenShare)"
         };
     </script>
     @RenderSection("scripts", required: false)

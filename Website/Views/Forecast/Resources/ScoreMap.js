@@ -50,7 +50,7 @@ if (typeof jQuery != 'undefined') {
 
                 }
                 if (matchIds == "") {
-                    $('#msgMatchErr').text("Please choose a Match!");
+                    $('#msgMatchErr').text(plsChooseMatch);
                     $('#tblMsgMatch').show();
                     return;
                 }
@@ -82,7 +82,7 @@ if (typeof jQuery != 'undefined') {
                     betTypesDead = SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
                 }
                 if (betTypesLive == "" && betTypesDead == "") {
-                    ageMsg.Show("Please choose a bet type!", 0);
+                    ageMsg.Show(plsChooseBetType, 0);
                     $("#mainContent").html('');
                     return;
                 }
