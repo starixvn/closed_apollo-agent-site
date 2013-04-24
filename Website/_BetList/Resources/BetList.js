@@ -220,7 +220,7 @@ if (typeof jQuery != "undefined") {
 						BETLIST.dialogDetails.html(data.responseText);
 					}
 				});
-                APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450, height: 500 });
+				APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450, height: 500 });
 			});
 		}
 
@@ -229,5 +229,30 @@ if (typeof jQuery != "undefined") {
 				$("#frmBetList").submit();
 			});
 		}
+
+		$("#username").autocomplete({
+			source: function (request, response) {
+				var url = "";
+				if ($("#userType").val() == "0") {
+					url = "Account/GetMemberByUsername?username=" + request.term;
+				}
+				else {
+					url = "Account/GetAgentByUsername?username=" + request.term;
+				}
+
+				$.ajax({
+					url: APOLLO.resolveUrl(url),
+					success: function (data) {
+						var found = $.map(data, function (item) {
+							return {
+								value: item.Username
+							}
+						});
+						return response(found);
+					}
+				});
+			},
+			position: { my: "right top", at: "right bottom" }
+		});
 	});
 }
