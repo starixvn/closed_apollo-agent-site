@@ -31,7 +31,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
         /// <returns></returns>
         public string Render(IList<ITicket> tickets, BetListType betlistType)
         {
-            int totalColumns = 10;
+            int totalColumns = 11;
 
             if ((betlistType & BetListType.Canceled) == BetListType.Canceled)
             {

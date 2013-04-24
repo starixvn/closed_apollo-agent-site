@@ -24,7 +24,7 @@ namespace Apollo.Age.BetList.Services
     /// </summary>
     public class BetListService : QueryService, IBetListService
     {
-        private IBetListRepository _betListRepository { get; set; }
+        private IBetListRepository betListRepository;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="BetListService" /> class.
@@ -40,92 +40,92 @@ namespace Apollo.Age.BetList.Services
         /// <param name="betListRepository">BetList Repository</param>
         public BetListService(IBetListRepository betListRepository)
         {
-            this._betListRepository = this._betListRepository ?? new BetListRepository();
+            this.betListRepository = this.betListRepository ?? new BetListRepository();
         }
 
         /// <summary>
-        /// Get detail agent PT and agent Comm
+        /// Get detail agent PT and agent commission
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>List Ticket</returns>
         public IList<ITicket> GetDetailAgentComm(BetListCriteria criteria)
         {
-            return this._betListRepository.GetDetailAgentComm(criteria);
+            return this.betListRepository.GetDetailAgentComm(criteria);
         }
 
         /// <summary>
         /// Get detail ticket mix-parlay
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
         public IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria)
         {
-            return this._betListRepository.GetMixParlayDetailTicket(criteria);
+            return this.betListRepository.GetMixParlayDetailTicket(criteria);
         }
 
         /// <summary>
-        /// Get betlist running on Total Bets menu
+        /// Get bet list running on Total Bets menu
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
         public TicketResult GetRunningByBettype(BetListCriteria criteria)
         {
-            return this._betListRepository.GetBetListData(criteria, "Age_BetList_TotalBets_SelRunningByBettype");
+            return this.betListRepository.GetBetListData(criteria, "Age_BetList_TotalBets_SelRunningByBettype");
         }
 
         /// <summary>
         /// Get all bets by date and member
-        /// For only agent (Member Outstanding betlist)
+        /// For only agent (Member Outstanding bet list)
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
         public TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria)
         {
-            return this._betListRepository.GetBetListData(criteria, "Age_BetList_SelByDateMemStatus");
+            return this.betListRepository.GetBetListData(criteria, "Age_BetList_SelByDateMemStatus");
         }
 
         /// <summary>
-        /// Get all bets by date and member from Winloss report
+        /// Get all bets by date and member from Win loss report
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
         public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
         {
-            return this._betListRepository.GetWinLossByDateAndMem(criteria);
+            return this.betListRepository.GetWinLossByDateAndMem(criteria);
         }
 
         /// <summary>
-        /// BetList Trannsaction
+        /// BetList transaction
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
         public TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria)
         {
-            return this._betListRepository.GetBetListData(criteria, "Age_BetList_SelTransaction");
+            return this.betListRepository.GetBetListData(criteria, "Age_BetList_SelTransaction");
         }
 
         /// <summary>
-        /// Get betlist by matchId
+        /// Get bet list by matchId
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
         public TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria)
         {
-            return this._betListRepository.GetRunningByBettypeAndMatch(criteria);
+            return this.betListRepository.GetRunningByBettypeAndMatch(criteria);
         }
 
         /// <summary>
         /// Get UserId By Username
         /// </summary>
-        /// <param name="loggedId"></param>
-        /// <param name="isAgent"></param>
-        /// <param name="username"></param>
-        /// <param name="agentId"></param>
-        /// <param name="custId"></param>
-        /// <param name="errorCode"></param>
+        /// <param name="loggedId">Logged id</param>
+        /// <param name="isAgent">Agent choice</param>
+        /// <param name="username">User name</param>
+        /// <param name="agentId">Output agent id</param>
+        /// <param name="custId">Output customer id</param>
+        /// <param name="errorCode">Output error code</param>
         public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
-            this._betListRepository.GetUserIdByUserName(loggedId, isAgent, username, out agentId, out custId, out errorCode);
+            this.betListRepository.GetUserIdByUserName(loggedId, isAgent, username, out agentId, out custId, out errorCode);
         }
     }
 }

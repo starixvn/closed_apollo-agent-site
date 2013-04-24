@@ -54,20 +54,13 @@
             <siteMapNode title="lblAgentList" url="Account/AgentList"></siteMapNode>
             <siteMapNode title="lblPlayerList" url="Account/MemberList" Level="4"></siteMapNode>
             <siteMapNode title="lblViewAllSetting" url="CustomerSetting/ViewAllSetting" hideWhenSuper="true" ></siteMapNode>
-            <siteMapNode title="ViewShare" url="CustomerSetting/MemberShare" ></siteMapNode>
+            <siteMapNode title="ViewShare" url="CustomerSetting/AgentShare" ></siteMapNode>
             <siteMapNode title="ViewCommission" url="CustomerSetting/ViewCommission" ></siteMapNode>
             <!--<siteMapNode title="lblPositionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
       <siteMapNode title="lblMemberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx" ></siteMapNode>
       <siteMapNode description="subacc" title="lblShadowList" url="_SubAcc/SubAccList.aspx"></siteMapNode>-->
         </siteMapNode>
-        <!--/MemberInfo-->
-        
-        <!--Admin-->
-        <!--<siteMapNode title="lblAdmin">
-      <siteMapNode title="lblExchangeRate" url="Admin/ExchangeRate"></siteMapNode>
-    </siteMapNode>-->
-        <!--/Admin-->
-        <!--</siteMapNode>-->
+        <!--/MemberInfo-->      
 
     </siteMapNode>
 </siteMap>

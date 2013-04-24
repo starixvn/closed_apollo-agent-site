@@ -70,19 +70,19 @@
                         "\r\nTARGETSITE: " + ex.TargetSite +
                         "\r\nSTACKTRACE: " + ex.StackTrace;
 
-        if (HttpContext.Current.Handler is IRequiresSessionState)
-        {
-            IUserSession session = UserSession.Current;
-            message += "\r\nCUSTID:" + session.CustId;
-        }
+        //if (HttpContext.Current.Handler is IRequiresSessionState)
+        //{
+        //    IUserSession session = UserSession.Current;
+        //    message += "\r\nCUSTID:" + session.CustId;
+        //}
 
-        Logs.Write(message);
+        //Logs.Write(message);
 
-        if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.LocalTest)
-        {
-            Server.ClearError();
-            Server.Transfer("~/Error.aspx");
-        }
+        //if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.LocalTest)
+        //{
+        //    Server.ClearError();
+        //    Server.Transfer("~/Error.aspx");
+        //}
     }
 
     void Application_AcquireRequestState(object sender, EventArgs e)
@@ -98,23 +98,9 @@
 
     }
 
-    private void GetRequestParams(ref int custId, ref long transId, ref int masterId, out bool isDataWarehouse, out string url)
-    {
-        int.TryParse(Request["custid"], out custId);
-        if (custId == 0) int.TryParse(Request["cid"], out custId);
-        if (custId == 0) int.TryParse(Request["recommend"], out custId);
-        if (custId == 0) int.TryParse(Request["mrecommend"], out custId);
-        if (custId == 0) int.TryParse(Request["idagent"], out custId);
-        long.TryParse(Request["transid"], out transId);
-
-        if (transId == 0) long.TryParse(Request["refno"], out transId);
-        int.TryParse(Request["idmaster"], out masterId);
-
-        isDataWarehouse = (Request["iswhcheck"] == "1");
-
-        // Get file path (remove /)
-        url = Request.Path.Remove(0, 1);
-        url = url.ToLower();
+    void Application_BeginRequest(object sender, EventArgs e)
+    { 
+        
     }
 
     void Session_Start(object sender, EventArgs e)

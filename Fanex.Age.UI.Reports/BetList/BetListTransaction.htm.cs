@@ -154,7 +154,7 @@ namespace Fanex.Age.UI.Reports
 			public string option_user = "{option_user}";
 			protected static string s43 = "</div><div class=\"date\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
 			public string username = "{username}";
-			protected static string s44 = "\" maxlength=\"50\"style=\"width: 100px;\" /></div>";
+			protected static string s44 = "\" maxlength=\"50\"style=\"width: 120px;\" autocomplete=\"off\" class=\"ui-autocomplete-input\" /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
