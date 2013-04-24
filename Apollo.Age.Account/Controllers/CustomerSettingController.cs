@@ -90,20 +90,22 @@ namespace Apollo.Age.Account.Controllers
         {
             if (!string.IsNullOrWhiteSpace(model.Username))
             {
-                // force search by username only
-                model.Id = -1;
+                model.Id = -1; // force search by username only
             }
 
-            CustomerInfoModel customerInfo = null;
-
-            if (model.IsMember)
-            {
-                customerInfo = _accountService.GetMemberInfo(this.CurrentSession.AgentId, model.Id, model.Username);
-            }
-            else
-            {
-                customerInfo = _accountService.GetAgentInfo(this.CurrentSession.AgentId, model.Id, model.Username);
-            }
+            CustomerInfoModel customerInfo = model.IsMember
+                ? _accountService.GetMemberInfo(new GetMemberInfoCriteria
+                {
+                    ActorAgentId = CurrentSession.AgentId,
+                    CustId = model.Id,
+                    Username = model.Username
+                })
+                : _accountService.GetAgentInfo(new GetAgentInfoCriteria
+                {
+                    ActorAgentId = CurrentSession.AgentId,
+                    AgentId = model.Id,
+                    Username = model.Username
+                });
 
             if (customerInfo != null)
             {
@@ -184,7 +186,7 @@ namespace Apollo.Age.Account.Controllers
             {
                 criteria.AgentId = this.CurrentSession.AgentId;
                 criteria.Username = this.CurrentSession.Username;
-                
+
             }
             else
             {
@@ -318,7 +320,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsViewShareSetting = true;
             return View("~/Views/Account/ViewSetting.cshtml");
         }
-                
+
 
         #endregion
 
