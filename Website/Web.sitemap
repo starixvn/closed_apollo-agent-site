@@ -1,54 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-    <siteMapNode title="AGE">
+  <siteMapNode title="AGE">
 
-        <!-- <siteMapNode title="Master">-->
-        <!--Totalbets-->
-        <siteMapNode title="totalbets" active="true">
-            <siteMapNode title="lblHOUL" url="TotalBets/Handicap"></siteMapNode>
-            <siteMapNode title="moneyline" url="TotalBets/MoneyLine"></siteMapNode>
-            <siteMapNode title="OE1x2DND" url="TotalBets/OddEven"></siteMapNode>
-            <siteMapNode title="correctscore" url="_BetList/BetList.aspx?type=CorrectScore"></siteMapNode>
-            <siteMapNode title="totalgoal" url="TotalBets/TotalGoal"></siteMapNode>
-            <siteMapNode title="lblMixParlay" url="_BetList/BetList.aspx?type=MixParlay"></siteMapNode>
-            <siteMapNode title="lblSystemParlay" url="_BetList/BetList.aspx?type=CombMixParlayBetList"></siteMapNode>
-            <siteMapNode title="lblOutRight" url="TotalBets/OutRight"></siteMapNode>
-            <siteMapNode title="htft" url="TotalBets/HTFT"></siteMapNode>
-            <siteMapNode title="fglg" url="TotalBets/FirstGoal"></siteMapNode>
-            <siteMapNode title="bettype13" url="_BetList/BetList.aspx?bettype=13&amp;type=Bettype"></siteMapNode>
-            <siteMapNode title="bettype24" url="_BetList/BetList.aspx?bettype=24&amp;type=Bettype"></siteMapNode>
-            <siteMapNode title="lblHomeDrawAwayNoBet" url="TotalBets/HomeNoBet"></siteMapNode>
-            <siteMapNode title="bettype26" url="_BetList/BetList.aspx?bettype=26&amp;type=Bettype"></siteMapNode>
-            <siteMapNode title="bettype27" url="_BetList/BetList.aspx?bettype=27&amp;type=Bettype"></siteMapNode>
-            <siteMapNode title="bettype28" url="_BetList/BetList.aspx?bettype=28&amp;type=Bettype"></siteMapNode>
-            <!--<siteMapNode title="numbergame" url="TotalBets/NumberGame"></siteMapNode>-->
-        </siteMapNode>
-        <!--/Totalbets-->
+    <!-- <siteMapNode title="Master">-->
+    <!--Totalbets-->
+    <siteMapNode title="totalbets" active="true">
+      <siteMapNode title="lblHOUL" url="TotalBets/Handicap"></siteMapNode>
+      <siteMapNode title="moneyline" url="TotalBets/MoneyLine"></siteMapNode>
+      <siteMapNode title="OE1x2DND" url="TotalBets/OddEven"></siteMapNode>
+      <siteMapNode title="correctscore" url="_BetList/BetList.aspx?type=CorrectScore"></siteMapNode>
+      <siteMapNode title="totalgoal" url="TotalBets/TotalGoal"></siteMapNode>
+      <siteMapNode title="lblMixParlay" url="_BetList/BetList.aspx?type=MixParlay"></siteMapNode>
+      <siteMapNode title="lblSystemParlay" url="_BetList/BetList.aspx?type=CombMixParlayBetList"></siteMapNode>
+      <siteMapNode title="lblOutRight" url="TotalBets/OutRight"></siteMapNode>
+      <siteMapNode title="htft" url="TotalBets/HTFT"></siteMapNode>
+      <siteMapNode title="fglg" url="TotalBets/FirstGoal"></siteMapNode>
+      <siteMapNode title="bettype13" url="_BetList/BetList.aspx?bettype=13&amp;type=Bettype"></siteMapNode>
+      <siteMapNode title="bettype24" url="_BetList/BetList.aspx?bettype=24&amp;type=Bettype"></siteMapNode>
+      <siteMapNode title="lblHomeDrawAwayNoBet" url="TotalBets/HomeNoBet"></siteMapNode>
+      <siteMapNode title="bettype26" url="_BetList/BetList.aspx?bettype=26&amp;type=Bettype"></siteMapNode>
+      <siteMapNode title="bettype27" url="_BetList/BetList.aspx?bettype=27&amp;type=Bettype"></siteMapNode>
+      <siteMapNode title="bettype28" url="_BetList/BetList.aspx?bettype=28&amp;type=Bettype"></siteMapNode>
+      <!--<siteMapNode title="numbergame" url="TotalBets/NumberGame"></siteMapNode>-->
+    </siteMapNode>
+    <!--/Totalbets-->
 
-        <!--Forecast-->
-        <siteMapNode title="lblForecast">
-            <siteMapNode title="lblHOUL" url="Forecast/FCHandicapOverUnder"></siteMapNode>
-            <siteMapNode title="lbl1x2" url="Forecast/FC1X2"></siteMapNode>
-            <siteMapNode description="ScoreMap" title="lblScoreMap" url="Forecast/ScoreMap"></siteMapNode>
-        </siteMapNode>
-        <!--/Forecast-->
+    <!--Forecast-->
+    <siteMapNode title="lblForecast">
+      <siteMapNode title="lblHOUL" url="Forecast/FCHandicapOverUnder"></siteMapNode>
+      <siteMapNode title="lbl1x2" url="Forecast/FC1X2"></siteMapNode>
+      <siteMapNode description="ScoreMap" title="lblScoreMap" url="Forecast/ScoreMap"></siteMapNode>
+    </siteMapNode>
+    <!--/Forecast-->
 
-        <!--Report-->
-        <siteMapNode title="reports">
-            <siteMapNode title="agentwinloss" url="Reports/MatchEntered"></siteMapNode>
-            <siteMapNode title="lblAgentOutstanding" url="Reports/Outstanding"></siteMapNode>
-            <siteMapNode title="TicketCancelled" url="_BetList/BetListTransaction.aspx?type=cancel"></siteMapNode>
-            <siteMapNode title="transaction" url="_BetList/BetListTransaction.aspx?type=transaction"></siteMapNode>
-            <!--<siteMapNode title="lblMatchWinLostDetail" url="_Reports/MatchWinloss/MatchWinLossDetail.aspx"></siteMapNode>
+    <!--Report-->
+    <siteMapNode title="reports">
+      <siteMapNode title="agentwinloss" url="Reports/MatchEntered"></siteMapNode>
+      <siteMapNode title="lblAgentOutstanding" url="Reports/Outstanding"></siteMapNode>
+      <siteMapNode title="TicketCancelled" url="_BetList/BetListTransaction.aspx?type=cancel"></siteMapNode>
+      <siteMapNode title="transaction" url="_BetList/BetListTransaction.aspx?type=transaction"></siteMapNode>
+      <!--<siteMapNode title="lblMatchWinLostDetail" url="_Reports/MatchWinloss/MatchWinLossDetail.aspx"></siteMapNode>
               <siteMapNode title="lblWinLossByBettype" url="_Reports/Winloss/WinLossByBettypeMaster.aspx"></siteMapNode>
               <siteMapNode description="Consolidated" title="consolidatedreport" url="_Reports/Consolidated/Daily_Consolidated.aspx"></siteMapNode>
               <siteMapNode title="lblCommissionByBettype" url="_Reports/Commission/CommissionByBettype.aspx"></siteMapNode>
               <siteMapNode title="lblCancelledBets" url="_Reports/BetList/CancelBetList.aspx"></siteMapNode>-->
-            <siteMapNode title="result" url="_Reports/Result/Result.aspx"></siteMapNode>
+      <siteMapNode title="result" url="_Reports/Result/Result.aspx"></siteMapNode>
+      <siteMapNode title="result" url="Results"></siteMapNode>
 
-        </siteMapNode>
-        <!--/Report-->
+    </siteMapNode>
+    <!--/Report-->
 
+<<<<<<< HEAD
+    <!--MemberInfo-->
+    <siteMapNode title="lblAccountInformation">
+      <siteMapNode title="lblAgentList" url="Account/AgentList"></siteMapNode>
+      <siteMapNode title="lblPlayerList" url="Account/MemberList" Level="4"></siteMapNode>
+      <siteMapNode title="lblViewAllSetting" url="CustomerSetting/ViewAllSetting" hideWhenSuper="true" ></siteMapNode>
+      <siteMapNode title="ViewShare" url="CustomerSetting/AgentShare" ></siteMapNode>
+      <siteMapNode title="ViewCommission" url="CustomerSetting/ViewCommission" ></siteMapNode>
+      <!--<siteMapNode title="lblPositionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
+=======
         <!--MemberInfo-->
         <siteMapNode title="lblAccountInformation">
             <siteMapNode title="lblAgentList" url="Account/AgentList"></siteMapNode>
@@ -57,10 +68,11 @@
             <siteMapNode title="ViewShare" url="CustomerSetting/AgentShare" ></siteMapNode>
             <siteMapNode title="ViewCommission" url="CustomerSetting/ViewCommission" ></siteMapNode>
             <!--<siteMapNode title="lblPositionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
+>>>>>>> d35958eae85c40382cd782336cedea284cf517e5
       <siteMapNode title="lblMemberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx" ></siteMapNode>
       <siteMapNode description="subacc" title="lblShadowList" url="_SubAcc/SubAccList.aspx"></siteMapNode>-->
-        </siteMapNode>
-        <!--/MemberInfo-->      
-
     </siteMapNode>
+    <!--/MemberInfo-->
+
+  </siteMapNode>
 </siteMap>

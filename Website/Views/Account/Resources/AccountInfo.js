@@ -18,7 +18,7 @@ var ACCOUNT = function ($) {
 
         getAccountInfo: function (custId, username) {
             var url = "";
-            if (ACCOUNT.dllIsMember.val() == "true") {
+            if (ACCOUNT.dllIsMember.val().toBoolean()) {
                 url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
             }
             else {
@@ -55,13 +55,7 @@ var ACCOUNT = function ($) {
                     ACCOUNT.getAccountInfo(ui.item.value, ui.item.label);
                 },
                 position: { my: "right top", at: "right bottom" }
-            })
-//            .keydown(function (e) {
-//                if (e.keyCode == 13) {
-//                    $(this).autocomplete("search", $(this).val());
-//                }
-//            })
-            ;
+            });
 
             $(".search-button").bind('click', function () {
                 ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val()); // -1: only search username
@@ -69,12 +63,6 @@ var ACCOUNT = function ($) {
 
             $(".show-section").bind('click', function () {
                 ACCOUNT.showSectionTab(this.parentNode.id, $(this).attr("agent-id"));
-            });
-
-            ACCOUNT.txtUsername.bind('keypress', function (e) {
-                if (e.keyCode == 13) {
-                    ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val()); // -1: only search username
-                }
             });
 
             ACCOUNT.txtUsername.bind('click', function () {
