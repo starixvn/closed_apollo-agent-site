@@ -1,4 +1,14 @@
-﻿namespace Apollo.Age.Web.Services
+﻿// --------------------------------------------------------------------------
+// <copyright file="UnderMaintenanceService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry" date="2013.04.23">Created</change>
+//
+// </history>
+
+namespace Apollo.Age.Web.Services
 {
     using System;
     using System.Collections.Generic;
