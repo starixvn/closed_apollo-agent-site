@@ -77,7 +77,7 @@
     void Application_AcquireRequestState(object sender, EventArgs e)
     {
         var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
-        if (executeFileName.IndexOf("UnderMaintenance") == -1)
+        if (executeFileName.IndexOf("UnderMaintenance") == -1 && executeFileName.IndexOf("GetMessage") == -1)
         {
             UnderMaintenanceService maintenanceService = new UnderMaintenanceService();
             var maintenanceInfo = maintenanceService.MaintenanceInfo;
@@ -85,7 +85,7 @@
                 Response.Redirect("~/Home/UnderMaintenance");
         }
 
-    }
+   }
 
     void Application_BeginRequest(object sender, EventArgs e)
     { 
