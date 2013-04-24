@@ -68,7 +68,7 @@
                         "\r\nForm: " + Request.Form.ToString() +
                         "\r\nQueryString: " + Request.QueryString.ToString() +
                         "\r\nTargetSite: " + ex.TargetSite +
-                        "\r\nStackTrace: " + ex.StackTrace;     
+                        "\r\nStackTrace: " + ex.StackTrace;
 
         Logs.Write(message);
 
@@ -76,6 +76,7 @@
 
     void Application_AcquireRequestState(object sender, EventArgs e)
     {
+
         try
         {
             var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
