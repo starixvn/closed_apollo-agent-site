@@ -26,9 +26,9 @@ namespace Apollo.Age.Account.Services
 
         List<Member> GetMemberByUsername(GetMemberByUsernameCriteria criteria);
 
-        CustomerInfoModel GetAgentInfo(AgentInfoCriteria criteria);
+        CustomerInfoModel GetAgentInfo(GetAgentInfoCriteria criteria);
 
-        CustomerInfoModel GetMemberInfo(MemberInfoCriteria criteria);
+        CustomerInfoModel GetMemberInfo(GetMemberInfoCriteria criteria);
 
         List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria);
 

@@ -62,16 +62,16 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberByUsername(criteria).ToList();
         }
 
-        public CustomerInfoModel GetAgentInfo(AgentInfoCriteria criteria)
+        public CustomerInfoModel GetAgentInfo(GetAgentInfoCriteria criteria)
         {
-            Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
+            Check.Argument.IsNotNull(criteria, "criteria");
 
             return _accountRepository.GetCustomerInfo(criteria);
         }
 
-        public CustomerInfoModel GetMemberInfo(MemberInfoCriteria criteria)
+        public CustomerInfoModel GetMemberInfo(GetMemberInfoCriteria criteria)
         {
-            Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
+            Check.Argument.IsNotNull(criteria, "actorAgentId");
 
             return _accountRepository.GetCustomerInfo(criteria);
         }
