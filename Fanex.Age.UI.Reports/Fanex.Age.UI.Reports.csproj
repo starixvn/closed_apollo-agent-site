@@ -129,9 +129,6 @@
     <Compile Include="Components\WinlossSearchView_Control.cs" />
     <Compile Include="DataSetHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports_Page.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Result\Result.htm.cs" />
     <Compile Include="Result\ResultBadminton.htm.cs" />
     <Compile Include="Result\ResultBaseBall.htm.cs" />
@@ -150,9 +147,6 @@
     <Compile Include="Result\SportType.htm.cs" />
     <Compile Include="Scripts.htm.cs" />
     <Compile Include="Styles.htm.cs" />
-    <Compile Include="WinlossReports_Page.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Lang.resx">
