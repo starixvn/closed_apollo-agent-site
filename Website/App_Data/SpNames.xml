@@ -333,7 +333,7 @@
       <Mapping DataField="AwayOddsOE" ObjectProperty="AwayOddsOddEven" />
       <Mapping DataField="HomeOddsOE1st" ObjectProperty="HomeOddsHalfTimeOddEven" />
       <Mapping DataField="AwayOddsOE1st" ObjectProperty="AwayOddsHalfTimeOddEven" />
-      <Mapping DataField="Odds11st" ObjectProperty="Odds1HaftTime" />
+      <Mapping DataField="Odds11st" ObjectProperty="Odds1HalfTime" />
       <Mapping DataField="OddsX1st" ObjectProperty="OddsXHalfTime" />
       <Mapping DataField="Odds21st" ObjectProperty="Odds2HalfTime" />
       <Mapping DataField="HomeOddsDND" ObjectProperty="HomeOddsDrawNoDraw" />
