@@ -183,7 +183,7 @@ namespace Apollo.Age.Account.Controllers
             if (!agentId.HasValue && string.IsNullOrWhiteSpace(userName))
             {
                 criteria.AgentId = this.CurrentSession.AgentId;
-                criteria.Username = string.Empty;
+                criteria.Username = this.CurrentSession.Username;
                 
             }
             else
