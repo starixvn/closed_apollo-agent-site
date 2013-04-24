@@ -22,7 +22,7 @@ namespace Apollo.Age.Account.Repositories.Impl
 
     public class AccountRepository : IAccountRepository
     {
-        public IEnumerable<Customer> GetCustomerSuggest(ICriteria criteria)
+        public IEnumerable<Agent> GetAgentByUsername(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             try
@@ -31,11 +31,11 @@ namespace Apollo.Age.Account.Repositories.Impl
                 {
                     using (var db = new ObjectDb(criteria.GetSettingKey()))
                     {
-                        return db.Query<Customer>(criteria.GetSpParams());
+                        return db.Query<Agent>(criteria.GetSpParams());
                     }
                 }
 
-                return new List<Customer>();
+                return new List<Agent>();
             }
             catch
             {
@@ -43,23 +43,25 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
-        public bool IsExistValueSearch(ICriteria criteria)
+        public IEnumerable<Member> GetMemberByUsername(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            bool result = false;
             try
             {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                if (criteria.IsValid())
                 {
-                    result = (bool)db.ExecuteScalar(criteria.GetSpParams());
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        return db.Query<Member>(criteria.GetSpParams());
+                    }
                 }
+
+                return new List<Member>();
             }
             catch
             {
                 throw;
             }
-
-            return result;
         }
 
         public CustomerInfoModel GetCustomerInfo(ICriteria criteria)

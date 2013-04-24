@@ -26,6 +26,8 @@ namespace Apollo.Age.BetList.Services
 
         TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria);
 
+        TicketResult GetWinLossByDateAndMem(BetListCriteria criteria);
+
         TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria);
 
         void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode);

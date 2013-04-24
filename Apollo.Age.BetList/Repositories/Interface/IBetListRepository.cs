@@ -23,6 +23,8 @@ namespace Apollo.Age.BetList.Repositories.Interface
 
         TicketResult GetBetListData(BetListCriteria criteria, string uspKey);
 
+        TicketResult GetWinLossByDateAndMem(BetListCriteria criteria);
+
         TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria);
 
         void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode);

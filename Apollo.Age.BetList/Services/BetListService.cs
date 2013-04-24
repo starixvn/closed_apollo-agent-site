@@ -85,6 +85,16 @@ namespace Apollo.Age.BetList.Services
         }
 
         /// <summary>
+        /// Get all bets by date and member from Winloss report
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
+        {
+            return this._betListRepository.GetWinLossByDateAndMem(criteria);
+        }
+
+        /// <summary>
         /// BetList Trannsaction
         /// </summary>
         /// <param name="criteria"></param>

@@ -26,7 +26,7 @@
             umService = new UMBusiness();
         }
 
-        public UnderMaintenanceViewModel UnderMaintenanceInfo
+        public UnderMaintenanceViewModel MaintenanceInfo
         {
             get
             {
