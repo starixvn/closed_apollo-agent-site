@@ -190,17 +190,21 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         var box = document.createElement("TABLE");
         bodyContainer.appendChild(box);
 
+        var boxTBody = document.createElement("TBODY");
+        
+
         var context = Fanex.CustSetting.CURRENT_CONTEXT;
         var isEditNonDirectMember = context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
         if (context.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";
+            box.appendChild(boxTBody);
             var trBox = document.createElement("TR");
             var groupCom = this.items[0];
             this.RenderAgentCom(trBox, Language.GROUP_A, groupCom.DiscountA, groupCom.Upline.DiscountA);
             this.RenderAgentCom(trBox, Language.GROUP_C, groupCom.DiscountC, groupCom.Upline.DiscountC);
             var group1X2 = this.items[2];
             this.RenderAgentCom(trBox, Language._1X2, group1X2.DiscountA, group1X2.Upline.DiscountA, true);
-            box.appendChild(trBox);
+            boxTBody.appendChild(trBox);
             trBox = document.createElement("TR");
 
             this.RenderAgentCom(trBox, Language.GROUP_B, groupCom.DiscountB, groupCom.Upline.DiscountB);
@@ -211,7 +215,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 var groupNumberGame = this.items[3];
                 this.RenderAgentCom(trBox, Language.NUMBER_GAME, groupNumberGame.DiscountA, groupNumberGame.Upline.DiscountA);
             }
-            box.appendChild(trBox);
+            boxTBody.appendChild(trBox);
             container.appendChild(box);
         }
         else {
@@ -233,6 +237,8 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             headerTr.appendChild(tdComName);
             box.appendChild(headerTr);
 
+
+            box.appendChild(boxTBody);
             //// User Group
             var trGroup = document.createElement("TR");
             var tdGroupText = document.createElement("TD");
@@ -312,13 +318,13 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             }
 
 
-            box.appendChild(trGroup);
+            boxTBody.appendChild(trGroup);
 
             //// Other Com
-            box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ' &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA, true));
-            box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ' &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA, true));
+            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ' &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA, true));
+            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ' &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA, true));
             if (hasNumberGameSection) {
-                box.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.NUMBER_GAME + ' &nbsp; ', this.items[3].Discount, this.items[3].Upline.DiscountA));
+                boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.NUMBER_GAME + ' &nbsp; ', this.items[3].Discount, this.items[3].Upline.DiscountA));
             }
 
             container.appendChild(bodyContainer);

@@ -344,8 +344,10 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     var currentPtValue = this.currentPtValue;
     var tableShareSetting = document.createElement("TABLE");
     tableShareSetting.className = "share-setting-table";
+    var boxTBody = document.createElement("TBODY");
+    tableShareSetting.appendChild(boxTBody);
     var trSetting = document.createElement("TR");
-    tableShareSetting.appendChild(trSetting)
+    boxTBody.appendChild(trSetting)
 
     var maxLabel = document.createElement("TD");
     maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
@@ -374,7 +376,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     maxContainer.appendChild(uplineMaxSpan);
 
     trSetting = document.createElement("TR");
-    tableShareSetting.appendChild(trSetting)
+    boxTBody.appendChild(trSetting)
     // Share Settings
     var presetLabel = document.createElement("TD");
     presetLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
@@ -453,8 +455,10 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
     var currentPtValue = this.currentPtValue;
     var tableShareSetting = document.createElement("TABLE");
     tableShareSetting.className = "share-setting-table";
+    var boxTBody = document.createElement("TBODY");
+    tableShareSetting.appendChild(boxTBody);
     trSetting = document.createElement("TR");
-    tableShareSetting.appendChild(trSetting)
+    boxTBody.appendChild(trSetting)
 
     var maxLabel = document.createElement("TD");
     maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
@@ -500,8 +504,10 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     var currentPtValue = this.currentPtValue;
     var tableShareSetting = document.createElement("TABLE");
     tableShareSetting.className = "share-setting-table";
+    var boxTBody = document.createElement("TBODY");
+    tableShareSetting.appendChild(boxTBody);
     trSetting = document.createElement("TR");
-    tableShareSetting.appendChild(trSetting)
+    boxTBody.appendChild(trSetting)
 
     var maxLabel = document.createElement("TD");
     maxLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
