@@ -60,14 +60,7 @@
       <siteMapNode title="lblMemberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx" ></siteMapNode>
       <siteMapNode description="subacc" title="lblShadowList" url="_SubAcc/SubAccList.aspx"></siteMapNode>-->
         </siteMapNode>
-        <!--/MemberInfo-->
-        
-        <!--Admin-->
-        <!--<siteMapNode title="lblAdmin">
-      <siteMapNode title="lblExchangeRate" url="Admin/ExchangeRate"></siteMapNode>
-    </siteMapNode>-->
-        <!--/Admin-->
-        <!--</siteMapNode>-->
+        <!--/MemberInfo-->      
 
     </siteMapNode>
 </siteMap>
