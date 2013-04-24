@@ -120,6 +120,7 @@ table {
 	border-collapse: collapse;
 	color: @grayDark;
 	margin: 10px 0 0;	
+	width: 100%;
 
 	td, th {
 		height: 32px;
@@ -236,6 +237,10 @@ table {
 		thead td, thead th, tbody .em-row {
 			border: 1px solid @tableRptBorderColor;
 		}
+	}
+
+	&.no-full-screen {
+		width: auto;
 	}
 }
 
