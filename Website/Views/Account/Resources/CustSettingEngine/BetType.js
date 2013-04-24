@@ -594,15 +594,14 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_3_3 = function (owner) {
     boxTBody.appendChild(trSetting)
 
     var maxLabel = document.createElement("TD");
-    maxLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
-    maxLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
+    maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
+    maxLabel.title = Language.SIMPLE_MODE_MAX_POSITION;
     maxLabel.className = "share-setting-label";
     trSetting.appendChild(maxLabel);
 
-    var maxSelected = currentPtValue.Value;
     var maxContainer = document.createElement("TD");
     maxContainer.className = "share-setting-value";
-    maxContainer.innerHTML = " " + maxSelected
+    maxContainer.innerHTML = " " + currentPtValue.Max;
     trSetting.appendChild(maxContainer);
 
     // Get updated data
