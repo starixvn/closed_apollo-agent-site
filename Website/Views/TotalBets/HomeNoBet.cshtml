@@ -44,7 +44,7 @@
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" 
                     href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblHomeNoBet" title="@Resources.Lang.ViewBetList">
-                    @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB)    
+                    @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB, 2)    
                 </a>
             }
             
@@ -54,7 +54,7 @@
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" 
                     href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblDrawNoBet" title="@Resources.Lang.ViewBetList">
-                    @RazorHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB)
+                    @RazorHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB, 2)
                 </a>
             }
         </td>
@@ -63,7 +63,7 @@
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" 
                     href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblAwayNoBet" title="@Resources.Lang.ViewBetList">
-                    @RazorHelper.FormatNumber(item.HomeOddsANB - item.AwayOddsANB)
+                    @RazorHelper.FormatNumber(item.HomeOddsANB - item.AwayOddsANB, 2)
                 </a>
             }
         </td>
