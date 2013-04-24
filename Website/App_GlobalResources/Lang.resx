@@ -1835,7 +1835,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Member Commission</value>
   </data>
   <data name="lblMemberInfo" xml:space="preserve">
-    <value>Customer Information</value>
+    <value>Member Information</value>
   </data>
   <data name="lblMemberMax" xml:space="preserve">
     <value>Mem. Max Credit</value>
