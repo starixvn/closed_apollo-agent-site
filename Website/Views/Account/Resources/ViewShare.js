@@ -1,56 +1,98 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 
 var VIEWSHARE = function ($) {
-    var sportType = $("#ddlSportType");
-    var betType = $("#ddlBetType");
-    var userName = $("#txtUsername");
-    var isMember = $("#ddlIsMember");
+    var sportType = null;
+    var betType = null;
+    var userName = null;
+    var isMember = null;
 
     return {
         init: function () {
-            sportType.change(function () {
+            VIEWSHARE.sportType = $("#ddlSportType");
+            VIEWSHARE.betType = $("#ddlBetType");
+            VIEWSHARE.userName = $("#txtUsername");
+            VIEWSHARE.isMember = $("#ddlIsMember");
+
+            VIEWSHARE.bindAutocomplete();
+
+            VIEWSHARE.sportType.change(function () {
                 VIEWSHARE.bindBetType();
             });
 
             $("#btnSubmit").bind('click', function () {
-                var betTypeId = betType.val();
-                if (betTypeId.indexOf("-") > -1) {
-                    var arrBetType = betTypeId.split("-");
-                    var url = "";
-                    if (isMember.val() == "true") {
-                        url = APOLLO.resolveUrl('CustomerSetting/MemberShare?memberId=-1&userName='
-                            + userName.val().trim() + "&sportType=" + sportType.val() + "&betType=" + arrBetType[1]
-                            + "&isLive=" + (arrBetType[0] != "0"));                    }
-                    else {
-                        url = APOLLO.resolveUrl('CustomerSetting/AgentShare?agentId=-1&userName='
-                            + userName.val().trim() + "&sportType=" + sportType.val() + "&betType=" + arrBetType[1]
-                            + "&isLive=" + (arrBetType[0] != "0"));
-                    }
-
-                    if (url.length > 0) {
-                        location.href = url;
-                    }
-                }
+                VIEWSHARE.getViewShare(-1, userName.val().trim());
             });
         },
         bindBetType: function () {
-            var sportId = sportType.val();
-            if (betType.length > 0) {
+            var sportId = VIEWSHARE.sportType.val();
+            if (VIEWSHARE.betType.length > 0) {
                 if (sportId != undefined) {
-                    betType.prop('disabled', 'disabled');
+                    VIEWSHARE.betType.prop('disabled', 'disabled');
                     $.getJSON(APOLLO.resolveUrl("CustomerSetting/GetBetType"), { "sportId": sportId })
                         .done(function (data) {
                             // clean and rebind with data get by new selected sportid
-                            betType.empty();
+                            VIEWSHARE.betType.empty();
                             $.each(data, function (i, item) {
-                                betType.append($('<option>', {
+                                VIEWSHARE.betType.append($('<option>', {
                                     value: item.Value,
                                     text: item.Text
                                 }));
                             });
 
-                            betType.removeAttr('disabled');
+                            VIEWSHARE.betType.removeAttr('disabled');
                         });
+                }
+            }
+        },
+        bindAutocomplete: function () {
+            VIEWSHARE.userName.autocomplete({
+                source: function (request, response) {
+                    var url = "";
+                    if (VIEWSHARE.isMember.val() == "true") {
+                        url = "Account/GetMemberByUsername?username=" + request.term;
+                    }
+                    else {
+                        url = "Account/GetAgentByUsername?username=" + request.term;
+                    }
+
+                    $.ajax({
+                        url: APOLLO.resolveUrl(url),
+                        success: function (data) {
+                            var found = $.map(data, function (item) {
+                                return {
+                                    label: item.Username,
+                                    value: item.Id
+                                }
+                            });
+
+                            return response(found);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    VIEWSHARE.getViewShare(ui.item.value, ui.item.label);
+                },
+                position: { my: "right top", at: "right bottom" }
+            });
+        },
+        getViewShare: function (custId, username) {
+            var betTypeId = VIEWSHARE.betType.val();
+            if (betTypeId.indexOf("-") > -1) {
+                var arrBetType = betTypeId.split("-");
+                var url = "";
+                if (VIEWSHARE.isMember.val() == "true") {
+                    url = APOLLO.resolveUrl('CustomerSetting/MemberShare?memberId=' + custId + '&userName='
+                            + username + "&sportType=" + VIEWSHARE.sportType.val() + "&betType=" + arrBetType[1]
+                            + "&isLive=" + (arrBetType[0] != "0"));
+                }
+                else {
+                    url = APOLLO.resolveUrl('CustomerSetting/AgentShare?agentId=' + custId + '&userName='
+                            + username + "&sportType=" + VIEWSHARE.sportType.val() + "&betType=" + arrBetType[1]
+                            + "&isLive=" + (arrBetType[0] != "0"));
+                }
+
+                if (url.length > 0) {
+                    location.href = url;
                 }
             }
         }

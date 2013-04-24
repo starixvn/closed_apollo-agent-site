@@ -13,6 +13,7 @@ namespace Apollo.Age.Account.Services
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml;
+    using Apollo.Age.Account.Core;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Repositories.Impl;
@@ -22,9 +23,8 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Impl;
-    using Fanex.Common.Helper;
     using Fanex.Common;
-    using Apollo.Age.Account.Core;
+    using Fanex.Common.Helper;
 
     public class AccountService : ServiceBase, IAccountService
     {
@@ -48,99 +48,56 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberList(ref criteria);
         }
 
-        public List<Agent> GetAgentByUsername(int actorAgentId, string username)
+        public List<Agent> GetAgentByUsername(GetAgentByUsernameCriteria criteria)
         {
-            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-
-            GetAgentByUsernameCriteria criteria = new GetAgentByUsernameCriteria()
-            {
-                ActorAgentId = actorAgentId,
-                Username = username
-            };
+            Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
 
             return _accountRepository.GetAgentByUsername(criteria).ToList();
         }
 
-        public List<Member> GetMemberByUsername(int actorAgentId, string username)
+        public List<Member> GetMemberByUsername(GetMemberByUsernameCriteria criteria)
         {
-            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-
-            GetMemberByUsernameCriteria criteria = new GetMemberByUsernameCriteria()
-            {
-                ActorAgentId = actorAgentId,
-                Username = username
-            };
+            Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
 
             return _accountRepository.GetMemberByUsername(criteria).ToList();
         }
 
-        public CustomerInfoModel GetAgentInfo(int actorAgentId, int agentId, string username)
+        public CustomerInfoModel GetAgentInfo(GetAgentInfoCriteria criteria)
         {
-            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-
-            AgentInfoCriteria criteria = new AgentInfoCriteria()
-            {
-                ActorAgentId = actorAgentId,
-                AgentId = agentId,
-                Username = username
-            };
+            Check.Argument.IsNotNull(criteria, "criteria");
 
             return _accountRepository.GetCustomerInfo(criteria);
         }
 
-        public CustomerInfoModel GetMemberInfo(int actorAgentId, int custId, string username)
+        public CustomerInfoModel GetMemberInfo(GetMemberInfoCriteria criteria)
         {
-            Check.Argument.IsNotNegative(actorAgentId, "actorAgentId");
-
-            MemberInfoCriteria criteria = new MemberInfoCriteria()
-            {
-                ActorAgentId = actorAgentId,
-                CustId = custId,
-                Username = username
-            };
+            Check.Argument.IsNotNull(criteria, "actorAgentId");
 
             return _accountRepository.GetCustomerInfo(criteria);
         }
 
-        public List<Member> GetMemberDownline(int agentId, int pageIndex, int pageSize, ref int totalPage)
+        public List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
         {
-            Check.Argument.IsNotNegative(agentId, "agentId");
-
-            MemberDownlineCriteria criteria = new MemberDownlineCriteria()
-            {
-                AgentId = agentId,
-                PageIndex = pageIndex,
-                PageSize = pageSize,
-                TotalPages = totalPage
-            };
+            Check.Argument.IsNotNegative(criteria.AgentId, "agentId");
 
             var memberList = _accountRepository.GetMemberDownline(ref criteria).ToList<Member>();
-            totalPage = criteria.TotalPages;
 
             return memberList;
         }
 
-        public List<Agent> GetAgentDownlinePath(int parentId, int agentId)
+        public List<Agent> GetAgentDownlinePath(AgentDownlinePathCriteria criteria)
         {
-            Check.Argument.IsNotNegative(parentId, "parentId");
-            Check.Argument.IsNotNegative(agentId, "agentId");
+            Check.Argument.IsNotNegative(criteria.ParentId, "parentId");
+            Check.Argument.IsNotNegative(criteria.AgentId, "agentId");
 
-            AgentDownlinePathCriteria criteria = new AgentDownlinePathCriteria()
-            {
-                ParentId = parentId,
-                AgentId = agentId
-            };
             return _agentRepository.Fetch(criteria).ToList();
         }
 
-        public List<Agent> GetDirectDownline(int agentId)
+        public List<Agent> GetDirectDownline(AgentDownlineCriteria criteria)
         {
-            Check.Argument.IsNotNegative(agentId, "agentId");
+            Check.Argument.IsNotNegative(criteria.AgentId, "agentId");
 
-            return _agentRepository.Fetch(new AgentDownlineCriteria
-            {
-                AgentId = agentId
-            }).ToList();
+            return _agentRepository.Fetch(criteria).ToList();
         }
 
         public List<AgentShareModel> GetAgentShare(AgentShareCriteria criteria)

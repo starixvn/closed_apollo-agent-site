@@ -50,7 +50,7 @@ if (typeof jQuery != 'undefined') {
 
                 }
                 if (matchIds == "") {
-                    $('#msgMatchErr').text("Please choose a Match!");
+                    $('#msgMatchErr').text(plsChooseMatch);
                     $('#tblMsgMatch').show();
                     return;
                 }
@@ -58,8 +58,10 @@ if (typeof jQuery != 'undefined') {
                 var url = SCOREMAP.baseLink + 'ScoreMapBetType';
                 //// If Show In PopUp then add BetType
                 if (SCOREMAP.viewPartial) {
-                    url += "?liveBetType=" + $('#bet-types-live').val()
-            + "&deadBetType=" + $('#bet-types-dead').val();
+                    var btLive = $('#bet-types-live').val()[0] || "";
+                    var btDead = $('#bet-types-dead').val()[0] || "";
+                    url += "?liveBetType=" + btLive
+            + "&deadBetType=" + btDead;
                 }
                 $.get(url, function (contentView) {
                     $("#tblLiveDead").show();
@@ -80,7 +82,7 @@ if (typeof jQuery != 'undefined') {
                     betTypesDead = SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
                 }
                 if (betTypesLive == "" && betTypesDead == "") {
-                    ageMsg.Show("Please choose a bet type!", 0);
+                    ageMsg.Show(plsChooseBetType, 0);
                     $("#mainContent").html('');
                     return;
                 }

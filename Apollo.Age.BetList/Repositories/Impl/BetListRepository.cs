@@ -20,13 +20,16 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using Fanex.Common;
     using Fanex.Data;
 
+    /// <summary>
+    /// BetList Repository
+    /// </summary>
     public class BetListRepository : IBetListRepository
     {
         /// <summary>
-        /// Get detail agent PT and agent Comm
+        /// Get detail agent PT and agent commission
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>List Ticket</returns>
         public IList<ITicket> GetDetailAgentComm(BetListCriteria criteria)
         {
             var uspKey = "Age_BetList_AgentDetail";
@@ -48,8 +51,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
         /// <summary>
         /// Get detail ticket mix-parlay
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>List Ticket</returns>
         public IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria)
         {
             var uspKey = "Age_BetList_SelParlayDetail";
@@ -71,9 +74,9 @@ namespace Apollo.Age.BetList.Repositories.Impl
         /// <summary>
         /// Get data for BetList
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <param name="uspKey"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <param name="uspKey">Store Name</param>
+        /// <returns>Ticket data</returns>
         public TicketResult GetBetListData(BetListCriteria criteria, string uspKey)
         {
             try
@@ -100,10 +103,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get betlist by matchId
+        /// Get bet list by matchId
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
         public TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria)
         {
             var uspKey = "Age_BetList_TotalBets_SelRunningByBettypeMatch";
@@ -140,10 +143,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get all bets by date and member from Winloss report
+        /// Get all bets by date and member from Win loss report
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
         public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
         {
             try
@@ -160,19 +163,19 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     else
                     {
                         // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
-                        DataTable referenceTable_bk = null;
-                        var mainTable_bk = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable_bk);
+                        DataTable referenceOldTable = null;
+                        var mainOldTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss_Old", criteria, out referenceOldTable);
 
-                        DataTable referenceTable_new = null;
-                        var mainTable_new = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss", criteria, out referenceTable_new);
+                        DataTable referenceNewTable = null;
+                        var mainNewTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss", criteria, out referenceNewTable);
 
                         // Merge two table bettrans
-                        mainTable_bk.Merge(mainTable_new);
-                        mainTable = mainTable_bk;
+                        mainOldTable.Merge(mainNewTable);
+                        mainTable = mainOldTable;
 
                         // Merge table reference
-                        referenceTable_bk.Merge(referenceTable_new);
-                        referenceTable = referenceTable_bk;
+                        referenceOldTable.Merge(referenceNewTable);
+                        referenceTable = referenceOldTable;
                     }
                 }
                 else
@@ -197,12 +200,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
         /// <summary>
         /// Get UserId By Username
         /// </summary>
-        /// <param name="loggedId"></param>
-        /// <param name="isAgent"></param>
-        /// <param name="username"></param>
-        /// <param name="agentId"></param>
-        /// <param name="custId"></param>
-        /// <param name="errorCode"></param>
+        /// <param name="loggedId">Logged id</param>
+        /// <param name="isAgent">Agent choice</param>
+        /// <param name="username">User name</param>
+        /// <param name="agentId">Output agent id</param>
+        /// <param name="custId">Output customer id</param>
+        /// <param name="errorCode">Output error code</param>
         public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
             var uspKey = "Age_BetList_GetId";
@@ -242,7 +245,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
             }
         }
 
-        public IList<ITicket> ReadTicket(DataTable data)
+        /// <summary>
+        /// Parse to Ticket Objet
+        /// </summary>
+        /// <param name="data">Data Table</param>
+        /// <returns>List Ticket</returns>
+        private IList<ITicket> ReadTicket(DataTable data)
         {
             var columnCollection = data.Columns;
 
@@ -343,7 +351,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
             return result;
         }
 
-        public List<ITicketData> ReadReferneceTicket(DataTable data)
+        /// <summary>
+        /// Parse data table to list TicketData Object
+        /// </summary>
+        /// <param name="data">Data table</param>
+        /// <returns>List TicketData</returns>
+        private List<ITicketData> ReadReferneceTicket(DataTable data)
         {
             var result = new List<ITicketData>();
 
@@ -374,12 +387,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get betlist Winloss from new or archive
+        /// Get bet list Win loss from new or archive
         /// </summary>
-        /// <param name="uspKey"></param>
-        /// <param name="criteria"></param>
-        /// <param name="outDataTable"></param>
-        /// <returns></returns>
+        /// <param name="uspKey">Store name</param>
+        /// <param name="criteria">Criteria name</param>
+        /// <param name="referenceTable">Out reference table</param>
+        /// <returns>Return to table</returns>
         private DataTable GetWinLossFromNewOrOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
@@ -404,10 +417,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Read boolean value from an int or bool object
+        /// Read boolean value from an object
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">Input value</param>
+        /// <returns>To boolean</returns>
         private bool ReadBoolean(object value)
         {
             if (value == null || value == Convert.DBNull)
