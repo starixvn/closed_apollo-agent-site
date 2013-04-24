@@ -138,7 +138,7 @@ namespace Apollo.Age.Account.Services
 
                 var message = this.GetData<MessageModel>(criteria).FirstOrDefault();
 
-                _cache.Set<MessageModel>(key, message, 30);
+                _cache.Set<MessageModel>(key, message);
 
                 return message;
             }
