@@ -230,7 +230,7 @@
     <Setting Key="Age_Customer_GetByUsername" SpName="Age_Customer_GetByUsername" DbName="REPDB" Plain="0">
       <Mapping DataField="CustId" ObjectProperty="Id" />
     </Setting>
-    
+
   </Function>
 
   <Function Name="Agent-Apollo-Report">
@@ -297,6 +297,8 @@
       <Mapping DataField="CustID" ObjectProperty="MemberId"/>
       <Mapping DataField="PositionTaking" ObjectProperty="SoccerShare"/>
       <Mapping DataField="PlayerComm" ObjectProperty="MemComm"/>
+      <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
+      <Mapping DataField="WinLost" ObjectProperty="WinLoss"/>
     </Setting>
   </Function>
 
@@ -333,7 +335,7 @@
       <Mapping DataField="AwayOddsOE" ObjectProperty="AwayOddsOddEven" />
       <Mapping DataField="HomeOddsOE1st" ObjectProperty="HomeOddsHalfTimeOddEven" />
       <Mapping DataField="AwayOddsOE1st" ObjectProperty="AwayOddsHalfTimeOddEven" />
-      <Mapping DataField="Odds11st" ObjectProperty="Odds1HaftTime" />
+      <Mapping DataField="Odds11st" ObjectProperty="Odds1HalfTime" />
       <Mapping DataField="OddsX1st" ObjectProperty="OddsXHalfTime" />
       <Mapping DataField="Odds21st" ObjectProperty="Odds2HalfTime" />
       <Mapping DataField="HomeOddsDND" ObjectProperty="HomeOddsDrawNoDraw" />
@@ -357,15 +359,14 @@
       <Mapping DataField="HDP_GivenShare" ObjectProperty="HandicapGivenShare" />
     </Setting>
     <Setting Key="Age_Customer_GetByAgent" SpName="Age_Customer_GetByAgent" DbName="REPDB" Plain="0">
-      <Mapping DataField="CustId" ObjectProperty="CustId"/>
+      <Mapping DataField="CustId" ObjectProperty="MemberId"/>
       <Mapping DataField="Username" ObjectProperty="Username"/>
       <Mapping DataField="Active" ObjectProperty="Status"/>
       <Mapping DataField="HDP_TakenShare" ObjectProperty="HandicapTakenShare"/>
       <Mapping DataField="UGroup" ObjectProperty="UserGroup"/>
-      <Mapping DataField="CustGroup" ObjectProperty="CustomerGroup"/>
-      <Mapping DataField="CustDiscount1x2" ObjectProperty="CustomerDiscountOneXTwo"/>
-      <Mapping DataField="CustDiscountOther" ObjectProperty="CustomerDiscountOther"/>
-      <Mapping DataField="CustDiscountNumberGame" ObjectProperty="CustDiscountNumberGame"/>
+      <Mapping DataField="CustGroup" ObjectProperty="MemberGroup"/>
+      <Mapping DataField="CustDiscount1x2" ObjectProperty="MemberDiscountOneXTwo"/>
+      <Mapping DataField="CustDiscountOther" ObjectProperty="MemberDiscountOther"/>
       <Mapping DataField="AgentGroup" ObjectProperty="AgentGroup"/>
       <Mapping DataField="AgentDiscount1x2" ObjectProperty="AgentDiscountOneXTwo"/>
       <Mapping DataField="AgentDiscountOther" ObjectProperty="AgentDiscountOther"/>
