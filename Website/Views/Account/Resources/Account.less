@@ -369,6 +369,10 @@ html, body {
 					margin: 5px 0 0 5px;
 				}
 			}
+
+			#membersTab-content iframe {
+				height: 98.4%;
+			}
 		}
 	}
 }
@@ -431,15 +435,16 @@ html, body {
 	left: 0;
 	right: 5px;
 	background-color: @white;
-	padding: 17px 5px 1px;
+	padding: 20px 0 1px;
 	color: @textColor;
+	text-align: left;
 
 	span, a {
 		//#gradient.vertical(#F8F8F8, #EAEAEA);
 		//border: 1px solid #CCC;
 		//.box-shadow(0 1px 0 #FFF inset);
 		margin: 0 2px;
-		padding: 2px 6px;
+		padding: 2px 5px;
 		color: @linkColor;
 		text-align: center;
 		text-decoration: none;
@@ -448,7 +453,7 @@ html, body {
 
 		&:hover, &:focus, &:active {
 			background: @grayLight;
-			padding: 2px 6px;
+			padding: 2px 5px;
 			color: @white;
 			text-shadow: 0 1px 0 #555;
 		}
@@ -456,7 +461,7 @@ html, body {
 
 	.current {
 		background: @grayLight;
-		padding: 2px 6px;
+		padding: 2px 5px;
 		color: @white;
 		text-shadow: 0 1px 0 @gray;
 
@@ -471,6 +476,7 @@ html, body {
 		background: #ddd;
 		color: @gray;
 		border: 1px solid @borderColor;
+		text-shadow: none;
 	}
 }
 
@@ -478,7 +484,7 @@ html, body {
 .line-pager {
 	background: #efefef;
     border-top: 1px solid @borderColor;
-    bottom: 26px;
+    bottom: 24px;
     height: 2px;
     left: 0;
     position: fixed;

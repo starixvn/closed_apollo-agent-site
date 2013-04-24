@@ -12,14 +12,17 @@ namespace Apollo.Age.BetList.Models
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Ticket result for betlist
+    /// Ticket result for bet list
     /// </summary>
     public class TicketResult
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TicketResult" /> class.
+        /// </summary>
         public TicketResult()
         {
-            TicketList = new List<ITicket>();
-            TicketDataList = new List<ITicketData>();
+            this.TicketList = new List<ITicket>();
+            this.TicketDataList = new List<ITicketData>();
         }
 
         public IList<ITicket> TicketList { get; set; }
