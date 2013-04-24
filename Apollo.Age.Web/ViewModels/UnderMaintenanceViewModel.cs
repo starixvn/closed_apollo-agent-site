@@ -1,13 +1,13 @@
-﻿namespace Apollo.Age.Web.Models
+﻿namespace Apollo.Age.Web.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public class UnderMaintenanceModel
+    public class UnderMaintenanceViewModel
     {
-        public UnderMaintenanceModel()
+        public UnderMaintenanceViewModel()
         {
             IsDownTime = false;
             var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);

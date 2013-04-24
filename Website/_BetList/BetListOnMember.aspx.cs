@@ -41,7 +41,7 @@ namespace Sunplus.Agent.UI._BetList
 
         private int custid;
         private string username = string.Empty;
-        private DateTime fromDate, toDate;
+        private DateTime fromDate, toDate, balanceUpDay, moveBetsDay;
         private string statusIds = string.Empty;
         private string pageType = string.Empty;
 
@@ -132,7 +132,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             pageType = Request["type"];
 
-            if (pageType == "accountinfo" || pageType == "report")
+            if (pageType == "accountinfo")
             {
                 statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}^{6}^{7}",
                    (int)Apollo.Age.Enumerations.BetStatus.Void,
@@ -143,6 +143,16 @@ namespace Sunplus.Agent.UI._BetList
                    (int)Apollo.Age.Enumerations.BetStatus.Draw,
                    (int)Apollo.Age.Enumerations.BetStatus.Won,
                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
+            }
+            else if (pageType == "report")
+            {
+                statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}",
+                       (int)Apollo.Age.Enumerations.BetStatus.Void,
+                       (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                       (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                       (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                       (int)Apollo.Age.Enumerations.BetStatus.Won,
+                       (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
             else
             {
@@ -158,12 +168,15 @@ namespace Sunplus.Agent.UI._BetList
             }
 
             var reportService = new ReportService();
-            fromDate = GetDateTimeRequest("fromDate", reportService.MoveBetsDay());
+            balanceUpDay = reportService.GetBalanceUpDay();
+            moveBetsDay = reportService.MoveBetsDay();
+            fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
         }
 
         public override object InvokeData(System.Collections.Hashtable p)
         {
+            TicketResult mainTickets = new TicketResult();
             var betListService = new BetListService();
             var criteria = new BetListCriteria
             {
@@ -172,9 +185,18 @@ namespace Sunplus.Agent.UI._BetList
                 CustId = custid,
                 FromDate = fromDate,
                 ToDate = toDate,
-                StatusIds = statusIds
+                StatusIds = statusIds,
+                BalanceUpDay = balanceUpDay,
+                MoveBetsDay = moveBetsDay
             };
-            var mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+            if (pageType == "report")
+            {
+                mainTickets = betListService.GetWinLossByDateAndMem(criteria);
+            }
+            else
+            {
+                mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+            }
             return mainTickets;
         }
 

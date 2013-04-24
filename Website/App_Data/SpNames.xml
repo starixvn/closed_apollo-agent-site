@@ -192,6 +192,8 @@
   </Function>-->
 
   <Function Name="Agent-Apollo-Report-BetList">
+    <Setting Key="Age_BetList_SelWinloss_Old" SpName="Age_BetList_SelWinloss_Old" DbName="ARCHIVEDB" Plain="0" />
+    <Setting Key="Age_BetList_SelWinloss" SpName="Age_BetList_SelWinloss" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_SelTransaction" SpName="Age_BetList_SelTransaction" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_GetId" SpName="Age_BetList_GetId" DbName="REPDB" Plain="0" />
@@ -206,8 +208,14 @@
   </Function>
 
   <Function Name="Agent-Apollo-Customer Setting">
-    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="REPDB" Plain="0">
-      <Mapping DataField="UserGroup" ObjectProperty="Group" />
+    <Setting Key="Age_Agent_GetAllInfo" SpName="Age_Agent_GetAllInfo" DbName="REPDB" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="CustId" />
+      <Mapping DataField="AgentLevel" ObjectProperty="Level" />
+    </Setting>
+
+    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo_xtest" DbName="REPDB" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="ParentId" />
+      <Mapping DataField="UGroup" ObjectProperty="Group" />
     </Setting>
 
     <Setting Key="Age_Customer_GetAgentDownline" SpName="Age_Customer_GetAgentDownline" DbName="REPDB" Plain="0" />
@@ -216,8 +224,13 @@
       <Mapping DataField="AgentLevel" ObjectProperty="Level" />
     </Setting>
     <Setting Key="Age_Customer_GetMemberDownline" SpName="Age_Customer_GetMemberDownline" DbName="REPDB" Plain="0" />
-    <Setting Key="Age_Customer_GetUserSearch" SpName="Age_Customer_GetUserSearch" DbName="REPDB" Plain="0" />
-    <Setting Key="Age_Customer_IsExistValueSearch" SpName="Age_Customer_IsExistValueSearch" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Agent_GetByUsername" SpName="Age_Agent_GetByUsername" DbName="REPDB" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_Customer_GetByUsername" SpName="Age_Customer_GetByUsername" DbName="REPDB" Plain="0">
+      <Mapping DataField="CustId" ObjectProperty="Id" />
+    </Setting>
+    
   </Function>
 
   <Function Name="Agent-Apollo-Report">
@@ -277,6 +290,7 @@
     <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss" DbName="REPDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="AgentName"/>
       <Mapping DataField="PositionTaking" ObjectProperty="SoccerShare"/>
+      <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
     </Setting>
     <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member" DbName="REPDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="MemberName"/>
@@ -437,9 +451,9 @@
     <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="AgentSetting_Age_Agent_UpdateSetting" SpName="Age_Agent_UpdateSetting" DbName="CUSTDB"  TimeOut="600"/>
     <Setting Key="Age_Agent_GetPositionTakingToAgent" SpName="Age_Agent_GetPositionTakingToAgent" DbName="REPDB"  TimeOut="600">
-      <Mapping DataField="PresetPositionTaking" ObjectProperty="TakenShare" />
-      <Mapping DataField="MaxPositionTaking" ObjectProperty="MaxGiven" />
-      <Mapping DataField="MinPositionTaking" ObjectProperty="MinGiven" />
+      <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
+      <Mapping DataField="MaxGivenPositionTaking" ObjectProperty="MaxGiven" />
+      <Mapping DataField="MinGivenPositionTaking" ObjectProperty="MinGiven" />
     </Setting>
     <Setting Key="Age_Agent_GetDiscountToAgent" SpName="Age_Agent_GetDiscountToAgent" DbName="REPDB"   TimeOut="600"/>
     <Setting Key="Age_Agent_GetDiscountToCustomer" SpName="Age_Agent_GetDiscountToCustomer" DbName="REPDB"   TimeOut="600"/>
@@ -454,9 +468,9 @@
     <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Customer_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="CUSTDB" TimeOut="600"/>
     <Setting Key="Age_Agent_GetPositionTakingToCustomer" SpName="Age_Agent_GetPositionTakingToCustomer" DbName="REPDB"  TimeOut="600">
-      <Mapping DataField="PresetPositionTaking" ObjectProperty="TakenShare" />
-      <Mapping DataField="MaxPositionTaking" ObjectProperty="MaxGiven" />
-      <Mapping DataField="MinPositionTaking" ObjectProperty="MinGiven" />
+      <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
+      <Mapping DataField="MaxGivenPositionTaking" ObjectProperty="MaxGiven" />
+      <Mapping DataField="MinGivenPositionTaking" ObjectProperty="MinGiven" />
       <Mapping DataField="PositionTaking" ObjectProperty="TakenShareMember" />
     </Setting>
   </Function>

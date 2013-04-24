@@ -7,7 +7,7 @@
     using System.Threading;
     using Apollo.Age.Configurations;
     using Apollo.Age.Services.Impl;
-    using Apollo.Age.Web.Models;
+    using Apollo.Age.Web.ViewModels;
     using Fanex.Caching;
     using Sunplus.UMControllerLibrary;
 
@@ -26,11 +26,11 @@
             umService = new UMBusiness();
         }
 
-        public UnderMaintenanceModel UnderMaintenanceInfo
+        public UnderMaintenanceViewModel MaintenanceInfo
         {
             get
             {
-                var maintenanceInfo = this.cacheManager.Get<UnderMaintenanceModel>(MAINTENANCECACHEKEY);
+                var maintenanceInfo = this.cacheManager.Get<UnderMaintenanceViewModel>(MAINTENANCECACHEKEY);
                 if (maintenanceInfo == null)
                 {
                     if (mutext.WaitOne(WAITINTERVAL))
@@ -42,7 +42,7 @@
                         }
                         catch
                         {
-                            maintenanceInfo = new UnderMaintenanceModel { IsDownTime = false };
+                            maintenanceInfo = new UnderMaintenanceViewModel { IsDownTime = false };
                         }
                         finally
                         {
@@ -51,16 +51,16 @@
                     }
                     else
                     {
-                        maintenanceInfo = new UnderMaintenanceModel { IsDownTime = false };
+                        maintenanceInfo = new UnderMaintenanceViewModel { IsDownTime = false };
                     }
                 }
                 return maintenanceInfo;
             }
         }
 
-        private UnderMaintenanceModel GetMaintenanceInfo()
+        private UnderMaintenanceViewModel GetMaintenanceInfo()
         {
-            var maintenanceInfo = new UnderMaintenanceModel { IsDownTime = false };
+            var maintenanceInfo = new UnderMaintenanceViewModel { IsDownTime = false };
             var startTime = maintenanceInfo.StartTime;
             var endTime = maintenanceInfo.EndTime;
 
@@ -89,7 +89,7 @@
             catch (Exception ex)
             {
                 HandleException(ex);
-                return new UnderMaintenanceModel { IsDownTime = false };
+                return new UnderMaintenanceViewModel { IsDownTime = false };
             }
         }
     }

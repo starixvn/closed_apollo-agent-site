@@ -239,7 +239,7 @@ namespace Sunplus.Agent.UI._BetList
 
             fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
-            username = this.GetStringRequest("username", CurrentSession.AgentName);
+            username = this.GetStringRequest("username", CurrentSession.AgentName).Trim();
             userType = GetBooleanRequest("userType", true);
         }
 

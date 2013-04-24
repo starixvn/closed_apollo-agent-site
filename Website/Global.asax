@@ -8,6 +8,7 @@
 <%@ Import Namespace="Sunplus.Agent.Utilities" %>
 <%@ Import Namespace="Sunplus.Agent.Model.Entities" %>
 <%@ Import Namespace="Sunplus.Agent.Model.BL.Authorization" %>
+<%@ Import Namespace="Apollo.Age.Web.Services" %>
 <script RunAt="server">
 
     public static void RegisterGlobalFilters(GlobalFilterCollection filters)
@@ -86,64 +87,15 @@
 
     void Application_AcquireRequestState(object sender, EventArgs e)
     {
+        var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
+        if (executeFileName.IndexOf("UnderMaintenance") == -1)
+        {
+            UnderMaintenanceService maintenanceService = new UnderMaintenanceService();
+            var maintenanceInfo = maintenanceService.MaintenanceInfo;
+            if (maintenanceInfo.IsDownTime)
+                Response.Redirect("~/Home/UnderMaintenance");
+        }
 
-        if (!(HttpContext.Current.Handler is IRequiresSessionState)) return;
-
-        // Validate request & session
-        string executeFileName = Request.AppRelativeCurrentExecutionFilePath;
-        bool isNewSession = executeFileName.EndsWith("SignIn.aspx")
-            || executeFileName.EndsWith("ProcessAdminLogin.ashx")
-            || executeFileName.EndsWith("ProcessAfterLogin.ashx")
-            || executeFileName.EndsWith("Captcha.ashx")
-            || executeFileName.EndsWith("ChartImg.axd");
-
-        //if (UserSession.Current.UserId <= 0 && !isNewSession)
-        //{
-        //    Response.Redirect("~/_Authorization/SignIn.aspx", true);
-        //    return;
-        //}
-
-        // Validate url and request parameters
-        //int custId = 0; long transId = 0;
-        //int masterId = 0;
-
-        //bool isDataWarehouse;
-        //string url;
-        //GetRequestParams(ref custId, ref transId, ref masterId, out isDataWarehouse, out url);
-
-        //AuthorizationBO authorization = new AuthorizationBO(Session.SessionID);
-
-        //// For master level: MemberCommission.aspx
-        //bool isValidMasterId = true;
-        //if (masterId != 0)
-        //{
-        //    isValidMasterId = authorization.CheckBelonging(masterId, transId, isDataWarehouse);
-        //}
-
-        //if (Request.QueryString["custids"] != null)
-        //{
-        //    var items = Request.QueryString["custids"].Split('^');
-        //    var custids = string.Empty;
-
-        //    foreach (var custid in items)
-        //    {
-        //        if (custid != string.Empty)
-        //        {
-        //            var ret = 0; int.TryParse(custid, out ret);
-        //            custids += ret.ToString() + "^";
-        //        }
-        //    }
-
-        //    isValidMasterId = authorization.CheckBelonging(custids);
-        //}
-
-        //if (!isValidMasterId || !authorization.AuthorizeUrl(custId, transId, isDataWarehouse, url))
-        //{
-        //    string errUrl = (Sunplus.Agent.Model.BL.Definitions.AppSettings.LocalTest) ? "~/AccessNoData.aspx" : "~/_Authorization/SignIn.aspx";
-
-        //    Server.Transfer(errUrl);
-
-        //}
     }
 
     private void GetRequestParams(ref int custId, ref long transId, ref int masterId, out bool isDataWarehouse, out string url)

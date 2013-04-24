@@ -23,6 +23,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using Apollo.Age.Account.Models;
 
     public class CustomerSettingController : BaseController
     {
@@ -92,8 +93,16 @@ namespace Apollo.Age.Account.Controllers
                 model.Id = -1;
             }
 
-            var customerInfo = _accountService
-                .GetCustomerInfo(model.IsMember, model.Id, model.Username, CurrentSession.AgentId);
+            CustomerInfoModel customerInfo = null;
+
+            if (model.IsMember)
+            {
+                customerInfo = _accountService.GetMemberInfo(this.CurrentSession.AgentId, model.Id, model.Username);
+            }
+            else
+            {
+                customerInfo = _accountService.GetAgentInfo(this.CurrentSession.AgentId, model.Id, model.Username);
+            }
 
             if (customerInfo != null)
             {
