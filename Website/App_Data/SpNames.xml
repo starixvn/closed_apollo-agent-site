@@ -213,7 +213,7 @@
       <Mapping DataField="AgentLevel" ObjectProperty="Level" />
     </Setting>
 
-    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo_xtest" DbName="REPDB" Plain="0">
+    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="REPDB" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="ParentId" />
       <Mapping DataField="UGroup" ObjectProperty="Group" />
     </Setting>

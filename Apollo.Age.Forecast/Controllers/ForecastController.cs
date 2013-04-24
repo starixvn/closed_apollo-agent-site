@@ -150,13 +150,13 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        public ViewResult ScoreMap(string matchIds = "", string liveBetTypes = "", string deadBallBetTypes = "")
+        public ViewResult ScoreMap(string matchIds = "", int liveBetTypes = 0, int deadBallBetTypes = 0)
         {
             if (!string.IsNullOrEmpty(matchIds))
             {
                 ViewBag.MatchIds = matchIds;
-                ViewBag.LiveBetTypes = liveBetTypes;
-                ViewBag.DeadBallBetTypes = deadBallBetTypes;
+                ViewBag.LiveBetTypes = _forecastService.GetAllBetTypeFromBetType(liveBetTypes, true);
+                ViewBag.DeadBallBetTypes = _forecastService.GetAllBetTypeFromBetType(deadBallBetTypes, false);
             }
             else
             {

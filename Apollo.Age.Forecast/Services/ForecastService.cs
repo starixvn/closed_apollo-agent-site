@@ -261,12 +261,7 @@ namespace Apollo.Age.Forecast.Services
         /// <returns></returns>
         public ScoreMapBetTypesModel GetScoreMapBetType()
         {
-            IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = CachingService.Get<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES);
-            if (scoreMapBetTypeList == null)
-            {
-                scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
-                CachingService.Set<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES, scoreMapBetTypeList, new TimeSpan(0, 5, 0));
-            }
+            IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = this.LoadScoreMapBetTypes();
 
             ScoreMapBetTypesModel scoreMapBetTypes = new ScoreMapBetTypesModel();
             foreach (ScoreMapBetTypeModel betType in scoreMapBetTypeList)
@@ -283,6 +278,44 @@ namespace Apollo.Age.Forecast.Services
             }
             return scoreMapBetTypes;
         }
+
+        private IEnumerable<ScoreMapBetTypeModel> LoadScoreMapBetTypes()
+        {
+            IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = CachingService.Get<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES);
+            if (scoreMapBetTypeList == null)
+            {
+                scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
+                CachingService.Set<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES, scoreMapBetTypeList, new TimeSpan(0, 5, 0));
+            }
+            return scoreMapBetTypeList;
+        }
+
+        public string GetAllBetTypeFromBetType(int betTypeId, bool isLive)
+        {
+            if (betTypeId == 0)
+            {
+                return string.Empty;
+            }
+
+            string betTypeAll = string.Empty;
+            IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = this.LoadScoreMapBetTypes();
+            foreach (ScoreMapBetTypeModel betType in scoreMapBetTypeList)
+            {
+                if (isLive && betType.IsLive == 1 && betType.TypeId == betTypeId)
+                {
+                    betTypeAll += betType.TypeId.ToString() + "," + betType.Id1st.ToString();
+                    break;
+                }
+                else if (isLive == false && betType.IsDead == 1 && betType.TypeId == betTypeId)
+                {
+                    betTypeAll += betType.TypeId.ToString() + "," + betType.Id1st.ToString();
+                    break;
+                }
+            }
+
+            return betTypeAll;
+        }
+                
 
         /// <summary>
         /// Score Map Matches

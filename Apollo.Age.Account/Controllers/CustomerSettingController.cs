@@ -290,13 +290,14 @@ namespace Apollo.Age.Account.Controllers
 
         #region Setting
 
-        public ActionResult EditAllSetting(int custId, string userName, int? agentId, int? agentLevel, string userGroup)
+        public ActionResult EditAllSetting(int custId, string userName, int? agentId, int? agentLevel, string userGroup, bool showHeader = false)
         {
             ViewBag.CustId = custId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.UserGroup = userGroup;
             ViewBag.CurentParentAgentId = agentId;
+            ViewBag.ShowHeader = showHeader;
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
