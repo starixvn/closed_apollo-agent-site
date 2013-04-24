@@ -13,9 +13,9 @@
 
     public class UnderMaintenanceService : ServiceBase
     {
-        private const int CACHETIMEOUTMINUTE = 1; // 1 minute
-        private const int WAITINTERVAL = 1000; // 1 second
-        private const string MAINTENANCECACHEKEY = "Fanex.Cache.Apollo.Maintenance"; // Cache Key
+        private const int CacheTimeOut = 1; // 1 minute
+        private const int WaitInterval = 1000; // 1 second
+        private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key
 
         private readonly UMBusiness umService;
         private static readonly Mutex mutext = new Mutex();
@@ -30,15 +30,15 @@
         {
             get
             {
-                var maintenanceInfo = this.cacheManager.Get<UnderMaintenanceViewModel>(MAINTENANCECACHEKEY);
+                var maintenanceInfo = this.cacheManager.Get<UnderMaintenanceViewModel>(MaintenanceCacheKey);
                 if (maintenanceInfo == null)
                 {
-                    if (mutext.WaitOne(WAITINTERVAL))
+                    if (mutext.WaitOne(WaitInterval))
                     {
                         try
                         {
                             maintenanceInfo = GetMaintenanceInfo();
-                            this.cacheManager.Set(MAINTENANCECACHEKEY, maintenanceInfo, DateTime.Now.AddMinutes(CACHETIMEOUTMINUTE));
+                            this.cacheManager.Set(MaintenanceCacheKey, maintenanceInfo, DateTime.Now.AddMinutes(CacheTimeOut));
                         }
                         catch
                         {
