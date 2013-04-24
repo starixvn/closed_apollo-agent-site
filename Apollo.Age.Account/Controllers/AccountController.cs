@@ -89,63 +89,98 @@ namespace Apollo.Age.Account.Controllers
             return View(base.CurrentSession);
         }
 
-        public ActionResult MemberDownline(int custId, int? page)
+        public ActionResult MemberDownline(int agentId, int? page)
         {
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
             int totalPage = 0;
-            var memberList = _accountService.GetMemberDownline(custId, currentPageIndex + 1, PAGESIZE, ref totalPage);
+            var memberList = _accountService.GetMemberDownline(agentId, currentPageIndex + 1, PAGESIZE, ref totalPage);
 
             return View(memberList.ToPagedList(currentPageIndex, PAGESIZE, totalPage * PAGESIZE));
         }
 
-        public ActionResult AccountInfo(string username, short? isMember, int? custId)
+        public ActionResult AgentInfo(string username, int agentId)
         {
-            bool ismember = false;
-            int custid = -1;
-            if (string.IsNullOrWhiteSpace(username) && !custId.HasValue)
+            HttpContext.Session["username"] = username;
+            HttpContext.Session["isMember"] = "false";
+
+            var agentInfo = _accountService.GetAgentInfo(this.CurrentSession.AgentId, agentId, username);
+
+            if (agentInfo == null)
             {
-                username = HttpContext.Session["userName"] != null
-                    ? HttpContext.Session["userName"].ToString() : string.Empty;
-                isMember = HttpContext.Session["isMember"] != null
-                    ? Converter.To<short>(HttpContext.Session["isMember"])
-                    : Converter.To<short>("0");
+                agentInfo = new CustomerInfoModel()
+                {
+                    ActorAgentId = this.CurrentSession.AgentId,
+                    CustId = -1,
+                    IsMember = false,
+                    Username = username,
+                };
             }
+            else
+            {
+                agentInfo.ActorAgentId = this.CurrentSession.AgentId;
+                agentInfo.IsMember = false;
+            }
+
+            return View("AccountInfo", agentInfo);
+        }
+
+        public ActionResult MemberInfo(string username, int custId)
+        {
+            HttpContext.Session["username"] = username;
+            HttpContext.Session["isMember"] = "true";
+
+            var memberInfo = _accountService.GetMemberInfo(this.CurrentSession.AgentId, custId, username);
+
+            if (memberInfo == null)
+            {
+                memberInfo = new CustomerInfoModel()
+                {
+                    ActorAgentId = this.CurrentSession.AgentId,
+                    CustId = -1,
+                    IsMember = true,
+                    Username = username,
+                };
+            }
+            else
+            {
+                memberInfo.ActorAgentId = this.CurrentSession.AgentId;
+                memberInfo.IsMember = true;
+            }
+
+            return View("AccountInfo", memberInfo);
+        }
+
+        public ActionResult AccountInfo()
+        {
+            var username = string.Empty;
+            var isMember = false;
+
+            username = HttpContext.Session["username"] != null
+                ? HttpContext.Session["username"].ToString() : string.Empty;
+            isMember = HttpContext.Session["isMember"] != null
+                ? Converter.ToBool(HttpContext.Session["isMember"])
+                : false;
 
             CustomerInfoModel customerInfo = null;
 
-            if (!string.IsNullOrWhiteSpace(username) || custId.HasValue)
+            if (!string.IsNullOrWhiteSpace(username))
             {
-                HttpContext.Session["userName"] = username;
-                HttpContext.Session["isMember"] = isMember;
-
-                ismember = isMember == 1;
-                custid = custId.HasValue ? custId.Value : -1;
-
-                customerInfo = _accountService.GetCustomerInfo(ismember, custid, username,
-                    this.CurrentSession.AgentId);
-
-                if (customerInfo == null)
+                if (isMember)
                 {
-                    customerInfo = new CustomerInfoModel()
-                    {
-                        CurrentAgentId = this.CurrentSession.AgentId,
-                        CustId = -1,
-                        IsMember = ismember,
-                        Username = username,
-                    };
+                    return MemberInfo(username, custId: -1);
                 }
                 else
                 {
-                    customerInfo.CurrentAgentId = this.CurrentSession.AgentId;
+                    return AgentInfo(username, agentId: -1);
                 }
             }
 
             return View(customerInfo);
         }
 
-        public ViewResult AgentTreeList(int id)
+        public ViewResult AgentTreeList(int agentId)
         {
-            ViewBag.AgentId = id;
+            ViewBag.AgentId = agentId;
             return View();
         }
 
@@ -162,18 +197,27 @@ namespace Apollo.Age.Account.Controllers
             return Redirect("~/_Authorization/SignIn.aspx");
         }
 
-        public JsonResult GetDataByNode(int id)
+        public JsonResult GetDataByNode(int agentId)
         {
-            var customerList = _accountService.GetDirectDownline(id);
+            var customerList = _accountService.GetDirectDownline(agentId)
+                .Select(x => new { x.Id, x.Username, x.HasAgentDownline});
             return Json(customerList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetSuggestValues(string term, bool isMember)
+        public JsonResult GetAgentByUsername(string username)
         {
-            var listValue = _accountService.GetCustomerSuggest(isMember, term, this.CurrentSession.AgentId)
-                    .Select(x => x.Username).ToList();
+            var agentList = _accountService.GetAgentByUsername(this.CurrentSession.AgentId, username)
+                    .Select(x => new { x.Id, x.Username }).ToList();
 
-            return Json(listValue, JsonRequestBehavior.AllowGet);
+            return Json(agentList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetMemberByUsername(string username)
+        {
+            var memberList = _accountService.GetMemberByUsername(this.CurrentSession.AgentId, username)
+                    .Select(x => new { x.Id, x.Username }).ToList();
+
+            return Json(memberList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult AgentList(int? agentId)
@@ -202,7 +246,8 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetAgentDownlinePath(int agentId)
         {
-            var listValue = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, agentId).ToList();
+            var listValue = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, agentId)
+                .Select(x => new { x.Id, x.Username }).ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }

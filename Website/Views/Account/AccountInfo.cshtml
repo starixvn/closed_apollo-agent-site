@@ -52,25 +52,23 @@
                             </td>
 						}
                         <td class="parent-name">
-                            @if (Model.CurrentAgentId == Model.ParentId)
+                            @if (Model.ActorAgentId == Model.ParentId)
 							{
                                 @Model.ParentName
 							}
 							else
 							{
-								var queryStr = string.Format("userName={0}&isMember=0&custId={1}",
+								var queryStr = string.Format("username={0}&agentid={1}",
 									Model.ParentName, Model.ParentId);
-                                <a href="javascript:;" id="agentDownlineLink"
-                                    aid="@Model.ParentId"
-                                    title="@Resources.Lang.txtShowUpline"
-                                    alt="@Resources.Lang.txtShowUpline">
+                                <a href="javascript:;" id="agentDownlineLink" aid="@Model.ParentId"
+                                    title="@Resources.Lang.txtShowUpline" alt="@Resources.Lang.txtShowUpline">
                                     <div id="ddl-agents">
                                         <ul class="agent-list">
                                         </ul>
                                     </div>
                                 </a>
                                 <a class="view-custinfo" target="menu"
-                                    href="@Url.Action("AccountInfo")?@queryStr">@Model.ParentName
+                                    href="@Url.Action("AgentInfo")?@queryStr">@Model.ParentName
                                 </a>
 							}
                         </td>
@@ -140,26 +138,6 @@
                             href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
                             @Resources.Lang.ViewCommission
                         </a>
-						
-                        @*<a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&userGroup=@Model.Group">
-                            @Resources.Lang.lblEditSB
-                        </a>
-
-                        @*<a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditBetSetting?custId=@Model.CustId&userName=@Model.Username">
-                            @Resources.Lang.lbleditbetsetting
-                        </a>
-
-                        <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditCommissionSetting?custId=@Model.CustId&userName=@Model.Username&userGroup=@Model.Group">
-                            @Resources.Lang.lbleditcomm
-                        </a>
-
-                        <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditPositionTaking?custId=@Model.CustId&userName=@Model.Username">
-                            @Resources.Lang.lblEditPositionTalking
-                        </a>*@
 					}
 					else
 					{
@@ -174,31 +152,13 @@
                             href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
                             @Resources.Lang.ViewCommission
                         </a>
-
-						
-                        @*
-
-                        <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditBetSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
-                            @Resources.Lang.lbleditbetsetting
-                        </a>
-
-                        <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditCommissionSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
-                            @Resources.Lang.lbleditcomm
-                        </a>
-
-                        <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditPositionTaking?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level">
-                            @Resources.Lang.lblEditPositionTalking
-                        </a>*@
 					}
                 </div>
                 <div id="agentsTab-content">
                     @if (Model.HasAgentDownline)
 					{
                         <iframe id='frmDownlineList' name='frmDownlineList'
-                            frameborder="0" src='~/Account/AgentTreeList/@Model.CustId'></iframe>
+                            frameborder="0" src='~/Account/AgentTreeList?agentid=@Model.CustId'></iframe>
 					}
 					else
 					{

@@ -109,6 +109,23 @@
         return parseFloat(newnumber); // Output the result to the form field (change for your purposes)
     };
 
+    Fanex.HandleKeyDownInputNumber = function (e) {
+        var charCode = ('charCode' in e ? e.charCode : e.keyCode);
+
+        // allow special key presses
+        if (charCode == 0 || e.altKey || e.ctrlKey || e.metaKey) return;
+
+        // allow digits
+        if (charCode >= 48 && charCode <= 57) return;
+
+        // prevent the default action
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            window.event.returnValue = false;
+        }
+    }
+
     Fanex.Round = function (value) { //Format a number from 0.0199999 to 0.02
         return Math.round(value * 10000) / 10000;
     };
@@ -175,10 +192,10 @@ var Validators = {
             var hintMsg = document.createElement("SPAN");
             hint.appendChild(hintMsg);
             hintPointer = document.createElement("SPAN");
-            hintPointer.className = 'hint-pointer';
-            if (isDown) {
-                hintPointer.className = 'hint-pointer-down';
-            }
+//            hintPointer.className = 'hint-pointer';
+//            if (isDown) {
+//                hintPointer.className = 'hint-pointer-down';
+//            }
             
             hint.appendChild(hintPointer);
             hint.id = 'fHint';
@@ -190,6 +207,10 @@ var Validators = {
             document.body.appendChild(hint);
         };
         hintPointer = hint.lastChild;
+        hintPointer.className = 'hint-pointer';
+        if (isDown) {
+            hintPointer.className = 'hint-pointer-down';
+        }
         hint.firstChild.innerHTML = message;
         if (this.timeOutHideTooltip) {
             clearTimeout(this.timeOutHideTooltip);

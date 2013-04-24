@@ -140,6 +140,61 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
+        /// Get all bets by date and member from Winloss report
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
+        {
+            try
+            {
+                DataTable mainTable, referenceTable;
+                var ticketResult = new TicketResult();
+                var preBalanceUpDay = criteria.BalanceUpDay.AddDays(-1);
+                if (criteria.FromDate < criteria.BalanceUpDay)
+                {
+                    if (criteria.ToDate < preBalanceUpDay)
+                    {
+                        mainTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable);
+                    }
+                    else
+                    {
+                        // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
+                        DataTable referenceTable_bk = null;
+                        var mainTable_bk = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable_bk);
+
+                        DataTable referenceTable_new = null;
+                        var mainTable_new = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss", criteria, out referenceTable_new);
+
+                        // Merge two table bettrans
+                        mainTable_bk.Merge(mainTable_new);
+                        mainTable = mainTable_bk;
+
+                        // Merge table reference
+                        referenceTable_bk.Merge(referenceTable_new);
+                        referenceTable = referenceTable_bk;
+                    }
+                }
+                else
+                {
+                    mainTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss", criteria, out referenceTable);
+                }
+
+                // Main ticket list
+                ticketResult.TicketList = this.ReadTicket(mainTable);
+
+                // Reference ticket
+                ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
+
+                return ticketResult;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Get UserId By Username
         /// </summary>
         /// <param name="loggedId"></param>
@@ -316,6 +371,36 @@ namespace Apollo.Age.BetList.Repositories.Impl
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Get betlist Winloss from new or archive
+        /// </summary>
+        /// <param name="uspKey"></param>
+        /// <param name="criteria"></param>
+        /// <param name="outDataTable"></param>
+        /// <returns></returns>
+        private DataTable GetWinLossFromNewOrOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
+        {
+            try
+            {
+                using (var db = new ObjectDb(uspKey))
+                {
+                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+
+                    // Main ticket list
+                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+
+                    // Reference ticket
+                    referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
+
+                    return mainTable;
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         /// <summary>

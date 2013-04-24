@@ -21,9 +21,13 @@ namespace Apollo.Age.Account.Services
 
         IEnumerable<MemberListModel> GetCustomerList(ref CustomerListCriteria criteria);
 
-        List<Customer> GetCustomerSuggest(bool isMember, string userName, int agentId);
+        List<Agent> GetAgentByUsername(int actorAgentId, string username);
 
-        CustomerInfoModel GetCustomerInfo(bool isMember, int custId, string userName, int agentId);
+        List<Member> GetMemberByUsername(int actorAgentId, string username);
+
+        CustomerInfoModel GetAgentInfo(int actorAgentId, int agentId, string username);
+
+        CustomerInfoModel GetMemberInfo(int actorAgentId, int custId, string username);
 
         List<Member> GetMemberDownline(int agentId, int pageIndex, int pageSize, ref int totalPage);
 

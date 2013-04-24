@@ -1,25 +1,21 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CustomerExistCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetMemberByUsernameCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Quinn.Vo" date="2013.3.27">Created</change>
+//   <change who="Quinn.Vo" date="2013.4.23">Created</change>
 // </history>
 
-namespace Apollo.Age.Criterias.Accounts
+namespace Apollo.Age.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
-    public class CustomerExistCriteria : CriteriaBase
+    public class GetMemberByUsernameCriteria : CriteriaBase
     {
-        public int CurrentAgentId { get; set; }
+        public int ActorAgentId { get; set; }
 
-        public bool IsMember { get; set; }
-
-        public int CustId { get; set; }
-
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         public override bool IsValid()
         {
@@ -28,7 +24,7 @@ namespace Apollo.Age.Criterias.Accounts
 
         public override string GetSettingKey()
         {
-            return "Age_Customer_IsExistValueSearch";
+            return "Age_Customer_GetByUsername";
         }
     }
 }

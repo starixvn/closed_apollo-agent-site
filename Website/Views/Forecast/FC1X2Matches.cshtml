@@ -48,13 +48,13 @@
                     <a class="btnInfo view-bet-list" match-id="@fcItem.MatchID" bet-type="5" href="javascript:void(0)"></a>
                 </td>
                 <td class="bold" style="width: 20%">
-                    @RazorHelper.FormatPositiveNumber(fcItem.HomeWinLost, showZero: true)
+                    @RazorHelper.FormatPositiveNumber(fcItem.HomeWinLost, 2, showZero: true)
                 </td>
                 <td class="bold" style="width: 20%">
-                    @RazorHelper.FormatPositiveNumber(fcItem.DrawWinLost, showZero: true)
+                    @RazorHelper.FormatPositiveNumber(fcItem.DrawWinLost, 2, showZero: true)
                 </td>
                 <td class="bold" style="width: 20%">
-                    @RazorHelper.FormatPositiveNumber(fcItem.AwayWinLost, showZero: true)
+                    @RazorHelper.FormatPositiveNumber(fcItem.AwayWinLost, 2, showZero: true)
                 </td>
             </tr>
             <tr class="c">
@@ -65,13 +65,13 @@
                     <a class="btnInfo view-bet-list" match-id="@fcItem.MatchID" bet-type="15" href="javascript:void(0)"></a>
                 </td>
                 <td class="bold" style="width: 20%">
-                    @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeHomeWinLost, showZero: true)
+                    @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeHomeWinLost, 2, showZero: true)
                 </td>
                 <td class="bold" style="width: 20%">
-                    @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeDrawWinLost, showZero: true)
+                    @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeDrawWinLost, 2, showZero: true)
                 </td>
                 <td class="bold" style="width: 20%">
-                    @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeAwayWinLost, showZero: true)
+                    @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeAwayWinLost, 2, showZero: true)
                 </td>
             </tr>
         }

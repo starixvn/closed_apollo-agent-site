@@ -8,13 +8,13 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var treeList = $("#treeview_list"),
-                custId = treeList.attr("agent-id"),
+                agentId = treeList.attr("agent-id"),
                 appRoot = "@Url.Content("~/")";
 
             treeList.treeview({
                 url: appRoot + "Account/GetDataByNode",
-                link: "<a href='" + appRoot + "Account/AccountInfo?IsMember=0&custid={0}&txtUsername={1}' target='menu'> {2} </a>",
-                custid: custId
+                link: "<a href='" + appRoot + "Account/AgentInfo?agentid={0}&username={1}' target='menu'> {2} </a>",
+                agentId: agentId
             });
         });
     </script>

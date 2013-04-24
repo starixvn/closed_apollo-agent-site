@@ -20,6 +20,8 @@ namespace Apollo.Age.BetList.Criterias
 
         public DateTime MoveBetsDay { get; set; }
 
+        public DateTime BalanceUpDay { get; set; }
+
         public long CustId { get; set; }
 
         public long AgentId { get; set; }

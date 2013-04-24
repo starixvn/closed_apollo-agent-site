@@ -17,10 +17,10 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         var isXPos = (typeof (xpos) != "undefined" && xpos != null);
         var isPointerXPos = (typeof (pointerx) != "undefined" && pointerx != null);
         if (isXPos && pointerx) {
-            Validators.show(elementInput, errorMessage, xpos, pointerx);
+            Validators.show(elementInput, errorMessage, xpos, pointerx, -45, 38, 18, 10000, false);
         }
         else {
-            Validators.show(elementInput, errorMessage);
+            Validators.show(elementInput, errorMessage, xpos, pointerx, -45, 38, 18, 10000, false);
         }
         Validators.animate(elementInput);
     };
@@ -68,17 +68,17 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     return false;
                 }
                 // Check minbet < minbetmax
-                if (typeof (item.MinBetMax) != 'undefined' && item.MinBetMax > 0 && minBet < item.MinBetMax && minBet != 0) {
+                if (typeof (item.MinBetMax) != 'undefined' && item.MinBetMax > 0 && minBet < item.MinBetMax) {
                     this.ValidateMessage(item.minBetElement, Language.MIN_BET_GREATER_THAN_MIN_MIN_BET.Format(''.FormatNumber(item.MinBetMax)));
                     return false;
                 }
                 // Check maxbet < maxbetmin
-                if (typeof (item.MaxBetMin) != 'undefined' && item.MaxBetMin > 0 && maxBet > item.MaxBetMin && maxBet != 0) {
+                if (typeof (item.MaxBetMin) != 'undefined' && item.MaxBetMin > 0 && maxBet > item.MaxBetMin) {
                     this.ValidateMessage(item.maxBetElement, Language.MAX_BET_LOWER_THAN_MAX_MAX_BET.Format(''.FormatNumber(item.MaxBetMin)));
                     return false;
                 }
                 // Check maxpermatch_min < maxpermatch < maxpermatch_max
-                if (typeof (item.MaxPerMatchMin) != 'undefined' && item.MaxPerMatchMin > 0 && maxPerMatch > item.MaxPerMatchMin && maxPerMatch != 0) {
+                if (typeof (item.MaxPerMatchMin) != 'undefined' && item.MaxPerMatchMin > 0 && maxPerMatch > item.MaxPerMatchMin) {
                     this.ValidateMessage(item.maxPerMatchElement, Language.MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET.Format(''.FormatNumber(item.MaxPerMatchMin)), -130, 160);
                     return false;
                 }
@@ -328,7 +328,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     var minBet = document.createElement("INPUT");
                     minBet.type = "text";
                     minBet.maxLength = 14;
-                    minBet.onkeyup = function (event) { Fanex.FormatNumber(event, true); };
+                    minBet.onkeyup = function (event) { Fanex.FormatNumber(event); };
+                    minBet.onkeypress = Fanex.HandleKeyDownInputNumber;
                     minBet.className = "betting-limit-textbox";
                     minBet.value = ''.FormatNumber(item.MinBet);
                     minBetBox.appendChild(minBet);
@@ -362,7 +363,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     var maxBet = document.createElement("INPUT");
                     maxBet.type = "text";
                     maxBet.maxLength = 14;
-                    maxBet.onkeyup = function (event) { Fanex.FormatNumber(event, true); };
+                    maxBet.onkeyup = function (event) { Fanex.FormatNumber(event); };
+                    maxBet.onkeypress = Fanex.HandleKeyDownInputNumber;
                     maxBet.className = "betting-limit-textbox";
                     maxBet.value = ''.FormatNumber(item.MaxBet);
                     maxBetBox.appendChild(maxBet);
@@ -416,7 +418,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     var maxPerMatch = document.createElement("INPUT");
                     maxPerMatch.type = "text";
                     maxPerMatch.maxLength = 14;
-                    maxPerMatch.onkeyup = function (event) { Fanex.FormatNumber(event, true); };
+                    maxPerMatch.onkeyup = function (event) { Fanex.FormatNumber(event); };
+                    maxPerMatch.onkeypress = Fanex.HandleKeyDownInputNumber;
                     maxPerMatch.className = "betting-limit-textbox";
                     maxPerMatch.value = ''.FormatNumber(item.MaxPerMatch);
                     maxPerMatchBox.appendChild(maxPerMatch);
@@ -447,7 +450,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                             maxPerBall.type = "text";
                             maxPerBall.maxLength = 14;
                             maxPerBall.value = ''.FormatNumber(item.MaxPerBall);
-                            maxPerBall.onkeyup = function (event) { Fanex.FormatNumber(event, true); };
+                            maxPerBall.onkeyup = function (event) { Fanex.FormatNumber(event); };
                             maxPerBall.className = showLimitBox ? "betting-limit-textbox" : "betting-limit-textbox5";
                             maxPerBallBox.appendChild(maxPerBall);
                             if (showLimitBox) {
@@ -521,9 +524,12 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             // Table
             var tableShareSetting = document.createElement("TABLE");
             tableShareSetting.className = "bet-limit-table";
+            var boxTBody = document.createElement("TBODY");
+            tableShareSetting.appendChild(boxTBody);
+
             box.appendChild(tableShareSetting);
             var trSetting = document.createElement("TR");
-            tableShareSetting.appendChild(trSetting)
+            boxTBody.appendChild(trSetting)
             // Share Settings
             var presetLabel = document.createElement("TD");
             presetLabel.innerHTML = Language.SOCCER;
@@ -576,7 +582,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             var inputValue = document.createElement("INPUT");
             inputValue.type = "text";
             inputValue.className = "bet-limit-input";
-            inputValue.onkeyup = function (event) { Fanex.FormatNumber(event, true); };
+            inputValue.onkeyup = function (event) { Fanex.FormatNumber(event); };
             inputValue.value = ''.FormatNumber(betLimitValue);
             betSettingContainer.appendChild(inputValue);
 

@@ -1390,7 +1390,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>You are allowed to transfer on</value>
   </data>
   <data name="lblAsianHDC_OU_OE" xml:space="preserve">
-    <value>Asian HDP, OU, OE</value>
+    <value>HDP, OU, OE</value>
   </data>
   <data name="lblAutoMasterResestPosition" xml:space="preserve">
     <value>Auto Master Preset</value>
@@ -4321,7 +4321,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Taken Share (%)</value>
   </data>
   <data name="lblViewAllSetting" xml:space="preserve">
-    <value>View All Setting</value>
+    <value>View Own Setting</value>
   </data>
   <data name="lblEditSetting" xml:space="preserve">
     <value>Edit Setting</value>
