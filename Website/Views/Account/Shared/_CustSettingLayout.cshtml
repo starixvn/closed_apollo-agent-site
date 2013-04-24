@@ -30,6 +30,10 @@
             </div>
         }
         <div id="content_main">
+            <div class="setting-mode">
+                <span id="simple-mode" class="deactive-mode">@Resources.Lang.lblSimpleModel</span>
+                | <span class="active-mode" id="advanced-mode">@Resources.Lang.lblAdvancedMode</span>
+            </div>
             @if (isViewSetting)
             {
                 <div id="settingContainer">
@@ -38,15 +42,12 @@
             }
             else
             {
-                <div class="setting-mode">
-                    <span id="simple-mode" class="deactive-mode">@Resources.Lang.lblSimpleModel</span> | <span class="active-mode"
-                        id="advanced-mode">@Resources.Lang.lblAdvancedMode</span>
-                </div>
                 <div id="settingContainer">
                     <div class="edit-setting-warning">
                         @Resources.Lang.lblWarningEditSetting</div>
                     @RenderBody()
                 </div>
+                    
                 <div class="btnLeft">
                     <button id="btnSubmitFooter" class="btn" style="display: none;">
                         @Resources.Lang.update</button>
@@ -66,8 +67,8 @@
     <script src="~/Views/Account/Resources/CustSettingEngine/BetTypeGroup.js" type="text/javascript"></script>
     <script src="~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js" type="text/javascript"></script>
     <script type="text/javascript">
-         var isSimpleMode = @(isViewSetting ? "false" : "true");
-         var Language =
+        var isSimpleMode = true;
+        var Language =
         {
             MIN_BET: "@(Resources.Lang.lblMinBet)",
             MAX_BET: "@(Resources.Lang.lblMaxBet)",

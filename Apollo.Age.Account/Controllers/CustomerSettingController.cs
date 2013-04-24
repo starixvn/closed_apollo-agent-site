@@ -309,7 +309,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
 
-        public ActionResult ViewAllSetting()
+        public ActionResult MySetting()
         {
             ViewBag.CustId = CurrentSession.AgentId;
             ViewBag.UserName = CurrentSession.Username;
@@ -317,7 +317,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserGroup = string.Empty;
             ViewBag.CurentParentAgentId = CurrentSession.AgentId;
             ViewBag.IsViewShareSetting = true;
-            return View("~/Views/Account/ViewSetting.cshtml");
+            return View("~/Views/Account/MySetting.cshtml");
         }
                 
 
