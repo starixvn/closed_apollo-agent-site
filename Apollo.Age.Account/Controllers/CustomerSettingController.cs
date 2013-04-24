@@ -24,6 +24,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
     using Apollo.Age.Account.Models;
+    using Fanex.Common;
 
     public class CustomerSettingController : BaseController
     {
@@ -166,32 +167,43 @@ namespace Apollo.Age.Account.Controllers
         #region Share [Position Taking]
 
         /// <summary>
-        /// Views "share info" from logged-in agent to selected (searched) agent/member
+        /// Views "share info" from logged-in agent to selected (searched) agent
         /// </summary>
-        /// <param name="username">selected agent/member username</param>
-        public ActionResult AgentShare(int? agentId, string userName, short sportType, short betType, bool isLive)
+        /// <param name="username">selected agent username</param>
+        public ActionResult AgentShare(int? agentId, string userName, short? sportType, short? betType, bool? isLive)
         {
-            var criteria = new AgentShareCriteria() {
+            AgentShareCriteria criteria = new AgentShareCriteria()
+            {
                 ActorAgentId = this.CurrentSession.AgentId,
-                AgentId = agentId.HasValue ? agentId.Value : -1,
-                Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                IsLive = isLive
+                SportType = sportType.HasValue ? sportType.Value : Converter.To<short>(1),
+                BetType = betType.HasValue ? betType.Value : Converter.To<short>(1),
+                IsLive = isLive.HasValue ? isLive.Value : false
             };
+
+            if (!agentId.HasValue && string.IsNullOrWhiteSpace(userName))
+            {
+                criteria.AgentId = this.CurrentSession.AgentId;
+                criteria.Username = this.CurrentSession.AgentName;
+                
+            }
+            else
+            {
+                criteria.AgentId = agentId.HasValue ? agentId.Value : -1;
+                criteria.Username = userName;
+            }
 
             var agentShareModelList = _accountService.GetAgentShare(criteria);
 
             var sportList = _accountService.GetAllSportType();
-            var betTypeList = _accountService.GetBetTypeBySport(sportType);
+            var betTypeList = _accountService.GetBetTypeBySport(criteria.SportType);
 
             var agentShareViewModel = new AgentShareViewModel()
             {
                 IsMember = false,
-                Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                IsLive = isLive,
+                Username = criteria.Username,
+                SportType = criteria.SportType,
+                BetType = criteria.BetType,
+                IsLive = criteria.IsLive,
                 SportList = sportList,
                 BetTypeList = betTypeList,
                 AgentShareModelList = agentShareModelList
@@ -200,30 +212,34 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/AgentShare.cshtml", agentShareViewModel);
         }
 
-        public ActionResult MemberShare(int? memberId, string userName, short sportType, short betType, bool isLive)
+        /// <summary>
+        /// Views "share info" from logged-in agent to selected (searched) member
+        /// </summary>
+        /// <param name="username">selected member username</param>
+        public ActionResult MemberShare(int? memberId, string userName, short? sportType, short? betType, bool? isLive)
         {
             var criteria = new MemberShareCriteria()
             {
                 ActorAgentId = this.CurrentSession.AgentId,
                 CustId = memberId.HasValue ? memberId.Value : -1,
                 Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                IsLive = isLive
+                SportType = sportType.HasValue ? sportType.Value : Converter.To<short>(1),
+                BetType = betType.HasValue ? betType.Value : Converter.To<short>(1),
+                IsLive = isLive.HasValue ? isLive.Value : false
             };
 
             var memberShareModelList = _accountService.GetMemberShare(criteria);
 
             var sportList = _accountService.GetAllSportType();
-            var betTypeList = _accountService.GetBetTypeBySport(sportType);
+            var betTypeList = _accountService.GetBetTypeBySport(criteria.SportType);
 
             var memberShareViewModel = new MemberShareViewModel()
             {
                 IsMember = true,
                 Username = userName,
-                SportType = sportType,
-                BetType = betType,
-                IsLive = isLive,
+                SportType = criteria.SportType,
+                BetType = criteria.BetType,
+                IsLive = criteria.IsLive,
                 SportList = sportList,
                 BetTypeList = betTypeList,
                 MemberShareModelList = memberShareModelList
