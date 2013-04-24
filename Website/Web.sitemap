@@ -50,25 +50,15 @@
     </siteMapNode>
     <!--/Report-->
 
-<<<<<<< HEAD
     <!--MemberInfo-->
     <siteMapNode title="lblAccountInformation">
       <siteMapNode title="lblAgentList" url="Account/AgentList"></siteMapNode>
       <siteMapNode title="lblPlayerList" url="Account/MemberList" Level="4"></siteMapNode>
-      <siteMapNode title="lblViewAllSetting" url="CustomerSetting/ViewAllSetting" hideWhenSuper="true" ></siteMapNode>
+      <siteMapNode title="lblViewAllSetting" url="CustomerSetting/MySetting" hideWhenSuper="true" ></siteMapNode>
       <siteMapNode title="ViewShare" url="CustomerSetting/AgentShare" ></siteMapNode>
       <siteMapNode title="ViewCommission" url="CustomerSetting/ViewCommission" ></siteMapNode>
       <!--<siteMapNode title="lblPositionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
-=======
-        <!--MemberInfo-->
-        <siteMapNode title="lblAccountInformation">
-            <siteMapNode title="lblAgentList" url="Account/AgentList"></siteMapNode>
-            <siteMapNode title="lblPlayerList" url="Account/MemberList" Level="4"></siteMapNode>
-            <siteMapNode title="lblViewAllSetting" url="CustomerSetting/MySetting" hideWhenSuper="true" ></siteMapNode>
-            <siteMapNode title="ViewShare" url="CustomerSetting/AgentShare" ></siteMapNode>
-            <siteMapNode title="ViewCommission" url="CustomerSetting/ViewCommission" ></siteMapNode>
-            <!--<siteMapNode title="lblPositionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
->>>>>>> d35958eae85c40382cd782336cedea284cf517e5
+
       <siteMapNode title="lblMemberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx" ></siteMapNode>
       <siteMapNode description="subacc" title="lblShadowList" url="_SubAcc/SubAccList.aspx"></siteMapNode>-->
     </siteMapNode>
