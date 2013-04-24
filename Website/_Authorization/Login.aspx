@@ -52,3 +52,16 @@
     </div>
 </body>
 </html>
+
+<%--[4:16:19 PM] Suncity - Sams: <script src="http://demo.acsdev.net/partner/Content/tgp_auth-0.0.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    TGP.authorize_endpoint = "http://demo.acsdev.net/scoauth/oauth/authorize";
+
+    TGP.authorize({
+      client_id: "[your_app_id]",  // = app_id
+      redirect_uri: "[your_url]",
+      state: "",
+    });
+</script>
+[4:16:31 PM] Suncity - Sams: need jquery--%>
