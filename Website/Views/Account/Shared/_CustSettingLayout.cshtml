@@ -1,5 +1,6 @@
 ﻿@{
-    bool isViewSetting = ViewBag.IsViewShareSetting ?? false;
+    var isViewSetting = ViewBag.IsViewShareSetting ?? false;
+    var showHeader = ViewBag.ShowHeader;
 }
 <!DOCTYPE html>
 <!--[if IE 7 ]> <html class="ie7 ie" lang="en-us"> <![endif]-->
@@ -22,7 +23,7 @@
 <body>
     @RazorHelper.Piwik()
     <div id="page_main">
-        @if (isViewSetting)
+        @if (isViewSetting || showHeader)
         { 
             <div id="header_main">
                 @ViewBag.Title
