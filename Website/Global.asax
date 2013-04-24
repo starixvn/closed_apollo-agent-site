@@ -10,7 +10,7 @@
 <%@ Import Namespace="Sunplus.Agent.Model.BL.Authorization" %>
 <%@ Import Namespace="Apollo.Age.Web.Services" %>
 <script RunAt="server">
-
+    public static UnderMaintenanceService maintenanceService = null;
     public static void RegisterGlobalFilters(GlobalFilterCollection filters)
     {
         filters.Add(new HandleErrorAttribute());
@@ -32,7 +32,7 @@
 
     void Application_Start(object sender, EventArgs e)
     {
-
+        maintenanceService = new UnderMaintenanceService();
         AreaRegistration.RegisterAllAreas();
         RegisterGlobalFilters(GlobalFilters.Filters);
         RegisterRoutes(RouteTable.Routes);
@@ -87,20 +87,26 @@
 
     void Application_AcquireRequestState(object sender, EventArgs e)
     {
-        var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
-        if (executeFileName.IndexOf("UnderMaintenance") == -1)
+        try
         {
-            UnderMaintenanceService maintenanceService = new UnderMaintenanceService();
-            var maintenanceInfo = maintenanceService.MaintenanceInfo;
-            if (maintenanceInfo.IsDownTime)
-                Response.Redirect("~/Home/UnderMaintenance");
+            var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
+            if (executeFileName.IndexOf("UnderMaintenance") == -1 && executeFileName.IndexOf("GetMessage") == -1)
+            {
+                var maintenanceInfo = maintenanceService.MaintenanceInfo;
+                if (maintenanceInfo.IsDownTime)
+                    Response.Redirect("~/Home/UnderMaintenance");
+            }
+        }
+        catch (Exception ex)
+        {
+            Fanex.Logging.LogService.Error(ex.Message, ex);
         }
 
     }
 
     void Application_BeginRequest(object sender, EventArgs e)
-    { 
-        
+    {
+
     }
 
     void Session_Start(object sender, EventArgs e)
