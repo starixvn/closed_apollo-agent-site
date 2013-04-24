@@ -34,9 +34,13 @@ namespace Apollo.Age.Web
         {
             var maintenanceInfo = maintenanceService.MaintenanceInfo;
             if (maintenanceInfo.IsDownTime)
+            {
                 return View(maintenanceInfo);
+            }
             else
+            {
                 return Redirect("~/Index.aspx");
+            }
         }
     }
 }
