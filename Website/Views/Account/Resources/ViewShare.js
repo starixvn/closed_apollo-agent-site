@@ -20,7 +20,7 @@ var VIEWSHARE = function ($) {
             });
 
             $("#btnSubmit").bind('click', function () {
-                VIEWSHARE.getViewShare(-1, userName.val().trim());
+                VIEWSHARE.getViewShare(-1, VIEWSHARE.userName.val().trim());
             });
         },
         bindBetType: function () {
@@ -99,6 +99,6 @@ var VIEWSHARE = function ($) {
     }
 } (jQuery);
 
-$(function () {
+$(document).ready(function () {
     VIEWSHARE.init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
