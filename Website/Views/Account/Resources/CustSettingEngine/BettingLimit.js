@@ -524,9 +524,12 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             // Table
             var tableShareSetting = document.createElement("TABLE");
             tableShareSetting.className = "bet-limit-table";
+            var boxTBody = document.createElement("TBODY");
+            tableShareSetting.appendChild(boxTBody);
+
             box.appendChild(tableShareSetting);
             var trSetting = document.createElement("TR");
-            tableShareSetting.appendChild(trSetting)
+            boxTBody.appendChild(trSetting)
             // Share Settings
             var presetLabel = document.createElement("TD");
             presetLabel.innerHTML = Language.SOCCER;
