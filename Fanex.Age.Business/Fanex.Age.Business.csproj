@@ -79,7 +79,6 @@
     <Compile Include="Reports\MatchWinloss\MatchWinLossBusiness.cs" />
     <Compile Include="Reports\MatchWinloss\MatchWinLossDetailBusiness.cs" />
     <Compile Include="Reports\PortalPage\AnnouncementBusiness.cs" />
-    <Compile Include="Reports\Result\ResultBusiness.cs" />
     <Compile Include="Reports\WinlossAnalysis\WinlossAnalysisAgentBusiness.cs" />
     <Compile Include="Reports\WinlossAnalysis\WinlossAnalysisMasterBusiness.cs" />
     <Compile Include="Reports\WinlossAnalysis\WinlossAnalysisSuperBusiness.cs" />
@@ -97,13 +96,10 @@
     <Compile Include="Reports\Winloss\WinlossSuperBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Reports\Result\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fanex.Age.Business.Interface\Fanex.Age.Business.Interface.csproj">
-      <Project>{6044CB14-ACC9-4627-8559-18EE24513585}</Project>
-      <Name>Fanex.Age.Business.Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.DTO\Fanex.Age.DTO.csproj">
       <Project>{A7134F35-65C9-43A6-9386-86CD65F349DD}</Project>
       <Name>Fanex.Age.DTO</Name>

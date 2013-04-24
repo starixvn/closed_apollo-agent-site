@@ -87,7 +87,7 @@ namespace Apollo.Age.Web.Services
             // Check downtime from library
             try
             {
-                maintenanceInfo.IsDownTime = umService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
+                maintenanceInfo.IsDownTime = false; // umService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
                 if (maintenanceInfo.IsDownTime)
                 {
                     maintenanceInfo.StartTime = startTime;

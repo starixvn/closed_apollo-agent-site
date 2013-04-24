@@ -17,7 +17,7 @@ namespace Fanex.Age.Business.Report
     using System.Data;
     using System.Linq;
     using Fanex.Age.Business;
-    using Fanex.Age.Business.Interface.Reports;
+    
     using Fanex.Age.DTO.Reports.Winloss;
     using Fanex.Caching;
     using Fanex.Data.DNAide;
@@ -26,7 +26,7 @@ namespace Fanex.Age.Business.Report
     /// <summary>
     ///
     /// </summary>
-    public class ReportBusiness : BusinessBase, IReportBusiness
+    public class ReportBusiness : BusinessBase
     {
         private readonly ICache cache;
 

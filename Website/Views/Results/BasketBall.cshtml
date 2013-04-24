@@ -1,4 +1,60 @@
-﻿@{
-    
-}
-<h1>this is basketball layout</h1>
+﻿@using Apollo.Age.Reports.Models
+@using Apollo.Age.Reports.Core
+@model IEnumerable<MatchResultModel>
+<table class="tblRpt">
+    <thead>
+        <tr class="RptHeader">
+            <td style="width: 90px" columnname="kickofftime">
+                @Resources.Lang.kickofftime
+            </td>
+            <td>
+                @Resources.Lang.match
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.Q1
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.Q2
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.Q3
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.Q4
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.OT
+            </td>
+            <td style="width: 70px;">
+                @Resources.Lang.firsthalfscore
+            </td>
+            <td class="nowrap" style="width: 70px;">
+                @Resources.Lang.finalscore
+            </td>
+            <td class="nowrap" style="width: 60px;">
+                @Resources.Lang.status
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @*@if (Model != null && Model.Any())
+        {
+            int rowIndex = 0;
+            int currentLeagueId = 0;
+
+            foreach (var item in Model)
+            {
+                rowIndex++;
+
+            @ShowLeague(currentLeagueId, item)
+            @ShowMatch(rowIndex, item)
+
+                currentLeagueId = item.LeagueId;
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(colspan: 5);
+        }*@
+    </tbody>
+</table>

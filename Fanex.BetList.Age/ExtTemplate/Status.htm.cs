@@ -102,13 +102,9 @@ namespace Fanex.BetList.Age
 		{
 			protected static string s15 = "<div class=\"bl_ip\"><br /><div class=\"";
 			public string divIP = "iplink";
-			protected static string s16 = "\" onclick=\"";
-			public string openIpFunc = "OpenIPInfo";
-			protected static string s17 = "('";
+			protected static string s16 = "\">";
 			public string betIp = "{betIp}";
-			protected static string s18 = "');\">";
-			protected string t0_betIp;
-			protected static string s19 = "</div></div>";
+			protected static string s17 = "</div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -117,12 +113,8 @@ namespace Fanex.BetList.Age
 					bd.Append(s15);
 					bd.Append(divIP);
 					bd.Append(s16);
-					bd.Append(openIpFunc);
+					bd.Append(betIp);
 					bd.Append(s17);
-					bd.Append(betIp);
-					bd.Append(s18);
-					bd.Append(betIp);
-					bd.Append(s19);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
