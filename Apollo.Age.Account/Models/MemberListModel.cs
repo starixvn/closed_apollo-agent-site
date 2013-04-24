@@ -4,7 +4,7 @@
 
     public class MemberListModel
     {
-        public int CustId { get; set; }
+        public int MemberId { get; set; }
 
         public string Username { get; set; }
 
@@ -16,11 +16,11 @@
 
         public string UserGroup { get; set; }
 
-        public decimal CustomerGroup { get; set; }
+        public decimal MemberGroup { get; set; }
 
-        public decimal CustomerDiscountOneXTwo { get; set; }
+        public decimal MemberDiscountOneXTwo { get; set; }
 
-        public decimal CustomerDiscountOther { get; set; }
+        public decimal MemberDiscountOther { get; set; }
 
         public decimal AgentGroup { get; set; }
 
