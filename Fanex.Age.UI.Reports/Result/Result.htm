@@ -4,6 +4,21 @@
     <title>{Title}</title>
     <link href="../../_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link href="../../_BetList/Resources/BetList.less" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.btn {
+		    margin-right: 5px;
+		}
+		.tblRpt tbody td {
+		    border-width: 1px;
+		    vertical-align: middle;
+		}
+		.tblRpt .no_info td {
+		    padding: 0;
+		}
+		#spfdatetext {
+		    font-weight: bold;
+		}
+	</style>
 </head>
 <body>
     <form id="frmmain" method="get" action="Result.aspx">
@@ -18,32 +33,30 @@
             <div id="box_header" class="clearfix">
                 {load:Fanex.Age.UI.Components.DateRangeSelect_Control DateRangeSelect=new Fanex.Age.UI.Components.DateRangeSelect_Control(this,false,DateTime.Today,DateTime.Today)}
                 <input type="button" class="btn" id="btResultType"
-                    value="{ResultType}" onclick="DisableButton(); Result_ToggleResultType();"
-                    style="float: left;margin-top: 1px" />
+                    value="{ResultType}" onclick="DisableButton(); Result_ToggleResultType();" />
             </div>
             <!--/HeaderRegion--> 
             <!--SportCriteria--> 
-            <table class="tblRpt">
+            <table class="box-header">
                 <tr>
                     <td>
-                        {static:Resources.Lang.sport}
+                        <label>{static:Resources.Lang.sport}</label>
                     </td>
                     <td id="selSport">
-                        <select onchange="Result_ChangeSport();" name="ddlSport" id="ddlSport" style="position: relative;">
+                        <select onchange="Result_ChangeSport()" name="ddlSport" id="ddlSport">
                             <!--SportOption-->
                             <option {SelectedOption} value="{SportId}">{SportName}</option>
                             <!--/SportOption-->
                         </select>
                     </td>
-                    <td width="10">
-                        &nbsp;
-                    </td>
+                    <td>&nbsp;</td>
                     <td>
-                        {static:Resources.Lang.league}
+                        <label>{static:Resources.Lang.league}</label>
                     </td>
                     <td id="selLeague" name="selLeague">
-                        <select onchange="Result_ChangeLeague();" name="ddlLeague" id="ddlLeague">
-                            <option value='0' selected='selected'>*..::* Show All Leagues  *::..*</option>
+                        <select onchange="Result_ChangeLeague();" name="ddlLeague" id="ddlLeague"
+							style="width: auto">
+                            <option value='0' selected='selected'>&mdash;&mdash;&mdash; Show All Leagues &mdash;&mdash;&mdash;</option>
                             <!--LeagueOption-->
                             <option value="{LeagueId}" {SelectedOption}>{LeagueName}</option>
                             <!--/LeagueOption-->
@@ -53,11 +66,8 @@
             </table>
             <!--/SportCriteria-->
             <div id="tbl-container">
-                <div id="boderRight">
-                    <!--ExcelContents-->
-                            
-                    <!--/ExcelContents-->
-                </div>
+                <!--ExcelContents-->            
+                <!--/ExcelContents-->
             </div>
         </div>        
     </div>

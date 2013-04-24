@@ -72,7 +72,7 @@ namespace Fanex.Age.UI.Reports
 
 		public class ResultBilliard_RowData_League_Block: Block
 		{
-			protected static string s10 = "<tr><td colspan=\"4\" class=\"league\" style=\"padding-left: 20px;\">";
+			protected static string s10 = "<tr class=\"league\"><td colspan=\"4\" style=\"padding-left: 20px;\">";
 			public string LeagueName = "{LeagueName}";
 			protected static string s11 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)

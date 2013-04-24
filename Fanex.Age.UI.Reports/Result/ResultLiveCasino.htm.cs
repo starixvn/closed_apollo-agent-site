@@ -76,7 +76,7 @@ namespace Fanex.Age.UI.Reports
 
 		public class ResultLiveCasino_RowData_League_Block: Block
 		{
-			protected static string s12 = "<tr><td colspan=\"5\" class=\"league\" style=\"padding-left: 97px;\"><div class=\"float_l\">";
+			protected static string s12 = "<tr class=\"league\"><td colspan=\"5\" style=\"padding-left: 97px;\"><div class=\"float_l\">";
 			public string LeagueName = "{LeagueName}";
 			protected static string s13 = "</div><div class=\"float_r\" style=\"padding-right:297px\">";
 			public string PlayerAndBanker = "{PlayerAndBanker}";
