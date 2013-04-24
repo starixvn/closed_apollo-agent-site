@@ -63,13 +63,18 @@ var ACCOUNT = function ($) {
 //            })
             ;
 
-
             $(".search-button").bind('click', function () {
                 ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val()); // -1: only search username
             });
 
             $(".show-section").bind('click', function () {
                 ACCOUNT.showSectionTab(this.parentNode.id, $(this).attr("agent-id"));
+            });
+
+            ACCOUNT.txtUsername.bind('keypress', function (e) {
+                if (e.keyCode == 13) {
+                    ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val()); // -1: only search username
+                }
             });
 
             ACCOUNT.txtUsername.bind('click', function () {

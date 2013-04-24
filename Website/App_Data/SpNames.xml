@@ -213,7 +213,7 @@
       <Mapping DataField="AgentLevel" ObjectProperty="Level" />
     </Setting>
 
-    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo_xtest" DbName="REPDB" Plain="0">
+    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="REPDB" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="ParentId" />
       <Mapping DataField="UGroup" ObjectProperty="Group" />
     </Setting>
@@ -297,6 +297,8 @@
       <Mapping DataField="CustID" ObjectProperty="MemberId"/>
       <Mapping DataField="PositionTaking" ObjectProperty="SoccerShare"/>
       <Mapping DataField="PlayerComm" ObjectProperty="MemComm"/>
+      <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
+      <Mapping DataField="WinLost" ObjectProperty="WinLoss"/>
     </Setting>
   </Function>
 
@@ -333,7 +335,7 @@
       <Mapping DataField="AwayOddsOE" ObjectProperty="AwayOddsOddEven" />
       <Mapping DataField="HomeOddsOE1st" ObjectProperty="HomeOddsHalfTimeOddEven" />
       <Mapping DataField="AwayOddsOE1st" ObjectProperty="AwayOddsHalfTimeOddEven" />
-      <Mapping DataField="Odds11st" ObjectProperty="Odds1HaftTime" />
+      <Mapping DataField="Odds11st" ObjectProperty="Odds1HalfTime" />
       <Mapping DataField="OddsX1st" ObjectProperty="OddsXHalfTime" />
       <Mapping DataField="Odds21st" ObjectProperty="Odds2HalfTime" />
       <Mapping DataField="HomeOddsDND" ObjectProperty="HomeOddsDrawNoDraw" />

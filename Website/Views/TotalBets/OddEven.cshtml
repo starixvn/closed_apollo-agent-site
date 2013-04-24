@@ -39,7 +39,7 @@
             <!--OneXTwoValue-->
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="5" betlist-type="BettypeMatch" 
                 href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lbl1x2" title="@Resources.Lang.ViewBetList">
-                @RazorHelper.FormatNumber(item.OneXTwoTotal, showZero: item.BetCount1X2 != 0)
+                @RazorHelper.FormatNumber(item.OneXTwoTotal, 2, showZero: item.BetCount1X2 != 0)
             </a>
             <!--/OneXTwoValue-->
         </td>
@@ -60,7 +60,7 @@
             <!--OneXTwoFirstHalfValue-->
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="15" betlist-type="BettypeMatch" 
                 href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lbl1x2_1st" title="@Resources.Lang.ViewBetList">
-                @RazorHelper.FormatNumber(item.OneXTwoFirstHalf,2, showZero: item.BetCount1X2HalfTime != 0)
+                @RazorHelper.FormatNumber(item.OneXTwoFirstHalf, 2, showZero: item.BetCount1X2HalfTime != 0)
             </a>
             <!--/OneXTwoFirstHalfValue-->
         </td>

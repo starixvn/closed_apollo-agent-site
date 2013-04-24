@@ -185,7 +185,7 @@ namespace Apollo.Age.Account.Controllers
             if (!agentId.HasValue && string.IsNullOrWhiteSpace(userName))
             {
                 criteria.AgentId = this.CurrentSession.AgentId;
-                criteria.Username = this.CurrentSession.Username;
+                criteria.Username = this.CurrentSession.AgentName;
 
             }
             else
@@ -202,7 +202,7 @@ namespace Apollo.Age.Account.Controllers
             var agentShareViewModel = new AgentShareViewModel()
             {
                 IsMember = false,
-                Username = userName,
+                Username = criteria.Username,
                 SportType = criteria.SportType,
                 BetType = criteria.BetType,
                 IsLive = criteria.IsLive,
