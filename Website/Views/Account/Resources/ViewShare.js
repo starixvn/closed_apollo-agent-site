@@ -48,7 +48,7 @@ var VIEWSHARE = function ($) {
             VIEWSHARE.userName.autocomplete({
                 source: function (request, response) {
                     var url = "";
-                    if (VIEWSHARE.isMember.val() == "true") {
+                    if (VIEWSHARE.isMember.val().toBoolean()) {
                         url = "Account/GetMemberByUsername?username=" + request.term;
                     }
                     else {
@@ -80,7 +80,7 @@ var VIEWSHARE = function ($) {
             if (betTypeId.indexOf("-") > -1) {
                 var arrBetType = betTypeId.split("-");
                 var url = "";
-                if (VIEWSHARE.isMember.val() == "true") {
+                if (VIEWSHARE.isMember.val().toBoolean()) {
                     url = APOLLO.resolveUrl('CustomerSetting/MemberShare?memberId=' + custId + '&userName='
                             + username + "&sportType=" + VIEWSHARE.sportType.val() + "&betType=" + arrBetType[1]
                             + "&isLive=" + (arrBetType[0] != "0"));
