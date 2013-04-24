@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" EnableSessionState="ReadOnly" AutoEventWireup="false" CodeFile="Announcement.aspx.cs" Inherits="Sunplus.Agent.UI._MemberInfo.Announcement.Announcement_Page" %>
