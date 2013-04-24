@@ -232,11 +232,22 @@ a {
 	}
 }
 
-.ui-dialog #dialog-details {
-	overflow: auto;
-}
-
 .w-order {
 	text-align: right;
 	width: 20px;
+}
+
+.ui-dialog #dialog-details {
+	overflow-y: auto;
+}
+/* FIX IE */
+
+.ie7 {
+	.ui-dialog #dialog-details {
+		overflow-y: auto;
+
+		.tblRpt {
+			width: 96%;
+		}
+	}
 }
