@@ -14,6 +14,7 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Account.Models;
     using Apollo.Age.Entities;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Criterias.Accounts;
 
     public interface IAccountService
     {
@@ -21,19 +22,19 @@ namespace Apollo.Age.Account.Services
 
         IEnumerable<MemberListModel> GetCustomerList(ref CustomerListCriteria criteria);
 
-        List<Agent> GetAgentByUsername(int actorAgentId, string username);
+        List<Agent> GetAgentByUsername(GetAgentByUsernameCriteria criteria);
 
-        List<Member> GetMemberByUsername(int actorAgentId, string username);
+        List<Member> GetMemberByUsername(GetMemberByUsernameCriteria criteria);
 
-        CustomerInfoModel GetAgentInfo(int actorAgentId, int agentId, string username);
+        CustomerInfoModel GetAgentInfo(AgentInfoCriteria criteria);
 
-        CustomerInfoModel GetMemberInfo(int actorAgentId, int custId, string username);
+        CustomerInfoModel GetMemberInfo(MemberInfoCriteria criteria);
 
-        List<Member> GetMemberDownline(int agentId, int pageIndex, int pageSize, ref int totalPage);
+        List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria);
 
-        List<Agent> GetAgentDownlinePath(int parentId, int agentId);
+        List<Agent> GetAgentDownlinePath(AgentDownlinePathCriteria criteria);
 
-        List<Agent> GetDirectDownline(int agentId);
+        List<Agent> GetDirectDownline(AgentDownlineCriteria criteria);
 
         List<AgentShareModel> GetAgentShare(AgentShareCriteria criteria);
 
