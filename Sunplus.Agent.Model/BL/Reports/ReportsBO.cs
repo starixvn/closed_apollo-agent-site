@@ -824,11 +824,11 @@ namespace Sunplus.Agent.Model.BL.Reports
         /// <param name="sportId"></param>
         /// <param name="leaugeId"></param>
         /// <returns></returns>
-        public DataTable GetResultMatchByLeague(DateTime date, int sportId, int leagueId)
-        {
-            string language = CurrentSession.Language;
-            return reportDAO.Age_Result_MatchSelByLeague(date, CurrentSession.CustId, sportId, leagueId, language);
-        }
+        //public DataTable GetResultMatchByLeague(DateTime date, int sportId, int leagueId)
+        //{
+        //    string language = CurrentSession.Language;
+        //    return reportDAO.Age_Result_MatchSelByLeague(date, CurrentSession.CustId, sportId, leagueId, language);
+        //}
 
         /// <summary>
         /// Get result for number game
