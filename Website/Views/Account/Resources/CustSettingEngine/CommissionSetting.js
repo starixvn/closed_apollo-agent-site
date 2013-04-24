@@ -16,7 +16,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.spinBoxItems = [];
     this.items = source.CommissionItems;
     this.currentGroup = source.UserGroup;
-    this.group = ["a", "b", "c", "d"];
+    this.group = ["A", "B", "C", "D"];
     this.groupSelect = null;
     this.Save = function () {
         if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return null;
@@ -126,7 +126,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             comContainer.appendChild(maxSpan);
             if (disable) {
                 comSpinBox.input.setAttribute("disabled", "disabled");
-                maxSpan.innerHTML = '[0]';
+                maxSpan.innerHTML = ' [0]';
             }
             else {
                 maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
@@ -162,7 +162,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             comContainer1.appendChild(maxSpan);
             if (disable) {
                 comSpinBox1.input.setAttribute("disabled", "disabled");
-                maxSpan.innerHTML = '[0]';
+                maxSpan.innerHTML = ' [0]';
             }
             else {
                 maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
@@ -254,11 +254,11 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 for (var groupIndex = 0; groupIndex < groupCount; groupIndex++) {
                     var currentGroup = this.group[groupIndex];
                     var option = document.createElement("OPTION");
-                    option.setAttribute("value", currentGroup.toLowerCase());
-                    option.innerHTML = currentGroup.toLowerCase();
+                    option.setAttribute("value", currentGroup);
+                    option.innerHTML = currentGroup;
                     groupSelect.appendChild(option);
                 }
-                groupSelect.value = this.currentGroup;
+                groupSelect.value = this.currentGroup.toUpperCase();
                 this.groupSelect = groupSelect;
                 tdGroupText.appendChild(groupSelect);
             }
