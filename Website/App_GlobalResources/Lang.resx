@@ -4321,10 +4321,10 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Taken Share (%)</value>
   </data>
   <data name="lblViewAllSetting" xml:space="preserve">
-    <value>View Own Setting</value>
+    <value>My Setting</value>
   </data>
   <data name="lblEditSetting" xml:space="preserve">
-    <value>Edit Setting</value>
+    <value>Edit Setting </value>
   </data>
   <data name="lblMemberListOf" xml:space="preserve">
     <value>Member List Of</value>
@@ -4340,5 +4340,47 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblViewMemberOutstanding" xml:space="preserve">
     <value>View Member's Outstanding</value>
+  </data>
+  <data name="lblAgentShare" xml:space="preserve">
+    <value>Agent Share</value>
+  </data>
+  <data name="lblCommissionGroup" xml:space="preserve">
+    <value>Commission Group</value>
+  </data>
+  <data name="lblCommissionSetting" xml:space="preserve">
+    <value>Commission Setting</value>
+  </data>
+  <data name="lblGivenShare" xml:space="preserve">
+    <value>Given Share (%)</value>
+  </data>
+  <data name="lblMaxGivenShare" xml:space="preserve">
+    <value>Max Given Share (%)</value>
+  </data>
+  <data name="lblMaxTakenShare" xml:space="preserve">
+    <value>Max Taken Share (%)</value>
+  </data>
+  <data name="lblMinGivenShare" xml:space="preserve">
+    <value>Min Given Share (%)</value>
+  </data>
+  <data name="lblShareSetting" xml:space="preserve">
+    <value>Share Setting</value>
+  </data>
+  <data name="lblShareSettingSimpleMode" xml:space="preserve">
+    <value>Share Setting (Soccer Deadball Handicap)</value>
+  </data>
+  <data name="lblTakenShare" xml:space="preserve">
+    <value>Taken Share (%)</value>
+  </data>
+  <data name="lblWarningEditSetting" xml:space="preserve">
+    <value>※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well.</value>
+  </data>
+  <data name="lblAdvancedMode" xml:space="preserve">
+    <value>Advanced Mode</value>
+  </data>
+  <data name="lblSimpleModel" xml:space="preserve">
+    <value>Simple Mode</value>
+  </data>
+  <data name="lblFormatAgentSetting" xml:space="preserve">
+    <value>Agent {0} Setting</value>
   </data>
 </root>

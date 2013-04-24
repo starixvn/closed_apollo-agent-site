@@ -18,7 +18,7 @@ var ACCOUNT = function ($) {
 
         getAccountInfo: function (custId, username) {
             var url = "";
-            if (ACCOUNT.dllIsMember.val() == "true") {
+            if (ACCOUNT.dllIsMember.val().toBoolean()) {
                 url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
             }
             else {
@@ -33,13 +33,9 @@ var ACCOUNT = function ($) {
 
             ACCOUNT.txtUsername.autocomplete({
                 source: function (request, response) {
-                    var url = "";
-                    if (ACCOUNT.dllIsMember.val() == "true") {
-                        url = "Account/GetMemberByUsername?username=" + request.term;
-                    }
-                    else {
-                        url = "Account/GetAgentByUsername?username=" + request.term;
-                    }
+                    var url = ACCOUNT.dllIsMember.val().toBoolean()
+                        ? "Account/GetMemberByUsername?username=" + request.term
+                        : "Account/GetAgentByUsername?username=" + request.term;
 
                     $.ajax({
                         url: APOLLO.resolveUrl(url),
@@ -60,7 +56,6 @@ var ACCOUNT = function ($) {
                 },
                 position: { my: "right top", at: "right bottom" }
             });
-
 
             $(".search-button").bind('click', function () {
                 ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val()); // -1: only search username

@@ -19,16 +19,19 @@ namespace Apollo.Age.BetList.Controllers
     /// </summary>
     public class BetListController : BaseController
     {
-        private readonly BetListService _betListService;
+        private readonly BetListService betListService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BetListController" /> class.
+        /// </summary>
         public BetListController()
         {
-            _betListService = new BetListService();
+            this.betListService = new BetListService();
         }
 
         public ViewResult Index(string type, int betType = (int)BetTypes.Handicap)
         {
-            return View();
+            return this.View();
         }
     }
 }

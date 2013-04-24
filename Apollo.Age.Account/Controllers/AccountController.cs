@@ -24,6 +24,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Pager;
     using Fanex.Common;
+    using Apollo.Age.Criterias.Accounts;
 
     public class AccountController : BaseController
     {
@@ -93,7 +94,15 @@ namespace Apollo.Age.Account.Controllers
         {
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
             int totalPage = 0;
-            var memberList = _accountService.GetMemberDownline(agentId, currentPageIndex + 1, PAGESIZE, ref totalPage);
+            var criteria = new MemberDownlineCriteria() {
+                AgentId = agentId,
+                PageIndex = currentPageIndex + 1,
+                PageSize = PAGESIZE,
+                TotalPages = totalPage
+            };
+
+            var memberList = _accountService.GetMemberDownline(ref criteria);
+            totalPage = criteria.TotalPages;
 
             return View(memberList.ToPagedList(currentPageIndex, PAGESIZE, totalPage * PAGESIZE));
         }
@@ -103,7 +112,12 @@ namespace Apollo.Age.Account.Controllers
             HttpContext.Session["username"] = username;
             HttpContext.Session["isMember"] = "false";
 
-            var agentInfo = _accountService.GetAgentInfo(this.CurrentSession.AgentId, agentId, username);
+            var agentInfo = _accountService.GetAgentInfo(new GetAgentInfoCriteria
+            {
+                ActorAgentId = CurrentSession.AgentId,
+                AgentId = agentId,
+                Username = username
+            });
 
             if (agentInfo == null)
             {
@@ -129,7 +143,12 @@ namespace Apollo.Age.Account.Controllers
             HttpContext.Session["username"] = username;
             HttpContext.Session["isMember"] = "true";
 
-            var memberInfo = _accountService.GetMemberInfo(this.CurrentSession.AgentId, custId, username);
+            var memberInfo = _accountService.GetMemberInfo(new GetMemberInfoCriteria
+            {
+                ActorAgentId = CurrentSession.AgentId,
+                CustId = custId,
+                Username = username
+            });
 
             if (memberInfo == null)
             {
@@ -199,23 +218,35 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetDataByNode(int agentId)
         {
-            var customerList = _accountService.GetDirectDownline(agentId)
-                .Select(x => new { x.Id, x.Username, x.HasAgentDownline});
+            var criteria = new AgentDownlineCriteria() { 
+                AgentId = agentId
+            };
+
+            var customerList = _accountService.GetDirectDownline(criteria).Select(x => new { x.Id, x.Username, x.HasAgentDownline });
             return Json(customerList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetAgentByUsername(string username)
         {
-            var agentList = _accountService.GetAgentByUsername(this.CurrentSession.AgentId, username)
-                    .Select(x => new { x.Id, x.Username }).ToList();
+            var criteria = new GetAgentByUsernameCriteria() {
+                ActorAgentId = this.CurrentSession.AgentId,
+                Username = username
+            };
+
+            var agentList = _accountService.GetAgentByUsername(criteria).Select(x => new { x.Id, x.Username }).ToList();
 
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetMemberByUsername(string username)
         {
-            var memberList = _accountService.GetMemberByUsername(this.CurrentSession.AgentId, username)
-                    .Select(x => new { x.Id, x.Username }).ToList();
+            var criteria = new GetMemberByUsernameCriteria()
+            {
+                ActorAgentId = this.CurrentSession.AgentId,
+                Username = username
+            };
+
+            var memberList = _accountService.GetMemberByUsername(criteria).Select(x => new { x.Id, x.Username }).ToList();
 
             return Json(memberList, JsonRequestBehavior.AllowGet);
         }
@@ -224,7 +255,13 @@ namespace Apollo.Age.Account.Controllers
         {
             CurrentAgentId = agentId;
             ViewBag.CurrentAgentId = CurrentAgentId;
-            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, CurrentAgentId.Value).ToList();
+
+            var criteria = new AgentDownlinePathCriteria() {
+                ParentId = this.CurrentSession.AgentId,
+                AgentId = CurrentAgentId.Value
+            };
+
+            var listAgent = _accountService.GetAgentDownlinePath(criteria).ToList();
 
             return View(listAgent);
         }
@@ -239,15 +276,26 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.CurrentUsername = CurrentUsername;
             ViewBag.CurrentAgentLevel = CurrentAgentLevel;
 
-            var listAgent = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, CurrentAgentId.Value).ToList();
+            var criteria = new AgentDownlinePathCriteria()
+            {
+                ParentId = this.CurrentSession.AgentId,
+                AgentId = CurrentAgentId.Value
+            };
+
+            var listAgent = _accountService.GetAgentDownlinePath(criteria).ToList();
 
             return View(listAgent);
         }
 
         public JsonResult GetAgentDownlinePath(int agentId)
         {
-            var listValue = _accountService.GetAgentDownlinePath(this.CurrentSession.AgentId, agentId)
-                .Select(x => new { x.Id, x.Username }).ToList();
+            var criteria = new AgentDownlinePathCriteria()
+            {
+                ParentId = this.CurrentSession.AgentId,
+                AgentId = agentId
+            };
+
+            var listValue = _accountService.GetAgentDownlinePath(criteria).Select(x => new { x.Id, x.Username }).ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }

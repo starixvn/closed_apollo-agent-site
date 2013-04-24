@@ -12,8 +12,19 @@ namespace Apollo.Age.BetList.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// BetList Criteria
+    /// </summary>
     public class BetListCriteria : CriteriaBase
     {
+        public BetListCriteria()
+        {
+            this.FromDate = DateTime.Today;
+            this.ToDate = DateTime.Today;
+            this.PageIndex = 1;
+            this.PageSize = int.MaxValue - 1;
+        }
+
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
@@ -50,15 +61,7 @@ namespace Apollo.Age.BetList.Criterias
 
         public override bool IsValid()
         {
-            return (ToDate >= FromDate);
-        }
-
-        public BetListCriteria()
-        {
-            this.FromDate = DateTime.Today;
-            this.ToDate = DateTime.Today;
-            this.PageIndex = 1;
-            this.PageSize = int.MaxValue - 1;
+            return this.ToDate >= this.FromDate;
         }
     }
 }

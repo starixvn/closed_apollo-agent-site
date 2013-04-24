@@ -63,26 +63,15 @@
         }
 
         string message = ex.Message +
-                        "\r\nSOURCE: " + ex.Source +
-                        "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +
-                        "\r\nFORM: " + Request.Form.ToString() +
-                        "\r\nQUERYSTRING: " + Request.QueryString.ToString() +
-                        "\r\nTARGETSITE: " + ex.TargetSite +
-                        "\r\nSTACKTRACE: " + ex.StackTrace;
+                        "\r\nSource: " + ex.Source +
+                        "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+                        "\r\nForm: " + Request.Form.ToString() +
+                        "\r\nQueryString: " + Request.QueryString.ToString() +
+                        "\r\nTargetSite: " + ex.TargetSite +
+                        "\r\nStackTrace: " + ex.StackTrace;     
 
-        //if (HttpContext.Current.Handler is IRequiresSessionState)
-        //{
-        //    IUserSession session = UserSession.Current;
-        //    message += "\r\nCUSTID:" + session.CustId;
-        //}
+        Logs.Write(message);
 
-        //Logs.Write(message);
-
-        //if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.LocalTest)
-        //{
-        //    Server.ClearError();
-        //    Server.Transfer("~/Error.aspx");
-        //}
     }
 
     void Application_AcquireRequestState(object sender, EventArgs e)

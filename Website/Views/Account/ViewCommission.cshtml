@@ -51,25 +51,25 @@
 			@if (index == lastIndex && Model.IsMember)
 			{
 			<td>
-				@if (Model.Group == "a")
+				@if (Model.Group.ToLower() == "a")
 				{
 					@RazorHelper.FormatComm(comm.DiscountA)
 				}
 			</td>
 			<td>
-				@if (Model.Group == "b")
+				@if (Model.Group.ToLower() == "b")
 				{
 					@RazorHelper.FormatComm(comm.DiscountB)
 				}
 			</td>
 			<td>
-				@if (Model.Group == "c")
+				@if (Model.Group.ToLower() == "c")
 				{
 					@RazorHelper.FormatComm(comm.DiscountC)
 				}
 			</td>
 			<td>
-				@if (Model.Group == "d")
+				@if (Model.Group.ToLower() == "d")
 				{
 					@RazorHelper.FormatComm(comm.DiscountD)
 				}
