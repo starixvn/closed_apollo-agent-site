@@ -172,14 +172,25 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="username">selected agent username</param>
         public ActionResult AgentShare(int? agentId, string userName, short? sportType, short? betType, bool? isLive)
         {
-            var criteria = new AgentShareCriteria() {
+            AgentShareCriteria criteria = new AgentShareCriteria()
+            {
                 ActorAgentId = this.CurrentSession.AgentId,
-                AgentId = agentId.HasValue ? agentId.Value : -1,
-                Username = userName,
                 SportType = sportType.HasValue ? sportType.Value : Converter.To<short>(1),
                 BetType = betType.HasValue ? betType.Value : Converter.To<short>(1),
                 IsLive = isLive.HasValue ? isLive.Value : false
             };
+
+            if (!agentId.HasValue && string.IsNullOrWhiteSpace(userName))
+            {
+                criteria.AgentId = this.CurrentSession.AgentId;
+                criteria.Username = string.Empty;
+                
+            }
+            else
+            {
+                criteria.AgentId = agentId.HasValue ? agentId.Value : -1;
+                criteria.Username = userName;
+            }
 
             var agentShareModelList = _accountService.GetAgentShare(criteria);
 
