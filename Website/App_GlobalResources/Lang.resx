@@ -4321,7 +4321,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Taken Share (%)</value>
   </data>
   <data name="lblViewAllSetting" xml:space="preserve">
-    <value>View Own Setting</value>
+    <value>My Setting</value>
   </data>
   <data name="lblEditSetting" xml:space="preserve">
     <value>Edit Setting </value>
@@ -4379,5 +4379,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblSimpleModel" xml:space="preserve">
     <value>Simple Mode</value>
+  </data>
+  <data name="lblFormatAgentSetting" xml:space="preserve">
+    <value>Agent {0} Setting</value>
   </data>
 </root>
