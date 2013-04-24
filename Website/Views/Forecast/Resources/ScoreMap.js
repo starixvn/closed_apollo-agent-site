@@ -58,8 +58,8 @@ if (typeof jQuery != 'undefined') {
                 var url = SCOREMAP.baseLink + 'ScoreMapBetType';
                 //// If Show In PopUp then add BetType
                 if (SCOREMAP.viewPartial) {
-                    var btLive = $('#bet-types-live').val()[0] || "";
-                    var btDead = $('#bet-types-dead').val()[0] || "";
+                    var btLive = $('#bet-types-live').val().split(',')[0] || "";
+                    var btDead = $('#bet-types-dead').val().split(',')[0] || "";
                     url += "?liveBetType=" + btLive
             + "&deadBetType=" + btDead;
                 }
