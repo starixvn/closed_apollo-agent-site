@@ -297,6 +297,8 @@
       <Mapping DataField="CustID" ObjectProperty="MemberId"/>
       <Mapping DataField="PositionTaking" ObjectProperty="SoccerShare"/>
       <Mapping DataField="PlayerComm" ObjectProperty="MemComm"/>
+      <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
+      <Mapping DataField="WinLost" ObjectProperty="WinLoss"/>
     </Setting>
   </Function>
 
