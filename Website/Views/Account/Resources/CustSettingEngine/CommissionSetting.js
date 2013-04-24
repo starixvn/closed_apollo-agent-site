@@ -96,6 +96,16 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     minWidth: 150,
                     lastLetter: Fanex.CustSetting.COM_LAST_LETTER
                 }, 7);
+                spinBox.input.onchange = function (event) {
+            var currentValue = spinBox.getValue();
+            if (currentValue > uplineDiscount) {
+                currentValue = uplineDiscount;
+            }
+            else if (currentValue < 0) {
+                currentValue = 0;
+            }
+            spinBox.setValue(currentValue);
+        };
         this.addEventConstrain(spinBox, uplineDiscount);
         return spinBox;
     };
@@ -191,7 +201,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         bodyContainer.appendChild(box);
 
         var boxTBody = document.createElement("TBODY");
-        
+
 
         var context = Fanex.CustSetting.CURRENT_CONTEXT;
         var isEditNonDirectMember = context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;

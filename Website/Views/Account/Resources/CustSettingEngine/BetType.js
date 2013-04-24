@@ -486,6 +486,17 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
     uplineMaxSpan.className = "upline-agent-share";
     valueContainer.appendChild(uplineMaxSpan);
 
+    maxSpinBox.input.onchange = function (event) {
+        var currentValue = maxSpinBox.getValue();
+        if (currentValue > currentPtValue.Upline.Max) {
+            currentValue = currentPtValue.Upline.Max;
+        }
+        else if (currentValue < currentPtValue.Upline.Min) {
+            currentValue = currentPtValue.Upline.Min;
+        }
+        maxSpinBox.setValue(currentValue);
+    }
+
     // Get updated data
     this.SaveSimpleMode = function () {
         var maxValue = maxSpinBox.getValue();
@@ -534,6 +545,17 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPtValue.Upline.Max);
     uplineMaxSpan.className = "upline-agent-share";
     maxContainer.appendChild(uplineMaxSpan);
+
+    valueSpinBox.input.onchange = function (event) {
+        var currentValue = valueSpinBox.getValue();
+        if (currentValue > currentPtValue.Upline.Max) {
+            currentValue = currentPtValue.Upline.Max;
+        }
+        else if (currentValue < 0) {
+            currentValue = 0;
+        }
+        valueSpinBox.setValue(currentValue);
+    }
 
     // Get updated data
     this.SaveSimpleMode = function () {
