@@ -1,0 +1,151 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="ResultRepository.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Anders" date="2013.4.24">Created</change>
+// </history>
+
+
+namespace Apollo.Age.Reports.Repositories
+{
+    using System;
+    using System.Data;
+
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Apollo.Age.Reports.Criterias;
+    using Fanex.Data;
+    using System.Collections;
+
+    /// <summary>
+    ///  move code from Sunplus.Agent.Model, it's temporarily use
+    /// </summary>
+    public class ResultRepository
+    {
+        public DataTable GetResultMatchByLeague(DateTime date, int custId, int sportId, int leagueId, string language)
+        {          
+
+            var dataTable = new DataTable();
+            using (ObjectDb db = new ObjectDb("Age_Result_MatchSelByLeague"))
+            {
+                DataSet ds = db.ExecuteDataSet(new { fromdate = date, sporttype = sportId, custId = custId, leagueid = leagueId, language = language });
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    dataTable = ds.Tables[0];
+                }
+
+            }
+
+            return dataTable;
+        }
+
+        public DataTable GetResultSportByDate(DateTime date)
+        {
+            var dataTable = new DataTable();
+            using (ObjectDb db = new ObjectDb("Age_Result_SportSelByDate"))
+            {
+                DataSet ds = db.ExecuteDataSet(new { eventdate = date });
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    dataTable = ds.Tables[0];
+                }
+
+            }
+
+            return dataTable;
+        }
+
+        public DataTable GetOutrightResult(DateTime fromDate, DateTime toDate)
+        {
+
+            var dataTable = new DataTable();
+            using (ObjectDb db = new ObjectDb("Age_Result_Outright"))
+            {
+                DataSet ds = db.ExecuteDataSet(new { fromDate = fromDate, toDate = toDate });
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    dataTable = ds.Tables[0];
+                }
+
+            }
+
+            return dataTable;
+        }
+
+        public DataTable GetResultLeagueByDate(DateTime date, int sportId, string language)
+        {
+            var dataTable = new DataTable();
+            using (ObjectDb db = new ObjectDb("Age_Result_LeagueSelByDate"))
+            {
+                DataSet ds = db.ExecuteDataSet(new { eventdate = date, sporttype = sportId, language = language });
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    dataTable = ds.Tables[0];
+                }
+
+            }
+
+            return dataTable;
+        }
+
+        public DataTable SelectMatchForViewResult(int matchId, string raceno)
+        {
+
+            var dataTable = new DataTable();
+            using (ObjectDb db = new ObjectDb("Age_BetList_SelMatchResult"))
+            {
+                DataSet ds = db.ExecuteDataSet(new { matchid = matchId, raceno = raceno });
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    dataTable = ds.Tables[0];
+                }
+
+            }
+
+            return dataTable;
+
+        }
+
+        public DataTable SelectMatchResultParlay(long refno)
+        {
+            var dataTable = new DataTable();
+            using (ObjectDb db = new ObjectDb("Age_BetList_SelMatchResultParlay"))
+            {
+                DataSet ds = db.ExecuteDataSet(new { refno = refno });
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    dataTable = ds.Tables[0];
+                }
+
+            }
+
+            return dataTable;
+        }
+
+        //public DataTable SelectMatchForViewNumberGameResult(int matchId)
+        //{
+        //    var dataTable = new DataTable();
+        //    using (ObjectDb db = new ObjectDb("Age_BetList_SelMatchResultNumberGame"))
+        //    {
+        //        DataSet ds = db.ExecuteDataSet(new { matchId = matchId });
+
+        //        if (ds != null && ds.Tables.Count > 0)
+        //        {
+        //            dataTable = ds.Tables[0];
+        //        }
+
+        //    }
+
+        //    return dataTable;
+        //}
+    }
+}

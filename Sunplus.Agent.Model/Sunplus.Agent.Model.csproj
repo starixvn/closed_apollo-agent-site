@@ -130,7 +130,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\Admin\AdminBO.cs" />
     <Compile Include="BL\BetSetting\BetSettingBO.cs" />
     <Compile Include="BL\BetSummary\BetSummaryBO.cs" />
     <Compile Include="BL\Casino\CasinoAPILogger.cs">
@@ -154,7 +153,6 @@
     <Compile Include="BL\SubAcc\SubAccBO.cs" />
     <Compile Include="BL\Transfer\TransferBO.cs" />
     <Compile Include="Common\AgentIPFormat.cs" />
-    <Compile Include="DL\Admin\AdminDAO.cs" />
     <Compile Include="DL\BetSetting\BetSettingDAO.cs" />
     <Compile Include="DL\BetSummary\BetSummaryDAO.cs" />
     <Compile Include="DL\Charts\ChartsDAO.cs" />
@@ -248,10 +246,6 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Age.DTO\Fanex.Age.DTO.csproj">
-      <Project>{A7134F35-65C9-43A6-9386-86CD65F349DD}</Project>
-      <Name>Fanex.Age.DTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
       <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>

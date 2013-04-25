@@ -17,6 +17,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.items = source.CommissionItems;
     this.currentGroup = source.UserGroup;
     this.group = ["A", "B", "C", "D"];
+    this.currentDisableMaxSpanText = ' [0]';
     this.groupSelect = null;
     this.Save = function () {
         if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return null;
@@ -96,6 +97,16 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     minWidth: 150,
                     lastLetter: Fanex.CustSetting.COM_LAST_LETTER
                 }, 7);
+        spinBox.input.onchange = function (event) {
+            var currentValue = spinBox.getValue();
+            if (currentValue > uplineDiscount) {
+                currentValue = uplineDiscount;
+            }
+            else if (currentValue < 0) {
+                currentValue = 0;
+            }
+            spinBox.setValue(currentValue);
+        };
         this.addEventConstrain(spinBox, uplineDiscount);
         return spinBox;
     };
@@ -126,7 +137,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             comContainer.appendChild(maxSpan);
             if (disable) {
                 comSpinBox.input.setAttribute("disabled", "disabled");
-                maxSpan.innerHTML = ' [0]';
+                maxSpan.innerHTML = this.currentDisableMaxSpanText;
             }
             else {
                 maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
@@ -162,7 +173,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             comContainer1.appendChild(maxSpan);
             if (disable) {
                 comSpinBox1.input.setAttribute("disabled", "disabled");
-                maxSpan.innerHTML = ' [0]';
+                maxSpan.innerHTML = this.currentDisableMaxSpanText;
             }
             else {
                 maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, uplineDiscount, 2);
@@ -191,7 +202,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         bodyContainer.appendChild(box);
 
         var boxTBody = document.createElement("TBODY");
-        
+
 
         var context = Fanex.CustSetting.CURRENT_CONTEXT;
         var isEditNonDirectMember = context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
@@ -311,8 +322,12 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     var currentValue = this.value;
                     var selectedCom = self.GetUplineGroupDiscountForMember(currentValue);
                     //groupText1.value = selectedCom.Upline.Discount + Fanex.CustSetting.COM_LAST_LETTER;
-                    maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, selectedCom.Upline.Discount, 2);
-
+                    if (currentValue == 'D') {
+                        maxSpan.innerHTML = self.currentDisableMaxSpanText;
+                    }
+                    else {
+                        maxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, selectedCom.Upline.Discount, 2);
+                    }
                     self.addEventConstrain(comSpinBox, selectedCom.Upline.Discount);
                 };
             }
