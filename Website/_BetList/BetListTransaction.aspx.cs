@@ -24,7 +24,6 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
     using Fanex.Age.UI.Reports.BetList;
-    using Fanex.Age.Utility;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Age.ExtTemplate;
