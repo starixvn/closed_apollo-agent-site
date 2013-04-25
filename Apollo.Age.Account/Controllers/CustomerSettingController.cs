@@ -411,7 +411,7 @@ namespace Apollo.Age.Account.Controllers
 
         private SettingContext GetCurrentSettingContext(int targetCustId, int? agentId, int? agentLevel, FormSettingType formSettingType)
         {
-            SettingContext settingContex = new SettingContext
+            SettingContext settingContext = new SettingContext
             {
                 CustId = base.CurrentSession.AgentId,
                 TargetCustId = targetCustId,
@@ -422,22 +422,30 @@ namespace Apollo.Age.Account.Controllers
                 FormId = FormType.EditPT
             };
 
-            if (settingContex.TargetRoleId == (int)Role.Member)
+            if (settingContext.TargetRoleId == (int)Role.Member)
             {
-                settingContex.RoleId = (int)Role.Agent;
+                settingContext.RoleId = (int)Role.Agent;
             }
 
             if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
             {
-                settingContex.FormId = FormType.EditMemberNonDirect;
+                settingContext.FormId = FormType.EditMemberNonDirect;
             }
 
             if (agentId != null && targetCustId != 0 && agentId.Value == targetCustId)
             {
-                settingContex.FormId = FormType.ViewAllSetting;
+                settingContext.FormId = FormType.ViewAllSetting;
             }
 
-            return settingContex;
+            if (formSettingType == FormSettingType.PositionTaking 
+                && base.CurrentSession.AgentId == 0
+                && settingContext.TargetRoleId == (int)Role.Member
+                && agentId != null)
+            {
+                settingContext.CustId = agentId.Value;
+            }
+
+            return settingContext;
         }
 
 
