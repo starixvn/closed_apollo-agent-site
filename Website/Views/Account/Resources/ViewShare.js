@@ -61,7 +61,8 @@ var VIEWSHARE = function ($) {
                             var found = $.map(data, function (item) {
                                 return {
                                     label: item.Username,
-                                    value: item.Id
+                                    value: item.Username,
+                                    id: item.Id
                                 }
                             });
 
@@ -70,7 +71,7 @@ var VIEWSHARE = function ($) {
                     });
                 },
                 select: function (event, ui) {
-                    VIEWSHARE.getViewShare(ui.item.value, ui.item.label);
+                    VIEWSHARE.getViewShare(ui.item.id, ui.item.value);
                 },
                 position: { my: "right top", at: "right bottom" }
             });

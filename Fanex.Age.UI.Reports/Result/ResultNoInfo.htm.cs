@@ -23,9 +23,9 @@ namespace Fanex.Age.UI.Reports
 			protected static string s7{get{return Resources.Lang.finalscore;}}
 			protected static string s8 = "</th><th class=\"nowrap\">";
 			protected static string s9{get{return Resources.Lang.status;}}
-			protected static string s10 = "</th></tr></thead><tr class=\"no_info\"><td colspan=\"5\">";
+			protected static string s10 = "</th></tr></thead><tbody><tr class=\"no_info\"><td colspan=\"5\">";
 			protected static string s11{get{return Resources.Lang.noInfo;}}
-			protected static string s12 = "</td></tr></table>";
+			protected static string s12 = "</td></tr></tbody></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

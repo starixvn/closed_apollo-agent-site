@@ -43,7 +43,8 @@ var ACCOUNT = function ($) {
                             var found = $.map(data, function (item) {
                                 return {
                                     label: item.Username,
-                                    value: item.Id
+                                    value: item.Username,
+                                    id: item.Id
                                 }
                             });
 
@@ -52,7 +53,7 @@ var ACCOUNT = function ($) {
                     });
                 },
                 select: function (event, ui) {
-                    ACCOUNT.getAccountInfo(ui.item.value, ui.item.label);
+                    ACCOUNT.getAccountInfo(ui.item.id, ui.item.value);
                 },
                 position: { my: "right top", at: "right bottom" }
             });

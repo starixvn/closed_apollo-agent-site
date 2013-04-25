@@ -68,7 +68,7 @@ namespace Fanex.Age.UI.Reports
 
 		public class ResultOutright_RowData_League_Block: Block
 		{
-			protected static string s8 = "<tr><td colspan=\"3\" class=\"league\" style=\"padding-left: 20px\">";
+			protected static string s8 = "<tr class=\"league\"><td colspan=\"3\" style=\"padding-left: 20px\">";
 			public string LeagueName = "{LeagueName}";
 			protected static string s9 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
