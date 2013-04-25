@@ -52,3 +52,8 @@ if (typeof jQuery != 'undefined') {
         FCHANDICAPOU.init();
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 };
+
+
+function UpdateForecastHDValue() {
+    document.location.href = APOLLO.resolveUrl("Forecast/FCHandicapOverUnder?leagueId=" + FCHANDICAPOU.currentLeague);
+}
