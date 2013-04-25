@@ -153,3 +153,29 @@ var TOTALBETS = function ($) {
         }
     };
 } (jQuery);
+
+$(function () {
+    if (currentMainShareHolderId) {
+        $("#ddlMainShareHolder").change(function () {
+            var $this = $(this);
+            var markIndex = document.location.href.indexOf('?');
+            var link = document.location.href;
+            if (markIndex > 0) {
+                link = document.location.href.substring(0, markIndex);
+            }
+
+            document.location.href = link + "?mainShareHolderId=" + $this.val();
+        });
+    }
+});
+
+function ReloadPage() {
+    location.reload();
+//    if (currentMainShareHolderId > 0) {
+//        document.location.href = APOLLO.resolveUrl("Forecast/FC1X2?leagueId=" + FC1X2.currentLeague); 
+//    }
+//    else {
+//        //
+//        location.reload();
+//    }
+}

@@ -21,10 +21,10 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
+    using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Pager;
     using Fanex.Common;
-    using Apollo.Age.Criterias.Accounts;
 
     public class AccountController : BaseController
     {
@@ -94,7 +94,8 @@ namespace Apollo.Age.Account.Controllers
         {
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
             int totalPage = 0;
-            var criteria = new MemberDownlineCriteria() {
+            var criteria = new MemberDownlineCriteria()
+            {
                 AgentId = agentId,
                 PageIndex = currentPageIndex + 1,
                 PageSize = PAGESIZE,
@@ -218,7 +219,8 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetDataByNode(int agentId)
         {
-            var criteria = new AgentDownlineCriteria() { 
+            var criteria = new AgentDownlineCriteria()
+            {
                 AgentId = agentId
             };
 
@@ -228,7 +230,8 @@ namespace Apollo.Age.Account.Controllers
 
         public JsonResult GetAgentByUsername(string username)
         {
-            var criteria = new GetAgentByUsernameCriteria() {
+            var criteria = new GetAgentByUsernameCriteria()
+            {
                 ActorAgentId = this.CurrentSession.AgentId,
                 Username = username
             };
@@ -256,7 +259,8 @@ namespace Apollo.Age.Account.Controllers
             CurrentAgentId = agentId;
             ViewBag.CurrentAgentId = CurrentAgentId;
 
-            var criteria = new AgentDownlinePathCriteria() {
+            var criteria = new AgentDownlinePathCriteria()
+            {
                 ParentId = this.CurrentSession.AgentId,
                 AgentId = CurrentAgentId.Value
             };
@@ -295,7 +299,9 @@ namespace Apollo.Age.Account.Controllers
                 AgentId = agentId
             };
 
-            var listValue = _accountService.GetAgentDownlinePath(criteria).Select(x => new { x.Id, x.Username }).ToList();
+            var listValue = _accountService.GetAgentDownlinePath(criteria)
+                .Select(x => new { x.Id, x.Username, x.Level })
+                .ToList();
 
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
