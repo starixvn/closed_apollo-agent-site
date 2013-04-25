@@ -36,8 +36,8 @@ namespace Apollo.Age.TotalBets.Criterias
                     return "Age_TotalBets_2_5_12_15_123";
                 case (int)BetTypes.HT_FT: // HTFT
                     return "Age_TotalBets_16";
-                case 161: // Number Game
-                    return "Age_TotalBets_161";
+                //case 161: // Number Game
+                //    return "Age_TotalBets_161";
                 case (int)BetTypes.Draw_No_Bet: // Home/Draw/Away/No Bet
                     return "Age_TotalBets_25_121_122";
                 case (int)BetTypes.First_Goal_Last_Goal: // First Goal/Last Goal

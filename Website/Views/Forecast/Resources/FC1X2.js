@@ -10,6 +10,9 @@ if (typeof jQuery != 'undefined') {
             init: function () {
                 parent.$(".ui-dialog .ui-dialog-title").text("FORECAST");
                 if (FC1X2.matchId > 0) {
+                    if (currentMainShareHolderId > 0) {
+                        $("#main-shareholder-box").hide();
+                    }
                     FC1X2.loadMatch();
                 }
                 else {
@@ -61,19 +64,35 @@ if (typeof jQuery != 'undefined') {
         });
             },
             changeLeague: function () {
-                var url = FC1X2.link + '?leagueId=' + FC1X2.currentLeague;
+                var url = FC1X2.link + '?leagueId=' + FC1X2.currentLeague
+                + '&mainShareHolderId=' + currentMainShareHolderId;
                 $("#forecast-body").load(url);
                 FC1X2.registerEvents(true);
             },
             loadMatch: function () {
                 var url = FC1X2.link + '?matchId=' + FC1X2.matchId + '&betType=' + FC1X2.betType;
+                if (currentMainShareHolderId > 0) {
+                    url += '&mainShareHolderId=' + currentMainShareHolderId;
+                }
                 $("#forecast-body").load(url);
                 FC1X2.registerEvents(false);
             }
         };
     } (jQuery);
 
-	$(function () {
+    $(function () {
+        if (currentMainShareHolderId > 0) {
+            $("#ddlMainShareHolder").change(function () {
+                var $this = $(this);
+                var markIndex = document.location.href.indexOf('?');
+                var link = document.location.href;
+                if (markIndex > 0) {
+                    link = document.location.href.substring(0, markIndex);
+                }
+
+                document.location.href = link + "?mainShareHolderId=" + $this.val();
+            });
+        }
 		FC1X2.init();
 	}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 };
