@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criterias\Accounts\AgentGetStatusCriteria.cs" />
+    <Compile Include="Criterias\GetAllMainShareHolderCriteria.cs" />
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
     <Compile Include="Criterias\Reports\OutStandings\AgentOutStandingCriteria.cs" />
     <Compile Include="Criterias\Reports\OutStandings\MemberOutStandingCriteria.cs" />
