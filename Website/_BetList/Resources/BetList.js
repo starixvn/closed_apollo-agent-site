@@ -217,7 +217,7 @@ if (typeof jQuery != "undefined") {
                         "&fromdate=" + fromDate +
                         "&toDate=" + toDate +
 						"&type=" + type;
-               
+
                 ajax.Request(url, {
                     asynchronous: true,
                     parameters: ajaxParams,

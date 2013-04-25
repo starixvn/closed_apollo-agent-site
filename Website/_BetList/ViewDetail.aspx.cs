@@ -15,6 +15,7 @@ using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
 using Fanex.BetList.Core.Utils;
+using Fanex.Agent.UI._BetList;
 
 namespace Sunplus.Agent.UI._BetList
 {

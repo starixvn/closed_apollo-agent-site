@@ -36,7 +36,7 @@ var AGENTLIST = function ($) {
                         }
                         else {
                             template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' >" + result[i].Username + "</a>";
-                            template += "<img alt='' height='12' width='12' src= '" + APOLLO.resolveUrl("../_GlobalResources/Images/breadcrumb.gif") + "'/>";
+                            template += "<span class='breadcrumbs'></span>";
                         }
                     }
                     $("#divnavigation").html(template);
