@@ -28,6 +28,9 @@ if (typeof jQuery != 'undefined') {
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
                 + '&betType=' + $this.attr("bet-type")
                 + '&leagueName=' + FCHANDICAPOU.currentLeagueName);
+                if (currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + currentMainShareHolderId;
+                }
                 //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
                 //location.href = url;
                 ageWnd.openDialog(url, 'FORECAST', {
