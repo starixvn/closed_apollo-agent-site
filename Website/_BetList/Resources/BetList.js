@@ -177,7 +177,7 @@ function OpenScoreMap(matchIds, bettype, liveindicator) {
             (liveindicator == 1
                 ? "&liveBetTypes=" + bettype
                 : "&deadBallBetTypes=" + bettype));
-	wnd.open(url, '', 0, 20, 900, 480);
+	wnd.open(url, 'SCORE MAP', 0, 20, 900, 550);
 }
 
 RegisterStartUp(InitBetList);

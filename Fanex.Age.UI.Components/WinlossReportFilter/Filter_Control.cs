@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Fanex.Age.UI.Components.WinlossReportFilter;
-using Sunplus.Agent.Model.Entities.Permission;
-using Sunplus.Agent.Model.BL.Definitions;
+//using Sunplus.Agent.Model.Entities.Permission;
+//using Sunplus.Agent.Model.BL.Definitions;
 
 namespace Fanex.Age.UI.Components
 {
