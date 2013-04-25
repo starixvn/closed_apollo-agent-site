@@ -20,6 +20,7 @@ namespace Apollo.Age.TotalBets.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Criterias;
     using System.Linq;
+    using Apollo.Age.Models;
 
     public class TotalBetsController : BaseController
     {

@@ -1,8 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
+    var currentAgentId = ViewBag.CurrentAgentId;
+    var mainShareHolders = (IEnumerable<Apollo.Age.Models.MainShareHolderModel>)ViewBag.MainShareHolders;
+}
+<!DOCTYPE html>
 <!--[if IE 7 ]> <html class="ie7 ie" lang="en-us"> <![endif]-->
 <!--[if IE 8 ]> <html class="ie8 ie" lang="en-us"> <![endif]-->
 <!--[if IE 9 ]> <html class="ie9 ie" lang="en-us"> <![endif]-->
-<!--[if (gt IE 9)]><!--> <html class="ie10 ie" lang="en-us"> <!--<![endif]-->
+<!--[if (gt IE 9)]><!-->
+<html class="ie10 ie" lang="en-us">
+<!--<![endif]-->
 <!--[if !(IE)]> <html lang="en-us"><![endif]-->
 <head>
     <meta charset="utf-8" />
@@ -19,12 +26,20 @@
     @RazorHelper.Piwik()
     <div id="page_main">
         <div id="header_main">
-            @*<span class="upper">@Resources.Lang.Forecast</span>*@
-            <span id="leagueName">
-            @ViewBag.Title
+            @*<span class="upper">@Resources.Lang.Forecast</span>*@ <span id="leagueName">
+                @ViewBag.Title
             </span>
         </div>
-        @RenderBody()
+        <div id="content_main">
+            @RenderSection("refreshcountdown", required: false)
+            @{
+                if (currentAgentId == 0)
+                {
+                @DropDownListHelper.RenderMainShareHolderDropDownList(currentMainShareHolderId, mainShareHolders)
+                }
+            }
+            @RenderBody()
+        </div>
     </div>
     @Html.Hidden("ApoRoot", Url.Content("~/"))
     <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
@@ -33,6 +48,9 @@
     <script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
     <script src="~/_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
     <script src="~/_Components/ErrorMsg/ErrorMsg.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var currentMainShareHolderId = @(currentMainShareHolderId);
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

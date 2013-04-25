@@ -11,10 +11,13 @@
 {
     <link href="~/Views/Forecast/Resources/FC.less" rel="Stylesheet" type="text/css" />
 }
-<div id="content_main">
+@section refreshcountdown
+{
     @RazorHelper.RefreshCountDown("ForeCastHandicapOU", 15, 0, "UpdateForecastHDValue();")
+}
+    
 
-    <div id="box_header">
+    <div class="box-header">
         <div class="row">
             <div class="cell">
                 <div class="label">
@@ -61,7 +64,7 @@
             @*Load Ajax*@
         </tbody>
     </table>
-</div>
+
 @section scripts
 {
     <script type="text/javascript" >

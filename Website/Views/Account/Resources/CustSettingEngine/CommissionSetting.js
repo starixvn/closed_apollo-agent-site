@@ -17,10 +17,10 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.items = source.CommissionItems;
     this.currentGroup = source.UserGroup;
     this.group = ["A", "B", "C", "D"];
-    this.currentDisableMaxSpanText = ' [0]';    
+    this.currentDisableMaxSpanText = ' [0]';
     this.groupSelect = null;
     this.Save = function () {
-        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return null;
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return {};
 
         if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             this.items[0].DiscountA = this.spinBoxItems[0].getValue();

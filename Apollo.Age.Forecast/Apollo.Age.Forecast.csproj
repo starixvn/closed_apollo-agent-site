@@ -55,7 +55,6 @@
     <Compile Include="Criterias\GetScoreMapResultCriteria.cs" />
     <Compile Include="Criterias\GetScoreMatchesByLeague.cs" />
     <Compile Include="Criterias\GetTopOddsByMatchCriteria.cs" />
-    <Compile Include="Models\MainShareHolderModel.cs" />
     <Compile Include="Models\ScoreMapBetTypeModel.cs" />
     <Compile Include="Models\ScoreMapResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
