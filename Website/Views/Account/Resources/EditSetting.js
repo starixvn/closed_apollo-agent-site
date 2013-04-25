@@ -35,6 +35,11 @@ if (typeof jQuery != 'undefined') {
             },
             saveSetting: function () {
                 if (BETLIMIT.betLimitElement.Validate()) {
+                    var commissionSettingValue = EDITCOMMISSION.commissionSettingElement.Save();
+                    if (commissionSettingValue == null) {
+                        noty({ text: invalidComMessage, type: 'error', timeout: 5000 });
+                        return;
+                    }
                     $("#btnSubmitFooter").attr("disabled", "disabled");
                     $.ajax({
                         url: APOLLO.resolveUrl('CustomerSetting/UpdateAllSetting'),
@@ -44,7 +49,7 @@ if (typeof jQuery != 'undefined') {
                         data: JSON.stringify({
                             settingContext: EDITPOSITIONTAKING.settingContext,
                             positionTakingSetting: EDITPOSITIONTAKING.positionTakingElement.Save(),
-                            commissionSetting: EDITCOMMISSION.commissionSettingElement.Save(),
+                            commissionSetting: commissionSettingValue,
                             betLimits: BETLIMIT.betLimitElement.Save()
                         })
                     }).done(function (data) {

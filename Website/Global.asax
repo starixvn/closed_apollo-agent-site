@@ -6,8 +6,6 @@
 <%@ Import Namespace="System.Collections" %>
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="Sunplus.Agent.Utilities" %>
-<%@ Import Namespace="Sunplus.Agent.Model.Entities" %>
-<%@ Import Namespace="Sunplus.Agent.Model.BL.Authorization" %>
 <%@ Import Namespace="Apollo.Age.Web.Services" %>
 <script RunAt="server">
     public static UnderMaintenanceService maintenanceService = null;

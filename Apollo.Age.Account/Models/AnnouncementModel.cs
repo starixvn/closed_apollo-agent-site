@@ -7,15 +7,10 @@
 //   <change who="Anders.Le" date="2013.4.4">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Account.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.Age.Utility;
-    using Sunplus.Agent.Model.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -79,32 +74,26 @@ namespace Apollo.Age.Account.Models
             }
         }
 
-        public string FullContent
+        public string GetFullContent(string userLang)
         {
-            get
+            string lang = GetLang(userLang, "Content").Replace("_", string.Empty);
+            string content = GetContent(userLang, lang);
+
+            if (GetMessageType == "private")
             {
-                string lang = GetLang("Content").Replace("_", string.Empty);
-                string content = GetContent(UserSession.Current.Language, lang);
-
-                if (GetMessageType == "private")
+                if (this.BetTransId != null)
                 {
-                    if (this.BetTransId != null)
-                    {
-                        content = content.Replace("@@", this.BetTransId);
-                    }
+                    content = content.Replace("@@", this.BetTransId);
                 }
-
-                return content;
             }
+
+            return content;
         }
 
-        public string SmallContent
+        public string GetSmallContent(string userLang)
         {
-            get
-            {
-                int maxLength = this.IsRead ? 100 : 80;
-                return GetSmallContent(FullContent, maxLength);
-            }
+            int maxLength = this.IsRead ? 100 : 80;
+            return GetSmallContent(GetFullContent(userLang), maxLength);
         }
 
         private string GetContent(string userLanguage, string langName)
@@ -152,32 +141,34 @@ namespace Apollo.Age.Account.Models
                 content = value.ToString();
             }
 
-
             return content;
         }
 
-        private string GetLang(string original)
+        private string GetLang(string userLang, string original)
         {
-            var tmp = UserSession.Current.Language;
             var ret = "_";
-
-            switch (tmp)
+            switch (userLang)
             {
                 case "zh-CN":
                     ret += "cs";
                     break;
+
                 case "zh-TW":
                     ret += "ch";
                     break;
+
                 case "th-TH":
                     ret += "th";
                     break;
+
                 case "ja-JP":
                     ret += "jp";
                     break;
+
                 case "ko-KR":
                     ret += "ko";
                     break;
+
                 default:
                     ret += "en";
                     break;

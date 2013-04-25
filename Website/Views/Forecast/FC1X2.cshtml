@@ -7,13 +7,14 @@
     int matchId = ViewBag.MatchId != null ? (int)ViewBag.MatchId : 0;
     int betType = ViewBag.BetType != null ? (int)ViewBag.BetType : 0;
     string initLeagueName = ViewBag.LeagueName;
+    var leagueId = ViewBag.LeagueId ?? 0;
 }
 @section css
 {
     <link href="~/Views/Forecast/Resources/FC.less" rel="Stylesheet" type="text/css" />
 }
 <div id="content_main">
-    @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0)
+    @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0, "UpdateForecast1x2Value();")
     @if (matchId == 0)
     {
         <div id="box_header">
@@ -24,9 +25,20 @@
                     </div>
                     <div class="editor">
                         <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-                            @foreach (var league in leagues)
-                            {
-                                <option value="@league.LeagueId">@league.LeagueName</option>
+                            @{
+                                var selectedString = string.Empty;
+                                foreach (var league in leagues)
+                                {
+                                    if (league.LeagueId == leagueId)
+                                    {
+                                        selectedString = "selected='selected'";
+                                    }
+                                    else
+                                    {
+                                        selectedString = string.Empty;
+                                    }
+                                <option value="@league.LeagueId" @(selectedString) >@league.LeagueName</option>
+                                }
                             }
                         </select>
                     </div>

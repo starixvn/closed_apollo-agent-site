@@ -3,10 +3,8 @@ using System.Data;
 using System.IO;
 using System.Resources;
 using System.Web;
-using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
 using Fanex.Age.UI.Reports.Components;
-using Sunplus.Agent.Model.BL.Reports;
 
 /*
  * Created 20100527@Jacob - Support render full mode or body mode
@@ -41,17 +39,6 @@ namespace Fanex.Age.UI.Reports
         protected bool _sortingEnabled = true;
 
         #endregion Sorting variable
-
-        private ReportsBO _reportBO = null;
-
-        protected ReportsBO _ReportBO
-        {
-            get
-            {
-                if (_reportBO == null) _reportBO = new ReportsBO(CurrentUserSession.NetSessionId);
-                return _reportBO;
-            }
-        }
 
         #endregion Variable
 
@@ -105,7 +92,7 @@ namespace Fanex.Age.UI.Reports
         {
             get
             {
-                return Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowCasino;
+                return false;
             }
         }
 
@@ -123,25 +110,25 @@ namespace Fanex.Age.UI.Reports
         /// Get winloss title
         /// </summary>
         /// <returns></returns>
-        public String GetWinlossTitle()
-        {
-            if (CurrentUserSession.IsAgent) return Resources.Lang.memberwinloss;
-            else if (CurrentUserSession.IsMaster) return Resources.Lang.agentwinloss;
-            else if (CurrentUserSession.IsSuper) return Resources.Lang.masterwinloss;
-            else return "";
-        }
+        //public String GetWinlossTitle()
+        //{
+        //    //if (CurrentUserSession.IsAgent) return Resources.Lang.memberwinloss;
+        //    //else if (CurrentUserSession.IsMaster) return Resources.Lang.agentwinloss;
+        //    //else if (CurrentUserSession.IsSuper) return Resources.Lang.masterwinloss;
+        //    //else return "";
+        //}
 
         /// <summary>
         /// Get winloss detail title
         /// </summary>
         /// <returns></returns>
-        public String GetWinlossDetailTitle()
-        {
-            if (CurrentUserSession.IsAgent) return Resources.Lang.memberwinlossdetail;
-            else if (CurrentUserSession.IsMaster) return Resources.Lang.agentwinlostdetail;
-            else if (CurrentUserSession.IsSuper) return Resources.Lang.masterwinlostdetail;
-            else return "";
-        }
+        //public String GetWinlossDetailTitle()
+        //{
+        //    if (CurrentUserSession.IsAgent) return Resources.Lang.memberwinlossdetail;
+        //    else if (CurrentUserSession.IsMaster) return Resources.Lang.agentwinlostdetail;
+        //    else if (CurrentUserSession.IsSuper) return Resources.Lang.masterwinlostdetail;
+        //    else return "";
+        //}
 
         #endregion Utility
 
@@ -161,8 +148,8 @@ namespace Fanex.Age.UI.Reports
             // export to excel
             _exportToExcel = String.IsNullOrEmpty(Request["exporttoexcel.x"]) ? false : true;
 
-            _custId = GetIntRequest("custid", CurrentUserSession.CustId);
-            _roleId = GetIntRequest("roleid", CurrentUserSession.RoleId);
+            // _custId = GetIntRequest("custid", CurrentUserSession.CustId);
+            //_roleId = GetIntRequest("roleid", CurrentUserSession.RoleId);
 
             _sortingColumn = GetStringRequest("sortingcolumn", "");
             _sortingUp = GetBooleanRequest("sortingup", true);
@@ -171,13 +158,13 @@ namespace Fanex.Age.UI.Reports
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
             //Hard-code to allow SB8R view in 4 weeks only
-            if (CurrentUserSession.SRecommendId == 955286)
-            {
-                if (_dateFrom.AddDays(28) < DateTime.Now)
-                {
-                    _dateFrom = DateTime.Now.AddDays(-28);
-                }
-            }
+            //if (CurrentUserSession.SRecommendId == 955286)
+            //{
+            //    if (_dateFrom.AddDays(28) < DateTime.Now)
+            //    {
+            //        _dateFrom = DateTime.Now.AddDays(-28);
+            //    }
+            //}
 
             _dateFrom = ResetStartDate(_dateFrom);
             _dateTo = ResetStartDate(_dateTo);
@@ -194,10 +181,10 @@ namespace Fanex.Age.UI.Reports
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        private int CheckRoleIdConstrain(int roleId)
-        {
-            return roleId > CurrentUserSession.RoleId ? CurrentUserSession.RoleId : roleId;
-        }
+        //private int CheckRoleIdConstrain(int roleId)
+        //{
+        //    return roleId > CurrentUserSession.RoleId ? CurrentUserSession.RoleId : roleId;
+        //}
 
         /// <summary>
         /// Get outstanding title
@@ -205,28 +192,28 @@ namespace Fanex.Age.UI.Reports
         /// <param name="roleId"></param>
         /// <param name="positionTitle"></param>
         /// <returns></returns>
-        public String GetOutstandingTilte(int roleId, out String positionTitle)
-        {
-            positionTitle = "";
-            String outstandingTitle = "";
-            roleId = CheckRoleIdConstrain(roleId);
-            if (CurrentUserSession.IsAgent || roleId == (int)(Sunplus.Agent.Model.BL.Definitions.UserTypes.Agent))
-            {
-                positionTitle = Resources.Lang.agentposition;
-                outstandingTitle = Resources.Lang.memberoutstanding;
-            }
-            else if (CurrentUserSession.IsMaster || roleId == (int)(Sunplus.Agent.Model.BL.Definitions.UserTypes.Master))
-            {
-                positionTitle = Resources.Lang.masterposition;
-                outstandingTitle = Resources.Lang.lblAgentOutstanding;
-            }
-            else
-            {
-                positionTitle = Resources.Lang.superposition;
-                outstandingTitle = Resources.Lang.lblMasterOutstanding;
-            }
-            return outstandingTitle;
-        }
+        //public String GetOutstandingTilte(int roleId, out String positionTitle)
+        //{
+        //    positionTitle = "";
+        //    String outstandingTitle = "";
+        //    roleId = CheckRoleIdConstrain(roleId);
+        //    if (CurrentUserSession.IsAgent || roleId == (int)(Sunplus.Agent.Model.BL.Definitions.UserTypes.Agent))
+        //    {
+        //        positionTitle = Resources.Lang.agentposition;
+        //        outstandingTitle = Resources.Lang.memberoutstanding;
+        //    }
+        //    else if (CurrentUserSession.IsMaster || roleId == (int)(Sunplus.Agent.Model.BL.Definitions.UserTypes.Master))
+        //    {
+        //        positionTitle = Resources.Lang.masterposition;
+        //        outstandingTitle = Resources.Lang.lblAgentOutstanding;
+        //    }
+        //    else
+        //    {
+        //        positionTitle = Resources.Lang.superposition;
+        //        outstandingTitle = Resources.Lang.lblMasterOutstanding;
+        //    }
+        //    return outstandingTitle;
+        //}
 
         /// <summary>
         /// Export to excel
@@ -458,7 +445,7 @@ namespace Fanex.Age.UI.Reports
             RegisterJavascriptObject("SortingUp", _sortingUp);
             RegisterJavascriptObject("SortingEnabled", _sortingEnabled);
             RegisterJavascriptObject("_date", DateTime.Now.ToShortDateString());
-            RegisterJavascriptObject("RoleId", CurrentUserSession.RoleId);
+            //   RegisterJavascriptObject("RoleId", CurrentUserSession.RoleId);
         }
 
         #endregion Sorting

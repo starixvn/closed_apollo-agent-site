@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<AnnouncementModel>
 @{
     Layout = null;
+    var userLang = ViewBag.UserLang as string;
 }
 @if (Model != null && Model.Any())
 {
@@ -33,10 +34,10 @@
         </div>
         <div class="divContent">
             <div class="text_exposed_show small">
-                @msgItem.SmallContent
+                @msgItem.GetSmallContent(userLang)
             </div>
             <div class="text_exposed_hide full">
-                @msgItem.FullContent
+                @msgItem.GetFullContent(userLang)
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ using System;
 using System.Web;
 using System.Web.Security;
 
-using Sunplus.Agent.Model.BL.Authorization;
+//using Sunplus.Agent.Model.BL.Authorization;
 
 /*
  * Created 20100126@Lee - Sign-out handler. Clear all session keys, cookies, check-out On_User database server.
@@ -42,10 +42,10 @@ namespace Sunplus.Agent.UI._Authorization
             Session.Abandon();
             Response.Cookies.Clear();
             // Clear session ticket
-           FormsAuthentication.SignOut(); // Use this command will make the logout function log out all loged in users in the same machine and browser
-//           FormsAuthentication.RedirectToLoginPage();                    
-           Response.Redirect(FormsAuthentication.LoginUrl);
-           
+            FormsAuthentication.SignOut(); // Use this command will make the logout function log out all loged in users in the same machine and browser
+            //           FormsAuthentication.RedirectToLoginPage();
+            Response.Redirect(FormsAuthentication.LoginUrl);
+
         }
     }
 }

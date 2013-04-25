@@ -19,21 +19,21 @@ namespace Fanex.Age.UI.Reports.Result
     using System.Resources;
     using System.Text;
     using System.Web.UI;
-    //using Sunplus.Agent.Model.BL.Reports;
-    //using Sunplus.Agent.Model.Entities.Permission;
-    //using Sunplus.Agent.Utilities;
-    //using Sunplus.Agent.Model.BL.Definitions;
-using Apollo.Age.Reports.Services;
-    using Apollo.Age.Reports.Repositories;
-    using Apollo.Age.Web;
-    using Apollo.Age.Services;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Reports.Repositories;
+
+    using Apollo.Age.Reports.Services;
+    using Apollo.Age.Services;
+    using Apollo.Age.Web;
     using Fanex.Age.Utility;
 
     public partial class Result_Page : Reports_Page
     {
         private readonly ReportService _reportServce;
         private readonly ResultRepository _resultRepository;
+        protected DateTime MIN_REPORT_DATE = DateTime.Today;
+        protected DateTime MAX_REPORT_DATE = DateTime.Today;
+
         public Result_Page()
         {
             _reportServce = new ReportService();
@@ -114,17 +114,6 @@ using Apollo.Age.Reports.Services;
                     this.RenderSportCriteria(this.tpl.SportCriteria);
                 }
 
-                // Render content
-                if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Mix_Parlay
-                    || this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Combine_Mix_Parlay)
-                {
-                    this.RenderReportContentMixParlay(this.tpl.ExcelContents);
-                }
-                else
-                {
-                    this.RenderReportContent(this.tpl.ExcelContents);
-                }
-
                 this.RenderHiddenField(this.tpl);
                 tpl.ApoRoot = Page.ResolveUrl("~/");
 
@@ -150,7 +139,7 @@ using Apollo.Age.Reports.Services;
             this._matchId = GetIntRequest("matchid", 0);
             this.bettype = GetIntRequest("bettype", 0);
             this.raceNo = GetStringRequest("race", null);
-            this.refNo = GetLongRequest("refnum", 0);            
+            this.refNo = GetLongRequest("refnum", 0);
         }
 
         public override object InvokeData(System.Collections.Hashtable p)
@@ -248,28 +237,28 @@ using Apollo.Age.Reports.Services;
                 // Get result data
                 //switch (this._sportId)
                 //{
-                    //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.HorseRacing:
-                    //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.Greyhound:
-                    //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.Harness:
-                    //    reportData = _ReportBO.GetResultHRRaces(_dateFrom, this._sportId, this._leagueId);
-                    //    break;
-                    //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.NumberGame:
-                    //    reportData = _ReportBO.GetResultNumberGameByLeague(_dateFrom, this._leagueId);
-                    //    if (this._leagueId > 0)
-                    //    {
-                    //        reportData = SortData(reportData);
-                    //    }
+                //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.HorseRacing:
+                //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.Greyhound:
+                //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.Harness:
+                //    reportData = _ReportBO.GetResultHRRaces(_dateFrom, this._sportId, this._leagueId);
+                //    break;
+                //case (int)Sunplus.Agent.Model.BL.Definitions.SportType.NumberGame:
+                //    reportData = _ReportBO.GetResultNumberGameByLeague(_dateFrom, this._leagueId);
+                //    if (this._leagueId > 0)
+                //    {
+                //        reportData = SortData(reportData);
+                //    }
 
-                    //    break;
-                    //default:
+                //    break;
+                //default:
                 reportData = _resultRepository.GetResultMatchByLeague(_dateFrom, currentSession.UserId, this._sportId, this._leagueId, currentSession.Language);
-                        if (this._leagueId > 0)
-                        {
-                            reportData = SortData(reportData);
-                        }
+                if (this._leagueId > 0)
+                {
+                    reportData = SortData(reportData);
+                }
 
-            //            break;
-            //    }
+                //            break;
+                //    }
             }
 
             // Check show LiveCasino on Webconfig
@@ -292,11 +281,11 @@ using Apollo.Age.Reports.Services;
         /// <param name="headerTemplate"></param>
         private void RenderReportHeader(Result_Template template)
         {
-            if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Mix_Parlay)
+            if (this.bettype == (int)BetTypes.Mix_Parlay)
             {
                 this.tpl.ResultTitle.Title = this.tpl.Title = Resources.Lang.lblMixParlay;
             }
-            else if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Combine_Mix_Parlay)
+            else if (this.bettype == (int)BetTypes.Combine_Mix_Parlay)
             {
                 this.tpl.ResultTitle.Title = this.tpl.Title = Resources.Lang.lblSystemParlay;
             }
@@ -352,28 +341,28 @@ using Apollo.Age.Reports.Services;
 
                 switch (this._sportId)
                 {
-                    case (int)SportTypes.Soccer: 
+                    case (int)SportTypes.Soccer:
                         this.RenderSoccer(reportData, excelBlock);
                         break;
                     case (int)SportTypes.BasketBall:
                     case (int)SportTypes.Netball:
                     case (int)SportTypes.FootBall:
-                    case (int)SportTypes.Rugby: 
-                    this.RenderBasketBall(reportData, excelBlock);
+                    case (int)SportTypes.Rugby:
+                        this.RenderBasketBall(reportData, excelBlock);
                         break;
                     case (int)SportTypes.IceHockey:
-                    case (int)SportTypes.FieldHockey: 
-                    this.RenderHockey(reportData, excelBlock);
+                    case (int)SportTypes.FieldHockey:
+                        this.RenderHockey(reportData, excelBlock);
                         break;
-                    case (int)SportTypes.Tennis: 
+                    case (int)SportTypes.Tennis:
                         this.RenderTennis(reportData, excelBlock);
                         break;
                     case (int)SportTypes.VolleyBall:
                     case (int)SportTypes.Badminton:
-                    case (int)SportTypes.Squash: 
-                    this.RenderBadminton(reportData, excelBlock);
+                    case (int)SportTypes.Squash:
+                        this.RenderBadminton(reportData, excelBlock);
                         break;
-                    case (int)SportTypes.BaseBall: 
+                    case (int)SportTypes.BaseBall:
                         this.RenderBaseBall(reportData, excelBlock);
                         break;
                     case (int)SportTypes.Golf:
@@ -833,8 +822,8 @@ using Apollo.Age.Reports.Services;
                     rowBlock.ColorClass = i % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
                     rowBlock.KickOffTime = Formater.FullDateFormat2Line(dr["kickofftime"]);
                     rowBlock.EventStatus = this.MapEventStatusString(dr["eventstatus"].ToString()
-                        , dr.Table.Columns.Contains("IsPending") 
-                        ? Convert.ToBoolean(dr["IsPending"]) : false, dr.Table.Columns.Contains("IsHTCal") 
+                        , dr.Table.Columns.Contains("IsPending")
+                        ? Convert.ToBoolean(dr["IsPending"]) : false, dr.Table.Columns.Contains("IsHTCal")
                         ? Convert.ToBoolean(dr["IsHTCal"]) : false, dr.Table.Columns.Contains("calculate") ? Convert.ToBoolean(dr["calculate"]) : false);
 
                     // Home and away team
@@ -1341,7 +1330,7 @@ using Apollo.Age.Reports.Services;
                     if (resultSetDetail.IndexOf("*") >= 0)
                     {
                         string[] betStatusList = resultSetDetail.Replace("*", string.Empty).Split(' ');
-                        
+
                         for (int j = 1; j < betStatusList.Length; j++)
                         {
                             setId += string.Format("<td class='{0}'>{1}{2}", "RptHeader", j.ToString(), "</td>");
@@ -1625,8 +1614,8 @@ using Apollo.Age.Reports.Services;
                     rowBlock.ColorClass = raceCounter % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
                     rowBlock.HorseNo = dr["horseno"].ToString();
                     rowBlock.Placing = this.GetHorseRacingPlaceString(dr["place"].ToString());
-                    rowBlock.Place = Convert.ToDecimal(dr["placeodds"]) > 0 ? Formater.FormatNumber20(dr["placeodds"], CurrentUserSession.LangKey) : string.Empty;
-                    rowBlock.Win = Convert.ToDecimal(dr["odds"]) > 0 ? Formater.FormatNumber20(dr["odds"], CurrentUserSession.LangKey) : string.Empty;
+                    rowBlock.Place = Convert.ToDecimal(dr["placeodds"]) > 0 ? Formater.FormatNumber20(dr["placeodds"], "") : string.Empty; // CurrentUserSession.LangKey
+                    rowBlock.Win = Convert.ToDecimal(dr["odds"]) > 0 ? Formater.FormatNumber20(dr["odds"], "") : string.Empty; // CurrentUserSession.LangKey
                     rowBlock.Result = CacheRef.GetHorseTeamName(dr["horseid"]);
 
                     template.RowData.Append(rowBlock);
@@ -1819,182 +1808,6 @@ using Apollo.Age.Reports.Services;
         }
 
         #endregion OtherSport
-
-        #region LiveCasino
-
-        /// <summary>
-        /// Render LiveCasino
-        /// </summary>
-        /// <param name="reportData"></param>
-        /// <param name="excelBlock"></param>
-        private void RenderLiveCasino(DataTable reportData, Result_ExcelContents_Block excelBlock)
-        {
-            // Get report rows
-            Result.ResultLiveCasino_Template template = new Fanex.Age.UI.Reports.Result.ResultLiveCasino_Template();
-
-            int numRow = reportData.Rows.Count;
-            template.RowData.Clear();
-            if (numRow > 0)
-            {
-                int currentLeagueId = 0;
-                Result.ResultLiveCasino_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultLiveCasino_RowData_League_Block();
-                Result.ResultLiveCasino_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultLiveCasino_RowData_Row_Block();
-
-                // Do NOT show league block when Pop up the result of matches
-                if (this._matchId > 0)
-                {
-                    this.tpl.ResultTitle.Title = this.tpl.Title = CacheRef.GetSportName(this._sportId);
-                }
-
-                for (int i = 0; i < numRow; i++)
-                {
-                    DataRow dr = reportData.Rows[i];
-                    int leagueid = Convert.ToInt32(dr["leagueid"]);
-                    this.bettype = dr.Table.Columns.Contains("homeid2") ? Convert.ToInt32(dr["homeid2"]) : this.bettype;
-                    
-                    if (currentLeagueId == 0 || currentLeagueId != leagueid)
-                    {
-                        if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Roulette)
-                        {
-                            leagueBlock.PlayerAndBanker = string.Empty;
-                        }
-                        else
-                        {
-                            leagueBlock.PlayerAndBanker = "P - B";
-                        }
-
-                        currentLeagueId = leagueid;
-                        leagueBlock.LeagueName = CacheRef.GetLeagueName(leagueid);
-                        template.RowData.Append(leagueBlock);
-                    }
-
-                    rowBlock.ColorClass = i % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
-                    rowBlock.KickOffTime = Formater.FullDateFormat2Line(dr["kickofftime"]);
-                    rowBlock.GameTypeAndTableNumber = dr["showtime"].ToString();
-
-                    // If status is Void and Refund, then don't check results and final score.
-                    if (dr["eventstatus"].ToString().ToLower() == "refund" || dr["eventstatus"].ToString().ToLower() == "void")
-                    {
-                        rowBlock.EventStatus = rowBlock.FinalScore = rowBlock.Results = this.MapEventStatusString(dr["eventstatus"].ToString(), dr.Table.Columns.Contains("IsPending") ? Convert.ToBoolean(dr["IsPending"]) : false, dr.Table.Columns.Contains("IsHTCal") ? Convert.ToBoolean(dr["IsHTCal"]) : false, dr.Table.Columns.Contains("calculate") ? Convert.ToBoolean(dr["calculate"]) : false);
-                    }
-                    else
-                    {
-                        if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Roulette)
-                        {
-                            if (Convert.IsDBNull(dr["finalhomescore"]))
-                            {
-                                rowBlock.FinalScore = rowBlock.Results = string.Empty;
-                            }
-                            else
-                            {
-                                rowBlock.FinalScore = dr["finalhomescore"].ToString();
-                                rowBlock.Results = dr["finalhomescore"].ToString() != "0" ? this.SetResultsRoulette(dr["betstatus"].ToString()) : "-";
-                            }
-                        }
-                        else
-                        {
-                            rowBlock.FinalScore = (Convert.IsDBNull(dr["finalhomescore"]) ? string.Empty : dr["finalhomescore"].ToString()) + " - " + (Convert.IsDBNull(dr["finalawayscore"]) ? string.Empty : dr["finalawayscore"].ToString());
-                            rowBlock.Results = this.SetResultsLiveCasino(dr["betstatus"].ToString());
-                        }
-
-                        rowBlock.EventStatus = this.MapEventStatusString(dr["eventstatus"].ToString(), dr.Table.Columns.Contains("IsPending") ? Convert.ToBoolean(dr["IsPending"]) : false, dr.Table.Columns.Contains("IsHTCal") ? Convert.ToBoolean(dr["IsHTCal"]) : false, dr.Table.Columns.Contains("calculate") ? Convert.ToBoolean(dr["calculate"]) : false);                        
-                    }
-
-                    template.RowData.Append(rowBlock);
-                }
-
-                template.LimitNotFound.Hide();
-            }
-            else
-            {
-                template.LimitNotFound.NoInfoRow.NumCols = "5";
-            }
-
-            excelBlock.Append(template);
-        }
-
-        /// <summary>
-        /// Get result status
-        /// </summary>
-        /// <param name="results"></param>
-        /// <returns></returns>
-        private string SetResultsLiveCasino(string results)
-        {
-            if (results.Trim().Length < 1)
-            {
-                return string.Empty;
-            }
-
-            string[] arr = results.Split(',');
-            string str = string.Empty, statusName = string.Empty;
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                statusName = CacheRef.GetCasinoBetItem(arr[i]);
-
-                if (i < arr.Length - 1)
-                {
-                    if (i > 1)
-                    {
-                        str += string.Format("{0}, ", statusName);
-                    }
-                    else
-                    {
-                        str += string.Format("{0}; ", statusName);
-                    }
-                }
-                else
-                {
-                    str += statusName;
-                }
-            }
-
-            if (arr.Length < 3)
-            {
-                str += string.Format("; -", statusName);
-            }
-
-            return str;
-        }
-
-        /// <summary>
-        /// Get result status
-        /// </summary>
-        /// <param name="results"></param>
-        /// <returns></returns>
-        private string SetResultsRoulette(string results)
-        {
-            if (results.Trim().Length < 1)
-            {
-                return string.Empty;
-            }
-
-            string[] arr = results.Split(',');
-            string str = string.Empty, statusName = string.Empty;
-            int resultNum = arr.Length;
-
-            for (int i = 0; i < resultNum; i++)
-            {
-                statusName = CacheRef.GetRouletteBetItem(arr[i]);
-
-                if (i == resultNum - 1)
-                {
-                    str += string.Format("{0}", statusName);
-                }
-                else if (i == 2)
-                {
-                    str += string.Format("{0};<br/>", statusName);
-                }
-                else
-                {
-                    str += string.Format("{0}; ", statusName);
-                }
-            }
-
-            return str;
-        }
-
-        #endregion LiveCasino
 
         #region NumberGame
 
@@ -2210,7 +2023,6 @@ using Apollo.Age.Reports.Services;
         /// <returns></returns>
         private string GenerateBingoBallImageUrl(int number)
         {
-          
             //return url;
             return string.Empty;
         }
