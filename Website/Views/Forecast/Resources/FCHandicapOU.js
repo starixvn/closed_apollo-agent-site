@@ -28,6 +28,9 @@ if (typeof jQuery != 'undefined') {
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
                 + '&betType=' + $this.attr("bet-type")
                 + '&leagueName=' + FCHANDICAPOU.currentLeagueName);
+                if (currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + currentMainShareHolderId;
+                }
                 //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
                 //location.href = url;
                 ageWnd.openDialog(url, 'FORECAST', {
@@ -41,7 +44,8 @@ if (typeof jQuery != 'undefined') {
             });
             },
             changeLeague: function () {
-                var url = APOLLO.resolveUrl('Forecast/FCHandicapOverUnderMatches?leagueId=' + FCHANDICAPOU.currentLeague);
+                var url = APOLLO.resolveUrl('Forecast/FCHandicapOverUnderMatches?leagueId=' + FCHANDICAPOU.currentLeague
+                + '&mainShareHolderId=' + currentMainShareHolderId);
                 $("#forecast-body").load(url);
                 FCHANDICAPOU.registerEvents();
             }
@@ -49,6 +53,19 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
+        if (currentMainShareHolderId > 0) {
+            $("#ddlMainShareHolder").change(function () {
+                var $this = $(this);
+                var markIndex = document.location.href.indexOf('?');
+                var link = document.location.href;
+                if (markIndex > 0) {
+                    link = document.location.href.substring(0, markIndex);
+                }
+
+                document.location.href = link + "?mainShareHolderId=" + $this.val();
+            });
+        }
+
         FCHANDICAPOU.init();
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 };

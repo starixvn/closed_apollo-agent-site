@@ -8,13 +8,12 @@
 // </history>
 
 
-namespace Apollo.Age.TotalBets.Models
+namespace Apollo.Age.Models
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Apollo.Age.Entities;
 
     /// <summary>
     /// TODO: Update summary.
