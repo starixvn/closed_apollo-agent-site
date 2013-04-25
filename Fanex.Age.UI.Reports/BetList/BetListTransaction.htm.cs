@@ -32,19 +32,17 @@ namespace Fanex.Age.UI.Reports
 			public string content = "{content}";
 			protected static string s14 = "<div id=\"dialog-details\"></div></div>";
 			public BetListTransaction_HiddenFields_Block HiddenFields = new BetListTransaction_HiddenFields_Block();
-			protected static string s15 = "</form></div></body><script src=\"";
+			protected static string s15 = "</div></form><script src=\"";
 			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s17 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s18{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
 			protected static string s19 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
+			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s22{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s22{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
 			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s24{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s25 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s26{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
-			protected static string s27 = "\" type=\"text/javascript\"></script></html>";
+			protected static string s24{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
+			protected static string s25 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -80,8 +78,6 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s23);
 					bd.Append(s24);
 					bd.Append(s25);
-					bd.Append(s26);
-					bd.Append(s27);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -96,53 +92,53 @@ namespace Fanex.Age.UI.Reports
 
 		public class BetListTransaction_Filter_Block: Block
 		{
-			protected static string s28 = "<div id=\"box_header\"><div class=\"date-range\"><div class=\"date\"><label>";
-			protected static string s29{get{return Resources.Lang.from;}}
-			protected static string s30 = "</label><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
+			protected static string s26 = "<div id=\"box_header\"><div class=\"date-range\"><div class=\"date\"><label>";
+			protected static string s27{get{return Resources.Lang.from;}}
+			protected static string s28 = "</label><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
-			protected static string s31 = "\"mindate=\"";
+			protected static string s29 = "\"mindate=\"";
 			public string valueMinDate = "{valueMinDate}";
-			protected static string s32 = "\" maxdate=\"";
+			protected static string s30 = "\" maxdate=\"";
 			public string valueMaxDate = "{valueMaxDate}";
-			protected static string s33 = "\" /></div><div class=\"date\"><label>";
-			protected static string s34{get{return Resources.Lang.to;}}
-			protected static string s35 = "</label><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
+			protected static string s31 = "\" /></div><div class=\"date\"><label>";
+			protected static string s32{get{return Resources.Lang.to;}}
+			protected static string s33 = "</label><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
 			public string valueToDate = "{valueToDate}";
-			protected static string s36 = "\"mindate=\"";
+			protected static string s34 = "\"mindate=\"";
 			protected string t0_valueMinDate;
-			protected static string s37 = "\" maxdate=\"";
+			protected static string s35 = "\" maxdate=\"";
 			protected string t1_valueMaxDate;
-			protected static string s38 = "\" /></div>";
+			protected static string s36 = "\" /></div>";
 			public BetListTransaction_Filter_User_Block User = new BetListTransaction_Filter_User_Block();
-			protected static string s39 = "<div><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
-			protected static string s40{get{return Resources.Lang.Generate;}}
-			protected static string s41 = "\"></div></div></div>";
+			protected static string s37 = "<div><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
+			protected static string s38{get{return Resources.Lang.Generate;}}
+			protected static string s39 = "\"></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s26);
+					bd.Append(s27);
 					bd.Append(s28);
-					bd.Append(s29);
-					bd.Append(s30);
 					bd.Append(valueFromDate);
+					bd.Append(s29);
+					bd.Append(valueMinDate);
+					bd.Append(s30);
+					bd.Append(valueMaxDate);
 					bd.Append(s31);
-					bd.Append(valueMinDate);
 					bd.Append(s32);
-					bd.Append(valueMaxDate);
 					bd.Append(s33);
-					bd.Append(s34);
-					bd.Append(s35);
 					bd.Append(valueToDate);
-					bd.Append(s36);
+					bd.Append(s34);
 					bd.Append(valueMinDate);
-					bd.Append(s37);
+					bd.Append(s35);
 					bd.Append(valueMaxDate);
-					bd.Append(s38);
+					bd.Append(s36);
 					if(null != User) User.ToString(ref bd);
+					bd.Append(s37);
+					bd.Append(s38);
 					bd.Append(s39);
-					bd.Append(s40);
-					bd.Append(s41);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -150,21 +146,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class BetListTransaction_Filter_User_Block: Block
 		{
-			protected static string s42 = "<div class=\"date\">";
+			protected static string s40 = "<div class=\"date\">";
 			public string option_user = "{option_user}";
-			protected static string s43 = "</div><div class=\"date\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
+			protected static string s41 = "</div><div class=\"date\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
 			public string username = "{username}";
-			protected static string s44 = "\" maxlength=\"50\"style=\"width: 120px;\" autocomplete=\"off\" class=\"ui-autocomplete-input\" /></div>";
+			protected static string s42 = "\" maxlength=\"50\"style=\"width: 120px;\" autocomplete=\"off\" class=\"ui-autocomplete-input\" /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s42);
+					bd.Append(s40);
 					bd.Append(option_user);
-					bd.Append(s43);
+					bd.Append(s41);
 					bd.Append(username);
-					bd.Append(s44);
+					bd.Append(s42);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -172,21 +168,21 @@ namespace Fanex.Age.UI.Reports
 
 		public class BetListTransaction_HiddenFields_Block: Block
 		{
-			protected static string s45 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			protected static string s43 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s46 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
+			protected static string s44 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
 			public string pageType = "{pageType}";
-			protected static string s47 = "\" />";
+			protected static string s45 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s45);
+					bd.Append(s43);
 					bd.Append(ApoRoot);
-					bd.Append(s46);
+					bd.Append(s44);
 					bd.Append(pageType);
-					bd.Append(s47);
+					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

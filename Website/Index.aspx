@@ -1,13 +1,15 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="Index.aspx.cs" Inherits="Index" %>
 
 <!DOCTYPE html>
-<!--[if IE 7 ]> <html class="ie7 ie"> <![endif]-->
-<!--[if IE 8 ]> <html class="ie8 ie"> <![endif]-->
-<!--[if IE 9 ]> <html class="ie9 ie"> <![endif]-->
-<!--[if (gt IE 9)]><!--> <html class="ie10 ie"> <!--<![endif]-->
-<!--[if !(IE)]> <html><![endif]-->
+<!--[if (IE 7)]><html lang="en" class="ie7 ie oldie"><![endif]-->
+<!--[if (IE 8)]><html lang="en" class="ie8 ie oldie"><![endif]-->
+<!--[if (IE 9)]><html lang="en" class="ie9 ie"><![endif]-->
+<!--[if (gt IE 9)]><!-->
+<html lang="en">
+<!--<![endif]-->
 <head>
     <title></title>
+	<script src="<%= Page.ResolveUrl("~/_GlobalResources/Js/head.min.js")%>" type="text/javascript"></script>
     <link href="<%= Page.ResolveUrl("~/_GlobalResources/Css/Index.less")%>" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
@@ -17,6 +19,7 @@
     </script>
 </head>
 <body>
+	
     <form id="agentSite" runat="server">
         <div class="header">
             <iframe src="Account/TopBar" id="frHeader" name="frHeader"
@@ -32,8 +35,13 @@
         </div>
     </form>
     <input type="hidden" id="ApoRoot" value="<%= Page.ResolveUrl("~/")%>" />
-    <script src="<%= Page.ResolveUrl("_GlobalResources/Js/jquery.js")%>" type="text/javascript"></script>
-    <script src="<%= Page.ResolveUrl("_GlobalResources/Js/Core.js")%>" type="text/javascript"></script>
     
+	<script type="text/javascript">
+		head.js(
+			"<%= Page.ResolveUrl("_GlobalResources/Js/jquery.js")%>",
+			"<%= Page.ResolveUrl("_GlobalResources/Js/Core.js")%>"
+		);
+	</script>
+
 </body>
 </html>

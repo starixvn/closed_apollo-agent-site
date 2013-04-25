@@ -32,7 +32,7 @@ namespace Fanex.BetList.Age
 			protected static string s13 = "<script src=\"";
 			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
+			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
 			protected static string s17 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s18{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s19 = "\" type=\"text/javascript\"></script><script src=\"";
