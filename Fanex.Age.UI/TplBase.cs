@@ -5,6 +5,8 @@ using System.Globalization;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
+using Sunplus.Agent.Model.Entities;
+using Sunplus.Agent.Model.BL;
 //using Sunplus.Agent.Model.BL;
 //using Sunplus.Agent.Model.Entities;
 
@@ -55,25 +57,25 @@ namespace Fanex.Age.UI
             else RegisteredControls.Add(name);
                 return true;
         }
-        
-        //private IUserSession _CurrentUserSession;
-        ///// <summary>
-        ///// Current user session.
-        ///// </summary>
-        //public IUserSession CurrentUserSession
-        //{
-        //    get
-        //    {
-        //        if (null == HttpContext.Current.Session) return null;
 
-        //        if (null == _CurrentUserSession)
-        //        {
-        //            _CurrentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
-        //        }
+        private IUserSession _CurrentUserSession;
+        /// <summary>
+        /// Current user session.
+        /// </summary>
+        public IUserSession CurrentUserSession
+        {
+            get
+            {
+                if (null == HttpContext.Current.Session) return null;
 
-        //        return _CurrentUserSession;
-        //    }
-        //}
+                if (null == _CurrentUserSession)
+                {
+                    _CurrentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
+                }
+
+                return _CurrentUserSession;
+            }
+        }
 
         protected object _View;
         /// <summary>
