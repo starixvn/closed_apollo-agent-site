@@ -77,3 +77,12 @@ if (typeof jQuery != 'undefined') {
 		FC1X2.init();
 	}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 };
+
+function UpdateForecast1x2Value() {
+    if (FC1X2.matchId > 0) {
+        location.reload();
+    }
+    else {
+        document.location.href = APOLLO.resolveUrl("Forecast/FC1X2?leagueId=" + FC1X2.currentLeague);
+    }
+}
