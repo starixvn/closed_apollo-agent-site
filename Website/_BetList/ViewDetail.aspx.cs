@@ -4,6 +4,7 @@ using System.Text;
 using System.Web.UI;
 using Apollo.Age.BetList.Criterias;
 using Apollo.Age.BetList.Services;
+using Apollo.Age.Reports.Services;
 using Apollo.Age.Web;
 using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
@@ -26,6 +27,7 @@ namespace Sunplus.Agent.UI._BetList
         private DateTime fromDate = DateTime.Now;
         private DateTime toDate = DateTime.Now;
         private bool isReportWinloss = false;
+        private DateTime moveBetsDay;
 
         #endregion Define variable
 
@@ -116,8 +118,10 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
+            var reportService = new ReportService();
+            moveBetsDay = reportService.MoveBetsDay();
             Int64.TryParse(Request["transId"], out transID);
-            // fromDate = GetDateTimeRequest("fromDate", "");//ReportsBO.MoveBetsDate);
+            fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
             isReportWinloss = GetStringRequest("type", string.Empty) == "report" ? true : false;
         }
@@ -137,7 +141,7 @@ namespace Sunplus.Agent.UI._BetList
                 TransId = transID,
                 FromDate = fromDate,
                 ToDate = toDate,
-                //                MoveBetsDay = Datat //ReportsBO.MoveBetsDate,
+                MoveBetsDay = moveBetsDay,
                 IsWinLoss = isReportWinloss
             };
             var mainTickets = betListService.GetDetailAgentComm(criteria);

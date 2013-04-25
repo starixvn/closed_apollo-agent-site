@@ -37,24 +37,72 @@
         </tr>
     </thead>
     <tbody>
-        @*@if (Model != null && Model.Any())
+        @if (Model != null && Model.Any())
         {
-            int rowIndex = 0;
-            int currentLeagueId = 0;
-
+            var currentLeagueId = 0;
             foreach (var item in Model)
             {
-                rowIndex++;
+                if (currentLeagueId != item.LeagueId)
+                {
+                    currentLeagueId = item.LeagueId;
+            <tr class="league">
+                <td colspan="10">
+                    @item.LeagueName
+                </td>
+            </tr>
+                }
 
-            @ShowLeague(currentLeagueId, item)
-            @ShowMatch(rowIndex, item)
+            <tr>
+                <td rowspan="2">
+                    @item.KickoffTime
+                </td>
+                <td>
+                    @item.HomeTeam
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @item.AwayTeam
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
 
-                currentLeagueId = item.LeagueId;
             }
         }
         else
         {
-            @RazorHelper.ShowNoInfo(colspan: 5);
-        }*@
+            @RazorHelper.ShowNoInfo(colspan: 10);
+        }
     </tbody>
 </table>
