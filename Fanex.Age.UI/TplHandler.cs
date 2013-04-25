@@ -71,7 +71,7 @@ namespace Fanex.Age.UI
 
             context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            SetLanguage(CurrentUserSession.Language);
+           // SetLanguage(CurrentUserSession.Language);
 
             // Validate request
             object obj = ValidateRequest(Parameters);

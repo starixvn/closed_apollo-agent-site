@@ -699,7 +699,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 var otherBetTypesOf = Language.OTHER_BET_TYPE_OF.Format(this.GetSportName(this.copiedItem.sportId));
                 hint = hint + '<div class="ul-position"><ul><li>' + otherBetTypesOf + '</li>';
                 // Find all copied items to generate tooltip
-                var count = this.items.length - 1;
+                var count = this.items.length;
                 var top = 0;
 
                 for (var i = this.copiedItem.sportId + 1; i < count; i++) {
@@ -717,7 +717,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 if (this.copiedItem.sportId == 2) {
                     top += 15;
                 }
-                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 25, top - 130, -10, height, 10000, true);
+                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 25, top - 148, -10, height, 10000, true);
             },
             this.Render = function (owner) {
                 var box = null;

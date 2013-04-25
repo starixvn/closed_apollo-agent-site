@@ -47,7 +47,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
@@ -98,6 +97,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\WinlossSearchView_Control.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports_Page.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WinlossReports_Page.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Content Include="App_Code\TplCore\PortalPage\PortalPage.htm.cs" />
     <Content Include="App_Code\TplCore\PortalPage\BalanceInfo.htm.cs" />
     <Compile Include="App_GlobalResources\Bingo.designer.cs">
@@ -126,12 +134,8 @@
     <Compile Include="Components\ReportSearchHeader_Control.cs" />
     <Compile Include="Components\SearchHeader.htm.cs" />
     <Compile Include="Components\WinlossSearchView.htm.cs" />
-    <Compile Include="Components\WinlossSearchView_Control.cs" />
     <Compile Include="DataSetHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports_Page.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Result\Result.htm.cs" />
     <Compile Include="Result\ResultBadminton.htm.cs" />
     <Compile Include="Result\ResultBaseBall.htm.cs" />
@@ -150,9 +154,6 @@
     <Compile Include="Result\SportType.htm.cs" />
     <Compile Include="Scripts.htm.cs" />
     <Compile Include="Styles.htm.cs" />
-    <Compile Include="WinlossReports_Page.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Lang.resx">
@@ -176,10 +177,6 @@
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
-      <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
-      <Name>Fanex.Age.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
       <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>

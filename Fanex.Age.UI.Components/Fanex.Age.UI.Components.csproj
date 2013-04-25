@@ -87,9 +87,8 @@
     <Content Include="bin\Sunplus.Libraries.ThirdPartyTestData.dll" />
     <Content Include="bin\TplCore.dll" />
     <Content Include="bin\UMControllerLibrary.dll" />
+    <Content Include="CurrencyFilter\CurrencyFilter.htm" />
     <Content Include="DateRangeSelect\Copy of DateRangeSelect.htm" />
-    <Content Include="DoubleCommissionSearchUserName_Control\DoubleCommissionSearchUserName_Control.htm" />
-    <Content Include="Transfer\AllowTransfer.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -101,7 +100,6 @@
     <Content Include="AnalysisReportFilter\AnalysisReportFilterOnChart.htm" />
     <Content Include="AutoCheckBox_Control\AutoCheckBox_Control.htm" />
     <Content Include="CopyFromCheckBox_Control\CopyFromCheckBox_Control.htm" />
-    <Content Include="CurrencyFilter\CurrencyFilter.htm" />
     <Content Include="DateRangeSelect\DateRangeSelect.htm" />
     <Content Include="DateTimeControl\JSCalendar\JSCalendar.htm" />
     <Content Include="DateTimeFilter\DateTimeFilter.htm" />
@@ -110,14 +108,10 @@
     <Content Include="MatchByLeague\MatchByLeague.htm" />
     <Content Include="PagingHeader\PagingHeader.htm" />
     <Content Include="PagingHeader\Paging\Paging.htm" />
-    <Content Include="PopupAd\FlashAd.htm" />
-    <Content Include="PopupAd\PopupAd.htm" />
-    <Content Include="PopupAd\PopupIntroduction.htm" />
     <Content Include="PopupMessage\PopupMessage.htm" />
     <Content Include="PT_Control\PT_Control.htm" />
     <Content Include="RefreshCountDown\RefreshCountDown.htm" />
     <Content Include="SearchUserName_Control\SearchUserName_Control.htm" />
-    <Content Include="ShowHideColumn\ContextMenuColumns_Control.htm" />
     <Content Include="WinlossReportFilter\WinlossReportFilter.htm" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +119,13 @@
     <Compile Include="AnalysisReportFilter\AnalysisReportFilter.htm.cs" />
     <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.cs" />
     <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.htm.cs" />
+    <Compile Include="CurrencyFilter\CurrencyFilter.cs" />
+    <Compile Include="CurrencyFilter\CurrencyFilter.htm.cs" />
+    <Compile Include="WinlossReportFilter\FilterElement.cs" />
+    <Compile Include="WinlossReportFilter\Filter_Control.cs" />
+    <Compile Include="WinlossReportFilter\WinlossReportFilter.htm.cs" />
+    <Compile Include="WinlossReportFilter\WinlossReportFilterManager.cs" />
+    <Compile Include="WinlossReportFilter\WinlossReportFilter_Control.cs" />
     <Content Include="App_Code\TplCore\RefreshCountDown\RefreshCountDown.htm.cs" />
     <Compile Include="App_GlobalResources\Lang.designer.cs">
       <DependentUpon>Lang.resx</DependentUpon>
@@ -135,8 +136,6 @@
     <Compile Include="AutoCheckBox_Control\AutoCheckBox_Control.htm.cs" />
     <Compile Include="CopyFromCheckBox_Control\CopyFromCheckBox_Control.cs" />
     <Compile Include="CopyFromCheckBox_Control\CopyFromCheckBox_Control.htm.cs" />
-    <Compile Include="CurrencyFilter\CurrencyFilter.cs" />
-    <Compile Include="CurrencyFilter\CurrencyFilter.htm.cs" />
     <Compile Include="DateRangeSelect\DateRangeSelect.htm.cs" />
     <Compile Include="DateRangeSelect\DateRangeSelect_Control.cs" />
     <Compile Include="DateTimeControl\Calendar\Calendar_Control.cs" />
@@ -144,8 +143,6 @@
     <Compile Include="DateTimeControl\JSCalendar\JSCalendar.htm.cs" />
     <Compile Include="DateTimeFilter\DateTimeFilter.cs" />
     <Compile Include="DateTimeFilter\DateTimeFilter.htm.cs" />
-    <Compile Include="DoubleCommissionSearchUserName_Control\DoubleCommissionSearchUserName_Control.cs" />
-    <Compile Include="DoubleCommissionSearchUserName_Control\DoubleCommissionSearchUserName_Control.htm.cs" />
     <Compile Include="ErrorMsg\ErrorMsg.htm.cs" />
     <Compile Include="ErrorMsg\ErrorMsg_Control.cs" />
     <Compile Include="ErrorPage\ErrorPage.cs" />
@@ -154,9 +151,6 @@
     <Compile Include="PagingHeader\PagingHeader.htm.cs" />
     <Compile Include="PagingHeader\Paging\Paging.htm.cs" />
     <Compile Include="PagingHeader\Paging\Paging_Control.cs" />
-    <Compile Include="PopupAd\FlashAd.htm.cs" />
-    <Compile Include="PopupAd\PopupAd.htm.cs" />
-    <Compile Include="PopupAd\PopupIntroduction.htm.cs" />
     <Compile Include="PopupMessage\PopupMessage.cs" />
     <Compile Include="PopupMessage\PopupMessage.htm.cs" />
     <Compile Include="PT_Control\PT_Control.cs" />
@@ -166,20 +160,7 @@
     <Compile Include="RefreshLeague\RefreshLeague.cs" />
     <Compile Include="SearchUserName_Control\SearchUserName_Control.cs" />
     <Compile Include="SearchUserName_Control\SearchUserName_Control.htm.cs" />
-    <Compile Include="ShowHideColumn\ContextMenuColumns.cs" />
-    <Compile Include="ShowHideColumn\ContextMenuColumnsBase.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ShowHideColumn\ContextMenuColumns_Control.htm.cs" />
-    <Compile Include="ShowHideColumn\IContextMenuColumns.cs" />
-    <Compile Include="Transfer\AllowTransfer_Control.cs" />
-    <Compile Include="Transfer\AllowTransfer.htm.cs" />
-    <Compile Include="WinlossReportFilter\FilterElement.cs" />
-    <Compile Include="WinlossReportFilter\Filter_Control.cs" />
-    <Compile Include="WinlossReportFilter\WinlossReportFilter.htm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinlossReportFilter\WinlossReportFilterManager.cs" />
-    <Compile Include="WinlossReportFilter\WinlossReportFilter_Control.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Lang.resx">
@@ -187,7 +168,10 @@
       <LastGenOutput>Lang.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="PopupAd\" />
+    <Folder Include="ShowHideColumn\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
