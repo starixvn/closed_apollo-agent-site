@@ -222,14 +222,17 @@ if (typeof jQuery != "undefined") {
                     onComplete: function (data) {
                         BETLIST.dialogDetails.html(data.responseText);
                         var detailHeight, tableHeight;
-                        // Resize detail popup                        
-                        tableHeight = BETLIST.dialogDetails.find('table').height(); alert(tableHeight);
-                        if (tableHeight < 447) {
-                            detailHeight = tableHeight + 80;
-                        } else {
+                        // Resize detail popup
+                        if (document.all && !document.querySelector) {
                             detailHeight = 500;
+                        } else {
+                            tableHeight = BETLIST.dialogDetails.find('table').height();
+                            if (tableHeight < 447) {
+                                detailHeight = tableHeight + 80;
+                            } else {
+                                detailHeight = 500;
+                            }
                         }
-                        
                         APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450, height: detailHeight });
                     }
                 });
