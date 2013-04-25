@@ -532,7 +532,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     trSetting.appendChild(maxContainer);
     var valueSpinBox = Fanex.CustSetting.PT_RenderSpinner(maxContainer,
                     {
-                        minimum: 0,
+                        minimum: currentPtValue.Upline.Min,
                         maximum: currentPtValue.Upline.Max,
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
@@ -542,7 +542,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
     var uplineMaxSpan = document.createElement("SPAN");
-    uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPtValue.Upline.Max);
+    uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPtValue.Upline.Min, currentPtValue.Upline.Max);
     uplineMaxSpan.className = "upline-agent-share";
     maxContainer.appendChild(uplineMaxSpan);
 
@@ -551,8 +551,8 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
         if (currentValue > currentPtValue.Upline.Max) {
             currentValue = currentPtValue.Upline.Max;
         }
-        else if (currentValue < 0) {
-            currentValue = 0;
+        else if (currentValue < currentPtValue.Upline.Min) {
+            currentValue = currentPtValue.Upline.Min;
         }
         valueSpinBox.setValue(currentValue);
     }
