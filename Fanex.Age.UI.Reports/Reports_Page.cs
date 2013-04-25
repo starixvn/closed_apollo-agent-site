@@ -119,30 +119,6 @@ namespace Fanex.Age.UI.Reports
             return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
         }
 
-        /// <summary>
-        /// Get winloss title
-        /// </summary>
-        /// <returns></returns>
-        public String GetWinlossTitle()
-        {
-            if (CurrentUserSession.IsAgent) return Resources.Lang.memberwinloss;
-            else if (CurrentUserSession.IsMaster) return Resources.Lang.agentwinloss;
-            else if (CurrentUserSession.IsSuper) return Resources.Lang.masterwinloss;
-            else return "";
-        }
-
-        /// <summary>
-        /// Get winloss detail title
-        /// </summary>
-        /// <returns></returns>
-        public String GetWinlossDetailTitle()
-        {
-            if (CurrentUserSession.IsAgent) return Resources.Lang.memberwinlossdetail;
-            else if (CurrentUserSession.IsMaster) return Resources.Lang.agentwinlostdetail;
-            else if (CurrentUserSession.IsSuper) return Resources.Lang.masterwinlostdetail;
-            else return "";
-        }
-
         #endregion Utility
 
         #region Override

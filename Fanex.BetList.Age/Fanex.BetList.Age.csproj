@@ -72,22 +72,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="BetListCmd\BetListCmd.cs" />
-    <Compile Include="BetListCmd\BetListFactory.cs" />
-    <Compile Include="BetListCmd\BettypeCmd.cs" />
-    <Compile Include="BetListCmd\BettypeMatchCmd.cs" />
-    <Compile Include="BetListCmd\BLDailySTCmd.cs" />
-    <Compile Include="BetListCmd\CombMixParlayBetListCmd.cs" />
-    <Compile Include="BetListCmd\CombMixParlayBetListDetailCmd.cs" />
-    <Compile Include="BetListCmd\CorrectScoreCmd.cs" />
-    <Compile Include="BetListCmd\IBetListCmd.cs" />
-    <Compile Include="BetListCmd\MixParlayBetListCmd.cs" />
-    <Compile Include="BetListCmd\MixParlayByMatchCmd.cs" />
-    <Compile Include="BetListCmd\MixParlayCmd.cs" />
-    <Compile Include="BetListCmd\RacingBettypeMatchCmd.cs" />
-    <Compile Include="BetListCmd\RunningBettypeMatchCmd.cs" />
-    <Compile Include="BetListCmd\WLByBettypeMatchCmd.cs" />
-    <Compile Include="BetListCmd\WLByDateCmd.cs" />
     <Compile Include="BetListExcelBuilderExt\BetListExcelBuilderExt.cs" />
     <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\AgentComm1.cs" />
     <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\IAgentComm.cs" />
@@ -168,10 +152,6 @@
       <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
       <Name>Fanex.BetList.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
-      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
-      <Name>Sunplus.Agent.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Lang.resx">
@@ -190,6 +170,7 @@
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BetListCmd\" />
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

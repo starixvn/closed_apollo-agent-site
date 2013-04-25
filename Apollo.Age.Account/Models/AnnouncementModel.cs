@@ -7,15 +7,10 @@
 //   <change who="Anders.Le" date="2013.4.4">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Account.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.Age.Utility;
-    using Sunplus.Agent.Model.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -84,7 +79,7 @@ namespace Apollo.Age.Account.Models
             get
             {
                 string lang = GetLang("Content").Replace("_", string.Empty);
-                string content = GetContent(UserSession.Current.Language, lang);
+                string content = GetContent("", lang); //UserSession.Current.Language
 
                 if (GetMessageType == "private")
                 {
@@ -152,13 +147,12 @@ namespace Apollo.Age.Account.Models
                 content = value.ToString();
             }
 
-
             return content;
         }
 
         private string GetLang(string original)
         {
-            var tmp = UserSession.Current.Language;
+            var tmp = ""; //UserSession.Current.Language;
             var ret = "_";
 
             switch (tmp)
