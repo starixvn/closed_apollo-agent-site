@@ -1,7 +1,9 @@
 ﻿@{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.Lang.lblForecast;
+    var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
 }
+
 @section css
 {
     <link href="~/Views/Forecast/Resources/FC.less" rel="Stylesheet" type="text/css" />
@@ -17,6 +19,7 @@
         var betType = @(ViewBag.BetType);
         var currentScore = @(ViewBag.CurrentScore);
         var leagueName = '@(ViewBag.LeagueName)';
+        var currentMainShareHolderId = @(currentMainShareHolderId);
     </script>
     <script src="~/Views/Forecast/Resources/FCByMatch.js" type="text/javascript"></script>
 }
