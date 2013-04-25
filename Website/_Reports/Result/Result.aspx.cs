@@ -27,7 +27,7 @@ namespace Fanex.Age.UI.Reports.Result
     using Apollo.Age.Web;
     using Fanex.Age.Utility;
 
-    public partial class Result_Page : TplPage
+    public partial class Result_Page : Reports_Page
     {
         private readonly ReportService _reportServce;
         private readonly ResultRepository _resultRepository;
@@ -112,17 +112,6 @@ namespace Fanex.Age.UI.Reports.Result
                 {
                     this.RenderDateRange(this.tpl.HeaderRegion.DateRangeSelect);
                     this.RenderSportCriteria(this.tpl.SportCriteria);
-                }
-
-                // Render content
-                if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Mix_Parlay
-                    || this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Combine_Mix_Parlay)
-                {
-                    this.RenderReportContentMixParlay(this.tpl.ExcelContents);
-                }
-                else
-                {
-                    this.RenderReportContent(this.tpl.ExcelContents);
                 }
 
                 this.RenderHiddenField(this.tpl);
@@ -292,11 +281,11 @@ namespace Fanex.Age.UI.Reports.Result
         /// <param name="headerTemplate"></param>
         private void RenderReportHeader(Result_Template template)
         {
-            if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Mix_Parlay)
+            if (this.bettype == (int)BetTypes.Mix_Parlay)
             {
                 this.tpl.ResultTitle.Title = this.tpl.Title = Resources.Lang.lblMixParlay;
             }
-            else if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Combine_Mix_Parlay)
+            else if (this.bettype == (int)BetTypes.Combine_Mix_Parlay)
             {
                 this.tpl.ResultTitle.Title = this.tpl.Title = Resources.Lang.lblSystemParlay;
             }
@@ -1625,8 +1614,8 @@ namespace Fanex.Age.UI.Reports.Result
                     rowBlock.ColorClass = raceCounter % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
                     rowBlock.HorseNo = dr["horseno"].ToString();
                     rowBlock.Placing = this.GetHorseRacingPlaceString(dr["place"].ToString());
-                    rowBlock.Place = Convert.ToDecimal(dr["placeodds"]) > 0 ? Formater.FormatNumber20(dr["placeodds"], CurrentUserSession.LangKey) : string.Empty;
-                    rowBlock.Win = Convert.ToDecimal(dr["odds"]) > 0 ? Formater.FormatNumber20(dr["odds"], CurrentUserSession.LangKey) : string.Empty;
+                    rowBlock.Place = Convert.ToDecimal(dr["placeodds"]) > 0 ? Formater.FormatNumber20(dr["placeodds"], "") : string.Empty; // CurrentUserSession.LangKey
+                    rowBlock.Win = Convert.ToDecimal(dr["odds"]) > 0 ? Formater.FormatNumber20(dr["odds"], "") : string.Empty; // CurrentUserSession.LangKey
                     rowBlock.Result = CacheRef.GetHorseTeamName(dr["horseid"]);
 
                     template.RowData.Append(rowBlock);
@@ -1819,182 +1808,6 @@ namespace Fanex.Age.UI.Reports.Result
         }
 
         #endregion OtherSport
-
-        #region LiveCasino
-
-        /// <summary>
-        /// Render LiveCasino
-        /// </summary>
-        /// <param name="reportData"></param>
-        /// <param name="excelBlock"></param>
-        private void RenderLiveCasino(DataTable reportData, Result_ExcelContents_Block excelBlock)
-        {
-            // Get report rows
-            Result.ResultLiveCasino_Template template = new Fanex.Age.UI.Reports.Result.ResultLiveCasino_Template();
-
-            int numRow = reportData.Rows.Count;
-            template.RowData.Clear();
-            if (numRow > 0)
-            {
-                int currentLeagueId = 0;
-                Result.ResultLiveCasino_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultLiveCasino_RowData_League_Block();
-                Result.ResultLiveCasino_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultLiveCasino_RowData_Row_Block();
-
-                // Do NOT show league block when Pop up the result of matches
-                if (this._matchId > 0)
-                {
-                    this.tpl.ResultTitle.Title = this.tpl.Title = CacheRef.GetSportName(this._sportId);
-                }
-
-                for (int i = 0; i < numRow; i++)
-                {
-                    DataRow dr = reportData.Rows[i];
-                    int leagueid = Convert.ToInt32(dr["leagueid"]);
-                    this.bettype = dr.Table.Columns.Contains("homeid2") ? Convert.ToInt32(dr["homeid2"]) : this.bettype;
-
-                    if (currentLeagueId == 0 || currentLeagueId != leagueid)
-                    {
-                        if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Roulette)
-                        {
-                            leagueBlock.PlayerAndBanker = string.Empty;
-                        }
-                        else
-                        {
-                            leagueBlock.PlayerAndBanker = "P - B";
-                        }
-
-                        currentLeagueId = leagueid;
-                        leagueBlock.LeagueName = CacheRef.GetLeagueName(leagueid);
-                        template.RowData.Append(leagueBlock);
-                    }
-
-                    rowBlock.ColorClass = i % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
-                    rowBlock.KickOffTime = Formater.FullDateFormat2Line(dr["kickofftime"]);
-                    rowBlock.GameTypeAndTableNumber = dr["showtime"].ToString();
-
-                    // If status is Void and Refund, then don't check results and final score.
-                    if (dr["eventstatus"].ToString().ToLower() == "refund" || dr["eventstatus"].ToString().ToLower() == "void")
-                    {
-                        rowBlock.EventStatus = rowBlock.FinalScore = rowBlock.Results = this.MapEventStatusString(dr["eventstatus"].ToString(), dr.Table.Columns.Contains("IsPending") ? Convert.ToBoolean(dr["IsPending"]) : false, dr.Table.Columns.Contains("IsHTCal") ? Convert.ToBoolean(dr["IsHTCal"]) : false, dr.Table.Columns.Contains("calculate") ? Convert.ToBoolean(dr["calculate"]) : false);
-                    }
-                    else
-                    {
-                        if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Roulette)
-                        {
-                            if (Convert.IsDBNull(dr["finalhomescore"]))
-                            {
-                                rowBlock.FinalScore = rowBlock.Results = string.Empty;
-                            }
-                            else
-                            {
-                                rowBlock.FinalScore = dr["finalhomescore"].ToString();
-                                rowBlock.Results = dr["finalhomescore"].ToString() != "0" ? this.SetResultsRoulette(dr["betstatus"].ToString()) : "-";
-                            }
-                        }
-                        else
-                        {
-                            rowBlock.FinalScore = (Convert.IsDBNull(dr["finalhomescore"]) ? string.Empty : dr["finalhomescore"].ToString()) + " - " + (Convert.IsDBNull(dr["finalawayscore"]) ? string.Empty : dr["finalawayscore"].ToString());
-                            rowBlock.Results = this.SetResultsLiveCasino(dr["betstatus"].ToString());
-                        }
-
-                        rowBlock.EventStatus = this.MapEventStatusString(dr["eventstatus"].ToString(), dr.Table.Columns.Contains("IsPending") ? Convert.ToBoolean(dr["IsPending"]) : false, dr.Table.Columns.Contains("IsHTCal") ? Convert.ToBoolean(dr["IsHTCal"]) : false, dr.Table.Columns.Contains("calculate") ? Convert.ToBoolean(dr["calculate"]) : false);
-                    }
-
-                    template.RowData.Append(rowBlock);
-                }
-
-                template.LimitNotFound.Hide();
-            }
-            else
-            {
-                template.LimitNotFound.NoInfoRow.NumCols = "5";
-            }
-
-            excelBlock.Append(template);
-        }
-
-        /// <summary>
-        /// Get result status
-        /// </summary>
-        /// <param name="results"></param>
-        /// <returns></returns>
-        private string SetResultsLiveCasino(string results)
-        {
-            if (results.Trim().Length < 1)
-            {
-                return string.Empty;
-            }
-
-            string[] arr = results.Split(',');
-            string str = string.Empty, statusName = string.Empty;
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                statusName = CacheRef.GetCasinoBetItem(arr[i]);
-
-                if (i < arr.Length - 1)
-                {
-                    if (i > 1)
-                    {
-                        str += string.Format("{0}, ", statusName);
-                    }
-                    else
-                    {
-                        str += string.Format("{0}; ", statusName);
-                    }
-                }
-                else
-                {
-                    str += statusName;
-                }
-            }
-
-            if (arr.Length < 3)
-            {
-                str += string.Format("; -", statusName);
-            }
-
-            return str;
-        }
-
-        /// <summary>
-        /// Get result status
-        /// </summary>
-        /// <param name="results"></param>
-        /// <returns></returns>
-        private string SetResultsRoulette(string results)
-        {
-            if (results.Trim().Length < 1)
-            {
-                return string.Empty;
-            }
-
-            string[] arr = results.Split(',');
-            string str = string.Empty, statusName = string.Empty;
-            int resultNum = arr.Length;
-
-            for (int i = 0; i < resultNum; i++)
-            {
-                statusName = CacheRef.GetRouletteBetItem(arr[i]);
-
-                if (i == resultNum - 1)
-                {
-                    str += string.Format("{0}", statusName);
-                }
-                else if (i == 2)
-                {
-                    str += string.Format("{0};<br/>", statusName);
-                }
-                else
-                {
-                    str += string.Format("{0}; ", statusName);
-                }
-            }
-
-            return str;
-        }
-
-        #endregion LiveCasino
 
         #region NumberGame
 
