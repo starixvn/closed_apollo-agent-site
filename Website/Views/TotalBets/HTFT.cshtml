@@ -4,7 +4,7 @@
     ViewBag.Title = Resources.Lang.htft;
 }
 @model IEnumerable<HTFTModel>
-@RazorHelper.RefreshCountDown("HTFT", 90, 60)
+@RazorHelper.RefreshCountDown("HTFT", 90, 60, "ReloadPage();")
 <table class="tblRpt persist-area no-border-bottom">
     <thead class="persist-header">
         <tr class="RptHeader">

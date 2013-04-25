@@ -21,8 +21,8 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Web;
+    using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
-    using Fanex.Age.UI.Reports;
     using Fanex.Age.UI.Reports.BetList;
     using Fanex.Age.Utility;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
@@ -33,7 +33,7 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
 
-    public partial class BetListTransaction : WinlossReports_Page
+    public partial class BetListTransaction : TplPage
     {
         #region Variables
 

@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = Resources.Lang.ViewShare;
     Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
-    int index = 1;
+    int index = 0;
 }
 
 @model MemberShareViewModel
@@ -78,7 +78,7 @@
                     <td class="em-row l">
                         @item.Username
                     </td>
-                    @if (item.AgentLevel == Constants.MAIN_SHAREHOLDER_LEVEL)
+                    @if (item.AgentLevel == Constants.MAIN_SHAREHOLDER_LEVEL || index == Model.MemberShareModelList.Count)
                     {
                         <td></td>
                     }

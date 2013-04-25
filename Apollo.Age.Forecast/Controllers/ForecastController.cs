@@ -45,13 +45,14 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
         /// <returns></returns>
-        public ViewResult FC1X2(int? matchId, int betType = (int)BetTypes.FT_1X2, string leagueName = "")
+        public ViewResult FC1X2(int? matchId, int betType = (int)BetTypes.FT_1X2, string leagueName = "", int leagueId = 0)
         {
             IEnumerable<LeagueModel> leagues = _forecastService.GetRunningLeague(betType, agentId: this.CurrentSession.AgentId);
             ViewBag.Leagues = leagues;
             ViewBag.MatchId = matchId;
             ViewBag.BetType = betType;
             ViewBag.LeagueName = leagueName;
+            ViewBag.LeagueId = leagueId;
             return View();
         }
 
@@ -84,9 +85,10 @@ namespace Apollo.Age.Forecast.Controllers
         /// Handicap OU Forecast Page
         /// </summary>
         /// <returns></returns>
-        public ViewResult FCHandicapOverUnder(string leagueName = "")
+        public ViewResult FCHandicapOverUnder(string leagueName = "", int leagueId = 0)
         {
             IEnumerable<LeagueModel> leagues = _forecastService.GetRunningLeague(betType: (int)BetTypes.Handicap, agentId: this.CurrentSession.AgentId);
+            ViewBag.LeagueId = leagueId;
             ViewBag.Leagues = leagues;
             ViewBag.LeagueName = leagueName;
             return View();
@@ -207,6 +209,7 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
+        [OutputCache(Duration=0)]
         public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes)
         {
             return View(_forecastService.GetScoreMapResults(this.CurrentSession.AgentId, matchIds, liveBetTypes, deadBallBetTypes));

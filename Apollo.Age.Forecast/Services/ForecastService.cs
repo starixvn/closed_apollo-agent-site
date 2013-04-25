@@ -303,12 +303,12 @@ namespace Apollo.Age.Forecast.Services
             {
                 if (isLive && betType.IsLive == 1 && betType.TypeId == betTypeId)
                 {
-                    betTypeAll += betType.TypeId.ToString() + "," + betType.Id1st.ToString();
+                    betTypeAll += betType.TypeId.ToString() + "," + (betType.Id1st != 0 ? betType.Id1st.ToString() : string.Empty);
                     break;
                 }
                 else if (isLive == false && betType.IsDead == 1 && betType.TypeId == betTypeId)
                 {
-                    betTypeAll += betType.TypeId.ToString() + "," + betType.Id1st.ToString();
+                    betTypeAll += betType.TypeId.ToString() + "," + (betType.Id1st != 0 ? betType.Id1st.ToString() : string.Empty);
                     break;
                 }
             }

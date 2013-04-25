@@ -31,4 +31,4 @@
 
 $(document).ready(function () {
     WINLOSS.init();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);

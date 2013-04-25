@@ -55,6 +55,8 @@ namespace Apollo.Age.Account.Controllers
                 ViewBag.LastPostTime = lastPostTime ?? model.Last().PostTime;
             }
 
+            ViewBag.UserLang = this.CurrentSession.Language;
+
             return View(model);
         }
 

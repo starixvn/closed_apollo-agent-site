@@ -4383,4 +4383,10 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblFormatAgentSetting" xml:space="preserve">
     <value>Agent {0} Setting</value>
   </data>
+  <data name="lblInvalidGroupCommissionRange" xml:space="preserve">
+    <value>Invalid Group Commission Range.</value>
+  </data>
+  <data name="lblMainShareHolder" xml:space="preserve">
+    <value>Main Shareholder</value>
+  </data>
 </root>

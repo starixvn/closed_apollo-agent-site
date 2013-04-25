@@ -10,6 +10,7 @@
 
 namespace Apollo.Age.TotalBets.Controllers
 {
+        
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Apollo.Age.Enumerations;
@@ -17,6 +18,8 @@ namespace Apollo.Age.TotalBets.Controllers
     using Apollo.Age.TotalBets.Models;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Criterias;
+    using System.Linq;
 
     public class TotalBetsController : BaseController
     {
@@ -27,13 +30,13 @@ namespace Apollo.Age.TotalBets.Controllers
             _totalBetsService = new TotalBetsService();
         }
    
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (CurrentSession.IsSuper)
-            {
-                filterContext.Result = new HttpNotFoundResult();
-            }
-        }
+        //protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
+        //    if (CurrentSession.IsSuper)
+        //    {
+        //        filterContext.Result = new HttpNotFoundResult();
+        //    }
+        //}
 
         /// <summary>
         /// Get totalbet data by bettype
@@ -41,48 +44,65 @@ namespace Apollo.Age.TotalBets.Controllers
         /// <typeparam name="T"></typeparam>
         /// <param name="betType"></param>
         /// <returns></returns>
-        protected IEnumerable<T> GetModel<T>(BetTypes betType)
+        protected IEnumerable<T> GetModel<T>(BetTypes betType, int mainShareHolderId)
         {
+            int agentId = base.CurrentSession.AgentId;
+            if (base.CurrentSession.IsSuper)
+            {
+                var mainShareHolders = _totalBetsService.GetData<MainShareHolderModel>(new GetAllMainShareHolderCriteria());
+                if (mainShareHolderId > 0)
+                {
+                    agentId = mainShareHolderId;
+                }
+                else if (mainShareHolders != null && mainShareHolders.Any())
+                {
+                    agentId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
+                }
+                ViewBag.CurrentMainShareHolderId = mainShareHolderId;
+                ViewBag.MainShareHolders = mainShareHolders;
+            }
+            ViewBag.CurrentAgentId = base.CurrentSession.AgentId;
+
             return _totalBetsService.GetData<T>(new TotalBetsCriteria
             {
-                AgentId = this.CurrentSession.AgentId,
+                AgentId = agentId,
                 BetType = (int)betType
             });
         }
 
-        public ViewResult Handicap()
+        public ViewResult Handicap(int mainShareHolderId = 0)
         {
-            var model = GetModel<HandicapModel>(BetTypes.Handicap);
+            var model = GetModel<HandicapModel>(BetTypes.Handicap, mainShareHolderId);
             return View(model);
         }
 
-        public ViewResult MoneyLine()
+        public ViewResult MoneyLine(int mainShareHolderId = 0)
         {
-            var model = GetModel<MoneyLineModel>(BetTypes.Money_Line);
+            var model = GetModel<MoneyLineModel>(BetTypes.Money_Line, mainShareHolderId);
             return View(model);
         }
 
-        public ViewResult TotalGoal()
+        public ViewResult TotalGoal(int mainShareHolderId = 0)
         {
-            var model = GetModel<TotalGoalModel>(BetTypes.Total_Goal);
+            var model = GetModel<TotalGoalModel>(BetTypes.Total_Goal, mainShareHolderId);
             return View(model);
         }
 
-        public ViewResult OddEven()
+        public ViewResult OddEven(int mainShareHolderId = 0)
         {
-            var model = GetModel<OddEvenModel>(BetTypes.Odd_Even);
+            var model = GetModel<OddEvenModel>(BetTypes.Odd_Even, mainShareHolderId);
             return View(model);
         }
 
-        public ViewResult HTFT()
+        public ViewResult HTFT(int mainShareHolderId = 0)
         {
-            var model = GetModel<HTFTModel>(BetTypes.HT_FT);
+            var model = GetModel<HTFTModel>(BetTypes.HT_FT, mainShareHolderId);
             return View(model);
         }
 
-        public ViewResult OutRight()
+        public ViewResult OutRight(int mainShareHolderId = 0)
         {
-            var model = GetModel<OutRightModel>(BetTypes.Outright);
+            var model = GetModel<OutRightModel>(BetTypes.Outright, mainShareHolderId);
             return View(model);
         }
 
@@ -92,15 +112,15 @@ namespace Apollo.Age.TotalBets.Controllers
         //    return View(model);
         //}
 
-        public ViewResult HomeNoBet()
+        public ViewResult HomeNoBet(int mainShareHolderId = 0)
         {
-            var model = GetModel<HomeNoBetModel>(BetTypes.Draw_No_Bet);
+            var model = GetModel<HomeNoBetModel>(BetTypes.Draw_No_Bet, mainShareHolderId);
             return View(model);
         }
 
-        public ViewResult FirstGoal()
+        public ViewResult FirstGoal(int mainShareHolderId = 0)
         {
-            var model = GetModel<FirstGoalModel>(BetTypes.First_Goal_Last_Goal);
+            var model = GetModel<FirstGoalModel>(BetTypes.First_Goal_Last_Goal, mainShareHolderId);
             return View(model);
         }
     }

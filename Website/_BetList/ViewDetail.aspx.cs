@@ -1,32 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Apollo.Age.BetList.Criterias;
-using Apollo.Age.BetList.Models;
 using Apollo.Age.BetList.Services;
+using Apollo.Age.Reports.Services;
 using Apollo.Age.Web;
+using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
 using Fanex.BetList.Age.BetListHTMLBuilderExt;
-using Fanex.BetList.Age.Definition;
-using Fanex.BetList.Age.DTO;
 using Fanex.BetList.Age.ExtTemplate;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
 using Fanex.BetList.Core.Utils;
-using Sunplus.Agent.Model.BL.BetList;
-using Sunplus.Agent.Model.BL.Reports;
-using Sunplus.Agent.Model.Entities;
+using Fanex.Agent.UI._BetList;
 
 namespace Sunplus.Agent.UI._BetList
 {
-    public partial class ViewDetail_Page : Fanex.Age.UI.Reports.WinlossReports_Page
+    public partial class ViewDetail_Page : TplPage
     {
         #region Define variable
 
@@ -35,6 +28,7 @@ namespace Sunplus.Agent.UI._BetList
         private DateTime fromDate = DateTime.Now;
         private DateTime toDate = DateTime.Now;
         private bool isReportWinloss = false;
+        private DateTime moveBetsDay;
 
         #endregion Define variable
 
@@ -125,8 +119,10 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
+            var reportService = new ReportService();
+            moveBetsDay = reportService.MoveBetsDay();
             Int64.TryParse(Request["transId"], out transID);
-            fromDate = GetDateTimeRequest("fromDate", ReportsBO.MoveBetsDate);
+            fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
             isReportWinloss = GetStringRequest("type", string.Empty) == "report" ? true : false;
         }
@@ -146,7 +142,7 @@ namespace Sunplus.Agent.UI._BetList
                 TransId = transID,
                 FromDate = fromDate,
                 ToDate = toDate,
-                MoveBetsDay = ReportsBO.MoveBetsDate,
+                MoveBetsDay = moveBetsDay,
                 IsWinLoss = isReportWinloss
             };
             var mainTickets = betListService.GetDetailAgentComm(criteria);
