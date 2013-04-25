@@ -40,7 +40,7 @@
         checkedString = "checked='checked'";
     }
     <td>
-        <input id="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox" value="@(betType.TypeId + "," + betType.Id1st)" @(checkedString) />
+        <input id="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox" value="@(betType.TypeId.ToString() + (betType.Id1st != 0 ? ("," + betType.Id1st.ToString()) : string.Empty))" @(checkedString) />
         <label for="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)">
             @(betType.BetTypeName)
         </label>

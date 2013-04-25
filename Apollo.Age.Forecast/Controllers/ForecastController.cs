@@ -207,6 +207,7 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
+        [OutputCache(Duration=0)]
         public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes)
         {
             return View(_forecastService.GetScoreMapResults(this.CurrentSession.AgentId, matchIds, liveBetTypes, deadBallBetTypes));

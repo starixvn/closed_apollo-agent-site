@@ -50,37 +50,46 @@ namespace Apollo.Age.TotalBets.Controllers
             });
         }
 
-        public ViewResult Handicap()
+        private void AddToViewBagMainShareHolderId(dynamic ViewBag, int mainShareHolderId)
         {
+            if (mainShareHolderId > 0 && base.CurrentSession.IsSuper)
+            {
+                
+            }
+        }
+
+        public ViewResult Handicap(int mainShareHolderId = 0)
+        {
+            
             var model = GetModel<HandicapModel>(BetTypes.Handicap);
             return View(model);
         }
 
-        public ViewResult MoneyLine()
+        public ViewResult MoneyLine(int mainShareHolderId = 0)
         {
             var model = GetModel<MoneyLineModel>(BetTypes.Money_Line);
             return View(model);
         }
 
-        public ViewResult TotalGoal()
+        public ViewResult TotalGoal(int mainShareHolderId = 0)
         {
             var model = GetModel<TotalGoalModel>(BetTypes.Total_Goal);
             return View(model);
         }
 
-        public ViewResult OddEven()
+        public ViewResult OddEven(int mainShareHolderId = 0)
         {
             var model = GetModel<OddEvenModel>(BetTypes.Odd_Even);
             return View(model);
         }
 
-        public ViewResult HTFT()
+        public ViewResult HTFT(int mainShareHolderId = 0)
         {
             var model = GetModel<HTFTModel>(BetTypes.HT_FT);
             return View(model);
         }
 
-        public ViewResult OutRight()
+        public ViewResult OutRight(int mainShareHolderId = 0)
         {
             var model = GetModel<OutRightModel>(BetTypes.Outright);
             return View(model);
@@ -92,13 +101,13 @@ namespace Apollo.Age.TotalBets.Controllers
         //    return View(model);
         //}
 
-        public ViewResult HomeNoBet()
+        public ViewResult HomeNoBet(int mainShareHolderId = 0)
         {
             var model = GetModel<HomeNoBetModel>(BetTypes.Draw_No_Bet);
             return View(model);
         }
 
-        public ViewResult FirstGoal()
+        public ViewResult FirstGoal(int mainShareHolderId = 0)
         {
             var model = GetModel<FirstGoalModel>(BetTypes.First_Goal_Last_Goal);
             return View(model);
