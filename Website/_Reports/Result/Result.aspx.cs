@@ -114,6 +114,16 @@ namespace Fanex.Age.UI.Reports.Result
                     this.RenderSportCriteria(this.tpl.SportCriteria);
                 }
 
+                // Render content
+                //if (this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Mix_Parlay
+                //    || this.bettype == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Combine_Mix_Parlay)
+                //{
+                //    this.RenderReportContentMixParlay(this.tpl.ExcelContents);
+                //}
+                //else
+                //{
+                this.RenderReportContent(this.tpl.ExcelContents);
+                //}
                 this.RenderHiddenField(this.tpl);
                 tpl.ApoRoot = Page.ResolveUrl("~/");
 
