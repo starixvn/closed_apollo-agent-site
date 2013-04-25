@@ -234,7 +234,7 @@
     <Setting Key="Age_Customer_GetByUsername" SpName="Age_Customer_GetByUsername" DbName="REPDB" Plain="0">
       <Mapping DataField="CustId" ObjectProperty="Id" />
     </Setting>
-
+    <Setting Key="Age_Agent_GetAllMainShareHolder" SpName="Age_Agent_GetAllMainShareHolder" DbName="REPDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-Report">
