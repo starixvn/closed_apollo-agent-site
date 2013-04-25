@@ -14,6 +14,7 @@ namespace Sunplus.Agent.UI._BetList
 {
     using System;
     using System.Data;
+    using System.Text;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Models;
@@ -21,8 +22,8 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Web;
+    using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
-    using Fanex.Age.UI.Reports;
     using Fanex.Age.UI.Reports.BetList;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
@@ -32,7 +33,7 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
 
-    public partial class BetListOnMember : WinlossReports_Page
+    public partial class BetListOnMember : TplPage
     {
         #region Variables
 
@@ -76,6 +77,7 @@ namespace Sunplus.Agent.UI._BetList
             var tickets = ticketResult.TicketList;
             var ticketData = ticketResult.TicketDataList;
 
+            StringBuilder content = new StringBuilder();
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
             TicketHelper ticketHelper = new TicketHelper();
@@ -93,9 +95,9 @@ namespace Sunplus.Agent.UI._BetList
 
             #endregion INIT
 
-            builder.Append(betlistOpenTag);
-            builder.Append(betlistHeader);
-
+            content.Append(betlistOpenTag);
+            content.Append(betlistHeader);
+            content.Append("<tbody>");
             int index = 0;
 
             foreach (ITicket ticket in tickets)
@@ -120,9 +122,10 @@ namespace Sunplus.Agent.UI._BetList
                 builder.Append("</tr>");
             }
             builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
-            tpl.content = builder.GetBetList();
-            builder.Append("</tbody></table>");
+            content.Append(builder.GetBetList());
+            content.Append("</tbody></table>");
 
+            tpl.content = content.ToString();
             tpl.HiddenFields.pageType = pageType;
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             writer.Write(tpl);

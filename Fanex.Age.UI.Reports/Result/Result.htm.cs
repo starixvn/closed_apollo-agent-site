@@ -19,16 +19,16 @@ namespace Fanex.Age.UI.Reports
 			protected static string s2{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
 			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
 			protected static string s4{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
-			protected static string s5 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s5 = "\" rel=\"stylesheet\" type=\"text/css\" /><style type=\"text/css\">.btn {margin-right: 5px;}.tblRpt tbody td {border-width: 1px;vertical-align: middle;}.tblRpt .no_info td {padding: 0;}#spfdatetext {font-weight: bold;}</style></head><body><form id=\"frmmain\" method=\"get\" action=\"";
 			protected static string s6{get{return AbsoluteUrl2("Result/Result.aspx");}}
 			protected static string s7 = "\"><div id=\"page_main\">";
 			public Result_ResultTitle_Block ResultTitle = new Result_ResultTitle_Block();
 			protected static string s8 = "<div id=\"content_main\">";
 			public Result_HeaderRegion_Block HeaderRegion = new Result_HeaderRegion_Block();
 			public Result_SportCriteria_Block SportCriteria = new Result_SportCriteria_Block();
-			protected static string s9 = "<div id=\"tbl-container\"><div id=\"boderRight\">";
+			protected static string s9 = "<div id=\"tbl-container\">";
 			public Result_ExcelContents_Block ExcelContents = new Result_ExcelContents_Block();
-			protected static string s10 = "</div></div></div></div><input type=\"hidden\" id=\"is_outright\" name=\"is_outright\" value=\"";
+			protected static string s10 = "</div></div></div><input type=\"hidden\" id=\"is_outright\" name=\"is_outright\" value=\"";
 			public string IsOutright = "{IsOutright}";
 			protected static string s11 = "\" /><input type=\"hidden\" id=\"changeSportType\" name=\"changeSportType\" value=\"0\" /></form><input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
@@ -100,7 +100,7 @@ namespace Fanex.Age.UI.Reports
 			protected Fanex.Age.UI.Components.DateRangeSelect_Control _DateRangeSelect;
 			protected static string s17 = "<input type=\"button\" class=\"btn\" id=\"btResultType\"value=\"";
 			public string ResultType = "{ResultType}";
-			protected static string s18 = "\" onclick=\"DisableButton(); Result_ToggleResultType();\"style=\"float: left;margin-top: 1px\" /></div>";
+			protected static string s18 = "\" onclick=\"DisableButton(); Result_ToggleResultType();\" /></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -118,13 +118,13 @@ namespace Fanex.Age.UI.Reports
 
 		public class Result_SportCriteria_Block: Block
 		{
-			protected static string s19 = "<table class=\"tblRpt\"><tr><td>";
+			protected static string s19 = "<table class=\"box-header\"><tr><td><label>";
 			protected static string s20{get{return Resources.Lang.sport;}}
-			protected static string s21 = "</td><td id=\"selSport\"><select onchange=\"Result_ChangeSport();\" name=\"ddlSport\" id=\"ddlSport\" style=\"position: relative;\">";
+			protected static string s21 = "</label></td><td id=\"selSport\"><select onchange=\"Result_ChangeSport()\" name=\"ddlSport\" id=\"ddlSport\">";
 			public Result_SportCriteria_SportOption_Block SportOption = new Result_SportCriteria_SportOption_Block();
-			protected static string s22 = "</select></td><td width=\"10\">&nbsp;</td><td>";
+			protected static string s22 = "</select></td><td>&nbsp;</td><td><label>";
 			protected static string s23{get{return Resources.Lang.league;}}
-			protected static string s24 = "</td><td id=\"selLeague\" name=\"selLeague\"><select onchange=\"Result_ChangeLeague();\" name=\"ddlLeague\" id=\"ddlLeague\"><option value='0' selected='selected'>*..::* Show All Leagues*::..*</option>";
+			protected static string s24 = "</label></td><td id=\"selLeague\" name=\"selLeague\"><select onchange=\"Result_ChangeLeague();\" name=\"ddlLeague\" id=\"ddlLeague\"style=\"width: auto\"><option value='0' selected='selected'>&mdash;&mdash;&mdash; Show All Leagues &mdash;&mdash;&mdash;</option>";
 			public Result_SportCriteria_LeagueOption_Block LeagueOption = new Result_SportCriteria_LeagueOption_Block();
 			protected static string s25 = "</select></td></tr></table>";
 			public override void ToString(ref StringBuilder bd)

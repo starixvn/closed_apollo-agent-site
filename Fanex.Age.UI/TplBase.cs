@@ -5,16 +5,17 @@ using System.Globalization;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
-using Sunplus.Agent.Model.BL;
-using Sunplus.Agent.Model.Entities;
+
+//using Sunplus.Agent.Model.BL;
+//using Sunplus.Agent.Model.Entities;
 
 /*
  * Created 20091211@Lee - Base aspx page
- * Revision: 
+ * Revision:
  * 20091211@Lee - Initializing
- * 
+ *
  * !!!CAUTION: ANY REVISION MUST BE APPROVED BEFORE PROCEEDING!!!
- * 
+ *
  */
 
 namespace Fanex.Age.UI
@@ -26,7 +27,7 @@ namespace Fanex.Age.UI
     {
         protected override void InitializeCulture()
         {
-            SetLanguage(CurrentUserSession.Language);
+            //SetLanguage(CurrentUserSession.Language);
             base.InitializeCulture();
         }
 
@@ -43,6 +44,7 @@ namespace Fanex.Age.UI
 
         // Handle external resources of controls
         protected List<string> RegisteredControls = new List<string>(10);
+
         /// <summary>
         /// Return false that mean the control aldready registered.
         /// </summary>
@@ -50,50 +52,33 @@ namespace Fanex.Age.UI
         /// <returns></returns>
         public bool RegisterControl(string name)
         {
-            if (RegisteredControls.Contains(name)) 
+            if (RegisteredControls.Contains(name))
                 return false;
             else RegisteredControls.Add(name);
-                return true;
-        }
-        
-        private IUserSession _CurrentUserSession;
-        /// <summary>
-        /// Current user session.
-        /// </summary>
-        public IUserSession CurrentUserSession
-        {
-            get
-            {
-                if (null == HttpContext.Current.Session) return null;
-
-                if (null == _CurrentUserSession)
-                {
-                    _CurrentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
-                }
-
-                return _CurrentUserSession;
-            }
+            return true;
         }
 
         protected object _View;
+
         /// <summary>
         /// Data was loaded in InvokeData.
         /// </summary>
         public object View
         {
-            get 
+            get
             {
                 return _View;
             }
         }
 
         protected Hashtable _Parameters;
+
         /// <summary>
         /// Parameters was parsed in the http request.
         /// </summary>
         public Hashtable Parameters
         {
-            get 
+            get
             {
                 return _Parameters;
             }
@@ -115,14 +100,14 @@ namespace Fanex.Age.UI
         public abstract object ValidateRequest(Hashtable p);
 
         /// <summary>
-        /// Loading data in _BL with provided params. This function was called  in http get only. 
+        /// Loading data in _BL with provided params. This function was called  in http get only.
         /// Inherit from TplPage2 will be supported ProcessRequest method.
         /// </summary>
         /// <param name="p">List of request params</param>
         /// <returns>Return data in array of objects</returns>
         public abstract object InvokeData(Hashtable p);
 
-        #endregion
+        #endregion IBasePage Members
 
         #region RequestUtility
 
@@ -142,6 +127,7 @@ namespace Fanex.Age.UI
                 return value;
             }
         }
+
         /// <summary>
         /// Get DateTime request
         /// </summary>
@@ -158,6 +144,7 @@ namespace Fanex.Age.UI
                 return value;
             }
         }
+
         /// <summary>
         /// Get boolean request
         /// </summary>
@@ -169,15 +156,16 @@ namespace Fanex.Age.UI
             if (string.IsNullOrEmpty(HttpContext.Current.Request[name])) return defaultValue;
             else
             {
-                string value=HttpContext.Current.Request[name];
-                if(value=="1"||value=="on"||value=="true") return true;
+                string value = HttpContext.Current.Request[name];
+                if (value == "1" || value == "on" || value == "true") return true;
 
                 return false;
             }
         }
+
         /// <summary>
         /// Get string request
-        /// 
+        ///
         /// </summary>
         /// <param name="name"></param>
         /// <param name="defaultValue"></param>
@@ -187,6 +175,7 @@ namespace Fanex.Age.UI
             if (string.IsNullOrEmpty(HttpContext.Current.Request[name])) return defaultValue;
             else return HttpContext.Current.Request[name];
         }
+
         /// <summary>
         /// Get long request
         /// </summary>
@@ -203,6 +192,7 @@ namespace Fanex.Age.UI
                 return value;
             }
         }
+
         /// <summary>
         /// Get decimal request
         /// </summary>
@@ -219,6 +209,7 @@ namespace Fanex.Age.UI
                 return value;
             }
         }
+
         /// <summary>
         /// Get double request
         /// </summary>
@@ -235,6 +226,7 @@ namespace Fanex.Age.UI
                 return value;
             }
         }
-        #endregion
+
+        #endregion RequestUtility
     }
 }

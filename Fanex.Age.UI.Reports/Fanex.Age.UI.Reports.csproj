@@ -47,7 +47,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
@@ -61,15 +60,6 @@
     <Content Include="BetList\BetListTransaction.htm" />
     <Content Include="BetList\DailyStatement.htm" />
     <Content Include="BetList\BetListOnMember.htm" />
-    <Content Include="CasinoWinloss\CSWinlossAgent.htm" />
-    <Content Include="CasinoWinloss\CSWinlossDetailAgent.htm" />
-    <Content Include="CasinoWinloss\CSWinlossDetailMaster.htm" />
-    <Content Include="CasinoWinloss\CSWinlossDetailSuper.htm" />
-    <Content Include="CasinoWinloss\CSWinlossMaster.htm" />
-    <Content Include="CasinoWinloss\CSWinlossSuper.htm" />
-    <Content Include="Commission\CommissionByBetType.htm" />
-    <Content Include="Commission\FinanceCommission.htm" />
-    <Content Include="Commission\HRCommission.htm" />
     <Content Include="Common\ButtonBoxLeague.htm" />
     <Content Include="Common\MatchResultEntered.htm" />
     <Content Include="Common\Outstanding.htm" />
@@ -80,20 +70,8 @@
     <Content Include="Components\NoInfo.htm" />
     <Content Include="Components\SearchHeader.htm" />
     <Content Include="Components\WinlossSearchView.htm" />
-    <Content Include="Consolidated\Consolidated.htm" />
     <Content Include="Scripts.htm" />
-    <Content Include="LastBetMonitoring\LastBetMonitoring.htm" />
     <Content Include="Styles.htm" />
-    <Content Include="MatchWinloss\MatchWinloss.htm" />
-    <Content Include="MatchWinloss\MatchWinlossDetail.htm" />
-    <Content Include="PortalPage\ACS.htm" />
-    <Content Include="PortalPage\Announcement.htm" />
-    <Content Include="PortalPage\BalanceInfo.htm" />
-    <Content Include="PortalPage\OnlineList.htm" />
-    <Content Include="PortalPage\PortalPage.htm" />
-    <Content Include="PortalPage\Statistic.htm" />
-    <Content Include="PortalPage\StatisticDiv.htm" />
-    <Content Include="PortalPage\StatisticDiv2.htm" />
     <Content Include="Result\Result.htm" />
     <Content Include="Result\ResultBadminton.htm" />
     <Content Include="Result\ResultBaseBall.htm" />
@@ -110,18 +88,6 @@
     <Content Include="Result\ResultSoccer.htm" />
     <Content Include="Result\ResultTennis.htm" />
     <Content Include="Result\SportType.htm" />
-    <Content Include="WinlossAnalysis\WinlossAnalysisAgent.htm" />
-    <Content Include="WinlossAnalysis\WinlossAnalysisMaster.htm" />
-    <Content Include="WinlossAnalysis\WinlossAnalysisSuper.htm" />
-    <Content Include="Winloss\WinlossAgent.htm" />
-    <Content Include="Winloss\WinlossByBetTypeAgent.htm" />
-    <Content Include="Winloss\WinlossByBetTypeMaster.htm" />
-    <Content Include="Winloss\WinlossByBetTypeSuper.htm" />
-    <Content Include="Winloss\WinlossDetailAgent.htm" />
-    <Content Include="Winloss\WinlossDetailMaster.htm" />
-    <Content Include="Winloss\WinlossDetailSuper.htm" />
-    <Content Include="Winloss\WinlossMaster.htm" />
-    <Content Include="Winloss\WinlossSuper.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -148,15 +114,6 @@
     <Compile Include="BetList\BetListTransaction.htm.cs" />
     <Compile Include="BetList\BetSummary.htm.cs" />
     <Compile Include="BetList\DailyStatement.htm.cs" />
-    <Compile Include="CasinoWinloss\CSWinlossAgent.htm.cs" />
-    <Compile Include="CasinoWinloss\CSWinlossDetailAgent.htm.cs" />
-    <Compile Include="CasinoWinloss\CSWinlossDetailMaster.htm.cs" />
-    <Compile Include="CasinoWinloss\CSWinlossDetailSuper.htm.cs" />
-    <Compile Include="CasinoWinloss\CSWinlossMaster.htm.cs" />
-    <Compile Include="CasinoWinloss\CSWinlossSuper.htm.cs" />
-    <Compile Include="Commission\CommissionByBetType.htm.cs" />
-    <Compile Include="Commission\FinanceCommission.htm.cs" />
-    <Compile Include="Commission\HRCommission.htm.cs" />
     <Compile Include="Common\ButtonBoxLeague.htm.cs" />
     <Compile Include="Common\MatchResultEntered.htm.cs" />
     <Compile Include="Common\Outstanding.htm.cs" />
@@ -168,27 +125,8 @@
     <Compile Include="Components\ReportSearchHeader_Control.cs" />
     <Compile Include="Components\SearchHeader.htm.cs" />
     <Compile Include="Components\WinlossSearchView.htm.cs" />
-    <Compile Include="Components\WinlossSearchView_Control.cs" />
-    <Compile Include="Consolidated\Consolidated.htm.cs" />
-    <Compile Include="Consolidated_Page.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="DataSetHelper.cs" />
-    <Compile Include="LastBetMonitoring\LastBetMonitoring.htm.cs" />
-    <Compile Include="MatchWinloss\MatchWinloss.htm.cs" />
-    <Compile Include="MatchWinloss\MatchWinlossDetail.htm.cs" />
-    <Compile Include="PortalPage\ACS.htm.cs" />
-    <Compile Include="PortalPage\Announcement.htm.cs" />
-    <Compile Include="PortalPage\BalanceInfo.htm.cs" />
-    <Compile Include="PortalPage\OnlineList.htm.cs" />
-    <Compile Include="PortalPage\PortalPage.htm.cs" />
-    <Compile Include="PortalPage\Statistic.htm.cs" />
-    <Compile Include="PortalPage\StatisticDiv.htm.cs" />
-    <Compile Include="PortalPage\StatisticDiv2.htm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports_Page.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Result\Result.htm.cs" />
     <Compile Include="Result\ResultBadminton.htm.cs" />
     <Compile Include="Result\ResultBaseBall.htm.cs" />
@@ -207,21 +145,6 @@
     <Compile Include="Result\SportType.htm.cs" />
     <Compile Include="Scripts.htm.cs" />
     <Compile Include="Styles.htm.cs" />
-    <Compile Include="WinlossAnalysis\WinlossAnalysisAgent.htm.cs" />
-    <Compile Include="WinlossAnalysis\WinlossAnalysisMaster.htm.cs" />
-    <Compile Include="WinlossAnalysis\WinlossAnalysisSuper.htm.cs" />
-    <Compile Include="WinlossReports_Page.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Winloss\WinlossAgent.htm.cs" />
-    <Compile Include="Winloss\WinlossByBetTypeAgent.htm.cs" />
-    <Compile Include="Winloss\WinlossByBetTypeMaster.htm.cs" />
-    <Compile Include="Winloss\WinlossByBetTypeSuper.htm.cs" />
-    <Compile Include="Winloss\WinlossDetailAgent.htm.cs" />
-    <Compile Include="Winloss\WinlossDetailMaster.htm.cs" />
-    <Compile Include="Winloss\WinlossDetailSuper.htm.cs" />
-    <Compile Include="Winloss\WinlossMaster.htm.cs" />
-    <Compile Include="Winloss\WinlossSuper.htm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Lang.resx">
@@ -245,14 +168,6 @@
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
-      <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
-      <Name>Fanex.Age.Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
-      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
-      <Name>Sunplus.Agent.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

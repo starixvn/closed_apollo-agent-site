@@ -126,7 +126,8 @@
                     @if (Model.IsMember)
 					{
 						<a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level&showHeader=true">
+                            href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&showHeader=true&userGroup=@Model.Group.ToUpper()&agentId=@Model.ParentId">
+                            
                             @Resources.Lang.lblEditSB
                         </a>
 						

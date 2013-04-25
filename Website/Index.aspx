@@ -34,10 +34,6 @@
     <input type="hidden" id="ApoRoot" value="<%= Page.ResolveUrl("~/")%>" />
     <script src="<%= Page.ResolveUrl("_GlobalResources/Js/jquery.js")%>" type="text/javascript"></script>
     <script src="<%= Page.ResolveUrl("_GlobalResources/Js/Core.js")%>" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function () {
-            setInterval(APOLLO.reCheckIn, 45000);
-        });
-    </script>
+    
 </body>
 </html>

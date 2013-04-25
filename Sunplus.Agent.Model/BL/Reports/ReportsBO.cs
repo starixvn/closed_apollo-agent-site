@@ -797,10 +797,10 @@ namespace Sunplus.Agent.Model.BL.Reports
         /// <param name="dateFrom"></param>
         /// <param name="dateTo"></param>
         /// <returns></returns>
-        public DataTable GetOutrightResult(DateTime dateFrom, DateTime dateTo)
-        {
-            return reportDAO.Age_Result_Outright(dateFrom, dateTo);
-        }
+        //public DataTable GetOutrightResult(DateTime dateFrom, DateTime dateTo)
+        //{
+        //    return reportDAO.Age_Result_Outright(dateFrom, dateTo);
+        //}
         #endregion
 
         #region SportListByDate
@@ -810,10 +810,10 @@ namespace Sunplus.Agent.Model.BL.Reports
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public DataTable GetResultSportByDate(DateTime date)
-        {
-            return reportDAO.Age_Result_SportSelByDate(date);
-        }
+        //public DataTable GetResultSportByDate(DateTime date)
+        //{
+        //    return reportDAO.Age_Result_SportSelByDate(date);
+        //}
         #endregion
 
         #region ResultReport
@@ -824,11 +824,11 @@ namespace Sunplus.Agent.Model.BL.Reports
         /// <param name="sportId"></param>
         /// <param name="leaugeId"></param>
         /// <returns></returns>
-        public DataTable GetResultMatchByLeague(DateTime date, int sportId, int leagueId)
-        {
-            string language = CurrentSession.Language;
-            return reportDAO.Age_Result_MatchSelByLeague(date, CurrentSession.CustId, sportId, leagueId, language);
-        }
+        //public DataTable GetResultMatchByLeague(DateTime date, int sportId, int leagueId)
+        //{
+        //    string language = CurrentSession.Language;
+        //    return reportDAO.Age_Result_MatchSelByLeague(date, CurrentSession.CustId, sportId, leagueId, language);
+        //}
 
         /// <summary>
         /// Get result for number game
@@ -836,11 +836,11 @@ namespace Sunplus.Agent.Model.BL.Reports
         /// <param name="date"></param>
         /// <param name="leaugeId"></param>
         /// <returns></returns>
-        public DataTable GetResultNumberGameByLeague(DateTime date, int leagueId)
-        {
-            string language = CurrentSession.Language;
-            return reportDAO.Age_Result_MatchSelNumberGameByLeague(date, leagueId, language);
-        }
+        //public DataTable GetResultNumberGameByLeague(DateTime date, int leagueId)
+        //{
+        //    string language = CurrentSession.Language;
+        //    return reportDAO.Age_Result_MatchSelNumberGameByLeague(date, leagueId, language);
+        //}
 
         /// <summary>
         /// Get result of horse racing
@@ -848,20 +848,20 @@ namespace Sunplus.Agent.Model.BL.Reports
         /// <param name="date"></param>
         /// <param name="leagueId"></param>
         /// <returns></returns>
-        public DataTable GetResultHRRaces(DateTime date, int sportId, int leagueId)
-        {
-            return reportDAO.Age_Result_RaceSelByMeeting(date, sportId, leagueId);
-        }
+        //public DataTable GetResultHRRaces(DateTime date, int sportId, int leagueId)
+        //{
+        //    return reportDAO.Age_Result_RaceSelByMeeting(date, sportId, leagueId);
+        //}
 
         /// <summary>
         /// Get match result of number game
         /// </summary>
         /// <param name="matchId"></param>
         /// <returns></returns>
-        public DataTable SelectMatchForViewNumberGameResult(int matchId)
-        {
-            return reportDAO.Age_BetList_SelMatchResultNumberGame(matchId);
-        }
+        //public DataTable SelectMatchForViewNumberGameResult(int matchId)
+        //{
+        //    return reportDAO.Age_BetList_SelMatchResultNumberGame(matchId);
+        //}
 
         /// <summary>
         /// Get match result by matchId and race number
@@ -869,10 +869,10 @@ namespace Sunplus.Agent.Model.BL.Reports
         /// <param name="matchId"></param>
         /// <param name="raceno"></param>
         /// <returns></returns>
-        public DataTable SelectMatchForViewResult(int matchId, string raceno)
-        {
-            return reportDAO.Age_BetList_SelMatchResult(matchId, raceno);
-        }
+        //public DataTable SelectMatchForViewResult(int matchId, string raceno)
+        //{
+        //    return reportDAO.Age_BetList_SelMatchResult(matchId, raceno);
+        //}
 
         /// <summary>
         /// Get match result Sporting Solutions
@@ -880,10 +880,10 @@ namespace Sunplus.Agent.Model.BL.Reports
         /// <param name="matchId"></param>
         /// <param name="raceno"></param>
         /// <returns></returns>
-        public DataTable SelectSetDetailForViewResult(int matchId, string resourceId)
-        {
-            return reportDAO.Age_BetList_SelMatchResultSS(matchId, resourceId);
-        }
+        //public DataTable SelectSetDetailForViewResult(int matchId, string resourceId)
+        //{
+        //    return reportDAO.Age_BetList_SelMatchResultSS(matchId, resourceId);
+        //}
 
         #endregion
 
@@ -895,27 +895,27 @@ namespace Sunplus.Agent.Model.BL.Reports
         /// <param name="date"></param>
         /// <param name="sportId"></param>
         /// <returns></returns>
-        public DataTable GetResultLeagueByDate(DateTime date, int sportId)
-        {
-            string language = CurrentSession.Language;
+        //public DataTable GetResultLeagueByDate(DateTime date, int sportId)
+        //{
+        //    string language = CurrentSession.Language;
 
-            // Racing
-            //if (sportId == 151)
-            //{
-            //    //if (!AppSettings.Disable151_31 && CurrentSession.IsAllowHRCurrency)
-            //    //{
-            //    //    return reportDAO.Age_Result_LeagueSelByDate(date, sportId, language);
-            //    //}
-            //    //else
-            //    {
-            //        return new DataTable();
-            //    }
-            //}
-            //else
-            {
-                return reportDAO.Age_Result_LeagueSelByDate(date, sportId, language);
-            }
-        }
+        //    // Racing
+        //    //if (sportId == 151)
+        //    //{
+        //    //    //if (!AppSettings.Disable151_31 && CurrentSession.IsAllowHRCurrency)
+        //    //    //{
+        //    //    //    return reportDAO.Age_Result_LeagueSelByDate(date, sportId, language);
+        //    //    //}
+        //    //    //else
+        //    //    {
+        //    //        return new DataTable();
+        //    //    }
+        //    //}
+        //    //else
+        //    {
+        //        return reportDAO.Age_Result_LeagueSelByDate(date, sportId, language);
+        //    }
+        //}
 
         #endregion
 

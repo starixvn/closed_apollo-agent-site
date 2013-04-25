@@ -80,12 +80,21 @@
                                 </tr>
                             }
                         }
-                    
+                        else
+                        {
+                            @RazorHelper.ShowNoInfo(colspan: 8)
                         }
+                    }
                 </tbody>
             </table>
         </div>
     </div>
         }
+    }
+    else
+    {
+        <div id="tblMsgMatch" style="display: block;">
+            <span id="msgMatchErr" class="msgerr">@Resources.Lang.noInfo</span>
+        </div>
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web;
-using Sunplus.Agent.Model.Entities;
 using Sunplus.Agent.Utilities;
 
 public partial class Index : System.Web.UI.Page
@@ -11,10 +10,10 @@ public partial class Index : System.Web.UI.Page
 
     protected override void OnLoad(EventArgs e)
     {
-        if (!UserSession.Current.IsLogged)
-        {
-            mainPage = "_MemberInfo/ChangePassword/ChangePassword.aspx";
-        }
+        //if (!UserSession.Current.IsLogged)
+        //{
+        //    mainPage = "_MemberInfo/ChangePassword/ChangePassword.aspx";
+        //}
 
         mainPage = DEFAULT_INDEX;
         string url = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) +
@@ -30,8 +29,8 @@ public partial class Index : System.Web.UI.Page
         get
         {
             string name = string.Join("_", new string[] {
-               UserSession.Current.CustId.ToString(),
-               UserSession.Current.SubAccId.ToString(),
+               //UserSession.Current.CustId.ToString(),
+              // UserSession.Current.SubAccId.ToString(),
                "URL"
             });
 

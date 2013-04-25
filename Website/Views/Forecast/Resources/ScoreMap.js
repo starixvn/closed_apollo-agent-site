@@ -8,6 +8,7 @@ if (typeof jQuery != 'undefined') {
                 //// Cached jQuery Objects
                 var matchIds = $('#match-ids').val();
                 if (matchIds != "") {
+                    $("#header_main").hide();
                     SCOREMAP.viewPartial = true;
                     SCOREMAP.loadBetTypesList(matchIds);
                     SCOREMAP.loadResults($('#bet-types-live').val(), $('#bet-types-dead').val());
@@ -58,8 +59,8 @@ if (typeof jQuery != 'undefined') {
                 var url = SCOREMAP.baseLink + 'ScoreMapBetType';
                 //// If Show In PopUp then add BetType
                 if (SCOREMAP.viewPartial) {
-                    var btLive = $('#bet-types-live').val()[0] || "";
-                    var btDead = $('#bet-types-dead').val()[0] || "";
+                    var btLive = $('#bet-types-live').val().split(',')[0] || "";
+                    var btDead = $('#bet-types-dead').val().split(',')[0] || "";
                     url += "?liveBetType=" + btLive
             + "&deadBetType=" + btDead;
                 }

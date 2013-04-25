@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = Resources.Lang.ViewShare;
     Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
-    int index = 1;
+    int index = 0;
 }
 
 @model MemberShareViewModel
@@ -41,14 +41,14 @@
 					new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent },
 					new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
 				}, new { id = "ddlIsMember" })
-				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50" })
+				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", style = "width: 150px" })
 				<input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
             </div>
         </div>
     </div>
 </div>
 
-<table class="tbl-cust-setting no-border-bottom" style="width:auto; min-width: 692px;">
+<table class="tbl-cust-setting no-border-bottom" style="width:auto; min-width: 738px;">
     <thead>
         <tr>
             <th>
@@ -78,7 +78,7 @@
                     <td class="em-row l">
                         @item.Username
                     </td>
-                    @if (item.AgentLevel == Constants.MAIN_SHAREHOLDER_LEVEL)
+                    @if (item.AgentLevel == Constants.MAIN_SHAREHOLDER_LEVEL || index == Model.MemberShareModelList.Count)
                     {
                         <td></td>
                     }
@@ -109,5 +109,6 @@
 
 @section scripts
 {
+    <script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
     <script src="~/Views/Account/Resources/ViewShare.js" type="text/javascript"></script>
 }
