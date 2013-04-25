@@ -5,8 +5,8 @@ using System.Globalization;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
-using Sunplus.Agent.Model.BL;
-using Sunplus.Agent.Model.Entities;
+//using Sunplus.Agent.Model.BL;
+//using Sunplus.Agent.Model.Entities;
 
 /*
  * Created 20091211@Lee - Base aspx page
@@ -26,7 +26,7 @@ namespace Fanex.Age.UI
     {
         protected override void InitializeCulture()
         {
-            SetLanguage(CurrentUserSession.Language);
+            //SetLanguage(CurrentUserSession.Language);
             base.InitializeCulture();
         }
 
@@ -56,24 +56,24 @@ namespace Fanex.Age.UI
                 return true;
         }
         
-        private IUserSession _CurrentUserSession;
-        /// <summary>
-        /// Current user session.
-        /// </summary>
-        public IUserSession CurrentUserSession
-        {
-            get
-            {
-                if (null == HttpContext.Current.Session) return null;
+        //private IUserSession _CurrentUserSession;
+        ///// <summary>
+        ///// Current user session.
+        ///// </summary>
+        //public IUserSession CurrentUserSession
+        //{
+        //    get
+        //    {
+        //        if (null == HttpContext.Current.Session) return null;
 
-                if (null == _CurrentUserSession)
-                {
-                    _CurrentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
-                }
+        //        if (null == _CurrentUserSession)
+        //        {
+        //            _CurrentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
+        //        }
 
-                return _CurrentUserSession;
-            }
-        }
+        //        return _CurrentUserSession;
+        //    }
+        //}
 
         protected object _View;
         /// <summary>
