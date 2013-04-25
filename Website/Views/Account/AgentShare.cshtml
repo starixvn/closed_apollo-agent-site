@@ -75,7 +75,7 @@
                     <td class="em-row l">
                         @item.Username
                     </td>
-                    @if (item.AgentLevel == Constants.MAIN_SHAREHOLDER_LEVEL)
+                    @if (item.AgentLevel == Constants.MAIN_SHAREHOLDER_LEVEL || index == Model.AgentShareModelList.Count)
                     {
                         <td></td>
                     }
