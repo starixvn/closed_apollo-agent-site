@@ -28,7 +28,8 @@ var VIEWCOMM = function ($) {
                             var found = $.map(data, function (item) {
                                 return {
                                     label: item.Username,
-                                    value: item.Id
+                                    value: item.Username,
+                                    id: item.Id
                                 }
                             });
 
@@ -38,7 +39,7 @@ var VIEWCOMM = function ($) {
                 },
                 select: function (event, ui) {
                     var url = "CustomerSetting/ViewCommission?IsMember=" + VIEWCOMM.isMember.val()
-                        + "&Id=" + ui.item.value + "&Username=" + ui.item.label;
+                        + "&Id=" + ui.item.id + "&Username=" + ui.item.value;
 
                     location.href = APOLLO.resolveUrl(url);
                 },

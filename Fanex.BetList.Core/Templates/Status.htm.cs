@@ -100,25 +100,17 @@ namespace Fanex.BetList.Core
 
 		public class Status_ShowIPVN_Block: Block
 		{
-			protected static string s15 = "<div class=\"iplink\" onclick=\"";
-			public string openIpFunc = "OpenIPInfo";
-			protected static string s16 = "('";
+			protected static string s15 = "<div class=\"iplink\">";
 			public string betIp = "{betIp}";
-			protected static string s17 = "');\">";
-			protected string t0_betIp;
-			protected static string s18 = "</div>";
+			protected static string s16 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(s15);
-					bd.Append(openIpFunc);
+					bd.Append(betIp);
 					bd.Append(s16);
-					bd.Append(betIp);
-					bd.Append(s17);
-					bd.Append(betIp);
-					bd.Append(s18);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

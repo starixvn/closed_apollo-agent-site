@@ -87,7 +87,6 @@
     <Content Include="bin\Sunplus.Libraries.ThirdPartyTestData.dll" />
     <Content Include="bin\TplCore.dll" />
     <Content Include="bin\UMControllerLibrary.dll" />
-    <Content Include="CurrencyFilter\CurrencyFilter.htm" />
     <Content Include="DateRangeSelect\Copy of DateRangeSelect.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -112,20 +111,12 @@
     <Content Include="PT_Control\PT_Control.htm" />
     <Content Include="RefreshCountDown\RefreshCountDown.htm" />
     <Content Include="SearchUserName_Control\SearchUserName_Control.htm" />
-    <Content Include="WinlossReportFilter\WinlossReportFilter.htm" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnalysisReportFilter\AnalysisReportFilter.cs" />
     <Compile Include="AnalysisReportFilter\AnalysisReportFilter.htm.cs" />
     <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.cs" />
     <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.htm.cs" />
-    <Compile Include="CurrencyFilter\CurrencyFilter.cs" />
-    <Compile Include="CurrencyFilter\CurrencyFilter.htm.cs" />
-    <Compile Include="WinlossReportFilter\FilterElement.cs" />
-    <Compile Include="WinlossReportFilter\Filter_Control.cs" />
-    <Compile Include="WinlossReportFilter\WinlossReportFilter.htm.cs" />
-    <Compile Include="WinlossReportFilter\WinlossReportFilterManager.cs" />
-    <Compile Include="WinlossReportFilter\WinlossReportFilter_Control.cs" />
     <Content Include="App_Code\TplCore\RefreshCountDown\RefreshCountDown.htm.cs" />
     <Compile Include="App_GlobalResources\Lang.designer.cs">
       <DependentUpon>Lang.resx</DependentUpon>
@@ -180,10 +171,6 @@
     <ProjectReference Include="..\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
       <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
       <Name>Fanex.Age.Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sunplus.Agent.Model\Sunplus.Agent.Model.csproj">
-      <Project>{8831EE6F-7EF9-48F3-9DA2-82C6C5EB6E47}</Project>
-      <Name>Sunplus.Agent.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

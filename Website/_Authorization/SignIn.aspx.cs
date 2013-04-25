@@ -17,9 +17,6 @@ namespace Sunplus.Agent.UI._Authorization
     using Apollo.Age.Web;
     using Fanex.Age.UI;
     using Fanex.Agent.UI._Authorization;
-    using Sunplus.Agent.Model.BL;
-    using Sunplus.Agent.Model.BL.Authorization;
-    using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
 
     public partial class SignIn_Page : Fanex.Age.UI.TplPage2
@@ -92,15 +89,15 @@ namespace Sunplus.Agent.UI._Authorization
             string userName = Request["txtUserName"].Trim();
             string passWord = Request["txtPassWord"];
             string language = Request["hidLanguage"];
-            IUserSession session = CurrentUserSession;
+            //IUserSession session = CurrentUserSession;
 
             //Get Browser
-            Hashtable requestInfo = Sunplus.Agent.Model.Services.DeviceService.GetRequestInfo(Request);
+            //Hashtable requestInfo = Sunplus.Agent.Model.Services.DeviceService.GetRequestInfo(Request);
 
             if (Validation.CheckValidLanguage(language))
             {
-                session.Language = language;
-                session.LangKey = Sunplus.Agent.Model.Common.Language.LangKeyFromCulture(language);
+                // session.Language = language;
+                // session.LangKey = Sunplus.Agent.Model.Common.Language.LangKeyFromCulture(language);
                 SetLanguage(language);
             }
             else
@@ -118,7 +115,7 @@ namespace Sunplus.Agent.UI._Authorization
                 ICurrentSession currentSession = new CurrentSession(user);
                 Session["Apollo.Age.Web.CurrentSession"] = currentSession;
 
-                UserSessionService.SetUserSessionValues(session, user);
+                //UserSessionService.SetUserSessionValues(session, user);
 
                 //session.CurrentUser = user;
                 FormsAuthentication.RedirectFromLoginPage(user.Username, false);
@@ -192,31 +189,31 @@ namespace Sunplus.Agent.UI._Authorization
         {
             // Before/After Login
             // Redirect to before login
-            if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.LocalTest)
-            {
-                string beforeLoginUrl = Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl;
-                string baseUrl = Sunplus.Agent.Model.BL.Definitions.AppSettings.BaseUrl;
+            //if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.LocalTest)
+            //{
+            //    string beforeLoginUrl = "";// Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl;
+            //    string baseUrl = "";// Sunplus.Agent.Model.BL.Definitions.AppSettings.BaseUrl;
 
-                if (beforeLoginUrl != baseUrl)
-                {
-                    Session.Abandon();
+            //    if (beforeLoginUrl != baseUrl)
+            //    {
+            //        Session.Abandon();
 
-                    if (Request.Cookies["SSL"] == null || Request.Cookies["SSL"].Value != "true")
-                    {
-                        beforeLoginUrl = beforeLoginUrl.Replace("https://", "http://");
-                    }
+            //        if (Request.Cookies["SSL"] == null || Request.Cookies["SSL"].Value != "true")
+            //        {
+            //            beforeLoginUrl = beforeLoginUrl.Replace("https://", "http://");
+            //        }
 
-                    if (beforeLoginUrl.ToLower().EndsWith("/accounting/"))
-                    {
-                        beforeLoginUrl = beforeLoginUrl + "Index.aspx";
-                    }
+            //        if (beforeLoginUrl.ToLower().EndsWith("/accounting/"))
+            //        {
+            //            beforeLoginUrl = beforeLoginUrl + "Index.aspx";
+            //        }
 
-                    Response.Redirect(beforeLoginUrl, true);
-                }
+            //        Response.Redirect(beforeLoginUrl, true);
+            //    }
 
-                string[] domains = Sunplus.Agent.Model.BL.Definitions.AppSettings.CookielessDomainCollection;
-                TplCore.TplSettings.SetCookielessDomains(domains);
-            }
+            //    string[] domains = Sunplus.Agent.Model.BL.Definitions.AppSettings.CookielessDomainCollection;
+            //    TplCore.TplSettings.SetCookielessDomains(domains);
+            //}
 
             // Check under maintenance time (no need, before login did it)
 
@@ -230,12 +227,12 @@ namespace Sunplus.Agent.UI._Authorization
 
         public override void RenderContent(System.Web.UI.HtmlTextWriter writer)
         {
-            if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.LocalTest)
-            {
-                return;
-            }
+            //if (!Sunplus.Agent.Model.BL.Definitions.AppSettings.LocalTest)
+            //{
+            //    return;
+            //}
 
-            RegisterJavascriptObject("ip", Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP());
+            //RegisterJavascriptObject("ip", Sunplus.Agent.Model.Common.AgentIPFormat.GetClientIP());
 
             RegisterJavascriptObject("language", 0);
 
