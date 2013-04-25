@@ -39,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Data">
-      <HintPath>..\..\apollo-agent\Dependencies\Fanex.Data.dll</HintPath>
-    </Reference>
     <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\NPOI.dll</HintPath>
@@ -132,22 +129,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\apollo-agent\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
-      <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
-      <Name>Fanex.Age.Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
-      <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
-      <Name>Apollo.Age.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
-      <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
-      <Name>Apollo.Age</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
-      <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
-      <Name>Fanex.Age.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
       <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
       <Name>Fanex.BetList.Core</Name>
