@@ -10,7 +10,9 @@ var TOTALBETS = function ($) {
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
                  + '&leagueName=' + $(this).attr("league-name"));
-
+                if (currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + currentMainShareHolderId;
+                }
                 ageWnd.openDialog(url, 'FORECAST', {
                     width: 665,
                     height: 350,
@@ -88,6 +90,9 @@ var TOTALBETS = function ($) {
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
                 + '&leagueName=' + $(this).attr("league-name"));
+                if (currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + currentMainShareHolderId;
+                }
                 ageWnd.openDialog(url, 'FORECAST', {
                     width: 350,
                     height: 600,
@@ -155,7 +160,7 @@ var TOTALBETS = function ($) {
 } (jQuery);
 
 $(function () {
-    if (currentMainShareHolderId) {
+    if (currentMainShareHolderId > 0) {
         $("#ddlMainShareHolder").change(function () {
             var $this = $(this);
             var markIndex = document.location.href.indexOf('?');

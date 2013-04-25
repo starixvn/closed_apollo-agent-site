@@ -41,7 +41,8 @@ if (typeof jQuery != 'undefined') {
             });
             },
             changeLeague: function () {
-                var url = APOLLO.resolveUrl('Forecast/FCHandicapOverUnderMatches?leagueId=' + FCHANDICAPOU.currentLeague);
+                var url = APOLLO.resolveUrl('Forecast/FCHandicapOverUnderMatches?leagueId=' + FCHANDICAPOU.currentLeague
+                + '&mainShareHolderId=' + currentMainShareHolderId);
                 $("#forecast-body").load(url);
                 FCHANDICAPOU.registerEvents();
             }
@@ -49,6 +50,19 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
+        if (currentMainShareHolderId > 0) {
+            $("#ddlMainShareHolder").change(function () {
+                var $this = $(this);
+                var markIndex = document.location.href.indexOf('?');
+                var link = document.location.href;
+                if (markIndex > 0) {
+                    link = document.location.href.substring(0, markIndex);
+                }
+
+                document.location.href = link + "?mainShareHolderId=" + $this.val();
+            });
+        }
+
         FCHANDICAPOU.init();
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 };

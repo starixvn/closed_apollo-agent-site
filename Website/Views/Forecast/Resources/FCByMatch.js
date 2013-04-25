@@ -16,6 +16,9 @@ if (typeof jQuery != 'undefined') {
                 var url = FORECASTBYMATCH.contentLink + '?matchId=' + FORECASTBYMATCH.matchId
         + '&betType=' + FORECASTBYMATCH.betType
         + '&currentScore=' + FORECASTBYMATCH.currentScore;
+                if (currentMainShareHolderId > 0) {
+                    url += '&mainShareHolderId=' + currentMainShareHolderId;
+                }
                 $.get(url, function (contentView) {
                     $("#forecast-body").html(contentView);
                     FORECASTBYMATCH.registerEvents();
