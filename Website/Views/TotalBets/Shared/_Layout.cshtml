@@ -1,8 +1,43 @@
-@using Apollo.Age.TotalBets.Models
 @{
     var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
     var currentAgentId = ViewBag.CurrentAgentId;
-    var mainShareHolders = (IEnumerable<MainShareHolderModel>)ViewBag.MainShareHolders;
+    var mainShareHolders = (IEnumerable<Apollo.Age.TotalBets.Models.MainShareHolderModel>)ViewBag.MainShareHolders;
+}
+@helper RenderMainShareHolderDropDownList(int currentMainShareHolderId, IEnumerable<Apollo.Age.TotalBets.Models.MainShareHolderModel> mainShareHolders)
+    {
+    <div id="box_header">
+        <div class="row">
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlLeague">@Resources.Lang.lblMainShareHolder</label>
+                </div>
+                <div class="editor">
+                    @{
+                        if (mainShareHolders != null && mainShareHolders.Any())
+                        {
+                        <select id='ddlMainShareHolder' name='ddlMainShareHolder' style="width: 280px">
+                            @{
+                            var selectedString = string.Empty;
+                            foreach (var mainShareHolder in mainShareHolders)
+                            {
+                                if (mainShareHolder.Id == currentMainShareHolderId)
+                                {
+                                    selectedString = "selected='selected'";
+                                }
+                                else
+                                {
+                                    selectedString = string.Empty;
+                                }
+                                <option value="@mainShareHolder.Id" @(selectedString) >@mainShareHolder.Username</option>
+                            }
+                            }
+                        </select>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 }
 <!DOCTYPE html>
 <!--[if IE 7 ]> <html class="ie7 ie" lang="en-us"> <![endif]-->
@@ -34,39 +69,7 @@
             @{
                 if (currentAgentId == 0)
                 {
-                <div id="box_header">
-                    <div class="row">
-                        <div class="cell">
-                            <div class="label">
-                                <label for="ddlLeague">@Resources.Lang.lblMainShareHolder</label>
-                            </div>
-                            <div class="editor">
-                                @{
-                    if (mainShareHolders != null && mainShareHolders.Any())
-                    {
-                                    <select id='ddlMainShareHolder' name='ddlMainShareHolder' style="width: 280px">
-                                        @{
-                        var selectedString = string.Empty;
-                        foreach (var mainShareHolder in mainShareHolders)
-                        {
-                            if (mainShareHolder.Id == currentMainShareHolderId)
-                            {
-                                selectedString = "selected='selected'";
-                            }
-                            else
-                            {
-                                selectedString = string.Empty;
-                            }
-                                            <option value="@mainShareHolder.Id" @(selectedString) >@mainShareHolder.Username</option>
-                        }
-                                        }
-                                    </select>
-                    }
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @RenderMainShareHolderDropDownList(currentMainShareHolderId, mainShareHolders)
                 }
             }
             @RenderBody()
