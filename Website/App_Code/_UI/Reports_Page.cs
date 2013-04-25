@@ -3,10 +3,8 @@ using System.Data;
 using System.IO;
 using System.Resources;
 using System.Web;
-using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
 using Fanex.Age.UI.Reports.Components;
-using Sunplus.Agent.Model.BL.Reports;
 
 /*
  * Created 20100527@Jacob - Support render full mode or body mode
@@ -41,19 +39,6 @@ namespace Fanex.Age.UI.Reports
         protected bool _sortingEnabled = true;
 
         #endregion Sorting variable
-
-        private ReportsBO _reportBO = null;
-
-        protected ReportsBO _ReportBO
-        {
-            get
-            {
-                //if (_reportBO == null) _reportBO = new ReportsBO(CurrentUserSession.NetSessionId);
-                //return _reportBO;
-
-                throw new NotImplementedException();
-            }
-        }
 
         #endregion Variable
 
@@ -107,7 +92,7 @@ namespace Fanex.Age.UI.Reports
         {
             get
             {
-                return Sunplus.Agent.Model.Entities.Permission.UserPermission.IsShowCasino;
+                return false;
             }
         }
 
@@ -163,7 +148,7 @@ namespace Fanex.Age.UI.Reports
             // export to excel
             _exportToExcel = String.IsNullOrEmpty(Request["exporttoexcel.x"]) ? false : true;
 
-           // _custId = GetIntRequest("custid", CurrentUserSession.CustId);
+            // _custId = GetIntRequest("custid", CurrentUserSession.CustId);
             //_roleId = GetIntRequest("roleid", CurrentUserSession.RoleId);
 
             _sortingColumn = GetStringRequest("sortingcolumn", "");
@@ -460,7 +445,7 @@ namespace Fanex.Age.UI.Reports
             RegisterJavascriptObject("SortingUp", _sortingUp);
             RegisterJavascriptObject("SortingEnabled", _sortingEnabled);
             RegisterJavascriptObject("_date", DateTime.Now.ToShortDateString());
-         //   RegisterJavascriptObject("RoleId", CurrentUserSession.RoleId);
+            //   RegisterJavascriptObject("RoleId", CurrentUserSession.RoleId);
         }
 
         #endregion Sorting
