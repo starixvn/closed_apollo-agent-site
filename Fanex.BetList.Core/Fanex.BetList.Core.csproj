@@ -243,12 +243,16 @@
     <Compile Include="Builder\TransBuilder\Trans73.cs" />
     <Compile Include="Entities\BetStatus.cs" />
     <Compile Include="Entities\CellAddress.cs" />
+    <Compile Include="Entities\ISystemParlaySerial.cs" />
+    <Compile Include="Entities\ISystemParlayTicket.cs" />
     <Compile Include="Entities\ITicket.cs" />
     <Compile Include="Entities\ITicketData.cs" />
     <Compile Include="Entities\ITicketHelper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\RTFHelper.cs" />
+    <Compile Include="Entities\SystemParlaySerial.cs" />
+    <Compile Include="Entities\SystemParlayTicket.cs" />
     <Compile Include="Entities\TextBlock.cs" />
     <Compile Include="Entities\Ticket.cs" />
     <Compile Include="Entities\TicketData.cs" />

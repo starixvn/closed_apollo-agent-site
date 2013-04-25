@@ -19,6 +19,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using Fanex.BetList.Core.Entities;
     using Fanex.Common;
     using Fanex.Data;
+    using Fanex.Data.DNAide;
 
     /// <summary>
     /// BetList Repository
@@ -190,6 +191,73 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
 
                 return ticketResult;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get Combination Mix Parlay Detail
+        /// </summary>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>SystemParlay data</returns>
+        public SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria)
+        {
+            var uspKey = "Age_Betlist_SelSystemParlay_Details";
+            var uspParams = new Hashtable
+            {
+                { "refno", criteria.RefNo },
+                { "custid", criteria.CustId },
+                { "movebetsday", criteria.MoveBetsDay },
+                { "balanceupday", criteria.BalanceUpDay },
+                { "language", criteria.Language },
+                { "outstanding", 0 }
+            };
+
+            try
+            {
+                using (var db = new ObjectDb(uspKey))
+                {
+                    var dataSet = db.ExecuteDataSet(uspParams);
+                    var ticketData = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                    var serialData = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
+
+                    var systemParlayData = new SystemParlayData();
+
+                    systemParlayData.TicketList = new List<ISystemParlayTicket>();
+                    foreach (DataRow row in ticketData.Rows)
+                    {
+                        ISystemParlayTicket ticket = new SystemParlayTicket();
+                        ticket.WinLostDate = Converter.ToDateTime(row["winlostdate"]);
+                        ticket.TransId = Convert.ToInt64(row["transid"]);
+                        ticket.Serial = Convert.ToInt64(row["serial"]);
+                        ticket.StatusId = Converter.ToInt(row["statusid"]);
+                        ticket.Status = Converter.ToString2(row["status"]);
+                        ticket.MOdds = Converter.ToDecimal(row["modds"]);
+                        ticket.Stake = Converter.ToDecimal(row["stake"]);
+                        ticket.WinLost = Converter.ToDecimal(row["winlost"]);
+                        ticket.PlayerComm = Converter.ToDecimal(row["playercomm"]);
+
+                        systemParlayData.TicketList.Add(ticket);
+                    }
+
+                    systemParlayData.SerialList = new List<ISystemParlaySerial>();
+                    foreach (DataRow row in serialData.Rows)
+                    {
+                        ISystemParlaySerial serial = new SystemParlaySerial();
+                        serial.Serial = Convert.ToInt64(row["serial"]);
+                        serial.HomeId = Converter.ToInt(row["homeid"]);
+                        serial.AwayId = Converter.ToInt(row["awayid"]);
+
+                        systemParlayData.SerialList.Add(serial);
+                    }
+
+                    systemParlayData.Outstanding = Converter.ToDecimal(uspParams["outstanding"]);
+
+                    return systemParlayData;
+                }
             }
             catch
             {
