@@ -12,7 +12,7 @@
                 var toDate = new Date(ToDate.val());
 
                 if (toDate < fromDate) {
-                    noty({ text: LANGUAGES.MessageValidateDate, type: 'warn' });
+                    noty({ text: LANGUAGES.MessageValidateDate, type: 'warning' });
                 }
                 else {
                     var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
