@@ -8,6 +8,7 @@ if (typeof jQuery != 'undefined') {
                 //// Cached jQuery Objects
                 var matchIds = $('#match-ids').val();
                 if (matchIds != "") {
+                    $("#header_main").hide();
                     SCOREMAP.viewPartial = true;
                     SCOREMAP.loadBetTypesList(matchIds);
                     SCOREMAP.loadResults($('#bet-types-live').val(), $('#bet-types-dead').val());
