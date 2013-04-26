@@ -65,7 +65,7 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.Filter.valueFromDate = fromDate.ToShortDateString();
                 tpl.Filter.valueToDate = toDate.ToShortDateString();
                 tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
-                tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
+                tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
                 tpl.HiddenFields.pageType = pageType;
             }
             else

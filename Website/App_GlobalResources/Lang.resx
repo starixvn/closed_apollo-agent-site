@@ -3299,7 +3299,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>View under</value>
   </data>
   <data name="voidandreject" xml:space="preserve">
-    <value>Void/Rejected Bet List (Last 3 days)</value>
+    <value>Void/Rejected Bet List</value>
   </data>
   <data name="voided" xml:space="preserve">
     <value>Void</value>
