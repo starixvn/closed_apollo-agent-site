@@ -114,7 +114,7 @@ namespace Fanex.Agent.UI
 		{
 			protected static string s23 = "<td ";
 			public string rowSpan = "{rowSpan}";
-			protected static string s24 = ">";
+			protected static string s24 = " class=\"c\">";
 			public string date = "{date}";
 			protected static string s25 = "</td>";
 			public override void ToString(ref StringBuilder bd)
@@ -134,9 +134,9 @@ namespace Fanex.Agent.UI
 
 		public class CombinationMixParlayRow_SubSummary_Block: Block
 		{
-			protected static string s26 = "<tr class=\"subtotal\"><td colspan=\"4\">";
+			protected static string s26 = "<tr class=\"subtotal\"><td colspan=\"4\" class=\"r\">";
 			protected static string s27{get{return Resources.Lang.subTotal;}}
-			protected static string s28 = ":</td><td class=\"r\">";
+			protected static string s28 = "</td><td class=\"r\">";
 			public string subTotal = "{subTotal}";
 			protected static string s29 = "</td><td></td></tr>";
 			public override void ToString(ref StringBuilder bd)
@@ -156,9 +156,9 @@ namespace Fanex.Agent.UI
 
 		public class CombinationMixParlayRow_OutStanding_Block: Block
 		{
-			protected static string s30 = "<tr class=\"outstanding\"><td colspan=\"4\">";
+			protected static string s30 = "<tr class=\"outstanding\"><td colspan=\"4\" class=\"r\">";
 			protected static string s31{get{return Resources.Lang.outstanding;}}
-			protected static string s32 = ":</td><td class=\"r\">";
+			protected static string s32 = "</td><td class=\"r\">";
 			public string outstanding = "{outstanding}";
 			protected static string s33 = "</td><td></td></tr>";
 			public override void ToString(ref StringBuilder bd)
@@ -178,9 +178,9 @@ namespace Fanex.Agent.UI
 
 		public class CombinationMixParlayRow_Summary_Block: Block
 		{
-			protected static string s34 = "<tr class=\"total\"><td colspan=\"4\">";
+			protected static string s34 = "<tr class=\"total\"><td colspan=\"4\" class=\"r\">";
 			protected static string s35{get{return Resources.Lang.total;}}
-			protected static string s36 = ":</td><td class=\"white-color r\">";
+			protected static string s36 = "</td><td class=\"white-color r\">";
 			public string total = "{total}";
 			protected static string s37 = "</td><td></td></tr>";
 			public override void ToString(ref StringBuilder bd)
