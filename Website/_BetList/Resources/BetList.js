@@ -118,7 +118,7 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid) {
 	var params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid;
 
 	if (parent.ageWnd) {
-		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), '', 50, 100, width, height);
+		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), 'Detail', 50, 100, width, height);
 	}
 	else {
 		ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), '', 50, 100, width, height);
