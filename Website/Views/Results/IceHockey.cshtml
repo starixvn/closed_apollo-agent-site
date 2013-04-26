@@ -1,0 +1,169 @@
+﻿@using Apollo.Age.Reports.Models
+@using Apollo.Age.Reports.Core
+@model IEnumerable<MatchResultModel>
+<table class="tblRpt">
+    <thead>
+        <tr class="RptHeader">
+            <td style="width: 90px" columnname="kickofftime">
+                @Resources.Lang.kickofftime
+            </td>
+            <td>
+                @Resources.Lang.match
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.P1
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.P2
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.P3
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.OT
+            </td>
+            <td class="nowrap" style="width: 70px;">
+                @Resources.Lang.finalscore
+            </td>
+            <td class="nowrap" style="width: 60px;">
+                @Resources.Lang.status
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            var currentLeagueId = 0;
+
+            foreach (var item in Model)
+            {
+                var eventStatus = string.Empty;
+                var betStatus = string.Empty;
+
+                var finalHomeScore = 0;
+                var finalAwayScore = 0;
+
+                var homeTeam = string.Empty;
+                var awayTeam = string.Empty;
+
+                var P1Away = "-";
+                var P1Home = "-";
+                var P2Away = "-";
+                var P2Home = "-";
+                var P3Away = "-";
+                var P3Home = "-";
+                var OTAway = string.Empty;
+                var OTHome = string.Empty;
+                betStatus = item.BetStatus;
+
+                if (!string.IsNullOrWhiteSpace(betStatus))
+                {
+
+                    finalHomeScore = item.FinalHomeScore;
+                    finalAwayScore = item.FinalAwayScore;
+
+                    if (finalHomeScore > finalAwayScore)
+                    {
+                        homeTeam = "<b>" + item.HomeTeam + (item.IsNeutral ? Resources.Lang.IsNeutral : string.Empty) + "</b>";
+                        awayTeam = item.AwayTeam;
+                    }
+                    else if (finalHomeScore < finalAwayScore)
+                    {
+                        homeTeam = item.HomeTeam;
+                        awayTeam = "<b>" + item.AwayTeam + "</b>";
+                    }
+                    else
+                    {
+                        homeTeam = item.HomeTeam;
+                        awayTeam = item.AwayTeam;
+                    }
+
+                    //23-12,26-11,17-13,15-15
+                    string[] listOfBetStatus = betStatus.Split(',');
+                    if (listOfBetStatus.Count() > 1)
+                    {
+                        P1Home = listOfBetStatus[0].Split('-')[0];
+                        P1Away = listOfBetStatus[0].Split('-')[1];
+
+                        P2Home = listOfBetStatus[1].Split('-')[0];
+                        P2Away = listOfBetStatus[1].Split('-')[1];
+
+                        P3Home = listOfBetStatus[2].Split('-')[0];
+                        P3Away = listOfBetStatus[2].Split('-')[1];
+
+                        if (listOfBetStatus.Count() > 3)
+                        {
+
+                            OTHome = listOfBetStatus[3].Split('-')[0];
+                            OTAway = listOfBetStatus[3].Split('-')[1];
+
+                        }
+                    }
+
+                }
+
+                if (currentLeagueId != item.LeagueId)
+                {
+                    currentLeagueId = item.LeagueId;
+            <tr class="league">
+                <td colspan="10">
+                    @item.LeagueName
+                </td>
+            </tr>
+                }
+
+            <tr>
+                <td rowspan="2">
+                    @item.KickoffTime
+                </td>
+                <td>
+                    @Html.Raw(homeTeam)
+                </td>
+                <td>
+                    @P1Home
+                </td>
+                <td>
+                    @P2Home
+                </td>
+                <td>
+                    @P3Home
+                </td>
+                <td>
+                    @OTHome
+                </td>
+                <td>
+                    @finalHomeScore
+                </td>
+                <td rowspan="2">
+                    @item.EventStatusTranslation
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Raw(awayTeam)
+                </td>
+                <td>
+                    @P1Away
+                </td>
+                <td>
+                    @P2Away
+                </td>
+                <td>
+                    @P3Away
+                </td>
+                <td>
+                    @OTAway
+                </td>
+                <td>
+                    @finalAwayScore
+                </td>
+            </tr>
+
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(colspan: 8);
+        }
+    </tbody>
+</table>

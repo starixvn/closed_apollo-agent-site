@@ -55,10 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BetList\BetListSections.htm" />
-    <Content Include="BetList\BetSummary.htm" />
     <Content Include="BetList\BetListTransaction.htm" />
-    <Content Include="BetList\DailyStatement.htm" />
     <Content Include="BetList\BetListOnMember.htm" />
     <Content Include="Common\ButtonBoxLeague.htm" />
     <Content Include="Common\MatchResultEntered.htm" />
@@ -108,10 +105,7 @@
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
     <Compile Include="BetList\BetListOnMember.htm.cs" />
-    <Compile Include="BetList\BetListSections.htm.cs" />
     <Compile Include="BetList\BetListTransaction.htm.cs" />
-    <Compile Include="BetList\BetSummary.htm.cs" />
-    <Compile Include="BetList\DailyStatement.htm.cs" />
     <Compile Include="Common\ButtonBoxLeague.htm.cs" />
     <Compile Include="Common\MatchResultEntered.htm.cs" />
     <Compile Include="Common\Outstanding.htm.cs" />
