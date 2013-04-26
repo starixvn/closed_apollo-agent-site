@@ -24,7 +24,6 @@ namespace Fanex.Age.UI.Reports.Result
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Services;
     using Apollo.Age.Web;
-    
 
     public partial class Result_Page : Reports_Page
     {
@@ -496,12 +495,12 @@ namespace Fanex.Age.UI.Reports.Result
             // Horse racing
             if (this._sportId == 151)
             {
-                Result.ResultNoInfoHR_Template template = new Fanex.Age.UI.Reports.Result.ResultNoInfoHR_Template();
+                Result.ResultNoInfoHR_Template template = new ResultNoInfoHR_Template();
                 excelBlock.Append(template);
             }
             else
             {
-                Result.ResultNoInfo_Template template = new Fanex.Age.UI.Reports.Result.ResultNoInfo_Template();
+                Result.ResultNoInfo_Template template = new ResultNoInfo_Template();
                 excelBlock.Append(template);
             }
         }
@@ -654,7 +653,7 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderOutright(Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultOutright_Template template = new Fanex.Age.UI.Reports.Result.ResultOutright_Template();
+            Result.ResultOutright_Template template = new ResultOutright_Template();
             DataTable reportData = (View as Dictionary<string, DataTable>)["ReportData"];
             string filterString = (this._leagueId > 0) ? "leagueid=" + this._leagueId.ToString() : "sporttype=" + this._sportId.ToString();
             DataRow[] reportRows = reportData.Select(filterString);
@@ -664,8 +663,8 @@ namespace Fanex.Age.UI.Reports.Result
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                Result.ResultOutright_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultOutright_RowData_League_Block();
-                Result.ResultOutright_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultOutright_RowData_Row_Block();
+                Result.ResultOutright_RowData_League_Block leagueBlock = new ResultOutright_RowData_League_Block();
+                Result.ResultOutright_RowData_Row_Block rowBlock = new ResultOutright_RowData_Row_Block();
                 for (int i = 0; i < numRow; i++)
                 {
                     DataRow dr = reportRows[i];
@@ -706,15 +705,15 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderBadminton(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultBadminton_Template template = new Fanex.Age.UI.Reports.Result.ResultBadminton_Template();
+            Result.ResultBadminton_Template template = new ResultBadminton_Template();
 
             int numRow = reportData.Rows.Count;
             template.RowData.Clear();
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                Result.ResultBadminton_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultBadminton_RowData_League_Block();
-                Result.ResultBadminton_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultBadminton_RowData_Row_Block();
+                Result.ResultBadminton_RowData_League_Block leagueBlock = new ResultBadminton_RowData_League_Block();
+                Result.ResultBadminton_RowData_Row_Block rowBlock = new ResultBadminton_RowData_Row_Block();
 
                 // Do NOT show league block when Pop up the result of matches
                 if (this._matchId > 0)
@@ -802,13 +801,13 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderSoccer(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultSoccer_Template template = new Fanex.Age.UI.Reports.Result.ResultSoccer_Template();
+            Result.ResultSoccer_Template template = new ResultSoccer_Template();
             int numRow = reportData.Rows.Count;
             template.RowData.Clear();
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                Result.ResultSoccer_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultSoccer_RowData_League_Block();
+                Result.ResultSoccer_RowData_League_Block leagueBlock = new ResultSoccer_RowData_League_Block();
                 Result.ResultSoccer_RowData_Row_Block rowBlock = this.CreateSoccerRowBlock();
 
                 // Do NOT show league block when Pop up the result of matches
@@ -1055,14 +1054,14 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderBasketBall(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultBasketBall_Template template = new Fanex.Age.UI.Reports.Result.ResultBasketBall_Template();
+            Result.ResultBasketBall_Template template = new ResultBasketBall_Template();
             int numRow = reportData.Rows.Count;
             template.RowData.Clear();
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                Result.ResultBasketBall_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultBasketBall_RowData_League_Block();
-                Result.ResultBasketBall_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultBasketBall_RowData_Row_Block();
+                Result.ResultBasketBall_RowData_League_Block leagueBlock = new ResultBasketBall_RowData_League_Block();
+                Result.ResultBasketBall_RowData_Row_Block rowBlock = new ResultBasketBall_RowData_Row_Block();
 
                 // Do NOT show league block when Pop up the result of matches
                 if (this._matchId > 0)
@@ -1159,15 +1158,15 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderHockey(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultHockey_Template template = new Fanex.Age.UI.Reports.Result.ResultHockey_Template();
+            Result.ResultHockey_Template template = new ResultHockey_Template();
 
             int numRow = reportData.Rows.Count;
             template.RowData.Clear();
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                Result.ResultHockey_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultHockey_RowData_League_Block();
-                Result.ResultHockey_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultHockey_RowData_Row_Block();
+                Result.ResultHockey_RowData_League_Block leagueBlock = new ResultHockey_RowData_League_Block();
+                Result.ResultHockey_RowData_Row_Block rowBlock = new ResultHockey_RowData_Row_Block();
 
                 // Do NOT show league block when Pop up the result of matches
                 if (this._matchId > 0)
@@ -1254,20 +1253,21 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderTennis(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultTennis_Template template = new Fanex.Age.UI.Reports.Result.ResultTennis_Template();
-
+            var template = new ResultTennis_Template();
             int numRow = reportData.Rows.Count;
+
             template.RowData.Clear();
+
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                var setId = string.Empty;
-                var setScore1 = string.Empty;
-                var setScore2 = string.Empty;
-                DataTable setDetailData = new DataTable();
+                string setId = string.Empty;
+                string setScore1 = string.Empty;
+                string setScore2 = string.Empty;
+                var setDetailData = new DataTable();
                 string resultSetDetail = string.Empty;
-                Result.ResultTennis_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultTennis_RowData_League_Block();
-                Result.ResultTennis_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultTennis_RowData_Row_Block();
+                var leagueBlock = new ResultTennis_RowData_League_Block();
+                var rowBlock = new ResultTennis_RowData_Row_Block();
 
                 setDetailData = _resultRepository.SelectMatchForViewResult(this._matchId, refNo.ToString());
 
@@ -1280,7 +1280,8 @@ namespace Fanex.Age.UI.Reports.Result
                 {
                     template.SetDetail = null;
                 }
-                // Do NOT show league block when Pop up the result of matches
+
+                // DO NOT show league block when Pop up the result of matches
                 if (this._matchId > 0)
                 {
                     leagueBlock.Visible = false;
@@ -1290,6 +1291,7 @@ namespace Fanex.Age.UI.Reports.Result
                 {
                     DataRow dr = reportData.Rows[i];
                     int leagueid = Convert.ToInt32(dr["leagueid"]);
+
                     if (currentLeagueId == 0 || currentLeagueId != leagueid)
                     {
                         currentLeagueId = leagueid;
@@ -1299,7 +1301,12 @@ namespace Fanex.Age.UI.Reports.Result
 
                     rowBlock.ColorClass = i % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
                     rowBlock.KickOffTime = Formater.FullDateFormat2Line(dr["kickofftime"]);
-                    rowBlock.EventStatus = this.MapEventStatusString(dr["eventstatus"].ToString(), dr.Table.Columns.Contains("IsPending") ? Convert.ToBoolean(dr["IsPending"]) : false, dr.Table.Columns.Contains("IsHTCal") ? Convert.ToBoolean(dr["IsHTCal"]) : false, dr.Table.Columns.Contains("calculate") ? Convert.ToBoolean(dr["calculate"]) : false);
+                    rowBlock.EventStatus = this.MapEventStatusString(
+                        dr["eventstatus"].ToString(),
+                        dr.Table.Columns.Contains("IsPending") ? Convert.ToBoolean(dr["IsPending"]) : false,
+                        dr.Table.Columns.Contains("IsHTCal") ? Convert.ToBoolean(dr["IsHTCal"]) : false,
+                        dr.Table.Columns.Contains("calculate") ? Convert.ToBoolean(dr["calculate"]) : false
+                    );
 
                     // Home and away team
                     string homeTeamText = string.Empty, awayTeamText = string.Empty;
@@ -1384,15 +1391,15 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderBaseBall(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultBaseBall_Template template = new Fanex.Age.UI.Reports.Result.ResultBaseBall_Template();
+            Result.ResultBaseBall_Template template = new ResultBaseBall_Template();
 
             int numRow = reportData.Rows.Count;
             template.RowData.Clear();
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                Result.ResultBaseBall_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultBaseBall_RowData_League_Block();
-                Result.ResultBaseBall_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultBaseBall_RowData_Row_Block();
+                Result.ResultBaseBall_RowData_League_Block leagueBlock = new ResultBaseBall_RowData_League_Block();
+                Result.ResultBaseBall_RowData_Row_Block rowBlock = new ResultBaseBall_RowData_Row_Block();
 
                 // Do NOT show league block when Pop up the result of matches
                 if (this._matchId > 0)
@@ -1489,15 +1496,15 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderBilliard(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultBilliard_Template template = new Fanex.Age.UI.Reports.Result.ResultBilliard_Template();
+            Result.ResultBilliard_Template template = new ResultBilliard_Template();
 
             int numRow = reportData.Rows.Count;
             template.RowData.Clear();
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                Result.ResultBilliard_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultBilliard_RowData_League_Block();
-                Result.ResultBilliard_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultBilliard_RowData_Row_Block();
+                Result.ResultBilliard_RowData_League_Block leagueBlock = new ResultBilliard_RowData_League_Block();
+                Result.ResultBilliard_RowData_Row_Block rowBlock = new ResultBilliard_RowData_Row_Block();
 
                 // Do NOT show league block when Pop up the result of matches
                 if (this._matchId > 0)
@@ -1554,15 +1561,15 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderHorseRacing(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultHorseRacing_Template template = new Fanex.Age.UI.Reports.Result.ResultHorseRacing_Template();
+            Result.ResultHorseRacing_Template template = new ResultHorseRacing_Template();
 
             int numRow = reportData.Rows.Count;
             template.RowData.Clear();
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                Result.ResultHorseRacing_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultHorseRacing_RowData_League_Block();
-                Result.ResultHorseRacing_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultHorseRacing_RowData_Row_Block();
+                Result.ResultHorseRacing_RowData_League_Block leagueBlock = new ResultHorseRacing_RowData_League_Block();
+                Result.ResultHorseRacing_RowData_Row_Block rowBlock = new ResultHorseRacing_RowData_Row_Block();
 
                 // Do NOT show league block when Pop up the result of matches
                 if (this._matchId > 0)
@@ -1762,15 +1769,15 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderOtherSport(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultOtherSport_Template template = new Fanex.Age.UI.Reports.Result.ResultOtherSport_Template();
+            Result.ResultOtherSport_Template template = new ResultOtherSport_Template();
 
             int numRow = reportData.Rows.Count;
             template.RowData.Clear();
             if (numRow > 0)
             {
                 int currentLeagueId = 0;
-                Result.ResultOtherSport_RowData_League_Block leagueBlock = new Fanex.Age.UI.Reports.Result.ResultOtherSport_RowData_League_Block();
-                Result.ResultOtherSport_RowData_Row_Block rowBlock = new Fanex.Age.UI.Reports.Result.ResultOtherSport_RowData_Row_Block();
+                Result.ResultOtherSport_RowData_League_Block leagueBlock = new ResultOtherSport_RowData_League_Block();
+                Result.ResultOtherSport_RowData_Row_Block rowBlock = new ResultOtherSport_RowData_Row_Block();
 
                 // Do NOT show league block when Pop up the result of matches
                 if (this._matchId > 0)
@@ -1828,7 +1835,7 @@ namespace Fanex.Age.UI.Reports.Result
         private void RenderNumberGame(DataTable reportData, Result_ExcelContents_Block excelBlock)
         {
             // Get report rows
-            Result.ResultNumberGame_Template template = new Fanex.Age.UI.Reports.Result.ResultNumberGame_Template();
+            Result.ResultNumberGame_Template template = new ResultNumberGame_Template();
             int numRow = reportData.Rows.Count;
             template.Content.Clear();
             if (numRow > 0)
@@ -2116,15 +2123,16 @@ namespace Fanex.Age.UI.Reports.Result
             int htCal = Convert.ToInt32(isHTcal);
             int cal = Convert.ToInt32(calculate);
 
-            pending <<= 6; // Shift right 6 bit for pending status
-            htCal <<= 5; // Shift right 5 bit for haft time calculate status
-            cal <<= 4; // Shift right 4 bit for calculate status
+            pending <<= 6;  // Shift right 6 bit for pending status
+            htCal <<= 5;    // Shift right 5 bit for haft time calculate status
+            cal <<= 4;      // Shift right 4 bit for calculate status
 
             resultKey = pending | htCal | cal;
 
             if (_event.ContainsKey(eventstatus.ToLowerInvariant()))
             {
                 resultKey |= _event[eventstatus.ToLowerInvariant()]; // Or with event status
+
                 if (_result.ContainsKey(resultKey))
                 {
                     return this.GetLogResource(_result[resultKey]);
@@ -2133,6 +2141,7 @@ namespace Fanex.Age.UI.Reports.Result
                 {
                     // Get status from resource lang, if have.
                     string str = this.GetLogResource(eventstatus);
+
                     if (str != string.Empty)
                     {
                         return this.GetLogResource(eventstatus.ToLower());

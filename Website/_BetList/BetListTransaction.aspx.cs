@@ -44,13 +44,14 @@ namespace Sunplus.Agent.UI._BetList
 
         private string username = string.Empty;
         private DateTime fromDate, toDate;
-        private int agentId, custId, mainShareHolderId;
+        private int agentId, custId;
         private bool userType = false;
         private string pageType = string.Empty;
         private string statusIds = string.Empty;
         private bool isShowAgentPT = true;
         private bool isShowWinLost = true;
         private DateTime moveBetsDay;
+        private string mainShareHolderId, mainShareHolderUsername;
 
         #endregion Variables
 
@@ -124,7 +125,8 @@ namespace Sunplus.Agent.UI._BetList
 
             tpl.content = content.ToString();
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
-            tpl.HiddenFields.MainShareHolderId = mainShareHolderId.ToString();
+            tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
+            tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             writer.Write(tpl);
 
             #endregion RENDER HTML
@@ -139,11 +141,12 @@ namespace Sunplus.Agent.UI._BetList
             {
                 selectedUserType = "1";
             }
+
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
             tpl.Filter.valueFromDate = fromDate.ToString("MM/dd/yyyy");
             tpl.Filter.valueToDate = toDate.ToString("MM/dd/yyyy");
             tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
-            tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
+            tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
             tpl.Filter.User.username = username;
             tpl.HiddenFields.pageType = pageType;
         }
@@ -221,9 +224,11 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.title = Resources.Lang.voidandreject;
                 isShowAgentPT = isShowWinLost = false;
                 statusIds = string.Format("{0}^{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
+                fromDate = GetDateTimeRequest("fromDate", DateTime.Now);
             }
             else if (pageType == "transaction")
             {
+                fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
                 tpl.title = Resources.Lang.transaction;
                 isShowWinLost = true;
                 statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}^{6}^{7}",
@@ -237,11 +242,11 @@ namespace Sunplus.Agent.UI._BetList
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
 
-            fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
             username = this.GetStringRequest("username", CurrentSession.AgentName).Trim();
             userType = GetBooleanRequest("userType", true);
-            mainShareHolderId = GetIntRequest("mainShareHolderId", 0);
+            mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
+            mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
         }
 
         public override object ValidateRequest(Hashtable hash)
