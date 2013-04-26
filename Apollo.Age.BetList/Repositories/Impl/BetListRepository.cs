@@ -50,6 +50,51 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
+        /// Get detail win loss agent PT and agent commission
+        /// </summary>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>List Ticket</returns>
+        public IList<ITicket> GetDetailWinLossAgentComm(BetListCriteria criteria)
+        {
+            try
+            {
+                DataTable mainTable;
+                var preBalanceUpDay = criteria.BalanceUpDay.AddDays(-1);
+                if (criteria.FromDate < criteria.BalanceUpDay)
+                {
+                    if (criteria.ToDate < preBalanceUpDay)
+                    {
+                        mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss_Old", criteria);
+                    }
+                    else
+                    {
+                        // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
+                        var mainOldTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss_Old", criteria);
+
+                        var mainNewTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss", criteria);
+
+                        // Merge two table bettrans
+                        mainOldTable.Merge(mainNewTable);
+                        mainTable = mainOldTable;
+                    }
+                }
+                else
+                {
+                    mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss", criteria);
+                }
+
+                // Main ticket list
+                var ticketList = this.ReadTicket(mainTable);
+
+                return ticketList;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Get detail ticket mix-parlay
         /// </summary>
         /// <param name="criteria">Criteria name</param>
@@ -452,6 +497,31 @@ namespace Apollo.Age.BetList.Repositories.Impl
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Get detail Win loss from new or archive
+        /// </summary>
+        /// <param name="uspKey">Store name</param>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Return to table</returns>
+        private DataTable GetDetailWinLossNewOrOld(string uspKey, BetListCriteria criteria)
+        {
+            try
+            {
+                using (var db = new ObjectDb(uspKey))
+                {
+                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+
+                    // Main ticket list
+                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                    return mainTable;
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         /// <summary>
