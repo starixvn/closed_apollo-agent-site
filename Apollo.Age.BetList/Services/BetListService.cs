@@ -55,6 +55,16 @@ namespace Apollo.Age.BetList.Services
         }
 
         /// <summary>
+        /// Get detail win loss agent PT and agent commission
+        /// </summary>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>List Ticket</returns>
+        public IList<ITicket> GetDetailWinLossAgentComm(BetListCriteria criteria)
+        {
+            return this.betListRepository.GetDetailWinLossAgentComm(criteria);
+        }
+
+        /// <summary>
         /// Get detail ticket mix-parlay
         /// </summary>
         /// <param name="criteria">Criteria name</param>

@@ -207,14 +207,14 @@ if (typeof jQuery != "undefined") {
 	} (jQuery);
 
 	$(document).ready(function () {
-		BETLIST.init();
+	    BETLIST.init();
 
-		var viewDetailsLinks = $(".view-detail");
-		var submit = $(".act-submit");
+	    var viewDetailsLinks = $(".view-detail");
+	    var submit = $(".act-submit");
 
-		if (viewDetailsLinks.length > 0) {
-			viewDetailsLinks.click(function () {
-				var $this = $(this),
+	    if (viewDetailsLinks.length > 0) {
+	        viewDetailsLinks.click(function () {
+	            var $this = $(this),
                     transId = $this.attr("tid"),
 					fromDate = $("#fromDate").val(),
 					toDate = $("#toDate").val(),
@@ -225,60 +225,47 @@ if (typeof jQuery != "undefined") {
                         "&toDate=" + toDate +
 						"&type=" + type;
 
-				ajax.Request(url, {
-					asynchronous: true,
-					parameters: ajaxParams,
-					onComplete: function (data) {
-						BETLIST.dialogDetails.html(data.responseText);
-						var detailHeight = 0;
-						// Resize detail popup
-						// check IE7
-						if (document.all && !document.querySelector) {
-							detailHeight = 500;
-						} else {
-							tableHeight = BETLIST.dialogDetails.find('table').height();
-							if (tableHeight < 447) {
-								detailHeight = tableHeight + 80;
-							} else {
-								detailHeight = 500;
-							}
-						}
-						APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450, height: detailHeight });
-					}
-				});
-			});
-		}
+	            ajax.Request(url, {
+	                asynchronous: true,
+	                parameters: ajaxParams,
+	                onComplete: function (data) {
+	                    BETLIST.dialogDetails.html(data.responseText);
+	                    APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450 });
+	                }
+	            });	           
+	        });
+	    }
 
-		if (submit.length > 0) {
-			submit.click(function () {
-				$("#frmBetList").submit();
-			});
-		}
-		if (typeof ($("#username").val()) !== 'undefined') {
-			$("#username").autocomplete({
-				source: function (request, response) {
-					var url = "";
-					if ($("#userType").val() == "0") {
-						url = "Account/GetMemberByUsername?username=" + request.term;
-					}
-					else {
-						url = "Account/GetAgentByUsername?username=" + request.term;
-					}
+	    if (submit.length > 0) {
+	        submit.click(function () {
+	            $("#frmBetList").submit();
+	        });
+	    }
+	    if (typeof ($("#username").val()) !== 'undefined') {
+	        $("#username").autocomplete({
+	            source: function (request, response) {
+	                var url = "";
+	                if ($("#userType").val() == "0") {
+	                    url = "Account/GetMemberByUsername?username=" + request.term;
+	                }
+	                else {
+	                    url = "Account/GetAgentByUsername?username=" + request.term;
+	                }
 
-					$.ajax({
-						url: APOLLO.resolveUrl(url),
-						success: function (data) {
-							var found = $.map(data, function (item) {
-								return {
-									value: item.Username
-								}
-							});
-							return response(found);
-						}
-					});
-				},
-				position: { my: "right top", at: "right bottom" }
-			});
-		}
+	                $.ajax({
+	                    url: APOLLO.resolveUrl(url),
+	                    success: function (data) {
+	                        var found = $.map(data, function (item) {
+	                            return {
+	                                value: item.Username
+	                            }
+	                        });
+	                        return response(found);
+	                    }
+	                });
+	            },
+	            position: { my: "right top", at: "right bottom" }
+	        });
+	    }
 	});
 }

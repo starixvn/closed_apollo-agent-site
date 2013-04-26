@@ -22,6 +22,8 @@ namespace Apollo.Age.BetList.Services
     {
         IList<ITicket> GetDetailAgentComm(BetListCriteria criteria);
 
+        IList<ITicket> GetDetailWinLossAgentComm(BetListCriteria criteria);
+
         IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria);
 
         TicketResult GetRunningByBettype(BetListCriteria criteria);
