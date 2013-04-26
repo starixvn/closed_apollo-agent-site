@@ -1,12 +1,13 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
+@using Apollo.Age
 
 @model IEnumerable<MatchResultModel>
 
 <table class="tblRpt">
     <thead>
         <tr class="RptHeader">
-            <td style="width: 90px" columnname="kickofftime">
+            <td style="width: 90px">
                 @Resources.Lang.kickofftime
             </td>
             <td>
@@ -47,16 +48,15 @@
 </table>
 
 @helper ShowLeague(int currentLeagueId, MatchResultModel item)
-    {
-        if (currentLeagueId != item.LeagueId)
-        { 
-    <!--LeagueContents-->
-    <tr class="league">
-        <td colspan="6">
-            @item.LeagueName
-        </td>
-    </tr>
-        }            
+{
+    if (currentLeagueId != item.LeagueId)
+    { 
+        <tr class="league">
+            <td colspan="6">
+                @item.LeagueName
+            </td>
+        </tr>
+    }
 }
 
 @helper ShowMatch(int index, MatchResultModel item)
@@ -69,7 +69,7 @@
     
     <tr @classRow>
         <td rowspan="2">
-            @item.KickoffTime
+            @Formater.FullDateFormat2Line item.KickoffTime
         </td>
         <td>
             @if (item.FinalHomeScore > item.FinalAwayScore)
