@@ -85,7 +85,7 @@
                     {
                     <tr @Html.Raw(rowClass)>
                         <td>
-                            <a href="#" id="MemberOutstanding" mainShareHolderId="@Model.MainShareHolderId" mainShareHolderUsername="@Model.MainShareHolderUserName" agentid="@Model.CurrentAgentId"  title="@Resources.Lang.lblViewMemberOutstanding">@Resources.Lang.lblMemberOutstanding</a>
+                            <a href="#" id="MemberOutstanding" mainShareHolderId="@Model.MainShareHolder.Id" mainShareHolderUsername="@Model.MainShareHolder.Username" agentid="@Model.CurrentAgentId"  title="@Resources.Lang.lblViewMemberOutstanding">@Resources.Lang.lblMemberOutstanding</a>
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.Outstanding, "en-US")

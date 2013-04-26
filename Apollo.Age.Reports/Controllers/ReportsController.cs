@@ -69,7 +69,17 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult Outstanding(int? agentId)
         {
             CurrentAgentId = agentId;
+            var mainShareHolder = new Apollo.Age.Entities.Agent();
+
             IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
+
+            if (CurrentSession.IsSuper)
+            {
+                if (modelAgentDownLine.Count() > 1)
+                {
+                    mainShareHolder = modelAgentDownLine.ToList()[1];
+                }
+            }
 
             IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
             {
@@ -82,12 +92,7 @@ namespace Apollo.Age.Reports.Controllers
                 ListOutStanding = models,
                 DownlinePath = modelAgentDownLine,
                 AgentLevel = modelAgentDownLine.LastOrDefault().Level,
-                MainShareHolderId = (modelAgentDownLine.Count() > 1) ? modelAgentDownLine.Where(x => x.Level == 1)
-                                                      .Select(x => x.Id)
-                                                      .First() : 0,
-                MainShareHolderUserName = (modelAgentDownLine.Count() > 1) ? modelAgentDownLine.Where(x => x.Level == 1)
-                                                            .Select(x => x.Username)
-                                                            .First() : string.Empty
+                MainShareHolder = mainShareHolder
             });
         }
 
