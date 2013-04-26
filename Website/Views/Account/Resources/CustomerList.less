@@ -4,18 +4,19 @@
 	width: 99%;
 
 	#header_main {
+		display: block;
 		padding: 7px 0 0px;
 		margin-bottom: 10px;
 		width: 100%;
 
 		.header-title {
-			float: left;
-			white-space: nowrap;
+			display: inline;
 		}	
 
 		.edit-setting {	
-			margin: 3px 0 0 5px;
-			cursor: pointer;
+			margin: 3px 0 0 2px;
+			cursor: pointer;			
+			padding: 0;
 
 			&:hover {
 				opacity: 0.7;
@@ -123,7 +124,8 @@
 	width: 98%;
 
 	#header_main .edit-setting {
-		margin: 10px 0 0 5px;
+		margin: 0 0 0 2px;
+		display: inline;
 	}
 
 	.tab-header {
@@ -133,5 +135,11 @@
 	.free-cell-top-left thead tr th .table-cell{
 		padding-top: 14px;
 		height: 40px !important;
+	}
+}
+
+.ie8 #page_main {
+	#header_main .edit-setting {
+		margin: 0 0 0 2px;
 	}
 }
