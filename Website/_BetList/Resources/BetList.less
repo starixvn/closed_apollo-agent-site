@@ -140,11 +140,10 @@ a {
 	background: url(Images/q_Icon2_1.png) no-repeat scroll center center transparent;
 	display: inline;
 	height: 10px;
-	padding: 0 1px 0px 65px;
+	padding: 0 1px 0 65px;
 	width: 14px;
 	line-height: 20px;
-	color: #755200;
-	font-weight: bold;
+	color: @linkColor;
 }
 
 .detail:hover {
@@ -154,8 +153,7 @@ a {
 	height: 10px;
 	padding: 0 1px 0 65px;
 	width: 14px;
-	color: #755200;
-	font-weight: bold;
+	color: @hoverLinkColor;
 }
 
 .combinationLink {
@@ -216,14 +214,50 @@ a {
 .tblRpt {
 	margin: 10px 0;
 
-	tbody td {
-		white-space: normal;
-		vertical-align: top;
-		border-width: 0 1px 0 0;
-		padding: 4px;
+	&.border-tbl td {
+		border-width: 1px;
+	}
 
-		.time {
-			font-size: 0.9em;
+	.red-color {
+		color: #B50000;
+	}
+
+	tbody {
+
+		td {
+			white-space: normal;
+			vertical-align: top;
+			border-width: 0 1px 0 0;
+			padding: 4px;
+
+			.time {
+				font-size: 0.9em;
+			}
+		}
+
+		tr.subtotal {
+			td {
+				background: lighten(@primaryColor, 35%);
+				font-weight: bold;
+				height: 25px;
+			}
+		}
+	}
+	
+	tfoot {
+		tr {
+			&.outstanding td {				
+				background: #ddd;
+				font-weight: bold;
+				border: 1px solid @borderColor;
+			}
+
+			&.total td {
+				font-weight: bold;
+				span.red-color {
+					color: @white;
+				}
+			}		
 		}
 	}
 }

@@ -1535,7 +1535,7 @@
     <value>เลือกดูกลุ่มและคอมมิชชั่น</value>
   </data>
   <data name="voidandreject" xml:space="preserve">
-    <value>ยกเลิกรายการการวางเดิมพัน3 วันก่อน</value>
+    <value>Void/Rejected Bet List</value>
   </data>
   <data name="voided" xml:space="preserve">
     <value>โมฆะ</value>

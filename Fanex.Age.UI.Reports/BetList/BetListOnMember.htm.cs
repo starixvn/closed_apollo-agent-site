@@ -146,13 +146,15 @@ namespace Fanex.Age.UI.Reports
 			public string ApoRoot = "{ApoRoot}";
 			protected static string s40 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
 			public string MainShareHolderId = "{MainShareHolderId}";
-			protected static string s41 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
+			protected static string s41 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
+			public string MainShareHolderUsername = "{MainShareHolderUsername}";
+			protected static string s42 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
 			public string pageType = "{pageType}";
-			protected static string s42 = "\" /><input type=\"hidden\" id=\"username\" name=\"username\" value=\"";
+			protected static string s43 = "\" /><input type=\"hidden\" id=\"username\" name=\"username\" value=\"";
 			public string username = "{username}";
-			protected static string s43 = "\" /><input type=\"hidden\" id=\"custId\" name=\"custId\" value=\"";
+			protected static string s44 = "\" /><input type=\"hidden\" id=\"custId\" name=\"custId\" value=\"";
 			public string custId = "{custId}";
-			protected static string s44 = "\" />";
+			protected static string s45 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -163,12 +165,14 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s40);
 					bd.Append(MainShareHolderId);
 					bd.Append(s41);
-					bd.Append(pageType);
+					bd.Append(MainShareHolderUsername);
 					bd.Append(s42);
-					bd.Append(username);
+					bd.Append(pageType);
 					bd.Append(s43);
-					bd.Append(custId);
+					bd.Append(username);
 					bd.Append(s44);
+					bd.Append(custId);
+					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

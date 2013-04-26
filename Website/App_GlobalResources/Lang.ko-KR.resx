@@ -1535,7 +1535,7 @@
     <value>그룹&amp;수수료 보기</value>
   </data>
   <data name="voidandreject" xml:space="preserve">
-    <value>무효/거부된 배팅 목록(최근 3일간)</value>
+    <value>무효/거부된 배팅 목록</value>
   </data>
   <data name="voided" xml:space="preserve">
     <value>무효</value>

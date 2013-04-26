@@ -1,2 +1,136 @@
-﻿}
-<h1>this is Tennis layout</h1>
+﻿@using Apollo.Age.Reports.Models
+@using Apollo.Age.Reports.Core
+@model IEnumerable<MatchResultModel>
+<table class="tblRpt">
+	<thead>
+		<tr>
+			<td style="width: 90px">
+				@Resources.Lang.kickofftime
+			</td>
+			<td>
+				@Resources.Lang.match
+			</td>
+			<td style="width: 18px">
+				@Resources.Lang.S1
+			</td>
+			<td style="width: 18px">
+				@Resources.Lang.S2
+			</td>
+			<td style="width: 18px">
+				@Resources.Lang.S3
+			</td>
+			<td style="width: 18px">
+				@Resources.Lang.S4
+			</td>
+			<td style="width: 18px">
+				@Resources.Lang.S5
+			</td>
+			<th style="width: 70px">
+				@Resources.Lang.totalgame
+			</th>
+			<th style="width: 70px">
+				@Resources.Lang.totalset
+			</th>
+			<th style="width: 60px">
+				@Resources.Lang.status
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Any())
+		{
+			var currentLeagueId = 0;
+			foreach (var item in Model)
+			{
+				if (currentLeagueId != item.LeagueId)
+				{
+					currentLeagueId = item.LeagueId;
+			<tr class="league">
+				<td colspan="10">
+					@item.LeagueName
+				</td>
+			</tr>
+				}
+
+			<tr>
+				<td rowspan="2">
+					@item.KickoffTime
+				</td>
+				<td>
+					@item.HomeTeam
+				</td>
+				<td>
+					{S1Home}
+				</td>
+				<td>
+					{S2Home}
+				</td>
+				<td>
+					{S3Home}
+				</td>
+				<td>
+					{S4Home}
+				</td>
+				<td>
+					{S5Home}
+				</td>
+				<td>
+					{TotalGameHome}
+				</td>
+				<td>
+					{TotalSetHome}
+				</td>
+				<td rowspan="2">
+					@item.EventStatusTranslation
+				</td>
+			</tr>
+			<tr>
+				<td>
+					@item.AwayTeam
+				</td>
+				<td>
+					{S1Away}
+				</td>
+				<td>
+					{S2Away}
+				</td>
+				<td>
+					{S3Away}
+				</td>
+				<td>
+					{S4Away}
+				</td>
+				<td>
+					{S5Away}
+				</td>
+				<td>
+					{TotalGameAway}
+				</td>
+				<td>
+					{TotalSetAway}
+				</td>
+			</tr>
+
+			}
+		}
+		else
+		{
+			@RazorHelper.ShowNoInfo(colspan: 10);
+		}
+	</tbody>
+</table>
+
+@*<table class="tblRpt">
+	<tr>
+		<td rowspan="3"  bgcolor="#faf9ee" class="bl_under">
+			{setName}
+		</td>
+		{setId}
+	</tr>
+	<tr bgcolor="#faf9ee">
+		{setScore1}
+	</tr>
+	<tr bgcolor="#faf9ee">
+		{setScore2}
+	</tr>
+</table>*@
