@@ -184,9 +184,8 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     }
                     else
                     {
-                        //DataRow drTemp = dt.Rows[i + 1];
-
-                        winlostNextDate = string.Empty;// Formatter.ShortDateFormat(drTemp["winlostdate"]);
+                        var drTemp = ticketList[i + 1];
+                        winlostNextDate = drTemp.WinLostDate.ToString("MM/dd/yyyy");
                     }
 
                     this.GetSubTotalByDay(template, ref subWinlostSum, ticket.WinLostDate.ToString("MM/dd/yyyy"), winlostNextDate);
