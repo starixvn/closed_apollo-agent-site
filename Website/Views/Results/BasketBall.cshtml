@@ -40,30 +40,31 @@
         @if (Model != null && Model.Any())
         {
             var currentLeagueId = 0;
-            var eventStatus = string.Empty;
-            var betStatus = string.Empty;
-
-            var finalHomeScore = 0;
-            var finalAwayScore = 0;
-            var firstHalfHomeScore = 0;
-            var firstHalfAwayScore = 0;
-
-            var homeTeam = string.Empty;
-            var awayTeam = string.Empty;
-
-            var Q1Away = string.Empty;
-            var Q1Home = string.Empty;
-            var Q2Away = string.Empty;
-            var Q2Home = string.Empty;
-            var Q3Away = string.Empty;
-            var Q3Home = string.Empty;
-            var Q4Away = string.Empty;
-            var Q4Home = string.Empty;
-            var OTAway = string.Empty;
-            var OTHome = string.Empty;
+            
 
             foreach (var item in Model)
             {
+                var eventStatus = string.Empty;
+                var betStatus = string.Empty;
+
+                var finalHomeScore = 0;
+                var finalAwayScore = 0;
+                var firstHalfHomeScore = 0;
+                var firstHalfAwayScore = 0;
+
+                var homeTeam = string.Empty;
+                var awayTeam = string.Empty;
+
+                var Q1Away = "-";
+                var Q1Home = "-";
+                var Q2Away = "-";
+                var Q2Home = "-";
+                var Q3Away = "-";
+                var Q3Home = "-";
+                var Q4Away = "-";
+                var Q4Home = "-";
+                var OTAway = string.Empty;
+                var OTHome = string.Empty;
                 eventStatus = item.EventStatus.ToLower();
 
                 if (eventStatus != "refund ft")
@@ -92,7 +93,7 @@
 
                     //23-12,26-11,17-13,15-15
                     string[] listOfBetStatus = betStatus.Split(',');
-                    if (listOfBetStatus.Count() > 0)
+                    if (listOfBetStatus.Count() > 1)
                     {
                         Q1Home = listOfBetStatus[0].Split('-')[0];
                         Q1Away = listOfBetStatus[0].Split('-')[1];
@@ -155,7 +156,8 @@
                 <td>
                     @finalHomeScore
                 </td>
-                <td>
+                <td rowspan="2">
+                    @item.EventStatusTranslation
                 </td>
             </tr>
             <tr>
@@ -182,8 +184,6 @@
                 </td>
                 <td>
                     @finalAwayScore
-                </td>
-                <td>
                 </td>
             </tr>
 
