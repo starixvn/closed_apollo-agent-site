@@ -23,6 +23,10 @@ namespace Apollo.Age.Reports.ViewModels
     {
         public int CurrentAgentId { get; set; }
 
+        public int MainShareHolderId { get; set; }
+
+        public string MainShareHolderUserName { get; set; }
+
         public int AgentLevel { get; set; }
 
         public IEnumerable<OutstandingModel> ListOutStanding { get; set; }
