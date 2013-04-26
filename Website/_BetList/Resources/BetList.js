@@ -177,6 +177,11 @@ function OpenScoreMap(matchIds, bettype, liveindicator) {
             (liveindicator == 1
                 ? "&liveBetTypes=" + bettype
                 : "&deadBallBetTypes=" + bettype));
+	var mainShareHolderId = 0;
+	if (typeof ($("#mainShareHolderId").val()) !== 'undefined') {
+		mainShareHolderId = $("#mainShareHolderId").val()
+	}
+	url += "&mainShareHolderId=" + mainShareHolderId;
 	wnd.open(url, 'SCORE MAP', 0, 20, 900, 550);
 }
 
