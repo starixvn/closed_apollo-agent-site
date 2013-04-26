@@ -69,7 +69,7 @@
     
     <tr @classRow>
         <td rowspan="2">
-            @Formater.FullDateFormat2Line item.KickoffTime
+            @Html.Raw(Formater.FullDateFormat2Line(item.KickoffTime))
         </td>
         <td>
             @if (item.FinalHomeScore > item.FinalAwayScore)
@@ -93,7 +93,7 @@
             @Html.Raw(item.EventStatusTranslation)
         </td>
     </tr>
-    <tr>
+    <tr @classRow>
         <td>
             @if (item.FinalHomeScore < item.FinalAwayScore)
             {

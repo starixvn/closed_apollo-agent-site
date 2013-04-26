@@ -1,0 +1,103 @@
+﻿@using Apollo.Age.Reports.Models
+@using Apollo.Age.Reports.Core
+@model IEnumerable<MatchResultModel>
+<table class="tblRpt">
+    <thead>
+        <tr class="RptHeader">
+            <td style="width: 90px">
+                @Resources.Lang.kickofftime
+            </td>
+            <td>
+                @Resources.Lang.match
+            </td>
+            <td class="nowrap" style="width: 70px;">
+                @Resources.Lang.finalscore
+            </td>
+            <td class="nowrap" style="width: 60px;">
+                @Resources.Lang.status
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            var currentLeagueId = 0;
+            var rowIndex = 0;
+            
+            foreach (var item in Model)
+            {
+                var classRow = string.Empty;
+                
+                var finalHomeScore = 0;
+                var finalAwayScore = 0;
+
+                var homeTeam = string.Empty;
+                var awayTeam = string.Empty;
+                
+                rowIndex++;
+
+                if (rowIndex % 2 == 0)
+                {
+                    classRow = "class=alt";
+                }
+                
+                finalHomeScore = item.FinalHomeScore;
+                finalAwayScore = item.FinalAwayScore;
+
+                if (finalHomeScore > finalAwayScore)
+                {
+                    homeTeam = "<b>" + item.HomeTeam + (item.IsNeutral ? Resources.Lang.IsNeutral : string.Empty) + "</b>";
+                    awayTeam = item.AwayTeam;
+                }
+                else if (finalHomeScore < finalAwayScore)
+                {
+                    homeTeam = item.HomeTeam;
+                    awayTeam = "<b>" + item.AwayTeam + "</b>";
+                }
+                else
+                {
+                    homeTeam = item.HomeTeam;
+                    awayTeam = item.AwayTeam;
+                }
+                
+                if (currentLeagueId != item.LeagueId)
+                {
+                    currentLeagueId = item.LeagueId;
+                    <tr class="league">
+                        <td colspan="10">
+                            @item.LeagueName
+                        </td>
+                    </tr>
+                }
+
+            <tr @classRow>
+                <td rowspan="2">
+                    @Html.Raw(Formater.FullDateFormat2Line(item.KickoffTime))
+                </td>
+                <td>
+                    @Html.Raw(homeTeam)
+                </td>
+                <td>
+                    @finalHomeScore
+                </td>
+                <td rowspan="2">
+                    @item.EventStatusTranslation
+                </td>
+            </tr>
+            <tr @classRow>
+                <td>
+                    @Html.Raw(awayTeam)
+                </td>
+                <td>
+                    @finalAwayScore
+                </td>
+            </tr>
+
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(colspan: 4);
+        }
+    </tbody>
+</table>
