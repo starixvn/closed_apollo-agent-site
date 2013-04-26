@@ -14,7 +14,7 @@
 
         public override string GetSettingKey()
         {
-            return "Age_Customer_GetAgentDownlinePath";
+            return "Age_Agent_GetAgentDownlinePath";
         }
 
         public override bool IsValid()

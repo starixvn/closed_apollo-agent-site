@@ -32,7 +32,7 @@ namespace Fanex.BetList.Age
 			protected static string s13 = "<script src=\"";
 			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js", TplSettings.Question);}}
+			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
 			protected static string s17 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s18{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s19 = "\" type=\"text/javascript\"></script><script src=\"";
@@ -88,7 +88,11 @@ namespace Fanex.BetList.Age
 		{
 			protected static string s24 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s25 = "\" />";
+			protected static string s25 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
+			public string MainShareHolderId = "{MainShareHolderId}";
+			protected static string s26 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
+			public string MainShareHolderUsername = "{MainShareHolderUsername}";
+			protected static string s27 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -97,6 +101,10 @@ namespace Fanex.BetList.Age
 					bd.Append(s24);
 					bd.Append(ApoRoot);
 					bd.Append(s25);
+					bd.Append(MainShareHolderId);
+					bd.Append(s26);
+					bd.Append(MainShareHolderUsername);
+					bd.Append(s27);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

@@ -25,19 +25,19 @@ var REPORT_RESULTS = (function () {
 
             if (leagueDropDownList.length > 0) {
                 if (sportId != undefined) {
-                    leagueDropDownList.prop('disabled', 'disabled');                                        
+                    leagueDropDownList.attr('disabled', true);
                     $.getJSON(APOLLO.resolveUrl("~/Results/League"), { "date": date, "sportId": sportId })
-                .done(function (data) {
-                    // clean and rebind with data get by new selected sportid                
-                    leagueDropDownList.empty();
-                    $.each(data, function (i, item) {
-                        leagueDropDownList.append($('<option>', {
-                            value: item.Id,
-                            text: item.Name
-                        }));
-                    });
-                    leagueDropDownList.removeAttr('disabled');
-                });
+                        .done(function (data) {
+                            // clean and rebind with data get by new selected sportid                
+                            leagueDropDownList.empty();
+                            $.each(data, function (i, item) {
+                                leagueDropDownList.append($('<option>', {
+                                    value: item.Id,
+                                    text: item.Name
+                                }));
+                            });
+                            leagueDropDownList.removeAttr('disabled');
+                        });
                 }
             }
         },
@@ -47,7 +47,7 @@ var REPORT_RESULTS = (function () {
 
                 var sportId = sportDropDownList.val();
                 var leagueId = leagueDropDownList.val();
-                
+
                 if (sportId != null) {
                     $.get(APOLLO.resolveUrl("~/Results/MatchResult"),
               { "date": date, "sportId": sportId, "leagueId": leagueId })

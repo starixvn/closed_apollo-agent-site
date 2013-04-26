@@ -12,8 +12,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
-    using System.Data;
     using System.Linq;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
@@ -25,7 +23,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using Fanex.Agent.UI._BetList.MixParlay;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
-    using Fanex.Data.DNAide;
 
     public partial class CombinationMixParlayDetail_Page : TplPage
     {
@@ -114,7 +111,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     rowBlock.comm = ConvertByBetType.Comm(ticket.PlayerComm);
                     winlostSum += ticket.WinLost + ticket.PlayerComm;
 
-                    //status
+                    // status
                     string status = ticket.Status.ToLower();
 
                     if (status.Equals(BetStatus.Running)) rowBlock.status = Resources.BetList.running;
@@ -134,7 +131,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     }
                     else
                     {
-                        //even
+                        // even
                         serial = ticket.Serial;
                         var serials = systemParlay.SerialList.Where(s => s.Serial == serial);
                         even = string.Empty;
@@ -144,7 +141,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                             even += "<br/>";
                         }
                         rowBlock.even = even;
-                        //end even
+                        // end even
 
                         if (ticket.MOdds > 0)
                         {
@@ -162,9 +159,13 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
 
                         int numRowSpan = row.Count();
                         if (numRowSpan > 1)
+                        {
                             rowBlock.WinlostDate.rowSpan = "rowspan='" + numRowSpan.ToString() + "'";
+                        }
                         else
+                        {
                             rowBlock.WinlostDate.rowSpan = string.Empty;
+                        }
                         rowBlock.WinlostDate.date = ticket.WinLostDate.ToString("MM/dd/yyyy"); ;
                         rowBlock.WinlostDate.Show();
                     }
@@ -184,9 +185,8 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     }
                     else
                     {
-                        //DataRow drTemp = dt.Rows[i + 1];
-
-                        winlostNextDate = string.Empty;// Formatter.ShortDateFormat(drTemp["winlostdate"]);
+                        var drTemp = ticketList[i + 1];
+                        winlostNextDate = drTemp.WinLostDate.ToString("MM/dd/yyyy");
                     }
 
                     this.GetSubTotalByDay(template, ref subWinlostSum, ticket.WinLostDate.ToString("MM/dd/yyyy"), winlostNextDate);

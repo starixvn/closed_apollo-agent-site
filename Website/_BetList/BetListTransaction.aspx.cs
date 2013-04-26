@@ -51,6 +51,7 @@ namespace Sunplus.Agent.UI._BetList
         private bool isShowAgentPT = true;
         private bool isShowWinLost = true;
         private DateTime moveBetsDay;
+        private string mainShareHolderId, mainShareHolderUsername;
 
         #endregion Variables
 
@@ -124,6 +125,8 @@ namespace Sunplus.Agent.UI._BetList
 
             tpl.content = content.ToString();
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
+            tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
+            tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             writer.Write(tpl);
 
             #endregion RENDER HTML
@@ -240,6 +243,8 @@ namespace Sunplus.Agent.UI._BetList
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
             username = this.GetStringRequest("username", CurrentSession.AgentName).Trim();
             userType = GetBooleanRequest("userType", true);
+            mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
+            mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
         }
 
         public override object ValidateRequest(Hashtable hash)

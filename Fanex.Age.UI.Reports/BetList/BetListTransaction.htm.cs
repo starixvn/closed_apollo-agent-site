@@ -174,9 +174,13 @@ namespace Fanex.Age.UI.Reports
 		{
 			protected static string s45 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s46 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
+			protected static string s46 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
+			public string MainShareHolderId = "{MainShareHolderId}";
+			protected static string s47 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
+			public string MainShareHolderUsername = "{MainShareHolderUsername}";
+			protected static string s48 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
 			public string pageType = "{pageType}";
-			protected static string s47 = "\" />";
+			protected static string s49 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -185,8 +189,12 @@ namespace Fanex.Age.UI.Reports
 					bd.Append(s45);
 					bd.Append(ApoRoot);
 					bd.Append(s46);
-					bd.Append(pageType);
+					bd.Append(MainShareHolderId);
 					bd.Append(s47);
+					bd.Append(MainShareHolderUsername);
+					bd.Append(s48);
+					bd.Append(pageType);
+					bd.Append(s49);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

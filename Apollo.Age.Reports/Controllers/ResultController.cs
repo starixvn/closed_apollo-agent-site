@@ -88,6 +88,7 @@ namespace Apollo.Age.Reports.Controllers
         public ActionResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
         {
             var matchResults = _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+
             if (matchResults != null && matchResults.Any())
             {
                 matchResults = matchResults.OrderBy(match => match.LeagueId);

@@ -2,63 +2,65 @@
 
 @using Apollo.Age.Reports.ViewModels;
 @{
-    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.result;
+	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+	ViewBag.Title = Resources.Lang.result;
 }
 @model ReportResultViewModel
+@section css {
+	<link href="~/Views/Results/Resources/Results.less" rel="stylesheet" type="text/css" />
+}
 @using (Html.BeginForm())
 {
-    <div id="box_header">
-        <div class="row">
-            <div class="cell">
-                <div class="label">
-                    <label for="EventDate">@Resources.Lang.date</label>
-                </div>
-                <div class="editor">
-                    @Html.DatePicker("EventDate", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
-                </div>
-            </div>
-            <div class="cell">
-                <div class="editor">
-                    <input id="btnSubmit" value="@Resources.Lang.Generate" type="submit" class="btn" />
-                    <input id="btnToday" value="@DateTime.Now.Date.ToShortDateString()" type="submit" class="btn" />
-                    <input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToShortDateString()" type="submit" class="btn"/>
-                </div>
-            </div>
-        </div>
-        @if (Model.SportList.Any())
-        {
-            <div class="row">
-                <div class="cell">
-                    <div class="label">
-                        <label for="ddlSport">@Resources.Lang.sport</label>
-                    </div>
-                    <div class="editor">
-                        @Html.DropDownList("ddlSport", Model.SportSelectListItem)
-                    </div>
-                </div>
-                <div class="cell">
-                    <div class="label">
-                        <label for="ddlLeague">@Resources.Lang.league</label>
-                    </div>
-                    <div class="editor">
-                        @Html.DropDownList("ddlLeague",
-                        new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
-                        new { style = "width: 500px" })
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
+	<div id="box_header">
+		<div class="row">
+			<div class="cell">
+				<div class="label">
+					<label for="EventDate">@Resources.Lang.date</label>
+				</div>
+				<div class="editor">
+					@Html.DatePicker("EventDate", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
+				</div>
+			</div>
+			<div class="cell">
+				<div class="editor">
+					<input id="btnSubmit" value="@Resources.Lang.Generate" type="submit" class="btn" />
+					<input id="btnToday" value="@DateTime.Now.Date.ToShortDateString()" type="submit" class="btn" />
+					<input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToShortDateString()" type="submit" class="btn"/>
+				</div>
+			</div>
+		</div>
+		@if (Model.SportList.Any())
+		{
+			<div class="row">
+				<div class="cell">
+					<div class="label">
+						<label for="ddlSport">@Resources.Lang.sport</label>
+					</div>
+					<div class="editor">
+						@Html.DropDownList("ddlSport", Model.SportSelectListItem)
+					</div>
+				</div>
+				<div class="cell">
+					<div class="label">
+						<label for="ddlLeague">@Resources.Lang.league</label>
+					</div>
+					<div class="editor">
+						@Html.DropDownList("ddlLeague",
+						new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
+						new { style = "width: 500px" })
+					</div>
+				</div>
+			</div>
+		}
+	</div>
 
-        if (Model.SportList.Any())
-        {
-    <div id="resultContainer">
-    </div>
-        }
+	if (Model.SportList.Any())
+	{
+	<div id="resultContainer"></div>
+	}
 }
 @Html.Hidden("ApoRoot", Url.Content("~/"))
 @section scripts
 {
-    <script src="~/Views/Results/Resources/ReportResult.js" type="text/javascript"></script>
+	<script src="~/Views/Results/Resources/ReportResult.js" type="text/javascript"></script>
 }
