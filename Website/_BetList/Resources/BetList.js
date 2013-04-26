@@ -171,15 +171,16 @@ function OpenIPInfo(ip) {
 	ageWnd.open(APOLLO.resolveUrl("~/_IPInfo/IpInfo.aspx?ip=" + ip), '', 300, 100, 400, 170);
 }
 
-function OpenScoreMap(matchIds, bettype, liveindicator, mainShareHolderId) {
+function OpenScoreMap(matchIds, bettype, liveindicator) {
 	var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
 	var url = APOLLO.resolveUrl("~/Forecast/ScoreMap?matchIds=" + matchIds +
             (liveindicator == 1
                 ? "&liveBetTypes=" + bettype
                 : "&deadBallBetTypes=" + bettype));
-    if (mainShareHolderId > 0) {
-        url += "&mainShareHolderId=" + mainShareHolderId;
-    }
+
+	if (typeof ($("#mainShareHolderId").val()) !== 'undefined') {
+		url += "&mainShareHolderId=" + $("#mainShareHolderId").val();
+	}
 	wnd.open(url, 'SCORE MAP', 0, 20, 900, 550);
 }
 
