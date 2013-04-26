@@ -1,9 +1,7 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
 @using Apollo.Age
-
 @model IEnumerable<MatchResultModel>
-
 <table class="tblRpt">
     <thead>
         <tr class="RptHeader">
@@ -31,36 +29,34 @@
 
             foreach (var item in Model)
             {
-                @ShowLeague(currentLeagueId, item)
-                @ShowMatch(item)
+            @ShowLeague(currentLeagueId, item)
+            @ShowMatch(item)
 
                 currentLeagueId = item.LeagueId;
             }
         }
         else
-        { 
+        {
             @RazorHelper.ShowNoInfo(colspan: 5);
         }
     </tbody>
 </table>
-
 @helper ShowLeague(int currentLeagueId, MatchResultModel item)
-{
-    if (currentLeagueId != item.LeagueId)
-    { 
-        <tr class="league">
-            <td colspan="6">
-                @item.LeagueName
-            </td>
-        </tr>
-    }
+    {
+        if (currentLeagueId != item.LeagueId)
+        {
+    <tr class="league">
+        <td colspan="6">
+            @item.LeagueName
+        </td>
+    </tr>
+        }
 }
-
 @helper ShowMatch(MatchResultModel item)
     {
     <tr class="c">
         <td rowspan="2">
-            @Html.Raw(Formater.FullDateFormat2Line(item.KickoffTime))
+            @item.KickoffTime
         </td>
         <td class="l">
             @if (item.FinalHomeScore > item.FinalAwayScore)
@@ -73,13 +69,9 @@
             {
                 @item.HomeTeam
             }
-            
             @FirstAndLastGoal(item, isRowHome: true)
-
         </td>
-
         @BindScore(item, isRowHome: true)
-
         <td rowspan="2">
             @Html.Raw(item.EventStatusTranslation)
         </td>
@@ -96,144 +88,143 @@
             {
                 @item.AwayTeam
             }
-
             @FirstAndLastGoal(item, isRowHome: false)
-
         </td>
-
         @BindScore(item, isRowHome: false)
     </tr>
 }
-
 @helper FirstAndLastGoal(MatchResultModel item, bool isRowHome)
     {
-    // Base on [BetStatus] to get First/Last Goal
-    // Example [BetStatus] = "FL:1-2", "Refund FT;FL:0-2"
+        // Base on [BetStatus] to get First/Last Goal
+        // Example [BetStatus] = "FL:1-2", "Refund FT;FL:0-2"
 
-    var betStatus = string.Empty;
-    if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
-    {
-        string[] refundArray = item.BetStatus.Split(';');
-        if (refundArray.Length == 2 && refundArray[1].ToString() != string.Empty)
+        var betStatus = string.Empty;
+        if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
         {
-            betStatus = refundArray[1].ToString();
+            string[] refundArray = item.BetStatus.Split(';');
+            if (refundArray.Length == 2 && refundArray[1].ToString() != string.Empty)
+            {
+                betStatus = refundArray[1].ToString();
+            }
         }
-    }
-    else if (item.EventStatus != Apollo.Age.Reports.Core.Constants.REFUND
-        && item.EventStatus != Apollo.Age.Reports.Core.Constants.REFUND_HT)
-    {
-        if (!string.IsNullOrEmpty(item.BetStatus) && item.BetStatus.Contains(":"))
+        else if (item.EventStatus != Apollo.Age.Reports.Core.Constants.REFUND
+            && item.EventStatus != Apollo.Age.Reports.Core.Constants.REFUND_HT)
         {
-            betStatus = item.BetStatus;
+            if (!string.IsNullOrEmpty(item.BetStatus) && item.BetStatus.Contains(":"))
+            {
+                betStatus = item.BetStatus;
+            }
         }
-    }
 
-    if (!string.IsNullOrEmpty(betStatus) && betStatus.Contains(":"))
-    {
-        var valueArr = betStatus.Split(':');
-        if (string.Compare(valueArr[0], "FL", true) == 0)
+        if (!string.IsNullOrEmpty(betStatus) && betStatus.Contains(":"))
         {
-            var firstGoal = valueArr[1].Split('-')[0];
-            var lastGoal = valueArr[1].Split('-')[1];
+            var valueArr = betStatus.Split(':');
+            if (string.Compare(valueArr[0], "FL", true) == 0)
+            {
+                var firstGoal = valueArr[1].Split('-')[0];
+                var lastGoal = valueArr[1].Split('-')[1];
 
+                if (isRowHome)
+                {
+                    if (firstGoal == "1")
+                    {
+    <div class="first_goal">
+        &nbsp;</div>
+                    }
+                    if (lastGoal == "1")
+                    {
+    <div class="last_goal">
+        &nbsp;</div>
+                    }
+                }
+                else
+                {
+                    if (firstGoal == "2")
+                    {
+    <div class="first_goal">
+        &nbsp;</div>
+                    }
+                    if (lastGoal == "2")
+                    {
+    <div class="last_goal">
+        &nbsp;</div>
+                    }
+                }
+            }
+        }
+}
+@helper BindScore(MatchResultModel item, bool isRowHome)
+    {
+        if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
+        {
+    <td>
+        @Resources.Lang.lblNA
+    </td>
+    <td>
+        @Resources.Lang.lblNA
+    </td>
+        }
+        else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
+        {
             if (isRowHome)
             {
-                if (firstGoal == "1")
-                {
-                    <div class="first_goal">&nbsp;</div>
-                }
-                if (lastGoal == "1")
-                {
-                    <div class="last_goal">&nbsp;</div>
-                }
+    <td>
+        @item.HalfTimeHomeScore
+    </td>
+    <td>
+        @Resources.Lang.lblNA
+    </td>
             }
             else
             {
-                if (firstGoal == "2")
-                {
-                    <div class="first_goal">&nbsp;</div>
-                }
-                if (lastGoal == "2")
-                {
-                    <div class="last_goal">&nbsp;</div>
-                }
+    <td>
+        @item.HalfTimeAwayScore
+    </td>
+    <td>
+        @Resources.Lang.lblNA
+    </td>
             }
         }
-    }
-}
-
-@helper BindScore(MatchResultModel item, bool isRowHome)
-    {
-    if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
-    {
-        <td>
-            @Resources.Lang.lblNA
-        </td>
-        <td>
-            @Resources.Lang.lblNA
-        </td>
-    }
-    else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
-    {
-        if (isRowHome)
+        else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_HT)
         {
-            <td>
-                @item.HalfTimeHomeScore
-            </td>
-            <td>
-                @Resources.Lang.lblNA
-            </td>
+            if (isRowHome)
+            {
+    <td>
+        @Resources.Lang.lblNA
+    </td>
+    <td>
+        @item.FinalHomeScore
+    </td>
+            }
+            else
+            {
+    <td>
+        @Resources.Lang.lblNA
+    </td>
+    <td>
+        @item.FinalAwayScore
+    </td>
+            }
         }
         else
         {
-            <td>
-                @item.HalfTimeAwayScore
-            </td>
-            <td>
-                @Resources.Lang.lblNA
-            </td>
+            if (isRowHome)
+            {
+    <td>
+        @item.HalfTimeHomeScore
+    </td>
+    <td>
+        @item.FinalHomeScore
+    </td>
+            }
+            else
+            {
+    <td>
+        @item.HalfTimeAwayScore
+    </td>
+    <td>
+        @item.FinalAwayScore
+    </td>
+            }
         }
-    }
-    else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_HT)
-    {
-        if (isRowHome)
-        {
-            <td>
-                @Resources.Lang.lblNA
-            </td>
-            <td>
-                @item.FinalHomeScore
-            </td>
-        }
-        else
-        {
-            <td>
-                @Resources.Lang.lblNA
-            </td>
-            <td>
-                @item.FinalAwayScore
-            </td>
-        }
-    }
-    else
-    {
-        if (isRowHome)
-        {
-            <td>
-                @item.HalfTimeHomeScore
-            </td>
-            <td>
-                @item.FinalHomeScore
-            </td>
-        }
-        else
-        {
-            <td>
-                @item.HalfTimeAwayScore
-            </td>
-            <td>
-                @item.FinalAwayScore
-            </td>
-        }
-    }
 }

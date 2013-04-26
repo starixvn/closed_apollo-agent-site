@@ -255,18 +255,25 @@
 	width: 20px;
 }
 
-.ui-dialog #dialog-details {
-	overflow-y: auto;
-}
+#dialog-details .tblRpt tr {
 
-/* FIX IE */
+	td {
+		span.bl_underdog {
+			font-weight: normal;
+		}
 
-.ie7 {
-	.ui-dialog #dialog-details {
-		overflow-y: auto;
+		span.bold {
+			font-weight: normal !important;
+		}
+	}
 
-		.tblRpt {
-			width: 96%;
+	&.total {
+		span.bl_underdog {
+			font-weight: bold;
+		}
+
+		span.bold {
+			font-weight: bold !important;
 		}
 	}
 }
