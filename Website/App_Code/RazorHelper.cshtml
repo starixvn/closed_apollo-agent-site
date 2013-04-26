@@ -40,12 +40,12 @@
         {
             if (Math.Round(value, numDecimals) < 0 || (numDecimals == 0 && value < 0))
             {
-    <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+    <span class="red-num">@Formater.DecFormat(value, numDecimals)
     </span>
             }
             else
             {
-    @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+    @Formater.DecFormat(value, numDecimals)
             }
         }
 }
@@ -55,12 +55,12 @@
         {
             if (Math.Round(value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
             {
-    <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+    <span class="red-num">@Formater.DecFormat(value, numDecimals)
     </span>
             }
             else
             {
-    @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+    @Formater.DecFormat(value, numDecimals)
             }
         }
 }
@@ -70,12 +70,12 @@
         {
             if (Math.Round(value.Value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
             {
-    <span class="red-num">@Fanex.Age.Utility.Formater.DecFormat(value.Value, numDecimals)
+    <span class="red-num">@Formater.DecFormat(value.Value, numDecimals)
     </span>
             }
             else
             {
-    @Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+    @Formater.DecFormat(value, numDecimals)
             }
         }
 }
@@ -83,7 +83,7 @@
 {
     if (value != 0 || showZero)
     {
-		@Fanex.Age.Utility.Formater.DecFormat(value, numDecimals)
+		@Formater.DecFormat(value, numDecimals)
     }
 }
 @helper FormatComm(decimal value)

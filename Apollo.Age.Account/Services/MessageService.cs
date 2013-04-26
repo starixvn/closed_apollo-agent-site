@@ -19,6 +19,7 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Services.Impl;
     using Fanex.Caching;
     using Fanex.NAP.Framework.Data;
+    using System.Reflection;
 
     /// <summary>
     /// TODO: Update summary.
@@ -208,6 +209,36 @@ namespace Apollo.Age.Account.Services
             }
 
             return null;
+        }
+
+        public static object GetValue(object obj, string propertyName)
+        {
+            var propertyInfo = GetPropertyInfo(obj, propertyName);
+            if (propertyInfo != null)
+            {
+                return propertyInfo.GetValue(obj, null);
+            }
+            return null;
+        }
+
+        public static PropertyInfo GetPropertyInfo(object obj, string propertyName)
+        {
+            foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
+            {
+                if (string.Compare(propertyInfo.Name, propertyName, true) == 0)
+                {
+                    return propertyInfo;
+                }
+            }
+            return null;
+        }
+
+        public static bool HasPropertyInfo(object obj, string propertyName)
+        {
+            var propertyInfo = GetPropertyInfo(obj, propertyName);
+            if (propertyInfo != null)
+                return true;
+            return false;
         }
     }
 }
