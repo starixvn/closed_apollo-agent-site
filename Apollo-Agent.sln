@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Admin", "Apollo.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.BetList", "Apollo.Age.BetList\Apollo.Age.BetList.csproj", "{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Integration", "Apollo.Age.Integration\Apollo.Age.Integration.csproj", "{5065F780-0CF8-4AE4-96F2-70D8BE40332C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5065F780-0CF8-4AE4-96F2-70D8BE40332C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5065F780-0CF8-4AE4-96F2-70D8BE40332C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5065F780-0CF8-4AE4-96F2-70D8BE40332C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5065F780-0CF8-4AE4-96F2-70D8BE40332C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
