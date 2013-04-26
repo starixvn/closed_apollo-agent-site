@@ -19,6 +19,8 @@ namespace Apollo.Age.Account.Criterias
 
         public string Username { get; set; }
 
+        public bool ExcludeActor { get; set; }
+
         public override bool IsValid()
         {
             return true;
