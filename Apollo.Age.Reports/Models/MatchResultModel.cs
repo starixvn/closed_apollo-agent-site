@@ -37,7 +37,7 @@ namespace Apollo.Age.Reports.Models
 
         public string MatchCode { get; set; }
 
-        public DateTime EvenDate { get; set; }
+        public DateTime EventDate { get; set; }
 
         public DateTime KickoffTime { get; set; }
 
@@ -73,17 +73,17 @@ namespace Apollo.Age.Reports.Models
 
         public bool ShowTime { get; set; }
 
+        public int HomeId2 { get; set; }
+
         public bool IsNeutral { get; set; }
 
-        public int HomeId2 { get; set; }
+        public string GoalRecord { get; set; }
 
         public bool IsHTCal { get; set; }
 
         public bool Calculate { get; set; }
 
         public bool IsPending { get; set; }
-
-        public string GoalRecord { get; set; }
 
         #region Map event status to coresponding language
 
