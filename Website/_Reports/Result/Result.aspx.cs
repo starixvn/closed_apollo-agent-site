@@ -1309,7 +1309,8 @@ namespace Fanex.Age.UI.Reports.Result
                     );
 
                     // Home and away team
-                    string homeTeamText = string.Empty, awayTeamText = string.Empty;
+                    string homeTeamText = string.Empty;
+                    string awayTeamText = string.Empty;
                     this.BoldTeamByFinalScore(dr, ref homeTeamText, ref awayTeamText);
                     rowBlock.Home = homeTeamText;
                     rowBlock.Away = awayTeamText;

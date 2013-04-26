@@ -46,7 +46,7 @@ namespace Apollo.Age.Reports.Models
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return string.Format("{0} {1}", CacheRef.GetTeamName(this.HomeId), this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Apollo.Age.Reports.Models
         {
             get
             {
-                return CacheRef.GetTeamName(this.AwayId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return string.Format("{0} {1}", CacheRef.GetTeamName(this.AwayId), this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 
