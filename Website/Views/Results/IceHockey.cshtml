@@ -54,31 +54,29 @@
                 var P3Home = "-";
                 var OTAway = string.Empty;
                 var OTHome = string.Empty;
-                betStatus = item.BetStatus;
 
+                betStatus = item.BetStatus;
+                finalHomeScore = item.FinalHomeScore;
+                finalAwayScore = item.FinalAwayScore;
+
+                if (finalHomeScore > finalAwayScore)
+                {
+                    homeTeam = "<b>" + item.HomeTeam + (item.IsNeutral ? Resources.Lang.IsNeutral : string.Empty) + "</b>";
+                    awayTeam = item.AwayTeam;
+                }
+                else if (finalHomeScore < finalAwayScore)
+                {
+                    homeTeam = item.HomeTeam;
+                    awayTeam = "<b>" + item.AwayTeam + "</b>";
+                }
+                else
+                {
+                    homeTeam = item.HomeTeam;
+                    awayTeam = item.AwayTeam;
+                }
                 if (!string.IsNullOrWhiteSpace(betStatus))
                 {
 
-                    finalHomeScore = item.FinalHomeScore;
-                    finalAwayScore = item.FinalAwayScore;
-
-                    if (finalHomeScore > finalAwayScore)
-                    {
-                        homeTeam = "<b>" + item.HomeTeam + (item.IsNeutral ? Resources.Lang.IsNeutral : string.Empty) + "</b>";
-                        awayTeam = item.AwayTeam;
-                    }
-                    else if (finalHomeScore < finalAwayScore)
-                    {
-                        homeTeam = item.HomeTeam;
-                        awayTeam = "<b>" + item.AwayTeam + "</b>";
-                    }
-                    else
-                    {
-                        homeTeam = item.HomeTeam;
-                        awayTeam = item.AwayTeam;
-                    }
-
-                    //23-12,26-11,17-13,15-15
                     string[] listOfBetStatus = betStatus.Split(',');
                     if (listOfBetStatus.Count() > 1)
                     {

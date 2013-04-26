@@ -1,0 +1,195 @@
+﻿@using Apollo.Age.Reports.Models
+@using Apollo.Age.Reports.Core
+@model IEnumerable<MatchResultModel>
+<table class="tblRpt">
+    <thead>
+        <tr class="RptHeader">
+            <td style="width: 90px" columnname="kickofftime">
+                @Resources.Lang.kickofftime
+            </td>
+            <td>
+                @Resources.Lang.match
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.S1
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.S2
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.S3
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.S4
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.S5
+            </td>
+            <td style="width: 50px;">
+                @Resources.Lang.totalpoint
+            </td>
+            <td class="nowrap" style="width: 70px;">
+                @Resources.Lang.totalset
+            </td>
+            <td class="nowrap" style="width: 60px;">
+                @Resources.Lang.status
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            var currentLeagueId = 0;
+
+            foreach (var item in Model)
+            {
+                var eventStatus = string.Empty;
+                var betStatus = string.Empty;
+
+                var finalHomeScore = 0;
+                var finalAwayScore = 0;
+
+                var homeTeam = string.Empty;
+                var awayTeam = string.Empty;
+
+                var S1Away = "-";
+                var S1Home = "-";
+                var S2Away = "-";
+                var S2Home = "-";
+                var S3Away = "-";
+                var S3Home = "-";
+                var S4Away = "-";
+                var S4Home = "-";
+                var S5Away = "-";
+                var S5Home = "-";
+                var totalPointAway = string.Empty;
+                var totalPointHome = string.Empty;
+
+                betStatus = item.BetStatus;                
+                finalHomeScore = item.FinalHomeScore;
+                finalAwayScore = item.FinalAwayScore;
+
+                if (finalHomeScore > finalAwayScore)
+                {
+                    homeTeam = "<b>" + item.HomeTeam + (item.IsNeutral ? Resources.Lang.IsNeutral : string.Empty) + "</b>";
+                    awayTeam = item.AwayTeam;
+                }
+                else if (finalHomeScore < finalAwayScore)
+                {
+                    homeTeam = item.HomeTeam;
+                    awayTeam = "<b>" + item.AwayTeam + "</b>";
+                }
+                else
+                {
+                    homeTeam = item.HomeTeam;
+                    awayTeam = item.AwayTeam;
+                }
+                
+                if (!string.IsNullOrWhiteSpace(betStatus))
+                {                                  
+                                   
+                    string[] listOfBetStatus = betStatus.Split(',');
+                    if (listOfBetStatus.Count() > 1)
+                    {
+                        S1Home = listOfBetStatus[0].Split('-')[0];
+                        S1Away = listOfBetStatus[0].Split('-')[1];
+
+                        S2Home = listOfBetStatus[1].Split('-')[0];
+                        S2Away = listOfBetStatus[1].Split('-')[1];
+
+                        S3Home = listOfBetStatus[2].Split('-')[0];
+                        S3Away = listOfBetStatus[2].Split('-')[1];
+
+                        S4Home = listOfBetStatus[3].Split('-')[0];
+                        S4Away = listOfBetStatus[3].Split('-')[1];
+
+                        S5Home = listOfBetStatus[4].Split('-')[0];
+                        S5Away = listOfBetStatus[4].Split('-')[1];
+
+                        var totalGameHome = Convert.ToInt32(S1Home) + Convert.ToInt32(S2Home) + Convert.ToInt32(S3Home) + Convert.ToInt32(S4Home) + Convert.ToInt32(S5Home);
+                        var totalGameAway = Convert.ToInt32(S1Away) + Convert.ToInt32(S2Away) + Convert.ToInt32(S3Away) + Convert.ToInt32(S4Away) + Convert.ToInt32(S5Away);
+
+                        totalPointHome = totalGameHome > 0 ? totalGameHome.ToString() : string.Empty;
+                        totalPointAway = totalGameAway > 0 ? totalGameAway.ToString() : string.Empty;
+
+                    }
+
+                }
+
+                if (currentLeagueId != item.LeagueId)
+                {
+                    currentLeagueId = item.LeagueId;
+            <tr class="league">
+                <td colspan="10">
+                    @item.LeagueName
+                </td>
+            </tr>
+                }
+
+            <tr>
+                <td rowspan="2">
+                    @item.KickoffTime
+                </td>
+                <td>
+                    @Html.Raw(homeTeam)
+                </td>
+                <td>
+                    @S1Home
+                </td>
+                <td>
+                    @S2Home
+                </td>
+                <td>
+                    @S3Home
+                </td>
+                <td>
+                    @S4Home
+                </td>
+                <td>
+                    @S5Home
+                </td>
+                <td>
+                    @totalPointHome
+                </td>
+                <td>
+                    @finalHomeScore
+                </td>
+                <td rowspan="2">
+                    @item.EventStatusTranslation
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Raw(awayTeam)
+                </td>
+                <td>
+                    @S1Away
+                </td>
+                <td>
+                    @S2Away
+                </td>
+                <td>
+                    @S3Away
+                </td>
+                <td>
+                    @S4Away
+                </td>
+                <td>
+                    @S5Away
+                </td>
+                <td>
+                    @totalPointAway
+                </td>
+                <td>
+                    @finalAwayScore
+                </td>
+            </tr>
+
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(colspan: 10);
+        }
+    </tbody>
+</table>
