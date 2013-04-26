@@ -86,7 +86,7 @@ namespace Fanex.BetList.Age
 
 		public class BetList_HiddenFields_Block: Block
 		{
-			protected static string s24 = "<input type=\"hidden\" id=\"Hidden1\" value=\"";
+			protected static string s24 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
 			protected static string s25 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
 			public string MainShareHolderId = "{MainShareHolderId}";
