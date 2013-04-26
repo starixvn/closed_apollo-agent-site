@@ -23,29 +23,15 @@
         @if (Model != null && Model.Any())
         {
             var currentLeagueId = 0;
-            var rowIndex = 0;
             
             foreach (var item in Model)
             {
-                var classRow = string.Empty;
-                
                 var finalHomeScore = 0;
                 var finalAwayScore = 0;
 
                 var homeTeam = string.Empty;
                 var awayTeam = string.Empty;
-                
-                rowIndex++;
 
-                if (rowIndex % 2 == 0)
-                {
-                    classRow = "class=alt c";
-                }
-                else
-                {
-                    classRow = "class=c";
-                }
-                
                 finalHomeScore = item.FinalHomeScore;
                 finalAwayScore = item.FinalAwayScore;
 
@@ -75,8 +61,8 @@
                     </tr>
                 }
 
-                <tr @classRow>
-                    <td rowspan="2" class="l">
+                <tr class="c">
+                    <td rowspan="2">
                         @Html.Raw(Formater.FullDateFormat2Line(item.KickoffTime))
                     </td>
                     <td class="l">
@@ -89,7 +75,7 @@
                         @item.EventStatusTranslation
                     </td>
                 </tr>
-                <tr @classRow>
+                <tr class="c">
                     <td class="l">
                         @Html.Raw(awayTeam)
                     </td>
