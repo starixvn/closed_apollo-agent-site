@@ -26,8 +26,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <summary>
         /// The _combination offer name
         /// </summary>
-        private static Dictionary<string, string> _combinationOfferName = new Dictionary<string, string> 
-        { 
+        private static Dictionary<string, string> _combinationOfferName = new Dictionary<string, string>
+        {
             {"110","Trixie"},
             {"1110","Yankee"},
             {"11110","Canadian"},
@@ -59,24 +59,19 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                         null,
                                         new string[]
                                         {
-                                            "<div class=\"combinationLink\"><a id=\"hidden0\" href=\"javascript:showCombMP(&quot;",
-                                            ticket.TransId.ToString(), 
-                                            "&quot;,&quot;", 
-                                            ticketHelper.Index.ToString(),
-                                            "&quot;,&quot;",
-                                            ticket.RefNo,
+                                            "<div class=\"combinationLink\"><a id=\"hidden0\" href=\"javascript:showMP(&quot;",
+                                            ticket.TransId.ToString(),
                                             "&quot;);\">",
                                             betTypeName,
                                             "</a>",
-                                            " - ",                                
+                                            " - ",
                                             "<span style=\"color:#3a3a3a\">",
                                             GetCombinationOfferName(ticket.BetTeam),
-                                            "</span>",                                
-                                            "</div>",                                
+                                            "</span>",
+                                            "</div>",
                                             "<div id=\"divEvent_",
                                             ticket.TransId.ToString(),
-                                            ticketHelper.Index.ToString(),
-                                            "\" style=\"display: none\" ></div>",                                
+                                            "\" style=\"display: none\" ></div>",
                                             "<div class=\"detail\" onclick=\"showCombMPDetail(&quot;",
                                             ticket.RefNo,
                                             "&quot;",
@@ -92,9 +87,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                             ",&quot;",
                                             custid,
                                             "&quot;);\">",
-                                            "<a style=\"color:#755200;font-weight:bold\" href=\"javascript:void(&quot;&quot;);\">",
                                             CoreBetList.details,
-                                            "</a>",                                
                                             "</div>"
                                         }
                                    );
@@ -119,6 +112,6 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             IRichTextString rtfChoice = new HSSFRichTextString(App_GlobalResources.CoreLang.lblSystemParlay);
             lstRTFChoices.Add(rtfChoice);
             return lstRTFChoices;
-        }       
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Models;
     using Fanex.BetList.Core.Entities;
+    using Fanex.Data.DNAide;
 
     /// <summary>
     /// Service Interface
@@ -32,6 +33,8 @@ namespace Apollo.Age.BetList.Services
         TicketResult GetWinLossByDateAndMem(BetListCriteria criteria);
 
         TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria);
+
+        SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria);
 
         void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode);
     }

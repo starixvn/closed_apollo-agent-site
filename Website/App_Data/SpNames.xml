@@ -200,6 +200,8 @@
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets-BetList">
+
+    <Setting Key="Age_Betlist_SelSystemParlay_Details" SpName="Age_Betlist_SelSystemParlay_Details" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettype" SpName="Age_BetList_TotalBets_SelRunningByBettype" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettypeMatch" SpName="Age_BetList_TotalBets_SelRunningByBettypeMatch" DbName="REPDB" Plain="0" />

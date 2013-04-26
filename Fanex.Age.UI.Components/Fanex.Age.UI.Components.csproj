@@ -117,6 +117,10 @@
     <Compile Include="AnalysisReportFilter\AnalysisReportFilter.htm.cs" />
     <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.cs" />
     <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.htm.cs" />
+    <Compile Include="Formater.cs" />
+    <Compile Include="UrlProcessor.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Content Include="App_Code\TplCore\RefreshCountDown\RefreshCountDown.htm.cs" />
     <Compile Include="App_GlobalResources\Lang.designer.cs">
       <DependentUpon>Lang.resx</DependentUpon>
@@ -138,6 +142,9 @@
     <Compile Include="ErrorMsg\ErrorMsg_Control.cs" />
     <Compile Include="ErrorPage\ErrorPage.cs" />
     <Compile Include="ErrorPage\ErrorPage.htm.cs" />
+    <Compile Include="HtmlGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MatchByLeague\MatchByLeague.htm.cs" />
     <Compile Include="PagingHeader\PagingHeader.htm.cs" />
     <Compile Include="PagingHeader\Paging\Paging.htm.cs" />
@@ -167,10 +174,6 @@
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Age.Utility\Fanex.Age.Utility.csproj">
-      <Project>{1CE66B65-C500-48C9-9DA9-5ACE16F12B16}</Project>
-      <Name>Fanex.Age.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

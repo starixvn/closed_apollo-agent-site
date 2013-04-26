@@ -39,8 +39,6 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                 {
                                                     "<a id=\"hidden0\" href=\"javascript:showMP(&quot;",
                                                     ticket.TransId.ToString(),
-                                                    "&quot;,&quot;",
-                                                    ticket.RefNo,
                                                     "&quot;);\">",
                                                     betTypeName,
                                                     "</a>",

@@ -18,6 +18,7 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Services.Impl;
     using Fanex.BetList.Core.Entities;
+    using Fanex.Data.DNAide;
 
     /// <summary>
     /// BetList Service
@@ -112,6 +113,16 @@ namespace Apollo.Age.BetList.Services
         public TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria)
         {
             return this.betListRepository.GetRunningByBettypeAndMatch(criteria);
+        }
+
+        /// <summary>
+        /// Get Combination Mix Parlay Detail
+        /// </summary>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>SystemParlay data</returns>
+        public SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria)
+        {
+            return this.betListRepository.GetCombinationMixParlayDetail(criteria);
         }
 
         /// <summary>
