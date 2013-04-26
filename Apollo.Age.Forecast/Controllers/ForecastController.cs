@@ -183,17 +183,19 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        public ViewResult ScoreMap(string matchIds = "", int liveBetTypes = 0, int deadBallBetTypes = 0)
+        public ViewResult ScoreMap(string matchIds = "", int liveBetTypes = 0, int deadBallBetTypes = 0, int mainShareHolderId = 0)
         {
             if (!string.IsNullOrEmpty(matchIds))
             {
                 ViewBag.MatchIds = matchIds;
                 ViewBag.LiveBetTypes = _forecastService.GetAllBetTypeFromBetType(liveBetTypes, true);
                 ViewBag.DeadBallBetTypes = _forecastService.GetAllBetTypeFromBetType(deadBallBetTypes, false);
+                ViewBag.CurrentMainShareHolderId = mainShareHolderId;
             }
             else
             {
-                ViewBag.Leagues = _forecastService.GetScoreMapLeagues(this.CurrentSession.AgentId);
+                var currentAgentId = GetCurrentAgentId(mainShareHolderId);
+                ViewBag.Leagues = _forecastService.GetScoreMapLeagues(currentAgentId);
             }
             return View();
         }
@@ -203,9 +205,10 @@ namespace Apollo.Age.Forecast.Controllers
         /// </summary>
         /// <param name="leagueId"></param>
         /// <returns></returns>
-        public ViewResult ScoreMapMatch(int leagueId)
+        public ViewResult ScoreMapMatch(int leagueId, int mainShareHolderId = 0)
         {
-            var matches = _forecastService.GetScoreMapMatches(this.CurrentSession.AgentId, leagueId);
+            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
+            var matches = _forecastService.GetScoreMapMatches(currentAgentId, leagueId);
             return View(matches);
         }
 
@@ -227,10 +230,11 @@ namespace Apollo.Age.Forecast.Controllers
         /// </summary>
         /// <param name="currentLeagueId"></param>
         /// <returns></returns>
-        public ViewResult ScoreMapLeagues(int currentLeagueId = 0)
+        public ViewResult ScoreMapLeagues(int currentLeagueId = 0, int mainShareHolderId = 0)
         {
             ViewBag.CurrentLeagueId = currentLeagueId;
-            return View(_forecastService.GetScoreMapLeagues(this.CurrentSession.AgentId));
+            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
+            return View(_forecastService.GetScoreMapLeagues(currentAgentId));
         }
 
         /// <summary>
@@ -241,9 +245,10 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
         [OutputCache(Duration=0)]
-        public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes)
+        public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes, int mainShareHolderId = 0)
         {
-            return View(_forecastService.GetScoreMapResults(this.CurrentSession.AgentId, matchIds, liveBetTypes, deadBallBetTypes));
+            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
+            return View(_forecastService.GetScoreMapResults(currentAgentId, matchIds, liveBetTypes, deadBallBetTypes));
         }
 
         #endregion Score Map
