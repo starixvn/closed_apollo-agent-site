@@ -45,6 +45,8 @@
 
             var finalHomeScore = 0;
             var finalAwayScore = 0;
+            var firstHalfHomeScore = 0;
+            var firstHalfAwayScore = 0;
 
             var homeTeam = string.Empty;
             var awayTeam = string.Empty;
@@ -69,6 +71,8 @@
                     betStatus = item.BetStatus;
                     finalHomeScore = item.FinalHomeScore;
                     finalAwayScore = item.FinalAwayScore;
+                    firstHalfHomeScore = item.HalfTimeHomeScore;
+                    firstHalfAwayScore = item.HalfTimeAwayScore;
 
                     if (finalHomeScore > finalAwayScore)
                     {
@@ -146,8 +150,10 @@
                     @OTHome
                 </td>
                 <td>
+                    @firstHalfHomeScore
                 </td>
                 <td>
+                    @finalHomeScore
                 </td>
                 <td>
                 </td>
@@ -172,8 +178,10 @@
                     @OTAway
                 </td>
                 <td>
+                    @firstHalfAwayScore
                 </td>
                 <td>
+                    @finalAwayScore
                 </td>
                 <td>
                 </td>
