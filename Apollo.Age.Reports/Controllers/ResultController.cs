@@ -135,7 +135,7 @@ namespace Apollo.Age.Reports.Controllers
                 matchResults = matchResults.OrderBy(match => match.LeagueId);
             }
 
-            string viewName = GetSportName(sportId); //((SportTypes)sportId).ToString();
+            string viewName = GetSportName(sportId);
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
