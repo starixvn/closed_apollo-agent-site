@@ -184,8 +184,8 @@ function OpenScoreMap(matchIds, bettype, liveindicator) {
 			url += "&mainShareHolderId=" + mainShareHolderId;
 		}
 	};
-	var mainShareHolderUsername = "";
-	if (typeof ($("#MainShareHolderUsername").val()) !== 'undefined' && $("#MainShareHolderUsername").val() != "") {
+	var mainShareHolderUsername = $("#MainShareHolderUsername").val();
+	if (typeof (mainShareHolderUsername) !== 'undefined' && mainShareHolderUsername != "") {
 		mainShareHolderUsername = " - " + mainShareHolderUsername;
 	}
 	wnd.open(url, 'SCORE MAP' + mainShareHolderUsername, 0, 20, 900, 550);
