@@ -104,7 +104,8 @@ namespace Apollo.Age.Account.Controllers
                 {
                     ActorAgentId = CurrentSession.AgentId,
                     AgentId = model.Id,
-                    Username = model.Username
+                    Username = model.Username,
+                    ExcludeActor = false
                 });
 
             if (customerInfo != null)
