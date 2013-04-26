@@ -36,7 +36,7 @@ namespace Apollo.Age.Reports.Models
 
         public string MatchCode { get; set; }
 
-        public DateTime EvenDate { get; set; }
+        public DateTime EventDate { get; set; }
 
         public DateTime KickoffTime { get; set; }
 
@@ -46,7 +46,7 @@ namespace Apollo.Age.Reports.Models
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return string.Format("{0} {1}", CacheRef.GetTeamName(this.HomeId), this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Apollo.Age.Reports.Models
         {
             get
             {
-                return CacheRef.GetTeamName(this.AwayId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return string.Format("{0} {1}", CacheRef.GetTeamName(this.AwayId), this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 
@@ -72,11 +72,12 @@ namespace Apollo.Age.Reports.Models
 
         public string ShowTime { get; set; }
 
+        public int HomeId2 { get; set; }
+
         public bool IsNeutral { get; set; }
 
         public string GoalRecord { get; set; }
 
-        public int HomeId2 { get; set; }
 
         public bool IsHTCal { get; set; }
 

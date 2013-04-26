@@ -1,6 +1,7 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
 @model IEnumerable<MatchResultModel>
+
 <table class="tblRpt">
 	<thead>
 		<tr>
@@ -52,62 +53,79 @@
 			</tr>
 				}
 
-			<tr>
+			<tr class="c">
 				<td rowspan="2">
-					@item.KickoffTime
+					@item.KickoffTime.ToString("MM/dd/yyyy")
+					<br />
+					@item.KickoffTime.ToString("HH:mm:ss tt")
+				</td>
+				<td class="l">
+					@if (item.FinalHomeScore > item.FinalAwayScore)
+					{ <b>@item.HomeTeam</b> }
+					else { @item.HomeTeam }
+				</td>
+				@{
+					int totalGameHome = 0;
+					int totalAwayHome = 0;
+					var betStatusList = new List<string>();
+
+					if (item.BetStatus.IndexOf(',') >= 0)
+					{
+						betStatusList = item.BetStatus.Split(',').ToList();
+					}
+
+					foreach (var status in betStatusList)
+					{
+						int homeScore = Convert.ToInt32(status.Split('-')[0]);
+						totalGameHome += homeScore;
+				<td>
+					@homeScore
+				</td>
+					}
+					for (int i = betStatusList.Count; i < 5; i++)
+					{
+				<td>-</td>
+					}
+				}
+				<td>
+					@if (item.BetStatus.IndexOf(',') >= 0)
+					{
+					@totalGameHome
+					}
 				</td>
 				<td>
-					@item.HomeTeam
-				</td>
-				<td>
-					{S1Home}
-				</td>
-				<td>
-					{S2Home}
-				</td>
-				<td>
-					{S3Home}
-				</td>
-				<td>
-					{S4Home}
-				</td>
-				<td>
-					{S5Home}
-				</td>
-				<td>
-					{TotalGameHome}
-				</td>
-				<td>
-					{TotalSetHome}
+					@item.FinalHomeScore
 				</td>
 				<td rowspan="2">
 					@item.EventStatusTranslation
 				</td>
 			</tr>
-			<tr>
+			<tr class="c">
+				<td class="l">
+					@if (item.FinalAwayScore > item.FinalHomeScore)
+					{ <b>@item.HomeTeam</b> }
+					else { @item.HomeTeam }
+				</td>
+				@foreach (var status in betStatusList)
+				{
+					int awayScore = Convert.ToInt32(status.Split('-')[1]);
+					totalAwayHome += awayScore;
 				<td>
-					@item.AwayTeam
+					@awayScore
+				</td>
+				}
+				@for (int i = betStatusList.Count; i < 5; i++)
+				{
+				<td>-</td>
+				}
+				<td>
+					@if (item.BetStatus.IndexOf(',') >= 0)
+					{
+					@totalAwayHome
+					}
 				</td>
 				<td>
-					{S1Away}
-				</td>
-				<td>
-					{S2Away}
-				</td>
-				<td>
-					{S3Away}
-				</td>
-				<td>
-					{S4Away}
-				</td>
-				<td>
-					{S5Away}
-				</td>
-				<td>
-					{TotalGameAway}
-				</td>
-				<td>
-					{TotalSetAway}
+					@item.FinalAwayScore
 				</td>
 			</tr>
 
@@ -119,18 +137,3 @@
 		}
 	</tbody>
 </table>
-
-@*<table class="tblRpt">
-	<tr>
-		<td rowspan="3"  bgcolor="#faf9ee" class="bl_under">
-			{setName}
-		</td>
-		{setId}
-	</tr>
-	<tr bgcolor="#faf9ee">
-		{setScore1}
-	</tr>
-	<tr bgcolor="#faf9ee">
-		{setScore2}
-	</tr>
-</table>*@
