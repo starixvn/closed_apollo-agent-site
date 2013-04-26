@@ -4261,10 +4261,10 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Generate</value>
   </data>
   <data name="locked" xml:space="preserve">
-    <value>Locked</value>
+    <value>Lock</value>
   </data>
   <data name="stopped" xml:space="preserve">
-    <value>Stopped</value>
+    <value>Stop</value>
   </data>
   <data name="GrossTotal" xml:space="preserve">
     <value>Gross Total</value>
