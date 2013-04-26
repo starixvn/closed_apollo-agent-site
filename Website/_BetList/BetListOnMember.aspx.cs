@@ -40,11 +40,12 @@ namespace Sunplus.Agent.UI._BetList
         private DataTable dtResult = null;
         private DataTable outDataTable = null;
 
-        private int custid, mainShareHolderId;
+        private int custid;
         private string username = string.Empty;
         private DateTime fromDate, toDate, balanceUpDay, moveBetsDay;
         private string statusIds = string.Empty;
         private string pageType = string.Empty;
+        private string mainShareHolderId, mainShareHolderUsername;
 
         #endregion Variables
 
@@ -128,7 +129,8 @@ namespace Sunplus.Agent.UI._BetList
             tpl.content = content.ToString();
             tpl.HiddenFields.pageType = pageType;
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
-            tpl.HiddenFields.MainShareHolderId = mainShareHolderId.ToString();
+            tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
+            tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             writer.Write(tpl);
         }
 
@@ -176,7 +178,8 @@ namespace Sunplus.Agent.UI._BetList
             moveBetsDay = reportService.MoveBetsDay();
             fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
-            mainShareHolderId = GetIntRequest("mainShareHolderId", 0);
+            mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
+            mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
         }
 
         public override object InvokeData(System.Collections.Hashtable p)

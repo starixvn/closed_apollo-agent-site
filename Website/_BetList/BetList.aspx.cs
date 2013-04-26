@@ -40,10 +40,11 @@ namespace Sunplus.Agent.UI._BetList
 
         private string type = string.Empty;
         private string title = string.Empty;
-        private int custId, matchId, live, mainShareHolderId;
+        private int custId, matchId, live;
         private string bettype, betTeam;
         private DateTime dateFrom = DateTime.Now;
         private DateTime dateTo = DateTime.Now;
+        private string mainShareHolderId, mainShareHolderUsername;
 
         #endregion Variables
 
@@ -142,7 +143,8 @@ namespace Sunplus.Agent.UI._BetList
             content.Append("</tbody>");
 
             tpl.content = content.ToString();
-            tpl.HiddenFields.MainShareHolderId = mainShareHolderId.ToString();
+            tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
+            tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             writer.Write(tpl);
 
@@ -185,7 +187,8 @@ namespace Sunplus.Agent.UI._BetList
             bettype = GetStringRequest("bettype", string.Empty);
             betTeam = GetStringRequest("betteam", string.Empty);
             matchId = GetIntRequest("matchid", 0);
-            mainShareHolderId = GetIntRequest("mainShareHolderId", 0);
+            mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
+            mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
             live = GetIntRequest("islive", 0);
 
             if (type.ToLower().Equals("correctscore"))
