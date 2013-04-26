@@ -7,21 +7,21 @@
 <table class="tblRpt">
     <thead>
         <tr class="RptHeader">
-            <td style="width: 90px">
+            <th style="width: 90px">
                 @Resources.Lang.kickofftime
-            </td>
-            <td>
+            </th>
+            <th>
                 @Resources.Lang.match
-            </td>
-            <td style="width: 70px;">
+            </th>
+            <th style="width: 70px;">
                 @Resources.Lang.firsthalfscore
-            </td>
-            <td class="nowrap" style="width: 70px;">
+            </th>
+            <th class="nowrap" style="width: 70px;">
                 @Resources.Lang.finalscore
-            </td>
-            <td class="nowrap" style="width: 60px;">
+            </th>
+            <th class="nowrap" style="width: 60px;">
                 @Resources.Lang.status
-            </td>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -64,14 +64,18 @@
         var classRow = string.Empty;
         if (index % 2 == 0)
         {
-            classRow = "class=alt";
+            classRow = "class=alt c";
+        }
+        else
+        {
+            classRow = "class=c";
         }
     
     <tr @classRow>
-        <td rowspan="2">
+        <td rowspan="2" class="l">
             @Html.Raw(Formater.FullDateFormat2Line(item.KickoffTime))
         </td>
-        <td>
+        <td class="l">
             @if (item.FinalHomeScore > item.FinalAwayScore)
             {
                 <b>
@@ -94,7 +98,7 @@
         </td>
     </tr>
     <tr @classRow>
-        <td>
+        <td class="l">
             @if (item.FinalHomeScore < item.FinalAwayScore)
             {
                 <b>
@@ -106,14 +110,10 @@
                 @item.AwayTeam
             }
 
-            @if (!string.IsNullOrEmpty(item.BetStatus) && item.BetStatus.Contains(":"))
-            {
-
-            }
-
             @FirstAndLastGoal(item, isRowHome: false)
 
         </td>
+
         @BindScore(item, isRowHome: false)
     </tr>
 }
