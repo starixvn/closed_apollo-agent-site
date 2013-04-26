@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Controllers\BetListController.cs" />
     <Compile Include="Criterias\BetListCriteria.cs" />
+    <Compile Include="Criterias\SystemParlayDetailCriteria.cs" />
+    <Compile Include="Models\SystemParlayData.cs" />
     <Compile Include="Models\TicketResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\BetListRepository.cs" />

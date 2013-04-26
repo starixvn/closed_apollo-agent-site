@@ -14,6 +14,7 @@ namespace Apollo.Age.BetList.Repositories.Interface
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Models;
     using Fanex.BetList.Core.Entities;
+    using Fanex.Data.DNAide;
 
     public interface IBetListRepository
     {
@@ -26,6 +27,8 @@ namespace Apollo.Age.BetList.Repositories.Interface
         TicketResult GetWinLossByDateAndMem(BetListCriteria criteria);
 
         TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria);
+
+        SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria);
 
         void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode);
     }

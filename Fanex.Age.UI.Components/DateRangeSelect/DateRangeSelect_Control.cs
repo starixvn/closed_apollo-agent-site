@@ -5,7 +5,7 @@ using System.Web;
 using Fanex.Age.UI.Components.DateRangeSelect;
 using Fanex.Age.UI.Components.RefreshCountDown;
 using TplCore.Element;
-using Fanex.Age.Utility;
+
 
 /// <summary>
 /// Generate refresh count down control

@@ -14,7 +14,6 @@ namespace Fanex.Age.UI.Reports.Result
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.IO;
     using System.Linq;
     using System.Resources;
     using System.Text;
@@ -25,7 +24,7 @@ namespace Fanex.Age.UI.Reports.Result
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Services;
     using Apollo.Age.Web;
-    using Fanex.Age.Utility;
+    
 
     public partial class Result_Page : Reports_Page
     {

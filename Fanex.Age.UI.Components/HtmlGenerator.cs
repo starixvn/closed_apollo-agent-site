@@ -10,7 +10,7 @@ using System.Text;
  *
  */
 
-namespace Fanex.Age.Utility
+namespace Fanex.Age.UI.Components
 {
     public class HtmlGenerator
     {

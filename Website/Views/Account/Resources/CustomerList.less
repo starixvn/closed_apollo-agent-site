@@ -4,15 +4,19 @@
 	width: 99%;
 
 	#header_main {
-		padding: 17px 0 22px;
+		padding: 7px 0 0px;
 		margin-bottom: 10px;
 		width: 100%;
 		.header-title {
 			float: left;
+
+			.title, #currUsername{
+				float: left;
+				white-space: nowrap;
+			}
 		}	
 
-		.edit-setting {
-			float: left;
+		.edit-setting {			
 			margin-left: 5px;
 			margin: 3px 0 0 5px;
 			margin-left: 5px;
@@ -122,6 +126,10 @@
 
 .ie7 #page_main {
 	width: 98%;
+
+	#header_main .edit-setting {
+		margin: 10px 0 0 5px;
+	}
 
 	.tab-header {
 		width: 100.2%;

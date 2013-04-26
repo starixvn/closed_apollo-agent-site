@@ -5,12 +5,13 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.4.4">Created</change>
+//   <change who="Anders.Le" date="2013.4.25">Move all function of ReflectionUtil</change>
 // </history>
 
 namespace Apollo.Age.Account.Models
 {
-    using System;
-    using Fanex.Age.Utility;
+    using System;    
+    using System.Reflection;
 
     /// <summary>
     /// TODO: Update summary.
@@ -53,15 +54,15 @@ namespace Apollo.Age.Account.Models
             {
                 var typeName = string.Empty;
 
-                if (MsgType == 1 && IsSticky != true)
+                if (MsgType == 1 && !IsSticky)
                 {
                     typeName = "private";
                 }
-                else if ((MsgType == 1 || MsgType == 3) && IsSticky == true)
+                else if ((MsgType == 1 || MsgType == 3) && IsSticky)
                 {
                     typeName = "special";
                 }
-                else if (MsgType == 3 && IsSticky == false)
+                else if (MsgType == 3 && !IsSticky)
                 {
                     typeName = "public";
                 }
@@ -81,7 +82,7 @@ namespace Apollo.Age.Account.Models
 
             if (GetMessageType == "private")
             {
-                if (this.BetTransId != null)
+                if (string.IsNullOrWhiteSpace(this.BetTransId))
                 {
                     content = content.Replace("@@", this.BetTransId);
                 }
@@ -99,8 +100,9 @@ namespace Apollo.Age.Account.Models
         private string GetContent(string userLanguage, string langName)
         {
             string content = string.Empty;
-            object value = ReflectionUtil.GetValue(this, langName);
-            if ((value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString())) && !userLanguage.Contains("zh"))
+            object value = GetValue(this, langName);
+            if ((value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString())) 
+                && !userLanguage.Contains("zh"))
             {
                 langName = "Content_en";
             }
@@ -118,7 +120,7 @@ namespace Apollo.Age.Account.Models
                 {
                     if (userLanguage.Equals("zh-CN"))
                     {
-                        value = ReflectionUtil.GetValue(this, langName);
+                        value = GetValue(this, langName);
                         if (value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString()))
                         {
                             langName = "Content_ch";
@@ -126,7 +128,7 @@ namespace Apollo.Age.Account.Models
                     }
                     else
                     {
-                        value = ReflectionUtil.GetValue(this, langName);
+                        value = GetValue(this, langName);
                         if (value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString()))
                         {
                             langName = "Content_cs";
@@ -135,7 +137,7 @@ namespace Apollo.Age.Account.Models
                 }
             }
 
-            value = ReflectionUtil.GetValue(this, langName);
+            value = GetValue(this, langName);
             if (value != null || value != DBNull.Value)
             {
                 content = value.ToString();
@@ -181,6 +183,36 @@ namespace Apollo.Age.Account.Models
         {
             int length = Math.Min(maxLength, fullContent.Length);
             return fullContent.Substring(0, length) + " ...";
+        }
+
+        private object GetValue(object obj, string propertyName)
+        {
+            var propertyInfo = GetPropertyInfo(obj, propertyName);
+            if (propertyInfo != null)
+            {
+                return propertyInfo.GetValue(obj, null);
+            }
+            return null;
+        }
+
+        private PropertyInfo GetPropertyInfo(object obj, string propertyName)
+        {
+            foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
+            {
+                if (string.Compare(propertyInfo.Name, propertyName, true) == 0)
+                {
+                    return propertyInfo;
+                }
+            }
+            return null;
+        }
+
+        private bool HasPropertyInfo(object obj, string propertyName)
+        {
+            var propertyInfo = GetPropertyInfo(obj, propertyName);
+            if (propertyInfo != null)
+                return true;
+            return false;
         }
     }
 }
