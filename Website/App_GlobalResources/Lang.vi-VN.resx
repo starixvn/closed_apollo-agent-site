@@ -1634,7 +1634,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <value>Xem nhóm &amp; tiền hoa hồng</value>
   </data>
   <data name="voidandreject" xml:space="preserve">
-    <value>Danh sách đặt cược bị Hủy/ Từ Chối (cách đây 3 ngày )</value>
+    <value>Danh sách đặt cược bị Hủy/ Từ Chối</value>
   </data>
   <data name="voided" xml:space="preserve">
     <value>Hủy bỏ</value>

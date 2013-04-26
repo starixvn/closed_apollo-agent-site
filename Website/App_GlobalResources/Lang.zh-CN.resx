@@ -1532,7 +1532,7 @@
     <value>游览组别及佣金</value>
   </data>
   <data name="voidandreject" xml:space="preserve">
-    <value>作废/已删除注单(3天纪录)</value>
+    <value>作废/已删除注单</value>
   </data>
   <data name="voided" xml:space="preserve">
     <value>作废</value>
