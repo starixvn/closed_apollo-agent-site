@@ -103,7 +103,7 @@ namespace Sunplus.Agent.UI._BetList
 
             foreach (ITicket ticket in tickets)
             {
-                isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running) && CurrentSession.AgentLevel != 0;
+                isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
 
                 ticketHelper.Index = index++;
                 builder
