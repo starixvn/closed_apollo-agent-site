@@ -1,6 +1,5 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
-
 @model IEnumerable<MatchResultModel>
 <table class="tblRpt">
     <thead>
@@ -26,17 +25,17 @@
         @if (Model != null && Model.Any())
         {
             var currentLeagueId = 0;
-            
+
             foreach (var item in Model)
             {
                 var finalHomeScore = 0;
                 var finalAwayScore = 0;
                 var firstHalfHomeScore = 0;
                 var firstHalfAwayScore = 0;
-                
+
                 var homeTeam = string.Empty;
                 var awayTeam = string.Empty;
-               
+
                 finalHomeScore = item.FinalHomeScore;
                 finalAwayScore = item.FinalAwayScore;
                 firstHalfHomeScore = item.HalfTimeHomeScore;
@@ -57,45 +56,45 @@
                     homeTeam = item.HomeTeam;
                     awayTeam = item.AwayTeam;
                 }
-                
+
                 if (currentLeagueId != item.LeagueId)
                 {
                     currentLeagueId = item.LeagueId;
-                    <tr class="league">
-                        <td colspan="10">
-                            @item.LeagueName
-                        </td>
-                    </tr>
+            <tr class="league">
+                <td colspan="10">
+                    @item.LeagueName
+                </td>
+            </tr>
                 }
 
-                <tr class="c">
-                    <td rowspan="2">
-                        @Html.Raw(Formater.FullDateFormat2Line(item.KickoffTime))
-                    </td>
-                    <td class="l">
-                        @Html.Raw(homeTeam)
-                    </td>
-                    <td>
-                        @firstHalfHomeScore
-                    </td>
-                    <td>
-                        @finalHomeScore
-                    </td>
-                    <td rowspan="2">
-                        @item.EventStatusTranslation
-                    </td>
-                </tr>
-                <tr class="c">
-                    <td class="l">
-                        @Html.Raw(awayTeam)
-                    </td>
-                    <td>
-                        @firstHalfAwayScore
-                    </td>
-                    <td>
-                        @finalAwayScore
-                    </td>
-                </tr>
+            <tr class="c">
+                <td rowspan="2">
+                    @item.KickoffTime
+                </td>
+                <td class="l">
+                    @Html.Raw(homeTeam)
+                </td>
+                <td>
+                    @firstHalfHomeScore
+                </td>
+                <td>
+                    @finalHomeScore
+                </td>
+                <td rowspan="2">
+                    @item.EventStatusTranslation
+                </td>
+            </tr>
+            <tr class="c">
+                <td class="l">
+                    @Html.Raw(awayTeam)
+                </td>
+                <td>
+                    @firstHalfAwayScore
+                </td>
+                <td>
+                    @finalAwayScore
+                </td>
+            </tr>
             }
         }
         else
