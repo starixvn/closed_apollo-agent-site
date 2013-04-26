@@ -83,6 +83,8 @@ namespace Apollo.Age.Reports.Models
 
         public bool IsPending { get; set; }
 
+        public string GoalRecord { get; set; }
+
         #region Map event status to coresponding language
 
         // Define list key for eventstatus

@@ -268,30 +268,30 @@
     <Setting Key="Age_Result_LeagueSelByDate" SpName="Age_Result_LeagueSelByDate" DbName="REPDB" Plain="0" >
       <Mapping DataField="leagueid" ObjectProperty="Id"/>
     </Setting>
-    <Setting Key="Age_Result_MatchSelByLeague" SpName="Age_Result_MatchSelByLeague" DbName="REPDB" Plain="0" >
-      <Mapping DataField="sporttype" ObjectProperty="SportId"/>
-      <Mapping DataField="betstatus" ObjectProperty="BetStatus"/>
-      <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
-      <Mapping DataField="matchid" ObjectProperty="MatchId"/>
-      <Mapping DataField="lcolor" ObjectProperty="LColor"/>
-      <Mapping DataField="matchcode" ObjectProperty="MatchCode"/>
-      <Mapping DataField="eventdate" ObjectProperty="EvenDate"/>
-      <Mapping DataField="kickofftime" ObjectProperty="KickoffTime"/>
-      <Mapping DataField="homeID" ObjectProperty="HomeId"/>
-      <Mapping DataField="awayID" ObjectProperty="AwayId"/>
-      <Mapping DataField="hthomescore" ObjectProperty="HalfTimeHomeScore"/>
-      <Mapping DataField="htawayscore" ObjectProperty="HalfTimeAwayScore"/>
-      <Mapping DataField="finalhomescore" ObjectProperty="FinalHomeScore"/>
-      <Mapping DataField="finalawayscore" ObjectProperty="FinalAwayScore"/>
-      <Mapping DataField="eventstatus" ObjectProperty="EventStatus"/>
-      <Mapping DataField="showtime" ObjectProperty="EventStatus"/>
-      <Mapping DataField="IsNeutral" ObjectProperty="ShowTime"/>
-      <Mapping DataField="goalrecord" ObjectProperty="IsNeutral"/>
-      <Mapping DataField="homeid2" ObjectProperty="HomeId2"/>
-      <Mapping DataField="IsHTCal" ObjectProperty="IsHalfTimeCalculate"/>
-      <Mapping DataField="calculate" ObjectProperty="Calculate"/>
-      <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
-    </Setting>
+      <Setting Key="Age_Result_MatchSelByLeague" SpName="Age_Result_MatchSelByLeague" DbName="REPDB" Plain="0" >
+          <Mapping DataField="sporttype" ObjectProperty="SportId"/>
+          <Mapping DataField="betstatus" ObjectProperty="BetStatus"/>
+          <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
+          <Mapping DataField="matchid" ObjectProperty="MatchId"/>
+          <Mapping DataField="lcolor" ObjectProperty="LColor"/>
+          <Mapping DataField="matchcode" ObjectProperty="MatchCode"/>
+          <Mapping DataField="eventdate" ObjectProperty="EvenDate"/>
+          <Mapping DataField="kickofftime" ObjectProperty="KickoffTime"/>
+          <Mapping DataField="homeID" ObjectProperty="HomeId"/>
+          <Mapping DataField="awayID" ObjectProperty="AwayId"/>
+          <Mapping DataField="hthomescore" ObjectProperty="HalfTimeHomeScore"/>
+          <Mapping DataField="htawayscore" ObjectProperty="HalfTimeAwayScore"/>
+          <Mapping DataField="finalhomescore" ObjectProperty="FinalHomeScore"/>
+          <Mapping DataField="finalawayscore" ObjectProperty="FinalAwayScore"/>
+          <Mapping DataField="eventstatus" ObjectProperty="EventStatus"/>
+          <Mapping DataField="goalrecord" ObjectProperty="GoalRecord"/>
+          <Mapping DataField="showtime" ObjectProperty="ShowTime"/>
+          <Mapping DataField="isneutral" ObjectProperty="IsNeutral"/>
+          <Mapping DataField="homeid2" ObjectProperty="HomeId2"/>
+          <Mapping DataField="IsHTCal" ObjectProperty="IsHalfTimeCalculate"/>
+          <Mapping DataField="calculate" ObjectProperty="Calculate"/>
+          <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
+      </Setting>
     <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="REPDB" Plain="0" />
     <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss" DbName="REPDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="AgentName"/>

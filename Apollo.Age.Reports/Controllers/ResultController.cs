@@ -98,15 +98,5 @@ namespace Apollo.Age.Reports.Controllers
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
-
-        //public ActionResult Soccer(IEnumerable<MatchResultModel> matchResults)
-        //{
-        //    if (matchResults != null && matchResults.Any())
-        //    {
-        //        matchResults = matchResults.OrderBy(match => match.LeagueId);
-        //    }
-
-        //    return View(matchResults);
-        //}
     }
 }
