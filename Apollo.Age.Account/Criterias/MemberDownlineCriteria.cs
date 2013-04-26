@@ -28,7 +28,7 @@ namespace Apollo.Age.Criterias.Accounts
 
         public override string GetSettingKey()
         {
-            return "Age_Customer_GetMemberDownline";
+            return "Age_Agent_GetMemberDownline";
         }
     }
 }
