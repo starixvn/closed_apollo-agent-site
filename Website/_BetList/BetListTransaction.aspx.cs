@@ -141,11 +141,12 @@ namespace Sunplus.Agent.UI._BetList
             {
                 selectedUserType = "1";
             }
+
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
             tpl.Filter.valueFromDate = fromDate.ToString("MM/dd/yyyy");
             tpl.Filter.valueToDate = toDate.ToString("MM/dd/yyyy");
             tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
-            tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
+            tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
             tpl.Filter.User.username = username;
             tpl.HiddenFields.pageType = pageType;
         }
@@ -238,8 +239,7 @@ namespace Sunplus.Agent.UI._BetList
                     (int)Apollo.Age.Enumerations.BetStatus.Won,
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
-
-            fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
+            fromDate = GetDateTimeRequest("fromDate", DateTime.Now);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
             username = this.GetStringRequest("username", CurrentSession.AgentName).Trim();
             userType = GetBooleanRequest("userType", true);

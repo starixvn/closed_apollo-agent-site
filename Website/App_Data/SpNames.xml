@@ -207,6 +207,7 @@
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettypeMatch" SpName="Age_BetList_TotalBets_SelRunningByBettypeMatch" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_AgentDetail" SpName="Age_BetList_AgentDetail" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_AgentDetail_Winloss" SpName="Age_BetList_AgentDetail_Winloss" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_BetList_AgentDetail_Winloss_Old" SpName="Age_BetList_AgentDetail_Winloss_Old" DbName="ARCHIVEDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-Customer Setting">
@@ -284,9 +285,9 @@
       <Mapping DataField="finalhomescore" ObjectProperty="FinalHomeScore"/>
       <Mapping DataField="finalawayscore" ObjectProperty="FinalAwayScore"/>
       <Mapping DataField="eventstatus" ObjectProperty="EventStatus"/>
-      <Mapping DataField="showtime" ObjectProperty="EventStatus"/>
-      <Mapping DataField="IsNeutral" ObjectProperty="ShowTime"/>
-      <Mapping DataField="goalrecord" ObjectProperty="IsNeutral"/>
+      <Mapping DataField="showtime" ObjectProperty="ShowTime"/>
+      <Mapping DataField="IsNeutral" ObjectProperty="IsNeutral"/>
+      <Mapping DataField="goalrecord" ObjectProperty="GoalRecord"/>
       <Mapping DataField="homeid2" ObjectProperty="HomeId2"/>
       <Mapping DataField="IsHTCal" ObjectProperty="IsHalfTimeCalculate"/>
       <Mapping DataField="calculate" ObjectProperty="Calculate"/>

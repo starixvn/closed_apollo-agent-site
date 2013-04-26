@@ -69,7 +69,18 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult Outstanding(int? agentId)
         {
             CurrentAgentId = agentId;
+            var mainShareHolder = new Apollo.Age.Entities.Agent();
+
             IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
+
+            if (CurrentSession.IsSuper)
+            {
+                if (modelAgentDownLine.Count() > 1)
+                {
+                    mainShareHolder = modelAgentDownLine.ToList()[1];
+                }
+            }
+
             IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
             {
                 AgentId = CurrentAgentId.Value
@@ -80,12 +91,13 @@ namespace Apollo.Age.Reports.Controllers
                 CurrentAgentId = CurrentAgentId.Value,
                 ListOutStanding = models,
                 DownlinePath = modelAgentDownLine,
-                AgentLevel = modelAgentDownLine.LastOrDefault().Level
+                AgentLevel = modelAgentDownLine.LastOrDefault().Level,
+                MainShareHolder = mainShareHolder
             });
         }
 
         [HttpPost]
-        public ActionResult MemberOutstanding(int? agentId)
+        public ActionResult MemberOutstanding(int? agentId, int mainShareHolderId, string mainShareHolderUsername)
         {
             CurrentAgentId = agentId;
             // call service to get report data here
@@ -110,7 +122,9 @@ namespace Apollo.Age.Reports.Controllers
             return Json(new
             {
                 ListOutstanding = models,
-                Total = totalModels
+                Total = totalModels,
+                MainShareHolderId = mainShareHolderId,
+                MainShareHolderUsername = mainShareHolderUsername
             });
         }
 
@@ -128,13 +142,14 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult AgentWinLoss(int? id, string name, DateTime fromDate, DateTime toDate)
         {
             var agentId = id.HasValue ? id.Value : this.CurrentSession.AgentId;
-            var agentName = string.IsNullOrWhiteSpace(name)? this.CurrentSession.AgentName : name;
+            var agentName = string.IsNullOrWhiteSpace(name) ? this.CurrentSession.AgentName : name;
             var isSuper = agentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 
             var agentWinLossList = _winLossService.GetAgentWinLoss(agentId, fromDate, toDate);
             var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
 
-            var agentWinLossViewModel = new AgentWinLossViewModel() {
+            var agentWinLossViewModel = new AgentWinLossViewModel()
+            {
                 IsSuper = isSuper,
                 AgentId = agentId,
                 AgentName = agentName,

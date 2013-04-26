@@ -19,6 +19,7 @@ namespace Apollo.Age.Reports.Controllers
     using System.Web.Mvc;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Services;
@@ -80,33 +81,63 @@ namespace Apollo.Age.Reports.Controllers
             //     Name = CacheRef.GetLeagueName(l.Id)
             // });
 
-
-
             return Json(leagues, JsonRequestBehavior.AllowGet);
+        }
+
+        private string GetSportName(int sportId)
+        {
+            switch (sportId)
+            {
+                case (int)SportTypes.Soccer:
+                    return SportTypes.Soccer.ToString();
+                case (int)SportTypes.BasketBall:
+                case (int)SportTypes.Netball:
+                case (int)SportTypes.FootBall:
+                case (int)SportTypes.Rugby:
+                    return SportTypes.BasketBall.ToString();
+                case (int)SportTypes.IceHockey:
+                case (int)SportTypes.FieldHockey:
+                    return SportTypes.IceHockey.ToString();
+                case (int)SportTypes.Tennis:
+                    return SportTypes.Tennis.ToString();
+                case (int)SportTypes.BaseBall:
+                    return SportTypes.BaseBall.ToString();
+                case (int)SportTypes.VolleyBall:
+                case (int)SportTypes.Badminton:
+                case (int)SportTypes.Squash:
+                    return SportTypes.Badminton.ToString();
+                case (int)SportTypes.Golf:
+                case (int)SportTypes.Motorsports:
+                case (int)SportTypes.Billard:
+                case (int)SportTypes.Cycling:
+                case (int)SportTypes.Fencing:
+                case (int)SportTypes.Judo:
+                case (int)SportTypes.ModernPentathlon:
+                case (int)SportTypes.Rowing:
+                case (int)SportTypes.Sailing:
+                case (int)SportTypes.Shooting:
+                case (int)SportTypes.Taekwondo:
+                case (int)SportTypes.Triathlon:
+                case (int)SportTypes.Wrestling:
+                    return SportTypes.Billard.ToString();
+                default:
+                    return SportTypes.OtherSports.ToString();
+            }
         }
 
         public ActionResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
         {
-            var matchResults = _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+            IEnumerable<MatchResultModel> matchResults =
+                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
 
             if (matchResults != null && matchResults.Any())
             {
                 matchResults = matchResults.OrderBy(match => match.LeagueId);
             }
 
-            string viewName = ((SportTypes)sportId).ToString();
+            string viewName = GetSportName(sportId);
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
-
-        //public ActionResult Soccer(IEnumerable<MatchResultModel> matchResults)
-        //{
-        //    if (matchResults != null && matchResults.Any())
-        //    {
-        //        matchResults = matchResults.OrderBy(match => match.LeagueId);
-        //    }
-
-        //    return View(matchResults);
-        //}
     }
 }

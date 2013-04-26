@@ -46,7 +46,7 @@
 
 			this.$message.css({
 				fontSize: '13px',
-                fontWeight: 'bold',
+                //fontWeight: 'bold',
 				lineHeight: '16px',
 				textAlign: 'center',
                 textShadow: '0 1px 1px rgba(255, 255, 255, 0.6)',

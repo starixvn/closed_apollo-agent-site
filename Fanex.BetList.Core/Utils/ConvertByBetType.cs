@@ -21,10 +21,10 @@ namespace Fanex.BetList.Core.Utils
     {
         #region [f_GetOddsByBettype], [f_ShowOddsByBettype], [f_GetChoice]
 
-        public const string FontOpenTag = "<font color='#B50000'>";
-        public const string FontCloseTag = "</font>";
+        public const string FontOpenTag = "<span class='red-color'>";
+        public const string FontCloseTag = "</span>";
         private static List<int> oddsBettypes = new List<int>(new int[] { 1, 2, 3, 7, 12, 8, 20, 124, 125, 81, 82, 83, 84, 85, 86, 87, 88 });
-        private static string minus = "<font color='#B50000'>{0}</font>";
+        private static string minus = "<span class='red-color'>{0}</span>";
 
         public static string Minus
         {

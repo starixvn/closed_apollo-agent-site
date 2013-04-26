@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		@if (Model.SportList.Any())
+		@if (Model.SportList != null && Model.SportList.Any())
 		{
 			<div class="row">
 				<div class="cell">
@@ -53,8 +53,8 @@
 			</div>
 		}
 	</div>
-
-	if (Model.SportList.Any())
+	
+	if (Model.SportList != null && Model.SportList.Any())
 	{
 	<div id="resultContainer"></div>
 	}

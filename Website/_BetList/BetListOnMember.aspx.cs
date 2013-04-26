@@ -65,11 +65,14 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.Filter.valueFromDate = fromDate.ToShortDateString();
                 tpl.Filter.valueToDate = toDate.ToShortDateString();
                 tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
-                tpl.Filter.valueMinDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3).ToShortDateString();
+                tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
                 tpl.HiddenFields.pageType = pageType;
+                tpl.HiddenFields.DateTime.Hide();
             }
             else
             {
+                tpl.HiddenFields.DateTime.valueFromDate = fromDate.ToShortDateString();
+                tpl.HiddenFields.DateTime.valueToDate = toDate.ToShortDateString();
                 tpl.Filter.Hide();
             }
 
@@ -103,7 +106,7 @@ namespace Sunplus.Agent.UI._BetList
 
             foreach (ITicket ticket in tickets)
             {
-                isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running) && CurrentSession.AgentLevel != 0;
+                isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
 
                 ticketHelper.Index = index++;
                 builder
