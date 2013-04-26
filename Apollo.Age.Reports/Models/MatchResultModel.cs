@@ -7,13 +7,12 @@
 //   <change who="Anders.Le" date="2013.4.11">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Reports.Models
 {
     using System;
-    using Apollo.Age.Services;
     using System.Collections.Generic;
     using System.Resources;
+    using Apollo.Age.Services;
 
     public class MatchResultModel
     {
@@ -71,13 +70,14 @@ namespace Apollo.Age.Reports.Models
 
         public string EventStatus { get; set; }
 
-        public bool ShowTime { get; set; }
+        public string ShowTime { get; set; }
 
         public int HomeId2 { get; set; }
 
         public bool IsNeutral { get; set; }
 
         public string GoalRecord { get; set; }
+
 
         public bool IsHTCal { get; set; }
 
@@ -169,8 +169,9 @@ namespace Apollo.Age.Reports.Models
                 return UppercaseFirst(this.EventStatus);
             }
         }
-        
+
         #region rem
+
         //public string MapEventStatus(string eventStatus, bool isPending, bool isHTcal, bool calculate)
         //{
         //    int resultKey = 0x0000000;
@@ -206,7 +207,8 @@ namespace Apollo.Age.Reports.Models
 
         //    return this.UppercaseFirst(eventStatus);
         //}
-        #endregion
+
+        #endregion rem
 
         static object locker = new object();
         static ResourceManager _resourceManager = null;
