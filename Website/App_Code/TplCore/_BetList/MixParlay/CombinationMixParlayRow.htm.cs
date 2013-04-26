@@ -13,24 +13,25 @@ namespace Fanex.Agent.UI
 	{
 		public class CombinationMixParlayRow_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt_center\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\"id=\"tbl-rpt\"><tr class=\"RptHeader\"><td style=\"width: 100px;\">";
+			protected static string s0 = "<table class=\"tblRpt border-tbl\"><thead><tr><th style=\"width: 100px;\">";
 			protected static string s1{get{return Resources.Lang.date;}}
-			protected static string s2 = "</td><td style=\"width: 370px;\">";
+			protected static string s2 = "</th><th style=\"width: 370px;\">";
 			protected static string s3{get{return Resources.Lang.events;}}
-			protected static string s4 = "</td><td style=\"width: 60px;\">";
+			protected static string s4 = "</th><th style=\"width: 60px;\">";
 			protected static string s5{get{return Resources.Lang.odds;}}
-			protected static string s6 = "</td><td style=\"width: 60px;\">";
+			protected static string s6 = "</th><th style=\"width: 60px;\">";
 			protected static string s7{get{return Resources.Lang.stake;}}
-			protected static string s8 = "</td><td style=\"width: 80px;\">";
+			protected static string s8 = "</th><th style=\"width: 80px;\">";
 			protected static string s9{get{return Resources.Lang.lblWinLoss;}}
-			protected static string s10 = "</td><td style=\"width: 80px;\">";
+			protected static string s10 = "</th><th style=\"width: 80px;\">";
 			protected static string s11{get{return Resources.Lang.status;}}
-			protected static string s12 = "</td></tr>";
+			protected static string s12 = "</th></tr></thead><tbody>";
 			public CombinationMixParlayRow_RowData_Block RowData = new CombinationMixParlayRow_RowData_Block();
 			public CombinationMixParlayRow_SubSummary_Block SubSummary = new CombinationMixParlayRow_SubSummary_Block();
+			protected static string s13 = "</tbody><tfoot>";
 			public CombinationMixParlayRow_OutStanding_Block OutStanding = new CombinationMixParlayRow_OutStanding_Block();
 			public CombinationMixParlayRow_Summary_Block Summary = new CombinationMixParlayRow_Summary_Block();
-			protected static string s13 = "</table>";
+			protected static string s14 = "</tfoot></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -51,9 +52,10 @@ namespace Fanex.Agent.UI
 					bd.Append(s12);
 					if(null != RowData) RowData.ToString(ref bd);
 					if(null != SubSummary) SubSummary.ToString(ref bd);
+					bd.Append(s13);
 					if(null != OutStanding) OutStanding.ToString(ref bd);
 					if(null != Summary) Summary.ToString(ref bd);
-					bd.Append(s13);
+					bd.Append(s14);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -68,53 +70,41 @@ namespace Fanex.Agent.UI
 
 		public class CombinationMixParlayRow_RowData_Block: Block
 		{
-			protected static string s14 = "<tr bgcolor=\"";
-			public string ColorClass = "{ColorClass}";
-			protected static string s15 = "\" onmouseover=\"this.style.backgroundColor='";
-			protected static string s16{get{return Fanex.Age.UI.Common.RowBgOver;}}
-			protected static string s17 = "'\"onmouseout=\"this.style.backgroundColor='";
-			protected string t0_ColorClass;
-			protected static string s18 = "'\">";
+			protected static string s15 = "<tr>";
 			public CombinationMixParlayRow_RowData_WinlostDate_Block WinlostDate = new CombinationMixParlayRow_RowData_WinlostDate_Block();
-			protected static string s19 = "<td class=\"l\">";
+			protected static string s16 = "<td class=\"l\">";
 			public string even = "{even}";
-			protected static string s20 = "</td><td class=\"r bl_underdog\">";
+			protected static string s17 = "</td><td class=\"r bl_underdog\">";
 			public string odds = "{odds}";
-			protected static string s21 = "</td><td class=\"r bl_underdog\">";
+			protected static string s18 = "</td><td class=\"r bl_underdog\">";
 			public string stake = "{stake}";
-			protected static string s22 = "</td><td class=\"r\"><div><span class=\"bl_underdog\">";
+			protected static string s19 = "</td><td class=\"r\"><div><span class=\"bl_underdog\">";
 			public string winlost = "{winlost}";
-			protected static string s23 = "</span></div><div><font class=\"bl_underdog\">";
+			protected static string s20 = "</span></div><div><span class=\"bl_underdog\">";
 			public string comm = "{comm}";
-			protected static string s24 = "</font></div></td><td class=\"bl_status c\">";
+			protected static string s21 = "</span></div></td><td class=\"bl_status c\">";
 			public string status = "{status}";
-			protected static string s25 = "</td></tr>";
+			protected static string s22 = "</td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s14);
-					bd.Append(ColorClass);
 					bd.Append(s15);
-					bd.Append(s16);
-					bd.Append(s17);
-					bd.Append(ColorClass);
-					bd.Append(s18);
 					if(null != WinlostDate) WinlostDate.ToString(ref bd);
-					bd.Append(s19);
+					bd.Append(s16);
 					bd.Append(even);
-					bd.Append(s20);
+					bd.Append(s17);
 					bd.Append(odds);
-					bd.Append(s21);
+					bd.Append(s18);
 					bd.Append(stake);
-					bd.Append(s22);
+					bd.Append(s19);
 					bd.Append(winlost);
-					bd.Append(s23);
+					bd.Append(s20);
 					bd.Append(comm);
-					bd.Append(s24);
+					bd.Append(s21);
 					bd.Append(status);
-					bd.Append(s25);
+					bd.Append(s22);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -122,21 +112,21 @@ namespace Fanex.Agent.UI
 
 		public class CombinationMixParlayRow_RowData_WinlostDate_Block: Block
 		{
-			protected static string s26 = "<td ";
+			protected static string s23 = "<td ";
 			public string rowSpan = "{rowSpan}";
-			protected static string s27 = ">";
+			protected static string s24 = ">";
 			public string date = "{date}";
-			protected static string s28 = "</td>";
+			protected static string s25 = "</td>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s26);
+					bd.Append(s23);
 					bd.Append(rowSpan);
-					bd.Append(s27);
+					bd.Append(s24);
 					bd.Append(date);
-					bd.Append(s28);
+					bd.Append(s25);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -144,21 +134,21 @@ namespace Fanex.Agent.UI
 
 		public class CombinationMixParlayRow_SubSummary_Block: Block
 		{
-			protected static string s29 = "<tr class=\"bl_footertotal\" style=\"background-color: #e8dfca;\"><td class=\"r\" colspan=\"6\"><div style=\"float: left; width:580px; text-align:right\">";
-			protected static string s30{get{return Resources.Lang.subTotal;}}
-			protected static string s31 = ":</div><div style=\"float: right; padding-right: 78px;\">";
+			protected static string s26 = "<tr class=\"subtotal\"><td colspan=\"4\">";
+			protected static string s27{get{return Resources.Lang.subTotal;}}
+			protected static string s28 = ":</td><td class=\"r\">";
 			public string subTotal = "{subTotal}";
-			protected static string s32 = "</div></td></tr>";
+			protected static string s29 = "</td><td></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s29);
-					bd.Append(s30);
-					bd.Append(s31);
+					bd.Append(s26);
+					bd.Append(s27);
+					bd.Append(s28);
 					bd.Append(subTotal);
-					bd.Append(s32);
+					bd.Append(s29);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -166,21 +156,21 @@ namespace Fanex.Agent.UI
 
 		public class CombinationMixParlayRow_OutStanding_Block: Block
 		{
-			protected static string s33 = "<tr class=\"bl_footertotal\" style=\"background-color: #f9c95b\"><td class=\"r\" colspan=\"6\"><div style=\"float: left; width:580px; text-align:right\">";
-			protected static string s34{get{return Resources.Lang.outstanding;}}
-			protected static string s35 = ":</div><div style=\"float: right; padding-right: 78px;\">";
+			protected static string s30 = "<tr class=\"outstanding\"><td colspan=\"4\">";
+			protected static string s31{get{return Resources.Lang.outstanding;}}
+			protected static string s32 = ":</td><td class=\"r\">";
 			public string outstanding = "{outstanding}";
-			protected static string s36 = "</div></td></tr>";
+			protected static string s33 = "</td><td></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s33);
-					bd.Append(s34);
-					bd.Append(s35);
+					bd.Append(s30);
+					bd.Append(s31);
+					bd.Append(s32);
 					bd.Append(outstanding);
-					bd.Append(s36);
+					bd.Append(s33);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -188,21 +178,21 @@ namespace Fanex.Agent.UI
 
 		public class CombinationMixParlayRow_Summary_Block: Block
 		{
-			protected static string s37 = "<tr class=\"bl_footertotal\" style=\"background-color: #e8dfca;\"><td class=\"r\" colspan=\"6\"><div style=\"float: left; width:580px; text-align:right\">";
-			protected static string s38{get{return Resources.Lang.total;}}
-			protected static string s39 = ":</div><div style=\"float: right; padding-right: 78px;\">";
+			protected static string s34 = "<tr class=\"total\"><td colspan=\"4\">";
+			protected static string s35{get{return Resources.Lang.total;}}
+			protected static string s36 = ":</td><td class=\"white-color r\">";
 			public string total = "{total}";
-			protected static string s40 = "</div></td></tr>";
+			protected static string s37 = "</td><td></td></tr>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s37);
-					bd.Append(s38);
-					bd.Append(s39);
+					bd.Append(s34);
+					bd.Append(s35);
+					bd.Append(s36);
 					bd.Append(total);
-					bd.Append(s40);
+					bd.Append(s37);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

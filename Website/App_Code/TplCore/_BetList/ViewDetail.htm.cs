@@ -13,7 +13,7 @@ namespace Fanex.Agent.UI
 	{
 		public class ViewDetail_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE HTML><!--[if IE 7 ]> <html class=\"ie7 ie\" lang=\"en-us\"> <![endif]--><!--[if IE 8 ]> <html class=\"ie8 ie\" lang=\"en-us\"> <![endif]--><!--[if IE 9 ]> <html class=\"ie9 ie\" lang=\"en-us\"> <![endif]--><!--[if (gt IE 9)]><!--> <html class=\"ie10 ie\" lang=\"en-us\"> <!--<![endif]--><!--[if !(IE)]> <html lang=\"en-us\"><![endif]--><head><title>View detail</title><link href=\"";
+			protected static string s0 = "<!DOCTYPE HTML><html><head><title>View detail</title><link href=\"";
 			protected static string s1{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
 			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"spData\">";
 			public string content = "{content}";

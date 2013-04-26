@@ -175,7 +175,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     }
 
                     subWinlostSum += ticket.WinLost + ticket.PlayerComm;
-                    rowBlock.ColorClass = i % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
+                    //rowBlock.ColorClass = i % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
                     template.RowData.Append(rowBlock);
 
                     //Get Sub Total by Day
