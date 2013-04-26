@@ -72,5 +72,9 @@ if (typeof jQuery != 'undefined') {
 
 
 function UpdateForecastHDValue() {
-    document.location.href = APOLLO.resolveUrl("Forecast/FCHandicapOverUnder?leagueId=" + FCHANDICAPOU.currentLeague);
+    var url = APOLLO.resolveUrl("Forecast/FCHandicapOverUnder?leagueId=" + FCHANDICAPOU.currentLeague);
+    if (currentMainShareHolderId > 0) {
+        url += '&mainShareHolderId=' + currentMainShareHolderId;
+    }
+    document.location.href = url;
 }

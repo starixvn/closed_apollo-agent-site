@@ -35,7 +35,7 @@ var ACCOUNT = function ($) {
                 source: function (request, response) {
                     var url = ACCOUNT.dllIsMember.val().toBoolean()
                         ? "Account/GetMemberByUsername?username=" + request.term
-                        : "Account/GetAgentByUsername?username=" + request.term;
+                        : "Account/GetAgentByUsername?username=" + request.term + "&excludeactor=true";
 
                     $.ajax({
                         url: APOLLO.resolveUrl(url),

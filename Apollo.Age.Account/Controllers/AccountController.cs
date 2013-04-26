@@ -117,7 +117,8 @@ namespace Apollo.Age.Account.Controllers
             {
                 ActorAgentId = CurrentSession.AgentId,
                 AgentId = agentId,
-                Username = username
+                Username = username,
+                ExcludeActor = true
             });
 
             if (agentInfo == null)
@@ -228,12 +229,13 @@ namespace Apollo.Age.Account.Controllers
             return Json(customerList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetAgentByUsername(string username)
+        public JsonResult GetAgentByUsername(string username, bool? excludeactor)
         {
             var criteria = new GetAgentByUsernameCriteria()
             {
                 ActorAgentId = this.CurrentSession.AgentId,
-                Username = username
+                Username = username,
+                ExcludeActor = excludeactor.HasValue? excludeactor.Value : false
             };
 
             var agentList = _accountService.GetAgentByUsername(criteria).Select(x => new { x.Id, x.Username }).ToList();

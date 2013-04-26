@@ -220,14 +220,14 @@
       <Mapping DataField="UGroup" ObjectProperty="Group" />
     </Setting>
 
-    <Setting Key="Age_Customer_GetAgentDownline" SpName="Age_Customer_GetAgentDownline" DbName="REPDB" Plain="0">
+    <Setting Key="Age_Agent_GetAgentDownline" SpName="Age_Agent_GetAgentDownline" DbName="REPDB" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="Id" />
     </Setting>
-    <Setting Key="Age_Customer_GetAgentDownlinePath" SpName="Age_Customer_GetAgentDownlinePath" DbName="REPDB" Plain="0" >
+    <Setting Key="Age_Agent_GetAgentDownlinePath" SpName="Age_Agent_GetAgentDownlinePath" DbName="REPDB" Plain="0" >
       <Mapping DataField="AgentId" ObjectProperty="Id" />
       <Mapping DataField="AgentLevel" ObjectProperty="Level" />
     </Setting>
-    <Setting Key="Age_Customer_GetMemberDownline" SpName="Age_Customer_GetMemberDownline" DbName="REPDB" Plain="0">
+    <Setting Key="Age_Agent_GetMemberDownline" SpName="Age_Agent_GetMemberDownline" DbName="REPDB" Plain="0">
       <Mapping DataField="CustId" ObjectProperty="Id" />
     </Setting>
     <Setting Key="Age_Agent_GetByUsername" SpName="Age_Agent_GetByUsername" DbName="REPDB" Plain="0">

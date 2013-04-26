@@ -102,6 +102,10 @@ function UpdateForecast1x2Value() {
         location.reload();
     }
     else {
-        document.location.href = APOLLO.resolveUrl("Forecast/FC1X2?leagueId=" + FC1X2.currentLeague);
+        var url = APOLLO.resolveUrl("Forecast/FC1X2?leagueId=" + FC1X2.currentLeague);
+        if (currentMainShareHolderId > 0) {
+            url += '&mainShareHolderId=' + currentMainShareHolderId;
+        }
+        document.location.href = url;
     }
 }

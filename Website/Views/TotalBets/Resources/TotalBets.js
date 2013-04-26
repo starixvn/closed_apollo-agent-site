@@ -31,7 +31,9 @@ var TOTALBETS = function ($) {
                 + '&betType=' + $(this).attr("bet-type")
                 + '&type=' + $(this).attr("betlist-type")
                 + '&leagueName=' + $(this).attr("league-name"));
-
+                if (currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + currentMainShareHolderId;
+                }
                 ageWnd.openDialog(url, "BET LIST", {
                     width: 930,
                     height: 770,

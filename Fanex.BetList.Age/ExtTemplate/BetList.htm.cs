@@ -88,7 +88,9 @@ namespace Fanex.BetList.Age
 		{
 			protected static string s24 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s25 = "\" />";
+			protected static string s25 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
+			public string MainShareHolderId = "{MainShareHolderId}";
+			protected static string s26 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -97,6 +99,8 @@ namespace Fanex.BetList.Age
 					bd.Append(s24);
 					bd.Append(ApoRoot);
 					bd.Append(s25);
+					bd.Append(MainShareHolderId);
+					bd.Append(s26);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
