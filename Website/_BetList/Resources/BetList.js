@@ -254,30 +254,31 @@ if (typeof jQuery != "undefined") {
 				$("#frmBetList").submit();
 			});
 		}
-
-		$("#username").autocomplete({
-			source: function (request, response) {
-				var url = "";
-				if ($("#userType").val() == "0") {
-					url = "Account/GetMemberByUsername?username=" + request.term;
-				}
-				else {
-					url = "Account/GetAgentByUsername?username=" + request.term;
-				}
-
-				$.ajax({
-					url: APOLLO.resolveUrl(url),
-					success: function (data) {
-						var found = $.map(data, function (item) {
-							return {
-								value: item.Username
-							}
-						});
-						return response(found);
+		if (typeof ($("#username").val()) !== 'undefined') {
+			$("#username").autocomplete({
+				source: function (request, response) {
+					var url = "";
+					if ($("#userType").val() == "0") {
+						url = "Account/GetMemberByUsername?username=" + request.term;
 					}
-				});
-			},
-			position: { my: "right top", at: "right bottom" }
-		});
+					else {
+						url = "Account/GetAgentByUsername?username=" + request.term;
+					}
+
+					$.ajax({
+						url: APOLLO.resolveUrl(url),
+						success: function (data) {
+							var found = $.map(data, function (item) {
+								return {
+									value: item.Username
+								}
+							});
+							return response(found);
+						}
+					});
+				},
+				position: { my: "right top", at: "right bottom" }
+			});
+		}
 	});
 }
