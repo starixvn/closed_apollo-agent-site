@@ -1,21 +1,22 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
+
 @model IEnumerable<MatchResultModel>
 <table class="tblRpt">
     <thead>
         <tr class="RptHeader">
-            <td style="width: 90px">
+            <th style="width: 90px">
                 @Resources.Lang.kickofftime
-            </td>
-            <td>
+            </th>
+            <th style="width: 380px;">
                 @Resources.Lang.match
-            </td>
-            <td class="nowrap" style="width: 70px;">
+            </th>
+            <th class="nowrap" style="width: 60px;">
                 @Resources.Lang.finalscore
-            </td>
-            <td class="nowrap" style="width: 60px;">
+            </th>
+            <th class="nowrap" style="width: 70px;">
                 @Resources.Lang.status
-            </td>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -38,7 +39,11 @@
 
                 if (rowIndex % 2 == 0)
                 {
-                    classRow = "class=alt";
+                    classRow = "class=alt c";
+                }
+                else
+                {
+                    classRow = "class=c";
                 }
                 
                 finalHomeScore = item.FinalHomeScore;
@@ -70,29 +75,28 @@
                     </tr>
                 }
 
-            <tr @classRow>
-                <td rowspan="2">
-                    @Html.Raw(Formater.FullDateFormat2Line(item.KickoffTime))
-                </td>
-                <td>
-                    @Html.Raw(homeTeam)
-                </td>
-                <td>
-                    @finalHomeScore
-                </td>
-                <td rowspan="2">
-                    @item.EventStatusTranslation
-                </td>
-            </tr>
-            <tr @classRow>
-                <td>
-                    @Html.Raw(awayTeam)
-                </td>
-                <td>
-                    @finalAwayScore
-                </td>
-            </tr>
-
+                <tr @classRow>
+                    <td rowspan="2" class="l">
+                        @Html.Raw(Formater.FullDateFormat2Line(item.KickoffTime))
+                    </td>
+                    <td class="l">
+                        @Html.Raw(homeTeam)
+                    </td>
+                    <td>
+                        @finalHomeScore
+                    </td>
+                    <td rowspan="2">
+                        @item.EventStatusTranslation
+                    </td>
+                </tr>
+                <tr @classRow>
+                    <td class="l">
+                        @Html.Raw(awayTeam)
+                    </td>
+                    <td>
+                        @finalAwayScore
+                    </td>
+                </tr>
             }
         }
         else
