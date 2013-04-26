@@ -3,6 +3,7 @@
         init: function () {
             $("#MemberOutstanding").unbind('click').bind('click', function () {
                 var $this = $(this);
+
                 $.ajax({
                     type: "POST",
                     url: APOLLO.resolveUrl("Reports/MemberOutstanding"),
@@ -11,14 +12,12 @@
                     data: JSON.stringify({ 'agentId': $this.attr("agentid"), 'mainShareHolderId': $this.attr("mainshareholderid"), 'mainShareHolderUsername': $this.attr("mainshareholderusername") }),
                     timeout: 120000
                 })
-
-                    .done(function (result) {
-                        REPORTS.initGrid(result);
-                    })
-
-                    .fail(function (event, jqXHR, ajaxSettings) {
-                        APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
-                    });
+                .done(function (result) {
+                    REPORTS.initGrid(result);
+                })
+                .fail(function (event, jqXHR, ajaxSettings) {
+                    APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
+                });
                 return false;
             });
 
@@ -31,7 +30,12 @@
             });
 
             $("#gridId").on("click", ".act-view-betlist", REPORTS.viewBetList);
+
+            $('#header_main .icon-info-sign').click(function () {
+                noty({ text: "<b>AGENT WINLOSS</b> instruction", type: "information" });
+            });
         },
+
         // View betlist page from report Outstanding
         viewBetList: function () {
             var username = $(this).closest('tr').children('td:first').text();
