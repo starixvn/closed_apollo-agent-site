@@ -19,6 +19,7 @@ namespace Apollo.Age.Reports.Controllers
     using System.Web.Mvc;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Services;
@@ -87,7 +88,8 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
         {
-            var matchResults = _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+            IEnumerable<MatchResultModel> matchResults =
+                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
 
             if (matchResults != null && matchResults.Any())
             {
@@ -98,15 +100,5 @@ namespace Apollo.Age.Reports.Controllers
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
-
-        //public ActionResult Soccer(IEnumerable<MatchResultModel> matchResults)
-        //{
-        //    if (matchResults != null && matchResults.Any())
-        //    {
-        //        matchResults = matchResults.OrderBy(match => match.LeagueId);
-        //    }
-
-        //    return View(matchResults);
-        //}
     }
 }

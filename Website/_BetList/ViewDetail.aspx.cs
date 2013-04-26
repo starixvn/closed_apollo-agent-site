@@ -8,6 +8,7 @@ using Apollo.Age.Reports.Services;
 using Apollo.Age.Web;
 using Fanex.Age.UI;
 using Fanex.Age.UI.Components;
+using Fanex.Agent.UI._BetList;
 using Fanex.BetList.Age.BetListHTMLBuilderExt;
 using Fanex.BetList.Age.ExtTemplate;
 using Fanex.BetList.Core.Builder;
@@ -15,7 +16,6 @@ using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
 using Fanex.BetList.Core.Utils;
-using Fanex.Agent.UI._BetList;
 
 namespace Sunplus.Agent.UI._BetList
 {
@@ -28,7 +28,7 @@ namespace Sunplus.Agent.UI._BetList
         private DateTime fromDate = DateTime.Now;
         private DateTime toDate = DateTime.Now;
         private bool isReportWinloss = false;
-        private DateTime moveBetsDay;
+        private DateTime balanceUpDay, moveBetsDay;
 
         #endregion Define variable
 
@@ -90,7 +90,7 @@ namespace Sunplus.Agent.UI._BetList
                     #endregion Total ticket
                 }
                 builder.Append("<tfoot><tr class='total'>");
-                builder.Append(string.Format("<td class='c bold'>{0}</td>", Resources.Lang.total));
+                builder.Append(string.Format("<td class='c'>{0}</td>", Resources.Lang.total));
 
                 if (isShowAgentPT)
                 {
@@ -120,7 +120,9 @@ namespace Sunplus.Agent.UI._BetList
         public override void ProcessRequest(ref System.Collections.Hashtable p)
         {
             var reportService = new ReportService();
+            balanceUpDay = reportService.GetBalanceUpDay();
             moveBetsDay = reportService.MoveBetsDay();
+
             Int64.TryParse(Request["transId"], out transID);
             fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
@@ -142,11 +144,15 @@ namespace Sunplus.Agent.UI._BetList
                 TransId = transID,
                 FromDate = fromDate,
                 ToDate = toDate,
-                MoveBetsDay = moveBetsDay,
-                IsWinLoss = isReportWinloss
+                BalanceUpDay = balanceUpDay,
+                MoveBetsDay = moveBetsDay
             };
-            var mainTickets = betListService.GetDetailAgentComm(criteria);
-            return mainTickets;
+
+            if (isReportWinloss)
+            {
+                return betListService.GetDetailWinLossAgentComm(criteria);
+            }
+            return betListService.GetDetailAgentComm(criteria);
         }
 
         protected ICurrentSession CurrentSession
