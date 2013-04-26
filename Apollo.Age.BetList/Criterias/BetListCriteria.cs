@@ -43,8 +43,6 @@ namespace Apollo.Age.BetList.Criterias
 
         public int MatchId { get; set; }
 
-        public bool IsWinLoss { get; set; }
-
         public bool IsExportExcel { get; set; }
 
         public string StatusIds { get; set; }

@@ -1,139 +1,142 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
 @model IEnumerable<MatchResultModel>
-
 <table class="tblRpt">
-	<thead>
-		<tr>
-			<td style="width: 90px">
-				@Resources.Lang.kickofftime
-			</td>
-			<td>
-				@Resources.Lang.match
-			</td>
-			<td style="width: 18px">
-				@Resources.Lang.S1
-			</td>
-			<td style="width: 18px">
-				@Resources.Lang.S2
-			</td>
-			<td style="width: 18px">
-				@Resources.Lang.S3
-			</td>
-			<td style="width: 18px">
-				@Resources.Lang.S4
-			</td>
-			<td style="width: 18px">
-				@Resources.Lang.S5
-			</td>
-			<th style="width: 70px">
-				@Resources.Lang.totalgame
-			</th>
-			<th style="width: 70px">
-				@Resources.Lang.totalset
-			</th>
-			<th style="width: 60px">
-				@Resources.Lang.status
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		@if (Model != null && Model.Any())
-		{
-			var currentLeagueId = 0;
-			foreach (var item in Model)
-			{
-				if (currentLeagueId != item.LeagueId)
-				{
-					currentLeagueId = item.LeagueId;
-			<tr class="league">
-				<td colspan="10">
-					@item.LeagueName
-				</td>
-			</tr>
-				}
+    <thead>
+        <tr>
+            <td style="width: 90px">
+                @Resources.Lang.kickofftime
+            </td>
+            <td>
+                @Resources.Lang.match
+            </td>
+            <td style="width: 18px">
+                @Resources.Lang.S1
+            </td>
+            <td style="width: 18px">
+                @Resources.Lang.S2
+            </td>
+            <td style="width: 18px">
+                @Resources.Lang.S3
+            </td>
+            <td style="width: 18px">
+                @Resources.Lang.S4
+            </td>
+            <td style="width: 18px">
+                @Resources.Lang.S5
+            </td>
+            <th style="width: 70px">
+                @Resources.Lang.totalgame
+            </th>
+            <th style="width: 70px">
+                @Resources.Lang.totalset
+            </th>
+            <th style="width: 60px">
+                @Resources.Lang.status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            var currentLeagueId = 0;
+            foreach (var item in Model)
+            {
+                if (currentLeagueId != item.LeagueId)
+                {
+                    currentLeagueId = item.LeagueId;
+            <tr class="league">
+                <td colspan="10">
+                    @item.LeagueName
+                </td>
+            </tr>
+                }
 
-			<tr class="c">
-				<td rowspan="2">
-					@item.KickoffTime.ToString("MM/dd/yyyy")
-					<br />
-					@item.KickoffTime.ToString("HH:mm:ss tt")
-				</td>
-				<td class="l">
-					@if (item.FinalHomeScore > item.FinalAwayScore)
-					{ <b>@item.HomeTeam</b> }
-					else { @item.HomeTeam }
-				</td>
-				@{
-					int totalGameHome = 0;
-					int totalAwayHome = 0;
-					var betStatusList = new List<string>();
+            <tr class="c">
+                <td rowspan="2">
+                    @item.KickoffTime
+                </td>
+                <td class="l">
+                    @if (item.FinalHomeScore > item.FinalAwayScore)
+                    { <b>@item.HomeTeam</b> }
+                    else
+                    { @item.HomeTeam }
+                </td>
+                @{
+                    int totalGameHome = 0;
+                    int totalAwayHome = 0;
+                    var betStatusList = new List<string>();
 
-					if (item.BetStatus.IndexOf(',') >= 0)
-					{
-						betStatusList = item.BetStatus.Split(',').ToList();
-					}
+                    if (item.BetStatus.IndexOf(',') >= 0)
+                    {
+                        betStatusList = item.BetStatus.Split(',').ToList();
+                    }
 
-					foreach (var status in betStatusList)
-					{
-						int homeScore = Convert.ToInt32(status.Split('-')[0]);
-						totalGameHome += homeScore;
-				<td>
-					@homeScore
-				</td>
-					}
-					for (int i = betStatusList.Count; i < 5; i++)
-					{
-				<td>-</td>
-					}
-				}
-				<td>
-					@if (item.BetStatus.IndexOf(',') >= 0)
-					{
-					@totalGameHome
-					}
-				</td>
-				<td>
-					@item.FinalHomeScore
-				</td>
-				<td rowspan="2">
-					@item.EventStatusTranslation
-				</td>
-			</tr>
-			<tr class="c">
-				<td class="l">
-					@if (item.FinalAwayScore > item.FinalHomeScore)
-					{ <b>@item.HomeTeam</b> }
-					else { @item.HomeTeam }
-				</td>
-				@foreach (var status in betStatusList)
-				{
-					int awayScore = Convert.ToInt32(status.Split('-')[1]);
-					totalAwayHome += awayScore;
-				<td>
-					@awayScore
-				</td>
-				}
-				@for (int i = betStatusList.Count; i < 5; i++)
-				{
-				<td>-</td>
-				}
-				<td>
-					@if (item.BetStatus.IndexOf(',') >= 0)
-					{
-					@totalAwayHome
-					}
-				</td>
-				<td>
-					@item.FinalAwayScore
-				</td>
-			</tr>
+                    foreach (var status in betStatusList)
+                    {
+                        int homeScore = Convert.ToInt32(status.Split('-')[0]);
+                        totalGameHome += homeScore;
+                    <td>
+                        @homeScore
+                    </td>
+                    }
+                    for (int i = betStatusList.Count; i < 5; i++)
+                    {
+                    <td>
+                        -
+                    </td>
+                    }
+                }
+                <td>
+                    @if (item.BetStatus.IndexOf(',') >= 0)
+                    {
+                        @totalGameHome
+                    }
+                </td>
+                <td>
+                    @item.FinalHomeScore
+                </td>
+                <td rowspan="2">
+                    @item.EventStatusTranslation
+                </td>
+            </tr>
+            <tr class="c">
+                <td class="l">
+                    @if (item.FinalAwayScore > item.FinalHomeScore)
+                    { <b>@item.HomeTeam</b> }
+                    else
+                    { @item.HomeTeam }
+                </td>
+                @foreach (var status in betStatusList)
+                {
+                    int awayScore = Convert.ToInt32(status.Split('-')[1]);
+                    totalAwayHome += awayScore;
+                    <td>
+                        @awayScore
+                    </td>
+                }
+                @for (int i = betStatusList.Count; i < 5; i++)
+                {
+                    <td>
+                        -
+                    </td>
+                }
+                <td>
+                    @if (item.BetStatus.IndexOf(',') >= 0)
+                    {
+                        @totalAwayHome
+                    }
+                </td>
+                <td>
+                    @item.FinalAwayScore
+                </td>
+            </tr>
 
-			}
-		}
-		else
-		{
-			@RazorHelper.ShowNoInfo(colspan: 10);
-		}
-	</tbody>
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(colspan: 10);
+        }
+    </tbody>
 </table>
