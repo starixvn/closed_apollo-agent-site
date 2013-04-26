@@ -1539,7 +1539,7 @@
 
     Fanex.Grid.Constant =
     {
-        NO_DATA_INFO: 'There is no data'
+        NO_DATA_INFO: 'No data is available'
     };
 
     $.fn.gridScroller = function (opts) {

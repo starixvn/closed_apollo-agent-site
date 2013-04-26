@@ -135,6 +135,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         }
         minValue = Math.max(minValue, currentPt.Upline.Min);
         //// Update New Max Range
+        currentPt.MinMaxSpan = minValue;
         maxSpinBox.updateMinValue(minValue);
         uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(minValue, currentPt.MaxMaxSpan);
     }
