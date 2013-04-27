@@ -38,10 +38,10 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 editItems.push({
                     SportId: items[0].SportId,
                     BetTypeId: items[0].BetTypeId,
-                    DiscountA : currentGroupAValue,
-                    DiscountB : currentGroupBValue,
-                    DiscountC : currentGroupCValue,
-                    DiscountD : currentGroupDValue
+                    DiscountA: currentGroupAValue,
+                    DiscountB: currentGroupBValue,
+                    DiscountC: currentGroupCValue,
+                    DiscountD: currentGroupDValue
                 });
             }
             var currentOthersValue = spinBoxItems[5].getValue();
@@ -354,6 +354,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             box.className = "commission-setting-table-player";
 
             //// Header Text
+            var headerTHead = document.createElement("THEAD");
             var headerTr = document.createElement("TR");
             var tdComName = document.createElement("TH");
             tdComName.innerHTML = Language.MEMBER_GROUP;
@@ -362,7 +363,8 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             tdComName.innerHTML = Language.COMM_FOR_MEMBER;
             tdComName.setAttribute("colspan", 2);
             headerTr.appendChild(tdComName);
-            box.appendChild(headerTr);
+            headerTHead.appendChild(headerTr);
+            box.appendChild(headerTHead);
 
 
             box.appendChild(boxTBody);
