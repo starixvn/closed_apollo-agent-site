@@ -173,6 +173,17 @@
         }
     }
 
+    Fanex.ValidateMessage = function (elementInput, errorMessage, xpos, pointerx) {
+        var isXPos = (typeof (xpos) != "undefined" && xpos != null);
+        var isPointerXPos = (typeof (pointerx) != "undefined" && pointerx != null);
+        if (isXPos && pointerx) {
+            Validators.show(elementInput, errorMessage, xpos, pointerx, -45, 38, 18, 5000, false);
+        }
+        else {
+            Validators.show(elementInput, errorMessage, xpos, pointerx, -45, 38, 18, 5000, false);
+        }
+        Validators.animate(elementInput);
+    };
 };
 
 // Validators library
@@ -217,7 +228,7 @@ var Validators = {
             this.timeOutHideTooltip = null;
         };
         if (typeof (timeout) == 'undefined') {
-            timeout = 10000;
+            timeout = 8000;
         }
         this.timeOutHideTooltip = setTimeout(function () {
             if (hint == null) {
@@ -247,9 +258,9 @@ var Validators = {
             var pos = Validators.utils.findPos(elementInput);
             hint.style.left = (pos[0] + xPos) + 'px';
             hint.style.top = (pos[1] + yPos) + 'px';
-            elementInput.onchange = function () {
-                hint.style.display = 'none';
-            };
+//            elementInput.onchange = function () {
+//                hint.style.display = 'none';
+//            };
             elementInput.focus();
         };
         hint.style.display = 'block';
@@ -264,7 +275,7 @@ var Validators = {
     animate: function (input) {
         var previousColor = input.style.color;
         var previousBackground = input.style.backgroundColor;
-        var c = 4;
+        var c = 6;
         if (this.intervalAnimate) {
             clearInterval(this.intervalAnimate);
             this.intervalAnimate = null;
@@ -279,6 +290,8 @@ var Validators = {
                 input.style.color = previousColor;
             }
             if (c == 0) {
+                input.style.backgroundColor = '';
+                input.style.color = '';
                 clearInterval(int);
             }
         }, 300);
@@ -350,4 +363,279 @@ var ModalPopupsDefaults = { shadow: true, shadowSize: 5, shadowColor: "#999999",
 // JSON for old browsers
 var JSON; if (!JSON) { JSON = {} } (function () { function f(n) { return n < 10 ? "0" + n : n } if (typeof Date.prototype.toJSON !== "function") { Date.prototype.toJSON = function (key) { return isFinite(this.valueOf()) ? this.getUTCFullYear() + "-" + f(this.getUTCMonth() + 1) + "-" + f(this.getUTCDate()) + "T" + f(this.getUTCHours()) + ":" + f(this.getUTCMinutes()) + ":" + f(this.getUTCSeconds()) + "Z" : null }; String.prototype.toJSON = Number.prototype.toJSON = Boolean.prototype.toJSON = function (key) { return this.valueOf() } } var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, gap, indent, meta = { "\b": "\\b", "\t": "\\t", "\n": "\\n", "\f": "\\f", "\r": "\\r", '"': '\\"', "\\": "\\\\" }, rep; function quote(string) { escapable.lastIndex = 0; return escapable.test(string) ? '"' + string.replace(escapable, function (a) { var c = meta[a]; return typeof c === "string" ? c : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4) }) + '"' : '"' + string + '"' } function str(key, holder) { var i, k, v, length, mind = gap, partial, value = holder[key]; if (value && typeof value === "object" && typeof value.toJSON === "function") { value = value.toJSON(key) } if (typeof rep === "function") { value = rep.call(holder, key, value) } switch (typeof value) { case "string": return quote(value); case "number": return isFinite(value) ? String(value) : "null"; case "boolean": case "null": return String(value); case "object": if (!value) { return "null" } gap += indent; partial = []; if (Object.prototype.toString.apply(value) === "[object Array]") { length = value.length; for (i = 0; i < length; i += 1) { partial[i] = str(i, value) || "null" } v = partial.length === 0 ? "[]" : gap ? "[\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "]" : "[" + partial.join(",") + "]"; gap = mind; return v } if (rep && typeof rep === "object") { length = rep.length; for (i = 0; i < length; i += 1) { if (typeof rep[i] === "string") { k = rep[i]; v = str(k, value); if (v) { partial.push(quote(k) + (gap ? ": " : ":") + v) } } } } else { for (k in value) { if (Object.prototype.hasOwnProperty.call(value, k)) { v = str(k, value); if (v) { partial.push(quote(k) + (gap ? ": " : ":") + v) } } } } v = partial.length === 0 ? "{}" : gap ? "{\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "}" : "{" + partial.join(",") + "}"; gap = mind; return v } } if (typeof JSON.stringify !== "function") { JSON.stringify = function (value, replacer, space) { var i; gap = ""; indent = ""; if (typeof space === "number") { for (i = 0; i < space; i += 1) { indent += " " } } else { if (typeof space === "string") { indent = space } } rep = replacer; if (replacer && typeof replacer !== "function" && (typeof replacer !== "object" || typeof replacer.length !== "number")) { throw new Error("JSON.stringify") } return str("", { "": value }) } } if (typeof JSON.parse !== "function") { JSON.parse = function (text, reviver) { var j; function walk(holder, key) { var k, v, value = holder[key]; if (value && typeof value === "object") { for (k in value) { if (Object.prototype.hasOwnProperty.call(value, k)) { v = walk(value, k); if (v !== undefined) { value[k] = v } else { delete value[k] } } } } return reviver.call(holder, key, value) } text = String(text); cx.lastIndex = 0; if (cx.test(text)) { text = text.replace(cx, function (a) { return "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4) }) } if (/^[\],:{}\s]*$/.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, "]").replace(/(?:^|:|,)(?:\s*\[)+/g, ""))) { j = eval("(" + text + ")"); return typeof reviver === "function" ? walk({ "": j }, "") : j } throw new SyntaxError("JSON.parse") } } } ());
 
+//------------------------ Spinner
+Spinner = function (container, options) {
+
+    // fetch the DOM node if a string was supplied
+    if (typeof container == 'string') {
+        container = document.getElementById(container);
+    }
+
+    // store the options and set the default values
+    this.options = (options ? options : {});
+    if (!('className' in this.options)) this.options.className = 'spinBox';
+    if (!('step' in this.options)) this.options.step = 1;
+    if (!('decimals' in this.options)) this.options.decimals = 0;
+
+    this.lastLetter = options.lastLetter || null;
+
+    // check whether the input field should be created
+    var inputs = container.getElementsByTagName('input');
+    if (inputs.length == 0) {
+
+        // create the input node
+        this.input = document.createElement('input');
+        this.input.type = "text";
+        this.input.maxLength = 14;
+        this.input.id = container.id;
+        this.setValue('value' in this.options ? this.options.value : 0, true);
+        container.appendChild(this.input);
+
+    } else {
+
+        // store a reference to the input node
+        this.input = inputs[0];
+        if ('value' in this.options) this.setValue(this.options.value, true);
+
+    }
+
+    // create the up button
+    //    var upButton = document.createElement('span');
+    //    upButton.appendChild(document.createElement('span'));
+    //    container.appendChild(upButton);
+
+    // create the down button
+    //    var downButton = document.createElement('span');
+    //    downButton.appendChild(document.createElement('span'));
+    //    container.appendChild(downButton);
+
+    // apply the classes
+    container.className += ' ' + this.options.className;
+    //    upButton.className = this.options.className + 'Up';
+    //    downButton.className = this.options.className + 'Down';
+    //    if (this.lastLetter == Fanex.CustSetting.PT_LAST_LETTER) {
+    //        // Set Right css
+    //        upButton.style.right = downButton.style.right = ((options.minWidth / 2) - (Fanex.CustSetting.SPINNER_BOX_WIDTH / 2) - 10) + "px";
+    //    }
+    // add the listeners
+    this.addEventListener(this.input, 'mousewheel', this.handleMouseWheel, [], true);
+    this.addEventListener(this.input, 'DOMMouseScroll', this.handleMouseWheel, [], true);
+    this.addEventListener(this.input, 'keydown', this.handleKeyDown, [], true);
+    this.addEventListener(this.input, 'keypress', this.handleKeyPress, [], true);
+    this.addEventListener(this.input, 'keyup', this.stop);
+    //    this.addEventListener(upButton, 'mousedown', this.start, [true]);
+    //    this.addEventListener(upButton, 'mouseup', this.stop);
+    //    this.addEventListener(upButton, 'mouseout', this.stop);
+    //    this.addEventListener(downButton, 'mousedown', this.start, [false]);
+    //    this.addEventListener(downButton, 'mouseup', this.stop);
+    //    this.addEventListener(downButton, 'mouseout', this.stop);
+
+    return this;
+
+}
+
+Spinner.prototype = {
+    getValue: function () {
+        var currentTextValue = this.input.value;
+        var currentValue = 0;
+        if (this.lastLetter && currentTextValue.indexOf(this.lastLetter) > -1) {
+            currentValue = currentTextValue.substring(0, currentTextValue.length - 1);
+        }
+        else {
+            currentValue = currentTextValue;
+        }
+        var currentParseValue = parseFloat(currentValue);
+        if (isNaN(currentParseValue)) currentParseValue = 0;
+        return currentParseValue;
+    },
+    setValue: function (value, checkConstrain) {
+
+        checkConstrain = checkConstrain || false;
+        // ensure the value is within the permitted range
+        if ('minimum' in this.options && !checkConstrain) value = Math.max(this.options.minimum, value);
+        if ('maximum' in this.options && !checkConstrain) value = Math.min(this.options.maximum, value);
+
+        // store the sign
+        var sign = (value < 0 ? '-' : '');
+        value = Math.abs(value);
+
+        // determine the multiplier for rounding
+        var multiplier = Math.pow(10, this.options.decimals);
+
+        // split the value in to integer and fractional parts
+        value = Math.round(value * multiplier);
+        var integer = (value - value % multiplier) / multiplier;
+        var fractional = '' + value % multiplier;
+
+        // add leading zeros to the fractional part
+        var decimalLength = this.options.decimals - fractional.length;
+        for (var i = 0; i < decimalLength; i++) {
+            fractional = '0' + fractional;
+        }
+
+
+        //        if (fractional.length > 0) {
+        //            while (fractional[fractional.length - 1] == '0') {
+        //                fractional = fractional.substring(0, fractional.length - 1);
+        //            }
+        //        }
+
+        // set the value
+        this.input.value = sign + integer + ((this.options.decimals > 0 && fractional.length > 0) ? '.' + fractional : '') + (this.lastLetter != null ? this.lastLetter : '');
+    },
+    addEventListener: function (node, event, listener, parameters, allowDefault) {
+
+        // store a reference to the 'this' object
+        var thisObject = this;
+
+        // create the bound listener
+        var boundListener = function (e) {
+
+            // create the list of parameters
+            var callParameters = [e ? e : window.event].concat(parameters);
+
+            // call the listener
+            listener.apply(thisObject, callParameters);
+
+            // prevent the default action if necessary
+            if (!allowDefault) {
+                if (e && e.preventDefault) {
+                    e.preventDefault();
+                } else {
+                    window.event.returnValue = false;
+                }
+            }
+        }
+
+        // add the event listener
+        if (node.addEventListener) {
+            node.addEventListener(event, boundListener, false);
+        } else {
+            node.attachEvent('on' + event, boundListener);
+        }
+    },
+    bind: function (f, parameters) {
+
+        // store a reference to the 'this' object
+        var thisObject = this;
+
+        // return the bound function
+        return function () {
+            f.apply(thisObject, parameters ? parameters : []);
+        };
+    },
+    handleMouseWheel: function (e) {
+
+        // check whether the field is active
+        if (document.activeElement == this.input) {
+
+            // update the value
+            if (e.wheelDelta) {
+                this.start(e, e.wheelDelta > 1);
+            } else if (e.detail) {
+                this.start(e, e.detail < 1);
+            }
+            this.stop();
+
+            // prevent the default action
+            if (e.preventDefault) {
+                e.preventDefault();
+            } else {
+                window.event.returnValue = false;
+            }
+        }
+    },
+    handleKeyDown: function (e) {
+
+        // if the up or down keys were pressed, start updating
+        if (e.keyCode == 38) this.start(e, true);
+        if (e.keyCode == 40) this.start(e, false);
+    },
+    handleKeyPress: function (e) {
+
+        // determine the character code
+        var charCode = ('charCode' in e ? e.charCode : e.keyCode);
+
+        // allow special key presses
+        if (charCode == 0 || e.altKey || e.ctrlKey || e.metaKey) return;
+
+        // allow a minus sign if the value can be negative
+        if (charCode == 45 && (!('minimum' in this.options) || this.options.minimum < 0)) {
+            return;
+        }
+
+        // allow a decimal point if the value may contain decimals
+        if (charCode == 46 && this.options.decimals > 0) return;
+
+        // allow digits
+        if (charCode >= 48 && charCode <= 57) return;
+
+        // prevent the default action
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            window.event.returnValue = false;
+        }
+    },
+    start: function (e, up) {
+        // Return if input is disable
+        if (this.input.disabled == true) return;
+
+        // if we are already updating, return immediately
+        if (this.timeout) return;
+
+        // set the update step
+        this.updateStep = (up ? this.options.step : -this.options.step);
+
+        // initialise the timeout delay
+        this.timeoutDelay = 500;
+
+        // update the value
+        this.update();
+    },
+    stop: function () {
+        //// Check valid input
+        var value = this.getValue();
+        if (isNaN(value)) this.setValue(0);
+
+        if (this.input.disabled == true) return;
+        // clear the timeout if it exists
+        if (this.timeout) window.clearTimeout(this.timeout);
+        this.timeout = null;
+    },
+    update: function () {
+
+        // determine the current value
+        var value = this.getValue();
+        if (isNaN(value)) value = 0;
+
+        // update the value
+        this.setValue(value + this.updateStep);
+
+        // call this function again after a reduced delay
+        this.timeoutDelay = Math.max(20, Math.floor(this.timeoutDelay * 0.9));
+        this.timeout = window.setTimeout(this.bind(this.update), this.timeoutDelay);
+
+        //// Trigger OnChange
+        if (this.input.onchange) this.input.onchange();
+    },
+    updateAndSetMaxValue: function (maxValue) {
+        this.options.maximum = maxValue;
+        this.setValue(maxValue);
+    },
+    updateMaxValue: function (maxValue) {
+        this.options.maximum = maxValue;
+    },
+    updateMinValue: function (mixValue) {
+        this.options.minimum = mixValue;
+    },
+    isValid: function () {
+        var value = this.getValue();
+        if (value < this.options.minimum || value > this.options.maximum) {
+            Fanex.ValidateMessage(this.input, Language.INVALID_RANGE);
+            return false;
+        }
+        return true;
+    }
+};
 

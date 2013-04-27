@@ -34,7 +34,9 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             saveSetting: function () {
-                if (BETLIMIT.betLimitElement.Validate()) {
+                if (EDITCOMMISSION.commissionSettingElement.Validate() 
+                && BETLIMIT.betLimitElement.Validate() 
+                && EDITPOSITIONTAKING.positionTakingElement.Validate()) {
                     var commissionSettingValue = EDITCOMMISSION.commissionSettingElement.Save();
                     if (commissionSettingValue == null && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) {
                         noty({ text: invalidComMessage, type: 'error', timeout: 5000 });

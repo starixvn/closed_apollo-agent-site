@@ -84,7 +84,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             minInput.style.width = Fanex.CustSetting.SPINNER_BOX_WIDTH + "px";
             spinBoxElement.appendChild(minInput);
 
-            var spinBox = new Fanex.CustSetting.Spinner(spinBoxElement, spinOptions);
+            var spinBox = new Spinner(spinBoxElement, spinOptions);
             return spinBox;
         },
         CalculateMinWidth: function (text) {
@@ -304,6 +304,18 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     BetTypes: result
                 };
             };
+
+            this.Validate = function () {
+                var items = this.items;
+                var count = items.length;
+                for (var i = 0; i < count; i++) {
+                    if (!items[i].Validate()) {
+                        return false;
+                    }
+                };
+                return true;
+            };
+
             this.Render = function (owner) {
                 var box = null;
                 var elements = []; // Child bet type element
@@ -371,26 +383,6 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             copyCheck.parent = this;
                             var items = this.items;
                             copyCheck.label.onclick = function () {
-                                //                            if (copyCheck.parent.parent.copiedItem != null) { // Return when already existed copied item
-                                //                                return;
-                                //                            };
-                                //                            var count = elements.length;
-                                //                            copyCheck.checked = !copyCheck.checked;
-                                //                            copyCheck.parent.copiedFromFirst = copyCheck.checked;
-                                //                            if (copyCheck.checked) {
-                                //                                var copiedItem = {
-                                //                                    sportId: items[0].sportId,
-                                //                                    id: items[0].id,
-                                //                                    isLive: items[0].isLive
-                                //                                };
-                                //                                copyCheck.parent.copiedItem = copiedItem; // First bet type item
-                                //                                copyCheck.parent.Inactive(copiedItem);
-                                //                                copyCheck.label.className = "bet-type-header-active";
-                                //                            } else {
-                                //                                copyCheck.parent.copiedItem = null;
-                                //                                copyCheck.parent.Active();
-                                //                                copyCheck.label.className = "bet-type-header2";
-                                //                            }
                                 var currentCopyBetType = elements[0];
                                 var betTypes = elements;
                                 var betTypesLength = betTypes.length;
@@ -487,6 +479,18 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     BetTypeGroups: result
                 };
             };
+
+            this.Validate = function () {
+                var items = this.items;
+                var count = items.length;
+                for (var i = 0; i < count; i++) {
+                    if (!items[i].Validate()) {
+                        return false;
+                    }
+                };
+                return true;
+            };
+
             this.Render = function (owner) {
                 var box = null;
                 var elements = []; // Child bet type group sets element
@@ -547,18 +551,6 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 editDiv.parent = this;
                                 editDiv.className = "pt-sport-copied-inactive";
                                 editDiv.onclick = function () {
-                                    //                                editDiv.parent.Toggle(true); // Expand
-                                    //                                if (editDiv.parent.parent.copiedItem == null) return;
-                                    //                                var actived = (editDiv.className == "pt-sport-edit-copied");
-                                    //                                if (!actived) {
-                                    //                                    editDiv.parent.Active(); // Active
-                                    //                                } else {
-                                    //                                    editDiv.parent.Inactive(editDiv.parent.parent.copiedItem);
-                                    //                                };
-                                    //                                editDiv.className = actived ? "pt-sport-edit" : "pt-sport-edit-copied";
-                                    //                                if (editDiv.parent.parent.activeCopiedTitle) {
-                                    //                                    editDiv.title = actived ? Language.EDIT : Language.COPY_ALL_POSITION_TAKING_FROM.Format(editDiv.parent.name, editDiv.parent.parent.activeCopiedTitle);
-                                    //                                };
                                 }
                                 this.editButton = editDiv; // Keep reference for implementation in parent level
                                 box.appendChild(editDiv);
@@ -566,19 +558,6 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         } else {
                             copyDiv.className = "pt-sport-copied-inactive";
                             copyDiv.onclick = function () {
-                                //                            copyDiv.parent.Toggle(true); // Expand
-                                //                            if (copyDiv.parent.parent.copiedItem == null) return;
-                                //                            var actived = (copyDiv.className == "pt-sport-edit-copied");
-                                //                            if (!actived) {
-                                //                                copyDiv.parent.Active(); // Active
-                                //                            } else {
-                                //                                copyDiv.parent.Inactive(copyDiv.parent.parent.copiedItem);
-                                //                            };
-                                //                            copyDiv.className = actived ? "pt-sport-edit" : "pt-sport-edit-copied";
-                                //                            if (copyDiv.parent.parent.activeCopiedTitle) {
-                                //                                copyDiv.title = actived ? Language.EDIT : Language.COPY_ALL_POSITION_TAKING_FROM.Format(copyDiv.parent.name, copyDiv.parent.parent.activeCopiedTitle);
-                                //                            };
-
                             };
                         };
                         // Handle default collapse / expand
@@ -680,6 +659,23 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     SportTypes: result
                 };
             };
+
+            this.Validate = function () {
+                if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == true) {
+                    return this.Validate();
+                }
+                else {
+                    var items = this.items;
+                    var count = items.length;
+                    for (var i = 0; i < count; i++) {
+                        if (!items[i].Validate()) {
+                            return false;
+                        }
+                    };
+                }
+                return true;
+            };
+
             this.GetSportName = function (sportId) {
                 var count = this.items.length;
                 for (var index = 0; index < count; index++) {
@@ -703,10 +699,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 var top = 0;
 
                 for (var i = this.copiedItem.sportId + 1; i < count; i++) {
-                    //if (this.items[i].copiedItem != null && this.items[i].copiedItem.sportId == this.copiedItem.sportId) {
                     hint += '<li>' + this.items[i].name + '</li>';
                     top += 18;
-                    //}
                 }
                 hint = hint + '</ul></div>';
                 top = top + 78;
@@ -776,73 +770,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             };
                             cloneFromSoccer.parent = cloneFromBasketball.parent = this;
                             var hideHintTimeout = 0;
-                            // Soccer
-                            //                        cloneFromBasketball.onmouseover = function () {
-                            //                            if (cloneFromBasketball.parent.copiedItem != null && cloneFromBasketball.parent.copiedItem.sportId == 2) {
-                            //                                if (hideHintTimeout != 0) {
-                            //                                    clearTimeout(hideHintTimeout);
-                            //                                }
-                            //                                cloneFromBasketball.parent.ShowCloneHint();
-                            //                            }
-                            //                        }
-                            //                        cloneFromBasketball.onmouseout = function () {
-                            //                            if (hideHintTimeout != 0) {
-                            //                                clearTimeout(hideHintTimeout);
-                            //                            }
-                            //                            hideHintTimeout = setTimeout(Validators.hide, 1000);
-                            //                        }
-                            //                        cloneFromSoccer.onmouseover = function () {
-                            //                            if (cloneFromSoccer.parent.copiedItem != null && cloneFromSoccer.parent.copiedItem.sportId == 1) {
-                            //                                if (hideHintTimeout != 0) {
-                            //                                    clearTimeout(hideHintTimeout);
-                            //                                }
-                            //                                cloneFromSoccer.parent.ShowCloneHint();
-                            //                            }
-                            //                        }
-                            //                        cloneFromSoccer.onmouseout = function () {
-                            //                            if (hideHintTimeout != 0) {
-                            //                                clearTimeout(hideHintTimeout);
-                            //                            }
-                            //                            hideHintTimeout = setTimeout(Validators.hide, 1000);
-                            //                        }
                             cloneFromSoccer.onclick = function () {
                                 Validators.hide();
-                                //                            var count = items.length;
-                                //                            cloneFromSoccer.firstChild.checked = !cloneFromSoccer.firstChild.checked;
-                                //                            cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
-                                //                            cloneFromSoccer.parent.activeCopiedTitle = "{0} {1}".Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                                //                            cloneFromSoccer.className = cloneFromSoccer.firstChild.checked ? "pt-sport-copied-active" : "pt-sport-copied";
-                                //                            cloneFromSoccer.parent.items[0].Toggle(true); // Expand
-                                //                            // Rollback Basketball
-                                //                            if (cloneFromBasketball.firstChild.checked) {
-                                //                                cloneFromBasketball.className = "pt-sport-copied";
-                                //                                cloneFromBasketball.firstChild.checked = false;
-                                //                                cloneFromBasketball.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[1].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                                //                            }
-                                //                            // Show / Hide edit button of Basketball
-                                //                            if (cloneFromSoccer.firstChild.checked) {
-                                //                                editBasketball.className = "pt-sport-edit";
-                                //                                editBasketball.title = Language.EDIT;
-                                //                                cloneFromSoccer.title = String.Empty; // Language.UNCOPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[0].name, items[0].betTypeGroupSets[0].BetTypeGroups[0].BetTypes[0].Name);
-                                //                            } else {
-                                //                                editBasketball.className = "pt-sport-copied-inactive";
-                                //                                cloneFromSoccer.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                                //                            }
-                                //                            for (var i = 0; i < count; i++) {
-                                //                                if (cloneFromSoccer.firstChild.checked) {
-                                //                                    items[i].Inactive(Fanex.CloneObject(copiedItemSoccer));
-                                //                                } else {
-                                //                                    items[i].Active();
-                                //                                    cloneFromSoccer.parent.copiedItem = null;
-                                //                                }
-                                //                                if (i > 0 && i != 2) {
-                                //                                    items[i].cloneObjectButton.className = cloneFromSoccer.firstChild.checked ? "pt-sport-edit" : "pt-sport-copied-inactive";
-                                //                                    items[i].cloneObjectButton.title = cloneFromSoccer.firstChild.checked ? Language.EDIT : String.Empty;
-                                //                                    if (cloneFromSoccer.firstChild.checked) {
-                                //                                        //items[i].Toggle(false);
-                                //                                    };
-                                //                                }
-                                //                            };
                                 cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
                                 cloneFromSoccer.parent.activeCopiedTitle = "{0} {1}".Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
                                 cloneFromSoccer.parent.items[0].Toggle(true); // Expand
@@ -884,45 +813,6 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             // Basketball
                             cloneFromBasketball.onclick = function () {
                                 Validators.hide();
-                                //                            var count = items.length;
-                                //                            cloneFromBasketball.firstChild.checked = !cloneFromBasketball.firstChild.checked;
-                                //                            cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
-                                //                            cloneFromBasketball.parent.activeCopiedTitle = "{0} {1}".Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                                //                            cloneFromBasketball.className = cloneFromBasketball.firstChild.checked ? "pt-sport-copied-active" : "pt-sport-copied";
-                                //                            cloneFromBasketball.parent.items[1].Toggle(true); // Expand
-                                //                            // Rollback Soccer
-                                //                            if (cloneFromSoccer.firstChild.checked) {
-                                //                                items[0].Active();
-                                //                                items[1].Active();
-                                //                                cloneFromSoccer.className = "pt-sport-copied";
-                                //                                cloneFromSoccer.firstChild.checked = false;
-                                //                                cloneFromSoccer.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                                //                            };
-                                //                            // Hide edit button of Basketball
-                                //                            if (cloneFromBasketball.firstChild.checked) {
-                                //                                editBasketball.className = "pt-sport-copied-inactive";
-                                //                                cloneFromBasketball.title = String.Empty; // Language.UNCOPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[1].name, items[0].betTypeGroupSets[0].BetTypeGroups[0].BetTypes[0].Name);
-                                //                            } else {
-                                //                                cloneFromBasketball.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-                                //                            }
-                                //                            for (var i = 2; i < count; i++) {
-                                //                                if (cloneFromBasketball.firstChild.checked) {
-                                //                                    items[i].Inactive(Fanex.CloneObject(copiedItemBasketball));
-                                //                                    if (i > 2) {
-                                //                                        items[i].cloneObjectButton.className = "pt-sport-edit";
-                                //                                    }
-                                //                                } else {
-                                //                                    items[i].Active();
-                                //                                    cloneFromBasketball.parent.copiedItem = null;
-                                //                                }
-                                //                                if (i > 2) {
-                                //                                    items[i].cloneObjectButton.className = cloneFromBasketball.firstChild.checked ? "pt-sport-edit" : "pt-sport-copied-inactive";
-                                //                                    items[i].cloneObjectButton.title = cloneFromBasketball.firstChild.checked ? Language.EDIT : String.Empty;
-                                //                                    if (cloneFromBasketball.firstChild.checked) {
-                                //                                        //items[i].Toggle(false);
-                                //                                    };
-                                //                                }
-                                //                            };
                                 cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
                                 cloneFromBasketball.parent.activeCopiedTitle = "{0} {1}".Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
                                 cloneFromBasketball.parent.items[2].Toggle(true); // Expand
@@ -1001,272 +891,5 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 return box;
             }
         }
-    }
-};
-
-//------------------------ Spinner
-Fanex.CustSetting.Spinner = function (container, options) {
-
-    // fetch the DOM node if a string was supplied
-    if (typeof container == 'string') {
-        container = document.getElementById(container);
-    }
-
-    // store the options and set the default values
-    this.options = (options ? options : {});
-    if (!('className' in this.options)) this.options.className = 'spinBox';
-    if (!('step' in this.options)) this.options.step = 1;
-    if (!('decimals' in this.options)) this.options.decimals = 0;
-
-    this.lastLetter = options.lastLetter || null;
-
-    // check whether the input field should be created
-    var inputs = container.getElementsByTagName('input');
-    if (inputs.length == 0) {
-
-        // create the input node
-        this.input = document.createElement('input');
-        this.input.type = "text";
-        this.input.maxLength = 14;
-        this.input.id = container.id;
-        this.setValue('value' in this.options ? this.options.value : 0);
-        container.appendChild(this.input);
-
-    } else {
-
-        // store a reference to the input node
-        this.input = inputs[0];
-        if ('value' in this.options) this.setValue(this.options.value);
-
-    }
-
-    // create the up button
-    //    var upButton = document.createElement('span');
-    //    upButton.appendChild(document.createElement('span'));
-    //    container.appendChild(upButton);
-
-    // create the down button
-    //    var downButton = document.createElement('span');
-    //    downButton.appendChild(document.createElement('span'));
-    //    container.appendChild(downButton);
-
-    // apply the classes
-    container.className += ' ' + this.options.className;
-    //    upButton.className = this.options.className + 'Up';
-    //    downButton.className = this.options.className + 'Down';
-    //    if (this.lastLetter == Fanex.CustSetting.PT_LAST_LETTER) {
-    //        // Set Right css
-    //        upButton.style.right = downButton.style.right = ((options.minWidth / 2) - (Fanex.CustSetting.SPINNER_BOX_WIDTH / 2) - 10) + "px";
-    //    }
-    // add the listeners
-    this.addEventListener(this.input, 'mousewheel', this.handleMouseWheel, [], true);
-    this.addEventListener(this.input, 'DOMMouseScroll', this.handleMouseWheel, [], true);
-    this.addEventListener(this.input, 'keydown', this.handleKeyDown, [], true);
-    this.addEventListener(this.input, 'keypress', this.handleKeyPress, [], true);
-    this.addEventListener(this.input, 'keyup', this.stop);
-    //    this.addEventListener(upButton, 'mousedown', this.start, [true]);
-    //    this.addEventListener(upButton, 'mouseup', this.stop);
-    //    this.addEventListener(upButton, 'mouseout', this.stop);
-    //    this.addEventListener(downButton, 'mousedown', this.start, [false]);
-    //    this.addEventListener(downButton, 'mouseup', this.stop);
-    //    this.addEventListener(downButton, 'mouseout', this.stop);
-
-    return this;
-
-}
-
-Fanex.CustSetting.Spinner.prototype = {
-    getValue: function () {
-        var currentTextValue = this.input.value;
-        var currentValue = 0;
-        if (this.lastLetter && currentTextValue.indexOf(this.lastLetter) > -1) {
-            currentValue = currentTextValue.substring(0, currentTextValue.length - 1);
-        }
-        else {
-            currentValue = currentTextValue;
-        }
-        var currentParseValue = parseFloat(currentValue);
-        if (isNaN(currentParseValue)) currentParseValue = 0;
-        return currentParseValue;
-    },
-    setValue: function (value) {
-
-        // ensure the value is within the permitted range
-        if ('minimum' in this.options) value = Math.max(this.options.minimum, value);
-        if ('maximum' in this.options) value = Math.min(this.options.maximum, value);
-
-        // store the sign
-        var sign = (value < 0 ? '-' : '');
-        value = Math.abs(value);
-
-        // determine the multiplier for rounding
-        var multiplier = Math.pow(10, this.options.decimals);
-
-        // split the value in to integer and fractional parts
-        value = Math.round(value * multiplier);
-        var integer = (value - value % multiplier) / multiplier;
-        var fractional = '' + value % multiplier;
-
-        // add leading zeros to the fractional part
-        var decimalLength = this.options.decimals - fractional.length;
-        for (var i = 0; i < decimalLength; i++) {
-            fractional = '0' + fractional;
-        }
-
-
-//        if (fractional.length > 0) {
-//            while (fractional[fractional.length - 1] == '0') {
-//                fractional = fractional.substring(0, fractional.length - 1);
-//            }
-//        }
-
-        // set the value
-        this.input.value = sign + integer + ((this.options.decimals > 0 && fractional.length > 0) ? '.' + fractional : '') + (this.lastLetter != null ? this.lastLetter : '');
-    },
-    addEventListener: function (node, event, listener, parameters, allowDefault) {
-
-        // store a reference to the 'this' object
-        var thisObject = this;
-
-        // create the bound listener
-        var boundListener = function (e) {
-
-            // create the list of parameters
-            var callParameters = [e ? e : window.event].concat(parameters);
-
-            // call the listener
-            listener.apply(thisObject, callParameters);
-
-            // prevent the default action if necessary
-            if (!allowDefault) {
-                if (e && e.preventDefault) {
-                    e.preventDefault();
-                } else {
-                    window.event.returnValue = false;
-                }
-            }
-        }
-
-        // add the event listener
-        if (node.addEventListener) {
-            node.addEventListener(event, boundListener, false);
-        } else {
-            node.attachEvent('on' + event, boundListener);
-        }
-    },
-    bind: function (f, parameters) {
-
-        // store a reference to the 'this' object
-        var thisObject = this;
-
-        // return the bound function
-        return function () {
-            f.apply(thisObject, parameters ? parameters : []);
-        };
-    },
-    handleMouseWheel: function (e) {
-
-        // check whether the field is active
-        if (document.activeElement == this.input) {
-
-            // update the value
-            if (e.wheelDelta) {
-                this.start(e, e.wheelDelta > 1);
-            } else if (e.detail) {
-                this.start(e, e.detail < 1);
-            }
-            this.stop();
-
-            // prevent the default action
-            if (e.preventDefault) {
-                e.preventDefault();
-            } else {
-                window.event.returnValue = false;
-            }
-        }
-    },
-    handleKeyDown: function (e) {
-
-        // if the up or down keys were pressed, start updating
-        if (e.keyCode == 38) this.start(e, true);
-        if (e.keyCode == 40) this.start(e, false);
-    },
-    handleKeyPress: function (e) {
-
-        // determine the character code
-        var charCode = ('charCode' in e ? e.charCode : e.keyCode);
-
-        // allow special key presses
-        if (charCode == 0 || e.altKey || e.ctrlKey || e.metaKey) return;
-
-        // allow a minus sign if the value can be negative
-        if (charCode == 45 && (!('minimum' in this.options) || this.options.minimum < 0)) {
-            return;
-        }
-
-        // allow a decimal point if the value may contain decimals
-        if (charCode == 46 && this.options.decimals > 0) return;
-
-        // allow digits
-        if (charCode >= 48 && charCode <= 57) return;
-
-        // prevent the default action
-        if (e.preventDefault) {
-            e.preventDefault();
-        } else {
-            window.event.returnValue = false;
-        }
-    },
-    start: function (e, up) {
-        // Return if input is disable
-        if (this.input.disabled == true) return;
-
-        // if we are already updating, return immediately
-        if (this.timeout) return;
-
-        // set the update step
-        this.updateStep = (up ? this.options.step : -this.options.step);
-
-        // initialise the timeout delay
-        this.timeoutDelay = 500;
-
-        // update the value
-        this.update();
-    },
-    stop: function () {
-        //// Check valid input
-        var value = this.getValue();
-        if (isNaN(value)) this.setValue(0);
-
-        if (this.input.disabled == true) return;
-        // clear the timeout if it exists
-        if (this.timeout) window.clearTimeout(this.timeout);
-        this.timeout = null;
-    },
-    update: function () {
-
-        // determine the current value
-        var value = this.getValue();
-        if (isNaN(value)) value = 0;
-
-        // update the value
-        this.setValue(value + this.updateStep);
-
-        // call this function again after a reduced delay
-        this.timeoutDelay = Math.max(20, Math.floor(this.timeoutDelay * 0.9));
-        this.timeout = window.setTimeout(this.bind(this.update), this.timeoutDelay);
-
-        //// Trigger OnChange
-        if (this.input.onchange) this.input.onchange();
-    },
-    updateAndSetMaxValue: function (maxValue) {
-        this.options.maximum = maxValue;
-        this.setValue(maxValue);
-    },
-    updateMaxValue: function (maxValue) {
-        this.options.maximum = maxValue;
-    },
-    updateMinValue: function (mixValue) {
-        this.options.minimum = mixValue;
     }
 };
