@@ -631,8 +631,10 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             };
             this.Save = function () {
                 var result = [];
-                if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == true) {
+                var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
+                if (currentContext.IsSimpleMode == true) {
                     var currentPtValue = this.SaveSimpleMode();
+                    var dataChanged = false;
                     if (currentPtValue == null) return null;
                     var sportTypes = Fanex.CloneObject(this.sportTypes);
                     var sportTypeLength = sportTypes.length;
@@ -643,10 +645,35 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             var currentBetTypes = currentBetTypeGroups[btGroupIndex].BetTypes;
                             var betTypeLength = currentBetTypes.length;
                             for (var btIndex = 0; btIndex < betTypeLength; btIndex++) {
-                                sportTypes[sportTypeIndex].BetTypeGroups[btGroupIndex].BetTypes[btIndex].Pt = currentPtValue;
+                                var currentBetType = sportTypes[sportTypeIndex].BetTypeGroups[btGroupIndex].BetTypes[btIndex];
+                                dataChanged = false;
+
+                                if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder
+                                && currentBetType.Pt.Max != currentPtValue.Max) {
+                                    dataChanged = true;
+                                }
+
+                                if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Agent
+                                && (currentBetType.Pt.Max != currentPtValue.Max
+                                || currentBetType.Pt.Preset != currentPtValue.Preset)) {
+                                    dataChanged = true;
+                                }
+
+                                if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member
+                                && currentBetType.Pt.Value != currentPtValue.Value) {
+                                    dataChanged = true;
+                                }
+
+                                if (dataChanged == true) {
+                                    currentBetType.Pt = currentPtValue;
+                                }
+                                else {
+                                    currentBetType.Pt = null;
+                                }
                             }
                         }
                     }
+
                     result = sportTypes;
                 }
                 else {
