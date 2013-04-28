@@ -45,6 +45,16 @@ namespace Apollo.Age.Integration.Configurations
          @"http://oauth.acsdev.net/scoauth/oauth/token",
          ConfigurationPropertyOptions.IsRequired);
 
+         private static readonly ConfigurationProperty _RedirectUri = new ConfigurationProperty(ConfigName.RedirectUri,
+         typeof(string),
+         @"http://localhost/lobbypage/",
+         ConfigurationPropertyOptions.IsRequired);
+
+         private static readonly ConfigurationProperty _TgpScriptSrc = new ConfigurationProperty(ConfigName.TgpScriptSrc,
+         typeof(string),
+         @"http://demo.acsdev.net/partner/Content/tgp_auth-0.0.2.js",
+         ConfigurationPropertyOptions.IsRequired);
+
         public OAuthSection()
         {
             _Properties = new ConfigurationPropertyCollection();
@@ -53,6 +63,8 @@ namespace Apollo.Age.Integration.Configurations
             _Properties.Add(_AppSecret);
             _Properties.Add(_AuthorizeUrl);
             _Properties.Add(_TokenUrl);
+            _Properties.Add(_RedirectUri);
+            _Properties.Add(_TgpScriptSrc);
         }
 
         public string AppId
@@ -67,6 +79,9 @@ namespace Apollo.Age.Integration.Configurations
             set { this[ConfigName.AppSecret] = value; }
         }
 
+        /// <summary>
+        /// Authorize endpoint
+        /// </summary>
         [RegexStringValidator(UrlPattern)]
         public string AuthorizeUrl
         {
@@ -85,6 +100,12 @@ namespace Apollo.Age.Integration.Configurations
         {
             get { return (string)this[ConfigName.RedirectUri]; }
             set { this[ConfigName.RedirectUri] = value; }
+        }
+
+        public string TgpScriptSrc
+        {
+            get { return (string)this[ConfigName.TgpScriptSrc]; }
+            set { this[ConfigName.TgpScriptSrc] = value; }
         }
     }
 }

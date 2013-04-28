@@ -20,6 +20,15 @@ namespace Apollo.Age.Integration
     /// </summary>
     public class AuthModel
     {
+        internal AuthModel(JsonResponseModel jsonResponseModel)
+        {
+            AccessToken = jsonResponseModel.access_token;
+            UserId = jsonResponseModel.acct_id;
+            Username = jsonResponseModel.acct_login;
+            Expired = Convert.ToInt32(jsonResponseModel.expires_in);
+            TokenType = jsonResponseModel.token_type;
+        }
+
         public string AccessToken { get; set; }
 
         public string UserId { get; set; }

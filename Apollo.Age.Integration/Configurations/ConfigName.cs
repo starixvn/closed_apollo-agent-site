@@ -16,5 +16,6 @@ namespace Apollo.Age.Integration.Configurations
         internal const string AuthorizeUrl = "AuthorizeUrl";
         internal const string TokenUrl = "TokenUrl";
         internal const string RedirectUri = "RedirectUri";
+        internal const string TgpScriptSrc = "TgpScriptSrc";
     }
 }

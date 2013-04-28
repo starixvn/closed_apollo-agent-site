@@ -27,6 +27,7 @@ namespace Apollo.Age.Integration
     {
         private const string FormParams = "grant_type=authorization_code&code={0}&redirect_uri={1}&client_id={2}&client_secret={3}";
 
+        // shoule apply singleton pattern?
         private readonly OAuthSection _config;
 
         public AuthenticationService()
@@ -34,14 +35,15 @@ namespace Apollo.Age.Integration
             _config = (OAuthSection)ConfigurationManager.GetSection("OAuthSection");
         }
 
+        /// <summary>
+        /// Resource server contact with authorization server to get access token
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         private JsonResponseModel SubmitAuthCode(string code)
         {
-            if (string.IsNullOrWhiteSpace(code))
-            {
-                throw new ArgumentNullException("code");
-            }
-
-            JsonResponseModel jsonResponseModel;
+          
+            JsonResponseModel jsonResponseModel = new JsonResponseModel();
 
             // make a web request to authorization server
             var postData = string.Format(FormParams, code, _config.RedirectUri, _config.AppId, _config.AppSecret);
@@ -70,11 +72,11 @@ namespace Apollo.Age.Integration
             }
             catch (WebException webException)
             {
-                
+                //writelog
             }
             catch (AuthenticationException authException)
             {
-
+                //writelog
             }
             finally
             {
@@ -84,7 +86,41 @@ namespace Apollo.Age.Integration
                 }
             }
 
-            return null;
+            return jsonResponseModel;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code">see Integration Document</param>
+        /// <returns></returns>
+        public AuthModel GetAuthInfo(string code)
+        {
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                throw new ArgumentNullException("code");
+            }
+
+            AuthModel authModel = new AuthModel(SubmitAuthCode(code));
+
+            return authModel;
+        }
+
+        private readonly string AuthScriptTemplate = "<script src=\"{0}\" type=\"text/javascript\"></script>" +
+            "<script type=\"text/javascript\">" +
+            "TGP.authorize_endpoint = \"{1}\"" +
+            "TGP.authorize({client_id=\"{2}\", redirect_uri=\"{3}\",state: \"active\"})";
+
+        public string RenderAuthScriptSection()
+        {
+            string scriptSection = string.Format(AuthScriptTemplate,
+                _config.TgpScriptSrc,
+                _config.AuthorizeUrl,
+                _config.AppId,
+                _config.RedirectUri,
+                "active");
+
+            return scriptSection;
         }
     }
 }
