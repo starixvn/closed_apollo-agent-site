@@ -44,8 +44,8 @@
               <siteMapNode description="Consolidated" title="consolidatedreport" url="_Reports/Consolidated/Daily_Consolidated.aspx"></siteMapNode>
               <siteMapNode title="lblCommissionByBettype" url="_Reports/Commission/CommissionByBettype.aspx"></siteMapNode>
               <siteMapNode title="lblCancelledBets" url="_Reports/BetList/CancelBetList.aspx"></siteMapNode>-->
-      <siteMapNode title="result" url="_Reports/Result/Result.aspx"></siteMapNode>
-      <siteMapNode title="result" url="Results/MatchResult"></siteMapNode>
+      <siteMapNode title="lblOutrightResult" url="Results/Outright"></siteMapNode>
+      <siteMapNode title="lblMatchResult" url="Results/Match"></siteMapNode>
 
     </siteMapNode>
     <!--/Report-->
