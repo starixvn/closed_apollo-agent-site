@@ -11,10 +11,10 @@
 namespace Apollo.Age.Account.Services
 {
     using System.Collections.Generic;
-    using Apollo.Age.Account.Models;
-    using Apollo.Age.Entities;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Models;
     using Apollo.Age.Criterias.Accounts;
+    using Apollo.Age.Entities;
 
     public interface IAccountService
     {
@@ -40,13 +40,8 @@ namespace Apollo.Age.Account.Services
 
         List<MemberShareModel> GetMemberShare(MemberShareCriteria criteria);
 
-        List<Sport> GetAllSportType();
-
-        List<BetType> GetBetTypeBySport(short sportId);
-
         IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria);
 
         IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria);
-
     }
 }

@@ -26,10 +26,6 @@ var VIEWSHARE = function ($) {
         bindBetType: function () {
             var sportId = parseInt(VIEWSHARE.sportType.val());
 
-//            if (sportId < 0) {
-//                sportId = -sportId;
-//            }
-
             if (VIEWSHARE.betType.length > 0) {
                 if (sportId != undefined) {
                     VIEWSHARE.betType.prop('disabled', 'disabled');
@@ -85,10 +81,6 @@ var VIEWSHARE = function ($) {
             var betTypeId = VIEWSHARE.betType.val();
 
             var sportId = parseInt(VIEWSHARE.sportType.val());
-
-            if (sportId < 0) {
-                sportId = -sportId;
-            }
 
             if (betTypeId.indexOf("-") > -1) {
                 var arrBetType = betTypeId.split("-");

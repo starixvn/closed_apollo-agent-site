@@ -24,28 +24,6 @@ namespace Apollo.Age.Account.Core
 
         public const string LASTPOSTTIMEKEY = "lastPostTime";
 
-        public const int MAIN_SHAREHOLDER_LEVEL = 1;
-
-        #region const for read XML PTGrid
-        public const string PATH_XML = "\\CustSettingEngine\\PTGrid.xml";
-
-        public const string SPORT_TYPE_NODE_XML = "PTGrid/SportType";
-
-        public const string BET_TYPE_NODE_XML = "BetTypeGroup/BetType";
-
-        public const string ATTRIBUTE_SPORT_ID = "id";
-
-        public const string ATTRIBUTE_BETTYPE_ID = "id";
-
-        public const string ATTRIBUTE_SPORT_NAME = "name";
-
-        public const string ATTRIBUTE_BETTYPE_NAME = "name";
-
-        public const string ATTRIBUTE_SPORT_LIVE = "isLive";
-
-        public const string ATTRIBUTE_RESOURCE_KEY = "resourcekey";
-
-        public const string MIX_SPORT_PARLAY = "Mix Sports Parlay";
-        #endregion
+        // public const int MAIN_SHAREHOLDER_LEVEL = 1;
     }
 }
