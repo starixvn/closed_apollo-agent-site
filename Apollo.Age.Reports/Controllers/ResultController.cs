@@ -167,7 +167,7 @@ namespace Apollo.Age.Reports.Controllers
             {
                 if (leagueId != -1)
                 {
-                    outrightResults.Where(x => x.SportId = sportId && x.LeagueId = leagueId).OrderBy(match => match.LeagueId);
+                    outrightResults.Where(x => x.SportId == sportId && x.LeagueId == leagueId).OrderBy(match => match.LeagueId);
                 }
             }
             return View(outrightResults);
