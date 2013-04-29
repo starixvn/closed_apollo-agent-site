@@ -56,18 +56,18 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     Fanex.ValidateMessage(item.maxBetElement, Language.MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(item.Name));
                     return false;
                 }
-                // Check minbet < minbetmax
-                if (typeof (item.MinBetMax) != 'undefined' && item.MinBetMax > 0 && minBet < item.MinBetMax) {
+                // Check minbet > minbetmax
+                if (typeof (item.MinBetMax) != 'undefined' && minBet < item.MinBetMax) {
                     Fanex.ValidateMessage(item.minBetElement, Language.MIN_BET_GREATER_THAN_MIN_MIN_BET.Format(''.FormatNumber(item.MinBetMax)));
                     return false;
                 }
                 // Check maxbet < maxbetmin
-                if (typeof (item.MaxBetMin) != 'undefined' && item.MaxBetMin > 0 && maxBet > item.MaxBetMin) {
+                if (typeof (item.MaxBetMin) != 'undefined' && maxBet > item.MaxBetMin) {
                     Fanex.ValidateMessage(item.maxBetElement, Language.MAX_BET_LOWER_THAN_MAX_MAX_BET.Format(''.FormatNumber(item.MaxBetMin)));
                     return false;
                 }
                 // Check maxpermatch_min < maxpermatch < maxpermatch_max
-                if (typeof (item.MaxPerMatchMin) != 'undefined' && item.MaxPerMatchMin > 0 && maxPerMatch > item.MaxPerMatchMin) {
+                if (typeof (item.MaxPerMatchMin) != 'undefined' && maxPerMatch > item.MaxPerMatchMin) {
                     Fanex.ValidateMessage(item.maxPerMatchElement, Language.MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET.Format(''.FormatNumber(item.MaxPerMatchMin)), -130, 160);
                     return false;
                 }
@@ -235,7 +235,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
     };
     this.Render = function (owner) {
         var context = Fanex.CustSetting.CURRENT_CONTEXT;
-        var isEditNonDirectMember = (context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) || (context.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING);
+        var isEditNonDirectMember = (context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) || (context.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.SHADOW_VIEW);
         var hasNumberGame = this.HasNumberGame();
         var container = document.createElement("DIV");
         container.className = context.IsSimpleMode ? "" : "betting-limit-container-header";

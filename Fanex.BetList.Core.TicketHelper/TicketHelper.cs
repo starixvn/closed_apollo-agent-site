@@ -13,7 +13,7 @@
 namespace Fanex.BetList.Core.TicketHelper
 {
     using Fanex.BetList.Core.Entities;
-    using Sunplus.Core.Common.IPs;
+    using System;
 
     /// <summary>
     /// Utilities for resolving Names from IDs
@@ -62,7 +62,8 @@ namespace Fanex.BetList.Core.TicketHelper
 
         public bool IsVnIp(string ip)
         {
-            return IpUtils.IsVnIp(ip);
+            throw new NotImplementedException();
+            //return IpUtils.IsVnIp(ip);
         }
 
         public int Index { get; set; }

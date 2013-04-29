@@ -301,21 +301,25 @@ namespace Apollo.Age.Forecast.Services
             IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = this.LoadScoreMapBetTypes();
             foreach (ScoreMapBetTypeModel betType in scoreMapBetTypeList)
             {
-                if (isLive && betType.IsLive == 1 && (betType.TypeId == betTypeId || betType.Id1st == betTypeId))
+                if (isLive
+                    && betType.IsLive == 1
+                    && (betType.TypeId == betTypeId || betType.Id1st == betTypeId))
                 {
-                    betTypeAll += betType.TypeId.ToString() + "," + (betType.Id1st != 0 ? betType.Id1st.ToString() : string.Empty);
+                    betTypeAll += string.Format("{0},{1}", betType.TypeId, betType.Id1st != 0 ? betType.Id1st.ToString() : string.Empty);
                     break;
                 }
-                else if (isLive == false && betType.IsDead == 1 && (betType.TypeId == betTypeId || betType.Id1st == betTypeId))
+                else if (isLive == false
+                    && betType.IsDead == 1
+                    && (betType.TypeId == betTypeId || betType.Id1st == betTypeId))
                 {
-                    betTypeAll += betType.TypeId.ToString() + "," + (betType.Id1st != 0 ? betType.Id1st.ToString() : string.Empty);
+                    betTypeAll += string.Format("{0},{1}", betType.TypeId, betType.Id1st != 0 ? betType.Id1st.ToString() : string.Empty);
                     break;
                 }
             }
 
             return betTypeAll;
         }
-                
+
 
         /// <summary>
         /// Score Map Matches

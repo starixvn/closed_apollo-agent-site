@@ -95,21 +95,21 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
                 Template.StatusResult.winlostDate = Formatter.FullDateFormat(ticket.WinlostDate);
             }
 
-            if (isShowVNIP == false)
-            {
-                if (ticketHelper.IsVnIp(ticket.IP))
-                {
-                    Template.ShowIPVN.Hide();
-                }
-                else
-                {
-                    Template.ShowIPVN.betIp = ticket.IP;
-                }
-            }
-            else
-            {
-                Template.ShowIPVN.betIp = ticket.IP;
-            }
+            //if (isShowVNIP == false)
+            //{
+            //    if (ticketHelper.IsVnIp(ticket.IP))
+            //    {
+            //        Template.ShowIPVN.Hide();
+            //    }
+            //    else
+            //    {
+            //        Template.ShowIPVN.betIp = ticket.IP;
+            //    }
+            //}
+            //else
+            //{
+            //    Template.ShowIPVN.betIp = ticket.IP;
+            //}
 
             return Template;
         }

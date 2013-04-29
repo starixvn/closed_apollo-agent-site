@@ -30,10 +30,6 @@
             });
 
             $("#gridId").on("click", ".act-view-betlist", REPORTS.viewBetList);
-
-            $('#header_main .icon-info-sign').click(function () {
-                noty({ text: "<b>AGENT WINLOSS</b> instruction", type: "information" });
-            });
         },
 
         // View betlist page from report Outstanding
