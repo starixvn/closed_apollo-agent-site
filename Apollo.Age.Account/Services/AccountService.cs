@@ -12,8 +12,6 @@ namespace Apollo.Age.Account.Services
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Xml;
-    using Apollo.Age.Account.Core;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Repositories.Impl;
@@ -23,7 +21,6 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Impl;
-    using Fanex.Common;
     using Fanex.Common.Helper;
 
     public class AccountService : ServiceBase, IAccountService
@@ -31,7 +28,6 @@ namespace Apollo.Age.Account.Services
         private readonly IAccountRepository _accountRepository;
         private readonly IAgentRepository _agentRepository;
 
-        public static List<Sport> SportList = null;
         public AccountService()
         {
             _accountRepository = _accountRepository ?? new AccountRepository();
@@ -130,97 +126,6 @@ namespace Apollo.Age.Account.Services
             Check.Argument.IsNotNull(criteria, "criteria");
 
             return _accountRepository.GetCommissionToAgent(criteria);
-        }
-
-        public List<Sport> GetAllSportType()
-        {
-            var sportList = new List<Sport>();
-            XmlDocument xmlDoc = new XmlDocument();
-
-            xmlDoc.Load(System.AppDomain.CurrentDomain.BaseDirectory + Constants.PATH_XML);
-
-            foreach (XmlNode sportTypeNode in xmlDoc.SelectNodes(@Constants.SPORT_TYPE_NODE_XML))
-            {
-                if (sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_ID].Value != null
-                    && sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_NAME].Value != null)
-                {
-                    var isLive = Converter.ToBool(sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_LIVE].Value);
-                    var sportId = Converter.To<byte>(sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_ID].Value);
-
-                    var sport = sportList.Where(t => t.Id == sportId).SingleOrDefault();
-
-                    if (sport == null)
-                    {
-                        sport = new Sport()
-                        {
-                            Id = sportId,
-                            Name = sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_NAME].Value.ToString(),
-                            BetTypeList = new List<BetType>()
-                        };
-
-                        sportList.Add(sport);
-                    }
-
-                    // bet type
-                    foreach (XmlNode betTypeNode in sportTypeNode.SelectNodes(@Constants.BET_TYPE_NODE_XML))
-                    {
-                        if (betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value != null
-                            && betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_NAME].Value != null)
-                        {
-                            var betTypeId = Converter.ToInt(betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value);
-                            var betType = sport.BetTypeList.Where(t => t.Id == betTypeId).SingleOrDefault();
-
-                            if (betType == null)
-                            {
-                                betType = new BetType()
-                                {
-                                    Id = Converter.ToInt(betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value),
-                                    Name = betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
-                                    IsLive = isLive,
-                                    IsDead = false
-                                };
-                            }
-                            else
-                            {
-                                betType.IsDead = isLive;
-                                betType.IsLive = !isLive;
-
-                                betType = new BetType()
-                                {
-                                    Id = Converter.ToInt(betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value),
-                                    Name = betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
-                                    IsLive = isLive,
-                                    IsDead = !isLive
-                                };
-                            }
-
-                            sport.BetTypeList.Add(betType);
-                        }
-                    }
-                }
-            }
-
-            SportList = sportList;
-            return sportList;
-        }
-
-        public List<BetType> GetBetTypeBySport(short sportId)
-        {
-            var betTypeList = new List<BetType>();
-
-            if(SportList == null)
-            {
-                GetAllSportType();
-            }
-
-            var sport = SportList.Where(t => t.Id == sportId).SingleOrDefault();
-
-            if (sport != null)
-            {
-                betTypeList = sport.BetTypeList;
-            }
-
-            return betTypeList.OrderByDescending(t=>t.IsLive).ToList();
         }
     }
 }

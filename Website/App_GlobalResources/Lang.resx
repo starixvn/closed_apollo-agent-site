@@ -4036,7 +4036,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Bingo</value>
   </data>
   <data name="todate" xml:space="preserve">
-    <value>到日期</value>
+    <value>To Date</value>
   </data>
   <data name="lblNoLimited" xml:space="preserve">
     <value>没有限制</value>

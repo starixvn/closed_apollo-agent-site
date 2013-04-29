@@ -21,9 +21,11 @@ namespace Apollo.Age.Entities
     /// </summary>
     public class Sport
     {
-        public byte Id { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public string ResourceKey { get; set; }
 
         public List<BetType> BetTypeList { get; set; }
     }

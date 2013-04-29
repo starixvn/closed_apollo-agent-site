@@ -362,23 +362,25 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             headerTr.appendChild(tdComName);
             tdComName = document.createElement("TH");
             tdComName.innerHTML = Language.COMM_FOR_MEMBER;
-            tdComName.setAttribute("colspan", 2);
+            //tdComName.setAttribute("COLSPAN", 2);
+            tdComName.colSpan = 2;
             headerTr.appendChild(tdComName);
             headerTHead.appendChild(headerTr);
             box.appendChild(headerTHead);
 
 
-            box.appendChild(boxTBody);
+
             //// User Group
             var trGroup = document.createElement("TR");
             var tdGroupText = document.createElement("TD");
             tdGroupText.innerHTML = Language.GROUP;
             tdGroupText.className = "user-group";
             if (this.hasNumberGameSection) {
-                tdGroupText.setAttribute("rowspan", 4);
+                //.setAttribute("ROWSPAN", 4);
+                tdGroupText.rowSpan = 4;
             }
             else {
-                tdGroupText.setAttribute("rowspan", 3);
+                tdGroupText.rowSpan = 3;
             }
             trGroup.appendChild(tdGroupText);
             if (isEditNonDirectMember) {
@@ -444,7 +446,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
 
             boxTBody.appendChild(trGroup);
-
+            box.appendChild(boxTBody);
             //// Other Com
             boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ' &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA, true));
             boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ' &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA, true));

@@ -12,36 +12,41 @@
 
 namespace Apollo.Age.Account.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
     using System.Web.Mvc;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
+    using Fanex.Common;
     using Fanex.CustSetting.Models;
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
-    using Apollo.Age.Account.Models;
-    using Fanex.Common;
 
     public class CustomerSettingController : BaseController
     {
         private readonly IAccountService _accountService;
         private readonly ICustomerSettingService _customerSettingService;
+        private readonly ISportService _sportService;
 
         #region Ctors
 
         public CustomerSettingController()
-            : this(null, null) { }
+            : this(null, null, null) { }
 
-        public CustomerSettingController(IAccountService accountService,
-            ICustomerSettingService customerSettingService)
+        public CustomerSettingController(IAccountService accountService, 
+            ICustomerSettingService customerSettingService, ISportService sportService)
         {
             _accountService = accountService ?? new AccountService();
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
+            _sportService = sportService ?? new SportService();
         }
 
         #endregion
@@ -174,40 +179,51 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) agent
         /// </summary>
         /// <param name="username">selected agent username</param>
-        public ActionResult AgentShare(int? agentId, string userName, short? sportType, short? betType, bool? isLive)
+        public ActionResult AgentShare(int? agentId, string userName, int? sportType, int? betType, bool? isLive)
         {
-            AgentShareCriteria criteria = new AgentShareCriteria()
-            {
-                ActorAgentId = this.CurrentSession.AgentId,
-                SportType = sportType.HasValue ? sportType.Value : Converter.To<short>(1),
-                BetType = betType.HasValue ? betType.Value : Converter.To<short>(1),
-                IsLive = isLive.HasValue ? isLive.Value : false
-            };
+            var sportId = sportType.HasValue ? Converter.To<short>(sportType.Value) : Converter.To<short>(1);
+            var betTypeId = betType.HasValue ? Converter.To<short>(betType.Value) : Converter.To<short>(1);
+            var live = isLive.HasValue ? isLive.Value : false;
 
-            var sportList = _accountService.GetAllSportType();
-            var betTypeList = _accountService.GetBetTypeBySport(criteria.SportType);
+            var sportList = _sportService.GetAllSportType();
+            var betTypeList = _sportService.GetBetTypeBySport(sportId);
+
+            foreach (var sportItem in sportList)
+            {
+                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
+            }
+
+            foreach (var betTypeItem in betTypeList)
+            {
+                betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
+            }
 
             var agentShareViewModel = new AgentShareViewModel()
             {
                 IsMember = false,
-                Username = criteria.Username,
-                SportType = criteria.SportType,
-                BetType = criteria.BetType,
-                IsLive = criteria.IsLive,
+                Username = userName,
+                SportType = sportId,
+                BetType = betTypeId,
+                IsLive = live,
                 SportList = sportList,
                 BetTypeList = betTypeList
             };
 
             if (!agentId.HasValue && string.IsNullOrWhiteSpace(userName))
             {
-                criteria.AgentId = this.CurrentSession.AgentId;
-                criteria.Username = this.CurrentSession.AgentName;
                 agentShareViewModel.AgentShareModelList = null;
             }
             else
             {
-                criteria.AgentId = agentId.HasValue ? agentId.Value : -1;
-                criteria.Username = userName;
+                AgentShareCriteria criteria = new AgentShareCriteria()
+                {
+                    ActorAgentId = this.CurrentSession.AgentId,
+                    AgentId = agentId.HasValue ? agentId.Value : -1,
+                    Username = userName,
+                    SportType = Math.Abs(sportId),
+                    BetType = betTypeId,
+                    IsLive = live
+                };
 
                 var agentShareModelList = _accountService.GetAgentShare(criteria);
                 agentShareViewModel.AgentShareModelList = agentShareModelList;
@@ -220,22 +236,36 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) member
         /// </summary>
         /// <param name="username">selected member username</param>
-        public ActionResult MemberShare(int? memberId, string userName, short? sportType, short? betType, bool? isLive)
+        public ActionResult MemberShare(int? memberId, string userName, int? sportType, int? betType, bool? isLive)
         {
+            var sportId = sportType.HasValue ? Converter.To<short>(sportType.Value) : Converter.To<short>(1);
+            var betTypeId = betType.HasValue ? Converter.To<short>(betType.Value) : Converter.To<short>(1);
+            var live = isLive.HasValue ? isLive.Value : false;
+
+            var sportList = _sportService.GetAllSportType();
+            var betTypeList = _sportService.GetBetTypeBySport(sportId);
+
+            foreach (var sportItem in sportList)
+            {
+                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
+            }
+
+            foreach (var betTypeItem in betTypeList)
+            {
+                betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
+            }
+
             var criteria = new MemberShareCriteria()
             {
                 ActorAgentId = this.CurrentSession.AgentId,
                 CustId = memberId.HasValue ? memberId.Value : -1,
                 Username = userName,
-                SportType = sportType.HasValue ? sportType.Value : Converter.To<short>(1),
-                BetType = betType.HasValue ? betType.Value : Converter.To<short>(1),
-                IsLive = isLive.HasValue ? isLive.Value : false
+                SportType = Math.Abs(sportId),
+                BetType = betTypeId,
+                IsLive = live
             };
 
             var memberShareModelList = _accountService.GetMemberShare(criteria);
-
-            var sportList = _accountService.GetAllSportType();
-            var betTypeList = _accountService.GetBetTypeBySport(criteria.SportType);
 
             var memberShareViewModel = new MemberShareViewModel()
             {
@@ -252,10 +282,10 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
         }
 
-        public JsonResult GetBetType(short sportId)
+        public JsonResult GetBetType(int sportId)
         {
             var view = new AgentShareViewModel();
-            view.BetTypeList = _accountService.GetBetTypeBySport(sportId);
+            view.BetTypeList = _sportService.GetBetTypeBySport(sportId);
 
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
@@ -489,6 +519,14 @@ namespace Apollo.Age.Account.Controllers
             else if (!base.CurrentSession.IsMaster)
             {
                 settingContext.FormId = FormType.ShadowViewSetting;
+            }
+
+            if (base.CurrentSession.AgentId == 0
+            && settingContext.TargetRoleId == (int)Role.Member
+            && agentId != null)
+            {
+                settingContext.FormId = FormType.EditPT;
+                settingContext.CustId = agentId.Value;
             }
 
             return settingContext;
