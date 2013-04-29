@@ -78,6 +78,7 @@ var AGENTLIST = function ($) {
         bindingNavigation: function () {
             $("[name='navigation']").unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
+                $("#txtUserName").val('');
                 AGENTLIST.loadAgentList();
                 AGENTLIST.loadNavigation();
                 return false;
