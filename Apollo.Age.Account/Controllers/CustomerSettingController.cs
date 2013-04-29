@@ -517,9 +517,8 @@ namespace Apollo.Age.Account.Controllers
             {
                 settingContext.FormId = FormType.ViewAllSetting;
             }
-
             //// If Current Login Agent is not Agent Master User, then set form to form view
-            if (!base.CurrentSession.IsMaster)
+            else if (!base.CurrentSession.IsMaster)
             {
                 settingContext.FormId = FormType.ShadowViewSetting;
             }
