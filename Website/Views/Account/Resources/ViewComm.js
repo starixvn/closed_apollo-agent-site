@@ -16,10 +16,10 @@ var VIEWCOMM = function ($) {
                 source: function (request, response) {
                     var url = "";
                     if (VIEWCOMM.isMember.val().toBoolean()) {
-                        url = "Account/GetMemberByUsername?username=" + request.term;
+                        url = "Account/GetMemberByUsername?username=" + request.term.trim();
                     }
                     else {
-                        url = "Account/GetAgentByUsername?username=" + request.term;
+                        url = "Account/GetAgentByUsername?username=" + request.term.trim();
                     }
 
                     $.ajax({

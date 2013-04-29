@@ -34,8 +34,8 @@ var ACCOUNT = function ($) {
             ACCOUNT.txtUsername.autocomplete({
                 source: function (request, response) {
                     var url = ACCOUNT.dllIsMember.val().toBoolean()
-                        ? "Account/GetMemberByUsername?username=" + request.term
-                        : "Account/GetAgentByUsername?username=" + request.term + "&excludeactor=true";
+                        ? "Account/GetMemberByUsername?username=" + request.term.trim()
+                        : "Account/GetAgentByUsername?username=" + request.term.trim();
 
                     $.ajax({
                         url: APOLLO.resolveUrl(url),
@@ -59,7 +59,7 @@ var ACCOUNT = function ($) {
             });
 
             $(".search-button").bind('click', function () {
-                ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val()); // -1: only search username
+                ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val().trim()); // -1: only search username
             });
 
             $(".show-section").bind('click', function () {
