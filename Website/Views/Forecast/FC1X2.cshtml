@@ -19,50 +19,63 @@
 }
 @if (matchId == 0)
 {
+    
     <div class="box-header">
         <div class="row">
             <div class="cell">
-                <div class="label">
-                    <label for="ddlLeague">@Resources.Lang.league</label>
-                </div>
-                <div class="editor">
-                    <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-                        @{
-    var selectedString = string.Empty;
-    foreach (var league in leagues)
-    {
-        if (league.LeagueId == leagueId)
-        {
-            selectedString = "selected='selected'";
-        }
-        else
-        {
-            selectedString = string.Empty;
-        }
-                            <option value="@league.LeagueId" @(selectedString) >@league.LeagueName</option>
-    }
+                @if (leagues != null && leagues.Any())
+                {
+                    <div class="label">
+                        <label for="ddlLeague">@Resources.Lang.league</label>
+                    </div>
+                    <div class="editor">
+                        <select id='ddlLeague' name='ddlLeague' style="width: 280px">
+                            @{
+                    var selectedString = string.Empty;
+                    foreach (var league in leagues)
+                    {
+                        if (league.LeagueId == leagueId)
+                        {
+                            selectedString = "selected='selected'";
                         }
-                    </select>
-                </div>
+                        else
+                        {
+                            selectedString = string.Empty;
+                        }
+                                <option value="@league.LeagueId" @(selectedString) >@league.LeagueName</option>
+                    }
+                            }
+                        </select>
+                    </div>
+                }
+                else
+                {
+                    <label>
+                        There is no @Resources.Lang.league availble!</label>
+                }
             </div>
         </div>
     </div>
+    
 }
-<table class="tblRpt">
-    <thead>
-        <tr>
-            <th colspan="2">
-                @Resources.Lang.lblTeam
-            </th>
-            <th colspan="3">
-                @Resources.Lang.lbl1x2
-            </th>
-        </tr>
-    </thead>
-    <tbody id="forecast-body">
-        @*Ajax Content*@
-    </tbody>
-</table>
+@if (matchId != 0 || (leagues != null && leagues.Any()))
+{
+    <table class="tblRpt">
+        <thead>
+            <tr>
+                <th colspan="2">
+                    @Resources.Lang.lblTeam
+                </th>
+                <th colspan="3">
+                    @Resources.Lang.lbl1x2
+                </th>
+            </tr>
+        </thead>
+        <tbody id="forecast-body">
+            @*Ajax Content*@
+        </tbody>
+    </table>
+}
 @section scripts
 {
     <script type="text/javascript">

@@ -6,7 +6,7 @@ var pt = {
     Value: 35,
     Upline:
     {
-        Max: 90,
+        Max: 40,
         Min: 0,
         Preset: 55,
         Value: 15

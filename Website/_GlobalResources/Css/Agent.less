@@ -80,7 +80,8 @@ table {
 	padding: 0;
 }
 
-#header_main {	
+#header_main {
+	position: relative;
 	padding: 16px 0 1px;
 	margin:  0 10px 10px;
 	border-bottom: 1px solid @secondColor;
@@ -94,6 +95,15 @@ table {
 		background: @secondColor;
 		color: #fff;
 		padding: 0 10px;
+	}
+	.icon-info-sign {
+		position: absolute;
+		bottom: 1px;
+		right: 0;
+		cursor: pointer;
+		&:hover {
+			.opacity(80);
+		}
 	}
 }
 

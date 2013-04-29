@@ -5,30 +5,32 @@
 <!--[if (gt IE 9)]><!--> <html class="ie10 ie" lang="en-us"> <!--<![endif]-->
 <!--[if !(IE)]> <html lang="en-us"><![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title - Reports</title>
-    <link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Views/Reports/Resources/Reports.less" rel="stylesheet" type="text/css" />
-    @RenderSection("css", required: false)
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title - Reports</title>
+	<link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+	<link href="~/Views/Reports/Resources/Reports.less" rel="stylesheet" type="text/css" />
+	@RenderSection("css", required: false)
 </head>
 <body>
-    @RazorHelper.Piwik()
-    <div id="page_main">
-        <div id="header_main">
-            @*<span class="upper">@Resources.Lang.reports</span>*@
-            @ViewBag.Title
-        </div>
-        <div id="content_main">
-            @RenderBody()
-        </div>
-    </div>
-    @Html.Hidden("ApoRoot", Url.Content("~/"))
-    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
-    <script src="~/Views/Reports/Resources/Reports.js" type="text/javascript"></script>
-    @RenderSection("scripts", required: false)
+	@RazorHelper.Piwik()
+	<div id="page_main">
+		<div id="header_main">
+			@ViewBag.Title
+
+			<i class="icon-info-sign"></i>
+		</div>
+		<div id="content_main">
+			@RenderBody()
+		</div>
+	</div>
+	@Html.Hidden("ApoRoot", Url.Content("~/"))
+	<script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+	<script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
+	<script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
+	<script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
+	<script src="~/_GlobalResources/Js/noty/jquery.noty.min.js" type="text/javascript"></script>
+	<script src="~/Views/Reports/Resources/Reports.js" type="text/javascript"></script>
+	@RenderSection("scripts", required: false)
 </body>
 </html>

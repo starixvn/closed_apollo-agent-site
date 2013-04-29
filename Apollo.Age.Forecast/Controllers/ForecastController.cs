@@ -42,30 +42,9 @@ namespace Apollo.Age.Forecast.Controllers
 
         #region Forecast 1X2
 
-        private int GetCurrentAgentId(int mainShareHolderId)
-        {
-            int agentId = base.CurrentSession.AgentId;
-            if (base.CurrentSession.IsSuper)
-            {
-                var mainShareHolders = _forecastService.GetData<MainShareHolderModel>(new GetAllMainShareHolderCriteria());
-                if (mainShareHolderId > 0)
-                {
-                    agentId = mainShareHolderId;
-                }
-                else if (mainShareHolders != null && mainShareHolders.Any())
-                {
-                    agentId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
-                }
-                ViewBag.CurrentMainShareHolderId = mainShareHolderId;
-                ViewBag.MainShareHolders = mainShareHolders;
-            }
-            ViewBag.CurrentAgentId = base.CurrentSession.AgentId;
-
-            return agentId;
-        }
-
         /// <summary>
         /// Get Running LeagueModel, with BetType
+        /// if MatchId != null, that means forecast be shown in TotalBets
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
@@ -178,6 +157,7 @@ namespace Apollo.Age.Forecast.Controllers
 
         /// <summary>
         /// Score Map Page, if MatchIds valid, then Render Score Map of these match
+        /// If matchIds != empty, It means that ScoreMap will show in bet list
         /// </summary>
         /// <param name="matchIds"></param>
         /// <param name="liveBetTypes"></param>
@@ -252,5 +232,34 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         #endregion Score Map
+
+        /// <summary>
+        /// Get Current Agent Id
+        /// If MainShareholderId > 0 and Current Login user is Super then set first is selected
+        /// </summary>
+        /// <param name="mainShareHolderId"></param>
+        /// <returns></returns>
+        private int GetCurrentAgentId(int mainShareHolderId)
+        {
+            int agentId = base.CurrentSession.AgentId;
+            if (base.CurrentSession.IsSuper)
+            {
+                //// Should Use Cache, fix later
+                var mainShareHolders = _forecastService.GetData<MainShareHolderModel>(new GetAllMainShareHolderCriteria());
+                if (mainShareHolderId > 0)
+                {
+                    agentId = mainShareHolderId;
+                }
+                else if (mainShareHolders != null && mainShareHolders.Any())
+                {
+                    agentId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
+                }
+                ViewBag.CurrentMainShareHolderId = mainShareHolderId;
+                ViewBag.MainShareHolders = mainShareHolders;
+            }
+            ViewBag.CurrentAgentId = base.CurrentSession.AgentId;
+
+            return agentId;
+        }
     }
 }

@@ -22,35 +22,149 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.Save = function () {
         if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return {};
 
+        var items = this.items;
+        var spinBoxItems = this.spinBoxItems;
+        var editItems = [];
+
+
         if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
-            this.items[0].DiscountA = this.spinBoxItems[0].getValue();
-            this.items[0].DiscountB = this.spinBoxItems[3].getValue();
-            this.items[0].DiscountC = this.spinBoxItems[1].getValue();
-            this.items[0].DiscountD = this.spinBoxItems[4].getValue();
-            this.items[1].DiscountA = this.spinBoxItems[5].getValue();
-            this.items[2].DiscountA = this.spinBoxItems[2].getValue();
+            var currentGroupAValue = spinBoxItems[0].getValue();
+            var currentGroupBValue = spinBoxItems[3].getValue();
+            var currentGroupCValue = spinBoxItems[1].getValue();
+            var currentGroupDValue = spinBoxItems[4].getValue();
+            if (items[0].DiscountA != currentGroupAValue
+            || items[0].DiscountB != currentGroupBValue
+            || items[0].DiscountC != currentGroupCValue) {
+                editItems.push({
+                    SportId: items[0].SportId,
+                    BetTypeId: items[0].BetTypeId,
+                    DiscountA: currentGroupAValue,
+                    DiscountB: currentGroupBValue,
+                    DiscountC: currentGroupCValue,
+                    DiscountD: currentGroupDValue
+                });
+            }
+            var currentOthersValue = spinBoxItems[5].getValue();
+            if (items[1].DiscountA != currentOthersValue) {
+                editItems.push({
+                    SportId: items[1].SportId,
+                    BetTypeId: items[1].BetTypeId,
+                    DiscountA: currentOthersValue
+                });
+            }
+            var current1x2Value = spinBoxItems[2].getValue();
+            if (items[2].DiscountA != current1x2Value) {
+                editItems.push({
+                    SportId: items[2].SportId,
+                    BetTypeId: items[2].BetTypeId,
+                    DiscountA: current1x2Value
+                });
+            }
             if (this.hasNumberGameSection) {
-                this.items[3].DiscountA = this.spinBoxItems[6].getValue();
+                var currentGameValue = spinBoxItems[6].getValue();
+                if (items[3].DiscountA != currentGameValue) {
+                    editItems.push({
+                        SportId: items[3].SportId,
+                        BetTypeId: items[3].BetTypeId,
+                        DiscountA: currentGameValue
+                    });
+                };
             }
         } else {
             this.currentGroup = this.groupSelect.value;
-            var currentSelectedGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
-            this.items[0].Discount = this.spinBoxItems[0].getValue();
-            this.items[1].Discount = this.spinBoxItems[2].getValue();
-            this.items[2].Discount = this.spinBoxItems[1].getValue();
-            if (this.hasNumberGameSection) {
-                this.items[3].Discount = this.spinBoxItems[3].getValue();
+
+            var currentGroupValue = spinBoxItems[0].getValue();
+            if (items[0].Discount != currentGroupValue) {
+                editItems.push({
+                    SportId: items[0].SportId,
+                    BetTypeId: items[0].BetTypeId,
+                    Discount: currentGroupValue
+                });
             }
-            if (this.items[0].Discount > currentSelectedGroup.Upline.Discount) {
-                return null;
+            var currentOthersValue = spinBoxItems[2].getValue();
+            if (items[1].Discount != currentOthersValue) {
+                editItems.push({
+                    SportId: items[1].SportId,
+                    BetTypeId: items[1].BetTypeId,
+                    Discount: currentOthersValue
+                });
+            }
+            var current1x2Value = spinBoxItems[1].getValue();
+            if (items[2].Discount != current1x2Value) {
+                editItems.push({
+                    SportId: items[2].SportId,
+                    BetTypeId: items[2].BetTypeId,
+                    Discount: current1x2Value
+                });
+            }
+            if (this.hasNumberGameSection) {
+                var currentGameValue = spinBoxItems[3].getValue();
+                if (items[3].Discount != currentGameValue) {
+                    editItems.push({
+                        SportId: items[3].SportId,
+                        BetTypeId: items[3].BetTypeId,
+                        Discount: currentGameValue
+                    });
+                };
             }
         }
 
         return {
-            CommissionItems: this.items,
+            CommissionItems: editItems,
             UserGroup: this.currentGroup
         };
     };
+    this.Validate = function () {
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return true;
+
+        var items = this.items;
+        var spinBoxItems = this.spinBoxItems;
+
+        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
+            if (!spinBoxItems[0].isValid()) {
+                return false;
+            }
+            if (!spinBoxItems[1].isValid()) {
+                return false;
+            }
+            if (!spinBoxItems[2].isValid()) {
+                return false;
+            }
+            if (!spinBoxItems[3].isValid()) {
+                return false;
+            }
+            if (!spinBoxItems[4].isValid()) {
+                return false;
+            }
+            if (!spinBoxItems[5].isValid()) {
+                return false;
+            }
+            if (this.hasNumberGameSection) {
+                if (!spinBoxItems[6].isValid()) return false;
+            }
+        } else {
+            this.currentGroup = this.groupSelect.value;
+            var currentSelectedGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
+
+            if (!spinBoxItems[0].isValid()) {
+                return false;
+            }
+            if (!spinBoxItems[1].isValid()) {
+                return false;
+            }
+            if (!spinBoxItems[2].isValid()) {
+                return false;
+            }
+
+            if (this.hasNumberGameSection) {
+                if (!spinBoxItems[3].isValid()) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    },
     this.addEventConstrain = function (spinBoxElement, uplineDiscount) {
         //        spinBoxElement.input.onchange = function (event) {
         //            var currentComValue = spinBoxElement.getValue();
@@ -102,14 +216,17 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     lastLetter: Fanex.CustSetting.COM_LAST_LETTER
                 }, 7);
         spinBox.input.onchange = function (event) {
-            var currentValue = spinBox.getValue();
-            if (currentValue > spinBox.options.maximum) {
-                currentValue = spinBox.options.maximum;
+            if (!spinBox.isValid()) {
+                Fanex.ValidateMessage(spinBox.input, Language.INVALID_RANGE);
             }
-            else if (currentValue < 0) {
-                currentValue = 0;
-            }
-            spinBox.setValue(currentValue);
+            //            var currentValue = spinBox.getValue();
+            //            if (currentValue > spinBox.options.maximum) {
+            //                currentValue = spinBox.options.maximum;
+            //            }
+            //            else if (currentValue < 0) {
+            //                currentValue = 0;
+            //            }
+            //            spinBox.setValue(currentValue);
         };
         this.addEventConstrain(spinBox, uplineDiscount);
         return spinBox;
@@ -237,6 +354,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             box.className = "commission-setting-table-player";
 
             //// Header Text
+            var headerTHead = document.createElement("THEAD");
             var headerTr = document.createElement("TR");
             var tdComName = document.createElement("TH");
             tdComName.innerHTML = Language.MEMBER_GROUP;
@@ -245,7 +363,8 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             tdComName.innerHTML = Language.COMM_FOR_MEMBER;
             tdComName.setAttribute("colspan", 2);
             headerTr.appendChild(tdComName);
-            box.appendChild(headerTr);
+            headerTHead.appendChild(headerTr);
+            box.appendChild(headerTHead);
 
 
             box.appendChild(boxTBody);

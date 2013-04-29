@@ -3,13 +3,38 @@ if (typeof jQuery != 'undefined') {
     var EDITSETTING = function ($) {
         return {
             currentIsSimpleMode: true,
+            settingContext: null,
+            commissionSettingElement: null,
+            betLimitElement: null,
+            positionTakingElement: null,
+
             initOthers: function (isSimpleMode) {
                 settingContext.IsSimpleMode = isSimpleMode;
-                BETLIMIT.init(settingContext, betLimits, true);
-                EDITCOMMISSION.init(settingContext, commissionSetting, true);
-                EDITPOSITIONTAKING.init(settingContext, positionTakingSetting, true);
+
+                //// Init Commission Setting
+                EDITSETTING.settingContext = settingContext;
+                Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);
+                EDITSETTING.commissionSettingElement = new Fanex.CustSetting.CommissionSetting(commissionSetting);
+                var commissionSettingContainer = document.getElementById('commissionSettingContainer');
+                commissionSettingContainer.innerHTML = "";
+                EDITSETTING.commissionSettingElement.Render(commissionSettingContainer);
+
+                //// Init Bet Limit Setting
+                EDITSETTING.betLimitElement = new Fanex.CustSetting.BettingLimit(betLimits);
+                var bettingLimitContainer = document.getElementById('bettingLimitContainer');
+                bettingLimitContainer.innerHTML = "";
+                EDITSETTING.betLimitElement.Render(bettingLimitContainer);
+
+                //// Position Taking
+                EDITSETTING.positionTakingElement = new Fanex.CustSetting.PTGrid(positionTakingSetting);
+                var positionTakingContainer = document.getElementById('ptContainer');
+                positionTakingContainer.innerHTML = "";
+                EDITSETTING.positionTakingElement.Render(positionTakingContainer);
             },
+
             init: function () {
+                EDITSETTING.currentIsSimpleMode = true;
+                EDITSETTING.initOthers(true);
                 $("#btnSubmitFooter").unbind("click").click(function () {
                     EDITSETTING.saveSetting();
                 });
@@ -34,24 +59,39 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             saveSetting: function () {
-                if (BETLIMIT.betLimitElement.Validate()) {
-                    var commissionSettingValue = EDITCOMMISSION.commissionSettingElement.Save();
+                if (EDITSETTING.commissionSettingElement.Validate()
+                && EDITSETTING.betLimitElement.Validate()
+                && EDITSETTING.positionTakingElement.Validate()) {
+                    var commissionSettingValue = EDITSETTING.commissionSettingElement.Save();
                     if (commissionSettingValue == null && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) {
                         noty({ text: invalidComMessage, type: 'error', timeout: 5000 });
                         return;
                     }
+
+                    var dataObject = {
+                        settingContext: EDITSETTING.settingContext,
+                        positionTakingSetting: EDITSETTING.positionTakingElement.Save(),
+                        commissionSetting: commissionSettingValue,
+                        betLimits: EDITSETTING.betLimitElement.Save()
+                    };
+
+                    var url = APOLLO.resolveUrl('CustomerSetting/');
+                    if (typeof (memberId) != 'undefined') {
+                        dataObject.memberId = memberId;
+                        url += "UpdateMemberSetting";
+                    }
+                    else if (typeof (agentId) != 'undefined') {
+                        dataObject.agentId = agentId;
+                        url += "UpdateAgentSetting";
+                    }
+
                     $("#btnSubmitFooter").attr("disabled", "disabled");
                     $.ajax({
-                        url: APOLLO.resolveUrl('CustomerSetting/UpdateAllSetting'),
+                        url: url,
                         type: 'POST',
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        data: JSON.stringify({
-                            settingContext: EDITPOSITIONTAKING.settingContext,
-                            positionTakingSetting: EDITPOSITIONTAKING.positionTakingElement.Save(),
-                            commissionSetting: commissionSettingValue,
-                            betLimits: BETLIMIT.betLimitElement.Save()
-                        })
+                        data: JSON.stringify(dataObject)
                     }).done(function (data) {
                         if (data.ErrCode == 0) {
                             noty({ text: data.ErrMsg, type: 'success', timeout: 5000 });
