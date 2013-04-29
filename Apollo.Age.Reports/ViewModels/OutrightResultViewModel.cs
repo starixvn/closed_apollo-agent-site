@@ -13,9 +13,9 @@ namespace Apollo.Age.Reports.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-
     using System.Web.Mvc;
     using Apollo.Age.Entities;
+    using Apollo.Age.Reports.Models;
     using Apollo.Age.Services;
 
     /// <summary>
@@ -29,9 +29,47 @@ namespace Apollo.Age.Reports.ViewModels
 
         public DateTime ToDate { get; set; }
 
-        public IEnumerable<Sport> SportList { get; set; }
+        public byte SportId { get; set; }
 
-        public IEnumerable<League> LeagueList { get; set; }
+        public IEnumerable<Sport> SportList
+        {
+            get
+            {
+                if (OutrightResult != null && OutrightResult.Any())
+                {
+                    return OutrightResult
+                        .Select(item => new Sport { Id = item.SportId, Name = item.SportName })
+                        .Distinct();
+                }
+
+                return new List<Sport>();
+            }
+        }
+
+        public IEnumerable<League> LeagueList
+        {
+            get
+            {
+                var listLeague = new List<League>();
+
+                byte selectedSportId = (this.SportId <= 0) ? SportList.First().Id : this.SportId;
+                if (OutrightResult != null && OutrightResult.Any())
+                {
+                    listLeague = OutrightResult.Where(item => item.SportId == selectedSportId)
+                        .Select(item => new League { Id = item.LeagueId, Name = item.LeagueName })
+                        .Distinct().ToList();
+
+                    if (listLeague != null && listLeague.Count() > 1)
+                    {
+                        listLeague.Insert(0, new League { Id = 0, Name = Resources.Lang.allleague });
+                    }
+                }
+
+                return listLeague;
+            }
+        }
+
+        public IEnumerable<OutrightResultModel> OutrightResult { get; set; }
 
         public IEnumerable<SelectListItem> SportSelectListItem
         {

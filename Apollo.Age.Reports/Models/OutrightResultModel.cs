@@ -19,6 +19,14 @@ namespace Apollo.Age.Reports.Models
     {
         public byte SportId { get; set; }
 
+        public string SportName
+        {
+            get
+            {
+                return CacheRef.GetSportName(this.SportId);
+            }
+        }
+
         public int LeagueId { get; set; }
 
         public string LeagueName

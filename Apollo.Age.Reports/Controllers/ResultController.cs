@@ -73,12 +73,26 @@ namespace Apollo.Age.Reports.Controllers
             var viewModel = new OutrightResultViewModel
             {
                 BalanceUpDay = BalanceUpDay,
-                SportList = _resultService.GetResultSports(fromDate),
                 FromDate = fromDate,
-                ToDate = toDate
+                ToDate = toDate,
+                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
             };
 
             return View(viewModel);
+        }
+
+        public JsonResult OutrightLeague(DateTime fromDate, DateTime toDate, byte sportId)
+        {
+            var viewModel = new OutrightResultViewModel
+            {
+                BalanceUpDay = BalanceUpDay,
+                FromDate = fromDate,
+                ToDate = toDate,
+                SportId = sportId,
+                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
+            };
+
+            return Json(viewModel.LeagueList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult League(DateTime date, byte sportId)
@@ -93,13 +107,6 @@ namespace Apollo.Age.Reports.Controllers
                 Id = item.Id,
                 Name = CacheRef.GetLeagueName(item.Id)
             }));
-
-            //leaguesBySport = leaguesBySport
-            //    .Select(l => new League
-            // {
-            //     Id = l.Id,
-            //     Name = CacheRef.GetLeagueName(l.Id)
-            // });
 
             return Json(leagues, JsonRequestBehavior.AllowGet);
         }
@@ -160,14 +167,18 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult GetOutrightResult(DateTime fromDate, DateTime toDate, byte sportId, int leagueId = -1)
+        public ActionResult GetOutrightResult(DateTime fromDate, DateTime toDate, byte sportId = 0, int leagueId = 0)
         {
             IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(fromDate, toDate);
             if (outrightResults != null && outrightResults.Any())
             {
-                if (leagueId != -1)
+                if (leagueId != 0)
                 {
-                    outrightResults.Where(x => x.SportId == sportId && x.LeagueId == leagueId).OrderBy(match => match.LeagueId);
+                    outrightResults = outrightResults.Where(x => x.LeagueId == leagueId);
+                }
+                else
+                {
+                    outrightResults = outrightResults.Where(x => x.SportId == sportId);
                 }
             }
             return View(outrightResults);

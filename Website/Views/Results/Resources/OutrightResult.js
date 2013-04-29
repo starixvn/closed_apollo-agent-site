@@ -14,7 +14,7 @@ var OutrightResult = (function () {
             toDate = $("#ToDate").val();
             ddlSport.change(function () {
                 OutrightResult.bindLeague();
-                OutrightResult.showResult();
+                
             });
 
             ddlLeague.change(function () {
@@ -29,7 +29,7 @@ var OutrightResult = (function () {
             if (ddlLeague.length > 0) {
                 if (sportId != undefined) {
                     ddlLeague.attr('disabled', true);
-                    $.getJSON(APOLLO.resolveUrl("~/Results/League"), { "date": fromDate, "sportId": sportId })
+                    $.getJSON(APOLLO.resolveUrl("~/Results/OutrightLeague"), { "fromDate": fromDate, "toDate": toDate, "sportId": sportId })
                         .done(function (data) {
                             // clean and rebind with data get by new selected sportid
                             ddlLeague.empty();
@@ -40,6 +40,7 @@ var OutrightResult = (function () {
                                 }));
                             });
                             ddlLeague.removeAttr('disabled');
+                            OutrightResult.showResult();
                         });
                 }
             }
