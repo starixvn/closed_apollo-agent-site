@@ -38,7 +38,7 @@ namespace Apollo.Age.Reports.ViewModels
                 if (OutrightResult != null && OutrightResult.Any())
                 {
                     return OutrightResult
-                        .Select(item => new Sport { Id = item.SportId, Name = item.SportName })
+                        .Select(item => new Sport { Id = (int)item.SportId, Name = item.SportName })
                         .Distinct();
                 }
 
@@ -52,7 +52,7 @@ namespace Apollo.Age.Reports.ViewModels
             {
                 var listLeague = new List<League>();
 
-                byte selectedSportId = (this.SportId <= 0) ? SportList.First().Id : this.SportId;
+                byte selectedSportId = ((int)this.SportId <= 0) ? (byte)SportList.First().Id : this.SportId;
                 if (OutrightResult != null && OutrightResult.Any())
                 {
                     listLeague = OutrightResult.Where(item => item.SportId == selectedSportId)

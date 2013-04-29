@@ -15,23 +15,25 @@ namespace Apollo.Age.Entities
     using System.Text;
     using Apollo.Age.Services;
 
-    public class League : IComparable
+    public class League
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public int CompareTo(object obj)
+        public override bool Equals(object obj)
         {
             if (obj is League)
             {
-                if (this.Id == ((League)obj).Id)
-                {
-                    return 0;
-                }
+                return ((League)obj).Id == this.Id;
             }
 
-            return -1;
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)Id;
         }
     }
 }

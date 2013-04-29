@@ -1,23 +1,23 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 
-var MatchResult = (function () {
+var Outright = (function () {
     var ddlSport;
     var ddlLeague;
-    var date;
+    var fromDate;
+    var toDate;
 
     return {
         init: function () {
             ddlSport = $("#ddlSport");
             ddlLeague = $("#ddlLeague");
-            date = $("#EventDate").val();
-
+            fromDate = $("#FromDate").val();
+            toDate = $("#ToDate").val();
             ddlSport.change(function () {
-                MatchResult.bindLeague();
-                MatchResult.showMatchResult();
+                Outright.bindLeague();
             });
 
             ddlLeague.change(function () {
-                MatchResult.showMatchResult();
+                Outright.showResult();
             });
         },
 
@@ -28,7 +28,7 @@ var MatchResult = (function () {
             if (ddlLeague.length > 0) {
                 if (sportId != undefined) {
                     ddlLeague.attr('disabled', true);
-                    $.getJSON(APOLLO.resolveUrl("~/Results/League"), { "date": date, "sportId": sportId })
+                    $.getJSON(APOLLO.resolveUrl("~/Results/OutrightLeague"), { "fromDate": fromDate, "toDate": toDate, "sportId": sportId })
                         .done(function (data) {
                             // clean and rebind with data get by new selected sportid
                             ddlLeague.empty();
@@ -39,6 +39,7 @@ var MatchResult = (function () {
                                 }));
                             });
                             ddlLeague.removeAttr('disabled');
+                            Outright.showResult();
                         });
                 }
             }
@@ -51,7 +52,7 @@ var MatchResult = (function () {
                 var leagueId = ddlLeague.val();
 
                 if (sportId != null) {
-                    $.get(APOLLO.resolveUrl("~/Results/GetMatchResult"), { "date": date, "sportId": sportId, "leagueId": leagueId })
+                    $.get(APOLLO.resolveUrl("~/Results/GetOutrightResult"), { "fromdate": fromDate, "todate": toDate, "sportId": sportId, "leagueId": leagueId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
@@ -63,7 +64,7 @@ var MatchResult = (function () {
 })();
 
 $(function () {
-    MatchResult.init();
-    MatchResult.bindLeague();
-    MatchResult.showResult();
+    Outright.init();
+    Outright.bindLeague();
+    //   Outright.showResult();
 });

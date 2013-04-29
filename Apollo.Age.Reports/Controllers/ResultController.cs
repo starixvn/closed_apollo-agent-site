@@ -43,13 +43,13 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         [HttpGet]
-        public ActionResult MatchResult()
+        public ActionResult Match()
         {
-            return MatchResult(DateTime.Now);
+            return Match(DateTime.Now);
         }
 
         [HttpPost]
-        public ActionResult MatchResult(DateTime eventDate)
+        public ActionResult Match(DateTime eventDate)
         {
             var viewModel = new ReportResultViewModel
             {
@@ -62,13 +62,13 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         [HttpGet]
-        public ActionResult OutrightResult()
+        public ActionResult Outright()
         {
-            return OutrightResult(DateTime.Now, DateTime.Now);
+            return Outright(DateTime.Now, DateTime.Now);
         }
 
         [HttpPost]
-        public ActionResult OutrightResult(DateTime fromDate, DateTime toDate)
+        public ActionResult Outright(DateTime fromDate, DateTime toDate)
         {
             var viewModel = new OutrightResultViewModel
             {
@@ -95,13 +95,15 @@ namespace Apollo.Age.Reports.Controllers
             return Json(viewModel.LeagueList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult League(DateTime date, byte sportId)
+        public JsonResult MatchLeague(DateTime date, byte sportId)
         {
             // not add select all item yet
             var leaguesBySport = _resultService.GetLeagueBySport(date, sportId);
             List<League> leagues = new List<League>();
-            leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
-
+            if (leaguesBySport != null && leaguesBySport.Count() > 1)
+            {
+                leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
+            }
             leaguesBySport.ForEach((item) => leagues.Add(new League
             {
                 Id = item.Id,
