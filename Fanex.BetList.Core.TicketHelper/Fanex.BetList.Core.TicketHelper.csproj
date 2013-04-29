@@ -39,24 +39,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Samurai\Dev\Dependencies\RemotingRef.dll</HintPath>
+    <Reference Include="RemotingRef">
+      <HintPath>..\Dependencies\RemotingRef.dll</HintPath>
     </Reference>
-    <Reference Include="Sunplus.Core.Common">
-      <HintPath>..\..\..\Samurai\Dev\Dependencies\Sunplus.Core.Common.dll</HintPath>
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheRef.cs" />
     <Compile Include="TicketHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DLL\Fanex.Caching.dll" />
-    <Content Include="DLL\RemotingRef.dll" />
-    <Content Include="DLL\Sunplus.Core.Common.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">

@@ -113,7 +113,8 @@
             if (last != null && !last.Equals(item))
             {
             <a href="javascript:void(0);" name="navigation" class="navigation" agentid="@item.Id">@item.Username</a>
-            <span class="breadcrumbs"></span>
+            <span> &nbsp; </span>
+            <span class="breadcrumbs">&nbsp;</span>
             }
             else
             {
@@ -147,4 +148,21 @@
             <img src="http://10.18.200.204:7777/piwik.php?idsite=5" style="border: 0" alt="" /></p>
     </noscript>
     <!-- End Piwik Tracking Code -->
+}
+@helper PageInfo(Func<object, HelperResult> content, string title = "", string tipTitle = "")
+{
+	var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
+	
+	if (!string.IsNullOrEmpty(title))
+	{
+		title = string.Format("title='{0}'", title);
+	}
+	if (!string.IsNullOrEmpty(tipTitle))
+	{
+		tipTitle = string.Format("tip-title='{0}'", tipTitle);
+	}
+
+	<div id="page-info" style="display: none" @Html.Raw(title) @Html.Raw(tipTitle)>
+		@content.Invoke(null)
+	</div>
 }

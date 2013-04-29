@@ -252,7 +252,7 @@ html, body {
 
 	.lnk-agent-list, .lnk-member-list, .lnk-betlist {
 		background-clip: border-box;
-		background-position: left bottom, right top, 0 0px, 0 0;			
+		background-position: left bottom, right top, 0 0, 0 0;			
 		display: inline-block;		
 		margin: 0 0 0 8px;
 		padding: 2px 8px;
@@ -262,18 +262,17 @@ html, body {
 		transition: background-position 1s ease 0s;
 
 		/* SKY COLOR */
-		background-image: linear-gradient(to bottom, white, #DDDDDD);
-		border: 1px solid #999999;
+		background-image: linear-gradient(to bottom, white, #DDD);
+		border: 1px solid #999;
 		.box-shadow(~"0 0 0 3px #e5e5e5");
 
 		&:hover {
 			background-color: #E0E0E0;
-			background: linear-gradient(to bottom, #EEEEEE, #CCCCCC);
+			background: linear-gradient(to bottom, #EEE, #CCC);
 			text-decoration: none;
 		}
 		&:active {
-			.box-shadow(~"0 1px 5px 0 #548ACC inset, 0 0 0 4px #e0e0e0");
-			color: #E5E5E5;
+			.box-shadow(~"0 1px 5px 0 #999 inset, 0 0 0 4px #e0e0e0");
 		}
 	}
 

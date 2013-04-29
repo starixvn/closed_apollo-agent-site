@@ -269,9 +269,13 @@ else
 
 </table>
 
-<div id="page-info" style="display: none" title="@ViewBag.Title">
-	<div style="width: 600px;height: 600px;"></div>
-</div>
+@RazorHelper.PageInfo(
+	@<div style="width: 600px; height: 600px">
+		@ViewBag.Title INFO
+	</div>
+	, title: ViewBag.Title as string
+	, tipTitle: "Click to view Agent WinLoss INFO"
+)
 
 @section scripts
 {

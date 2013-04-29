@@ -24,7 +24,8 @@ var VIEWSHARE = function ($) {
             });
         },
         bindBetType: function () {
-            var sportId = VIEWSHARE.sportType.val();
+            var sportId = parseInt(VIEWSHARE.sportType.val());
+
             if (VIEWSHARE.betType.length > 0) {
                 if (sportId != undefined) {
                     VIEWSHARE.betType.prop('disabled', 'disabled');
@@ -49,10 +50,10 @@ var VIEWSHARE = function ($) {
                 source: function (request, response) {
                     var url = "";
                     if (VIEWSHARE.isMember.val().toBoolean()) {
-                        url = "Account/GetMemberByUsername?username=" + request.term;
+                        url = "Account/GetMemberByUsername?username=" + request.term.trim();
                     }
                     else {
-                        url = "Account/GetAgentByUsername?username=" + request.term;
+                        url = "Account/GetAgentByUsername?username=" + request.term.trim();
                     }
 
                     $.ajax({
@@ -78,17 +79,20 @@ var VIEWSHARE = function ($) {
         },
         getViewShare: function (custId, username) {
             var betTypeId = VIEWSHARE.betType.val();
+
+            var sportId = parseInt(VIEWSHARE.sportType.val());
+
             if (betTypeId.indexOf("-") > -1) {
                 var arrBetType = betTypeId.split("-");
                 var url = "";
                 if (VIEWSHARE.isMember.val().toBoolean()) {
                     url = APOLLO.resolveUrl('CustomerSetting/MemberShare?memberId=' + custId + '&userName='
-                            + username + "&sportType=" + VIEWSHARE.sportType.val() + "&betType=" + arrBetType[1]
+                            + username + "&sportType=" + sportId + "&betType=" + arrBetType[1]
                             + "&isLive=" + (arrBetType[0] != "0"));
                 }
                 else {
                     url = APOLLO.resolveUrl('CustomerSetting/AgentShare?agentId=' + custId + '&userName='
-                            + username + "&sportType=" + VIEWSHARE.sportType.val() + "&betType=" + arrBetType[1]
+                            + username + "&sportType=" + sportId + "&betType=" + arrBetType[1]
                             + "&isLive=" + (arrBetType[0] != "0"));
                 }
 

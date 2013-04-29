@@ -46,7 +46,7 @@ var AGENTLIST = function ($) {
                             AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
                         }
                         else {
-                            template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' >" + result[i].Username + "</a>";
+                            template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' >" + result[i].Username + "</a> &nbsp;";
                             template += "<span class='breadcrumbs'></span>";
                         }
                     }

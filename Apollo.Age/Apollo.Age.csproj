@@ -53,6 +53,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
@@ -110,10 +111,12 @@
     <Compile Include="Services\Impl\PermissionService.cs" />
     <Compile Include="Services\Impl\QueryService.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
+    <Compile Include="Services\Impl\SportService.cs" />
     <Compile Include="Services\Impl\UserService.cs" />
     <Compile Include="Services\Interface\IAgentService.cs" />
     <Compile Include="Services\Interface\ICustomerService.cs" />
     <Compile Include="Services\Interface\IMemberService.cs" />
+    <Compile Include="Services\Interface\ISportService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Entities\Language.cs" />
   </ItemGroup>

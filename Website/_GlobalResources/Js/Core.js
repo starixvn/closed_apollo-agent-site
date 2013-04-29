@@ -159,14 +159,24 @@ if (typeof jQuery != 'undefined') {
 			},
 
 			initPageInfo: function () {
-				$('#header_main .page-info').click(function () {
-					var pageInfo = $('#page-info'); // hidden field contains the page info
+				var pageInfo = $('#page-info'); // hidden field contains the page info
 
-					// if page-info exists then it should be showed as a popup
-					if (pageInfo.length > 0) {
-						APOLLO.openDialog(pageInfo, pageInfo.attr('title'));
-					}
-				});
+				// if page-info exists then it should be showed as a popup
+				if (pageInfo.length > 0) {
+					var pageInfoIcon = $('<div class="page-info" />').appendTo('#header_main');
+					var title = pageInfo.attr('title');
+					var tipTitle = pageInfo.attr('tip-title');
+
+					pageInfoIcon.attr('title', tipTitle ? tipTitle : title)
+						.tooltip({
+							position: { my: "right-10 center", at: "center top" },
+							show: { effect: "fade", delay: 0 },
+							hide: { effect: "fade", delay: 0 }
+						})
+						.click(function () {
+							APOLLO.openDialog(pageInfo, title, { modal: false });
+						});
+				}
 			},
 
 			init: function () {

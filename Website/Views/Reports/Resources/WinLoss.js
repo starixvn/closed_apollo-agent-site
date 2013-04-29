@@ -4,24 +4,25 @@
         ToDate: null,
 
         init: function () {
-            FromDate = $("#FromDate");
-            ToDate = $("#ToDate");
+            WINLOSS.FromDate = $("#FromDate");
+            WINLOSS.ToDate = $("#ToDate");
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
-                var fromDate = new Date(FromDate.val());
-                var toDate = new Date(ToDate.val());
+                var fromDate = new Date(WINLOSS.FromDate.val());
+                var toDate = new Date(WINLOSS.ToDate.val());
 
                 if (toDate < fromDate) {
                     noty({ text: LANGUAGES.MessageValidateDate, type: 'warning' });
                 }
                 else {
-                    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
+                    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + WINLOSS.FromDate.val() + "&toDate=" + WINLOSS.ToDate.val());
                     location.href = url;
                 }
             });
 
             $(".navigation").bind('click', function () {
-                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html() + '&fromDate=' + FromDate.val() + "&toDate=" + ToDate.val());
+                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html() 
+                    + '&fromDate=' + WINLOSS.FromDate.val() + "&toDate=" + WINLOSS.ToDate.val());
                 location.href = url;
             });
         }
