@@ -234,7 +234,7 @@ var AGENTLIST = function ($) {
                 bodyRows: bodyData,
                 showFooter: false,
                 fullHeight: true,
-                gridExpandHeight: 150,
+                gridExpandHeight: 190,
                 numberOfFrozenColumn: 3,
                 marginRight: 0,
                 showPager: true,
