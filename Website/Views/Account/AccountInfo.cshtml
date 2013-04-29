@@ -126,7 +126,7 @@
                     @if (Model.IsMember)
 					{
 						<a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&showHeader=true&userGroup=@Model.Group.ToUpper()&agentId=@Model.ParentId">
+                            href="~/CustomerSetting/EditMemberSetting?memberId=@Model.CustId&userName=@Model.Username&showHeader=true&userGroup=@Model.Group.ToUpper()&agentId=@Model.ParentId">
                             
                             @Resources.Lang.lblEditSB
                         </a>
@@ -143,7 +143,7 @@
 					else
 					{
 						<a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditAllSetting?custId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level&showHeader=true">
+                            href="~/CustomerSetting/EditAgentSetting?agentId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level&showHeader=true">
                             @Resources.Lang.lblEditSB
                         </a>
 						<a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&userName=@Model.Username">

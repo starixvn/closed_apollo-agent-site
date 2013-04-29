@@ -235,7 +235,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
     };
     this.Render = function (owner) {
         var context = Fanex.CustSetting.CURRENT_CONTEXT;
-        var isEditNonDirectMember = (context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) || (context.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING);
+        var isEditNonDirectMember = (context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) || (context.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.SHADOW_VIEW);
         var hasNumberGame = this.HasNumberGame();
         var container = document.createElement("DIV");
         container.className = context.IsSimpleMode ? "" : "betting-limit-container-header";
