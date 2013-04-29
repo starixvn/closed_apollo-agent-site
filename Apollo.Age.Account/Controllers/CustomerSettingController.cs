@@ -25,6 +25,7 @@ namespace Apollo.Age.Account.Controllers
     using Newtonsoft.Json;
     using Apollo.Age.Account.Models;
     using Fanex.Common;
+    using System.Linq;
 
     public class CustomerSettingController : BaseController
     {
@@ -186,6 +187,16 @@ namespace Apollo.Age.Account.Controllers
             var sportList = _accountService.GetAllSportType();
             var betTypeList = _accountService.GetBetTypeBySport(criteria.SportType);
 
+            foreach (var sportItem in sportList)
+            {
+                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
+            }
+
+            foreach (var betTypeItem in betTypeList)
+            {
+                betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
+            }
+
             var agentShareViewModel = new AgentShareViewModel()
             {
                 IsMember = false,
@@ -235,6 +246,16 @@ namespace Apollo.Age.Account.Controllers
 
             var sportList = _accountService.GetAllSportType();
             var betTypeList = _accountService.GetBetTypeBySport(criteria.SportType);
+
+            foreach (var sportItem in sportList)
+            {
+                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
+            }
+
+            foreach (var betTypeItem in betTypeList)
+            {
+                betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
+            }
 
             var memberShareViewModel = new MemberShareViewModel()
             {

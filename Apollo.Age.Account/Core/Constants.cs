@@ -42,6 +42,8 @@ namespace Apollo.Age.Account.Core
         public const string ATTRIBUTE_BETTYPE_NAME = "name";
 
         public const string ATTRIBUTE_SPORT_LIVE = "isLive";
+
+        public const string ATTRIBUTE_RESOURCE_KEY = "resourcekey";
         #endregion
     }
 }

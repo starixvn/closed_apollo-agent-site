@@ -155,6 +155,7 @@ namespace Apollo.Age.Account.Services
                         {
                             Id = sportId,
                             Name = sportTypeNode.Attributes[Constants.ATTRIBUTE_SPORT_NAME].Value.ToString(),
+                            ResourceKey = sportTypeNode.Attributes[Constants.ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                             BetTypeList = new List<BetType>()
                         };
 
@@ -176,6 +177,7 @@ namespace Apollo.Age.Account.Services
                                 {
                                     Id = Converter.ToInt(betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value),
                                     Name = betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
+                                    ResourceKey = sportTypeNode.Attributes[Constants.ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                                     IsLive = isLive,
                                     IsDead = false
                                 };
@@ -189,6 +191,7 @@ namespace Apollo.Age.Account.Services
                                 {
                                     Id = Converter.ToInt(betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_ID].Value),
                                     Name = betTypeNode.Attributes[Constants.ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
+                                    ResourceKey = sportTypeNode.Attributes[Constants.ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                                     IsLive = isLive,
                                     IsDead = !isLive
                                 };

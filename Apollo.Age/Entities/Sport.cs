@@ -25,6 +25,8 @@ namespace Apollo.Age.Entities
 
         public string Name { get; set; }
 
+        public string ResourceKey { get; set; }
+
         public List<BetType> BetTypeList { get; set; }
     }
 }

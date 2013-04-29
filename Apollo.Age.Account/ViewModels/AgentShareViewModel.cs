@@ -49,7 +49,7 @@ namespace Apollo.Age.Account.ViewModels
                 var selectItemList = SportList.Select(sport => new SelectListItem
                 {
                     Value = sport.Id.ToString(),
-                    Text = CacheRef.GetSportName(sport.Id)
+                    Text = sport.Name
                 }).ToList<SelectListItem>();
 
                 return selectItemList;
@@ -63,9 +63,9 @@ namespace Apollo.Age.Account.ViewModels
                 var selectItemList = BetTypeList.Select(bettype => new SelectListItem
                 {
                     Value = bettype.IsLive ? ("1-" + bettype.Id.ToString()) : ("0-" + bettype.Id.ToString()),
-                    Text = bettype.IsLive ? (Resources.Lang.lblLiveBall + " " + CacheRef.GetBettype(bettype.Id))
-                        : (bettype.IsDead ? (Resources.Lang.lblDeadball + " " + CacheRef.GetBettype(bettype.Id))
-                        : CacheRef.GetBettype(bettype.Id))
+                    Text = bettype.IsLive ? (Resources.Lang.lblLiveBall + " " + bettype.Name)
+                        : (bettype.IsDead ? (Resources.Lang.lblDeadball + " " + bettype.Name)
+                        : bettype.Name)
                 }).ToList<SelectListItem>();
 
                 return selectItemList;
