@@ -74,7 +74,7 @@ var MEMBERLIST = function ($) {
                 url: APOLLO.resolveUrl("Account/GetMemberList"),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: $("#txtUserName").val() == BASELANGUAGES.EnterUsername ? "" : $("#txtUserName").val() }),
+                data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: $("#txtUserName").val().trim() == BASELANGUAGES.EnterUsername ? "" : $("#txtUserName").val().trim() }),
                 timeout: 120000
             })
                 .done(function (result) {

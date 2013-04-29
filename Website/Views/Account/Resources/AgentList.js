@@ -123,7 +123,7 @@ var AGENTLIST = function ($) {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: false,
-                data: JSON.stringify({ AgentId: AGENTLIST.AgentId, Username: $("#txtUserName").val() == BASELANGUAGES.EnterUsername ? "" : $("#txtUserName").val() }),
+                data: JSON.stringify({ AgentId: AGENTLIST.AgentId, Username: $("#txtUserName").val().trim() == BASELANGUAGES.EnterUsername ? "" : $("#txtUserName").val().trim() }),
                 timeout: 120000
             })
                 .done(function (result) {
