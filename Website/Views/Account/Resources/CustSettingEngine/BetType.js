@@ -712,3 +712,186 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_3_3 = function (owner) {
 
     return tableShareSetting;
 };
+
+//// Shadow Account view
+Fanex.CustSetting.BetType.prototype.Render_4_2_4 =
+Fanex.CustSetting.BetType.prototype.Render_3_2_4 =
+Fanex.CustSetting.BetType.prototype.Render_2_2_4 = function (owner) { // a1
+    box = document.createElement("DIV");
+    var currentPt = this.pt;
+    // Bet type header
+    var header = document.createElement("DIV");
+    header.innerHTML = this.name;
+    header.title = this.title;
+    header.className = "bet-type-header";
+    box.appendChild(header); // Header bet type name
+    header.style.minWidth = this.minWidth + 'px';
+
+    //// Given share
+    var maxContainer = document.createElement("DIV");
+    maxContainer.className = "bet-type-select-label";
+    maxContainer.innerHTML = this.pt.Max;
+    box.appendChild(maxContainer);
+
+    //// Taken Share
+    var presetContainer = document.createElement("DIV");
+    presetContainer.className = "bet-type-select-label";
+    presetContainer.innerHTML = this.pt.Preset;
+    box.appendChild(presetContainer);
+
+    //// Min Share
+    var minContainer = document.createElement("DIV");
+    minContainer.className = "bet-type-select-label";
+    minContainer.innerHTML = this.pt.Min;
+    box.appendChild(minContainer);
+
+    box.id = "e$" + this.suffixId;
+    box.className = "pt-box";
+
+    return box;
+};
+
+Fanex.CustSetting.BetType.prototype.Render_2_1_4 = function (owner) {
+    var currentPt = this.pt;
+    box = document.createElement("DIV");
+
+    // Bet type header
+    var header = document.createElement("DIV");
+    header.innerHTML = this.name;
+    header.title = this.title;
+    header.className = "bet-type-header";
+    box.appendChild(header); // Header bet type name
+    header.style.minWidth = this.minWidth + 'px';
+
+    //// Given Share
+    var ptContainer = document.createElement("DIV");
+    ptContainer.className = "bet-type-select-label";
+    ptContainer.innerHTML = this.pt.Value;
+    box.appendChild(ptContainer);
+   
+    box.id = "e$" + this.suffixId;
+    box.className = "pt-box";
+
+    return box;
+};
+
+Fanex.CustSetting.BetType.prototype.Render_4_3_4 = function (owner) {
+    box = document.createElement("DIV");
+    var currentPt = this.pt;
+    // Bet type header
+    var header = document.createElement("DIV");
+    header.innerHTML = this.name;
+    header.title = this.title;
+    header.className = "bet-type-header";
+    box.appendChild(header); // Header bet type name
+    header.style.minWidth = this.minWidth + 'px';
+
+    var maxContainer = document.createElement("DIV");
+    maxContainer.className = "bet-type-select-label";
+    maxContainer.innerHTML = this.pt.Max;
+    box.appendChild(maxContainer);
+
+    //// Min Given Share
+    var minContainer = document.createElement("DIV");
+    minContainer.className = "bet-type-select-label";
+    minContainer.innerHTML = this.pt.Min;
+    box.appendChild(minContainer);
+   
+    box.id = "e$" + this.suffixId;
+    box.className = "pt-box";
+
+    return box;
+};
+
+//// Simple Mode
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_2_4 =
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_2_4 =
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_4 = function (owner) {
+    //box.appendChild(tableShareSetting);
+    // Table
+    var currentPt = this.currentPtValue;
+    var tableShareSetting = document.createElement("TABLE");
+    tableShareSetting.className = "share-setting-table";
+    var boxTBody = document.createElement("TBODY");
+    tableShareSetting.appendChild(boxTBody);
+    var trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
+
+    var maxLabel = document.createElement("TD");
+    maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
+    maxLabel.title = Language.SIMPLE_MODE_MAX_POSITION;
+    maxLabel.className = "share-setting-label";
+    trSetting.appendChild(maxLabel);
+
+    var maxContainer = document.createElement("TD");
+    maxContainer.className = "share-setting-value";
+    maxContainer.innerHTML = currentPt.Max;
+    trSetting.appendChild(maxContainer);
+
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
+    // Share Settings
+    var presetLabel = document.createElement("TD");
+    presetLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
+    presetLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
+    presetLabel.className = "share-setting-label";
+    trSetting.appendChild(presetLabel);
+
+    var presetContainer = document.createElement("TD");
+    presetContainer.className = "share-setting-value";
+    presetContainer.innerHTML = currentPt.Preset;
+    trSetting.appendChild(presetContainer);
+
+    return tableShareSetting;
+};
+
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_4 = function (owner) {
+    //box.appendChild(tableShareSetting);
+    // Table
+    var currentPt = this.currentPtValue;
+    var tableShareSetting = document.createElement("TABLE");
+    tableShareSetting.className = "share-setting-table";
+    var boxTBody = document.createElement("TBODY");
+    tableShareSetting.appendChild(boxTBody);
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
+
+    var maxLabel = document.createElement("TD");
+    maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
+    maxLabel.title = Language.SIMPLE_MODE_MAX_POSITION;
+    maxLabel.className = "share-setting-label";
+    trSetting.appendChild(maxLabel);
+
+    var valueContainer = document.createElement("TD");
+    valueContainer.className = "share-setting-value";
+    valueContainer.innerHTML = currentPt.Max;
+    trSetting.appendChild(valueContainer);
+    
+    return tableShareSetting;
+};
+
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_4 = function (owner) {
+    //box.appendChild(tableShareSetting);
+    // Table
+    var currentPt = this.currentPtValue;
+    var tableShareSetting = document.createElement("TABLE");
+    tableShareSetting.className = "share-setting-table";
+    var boxTBody = document.createElement("TBODY");
+    tableShareSetting.appendChild(boxTBody);
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
+
+    var maxLabel = document.createElement("TD");
+    maxLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
+    maxLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
+    maxLabel.className = "share-setting-label";
+    trSetting.appendChild(maxLabel);
+
+    var maxSelected = currentPt.Value;
+    var maxContainer = document.createElement("TD");
+    maxContainer.className = "share-setting-value";
+    maxContainer.innerHTML = currentPt.Value;
+    trSetting.appendChild(maxContainer);
+
+    return tableShareSetting;
+};

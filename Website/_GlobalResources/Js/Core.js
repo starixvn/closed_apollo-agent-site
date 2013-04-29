@@ -19,24 +19,23 @@ if (typeof jQuery != 'undefined') {
 				return target.dialog($.extend({}, APOLLO.dialogOpt, options));
 			},
 			openDialogFrame: function (url, title, options) {
-                //// DO NOT CHANGE ////
-			    var frame = $("#apo-dialog-frame");
-			    var frameHtml = '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>';
+				var frame = $("#apo-dialog-frame");
+				var frameHtml = '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" border="0"></iframe>';
 
-			    if (frame.length > 0) {
-			        frame.html(frameHtml);
-			    } else {
-			        frame = '<div id="apo-dialog-frame">' + frameHtml + '</div>';
-			    }
+				if (frame.length > 0) {
+					frame.html(frameHtml);
+				} else {
+					frame = '<div id="apo-dialog-frame">' + frameHtml + '</div>';
+				}
 
 				return APOLLO.openDialog(frame, title, options);
 			},
 			closeDialog: function (target) {
 				target.dialog("close");
 			},
-            setDialogHeight: function(target, height) {
-                target.dialog("option", "height", height);
-            },
+			setDialogHeight: function (target, height) {
+				target.dialog("option", "height", height);
+			},
 			resolveUrl: function (url) {
 				var apoRoot = $('#ApoRoot');
 
@@ -81,24 +80,24 @@ if (typeof jQuery != 'undefined') {
 				return $.parseJSON(value.replaceAll("'", "\""));
 			},
 			reCheckIn: function () {
-				//                $.ajax({
-				//                    type: "POST",
-				//                    url: window.baseURL + "Account/ReCheckIn",
-				//                    contentType: "application/json; charset=utf-8",
-				//                    dataType: "json",
-				//                    data: null,
-				//                    timeout: 120000,
-				//                    success: function (rs) {
-				//                        if (rs.ErrCode == 3) {
-				//                            alert("Your Account was kicked out.")
-				//                            location.href = window.baseURL + "Account/SignOut";
-				//                        }
-				//                    },
-				//                    error: function (event, jqXHR, ajaxSettings) {
-				//                    },
-				//                    complete: function () {
-				//                    }
-				//                });
+				//  $.ajax({
+				//      type: "POST",
+				//      url: window.baseURL + "Account/ReCheckIn",
+				//      contentType: "application/json; charset=utf-8",
+				//      dataType: "json",
+				//      data: null,
+				//      timeout: 120000,
+				//      success: function (rs) {
+				//          if (rs.ErrCode == 3) {
+				//              alert("Your Account was kicked out.")
+				//              location.href = window.baseURL + "Account/SignOut";
+				//          }
+				//      },
+				//      error: function (event, jqXHR, ajaxSettings) {
+				//      },
+				//      complete: function () {
+				//      }
+				//  });
 			},
 
 			initDatePicker: function () {
@@ -148,7 +147,7 @@ if (typeof jQuery != 'undefined') {
 							switch (e.keyCode) {
 								case arrow.up:
 									shiftDate(1);
-									break;                                                  
+									break;
 								case arrow.down:
 									shiftDate(-1);
 									break;
@@ -157,12 +156,28 @@ if (typeof jQuery != 'undefined') {
 
 					});
 				}
+			},
+
+			initPageInfo: function () {
+				$('#header_main .page-info').click(function () {
+					var pageInfo = $('#page-info'); // hidden field contains the page info
+
+					// if page-info exists then it should be showed as a popup
+					if (pageInfo.length > 0) {
+						APOLLO.openDialog(pageInfo, pageInfo.attr('title'));
+					}
+				});
+			},
+
+			init: function () {
+				APOLLO.initDatePicker();
+				APOLLO.initPageInfo();
 			}
 		};
 	} (jQuery);
 
 	$(document).ready(function () {
-		APOLLO.initDatePicker();
+		APOLLO.init();
 	});
 }
 
@@ -239,11 +254,11 @@ String.prototype.replaceAll = function (token, newToken, ignoreCase) {
 };
 
 String.prototype.toBoolean = function () {
-    switch (this.toLowerCase()) {
-        case "true": case "yes": case "1": return true;
-        case "false": case "no": case "0": case null: return false;
-        default: return Boolean(this);
-    }
+	switch (this.toLowerCase()) {
+		case "true": case "yes": case "1": return true;
+		case "false": case "no": case "0": case null: return false;
+		default: return Boolean(this);
+	}
 };
 
 // Returns the string with all the beginning

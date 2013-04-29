@@ -7,20 +7,21 @@
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
 //   <change who="Anders.Le" date="2013.4.9">Change the way of AgentId getting</change>
 //   <change who="Ricky.Nguyen" date="2013.4.9">Update Actions</change>
+//   <change who="Ricky.Nguyen" date="2013.4.29">Update Super View</change>
 // </history>
 
 namespace Apollo.Age.Forecast.Controllers
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Web.Mvc;
+    using Apollo.Age.Criterias;
+    using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Web;
-    using Apollo.Age.Forecast.Models;
-    using Apollo.Age.Criterias;
-    using System.Linq;
-    using Apollo.Age.Models;
 
     /// <summary>
     /// TODO: Update summary.
@@ -224,7 +225,7 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        [OutputCache(Duration=0)]
+        [OutputCache(Duration = 0)]
         public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes, int mainShareHolderId = 0)
         {
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
@@ -245,7 +246,7 @@ namespace Apollo.Age.Forecast.Controllers
             if (base.CurrentSession.IsSuper)
             {
                 //// Should Use Cache, fix later
-                var mainShareHolders = _forecastService.GetData<MainShareHolderModel>(new GetAllMainShareHolderCriteria());
+                var mainShareHolders = _forecastService.GetData<Agent>(new GetAllMainShareHolderCriteria());
                 if (mainShareHolderId > 0)
                 {
                     agentId = mainShareHolderId;

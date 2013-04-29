@@ -38,7 +38,7 @@ var MEMBERLIST = function ($) {
             });
         },
         editCustomerSetting: function ($this) {
-            var url = APOLLO.resolveUrl("CustomerSetting/EditAllSetting?custId=" + $this.attr("memberId")
+            var url = APOLLO.resolveUrl("CustomerSetting/EditMemberSetting?memberId=" + $this.attr("memberId")
                                 + "&userName=" + $this.attr("username")
                                 + "&userGroup=" + $this.attr("userGroup")
                                 + "&agentId=" + $("#gridId").attr("agentId"));
@@ -57,7 +57,7 @@ var MEMBERLIST = function ($) {
             $("#quickLinkEditSetting").unbind('click').bind('click', function () {
                 // Edit Agent
                 var $this = $(this);
-                var url = APOLLO.resolveUrl("CustomerSetting/EditAllSetting?custId=" + $this.attr("agentId")
+                var url = APOLLO.resolveUrl("CustomerSetting/EditAgentSetting?agentId=" + $this.attr("agentId")
                 + "&agentLevel=" + $this.attr("agentLevel"));
                 MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Agent Setting - ' + $this.attr('username'), {
                     width: 970,

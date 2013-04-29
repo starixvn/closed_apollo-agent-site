@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders" date="2013.3.27">Created</change>
 //   <change who="Anders.Le" date="2013.4.9">Change input param of GetModel to Enum</change>
+//   <change who="Ricky.Nguyen" date="2013.4.29">Update SuperView</change>
 // </history>
 
 namespace Apollo.Age.TotalBets.Controllers
@@ -20,7 +21,7 @@ namespace Apollo.Age.TotalBets.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Criterias;
     using System.Linq;
-    using Apollo.Age.Models;
+    using Apollo.Age.Entities;
 
     public class TotalBetsController : BaseController
     {
@@ -50,7 +51,7 @@ namespace Apollo.Age.TotalBets.Controllers
             int agentId = base.CurrentSession.AgentId;
             if (base.CurrentSession.IsSuper)
             {
-                var mainShareHolders = _totalBetsService.GetData<MainShareHolderModel>(new GetAllMainShareHolderCriteria());
+                var mainShareHolders = _totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria());
                 if (mainShareHolderId > 0)
                 {
                     agentId = mainShareHolderId;

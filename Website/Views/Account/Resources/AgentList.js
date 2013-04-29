@@ -51,6 +51,7 @@ var AGENTLIST = function ($) {
                 AGENTLIST.AgentId = $(this).attr('agentId');
                 $("#txtUserName").val(BASELANGUAGES.EnterUsername);
                 AGENTLIST.loadAgentList();
+                AGENTLIST.loadNavigation();
                 return false;
             });
         },
@@ -81,7 +82,7 @@ var AGENTLIST = function ($) {
             });
         },
         editAgentSetting: function ($this) {
-            var url = APOLLO.resolveUrl("CustomerSetting/EditAllSetting?custId=" + $this.attr("agentId")
+            var url = APOLLO.resolveUrl("CustomerSetting/EditAgentSetting?agentId=" + $this.attr("agentId")
                 + "&agentLevel=" + $this.attr("agentLevel"));
             AGENTLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Agent Setting - ' + $this.attr('username'), {
                 width: 970,
@@ -113,7 +114,7 @@ var AGENTLIST = function ($) {
             })
                 .done(function (result) {
                     AGENTLIST.AgentId = result.CurrentAgentId;
-                    AGENTLIST.loadNavigation();
+                    // AGENTLIST.loadNavigation();
                     AGENTLIST.initAgentList(result);
 
                     AGENTLIST.bindingQuickLink();
@@ -234,7 +235,7 @@ var AGENTLIST = function ($) {
                 bodyRows: bodyData,
                 showFooter: false,
                 fullHeight: true,
-                gridExpandHeight: 150,
+                gridExpandHeight: 190,
                 numberOfFrozenColumn: 3,
                 marginRight: 0,
                 showPager: true,
