@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.4.15">Created</change>
 //   <change who="Quinn.Vo" date="2013.4.22">Add Action: AgentShare, MemberShare, GetBetType</change>
+//   <change who="Ricky.Nguyen" date="2013.4.29">Update AgentId, Member Id, Shadow Account edit setting</change>
 // </history>
 
 
