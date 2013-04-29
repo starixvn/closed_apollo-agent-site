@@ -235,7 +235,7 @@ namespace Apollo.Age.Account.Controllers
             {
                 ActorAgentId = this.CurrentSession.AgentId,
                 Username = username,
-                ExcludeActor = excludeactor.HasValue? excludeactor.Value : false
+                ExcludeActor = excludeactor.HasValue ? excludeactor.Value : false
             };
 
             var agentList = _accountService.GetAgentByUsername(criteria).Select(x => new { x.Id, x.Username }).ToList();
@@ -268,19 +268,20 @@ namespace Apollo.Age.Account.Controllers
             };
 
             var listAgent = _accountService.GetAgentDownlinePath(criteria).ToList();
-
+            if (listAgent != null && listAgent.Any())
+            {
+                ViewBag.ShowEditAgent = listAgent.Last().Id != CurrentSession.AgentId;
+                ViewBag.CurrentUsername = listAgent.Last().Username;
+                ViewBag.CurrentAgentLevel = listAgent.Last().Level;
+            }
             return View(listAgent);
         }
 
-        public ActionResult MemberList(int? agentId, string username, int? agentlevel)
+        public ActionResult MemberList(int? agentId)
         {
             CurrentAgentId = agentId;
-            CurrentUsername = username;
-            CurrentAgentLevel = agentlevel;
 
             ViewBag.CurrentAgentId = CurrentAgentId;
-            ViewBag.CurrentUsername = CurrentUsername;
-            ViewBag.CurrentAgentLevel = CurrentAgentLevel;
 
             var criteria = new AgentDownlinePathCriteria()
             {
@@ -289,7 +290,12 @@ namespace Apollo.Age.Account.Controllers
             };
 
             var listAgent = _accountService.GetAgentDownlinePath(criteria).ToList();
-
+            if (listAgent != null && listAgent.Any())
+            {
+                ViewBag.ShowEditAgent = listAgent.Last().Id != CurrentSession.AgentId;
+                ViewBag.CurrentUsername = listAgent.Last().Username;
+                ViewBag.CurrentAgentLevel = listAgent.Last().Level;
+            }
             return View(listAgent);
         }
 
