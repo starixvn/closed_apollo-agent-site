@@ -36,16 +36,16 @@ namespace Apollo.Age.Integration
         /// Resource server contact with authorization server to get access token
         /// and authentication info
         /// </summary>
-        /// <param name="code">code returned from TGP Service</param>
+        /// <param name="authenticationCode">code returned from TGP Service</param>
         /// <returns><see cref="JsonResponseModel"/></returns>
-        private JsonResponseModel SubmitAuthCode(string code)
+        internal JsonResponseModel GetSessionToken(string authenticationCode)
         {
 
             JsonResponseModel jsonResponseModel = new JsonResponseModel();
 
             // make a web request to authorization server
             var postData = string.Format(FormParams,
-                code,
+                authenticationCode,
                 OAuthSettings.Settings.RedirectUri,
                 OAuthSettings.Settings.AppId,
                 OAuthSettings.Settings.AppSecret);
@@ -106,7 +106,7 @@ namespace Apollo.Age.Integration
                 throw new ArgumentNullException("code");
             }
 
-            AuthModel authModel = new AuthModel(SubmitAuthCode(authorizationCode));
+            AuthModel authModel = new AuthModel(GetSessionToken(authorizationCode));
 
             return authModel;
         }       
