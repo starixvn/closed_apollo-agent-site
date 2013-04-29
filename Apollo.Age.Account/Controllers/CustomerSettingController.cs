@@ -311,6 +311,10 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserGroup = userGroup;
             ViewBag.CurentParentAgentId = agentId;
             ViewBag.ShowHeader = showHeader;
+            if (!base.CurrentSession.IsMaster)
+            {
+                ViewBag.IsViewShareSetting = true;
+            }
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
@@ -320,6 +324,10 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.ShowHeader = showHeader;
+            if (!base.CurrentSession.IsMaster)
+            {
+                ViewBag.IsViewShareSetting = true;
+            }
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
@@ -513,7 +521,7 @@ namespace Apollo.Age.Account.Controllers
             //// If Current Login Agent is not Agent Master User, then set form to form view
             if (!base.CurrentSession.IsMaster)
             {
-                settingContext.FormId = FormType.ViewAllSetting;
+                settingContext.FormId = FormType.ShadowViewSetting;
             }
 
             //if (formSettingType == FormSettingType.PositionTaking 

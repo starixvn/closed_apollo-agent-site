@@ -9,6 +9,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Require Fanex.CustSetting na
 // Function name format Render_[RoleId_]TargetRoleId_Form
 // [RoleId_] is optional
 // Call method by Method.call(this, arg1, arg2...)
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_2 = 
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
     // There is no decorating for this implementation
@@ -29,7 +30,9 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
 	return box;
 };
 
-
+Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_4 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_4 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) { 
@@ -64,6 +67,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
 
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_3 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_3_3 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_1 = function (owner) {
     var box = document.createElement("DIV");
     var emptyLabel = document.createElement("DIV");
