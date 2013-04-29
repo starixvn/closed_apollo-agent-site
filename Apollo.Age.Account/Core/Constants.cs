@@ -44,6 +44,8 @@ namespace Apollo.Age.Account.Core
         public const string ATTRIBUTE_SPORT_LIVE = "isLive";
 
         public const string ATTRIBUTE_RESOURCE_KEY = "resourcekey";
+
+        public const string MIX_SPORT_PARLAY = "Mix Sports Parlay";
         #endregion
     }
 }

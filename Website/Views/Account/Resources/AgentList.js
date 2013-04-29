@@ -35,7 +35,7 @@ var AGENTLIST = function ($) {
                             $quickLinkEditSetting.attr("username", result[i].Username);
                         }
                         else {
-                            template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' >" + result[i].Username + "</a>";
+                            template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' >" + result[i].Username + "</a> &nbsp;";
                             template += "<span class='breadcrumbs'></span>";
                         }
                     }

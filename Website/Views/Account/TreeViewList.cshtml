@@ -19,10 +19,16 @@
         <a href="@Url.Action("AccountInfo")" target="menu"><i class="icon-search"></i>Search</a>
     </li>
 </ul>
-
-<div id="wrapper">
-    <ul id="agent-list" class="tree-sub" agent-id="@ViewBag.AgentId"></ul>
-</div>
+@if ((bool)(ViewBag.HasAgentDownline))
+{
+    <div id="wrapper">
+        <ul id="agent-list" class="tree-sub" agent-id="@ViewBag.AgentId"></ul>
+    </div>
+}
+else
+{
+    <div class="no-data">@Resources.Lang.noInfo</div>
+}
 
 @section foot {
     <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.js"></script>

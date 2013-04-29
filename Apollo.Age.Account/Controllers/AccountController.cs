@@ -207,7 +207,16 @@ namespace Apollo.Age.Account.Controllers
 
         public ViewResult TreeViewList()
         {
+            var criteria = new AgentDownlineCriteria()
+            {
+                AgentId = this.CurrentSession.AgentId
+            };
+            var agentList = _accountService.GetDirectDownline(criteria);
+
+            var hasAgentDownline = agentList.Count > 0;
+            
             ViewBag.AgentId = this.CurrentSession.AgentId;
+            ViewBag.HasAgentDownline = hasAgentDownline;
             return View();
         }
 
@@ -225,8 +234,8 @@ namespace Apollo.Age.Account.Controllers
                 AgentId = agentId
             };
 
-            var customerList = _accountService.GetDirectDownline(criteria).Select(x => new { x.Id, x.Username, x.HasAgentDownline });
-            return Json(customerList, JsonRequestBehavior.AllowGet);
+            var agentList = _accountService.GetDirectDownline(criteria).Select(x => new { x.Id, x.Username, x.HasAgentDownline });
+            return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetAgentByUsername(string username, bool? excludeactor)
