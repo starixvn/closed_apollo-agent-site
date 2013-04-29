@@ -9,6 +9,13 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             Agent: 2,
             Member: 1
         },
+        FormTypes: {
+            ADD: 0,
+            EDIT_PT: 1,
+            EDIT_NON_DIRECT: 2,
+            VIEW_SETTING: 3,
+            SHADOW_VIEW: 4
+        },
         PT_STEP10: 1,
         PT_STEP100: 10,
         PT_STEP: 0.01,
@@ -120,12 +127,6 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 element.childNodes[i].style.minWidth = minWidth + 'px';
             }
             return minWidth;
-        },
-        FormTypes: {
-            ADD: 0,
-            EDIT_PT: 1,
-            EDIT_NON_DIRECT: 2,
-            VIEW_SETTING: 3
         },
         Context: function (currentContext) {
             this.RoleId = currentContext.RoleId;
@@ -368,7 +369,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 if (box != null) {
                     if (this.elements.length > 1) {
                         var elements = this.elements;
-                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
+                        && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
                             // Copy all check box
                             var copyCheck = document.createElement("INPUT");
                             copyCheck.type = "checkbox";
@@ -527,7 +529,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     header.className = (this.id == 2) ? "pt-sport-label2" : "pt-sport-label"; // Basketball sport id == 2 has 2 buttons
                     header.parent = this;
                     box.appendChild(header);
-                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
+                    && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
                         // Copy from sport
                         var copyCheck = document.createElement("INPUT");
                         copyCheck.type = "checkbox";
@@ -780,7 +783,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         box.className = "pt-grid";
                         var items = this.items;
                         var elements = this.elements;
-                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
+                        && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
                             // Implementation for clone button of Soccer 1 and Basketball 2
                             var cloneFromSoccer = this.items[0].cloneObjectButton;
                             var cloneFromBasketball = this.items[2].cloneObjectButton;

@@ -245,7 +245,8 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         comContainer.className = 'commission-spin-box';
         comContainer2.appendChild(comContainer);
         tdValue.appendChild(comContainer2);
-        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING
+        || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
             comContainer.innerHTML = " " + discount;
         }
         else {
@@ -326,7 +327,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
 
         var context = Fanex.CustSetting.CURRENT_CONTEXT;
-        var isEditNonDirectMember = context.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
+        var isEditNonDirectMember = context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
         if (context.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";
             box.appendChild(boxTBody);

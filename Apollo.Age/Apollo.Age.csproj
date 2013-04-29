@@ -85,9 +85,9 @@
     <Compile Include="Enumerations\MessageTypes.cs" />
     <Compile Include="Enumerations\SportTypes.cs" />
     <Compile Include="Enumerations\StringValueAttribute.cs" />
-<Compile Include="Models\MainShareHolderModel.cs" /><Compile Include="Formater.cs">
-      <SubType>Code</SubType>
-    </Compile>    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Formater.cs">      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\AgentRepository.cs" />
     <Compile Include="Repositories\Impl\MemberRepository.cs" />
     <Compile Include="Repositories\Impl\RepositoryBase.cs" />
@@ -115,10 +115,12 @@
     <Compile Include="Services\Interface\ICustomerService.cs" />
     <Compile Include="Services\Interface\IMemberService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
+    <Compile Include="Entities\Language.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\Forecast\" />
     <Folder Include="DTO\TotalBets\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Lang.resx">

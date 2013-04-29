@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.4.15">Created</change>
 //   <change who="Quinn.Vo" date="2013.4.22">Add Action: AgentShare, MemberShare, GetBetType</change>
+//   <change who="Ricky.Nguyen" date="2013.4.29">Update AgentId, Member Id, Shadow Account edit setting</change>
 // </history>
 
 
@@ -311,6 +312,10 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserGroup = userGroup;
             ViewBag.CurentParentAgentId = agentId;
             ViewBag.ShowHeader = showHeader;
+            if (!base.CurrentSession.IsMaster)
+            {
+                ViewBag.IsViewShareSetting = true;
+            }
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
@@ -320,6 +325,10 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.ShowHeader = showHeader;
+            if (!base.CurrentSession.IsMaster)
+            {
+                ViewBag.IsViewShareSetting = true;
+            }
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
@@ -335,39 +344,6 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(jsString);
         }
                 
-        private string GetSettingScript(int targetCustId, int? agentId, int? agentLevel, string ugroup)
-        {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.All);
-
-            CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
-            if (ugroup != null)
-            {
-                commissionSetting.UserGroup = ugroup;
-            }
-
-            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
-            this.SetCurrentLanguage(base.CurrentSession.Language);
-            this.SetBetLimitLanguage(settingContext, betLimits);
-
-            PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
-            this.SetPositionTakingLanguage(positionTakingSetting);
-
-            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var positionTakingSetting = {2} ;\n var settingContext = {3} ;",
-                JsonConvert.SerializeObject(commissionSetting, jsonSetting),
-                JsonConvert.SerializeObject(betLimits, jsonSetting),
-                JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
-                JsonConvert.SerializeObject(settingContext, jsonSetting));
-
-            return jsString;
-        }
-
-        [NonAction]
-        public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
-        {
-            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
-            return ReturnResult(result);
-        }
 
         [HttpPost]
         public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
@@ -509,24 +485,56 @@ namespace Apollo.Age.Account.Controllers
             {
                 settingContext.FormId = FormType.ViewAllSetting;
             }
-
             //// If Current Login Agent is not Agent Master User, then set form to form view
-            if (!base.CurrentSession.IsMaster)
+            else if (!base.CurrentSession.IsMaster)
             {
-                settingContext.FormId = FormType.ViewAllSetting;
+                settingContext.FormId = FormType.ShadowViewSetting;
             }
 
-            //if (formSettingType == FormSettingType.PositionTaking 
-            //    && base.CurrentSession.AgentId == 0
-            //    && settingContext.TargetRoleId == (int)Role.Member
-            //    && agentId != null)
-            //{
-            //    settingContext.CustId = agentId.Value;
-            //}
+            if (base.CurrentSession.AgentId == 0
+            && settingContext.TargetRoleId == (int)Role.Member
+            && agentId != null)
+            {
+                settingContext.FormId = FormType.EditPT;
+                settingContext.CustId = agentId.Value;
+            }
 
             return settingContext;
         }
 
+        private string GetSettingScript(int targetCustId, int? agentId, int? agentLevel, string ugroup)
+        {
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.All);
+
+            CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
+            if (ugroup != null)
+            {
+                commissionSetting.UserGroup = ugroup;
+            }
+
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
+            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetBetLimitLanguage(settingContext, betLimits);
+
+            PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
+            this.SetPositionTakingLanguage(positionTakingSetting);
+
+            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
+            string jsString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var positionTakingSetting = {2} ;\n var settingContext = {3} ;",
+                JsonConvert.SerializeObject(commissionSetting, jsonSetting),
+                JsonConvert.SerializeObject(betLimits, jsonSetting),
+                JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
+                JsonConvert.SerializeObject(settingContext, jsonSetting));
+
+            return jsString;
+        }
+
+        [NonAction]
+        public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        {
+            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
+            return ReturnResult(result);
+        }
 
         #endregion
     }
