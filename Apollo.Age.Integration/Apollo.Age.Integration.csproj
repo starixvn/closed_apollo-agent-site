@@ -44,10 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticationException.cs" />
-    <Compile Include="AuthenticationService.cs" />
+    <Compile Include="AuthenticationService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="AuthModel.cs" />
-    <Compile Include="Configurations\ConfigName.cs" />
-    <Compile Include="Configurations\OAuthSection.cs" />
+    <Compile Include="Configurations\OAuthSettings.cs" />
     <Compile Include="JsonResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
