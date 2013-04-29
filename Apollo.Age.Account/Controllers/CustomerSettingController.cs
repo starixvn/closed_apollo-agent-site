@@ -491,6 +491,14 @@ namespace Apollo.Age.Account.Controllers
                 settingContext.FormId = FormType.ShadowViewSetting;
             }
 
+            if (base.CurrentSession.AgentId == 0
+            && settingContext.TargetRoleId == (int)Role.Member
+            && agentId != null)
+            {
+                settingContext.FormId = FormType.EditPT;
+                settingContext.CustId = agentId.Value;
+            }
+
             return settingContext;
         }
 
