@@ -51,6 +51,7 @@ var AGENTLIST = function ($) {
                 AGENTLIST.AgentId = $(this).attr('agentId');
                 $("#txtUserName").val(BASELANGUAGES.EnterUsername);
                 AGENTLIST.loadAgentList();
+                AGENTLIST.loadNavigation();
                 return false;
             });
         },
@@ -113,7 +114,7 @@ var AGENTLIST = function ($) {
             })
                 .done(function (result) {
                     AGENTLIST.AgentId = result.CurrentAgentId;
-                    AGENTLIST.loadNavigation();
+                    // AGENTLIST.loadNavigation();
                     AGENTLIST.initAgentList(result);
 
                     AGENTLIST.bindingQuickLink();
