@@ -37,4 +37,13 @@ public partial class Index : System.Web.UI.Page
             return Encryption.PearsonEncode(name);
         }
     }
+
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        if (!User.Identity.IsAuthenticated)
+        {
+            Response.Redirect("~/sso.aspx");
+        }
+    }
 }
