@@ -3,11 +3,26 @@
 var AGENTLIST = function ($) {
     return {
         AgentId: null,
+        Username: null,
+        AgentLevel: null,
         IsSuper: false,
         init: function () {
             AGENTLIST.AgentId = $("#gridId").attr("agentId");
             AGENTLIST.bindingNavigation();
             AGENTLIST.loadAgentList();
+        },
+        initQuickLinkEditSetting: function (agent, hideSetting) {
+            var $quickLinkEditSetting = $("#quickLinkEditSetting");
+
+            $quickLinkEditSetting.attr("agentId", agent.Id);
+            $quickLinkEditSetting.attr("agentLevel", agent.Level);
+            $quickLinkEditSetting.attr("username", agent.Username);
+            if (hideSetting) {
+                $quickLinkEditSetting.css('display', 'none');
+            }
+            else {
+                $quickLinkEditSetting.css('display', '');
+            }
         },
         loadNavigation: function () {
             $.ajax({
@@ -23,16 +38,12 @@ var AGENTLIST = function ($) {
                     var rowLength = result.length;
                     var template = '';
 
-                    var $quickLinkEditSetting = $("#quickLinkEditSetting");
                     for (var i = 0; i < rowLength; i++) {
                         if (i == rowLength - 1) {
                             template += "<span>" + result[i].Username + "</span>";
                             $("#currUsername").html(result[i].Username);
                             AGENTLIST.IsSuper = (result[i].Level == 0);
-
-                            $quickLinkEditSetting.attr("agentId", result[i].Id);
-                            $quickLinkEditSetting.attr("agentLevel", result[i].Level);
-                            $quickLinkEditSetting.attr("username", result[i].Username);
+                            AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
                         }
                         else {
                             template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' >" + result[i].Username + "</a>";
@@ -49,6 +60,7 @@ var AGENTLIST = function ($) {
         bindingViewAgent: function () {
             $('[name="viewAgent"]').unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentId');
+
                 $("#txtUserName").val(BASELANGUAGES.EnterUsername);
                 AGENTLIST.loadAgentList();
                 AGENTLIST.loadNavigation();
@@ -59,14 +71,16 @@ var AGENTLIST = function ($) {
             $('[name="viewMember"]').unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
 
-                location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId + "&username=" + $(this).attr('username') + "&agentLevel=" + $(this).attr('agentlevel'));
+                location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId);
                 return false;
             });
         },
         bindingNavigation: function () {
             $("[name='navigation']").unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
+                $("#txtUserName").val('');
                 AGENTLIST.loadAgentList();
+                AGENTLIST.loadNavigation();
                 return false;
             });
         },
@@ -114,7 +128,7 @@ var AGENTLIST = function ($) {
             })
                 .done(function (result) {
                     AGENTLIST.AgentId = result.CurrentAgentId;
-                    // AGENTLIST.loadNavigation();
+
                     AGENTLIST.initAgentList(result);
 
                     AGENTLIST.bindingQuickLink();
@@ -206,12 +220,12 @@ var AGENTLIST = function ($) {
                           },
                          { HeaderText: LANGUAGES.NumberOfAgent, Width: 70, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.NumberOfAgent != 0 ? "<a name='viewAgent' href='#' title='" + LANGUAGES.ViewAgentDownline + "' agentId=" + cell.Value.AgentId + ">" + cell.Value.NumberOfAgent + "</a>" : cell.Value.NumberOfAgent);
+                                 return (cell.Value.NumberOfAgent != 0 ? "<a name='viewAgent' href='#' title='" + LANGUAGES.ViewAgentDownline + "' agentlevel=" + cell.Value.AgentLevel + " agentId=" + cell.Value.AgentId + " username=" + cell.Value.Username + ">" + cell.Value.NumberOfAgent + "</a>" : cell.Value.NumberOfAgent);
                              }
                          },
                          { HeaderText: LANGUAGES.NumberOfMember, Width: 70, Name: "NumberOfMember", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.NumberOfMember != 0 ? "<a href='#' title='" + LANGUAGES.ViewMember + "' name='viewMember' agentlevel=" + cell.Value.AgentLevel + " agentId=" + cell.Value.AgentId + " username=" + cell.Value.Username + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember);
+                                 return (cell.Value.NumberOfMember != 0 ? "<a href='#' title='" + LANGUAGES.ViewMember + "' name='viewMember' agentId=" + cell.Value.AgentId + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember);
                              }
                          },
                          { HeaderText: LANGUAGES.GroupA, Width: 100, Name: "GroupA", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },

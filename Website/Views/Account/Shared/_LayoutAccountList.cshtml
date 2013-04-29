@@ -19,9 +19,16 @@
         <div id="header_main">
             <div class="header-title">
                 @ViewBag.HeaderTitle
-                <span id="currUsername"></span>
+                <span id="currUsername">@ViewBag.CurrentUsername</span>
             </div>
-            <div class="edit-setting icon-pencil" id="quickLinkEditSetting">
+            @{
+                var hideEditAgent = "display:none";
+                if (ViewBag.ShowEditAgent)
+                {
+                    hideEditAgent = "";
+                }
+            }
+            <div class="edit-setting icon-pencil" style="@hideEditAgent" username='@ViewBag.CurrentUsername' agentid='@ViewBag.CurrentAgentId' agentlevel='@ViewBag.CurrentAgentLevel' id="quickLinkEditSetting">
             </div>
         </div>
         <div id="content_main">

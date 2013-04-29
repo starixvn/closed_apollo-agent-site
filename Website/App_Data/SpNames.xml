@@ -267,7 +267,13 @@
     <Setting Key="Age_Result_SportSelByDate" SpName="Age_Result_SportSelByDate" DbName="REPDB" Plain="0" >
       <Mapping DataField="sporttype" ObjectProperty="Id"/>
     </Setting>
-    <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright" DbName="REPDB" Plain="0" >
+      <Mapping DataField="sporttype" ObjectProperty="SportId"/>
+      <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
+      <Mapping DataField="eventdate" ObjectProperty="EventDate"/>
+      <Mapping DataField="teamid" ObjectProperty="TeamId"/>
+      <Mapping DataField="status" ObjectProperty="Status"/>
+    </Setting>
     <Setting Key="Age_Result_LeagueSelByDate" SpName="Age_Result_LeagueSelByDate" DbName="REPDB" Plain="0" >
       <Mapping DataField="leagueid" ObjectProperty="Id"/>
     </Setting>
