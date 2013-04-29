@@ -7,7 +7,6 @@
 //   <change who="Anders.Le" date="2013.4.10">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Reports.Services
 {
     using System;
@@ -62,8 +61,22 @@ namespace Apollo.Age.Reports.Services
                     };
 
             var matchResult = GetData<MatchResultModel>(criteria);
-            
+
             return matchResult;
+        }
+
+        public IEnumerable<OutrightResultModel> GetOutrightResult(DateTime fromDate, DateTime toDate)
+        {
+            var criteria = new GetOutrightResultCriteria
+            {
+                FromDate = fromDate,
+                ToDate = toDate,
+                IsShowAll = true
+            };
+
+            var result = GetData<OutrightResultModel>(criteria);
+
+            return result;
         }
     }
 }
