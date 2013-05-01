@@ -163,13 +163,13 @@ namespace Sunplus.Agent.UI._BetList
 
                 return currentSession;
             }
-            set
-            {
-                if (value is ICurrentSession)
-                {
-                    Session["Apollo.Age.Web.CurrentSession"] = value;
-                }
-            }
+            //set
+            //{
+            //    if (value is ICurrentSession)
+            //    {
+            //        Session["Apollo.Age.Web.CurrentSession"] = value;
+            //    }
+            //}
         }
 
         private object RenderNoInfo()

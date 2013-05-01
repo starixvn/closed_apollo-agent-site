@@ -99,7 +99,7 @@ namespace Sunplus.Agent.UI._BetList
             var listBetType = forecastService.GetListScoreMapBetType();
             bool isShowScoremap;
             int index = 0;
-            bool isAdminCanViewVNIP = CurrentSession.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = true;//CurrentSession.IsAdminCanViewVNIP;
 
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             var ticketHelper = new TicketHelper();
@@ -253,17 +253,8 @@ namespace Sunplus.Agent.UI._BetList
         {
             get
             {
-                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
-
-                return currentSession;
-            }
-            set
-            {
-                if (value is ICurrentSession)
-                {
-                    Session["Apollo.Age.Web.CurrentSession"] = value;
-                }
-            }
+                return SessionManager.Instance.CurrentSession;
+            }           
         }
     }
 }

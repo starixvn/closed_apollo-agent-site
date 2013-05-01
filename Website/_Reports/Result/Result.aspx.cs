@@ -238,7 +238,7 @@ namespace Fanex.Age.UI.Reports.Result
                     this._leagueId = 0;
                 }
 
-                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
+                ICurrentSession currentSession = SessionManager.Instance.CurrentSession;
                 DataTable leagueList = _resultRepository.GetResultLeagueByDate(_dateFrom, this._sportId, currentSession.Language);
                 viewData.Add("LeagueList", leagueList);
 

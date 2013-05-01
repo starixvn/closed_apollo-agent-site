@@ -19,22 +19,11 @@ namespace Apollo.Age.Web
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
-    {
+    {       
+
         protected ICurrentSession CurrentSession
         {
-            get
-            {
-                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
-
-                return currentSession;
-            }
-            set
-            {
-                if (value is ICurrentSession)
-                {
-                    Session["Apollo.Age.Web.CurrentSession"] = value;
-                }
-            }
+            get { return SessionManager.Instance.CurrentSession; }            
         }
 
         protected string RequestIP

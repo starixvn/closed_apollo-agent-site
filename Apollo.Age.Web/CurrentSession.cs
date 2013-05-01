@@ -15,6 +15,7 @@ namespace Apollo.Age.Web
     using System.Runtime.Serialization;
     using System.Text;
     using Apollo.Age.Entities;
+    using System.Web;
 
     /// <summary>
     ///  It contains all properties of an authenticated user
@@ -33,8 +34,8 @@ namespace Apollo.Age.Web
             IsMaster = user.IsMaster;
             MatchLimit = user.Agent.MatchLimit;
             Language = "en-US"; //get language of user
-            CurrencyId = user.Agent.Currency;
-        }
+            CurrencyId = user.Agent.Currency;           
+        }        
 
         public CurrentSession(SerializationInfo info, StreamingContext context)
         {

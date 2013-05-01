@@ -95,7 +95,7 @@ namespace Sunplus.Agent.UI._BetList
             var forecastService = new ForecastService();
             var listBetType = forecastService.GetListScoreMapBetType();
             bool isShowScoremap;
-            bool isAdminCanViewVNIP = CurrentSession.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = true;//CurrentSession.IsAdminCanViewVNIP;
 
             #endregion INIT
 
@@ -200,6 +200,7 @@ namespace Sunplus.Agent.UI._BetList
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
+
             if (pageType == "report")
             {
                 mainTickets = betListService.GetWinLossByDateAndMem(criteria);
@@ -208,6 +209,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
             }
+
             return mainTickets;
         }
 
@@ -226,17 +228,8 @@ namespace Sunplus.Agent.UI._BetList
         {
             get
             {
-                ICurrentSession currentSession = (ICurrentSession)Session["Apollo.Age.Web.CurrentSession"];
-
-                return currentSession;
-            }
-            set
-            {
-                if (value is ICurrentSession)
-                {
-                    Session["Apollo.Age.Web.CurrentSession"] = value;
-                }
-            }
+                return SessionManager.Instance.CurrentSession;             
+            }           
         }
     }
 }

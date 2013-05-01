@@ -52,6 +52,7 @@
     <Compile Include="CurrentSession.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
+    <Compile Include="SessionManager.cs" />
     <Compile Include="ViewModels\UnderMaintenanceViewModel.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Pager\IPagedList.cs" />
@@ -67,7 +68,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RazorExtensions.cs" />
     <Compile Include="Services\UnderMaintenanceService.cs" />
   </ItemGroup>
   <ItemGroup>

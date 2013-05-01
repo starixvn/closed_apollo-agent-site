@@ -18,7 +18,7 @@
             string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
         
         <li class="menu-item @activeClass">
-            <a class="menu-item-title">@this.GlobalLangResources(item.Title)</a>
+            <a class="menu-item-title">@this.ViewContext.HttpContext.GetGlobalResourceObject("Lang", item.Title)</a>
             @if (item.HasChildNodes)
             {               
                 <div class="submenu">
@@ -38,7 +38,7 @@
                             }
                             else
                             {
-                                title = this.GlobalLangResources(subItem.Title);
+                                title = this.ViewContext.HttpContext.GetGlobalResourceObject("Lang", subItem.Title).ToString();
                             }
                         }
 

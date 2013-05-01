@@ -40,13 +40,15 @@ namespace Apollo.Age.Web
 
         decimal VirtualMultiplier { get; set; }
 
+
+
         /// <summary>
         /// True indicate admin user can view VN ip.
         /// </summary>
-        bool IsAdminCanViewVNIP
-        {
-            get;
-            set;
-        }
+        //bool IsAdminCanViewVNIP
+        //{
+        //    get;
+        //    set;
+        //}
     }
 }

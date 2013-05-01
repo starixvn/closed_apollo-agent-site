@@ -37,11 +37,7 @@ public partial class sso : System.Web.UI.Page
             if (user != null)
             {
                 ICurrentSession currentSession = new CurrentSession(user);
-                Session["Apollo.Age.Web.CurrentSession"] = currentSession;
-
-                //UserSessionService.SetUserSessionValues(session, user);
-
-                //session.CurrentUser = user;
+              //  Session["Apollo.Age.Web.CurrentSession"] = currentSession;              
                 FormsAuthentication.RedirectFromLoginPage(user.Username, false);
             }
             else
