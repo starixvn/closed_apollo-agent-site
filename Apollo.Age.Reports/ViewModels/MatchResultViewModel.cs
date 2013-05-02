@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ReportResultViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MatchResultViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -21,17 +21,20 @@ namespace Apollo.Age.Reports.ViewModels
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ReportResultViewModel
+    public class MatchResultViewModel
     {
         public DateTime BalanceUpDay { get; set; }
+
         public DateTime EventDate { get; set; }
+
         public IEnumerable<Sport> SportList { get; set; }
+
         public IEnumerable<League> LeagueList { get; set; }
 
         public IEnumerable<SelectListItem> SportSelectListItem
         {
             get
-            {                
+            {
                 var selectItemList = SportList.Select(sport => new SelectListItem
                   {
                       Value = sport.Id.ToString(),
@@ -40,6 +43,6 @@ namespace Apollo.Age.Reports.ViewModels
 
                 return selectItemList;
             }
-        }    
+        }
     }
 }

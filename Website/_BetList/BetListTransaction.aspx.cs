@@ -67,7 +67,7 @@ namespace Sunplus.Agent.UI._BetList
             var ticketData = ticketResult.TicketDataList;
 
             int index = 0;
-            bool isAdminCanViewVNIP = true;//CurrentSession.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = true;
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             ITicketHelper ticketHelper = new TicketHelper();
 
@@ -262,7 +262,6 @@ namespace Sunplus.Agent.UI._BetList
             {
                 return SessionManager.Instance.CurrentSession;
             }
-          
         }
 
         private string GetStringRequest(string name, string defaultValue)

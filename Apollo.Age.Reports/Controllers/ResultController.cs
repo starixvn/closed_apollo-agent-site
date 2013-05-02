@@ -42,6 +42,8 @@ namespace Apollo.Age.Reports.Controllers
             _resultService = resultService ?? new ResultService();
         }
 
+        #region Match Result
+
         [HttpGet]
         public ActionResult Match()
         {
@@ -51,7 +53,7 @@ namespace Apollo.Age.Reports.Controllers
         [HttpPost]
         public ActionResult Match(DateTime eventDate)
         {
-            var viewModel = new ReportResultViewModel
+            var viewModel = new MatchResultViewModel
             {
                 BalanceUpDay = BalanceUpDay,
                 SportList = _resultService.GetResultSports(eventDate),
@@ -59,40 +61,6 @@ namespace Apollo.Age.Reports.Controllers
             };
 
             return View(viewModel);
-        }
-
-        [HttpGet]
-        public ActionResult Outright()
-        {
-            return Outright(DateTime.Now, DateTime.Now);
-        }
-
-        [HttpPost]
-        public ActionResult Outright(DateTime fromDate, DateTime toDate)
-        {
-            var viewModel = new OutrightResultViewModel
-            {
-                BalanceUpDay = BalanceUpDay,
-                FromDate = fromDate,
-                ToDate = toDate,
-                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
-            };
-
-            return View(viewModel);
-        }
-
-        public JsonResult OutrightLeague(DateTime fromDate, DateTime toDate, byte sportId)
-        {
-            var viewModel = new OutrightResultViewModel
-            {
-                BalanceUpDay = BalanceUpDay,
-                FromDate = fromDate,
-                ToDate = toDate,
-                SportId = sportId,
-                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
-            };
-
-            return Json(viewModel.LeagueList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult MatchLeague(DateTime date, byte sportId)
@@ -111,6 +79,21 @@ namespace Apollo.Age.Reports.Controllers
             }));
 
             return Json(leagues, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetMatchResult(DateTime date, byte sportId, int leagueId = -1)
+        {
+            IEnumerable<MatchResultModel> matchResults =
+                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+
+            if (matchResults != null && matchResults.Any())
+            {
+                matchResults = matchResults.OrderBy(match => match.LeagueId);
+            }
+
+            string viewName = GetSportName(sportId);
+
+            return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
         private string GetSportName(int sportId)
@@ -154,22 +137,45 @@ namespace Apollo.Age.Reports.Controllers
             }
         }
 
-        public ActionResult GetMatchResult(DateTime date, byte sportId, int leagueId = -1)
+        #endregion Match Result
+
+        #region Outright Result
+
+        [HttpGet]
+        public ActionResult Outright()
         {
-            IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
-
-            if (matchResults != null && matchResults.Any())
-            {
-                matchResults = matchResults.OrderBy(match => match.LeagueId);
-            }
-
-            string viewName = GetSportName(sportId);
-
-            return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
+            return Outright(DateTime.Now, DateTime.Now);
         }
 
-        public ActionResult GetOutrightResult(DateTime fromDate, DateTime toDate, byte sportId = 0, int leagueId = 0)
+        [HttpPost]
+        public ActionResult Outright(DateTime fromDate, DateTime toDate)
+        {
+            var viewModel = new OutrightResultViewModel
+            {
+                BalanceUpDay = BalanceUpDay,
+                FromDate = fromDate,
+                ToDate = toDate,
+                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
+            };
+
+            return View(viewModel);
+        }
+
+        public JsonResult OutrightLeague(DateTime fromDate, DateTime toDate, byte sportId)
+        {
+            var viewModel = new OutrightResultViewModel
+            {
+                BalanceUpDay = BalanceUpDay,
+                FromDate = fromDate,
+                ToDate = toDate,
+                SportId = sportId,
+                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
+            };
+
+            return Json(viewModel.LeagueList, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult OutrightResult(DateTime fromDate, DateTime toDate, byte sportId = 0, int leagueId = 0)
         {
             IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(fromDate, toDate);
             if (outrightResults != null && outrightResults.Any())
@@ -185,5 +191,7 @@ namespace Apollo.Age.Reports.Controllers
             }
             return View(outrightResults);
         }
+
+        #endregion Outright Result
     }
 }

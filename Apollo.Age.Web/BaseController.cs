@@ -8,38 +8,50 @@
 //   <change who="Anders" date="2013.4.6">Add CurrentSession Property</change>
 //   <change who="Lewis" date="2013.4.10">Added RequestIP property</change>
 //   <change who="Anders.Le" date="2013.5.2">Modify Current Session, change it to readonly</change>
+//   <change who="Anders.Le" date="2013.5.2">Check whether request is authenticated</change>
 // </history>
 
 namespace Apollo.Age.Web
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
     using Fanex.Common.Extensions;
-    using System;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            CheckAuthenticationRequest();
+            CheckValidDownline();
+
+            base.OnActionExecuting(filterContext);
+        }
+
+        private void CheckValidDownline()
+        {
+            
+        }
+
+        private void CheckAuthenticationRequest()
+        {
             if (!Request.IsAuthenticated || CurrentSession == null)
-            { 
+            {
                 // redirect user to a page with corresponding message
                 // your session is timeout or the request is not authenticated
 
                 if (Request.IsAjaxRequest())
                 {
-
+                    // TODO:
                 }
                 else
-                { 
-                    
+                {
+                    // TODO:
                 }
             }
-
-            base.OnActionExecuting(filterContext);
         }
 
         protected ICurrentSession CurrentSession
