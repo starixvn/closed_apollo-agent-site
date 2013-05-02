@@ -4,12 +4,16 @@ var Match = (function () {
     var ddlSport;
     var ddlLeague;
     var date;
+    var btnToday;
+    var btnYesterday;
 
     return {
         init: function () {
             ddlSport = $("#ddlSport");
             ddlLeague = $("#ddlLeague");
             date = $("#EventDate").val();
+            btnToday = $("#btnToday");
+            btnYesterday = $("#btnYesterday");
 
             ddlSport.change(function () {
                 Match.bindLeague();
@@ -17,6 +21,14 @@ var Match = (function () {
 
             ddlLeague.change(function () {
                 Match.showResult();
+            });
+
+            btnToday.bind('click', function () {
+                $("#EventDate").val(btnToday.val());
+            });
+
+            btnYesterday.bind('click', function () {
+                $("#EventDate").val(btnYesterday.val());
             });
         },
 
