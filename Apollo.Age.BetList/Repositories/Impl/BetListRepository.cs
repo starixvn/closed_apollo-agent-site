@@ -497,6 +497,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsADiscount = columnCollection.Contains("adiscount");
             var containsAWinlost = columnCollection.Contains("awinlost");
             var containsAComm = columnCollection.Contains("acomm");
+            var containWinlost = columnCollection.Contains("winlost");
+            var containsPlayercomm = columnCollection.Contains("playercomm");
 
             // DateTime
             var containsWinlostDate = columnCollection.Contains("winlostdate");
@@ -549,6 +551,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
                 ticket.AWinlost = containsAWinlost ? Converter.ToDecimal(dataRow["awinlost"]) : 0;
                 ticket.AComm = containsAComm ? Converter.ToDecimal(dataRow["acomm"]) : 0;
+                ticket.Winlost = containWinlost ? Converter.ToDecimal(dataRow["winlost"]) : 0;
+                ticket.PlayerComm = containsPlayercomm ? Converter.ToDecimal(dataRow["playercomm"]) : 0;
 
                 // DateTime
                 ticket.WinlostDate = containsWinlostDate ? Converter.ToDateTime(dataRow["winlostdate"]) : DateTime.Now;
