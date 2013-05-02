@@ -56,8 +56,8 @@ var AGENTLIST = function ($) {
                             }
                         }
                         else {
-                            template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' agentlevel='" + result[i].Level + "' >" + result[i].Username + "</a> &nbsp;";
-                            template += "<span class='breadcrumbs'></span>";
+                            template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' agentlevel='" + result[i].Level + "' >" + result[i].Username + "</a>";
+                            template += "<span class='breadcrumbs'>&nbsp;</span>";
                         }
                     }
                     $("#divnavigation").html(template);
