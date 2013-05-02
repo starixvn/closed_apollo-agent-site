@@ -7,10 +7,8 @@ var AGENTLIST = function ($) {
         AgentLevel: null,
         IsSuper: false,
         init: function () {
-            AGENTLIST.AgentId = $("#gridId").attr("agentId");
-            AGENTLIST.IsSuper = ($("#gridId").attr("agentlevel") == 0);
-            AGENTLIST.bindingNavigation();
-            AGENTLIST.loadAgentList();
+            AGENTLIST.AgentId = DEFAULTS.CurrentAgentId;
+            AGENTLIST.loadNavigation();
         },
         initQuickLinkEditSetting: function (agent, hideSetting) {
             var $quickLinkEditSetting = $("#quickLinkEditSetting");
@@ -41,18 +39,26 @@ var AGENTLIST = function ($) {
 
                     for (var i = 0; i < rowLength; i++) {
                         if (i == rowLength - 1) {
-                            template += "<span>" + result[i].Username + "</span>";
-                            $("#currUsername").html(result[i].Username);
-                            AGENTLIST.IsSuper = (result[i].Level == 0);
+                            AGENTLIST.IsSuper = (result[i].Level == 0 || result[i].Level == 1);
+                            AGENTLIST.Username = result[i].Username;
+                            AGENTLIST.AgentLevel = result[i].Level;
+                            AGENTLIST.AgentId = result[i].Id;
+
+                            template += "<span>" + AGENTLIST.Username + "</span>";
+                            $("#currUsername").html(AGENTLIST.Username);
                             AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
                         }
                         else {
-                            template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' >" + result[i].Username + "</a> &nbsp;";
+                            template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' agentlevel='" + result[i].Level + "' >" + result[i].Username + "</a> &nbsp;";
                             template += "<span class='breadcrumbs'></span>";
                         }
                     }
                     $("#divnavigation").html(template);
+
                     AGENTLIST.bindingNavigation();
+                    AGENTLIST.loadAgentList();
+                    AGENTLIST.bindingQuickLink();
+                    AGENTLIST.bindingSearch();
                 })
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
@@ -63,7 +69,6 @@ var AGENTLIST = function ($) {
                 AGENTLIST.AgentId = $(this).attr('agentId');
 
                 $("#txtUserName").val(BASELANGUAGES.EnterUsername);
-                AGENTLIST.loadAgentList();
                 AGENTLIST.loadNavigation();
                 return false;
             });
@@ -80,7 +85,7 @@ var AGENTLIST = function ($) {
             $("[name='navigation']").unbind('click').bind('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
                 $("#txtUserName").val('');
-                AGENTLIST.loadAgentList();
+
                 AGENTLIST.loadNavigation();
                 return false;
             });
@@ -131,9 +136,6 @@ var AGENTLIST = function ($) {
                     AGENTLIST.AgentId = result.CurrentAgentId;
 
                     AGENTLIST.initAgentList(result);
-
-                    AGENTLIST.bindingQuickLink();
-                    AGENTLIST.bindingSearch();
                 })
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
