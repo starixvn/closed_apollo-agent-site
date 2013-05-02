@@ -52,7 +52,7 @@ var Outright = (function () {
                 var leagueId = ddlLeague.val();
 
                 if (sportId != null) {
-                    $.get(APOLLO.resolveUrl("~/Results/GetOutrightResult"), { "fromdate": fromDate, "todate": toDate, "sportId": sportId, "leagueId": leagueId })
+                    $.get(APOLLO.resolveUrl("~/Results/OutrightResult"), { "fromdate": fromDate, "todate": toDate, "sportId": sportId, "leagueId": leagueId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
