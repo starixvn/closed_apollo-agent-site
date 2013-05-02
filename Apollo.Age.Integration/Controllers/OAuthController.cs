@@ -37,6 +37,7 @@ namespace Apollo.Age.Integration.Controllers
             _userService = userService ?? new UserService();
         }
         
+        [AllowAnonymous]
         public ViewResult Index()
         {
             return View();
@@ -44,7 +45,7 @@ namespace Apollo.Age.Integration.Controllers
         
         public ViewResult GetCode(string code, string error)
         {
-            if (string.IsNullOrWhiteSpace(error))
+            if (!string.IsNullOrWhiteSpace(error))
             {
                 return Error(code);
             }

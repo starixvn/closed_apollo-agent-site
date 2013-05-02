@@ -25,15 +25,21 @@ namespace Apollo.Age.Web
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            CheckAuthenticationRequest();
-            CheckValidDownline();
+            bool skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true)
+                        || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
+
+            if (!skipAuthorization)
+            {
+                CheckAuthenticationRequest();
+                CheckValidDownline();
+            }            
 
             base.OnActionExecuting(filterContext);
         }
 
         private void CheckValidDownline()
         {
-            
+
         }
 
         private void CheckAuthenticationRequest()
@@ -56,7 +62,7 @@ namespace Apollo.Age.Web
 
         protected ICurrentSession CurrentSession
         {
-            get { return SessionManager.Instance.CurrentSession; }            
+            get { return SessionManager.Instance.CurrentSession; }
         }
 
         protected string RequestIP
@@ -93,7 +99,7 @@ namespace Apollo.Age.Web
             }
         }
 
-        protected string GetResourceData( string key)
+        protected string GetResourceData(string key)
         {
             return System.Web.HttpContext.GetGlobalResourceObject("Lang", key) as string;
         }
