@@ -81,7 +81,7 @@ namespace Apollo.Age.BetList.Services
         /// <returns>Ticket data</returns>
         public TicketResult GetRunningByBettype(BetListCriteria criteria)
         {
-            return this.betListRepository.GetBetListData(criteria, "Age_BetList_TotalBets_SelRunningByBettype");
+            return this.betListRepository.GetRunningByBettype(criteria);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Apollo.Age.BetList.Services
         /// <returns>Ticket data</returns>
         public TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria)
         {
-            return this.betListRepository.GetBetListData(criteria, "Age_BetList_SelByDateMemStatus");
+            return this.betListRepository.GetAllBetsByDateAndMem(criteria);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Apollo.Age.BetList.Services
         /// <returns>Ticket data</returns>
         public TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria)
         {
-            return this.betListRepository.GetBetListData(criteria, "Age_BetList_SelTransaction");
+            return this.betListRepository.GetAllBetsTransactionByDateAndMem(criteria);
         }
 
         /// <summary>

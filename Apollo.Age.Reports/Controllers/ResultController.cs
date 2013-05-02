@@ -100,21 +100,34 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
+        public ActionResult MatchResult(int matchId, int sportId)
         {
-            IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+            IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
 
-            if (matchResults != null && matchResults.Any())
+            if (results != null && results.Any())
             {
-                matchResults = matchResults.OrderBy(match => match.LeagueId);
+                results = results.OrderBy(match => match.LeagueId);
             }
 
             string sportName = GetSportName(sportId);
 
-            ViewBag.SportName = string.Format("~/Views/Results/{0}.cshtml", sportName);
+            ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
 
-            return View("~/Views/Results/MatchResult.cshtml", matchResults);
+            return View("~/Views/Results/MatchResult.cshtml", results);
+        }
+
+        public ActionResult ParlayResult(long refNo)
+        {
+            IEnumerable<MatchResultModel> results = _resultService.GetResultByParlay(refNo);
+
+            if (results != null && results.Any())
+            {
+                results = results.OrderBy(match => match.LeagueId);
+            }
+
+            ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", SportTypes.OtherSports.ToString());
+
+            return View("~/Views/Results/MatchResult.cshtml", results);
         }
 
         private string GetSportName(int sportId)

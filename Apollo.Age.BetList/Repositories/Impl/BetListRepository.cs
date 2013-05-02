@@ -118,18 +118,108 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get data for BetList
+        /// Get bet list running on Total Bets menu
         /// </summary>
         /// <param name="criteria">Criteria name</param>
-        /// <param name="uspKey">Store Name</param>
         /// <returns>Ticket data</returns>
-        public TicketResult GetBetListData(BetListCriteria criteria, string uspKey)
+        public TicketResult GetRunningByBettype(BetListCriteria criteria)
         {
+            var uspKey = "Age_BetList_TotalBets_SelRunningByBettype";
+            var uspParams = new
+            {
+                criteria.LoggedId,
+                criteria.Bettypes
+            };
+
             try
             {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+                    var dataSet = db.ExecuteDataSet(uspParams);
+                    var ticketResult = new TicketResult();
+
+                    // Main ticket list
+                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                    ticketResult.TicketList = this.ReadTicket(mainTable);
+
+                    // Reference ticket
+                    var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
+                    ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
+                    return ticketResult;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get all bets by date and member
+        /// For only agent (Member Outstanding bet list)
+        /// </summary>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
+        public TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria)
+        {
+            var uspKey = "Age_BetList_SelByDateMemStatus";
+            var uspParams = new
+            {
+                criteria.LoggedId,
+                criteria.AgentId,
+                criteria.CustId,
+                criteria.FromDate,
+                criteria.ToDate,
+                criteria.StatusIds
+            };
+
+            try
+            {
+                using (var db = new ObjectDb(uspKey))
+                {
+                    var dataSet = db.ExecuteDataSet(uspParams);
+                    var ticketResult = new TicketResult();
+
+                    // Main ticket list
+                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                    ticketResult.TicketList = this.ReadTicket(mainTable);
+
+                    // Reference ticket
+                    var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
+                    ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
+                    return ticketResult;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// BetList transaction
+        /// </summary>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
+        public TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria)
+        {
+            var uspKey = "Age_BetList_SelTransaction";
+            var uspParams = new
+            {
+                criteria.LoggedId,
+                criteria.AgentId,
+                criteria.CustId,
+                criteria.FromDate,
+                criteria.ToDate,
+                criteria.MoveBetsDay,
+                criteria.StatusIds
+            };
+
+            try
+            {
+                using (var db = new ObjectDb(uspKey))
+                {
+                    var dataSet = db.ExecuteDataSet(uspParams);
                     var ticketResult = new TicketResult();
 
                     // Main ticket list

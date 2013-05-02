@@ -142,8 +142,8 @@ namespace Sunplus.Agent.UI._BetList
             {
                 LoggedId = CurrentSession.AgentId,
                 TransId = transID,
-                FromDate = fromDate,
-                ToDate = toDate,
+                FromDate = Formater.ResetStartDate(fromDate),
+                ToDate = Formater.ResetEndDate(toDate),
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
@@ -163,13 +163,6 @@ namespace Sunplus.Agent.UI._BetList
 
                 return currentSession;
             }
-            //set
-            //{
-            //    if (value is ICurrentSession)
-            //    {
-            //        Session["Apollo.Age.Web.CurrentSession"] = value;
-            //    }
-            //}
         }
 
         private object RenderNoInfo()

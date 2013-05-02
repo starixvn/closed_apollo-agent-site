@@ -24,7 +24,11 @@ namespace Apollo.Age.BetList.Repositories.Interface
 
         IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria);
 
-        TicketResult GetBetListData(BetListCriteria criteria, string uspKey);
+        TicketResult GetRunningByBettype(BetListCriteria criteria);
+
+        TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria);
+
+        TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria);
 
         TicketResult GetWinLossByDateAndMem(BetListCriteria criteria);
 
