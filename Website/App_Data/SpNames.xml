@@ -367,7 +367,7 @@
   </Function>
 
   <Function Name="Agent-Apollo-DownlinesInfo">
-    <Setting Key="Age_Agent_GetByAgent" SpName="Age_Agent_GetByAgent_xtest" DbName="REPDB" Plain="0" >
+    <Setting Key="Age_Agent_GetByAgent" SpName="Age_Agent_GetByAgent" DbName="REPDB" Plain="0" >
       <Mapping DataField="Discount1x2" ObjectProperty="OneXTwo" />
       <Mapping DataField="DiscountOther" ObjectProperty="Other" />
       <Mapping DataField="DiscountNumberGame" ObjectProperty="NumberGame" />
