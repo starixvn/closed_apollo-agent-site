@@ -45,26 +45,26 @@ function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostd
     }
 }
 
-function ViewMixParlayResult(refno, winlostdate, bettype) {
+function ViewMixParlayResult(date, sportId, leagueId) {
     var width = 730;
     var height = 450;
-    var params = '?refnum=' + refno + '&wldate=' + winlostdate + "&bettype=" + bettype + '&matchid=1';
+    var params = '?date=' + date + '&sportId=' + sportId + '&leagueId=' + leagueId;
     if (ageWnd.loaded) {
         ageWnd.close();
     }
-    ageWnd.open(APOLLO.resolveUrl("~/_Reports/Result/Result.aspx" + params), '', 50, 100, width, height);
+    ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), '', 50, 100, width, height);
 }
 
-function ViewSportBookResult(matchid, bettype, race, sporttype, league, is_outright, refNo) {
+function ViewSportBookResult(date, sportId, leagueId) {
     var width = 730;
     var height = 250;
-    var params = '?matchid=' + matchid + '&bettype=' + bettype + '&race=' + race + '&ddlSport=' + sporttype + '&ddlLeague=' + league + '&is_outright=' + is_outright + '&refnum=' + refNo;
+    var params = '?date=' + date + '&sportId=' + sportId + '&leagueId=' + leagueId;
 
     if (parent.ageWnd) {
         parent.ageWnd.open(APOLLO.resolveUrl("~/_Reports/Result/Result.aspx" + params), '', 50, 100, width, height);
     }
     else {
-        ageWnd.open(APOLLO.resolveUrl("~/_Reports/Result/Result.aspx" + params), '', 50, 100, width, height);
+        ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), '', 50, 100, width, height);
     }
 }
 

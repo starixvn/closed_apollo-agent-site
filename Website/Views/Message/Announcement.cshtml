@@ -1,62 +1,54 @@
 ﻿@model IEnumerable<AnnouncementModel>
 @{
-    Layout = null;
-    var userLang = ViewBag.UserLang as string;
+	Layout = null;
+	var userLang = ViewBag.UserLang as string;
 }
 @if (Model != null && Model.Any())
 {
-    var lastPostDate = ViewBag.LastPostTime.Date;
-    var index = 0;
+	var lastPostDate = ViewBag.LastPostTime.Date;
+	var index = 0;
 
-    foreach (var msgItem in Model)
-    {
-        index++;
-    <!--GroupDate-->
-    <!--GroupTitle-->
-        if (msgItem.PostTime.Date != lastPostDate)
-        {
-           
-    <div class="divGroupDate">
-        @msgItem.PostTime.Date.ToShortDateString()
-    </div>
-        }
-    <!--/GroupTitle-->
-    <!--DataRow-->
-        var ccs = (msgItem.IsRead ? msgItem.GetMessageType : msgItem.GetMessageType + "_unread");
-        ccs = index % 2 == 0 ? ccs + " evenRow" : ccs + " oddRow";
-    <div class="@ccs message" style="clear:both" id="@msgItem.MessageId.ToString()" IsRead="@(msgItem.IsRead ? 1 : 0)">
-        <div class="divTime">
-            <div class="toogleIcon">
-            </div>
-            <div class="time">
-                @msgItem.PostTime.ToLongTimeString()
-            </div>
-        </div>
-        <div class="divContent">
-            <div class="text_exposed_show small">
-                @msgItem.GetSmallContent(userLang)
-            </div>
-            <div class="text_exposed_hide full">
-                @msgItem.GetFullContent(userLang)
-            </div>
-        </div>
-    </div>
-    <!--/DataRow-->
-    <!--/GroupDate-->
-        { lastPostDate = msgItem.PostTime.Date; }
+	foreach (var msg in Model)
+	{
+		index++;
+		
+		if (msg.PostTime.Date != lastPostDate)
+		{
+	<div class="divGroupDate">
+		@msg.PostTime.Date.ToShortDateString()
+	</div>
+		}
 
-    }
-    <!--MoreFooter-->    
-    <div id="divMore">
-        @Resources.Lang.more
-    </div>
-    <!--/MoreFooter-->
+		string ccs =
+			(msg.IsRead ? msg.GetMessageType : string.Format("{0}_unread", msg.GetMessageType)) +
+			(index % 2 == 0 ? " evenRow" : " oddRow");
+		
+	<div class="@ccs message clear" id="@msg.MessageId.ToString()" IsRead="@(msg.IsRead ? 1 : 0)">
+		<div class="divTime">
+			<div class="toogleIcon"></div>
+			<div class="time">
+				@msg.PostTime.ToLongTimeString()
+			</div>
+		</div>
+		<div class="divContent">
+			<div class="text_exposed_show small">
+				@msg.GetSmallContent(userLang)
+			</div>
+			<div class="text_exposed_hide full">
+				@msg.GetFullContent(userLang)
+			</div>
+		</div>
+	</div>
+		{ lastPostDate = msg.PostTime.Date; }
+
+	}
+	<div id="divMore">
+		@Resources.Lang.more
+	</div>
 }
 else
 {
-    <!--NoRow-->
-    <div class="c">
-        @Resources.Lang.noInfo
-    </div>
-    <!--/NoRow-->
+	<div class="no-info">
+		@Resources.Lang.noInfo
+	</div>
 }
