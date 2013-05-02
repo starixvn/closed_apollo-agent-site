@@ -314,7 +314,6 @@ namespace Apollo.Age.Account.Controllers
             {
                 AgentId = CurrentAgentId.Value,
                 PageIndex = currentPageIndex,
-                TotalPages = TOTALPAGE,
                 UserName = currentUsername,
                 PageSize = currentPageSize
             };
@@ -343,7 +342,6 @@ namespace Apollo.Age.Account.Controllers
             {
                 AgentId = CurrentAgentId.Value,
                 PageIndex = currentPageIndex,
-                TotalPages = TOTALPAGE,
                 UserName = currentUsername,
                 PageSize = currentPageSize
             };
