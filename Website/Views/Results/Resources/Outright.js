@@ -33,7 +33,6 @@ var Outright = (function () {
             btnYesterday.bind('click', function () {
                 $("#FromDate").val(btnYesterday.val());
                 $("#ToDate").val(btnYesterday.val());
-                alert("a");
             });
         },
 
