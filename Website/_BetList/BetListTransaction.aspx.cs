@@ -194,8 +194,8 @@ namespace Sunplus.Agent.UI._BetList
                     LoggedId = CurrentSession.AgentId,
                     AgentId = agentId,
                     CustId = custId,
-                    FromDate = fromDate,
-                    ToDate = toDate,
+                    FromDate = Formater.ResetStartDate(fromDate),
+                    ToDate = Formater.ResetEndDate(toDate),
                     StatusIds = statusIds,
                     MoveBetsDay = moveBetsDay
                 };
