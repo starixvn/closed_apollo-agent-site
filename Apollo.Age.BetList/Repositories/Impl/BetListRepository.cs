@@ -405,6 +405,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsStake = columnCollection.Contains("stake");
             var containsAPositionTaking = columnCollection.Contains("apositiontaking");
             var containsADiscount = columnCollection.Contains("adiscount");
+            var containsAWinlost = columnCollection.Contains("awinlost");
+            var containsAComm = columnCollection.Contains("acomm");
 
             // DateTime
             var containsWinlostDate = columnCollection.Contains("winlostdate");
@@ -440,7 +442,6 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.LiveHomeScore = containsLiveHomeScore ? Converter.ToInt(dataRow["livehomescore"]) : 0;
                 ticket.LiveAwayScore = containsLiveAwayScore ? Converter.ToInt(dataRow["liveawayscore"]) : 0;
                 ticket.AgentLevel = containsAgentLevel ? Converter.ToInt(dataRow["agentlevel"]) : 0;
-                ticket.ActualStake = containsActualStake ? Converter.ToInt(dataRow["actual_stake"]) : 0;
 
                 // Boolean
                 ticket.IsLive = containsLiveIndicator ? this.ReadBoolean(dataRow["liveindicator"]) : false;
@@ -451,8 +452,13 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.Handicap1 = containsHandicap1 ? Converter.ToDecimal(dataRow["hdp1"]) : 0;
                 ticket.Handicap2 = containsHandicap2 ? Converter.ToDecimal(dataRow["hdp2"]) : 0;
                 ticket.Stake = containsStake ? Converter.ToDecimal(dataRow["stake"]) : 0;
+                ticket.ActualStake = containsActualStake ? Converter.ToDecimal(dataRow["actual_stake"]) : 0;
+
                 ticket.APositionTaking = containsAPositionTaking ? Converter.ToDecimal(dataRow["apositiontaking"]) : 0;
                 ticket.ADiscount = containsADiscount ? Converter.ToDecimal(dataRow["adiscount"]) : 0;
+
+                ticket.AWinlost = containsAWinlost ? Converter.ToDecimal(dataRow["awinlost"]) : 0;
+                ticket.AComm = containsAComm ? Converter.ToDecimal(dataRow["acomm"]) : 0;
 
                 // DateTime
                 ticket.WinlostDate = containsWinlostDate ? Converter.ToDateTime(dataRow["winlostdate"]) : DateTime.Now;

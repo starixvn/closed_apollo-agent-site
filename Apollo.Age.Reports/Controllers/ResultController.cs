@@ -35,6 +35,8 @@ namespace Apollo.Age.Reports.Controllers
             get { return _resultService.GetBalanceUpDay(); }
         }
 
+        #region Ctors
+        
         public ResultsController() : this(null) { }
 
         public ResultsController(ResultService resultService = null)
@@ -42,7 +44,9 @@ namespace Apollo.Age.Reports.Controllers
             _resultService = resultService ?? new ResultService();
         }
 
-        #region Match Result
+        #endregion
+
+        #region Match Results
 
         [HttpGet]
         public ActionResult Match()
@@ -96,6 +100,23 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
+        public ActionResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
+        {
+            IEnumerable<MatchResultModel> matchResults =
+                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+
+            if (matchResults != null && matchResults.Any())
+            {
+                matchResults = matchResults.OrderBy(match => match.LeagueId);
+            }
+
+            string sportName = GetSportName(sportId);
+
+            ViewBag.SportName = string.Format("~/Views/Results/{0}.cshtml", sportName);
+
+            return View("~/Views/Results/MatchResult.cshtml", matchResults);
+        }
+
         private string GetSportName(int sportId)
         {
             switch (sportId)
@@ -139,7 +160,7 @@ namespace Apollo.Age.Reports.Controllers
 
         #endregion Match Result
 
-        #region Outright Result
+        #region Outright Results
 
         [HttpGet]
         public ActionResult Outright()
