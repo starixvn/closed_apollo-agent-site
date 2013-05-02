@@ -38,12 +38,8 @@ function ViewCommissionDetail(ibcrefno, currency, tableId, tableName, tournament
 }
 
 function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
-	if (bettype == 71) {
-		ViewCasinoResult(refno, bettype, username);
-	} else if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
+	if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
 		ViewMixParlayResult(refno_mixparlay, winlostdate, bettype);
-	} else if (bettype == 1000 || bettype == 1001 || bettype == 1002) {  // P2P Game
-		ViewP2PResult(refno, bettype, username);
 	} else {
 		ViewSportBookResult(matchid, bettype, race, sporttype, league, is_outright, refno);
 	}
@@ -207,14 +203,14 @@ if (typeof jQuery != "undefined") {
 	} (jQuery);
 
 	$(document).ready(function () {
-	    BETLIST.init();
+		BETLIST.init();
 
-	    var viewDetailsLinks = $(".view-detail");
-	    var submit = $(".act-submit");
+		var viewDetailsLinks = $(".view-detail");
+		var submit = $(".act-submit");
 
-	    if (viewDetailsLinks.length > 0) {
-	        viewDetailsLinks.click(function () {
-	            var $this = $(this),
+		if (viewDetailsLinks.length > 0) {
+			viewDetailsLinks.click(function () {
+				var $this = $(this),
                     transId = $this.attr("tid"),
 					fromDate = $("#fromDate").val(),
 					toDate = $("#toDate").val(),
@@ -225,47 +221,47 @@ if (typeof jQuery != "undefined") {
                         "&toDate=" + toDate +
 						"&type=" + type;
 
-	            ajax.Request(url, {
-	                asynchronous: true,
-	                parameters: ajaxParams,
-	                onComplete: function (data) {
-	                    BETLIST.dialogDetails.html(data.responseText);
-	                    APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450 });
-	                }
-	            });	           
-	        });
-	    }
+				ajax.Request(url, {
+					asynchronous: true,
+					parameters: ajaxParams,
+					onComplete: function (data) {
+						BETLIST.dialogDetails.html(data.responseText);
+						APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450 });
+					}
+				});
+			});
+		}
 
-	    if (submit.length > 0) {
-	        submit.click(function () {
-	            $("#frmBetList").submit();
-	        });
-	    }
-	    if (typeof ($("#username").val()) !== 'undefined') {
-	        $("#username").autocomplete({
-	            source: function (request, response) {
-	                var url = "";
-	                if ($("#userType").val() == "0") {
-	                    url = "Account/GetMemberByUsername?username=" + request.term;
-	                }
-	                else {
-	                    url = "Account/GetAgentByUsername?username=" + request.term;
-	                }
+		if (submit.length > 0) {
+			submit.click(function () {
+				$("#frmBetList").submit();
+			});
+		}
+		if (typeof ($("#username").val()) !== 'undefined') {
+			$("#username").autocomplete({
+				source: function (request, response) {
+					var url = "";
+					if ($("#userType").val() == "0") {
+						url = "Account/GetMemberByUsername?username=" + request.term;
+					}
+					else {
+						url = "Account/GetAgentByUsername?username=" + request.term;
+					}
 
-	                $.ajax({
-	                    url: APOLLO.resolveUrl(url),
-	                    success: function (data) {
-	                        var found = $.map(data, function (item) {
-	                            return {
-	                                value: item.Username
-	                            }
-	                        });
-	                        return response(found);
-	                    }
-	                });
-	            },
-	            position: { my: "right top", at: "right bottom" }
-	        });
-	    }
+					$.ajax({
+						url: APOLLO.resolveUrl(url),
+						success: function (data) {
+							var found = $.map(data, function (item) {
+								return {
+									value: item.Username
+								}
+							});
+							return response(found);
+						}
+					});
+				},
+				position: { my: "right top", at: "right bottom" }
+			});
+		}
 	});
 }
