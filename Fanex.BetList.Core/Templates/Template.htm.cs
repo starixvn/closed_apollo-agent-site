@@ -90,7 +90,7 @@ namespace Fanex.BetList.Core
 			public string betTypeId = "{betTypeId}";
 			protected static string s13 = ",";
 			public string liveindicator = "{liveindicator}";
-			protected static string s14 = ");\" title=\"Score Map\"><div class='iconScoreMap'></div></a></span>";
+			protected static string s14 = ");\"title=\"Score Map\"><div class='iconScoreMap'></div></a></span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -110,7 +110,7 @@ namespace Fanex.BetList.Core
 
 		public class Template_Handicap_Block: Block
 		{
-			protected static string s15 = "<span class='colorHandicap'> ";
+			protected static string s15 = "<span class='colorHandicap'>";
 			public string handicap = "{handicap}";
 			protected static string s16 = " </span>";
 			public override void ToString(ref StringBuilder bd)

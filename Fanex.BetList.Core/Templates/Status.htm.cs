@@ -100,7 +100,7 @@ namespace Fanex.BetList.Core
 
 		public class Status_ShowIPVN_Block: Block
 		{
-			protected static string s15 = "<div class=\"iplink\">";
+			protected static string s15 = "<div>";
 			public string betIp = "{betIp}";
 			protected static string s16 = "</div>";
 			public override void ToString(ref StringBuilder bd)

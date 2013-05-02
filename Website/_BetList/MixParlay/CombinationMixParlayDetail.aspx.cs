@@ -4,7 +4,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------
 // <history>
-//     <change who="Marc.Bui" date="2013.02.28">Apply CoreBetList</change>
+//     <change who="Kaden.Trinh" date="2013.05.02">Apply CoreBetList</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -27,9 +27,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     public partial class CombinationMixParlayDetail_Page : TplPage
     {
         #region Variable
-
-        protected const string EVEN_ROW_CLASS = Fanex.Age.UI.Common.RowBgEven;
-        protected const string ODD_ROW_CLASS = Fanex.Age.UI.Common.RowBgOdd;
 
         long _refno = 0;
         decimal _outStanding = 0;
@@ -175,7 +172,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     }
 
                     subWinlostSum += ticket.WinLost + ticket.PlayerComm;
-                    //rowBlock.ColorClass = i % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS;
                     template.RowData.Append(rowBlock);
 
                     //Get Sub Total by Day

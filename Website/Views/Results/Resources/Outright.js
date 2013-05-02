@@ -5,6 +5,8 @@ var Outright = (function () {
     var ddlLeague;
     var fromDate;
     var toDate;
+    var btnToday;
+    var btnYesterday;
 
     return {
         init: function () {
@@ -12,12 +14,26 @@ var Outright = (function () {
             ddlLeague = $("#ddlLeague");
             fromDate = $("#FromDate").val();
             toDate = $("#ToDate").val();
+            btnToday = $("#btnToday");
+            btnYesterday = $("#btnYesterday");
+
             ddlSport.change(function () {
                 Outright.bindLeague();
             });
 
             ddlLeague.change(function () {
                 Outright.showResult();
+            });
+
+            btnToday.bind('click', function () {
+                $("#FromDate").val(btnToday.val());
+                $("#ToDate").val(btnToday.val());
+            });
+
+            btnYesterday.bind('click', function () {
+                $("#FromDate").val(btnYesterday.val());
+                $("#ToDate").val(btnYesterday.val());
+                alert("a");
             });
         },
 
