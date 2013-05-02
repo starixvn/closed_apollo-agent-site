@@ -1,16 +1,11 @@
 ﻿/* CUSTOMIZE CALENDAR */
 
 @calendarBackground:		#fff;
-@calendarBorderColor:		#888;
+@calendarBorderColor:		#555;
 @calendarTextColor:			#707070;
 @todayBackground:			#999;
 @dateHoverBackground:		#77AAE8;
-
-.ui-corner-all,
-.ui-corner-top, .ui-corner-bottom, .ui-corner-right, .ui-corner-left,
- .ui-corner-bl, .ui-corner-br, .ui-corner-tr, .ui-corner-tl {
-	.border-radius(0);
-}
+@dateFocusBackground:		#77AAE8;
 
 .ui-datepicker-trigger {
 	cursor: pointer;
@@ -34,38 +29,34 @@
 	
 	td a {
 		text-align: center;
-		padding: 5px;
-		line-height: 15px;
-
-		&:hover {
-			background: @dateHoverBackground;
-			color: #fff;			
-		}
+		padding: 2px 5px;
 	}
-	.ui-datepicker-header {		
-		border-bottom: 1px solid @borderColor;
+
+	.ui-datepicker-header {
+		background: none;
+		border: 1px solid @borderColor;
+		border-width: 0;
 	}
 	
-	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	.ui-state-default,
+	.ui-widget-content .ui-state-default,
+	.ui-widget-header .ui-state-default {
 		background: none;
-		border: 0;
+		border: 1px solid transparent;
 		font-size: 0.9em;
 	}
-	.ui-widget-header .ui-icon {
-		background-image: url(jquery-ui-1.10.2/apollo/images/ui-icons_454545_256x240.png);
+
+	.ui-state-active,
+	.ui-widget-content .ui-state-active,
+	.ui-widget-header .ui-state-active {
+		border-color: @calendarBorderColor;
 	}
-	
-	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-		background: @todayBackground;
+
+	.ui-state-highlight,
+	.ui-widget-content .ui-state-highlight,
+	.ui-widget-header .ui-state-highlight {
+		background-color: @todayBackground;
 		color: #fff;
-	}
-
-	.ui-icon-circle-triangle-w {
-		background-position: -95px -17px;
-	}
-
-	.ui-icon-circle-triangle-e {
-		background-position: -30px -17px;
 	}
 
 	.ui-state-hover,
@@ -74,16 +65,19 @@
 	.ui-state-focus,
 	.ui-widget-content .ui-state-focus,
 	.ui-widget-header .ui-state-focus {		
-		background: #fff;
-		font-weight: normal;		
+		background: @dateHoverBackground;
+		color: #fff;
 	}
 
-	.ui-widget-header .ui-state-hover,
-	.ui-widget-header .ui-state-focus {
-		margin: 1px;
-		border: none;
-		opacity: 0.6;
-		filter: ~"alpha(opacity=60)";
-		cursor: pointer;
+	.ui-widget-header .ui-icon {
+		background-image: url(jquery-ui-1.10.2/apollo/images/ui-icons_454545_256x240.png);
+	}
+
+	.ui-icon-circle-triangle-w {
+		background-position: -95px -17px;
+	}
+
+	.ui-icon-circle-triangle-e {
+		background-position: -30px -17px;
 	}
 }
