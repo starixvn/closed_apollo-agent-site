@@ -35,6 +35,8 @@ namespace Apollo.Age.Reports.Controllers
             get { return _resultService.GetBalanceUpDay(); }
         }
 
+        #region Ctors
+        
         public ResultsController() : this(null) { }
 
         public ResultsController(ResultService resultService = null)
@@ -42,7 +44,9 @@ namespace Apollo.Age.Reports.Controllers
             _resultService = resultService ?? new ResultService();
         }
 
-        #region Match Result
+        #endregion
+
+        #region Match Results
 
         [HttpGet]
         public ActionResult Match()
@@ -139,7 +143,7 @@ namespace Apollo.Age.Reports.Controllers
 
         #endregion Match Result
 
-        #region Outright Result
+        #region Outright Results
 
         [HttpGet]
         public ActionResult Outright()
