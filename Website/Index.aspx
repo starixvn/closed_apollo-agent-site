@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="false" EnableSessionState="ReadOnly" CodeFile="Index.aspx.cs" Inherits="Index" %>
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-us">
 <head>
 	<title></title>
 	<script src="<%= Page.ResolveUrl("~/_GlobalResources/Js/head.min.js")%>" type="text/javascript"></script>
