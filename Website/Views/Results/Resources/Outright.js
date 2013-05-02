@@ -5,6 +5,8 @@ var Outright = (function () {
     var ddlLeague;
     var fromDate;
     var toDate;
+    var btnToday;
+    var btnYesterday;
 
     return {
         init: function () {
@@ -12,12 +14,26 @@ var Outright = (function () {
             ddlLeague = $("#ddlLeague");
             fromDate = $("#FromDate").val();
             toDate = $("#ToDate").val();
+            btnToday = $("#btnToday");
+            btnYesterday = $("#btnYesterday");
+
             ddlSport.change(function () {
                 Outright.bindLeague();
             });
 
             ddlLeague.change(function () {
                 Outright.showResult();
+            });
+
+            btnToday.bind('click', function () {
+                $("#FromDate").val(btnToday.val());
+                $("#ToDate").val(btnToday.val());
+            });
+
+            btnYesterday.bind('click', function () {
+                $("#FromDate").val(btnYesterday.val());
+                $("#ToDate").val(btnYesterday.val());
+                alert("a");
             });
         },
 
@@ -52,7 +68,7 @@ var Outright = (function () {
                 var leagueId = ddlLeague.val();
 
                 if (sportId != null) {
-                    $.get(APOLLO.resolveUrl("~/Results/GetOutrightResult"), { "fromdate": fromDate, "todate": toDate, "sportId": sportId, "leagueId": leagueId })
+                    $.get(APOLLO.resolveUrl("~/Results/OutrightResult"), { "fromdate": fromDate, "todate": toDate, "sportId": sportId, "leagueId": leagueId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);

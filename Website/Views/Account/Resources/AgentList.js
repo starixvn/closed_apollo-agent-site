@@ -8,6 +8,7 @@ var AGENTLIST = function ($) {
         IsSuper: false,
         init: function () {
             AGENTLIST.AgentId = $("#gridId").attr("agentId");
+            AGENTLIST.IsSuper = ($("#gridId").attr("agentlevel") == 0);
             AGENTLIST.bindingNavigation();
             AGENTLIST.loadAgentList();
         },
@@ -173,8 +174,8 @@ var AGENTLIST = function ($) {
                     currentRow.Columns.push({ Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 });
                 }
                 else {
-                    currentRow.Columns.push({ Name: "HandicapTakenShare", Value: current.HandicapTakenShare / 100 });
                     currentRow.Columns.push({ Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 });
+                    currentRow.Columns.push({ Name: "HandicapTakenShare", Value: current.HandicapTakenShare / 100 });
                 }
 
                 bodyData.push(currentRow);
