@@ -214,7 +214,7 @@ namespace Apollo.Age.Account.Controllers
             var agentList = _accountService.GetDirectDownline(criteria);
 
             var hasAgentDownline = agentList.Count > 0;
-            
+
             ViewBag.AgentId = this.CurrentSession.AgentId;
             ViewBag.HasAgentDownline = hasAgentDownline;
             return View();
@@ -268,30 +268,14 @@ namespace Apollo.Age.Account.Controllers
         public ActionResult AgentList(int? agentId)
         {
             CurrentAgentId = agentId;
-            ViewBag.CurrentAgentId = CurrentAgentId;
-
-            var criteria = new AgentDownlinePathCriteria()
-            {
-                ParentId = this.CurrentSession.AgentId,
-                AgentId = CurrentAgentId.Value
-            };
-
-            var listAgent = _accountService.GetAgentDownlinePath(criteria).ToList();
-            if (listAgent != null && listAgent.Any())
-            {
-                ViewBag.ShowEditAgent = listAgent.Last().Id != CurrentSession.AgentId;
-                ViewBag.CurrentUsername = listAgent.Last().Username;
-                ViewBag.CurrentAgentLevel = listAgent.Last().Level;
-            }
-            return View(listAgent);
+            ViewBag.AgentId = CurrentAgentId.Value;
+            return View();
         }
 
         public ActionResult MemberList(int? agentId)
         {
             CurrentAgentId = agentId;
 
-            ViewBag.CurrentAgentId = CurrentAgentId;
-
             var criteria = new AgentDownlinePathCriteria()
             {
                 ParentId = this.CurrentSession.AgentId,
@@ -299,21 +283,16 @@ namespace Apollo.Age.Account.Controllers
             };
 
             var listAgent = _accountService.GetAgentDownlinePath(criteria).ToList();
-            if (listAgent != null && listAgent.Any())
-            {
-                ViewBag.ShowEditAgent = listAgent.Last().Id != CurrentSession.AgentId;
-                ViewBag.CurrentUsername = listAgent.Last().Username;
-                ViewBag.CurrentAgentLevel = listAgent.Last().Level;
-            }
             return View(listAgent);
         }
 
-        public JsonResult GetAgentDownlinePath(int agentId)
+        public JsonResult GetAgentDownlinePath(int? agentId)
         {
+            CurrentAgentId = agentId;
             var criteria = new AgentDownlinePathCriteria()
             {
                 ParentId = this.CurrentSession.AgentId,
-                AgentId = agentId
+                AgentId = CurrentAgentId.Value
             };
 
             var listValue = _accountService.GetAgentDownlinePath(criteria)
