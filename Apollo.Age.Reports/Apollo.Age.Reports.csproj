@@ -84,7 +84,7 @@
     <Compile Include="Services\WinLossService.cs" />
     <Compile Include="ViewModels\AgentWinLossViewModel.cs" />
     <Compile Include="ViewModels\MemberWinLossViewModel.cs" />
-    <Compile Include="ViewModels\ReportResultViewModel.cs" />
+    <Compile Include="ViewModels\MatchResultViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
