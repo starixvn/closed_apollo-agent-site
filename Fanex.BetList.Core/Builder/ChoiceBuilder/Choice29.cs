@@ -65,7 +65,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                             betTypeName,
                                             "</a>",
                                             " - ",
-                                            "<span style=\"color:#3a3a3a\">",
+                                            "<span>",
                                             GetCombinationOfferName(ticket.BetTeam),
                                             "</span>",
                                             "</div>",
