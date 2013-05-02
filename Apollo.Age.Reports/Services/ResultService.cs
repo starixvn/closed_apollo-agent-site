@@ -77,5 +77,29 @@ namespace Apollo.Age.Reports.Services
 
             return result;
         }
+
+        public IEnumerable<MatchResultModel> GetResultByMatch(int matchId)
+        {
+            var criteria = new GetResultByMatchCriteria
+            {
+                MatchId = matchId
+            };
+
+            var matchResult = GetData<MatchResultModel>(criteria);
+
+            return matchResult;
+        }
+
+        public IEnumerable<MatchResultModel> GetResultByParlay(long refNo)
+        {
+            var criteria = new GetResultByParlayCriteria
+            {
+                 RefNo = refNo
+            };
+
+            var parlayResult = GetData<MatchResultModel>(criteria);
+
+            return parlayResult;
+        }
     }
 }
