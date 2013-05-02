@@ -7,9 +7,7 @@
     <link href="~/Views/Message/Resources/PortalPage.less" rel="Stylesheet" type="text/css" />
 }
 
-<div class="padding-top-right">
-    @Html.ActionLink(Resources.Lang.MessageHistory, "NewMessage", "Message", new { @class = "gotoMsg" })
-    <div id="divAnnouncement">
-        @{Html.RenderAction("Announcement");}
-    </div>
+@Html.ActionLink(Resources.Lang.MessageHistory, "NewMessage", "Message", new { @class = "gotoMsg" })
+<div id="divAnnouncement">
+    @Html.Action("Announcement")
 </div>
