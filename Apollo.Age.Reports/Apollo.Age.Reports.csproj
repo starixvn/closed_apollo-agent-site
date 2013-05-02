@@ -58,6 +58,8 @@
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentWinLossCriteria.cs" />
     <Compile Include="Criterias\GetMatchResultCriteria.cs" />
+    <Compile Include="Criterias\GetResultByMatchCriteria.cs" />
+    <Compile Include="Criterias\GetResultByParlayCriteria.cs" />
     <Compile Include="Criterias\GetSpecialDaysCriteria.cs" />
     <Compile Include="Criterias\MatchEnteredCriteria.cs" />
     <Compile Include="Criterias\MemberOutstandingCriteria.cs" />
@@ -77,7 +79,6 @@
     <Compile Include="Services\IWinLossService.cs" />
     <Compile Include="Services\OutstandingService.cs" />
     <Compile Include="Services\ReportService.cs" />
-    <Compile Include="ViewModels\MatchResultViewModel.cs" />
     <Compile Include="ViewModels\OutrightResultViewModel.cs" />
     <Compile Include="ViewModels\MatchEnteredViewModel.cs" />
     <Compile Include="ViewModels\OutstandingViewModel.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Services\WinLossService.cs" />
     <Compile Include="ViewModels\AgentWinLossViewModel.cs" />
     <Compile Include="ViewModels\MemberWinLossViewModel.cs" />
+    <Compile Include="ViewModels\MatchResultViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
@@ -98,7 +100,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

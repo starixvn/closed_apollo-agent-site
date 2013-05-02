@@ -13,11 +13,13 @@ namespace Fanex.Agent.UI
 	{
 		public class ViewDetail_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE HTML><html><head><title>View detail</title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
-			protected static string s2 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"spData\">";
+			protected static string s0 = "<!DOCTYPE HTML><html lang=\"en-us\"><head><title>View detail</title><script src=\"";
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Js/head.min.js", TplSettings.Question);}}
+			protected static string s2 = "\" type=\"text/javascript\"></script><link href=\"";
+			protected static string s3{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
+			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"spData\">";
 			public string content = "{content}";
-			protected static string s3 = "</div></body></html>";
+			protected static string s5 = "</div></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -26,8 +28,10 @@ namespace Fanex.Agent.UI
 					bd.Append(s0);
 					bd.Append(s1);
 					bd.Append(s2);
-					bd.Append(content);
 					bd.Append(s3);
+					bd.Append(s4);
+					bd.Append(content);
+					bd.Append(s5);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

@@ -61,13 +61,13 @@ td {
 			line-height: 27px;
 			text-align: right;
 			overflow: hidden;
-			position: relative;
+			width: 91%;
 
 			.news-scroller {
 				height: 20px;
 				position: absolute;
 				white-space: nowrap;
-				left: 1000px
+				left: 1000px;
 			}
 
 			a {
@@ -75,7 +75,8 @@ td {
 					text-decoration: none;
 					color: @grayDark;
 					overflow: hidden;
-					position: relative;
+					position: absolute;
+					z-index: 10;
 				}
 			}
 		}
@@ -113,7 +114,7 @@ td {
 			}
 
 			&:hover {
-				opacity: 0.8;
+				background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-gray.png);
 			}
 		}
 		
@@ -135,7 +136,7 @@ td {
 				top: 6px;
 
 				&:hover {
-					opacity: 0.8;
+					background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-gray-lighter.png);
 				}
 			}
 		}	

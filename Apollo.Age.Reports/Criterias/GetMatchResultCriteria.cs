@@ -30,8 +30,6 @@ namespace Apollo.Age.Reports.Criterias
         [SpParam(SqlParamName="IsShowAll")]
         public bool IsTest { get; set; }
 
-        public int CustId { get; set; }
-
         public override string GetSettingKey()
         {
             return "Age_Result_MatchSelByLeague";

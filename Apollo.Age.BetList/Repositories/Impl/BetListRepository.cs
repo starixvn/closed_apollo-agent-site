@@ -118,18 +118,108 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get data for BetList
+        /// Get bet list running on Total Bets menu
         /// </summary>
         /// <param name="criteria">Criteria name</param>
-        /// <param name="uspKey">Store Name</param>
         /// <returns>Ticket data</returns>
-        public TicketResult GetBetListData(BetListCriteria criteria, string uspKey)
+        public TicketResult GetRunningByBettype(BetListCriteria criteria)
         {
+            var uspKey = "Age_BetList_TotalBets_SelRunningByBettype";
+            var uspParams = new
+            {
+                criteria.LoggedId,
+                criteria.Bettypes
+            };
+
             try
             {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+                    var dataSet = db.ExecuteDataSet(uspParams);
+                    var ticketResult = new TicketResult();
+
+                    // Main ticket list
+                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                    ticketResult.TicketList = this.ReadTicket(mainTable);
+
+                    // Reference ticket
+                    var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
+                    ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
+                    return ticketResult;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get all bets by date and member
+        /// For only agent (Member Outstanding bet list)
+        /// </summary>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
+        public TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria)
+        {
+            var uspKey = "Age_BetList_SelByDateMemStatus";
+            var uspParams = new
+            {
+                criteria.LoggedId,
+                criteria.AgentId,
+                criteria.CustId,
+                criteria.FromDate,
+                criteria.ToDate,
+                criteria.StatusIds
+            };
+
+            try
+            {
+                using (var db = new ObjectDb(uspKey))
+                {
+                    var dataSet = db.ExecuteDataSet(uspParams);
+                    var ticketResult = new TicketResult();
+
+                    // Main ticket list
+                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                    ticketResult.TicketList = this.ReadTicket(mainTable);
+
+                    // Reference ticket
+                    var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
+                    ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
+                    return ticketResult;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// BetList transaction
+        /// </summary>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
+        public TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria)
+        {
+            var uspKey = "Age_BetList_SelTransaction";
+            var uspParams = new
+            {
+                criteria.LoggedId,
+                criteria.AgentId,
+                criteria.CustId,
+                criteria.FromDate,
+                criteria.ToDate,
+                criteria.MoveBetsDay,
+                criteria.StatusIds
+            };
+
+            try
+            {
+                using (var db = new ObjectDb(uspKey))
+                {
+                    var dataSet = db.ExecuteDataSet(uspParams);
                     var ticketResult = new TicketResult();
 
                     // Main ticket list
@@ -405,6 +495,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsStake = columnCollection.Contains("stake");
             var containsAPositionTaking = columnCollection.Contains("apositiontaking");
             var containsADiscount = columnCollection.Contains("adiscount");
+            var containsAWinlost = columnCollection.Contains("awinlost");
+            var containsAComm = columnCollection.Contains("acomm");
+            var containWinlost = columnCollection.Contains("winlost");
+            var containsPlayercomm = columnCollection.Contains("playercomm");
 
             // DateTime
             var containsWinlostDate = columnCollection.Contains("winlostdate");
@@ -440,7 +534,6 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.LiveHomeScore = containsLiveHomeScore ? Converter.ToInt(dataRow["livehomescore"]) : 0;
                 ticket.LiveAwayScore = containsLiveAwayScore ? Converter.ToInt(dataRow["liveawayscore"]) : 0;
                 ticket.AgentLevel = containsAgentLevel ? Converter.ToInt(dataRow["agentlevel"]) : 0;
-                ticket.ActualStake = containsActualStake ? Converter.ToInt(dataRow["actual_stake"]) : 0;
 
                 // Boolean
                 ticket.IsLive = containsLiveIndicator ? this.ReadBoolean(dataRow["liveindicator"]) : false;
@@ -451,8 +544,15 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.Handicap1 = containsHandicap1 ? Converter.ToDecimal(dataRow["hdp1"]) : 0;
                 ticket.Handicap2 = containsHandicap2 ? Converter.ToDecimal(dataRow["hdp2"]) : 0;
                 ticket.Stake = containsStake ? Converter.ToDecimal(dataRow["stake"]) : 0;
+                ticket.ActualStake = containsActualStake ? Converter.ToDecimal(dataRow["actual_stake"]) : 0;
+
                 ticket.APositionTaking = containsAPositionTaking ? Converter.ToDecimal(dataRow["apositiontaking"]) : 0;
                 ticket.ADiscount = containsADiscount ? Converter.ToDecimal(dataRow["adiscount"]) : 0;
+
+                ticket.AWinlost = containsAWinlost ? Converter.ToDecimal(dataRow["awinlost"]) : 0;
+                ticket.AComm = containsAComm ? Converter.ToDecimal(dataRow["acomm"]) : 0;
+                ticket.Winlost = containWinlost ? Converter.ToDecimal(dataRow["winlost"]) : 0;
+                ticket.PlayerComm = containsPlayercomm ? Converter.ToDecimal(dataRow["playercomm"]) : 0;
 
                 // DateTime
                 ticket.WinlostDate = containsWinlostDate ? Converter.ToDateTime(dataRow["winlostdate"]) : DateTime.Now;

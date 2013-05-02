@@ -35,6 +35,8 @@ namespace Apollo.Age.Reports.Controllers
             get { return _resultService.GetBalanceUpDay(); }
         }
 
+        #region Ctors
+        
         public ResultsController() : this(null) { }
 
         public ResultsController(ResultService resultService = null)
@@ -42,7 +44,9 @@ namespace Apollo.Age.Reports.Controllers
             _resultService = resultService ?? new ResultService();
         }
 
-        #region Match Result
+        #endregion
+
+        #region Match Results
 
         [HttpGet]
         public ActionResult Match()
@@ -96,6 +100,36 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
+        public ActionResult MatchResult(int matchId, int sportId)
+        {
+            IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
+
+            if (results != null && results.Any())
+            {
+                results = results.OrderBy(match => match.LeagueId);
+            }
+
+            string sportName = GetSportName(sportId);
+
+            ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
+
+            return View("~/Views/Results/MatchResult.cshtml", results);
+        }
+
+        public ActionResult ParlayResult(long refNo)
+        {
+            IEnumerable<MatchResultModel> results = _resultService.GetResultByParlay(refNo);
+
+            if (results != null && results.Any())
+            {
+                results = results.OrderBy(match => match.LeagueId);
+            }
+
+            ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", SportTypes.OtherSports.ToString());
+
+            return View("~/Views/Results/MatchResult.cshtml", results);
+        }
+
         private string GetSportName(int sportId)
         {
             switch (sportId)
@@ -139,7 +173,7 @@ namespace Apollo.Age.Reports.Controllers
 
         #endregion Match Result
 
-        #region Outright Result
+        #region Outright Results
 
         [HttpGet]
         public ActionResult Outright()

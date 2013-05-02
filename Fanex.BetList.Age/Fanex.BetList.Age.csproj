@@ -126,6 +126,7 @@
     <Content Include="App_GlobalResources\BetList.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>BetList.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

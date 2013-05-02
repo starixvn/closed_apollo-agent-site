@@ -10,6 +10,8 @@
 	<link href="~/Views/Account/Resources/Header.less" rel="stylesheet" type="text/css" />
 </head>
 <body>
+@if (Model != null)
+{
 	<div id="news_main">
 		<div class="login-bg clearfix">
 			<b>This bar is for testing only and will be removed later</b>
@@ -19,6 +21,7 @@
 				<a href="javascript:top.age.SignOut()">@Resources.Lang.ImgLogOut</a>
 			</div>
 		</div>
+
 		<div id="text_news_out">
 			<div id="text_news" onclick="Change2Menu('Message/NewMessage?PageQuery=normal', this)">
 				<div id="scroller" class="news-scroller">
@@ -34,17 +37,13 @@
 		</div>
 	</div>
 	<input type="hidden" id="ApoRoot" value="@Url.Content("~/")" />
-	<input type="hidden" id="showFlashAccInfo" value="1" />
 	<input type="hidden" id="ctime" value="@DateTime.Now.AddHours(12).ToString("H-m-s-tt")" />
 	<input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />
 	<input type="hidden" id="userid" value="@Model.UserId" />
-	<input type="hidden" id="subaccid" value="" />
-	<input type="hidden" id="roleid" value="" />
-	<div id="divPopupAd" style="display: none">
-		Temporary need this tag for other pages work
-	</div>
+
 	<script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
 	<script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
 	<script src="~/Views/Account/Resources/header.js" type="text/javascript"></script>
+}
 </body>
 </html>
