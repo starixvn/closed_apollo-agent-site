@@ -55,7 +55,6 @@ namespace Apollo.Age.Reports.Services
                     {
                         EventDate = date,
                         SportId = sportType,
-                        CustId = custId,
                         LeagueId = leagueId,
                         Language = language
                     };
