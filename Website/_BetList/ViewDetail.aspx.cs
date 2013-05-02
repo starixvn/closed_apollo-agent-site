@@ -79,7 +79,7 @@ namespace Sunplus.Agent.UI._BetList
 
                     #region Total ticket
 
-                    totalTicket.AWinlost += Convert.ToDecimal(ConvertByBetType.PtValue(ticket.AWinlost));
+                    totalTicket.AWinlost += ticket.AWinlost;
                     totalTicket.APositionTaking += Convert.ToDecimal(ConvertByBetType.Pt(ticket.APositionTaking)) / 100;
 
                     totalTicket.AComm += ticket.AComm;

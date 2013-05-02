@@ -47,6 +47,13 @@ var AGENTLIST = function ($) {
                             template += "<span>" + AGENTLIST.Username + "</span>";
                             $("#currUsername").html(AGENTLIST.Username);
                             AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
+
+                            if (AGENTLIST.IsSuper) {
+                                $("#quickLinkCustomerList").hide();
+                            }
+                            else {
+                                $("#quickLinkCustomerList").show();
+                            }
                         }
                         else {
                             template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' agentlevel='" + result[i].Level + "' >" + result[i].Username + "</a> &nbsp;";

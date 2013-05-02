@@ -42,7 +42,7 @@ namespace Fanex.BetList.Core.Entities
 
         public decimal Stake { get; set; }
 
-        public int ActualStake { get; set; }
+        public decimal ActualStake { get; set; }
 
         public string BetTeam { get; set; }
 
