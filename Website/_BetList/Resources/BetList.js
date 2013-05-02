@@ -38,34 +38,34 @@ function ViewCommissionDetail(ibcrefno, currency, tableId, tableName, tournament
 }
 
 function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
-	if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
-		ViewMixParlayResult(winlostdate, sporttype, league);
-	} else {
-		ViewSportBookResult(matchid, bettype, race, sporttype, league, is_outright, refno);
-	}
+    if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
+        ViewMixParlayResult(refno_mixparlay);
+    } else {
+        ViewSportBookResult(matchid, sporttype);
+    }
 }
 
-function ViewMixParlayResult(date, sportId, leagueId) {
-	var width = 730;
-	var height = 450;
-	var params = '?date=' + date + '&sportId=' + sportId + '&leagueId=' + leagueId;
-	if (ageWnd.loaded) {
-		ageWnd.close();
-	}
-	ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), '', 50, 100, width, height);
+function ViewMixParlayResult(refno) {
+    var width = 730;
+    var height = 450;
+    var params = '?refNo= ' + refno;
+    if (ageWnd.loaded) {
+        ageWnd.close();
+    }
+    ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), '', 50, 100, width, height);
 }
 
-function ViewSportBookResult(date, sportId, leagueId) {
-	var width = 730;
-	var height = 250;
-	var params = '?date=' + date + '&sportId=' + sportId + '&leagueId=' + leagueId;
+function ViewSportBookResult(matchId, sportId) {
+    var width = 730;
+    var height = 250;
+    var params = '?matchId= ' + matchId + '&sportId=' + sportId;
 
-	if (parent.ageWnd) {
-		parent.ageWnd.open(APOLLO.resolveUrl("~/_Reports/Result/Result.aspx" + params), '', 50, 100, width, height);
-	}
-	else {
-		ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), '', 50, 100, width, height);
-	}
+    if (parent.ageWnd) {
+        parent.ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), '', 50, 100, width, height);
+    }
+    else {
+        ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), '', 50, 100, width, height);
+    }
 }
 
 function showMP(transid) {
