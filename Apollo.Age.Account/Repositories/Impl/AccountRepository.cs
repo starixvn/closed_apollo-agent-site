@@ -125,7 +125,6 @@ namespace Apollo.Age.Account.Repositories.Impl
                         var list = db.Query<AgentListModel>(param);
 
                         // get output parameter
-                        criteria.TotalPages = Convert.ToInt32(param["totalpages"]);
                         criteria.TotalItems = Convert.ToInt32(param["totalitems"]);
 
                         return list;
@@ -154,7 +153,6 @@ namespace Apollo.Age.Account.Repositories.Impl
                         var list = db.Query<MemberListModel>(param);
 
                         // get output parameter
-                        criteria.TotalPages = Convert.ToInt32(param["totalpages"]);
                         criteria.TotalItems = Convert.ToInt32(param["totalitems"]);
                         return list;
                     }
