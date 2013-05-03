@@ -48,11 +48,8 @@ function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostd
 function ViewMixParlayResult(refno) {
 	var width = 730;
 	var height = 450;
-	var params = '?refNo= ' + refno;
-	if (ageWnd.loaded) {
-		ageWnd.close();
-	}
-	ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), '', 50, 100, width, height);
+	var params = '?refNo=' + refno;
+    ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), '', 50, 100, width, height);
 }
 
 function ViewSportBookResult(matchId, sportId) {
@@ -61,10 +58,10 @@ function ViewSportBookResult(matchId, sportId) {
 	var params = '?matchId= ' + matchId + '&sportId=' + sportId;
 
 	if (parent.ageWnd) {
-	    parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), 'View result', 50, 100, width, height);
+	    parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
 	}
 	else {
-	    ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), 'View result', 50, 100, width, height);
+	    ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
 	}
 }
 
