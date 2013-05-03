@@ -4392,4 +4392,10 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblMatchResult" xml:space="preserve">
     <value>Match Result</value>
   </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Unauthorized</value>
+  </data>
+  <data name="UnauthorizedMsg" xml:space="preserve">
+    <value>Your session has timed out or your request is not authorized</value>
+  </data>
 </root>

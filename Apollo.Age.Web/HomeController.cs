@@ -33,6 +33,7 @@ namespace Apollo.Age.Web
         public ActionResult UnderMaintenance()
         {
             var maintenanceInfo = maintenanceService.MaintenanceInfo;
+
             if (maintenanceInfo.IsDownTime)
             {
                 return View(maintenanceInfo);

@@ -1,0 +1,106 @@
+@model Apollo.Age.Web.ViewModels.SignInViewModel
+@{
+	ViewBag.Title = "Sign In";
+}
+
+@section css {
+	<style type="text/css">
+	
+	body {
+	    margin: 0;
+	    padding: 0;
+	    font-family: Arial, Sans-Serif;
+	    font-size: 12px;
+	    color: #333;
+	}
+	
+	.login-box {
+		width: 440px;
+		margin: 200px auto 0;
+		padding: 20px;
+		
+		background: #eee;
+		background: -moz-linear-gradient(top,  #eee 0%, #ccc 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eee), color-stop(100%,#ccc));
+		background: -webkit-linear-gradient(top,  #eee 0%,#ccc 100%);
+		background: -o-linear-gradient(top,  #eee 0%,#ccc 100%);
+		background: -ms-linear-gradient(top,  #eee 0%,#ccc 100%);
+		background: linear-gradient(to bottom,  #eee 0%,#ccc 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee', endColorstr='#ccc',GradientType=0 );
+
+		border: 1px solid #999;
+		box-shadow: 0 0 5px rgba(0,0,0,0.5);
+		border-radius: 10px;
+		text-align: center;
+		text-shadow: 1px 1px 0 #f0f0f0;
+	}
+	
+	h1 {
+	    border-bottom: 1px solid #999;
+	    padding: 0 0 15px;
+	    margin: 0;
+	    font-family: "Segoe UI", Arial, Sans-Serif;
+	    font-weight: normal;
+	    font-size: 3em;
+	}
+	
+	p {
+	    margin: 0;
+	    padding: 0;
+	    padding-top: 20px;
+	}
+	
+	.username {
+	    border-top: 1px solid #fff;
+	}
+	
+	label {
+	    font-weight: bold;
+	    cursor: pointer;
+	}
+	
+	.validation-summary-errors {
+	    display: block;
+	    background-color: #ff5c5c;
+	    box-shadow: 0 1px 0 #ffc2c2 inset;
+	    border: 1px solid #b70000;
+	    margin-top: 10px;
+	    padding: 0;
+	    border-radius: 3px;
+	    text-shadow: none;
+	    font-weight: bold;
+	}
+	.validation-summary-errors ul {
+		list-style-type: none;
+		padding: 0;
+	}
+	.input-validation-error { }
+	
+	input[type=submit] {
+	    width: 82px;
+	}
+	
+	</style>
+}
+
+<div class="login-box">
+@using (Html.BeginForm())
+{
+	<h1>Sign In</h1>
+	<p class="username">
+		@Html.LabelFor(m => m.Username)
+		@Html.TextBoxFor(m => m.Username)
+	</p>
+	<p>
+		@Html.LabelFor(m => m.Password)
+		@Html.PasswordFor(m => m.Password)
+	</p>
+	if (!ViewData.ModelState.IsValid)
+	{
+		@Html.ValidationSummary()
+	}
+	<p>
+		<input type="submit" value="Sign In" />
+	</p>
+}
+</div>
