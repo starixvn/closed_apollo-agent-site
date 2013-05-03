@@ -7,10 +7,10 @@
 //   <change who="Lewis.Le" date="2013.5.3">Created</change>
 // </history>
 
-
-using System.ComponentModel.DataAnnotations;
 namespace Apollo.Age.Web.ViewModels
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class SignInViewModel
     {
         [Required]
@@ -19,7 +19,5 @@ namespace Apollo.Age.Web.ViewModels
         public string Password { get; set; }
 
         public bool RememberMe { get; set; }
-
-        public string Message { get; set; }
     }
 }
