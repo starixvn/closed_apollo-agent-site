@@ -269,11 +269,11 @@ if (typeof jQuery != "undefined") {
 				var link = document.location.href;
 				if (markIndex > 0) {
 					//link = document.location.href.substring(0, markIndex);
-					var markIndexShareHolderId = document.location.href.indexOf("&currentMainShareHolderId=");
+					var markIndexShareHolderId = document.location.href.indexOf("&mainShareHolderId=");
 					if (markIndexShareHolderId > 0) {
 						link = document.location.href.substring(0, markIndexShareHolderId);
 					}
-					link = link + "&currentMainShareHolderId=" + $this.val();
+					link = link + "&mainShareHolderId=" + $this.val();
 				}
 				document.location.href = link;
 			});

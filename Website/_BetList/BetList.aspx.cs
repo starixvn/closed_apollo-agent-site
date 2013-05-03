@@ -54,7 +54,7 @@ namespace Sunplus.Agent.UI._BetList
         private TotalBetsService totalBetsService = new TotalBetsService();
         private IEnumerable<Agent> mainShareHolders;
         private int loggedId;
-
+        private bool isForecast = false;
         #endregion Variables
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -156,7 +156,7 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
 
-            if (CurrentSession.IsSuper)
+            if (CurrentSession.IsSuper && !isForecast)
             {
                 this.BoxMainShareholder();
             }
@@ -208,19 +208,17 @@ namespace Sunplus.Agent.UI._BetList
             mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
             mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
             live = GetIntRequest("islive", 0);
-
+            isForecast = GetBooleanRequest("isForecast", false);
             if (CurrentSession.IsSuper)
             {
                 mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria());
-                var currentMainShareHolderId = GetIntRequest("currentMainShareHolderId", 0);
-
-                if (currentMainShareHolderId > 0)
+                if (string.IsNullOrEmpty(mainShareHolderId))
                 {
-                    loggedId = currentMainShareHolderId;
+                    loggedId = mainShareHolders.ElementAt(0).Id;
                 }
                 else
                 {
-                    loggedId = mainShareHolders.ElementAt(0).Id;
+                    loggedId = Convert.ToInt32(mainShareHolderId);
                 }
             }
             else
