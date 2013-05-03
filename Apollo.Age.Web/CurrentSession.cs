@@ -34,7 +34,9 @@ namespace Apollo.Age.Web
             IsMaster = user.IsMaster;
             MatchLimit = user.Agent.MatchLimit;
             Language = "en-US"; //get language of user
-            CurrencyId = user.Agent.Currency;           
+            CurrencyId = user.Agent.Currency;
+
+            HttpContext.Current.Session["Apollo.Age.Web.CurrentSession"] = this;
         }        
 
         public CurrentSession(SerializationInfo info, StreamingContext context)

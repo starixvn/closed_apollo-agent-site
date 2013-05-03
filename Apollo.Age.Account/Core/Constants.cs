@@ -24,6 +24,8 @@ namespace Apollo.Age.Account.Core
 
         public const string LASTPOSTTIMEKEY = "lastPostTime";
 
-        // public const int MAIN_SHAREHOLDER_LEVEL = 1;
+        public const int MAIN_SHAREHOLDER_LEVEL = 1;
+
+        public const int SHAREHOLDER_LEVEL = 2;
     }
 }

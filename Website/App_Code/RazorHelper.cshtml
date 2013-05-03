@@ -95,7 +95,7 @@
             var last = Model.LastOrDefault();
             if (last != null && !last.Equals(item))
             { <a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-            <span class="breadcrumbs"></span>
+            <span class="breadcrumbs">&nbsp;</span>
             }
             else
             { <span>@item.Username</span> }
@@ -112,8 +112,7 @@
             var last = Model.LastOrDefault();
             if (last != null && !last.Equals(item))
             {
-            <a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-            <span>&nbsp; </span>
+            <a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>            
             <span class="breadcrumbs">&nbsp;</span>
             }
             else
@@ -126,7 +125,6 @@
         else
         {
             RazorHelper.Navigation(Model);
-
         }
 }
 @helper Piwik()

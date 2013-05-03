@@ -22,7 +22,7 @@ namespace Apollo.Age.Account.ViewModels
 
         public string Username { get; set; }
 
-        public short SportType { get; set; }
+        public int SportType { get; set; }
 
         public short BetType { get; set; }
 
@@ -48,7 +48,7 @@ namespace Apollo.Age.Account.ViewModels
             {
                 var selectItemList = SportList.Select(sport => new SelectListItem
                 {
-                    Value = sport.Id.ToString(),
+                    Value = sport.VirtualId.ToString(),
                     Text = sport.Name
                 }).ToList<SelectListItem>();
 

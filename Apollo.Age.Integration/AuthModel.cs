@@ -39,5 +39,15 @@ namespace Apollo.Age.Integration
 
         public string TokenType { get; set; }
 
+        public bool IsValid
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(Username)
+            && !string.IsNullOrWhiteSpace(AccessToken)
+            && UserId > 0;
+            }
+        }
+
     }
 }

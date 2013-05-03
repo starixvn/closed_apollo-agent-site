@@ -1,8 +1,12 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="JsonResultModel.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="JsonResponseModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Anders" date="2013.5.2">Created</change>
+// </history>
+
 
 namespace Apollo.Age.Integration
 {
@@ -14,16 +18,16 @@ namespace Apollo.Age.Integration
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    internal class JsonResponseModel
+    public class JsonResponseModel
     {
-        internal string access_token { get; set; }
+        public string access_token { get; set; }
 
-        internal string acct_id { get; set; }
+        public string acct_id { get; set; }
 
-        internal string acct_login { get; set; }
+        public string acct_login { get; set; }
 
-        internal string expires_in { get; set; }
+        public string expires_in { get; set; }
 
-        internal string token_type { get; set; }        
+        public string token_type { get; set; }        
     }
 }

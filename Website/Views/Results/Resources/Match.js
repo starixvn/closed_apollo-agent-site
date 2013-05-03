@@ -63,7 +63,7 @@ var Match = (function () {
                 var leagueId = ddlLeague.val();
 
                 if (sportId != null) {
-                    $.get(APOLLO.resolveUrl("~/Results/GetMatchResult"), { "date": date, "sportId": sportId, "leagueId": leagueId })
+                    $.get(APOLLO.resolveUrl("~/Results/ResultByLeague"), { "date": date, "sportId": sportId, "leagueId": leagueId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);

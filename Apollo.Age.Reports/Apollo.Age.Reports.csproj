@@ -58,6 +58,8 @@
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentWinLossCriteria.cs" />
     <Compile Include="Criterias\GetMatchResultCriteria.cs" />
+    <Compile Include="Criterias\GetResultByMatchCriteria.cs" />
+    <Compile Include="Criterias\GetResultByParlayCriteria.cs" />
     <Compile Include="Criterias\GetSpecialDaysCriteria.cs" />
     <Compile Include="Criterias\MatchEnteredCriteria.cs" />
     <Compile Include="Criterias\MemberOutstandingCriteria.cs" />

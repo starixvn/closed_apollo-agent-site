@@ -36,7 +36,7 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #region Ctors
-        
+
         public ResultsController() : this(null) { }
 
         public ResultsController(ResultService resultService = null)
@@ -44,7 +44,7 @@ namespace Apollo.Age.Reports.Controllers
             _resultService = resultService ?? new ResultService();
         }
 
-        #endregion
+        #endregion Ctors
 
         #region Match Results
 
@@ -85,7 +85,7 @@ namespace Apollo.Age.Reports.Controllers
             return Json(leagues, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetMatchResult(DateTime date, byte sportId, int leagueId = -1)
+        public ActionResult ResultByLeague(DateTime date, byte sportId, int leagueId = -1)
         {
             IEnumerable<MatchResultModel> matchResults =
                 _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
@@ -100,21 +100,34 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult MatchResult(DateTime date, byte sportId, int leagueId = -1)
+        public ActionResult ResultByMatch(int matchId, int sportId)
         {
-            IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+            IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
 
-            if (matchResults != null && matchResults.Any())
+            if (results != null && results.Any())
             {
-                matchResults = matchResults.OrderBy(match => match.LeagueId);
+                results = results.OrderBy(match => match.LeagueId);
             }
 
             string sportName = GetSportName(sportId);
 
-            ViewBag.SportName = string.Format("~/Views/Results/{0}.cshtml", sportName);
+            ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
 
-            return View("~/Views/Results/MatchResult.cshtml", matchResults);
+            return View("~/Views/Results/MatchResult.cshtml", results);
+        }
+
+        public ActionResult ParlayResult(long refNo)
+        {
+            IEnumerable<MatchResultModel> results = _resultService.GetResultByParlay(refNo);
+
+            if (results != null && results.Any())
+            {
+                results = results.OrderBy(match => match.LeagueId);
+            }
+
+            ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", SportTypes.OtherSports.ToString());
+
+            return View("~/Views/Results/MatchResult.cshtml", results);
         }
 
         private string GetSportName(int sportId)
@@ -158,7 +171,7 @@ namespace Apollo.Age.Reports.Controllers
             }
         }
 
-        #endregion Match Result
+        #endregion Match Results
 
         #region Outright Results
 
@@ -213,6 +226,6 @@ namespace Apollo.Age.Reports.Controllers
             return View(outrightResults);
         }
 
-        #endregion Outright Result
+        #endregion Outright Results
     }
 }
