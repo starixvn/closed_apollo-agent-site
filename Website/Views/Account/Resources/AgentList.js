@@ -183,8 +183,8 @@ var AGENTLIST = function ($) {
                     currentRow.Columns.push({ Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 });
                 }
                 else {
-                    currentRow.Columns.push({ Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 });
                     currentRow.Columns.push({ Name: "HandicapTakenShare", Value: current.HandicapTakenShare / 100 });
+                    currentRow.Columns.push({ Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 });
                 }
 
                 bodyData.push(currentRow);
@@ -207,7 +207,7 @@ var AGENTLIST = function ($) {
                 currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDPGivenShare, Name: "HandicapGivenShare", MergeRowNumber: 2 });
             }
             else {
-                currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapGivenShare", MergeColNumber: 2 });
+                currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapTakenShare", MergeColNumber: 2 });
             }
 
             var currentContentColumns = [
@@ -249,8 +249,8 @@ var AGENTLIST = function ($) {
                 currentContentColumns.push({ HeaderText: LANGUAGES.SoccerDeadballHDPGivenShare, Width: 130, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
             }
             else {
-                currentContentColumns.push({ HeaderText: LANGUAGES.GivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
                 currentContentColumns.push({ HeaderText: LANGUAGES.TakenShare, Width: 100, Name: "HandicapTakenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
+                currentContentColumns.push({ HeaderText: LANGUAGES.GivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
             }
             var gridOption = {
                 customizeHeader: true,

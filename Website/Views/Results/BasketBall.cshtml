@@ -108,30 +108,33 @@
 
                 if (eventStatus != "refund ft")
                 {
-                    betStatus = item.BetStatus;
+                    betStatus = item.BetStatus.ToLower();
 
                     //23-12,26-11,17-13,15-15
-                    string[] listOfBetStatus = betStatus.Split(',');
-                    if (listOfBetStatus.Count() > 1)
+                    if (!string.IsNullOrWhiteSpace(betStatus) || betStatus != "refund" || betStatus != "refund ht")
                     {
-                        Q1Home = listOfBetStatus[0].Split('-')[0];
-                        Q1Away = listOfBetStatus[0].Split('-')[1];
-
-                        Q2Home = listOfBetStatus[1].Split('-')[0];
-                        Q2Away = listOfBetStatus[1].Split('-')[1];
-
-                        Q3Home = listOfBetStatus[2].Split('-')[0];
-                        Q3Away = listOfBetStatus[2].Split('-')[1];
-
-                        Q4Home = listOfBetStatus[3].Split('-')[0];
-                        Q4Away = listOfBetStatus[3].Split('-')[1];
-
-                        if (listOfBetStatus.Count() > 4)
+                        string[] listOfBetStatus = betStatus.Split(',');
+                        if (listOfBetStatus.Count() > 1)
                         {
+                            Q1Home = listOfBetStatus[0].Split('-')[0];
+                            Q1Away = listOfBetStatus[0].Split('-')[1];
 
-                            OTHome = listOfBetStatus[4].Split('-')[0];
-                            OTAway = listOfBetStatus[4].Split('-')[1];
+                            Q2Home = listOfBetStatus[1].Split('-')[0];
+                            Q2Away = listOfBetStatus[1].Split('-')[1];
 
+                            Q3Home = listOfBetStatus[2].Split('-')[0];
+                            Q3Away = listOfBetStatus[2].Split('-')[1];
+
+                            Q4Home = listOfBetStatus[3].Split('-')[0];
+                            Q4Away = listOfBetStatus[3].Split('-')[1];
+
+                            if (listOfBetStatus.Count() > 4)
+                            {
+
+                                OTHome = listOfBetStatus[4].Split('-')[0];
+                                OTAway = listOfBetStatus[4].Split('-')[1];
+
+                            }
                         }
                     }
 
