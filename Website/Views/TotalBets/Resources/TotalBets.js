@@ -176,8 +176,9 @@ $(function () {
     }
 });
 
-function ReloadPage() {
+function ReloadPage() {    
     location.reload();
+    
 //    if (currentMainShareHolderId > 0) {
 //        document.location.href = APOLLO.resolveUrl("Forecast/FC1X2?leagueId=" + FC1X2.currentLeague); 
 //    }
