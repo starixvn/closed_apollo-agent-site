@@ -40,7 +40,7 @@ namespace Fanex.BetList.Age
 		{
 			protected static string s0 = "<span class=\"bold\">";
 			public string agentComm_setting = "{agentComm_setting}";
-			protected static string s1 = "</span><br />";
+			protected static string s1 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -58,7 +58,7 @@ namespace Fanex.BetList.Age
 		{
 			protected static string s2 = "<span class=\"bold\">";
 			public string agentComm_value = "{agentComm_value}";
-			protected static string s3 = "</span><br />";
+			protected static string s3 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -74,7 +74,7 @@ namespace Fanex.BetList.Age
 
 		public class AgentComm_ViewDetail_Block: Block
 		{
-			protected static string s4 = "<a class=\"view-detail\" href=\"#\" tid=\"";
+			protected static string s4 = "<a class=\"view-detail clearfix\" href=\"#\" tid=\"";
 			public string transId = "{transId}";
 			protected static string s5 = "\">";
 			protected static string s6{get{return Resources.Lang.lblDetails;}}
