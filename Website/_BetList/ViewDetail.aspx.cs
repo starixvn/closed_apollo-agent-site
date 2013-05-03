@@ -68,7 +68,7 @@ namespace Sunplus.Agent.UI._BetList
                     ticketHelper.Index = index;
 
                     builder.Append(string.Format("<tr {0}>", index % 2 == 0 ? string.Empty : "class='alt'"))
-                        .AddMember(ticket, "<td class='l' style='vertical-align:middle'>", "</td>");
+                        .AddMember(ticket, "<td class='l'>", "</td>");
 
                     if (isShowAgentPT)
                     {
