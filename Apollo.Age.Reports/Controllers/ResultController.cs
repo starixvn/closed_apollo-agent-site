@@ -100,7 +100,7 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult ResultByMatch(int matchId, int sportId)
+        public ActionResult ResultByMatch(int matchId, byte sportId)
         {
             IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
 
@@ -130,41 +130,41 @@ namespace Apollo.Age.Reports.Controllers
             return View("~/Views/Results/MatchResult.cshtml", results);
         }
 
-        private string GetSportName(int sportId)
+        private string GetSportName(byte sportId)
         {
             switch (sportId)
             {
-                case (int)SportTypes.Soccer:
+                case (byte)SportTypes.Soccer:
                     return SportTypes.Soccer.ToString();
-                case (int)SportTypes.BasketBall:
-                case (int)SportTypes.Netball:
-                case (int)SportTypes.FootBall:
-                case (int)SportTypes.Rugby:
+                case (byte)SportTypes.BasketBall:
+                case (byte)SportTypes.Netball:
+                case (byte)SportTypes.FootBall:
+                case (byte)SportTypes.Rugby:
                     return SportTypes.BasketBall.ToString();
-                case (int)SportTypes.IceHockey:
-                case (int)SportTypes.FieldHockey:
+                case (byte)SportTypes.IceHockey:
+                case (byte)SportTypes.FieldHockey:
                     return SportTypes.IceHockey.ToString();
-                case (int)SportTypes.Tennis:
+                case (byte)SportTypes.Tennis:
                     return SportTypes.Tennis.ToString();
-                case (int)SportTypes.BaseBall:
+                case (byte)SportTypes.BaseBall:
                     return SportTypes.BaseBall.ToString();
-                case (int)SportTypes.VolleyBall:
-                case (int)SportTypes.Badminton:
-                case (int)SportTypes.Squash:
+                case (byte)SportTypes.VolleyBall:
+                case (byte)SportTypes.Badminton:
+                case (byte)SportTypes.Squash:
                     return SportTypes.Badminton.ToString();
-                case (int)SportTypes.Golf:
-                case (int)SportTypes.Motorsports:
-                case (int)SportTypes.Billard:
-                case (int)SportTypes.Cycling:
-                case (int)SportTypes.Fencing:
-                case (int)SportTypes.Judo:
-                case (int)SportTypes.ModernPentathlon:
-                case (int)SportTypes.Rowing:
-                case (int)SportTypes.Sailing:
-                case (int)SportTypes.Shooting:
-                case (int)SportTypes.Taekwondo:
-                case (int)SportTypes.Triathlon:
-                case (int)SportTypes.Wrestling:
+                case (byte)SportTypes.Golf:
+                case (byte)SportTypes.Motorsports:
+                case (byte)SportTypes.Billard:
+                case (byte)SportTypes.Cycling:
+                case (byte)SportTypes.Fencing:
+                case (byte)SportTypes.Judo:
+                case (byte)SportTypes.ModernPentathlon:
+                case (byte)SportTypes.Rowing:
+                case (byte)SportTypes.Sailing:
+                case (byte)SportTypes.Shooting:
+                case (byte)SportTypes.Taekwondo:
+                case (byte)SportTypes.Triathlon:
+                case (byte)SportTypes.Wrestling:
                     return SportTypes.Billard.ToString();
                 default:
                     return SportTypes.OtherSports.ToString();

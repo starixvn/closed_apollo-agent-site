@@ -125,7 +125,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 if (isShowMember)
                 {
-                    builder.AddMember(ticket, "<td class='c'>", "</td>");
+                    builder.AddMember(ticket, "<td class='l'>", "</td>");
                 }
 
                 builder.AddTrans(ticket, "<td class='c'>", "</td>")
