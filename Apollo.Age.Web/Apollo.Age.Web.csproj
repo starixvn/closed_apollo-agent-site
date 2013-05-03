@@ -38,7 +38,12 @@
     <Reference Include="Fanex.Common">
       <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>../Dependencies/Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -49,10 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseController.cs" />
+    <Compile Include="AuthController.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="SessionManager.cs" />
+    <Compile Include="ViewModels\SignIn2ViewModel.cs" />
+    <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\UnderMaintenanceViewModel.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Pager\IPagedList.cs" />

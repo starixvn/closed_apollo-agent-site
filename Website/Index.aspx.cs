@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Web;
+using System.Web.UI;
 using Sunplus.Agent.Utilities;
 
-public partial class Index : System.Web.UI.Page
+public partial class Index : Page
 {
     private const string DEFAULT_INDEX = "Message/Portal";
     protected string mainPage = null;
@@ -41,6 +42,7 @@ public partial class Index : System.Web.UI.Page
     protected override void OnInit(EventArgs e)
     {
         base.OnInit(e);
+
         if (!User.Identity.IsAuthenticated)
         {
             Response.Redirect("~/sso.aspx");

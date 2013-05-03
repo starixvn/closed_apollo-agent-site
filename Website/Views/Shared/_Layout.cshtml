@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <meta charset="utf-8" />
-    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-    <script src="~/_GlobalResources/Js/head.min.js" type="text/javascript"></script>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    @* <link href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Content/css")" rel="stylesheet" type="text/css" />
-        <link href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Content/themes/base/css")" rel="stylesheet" type="text/css" />
-        <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Scripts/js")"></script>*@
-    @RenderSection("css", required: false)
-    @*<link href="~/_TotalBets/Resources/TotalBets.less" rel="Stylesheet" type="text/css" />*@
-    <meta name="viewport" content="width=device-width" />
+	<meta charset="utf-8" />
+	<title>@ViewBag.Title</title>
+	<script src="~/_GlobalResources/Js/head.min.js" type="text/javascript"></script>
+	@RenderSection("css", false)
+
 </head>
 <body>
-    @RenderBody()
+	@RenderBody()
+
+	@Html.Hidden("ApoRoot", Url.Action("~/"))
+	@RenderSection("scripts", false)
 </body>
 </html>

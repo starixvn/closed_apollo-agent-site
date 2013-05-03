@@ -4395,4 +4395,10 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="soccerdeadballhdpgivenshare" xml:space="preserve">
     <value>Soccer Deadball HDP Given Share (%)</value>
   </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Unauthorized</value>
+  </data>
+  <data name="UnauthorizedMsg" xml:space="preserve">
+    <value>Your session has timed out or your request is not authorized</value>
+  </data>
 </root>
