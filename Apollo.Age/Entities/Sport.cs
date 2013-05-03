@@ -22,9 +22,9 @@ namespace Apollo.Age.Entities
     {
         public byte Id { get; set; }
 
-        public int VirtualId { get; set; }
-
         public string Name { get; set; }
+
+        public bool IsMixSportParlay { get; set; }
 
         public string ResourceKey { get; set; }
 

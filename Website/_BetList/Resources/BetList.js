@@ -105,18 +105,17 @@ function showCombMP(transid, orderID) {
 	}
 }
 
-function showCombMPDetail(refno, winlostdate, transid, betid, custid) {
-	var width = 750;
-	var height = 350;
-	var params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid;
+function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
+    var width = 750,
+        height = 350,
+        params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
+        detailTitle = $(target).siblings('.combinationLink').text();
 
-	if (parent.ageWnd) {
-		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), 'Detail', 50, 100, width, height);
-	}
-	else {
-		var detailTitle = $('.combinationLink').text();
-		ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
-	}
+    if (parent.ageWnd) {
+        parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), 'Detail', 50, 100, width, height);
+    } else {
+        ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
+    }
 }
 
 function InitExcelFunction() {

@@ -19,7 +19,7 @@
 				<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Resources.Lang.SportType)</label>
 			</div>
             <div class="editor">
-				@Html.DropDownListFor(m => m.SportType, Model.SportSelectListItem, new { id = "ddlSportType", style = "width: 120px" })
+				@Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", style = "width: 120px" })
             </div>
 		</div>
 		}

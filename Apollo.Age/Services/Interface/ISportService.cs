@@ -16,6 +16,6 @@ namespace Apollo.Age.Services.Interface
     {
         List<Sport> GetAllSportType();
 
-        List<BetType> GetBetTypeBySport(int sportId);
+        List<BetType> GetBetTypeBySport(short sportId, bool isMixSportParlay);
     }
 }

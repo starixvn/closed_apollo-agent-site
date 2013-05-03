@@ -86,7 +86,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                             "&quot;",
                                             ",&quot;",
                                             custid,
-                                            "&quot;);\">",
+                                            "&quot;, this);\">",
                                             CoreBetList.details,
                                             "</div>"
                                         }

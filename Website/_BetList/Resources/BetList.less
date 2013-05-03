@@ -221,25 +221,33 @@
 			}
 		}
 
-		tr.subtotal {
-			td {
-				background: lighten(@primaryColor, 35%);
-				font-weight: bold;
-				height: 24px;
-			}
-		}
-	}
-	
-	tfoot {
 		tr {
+		
+			&.subtotal {
+				td {
+					background: lighten(@primaryColor, 35%);
+					font-weight: bold;
+					height: 24px;
+				}
+			}
+
 			&.outstanding td {				
 				background: #ddd;
 				font-weight: bold;
 				border: 1px solid @borderColor;
 			}
+		}		
+	}
+	
+	tfoot {
+		tr {
 
 			&.total td {
 				font-weight: bold;
+				
+				.red-color {
+					color: @white;
+				}
 			}		
 		}
 	}
