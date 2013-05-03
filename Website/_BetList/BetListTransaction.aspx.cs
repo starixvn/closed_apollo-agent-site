@@ -98,7 +98,7 @@ namespace Sunplus.Agent.UI._BetList
                 ticketHelper.Index = index;
                 builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
                        .AddNo(index, "<td class='w-order'>", "</td>")
-                       .AddMember(ticket, "<td class='c'>", "</td>")
+                       .AddMember(ticket, "<td class='l'>", "</td>")
                        .AddTrans(ticket, "<td class='c'>", "</td>")
                        .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", false)
                        .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)

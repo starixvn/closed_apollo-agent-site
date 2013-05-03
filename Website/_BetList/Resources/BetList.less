@@ -16,7 +16,6 @@
 		float: left;
 		height: 18px;		
 		width: 18px;
-		margin-top: 5px;
 	}
 }
 
@@ -174,7 +173,6 @@
 /* Report for result */
 
 #box_header {
-	padding: 5px;
 	margin-bottom: 10px;
 	.date-range {
 		* {
@@ -223,25 +221,33 @@
 			}
 		}
 
-		tr.subtotal {
-			td {
-				background: lighten(@primaryColor, 35%);
-				font-weight: bold;
-				height: 25px;
-			}
-		}
-	}
-	
-	tfoot {
 		tr {
+		
+			&.subtotal {
+				td {
+					background: lighten(@primaryColor, 35%);
+					font-weight: bold;
+					height: 24px;
+				}
+			}
+
 			&.outstanding td {				
 				background: #ddd;
 				font-weight: bold;
 				border: 1px solid @borderColor;
 			}
+		}		
+	}
+	
+	tfoot {
+		tr {
 
 			&.total td {
 				font-weight: bold;
+				
+				.red-color {
+					color: @white;
+				}
 			}		
 		}
 	}
@@ -257,21 +263,21 @@
 	td {
 		vertical-align: middle;
 
-		span.bl_underdog {
+		.bl_underdog {
 			font-weight: normal;
 		}
 
-		span.bold {
+		.bold {
 			font-weight: normal !important;
 		}
 	}
 
 	&.total {
-		span.bl_underdog {
+		.bl_underdog {
 			font-weight: bold;
 		}
 
-		span.bold {
+		.bold {
 			font-weight: bold !important;
 		}
 	}

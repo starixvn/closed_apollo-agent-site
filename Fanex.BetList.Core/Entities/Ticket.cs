@@ -34,7 +34,7 @@ namespace Fanex.BetList.Core.Entities
 
         public decimal Handicap2 { get; set; }
 
-        public decimal MasterOdds { get; set; }
+        public decimal MOdds { get; set; }
 
         public string OddsType { get; set; }
 
@@ -47,6 +47,8 @@ namespace Fanex.BetList.Core.Entities
         public string BetTeam { get; set; }
 
         public string Status { get; set; }
+
+        public string BetStatus { get; set; }
 
         public int? StatusId { get; set; }
 

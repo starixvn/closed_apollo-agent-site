@@ -47,7 +47,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
             }
             else
             {
-                this.Template.odds = ConvertByBetType.Odds(ticket.MasterOdds);
+                this.Template.odds = ConvertByBetType.Odds(ticket.MOdds);
             }
 
             this.Template.oddsType = FuncGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType));

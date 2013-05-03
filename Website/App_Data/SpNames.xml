@@ -149,8 +149,50 @@
         <Setting Key="Age_BetList_SelDeleted_UserList_SAg" SpName="Age_BetList_SelDeleted_UserList_SAg" DbName="archive" Plain="0" />
         <Setting Key="Age_BetList_SelMatchResultFinance" SpName="Age_BetList_SelMatchResultFinance" DbName="DBAGE.BODB02" Plain="0" />
         <Setting Key="Age_BetList_SelMatchResultNumberGame" SpName="Age_BetList_SelMatchResultNumberGame" DbName="DBAGE.BODB02" Plain="0" />
-        <Setting Key="Age_BetList_SelMatchResultParlay" SpName="Age_BetList_SelMatchResultParlay" DbName="REPDB" Plain="0" />
-        <Setting Key="Age_BetList_SelMatchResult" SpName="Age_BetList_SelMatchResult" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_BetList_SelMatchResultParlay" SpName="Age_BetList_SelMatchResultParlay" DbName="REPDB" Plain="0">
+      <Mapping DataField="sporttype" ObjectProperty="SportId"/>
+      <Mapping DataField="betstatus" ObjectProperty="BetStatus"/>
+      <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
+      <Mapping DataField="matchid" ObjectProperty="MatchId"/>
+      <Mapping DataField="matchcode" ObjectProperty="MatchCode"/>
+      <Mapping DataField="eventdate" ObjectProperty="EvenDate"/>
+      <Mapping DataField="kickofftime" ObjectProperty="KickoffTime"/>
+      <Mapping DataField="homeID" ObjectProperty="HomeId"/>
+      <Mapping DataField="awayID" ObjectProperty="AwayId"/>
+      <Mapping DataField="hthomescore" ObjectProperty="HalfTimeHomeScore"/>
+      <Mapping DataField="htawayscore" ObjectProperty="HalfTimeAwayScore"/>
+      <Mapping DataField="finalhomescore" ObjectProperty="FinalHomeScore"/>
+      <Mapping DataField="finalawayscore" ObjectProperty="FinalAwayScore"/>
+      <Mapping DataField="eventstatus" ObjectProperty="EventStatus"/>
+      <Mapping DataField="showtime" ObjectProperty="ShowTime"/>
+      <Mapping DataField="isNeutral" ObjectProperty="IsNeutral"/>
+      <Mapping DataField="goalrecord" ObjectProperty="GoalRecord"/>
+      <Mapping DataField="IsHTCal" ObjectProperty="IsHalfTimeCalculate"/>
+      <Mapping DataField="calculate" ObjectProperty="Calculate"/>
+      <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
+    </Setting>
+    <Setting Key="Age_BetList_SelMatchResult" SpName="Age_BetList_SelMatchResult" DbName="REPDB" Plain="0">
+      <Mapping DataField="sporttype" ObjectProperty="SportId"/>
+      <Mapping DataField="betstatus" ObjectProperty="BetStatus"/>
+      <Mapping DataField="LeagueID" ObjectProperty="LeagueId"/>
+      <Mapping DataField="matchid" ObjectProperty="MatchId"/>
+      <Mapping DataField="matchcode" ObjectProperty="MatchCode"/>
+      <Mapping DataField="eventdate" ObjectProperty="EvenDate"/>
+      <Mapping DataField="kickofftime" ObjectProperty="KickoffTime"/>
+      <Mapping DataField="homeID" ObjectProperty="HomeId"/>
+      <Mapping DataField="awayID" ObjectProperty="AwayId"/>
+      <Mapping DataField="hthomescore" ObjectProperty="HalfTimeHomeScore"/>
+      <Mapping DataField="htawayscore" ObjectProperty="HalfTimeAwayScore"/>
+      <Mapping DataField="finalhomescore" ObjectProperty="FinalHomeScore"/>
+      <Mapping DataField="finalawayscore" ObjectProperty="FinalAwayScore"/>
+      <Mapping DataField="eventstatus" ObjectProperty="EventStatus"/>
+      <Mapping DataField="showtime" ObjectProperty="ShowTime"/>
+      <Mapping DataField="IsNeutral" ObjectProperty="IsNeutral"/>
+      <Mapping DataField="goalrecord" ObjectProperty="GoalRecord"/>
+      <Mapping DataField="IsHTCal" ObjectProperty="IsHalfTimeCalculate"/>
+      <Mapping DataField="calculate" ObjectProperty="Calculate"/>
+      <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
+    </Setting>
         <Setting Key="Age_BetList_SelRunningByBettype_Ag" SpName="Age_BetList_SelRunningByBettype_Ag" DbName="DBAGE.bodb_AGE" Plain="0" />
         <Setting Key="Age_BetList_SelRunningByBettype_MAg" SpName="Age_BetList_SelRunningByBettype_MAg" DbName="DBAGE.bodb_AGE" Plain="0" />
         <Setting Key="Age_BetList_SelRunningByBettype_SAg" SpName="Age_BetList_SelRunningByBettype_SAg" DbName="archive" Plain="0" />
