@@ -6,6 +6,8 @@ var AGENTLIST = function ($) {
         Username: null,
         AgentLevel: null,
         IsSuper: false,
+        IsMainShareHolder: false,
+        IsShareHolder: false,
         init: function () {
             AGENTLIST.AgentId = DEFAULTS.CurrentAgentId;
             AGENTLIST.loadNavigation();
@@ -39,7 +41,10 @@ var AGENTLIST = function ($) {
 
                     for (var i = 0; i < rowLength; i++) {
                         if (i == rowLength - 1) {
-                            AGENTLIST.IsSuper = (result[i].Level <= 2);
+                            AGENTLIST.IsSuper = (result[i].Level == 0);
+                            AGENTLIST.IsMainShareHolder = (result[i].Level == 1);
+                            AGENTLIST.IsShareHolder = (result[i].Level == 2);
+
                             AGENTLIST.Username = result[i].Username;
                             AGENTLIST.AgentLevel = result[i].Level;
                             AGENTLIST.AgentId = result[i].Id;
@@ -48,7 +53,7 @@ var AGENTLIST = function ($) {
                             $("#currUsername").html(AGENTLIST.Username);
                             AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
 
-                            if (AGENTLIST.IsSuper) {
+                            if (AGENTLIST.IsSuper || AGENTLIST.IsMainShareHolder || AGENTLIST.IsShareHolder) {
                                 $("#quickLinkCustomerList").hide();
                             }
                             else {
@@ -264,7 +269,7 @@ var AGENTLIST = function ($) {
                 marginRight: 0,
                 showPager: true,
                 customPager: true,
-                showColumnsShowHide: !AGENTLIST.IsSuper,
+                showColumnsShowHide: (!AGENTLIST.IsSuper && !AGENTLIST.IsMainShareHolder),
                 columnsNeedHide: [6],
                 showDistinctRow: true,
                 pagerOption: {
