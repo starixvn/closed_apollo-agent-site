@@ -53,17 +53,12 @@
 
                 var homeTeam = string.Empty;
                 var awayTeam = string.Empty;
+                List<string> homeSet = new List<string>() { "-", "-", "-", "-", "-" };
+                List<string> awaySet = new List<string>() { "-", "-", "-", "-", "-" };
 
-                var Q1Away = "-";
-                var Q1Home = "-";
-                var Q2Away = "-";
-                var Q2Home = "-";
-                var Q3Away = "-";
-                var Q3Home = "-";
-                var Q4Away = "-";
-                var Q4Home = "-";
                 var OTAway = string.Empty;
                 var OTHome = string.Empty;
+
                 eventStatus = item.EventStatus.ToLower();
 
                 if (eventStatus == "refund")
@@ -111,30 +106,24 @@
                     betStatus = item.BetStatus.ToLower();
 
                     //23-12,26-11,17-13,15-15
-                    if (!string.IsNullOrWhiteSpace(betStatus) || betStatus != "refund" || betStatus != "refund ht")
+                    if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
                     {
                         string[] listOfBetStatus = betStatus.Split(',');
-                        if (listOfBetStatus.Count() > 1)
+                        string[] sets = null;
+                        int i=0;
+                        foreach (var itemBetStatus in listOfBetStatus)
                         {
-                            Q1Home = listOfBetStatus[0].Split('-')[0];
-                            Q1Away = listOfBetStatus[0].Split('-')[1];
+                            sets = itemBetStatus.Split('-');                                                       
+                            homeSet[i] = sets[0];
+                            awaySet[i] = sets[1];
+                            i++;
+                            
+                        }
 
-                            Q2Home = listOfBetStatus[1].Split('-')[0];
-                            Q2Away = listOfBetStatus[1].Split('-')[1];
-
-                            Q3Home = listOfBetStatus[2].Split('-')[0];
-                            Q3Away = listOfBetStatus[2].Split('-')[1];
-
-                            Q4Home = listOfBetStatus[3].Split('-')[0];
-                            Q4Away = listOfBetStatus[3].Split('-')[1];
-
-                            if (listOfBetStatus.Count() > 4)
-                            {
-
-                                OTHome = listOfBetStatus[4].Split('-')[0];
-                                OTAway = listOfBetStatus[4].Split('-')[1];
-
-                            }
+                        if (listOfBetStatus.Count() > 4)
+                        {
+                            OTHome = listOfBetStatus[4].Split('-')[0];
+                            OTAway = listOfBetStatus[4].Split('-')[1];
                         }
                     }
 
@@ -158,16 +147,16 @@
                     @Html.Raw(homeTeam)
                 </td>
                 <td>
-                    @Q1Home
+                    @homeSet[0]
                 </td>
                 <td>
-                    @Q2Home
+                    @homeSet[1]
                 </td>
                 <td>
-                    @Q3Home
+                    @homeSet[2]
                 </td>
                 <td>
-                    @Q4Home
+                    @homeSet[3]
                 </td>
                 <td>
                     @OTHome
@@ -187,16 +176,16 @@
                     @Html.Raw(awayTeam)
                 </td>
                 <td>
-                    @Q1Away
+                    @awaySet[0]
                 </td>
                 <td>
-                    @Q2Away
+                    @awaySet[1]
                 </td>
                 <td>
-                    @Q3Away
+                    @awaySet[2]
                 </td>
                 <td>
-                    @Q4Away
+                    @awaySet[3]
                 </td>
                 <td>
                     @OTAway
