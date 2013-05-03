@@ -45,13 +45,9 @@
 
                 var homeTeam = string.Empty;
                 var awayTeam = string.Empty;
+                List<string> PHome = new List<string>() { "-", "-", "-", "-" };
+                List<string> PAway = new List<string>() { "-", "-", "-", "-" };
 
-                var P1Away = "-";
-                var P1Home = "-";
-                var P2Away = "-";
-                var P2Home = "-";
-                var P3Away = "-";
-                var P3Home = "-";
                 var OTAway = string.Empty;
                 var OTHome = string.Empty;
 
@@ -74,30 +70,28 @@
                     homeTeam = item.HomeTeam;
                     awayTeam = item.AwayTeam;
                 }
-                if (!string.IsNullOrWhiteSpace(betStatus))
+                if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
                 {
 
                     string[] listOfBetStatus = betStatus.Split(',');
-                    if (listOfBetStatus.Count() > 1)
+                    string[] itemsBetStatus = null;
+                    var i = 0;
+                    foreach (var x in listOfBetStatus)
                     {
-                        P1Home = listOfBetStatus[0].Split('-')[0];
-                        P1Away = listOfBetStatus[0].Split('-')[1];
+                        itemsBetStatus = x.Split('-');
 
-                        P2Home = listOfBetStatus[1].Split('-')[0];
-                        P2Away = listOfBetStatus[1].Split('-')[1];
+                        PHome[i] = itemsBetStatus[0];
+                        PAway[i] = itemsBetStatus[1];
+                        i++;
 
-                        P3Home = listOfBetStatus[2].Split('-')[0];
-                        P3Away = listOfBetStatus[2].Split('-')[1];
-
-                        if (listOfBetStatus.Count() > 3)
-                        {
-
-                            OTHome = listOfBetStatus[3].Split('-')[0];
-                            OTAway = listOfBetStatus[3].Split('-')[1];
-
-                        }
                     }
+                    if (listOfBetStatus.Count() > 3)
+                    {
 
+                        OTHome = listOfBetStatus[3].Split('-')[0];
+                        OTAway = listOfBetStatus[3].Split('-')[1];
+
+                    }
                 }
 
                 if (currentLeagueId != item.LeagueId)
@@ -118,13 +112,13 @@
                     @Html.Raw(homeTeam)
                 </td>
                 <td>
-                    @P1Home
+                    @PHome[0]
                 </td>
                 <td>
-                    @P2Home
+                    @PHome[1]
                 </td>
                 <td>
-                    @P3Home
+                    @PHome[2]
                 </td>
                 <td>
                     @OTHome
@@ -141,13 +135,13 @@
                     @Html.Raw(awayTeam)
                 </td>
                 <td>
-                    @P1Away
+                    @PAway[0]
                 </td>
                 <td>
-                    @P2Away
+                    @PAway[1]
                 </td>
                 <td>
-                    @P3Away
+                    @PAway[2]
                 </td>
                 <td>
                     @OTAway

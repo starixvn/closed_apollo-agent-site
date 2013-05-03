@@ -52,16 +52,9 @@
                 var homeTeam = string.Empty;
                 var awayTeam = string.Empty;
 
-                var S1Away = "-";
-                var S1Home = "-";
-                var S2Away = "-";
-                var S2Home = "-";
-                var S3Away = "-";
-                var S3Home = "-";
-                var S4Away = "-";
-                var S4Home = "-";
-                var S5Away = "-";
-                var S5Home = "-";
+                List<string> homeSets = new List<string> { "-", "-", "-", "-", "-" };
+                List<string> awaySets = new List<string> { "-", "-", "-", "-", "-" };
+
                 var totalPointAway = string.Empty;
                 var totalPointHome = string.Empty;
 
@@ -85,34 +78,27 @@
                     awayTeam = item.AwayTeam;
                 }
 
-                if (!string.IsNullOrWhiteSpace(betStatus))
+                if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
                 {
 
                     string[] listOfBetStatus = betStatus.Split(',');
-                    if (listOfBetStatus.Count() > 1)
+                    var i = 0;
+                    string[] itemsBetStatus = null;
+                    var totalGameHome = 0;
+                    var totalGameAway = 0;
+                    foreach (var x in listOfBetStatus)
                     {
-                        S1Home = listOfBetStatus[0].Split('-')[0];
-                        S1Away = listOfBetStatus[0].Split('-')[1];
+                        itemsBetStatus = x.Split('-');
+                        homeSets[i] = itemsBetStatus[0];
+                        awaySets[i] = itemsBetStatus[1];
 
-                        S2Home = listOfBetStatus[1].Split('-')[0];
-                        S2Away = listOfBetStatus[1].Split('-')[1];
-
-                        S3Home = listOfBetStatus[2].Split('-')[0];
-                        S3Away = listOfBetStatus[2].Split('-')[1];
-
-                        S4Home = listOfBetStatus[3].Split('-')[0];
-                        S4Away = listOfBetStatus[3].Split('-')[1];
-
-                        S5Home = listOfBetStatus[4].Split('-')[0];
-                        S5Away = listOfBetStatus[4].Split('-')[1];
-
-                        var totalGameHome = Convert.ToInt32(S1Home) + Convert.ToInt32(S2Home) + Convert.ToInt32(S3Home) + Convert.ToInt32(S4Home) + Convert.ToInt32(S5Home);
-                        var totalGameAway = Convert.ToInt32(S1Away) + Convert.ToInt32(S2Away) + Convert.ToInt32(S3Away) + Convert.ToInt32(S4Away) + Convert.ToInt32(S5Away);
-
-                        totalPointHome = totalGameHome > 0 ? totalGameHome.ToString() : string.Empty;
-                        totalPointAway = totalGameAway > 0 ? totalGameAway.ToString() : string.Empty;
+                        totalGameHome += Convert.ToInt32(homeSets[i]);
+                        totalGameAway += Convert.ToInt32(awaySets[i]);
+                        i++;
 
                     }
+                    totalPointHome = totalGameHome > 0 ? totalGameHome.ToString() : string.Empty;
+                    totalPointAway = totalGameAway > 0 ? totalGameAway.ToString() : string.Empty;
 
                 }
 
@@ -134,19 +120,19 @@
                     @Html.Raw(homeTeam)
                 </td>
                 <td>
-                    @S1Home
+                    @homeSets[0]
                 </td>
                 <td>
-                    @S2Home
+                    @homeSets[1]
                 </td>
                 <td>
-                    @S3Home
+                    @homeSets[2]
                 </td>
                 <td>
-                    @S4Home
+                    @homeSets[3]
                 </td>
                 <td>
-                    @S5Home
+                    @homeSets[4]
                 </td>
                 <td>
                     @totalPointHome
@@ -163,19 +149,19 @@
                     @Html.Raw(awayTeam)
                 </td>
                 <td>
-                    @S1Away
+                    @awaySets[0]
                 </td>
                 <td>
-                    @S2Away
+                    @awaySets[1]
                 </td>
                 <td>
-                    @S3Away
+                    @awaySets[2]
                 </td>
                 <td>
-                    @S4Away
+                    @awaySets[3]
                 </td>
                 <td>
-                    @S5Away
+                    @awaySets[4]
                 </td>
                 <td>
                     @totalPointAway
