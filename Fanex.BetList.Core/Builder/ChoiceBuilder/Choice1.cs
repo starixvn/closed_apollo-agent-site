@@ -5,12 +5,12 @@
 // ---------------------------------------------------------------------------------
 // <history>
 //     <change who="Marc.Bui" date="2012.11.16">Create</change>
-//     <change who="Marc.Bui" date="2012.11.26">Add Odds to show in Mix Parlay bettypes 
-//                                              (ones with RefNo != 100000000000) </change> 
-//     <change who="Marc.Bui" date="2012.12.4">Add Excel rendering </change> 
+//     <change who="Marc.Bui" date="2012.11.26">Add Odds to show in Mix Parlay bettypes
+//                                              (ones with RefNo != 100000000000) </change>
+//     <change who="Marc.Bui" date="2012.12.4">Add Excel rendering </change>
 //     <change who="Marc.Bui" date="2013.01.18">Update ScoreClassName to BL_FAVORITE (red)
 //                                              for all bettypes</change>
-//     <change who="Marc.Bui" date="2013.02.05">Update betteam when the match is Neutral </change> 
+//     <change who="Marc.Bui" date="2013.02.05">Update betteam when the match is Neutral </change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         protected const string BL_UNDER_DOG = "underdog";
         protected const string BL_FAVORITE = "favorite";
 
-        #endregion
+        #endregion Attributes
 
         #region Constructors
 
@@ -45,13 +45,13 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template = new Choice_Template();
         }
 
-        #endregion
+        #endregion Constructors
 
         #region Properties
 
         public Choice_Template Template { get; set; }
 
-        #endregion
+        #endregion Properties
 
         /// <summary>
         /// Renders the specified ticket.
@@ -116,10 +116,10 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
             this.Template.homeTeam = string.Join(
                                                     null,
-                                                    new string[] 
-                                                    { 
-                                                        homeName, 
-                                                        ticket.IsNeutral ? " (N) " : string.Empty 
+                                                    new string[]
+                                                    {
+                                                        homeName,
+                                                        ticket.IsNeutral ? " (N) " : string.Empty
                                                     }
                                                 );
 
@@ -129,7 +129,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.home_firstGoal_lastGoal = string.Empty;
             this.Template.away_firstGoal_lastGoal = string.Empty;
 
-            this.CalculateFG_LG(ticket.EventStatus, ref this.Template.home_firstGoal_lastGoal, ref this.Template.away_firstGoal_lastGoal);
+            this.CalculateFG_LG(ticket.BetStatus, ref this.Template.home_firstGoal_lastGoal, ref this.Template.away_firstGoal_lastGoal);
 
             bool betHomeTeam = ticket.BetTeam != null && ticket.BetTeam.Contains("h");
 
