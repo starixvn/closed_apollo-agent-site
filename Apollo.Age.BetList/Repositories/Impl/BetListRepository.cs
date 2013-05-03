@@ -468,6 +468,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsShowTime = columnCollection.Contains("showtime");
             var containsUsername = columnCollection.Contains("username");
             var containsStatus = columnCollection.Contains("status");
+            var containsBetStatus = columnCollection.Contains("betstatus");
             var containsBetTeam = columnCollection.Contains("betteam");
             var containsIP = columnCollection.Contains("ip");
             var containsOddsType = columnCollection.Contains("oddstype");
@@ -520,6 +521,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.ShowTime = containsShowTime ? Converter.ToString2(dataRow["showtime"]) : string.Empty;
                 ticket.UserName = containsUsername ? Converter.ToString2(dataRow["username"]) : string.Empty;
                 ticket.Status = containsStatus ? Converter.ToString2(dataRow["status"]) : string.Empty;
+                ticket.BetStatus = containsBetStatus ? Converter.ToString2(dataRow["betstatus"]) : string.Empty;
                 ticket.BetTeam = containsBetTeam ? Converter.ToString2(dataRow["betteam"]) : string.Empty;
                 ticket.IP = containsIP ? Converter.ToString2(dataRow["ip"]) : string.Empty;
                 ticket.OddsType = containsOddsType ? Converter.ToString2(dataRow["oddstype"]) : "0";

@@ -48,6 +48,8 @@ namespace Fanex.BetList.Core.Entities
         /// </summary>
         string Status { get; set; }
 
+        string BetStatus { get; set; }
+
         int? StatusId { get; set; }
 
         string RefNo { get; set; }

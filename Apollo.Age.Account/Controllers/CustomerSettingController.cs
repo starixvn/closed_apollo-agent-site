@@ -179,14 +179,15 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) agent
         /// </summary>
         /// <param name="username">selected agent username</param>
-        public ActionResult AgentShare(int? agentId, string userName, int? sportType, int? betType, bool? isLive)
+        public ActionResult AgentShare(int? agentId, string userName, short? sportType, short? betType, bool? isLive, bool? isMixSportParlay)
         {
-            var sportId = sportType.HasValue ? Converter.To<short>(sportType.Value) : Converter.To<short>(1);
-            var betTypeId = betType.HasValue ? Converter.To<short>(betType.Value) : Converter.To<short>(1);
+            var sportId = sportType.HasValue ? sportType.Value : Converter.To<short>(1);
+            var betTypeId = betType.HasValue ? betType.Value : Converter.To<short>(1);
             var live = isLive.HasValue ? isLive.Value : false;
+            var isMixSport = isMixSportParlay.HasValue ? isMixSportParlay.Value : false;
 
             var sportList = _sportService.GetAllSportType();
-            var betTypeList = _sportService.GetBetTypeBySport(sportId);
+            var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
 
             foreach (var sportItem in sportList)
             {
@@ -236,14 +237,15 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) member
         /// </summary>
         /// <param name="username">selected member username</param>
-        public ActionResult MemberShare(int? memberId, string userName, int? sportType, int? betType, bool? isLive)
+        public ActionResult MemberShare(int? memberId, string userName, short? sportType, short? betType, bool? isLive, bool? isMixSportParlay)
         {
-            var sportId = sportType.HasValue ? Converter.To<short>(sportType.Value) : Converter.To<short>(1);
-            var betTypeId = betType.HasValue ? Converter.To<short>(betType.Value) : Converter.To<short>(1);
+            var sportId = sportType.HasValue ? sportType.Value : Converter.To<short>(1);
+            var betTypeId = betType.HasValue ? betType.Value : Converter.To<short>(1);
             var live = isLive.HasValue ? isLive.Value : false;
+            var isMixSport = isMixSportParlay.HasValue ? isMixSportParlay.Value : false;
 
             var sportList = _sportService.GetAllSportType();
-            var betTypeList = _sportService.GetBetTypeBySport(sportId);
+            var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
 
             foreach (var sportItem in sportList)
             {
@@ -282,10 +284,10 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
         }
 
-        public JsonResult GetBetType(int sportId)
+        public JsonResult GetBetType(short sportId, bool isMixSportParlay)
         {
             var view = new AgentShareViewModel();
-            view.BetTypeList = _sportService.GetBetTypeBySport(sportId);
+            view.BetTypeList = _sportService.GetBetTypeBySport(sportId, isMixSportParlay);
 
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
