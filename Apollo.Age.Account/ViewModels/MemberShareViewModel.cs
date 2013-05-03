@@ -28,6 +28,15 @@ namespace Apollo.Age.Account.ViewModels
 
         public bool IsLive { get; set; }
 
+        public string SportTypeSelected
+        {
+            get
+            {
+                // hard code with Mix Sports Parlay: SportType == 99 && BetType == 9
+                return (this.SportType == 99 && this.BetType == 9) ? ("1-" + this.SportType.ToString()) : ("0-" + this.SportType.ToString());
+            }
+        }
+
         public string BetTypeSelected
         {
             get
@@ -48,7 +57,7 @@ namespace Apollo.Age.Account.ViewModels
             {
                 var selectItemList = SportList.Select(sport => new SelectListItem
                 {
-                    Value = sport.Id.ToString(),
+                    Value = sport.IsMixSportParlay ? ("1-" + sport.Id.ToString()) : ("0-" + sport.Id.ToString()),
                     Text = sport.Name
                 }).ToList<SelectListItem>();
 
