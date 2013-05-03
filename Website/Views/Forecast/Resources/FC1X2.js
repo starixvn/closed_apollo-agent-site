@@ -43,6 +43,9 @@ if (typeof jQuery != 'undefined') {
             + '&type=BettypeMatch'
             + '&leagueName=' + FC1X2.cuurentLeagueName);
 
+                if (currentMainShareHolderId > 0) {
+                	url += "&mainShareHolderId=" + currentMainShareHolderId + "&isForecast=true";
+                }
                 //location.href = url;
                 ageWnd.openDialog(url, 'BET LIST', {
                     width: 930,
