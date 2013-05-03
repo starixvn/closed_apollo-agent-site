@@ -96,7 +96,7 @@
 						</a>
 					</td>
 					<td class="r">
-						@item.SoccerShare/100
+                        @Formater.FormatNumber20(item.SoccerShare / 100, Formater.CULT_NAME_ENG)
 					</td>
 					<td class="r">
 						@Formater.FormatNumber20(item.Turnover, Formater.CULT_NAME_ENG)
@@ -204,7 +204,7 @@ else
 					</td>
 				}
 				<td class="r">
-					@item.SoccerShare/100
+					@Formater.FormatNumber20(item.SoccerShare / 100, Formater.CULT_NAME_ENG)
 				</td>
 				<td class="r">
 					@Formater.FormatNumber20(item.Turnover, Formater.CULT_NAME_ENG)

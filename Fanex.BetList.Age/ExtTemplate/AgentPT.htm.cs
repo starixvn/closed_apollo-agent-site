@@ -38,7 +38,7 @@ namespace Fanex.BetList.Age
 		{
 			protected static string s0 = "<span class=\"bl_underdog\">";
 			public string agentPT_setting = "{agentPT_setting}";
-			protected static string s1 = "</span><br />";
+			protected static string s1 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -56,7 +56,7 @@ namespace Fanex.BetList.Age
 		{
 			protected static string s2 = "<span class=\"bl_underdog\">";
 			public string agentPT_value = "{agentPT_value}";
-			protected static string s3 = "</span><br />";
+			protected static string s3 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
