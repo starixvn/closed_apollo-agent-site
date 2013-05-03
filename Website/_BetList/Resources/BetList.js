@@ -61,10 +61,10 @@ function ViewSportBookResult(matchId, sportId) {
 	var params = '?matchId= ' + matchId + '&sportId=' + sportId;
 
 	if (parent.ageWnd) {
-		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), 'View result', 50, 100, width, height);
+	    parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), 'View result', 50, 100, width, height);
 	}
 	else {
-		ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), 'View result', 50, 100, width, height);
+	    ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), 'View result', 50, 100, width, height);
 	}
 }
 

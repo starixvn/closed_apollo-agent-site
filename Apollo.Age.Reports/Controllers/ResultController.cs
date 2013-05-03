@@ -100,7 +100,7 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult MatchResult(int matchId, int sportId)
+        public ActionResult ResultByMatch(int matchId, int sportId)
         {
             IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
 
