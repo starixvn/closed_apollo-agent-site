@@ -36,7 +36,7 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #region Ctors
-        
+
         public ResultsController() : this(null) { }
 
         public ResultsController(ResultService resultService = null)
@@ -44,7 +44,7 @@ namespace Apollo.Age.Reports.Controllers
             _resultService = resultService ?? new ResultService();
         }
 
-        #endregion
+        #endregion Ctors
 
         #region Match Results
 
@@ -85,7 +85,7 @@ namespace Apollo.Age.Reports.Controllers
             return Json(leagues, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetMatchResult(DateTime date, byte sportId, int leagueId = -1)
+        public ActionResult ResultByLeague(DateTime date, byte sportId, int leagueId = -1)
         {
             IEnumerable<MatchResultModel> matchResults =
                 _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
@@ -100,7 +100,7 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult MatchResult(int matchId, int sportId)
+        public ActionResult ResultByMatch(int matchId, int sportId)
         {
             IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
 
@@ -171,7 +171,7 @@ namespace Apollo.Age.Reports.Controllers
             }
         }
 
-        #endregion Match Result
+        #endregion Match Results
 
         #region Outright Results
 
@@ -226,6 +226,6 @@ namespace Apollo.Age.Reports.Controllers
             return View(outrightResults);
         }
 
-        #endregion Outright Result
+        #endregion Outright Results
     }
 }

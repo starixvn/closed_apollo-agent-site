@@ -63,7 +63,8 @@ namespace Apollo.Age.Services.Impl
                     {
                         sport = new Sport()
                         {
-                            Id = sportId,
+                            Id = Converter.To<byte>(sportId),
+                            VirtualId = Converter.To<short>(sportId),
                             Name = sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value.ToString(),
                             ResourceKey = sportTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                             BetTypeList = new List<BetType>()
@@ -78,7 +79,8 @@ namespace Apollo.Age.Services.Impl
                         {
                             sport = new Sport()
                             {
-                                Id = -sportId,
+                                Id = Converter.To<byte>(sportId),
+                                VirtualId = -sportId,
                                 Name = sportName,
                                 ResourceKey = sportTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                                 BetTypeList = new List<BetType>()
@@ -142,7 +144,7 @@ namespace Apollo.Age.Services.Impl
                 GetAllSportType();
             }
 
-            var sport = SportList.Where(t => t.Id == sportId).SingleOrDefault();
+            var sport = SportList.Where(t => t.VirtualId == sportId).SingleOrDefault();
 
             if (sport != null)
             {

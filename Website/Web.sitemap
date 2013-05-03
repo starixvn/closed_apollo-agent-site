@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode title="AGE">
-    
+
     <!--Totalbets-->
     <siteMapNode title="totalbets" active="true">
       <siteMapNode title="lblHOUL" url="TotalBets/Handicap"></siteMapNode>
@@ -19,7 +19,7 @@
       <siteMapNode title="lblHomeDrawAwayNoBet" url="TotalBets/HomeNoBet"></siteMapNode>
       <siteMapNode title="bettype26" url="_BetList/BetList.aspx?bettype=26&amp;type=Bettype"></siteMapNode>
       <siteMapNode title="bettype27" url="_BetList/BetList.aspx?bettype=27&amp;type=Bettype"></siteMapNode>
-      <siteMapNode title="bettype28" url="_BetList/BetList.aspx?bettype=28&amp;type=Bettype"></siteMapNode>      
+      <siteMapNode title="bettype28" url="_BetList/BetList.aspx?bettype=28&amp;type=Bettype"></siteMapNode>
     </siteMapNode>
     <!--/Totalbets-->
 
@@ -36,9 +36,9 @@
       <siteMapNode title="agentwinloss" url="Reports/MatchEntered"></siteMapNode>
       <siteMapNode title="lblAgentOutstanding" url="Reports/Outstanding"></siteMapNode>
       <siteMapNode title="TicketCancelled" url="_BetList/BetListTransaction.aspx?type=cancel"></siteMapNode>
-      <siteMapNode title="transaction" url="_BetList/BetListTransaction.aspx?type=transaction"></siteMapNode>    
+      <siteMapNode title="transaction" url="_BetList/BetListTransaction.aspx?type=transaction"></siteMapNode>
       <siteMapNode title="lblOutrightResult" url="Results/Outright"></siteMapNode>
-      <siteMapNode title="MatchResults" url="Results/Match"></siteMapNode>
+      <siteMapNode title="lblMatchResult" url="Results/Match"></siteMapNode>
 
     </siteMapNode>
     <!--/Report-->
@@ -49,7 +49,7 @@
       <siteMapNode title="lblPlayerList" url="Account/MemberList" isAgentOnly="true"></siteMapNode>
       <siteMapNode title="lblViewAllSetting" url="CustomerSetting/MySetting" isAgentOnly="true" ></siteMapNode>
       <siteMapNode title="ViewShare" url="CustomerSetting/AgentShare" ></siteMapNode>
-      <siteMapNode title="ViewCommission" url="CustomerSetting/ViewCommission" ></siteMapNode>    
+      <siteMapNode title="ViewCommission" url="CustomerSetting/ViewCommission" ></siteMapNode>
     </siteMapNode>
     <!--/MemberInfo-->
 

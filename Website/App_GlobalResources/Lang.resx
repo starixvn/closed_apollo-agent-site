@@ -4390,9 +4390,9 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Main Shareholder</value>
   </data>
   <data name="lblMatchResult" xml:space="preserve">
-    <value>Match Result</value>
-  </data>
-  <data name="MatchResults" xml:space="preserve">
     <value>Match Results</value>
+  </data>
+  <data name="soccerdeadballhdpgivenshare" xml:space="preserve">
+    <value>Soccer Deadball HDP Given Share (%)</value>
   </data>
 </root>

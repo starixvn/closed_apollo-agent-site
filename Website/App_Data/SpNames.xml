@@ -148,8 +148,8 @@
     <Setting Key="Age_BetList_SelDeleted_UserList_SAg" SpName="Age_BetList_SelDeleted_UserList_SAg" DbName="archive" Plain="0" />
     <Setting Key="Age_BetList_SelMatchResultFinance" SpName="Age_BetList_SelMatchResultFinance" DbName="DBAGE.BODB02" Plain="0" />
     <Setting Key="Age_BetList_SelMatchResultNumberGame" SpName="Age_BetList_SelMatchResultNumberGame" DbName="DBAGE.BODB02" Plain="0" />
-    <Setting Key="Age_BetList_SelMatchResultParlay" SpName="Age_BetList_SelMatchResultParlay" DbName="DBAGE.BODB02" Plain="0" />
-    <Setting Key="Age_BetList_SelMatchResult" SpName="Age_BetList_SelMatchResult" DbName="DBAGE.BODB02" Plain="0" />
+    <Setting Key="Age_BetList_SelMatchResultParlay" SpName="Age_BetList_SelMatchResultParlay" DbName="REPDB" Plain="0" />
+    <Setting Key="Age_BetList_SelMatchResult" SpName="Age_BetList_SelMatchResult" DbName="REPDB" Plain="0" />
     <Setting Key="Age_BetList_SelRunningByBettype_Ag" SpName="Age_BetList_SelRunningByBettype_Ag" DbName="DBAGE.bodb_AGE" Plain="0" />
     <Setting Key="Age_BetList_SelRunningByBettype_MAg" SpName="Age_BetList_SelRunningByBettype_MAg" DbName="DBAGE.bodb_AGE" Plain="0" />
     <Setting Key="Age_BetList_SelRunningByBettype_SAg" SpName="Age_BetList_SelRunningByBettype_SAg" DbName="archive" Plain="0" />
