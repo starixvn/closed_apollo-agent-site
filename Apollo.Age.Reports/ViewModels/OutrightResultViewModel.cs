@@ -38,7 +38,7 @@ namespace Apollo.Age.Reports.ViewModels
                 if (OutrightResult != null && OutrightResult.Any())
                 {
                     return OutrightResult
-                        .Select(item => new Sport { Id = (int)item.SportId, Name = item.SportName })
+                        .Select(item => new Sport { Id = (byte)item.SportId, Name = item.SportName })
                         .Distinct();
                 }
 
