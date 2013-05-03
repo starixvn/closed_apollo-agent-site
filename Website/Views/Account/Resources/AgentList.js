@@ -204,7 +204,7 @@ var AGENTLIST = function ($) {
                         ]
             }];
             if (AGENTLIST.IsSuper) {
-                currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapGivenShare", MergeRowNumber: 2 });
+                currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDPGivenShare, Name: "HandicapGivenShare", MergeRowNumber: 2 });
             }
             else {
                 currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapGivenShare", MergeColNumber: 2 });
@@ -246,7 +246,7 @@ var AGENTLIST = function ($) {
                          { HeaderText: LANGUAGES.Other, Width: 100, Name: "Other", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ];
             if (AGENTLIST.IsSuper) {
-                currentContentColumns.push({ HeaderText: LANGUAGES.GivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
+                currentContentColumns.push({ HeaderText: LANGUAGES.SoccerDeadballHDPGivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
             }
             else {
                 currentContentColumns.push({ HeaderText: LANGUAGES.GivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
