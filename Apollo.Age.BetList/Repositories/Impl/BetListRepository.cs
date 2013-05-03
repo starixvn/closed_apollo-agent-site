@@ -491,6 +491,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
             // Money
             var containsOdds = columnCollection.Contains("odds");
+            var containsMOdds = columnCollection.Contains("Modds");
             var containsHandicap1 = columnCollection.Contains("hdp1");
             var containsHandicap2 = columnCollection.Contains("hdp2");
             var containsStake = columnCollection.Contains("stake");
@@ -543,6 +544,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
                 // Money
                 ticket.Odds = containsOdds ? Converter.ToDecimal(dataRow["odds"]) : 0;
+                ticket.MOdds = containsMOdds ? Converter.ToDecimal(dataRow["modds"]) : 0;
                 ticket.Handicap1 = containsHandicap1 ? Converter.ToDecimal(dataRow["hdp1"]) : 0;
                 ticket.Handicap2 = containsHandicap2 ? Converter.ToDecimal(dataRow["hdp2"]) : 0;
                 ticket.Stake = containsStake ? Converter.ToDecimal(dataRow["stake"]) : 0;
