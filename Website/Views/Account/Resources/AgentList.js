@@ -39,7 +39,7 @@ var AGENTLIST = function ($) {
 
                     for (var i = 0; i < rowLength; i++) {
                         if (i == rowLength - 1) {
-                            AGENTLIST.IsSuper = (result[i].Level == 0 || result[i].Level == 1);
+                            AGENTLIST.IsSuper = (result[i].Level <= 2);
                             AGENTLIST.Username = result[i].Username;
                             AGENTLIST.AgentLevel = result[i].Level;
                             AGENTLIST.AgentId = result[i].Id;
