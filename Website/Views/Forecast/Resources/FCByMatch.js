@@ -33,6 +33,9 @@ if (typeof jQuery != 'undefined') {
             + '&type=BettypeMatch'
             + '&leagueName=' + leagueName);
                     parent.$(".ui-dialog .ui-dialog-title").text("BET LIST");
+                    if (currentMainShareHolderId > 0) {
+                    	url += "&mainShareHolderId=" + currentMainShareHolderId +"&isForecast=true";
+                    }
                     location.href = url;
                 });
 

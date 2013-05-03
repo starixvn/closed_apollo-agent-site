@@ -28,8 +28,8 @@ namespace Fanex.Agent.UI
 			protected static string s12 = "</th></tr></thead><tbody>";
 			public CombinationMixParlayRow_RowData_Block RowData = new CombinationMixParlayRow_RowData_Block();
 			public CombinationMixParlayRow_SubSummary_Block SubSummary = new CombinationMixParlayRow_SubSummary_Block();
-			protected static string s13 = "</tbody><tfoot>";
 			public CombinationMixParlayRow_OutStanding_Block OutStanding = new CombinationMixParlayRow_OutStanding_Block();
+			protected static string s13 = "</tbody><tfoot>";
 			public CombinationMixParlayRow_Summary_Block Summary = new CombinationMixParlayRow_Summary_Block();
 			protected static string s14 = "</tfoot></table>";
 			public override void ToString(ref StringBuilder bd)
@@ -52,8 +52,8 @@ namespace Fanex.Agent.UI
 					bd.Append(s12);
 					if(null != RowData) RowData.ToString(ref bd);
 					if(null != SubSummary) SubSummary.ToString(ref bd);
-					bd.Append(s13);
 					if(null != OutStanding) OutStanding.ToString(ref bd);
+					bd.Append(s13);
 					if(null != Summary) Summary.ToString(ref bd);
 					bd.Append(s14);
 				}

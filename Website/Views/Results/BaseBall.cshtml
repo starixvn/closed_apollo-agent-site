@@ -101,7 +101,7 @@
                     awayTeam = item.AwayTeam;
                 }
 
-                if (!string.IsNullOrWhiteSpace(betStatus))
+                if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
                 {
 
                     string[] listOfBetStatus = betStatus.Split(',');

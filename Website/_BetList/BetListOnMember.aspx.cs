@@ -95,7 +95,7 @@ namespace Sunplus.Agent.UI._BetList
             var forecastService = new ForecastService();
             var listBetType = forecastService.GetListScoreMapBetType();
             bool isShowScoremap;
-            bool isAdminCanViewVNIP = true;//CurrentSession.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = true;
 
             #endregion INIT
 
@@ -228,8 +228,8 @@ namespace Sunplus.Agent.UI._BetList
         {
             get
             {
-                return SessionManager.Instance.CurrentSession;             
-            }           
+                return SessionManager.Instance.CurrentSession;
+            }
         }
     }
 }
