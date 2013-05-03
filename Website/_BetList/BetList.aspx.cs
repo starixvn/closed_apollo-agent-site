@@ -16,17 +16,22 @@ namespace Sunplus.Agent.UI._BetList
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
     using System.Text;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Services;
+    using Apollo.Age.Criterias;
+    using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Forecast.Services;
+    using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
-    using Fanex.Age.UI.Reports;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Age.ExtTemplate;
@@ -45,6 +50,10 @@ namespace Sunplus.Agent.UI._BetList
         private DateTime dateFrom = DateTime.Now;
         private DateTime dateTo = DateTime.Now;
         private string mainShareHolderId, mainShareHolderUsername;
+        private BetListTemplate tpl = new BetListTemplate();
+        private TotalBetsService totalBetsService = new TotalBetsService();
+        private IEnumerable<Agent> mainShareHolders;
+        private int loggedId;
 
         #endregion Variables
 
@@ -89,7 +98,6 @@ namespace Sunplus.Agent.UI._BetList
 
             #region RENDER HTML
 
-            var tpl = new BetListTemplate { title = title };
             var content = new StringBuilder();
 
             content.Append(betlistHeader);
@@ -99,7 +107,7 @@ namespace Sunplus.Agent.UI._BetList
             var listBetType = forecastService.GetListScoreMapBetType();
             bool isShowScoremap;
             int index = 0;
-            bool isAdminCanViewVNIP = true;//CurrentSession.IsAdminCanViewVNIP;
+            bool isAdminCanViewVNIP = true;
 
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             var ticketHelper = new TicketHelper();
@@ -142,10 +150,20 @@ namespace Sunplus.Agent.UI._BetList
             content.Append(builder.GetBetList());
             content.Append("</tbody>");
 
+            tpl.title = title;
             tpl.content = content.ToString();
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
+
+            if (CurrentSession.IsSuper)
+            {
+                this.BoxMainShareholder();
+            }
+            else
+            {
+                tpl.MainShareHolder.Hide();
+            }
             writer.Write(tpl);
 
             RegisterJavascriptObject("type", type);
@@ -160,7 +178,7 @@ namespace Sunplus.Agent.UI._BetList
             var betListService = new BetListService();
             var criteria = new BetListCriteria
             {
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = loggedId,
                 Bettypes = bettype,
                 MatchId = matchId,
                 LiveIndicator = live,
@@ -190,6 +208,25 @@ namespace Sunplus.Agent.UI._BetList
             mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
             mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
             live = GetIntRequest("islive", 0);
+
+            if (CurrentSession.IsSuper)
+            {
+                mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria());
+                var currentMainShareHolderId = GetIntRequest("currentMainShareHolderId", 0);
+
+                if (currentMainShareHolderId > 0)
+                {
+                    loggedId = currentMainShareHolderId;
+                }
+                else
+                {
+                    loggedId = mainShareHolders.ElementAt(0).Id;
+                }
+            }
+            else
+            {
+                loggedId = CurrentSession.AgentId;
+            }
 
             if (type.ToLower().Equals("correctscore"))
             {
@@ -254,7 +291,45 @@ namespace Sunplus.Agent.UI._BetList
             get
             {
                 return SessionManager.Instance.CurrentSession;
-            }           
+            }
         }
+
+        #region Box Main Shareholder
+
+        private DataTable CreateMainShareholderData()
+        {
+            var mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria());
+
+            DataTable dataTable = new DataTable();
+            DataColumn column;
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "value";
+            dataTable.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "text";
+            dataTable.Columns.Add(column);
+
+            DataRow row;
+
+            foreach (var mainShareHolder in mainShareHolders)
+            {
+                row = dataTable.NewRow();
+                row["value"] = mainShareHolder.Id.ToString();
+                row["text"] = mainShareHolder.Username;
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
+        }
+
+        private void BoxMainShareholder()
+        {
+            tpl.MainShareHolder.option_agent = HtmlGenerator.ComboBox("ddlMainShareHolder", loggedId.ToString(), this.CreateMainShareholderData(), "value", "text", null, 280);
+        }
+
+        #endregion Box Main Shareholder
     }
 }

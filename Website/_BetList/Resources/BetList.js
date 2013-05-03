@@ -49,7 +49,7 @@ function ViewMixParlayResult(refno) {
 	var width = 730;
 	var height = 450;
 	var params = '?refNo=' + refno;
-    ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), '', 50, 100, width, height);
+	ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), '', 50, 100, width, height);
 }
 
 function ViewSportBookResult(matchId, sportId) {
@@ -58,10 +58,10 @@ function ViewSportBookResult(matchId, sportId) {
 	var params = '?matchId= ' + matchId + '&sportId=' + sportId;
 
 	if (parent.ageWnd) {
-	    parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
+		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
 	}
 	else {
-	    ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
+		ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
 	}
 }
 
@@ -259,6 +259,23 @@ if (typeof jQuery != "undefined") {
 					});
 				},
 				position: { my: "right top", at: "right bottom" }
+			});
+		}
+
+		if (typeof ($("#ddlMainShareHolder").val()) !== 'undefined') {
+			$("#ddlMainShareHolder").change(function () {
+				var $this = $(this);
+				var markIndex = document.location.href.indexOf('?');
+				var link = document.location.href;
+				if (markIndex > 0) {
+					//link = document.location.href.substring(0, markIndex);
+					var markIndexShareHolderId = document.location.href.indexOf("&currentMainShareHolderId=");
+					if (markIndexShareHolderId > 0) {
+						link = document.location.href.substring(0, markIndexShareHolderId);
+					}
+					link = link + "&currentMainShareHolderId=" + $this.val();
+				}
+				document.location.href = link;
 			});
 		}
 	});
