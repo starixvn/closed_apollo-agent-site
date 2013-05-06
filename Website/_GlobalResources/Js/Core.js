@@ -40,9 +40,7 @@ if (typeof jQuery != 'undefined') {
 				var apoRoot = $('#ApoRoot');
 
 				if (apoRoot.length == 0) {
-					if (typeof console != 'undefined') {
-						console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
-					}
+					APOLLO.console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
 				} else {
 					if (url.substr(0, 2) == '~/') {
 						url = url.substr(2);
@@ -132,56 +130,80 @@ if (typeof jQuery != 'undefined') {
 								$this.datepicker('setDate', new Date(y, m, d));
 							};
 
-						$this.datepicker({
-							defaultDate: new Date($this.val()),
-							dateFormat: "mm/dd/yy",
-							showOn: "button",
-							buttonImageOnly: true,
-							buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png"),
-							buttonText: "Select Date",
-							minDate: limitDate("mindate"),
-							maxDate: limitDate("maxdate"),
-							beforeShow: function (input, inst) {
-								inst.dpDiv.css({ marginTop: '2px' });
-							}
-						}).keydown(function (e) {
-							var arrow = { left: 37, up: 38, right: 39, down: 40 };
+                        $this.datepicker({
+                            defaultDate: new Date($this.val()),
+                            dateFormat: "mm/dd/yy",
+                            minDate: limitDate("mindate"),
+                            maxDate: limitDate("maxdate"),
+                            beforeShow: function (input, inst) {
+                                inst.dpDiv.css({ marginTop: '2px' });
+                            }
+                        }).keydown(function (e) {
+                            var arrow = { left: 37, up: 38, right: 39, down: 40 };
 
-							switch (e.keyCode) {
-								case arrow.up:
-									shiftDate(1);
-									break;
-								case arrow.down:
-									shiftDate(-1);
-									break;
-							}
-						});
+                            switch (e.keyCode) {
+                                case arrow.up:
+                                    shiftDate(1);
+                                    break;
+                                case arrow.down:
+                                    shiftDate(-1);
+                                    break;
+                            }
+                        });
 
+                        // show calendar when clicking on "calendar" image
+                        $this.next('.img-calendar').click(function () {
+                            $this.datepicker("show");
+                        })
 					});
 				}
 			},
 
 			initPageInfo: function () {
-				var pageInfo = $('#page-info'); // hidden field contains the page info
+				var infos = $('.infos');
 
-				// if page-info exists then it should be showed as a popup
-				if (pageInfo.length > 0) {
-					var pageInfoIcon = $('<div class="page-info" />').appendTo('#header_main');
-					var title = pageInfo.attr('title');
-					var tipTitle = pageInfo.attr('tip-title');
+				infos.each(function () {
+					var $this = $(this),
+						thisId = $this.attr('id'),
+						title = $this.attr('title'),
+						tipTitle = $this.attr('tip-title'),
+						trigger;
 
-					pageInfoIcon.attr('title', tipTitle ? tipTitle : title)
+					trigger = thisId == 'page-info'
+						? $('<div class="page-info" />').appendTo('#header_main')
+						: $('#' + thisId.substr(0, thisId.length - 5)); // 5 is the length of "-info";
+
+					trigger.attr('title', tipTitle ? tipTitle : title)
 						.tooltip({
-							position: {
-								my: "right-10 center", at: "center center+5"
-							},
+							position: { my: "right-10 center", at: "center center+5" },
 							show: null,
 							hide: null
 						})
 						.click(function () {
-							APOLLO.openDialog(pageInfo, title, { modal: false });
+							APOLLO.openDialog($this, title, { modal: false });
 						});
-				}
+				});
+
+				//                var pageInfo = $('#page-info'); // hidden field contains the page info
+
+				//                // if page-info exists then it should be showed as a popup
+				//                if (pageInfo.length > 0) {
+				//                    var pageInfoIcon = $('<div class="page-info" />').appendTo('#header_main');
+				//                    var title = pageInfo.attr('title');
+				//                    var tipTitle = pageInfo.attr('tip-title');
+
+				//                    pageInfoIcon.attr('title', tipTitle ? tipTitle : title)
+				//						.tooltip({
+				//						    position: {
+				//						        my: "right-10 center", at: "center center+5"
+				//						    },
+				//						    show: null,
+				//						    hide: null
+				//						})
+				//						.click(function () {
+				//						    APOLLO.openDialog(pageInfo, title, { modal: false });
+				//						});
+				//                }
 			},
 
 			init: function () {
@@ -933,7 +955,11 @@ function _startup() {
 		var select = age.firstFormElement("select");
 		var item = age.beforeElement(input, select);
 		try {
-			if (item) item.focus();
+		    if (item) {
+		        if (!$('input').hasClass('datepicker')) {
+		            item.focus();
+		        }
+            }
 		}
 		catch (e)
 		{ }

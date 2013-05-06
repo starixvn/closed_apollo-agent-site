@@ -19,6 +19,8 @@ namespace Apollo.Age.Web
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Fanex.Common.Extensions;
+    using Apollo.Age.Services.Impl;
+    using System.Web.Security;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
 
@@ -33,6 +35,7 @@ namespace Apollo.Age.Web
             {
                 CheckAuthenticationRequest();
                 CheckValidDownline();
+                CheckKickOut(filterContext);
             }
 
             base.OnActionExecuting(filterContext);
@@ -61,6 +64,33 @@ namespace Apollo.Age.Web
                     Response.Redirect("~/Auth/Unauthorized");
                 }
             }
+        }
+
+        private void CheckKickOut(ActionExecutingContext filterContext)
+        {
+            var isKickOut = PermissionService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
+            if (isKickOut)
+            {
+                if (Request.IsAjaxRequest())
+                {
+                    Response.Buffer = true;
+                    Response.Write("<center><b>" + GetResourceData("lblAccountWasStopped") + "</b></center>");
+                    Response.Flush();
+                    Response.Close();
+                    Response.End();
+                }
+                else
+                {
+                    Response.Redirect("~/Auth/AccountStopped");
+                }
+            }
+        }
+
+        private void DoSignOut()
+        {
+            Response.Cookies.Clear();
+            Session.Abandon();
+            FormsAuthentication.SignOut();
         }
 
         protected ICurrentSession CurrentSession

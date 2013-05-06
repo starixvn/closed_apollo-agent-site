@@ -36,16 +36,18 @@ namespace Apollo.Age.Integration.Controllers
             _authService = authService ?? new AuthenticationService();
             _userService = userService ?? new UserService();
         }
+
         [AllowAnonymous]
-        public ViewResult Index()
+        public ViewResult Index(string user_id, string lang)
         {
+            ViewBag.Username = user_id;
+            ViewBag.Language = ConvertToApolloLanguage(lang);
             return View();
         }
 
         [AllowAnonymous]
-        public ViewResult GetCode(string code, string error)
+        public ActionResult GetCode(string code, string error, string state, string username, string language)
         {
-      
             if (!string.IsNullOrWhiteSpace(error))
             {
                 return Error(code);
@@ -56,20 +58,34 @@ namespace Apollo.Age.Integration.Controllers
 
             if (!ReferenceEquals(authModel, null) && authModel.IsValid)
             {
-
                 Entities.User user = _userService.GetUserByUsername(authModel.Username);
 
-                if (user != null)
-                {
-                
-                            
-                    ICurrentSession currentSession = new CurrentSession(user);
+                if (user != null && user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
+                {                    
+                    ICurrentSession currentSession = new CurrentSession(user, language);
                     FormsAuthentication.SetAuthCookie(user.Username, true);                    
-                    return View(currentSession);
+
+                    RedirectToAction("RedirectFromSsoPage", currentSession);
                 }
             }
 
-            return View(authMsg);
+            return Error(authMsg);
+        }
+
+
+        /// <summary>
+        /// this action requires authentication, param from current session
+        /// </summary>
+        /// <param name="currentSession"></param>
+        /// <returns></returns>
+        public ViewResult RedirectFromSsoPage(ICurrentSession currentSession)
+        {
+            if (currentSession != null)
+            {
+                return View();
+            }
+
+            return Error();
         }
 
         /// <summary>
@@ -77,7 +93,7 @@ namespace Apollo.Age.Integration.Controllers
         /// </summary>
         /// <param name="error"></param>
         /// <returns></returns>
-        public ViewResult Error(string error)
+        public ViewResult Error(string error="")
         {
             string errorMessage = string.Empty;
 
@@ -87,10 +103,10 @@ namespace Apollo.Age.Integration.Controllers
                     errorMessage = "invalid request";
                     break;
                 case "unauthorized_client":
-                    errorMessage = "invalid_request";
+                    errorMessage = "unauthorized_client";
                     break;
                 case "access_denied":
-                    errorMessage = "invalid_request";
+                    errorMessage = "access_denied";
                     break;
                 case "unsupported_response_type":
                     errorMessage = "unsupported_response_type";
@@ -105,6 +121,31 @@ namespace Apollo.Age.Integration.Controllers
             }
 
             return View((object)errorMessage);
+        }
+
+        /// <summary>
+        /// Convert language of sungame to apo language
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]        
+        private string ConvertToApolloLanguage(string langOfSungame)
+        {
+            switch (langOfSungame)
+            {                 
+                case "zh_TW" :
+                    return "zh-TW";
+                case "zh_GB" :
+                    return "zh-CN";
+                case "ja_JP" :
+                    return "ja-JP";
+                case "th_TH":
+                    return "th-TH";
+                case "vm_VM":
+                    return "vi-VN";
+                case "en_US":
+                default:
+                    return "en-US";
+            }
         }
     }
 }

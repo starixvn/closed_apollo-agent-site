@@ -61,11 +61,11 @@ namespace Apollo.Age.Repositories.Impl
                     }
                     else
                     {
-                        return (int)CustomerStatus.Closed;
+                        return (int)CustomerStatus.Locked;
                     }
                 }
             }
-            return (int)CustomerStatus.Closed;
+            return (int)CustomerStatus.Locked;
         }
 
         public ICommandResult Delete(User entity)

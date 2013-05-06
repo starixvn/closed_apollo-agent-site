@@ -12,7 +12,7 @@ if (typeof (Validators) == 'undefined') { // Require Validators library
 }
 Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
     this.items = bettingLimitItems;
-    var validateExpr = /^(\$|)([0-9]\d{0,2}(\,\d{3})*|([0-9]\d*))(\.?\d*)?$/;
+    var validateExpr = /^(\$|)([0-9]\d{0,2}(\,\d{3})*)$/;
     this.Validate = function () {
 
         if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return true;
@@ -245,7 +245,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         header.innerHTML = Language.BET_SETTING_HEADER;
         header.className = "pt-grid-header";
         var saveButton = document.createElement("SPAN");
-        saveButton.className = "save-component-setting";
+        saveButton.className = "section-info";
+        saveButton.id = "bet-limit-info-button";
         header.appendChild(saveButton);
         container.appendChild(header);
 
