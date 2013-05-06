@@ -10,13 +10,13 @@
             <th>
                 @Resources.Lang.match
             </th>
-            <th style="width: 70px;">
+            <th style="width: 100px;">
                 @Resources.Lang.firsthalfscore
             </th>
-            <th style="width: 70px;">
+            <th style="width: 100px;">
                 @Resources.Lang.finalscore
             </th>
-            <th style="width: 65px;">
+            <th style="width: 100px;">
                 @Resources.Lang.status
             </th>
         </tr>
@@ -43,7 +43,7 @@
 
                 if (finalHomeScore > finalAwayScore)
                 {
-                    homeTeam = "<b>" + item.HomeTeam + (item.IsNeutral ? Resources.Lang.IsNeutral : string.Empty) + "</b>";
+                    homeTeam = "<b>" + item.HomeTeam + "</b>";
                     awayTeam = item.AwayTeam;
                 }
                 else if (finalHomeScore < finalAwayScore)

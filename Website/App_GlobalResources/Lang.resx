@@ -4252,7 +4252,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Sports</value>
   </data>
   <data name="transaction" xml:space="preserve">
-    <value>Transaction</value>
+    <value>Transactions</value>
   </data>
   <data name="Actual" xml:space="preserve">
     <value>Actual</value>
@@ -4300,7 +4300,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Soccer Deadball HDP Taken Share(%)</value>
   </data>
   <data name="TicketCancelled" xml:space="preserve">
-    <value>Ticket Cancelled</value>
+    <value>Tickets Cancelled</value>
   </data>
   <data name="Others" xml:space="preserve">
     <value>Others</value>
@@ -4401,22 +4401,28 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="UnauthorizedMsg" xml:space="preserve">
     <value>Your session has timed out or your request is not authorized</value>
   </data>
-  <data name="access_denied" xml:space="preserve">
-    <value>Access Denied</value>
+  <data name="lblEditAgentSetting" xml:space="preserve">
+    <value>Edit Agent Setting - {0}</value>
   </data>
-  <data name="invalid_request" xml:space="preserve">
-    <value>Invalid Request</value>
+  <data name="lblViewSetting" xml:space="preserve">
+    <value>View Setting</value>
   </data>
-  <data name="server_error" xml:space="preserve">
-    <value>Server Error</value>
+  <data name="lblEditMemberSetting" xml:space="preserve">
+    <value>Edit Member Setting - {0}</value>
   </data>
-  <data name="temporarily_unavailable" xml:space="preserve">
-    <value>Temporarily Unavailable</value>
+  <data name="lblInvalidValueRange" xml:space="preserve">
+    <value>Invalid Value Range</value>
   </data>
-  <data name="unauthorized_client" xml:space="preserve">
-    <value>Unauthorized Client</value>
+  <data name="lblViewAgentSetting" xml:space="preserve">
+    <value>View Agent Setting - {0}</value>
   </data>
-  <data name="unsupported_response_type" xml:space="preserve">
-    <value>Unsupported Response Type</value>
+  <data name="lblViewMemberSetting" xml:space="preserve">
+    <value>View Member Setting - {0}</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="ViewSportsbook" xml:space="preserve">
+    <value>View Sportsbook</value>
   </data>
 </root>

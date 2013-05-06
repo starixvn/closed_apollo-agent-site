@@ -1,7 +1,10 @@
 ﻿@using Apollo.Age.Entities;
+@using Apollo.Age.Web;
 @{
-    ViewBag.Title = "Agent List";
+    ViewBag.Title = Resources.Lang.lblAgentList;
     ViewBag.HeaderTitle = Resources.Lang.lblAgentListOf;
+    var titleFormat = ViewBag.IsMaster == true ? Resources.Lang.lblEditAgentSetting : Resources.Lang.lblViewAgentSetting;
+    titleFormat = string.Format(titleFormat, string.Empty);
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
 @section css
@@ -25,7 +28,8 @@
     <script language="javascript" type="text/javascript">
         var DEFAULTS = function () {
             return {
-                CurrentAgentId: "@ViewBag.AgentId"
+                CurrentAgentId: "@ViewBag.AgentId",
+                IsMaster: @(ViewBag.IsMaster ? "true" : "false")
             };
         } ();
         var LANGUAGES = function () {
@@ -33,7 +37,7 @@
                 Username: "@Resources.Lang.usernameEdited",
                 Status: "@Resources.Lang.status",
                 BetStatus: "@Resources.Lang.betstatus",
-                Edit: "@Resources.Lang.edit",
+                Edit: "@(ViewBag.IsMaster ? Resources.Lang.edit : Resources.Lang.view) ",
                 NumberOfAgent: "@Resources.Lang.lblAgent",
                 NumberOfMember: "@Resources.Lang.lblMember",
                 GroupA: "@Resources.Lang.lblGroupa",
@@ -53,7 +57,10 @@
                 Active: "@Resources.Lang.lblActive",
                 ViewAgentDownline: "@Resources.Lang.lblViewAgentDownline",
                 ViewMember: "@Resources.Lang.lblViewMember",
-                EditSetting: "@Resources.Lang.lblEditSetting"
+                EditSetting: "@Resources.Lang.lblEditSetting",
+                ViewSetting: "@Resources.Lang.lblViewSetting",
+                PopUpTitle: "@titleFormat"
+
             };
         } ();
     </script>

@@ -1,6 +1,6 @@
 ﻿@{
-    var isViewSetting = ViewBag.IsViewShareSetting ?? false;
-    var showHeader = ViewBag.ShowHeader;
+    var isShowHeader = ViewBag.IsShowHeader ?? false;
+    var isMaster = ViewBag.IsMaster ?? false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -18,7 +18,7 @@
 <body>
     @RazorHelper.Piwik()
     <div id="page_main">
-        @if (isViewSetting || showHeader)
+        @if (isShowHeader)
         { 
             <div id="header_main">
                 @ViewBag.Title
@@ -29,7 +29,7 @@
                 <span id="simple-mode" class="deactive-mode">@Resources.Lang.lblSimpleModel</span>
                 | <span class="active-mode" id="advanced-mode">@Resources.Lang.lblAdvancedMode</span>
             </div>
-            @if (isViewSetting)
+            @if (!isMaster)
             {
                 <div id="settingContainer">
                     @RenderBody()
@@ -42,11 +42,13 @@
                         @Resources.Lang.lblWarningEditSetting</div>
                     @RenderBody()
                 </div>
-                    
-                <div class="btnLeft">
-                    <button id="btnSubmitFooter" class="btn" style="display: none;">
-                        @Resources.Lang.update</button>
-                </div>
+                    if (ViewBag.IsMaster)
+                    {
+                        <div class="btnLeft">
+                            <button id="btnSubmitFooter" class="btn" style="display: none;">
+                                @Resources.Lang.update</button>
+                        </div>
+                    }
             }
         </div>
     </div>
@@ -124,7 +126,7 @@
             SPORT_BOOK: "@(Resources.Lang.sportBook)",
             SIMPLE_MODE_MAX_POSITION: "@(Resources.Lang.lblGivenShare)",
             SIMPLE_MODE_PRESET_POSITION: "@(Resources.Lang.lblTakenShare)",
-            INVALID_RANGE: "Invalid Value Range"
+            INVALID_RANGE: "@(Resources.Lang.lblInvalidValueRange)"
         };
         var invalidComMessage = '@(Resources.Lang.lblInvalidGroupCommissionRange)';
     </script>

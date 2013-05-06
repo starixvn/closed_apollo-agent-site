@@ -42,7 +42,7 @@ var MEMBERLIST = function ($) {
                                 + "&userName=" + $this.attr("username")
                                 + "&userGroup=" + $this.attr("userGroup")
                                 + "&agentId=" + $("#gridId").attr("agentId"));
-            MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Member Setting - ' + $this.attr("username"), {
+            MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, LANGUAGES.PopUpTitle + $this.attr("username"), {
                 width: 970,
                 height: 450,
                 position: { my: "top+25%", at: "center top", of: window },
@@ -59,7 +59,7 @@ var MEMBERLIST = function ($) {
                 var $this = $(this);
                 var url = APOLLO.resolveUrl("CustomerSetting/EditAgentSetting?agentId=" + $this.attr("agentId")
                 + "&agentLevel=" + $this.attr("agentLevel"));
-                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, 'Edit Agent Setting - ' + $this.attr('username'), {
+                MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, LANGUAGES.PopUpAgentTitle + $this.attr('username'), {
                     width: 970,
                     height: 450,
                     position: { my: "top+25%", at: "center top", of: window },
@@ -92,8 +92,14 @@ var MEMBERLIST = function ($) {
             }
         },
         initMemberList: function (memberList) {
-            var bodyData = [];
+            var icon = "icon-th-large";
+            var tooltip = LANGUAGES.ViewSetting;
+            if (DEFAULTS.IsMaster) {
+                icon = "icon-pencil";
+                tooltip = LANGUAGES.EditSetting;
+            }
 
+            var bodyData = [];
             var rowLength = memberList.ListData.length;
             var counter = (memberList.CurrentPage * memberList.ItemsPerPage);
             for (var i = 0; i < rowLength; i++) {
@@ -141,7 +147,7 @@ var MEMBERLIST = function ($) {
                          { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return "<a href='#' title='" + LANGUAGES.EditSetting + "' class='edit-setting icon-pencil' name='Edit' userGroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " memberId=" + cell.Value.MemberId + " ></a>";
+                                 return "<a href='#' title='" + tooltip + "' class='edit-setting " + icon + "' name='Edit' userGroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " memberId=" + cell.Value.MemberId + " ></a>";
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
@@ -182,7 +188,8 @@ var MEMBERLIST = function ($) {
                     totalItem: memberList.TotalItem,
                     itemsPerPageArray: [10, 20, 50, 100, 200, 500],
                     pagerSelectCallBack: ReRenderAfterPaged
-                }
+                },
+                bodyRowHeight: 28
             };
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
                 $.ajax({

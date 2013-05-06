@@ -19,6 +19,7 @@
 			</div>
 			<div class="editor">
 			   @Html.DatePicker("FromDate", maxDate, minDate, maxDate)
+               <img src="~/_GlobalResources/Css/img/cal/calendar_10.png" class="img-calendar">
 			</div>
 		</div>
 		<div class="cell">
@@ -27,6 +28,7 @@
 			</div>
 			<div class="editor">
 				@Html.DatePicker("ToDate", maxDate, minDate, maxDate)
+                <img src="~/_GlobalResources/Css/img/cal/calendar_10.png" class="img-calendar">
 			</div>
 		</div>
 		<div class="cell">
@@ -38,72 +40,73 @@
 </div>
 
 <table class="tblRpt" style="width:auto; min-width: 700px;">
-    <thead>
-        <tr>
-            <td rowspan="2">
-                @Resources.Lang.Sports 
-            </td>
-            <td colspan="2">
-                @Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
-            </td>
-            <td colspan="2">
-                @Formater.ShortDateFormat(DateTime.Now)
-            </td>
-        </tr>
-        <tr>
-            <td style="width:120px;">
-                @Resources.Lang.entered
-            </td>
-            <td style="width:120px;">
-                @Resources.Lang.nonentered
-            </td>
-            <td style="width:120px;">
-                @Resources.Lang.entered
-            </td>
-            <td style="width:120px;">
-                @Resources.Lang.nonentered
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Any())
-        {
-            int i = 1;
-            string rowClass = string.Empty;
-            
-            foreach (var item in Model)
-            {
-                rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
-                <tr @Html.Raw(rowClass)>
-                    <td>
-                        @item.SportTypeName
-                    </td>
-                    <td class="fcnum r">
-                        @item.YesterdayEntered
-                    </td>
-                    <td class="fcnum r">
-                        @item.YesterdayNonEntered
-                    </td>
-                    <td class="fcnum r">
-                        @item.TodayEntered
-                    </td>
-                    <td class="fcnum r">
-                        @item.TodayNonEntered
-                    </td>
-                </tr>
-            }
-        }
-        else
-        {
-            @RazorHelper.ShowNoInfo(5) 
-        }
-    </tbody>
+	<thead>
+		<tr>
+			<td rowspan="2">
+				@Resources.Lang.Sports 
+			</td>
+			<td colspan="2">
+				@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
+			</td>
+			<td colspan="2">
+				@Formater.ShortDateFormat(DateTime.Now)
+			</td>
+		</tr>
+		<tr>
+			<td style="width:120px;">
+				@Resources.Lang.entered
+			</td>
+			<td style="width:120px;">
+				@Resources.Lang.nonentered
+			</td>
+			<td style="width:120px;">
+				@Resources.Lang.entered
+			</td>
+			<td style="width:120px;">
+				@Resources.Lang.nonentered
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Any())
+		{
+			int i = 1;
+			string rowClass = string.Empty;
+			
+			foreach (var item in Model)
+			{
+				rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+				<tr @Html.Raw(rowClass)>
+					<td>
+						@item.SportTypeName
+					</td>
+					<td class="fcnum r">
+						@item.YesterdayEntered
+					</td>
+					<td class="fcnum r">
+						@item.YesterdayNonEntered
+					</td>
+					<td class="fcnum r">
+						@item.TodayEntered
+					</td>
+					<td class="fcnum r">
+						@item.TodayNonEntered
+					</td>
+				</tr>
+			}
+		}
+		else
+		{
+			@RazorHelper.ShowNoInfo(5) 
+		}
+	</tbody>
 </table>
 
-@RazorHelper.PageInfo(
+@RazorHelper.Info(
 	@<div style="width: 600px; height: 600px">
 		@ViewBag.Title INFO
 	</div>
+	, null
 	, title: ViewBag.Title as string
 	, tipTitle: "Click to view Agent WinLoss INFO"
 )

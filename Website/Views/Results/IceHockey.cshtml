@@ -22,10 +22,10 @@
             <td style="width: 50px;">
                 @Resources.Lang.OT
             </td>
-            <td class="nowrap" style="width: 70px;">
+            <td class="nowrap" style="width: 100px;">
                 @Resources.Lang.finalscore
             </td>
-            <td class="nowrap" style="width: 60px;">
+            <td class="nowrap" style="width: 100px;">
                 @Resources.Lang.status
             </td>
         </tr>
@@ -57,7 +57,7 @@
 
                 if (finalHomeScore > finalAwayScore)
                 {
-                    homeTeam = "<b>" + item.HomeTeam + (item.IsNeutral ? Resources.Lang.IsNeutral : string.Empty) + "</b>";
+                    homeTeam = "<b>" + item.HomeTeam + "</b>";
                     awayTeam = item.AwayTeam;
                 }
                 else if (finalHomeScore < finalAwayScore)
