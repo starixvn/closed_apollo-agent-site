@@ -18,6 +18,7 @@ namespace Apollo.Age.Account.Controllers
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
+    using System.Web.SessionState;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
@@ -26,6 +27,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Pager;
     using Fanex.Common;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
     {
         private const int PAGEINDEX = 0; // Current index page
