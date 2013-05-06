@@ -17,11 +17,11 @@ namespace Apollo.Age.Web
     using System.Diagnostics.CodeAnalysis;
     using System.Net;
     using System.Web.Mvc;
-
+    using System.Web.SessionState;
     using Fanex.Common.Extensions;
 
-
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -33,14 +33,13 @@ namespace Apollo.Age.Web
             {
                 CheckAuthenticationRequest();
                 CheckValidDownline();
-            }            
+            }
 
             base.OnActionExecuting(filterContext);
         }
 
         private void CheckValidDownline()
         {
-
         }
 
         private void CheckAuthenticationRequest()
@@ -48,8 +47,8 @@ namespace Apollo.Age.Web
             if (!Request.IsAuthenticated || CurrentSession == null)
             {
                 // redirect user to a page with corresponding message
-                // your session is timeout or the request is not authenticated               
-                
+                // your session is timeout or the request is not authenticated
+
                 if (Request.IsAjaxRequest())
                 {
                     // this will redirect the request to SignIn action
@@ -60,7 +59,6 @@ namespace Apollo.Age.Web
                 else
                 {
                     Response.Redirect("~/Auth/Unauthorized");
-
                 }
             }
         }
