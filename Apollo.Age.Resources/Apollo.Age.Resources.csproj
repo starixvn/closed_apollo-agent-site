@@ -66,6 +66,15 @@
     <EmbeddedResource Include="LangMsg.zh-CN.resx" />
     <EmbeddedResource Include="LangMsg.zh-TW.resx" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Viewlog.ja-JP.resx.exclude" />
+    <None Include="Viewlog.ko-KR.resx.exclude" />
+    <None Include="Viewlog.resx.exclude" />
+    <None Include="Viewlog.th-TH.resx.exclude" />
+    <None Include="Viewlog.vi-VN.resx.exclude" />
+    <None Include="Viewlog.zh-CN.resx.exclude" />
+    <None Include="Viewlog.zh-TW.resx.exclude" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
