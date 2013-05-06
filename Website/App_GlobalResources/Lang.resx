@@ -4402,21 +4402,21 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Your session has timed out or your request is not authorized</value>
   </data>
   <data name="lblEditAgentSetting" xml:space="preserve">
-    <value>Edit Agent {0} Setting</value>
+    <value>Edit Agent Setting - {0}</value>
   </data>
   <data name="lblViewSetting" xml:space="preserve">
     <value>View Setting</value>
   </data>
   <data name="lblEditMemberSetting" xml:space="preserve">
-    <value>Edit Member {0} Setting</value>
+    <value>Edit Member Setting - {0}</value>
   </data>
   <data name="lblInvalidValueRange" xml:space="preserve">
     <value>Invalid Value Range</value>
   </data>
   <data name="lblViewAgentSetting" xml:space="preserve">
-    <value>View Agent {0} Setting</value>
+    <value>View Agent Setting - {0}</value>
   </data>
   <data name="lblViewMemberSetting" xml:space="preserve">
-    <value>View Member {0} Setting</value>
+    <value>View Member Setting - {0}</value>
   </data>
 </root>

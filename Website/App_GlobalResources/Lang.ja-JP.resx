@@ -4132,18 +4132,18 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Confirm Update Members\'s PT</value>
   </data>
   <data name="lblEditAgentSetting" xml:space="preserve">
-    <value>Edit Agent {0} Setting</value>
+    <value>Edit Agent Setting - {0}</value>
   </data>
   <data name="lblEditMemberSetting" xml:space="preserve">
-    <value>Edit Member {0} Setting</value>
+    <value>Edit Member Setting - {0}</value>
   </data>
   <data name="lblInvalidValueRange" xml:space="preserve">
     <value>Invalid Value Range</value>
   </data>
   <data name="lblViewAgentSetting" xml:space="preserve">
-    <value>View Agent {0} Setting</value>
+    <value>View Agent Setting - {0}</value>
   </data>
   <data name="lblViewMemberSetting" xml:space="preserve">
-    <value>View Member {0} Setting</value>
+    <value>View Member Setting - {0}</value>
   </data>
 </root>
