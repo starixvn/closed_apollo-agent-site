@@ -4401,6 +4401,9 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="UnauthorizedMsg" xml:space="preserve">
     <value>Your session has timed out or your request is not authorized</value>
   </data>
+  <data name="lblViewSetting" xml:space="preserve">
+    <value>View Setting</value>
+  </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign In</value>
   </data>

@@ -269,11 +269,14 @@ namespace Apollo.Age.Account.Controllers
         {
             CurrentAgentId = agentId;
             ViewBag.AgentId = CurrentAgentId.Value;
+            ViewBag.IsMaster = CurrentSession.IsMaster;
             return View();
         }
 
         public ActionResult MemberList(int? agentId)
         {
+            ViewBag.IsMaster = CurrentSession.IsMaster;
+
             CurrentAgentId = agentId;
 
             var criteria = new AgentDownlinePathCriteria()
