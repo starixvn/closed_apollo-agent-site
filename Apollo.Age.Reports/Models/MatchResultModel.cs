@@ -56,7 +56,7 @@ namespace Apollo.Age.Reports.Models
         {
             get
             {
-                return string.Format("{0} {1}", CacheRef.GetTeamName(this.AwayId), this.IsNeutral ? "(N)" : string.Empty);
+                return CacheRef.GetTeamName(this.AwayId);
             }
         }
 
