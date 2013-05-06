@@ -142,5 +142,10 @@ namespace Apollo.Age.Web
         {
             return View();
         }
+
+        public ActionResult AccountStopped()
+        {
+            return View();
+        }
     }
 }
