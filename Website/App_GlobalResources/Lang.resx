@@ -4252,7 +4252,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Sports</value>
   </data>
   <data name="transaction" xml:space="preserve">
-    <value>Transaction</value>
+    <value>Transactions</value>
   </data>
   <data name="Actual" xml:space="preserve">
     <value>Actual</value>
@@ -4300,7 +4300,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Soccer Deadball HDP Taken Share(%)</value>
   </data>
   <data name="TicketCancelled" xml:space="preserve">
-    <value>Ticket Cancelled</value>
+    <value>Tickets Cancelled</value>
   </data>
   <data name="Others" xml:space="preserve">
     <value>Others</value>
