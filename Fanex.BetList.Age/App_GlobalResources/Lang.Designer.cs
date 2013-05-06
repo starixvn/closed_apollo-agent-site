@@ -5687,6 +5687,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        internal static string lblNA {
+            get {
+                return ResourceManager.GetString("lblNA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Neither.
         /// </summary>
         internal static string lblNeither {

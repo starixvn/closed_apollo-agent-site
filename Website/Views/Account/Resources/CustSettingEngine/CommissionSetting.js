@@ -314,7 +314,8 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         header.innerHTML = Language.COMMISSION_SETTING_HEADER;
         header.className = "pt-grid-header";
         var saveButton = document.createElement("SPAN");
-        saveButton.className = "save-component-setting";
+        saveButton.className = "section-info";
+        saveButton.id = "commission-info-button";
         header.appendChild(saveButton);
         container.appendChild(header);
 
