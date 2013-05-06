@@ -142,10 +142,12 @@ var MEMBERLIST = function ($) {
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
                                  var icon = "icon-pencil";
+                                 var tooltip = LANGUAGES.EditSetting;
                                  if (!DEFAULTS.IsMaster) {
                                      icon = "";
+                                     tooltip = "View Setting";
                                  }
-                                 return "<a href='#' title='" + LANGUAGES.EditSetting + "' class='edit-setting " + icon + "' name='Edit' userGroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " memberId=" + cell.Value.MemberId + " ></a>";
+                                 return "<a href='#' title='" + tooltip + "' class='edit-setting " + icon + "' name='Edit' userGroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " memberId=" + cell.Value.MemberId + " ></a>";
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
