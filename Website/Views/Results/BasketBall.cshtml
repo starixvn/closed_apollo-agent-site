@@ -63,11 +63,11 @@
 
                 if (eventStatus == "refund")
                 {
-                    finalHomeScore = finalAwayScore = firstHalfHomeScore = firstHalfAwayScore = "N/A";
+                    finalHomeScore = finalAwayScore = firstHalfHomeScore = firstHalfAwayScore = @Resources.Lang.lblNA;
                 }
                 else if (eventStatus == "refund ft")
                 {
-                    finalHomeScore = finalAwayScore = "N/A";
+                    finalHomeScore = finalAwayScore = @Resources.Lang.lblNA;
                     firstHalfHomeScore = item.HalfTimeHomeScore.ToString();
                     firstHalfAwayScore = item.HalfTimeAwayScore.ToString();
                 }
@@ -75,7 +75,7 @@
                 {
                     finalHomeScore = item.FinalHomeScore.ToString();
                     finalAwayScore = item.FinalAwayScore.ToString();
-                    firstHalfHomeScore = firstHalfAwayScore = "N/A";
+                    firstHalfHomeScore = firstHalfAwayScore = @Resources.Lang.lblNA;
 
                 }
                 else
@@ -85,9 +85,10 @@
                     firstHalfHomeScore = item.HalfTimeHomeScore.ToString();
                     firstHalfAwayScore = item.HalfTimeAwayScore.ToString();
                 }
+                
                 if (item.FinalHomeScore > item.FinalAwayScore)
                 {
-                    homeTeam = "<b>" + item.HomeTeam + (item.IsNeutral ? Resources.Lang.IsNeutral : string.Empty) + "</b>";
+                    homeTeam = "<b>" + item.HomeTeam + "</b>";
                     awayTeam = item.AwayTeam;
                 }
                 else if (item.FinalHomeScore < item.FinalAwayScore)
@@ -113,11 +114,10 @@
                         int i=0;
                         foreach (var itemBetStatus in listOfBetStatus)
                         {
-                            sets = itemBetStatus.Split('-');                                                       
+                            sets = itemBetStatus.Split('-');
                             homeSet[i] = sets[0];
                             awaySet[i] = sets[1];
                             i++;
-                            
                         }
 
                         if (listOfBetStatus.Count() > 4)
