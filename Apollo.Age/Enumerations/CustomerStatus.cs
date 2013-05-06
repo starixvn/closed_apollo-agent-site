@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders" date="2013.4.7">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.5.6">Update Rename</change>
 // </history>
 
 namespace Apollo.Age.Enumerations
@@ -16,8 +17,8 @@ namespace Apollo.Age.Enumerations
 
     public enum CustomerStatus : int
     {
-        Enable = 1,
-        Suspended = 2,
-        Closed = 3
+        Active = 1,
+        Stopped = 2,
+        Locked = 3
     }
 }

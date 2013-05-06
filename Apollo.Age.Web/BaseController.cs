@@ -63,6 +63,12 @@ namespace Apollo.Age.Web
             }
         }
 
+        private void CheckCurrentStatus()
+        {
+
+        }
+                
+
         protected ICurrentSession CurrentSession
         {
             get { return SessionManager.Instance.CurrentSession; }
