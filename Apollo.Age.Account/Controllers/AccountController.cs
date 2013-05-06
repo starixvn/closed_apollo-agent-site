@@ -131,12 +131,14 @@ namespace Apollo.Age.Account.Controllers
                     CustId = -1,
                     IsMember = false,
                     Username = username,
+                    IsMaster = this.CurrentSession.IsMaster
                 };
             }
             else
             {
                 agentInfo.ActorAgentId = this.CurrentSession.AgentId;
                 agentInfo.IsMember = false;
+                agentInfo.IsMaster = this.CurrentSession.IsMaster;
             }
 
             return View("AccountInfo", agentInfo);
@@ -162,12 +164,14 @@ namespace Apollo.Age.Account.Controllers
                     CustId = -1,
                     IsMember = true,
                     Username = username,
+                    IsMaster = this.CurrentSession.IsMaster
                 };
             }
             else
             {
                 memberInfo.ActorAgentId = this.CurrentSession.AgentId;
                 memberInfo.IsMember = true;
+                memberInfo.IsMaster = this.CurrentSession.IsMaster;
             }
 
             return View("AccountInfo", memberInfo);
