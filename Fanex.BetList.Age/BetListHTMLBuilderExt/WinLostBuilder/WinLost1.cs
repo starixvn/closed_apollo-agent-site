@@ -42,7 +42,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.WinLostBuilder
             else
             {
                 Template.winloss = ConvertByBetType.Winloss(ticket.Winlost);
-                Template.comm = ConvertByBetType.Comm(ticket.PlayerComm);
+                Template.comm = ConvertByBetType.Winloss(ticket.PlayerComm);
             }
 
             return this.Template;

@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = Resources.Lang.lblPlayerList;
     ViewBag.HeaderTitle = Resources.Lang.lblMemberListOf;
+    var titleFormat = ViewBag.IsMaster == true ? Resources.Lang.lblEditMemberSetting : Resources.Lang.lblViewMemberSetting;
+    titleFormat = string.Format(titleFormat, string.Empty);
+    var agenttitleFormat = ViewBag.IsMaster == true ? Resources.Lang.lblEditAgentSetting : Resources.Lang.lblViewAgentSetting;
+    agenttitleFormat = string.Format(agenttitleFormat, string.Empty);
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
 @model List<Agent>
@@ -25,7 +29,7 @@
     <script language="javascript" type="text/javascript">
         var DEFAULTS = function () {
             return {
-                IsMaster: "@ViewBag.IsMaster"
+                IsMaster: @(ViewBag.IsMaster ? "true" : "false")
             };
         } ();
         var LANGUAGES = function ($) {
@@ -33,7 +37,7 @@
                 Username: "@Resources.Lang.usernameEdited",
                 Status: "@Resources.Lang.status",
                 BetStatus: "@Resources.Lang.betstatus",
-                Edit: "@Resources.Lang.edit",
+                Edit: "@(ViewBag.IsMaster ? Resources.Lang.edit : Resources.Lang.view) ",
                 Group: "@Resources.Lang.group",
                 AgentCommission: "@Resources.Lang.AgentCommission",
                 MemberCommission: "@Resources.Lang.memberCommission",
@@ -45,8 +49,9 @@
                 Active: "@Resources.Lang.lblActive",
                 SoccerDeadballHDPTakenShare: "@Resources.Lang.soccerdeadballhdptakenshare",
                 EditSetting: "@Resources.Lang.lblEditSetting",
-                ViewSetting: "@Resources.Lang.lblViewSetting"
-
+                ViewSetting: "@Resources.Lang.lblViewSetting",
+                PopUpTitle: "@titleFormat",
+                PopUpAgentTitle: "@agenttitleFormat"
             };
         } (jQuery);
     </script>

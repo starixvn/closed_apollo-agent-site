@@ -40,11 +40,11 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             }
             else
             {
-                Template.AgentCommValue.agentComm_value = ConvertByBetType.Comm(ticket.AComm);
+                Template.AgentCommValue.agentComm_value = ConvertByBetType.PtValue(ticket.AComm);
             }
             if (ticket.AgentLevel == 0)
             {
-                Template.AgentComm.agentComm_setting = "N/A";
+                Template.AgentComm.agentComm_setting = Resources.Lang.lblNA;
             }
             else
             {
