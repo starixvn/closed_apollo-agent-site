@@ -6,18 +6,13 @@
 
 namespace Apollo.Age.Web
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
     using Apollo.Age.Web.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class HomeController : BaseController
     {
+        private const string DEFAULT_PAGE_URL = "~/Default.aspx";
+
         private readonly UnderMaintenanceService maintenanceService;
 
         public HomeController()
@@ -27,7 +22,7 @@ namespace Apollo.Age.Web
 
         public ActionResult Index()
         {
-            return Redirect("~/Index.aspx");
+            return Redirect(DEFAULT_PAGE_URL);
         }
 
         public ActionResult UnderMaintenance()
@@ -40,7 +35,7 @@ namespace Apollo.Age.Web
             }
             else
             {
-                return Redirect("~/Index.aspx");
+                return Redirect(DEFAULT_PAGE_URL);
             }
         }
     }

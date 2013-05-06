@@ -17,6 +17,8 @@ namespace Apollo.Age.Reports.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.Security;
+    using System.Web.SessionState;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Reports.Models;
@@ -26,6 +28,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Web;
     using Fanex.Common.Extensions;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class ResultsController : BaseController
     {
         private readonly ResultService _resultService;
