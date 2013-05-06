@@ -245,7 +245,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         header.innerHTML = Language.BET_SETTING_HEADER;
         header.className = "pt-grid-header";
         var saveButton = document.createElement("SPAN");
-        saveButton.className = "save-component-setting";
+        saveButton.className = "section-info";
+        saveButton.id = "bet-limit-info-button";
         header.appendChild(saveButton);
         container.appendChild(header);
 
