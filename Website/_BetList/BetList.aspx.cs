@@ -49,12 +49,13 @@ namespace Sunplus.Agent.UI._BetList
         private string bettype, betTeam;
         private DateTime dateFrom = DateTime.Now;
         private DateTime dateTo = DateTime.Now;
-        private string mainShareHolderId, mainShareHolderUsername;
+        private string mainShareHolderUsername;
         private BetListTemplate tpl = new BetListTemplate();
         private TotalBetsService totalBetsService = new TotalBetsService();
         private IEnumerable<Agent> mainShareHolders;
-        private int loggedId;
+        private int loggedId, mainShareHolderId;
         private bool isForecast = false;
+
         #endregion Variables
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -152,7 +153,7 @@ namespace Sunplus.Agent.UI._BetList
 
             tpl.title = title;
             tpl.content = content.ToString();
-            tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
+            tpl.HiddenFields.MainShareHolderId = mainShareHolderId.ToString();
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
 
@@ -205,16 +206,16 @@ namespace Sunplus.Agent.UI._BetList
             bettype = GetStringRequest("bettype", string.Empty);
             betTeam = GetStringRequest("betteam", string.Empty);
             matchId = GetIntRequest("matchid", 0);
-            mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
+            mainShareHolderId = GetIntRequest("mainShareHolderId", 0);
             mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
             live = GetIntRequest("islive", 0);
             isForecast = GetBooleanRequest("isForecast", false);
             if (CurrentSession.IsSuper)
             {
                 mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria());
-                if (string.IsNullOrEmpty(mainShareHolderId))
+                if (mainShareHolderId == 0)
                 {
-                    loggedId = mainShareHolders.ElementAt(0).Id;
+                    loggedId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
                 }
                 else
                 {

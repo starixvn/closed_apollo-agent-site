@@ -34,5 +34,7 @@ namespace Apollo.Age.Account.Models
         public int ParentId { get; set; }
 
         public string ParentName { get; set; }
+
+        public bool IsMaster { get; set; }
     }
 }
