@@ -282,16 +282,6 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Comms the specified value.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
-        public static string Comm(object value)
-        {
-            return string.Format(Formatter.DECIMAL_FORMAT20, value);
-        }
-
-        /// <summary>
         /// Comm_s the percentage.
         /// </summary>
         /// <param name="value">The value.</param>
@@ -338,6 +328,16 @@ namespace Fanex.BetList.Core.Utils
         public static string Pt(object value)
         {
             return (Cast.AsDecimal(value) * 100).ToString("N2");
+        }
+
+        /// <summary>
+        /// Comms the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        public static string Comm(object value)
+        {
+            return string.Format(Formatter.DECIMAL_FORMAT20, value);
         }
 
         /// <summary>

@@ -3770,4 +3770,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblMainShareHolder" xml:space="preserve">
     <value>Main Shareholder</value>
   </data>
+  <data name="lblNA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
 </root>
