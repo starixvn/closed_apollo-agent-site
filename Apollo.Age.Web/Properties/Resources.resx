@@ -120,4 +120,7 @@
   <data name="Common_NullOrEmpty" xml:space="preserve">
     <value>Value cannot be null or empty.</value>
   </data>
+  <data name="UnauthorizedMsg" xml:space="preserve">
+    <value>Your session has timed out or your request is not authorized</value>
+  </data>
 </root>

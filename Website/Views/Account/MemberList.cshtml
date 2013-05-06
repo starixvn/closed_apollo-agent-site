@@ -23,6 +23,11 @@
 @section scripts
 {
     <script language="javascript" type="text/javascript">
+        var DEFAULTS = function () {
+            return {
+                IsMaster: "@ViewBag.IsMaster"
+            };
+        } ();
         var LANGUAGES = function ($) {
             return {
                 Username: "@Resources.Lang.usernameEdited",
@@ -39,7 +44,8 @@
                 Locked: "@Resources.Lang.locked",
                 Active: "@Resources.Lang.lblActive",
                 SoccerDeadballHDPTakenShare: "@Resources.Lang.soccerdeadballhdptakenshare",
-                EditSetting: "@Resources.Lang.lblEditSetting"
+                EditSetting: "@Resources.Lang.lblEditSetting",
+                ViewSetting: "@Resources.Lang.lblViewSetting"
 
             };
         } (jQuery);

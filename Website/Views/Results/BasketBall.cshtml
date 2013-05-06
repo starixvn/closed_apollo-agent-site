@@ -61,17 +61,17 @@
 
                 eventStatus = item.EventStatus.ToLower();
 
-                if (eventStatus == "refund")
+                if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
                 {
                     finalHomeScore = finalAwayScore = firstHalfHomeScore = firstHalfAwayScore = @Resources.Lang.lblNA;
                 }
-                else if (eventStatus == "refund ft")
+                else if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
                 {
                     finalHomeScore = finalAwayScore = @Resources.Lang.lblNA;
                     firstHalfHomeScore = item.HalfTimeHomeScore.ToString();
                     firstHalfAwayScore = item.HalfTimeAwayScore.ToString();
                 }
-                else if (eventStatus == "refund ht")
+                else if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND_HT)
                 {
                     finalHomeScore = item.FinalHomeScore.ToString();
                     finalAwayScore = item.FinalAwayScore.ToString();
@@ -102,7 +102,7 @@
                     awayTeam = item.AwayTeam;
                 }
 
-                if (eventStatus != "refund ft")
+                if (eventStatus != Apollo.Age.Reports.Core.Constants.REFUND_FT)
                 {
                     betStatus = item.BetStatus.ToLower();
 
@@ -111,7 +111,7 @@
                     {
                         string[] listOfBetStatus = betStatus.Split(',');
                         string[] sets = null;
-                        int i=0;
+                        int i = 0;
                         foreach (var itemBetStatus in listOfBetStatus)
                         {
                             sets = itemBetStatus.Split('-');
