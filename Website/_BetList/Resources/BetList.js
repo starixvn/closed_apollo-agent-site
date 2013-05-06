@@ -223,7 +223,7 @@ if (typeof jQuery != "undefined") {
 					parameters: ajaxParams,
 					onComplete: function (data) {
 						BETLIST.dialogDetails.html(data.responseText);
-						APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450 });
+						APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450, height: 450 });
 					}
 				});
 			});

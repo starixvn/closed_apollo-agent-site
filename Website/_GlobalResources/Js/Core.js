@@ -130,31 +130,31 @@ if (typeof jQuery != 'undefined') {
 								$this.datepicker('setDate', new Date(y, m, d));
 							};
 
-						$this.datepicker({
-							defaultDate: new Date($this.val()),
-							dateFormat: "mm/dd/yy",
-							showOn: "button",
-							buttonImageOnly: true,
-							buttonImage: APOLLO.resolveUrl("_GlobalResources/Css/img/cal/calendar_10.png"),
-							buttonText: "Select Date",
-							minDate: limitDate("mindate"),
-							maxDate: limitDate("maxdate"),
-							beforeShow: function (input, inst) {
-								inst.dpDiv.css({ marginTop: '2px' });
-							}
-						}).keydown(function (e) {
-							var arrow = { left: 37, up: 38, right: 39, down: 40 };
+                        $this.datepicker({
+                            defaultDate: new Date($this.val()),
+                            dateFormat: "mm/dd/yy",
+                            minDate: limitDate("mindate"),
+                            maxDate: limitDate("maxdate"),
+                            beforeShow: function (input, inst) {
+                                inst.dpDiv.css({ marginTop: '2px' });
+                            }
+                        }).keydown(function (e) {
+                            var arrow = { left: 37, up: 38, right: 39, down: 40 };
 
-							switch (e.keyCode) {
-								case arrow.up:
-									shiftDate(1);
-									break;
-								case arrow.down:
-									shiftDate(-1);
-									break;
-							}
-						});
+                            switch (e.keyCode) {
+                                case arrow.up:
+                                    shiftDate(1);
+                                    break;
+                                case arrow.down:
+                                    shiftDate(-1);
+                                    break;
+                            }
+                        });
 
+                        // show calendar when clicking on "calendar" image
+                        $this.next('.img-calendar').click(function () {
+                            $this.datepicker("show");
+                        })
 					});
 				}
 			},
@@ -935,7 +935,11 @@ function _startup() {
 		var select = age.firstFormElement("select");
 		var item = age.beforeElement(input, select);
 		try {
-			if (item) item.focus();
+		    if (item) {
+		        if (!$('input').hasClass('datepicker')) {
+		            item.focus();
+		        }
+            }
 		}
 		catch (e)
 		{ }
