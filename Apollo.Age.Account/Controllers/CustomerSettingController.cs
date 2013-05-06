@@ -343,11 +343,11 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.UserGroup = userGroup;
             ViewBag.CurentParentAgentId = agentId;
-            ViewBag.ShowHeader = showHeader;
-            if (!base.CurrentSession.IsMaster)
+            if (showHeader)
             {
-                ViewBag.IsViewShareSetting = true;
+                ViewBag.IsShowHeader = true;
             }
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
@@ -356,11 +356,11 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
-            ViewBag.ShowHeader = showHeader;
-            if (!base.CurrentSession.IsMaster)
+            if (showHeader)
             {
-                ViewBag.IsViewShareSetting = true;
+                ViewBag.IsShowHeader = true;
             }
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
@@ -396,7 +396,8 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentLevel = CurrentSession.AgentLevel;
             ViewBag.UserGroup = string.Empty;
             ViewBag.CurentParentAgentId = CurrentSession.AgentId;
-            ViewBag.IsViewShareSetting = true;
+            ViewBag.IsShowHeader = true;
+            ViewBag.IsMaster = false;
             return View("~/Views/Account/MySetting.cshtml");
         }
 
@@ -521,9 +522,12 @@ namespace Apollo.Age.Account.Controllers
             else if (!base.CurrentSession.IsMaster)
             {
                 settingContext.FormId = FormType.ShadowViewSetting;
+                if (base.CurrentSession.IsSuper && settingContext.TargetRoleId == (int)Role.Member)
+                {
+                    settingContext.CustId = agentId.Value;
+                }
             }
-
-            if (base.CurrentSession.AgentId == 0
+            else if (base.CurrentSession.IsSuper
             && settingContext.TargetRoleId == (int)Role.Member
             && agentId != null)
             {
