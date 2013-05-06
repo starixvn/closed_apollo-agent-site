@@ -44,7 +44,7 @@ namespace Apollo.Age.Services.Impl
                     AgentUserId = agentUserId
                 });
 
-                if (currentStatus == (int)CustomerStatus.Closed)
+                if (currentStatus >= (int)CustomerStatus.Stopped)
                 {
                     return true;
                 }
@@ -73,7 +73,7 @@ namespace Apollo.Age.Services.Impl
                     AgentUserId = agentUserId
                 });
 
-                if (isMaster == true && currentStatus == (int)CustomerStatus.Enable)
+                if (isMaster == true && currentStatus == (int)CustomerStatus.Active)
                 {
                     return true;
                 }
