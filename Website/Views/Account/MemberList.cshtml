@@ -23,6 +23,11 @@
 @section scripts
 {
     <script language="javascript" type="text/javascript">
+        var DEFAULTS = function () {
+            return {
+                IsMaster: "@ViewBag.IsMaster"
+            };
+        } ();
         var LANGUAGES = function ($) {
             return {
                 Username: "@Resources.Lang.usernameEdited",

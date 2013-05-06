@@ -141,7 +141,11 @@ var MEMBERLIST = function ($) {
                          { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return "<a href='#' title='" + LANGUAGES.EditSetting + "' class='edit-setting icon-pencil' name='Edit' userGroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " memberId=" + cell.Value.MemberId + " ></a>";
+                                 var icon = "icon-pencil";
+                                 if (!DEFAULTS.IsMaster) {
+                                     icon = "";
+                                 }
+                                 return "<a href='#' title='" + LANGUAGES.EditSetting + "' class='edit-setting " + icon + "' name='Edit' userGroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " memberId=" + cell.Value.MemberId + " ></a>";
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
