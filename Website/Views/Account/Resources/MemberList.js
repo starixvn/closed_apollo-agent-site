@@ -145,7 +145,7 @@ var MEMBERLIST = function ($) {
                                  var tooltip = LANGUAGES.EditSetting;
                                  if (!DEFAULTS.IsMaster) {
                                      icon = "";
-                                     tooltip = "View Setting";
+                                     tooltip = LANGUAGES.ViewSetting;
                                  }
                                  return "<a href='#' title='" + tooltip + "' class='edit-setting " + icon + "' name='Edit' userGroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " memberId=" + cell.Value.MemberId + " ></a>";
                              }

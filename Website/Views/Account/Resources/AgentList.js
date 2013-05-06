@@ -223,7 +223,7 @@ var AGENTLIST = function ($) {
                                  var tooltip = LANGUAGES.EditSetting;
                                  if (!DEFAULTS.IsMaster) {
                                      icon = "";
-                                     tooltip = "View Setting";
+                                     tooltip = LANGUAGES.ViewSetting;
                                  }
 
                                  return "<a href='#' class='edit-setting " + icon + "' title='" + tooltip + "' name='Edit' username=" + cell.Value.Username + " agentid=" + cell.Value.AgentId + " agentlevel=" + cell.Value.AgentLevel + " ></a>";
