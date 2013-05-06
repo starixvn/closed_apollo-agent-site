@@ -27,7 +27,7 @@
         var DEFAULTS = function () {
             return {
                 CurrentAgentId: "@ViewBag.AgentId",
-                IsMaster: "@ViewBag.IsMaster"
+                IsMaster: @(ViewBag.IsMaster ? "true" : "false")
             };
         } ();
         var LANGUAGES = function () {

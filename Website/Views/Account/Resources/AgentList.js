@@ -158,6 +158,13 @@ var AGENTLIST = function ($) {
         },
 
         initAgentList: function (agentList) {
+            var icon = "icon-th-large";
+            var tooltip = LANGUAGES.ViewSetting;
+            if (DEFAULTS.IsMaster) {
+                icon = "icon-pencil";
+                tooltip = LANGUAGES.EditSetting;
+            }
+
             var bodyData = [];
 
             var rowLength = agentList.ListData.length;
@@ -219,13 +226,6 @@ var AGENTLIST = function ($) {
                          { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 var icon = "icon-pencil";
-                                 var tooltip = LANGUAGES.EditSetting;
-                                 if (!DEFAULTS.IsMaster) {
-                                     icon = "icon-th-large";
-                                     tooltip = LANGUAGES.ViewSetting;
-                                 }
-
                                  return "<a href='#' class='edit-setting " + icon + "' title='" + tooltip + "' name='Edit' username=" + cell.Value.Username + " agentid=" + cell.Value.AgentId + " agentlevel=" + cell.Value.AgentLevel + " ></a>";
                              }
                          },

@@ -92,8 +92,14 @@ var MEMBERLIST = function ($) {
             }
         },
         initMemberList: function (memberList) {
-            var bodyData = [];
+            var icon = "icon-th-large";
+            var tooltip = LANGUAGES.ViewSetting;
+            if (DEFAULTS.IsMaster) {
+                icon = "icon-pencil";
+                tooltip = LANGUAGES.EditSetting;
+            }
 
+            var bodyData = [];
             var rowLength = memberList.ListData.length;
             var counter = (memberList.CurrentPage * memberList.ItemsPerPage);
             for (var i = 0; i < rowLength; i++) {
@@ -141,12 +147,6 @@ var MEMBERLIST = function ($) {
                          { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                          { HeaderText: LANGUAGES.Edit, Width: 30, Name: "Edit", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 var icon = "icon-pencil";
-                                 var tooltip = LANGUAGES.EditSetting;
-                                 if (!DEFAULTS.IsMaster) {
-                                     icon = "icon-th-large";
-                                     tooltip = LANGUAGES.ViewSetting;
-                                 }
                                  return "<a href='#' title='" + tooltip + "' class='edit-setting " + icon + "' name='Edit' userGroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " memberId=" + cell.Value.MemberId + " ></a>";
                              }
                          },
