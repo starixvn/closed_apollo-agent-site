@@ -12,7 +12,7 @@ if (typeof (Validators) == 'undefined') { // Require Validators library
 }
 Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
     this.items = bettingLimitItems;
-    var validateExpr = /^(\$|)([0-9]\d{0,2}(\,\d{3})*|([0-9]\d*))(\.?\d*)?$/;
+    var validateExpr = /^(\$|)([0-9]\d{0,2}(\,\d{3})*)$/;
     this.Validate = function () {
 
         if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return true;
