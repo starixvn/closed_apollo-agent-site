@@ -1,5 +1,7 @@
 ﻿@{
-    ViewBag.Title = Resources.Lang.lblEditSetting + ViewBag.UserName;
+    var titleFormat = ViewBag.IsMaster == true ? Resources.Lang.lblEditAgentSetting : Resources.Lang.lblViewAgentSetting;
+    ViewBag.UserName = ViewBag.UserName ?? string.Empty;
+    ViewBag.Title = string.Format(titleFormat, ViewBag.UserName);
     Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
     var agentId = ViewBag.AgentId ?? 0;
 }
