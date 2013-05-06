@@ -40,9 +40,7 @@ if (typeof jQuery != 'undefined') {
 				var apoRoot = $('#ApoRoot');
 
 				if (apoRoot.length == 0) {
-					if (typeof console != 'undefined') {
-						console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
-					}
+					APOLLO.console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
 				} else {
 					if (url.substr(0, 2) == '~/') {
 						url = url.substr(2);
@@ -162,26 +160,50 @@ if (typeof jQuery != 'undefined') {
 			},
 
 			initPageInfo: function () {
-				var pageInfo = $('#page-info'); // hidden field contains the page info
+				var infos = $('.infos');
 
-				// if page-info exists then it should be showed as a popup
-				if (pageInfo.length > 0) {
-					var pageInfoIcon = $('<div class="page-info" />').appendTo('#header_main');
-					var title = pageInfo.attr('title');
-					var tipTitle = pageInfo.attr('tip-title');
+				infos.each(function () {
+					var $this = $(this),
+						thisId = $this.attr('id'),
+						title = $this.attr('title'),
+						tipTitle = $this.attr('tip-title'),
+						trigger;
 
-					pageInfoIcon.attr('title', tipTitle ? tipTitle : title)
+					trigger = thisId == 'page-info'
+						? $('<div class="page-info" />').appendTo('#header_main')
+						: $('#' + thisId.substr(0, thisId.length - 5)); // 5 is the length of "-info";
+
+					trigger.attr('title', tipTitle ? tipTitle : title)
 						.tooltip({
-							position: {
-								my: "right-10 center", at: "center center+5"
-							},
+							position: { my: "right-10 center", at: "center center+5" },
 							show: null,
 							hide: null
 						})
 						.click(function () {
-							APOLLO.openDialog(pageInfo, title, { modal: false });
+							APOLLO.openDialog($this, title, { modal: false });
 						});
-				}
+				});
+
+				//                var pageInfo = $('#page-info'); // hidden field contains the page info
+
+				//                // if page-info exists then it should be showed as a popup
+				//                if (pageInfo.length > 0) {
+				//                    var pageInfoIcon = $('<div class="page-info" />').appendTo('#header_main');
+				//                    var title = pageInfo.attr('title');
+				//                    var tipTitle = pageInfo.attr('tip-title');
+
+				//                    pageInfoIcon.attr('title', tipTitle ? tipTitle : title)
+				//						.tooltip({
+				//						    position: {
+				//						        my: "right-10 center", at: "center center+5"
+				//						    },
+				//						    show: null,
+				//						    hide: null
+				//						})
+				//						.click(function () {
+				//						    APOLLO.openDialog(pageInfo, title, { modal: false });
+				//						});
+				//                }
 			},
 
 			init: function () {
