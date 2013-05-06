@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<<<<<<< HEAD
+    <script type="text/javascript">
+        window.parent.location.href = "http://localhost/default.aspx";
+    </script>
+=======
+  
+>>>>>>> 8cb9a5ed265a7f551ee24a3ded91448841d47432
+</body>
+</html>

@@ -10,7 +10,7 @@
 <body>
 	@RenderBody()
 
-	@Html.Hidden("ApoRoot", Url.Action("~/"))
+	@Html.Hidden("ApoRoot", Url.Content("~/"))
 	@RenderSection("scripts", false)
 </body>
 </html>
