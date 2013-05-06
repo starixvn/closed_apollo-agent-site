@@ -230,6 +230,10 @@
 
 			&.total td {
 				font-weight: bold;
+
+				.red-color {
+					color: #FF4C4C;
+				}
 			}		
 		}
 	}
@@ -240,27 +244,41 @@
 	width: 20px;
 }
 
-#dialog-details .tblRpt tr {
+#dialog-details .tblRpt {
+	width: 405px;
+	margin: 10px;
+	tr {
 
-	td {
-		vertical-align: middle;
+		td {
+			vertical-align: middle;
 
-		.bl_underdog {
-			font-weight: normal;
+			.bl_underdog {
+				font-weight: normal;
+			}
+
+			.bold {
+				font-weight: normal !important;
+			}
 		}
 
-		.bold {
-			font-weight: normal !important;
+		&.total {
+			.bl_underdog {
+				font-weight: bold;
+			}
+
+			.bold {
+				font-weight: bold !important;
+			}
 		}
 	}
+} 
 
-	&.total {
-		.bl_underdog {
-			font-weight: bold;
-		}
+.ui-dialog #dialog-details {
+	overflow: auto;
+}
 
-		.bold {
-			font-weight: bold !important;
-		}
-	}
+/* FIX IE */
+.eq-ie7 #dialog-details .tblRpt {
+	width: 399px;
+	margin: 10px 0 10px 10px;
 }
