@@ -5,7 +5,9 @@
 </head>
 <body>
     <script type="text/javascript">
-        window.parent.location.href = "http://localhost/default.aspx";
+  if (window.parent != undefined) {
+      window.parent.location.href =  "@Url.Content("~/Index.aspx")";
+      }
     </script>
 </body>
 </html>
