@@ -4,11 +4,11 @@
     var menu = ViewBag.RootNode; 
 }
 <ul id="tab-menu">
-    <li class="tab-menu active"><a><i class="icon-align-justify"></i>Menu</a> </li>
-    <li class="tab-tree"><a href="@Url.Action("TreeViewList")" target="menu"><i class="icon-user">
-    </i>Account</a> </li>
-    <li class="tab-acc"><a href="@Url.Action("AccountInfo")" target="menu"><i class="icon-search">
-    </i>Search</a> </li>
+    <li class="tab-menu active"><a><i class="icon-align-justify"></i>@Resources.Lang.mainmenu</a> </li>
+    <li class="tab-tree"><a id="lk-tree-tab" href="javascript:;" target="menu"><i class="icon-user">
+    </i>@Resources.Lang.userinfo</a> </li>
+    <li class="tab-acc"><a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search">
+    </i>@Resources.Lang.search</a> </li>
 </ul>
 <ul id="menu">
     @foreach (SiteMapNode item in menu.ChildNodes)

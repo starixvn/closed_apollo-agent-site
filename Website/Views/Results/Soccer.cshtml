@@ -101,22 +101,25 @@
     var betStatus = string.Empty;
     if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
     {
-        string[] refundArray = item.BetStatus.Split(';');
-        if (refundArray.Length == 2 && refundArray[1].ToString() != string.Empty)
+        if(!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(";"))
         {
-            betStatus = refundArray[1].ToString();
+            string[] refundArray = item.BetStatus.Split(';');
+            if (refundArray.Length == 2 && refundArray[1].ToString() != string.Empty)
+            {
+                betStatus = refundArray[1].ToString();
+            }
         }
     }
     else if (item.EventStatus != Apollo.Age.Reports.Core.Constants.REFUND
         && item.EventStatus != Apollo.Age.Reports.Core.Constants.REFUND_HT)
     {
-        if (!string.IsNullOrEmpty(item.BetStatus) && item.BetStatus.Contains(":"))
+        if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(":"))
         {
             betStatus = item.BetStatus;
         }
     }
 
-    if (!string.IsNullOrEmpty(betStatus) && betStatus.Contains(":"))
+    if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.Contains(":"))
     {
         var valueArr = betStatus.Split(':');
         if (string.Compare(valueArr[0], "FL", true) == 0)
