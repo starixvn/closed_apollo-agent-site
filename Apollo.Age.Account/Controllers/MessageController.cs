@@ -22,8 +22,10 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
+    using System.Web.SessionState;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class MessageController : BaseController
     {
         private MessageService _messageService;

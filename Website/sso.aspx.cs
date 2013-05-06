@@ -28,7 +28,7 @@ public partial class sso : System.Web.UI.Page
         // get authenticated info from authorization server
         AuthModel authModel = authService.GetAuthInfo(code);
 
-        if (authModel != null)
+        if (authModel != null && authModel.IsValid)
         {
             UserService userService = new UserService();
             Apollo.Age.Entities.User user = userService.GetUserById(authModel.UserId);

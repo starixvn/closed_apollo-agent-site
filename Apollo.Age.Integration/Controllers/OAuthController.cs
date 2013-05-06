@@ -36,7 +36,6 @@ namespace Apollo.Age.Integration.Controllers
             _authService = authService ?? new AuthenticationService();
             _userService = userService ?? new UserService();
         }
-
         [AllowAnonymous]
         public ViewResult Index()
         {
@@ -46,6 +45,7 @@ namespace Apollo.Age.Integration.Controllers
         [AllowAnonymous]
         public ViewResult GetCode(string code, string error)
         {
+      
             if (!string.IsNullOrWhiteSpace(error))
             {
                 return Error(code);
@@ -56,10 +56,13 @@ namespace Apollo.Age.Integration.Controllers
 
             if (!ReferenceEquals(authModel, null) && authModel.IsValid)
             {
+
                 Entities.User user = _userService.GetUserByUsername(authModel.Username);
 
                 if (user != null)
                 {
+                
+                            
                     ICurrentSession currentSession = new CurrentSession(user);
                     FormsAuthentication.SetAuthCookie(user.Username, true);                    
                     return View(currentSession);
