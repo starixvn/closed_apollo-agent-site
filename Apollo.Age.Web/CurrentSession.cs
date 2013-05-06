@@ -24,7 +24,7 @@ namespace Apollo.Age.Web
     [Serializable]
     public class CurrentSession : ICurrentSession, ISerializable
     {
-        public CurrentSession(User user)
+        public CurrentSession(User user, string language="en-US")
         {
             AgentId = user.Agent.Id;
             AgentLevel = user.Agent.Level;
@@ -33,7 +33,7 @@ namespace Apollo.Age.Web
             Username = user.Username;
             IsMaster = user.IsMaster;
             MatchLimit = user.Agent.MatchLimit;
-            Language = "en-US"; //get language of user
+            Language = language; //get language of user
             CurrencyId = user.Agent.Currency;
 
             HttpContext.Current.Session["Apollo.Age.Web.CurrentSession"] = this;

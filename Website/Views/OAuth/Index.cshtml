@@ -12,7 +12,9 @@
 
         TGP.authorize({
             client_id: "@OAuthSettings.Settings.AppId",
-            redirect_uri: "@OAuthSettings.Settings.RedirectUri",
+            redirect_uri: "@OAuthSettings.Settings.RedirectUri?username=@ViewBag.Username&language=@ViewBag.Language",
+            user_id: "@ViewBag.Username",
+            lang : "@ViewBag.Language",
             state: "sso"
         });
     </script>
