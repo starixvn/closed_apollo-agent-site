@@ -144,7 +144,7 @@ var MEMBERLIST = function ($) {
                                  var icon = "icon-pencil";
                                  var tooltip = LANGUAGES.EditSetting;
                                  if (!DEFAULTS.IsMaster) {
-                                     icon = "";
+                                     icon = "icon-th-large";
                                      tooltip = LANGUAGES.ViewSetting;
                                  }
                                  return "<a href='#' title='" + tooltip + "' class='edit-setting " + icon + "' name='Edit' userGroup=" + cell.Value.UserGroup + " username=" + cell.Value.Username + " memberId=" + cell.Value.MemberId + " ></a>";

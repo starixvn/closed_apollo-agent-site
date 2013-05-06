@@ -222,7 +222,7 @@ var AGENTLIST = function ($) {
                                  var icon = "icon-pencil";
                                  var tooltip = LANGUAGES.EditSetting;
                                  if (!DEFAULTS.IsMaster) {
-                                     icon = "";
+                                     icon = "icon-th-large";
                                      tooltip = LANGUAGES.ViewSetting;
                                  }
 
