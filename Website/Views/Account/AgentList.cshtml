@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = Resources.Lang.lblAgentList;
     ViewBag.HeaderTitle = Resources.Lang.lblAgentListOf;
+    var titleFormat = ViewBag.IsMaster == true ? Resources.Lang.lblEditAgentSetting : Resources.Lang.lblViewAgentSetting;
+    titleFormat = string.Format(titleFormat, string.Empty);
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
 @section css
@@ -56,7 +58,8 @@
                 ViewAgentDownline: "@Resources.Lang.lblViewAgentDownline",
                 ViewMember: "@Resources.Lang.lblViewMember",
                 EditSetting: "@Resources.Lang.lblEditSetting",
-                ViewSetting: "@Resources.Lang.lblViewSetting"
+                ViewSetting: "@Resources.Lang.lblViewSetting",
+                PopUpTitle: "@titleFormat"
 
             };
         } ();

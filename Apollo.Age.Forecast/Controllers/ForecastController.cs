@@ -22,11 +22,13 @@ namespace Apollo.Age.Forecast.Controllers
     using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Web;
+    using System.Web.SessionState;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class ForecastController : BaseController
     {
         private readonly ForecastService _forecastService;

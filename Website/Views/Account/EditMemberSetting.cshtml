@@ -1,5 +1,5 @@
 ﻿@{
-    var titleFormat = ViewBag.IsShowHeader == true ? Resources.Lang.lblViewMemberSetting : Resources.Lang.lblEditMemberSetting;
+    var titleFormat = ViewBag.IsMaster == true ? Resources.Lang.lblEditMemberSetting : Resources.Lang.lblViewMemberSetting ;
     ViewBag.UserName = ViewBag.UserName ?? string.Empty;
     ViewBag.Title = string.Format(titleFormat, ViewBag.UserName);
     Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";

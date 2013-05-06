@@ -29,7 +29,9 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using System.Web.SessionState;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerSettingController : BaseController
     {
         private readonly IAccountService _accountService;

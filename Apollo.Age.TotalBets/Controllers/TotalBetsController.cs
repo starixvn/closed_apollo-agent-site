@@ -22,7 +22,9 @@ namespace Apollo.Age.TotalBets.Controllers
     using Apollo.Age.Criterias;
     using System.Linq;
     using Apollo.Age.Entities;
+    using System.Web.SessionState;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class TotalBetsController : BaseController
     {
         private readonly TotalBetsService _totalBetsService;
