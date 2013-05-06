@@ -21,7 +21,7 @@ namespace Apollo.Age.Web
     using Fanex.Common.Extensions;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
-    [SessionState(SessionStateBehavior.ReadOnly)]
+
     public class BaseController : Controller
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
