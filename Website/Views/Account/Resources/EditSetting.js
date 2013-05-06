@@ -30,6 +30,8 @@ if (typeof jQuery != 'undefined') {
                 var positionTakingContainer = document.getElementById('ptContainer');
                 positionTakingContainer.innerHTML = "";
                 EDITSETTING.positionTakingElement.Render(positionTakingContainer);
+
+                APOLLO.initPageInfo();
             },
 
             init: function () {

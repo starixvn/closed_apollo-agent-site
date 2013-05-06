@@ -147,23 +147,6 @@
 	</noscript>
 	<!-- End Piwik Tracking Code -->
 }
-@*@helper PageInfo(Func<object, HelperResult> content, string title = "", string tipTitle = "")
-{
-	var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
-
-	if (!string.IsNullOrEmpty(title))
-	{
-		title = string.Format("title='{0}'", title);
-	}
-	if (!string.IsNullOrEmpty(tipTitle))
-	{
-		tipTitle = string.Format("tip-title='{0}'", tipTitle);
-	}
-
-	<div id="page-info" style="display: none" @Html.Raw(title) @Html.Raw(tipTitle)>
-		@content.Invoke(null)
-	</div>
-}*@
 
 @helper Info(Func<object, HelperResult> content, string trigger = "", string title = "", string tipTitle = "")
 {

@@ -1,135 +1,135 @@
 ﻿@{
-    var isShowHeader = ViewBag.IsShowHeader ?? false;
-    var isMaster = ViewBag.IsMaster ?? false;
+	var isShowHeader = ViewBag.IsShowHeader ?? false;
+	var isMaster = ViewBag.IsMaster ?? false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <script src="~/_GlobalResources/Js/head.min.js" type="text/javascript"></script>
-    <link href="~/Views/Account/Resources/CustSettingEngine/Core.less?ver=1" rel="stylesheet"
-        type="text/css" />
-    <link href="~/Views/Account/Resources/CustSettingEngine/CoreOverride.less" rel="stylesheet"
-        type="text/css" />
-    @RenderSection("css", required: false)
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	<script src="~/_GlobalResources/Js/head.min.js" type="text/javascript"></script>
+
+	<link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+	<link href="~/Views/Account/Resources/CustSettingEngine/Core.less?ver=1" rel="stylesheet" type="text/css" />
+	<link href="~/Views/Account/Resources/CustSettingEngine/CoreOverride.less" rel="stylesheet" type="text/css" />
+	@RenderSection("css", required: false)
 </head>
 <body>
-    @RazorHelper.Piwik()
-    <div id="page_main">
-        @if (isShowHeader)
-        { 
-            <div id="header_main">
-                @ViewBag.Title
-            </div>
-        }
-        <div id="content_main">
-            <div class="setting-mode">
-                <span id="simple-mode" class="deactive-mode">@Resources.Lang.lblSimpleModel</span>
-                | <span class="active-mode" id="advanced-mode">@Resources.Lang.lblAdvancedMode</span>
-            </div>
-            @if (!isMaster)
-            {
-                <div id="settingContainer">
-                    @RenderBody()
-                </div>
-            }
-            else
-            {
-                <div id="settingContainer">
-                    <div class="edit-setting-warning">
-                        @Resources.Lang.lblWarningEditSetting</div>
-                    @RenderBody()
-                </div>
-                    if (ViewBag.IsMaster)
-                    {
-                        <div class="btnLeft">
-                            <button id="btnSubmitFooter" class="btn" style="display: none;">
-                                @Resources.Lang.update</button>
-                        </div>
-                    }
-            }
-        </div>
-    </div>
-    @Html.Hidden("ApoRoot", Url.Content("~/"))
-    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/noty/jquery.noty.min.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/CustSettingEngine/Core.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/CustSettingEngine/PTSetting.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/CustSettingEngine/BettingLimit.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/CustSettingEngine/BetType.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/CustSettingEngine/BetTypeGroup.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var isSimpleMode = true;
-        var Language =
-        {
-            MIN_BET: "@(Resources.Lang.lblMinBet)",
-            MAX_BET: "@(Resources.Lang.lblMaxBet)",
-            MAX_PER_MATCH: "@(Resources.Lang.lblMaxPerMatch)",
-            MAX_PER_BALL: "@(Resources.Lang.maxperball)",
-            BETTING_LIMIT: "@(Resources.Lang.betlimit)",
-            DEAD_BALL: "@(Resources.Lang.lblDeadball)",
-            LIVE: "@(Resources.Lang.lblLive)",
-            DEAD_BALL_VN: "@(Resources.Lang.lblDeadball)",
-            LIVE_VN: "@(Resources.Lang.lblLive)",
-            MIN_POSITION: "@(Resources.Lang.lblMinGivenShare)",
-            MAX_POSITION: "@(Resources.Lang.lblMaxGivenShare)",
-            SIMPLE_MODE_MAX_POSITION: "@(Resources.Lang.lblGivenShare)",
-            SIMPLE_MODE_PRESET_POSITION: "@(Resources.Lang.lblTakenShare)",
-            PRESET_POSITION: "@(Resources.Lang.lblMaxTakenShare)",
-            POSITION_TAKING: "@(Resources.Lang.positiontaking)",
-            COPY_FROM: "@(Resources.Lang.copyFrom)",
-            COPY_ALL_OTHER_POSITION_TAKING_FROM: "@(Resources.Lang.copyAllPositionTakingFrom)",
-            COPY_ALL_POSITION_TAKING_FROM: "@(Resources.Lang.copyPositionTakingFrom)",
-            COPY_ALL_BETTING_LIMIT_FROM: "@(Resources.Lang.copyAllBetSettingFromExcludingNG)",
-            COPY_ALL_HINT: "@(Resources.Lang.copyAllHint)",
-            OTHER_BET_TYPE_OF: "@(Resources.Lang.otherBetTypesOf)",
-            INCORRECT_MIN_BET: "@(Resources.Lang.alertIncorrectMinBet)",
-            INCORRECT_MAX_BET: "@(Resources.Lang.alertIncorrectMaxBet)",
-            INCORRECT_MAX_PER_MATCH: "@(Resources.Lang.alertIncorrectMaxPerMatch)",
-            INCORRECT_MAX_PER_BALL: "@(Resources.Lang.alertIncorrectMaxPerBall)",
-            MIN_BET_LOWER_THAN_MIN_MAX_BET: "@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet)",
-            MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch)",
-            MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "@(Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch)",
-            MIN_BET_GREATER_THAN_MIN_MIN_BET: '@(string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}"))',
-            MAX_BET_LOWER_THAN_MAX_MAX_BET: '@(string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}"))',
-            MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET: '@(Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}"))',
-            MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET: '@(Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}"))',
-            MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL: '@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall)',
-            //	WANT_TO_UPDATE_ALL_MEMBER_POSITION_TAKING: "Do you want to update all member's position taking to:",
-            YES: "@(Resources.Lang.lblYes)",
-            NO: "@(Resources.Lang.lblNo)",
-            BASKETBALL: "@(Resources.Lang.Basketball)",
-            SOCCER: "@(Resources.Lang.soccer)",
-            POSITION_SETTING_HEADER: "@(Resources.Lang.lblShareSetting)",
-            POSITION_SETTING_SIMPLE_MODE_HEADER: "@(Resources.Lang.lblShareSettingSimpleMode)",
-            BET_SETTING_HEADER: "@(Resources.Lang.lblBetSetting)",
-            COMMISSION_SETTING_HEADER: "@(Resources.Lang.lblCommissionSetting)",
-            //// commission setting text 
-            GROUP_A: "@(Resources.Lang.lblGroupa) (%) ",
-            GROUP_B: "@(Resources.Lang.lblGroupb) (%) ",
-            GROUP_C: "@(Resources.Lang.lblGroupc) (%) ",
-            GROUP_D: "@(Resources.Lang.lblGroupd) (%) ",
-            _1X2: "@(Resources.Lang.lbl1x2Comm) (%) ",
-            OTHERS_COM: "@(Resources.Lang.lblOtherComm) (%) ",
-            NUMBER_GAME: "@(Resources.Lang.numbergame)",
-            ASIAN_HDC_OU_OE: "@(Resources.Lang.lblAsianHDC_OU_OE) (%)",
-            MEMBER_GROUP: "@(Resources.Lang.lblCommissionGroup)",
-            COMM_FOR_AGENT: "",
-            COMM_FOR_MEMBER: "@(Resources.Lang.lblMemberCommission)",
-            GROUP: "@(Resources.Lang.group)",
-            AGENT_SHARE: "@(Resources.Lang.lblAgentShare)",
-            SPORT_BOOK: "@(Resources.Lang.sportBook)",
-            SIMPLE_MODE_MAX_POSITION: "@(Resources.Lang.lblGivenShare)",
-            SIMPLE_MODE_PRESET_POSITION: "@(Resources.Lang.lblTakenShare)",
-            INVALID_RANGE: "@(Resources.Lang.lblInvalidValueRange)"
-        };
-        var invalidComMessage = '@(Resources.Lang.lblInvalidGroupCommissionRange)';
-    </script>
-    @RenderSection("scripts", required: false)
+	@RazorHelper.Piwik()
+	<div id="page_main">
+		@if (isShowHeader)
+		{ 
+			<div id="header_main">
+				@ViewBag.Title
+			</div>
+		}
+		<div id="content_main">
+			<div class="setting-mode">
+				<span id="simple-mode" class="deactive-mode">@Resources.Lang.lblSimpleModel</span>
+				| <span class="active-mode" id="advanced-mode">@Resources.Lang.lblAdvancedMode</span>
+			</div>
+			@if (!isMaster)
+			{
+				<div id="settingContainer">
+					@RenderBody()
+				</div>
+			}
+			else
+			{
+				<div id="settingContainer">
+					<div class="edit-setting-warning">
+						@Resources.Lang.lblWarningEditSetting</div>
+					@RenderBody()
+				</div>
+					if (ViewBag.IsMaster)
+					{
+						<div class="btnLeft">
+							<button id="btnSubmitFooter" class="btn" style="display: none;">
+								@Resources.Lang.update</button>
+						</div>
+					}
+			}
+		</div>
+	</div>
+	@Html.Hidden("ApoRoot", Url.Content("~/"))
+	<script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+	<script src="~/_GlobalResources/Js/noty/jquery.noty.min.js" type="text/javascript"></script>
+	<script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
+	<script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
+	<script src="~/Views/Account/Resources/CustSettingEngine/Core.js" type="text/javascript"></script>
+	<script src="~/Views/Account/Resources/CustSettingEngine/PTSetting.js" type="text/javascript"></script>
+	<script src="~/Views/Account/Resources/CustSettingEngine/BettingLimit.js" type="text/javascript"></script>
+	<script src="~/Views/Account/Resources/CustSettingEngine/BetType.js" type="text/javascript"></script>
+	<script src="~/Views/Account/Resources/CustSettingEngine/BetTypeGroup.js" type="text/javascript"></script>
+	<script src="~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var isSimpleMode = true;
+		var Language =
+		{
+			MIN_BET: "@(Resources.Lang.lblMinBet)",
+			MAX_BET: "@(Resources.Lang.lblMaxBet)",
+			MAX_PER_MATCH: "@(Resources.Lang.lblMaxPerMatch)",
+			MAX_PER_BALL: "@(Resources.Lang.maxperball)",
+			BETTING_LIMIT: "@(Resources.Lang.betlimit)",
+			DEAD_BALL: "@(Resources.Lang.lblDeadball)",
+			LIVE: "@(Resources.Lang.lblLive)",
+			DEAD_BALL_VN: "@(Resources.Lang.lblDeadball)",
+			LIVE_VN: "@(Resources.Lang.lblLive)",
+			MIN_POSITION: "@(Resources.Lang.lblMinGivenShare)",
+			MAX_POSITION: "@(Resources.Lang.lblMaxGivenShare)",
+			SIMPLE_MODE_MAX_POSITION: "@(Resources.Lang.lblGivenShare)",
+			SIMPLE_MODE_PRESET_POSITION: "@(Resources.Lang.lblTakenShare)",
+			PRESET_POSITION: "@(Resources.Lang.lblMaxTakenShare)",
+			POSITION_TAKING: "@(Resources.Lang.positiontaking)",
+			COPY_FROM: "@(Resources.Lang.copyFrom)",
+			COPY_ALL_OTHER_POSITION_TAKING_FROM: "@(Resources.Lang.copyAllPositionTakingFrom)",
+			COPY_ALL_POSITION_TAKING_FROM: "@(Resources.Lang.copyPositionTakingFrom)",
+			COPY_ALL_BETTING_LIMIT_FROM: "@(Resources.Lang.copyAllBetSettingFromExcludingNG)",
+			COPY_ALL_HINT: "@(Resources.Lang.copyAllHint)",
+			OTHER_BET_TYPE_OF: "@(Resources.Lang.otherBetTypesOf)",
+			INCORRECT_MIN_BET: "@(Resources.Lang.alertIncorrectMinBet)",
+			INCORRECT_MAX_BET: "@(Resources.Lang.alertIncorrectMaxBet)",
+			INCORRECT_MAX_PER_MATCH: "@(Resources.Lang.alertIncorrectMaxPerMatch)",
+			INCORRECT_MAX_PER_BALL: "@(Resources.Lang.alertIncorrectMaxPerBall)",
+			MIN_BET_LOWER_THAN_MIN_MAX_BET: "@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet)",
+			MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch)",
+			MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "@(Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch)",
+			MIN_BET_GREATER_THAN_MIN_MIN_BET: '@(string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}"))',
+			MAX_BET_LOWER_THAN_MAX_MAX_BET: '@(string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}"))',
+			MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET: '@(Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}"))',
+			MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET: '@(Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}"))',
+			MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL: '@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall)',
+			//	WANT_TO_UPDATE_ALL_MEMBER_POSITION_TAKING: "Do you want to update all member's position taking to:",
+			YES: "@(Resources.Lang.lblYes)",
+			NO: "@(Resources.Lang.lblNo)",
+			BASKETBALL: "@(Resources.Lang.Basketball)",
+			SOCCER: "@(Resources.Lang.soccer)",
+			POSITION_SETTING_HEADER: "@(Resources.Lang.lblShareSetting)",
+			POSITION_SETTING_SIMPLE_MODE_HEADER: "@(Resources.Lang.lblShareSettingSimpleMode)",
+			BET_SETTING_HEADER: "@(Resources.Lang.lblBetSetting)",
+			COMMISSION_SETTING_HEADER: "@(Resources.Lang.lblCommissionSetting)",
+			//// commission setting text 
+			GROUP_A: "@(Resources.Lang.lblGroupa) (%) ",
+			GROUP_B: "@(Resources.Lang.lblGroupb) (%) ",
+			GROUP_C: "@(Resources.Lang.lblGroupc) (%) ",
+			GROUP_D: "@(Resources.Lang.lblGroupd) (%) ",
+			_1X2: "@(Resources.Lang.lbl1x2Comm) (%) ",
+			OTHERS_COM: "@(Resources.Lang.lblOtherComm) (%) ",
+			NUMBER_GAME: "@(Resources.Lang.numbergame)",
+			ASIAN_HDC_OU_OE: "@(Resources.Lang.lblAsianHDC_OU_OE) (%)",
+			MEMBER_GROUP: "@(Resources.Lang.lblCommissionGroup)",
+			COMM_FOR_AGENT: "",
+			COMM_FOR_MEMBER: "@(Resources.Lang.lblMemberCommission)",
+			GROUP: "@(Resources.Lang.group)",
+			AGENT_SHARE: "@(Resources.Lang.lblAgentShare)",
+			SPORT_BOOK: "@(Resources.Lang.sportBook)",
+			SIMPLE_MODE_MAX_POSITION: "@(Resources.Lang.lblGivenShare)",
+			SIMPLE_MODE_PRESET_POSITION: "@(Resources.Lang.lblTakenShare)",
+			INVALID_RANGE: "@(Resources.Lang.lblInvalidValueRange)"
+		};
+		var invalidComMessage = '@(Resources.Lang.lblInvalidGroupCommissionRange)';
+	</script>
+	@RenderSection("scripts", required: false)
 </body>
 </html>
