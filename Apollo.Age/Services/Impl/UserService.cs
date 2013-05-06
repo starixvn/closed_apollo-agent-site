@@ -1,8 +1,12 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UserService.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="UserService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="???" date="???">Created</change>
+//   <change who="Lewis.Le" date="2013.5.3">Added AuthenticateNapUser</change>
+// </history>
 
 namespace Apollo.Age.Services.Impl
 {
@@ -16,10 +20,8 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Criterias;
+    using Fanex.Common;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
@@ -53,6 +55,15 @@ namespace Apollo.Age.Services.Impl
             }
 
             return user;
+        }
+
+        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            criteria.Password = Cryptography.CfsEnCode(criteria.Password);
+
+            return _userRepository.AuthenticateNapUser(criteria);
         }
     }
 }

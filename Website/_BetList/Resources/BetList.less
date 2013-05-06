@@ -173,7 +173,6 @@
 /* Report for result */
 
 #box_header {
-	padding: 5px;
 	margin-bottom: 10px;
 	.date-range {
 		* {
@@ -216,32 +215,39 @@
 			white-space: normal;
 			vertical-align: top;
 			border-width: 0 1px 0 0;
-			padding: 4px;
 
 			.time {
 				font-size: 0.9em;
 			}
 		}
 
-		tr.subtotal {
-			td {
-				background: lighten(@primaryColor, 35%);
-				font-weight: bold;
-				height: 25px;
-			}
-		}
-	}
-	
-	tfoot {
 		tr {
+		
+			&.subtotal {
+				td {
+					background: lighten(@primaryColor, 35%);
+					font-weight: bold;
+					height: 24px;
+				}
+			}
+
 			&.outstanding td {				
 				background: #ddd;
 				font-weight: bold;
 				border: 1px solid @borderColor;
 			}
+		}		
+	}
+	
+	tfoot {
+		tr {
 
 			&.total td {
 				font-weight: bold;
+				
+				.red-color {
+					color: @white;
+				}
 			}		
 		}
 	}
@@ -255,21 +261,23 @@
 #dialog-details .tblRpt tr {
 
 	td {
-		span.bl_underdog {
+		vertical-align: middle;
+
+		.bl_underdog {
 			font-weight: normal;
 		}
 
-		span.bold {
+		.bold {
 			font-weight: normal !important;
 		}
 	}
 
 	&.total {
-		span.bl_underdog {
+		.bl_underdog {
 			font-weight: bold;
 		}
 
-		span.bold {
+		.bold {
 			font-weight: bold !important;
 		}
 	}

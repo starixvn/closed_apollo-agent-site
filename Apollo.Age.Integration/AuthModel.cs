@@ -43,10 +43,11 @@ namespace Apollo.Age.Integration
         {
             get
             {
-                return !string.IsNullOrWhiteSpace(AccessToken)
-                    && !string.IsNullOrWhiteSpace(Username)
-                    && UserId > 0;
+                return !string.IsNullOrWhiteSpace(Username)
+            && !string.IsNullOrWhiteSpace(AccessToken)
+            && UserId > 0;
             }
         }
+
     }
 }

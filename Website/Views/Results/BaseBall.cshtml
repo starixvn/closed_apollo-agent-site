@@ -101,23 +101,28 @@
                     awayTeam = item.AwayTeam;
                 }
 
-                if (!string.IsNullOrWhiteSpace(betStatus))
+                if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
                 {
 
                     string[] listOfBetStatus = betStatus.Split(',');
                     if (listOfBetStatus.Count() > 1)
                     {
+                        string[] splitBetStatus = null;
                         foreach (string betstatus in listOfBetStatus)
                         {
-                            homeSet.Add(betstatus.Split('-')[0]);
-                            awaySet.Add(betstatus.Split('-')[1]);
+                            splitBetStatus = betstatus.Split('-');
+                            if (splitBetStatus != null)
+                            {
+                                homeSet.Add(splitBetStatus[0]);
+                                awaySet.Add(splitBetStatus[1]);
+                            }
                         }
                         if (listOfBetStatus.Count() < 10)
                         {
                             homeSet.Add("-1");
                             awaySet.Add("-1");
                         }
-                         
+
                         ieHome = Convert.ToInt32(homeSet[9]) >= 0 ? homeSet[9] : ieHome;
                         ieAway = Convert.ToInt32(awaySet[9]) >= 0 ? awaySet[9] : ieAway;
                     }

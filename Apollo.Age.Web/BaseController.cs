@@ -16,9 +16,10 @@ namespace Apollo.Age.Web
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Net;
-    using System.Web;
     using System.Web.Mvc;
+
     using Fanex.Common.Extensions;
+
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
@@ -47,15 +48,19 @@ namespace Apollo.Age.Web
             if (!Request.IsAuthenticated || CurrentSession == null)
             {
                 // redirect user to a page with corresponding message
-                // your session is timeout or the request is not authenticated
-
+                // your session is timeout or the request is not authenticated               
+                
                 if (Request.IsAjaxRequest())
                 {
-                    // TODO:
+                    // this will redirect the request to SignIn action
+                    Response.Clear();
+                    Response.StatusCode = 401;
+                    Response.StatusDescription = GetResourceData("UnauthorizedMsg");
                 }
                 else
                 {
-                    // TODO:
+                    Response.Redirect("~/Auth/Unauthorized");
+
                 }
             }
         }

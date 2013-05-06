@@ -19,6 +19,7 @@ namespace Apollo.Age.Integration
     using System.Net;
     using System.IO;
     using System.Web.Script.Serialization;
+    using System.Web.Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -68,8 +69,8 @@ namespace Apollo.Age.Integration
                     // read response stream and parse to JsonResponseModel
                     using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
                     {
-                        string jsonString = reader.ReadToEnd();
-                        jsonResponseModel = new JavaScriptSerializer().Deserialize<JsonResponseModel>(jsonString);
+                        string jsonString = reader.ReadToEnd();                                                
+                        jsonResponseModel = Json.Decode<JsonResponseModel>(jsonString);
                     }
                 }
             }

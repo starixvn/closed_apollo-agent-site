@@ -24,29 +24,27 @@
                 <div class="submenu">
                     @foreach (SiteMapNode subItem in item.ChildNodes)
                     {
-                        int bettypeId = 0;
-                        string title = string.Empty;
-
-                        // show memberlist when user's level >= 3
-                        var level = Convert.ToInt32(item["Level"]);
-                        if (level == 0 || Model.AgentLevel >= level)
-                        {
-                            if (subItem.Title.Contains("bettype")
-                                && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
-                            {
-                                title = Apollo.Age.Services.CacheRef.GetBettype(bettypeId);
-                            }
-                            else
-                            {
-                                title = this.ViewContext.HttpContext.GetGlobalResourceObject("Lang", subItem.Title).ToString();
-                            }
-                        }
-
-                        var hideWhenSuper = Convert.ToBoolean(subItem["hideWhenSuper"]);
-                        if (Model.AgentLevel == 0 && hideWhenSuper) 
+                        var isAgentOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
+                        if (Model.AgentLevel < 3 && isAgentOnly)
                         {
                             continue;
                         }
+                        
+                        int bettypeId = 0;
+                        string title = string.Empty;
+                        
+
+                        if (subItem.Title.Contains("bettype")
+                            && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
+                        {
+                            title = Apollo.Age.Services.CacheRef.GetBettype(bettypeId);
+                        }
+                        else
+                        {
+                            title = this.ViewContext.HttpContext.GetGlobalResourceObject("Lang", subItem.Title).ToString();
+                        }
+
+                        
                         <a href="@subItem.Url" target="main">@title</a>
                     }
                 </div>

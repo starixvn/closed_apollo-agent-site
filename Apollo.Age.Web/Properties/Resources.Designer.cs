@@ -68,5 +68,14 @@ namespace Apollo.Age.Web.Properties {
                 return ResourceManager.GetString("Common_NullOrEmpty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your session has timed out or your request is not authorized.
+        /// </summary>
+        internal static string UnauthorizedMsg {
+            get {
+                return ResourceManager.GetString("UnauthorizedMsg", resourceCulture);
+            }
+        }
     }
 }

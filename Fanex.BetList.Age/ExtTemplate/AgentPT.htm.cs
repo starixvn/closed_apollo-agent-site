@@ -36,9 +36,9 @@ namespace Fanex.BetList.Age
 
 		public class AgentPT_AgentPT_Block: Block
 		{
-			protected static string s0 = "<span class=\"bl_underdog\">";
+			protected static string s0 = "<div class=\"bl_underdog\">";
 			public string agentPT_setting = "{agentPT_setting}";
-			protected static string s1 = "</span><br />";
+			protected static string s1 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -54,9 +54,9 @@ namespace Fanex.BetList.Age
 
 		public class AgentPT_AgentPTValue_Block: Block
 		{
-			protected static string s2 = "<span class=\"bl_underdog\">";
+			protected static string s2 = "<div class=\"bl_underdog\">";
 			public string agentPT_value = "{agentPT_value}";
-			protected static string s3 = "</span><br />";
+			protected static string s3 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

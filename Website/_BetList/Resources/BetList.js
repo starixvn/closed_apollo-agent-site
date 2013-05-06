@@ -48,10 +48,7 @@ function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostd
 function ViewMixParlayResult(refno) {
 	var width = 730;
 	var height = 450;
-	var params = '?refNo= ' + refno;
-	if (ageWnd.loaded) {
-		ageWnd.close();
-	}
+	var params = '?refNo=' + refno;
 	ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), '', 50, 100, width, height);
 }
 
@@ -61,10 +58,10 @@ function ViewSportBookResult(matchId, sportId) {
 	var params = '?matchId= ' + matchId + '&sportId=' + sportId;
 
 	if (parent.ageWnd) {
-		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), 'View result', 50, 100, width, height);
+		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
 	}
 	else {
-		ageWnd.open(APOLLO.resolveUrl("~/Results/MatchResult" + params), 'View result', 50, 100, width, height);
+		ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
 	}
 }
 
@@ -108,18 +105,17 @@ function showCombMP(transid, orderID) {
 	}
 }
 
-function showCombMPDetail(refno, winlostdate, transid, betid, custid) {
-	var width = 750;
-	var height = 350;
-	var params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid;
+function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
+    var width = 750,
+        height = 350,
+        params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
+        detailTitle = $(target).siblings('.combinationLink').text();
 
-	if (parent.ageWnd) {
-		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), 'Detail', 50, 100, width, height);
-	}
-	else {
-		var detailTitle = $('.combinationLink').text();
-		ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
-	}
+    if (parent.ageWnd) {
+        parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), 'Detail', 50, 100, width, height);
+    } else {
+        ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
+    }
 }
 
 function InitExcelFunction() {
@@ -262,6 +258,23 @@ if (typeof jQuery != "undefined") {
 					});
 				},
 				position: { my: "right top", at: "right bottom" }
+			});
+		}
+
+		if (typeof ($("#ddlMainShareHolder").val()) !== 'undefined') {
+			$("#ddlMainShareHolder").change(function () {
+				var $this = $(this);
+				var markIndex = document.location.href.indexOf('?');
+				var link = document.location.href;
+				if (markIndex > 0) {
+					//link = document.location.href.substring(0, markIndex);
+					var markIndexShareHolderId = document.location.href.indexOf("&mainShareHolderId=");
+					if (markIndexShareHolderId > 0) {
+						link = document.location.href.substring(0, markIndexShareHolderId);
+					}
+					link = link + "&mainShareHolderId=" + $this.val();
+				}
+				document.location.href = link;
 			});
 		}
 	});

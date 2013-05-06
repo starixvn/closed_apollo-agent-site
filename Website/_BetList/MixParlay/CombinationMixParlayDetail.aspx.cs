@@ -150,7 +150,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         }
                     }
 
-                    if (i == 0)
+                    if (winlostdate != ticket.WinLostDate.ToString("MM/dd/yyyy"))
                     {
                         var row = ticketList.Where(s => s.WinLostDate == ticket.WinLostDate);
 
@@ -173,6 +173,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
 
                     subWinlostSum += ticket.WinLost + ticket.PlayerComm;
                     template.RowData.Append(rowBlock);
+                    winlostdate = ticket.WinLostDate.ToString("MM/dd/yyyy");
 
                     //Get Sub Total by Day
                     if (i + 1 == numRow)

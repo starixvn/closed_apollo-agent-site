@@ -55,7 +55,7 @@ namespace Apollo.Age.Services.Impl
                     && sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value != null)
                 {
                     var isLive = Converter.ToBool(sportTypeNode.Attributes[ATTRIBUTE_SPORT_LIVE].Value);
-                    var sportId = Converter.ToInt(sportTypeNode.Attributes[ATTRIBUTE_SPORT_ID].Value);
+                    var sportId = Converter.To<byte>(sportTypeNode.Attributes[ATTRIBUTE_SPORT_ID].Value);
 
                     var sport = sportList.Where(t => t.Id == sportId).SingleOrDefault();
 
@@ -64,6 +64,7 @@ namespace Apollo.Age.Services.Impl
                         sport = new Sport()
                         {
                             Id = sportId,
+                            IsMixSportParlay = false,
                             Name = sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value.ToString(),
                             ResourceKey = sportTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                             BetTypeList = new List<BetType>()
@@ -78,7 +79,8 @@ namespace Apollo.Age.Services.Impl
                         {
                             sport = new Sport()
                             {
-                                Id = -sportId,
+                                Id = sportId,
+                                IsMixSportParlay = true,
                                 Name = sportName,
                                 ResourceKey = sportTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                                 BetTypeList = new List<BetType>()
@@ -101,7 +103,7 @@ namespace Apollo.Age.Services.Impl
                             {
                                 betType = new BetType()
                                 {
-                                    Id = Converter.ToInt(betTypeNode.Attributes[ATTRIBUTE_BETTYPE_ID].Value),
+                                    Id = betTypeId,
                                     Name = betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
                                     ResourceKey = betTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                                     IsLive = isLive,
@@ -115,7 +117,7 @@ namespace Apollo.Age.Services.Impl
 
                                 betType = new BetType()
                                 {
-                                    Id = Converter.ToInt(betTypeNode.Attributes[ATTRIBUTE_BETTYPE_ID].Value),
+                                    Id = betTypeId,
                                     Name = betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
                                     ResourceKey = betTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                                     IsLive = isLive,
@@ -133,7 +135,7 @@ namespace Apollo.Age.Services.Impl
             return sportList;
         }
 
-        public List<BetType> GetBetTypeBySport(int sportId)
+        public List<BetType> GetBetTypeBySport(short sportId, bool isMixSportParlay)
         {
             var betTypeList = new List<BetType>();
 
@@ -142,7 +144,9 @@ namespace Apollo.Age.Services.Impl
                 GetAllSportType();
             }
 
-            var sport = SportList.Where(t => t.Id == sportId).SingleOrDefault();
+            var sport = isMixSportParlay
+                ? SportList.Where(t => (t.Id == sportId && t.Name == MIX_SPORT_PARLAY)).SingleOrDefault()
+                : SportList.Where(t => (t.Id == sportId && t.Name != MIX_SPORT_PARLAY)).SingleOrDefault();
 
             if (sport != null)
             {

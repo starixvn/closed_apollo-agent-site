@@ -6,25 +6,23 @@
 // <history>
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
 //   <change who="Anders.Le" date="2013.3.26">Apply generic repository</change>
+//   <change who="Lewis.Le" date="2013.5.3">Added AuthenticateNapUser</change>
 // </history>
 
 namespace Apollo.Age.Repositories.Impl
 {
     using System;
-    using Apollo.Age.Repositories.Interface;
-    using Apollo.Age.Entities;
-    using Fanex.NAP.Framework.Data;
-    using Fanex.Data;
     using System.Data;
-    using Fanex.Common.Extensions;
+    using Apollo.Age.Criterias;
+    using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    
+    using Apollo.Age.Repositories.Interface;
+    using Fanex.Common.Extensions;
+    using Fanex.Data;
+    using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class UserRepository : RepositoryBase<User>, IUserRepository
-    {       
+    {
         public override User Get(ICriteria criteria)
         {
             try
@@ -32,7 +30,8 @@ namespace Apollo.Age.Repositories.Impl
                 using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var user = objectDb.QueryEntity<User, Agent, User>(
-                            (u, ag) => {
+                            (u, ag) =>
+                            {
                                 u.Agent = ag;
                                 return u;
                             },
@@ -82,6 +81,23 @@ namespace Apollo.Age.Repositories.Impl
         public ICommandResult Update(User entity)
         {
             throw new NotImplementedException();
+        }
+
+        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria)
+        {
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    IDataReader reader = db.ExecuteReader(criteria.GetSpParams());
+
+                    return reader.Read();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

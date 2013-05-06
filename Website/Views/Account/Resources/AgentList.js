@@ -6,6 +6,8 @@ var AGENTLIST = function ($) {
         Username: null,
         AgentLevel: null,
         IsSuper: false,
+        IsMainShareHolder: false,
+        IsShareHolder: false,
         init: function () {
             AGENTLIST.AgentId = DEFAULTS.CurrentAgentId;
             AGENTLIST.loadNavigation();
@@ -39,7 +41,10 @@ var AGENTLIST = function ($) {
 
                     for (var i = 0; i < rowLength; i++) {
                         if (i == rowLength - 1) {
-                            AGENTLIST.IsSuper = (result[i].Level == 0 || result[i].Level == 1);
+                            AGENTLIST.IsSuper = (result[i].Level == 0);
+                            AGENTLIST.IsMainShareHolder = (result[i].Level == 1);
+                            AGENTLIST.IsShareHolder = (result[i].Level == 2);
+
                             AGENTLIST.Username = result[i].Username;
                             AGENTLIST.AgentLevel = result[i].Level;
                             AGENTLIST.AgentId = result[i].Id;
@@ -48,7 +53,7 @@ var AGENTLIST = function ($) {
                             $("#currUsername").html(AGENTLIST.Username);
                             AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
 
-                            if (AGENTLIST.IsSuper) {
+                            if (AGENTLIST.IsSuper || AGENTLIST.IsMainShareHolder || AGENTLIST.IsShareHolder) {
                                 $("#quickLinkCustomerList").hide();
                             }
                             else {
@@ -183,8 +188,8 @@ var AGENTLIST = function ($) {
                     currentRow.Columns.push({ Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 });
                 }
                 else {
-                    currentRow.Columns.push({ Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 });
                     currentRow.Columns.push({ Name: "HandicapTakenShare", Value: current.HandicapTakenShare / 100 });
+                    currentRow.Columns.push({ Name: "HandicapGivenShare", Value: current.HandicapGivenShare / 100 });
                 }
 
                 bodyData.push(currentRow);
@@ -204,10 +209,10 @@ var AGENTLIST = function ($) {
                         ]
             }];
             if (AGENTLIST.IsSuper) {
-                currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapGivenShare", MergeRowNumber: 2 });
+                currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDPGivenShare, Name: "HandicapGivenShare", MergeRowNumber: 2 });
             }
             else {
-                currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapGivenShare", MergeColNumber: 2 });
+                currentHeaderColumns[0].Columns.push({ HeaderText: LANGUAGES.SoccerDeadballHDP, Name: "HandicapTakenShare", MergeColNumber: 2 });
             }
 
             var currentContentColumns = [
@@ -218,12 +223,12 @@ var AGENTLIST = function ($) {
                              }
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
-                         { HeaderText: LANGUAGES.Status, Width: 100, Name: "Status", HeaderAlign: "center", CellAlign: "center",
+                         { HeaderText: LANGUAGES.Status, Width: 80, Name: "Status", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
                                  return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : "<span class='lock'>" + LANGUAGES.Locked + "</span>"));
                              }
                          },
-                          { HeaderText: LANGUAGES.BetStatus, Width: 100, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
+                          { HeaderText: LANGUAGES.BetStatus, Width: 80, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
                               CustomCellRender: function (cell) {
                                   return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : "<span class='lock'>" + LANGUAGES.Locked + "</span>"));
                               }
@@ -246,11 +251,11 @@ var AGENTLIST = function ($) {
                          { HeaderText: LANGUAGES.Other, Width: 100, Name: "Other", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ];
             if (AGENTLIST.IsSuper) {
-                currentContentColumns.push({ HeaderText: LANGUAGES.GivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
+                currentContentColumns.push({ HeaderText: LANGUAGES.SoccerDeadballHDPGivenShare, Width: 130, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
             }
             else {
-                currentContentColumns.push({ HeaderText: LANGUAGES.GivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
                 currentContentColumns.push({ HeaderText: LANGUAGES.TakenShare, Width: 100, Name: "HandicapTakenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
+                currentContentColumns.push({ HeaderText: LANGUAGES.GivenShare, Width: 100, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
             }
             var gridOption = {
                 customizeHeader: true,
@@ -264,7 +269,7 @@ var AGENTLIST = function ($) {
                 marginRight: 0,
                 showPager: true,
                 customPager: true,
-                showColumnsShowHide: !AGENTLIST.IsSuper,
+                showColumnsShowHide: (!AGENTLIST.IsSuper && !AGENTLIST.IsMainShareHolder),
                 columnsNeedHide: [6],
                 showDistinctRow: true,
                 pagerOption: {
