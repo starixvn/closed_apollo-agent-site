@@ -51,7 +51,7 @@ namespace Fanex.BetList.Age
 			protected static string s5 = ",";
 			public string league = "{league}";
 			protected static string s6 = ");\">";
-			protected static string s7{get{return Resources.BetList.refno;}}
+			protected static string s7{get{return Apollo.Age.Resources.BetList.refno;}}
 			protected static string s8 = ": ";
 			protected string t0_refNo;
 			protected static string s9 = "</div>";
@@ -80,7 +80,7 @@ namespace Fanex.BetList.Age
 
 		public class Trans_TransTime_Block: Block
 		{
-			protected static string s10{get{return Resources.BetList.refno;}}
+			protected static string s10{get{return Apollo.Age.Resources.BetList.refno;}}
 			protected static string s11 = ": ";
 			public string refNo = "{refNo}";
 			public override void ToString(ref StringBuilder bd)

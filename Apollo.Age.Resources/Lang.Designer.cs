@@ -4418,6 +4418,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access Denied.
+        /// </summary>
+        public static string lblAccessDenied {
+            get {
+                return ResourceManager.GetString("lblAccessDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Information.
         /// </summary>
         public static string lblAccountInformation {
@@ -6155,6 +6164,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Request.
+        /// </summary>
+        public static string lblInvalidRequest {
+            get {
+                return ResourceManager.GetString("lblInvalidRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Value Range.
         /// </summary>
         public static string lblInvalidValueRange {
@@ -7289,6 +7307,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Server Error.
+        /// </summary>
+        public static string lblServerError {
+            get {
+                return ResourceManager.GetString("lblServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shadow List.
         /// </summary>
         public static string lblShadowList {
@@ -7483,6 +7510,15 @@ namespace Apollo.Age.Resources {
         public static string lblTeam {
             get {
                 return ResourceManager.GetString("lblTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Temporarily Unavailable.
+        /// </summary>
+        public static string lblTemporarilyUnavailable {
+            get {
+                return ResourceManager.GetString("lblTemporarilyUnavailable", resourceCulture);
             }
         }
         
@@ -7685,6 +7721,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unauthorized Client.
+        /// </summary>
+        public static string lblUnauthorizedClient {
+            get {
+                return ResourceManager.GetString("lblUnauthorizedClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Under Even.
         /// </summary>
         public static string lblUnderEven {
@@ -7699,6 +7744,15 @@ namespace Apollo.Age.Resources {
         public static string lblUnderOdd {
             get {
                 return ResourceManager.GetString("lblUnderOdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported Response Type.
+        /// </summary>
+        public static string lblUnsupportedResponseType {
+            get {
+                return ResourceManager.GetString("lblUnsupportedResponseType", resourceCulture);
             }
         }
         
