@@ -20,7 +20,7 @@ namespace Apollo.Age.Web.ViewModels
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "How much is")] 
+        [Display(Name = "Captcha")] 
         public string Captcha { get; set; }
 
         public bool RememberMe { get; set; }
