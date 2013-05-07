@@ -119,18 +119,18 @@ namespace Apollo.Age.Integration.Services
             switch (errorCode)
             {
                 case ErrorCode.InvalidRequest:
-                    return "invalid request";
+                    return Apollo.Age.Resources.Lang.lblInvalidRequest;
                 case ErrorCode.UnauthorizedClient:
-                    return "unauthorized_client";
+                    return Apollo.Age.Resources.Lang.lblUnauthorizedClient;
                 case ErrorCode.AccessDenied:
-                    return "access_denied";
+                    return Apollo.Age.Resources.Lang.lblAccessDenied;
                 case ErrorCode.UnsupportedResponseType:
-                    return "unsupported_response_type";
+                    return Apollo.Age.Resources.Lang.lblUnsupportedResponseType;
                 case ErrorCode.ServerError:
-                    return "server_error";
+                    return Apollo.Age.Resources.Lang.lblServerError;
                 case ErrorCode.TemporarilyUnavailable:
                 default:
-                    return "temporarily_unavailable";
+                    return Apollo.Age.Resources.Lang.lblTemporarilyUnavailable;
             }
         }
 
