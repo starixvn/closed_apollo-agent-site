@@ -100,7 +100,6 @@
     <Compile Include="ExtTemplate\HeaderViewDetail.htm.cs" />
     <Compile Include="ExtTemplate\No.htm.cs" />
     <Compile Include="ExtTemplate\OpenBetList.htm.cs" />
-    <Compile Include="ExtTemplate\Status.htm.cs" />
     <Compile Include="ExtTemplate\Trans.htm.cs" />
     <Compile Include="ExtTemplate\WinLoss.htm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,7 +114,6 @@
     <Content Include="ExtTemplate\OpenBetList.htm" />
     <Content Include="ExtTemplate\Header1.htm" />
     <Content Include="ExtTemplate\No.htm" />
-    <Content Include="ExtTemplate\Status.htm" />
     <Content Include="ExtTemplate\Trans.htm" />
     <Content Include="ExtTemplate\WinLoss.htm" />
     <Content Include="obj\Debug\TempPE\App_GlobalResources.BetList.designer.cs.dll" />

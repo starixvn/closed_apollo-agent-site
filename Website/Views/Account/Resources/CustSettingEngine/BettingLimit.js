@@ -535,14 +535,17 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             Language.MIN_BET,
             context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder ? '' : '>= '.FormatNumber(item.MinBetMax),
             item.MinBet,
-            false);
+            false,
+            "min");
 
             //// Max Bet
             item.maxBetElement = this.RenderBetLimitBlock(isEditNonDirectMember,
             trSetting,
             Language.MAX_BET,
             context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder ? '' : '<= '.FormatNumber(item.MaxBetMin),
-            item.MaxBet, false);
+            item.MaxBet,
+            false,
+            "max");
 
             /// Max Per Match
             item.maxPerMatchElement = this.RenderBetLimitBlock(isEditNonDirectMember,
@@ -550,14 +553,15 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             Language.MAX_PER_MATCH,
             context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder ? '' : '<= '.FormatNumber(item.MaxPerMatchMin),
             item.MaxPerMatch,
-            false);
+            false,
+            "max-match");
 
             container.appendChild(box);
             owner.appendChild(container);
         }
         return box;
     },
-    this.RenderBetLimitBlock = function (isEditNonDirectMember, parentElement, minMaxText, constrainText, betLimitValue, isMaxPerMatch) {
+    this.RenderBetLimitBlock = function (isEditNonDirectMember, parentElement, minMaxText, constrainText, betLimitValue, isMaxPerMatch, suffixClass) {
         /// Max Per Match
         var betSettingContainer = document.createElement("TD");
         if (isEditNonDirectMember) {
@@ -566,7 +570,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             parentElement.appendChild(betSettingContainer);
         }
         else {
-            betSettingContainer.className = "bet-limit-value";
+            betSettingContainer.className = "bet-limit-value-" + suffixClass;
             betSettingContainer.innerHTML = minMaxText + ' ';
             parentElement.appendChild(betSettingContainer);
 
@@ -578,7 +582,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             betSettingContainer.appendChild(inputValue);
 
             var constrainBetSettingContainer = document.createElement("TD");
-            constrainBetSettingContainer.className = "bet-limit-constrain";
+            constrainBetSettingContainer.className = "bet-limit-constrain-" + suffixClass;
             constrainBetSettingContainer.innerHTML = constrainText;
             parentElement.appendChild(constrainBetSettingContainer);
         }
