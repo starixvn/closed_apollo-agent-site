@@ -18,6 +18,7 @@ namespace Apollo.Age.Web.Filters
     using Fanex.Common;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Enumerations;
+    using Fanex.Logging;
 
     /// <summary>
     /// TODO: Update summary.
@@ -27,28 +28,34 @@ namespace Apollo.Age.Web.Filters
         private const int UN_AUTHORIZED_CODE = 401;
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var currentSession = SessionManager.Instance.CurrentSession;
-            int agentId = Converter.ToInt(filterContext.ActionParameters["agentId"]);
-            int memberId = Converter.ToInt(filterContext.ActionParameters["memberId"]);
-            if (agentId > 0)
+            try
             {
-                if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
+                var currentSession = SessionManager.Instance.CurrentSession;
+                int agentId = filterContext.ActionParameters.ContainsKey("agentId") ? Converter.ToInt(filterContext.ActionParameters["agentId"]) : 0;
+                int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"]) : 0;
+                if (agentId > 0)
+                {
+                    if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
+                    {
+                        DoUnAuthorized(filterContext);
+                    }
+                }
+                else if (memberId > 0)
+                {
+                    if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
+                    {
+                        DoUnAuthorized(filterContext);
+                    }
+                }
+                else
                 {
                     DoUnAuthorized(filterContext);
                 }
             }
-            else if (memberId > 0)
+            catch (Exception ex)
             {
-                if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
-                {
-                    DoUnAuthorized(filterContext);
-                }
+                Logger.Log.Error(ex.Message, ex);
             }
-            else
-            {
-                DoUnAuthorized(filterContext);
-            }
-
             // The action filter logic.
             base.OnActionExecuting(filterContext);
         }
