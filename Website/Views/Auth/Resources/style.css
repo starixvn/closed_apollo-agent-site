@@ -17,7 +17,6 @@
     background: -o-linear-gradient(top,  #eee 0%,#ccc 100%);
     background: -ms-linear-gradient(top,  #eee 0%,#ccc 100%);
     background: linear-gradient(to bottom,  #eee 0%,#ccc 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee', endColorstr='#ccc',GradientType=0 );
     border: 1px solid #999;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     border-radius: 10px;
@@ -76,6 +75,7 @@ input[type=text], input[type=password] {
 
 input[type=submit] {
     padding: 5px 20px;
+    background: #3b3b3b;
     background: -moz-linear-gradient(top,#a3a3a3 0%,#3b3b3b 50%,#242424 50%,#000000);
     background: -webkit-gradient(linear, left top, left bottom, from(#a3a3a3),color-stop(0.50, #3b3b3b),color-stop(0.50, #242424),to(#000000));
     border-radius: 5px;
