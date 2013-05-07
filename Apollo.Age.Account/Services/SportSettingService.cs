@@ -1,24 +1,24 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SportService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SportSettingService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Quinn.Vo" date="2013.4.29">Created</change>
+//   <change who="Quinn.Vo" date="2013.5.7">Created</change>
 // </history>
 
-namespace Apollo.Age.Services.Impl
+namespace Apollo.Age.Account.Services
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Services.Interface;
+    using Apollo.Age.Account.Entities;
+    using Apollo.Age.Services.Impl;
     using Fanex.Common;
 
-    public class SportService : ServiceBase, ISportService
+    public class SportSettingService : ServiceBase, ISportSettingService
     {
-        public static List<Sport> SportList = null;
+        public static List<SportSetting> SportList = null;
 
         #region const for read XML PTGrid
         private const string PATH_XML = "\\CustSettingEngine\\PTGrid.xml";
@@ -42,9 +42,9 @@ namespace Apollo.Age.Services.Impl
         private const string MIX_SPORT_PARLAY = "Mix Sports Parlay";
         #endregion
 
-        public List<Sport> GetAllSportType()
+        public List<SportSetting> GetAllSportType()
         {
-            var sportList = new List<Sport>();
+            var sportList = new List<SportSetting>();
             XmlDocument xmlDoc = new XmlDocument();
 
             xmlDoc.Load(System.AppDomain.CurrentDomain.BaseDirectory + PATH_XML);
@@ -61,13 +61,13 @@ namespace Apollo.Age.Services.Impl
 
                     if (sport == null)
                     {
-                        sport = new Sport()
+                        sport = new SportSetting()
                         {
                             Id = sportId,
                             IsMixSportParlay = false,
                             Name = sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value.ToString(),
                             ResourceKey = sportTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
-                            BetTypeList = new List<BetType>()
+                            BetTypeList = new List<BetTypeSetting>()
                         };
 
                         sportList.Add(sport);
@@ -77,13 +77,13 @@ namespace Apollo.Age.Services.Impl
                         var sportName = sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value.ToString();
                         if (sportId == 99 && sportName == MIX_SPORT_PARLAY)
                         {
-                            sport = new Sport()
+                            sport = new SportSetting()
                             {
                                 Id = sportId,
                                 IsMixSportParlay = true,
                                 Name = sportName,
                                 ResourceKey = sportTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
-                                BetTypeList = new List<BetType>()
+                                BetTypeList = new List<BetTypeSetting>()
                             };
 
                             sportList.Add(sport);
@@ -101,7 +101,7 @@ namespace Apollo.Age.Services.Impl
 
                             if (betType == null)
                             {
-                                betType = new BetType()
+                                betType = new BetTypeSetting()
                                 {
                                     Id = betTypeId,
                                     Name = betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
@@ -115,7 +115,7 @@ namespace Apollo.Age.Services.Impl
                                 betType.IsDead = isLive;
                                 betType.IsLive = !isLive;
 
-                                betType = new BetType()
+                                betType = new BetTypeSetting()
                                 {
                                     Id = betTypeId,
                                     Name = betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
@@ -135,9 +135,9 @@ namespace Apollo.Age.Services.Impl
             return sportList;
         }
 
-        public List<BetType> GetBetTypeBySport(short sportId, bool isMixSportParlay)
+        public List<BetTypeSetting> GetBetTypeBySport(short sportId, bool isMixSportParlay)
         {
-            var betTypeList = new List<BetType>();
+            var betTypeList = new List<BetTypeSetting>();
 
             if (SportList == null)
             {

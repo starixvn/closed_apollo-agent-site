@@ -72,7 +72,6 @@
     <Compile Include="DTO\Reports\WinlossAgentDTO.cs" />
     <Compile Include="DTO\Reports\WinLossByBetTypeDTO.cs" />
     <Compile Include="Entities\Agent.cs" />
-    <Compile Include="Entities\BetType.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\ICustomer.cs" />
@@ -113,12 +112,10 @@
     <Compile Include="Services\Impl\PermissionService.cs" />
     <Compile Include="Services\Impl\QueryService.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
-    <Compile Include="Services\Impl\SportService.cs" />
     <Compile Include="Services\Impl\UserService.cs" />
     <Compile Include="Services\Interface\IAgentService.cs" />
     <Compile Include="Services\Interface\ICustomerService.cs" />
     <Compile Include="Services\Interface\IMemberService.cs" />
-    <Compile Include="Services\Interface\ISportService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Entities\Language.cs" />
   </ItemGroup>
