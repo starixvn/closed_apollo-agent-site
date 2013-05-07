@@ -17,13 +17,13 @@ namespace Fanex.BetList.Age
 			public Header1_No_Block No = new Header1_No_Block();
 			public Header1_Member_Block Member = new Header1_Member_Block();
 			protected static string s1 = "<th style=\"width: 120px;\">";
-			protected static string s2{get{return Resources.BetList.transtime;}}
+			protected static string s2{get{return Apollo.Age.Resources.BetList.transtime;}}
 			protected static string s3 = "</th><th>";
-			protected static string s4{get{return Resources.BetList.choice;}}
+			protected static string s4{get{return Apollo.Age.Resources.BetList.choice;}}
 			protected static string s5 = "</th><th style=\"width: 50px;\">";
-			protected static string s6{get{return Resources.BetList.odds;}}
+			protected static string s6{get{return Apollo.Age.Resources.BetList.odds;}}
 			protected static string s7 = "</th><th style=\"width: 50px;\">";
-			protected static string s8{get{return Resources.BetList.stake;}}
+			protected static string s8{get{return Apollo.Age.Resources.BetList.stake;}}
 			protected static string s9 = "</th>";
 			public Header1_Winloss_Block Winloss = new Header1_Winloss_Block();
 			public Header1_Status_Block Status = new Header1_Status_Block();
@@ -79,7 +79,7 @@ namespace Fanex.BetList.Age
 		public class Header1_Member_Block: Block
 		{
 			protected static string s12 = "<th style=\"width: 110px;\">";
-			protected static string s13{get{return Resources.BetList.member;}}
+			protected static string s13{get{return Apollo.Age.Resources.BetList.member;}}
 			protected static string s14 = "</th>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -97,7 +97,7 @@ namespace Fanex.BetList.Age
 		public class Header1_Winloss_Block: Block
 		{
 			protected static string s15 = "<th style=\"width: 50px;\">";
-			protected static string s16{get{return Resources.BetList.winloss;}}
+			protected static string s16{get{return Apollo.Age.Resources.BetList.winloss;}}
 			protected static string s17 = "</th>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -115,7 +115,7 @@ namespace Fanex.BetList.Age
 		public class Header1_Status_Block: Block
 		{
 			protected static string s18 = "<th style=\"width: 75px;\">";
-			protected static string s19{get{return Resources.BetList.status;}}
+			protected static string s19{get{return Apollo.Age.Resources.BetList.status;}}
 			protected static string s20 = "</th>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -133,9 +133,9 @@ namespace Fanex.BetList.Age
 		public class Header1_Agent_Block: Block
 		{
 			protected static string s21 = "<th style=\"width: 85px;\">";
-			protected static string s22{get{return Resources.BetList.agentPT;}}
+			protected static string s22{get{return Apollo.Age.Resources.BetList.agentPT;}}
 			protected static string s23 = "</th><th style=\"width: 85px;\">";
-			protected static string s24{get{return Resources.BetList.agentComm;}}
+			protected static string s24{get{return Apollo.Age.Resources.BetList.agentComm;}}
 			protected static string s25 = "</th>";
 			public override void ToString(ref StringBuilder bd)
 			{
