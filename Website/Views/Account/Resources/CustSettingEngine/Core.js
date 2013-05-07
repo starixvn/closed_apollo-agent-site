@@ -454,7 +454,7 @@ Spinner.prototype = {
         // ensure the value is within the permitted range
         if ('minimum' in this.options && !noCheckConstrain) value = Math.max(this.options.minimum, value);
         if ('maximum' in this.options && !noCheckConstrain) value = Math.min(this.options.maximum, value);
-        
+
         // store the sign
         var sign = (value < 0 ? '-' : '');
         value = Math.abs(value);
@@ -620,11 +620,13 @@ Spinner.prototype = {
         if (this.input.onchange) this.input.onchange();
     },
     updateAndSetMaxValue: function (maxValue) {
+        if (this.options.minimum > maxValue) maxValue = this.options.minimum;
         if (maxValue < 0) maxValue = 0;
         this.options.maximum = maxValue;
         this.setValue(maxValue);
     },
     updateMaxValue: function (maxValue) {
+        if (this.options.minimum > maxValue) maxValue = this.options.minimum;
         if (maxValue < 0) maxValue = 0;
         this.options.maximum = maxValue;
     },
@@ -634,7 +636,7 @@ Spinner.prototype = {
     },
     isValid: function () {
         var value = this.getValue();
-        if (value < this.options.minimum || value > this.options.maximum) {
+        if ((value < this.options.minimum || value > this.options.maximum) && (this.options.minimum <= this.options.maximum)) {
             Fanex.ValidateMessage(this.input, Language.INVALID_RANGE);
             return false;
         }
