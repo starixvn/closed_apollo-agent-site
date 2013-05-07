@@ -484,6 +484,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsLiveAwayScore = columnCollection.Contains("liveawayscore");
             var containsAgentLevel = columnCollection.Contains("agentlevel");
             var containsActualStake = columnCollection.Contains("actual_stake");
+            var containsStatusId = columnCollection.Contains("statusid");
 
             // Boolean
             var containsNeutral = columnCollection.Contains("isneutral");
@@ -537,6 +538,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.LiveHomeScore = containsLiveHomeScore ? Converter.ToInt(dataRow["livehomescore"]) : 0;
                 ticket.LiveAwayScore = containsLiveAwayScore ? Converter.ToInt(dataRow["liveawayscore"]) : 0;
                 ticket.AgentLevel = containsAgentLevel ? Converter.ToInt(dataRow["agentlevel"]) : 0;
+                ticket.StatusId = containsStatusId ? Converter.ToInt(dataRow["statusid"]) : 0;
 
                 // Boolean
                 ticket.IsLive = containsLiveIndicator ? this.ReadBoolean(dataRow["liveindicator"]) : false;
