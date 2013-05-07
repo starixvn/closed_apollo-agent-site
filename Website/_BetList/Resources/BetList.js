@@ -57,7 +57,7 @@ function ViewSportBookResult(matchId, sportId, refno) {
 	var width = 730,
 		height = 250,
 		params = '?matchId= ' + matchId + '&sportId=' + sportId,
-		detailTitle = $('#' + refno).find('.sport').text() + $('#' + refno).find('.league').html().replace(/\<span(.|\s)*?\<\/span\>/, '').replace("&nbsp;", " - ");
+		detailTitle = $('#' + refno).find('.league').html().replace(/<\/?[^>]+>/gi, "").replace("&nbsp;", " - ");
 
 	if (parent.ageWnd) {
 		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), detailTitle, 50, 100, width, height);
