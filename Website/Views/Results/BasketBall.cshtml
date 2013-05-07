@@ -5,34 +5,34 @@
     <thead>
         <tr class="RptHeader">
             <td style="width: 90px" columnname="kickofftime">
-                @Resources.Lang.kickofftime
+                @Apollo.Age.Resources.Lang.kickofftime
             </td>
             <td>
-                @Resources.Lang.match
+                @Apollo.Age.Resources.Lang.match
             </td>
             <td style="width: 40px;">
-                @Resources.Lang.Q1
+                @Apollo.Age.Resources.Lang.Q1
             </td>
             <td style="width: 40px;">
-                @Resources.Lang.Q2
+                @Apollo.Age.Resources.Lang.Q2
             </td>
             <td style="width: 40px;">
-                @Resources.Lang.Q3
+                @Apollo.Age.Resources.Lang.Q3
             </td>
             <td style="width: 40px;">
-                @Resources.Lang.Q4
+                @Apollo.Age.Resources.Lang.Q4
             </td>
             <td style="width: 40px;">
-                @Resources.Lang.OT
+                @Apollo.Age.Resources.Lang.OT
             </td>
             <td style="width: 100px;">
-                @Resources.Lang.firsthalfscore
+                @Apollo.Age.Resources.Lang.firsthalfscore
             </td>
             <td class="nowrap" style="width: 100px;">
-                @Resources.Lang.finalscore
+                @Apollo.Age.Resources.Lang.finalscore
             </td>
             <td class="nowrap" style="width: 60px;">
-                @Resources.Lang.status
+                @Apollo.Age.Resources.Lang.status
             </td>
         </tr>
     </thead>
@@ -63,11 +63,11 @@
 
                 if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
                 {
-                    finalHomeScore = finalAwayScore = firstHalfHomeScore = firstHalfAwayScore = @Resources.Lang.lblNA;
+                    finalHomeScore = finalAwayScore = firstHalfHomeScore = firstHalfAwayScore = @Apollo.Age.Resources.Lang.lblNA;
                 }
                 else if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
                 {
-                    finalHomeScore = finalAwayScore = @Resources.Lang.lblNA;
+                    finalHomeScore = finalAwayScore = @Apollo.Age.Resources.Lang.lblNA;
                     firstHalfHomeScore = item.HalfTimeHomeScore.ToString();
                     firstHalfAwayScore = item.HalfTimeAwayScore.ToString();
                 }
@@ -75,7 +75,7 @@
                 {
                     finalHomeScore = item.FinalHomeScore.ToString();
                     finalAwayScore = item.FinalAwayScore.ToString();
-                    firstHalfHomeScore = firstHalfAwayScore = @Resources.Lang.lblNA;
+                    firstHalfHomeScore = firstHalfAwayScore = @Apollo.Age.Resources.Lang.lblNA;
 
                 }
                 else

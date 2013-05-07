@@ -19,15 +19,15 @@
     @RazorHelper.Piwik()
     <div id="page_main">
         @if (isShowHeader)
-        { 
+        {
             <div id="header_main">
                 @ViewBag.Title
             </div>
         }
         <div id="content_main">
             <div class="setting-mode">
-                <span id="simple-mode" class="deactive-mode">@Resources.Lang.lblSimpleModel</span>
-                | <span class="active-mode" id="advanced-mode">@Resources.Lang.lblAdvancedMode</span>
+                <span id="simple-mode" class="deactive-mode">@Apollo.Age.Resources.Lang.lblSimpleModel</span>
+                | <span class="active-mode" id="advanced-mode">@Apollo.Age.Resources.Lang.lblAdvancedMode</span>
             </div>
             @if (!isMaster)
             {
@@ -39,16 +39,16 @@
             {
                 <div id="settingContainer">
                     <div class="edit-setting-warning">
-                        @Resources.Lang.lblWarningEditSetting</div>
+                        @Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
                     @RenderBody()
                 </div>
-                    if (ViewBag.IsMaster)
-                    {
-                        <div class="btnLeft">
-                            <button id="btnSubmitFooter" class="btn" style="display: none;">
-                                @Resources.Lang.update</button>
-                        </div>
-                    }
+                if (ViewBag.IsMaster)
+                {
+                <div class="btnLeft">
+                    <button id="btnSubmitFooter" class="btn" style="display: none;">
+                        @Apollo.Age.Resources.Lang.update</button>
+                </div>
+                }
             }
         </div>
     </div>
@@ -67,68 +67,68 @@
         var isSimpleMode = true;
         var Language =
         {
-            MIN_BET: "@(Resources.Lang.lblMinBet)",
-            MAX_BET: "@(Resources.Lang.lblMaxBet)",
-            MAX_PER_MATCH: "@(Resources.Lang.lblMaxPerMatch)",
-            MAX_PER_BALL: "@(Resources.Lang.maxperball)",
-            BETTING_LIMIT: "@(Resources.Lang.betlimit)",
-            DEAD_BALL: "@(Resources.Lang.lblDeadball)",
-            LIVE: "@(Resources.Lang.lblLive)",
-            DEAD_BALL_VN: "@(Resources.Lang.lblDeadball)",
-            LIVE_VN: "@(Resources.Lang.lblLive)",
-            MIN_POSITION: "@(Resources.Lang.lblMinGivenShare)",
-            MAX_POSITION: "@(Resources.Lang.lblMaxGivenShare)",
-            SIMPLE_MODE_MAX_POSITION: "@(Resources.Lang.lblGivenShare)",
-            SIMPLE_MODE_PRESET_POSITION: "@(Resources.Lang.lblTakenShare)",
-            PRESET_POSITION: "@(Resources.Lang.lblMaxTakenShare)",
-            POSITION_TAKING: "@(Resources.Lang.positiontaking)",
-            COPY_FROM: "@(Resources.Lang.copyFrom)",
-            COPY_ALL_OTHER_POSITION_TAKING_FROM: "@(Resources.Lang.copyAllPositionTakingFrom)",
-            COPY_ALL_POSITION_TAKING_FROM: "@(Resources.Lang.copyPositionTakingFrom)",
-            COPY_ALL_BETTING_LIMIT_FROM: "@(Resources.Lang.copyAllBetSettingFromExcludingNG)",
-            COPY_ALL_HINT: "@(Resources.Lang.copyAllHint)",
-            OTHER_BET_TYPE_OF: "@(Resources.Lang.otherBetTypesOf)",
-            INCORRECT_MIN_BET: "@(Resources.Lang.alertIncorrectMinBet)",
-            INCORRECT_MAX_BET: "@(Resources.Lang.alertIncorrectMaxBet)",
-            INCORRECT_MAX_PER_MATCH: "@(Resources.Lang.alertIncorrectMaxPerMatch)",
-            INCORRECT_MAX_PER_BALL: "@(Resources.Lang.alertIncorrectMaxPerBall)",
-            MIN_BET_LOWER_THAN_MIN_MAX_BET: "@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet)",
-            MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch)",
-            MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "@(Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch)",
-            MIN_BET_GREATER_THAN_MIN_MIN_BET: '@(string.Format("{0} {1}", Resources.Lang.lblalertMinbetCompare, "{0}"))',
-            MAX_BET_LOWER_THAN_MAX_MAX_BET: '@(string.Format("{0} {1}", Resources.Lang.lblalerMaxbetCompare, "{0}"))',
-            MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET: '@(Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}"))',
-            MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET: '@(Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}"))',
-            MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL: '@(Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall)',
+            MIN_BET: "@(Apollo.Age.Resources.Lang.lblMinBet)",
+            MAX_BET: "@(Apollo.Age.Resources.Lang.lblMaxBet)",
+            MAX_PER_MATCH: "@(Apollo.Age.Resources.Lang.lblMaxPerMatch)",
+            MAX_PER_BALL: "@(Apollo.Age.Resources.Lang.maxperball)",
+            BETTING_LIMIT: "@(Apollo.Age.Resources.Lang.betlimit)",
+            DEAD_BALL: "@(Apollo.Age.Resources.Lang.lblDeadball)",
+            LIVE: "@(Apollo.Age.Resources.Lang.lblLive)",
+            DEAD_BALL_VN: "@(Apollo.Age.Resources.Lang.lblDeadball)",
+            LIVE_VN: "@(Apollo.Age.Resources.Lang.lblLive)",
+            MIN_POSITION: "@(Apollo.Age.Resources.Lang.lblMinGivenShare)",
+            MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblMaxGivenShare)",
+            SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare)",
+            SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare)",
+            PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblMaxTakenShare)",
+            POSITION_TAKING: "@(Apollo.Age.Resources.Lang.positiontaking)",
+            COPY_FROM: "@(Apollo.Age.Resources.Lang.copyFrom)",
+            COPY_ALL_OTHER_POSITION_TAKING_FROM: "@(Apollo.Age.Resources.Lang.copyAllPositionTakingFrom)",
+            COPY_ALL_POSITION_TAKING_FROM: "@(Apollo.Age.Resources.Lang.copyPositionTakingFrom)",
+            COPY_ALL_BETTING_LIMIT_FROM: "@(Apollo.Age.Resources.Lang.copyAllBetSettingFromExcludingNG)",
+            COPY_ALL_HINT: "@(Apollo.Age.Resources.Lang.copyAllHint)",
+            OTHER_BET_TYPE_OF: "@(Apollo.Age.Resources.Lang.otherBetTypesOf)",
+            INCORRECT_MIN_BET: "@(Apollo.Age.Resources.Lang.alertIncorrectMinBet)",
+            INCORRECT_MAX_BET: "@(Apollo.Age.Resources.Lang.alertIncorrectMaxBet)",
+            INCORRECT_MAX_PER_MATCH: "@(Apollo.Age.Resources.Lang.alertIncorrectMaxPerMatch)",
+            INCORRECT_MAX_PER_BALL: "@(Apollo.Age.Resources.Lang.alertIncorrectMaxPerBall)",
+            MIN_BET_LOWER_THAN_MIN_MAX_BET: "@(Apollo.Age.Resources.Lang.minBetShouldBeLessThanOrEqualToMaxBet)",
+            MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "@(Apollo.Age.Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerMatch)",
+            MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET: "@(Apollo.Age.Resources.Lang.maxBetShouldBeLessThanOrEqualToMaxPerMatch)",
+            MIN_BET_GREATER_THAN_MIN_MIN_BET: '@(string.Format("{0} {1}", Apollo.Age.Resources.Lang.lblalertMinbetCompare, "{0}"))',
+            MAX_BET_LOWER_THAN_MAX_MAX_BET: '@(string.Format("{0} {1}", Apollo.Age.Resources.Lang.lblalerMaxbetCompare, "{0}"))',
+            MAX_PER_MATCH_LOWER_THAN_MAX_PER_MATCH_MAX_BET: '@(Apollo.Age.Resources.Lang.lblalertMaxPerMatchCompare.Replace("{1}", "{0}"))',
+            MAX_PER_BALL_LOWER_THAN_MAX_PER_BALL_MAX_BET: '@(Apollo.Age.Resources.Lang.lblalertMaxPerBallCompare.Replace("{1}", "{0}"))',
+            MIN_BET_LOWER_THAN_MIN_MAX_PER_BALL: '@(Apollo.Age.Resources.Lang.minBetShouldBeLessThanOrEqualToMaxPerBall)',
             //	WANT_TO_UPDATE_ALL_MEMBER_POSITION_TAKING: "Do you want to update all member's position taking to:",
-            YES: "@(Resources.Lang.lblYes)",
-            NO: "@(Resources.Lang.lblNo)",
-            BASKETBALL: "@(Resources.Lang.Basketball)",
-            SOCCER: "@(Resources.Lang.soccer)",
-            POSITION_SETTING_HEADER: "@(Resources.Lang.lblShareSetting)",
-            POSITION_SETTING_SIMPLE_MODE_HEADER: "@(Resources.Lang.lblShareSettingSimpleMode)",
-            BET_SETTING_HEADER: "@(Resources.Lang.lblBetSetting)",
-            COMMISSION_SETTING_HEADER: "@(Resources.Lang.lblCommissionSetting)",
-            //// commission setting text 
-            GROUP_A: "@(Resources.Lang.lblGroupa) (%) ",
-            GROUP_B: "@(Resources.Lang.lblGroupb) (%) ",
-            GROUP_C: "@(Resources.Lang.lblGroupc) (%) ",
-            GROUP_D: "@(Resources.Lang.lblGroupd) (%) ",
-            _1X2: "@(Resources.Lang.lbl1x2Comm) (%) ",
-            OTHERS_COM: "@(Resources.Lang.lblOtherComm) (%) ",
-            NUMBER_GAME: "@(Resources.Lang.numbergame)",
-            ASIAN_HDC_OU_OE: "@(Resources.Lang.lblAsianHDC_OU_OE) (%)",
-            MEMBER_GROUP: "@(Resources.Lang.lblCommissionGroup)",
+            YES: "@(Apollo.Age.Resources.Lang.lblYes)",
+            NO: "@(Apollo.Age.Resources.Lang.lblNo)",
+            BASKETBALL: "@(Apollo.Age.Resources.Lang.Basketball)",
+            SOCCER: "@(Apollo.Age.Resources.Lang.soccer)",
+            POSITION_SETTING_HEADER: Apollo.Age.Resources.Lang.lblShareSetting)",
+            POSITION_SETTING_SIMPLE_MODE_HEADER: "@(Apollo.Age.Resources.Lang.lblShareSettingSimpleMode)",
+            BET_SETTING_HEADER: "@(Apollo.Age.Resources.Lang.lblBetSetting)",
+            COMMISSION_SETTING_HEADER: "@(Apollo.Age.Resources.Lang.lblCommissionSetting)",
+            //// commission setting text
+            GROUP_A: "@(Apollo.Age.Resources.Lang.lblGroupa) (%) ",
+            GROUP_B: "@(Apollo.Age.Resources.Lang.lblGroupb) (%) ",
+            GROUP_C: "@(Apollo.Age.Resources.Lang.lblGroupc) (%) ",
+            GROUP_D: "@(Apollo.Age.Resources.Lang.lblGroupd) (%) ",
+            _1X2: "@(Apollo.Age.Resources.Lang.lbl1x2Comm) (%) ",
+            OTHERS_COM: "@(Apollo.Age.Resources.Lang.lblOtherComm) (%) ",
+            NUMBER_GAME: "@(Apollo.Age.Resources.Lang.numbergame)",
+            ASIAN_HDC_OU_OE: "@(Apollo.Age.Resources.Lang.lblAsianHDC_OU_OE) (%)",
+            MEMBER_GROUP: "@(Apollo.Age.Resources.Lang.lblCommissionGroup)",
             COMM_FOR_AGENT: "",
-            COMM_FOR_MEMBER: "@(Resources.Lang.lblMemberCommission)",
-            GROUP: "@(Resources.Lang.group)",
-            AGENT_SHARE: "@(Resources.Lang.lblAgentShare)",
-            SPORT_BOOK: "@(Resources.Lang.sportBook)",
-            SIMPLE_MODE_MAX_POSITION: "@(Resources.Lang.lblGivenShare)",
-            SIMPLE_MODE_PRESET_POSITION: "@(Resources.Lang.lblTakenShare)",
-            INVALID_RANGE: "@(Resources.Lang.lblInvalidValueRange)"
+            COMM_FOR_MEMBER: "@(Apollo.Age.Resources.Lang.lblMemberCommission)",
+            GROUP: "@(Apollo.Age.Resources.Lang.group)",
+            AGENT_SHARE: "@(Apollo.Age.Resources.Lang.lblAgentShare)",
+            SPORT_BOOK: "@(Apollo.Age.Resources.Lang.sportBook)",
+            SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare)",
+            SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare)",
+            INVALID_RANGE: "@(Apollo.Age.Resources.Lang.lblInvalidValueRange)"
         };
-        var invalidComMessage = '@(Resources.Lang.lblInvalidGroupCommissionRange)';
+        var invalidComMessage = '@(Apollo.Age.Resources.Lang.lblInvalidGroupCommissionRange)';
     </script>
     @RenderSection("scripts", required: false)
 </body>

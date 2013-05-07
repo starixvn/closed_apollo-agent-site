@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.lblHOUL;
+    ViewBag.Title = Apollo.Age.Resources.Lang.lblHOUL;
 
     IEnumerable<LeagueModel> leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     string leagueName = ViewBag.LeagueName;
@@ -21,7 +21,7 @@
             @if (leagues != null && leagues.Any())
             {
                 <div class="label">
-                    <label for="ddlLeague">@Resources.Lang.league</label>
+                    <label for="ddlLeague">@Apollo.Age.Resources.Lang.league</label>
                 </div>
                 <div class="editor" id="selLeague">
                     <select id='ddlLeague' name='ddlLeague' style="width: 280px">
@@ -46,7 +46,7 @@
             else
             {
                 <label>
-                    There is no @Resources.Lang.league availble!</label>
+                    There is no @Apollo.Age.Resources.Lang.league availble!</label>
             }
         </div>
     </div>
@@ -57,13 +57,13 @@
         <thead>
             <tr class="RptHeader">
                 <td colspan="2">
-                    @Resources.Lang.lblTeam
+                    @Apollo.Age.Resources.Lang.lblTeam
                 </td>
                 <td colspan="3">
-                    @Resources.Lang.lblHandicapFC
+                    @Apollo.Age.Resources.Lang.lblHandicapFC
                 </td>
                 <td colspan="3">
-                    @Resources.Lang.lblOverUnder
+                    @Apollo.Age.Resources.Lang.lblOverUnder
                 </td>
             </tr>
         </thead>

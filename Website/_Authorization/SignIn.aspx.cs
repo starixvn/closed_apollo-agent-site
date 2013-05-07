@@ -71,7 +71,7 @@ namespace Sunplus.Agent.UI._Authorization
                 if (PreviousLoginFailedTime.AddMinutes(5).CompareTo(DateTime.Now) > 0) // After 5'
                 {
                     PreviousLoginFailedTime = DateTime.Now;
-                    RegisterJSONError(1, Resources.Lang.loginWrong5Times);
+                    RegisterJSONError(1, Apollo.Age.Resources.Lang.loginWrong5Times);
                     return;
                 }
                 else
@@ -127,7 +127,7 @@ namespace Sunplus.Agent.UI._Authorization
 
                 if (LoginFailedCount > 5)
                 {
-                    RegisterJSONError(1, Resources.Lang.loginWrong5Times);
+                    RegisterJSONError(1, Apollo.Age.Resources.Lang.loginWrong5Times);
                     return;
                 }
                 else
@@ -167,7 +167,7 @@ namespace Sunplus.Agent.UI._Authorization
             //    LoginFailedCount++;
             //    if (LoginFailedCount > 5)
             //    {
-            //        RegisterJSONError(1, Resources.Lang.loginWrong5Times);
+            //        RegisterJSONError(1, Apollo.Age.Resources.Lang.loginWrong5Times);
             //        return;
             //    }
             //    else
@@ -253,7 +253,7 @@ namespace Sunplus.Agent.UI._Authorization
             //Mobile Device Browser
             if (this.isMobileBrowser())
             {
-                tpl.VersionMobile = "<a id='mobileId'>" + Resources.Lang.mobile + "</a> - " + Resources.Lang.fullSite;
+                tpl.VersionMobile = "<a id='mobileId'>" + Apollo.Age.Resources.Lang.mobile + "</a> - " + Apollo.Age.Resources.Lang.fullSite;
             }
             else
             {

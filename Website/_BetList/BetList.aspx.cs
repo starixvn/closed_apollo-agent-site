@@ -240,7 +240,7 @@ namespace Sunplus.Agent.UI._BetList
             else if (type.ToLower().Equals("combmixparlaybetlist"))
             {
                 bettype = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
-                title = Resources.Lang.lblSystemParlay.ToUpper();
+                title = Apollo.Age.Resources.Lang.lblSystemParlay.ToUpper();
             }
             else
             {
@@ -262,7 +262,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 if (int.Parse(Request["custid"].ToString()) <= 0)
                 {
-                    return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
+                    return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
                 }
             }
 
@@ -270,7 +270,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 if (int.Parse(Request["bettype"].ToString()) < 0)
                 {
-                    return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
+                    return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
                 }
             }
 
@@ -279,7 +279,7 @@ namespace Sunplus.Agent.UI._BetList
 
             if (dateFrom < minDate || dateTo < minDate || dateTo > maxDate)
             {
-                return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
+                return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
 
             return null;

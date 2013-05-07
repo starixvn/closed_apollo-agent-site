@@ -449,7 +449,7 @@ namespace Fanex.Age.UI.Reports
                 {
                     if (_resourceManager == null)
                     {
-                        _resourceManager = new ResourceManager(typeof(Resources.Lang));
+                        _resourceManager = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
                         _resourceManager.IgnoreCase = true;
                     }
                 }
