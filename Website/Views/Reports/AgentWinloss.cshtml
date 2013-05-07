@@ -196,18 +196,21 @@ else
 							@item.AgentName
 						</a>
 					</td>
-				}
-				else
-				{
+                    <td class="r">
+					    @Formater.FormatNumber20(item.SoccerShare / 100, Formater.CULT_NAME_ENG)
+				    </td>
+                }
+                else
+                {
 					<td>
 						<a href="~/Reports/MemberWinLoss?agentId=@Model.AgentId&agentName=@Model.AgentName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
 							@Resources.Lang.lblMemberWinLoss
 						</a>
 					</td>
-				}
-				<td class="r">
-					@Formater.FormatNumber20(item.SoccerShare / 100, Formater.CULT_NAME_ENG)
-				</td>
+                    <td>
+                    </td>
+                }
+				
 				<td class="r">
 					@Formater.FormatNumber20(item.Turnover, Formater.CULT_NAME_ENG)
 				</td>
@@ -230,7 +233,7 @@ else
 					@Formater.FormatNumber20(item.UplineTotal, Formater.CULT_NAME_ENG)
 				</td>
 			</tr>
-		}
+        }
 		</tbody>
 		<tfoot>
 			<tr class="total">
@@ -262,22 +265,22 @@ else
 				</td>
 			</tr>
 		</tfoot>
-	}
-	else
-	{
+    }
+    else
+    {
 		@RazorHelper.ShowNoInfo(9)
-	}
+    }
 }
 
 </table>
 
 @RazorHelper.Info(
-	@<div style="width: 600px; height: 600px">
+    @<div style="width: 600px; height: 600px">
 		@ViewBag.Title INFO
 	</div>
-	, null
-	, title: ViewBag.Title as string
-	, tipTitle: "Click to view Agent WinLoss INFO"
+    , null
+    , title: ViewBag.Title as string
+    , tipTitle: "Click to view Agent WinLoss INFO"
 )
 
 @section scripts
