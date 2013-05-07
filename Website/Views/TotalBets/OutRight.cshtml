@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.lblOutRight;
+    ViewBag.Title = Apollo.Age.Resources.Lang.lblOutRight;
 }
 @model IEnumerable<OutRightModel>
 @helper ShowLeague(int currentLeagueId, OutRightModel item)
@@ -24,13 +24,13 @@
                 #
             </td>
             <td style="width: 45%;">
-                @Resources.Lang.lblTeam
+                @Apollo.Age.Resources.Lang.lblTeam
             </td>
             <td style="width: 25%">
-                @Resources.Lang.lblBalance
+                @Apollo.Age.Resources.Lang.lblBalance
             </td>
             <td style="width: 25%">
-                @Resources.Lang.lblForecast
+                @Apollo.Age.Resources.Lang.lblForecast
             </td>
         </tr>
     </thead>
@@ -55,7 +55,7 @@
                 </td>
                 <td class="l">
                     <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);"   league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblOutRight"  title="@Resources.Lang.ViewBetList">@item.TeamName
+                        href="javascript:void(0);"   league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOutRight"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.TeamName
                     </a>
                 </td>
                 <td class="fcnum">

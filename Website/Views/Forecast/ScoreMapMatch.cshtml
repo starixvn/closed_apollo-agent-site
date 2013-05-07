@@ -5,8 +5,9 @@
 @model IEnumerable<ScoreMapMatch>
 <div id="BoxMatchWL">
     <div class="poup-title">
-        <div id="iconSelMatch">@Resources.Lang.SelectMatch</div>                
-        <div id="closeBoxMatch"></div>
+        <div id="iconSelMatch">@Apollo.Age.Resources.Lang.SelectMatch</div>
+        <div id="closeBoxMatch">
+        </div>
     </div>
     <div class="boderBoxMatch">
         <div class="ContentMatchWL">
@@ -15,16 +16,17 @@
                 @{
                     if (Model != null && Model.Any())
                     {
-                        <li>
-                            <input class="hand" type="checkbox" id="chLCheckAll">
-                            <label class="hand" for="chLCheckAll"><b>@Resources.Lang.all</b></label>
-                        </li>
+                    <li>
+                        <input class="hand" type="checkbox" id="chLCheckAll">
+                        <label class="hand" for="chLCheckAll">
+                            <b>@Apollo.Age.Resources.Lang.all</b></label>
+                    </li>
                         foreach (var match in Model)
                         {
-                            <li>
-                                <input class="hand match-item" type="checkbox" id="chL@(match.MatchId)" value="@(match.MatchId)" />
-                                <label class="hand" for="chL@(match.MatchId)">@(match.MatchName)</label>
-                            </li>
+                    <li>
+                        <input class="hand match-item" type="checkbox" id="chL@(match.MatchId)" value="@(match.MatchId)" />
+                        <label class="hand" for="chL@(match.MatchId)">@(match.MatchName)</label>
+                    </li>
                         }
 
                     }
@@ -33,7 +35,7 @@
             <!--/ContentMatch-->
         </div>
         <div class="btn-select">
-             <input type="button" class="btn" id="dSubmitInMatch" value="@Resources.Lang.select">
+            <input type="button" class="btn" id="dSubmitInMatch" value="@Apollo.Age.Resources.Lang.select">
         </div>
         <div id="tblMsgMatch">
             <span class="msgerr" id="msgMatchErr">Please choose a bet type</span>

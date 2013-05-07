@@ -1,131 +1,142 @@
 ﻿@model List<Apollo.Age.DTO.Admin.ExchangeRate.ExchRate>
 @{
     Layout = "~/Views/Admin/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.Exchange_Rate;
+    ViewBag.Title = Apollo.Age.Resources.Lang.Exchange_Rate;
 }
-
 <table class="tblRpt">
     <thead>
         <tr class="title-bar">
             <th colspan="7">
                 <div class="excel">
                     @*<input src="~/_globalresources/images/excel.gif"
-                        title="@Resources.Lang.exporttoexcel"
-                        alt="@Resources.Lang.exporttoexcel"
+                        title="@Apollo.Age.Resources.Lang.exporttoexcel"
+                        alt="@Apollo.Age.Resources.Lang.exporttoexcel"
                         type="image" id="btn-excel" name="ExportExcel" />*@
-
                     <input src="~/_globalresources/images/icon-add-doc.png"
-                        title="@Resources.Lang.AddNewExchangeRate"
-                        alt="@Resources.Lang.AddNewExchangeRate"
+                        title="@Apollo.Age.Resources.Lang.AddNewExchangeRate"
+                        alt="@Apollo.Age.Resources.Lang.AddNewExchangeRate"
                         type="image" id="btn-add-new" />
                 </div>
             </th>
         </tr>
         <tr>
             <th>
-                @Resources.Lang.currency
+                @Apollo.Age.Resources.Lang.currency
             </th>
             <th>
-                @Resources.Lang.MultipliedBy
+                @Apollo.Age.Resources.Lang.MultipliedBy
             </th>
             <th>
-                @Resources.Lang.BaseRate
+                @Apollo.Age.Resources.Lang.BaseRate
             </th>
             <th>
-                @Resources.Lang.MinBet
+                @Apollo.Age.Resources.Lang.MinBet
             </th>
             <th>
-                @Resources.Lang.MinBetLive
+                @Apollo.Age.Resources.Lang.MinBetLive
             </th>
             <th>
-                @Resources.Lang.description
+                @Apollo.Age.Resources.Lang.description
             </th>
             <th>
-                @Resources.Lang.edit
+                @Apollo.Age.Resources.Lang.edit
             </th>
         </tr>
     </thead>
-
     <tbody>
-    @if (Model != null && Model.Any())
-    {
-        int index = 0;
-        string rowClass = string.Empty;
-
-        foreach (var exchRate in Model)
+        @if (Model != null && Model.Any())
         {
-            rowClass = ++index % 2 == 0 ? "alt" : string.Empty;
-            
-        <tr class="tbl-data @rowClass">
-            <td class="c">@exchRate.Currency</td>
-            <td class="r">@exchRate.MultipliedBy</td>
-            <td class="r">@exchRate.BaseRate</td>
-            <td class="r">@exchRate.MinBet</td>
-            <td class="r">@exchRate.MinBetLive</td>
-            <td>@exchRate.Description</td>
-            <td class="c">
-                <img eid="@exchRate.ExchangeId" class="btn-edit"
+            int index = 0;
+            string rowClass = string.Empty;
+
+            foreach (var exchRate in Model)
+            {
+                rowClass = ++index % 2 == 0 ? "alt" : string.Empty;
+
+            <tr class="tbl-data @rowClass">
+                <td class="c">@exchRate.Currency
+                </td>
+                <td class="r">@exchRate.MultipliedBy
+                </td>
+                <td class="r">@exchRate.BaseRate
+                </td>
+                <td class="r">@exchRate.MinBet
+                </td>
+                <td class="r">@exchRate.MinBetLive
+                </td>
+                <td>@exchRate.Description
+                </td>
+                <td class="c">
+                    <img eid="@exchRate.ExchangeId" class="btn-edit"
                     alt="Edit" title="Edit @exchRate.Currency"
                     src="~/_globalresources/images/icon_edit.png" />
-            </td>
-        </tr>
+                </td>
+            </tr>
+            }
         }
-    }
-    else
-    {
-        @RazorHelper.ShowNoInfo(7)
-    }
+        else
+        {
+            @RazorHelper.ShowNoInfo(7)
+        }
     </tbody>
 </table>
-
 <input type="hidden" id="UserId" value="@ViewBag.UserId" />
 <input type="hidden" id="current-edit-eid" />
 <input type="hidden" id="current-action" />
-
 <div id="dialog-edit" style="display: none">
     <table id="editor-wrp">
         <thead>
             <tr>
                 <th>
-                    <label for="editor-desc">@Resources.Lang.currency</label>
+                    <label for="editor-desc">@Apollo.Age.Resources.Lang.currency</label>
                 </th>
                 <th>
-                    <label for="editor-desc">@Resources.Lang.description</label>
+                    <label for="editor-desc">@Apollo.Age.Resources.Lang.description</label>
                 </th>
                 <th>
-                    <label for="editor-mult">@Resources.Lang.MultipliedBy</label>
+                    <label for="editor-mult">@Apollo.Age.Resources.Lang.MultipliedBy</label>
                 </th>
                 <th>
-                    <label for="editor-base">@Resources.Lang.BaseRate</label>
+                    <label for="editor-base">@Apollo.Age.Resources.Lang.BaseRate</label>
                 </th>
                 <th>
-                    <label for="editor-minb">@Resources.Lang.MinBet</label>
+                    <label for="editor-minb">@Apollo.Age.Resources.Lang.MinBet</label>
                 </th>
                 <th>
-                    <label for="editor-minbl">@Resources.Lang.MinBetLive</label>
+                    <label for="editor-minbl">@Apollo.Age.Resources.Lang.MinBetLive</label>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><input type="text" id="editor-curr" /></td>
-                <td><input type="text" id="editor-desc" /></td>
-                <td><input type="number" id="editor-mult" /></td>
-                <td><input type="number" id="editor-base" /></td>
-                <td><input type="number" id="editor-minb" /></td>
-                <td><input type="number" id="editor-minbl" /></td>
+                <td>
+                    <input type="text" id="editor-curr" />
+                </td>
+                <td>
+                    <input type="text" id="editor-desc" />
+                </td>
+                <td>
+                    <input type="number" id="editor-mult" />
+                </td>
+                <td>
+                    <input type="number" id="editor-base" />
+                </td>
+                <td>
+                    <input type="number" id="editor-minb" />
+                </td>
+                <td>
+                    <input type="number" id="editor-minbl" />
+                </td>
             </tr>
         </tbody>
     </table>
-
     <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
         <div class="ui-dialog-buttonset">
-            <button id="btn-submit" type="button">@Resources.Lang.submit</button>
-            <button id="btn-cancel" type="button">@Resources.Lang.cancel</button>
+            <button id="btn-submit" type="button">@Apollo.Age.Resources.Lang.submit</button>
+            <button id="btn-cancel" type="button">@Apollo.Age.Resources.Lang.cancel</button>
         </div>
     </div>
 </div>
-
 @section foot {
     <script src="~/Views/Admin/Resources/ExchangeRate.js" type="text/javascript"></script>
 }

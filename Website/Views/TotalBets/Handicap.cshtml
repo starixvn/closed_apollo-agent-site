@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.lblHOUL;
+    ViewBag.Title = Apollo.Age.Resources.Lang.lblHOUL;
 }
 
 @model IEnumerable<HandicapModel>
@@ -15,13 +15,13 @@
         <td class="r" style="width: 90px">
             <!--HandicapTotalValue-->
             <a class="fcnum view-bet-list" match-id="@matchId" bet-type="@betType" 
-            betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
+            betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Apollo.Age.Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
             <!--/HandicapTotalValue-->
         </td>
         <td class="fcbtn">
             <!--HandicapTotalButton-->
             <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" 
-            class="btnInfo view-forecast" league-name="@leagueName" title="@Resources.Lang.ViewForeCast"></a>
+            class="btnInfo view-forecast" league-name="@leagueName" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
             <!--/HandicapTotalButton-->
         </td>
     }
@@ -70,10 +70,10 @@
         <td>
             @item.HomeTeam -vs- @item.AwayTeam
         </td>
-        @ShowBlock(1, item.MatchId, item.HomeOddsHandicap, item.AwayOddsHandicap, item.LeagueName, Resources.Lang.lblHandicapFC)
-        @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder, item.LeagueName, Resources.Lang.lblOU)
-        @ShowBlock(7, item.MatchId, item.HomeOddsHalfTimeHandicap, item.AwayOddsHalfTimeHandicap, item.LeagueName, Resources.Lang.lbl1stHdp)
-        @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Resources.Lang.lbl1stOU)
+        @ShowBlock(1, item.MatchId, item.HomeOddsHandicap, item.AwayOddsHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lblHandicapFC)
+        @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lblOU)
+        @ShowBlock(7, item.MatchId, item.HomeOddsHalfTimeHandicap, item.AwayOddsHalfTimeHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stHdp)
+        @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stOU)
     </tr>           
 }
 
@@ -99,30 +99,30 @@
                 #
             </td>
             <td rowspan="2" style="width: 110px">
-                @Resources.Lang.time
+                @Apollo.Age.Resources.Lang.time
             </td>
             <td rowspan="2">
-                @Resources.Lang.events
+                @Apollo.Age.Resources.Lang.events
             </td>
             <td colspan="4">
-                @Resources.Lang.fulltime
+                @Apollo.Age.Resources.Lang.fulltime
             </td>
             <td colspan="4">
-                @Resources.Lang.lbl1sthalf
+                @Apollo.Age.Resources.Lang.lbl1sthalf
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                @Resources.Lang.lblHandicapFC
+                @Apollo.Age.Resources.Lang.lblHandicapFC
             </td>
             <td colspan="2">
-                @Resources.Lang.lblOverUnder
+                @Apollo.Age.Resources.Lang.lblOverUnder
             </td>
             <td colspan="2">
-                @Resources.Lang.lblHandicapFC
+                @Apollo.Age.Resources.Lang.lblHandicapFC
             </td>
             <td colspan="2">
-                @Resources.Lang.lblOverUnder
+                @Apollo.Age.Resources.Lang.lblOverUnder
             </td>
         </tr>
     </thead>

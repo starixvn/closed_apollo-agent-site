@@ -42,7 +42,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
 
             var combMixParlayData = View as SystemParlayData;
 
-            tpl.title = Resources.Lang.lblSystemParlay;
+            tpl.title =Apollo.Age.Resources.Lang.lblSystemParlay;
 
             _outStanding = combMixParlayData.Outstanding;
             RenderReportContent(combMixParlayData, tpl.Content);
@@ -111,20 +111,20 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     // status
                     string status = ticket.Status.ToLower();
 
-                    if (status.Equals(BetStatus.Running)) rowBlock.status = Resources.BetList.running;
-                    else if (status.Equals(BetStatus.Reject)) rowBlock.status = Resources.BetList.reject;
-                    else if (status.Equals(BetStatus.Won)) rowBlock.status = Resources.BetList.won;
-                    else if (status.Equals(BetStatus.Lose)) rowBlock.status = Resources.BetList.lose;
-                    else if (status.Equals(BetStatus.Draw)) rowBlock.status = Resources.BetList.draw;
-                    else if (status.Equals(BetStatus.Waiting)) rowBlock.status = Resources.BetList.waiting;
-                    else if (status.Equals(BetStatus.Void)) rowBlock.status = Resources.BetList.voided;
-                    else if (status.Equals(BetStatus.Refund)) rowBlock.status = Resources.BetList.refund;
+                    if (status.Equals(BetStatus.Running)) rowBlock.status = Apollo.Age.Resources.BetList.running;
+                    else if (status.Equals(BetStatus.Reject)) rowBlock.status = Apollo.Age.Resources.BetList.reject;
+                    else if (status.Equals(BetStatus.Won)) rowBlock.status = Apollo.Age.Resources.BetList.won;
+                    else if (status.Equals(BetStatus.Lose)) rowBlock.status = Apollo.Age.Resources.BetList.lose;
+                    else if (status.Equals(BetStatus.Draw)) rowBlock.status = Apollo.Age.Resources.BetList.draw;
+                    else if (status.Equals(BetStatus.Waiting)) rowBlock.status = Apollo.Age.Resources.BetList.waiting;
+                    else if (status.Equals(BetStatus.Void)) rowBlock.status = Apollo.Age.Resources.BetList.voided;
+                    else if (status.Equals(BetStatus.Refund)) rowBlock.status = Apollo.Age.Resources.BetList.refund;
                     else rowBlock.status = string.Empty;
 
                     if (status.Equals(BetStatus.Lose))
                     {
                         rowBlock.odds = "-";
-                        rowBlock.even = Resources.BetList.losingtickets;
+                        rowBlock.even = Apollo.Age.Resources.BetList.losingtickets;
                     }
                     else
                     {
