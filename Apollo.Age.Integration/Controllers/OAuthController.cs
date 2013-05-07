@@ -50,7 +50,7 @@ namespace Apollo.Age.Integration.Controllers
         {
             if (!string.IsNullOrWhiteSpace(error))
             {
-                return RedirectToAction( Error(code);
+                return Error(code);
             }
 
             var authMsg = string.Empty;
