@@ -102,7 +102,7 @@ var TOTALBETS = function ($) {
 					url += "&mainShareHolderId=" + currentMainShareHolderId;
 				}
 				ageWnd.openDialog(url, 'FORECAST', {
-					width: 350,
+					width: 600,
 					height: 600,
 					position: { my: "top+50", at: "center top", of: window },
 					close: function (event, ui) {
