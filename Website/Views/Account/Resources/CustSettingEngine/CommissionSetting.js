@@ -307,6 +307,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         return trBox;
     };
     this.Render = function (owner) {
+        Validators.hide();
         var container = document.createElement("DIV");
         container.className = "commission-container-header";
 
