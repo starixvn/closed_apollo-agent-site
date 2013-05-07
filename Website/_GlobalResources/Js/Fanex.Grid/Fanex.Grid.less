@@ -18,13 +18,41 @@
 }
 
 .grid-title {
-	border: solid 1px #d2b24d;
+	border: solid 1px #555;
     background: #ffcc33;
-    background: -moz-linear-gradient(#ffcc33, #ffcc35);
-    background: -webkit-linear-gradient(#ffcc33, #ffcc35);
-    height: 25px;
-    margin-bottom: 3px;
-    vertical-align: middle;
+    #gradient.vertical(#777, #555);
+    height: 40px;
+    vertical-align: middle;	
+	margin-top: 10px;
+
+	ul {	
+		padding-left:10px;			
+		li {					
+			float: left;
+			font-weight: normal;
+			padding: 8px 20px 10px 0;
+
+			a {
+				display: inline-block;
+				padding: 0;
+				color: #fff;
+
+				span {							
+					font-weight: normal;												
+					padding: 2px 0px;
+					float: none;							
+				}
+
+				&:hover {
+					border-bottom: 1px solid #fff;
+				}											
+			}					
+
+			&#current a {	
+				border-bottom: 1px solid #fff;
+			}
+		}		
+	}
 
 	.btnExcel {
 		background: url("images/excel-icon.png") 0px -26px no-repeat;
@@ -125,8 +153,7 @@
 		font-size: 0.9em;
 		float: left;
 		height: 18px;
-		padding-left: 4px;
-		padding-top: 5px;
+		padding-left: 4px;		
 		font-weight: bold;
 	}
 }
