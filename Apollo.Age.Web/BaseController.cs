@@ -21,6 +21,7 @@ namespace Apollo.Age.Web
     using Fanex.Common.Extensions;
     using Apollo.Age.Services.Impl;
     using System.Web.Security;
+    using System.Resources;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
 
@@ -134,7 +135,8 @@ namespace Apollo.Age.Web
 
         protected string GetResourceData(string key)
         {
-            return System.Web.HttpContext.GetGlobalResourceObject("Lang", key) as string;
+            ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
+            return rm.GetString(key);
         }
     }
 }
