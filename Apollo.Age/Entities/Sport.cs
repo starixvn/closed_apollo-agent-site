@@ -42,7 +42,7 @@ namespace Apollo.Age.Entities
 
         public override int GetHashCode()
         {
-            return (int)Id;
+            return Id.GetHashCode();
         }
     }
 }
