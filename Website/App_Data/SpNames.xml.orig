@@ -130,7 +130,7 @@
             <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
         </Setting>
 
-        <Setting Key="Age_CustomerUpdMessagesRead" SpName="Age_CustomerUpdMessagesRead_xtest" DbName="MessageDB" Plain="0" />
+        <Setting Key="Age_CustomerUpdMessagesRead" SpName="Age_CustomerUpdMessagesRead" DbName="MessageDB" Plain="0" />
 
     </Function>
 

@@ -82,7 +82,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
         {
             if (transid < 0)
             {
-                return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
+                return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
             return null;
         }

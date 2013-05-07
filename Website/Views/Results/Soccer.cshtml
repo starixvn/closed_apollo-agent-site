@@ -6,19 +6,19 @@
     <thead>
         <tr class="RptHeader">
             <th style="width: 90px">
-                @Resources.Lang.kickofftime
+                @Apollo.Age.Resources.Lang.kickofftime
             </th>
             <th>
-                @Resources.Lang.match
+                @Apollo.Age.Resources.Lang.match
             </th>
             <th style="width: 100px;">
-                @Resources.Lang.firsthalfscore
+                @Apollo.Age.Resources.Lang.firsthalfscore
             </th>
             <th class="nowrap" style="width: 100px;">
-                @Resources.Lang.finalscore
+                @Apollo.Age.Resources.Lang.finalscore
             </th>
             <th class="nowrap" style="width: 100px;">
-                @Resources.Lang.status
+                @Apollo.Age.Resources.Lang.status
             </th>
         </tr>
     </thead>
@@ -156,53 +156,53 @@
     {
         if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
         {
-            <td>
-                @Resources.Lang.lblNA
-            </td>
-            <td>
-                @Resources.Lang.lblNA
-            </td>
+    <td>
+        @Apollo.Age.Resources.Lang.lblNA
+    </td>
+    <td>
+        @Apollo.Age.Resources.Lang.lblNA
+    </td>
         }
         else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
         {
             if (isRowHome)
             {
-                <td>
-                    @item.HalfTimeHomeScore
-                </td>
-                <td>
-                    @Resources.Lang.lblNA
-                </td>
+    <td>
+        @item.HalfTimeHomeScore
+    </td>
+    <td>
+        @Apollo.Age.Resources.Lang.lblNA
+    </td>
             }
             else
             {
-                <td>
-                    @item.HalfTimeAwayScore
-                </td>
-                <td>
-                    @Resources.Lang.lblNA
-                </td>
+    <td>
+        @item.HalfTimeAwayScore
+    </td>
+    <td>
+        @Apollo.Age.Resources.Lang.lblNA
+    </td>
             }
         }
         else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_HT)
         {
             if (isRowHome)
             {
-                <td>
-                    @Resources.Lang.lblNA
-                </td>
-                <td>
-                    @item.FinalHomeScore
-                </td>
+    <td>
+        @Apollo.Age.Resources.Lang.lblNA
+    </td>
+    <td>
+        @item.FinalHomeScore
+    </td>
             }
             else
             {
-                <td>
-                    @Resources.Lang.lblNA
-                </td>
-                <td>
-                    @item.FinalAwayScore
-                </td>
+    <td>
+        @Apollo.Age.Resources.Lang.lblNA
+    </td>
+    <td>
+        @item.FinalAwayScore
+    </td>
             }
         }
         else

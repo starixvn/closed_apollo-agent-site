@@ -291,18 +291,18 @@ namespace Fanex.Age.UI.Reports.Result
         {
             if (this.bettype == (int)BetTypes.Mix_Parlay)
             {
-                this.tpl.ResultTitle.Title = this.tpl.Title = Resources.Lang.lblMixParlay;
+                this.tpl.ResultTitle.Title = this.tpl.Title = Apollo.Age.Resources.Lang.lblMixParlay;
             }
             else if (this.bettype == (int)BetTypes.Combine_Mix_Parlay)
             {
-                this.tpl.ResultTitle.Title = this.tpl.Title = Resources.Lang.lblSystemParlay;
+                this.tpl.ResultTitle.Title = this.tpl.Title = Apollo.Age.Resources.Lang.lblSystemParlay;
             }
             else
             {
-                template.ResultTitle.Title = template.Title = this.isOutright ? Resources.Lang.lblOutrightResult : Resources.Lang.result;
+                template.ResultTitle.Title = template.Title = this.isOutright ? Apollo.Age.Resources.Lang.lblOutrightResult : Apollo.Age.Resources.Lang.result;
             }
 
-            template.HeaderRegion.ResultType = this.isOutright ? Resources.Lang.lblNormal : Resources.Lang.lblOutRight;
+            template.HeaderRegion.ResultType = this.isOutright ? Apollo.Age.Resources.Lang.lblNormal : Apollo.Age.Resources.Lang.lblOutRight;
             template.HeaderRegion.DateRangeSelect.SearchByDateFunction = "Result_SearchByDate()";
             template.HeaderRegion.DateRangeSelect.SearchOneDateFunction = "Result_SearchOneDay(this.value)";
         }
@@ -1359,7 +1359,7 @@ namespace Fanex.Age.UI.Reports.Result
                         template.SetDetail.setId = setId;
                         template.SetDetail.setScore1 = setScore1;
                         template.SetDetail.setScore2 = setScore2;
-                        template.SetDetail.setName = Resources.BetList.set + ' ' + refNo.ToString() + ' ' + Resources.Lang.lblScore;
+                        template.SetDetail.setName = Apollo.Age.Resources.BetList.set + ' ' + refNo.ToString() + ' ' + Apollo.Age.Resources.Lang.lblScore;
                     }
 
                     rowBlock.TotalGameAway = totalGameAway > 0 ? totalGameAway.ToString() : string.Empty;
@@ -1659,18 +1659,18 @@ namespace Fanex.Age.UI.Reports.Result
             {
                 case "01":
                 case "1":
-                    return Resources.Lang.No1;
+                    return Apollo.Age.Resources.Lang.No1;
                 case "02":
                 case "2":
-                    return Resources.Lang.No2;
+                    return Apollo.Age.Resources.Lang.No2;
                 case "03":
                 case "3":
-                    return Resources.Lang.No3;
+                    return Apollo.Age.Resources.Lang.No3;
                 case "04":
                 case "4":
-                    return Resources.Lang.No4;
+                    return Apollo.Age.Resources.Lang.No4;
                 default:
-                    return placeNo + Resources.Lang.noothers;
+                    return placeNo + Apollo.Age.Resources.Lang.noothers;
             }
         }
 
@@ -1934,18 +1934,18 @@ namespace Fanex.Age.UI.Reports.Result
                             // matchBlock.LastLiveBall = this.GenerateNumberGameBall(lastLiveBall);
 
                             // Render Odd even full time, over under full time
-                            if (status.ToLower() == Resources.Lang.running.ToLower())
+                            if (status.ToLower() == Apollo.Age.Resources.Lang.running.ToLower())
                             {
                                 matchBlock.OEFT = matchBlock.LastBall = string.Empty;
                             }
                             else
                             {
-                                matchBlock.OEFT = ballSum % 2 == 1 ? Resources.Lang.lblOdd : Resources.Lang.even;
+                                matchBlock.OEFT = ballSum % 2 == 1 ? Apollo.Age.Resources.Lang.lblOdd : Apollo.Age.Resources.Lang.even;
                             }
 
                             if (ballList.Length > 2)
                             {
-                                matchBlock.warrior = ballList[1] > ballList[2] ? Resources.Lang.warrior2ndBall : Resources.Lang.warrior3rdBall;
+                                matchBlock.warrior = ballList[1] > ballList[2] ? Apollo.Age.Resources.Lang.warrior2ndBall : Apollo.Age.Resources.Lang.warrior3rdBall;
                             }
                             else
                             {
@@ -1999,7 +1999,7 @@ namespace Fanex.Age.UI.Reports.Result
         private void BoldTeamByFinalScore(DataRow dr, ref string homeTeamText, ref string awayTeamText)
         {
             // Home and away team
-            string homeTeam = CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Resources.Lang.IsNeutral : string.Empty);
+            string homeTeam = CacheRef.GetTeamName(dr["homeid"]) + ((bool)dr["isNeutral"] ? Apollo.Age.Resources.Lang.IsNeutral : string.Empty);
             string awayTeam = CacheRef.GetTeamName(dr["awayid"]);
 
             int homeScore = Convert.IsDBNull(dr["finalhomescore"]) ? 0 : Convert.ToInt32(dr["finalhomescore"]);
@@ -2164,7 +2164,7 @@ namespace Fanex.Age.UI.Reports.Result
                 {
                     if (_resourceManager == null)
                     {
-                        _resourceManager = new ResourceManager(typeof(Resources.Lang));
+                        _resourceManager = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
                         _resourceManager.IgnoreCase = true;
                     }
                 }
@@ -2181,7 +2181,7 @@ namespace Fanex.Age.UI.Reports.Result
                 {
                     if (_resourceManager == null)
                     {
-                        _resourceManager = new ResourceManager(typeof(Resources.Lang));
+                        _resourceManager = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
                         _resourceManager.IgnoreCase = true;
                     }
                 }

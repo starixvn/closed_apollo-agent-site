@@ -36,12 +36,12 @@ namespace Apollo.Age.Account.ViewModels
             }
         }
 
-        public string BetTypeSelected 
-        { 
-            get 
+        public string BetTypeSelected
+        {
+            get
             {
                 return this.IsLive ? ("1-" + this.BetType.ToString()) : ("0-" + this.BetType.ToString());
-            } 
+            }
         }
 
         public List<SportSetting> SportList { get; set; }
@@ -71,8 +71,8 @@ namespace Apollo.Age.Account.ViewModels
                 var selectItemList = BetTypeList.Select(bettype => new SelectListItem
                 {
                     Value = bettype.IsLive ? ("1-" + bettype.Id.ToString()) : ("0-" + bettype.Id.ToString()),
-                    Text = bettype.IsLive ? (Resources.Lang.lblLiveBall + " " + bettype.Name)
-                        : (bettype.IsDead ? (Resources.Lang.lblDeadball + " " + bettype.Name)
+                    Text = bettype.IsLive ? (Apollo.Age.Resources.Lang.lblLiveBall + " " + bettype.Name)
+                        : (bettype.IsDead ? (Apollo.Age.Resources.Lang.lblDeadball + " " + bettype.Name)
                         : bettype.Name)
                 }).ToList<SelectListItem>();
 
