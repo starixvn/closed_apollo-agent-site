@@ -14,17 +14,17 @@
 	<h1>Sign In</h1>
 	<p class="username">
 		@Html.LabelFor(m => m.Username)
-		@Html.TextBoxFor(m => m.Username, "width:220px")
+		@Html.TextBoxFor(m => m.Username, new { @class = "input-textbox" })
 	</p>
 	<p>
 		@Html.LabelFor(m => m.Password)
-		@Html.PasswordFor(m => m.Password, "width:220px")
+		@Html.PasswordFor(m => m.Password, new { @class = "input-textbox" })
 	</p>
 
     <p> 
         @Html.LabelFor(m=>m.Captcha)
         <img alt="Captcha" src="@Url.Action("CaptchaImage")" onclick="location.href='@Url.Action("SignIn2")';" />  
-        @Html.TextBoxFor(m => m.Captcha, "width:70px")		
+        @Html.TextBoxFor(m => m.Captcha, new { @class = "input-captcha" })		
     </p>    	
     if (!ViewData.ModelState.IsValid)
     {

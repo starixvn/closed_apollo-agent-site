@@ -69,8 +69,11 @@ label {
 .input-validation-error {
 }
 
-input[type=text], input[type=password] {
-    /*width: 220px;*/
+.input-textbox{
+    width: 220px;
+}
+.input-captcha {
+	width: 100px;
 }
 
 input[type=submit] {

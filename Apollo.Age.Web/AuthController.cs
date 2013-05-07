@@ -146,18 +146,17 @@ namespace Apollo.Age.Web
             var rand = new Random((int)DateTime.Now.Ticks);
             
             //generate new question
-            int a = rand.Next(10, 99);
-            int b = rand.Next(0, 9);
-            var captcha = string.Format("{0} + {1} = ?", a, b);
+            int a = rand.Next(1000, 9999);            
+            var captcha = string.Format("{0}", a);
 
             //store answer
-            Session["Captcha" + prefix] = a + b;
+            Session["Captcha" + prefix] = captcha;
 
             //image stream
             FileContentResult img = null;
 
             using (var mem = new MemoryStream())
-            using (var bmp = new Bitmap(120, 25))
+            using (var bmp = new Bitmap(60, 23))
             using (var gfx = Graphics.FromImage((Image)bmp))
             {
                 gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
@@ -185,7 +184,7 @@ namespace Apollo.Age.Web
                 }
 
                 //add question
-                gfx.DrawString(captcha, new Font("Tahoma", 13), Brushes.Gray, 2, 3);
+                gfx.DrawString(captcha, new Font("Tahoma", 13), Brushes.Gray, 4, 3);
 
                 //render as Jpeg
                 bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg);
