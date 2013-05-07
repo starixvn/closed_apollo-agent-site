@@ -448,12 +448,12 @@ Spinner.prototype = {
         if (isNaN(currentParseValue)) currentParseValue = 0;
         return currentParseValue;
     },
-    setValue: function (value, checkConstrain) {
+    setValue: function (value, noCheckConstrain) {
 
-        checkConstrain = checkConstrain || false;
+        noCheckConstrain = noCheckConstrain || false;
         // ensure the value is within the permitted range
-        if ('minimum' in this.options && !checkConstrain) value = Math.max(this.options.minimum, value);
-        if ('maximum' in this.options && !checkConstrain) value = Math.min(this.options.maximum, value);
+        if ('minimum' in this.options && !noCheckConstrain) value = Math.max(this.options.minimum, value);
+        if ('maximum' in this.options && !noCheckConstrain) value = Math.min(this.options.maximum, value);
         
         // store the sign
         var sign = (value < 0 ? '-' : '');
