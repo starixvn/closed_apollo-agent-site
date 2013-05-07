@@ -30,6 +30,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
     using System.Web.SessionState;
+    using Apollo.Age.Web.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerSettingController : BaseController
@@ -339,6 +340,7 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
+        [BelongChecking()]
         public ActionResult EditMemberSetting(int memberId, string userName, string userGroup, int? agentId, bool showHeader = false)
         {
             ViewBag.MemberId = memberId;
@@ -353,6 +355,7 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
+        [BelongChecking()]
         public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool showHeader = false)
         {
             ViewBag.AgentId = agentId;
@@ -380,12 +383,14 @@ namespace Apollo.Age.Account.Controllers
                 
 
         [HttpPost]
+        [BelongChecking()]
         public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
         }
 
         [HttpPost]
+        [BelongChecking()]
         public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
