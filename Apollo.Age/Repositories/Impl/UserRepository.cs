@@ -20,6 +20,7 @@ namespace Apollo.Age.Repositories.Impl
     using Fanex.Common.Extensions;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
+    using Fanex.Common;
 
     public class UserRepository : RepositoryBase<User>, IUserRepository
     {
@@ -66,6 +67,20 @@ namespace Apollo.Age.Repositories.Impl
                 }
             }
             return (int)CustomerStatus.Locked;
+        }
+
+        public bool HasPermissionOnUpdating(ICriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var currentParams = criteria.GetSpParams();
+                    objectDb.ExecuteNonQuery(currentParams);
+                    return Converter.ToBool(currentParams["HasPermission"]);
+                }
+            }
+            return false;
         }
 
         public ICommandResult Delete(User entity)

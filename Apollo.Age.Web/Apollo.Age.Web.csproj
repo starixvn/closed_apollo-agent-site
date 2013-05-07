@@ -56,6 +56,7 @@
     <Compile Include="BaseController.cs" />
     <Compile Include="AuthController.cs" />
     <Compile Include="CurrentSession.cs" />
+    <Compile Include="Filters\BelongCheckingAttribute.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="SessionManager.cs" />
