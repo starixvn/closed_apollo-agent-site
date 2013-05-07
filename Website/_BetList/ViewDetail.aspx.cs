@@ -90,7 +90,7 @@ namespace Sunplus.Agent.UI._BetList
                     #endregion Total ticket
                 }
                 builder.Append("<tfoot><tr class='total'>");
-                builder.Append(string.Format("<td class='c'>{0}</td>", Resources.Lang.total));
+                builder.Append(string.Format("<td class='c'>{0}</td>", Apollo.Age.Resources.Lang.total));
 
                 if (isShowAgentPT)
                 {
@@ -105,7 +105,7 @@ namespace Sunplus.Agent.UI._BetList
             else
             {
                 builder.Append("<tfoot><tr class='total no-result'>");
-                builder.Append(string.Format("<td class='c' colspan='4'>{0}</td>", Resources.Lang.noInfo));
+                builder.Append(string.Format("<td class='c' colspan='4'>{0}</td>", Apollo.Age.Resources.Lang.noInfo));
                 builder.Append("</tr></tfoot>");
                 content.Append(builder.GetBetList());
                 content.Append("</table>");
@@ -167,7 +167,7 @@ namespace Sunplus.Agent.UI._BetList
 
         private object RenderNoInfo()
         {
-            return new ErrorPage_Page(Resources.Lang.noInfo);
+            return new ErrorPage_Page(Apollo.Age.Resources.Lang.noInfo);
         }
     }
 }

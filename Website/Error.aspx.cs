@@ -36,13 +36,13 @@ public partial class Error : System.Web.UI.Page
         switch (errCode)
         {
             case "403":
-                ErrorMessage = Resources.Lang.HttpError_403;
+                ErrorMessage = Apollo.Age.Resources.Lang.HttpError_403;
                 break;
             case "404":
-                ErrorMessage = Resources.Lang.HttpError_404;
+                ErrorMessage = Apollo.Age.Resources.Lang.HttpError_404;
                 break;
             default:
-                ErrorMessage = Resources.Lang.HttpError_Default;
+                ErrorMessage = Apollo.Age.Resources.Lang.HttpError_Default;
                 break;
         }
 

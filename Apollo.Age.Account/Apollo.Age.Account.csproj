@@ -86,6 +86,8 @@
     <Compile Include="Criterias\GetTopPubMessageCriteria.cs" />
     <Compile Include="Criterias\MemberDownlineCriteria.cs" />
     <Compile Include="Criterias\UpdateReadMessageCriteria.cs" />
+    <Compile Include="Entities\BetTypeSetting.cs" />
+    <Compile Include="Entities\SportSetting.cs" />
     <Compile Include="Models\AgentShareModel.cs" />
     <Compile Include="Models\CustomerCommissionModel.cs" />
     <Compile Include="Models\MemberShareModel.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Services\IMessageService.cs" />
+    <Compile Include="Services\ISportSettingService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Models\AgentListModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
@@ -101,11 +104,16 @@
     <Compile Include="Models\CustomerInfoModel.cs" />
     <Compile Include="Models\MemberListModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Services\SportSettingService.cs" />
     <Compile Include="ViewModels\AgentShareViewModel.cs" />
     <Compile Include="ViewModels\ViewCommissionViewModel.cs" />
     <Compile Include="ViewModels\MemberShareViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>Apollo.Age.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
       <Name>Apollo.Age.Web</Name>
@@ -115,9 +123,7 @@
       <Name>Apollo.Age</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

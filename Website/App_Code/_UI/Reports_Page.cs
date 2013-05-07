@@ -4,7 +4,6 @@ using System.IO;
 using System.Resources;
 using System.Web;
 using Fanex.Age.UI.Components;
-using Fanex.Age.UI.Reports.Components;
 
 /*
  * Created 20100527@Jacob - Support render full mode or body mode
@@ -279,17 +278,6 @@ namespace Fanex.Age.UI.Reports
         /// <summary>
         ///
         /// </summary>
-        /// <param name="reportSearchHeader"></param>
-        protected void RenderDateRange(ReportSearchHeader_Control reportSearchHeader)
-        {
-            reportSearchHeader.DateFrom = _dateFrom;
-            reportSearchHeader.DateTo = _dateTo;
-            reportSearchHeader.SetDateRange(MIN_REPORT_DATE, MAX_REPORT_DATE);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="dateRangeSelect"></param>
         protected virtual void RenderDateRange(DateRangeSelect_Control dateRangeSelect)
         {
@@ -461,7 +449,7 @@ namespace Fanex.Age.UI.Reports
                 {
                     if (_resourceManager == null)
                     {
-                        _resourceManager = new ResourceManager(typeof(Resources.Lang));
+                        _resourceManager = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
                         _resourceManager.IgnoreCase = true;
                     }
                 }

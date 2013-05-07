@@ -12,9 +12,8 @@ namespace Apollo.Age.Account.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Services;
 
     public class MemberShareViewModel
     {
@@ -45,9 +44,9 @@ namespace Apollo.Age.Account.ViewModels
             }
         }
 
-        public List<Sport> SportList { get; set; }
+        public List<SportSetting> SportList { get; set; }
 
-        public List<BetType> BetTypeList { get; set; }
+        public List<BetTypeSetting> BetTypeList { get; set; }
 
         public List<MemberShareModel> MemberShareModelList { get; set; }
 
@@ -72,8 +71,8 @@ namespace Apollo.Age.Account.ViewModels
                 var selectItemList = BetTypeList.Select(bettype => new SelectListItem
                 {
                     Value = bettype.IsLive ? ("1-" + bettype.Id.ToString()) : ("0-" + bettype.Id.ToString()),
-                    Text = bettype.IsLive ? (Resources.Lang.lblLiveBall + " " + bettype.Name)
-                        : (bettype.IsDead ? (Resources.Lang.lblDeadball + " " + bettype.Name)
+                    Text = bettype.IsLive ? (Apollo.Age.Resources.Lang.lblLiveBall + " " + bettype.Name)
+                        : (bettype.IsDead ? (Apollo.Age.Resources.Lang.lblDeadball + " " + bettype.Name)
                         : bettype.Name)
                 }).ToList<SelectListItem>();
 

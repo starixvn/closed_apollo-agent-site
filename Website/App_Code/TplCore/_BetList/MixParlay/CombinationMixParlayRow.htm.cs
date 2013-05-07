@@ -14,17 +14,17 @@ namespace Fanex.Agent.UI
 		public class CombinationMixParlayRow_Template : Template
 		{
 			protected static string s0 = "<table class=\"tblRpt border-tbl\"><thead><tr><th style=\"width: 100px;\">";
-			protected static string s1{get{return Resources.Lang.date;}}
+			protected static string s1{get{return Apollo.Age.Resources.Lang.date;}}
 			protected static string s2 = "</th><th style=\"width: 370px;\">";
-			protected static string s3{get{return Resources.Lang.events;}}
+			protected static string s3{get{return Apollo.Age.Resources.Lang.events;}}
 			protected static string s4 = "</th><th style=\"width: 60px;\">";
-			protected static string s5{get{return Resources.Lang.odds;}}
+			protected static string s5{get{return Apollo.Age.Resources.Lang.odds;}}
 			protected static string s6 = "</th><th style=\"width: 60px;\">";
-			protected static string s7{get{return Resources.Lang.stake;}}
+			protected static string s7{get{return Apollo.Age.Resources.Lang.stake;}}
 			protected static string s8 = "</th><th style=\"width: 80px;\">";
-			protected static string s9{get{return Resources.Lang.lblWinLoss;}}
+			protected static string s9{get{return Apollo.Age.Resources.Lang.lblWinLoss;}}
 			protected static string s10 = "</th><th style=\"width: 80px;\">";
-			protected static string s11{get{return Resources.Lang.status;}}
+			protected static string s11{get{return Apollo.Age.Resources.Lang.status;}}
 			protected static string s12 = "</th></tr></thead><tbody>";
 			public CombinationMixParlayRow_RowData_Block RowData = new CombinationMixParlayRow_RowData_Block();
 			public CombinationMixParlayRow_SubSummary_Block SubSummary = new CombinationMixParlayRow_SubSummary_Block();
@@ -135,7 +135,7 @@ namespace Fanex.Agent.UI
 		public class CombinationMixParlayRow_SubSummary_Block: Block
 		{
 			protected static string s26 = "<tr class=\"subtotal\"><td colspan=\"4\" class=\"r\">";
-			protected static string s27{get{return Resources.Lang.subTotal;}}
+			protected static string s27{get{return Apollo.Age.Resources.Lang.subTotal;}}
 			protected static string s28 = "</td><td class=\"r\">";
 			public string subTotal = "{subTotal}";
 			protected static string s29 = "</td><td></td></tr>";
@@ -157,7 +157,7 @@ namespace Fanex.Agent.UI
 		public class CombinationMixParlayRow_OutStanding_Block: Block
 		{
 			protected static string s30 = "<tr class=\"outstanding\"><td colspan=\"4\" class=\"r\">";
-			protected static string s31{get{return Resources.Lang.outstanding;}}
+			protected static string s31{get{return Apollo.Age.Resources.Lang.outstanding;}}
 			protected static string s32 = "</td><td class=\"r\">";
 			public string outstanding = "{outstanding}";
 			protected static string s33 = "</td><td></td></tr>";
@@ -179,7 +179,7 @@ namespace Fanex.Agent.UI
 		public class CombinationMixParlayRow_Summary_Block: Block
 		{
 			protected static string s34 = "<tr class=\"total\"><td colspan=\"4\" class=\"r\">";
-			protected static string s35{get{return Resources.Lang.total;}}
+			protected static string s35{get{return Apollo.Age.Resources.Lang.total;}}
 			protected static string s36 = "</td><td class=\"white-color r\">";
 			public string total = "{total}";
 			protected static string s37 = "</td><td></td></tr>";

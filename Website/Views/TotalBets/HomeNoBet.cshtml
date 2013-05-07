@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.lblHomeDrawAwayNoBet;
+    ViewBag.Title = Apollo.Age.Resources.Lang.lblHomeDrawAwayNoBet;
 }
 
 @model IEnumerable<HomeNoBetModel>
@@ -43,7 +43,7 @@
             @if(item.BetCountHNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" 
-                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblHomeNoBet" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblHomeNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB, 2)    
                 </a>
             }
@@ -53,7 +53,7 @@
             @if(item.BetCountDNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" 
-                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblDrawNoBet" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblDrawNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB, 2)
                 </a>
             }
@@ -62,7 +62,7 @@
             @if(item.BetCountANB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" 
-                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblAwayNoBet" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblAwayNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNumber(item.HomeOddsANB - item.AwayOddsANB, 2)
                 </a>
             }
@@ -77,7 +77,7 @@
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
             <br />
-            <i class="red-num">@Resources.Lang.lblLive</i>
+            <i class="red-num">@Apollo.Age.Resources.Lang.lblLive</i>
         }
         else
         {
@@ -94,24 +94,24 @@
                 #
             </td>
             <td rowspan="2" style="width: 110px;">
-                @Resources.Lang.time
+                @Apollo.Age.Resources.Lang.time
             </td>
             <td rowspan="2" style="width: 366px;">
-                @Resources.Lang.events
+                @Apollo.Age.Resources.Lang.events
             </td>
             <td colspan="3">
-                @Resources.Lang.fulltime
+                @Apollo.Age.Resources.Lang.fulltime
             </td>
         </tr>
         <tr class="RptHeader02">
             <td style="width: 100px;">
-                @Resources.Lang.lblHomeNoBet
+                @Apollo.Age.Resources.Lang.lblHomeNoBet
             </td>
             <td style="width: 100px;">
-                @Resources.Lang.lblDrawNoBet
+                @Apollo.Age.Resources.Lang.lblDrawNoBet
             </td>
             <td style="width: 100px;">
-                @Resources.Lang.lblAwayNoBet
+                @Apollo.Age.Resources.Lang.lblAwayNoBet
             </td>
         </tr>
     </thead>

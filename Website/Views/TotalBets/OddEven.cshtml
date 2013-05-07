@@ -2,7 +2,7 @@
 
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = string.Format("{0} + {1} + {2}/{3}", Resources.Lang.lblOddEven, Resources.Lang.lbl1x2, Resources.Lang.lblDraw, Resources.Lang.lblNoDraw);
+    ViewBag.Title = string.Format("{0} + {1} + {2}/{3}", Apollo.Age.Resources.Lang.lblOddEven, Apollo.Age.Resources.Lang.lbl1x2, Apollo.Age.Resources.Lang.lblDraw, Apollo.Age.Resources.Lang.lblNoDraw);
 }
 @model IEnumerable<OddEvenModel>
 @helper ShowLeague(int currentLeagueId, OddEvenModel item)
@@ -38,7 +38,7 @@
         <td style="width: 70px">
             <!--OneXTwoValue-->
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="5" betlist-type="BettypeMatch" 
-                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lbl1x2" title="@Resources.Lang.ViewBetList">
+                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lbl1x2" title="@Apollo.Age.Resources.Lang.ViewBetList">
                 @RazorHelper.FormatNumber(item.OneXTwoTotal, 2, showZero: item.BetCount1X2 != 0)
             </a>
             <!--/OneXTwoValue-->
@@ -48,7 +48,7 @@
             @if (item.OneXTwoTotal != 0)
             { 
                 <!--OneXTwoButton-->
-                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="5" href="javascript:void(0);" class="btnInfo view-forecast" title="@Resources.Lang.ViewForeCast"></a>
+                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="5" href="javascript:void(0);" class="btnInfo view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
                 <!--/OneXTwoButton-->
             }
         </td>
@@ -59,7 +59,7 @@
         <td style="width: 70px">
             <!--OneXTwoFirstHalfValue-->
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="15" betlist-type="BettypeMatch" 
-                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lbl1x2_1st" title="@Resources.Lang.ViewBetList">
+                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lbl1x2_1st" title="@Apollo.Age.Resources.Lang.ViewBetList">
                 @RazorHelper.FormatNumber(item.OneXTwoFirstHalf, 2, showZero: item.BetCount1X2HalfTime != 0)
             </a>
             <!--/OneXTwoFirstHalfValue-->
@@ -69,7 +69,7 @@
             @if (item.OneXTwoFirstHalf != 0)
             {
                 <!--OneXTwoFirstHalfButton-->
-                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="15" href="javascript:void(0);" class="btnInfo view-forecast" title="@Resources.Lang.ViewForeCast"></a>
+                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="15" href="javascript:void(0);" class="btnInfo view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
             }
             <!--/OneXTwoFirstHalfButton-->
         </td>
@@ -101,33 +101,33 @@
                 #
             </td>
             <td rowspan="2" style="width: 110px;">
-                @Resources.Lang.time
+                @Apollo.Age.Resources.Lang.time
             </td>
             <td rowspan="2">
-                @Resources.Lang.events
+                @Apollo.Age.Resources.Lang.events
             </td>
             <td colspan="4">
-                @Resources.Lang.fulltime
+                @Apollo.Age.Resources.Lang.fulltime
             </td>
             <td colspan="3">
-                @Resources.Lang.lbl1sthalf
+                @Apollo.Age.Resources.Lang.lbl1sthalf
             </td>
         </tr>
         <tr class="RptHeader02">
             <td style="width: 100px;">
-                @Resources.Lang.lblOddEven
+                @Apollo.Age.Resources.Lang.lblOddEven
             </td>
             <td colspan="2" style="width: 100px;">
-                @Resources.Lang.lbl1x2
+                @Apollo.Age.Resources.Lang.lbl1x2
             </td>
             <td style="width: 100px;">
-                @Resources.Lang.lblDraw/@Resources.Lang.lblNoDraw
+                @Apollo.Age.Resources.Lang.lblDraw/@Apollo.Age.Resources.Lang.lblNoDraw
             </td>
             <td style="width: 100px;">
-                @Resources.Lang.lblOddEven
+                @Apollo.Age.Resources.Lang.lblOddEven
             </td>
             <td colspan="2" style="width: 100px;">
-                @Resources.Lang.lbl1x2
+                @Apollo.Age.Resources.Lang.lbl1x2
             </td>
         </tr>
     </thead>
@@ -168,7 +168,7 @@
                 <td>
                     <!--OddEvenValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="2" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblOddEven" title="@Resources.Lang.ViewBetList"> 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOddEven" title="@Apollo.Age.Resources.Lang.ViewBetList"> 
                         @RazorHelper.FormatNegativeNumber(item.OddEvenTotal, 2, showZero: item.BetCountOddEven != 0)
                     </a>
                     <!--/OddEvenValue-->
@@ -177,7 +177,7 @@
                 <td style="width: 86px">
                     <!--DNDValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="123" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblHomeDrawAwayNoBet" title="@Resources.Lang.ViewBetList">
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblHomeDrawAwayNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
                         @RazorHelper.FormatNumber(item.DrawNoDrawTotal, 2, showZero: item.BetCountDrawNoDraw != 0)
                     </a>
                     <!--/DNDValue-->
@@ -185,7 +185,7 @@
                 <td>
                     <!--OddEvenFirstHalfValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="12" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Resources.Lang.lblOddEven_1st" title="@Resources.Lang.ViewBetList">
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOddEven_1st" title="@Apollo.Age.Resources.Lang.ViewBetList">
                         @RazorHelper.FormatNegativeNumber(item.OddEvenFirstHalf, 2, showZero: item.BetCountHalfTimeOddEven != 0)
                     </a>
                     <!--/OddEvenFirstHalfValue-->

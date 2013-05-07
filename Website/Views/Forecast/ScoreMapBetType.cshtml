@@ -5,30 +5,28 @@
     Layout = null;
     int liveBetType =ViewBag.LiveBetType;
     int deadBallBetType = ViewBag.DeadBallBetType;
-    
+
 }
 @helper RenderBetTypeList(List<ScoreMapBetTypeModel> betTypes, int haftBetType, bool isLive, int liveBetType, int deadBallBetType)
 {
     int nextCloseIndex = 0;
     for (int i = 0; i < betTypes.Count; i++)
     {
-        
+
         if (i % haftBetType == 0)
         {
             nextCloseIndex = i + haftBetType;
-            @:<tr>
-        }
-        
-        @RenderBetType(betTypes[i], isLive, liveBetType, deadBallBetType)
-        
-        if (i == nextCloseIndex)
-        {
-            @:</tr>
-        }
-    }
-    
+        @:<tr>
+        } 
+    @RenderBetType(betTypes[i], isLive, liveBetType, deadBallBetType) 
+    if (i == nextCloseIndex)
+    { 
+        @:</tr> 
+    }    
+     }
+
 }
-@helper RenderBetType(ScoreMapBetTypeModel betType, bool isLive, int liveBetType, int deadBallBetType)
+    @helper RenderBetType(ScoreMapBetTypeModel betType, bool isLive, int liveBetType, int deadBallBetType)
 {
     string checkedString = string.Empty;
     if (isLive && liveBetType != 0 && (liveBetType == betType.TypeId || liveBetType == betType.Id1st))
@@ -39,26 +37,26 @@
     {
         checkedString = "checked='checked'";
     }
-    <td>
-        <input id="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox" value="@(betType.TypeId.ToString() + (betType.Id1st != 0 ? ("," + betType.Id1st.ToString()) : string.Empty))" @(checkedString) />
-        <label for="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)">
-            @(betType.BetTypeName)
-        </label>
-    </td>
-}
-@model ScoreMapBetTypesModel
+        <td>
+            <input id="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)" class="@(isLive ? "bet-type-live" : "bet-type-deadball")" type="checkbox" value="@(betType.TypeId.ToString() + (betType.Id1st != 0 ? ("," + betType.Id1st.ToString()) : string.Empty))" @(checkedString) />
+            <label for="bt_@(isLive ? "L" + betType.IsLive : "D" + betType.IsDead)_@(betType.TypeId)">
+                @(betType.BetTypeName)
+            </label>
+        </td>
+    }
+    @model ScoreMapBetTypesModel
 <table class="check-list">
     <tr>
         <td>
-            <input type="checkbox" id="chkAllL" />            
-            <label class="bold" for="chkAllL">@Resources.Lang.lblLiveBall</label>
+            <input type="checkbox" id="chkAllL" />
+            <label class="bold" for="chkAllL">@Apollo.Age.Resources.Lang.lblLiveBall</label>
         </td>
         <td id="Td1">
             <table class="reference">
                 @{
                     if (Model.LiveBetTypes.Any())
                     {
-                        @RenderBetTypeList(Model.LiveBetTypes, haftBetType, true, liveBetType, deadBallBetType)
+                    @RenderBetTypeList(Model.LiveBetTypes, haftBetType, true, liveBetType, deadBallBetType)
                     }
                 }
             </table>
@@ -67,14 +65,14 @@
     <tr>
         <td>
             <input type="checkbox" id="chkAllD" />
-            <label class="bold" for="chkAllD">@Resources.Lang.lblDeadball</label>
+            <label class="bold" for="chkAllD">@Apollo.Age.Resources.Lang.lblDeadball</label>
         </td>
         <td id="Td2">
             <table class="reference">
-                 @{
+                @{
                     if (Model.DeadBallBetTypes.Any())
                     {
-                        @RenderBetTypeList(Model.DeadBallBetTypes, haftBetType, false, liveBetType, deadBallBetType)
+                    @RenderBetTypeList(Model.DeadBallBetTypes, haftBetType, false, liveBetType, deadBallBetType)
                     }
                 }
             </table>

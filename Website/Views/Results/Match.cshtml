@@ -2,7 +2,7 @@
 @using Apollo.Age.Reports.ViewModels;
 @{
 	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-	ViewBag.Title = Resources.Lang.lblMatchResult;
+	ViewBag.Title = Apollo.Age.Resources.Lang.lblMatchResult;
 }
 @model MatchResultViewModel
 @section css {
@@ -14,7 +14,7 @@
 		<div class="row">
 			<div class="cell">
 				<div class="label">
-					<label for="EventDate">@Resources.Lang.date</label>
+					<label for="EventDate">@Apollo.Age.Resources.Lang.date</label>
 				</div>
 				<div class="editor">
 					@Html.DatePicker("EventDate", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
@@ -23,7 +23,7 @@
 			</div>
 			<div class="cell">
 				<div class="editor">
-					<input id="btnSubmit" value="@Resources.Lang.Generate" type="submit" class="btn" />
+					<input id="btnSubmit" value="@Apollo.Age.Resources.Lang.Generate" type="submit" class="btn" />
 					<input id="btnToday" value="@DateTime.Now.Date.ToShortDateString()" type="submit" class="btn" />
 					<input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToShortDateString()" type="submit" class="btn"/>
 				</div>
@@ -34,7 +34,7 @@
 			<div class="row">
 				<div class="cell">
 					<div class="label">
-						<label for="ddlSport">@Resources.Lang.sport</label>
+						<label for="ddlSport">@Apollo.Age.Resources.Lang.sport</label>
 					</div>
 					<div class="editor">
 						@Html.DropDownList("ddlSport", Model.SportSelectListItem)
@@ -42,7 +42,7 @@
 				</div>
 				<div class="cell">
 					<div class="label">
-						<label for="ddlLeague">@Resources.Lang.league</label>
+						<label for="ddlLeague">@Apollo.Age.Resources.Lang.league</label>
 					</div>
 					<div class="editor">
 						@Html.DropDownList("ddlLeague",

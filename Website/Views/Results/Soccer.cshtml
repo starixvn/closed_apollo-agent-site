@@ -6,19 +6,19 @@
     <thead>
         <tr class="RptHeader">
             <th style="width: 90px">
-                @Resources.Lang.kickofftime
+                @Apollo.Age.Resources.Lang.kickofftime
             </th>
             <th>
-                @Resources.Lang.match
+                @Apollo.Age.Resources.Lang.match
             </th>
             <th style="width: 100px;">
-                @Resources.Lang.firsthalfscore
+                @Apollo.Age.Resources.Lang.firsthalfscore
             </th>
             <th class="nowrap" style="width: 100px;">
-                @Resources.Lang.finalscore
+                @Apollo.Age.Resources.Lang.finalscore
             </th>
             <th class="nowrap" style="width: 100px;">
-                @Resources.Lang.status
+                @Apollo.Age.Resources.Lang.status
             </th>
         </tr>
     </thead>
@@ -101,22 +101,25 @@
         var betStatus = string.Empty;
         if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
         {
-            string[] refundArray = item.BetStatus.Split(';');
-            if (refundArray.Length == 2 && refundArray[1].ToString() != string.Empty)
+            if(!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(";"))
             {
-                betStatus = refundArray[1].ToString();
+                string[] refundArray = item.BetStatus.Split(';');
+                if (refundArray.Length == 2 && refundArray[1].ToString() != string.Empty)
+                {
+                    betStatus = refundArray[1].ToString();
+                }
             }
         }
         else if (item.EventStatus != Apollo.Age.Reports.Core.Constants.REFUND
             && item.EventStatus != Apollo.Age.Reports.Core.Constants.REFUND_HT)
         {
-            if (!string.IsNullOrEmpty(item.BetStatus) && item.BetStatus.Contains(":"))
+            if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(":"))
             {
                 betStatus = item.BetStatus;
             }
         }
 
-        if (!string.IsNullOrEmpty(betStatus) && betStatus.Contains(":"))
+        if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.Contains(":"))
         {
             var valueArr = betStatus.Split(':');
             if (string.Compare(valueArr[0], "FL", true) == 0)
@@ -128,26 +131,22 @@
                 {
                     if (firstGoal == "1")
                     {
-    <div class="first_goal">
-        &nbsp;</div>
+                        <div class="first_goal">&nbsp;</div>
                     }
                     if (lastGoal == "1")
                     {
-    <div class="last_goal">
-        &nbsp;</div>
+                        <div class="last_goal">&nbsp;</div>
                     }
                 }
                 else
                 {
                     if (firstGoal == "2")
                     {
-    <div class="first_goal">
-        &nbsp;</div>
+                        <div class="first_goal">&nbsp;</div>
                     }
                     if (lastGoal == "2")
                     {
-    <div class="last_goal">
-        &nbsp;</div>
+                        <div class="last_goal">&nbsp;</div>
                     }
                 }
             }
@@ -158,10 +157,10 @@
         if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
         {
     <td>
-        @Resources.Lang.lblNA
+        @Apollo.Age.Resources.Lang.lblNA
     </td>
     <td>
-        @Resources.Lang.lblNA
+        @Apollo.Age.Resources.Lang.lblNA
     </td>
         }
         else if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
@@ -172,7 +171,7 @@
         @item.HalfTimeHomeScore
     </td>
     <td>
-        @Resources.Lang.lblNA
+        @Apollo.Age.Resources.Lang.lblNA
     </td>
             }
             else
@@ -181,7 +180,7 @@
         @item.HalfTimeAwayScore
     </td>
     <td>
-        @Resources.Lang.lblNA
+        @Apollo.Age.Resources.Lang.lblNA
     </td>
             }
         }
@@ -190,7 +189,7 @@
             if (isRowHome)
             {
     <td>
-        @Resources.Lang.lblNA
+        @Apollo.Age.Resources.Lang.lblNA
     </td>
     <td>
         @item.FinalHomeScore
@@ -199,7 +198,7 @@
             else
             {
     <td>
-        @Resources.Lang.lblNA
+        @Apollo.Age.Resources.Lang.lblNA
     </td>
     <td>
         @item.FinalAwayScore
@@ -210,21 +209,21 @@
         {
             if (isRowHome)
             {
-    <td>
-        @item.HalfTimeHomeScore
-    </td>
-    <td>
-        @item.FinalHomeScore
-    </td>
+                <td>
+                    @item.HalfTimeHomeScore
+                </td>
+                <td>
+                    @item.FinalHomeScore
+                </td>
             }
             else
             {
-    <td>
-        @item.HalfTimeAwayScore
-    </td>
-    <td>
-        @item.FinalAwayScore
-    </td>
+                <td>
+                    @item.HalfTimeAwayScore
+                </td>
+                <td>
+                    @item.FinalAwayScore
+                </td>
             }
         }
 }

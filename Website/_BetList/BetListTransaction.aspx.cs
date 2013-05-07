@@ -23,7 +23,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.Web;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
-    using Fanex.Age.UI.Reports.BetList;
+    using Fanex.Agent.UI._BetList;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Age.ExtTemplate;
@@ -169,12 +169,12 @@ namespace Sunplus.Agent.UI._BetList
 
             row = dt.NewRow();
             row["value"] = "1";
-            row["text"] = Resources.Lang.agent;
+            row["text"] = Apollo.Age.Resources.Lang.agent;
             dt.Rows.Add(row);
 
             row = dt.NewRow();
             row["value"] = "0";
-            row["text"] = Resources.Lang.member;
+            row["text"] = Apollo.Age.Resources.Lang.member;
             dt.Rows.Add(row);
 
             return dt;
@@ -221,13 +221,13 @@ namespace Sunplus.Agent.UI._BetList
 
             if (pageType == "cancel")
             {
-                tpl.title = Resources.Lang.voidandreject;
+                tpl.title = Apollo.Age.Resources.Lang.voidandreject;
                 isShowAgentPT = isShowWinLost = false;
                 statusIds = string.Format("{0}^{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             }
             else if (pageType == "transaction")
             {
-                tpl.title = Resources.Lang.transaction;
+                tpl.title = Apollo.Age.Resources.Lang.transaction;
                 isShowWinLost = true;
                 statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}^{6}^{7}",
                     (int)Apollo.Age.Enumerations.BetStatus.Void,
@@ -251,7 +251,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             if (string.IsNullOrEmpty(Request["type"]))
             {
-                return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
+                return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
             return null;
         }

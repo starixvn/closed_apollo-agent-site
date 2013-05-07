@@ -4083,4 +4083,37 @@
   <data name="confirmUpdateMembers1" xml:space="preserve">
     <value>Confirm Update Members\'s PT</value>
   </data>
+  <data name="lblEditAgentSetting" xml:space="preserve">
+    <value>Edit Agent Setting - {0}</value>
+  </data>
+  <data name="lblEditMemberSetting" xml:space="preserve">
+    <value>Edit Member Setting - {0}</value>
+  </data>
+  <data name="lblInvalidValueRange" xml:space="preserve">
+    <value>Invalid Value Range</value>
+  </data>
+  <data name="lblViewAgentSetting" xml:space="preserve">
+    <value>View Agent Setting - {0}</value>
+  </data>
+  <data name="lblViewMemberSetting" xml:space="preserve">
+    <value>View Member Setting - {0}</value>
+  </data>
+  <data name="lblAccessDenied" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
+  <data name="lblInvalidRequest" xml:space="preserve">
+    <value>Invalid Request</value>
+  </data>
+  <data name="lblServerError" xml:space="preserve">
+    <value>Server Error</value>
+  </data>
+  <data name="lblTemporarilyUnavailable" xml:space="preserve">
+    <value>Temporarily Unavailable</value>
+  </data>
+  <data name="lblUnauthorizedClient" xml:space="preserve">
+    <value>Unauthorized Client</value>
+  </data>
+  <data name="lblUnsupportedResponseType" xml:space="preserve">
+    <value>Unsupported Response Type</value>
+  </data>
 </root>
