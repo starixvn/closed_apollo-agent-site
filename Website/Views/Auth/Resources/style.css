@@ -62,16 +62,19 @@ label {
     font-weight: bold;
     line-height: 1.6;
 }
+
 .validation-summary-errors ul {
     list-style-type: none;
     padding: 0;
 }
+
 .input-validation-error {
 }
 
 .input-textbox{
     width: 220px;
 }
+
 .input-captcha {
 	width: 100px;
 }
@@ -88,12 +91,18 @@ input[type=submit] {
     color: #fff;
     text-shadow: 0px -1px 0px rgba(000,000,000,1), 0px 1px 0px rgba(255,255,255,0.2);
 }
+
 input[type=submit]:hover {
     opacity: .9;
 }
+
 input[type=submit]:active {
     position: relative;
     top: 1px;
+}
+
+.login-box p img, .login-box p input, .login-box p label {
+    vertical-align: middle;
 }
 
 /* FIX IE */
