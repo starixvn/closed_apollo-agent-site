@@ -13,14 +13,14 @@ namespace Fanex.BetList.Age
 	{
 		public class Footer1_Template : Template
 		{
-			protected static string s0 = "<tr class=\"bl_footertotal\" id=\"tr_footer\" ><td class=\"r\" colspan=\"";
+			protected static string s0 = "<tr class=\"bl_footertotal\" id=\"tr_footer\"><td class=\"r\" colspan=\"";
 			public string subTotalColSpan = "{subTotalColSpan}";
 			protected static string s1 = "\"><div><div>";
-			protected static string s2{get{return Resources.BetList.subtotalWinlost;}}
+			protected static string s2{get{return Apollo.Age.Resources.BetList.subtotalWinlost;}}
 			protected static string s3 = ":</div><div>";
-			protected static string s4{get{return Resources.BetList.subtotalCom;}}
+			protected static string s4{get{return Apollo.Age.Resources.BetList.subtotalCom;}}
 			protected static string s5 = ":</div><div>";
-			protected static string s6{get{return Resources.BetList.total;}}
+			protected static string s6{get{return Apollo.Age.Resources.BetList.total;}}
 			protected static string s7 = ":</div></div></td><td class=\"r\"><div>";
 			public Footer1_Winloss_Block Winloss = new Footer1_Winloss_Block();
 			protected static string s8 = "</div></td>";
