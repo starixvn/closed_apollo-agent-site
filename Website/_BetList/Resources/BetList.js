@@ -39,29 +39,31 @@ function ViewCommissionDetail(ibcrefno, currency, tableId, tableName, tournament
 
 function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
 	if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
-		ViewMixParlayResult(refno_mixparlay);
+		ViewMixParlayResult(refno_mixparlay, refno);
 	} else {
-		ViewSportBookResult(matchid, sporttype);
+		ViewSportBookResult(matchid, sporttype, refno);
 	}
 }
 
-function ViewMixParlayResult(refno) {
-	var width = 730;
-	var height = 450;
-	var params = '?refNo=' + refno;
-	ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), '', 50, 100, width, height);
+function ViewMixParlayResult(refno_mixparlay, refno) {
+	var width = 730,
+		height = 450,
+		params = '?refNo=' + refno_mixparlay,
+		detailTitle = $('#' + refno).find('a:first').text();
+	ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), detailTitle, 50, 100, width, height);
 }
 
-function ViewSportBookResult(matchId, sportId) {
-	var width = 730;
-	var height = 250;
-	var params = '?matchId= ' + matchId + '&sportId=' + sportId;
+function ViewSportBookResult(matchId, sportId, refno) {
+	var width = 730,
+		height = 250,
+		params = '?matchId= ' + matchId + '&sportId=' + sportId,
+		detailTitle = $('#' + refno).find('.sport').text() + $('#' + refno).find('.league').html().replace(/\<span(.|\s)*?\<\/span\>/, '').replace("&nbsp;", " - ");
 
 	if (parent.ageWnd) {
-		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
+		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), detailTitle, 50, 100, width, height);
 	}
 	else {
-		ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), '', 50, 100, width, height);
+		ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), detailTitle, 50, 100, width, height);
 	}
 }
 
@@ -106,16 +108,16 @@ function showCombMP(transid, orderID) {
 }
 
 function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
-    var width = 750,
+	var width = 750,
         height = 350,
         params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
         detailTitle = $(target).siblings('.combinationLink').text();
 
-    if (parent.ageWnd) {
-        parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), 'Detail', 50, 100, width, height);
-    } else {
-        ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
-    }
+	if (parent.ageWnd) {
+		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), 'Detail', 50, 100, width, height);
+	} else {
+		ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
+	}
 }
 
 function InitExcelFunction() {

@@ -4434,4 +4434,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="BetSettingInstructions" xml:space="preserve">
     <value>Bet Setting Instructions</value>
   </data>
+  <data name="lblAccountWasStopped" xml:space="preserve">
+    <value>Your Account was stopped!</value>
+  </data>
+
 </root>

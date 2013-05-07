@@ -27,7 +27,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Pager;
     using Fanex.Common;
 
-    // [SessionState(SessionStateBehavior.ReadOnly)]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
     {
         private const int PAGEINDEX = 0; // Current index page
@@ -112,9 +112,6 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult AgentInfo(string username, int agentId)
         {
-            HttpContext.Session["username"] = username;
-            HttpContext.Session["isMember"] = "false";
-
             var agentInfo = _accountService.GetAgentInfo(new GetAgentInfoCriteria
             {
                 ActorAgentId = CurrentSession.AgentId,
@@ -146,9 +143,6 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult MemberInfo(string username, int custId)
         {
-            HttpContext.Session["username"] = username;
-            HttpContext.Session["isMember"] = "true";
-
             var memberInfo = _accountService.GetMemberInfo(new GetMemberInfoCriteria
             {
                 ActorAgentId = CurrentSession.AgentId,
@@ -179,29 +173,7 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult AccountInfo()
         {
-            var username = string.Empty;
-            var isMember = false;
-
-            username = HttpContext.Session["username"] != null
-                ? HttpContext.Session["username"].ToString() : string.Empty;
-            isMember = HttpContext.Session["isMember"] != null
-                ? Converter.ToBool(HttpContext.Session["isMember"])
-                : false;
-
             CustomerInfoModel customerInfo = null;
-
-            if (!string.IsNullOrWhiteSpace(username))
-            {
-                if (isMember)
-                {
-                    return MemberInfo(username, custId: -1);
-                }
-                else
-                {
-                    return AgentInfo(username, agentId: -1);
-                }
-            }
-
             return View(customerInfo);
         }
 
@@ -219,7 +191,7 @@ namespace Apollo.Age.Account.Controllers
             };
             var agentList = _accountService.GetDirectDownline(criteria);
 
-            var hasAgentDownline = agentList.Count > 0;
+            var hasAgentDownline = agentList == null ? false : (agentList.Count > 0);
 
             ViewBag.AgentId = this.CurrentSession.AgentId;
             ViewBag.HasAgentDownline = hasAgentDownline;

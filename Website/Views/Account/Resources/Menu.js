@@ -4,16 +4,45 @@
 var MENU = function ($) {
     return {
         menu: null,
+        tabmenu: null,
 
         init: function () {
             MENU.menu = $('#menu');
+            MENU.tabmenu = $('#tab-menu');
+
+            MENU.tabmenu.on('click', '#lk-menu-tab', function () {
+                location.href = APOLLO.resolveUrl("Account/Menu");
+            });
+
+            MENU.tabmenu.on('click', '#lk-tree-tab', function () {
+                location.href = APOLLO.resolveUrl("Account/TreeViewList");
+            });
+
+            MENU.tabmenu.on('click', '#lk-acc-tab', function () {
+                var custId = $.cookie('searching-id');
+                var username = $.cookie('searching-name');
+                var isMember = $.cookie('searching-ismember');
+
+                var url = "Account/AccountInfo";
+                if ((custId != undefined || username != undefined) && isMember != undefined) {
+                    if ($.cookie('searching-id') != "-1" || username.length > 0) {
+                        if (isMember.toBoolean()) {
+                            url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
+                        }
+                        else {
+                            url = 'Account/AgentInfo?agentid=' + custId + '&username=' + username
+                        }
+                    }
+                }
+
+                location.href = APOLLO.resolveUrl(url);
+            });
         }
     };
 } (jQuery);
 
 $(document).ready(function () {
     MENU.init();
-
     MENU.menu.on('click', '.menu-item-title', function () {
         var $this = $(this),
             subMenu = $this.next('.submenu'),

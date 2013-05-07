@@ -10,7 +10,7 @@
         foreach (var member in Model)
         {
             <li>
-                <a href='~/Account/MemberInfo?custid=@member.Id&username=@member.Username' target='menu'>
+                <a class='view-memberinfo' href='javascript:;' member-id='@member.Id' member-name='@member.Username' target='menu'>
                     @member.Username
                 </a>
             </li> 
@@ -29,4 +29,13 @@
     <div class="pager">
         @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
     </div>
+}
+
+@section foot {
+    <script src="~/Views/Account/Resources/DownlineInfo.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            DOWNLINE.initMemberdownline();
+        });
+    </script>
 }

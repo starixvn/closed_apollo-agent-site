@@ -17,6 +17,9 @@ var ACCOUNT = function ($) {
         },
 
         getAccountInfo: function (custId, username) {
+            $.cookie('searching-id', custId, { path: '/' });
+            $.cookie('searching-name', username, { path: '/' });
+            $.cookie('searching-ismember', ACCOUNT.dllIsMember.val().toBoolean(), { path: '/' });
             var url = "";
             if (ACCOUNT.dllIsMember.val().toBoolean()) {
                 url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
@@ -58,6 +61,28 @@ var ACCOUNT = function ($) {
                 position: { my: "right top", at: "right bottom" }
             });
 
+            ACCOUNT.ageDownLink.on('click', '.view-agentinfo', function () {
+                var agentId = $(this).attr("agent-id");
+                var agentName = $(this).attr("agent-name");
+                $.cookie('searching-id', agentId, { path: '/' });
+                $.cookie('searching-name', agentName, { path: '/' });
+                $.cookie('searching-ismember', false, { path: '/' });
+
+                var url = "Account/AgentInfo" + "?agentid=" + agentId + "&username=" + agentName;
+                location.href = APOLLO.resolveUrl(url);
+            });
+
+            $('.view-agentinfo').bind('click', function () {
+                var agentId = $(this).attr("agent-id");
+                var agentName = $(this).attr("agent-name");
+                $.cookie('searching-id', agentId, { path: '/' });
+                $.cookie('searching-name', agentName, { path: '/' });
+                $.cookie('searching-ismember', false, { path: '/' });
+
+                var url = "Account/AgentInfo" + "?agentid=" + agentId + "&username=" + agentName;
+                location.href = APOLLO.resolveUrl(url);
+            });
+
             $(".search-button").bind('click', function () {
                 ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val().trim()); // -1: only search username
             });
@@ -83,6 +108,7 @@ var ACCOUNT = function ($) {
             });
 
             ACCOUNT.ageDownLink.click(function (event) {
+
                 if (ACCOUNT.ageDownLink.hasClass("is-active")) {
                     ACCOUNT.ageDownLink.removeClass("is-active");
                     ACCOUNT.ddlAgents.fadeOut('fast');
@@ -101,10 +127,8 @@ var ACCOUNT = function ($) {
                                 agentList.html("<li class='root-agent'>" + data[0].Username + "</li>");
                                 for (var i = 1; i < data.length; ++i) {
                                     agentList.append(
-                                        "<li>" +
-                                            "<a href='" + APOLLO.resolveUrl("Account/AgentInfo" + "?agentid=" + data[i].Id +
-                                                "&username=" + data[i].Username) + "'>\\ " + data[i].Username + "</a>" +
-                                        "</li>"
+                                        "<li><a class='view-agentinfo' href='javascript:;'" + "agent-id='" + data[i].Id
+                                            + "'agent-name='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
                                     );
                                 }
                             }

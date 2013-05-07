@@ -8,15 +8,15 @@
 
 <ul id="tab-menu">
     <li class="tab-menu">
-        <a href="@Url.Action("Menu")" target="menu">
-            <i class="icon-align-justify"></i>Menu</a>
+        <a id="lk-menu-tab" href="javascript:;" target="menu">
+            <i class="icon-align-justify"></i>@Resources.Lang.mainmenu</a>
     </li>
     <li class="tab-tree active">
         <a>
-            <i class="icon-user"></i>Account</a>
+            <i class="icon-user"></i>@Resources.Lang.userinfo</a>
     </li>
     <li class="tab-acc">
-        <a href="@Url.Action("AccountInfo")" target="menu"><i class="icon-search"></i>Search</a>
+        <a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search"></i>@Resources.Lang.search</a>
     </li>
 </ul>
 @if ((bool)(ViewBag.HasAgentDownline))
@@ -26,6 +26,7 @@
     </div>
     
     @section foot {
+        <script src="~/Views/Account/Resources/Menu.js" type="text/javascript"></script>
         <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.js"></script>
         <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.async.js"></script>
         <script type="text/javascript">

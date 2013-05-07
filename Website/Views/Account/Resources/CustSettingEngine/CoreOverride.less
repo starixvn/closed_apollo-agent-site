@@ -144,7 +144,7 @@
 
 
 .simple-mode-container {
-	font-size: @fontSize;
+	font-size: (@fontSize -1);
 
 	.share-setting-table {
 		width: 100%;
@@ -268,4 +268,20 @@
 			padding: 0 2px;
 		}
 	}
+}
+
+.simple-mode-container .bet-limit-constrain-max, .simple-mode-container .bet-limit-constrain-min,
+.simple-mode-container .bet-limit-constrain-max-match 
+{
+	border-top: 1px solid @borderColor;
+	border-bottom: 1px solid @borderColor;
+	border-right: 1px solid @borderColor;
+}
+
+.simple-mode-container .bet-limit-value-max, .simple-mode-container .bet-limit-value-min,
+.simple-mode-container .bet-limit-value-max-match 
+{
+	border-top: 1px solid @borderColor;
+	border-bottom: 1px solid @borderColor;
+	border-left: 1px solid @borderColor;
 }
