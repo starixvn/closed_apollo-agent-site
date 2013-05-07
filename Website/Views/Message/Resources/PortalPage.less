@@ -423,7 +423,6 @@ a
 	overflow: auto;
 	clear: both;
 	color: #555;
-	border-top: 1px solid #999;
 
 	.divGroupDate {
 		background-color: #eee;
@@ -436,7 +435,7 @@ a
 
 	.oddRow, .evenRow {
 		border: 1px solid @borderColor;
-		border-width: 0 1px;
+		border-width: 1px 1px 0;
 		line-height: 2em;
 		cursor: pointer;
 		.clearfix;
@@ -505,7 +504,7 @@ a
 /* FIX IE */
 .eq-ie7 {
 	#divAnnouncement .divTime .time {
-			float: none;
+		float: none;
 	}
 }
 
