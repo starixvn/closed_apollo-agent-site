@@ -12,10 +12,8 @@ namespace Apollo.Age.Account.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Apollo.Age;
+    using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Services;
 
     public class MemberShareViewModel
     {
@@ -46,9 +44,9 @@ namespace Apollo.Age.Account.ViewModels
             }
         }
 
-        public List<Sport> SportList { get; set; }
+        public List<SportSetting> SportList { get; set; }
 
-        public List<BetType> BetTypeList { get; set; }
+        public List<BetTypeSetting> BetTypeList { get; set; }
 
         public List<MemberShareModel> MemberShareModelList { get; set; }
 

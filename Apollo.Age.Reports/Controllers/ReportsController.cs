@@ -15,8 +15,8 @@ namespace Apollo.Age.Reports.Controllers
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -27,6 +27,8 @@ namespace Apollo.Age.Reports.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    /// 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : BaseController
     {
         private readonly OutstandingService _reportService;
