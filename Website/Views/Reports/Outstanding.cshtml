@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Reports.ViewModels;
 @using Apollo.Age.Reports.Models;
 @{
-    ViewBag.Title = Resources.Lang.outstanding;
+    ViewBag.Title = Apollo.Age.Resources.Lang.outstanding;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
 @section css
@@ -20,27 +20,27 @@
         <thead>
             <tr>
                 <th rowspan="2" style="width: 150px;">
-                    @Resources.Lang.agent
+                    @Apollo.Age.Resources.Lang.agent
                 </th>
                 <th colspan="2" style="width: 400px;">
-                    @Resources.Lang.sportBook
+                    @Apollo.Age.Resources.Lang.sportBook
                 </th>
                 <th colspan="2" style="width: 200px; display: none">
-                    @Resources.Lang.numbergame
+                    @Apollo.Age.Resources.Lang.numbergame
                 </th>
             </tr>
             <tr>
                 <th style="width: 200px;">
-                    @Resources.Lang.outstanding
+                    @Apollo.Age.Resources.Lang.outstanding
                 </th>
                 <th style="width: 200px;">
-                    @Resources.Lang.ShareAmount
+                    @Apollo.Age.Resources.Lang.ShareAmount
                 </th>
                 <th style="width: 200px; display: none">
-                    @Resources.Lang.outstanding
+                    @Apollo.Age.Resources.Lang.outstanding
                 </th>
                 <th style="width: 200px; display: none">
-                    @Resources.Lang.ShareAmount
+                    @Apollo.Age.Resources.Lang.ShareAmount
                 </th>
             </tr>
         </thead>
@@ -65,7 +65,7 @@
                     {
                     <tr @Html.Raw(rowClass)>
                         <td>
-                            <a href="#" name="viewagent" agentid="@item.UserId" title="@Resources.Lang.lblViewAgentDownline">@item.UserName</a>
+                            <a href="#" name="viewagent" agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.Outstanding, "en-US")
@@ -85,7 +85,7 @@
                     {
                     <tr @Html.Raw(rowClass)>
                         <td>
-                            <a href="#" id="MemberOutstanding" mainShareHolderId="@Model.MainShareHolder.Id" mainShareHolderUsername="@Model.MainShareHolder.Username" agentid="@Model.CurrentAgentId"  title="@Resources.Lang.lblViewMemberOutstanding">@Resources.Lang.lblMemberOutstanding</a>
+                            <a href="#" id="MemberOutstanding" mainShareHolderId="@Model.MainShareHolder.Id" mainShareHolderUsername="@Model.MainShareHolder.Username" agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.Outstanding, "en-US")
@@ -108,7 +108,7 @@
             <tfoot>
                 <tr class="total">
                     <td>
-                        @Resources.Lang.total
+                        @Apollo.Age.Resources.Lang.total
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(outStandingTotal, "en-US")
@@ -139,12 +139,12 @@
     <script language="javascript" type="text/javascript">
         var LANGUAGES = function () {
             return {
-                SportBook: "@Resources.Lang.sportBook",
-                NumberGame: "@Resources.Lang.numbergame",
-                Outstanding: "@Resources.Lang.outstanding",
-                ShareAmount: "@Resources.Lang.ShareAmount",
-                Member: "@Resources.Lang.lblMember",
-                ViewBetlist: "@Resources.Lang.lblViewBetlist"
+                SportBook: "@Apollo.Age.Resources.Lang.sportBook",
+                NumberGame: "@Apollo.Age.Resources.Lang.numbergame",
+                Outstanding: "@Apollo.Age.Resources.Lang.outstanding",
+                ShareAmount: "@Apollo.Age.Resources.Lang.ShareAmount",
+                Member: "@Apollo.Age.Resources.Lang.lblMember",
+                ViewBetlist: "@Apollo.Age.Resources.Lang.lblViewBetlist"
             };
         } ();
     </script>

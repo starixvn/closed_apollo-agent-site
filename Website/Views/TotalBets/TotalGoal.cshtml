@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Apollo.Age.TotalBets.Models.TotalGoalModel>
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.totalgoal;
+    ViewBag.Title = Apollo.Age.Resources.Lang.totalgoal;
 }
 @RazorHelper.RefreshCountDown("TotalGoal", 90, 60, "ReloadPage();")
 <table class="tblRpt persist-area no-border-bottom">
@@ -11,22 +11,22 @@
                 #
             </td>
             <td style="width: 150px;">
-                @Resources.Lang.home
+                @Apollo.Age.Resources.Lang.home
             </td>
             <td style="width: 150px;">
-                @Resources.Lang.away
+                @Apollo.Age.Resources.Lang.away
             </td>
             <td style="width: 80px;">
-                @Resources.Lang.total01
+                @Apollo.Age.Resources.Lang.total01
             </td>
             <td style="width: 80px;">
-                @Resources.Lang.total23
+                @Apollo.Age.Resources.Lang.total23
             </td>
             <td style="width: 80px;">
-                @Resources.Lang.total46
+                @Apollo.Age.Resources.Lang.total46
             </td>
             <td style="width: 80px;">
-                @Resources.Lang.total7over
+                @Apollo.Age.Resources.Lang.total7over
             </td>
         </tr>
     </thead>
@@ -53,7 +53,7 @@
                 </td>
                 <td style="width: 150px;">
                     <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
-                        href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Resources.Lang.totalgoal"  title="@Resources.Lang.ViewBetList">
+                        href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.totalgoal"  title="@Apollo.Age.Resources.Lang.ViewBetList">
                         @item.HomeTeam
                     </a>
                 </td>

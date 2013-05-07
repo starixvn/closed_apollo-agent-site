@@ -40,31 +40,208 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetList.resx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList.ja-JP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetList.ja-JP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList.ko-KR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetList.ko-KR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList.th-TH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetList.th-TH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList.vi-VN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetList.vi-VN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetList.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetList.zh-TW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="FilterResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FilterResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Lang.ja-JP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.ja-JP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Lang.ko-KR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.ko-KR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Lang.th-TH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.th-TH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Lang.vi-VN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.vi-VN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Lang.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Lang.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.zh-TW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangMsg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LangMsg.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangMsg.ja-JP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LangMsg.ja-JP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangMsg.ko-KR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LangMsg.ko-KR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangMsg.th-TH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LangMsg.th-TH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangMsg.vi-VN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LangMsg.vi-VN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangMsg.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LangMsg.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangMsg.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LangMsg.zh-TW.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BetList.ja-JP.resx" />
-    <EmbeddedResource Include="BetList.ko-KR.resx" />
-    <EmbeddedResource Include="BetList.resx" />
-    <EmbeddedResource Include="BetList.th-TH.resx" />
-    <EmbeddedResource Include="BetList.vi-VN.resx" />
-    <EmbeddedResource Include="BetList.zh-CN.resx" />
-    <EmbeddedResource Include="BetList.zh-TW.resx" />
-    <EmbeddedResource Include="FilterResource.resx" />
-    <EmbeddedResource Include="Lang.ja-JP.resx" />
-    <EmbeddedResource Include="Lang.ko-KR.resx" />
-    <EmbeddedResource Include="Lang.resx" />
-    <EmbeddedResource Include="Lang.th-TH.resx" />
-    <EmbeddedResource Include="Lang.vi-VN.resx" />
-    <EmbeddedResource Include="Lang.zh-CN.resx" />
-    <EmbeddedResource Include="Lang.zh-TW.resx" />
-    <EmbeddedResource Include="LangMsg.ja-JP.resx" />
-    <EmbeddedResource Include="LangMsg.ko-KR.resx" />
-    <EmbeddedResource Include="LangMsg.resx" />
-    <EmbeddedResource Include="LangMsg.th-TH.resx" />
-    <EmbeddedResource Include="LangMsg.vi-VN.resx" />
-    <EmbeddedResource Include="LangMsg.zh-CN.resx" />
-    <EmbeddedResource Include="LangMsg.zh-TW.resx" />
+    <EmbeddedResource Include="BetList.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BetList.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BetList.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BetList.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BetList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BetList.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BetList.th-TH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BetList.th-TH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BetList.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BetList.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BetList.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BetList.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BetList.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BetList.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FilterResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang.th-TH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.th-TH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangMsg.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangMsg.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangMsg.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangMsg.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangMsg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangMsg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangMsg.th-TH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangMsg.th-TH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangMsg.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangMsg.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangMsg.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangMsg.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangMsg.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangMsg.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Viewlog.ja-JP.resx.exclude" />

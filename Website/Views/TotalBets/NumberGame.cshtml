@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.numbergame;
+    ViewBag.Title = Apollo.Age.Resources.Lang.numbergame;
 }
 
 @model IEnumerable<NumberGameModel>
@@ -32,13 +32,13 @@
             @index
         </td>
         <td>
-            @Resources.Lang.numbergameno  @item.MatchCode
+            @Apollo.Age.Resources.Lang.numbergameno  @item.MatchCode
         </td>
         <td>
             @if (item.BetCountWarrior2ndBall != 0)
             {
                 <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="88" betlist-type="BettypeMatch" is-live="0" bet-team="h" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.Warrior2ndBall)
                 </a>
             }
@@ -47,7 +47,7 @@
             @if (item.BetCountWarrior3rdBall != 0)
             {
                 <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="88" betlist-type="BettypeMatch" is-live="0" bet-team="a" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.Warrior3rdBall)
                 </a>
             }
@@ -56,7 +56,7 @@
             @if (item.BetCountOU1stBall != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="81" betlist-type="BettypeMatch" is-live="0" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.Over1stBall - item.Under1stBall)
                 </a>
             }
@@ -65,7 +65,7 @@
             @if (item.BetCountOE1stBall != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="83" betlist-type="BettypeMatch" is-live="0" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.Odd_1stBall - item.Even1stBall)
                 </a>
             }
@@ -74,7 +74,7 @@
             @if (item.BetCountOULastBall != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="82" betlist-type="BettypeMatch" is-live="0" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OverLastBall - item.UnderLastBall)
                 </a>
             }
@@ -84,7 +84,7 @@
             @if (item.BetCountOELastBall != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="84" betlist-type="BettypeMatch" is-live="0" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OddLastBall - item.EvenLastBall)
                 </a>
             }
@@ -94,7 +94,7 @@
             @if (item.BetCountOUNext != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="85" betlist-type="BettypeMatch" is-live="1" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OverNext - item.UnderNext)
                 </a>
             }
@@ -103,7 +103,7 @@
             @if (item.BetCountOENext != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="86" betlist-type="BettypeMatch" is-live="1" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OddNext - item.EvenNext)
                 </a>
             }
@@ -112,7 +112,7 @@
             @if (item.BetCountHighLow != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="87" betlist-type="BettypeMatch" is-live="1" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.High - item.Low)
                 </a>
             }
@@ -121,7 +121,7 @@
             @if (item.BetCountNextComboOverOdd != 0)
             {
                 <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="1:1" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NextComboOverOdd)
                 </a>
             }
@@ -130,7 +130,7 @@
             @if (item.BetCountNextComboUnderOdd != 0)
             {
                 <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="2:1" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NextComboUnderOdd)
                 </a>
             }
@@ -139,7 +139,7 @@
             @if (item.BetCountNextComboOverEven != 0)
             {
                 <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="1:2" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NextComboOverEven)
                 </a>
             }
@@ -149,7 +149,7 @@
             @if (item.BetCountNextComboUnderEven != 0)
             {
                 <a class="fcnum view-bet-list-new-game" match-id="@item.MatchId" bet-type="89" betlist-type="BettypeMatch" is-live="1" bet-team="2:2" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NextComboUnderEven)
                 </a>
             }
@@ -158,7 +158,7 @@
             @if (item.BetCountOEFullTime != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="86" betlist-type="BettypeMatch" is-live="0" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.OddFullTime - item.EvenFullTime)
                 </a>
             }
@@ -167,7 +167,7 @@
             @if (item.BetCountNumberGroupLive != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="90" betlist-type="BettypeMatch" is-live="1" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NumberGroupLive)
                 </a>
             }
@@ -176,7 +176,7 @@
             @if (item.BetCountNumberGroupPre != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="90" betlist-type="BettypeMatch" is-live="0" 
-                    href="javascript:void(0);" title="@Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNegativeNumber(item.NumberGroupPre)
                 </a>
             }
@@ -193,75 +193,75 @@
                 #
             </td>
             <td rowspan="2">
-                @Resources.Lang.events
+                @Apollo.Age.Resources.Lang.events
             </td>
             <td colspan="2">
-                @Resources.Lang.warrior
+                @Apollo.Age.Resources.Lang.warrior
             </td>
             <td colspan="2">
-                @Resources.Lang.lbl1stBall
+                @Apollo.Age.Resources.Lang.lbl1stBall
             </td>
             <td colspan="2">
-                @Resources.Lang.lastball
+                @Apollo.Age.Resources.Lang.lastball
             </td>
             <td colspan="3">
-                @Resources.Lang.nextBall
+                @Apollo.Age.Resources.Lang.nextBall
             </td>
             <td colspan="4">
-                @Resources.Lang.nextcombo
+                @Apollo.Age.Resources.Lang.nextcombo
             </td>
-            <td rowspan="2" title="@Resources.Lang.lblFTOddEven">
-                @Resources.Lang.lblFTOE
+            <td rowspan="2" title="@Apollo.Age.Resources.Lang.lblFTOddEven">
+                @Apollo.Age.Resources.Lang.lblFTOE
             </td>
             <td colspan="2">
-                @Resources.Lang.numberGroup
+                @Apollo.Age.Resources.Lang.numberGroup
             </td>
         </tr>
         <tr class="RptHeader02">
             <td>
-                @Resources.Lang.warrior2ndBall
+                @Apollo.Age.Resources.Lang.warrior2ndBall
             </td>
             <td>
-                @Resources.Lang.warrior3rdBall
+                @Apollo.Age.Resources.Lang.warrior3rdBall
             </td>
-            <td title="@Resources.Lang.lblOverUnder">
-                @Resources.Lang.lblOU
+            <td title="@Apollo.Age.Resources.Lang.lblOverUnder">
+                @Apollo.Age.Resources.Lang.lblOU
             </td>
-            <td title="@Resources.Lang.lblOddEven">
-                @Resources.Lang.lblOE
+            <td title="@Apollo.Age.Resources.Lang.lblOddEven">
+                @Apollo.Age.Resources.Lang.lblOE
             </td>
-            <td title="@Resources.Lang.lblOverUnder">
-                @Resources.Lang.lblOU
+            <td title="@Apollo.Age.Resources.Lang.lblOverUnder">
+                @Apollo.Age.Resources.Lang.lblOU
             </td>
-            <td title="@Resources.Lang.lblOddEven">
-                @Resources.Lang.lblOE
+            <td title="@Apollo.Age.Resources.Lang.lblOddEven">
+                @Apollo.Age.Resources.Lang.lblOE
             </td>                                        
-            <td title="@Resources.Lang.lblOverUnder">
-                @Resources.Lang.lblOU
+            <td title="@Apollo.Age.Resources.Lang.lblOverUnder">
+                @Apollo.Age.Resources.Lang.lblOU
             </td>
-            <td title="@Resources.Lang.lblOddEven">
-                @Resources.Lang.lblOE
+            <td title="@Apollo.Age.Resources.Lang.lblOddEven">
+                @Apollo.Age.Resources.Lang.lblOE
             </td>
             <td>
-                @Resources.Lang.highlow
+                @Apollo.Age.Resources.Lang.highlow
             </td>
-            <td title="@Resources.Lang.lblOverOdd">
-                @Resources.Lang.lblOO
+            <td title="@Apollo.Age.Resources.Lang.lblOverOdd">
+                @Apollo.Age.Resources.Lang.lblOO
             </td>
-            <td title="@Resources.Lang.lblUnderOdd">
-                @Resources.Lang.lblUO
+            <td title="@Apollo.Age.Resources.Lang.lblUnderOdd">
+                @Apollo.Age.Resources.Lang.lblUO
             </td>
-            <td title="@Resources.Lang.lblOverEven">
-                @Resources.Lang.lblOvE
+            <td title="@Apollo.Age.Resources.Lang.lblOverEven">
+                @Apollo.Age.Resources.Lang.lblOvE
             </td>
-            <td title="@Resources.Lang.lblUnderEven">
-                @Resources.Lang.lblUE
+            <td title="@Apollo.Age.Resources.Lang.lblUnderEven">
+                @Apollo.Age.Resources.Lang.lblUE
             </td>         
             <td>
-                @Resources.Lang.LiveGame
+                @Apollo.Age.Resources.Lang.LiveGame
             </td>
             <td>
-                @Resources.Lang.PreGame
+                @Apollo.Age.Resources.Lang.PreGame
             </td>  
         </tr>
     </thead>

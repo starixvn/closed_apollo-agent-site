@@ -42,7 +42,7 @@
 }
 
 .treeview li {
-    background: url(Images/treeview-default-line.gif) 0 0 no-repeat;
+    background: url(Images/treeview-default-line.gif) 0 0 repeat-y;
 }
 .treeview li.collapsable, .treeview li.expandable {
     background-position: 0 -176px;

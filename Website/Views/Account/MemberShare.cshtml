@@ -1,69 +1,64 @@
 ﻿@using Apollo.Age.Account.ViewModels
 @using Apollo.Age
-
 @{
-    ViewBag.Title = Resources.Lang.ViewShare;
+    ViewBag.Title = Apollo.Age.Resources.Lang.ViewShare;
     Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
     int index = 0;
 }
-
 @model MemberShareViewModel
-
 <div id="box_header">
     <div class="row">
-		@if (Model.SportList.Any())
-		{
-        <div class="cell">
-			
-			<div class="label">
-				<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Resources.Lang.SportType)</label>
-			</div>
-            <div class="editor">
-				@Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", style = "width: 120px" })
-            </div>
-		</div>
-		}
-		@if (Model.BetTypeList.Any())
+        @if (Model.SportList.Any())
         {
-		<div class="cell">
-			<div class="label">
-				<label for="ddlBetType">@Html.LabelFor(m => m.BetType, @Resources.Lang.bettype)</label>
-			</div>
-            <div class="editor">
-				@Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
-					new { id = "ddlBetType", style = "width: 160px" })
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Apollo.Age.Resources.Lang.SportType)</label>
+                </div>
+                <div class="editor">
+                    @Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", style = "width: 120px" })
+                </div>
             </div>
-		</div>
-		}
-		<div class="cell">
-			<div class="editor">
-				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-					new SelectListItem { Value = "false", Text = Resources.Lang.lblAgent },
-					new SelectListItem { Value = "true", Text = Resources.Lang.lblMember }
+        }
+        @if (Model.BetTypeList.Any())
+        {
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlBetType">@Html.LabelFor(m => m.BetType, @Apollo.Age.Resources.Lang.bettype)</label>
+                </div>
+                <div class="editor">
+                    @Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
+                    new { id = "ddlBetType", style = "width: 160px" })
+                </div>
+            </div>
+        }
+        <div class="cell">
+            <div class="editor">
+                @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+					new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.lblAgent },
+					new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblMember }
 				}, new { id = "ddlIsMember" })
-				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", style = "width: 150px" })
-				<input id="btnSubmit" class="btn" type="button" value="@Resources.Lang.submit" />
+                @Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", style = "width: 150px" })
+                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.submit" />
             </div>
         </div>
     </div>
 </div>
-
-<table class="tbl-cust-setting no-border-bottom" style="width:auto; min-width: 758px;">
+<table class="tbl-cust-setting no-border-bottom" style="width: auto; min-width: 758px;">
     <thead>
         <tr>
             <th>
             </th>
             <th>
-                @Resources.Lang.TakenShareText
+                @Apollo.Age.Resources.Lang.TakenShareText
             </th>
             <th>
-                @Resources.Lang.MaxGivenShare
+                @Apollo.Age.Resources.Lang.MaxGivenShare
             </th>
             <th>
-                @Resources.Lang.MinGivenShare
+                @Apollo.Age.Resources.Lang.MinGivenShare
             </th>
             <th>
-                @Resources.Lang.ShareTakenOnMember
+                @Apollo.Age.Resources.Lang.ShareTakenOnMember
             </th>
         </tr>
     </thead>
@@ -73,40 +68,40 @@
             foreach (var item in Model.MemberShareModelList)
             {
                 string rowClass = index++ % 2 != 0 ? "class='alt'" : string.Empty;
-                
-                <tr @Html.Raw(rowClass)>
-                    <td class="em-row l">
-                        @item.Username
+
+            <tr @Html.Raw(rowClass)>
+                <td class="em-row l">
+                    @item.Username
+                </td>
+                @if (index == Model.MemberShareModelList.Count)
+                {
+                    <td>
                     </td>
-                    @if (index == Model.MemberShareModelList.Count)
-                    {
-                        <td></td>
-                    }
-                    else
-                    {
-                        <td class="r">
-                            @Formater.FormatNumber20(item.TakenShare / 100, Formater.CULT_NAME_ENG)
-                        </td>
-                    }
+                }
+                else
+                {
                     <td class="r">
-                        @Formater.FormatNumber20(item.MaxGiven / 100, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(item.TakenShare / 100, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.MinGiven / 100, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.TakenShareMember / 100, Formater.CULT_NAME_ENG)
-                    </td>
-                </tr>
+                }
+                <td class="r">
+                    @Formater.FormatNumber20(item.MaxGiven / 100, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(item.MinGiven / 100, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(item.TakenShareMember / 100, Formater.CULT_NAME_ENG)
+                </td>
+            </tr>
             }
         }
         else
         {
-             @RazorHelper.ShowNoInfo(5) 
+            @RazorHelper.ShowNoInfo(5)
         }
     </tbody>
 </table>
-
 @section scripts
 {
     <script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>

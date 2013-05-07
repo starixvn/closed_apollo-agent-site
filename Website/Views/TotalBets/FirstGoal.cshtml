@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.fglg;
+    ViewBag.Title = Apollo.Age.Resources.Lang.fglg;
 }
 
 @model IEnumerable<FirstGoalModel>
@@ -30,7 +30,7 @@
         </td>
         <td>
             <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
-                href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Resources.Lang.fglg" title="@Resources.Lang.ViewBetList">
+                href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.fglg" title="@Apollo.Age.Resources.Lang.ViewBetList">
                 @item.HomeTeam
             </a>
         </td>
@@ -47,7 +47,7 @@
     <tr>
         <td>
             <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
-                href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Resources.Lang.fglg" title="@Resources.Lang.ViewBetList">
+                href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.fglg" title="@Apollo.Age.Resources.Lang.ViewBetList">
                 @item.AwayTeam
             </a>
         </td>
@@ -69,19 +69,19 @@
                 #
             </td>
             <td style="width: 120px;">
-                @Resources.Lang.time
+                @Apollo.Age.Resources.Lang.time
             </td>
             <td style="width: 200px;">
-                @Resources.Lang.homeaway
+                @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td style="width: 100px;">
-                @Resources.Lang.firstgoal
+                @Apollo.Age.Resources.Lang.firstgoal
             </td>
             <td style="width: 100px;">
-                @Resources.Lang.lastgoal
+                @Apollo.Age.Resources.Lang.lastgoal
             </td>
             <td style="width: 100px;">
-                @Resources.Lang.nogoal
+                @Apollo.Age.Resources.Lang.nogoal
             </td>
         </tr>
     </thead>

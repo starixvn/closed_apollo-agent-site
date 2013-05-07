@@ -56,7 +56,7 @@ namespace Sunplus.Agent.UI._BetList
             #region INIT
 
             var tpl = new BetListOnMember_Template();
-            tpl.title = Resources.Lang.lblBetLists + " - " + username;
+            tpl.title = Apollo.Age.Resources.Lang.lblBetLists + " - " + username;
             if (pageType == "accountinfo")
             {
                 var maxDate = DateTime.Now;
@@ -217,7 +217,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             if (string.IsNullOrEmpty(Request["custid"]) && string.IsNullOrEmpty(Request["username"]))
             {
-                return new ErrorPage_Page(Resources.Lang.strNotAccessPage);
+                return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
             return null;
         }

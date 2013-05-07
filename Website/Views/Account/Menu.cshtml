@@ -1,26 +1,26 @@
 ﻿@model ICurrentSession
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
-    var menu = ViewBag.RootNode; 
+    var menu = ViewBag.RootNode;
 }
 <ul id="tab-menu">
-    <li class="tab-menu active"><a><i class="icon-align-justify"></i>@Resources.Lang.mainmenu</a> </li>
+    <li class="tab-menu active"><a><i class="icon-align-justify"></i>@Apollo.Age.Resources.Lang.mainmenu</a>
+    </li>
     <li class="tab-tree"><a id="lk-tree-tab" href="javascript:;" target="menu"><i class="icon-user">
-    </i>@Resources.Lang.userinfo</a> </li>
+    </i>@Apollo.Age.Resources.Lang.userinfo</a> </li>
     <li class="tab-acc"><a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search">
-    </i>@Resources.Lang.search</a> </li>
+    </i>@Apollo.Age.Resources.Lang.search</a> </li>
 </ul>
 <ul id="menu">
     @foreach (SiteMapNode item in menu.ChildNodes)
     {
         //if (!Model.IsSuper || (Model.IsSuper))
         //{
-            string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
-        
-        <li class="menu-item @activeClass">
-            <a class="menu-item-title">@this.ViewContext.HttpContext.GetGlobalResourceObject("Lang", item.Title)</a>
+        string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
+
+        <li class="menu-item @activeClass"><a class="menu-item-title">@this.ViewContext.HttpContext.GetGlobalResourceObject("Lang", item.Title)</a>
             @if (item.HasChildNodes)
-            {               
+            {
                 <div class="submenu">
                     @foreach (SiteMapNode subItem in item.ChildNodes)
                     {
@@ -29,10 +29,9 @@
                         {
                             continue;
                         }
-                        
+
                         int bettypeId = 0;
                         string title = string.Empty;
-                        
 
                         if (subItem.Title.Contains("bettype")
                             && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
@@ -44,11 +43,10 @@
                             title = this.ViewContext.HttpContext.GetGlobalResourceObject("Lang", subItem.Title).ToString();
                         }
 
-                        
                         <a href="@subItem.Url" target="main">@title</a>
                     }
                 </div>
-                
+
             }
         </li>
         //}

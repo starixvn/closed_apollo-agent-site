@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Lang.htft;
+    ViewBag.Title = Apollo.Age.Resources.Lang.htft;
 }
 @model IEnumerable<HTFTModel>
 @RazorHelper.RefreshCountDown("HTFT", 90, 60, "ReloadPage();")
@@ -9,40 +9,40 @@
     <thead class="persist-header">
         <tr class="RptHeader">
             <td style="width: 20px;">
-            @Resources.Lang.no
+            @Apollo.Age.Resources.Lang.no
             </td>
             <td style="width: 200px;">
-                @Resources.Lang.home
+                @Apollo.Age.Resources.Lang.home
             </td>
             <td style="width: 200px;">
-                @Resources.Lang.away
+                @Apollo.Age.Resources.Lang.away
             </td>
             <td style="width: 50px;">
-                @Resources.Lang.hh
+                @Apollo.Age.Resources.Lang.hh
             </td>
             <td style="width: 50px;">
-                @Resources.Lang.hd
+                @Apollo.Age.Resources.Lang.hd
             </td>
             <td style="width: 50px;">
-                @Resources.Lang.ha
+                @Apollo.Age.Resources.Lang.ha
             </td>
             <td style="width: 50px;">
-                @Resources.Lang.dh
+                @Apollo.Age.Resources.Lang.dh
             </td>
             <td style="width: 50px;">
-                @Resources.Lang.dd
+                @Apollo.Age.Resources.Lang.dd
             </td>
             <td style="width: 50px;">
-                @Resources.Lang.da
+                @Apollo.Age.Resources.Lang.da
             </td>
             <td style="width: 50px;">
-                @Resources.Lang.ah
+                @Apollo.Age.Resources.Lang.ah
             </td>
             <td style="width: 50px;">
-                @Resources.Lang.ad
+                @Apollo.Age.Resources.Lang.ad
             </td>
             <td style="width: 50px;">
-                @Resources.Lang.aa
+                @Apollo.Age.Resources.Lang.aa
             </td>
         </tr>
     </thead>
@@ -70,7 +70,7 @@
                     </td>
                     <td class="l">
                         <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
-                            href="javascript:void(0);"   league-name="@item.AwayTeam" bet-type-name="@Resources.Lang.htft"  title="@Resources.Lang.ViewBetList">@item.HomeTeam
+                            href="javascript:void(0);"   league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.htft"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.HomeTeam
                         </a>
                     </td>
                     <td class="l">
