@@ -127,6 +127,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var uspKey = "Age_BetList_TotalBets_SelRunningByBettype";
             var uspParams = new
             {
+                AgentId = criteria.AgentId,
                 criteria.LoggedId,
                 criteria.Bettypes
             };
@@ -250,6 +251,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 MatchID = criteria.MatchId,
                 LoggedId = criteria.LoggedId,
+                AgentId = criteria.AgentId,
                 Bettype = criteria.Bettypes,
                 Liveindicator = criteria.LiveIndicator,
                 Betteam = criteria.BetTeam
