@@ -10,6 +10,7 @@
 
 namespace Sunplus.Agent.UI._BetList.MixParlay
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
@@ -46,7 +47,14 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                 {
                     line = "<div></div>";
                 }
-                builder.AddChoice(tickets[i], ticketHelper, null, string.Empty, line, false);
+                if (tickets[i].StatusId == (int)Apollo.Age.Enumerations.BetStatus.Void)
+                {
+                    builder.AddChoice(tickets[i], ticketHelper, null, "<div class='strike_through'>", "</div>" + line, false);
+                }
+                else
+                {
+                    builder.AddChoice(tickets[i], ticketHelper, null, string.Empty, line, false);
+                }
             }
 
             string row = builder.GetBetList();

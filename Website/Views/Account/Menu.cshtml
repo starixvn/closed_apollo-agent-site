@@ -1,4 +1,4 @@
-﻿@using Apollo.Age.Resources
+﻿@using System.Resources
 @model ICurrentSession
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
@@ -18,9 +18,9 @@
         //if (!Model.IsSuper || (Model.IsSuper))
         //{
         string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
-        System.Resources.ResourceManager rm = new System.Resources.ResourceManager(typeof(Apollo.Age.Resources.Lang));
+       ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
         
-        <li class="menu-item @activeClass"><a class="menu-item-title">@this.ViewContext.HttpContext.GetGlobalResourceObject("Lang", item.Title)</a>
+        <li class="menu-item @activeClass"><a class="menu-item-title">@rm.GetString(item.Title)</a>
             @if (item.HasChildNodes)
             {
                 <div class="submenu">
@@ -42,8 +42,7 @@
                         }
                         else
                         {
-                            title = rm.GetString(subItem.Title);
-                            //title = this.ViewContext.HttpContext.GetGlobalResourceObject("Apollo.Age.Resources.Lang", subItem.Title).ToString();
+                            title = rm.GetString(subItem.Title);                            
                             
                         }
 
