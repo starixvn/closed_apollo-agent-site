@@ -36,7 +36,7 @@ namespace Apollo.Age.Account.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly ICustomerSettingService _customerSettingService;
-        private readonly ISportService _sportService;
+        private readonly ISportSettingService _sportService;
 
         #region Ctors
 
@@ -44,11 +44,11 @@ namespace Apollo.Age.Account.Controllers
             : this(null, null, null) { }
 
         public CustomerSettingController(IAccountService accountService, 
-            ICustomerSettingService customerSettingService, ISportService sportService)
+            ICustomerSettingService customerSettingService, ISportSettingService sportService)
         {
             _accountService = accountService ?? new AccountService();
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
-            _sportService = sportService ?? new SportService();
+            _sportService = sportService ?? new SportSettingService();
         }
 
         #endregion

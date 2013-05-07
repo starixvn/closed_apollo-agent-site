@@ -9,26 +9,11 @@
 
 namespace Apollo.Age.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Services;
-
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class Sport
     {
         public byte Id { get; set; }
 
         public string Name { get; set; }
-
-        public bool IsMixSportParlay { get; set; }
-
-        public string ResourceKey { get; set; }
-
-        public List<BetType> BetTypeList { get; set; }
 
         public override bool Equals(object obj)
         {

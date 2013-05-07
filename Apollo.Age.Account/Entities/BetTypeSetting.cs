@@ -1,15 +1,15 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="BetType.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BetTypeSetting.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Quinn.Vo" date="2013.4.17">Created</change>
+//   <change who="Quinn.Vo" date="2013.5.7">Created</change>
 // </history>
 
-namespace Apollo.Age.Entities
+namespace Apollo.Age.Account.Entities
 {
-    public class BetType
+    public class BetTypeSetting
     {
         public int Id { get; set; }
 

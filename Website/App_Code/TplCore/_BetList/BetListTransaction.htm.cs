@@ -22,11 +22,11 @@ namespace Fanex.Agent.UI
 			protected static string s5 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmBetList\" method=\"get\"><div id=\"page_main\"><div id=\"header_main\">";
 			protected string t0_title;
 			protected static string s6 = "<div class=\"divBoxRight\"><input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" alt=\"";
-			protected static string s7{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s7{get{return Apollo.Age.Resources.Lang.exporttoexcel;}}
 			protected static string s8 = "\"nofocus=\"true\" src=\"";
 			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
 			protected static string s10 = "\" title=\"";
-			protected static string s11{get{return Resources.Lang.exporttoexcel;}}
+			protected static string s11{get{return Apollo.Age.Resources.Lang.exporttoexcel;}}
 			protected static string s12 = "\"class=\"hand\" /></div></div><div id=\"content_main\">";
 			public BetListTransaction_Filter_Block Filter = new BetListTransaction_Filter_Block();
 			public string content = "{content}";
@@ -93,7 +93,7 @@ namespace Fanex.Agent.UI
 		public class BetListTransaction_Filter_Block: Block
 		{
 			protected static string s25 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label>";
-			protected static string s26{get{return Resources.Lang.from;}}
+			protected static string s26{get{return Apollo.Age.Resources.Lang.from;}}
 			protected static string s27 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
 			protected static string s28 = "\"mindate=\"";
@@ -103,7 +103,7 @@ namespace Fanex.Agent.UI
 			protected static string s30 = "\" /><img src=\"";
 			protected static string s31{get{return AbsoluteUrl("_GlobalResources/Css/img/cal/calendar_10.png");}}
 			protected static string s32 = "\" class=\"img-calendar\"></div></div><div class=\"cell\"><div class=\"label\"><label>";
-			protected static string s33{get{return Resources.Lang.to;}}
+			protected static string s33{get{return Apollo.Age.Resources.Lang.to;}}
 			protected static string s34 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
 			public string valueToDate = "{valueToDate}";
 			protected static string s35 = "\"mindate=\"";
@@ -115,7 +115,7 @@ namespace Fanex.Agent.UI
 			protected static string s39 = "\" class=\"img-calendar\"></div></div>";
 			public BetListTransaction_Filter_User_Block User = new BetListTransaction_Filter_User_Block();
 			protected static string s40 = "<div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
-			protected static string s41{get{return Resources.Lang.Generate;}}
+			protected static string s41{get{return Apollo.Age.Resources.Lang.Generate;}}
 			protected static string s42 = "\"></div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
