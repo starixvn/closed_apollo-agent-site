@@ -33,7 +33,7 @@ namespace Apollo.Age.Account.Services
         private ICache _cache = CacheService.CreateInstance(CacheType.MemoryCache);
 
         public IEnumerable<AnnouncementModel> GetAnnouncement(int agentId
-            , DateTime lastPostDate, int totalMessage = 10, bool isTest = false)
+            , DateTime lastPostDate, int totalMessage = 10, bool isTest = false, bool isAgent = true)
         {
             return this.GetData<AnnouncementModel>(new GetCustomerMessageCriteria
                 {
@@ -41,16 +41,17 @@ namespace Apollo.Age.Account.Services
                     SiteIds = SiteList,
                     LastPostTime = lastPostDate,
                     TotalMessage = totalMessage,
-                    IsTest = isTest
+                    IsTest = isTest,
+                    IsAgent = isAgent
                 });
         }
 
-        public int CountUnreadPrivateMessage(int userId, string username)
+        public int CountUnreadPrivateMessage(int userId, bool isAgent = true)
         {
             var criteria = new GetPriMessageCountCriteria
             {
                 UserId = userId,
-                Username = username
+                IsAgent = isAgent
             };
 
             if (criteria.IsValid())

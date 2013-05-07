@@ -13,6 +13,7 @@
 namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
 {
     using System.Collections.Generic;
+    using Apollo.Age.Resources;
     using Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder;
     using Fanex.BetList.Age.ExtTemplate;
     using Fanex.BetList.Core.Entities;
@@ -44,7 +45,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             }
             if (ticket.AgentLevel == 0)
             {
-                Template.AgentComm.agentComm_setting = Resources.Lang.lblNA;
+                Template.AgentComm.agentComm_setting = Lang.lblNA;
             }
             else
             {

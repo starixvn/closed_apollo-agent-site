@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.BetList.Core">
+      <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\NPOI.dll</HintPath>
@@ -54,21 +57,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\BetList.designer.cs">
-      <DependentUpon>BetList.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="App_GlobalResources\Lang.Designer.cs">
-      <DependentUpon>Lang.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="App_GlobalResources\Racing.designer.cs">
-      <DependentUpon>Racing.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="BetListExcelBuilderExt\BetListExcelBuilderExt.cs" />
     <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\AgentComm1.cs" />
     <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\IAgentComm.cs" />
@@ -121,37 +109,17 @@
     <Content Include="obj\Debug\TempPE\App_GlobalResources.Racing.designer.cs.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\BetList.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>BetList.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
-      <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
-      <Name>Fanex.BetList.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Lang.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Racing.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Racing.designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BetListCmd\" />
     <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>Apollo.Age.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -19,29 +19,23 @@ namespace Fanex.BetList.Age
 			protected static string s3{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
 			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
 			public string title = "{title}";
-			protected static string s5 = "<input type=\"image\" id=\"exporttoexcel\" name=\"exporttoexcel\" src=\"";
-			protected static string s6{get{return AbsoluteUrl("_GlobalResources/Images/excel.gif");}}
-			protected static string s7 = "\"alt=\"";
-			protected static string s8{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s9 = "\" title=\"";
-			protected static string s10{get{return Resources.Lang.exporttoexcel;}}
-			protected static string s11 = "\" /></div><div id=\"content_main\">";
+			protected static string s5 = "</div><div id=\"content_main\">";
 			public BetList_MainShareHolder_Block MainShareHolder = new BetList_MainShareHolder_Block();
-			protected static string s12 = "<table id=\"betlist\" class=\"tblRpt\">";
+			protected static string s6 = "<table id=\"betlist\" class=\"tblRpt\">";
 			public string content = "{content}";
-			protected static string s13 = "</table><div id=\"dialog-details\"></div></div></div>";
+			protected static string s7 = "</table><div id=\"dialog-details\"></div></div></div>";
 			public BetList_HiddenFields_Block HiddenFields = new BetList_HiddenFields_Block();
-			protected static string s14 = "<script src=\"";
-			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
+			protected static string s8 = "<script src=\"";
+			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
+			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
+			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s15{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
 			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s17{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
-			protected static string s18 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s19{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s20 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s21{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s22 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s23{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
-			protected static string s24 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s17{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
+			protected static string s18 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -54,28 +48,22 @@ namespace Fanex.BetList.Age
 					bd.Append(s4);
 					bd.Append(title);
 					bd.Append(s5);
+					if(null != MainShareHolder) MainShareHolder.ToString(ref bd);
 					bd.Append(s6);
+					bd.Append(content);
 					bd.Append(s7);
+					if(null != HiddenFields) HiddenFields.ToString(ref bd);
 					bd.Append(s8);
 					bd.Append(s9);
 					bd.Append(s10);
 					bd.Append(s11);
-					if(null != MainShareHolder) MainShareHolder.ToString(ref bd);
 					bd.Append(s12);
-					bd.Append(content);
 					bd.Append(s13);
-					if(null != HiddenFields) HiddenFields.ToString(ref bd);
 					bd.Append(s14);
 					bd.Append(s15);
 					bd.Append(s16);
 					bd.Append(s17);
 					bd.Append(s18);
-					bd.Append(s19);
-					bd.Append(s20);
-					bd.Append(s21);
-					bd.Append(s22);
-					bd.Append(s23);
-					bd.Append(s24);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -90,21 +78,21 @@ namespace Fanex.BetList.Age
 
 		public class BetList_MainShareHolder_Block: Block
 		{
-			protected static string s25 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label for=\"ddlLeague\">";
-			protected static string s26{get{return Resources.Lang.lblMainShareHolder;}}
-			protected static string s27 = "</label></div><div class=\"editor\">";
+			protected static string s19 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label for=\"ddlLeague\">";
+			protected static string s20{get{return Apollo.Age.Resources.Lang.lblMainShareHolder;}}
+			protected static string s21 = "</label></div><div class=\"editor\">";
 			public string option_agent = "{option_agent}";
-			protected static string s28 = "</div></div></div></div>";
+			protected static string s22 = "</div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s25);
-					bd.Append(s26);
-					bd.Append(s27);
+					bd.Append(s19);
+					bd.Append(s20);
+					bd.Append(s21);
 					bd.Append(option_agent);
-					bd.Append(s28);
+					bd.Append(s22);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -112,25 +100,25 @@ namespace Fanex.BetList.Age
 
 		public class BetList_HiddenFields_Block: Block
 		{
-			protected static string s29 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			protected static string s23 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s30 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
+			protected static string s24 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
 			public string MainShareHolderId = "{MainShareHolderId}";
-			protected static string s31 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
+			protected static string s25 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
 			public string MainShareHolderUsername = "{MainShareHolderUsername}";
-			protected static string s32 = "\" />";
+			protected static string s26 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s29);
+					bd.Append(s23);
 					bd.Append(ApoRoot);
-					bd.Append(s30);
+					bd.Append(s24);
 					bd.Append(MainShareHolderId);
-					bd.Append(s31);
+					bd.Append(s25);
 					bd.Append(MainShareHolderUsername);
-					bd.Append(s32);
+					bd.Append(s26);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

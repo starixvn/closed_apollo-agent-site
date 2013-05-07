@@ -14,11 +14,11 @@ namespace Fanex.BetList.Age
 		public class HeaderViewDetail_Template : Template
 		{
 			protected static string s0 = "<thead><tr><th>";
-			protected static string s1{get{return Resources.Lang.agent;}}
+			protected static string s1{get{return Apollo.Age.Resources.Lang.agent;}}
 			protected static string s2 = "</th><th style=\"width: 100px;\">";
-			protected static string s3{get{return Resources.BetList.agentPT;}}
+			protected static string s3{get{return Apollo.Age.Resources.BetList.agentPT;}}
 			protected static string s4 = "</th><th style=\"width: 100px;\">";
-			protected static string s5{get{return Resources.BetList.agentComm;}}
+			protected static string s5{get{return Apollo.Age.Resources.BetList.agentComm;}}
 			protected static string s6 = "</th></tr></thead>";
 			public override void ToString(ref StringBuilder bd)
 			{

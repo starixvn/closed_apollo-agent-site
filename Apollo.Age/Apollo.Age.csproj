@@ -59,6 +59,7 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criterias\Accounts\AgentGetStatusCriteria.cs" />
     <Compile Include="Criterias\AuthenticateNapUserCriteria.cs" />
+    <Compile Include="Criterias\CheckUpdatePermissionCriteria.cs" />
     <Compile Include="Criterias\GetAllMainShareHolderCriteria.cs" />
     <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
     <Compile Include="Criterias\Reports\OutStandings\AgentOutStandingCriteria.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Enumerations\BetStatus.cs" />
     <Compile Include="Enumerations\BetTypes.cs" />
     <Compile Include="Enumerations\CustomerStatus.cs" />
+    <Compile Include="Enumerations\CustomerType.cs" />
     <Compile Include="Enumerations\MessageTypes.cs" />
     <Compile Include="Enumerations\SportTypes.cs" />
     <Compile Include="Enumerations\StringValueAttribute.cs" />

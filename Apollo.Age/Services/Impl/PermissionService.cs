@@ -15,6 +15,7 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Repositories.Interface;
     using Fanex.Logging;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -63,20 +64,16 @@ namespace Apollo.Age.Services.Impl
         /// <param name="agentUserId"></param>
         /// <param name="isMaster"></param>
         /// <returns></returns>
-        public static bool HasPermissionOnUpdating(int agentId, int agentUserId, bool isMaster)
+        public static bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType)
         {
             try
             {
-                var currentStatus = _userRepository.GetUserStatus(new AgentGetStatusCriteria
+                return _userRepository.HasPermissionOnUpdating(new CheckUpdatePermissionCriteria
                 {
-                    AgentId = agentId,
-                    AgentUserId = agentUserId
+                    ActorAgentId = actorAgentId,
+                    ObjectId = custId,
+                    ObjectTypeId = (int)customerType
                 });
-
-                if (isMaster == true && currentStatus == (int)CustomerStatus.Active)
-                {
-                    return true;
-                }
             }
             catch (Exception ex)
             {

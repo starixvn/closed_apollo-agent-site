@@ -13,6 +13,7 @@ namespace Fanex.BetList.Age.BetListExcelBuilderExt
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Apollo.Age.Resources;
     using BetListHTMLBuilderExt;
     using Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder;
     using Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder;
@@ -109,11 +110,11 @@ namespace Fanex.BetList.Age.BetListExcelBuilderExt
                     string agentPT_PlaceVal = ExtractStringBetweenTag("b", agentPT_PlaceString);
 
                     //Add Win
-                    factory.RTFHelper.RTFRenderer.AddText(string.Join(null, new string[] { Resources.BetList.win, ": " }), factory.RTFHelper.PosFont);
+                    factory.RTFHelper.RTFRenderer.AddText(string.Join(null, new string[] { BetList.win, ": " }), factory.RTFHelper.PosFont);
                     rtfNumber.Render(agentPT_WinVal);
 
                     //Add Place
-                    factory.RTFHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", Resources.BetList.place, ": " }), factory.RTFHelper.PosFont);
+                    factory.RTFHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", BetList.place, ": " }), factory.RTFHelper.PosFont);
                     rtfNumber.Render(agentPT_PlaceVal);
                     factory.RTFHelper.RTFRenderer.AddText("\n");
                 }
@@ -234,37 +235,37 @@ namespace Fanex.BetList.Age.BetListExcelBuilderExt
 
             if (isShowMember)
             {
-                cellAddr = factory.AddCell(new HSSFRichTextString(Resources.BetList.member), headerStyle);
+                cellAddr = factory.AddCell(new HSSFRichTextString(BetList.member), headerStyle);
                 factory.SetColumnWidth(cellAddr.ColumnIndex, 4800);
             }
 
-            cellAddr = factory.AddCell(new HSSFRichTextString(Resources.BetList.transtime), headerStyle);
+            cellAddr = factory.AddCell(new HSSFRichTextString(BetList.transtime), headerStyle);
             factory.SetColumnWidth(cellAddr.ColumnIndex, 5400);
 
-            cellAddr = factory.AddCell(new HSSFRichTextString(Resources.BetList.choice), headerStyle);
+            cellAddr = factory.AddCell(new HSSFRichTextString(BetList.choice), headerStyle);
             factory.SetColumnWidth(cellAddr.ColumnIndex, 15500);
 
-            cellAddr = factory.AddCell(new HSSFRichTextString(Resources.BetList.odds), headerStyle);
+            cellAddr = factory.AddCell(new HSSFRichTextString(BetList.odds), headerStyle);
             factory.SetColumnWidth(cellAddr.ColumnIndex, 2400);
 
-            cellAddr = factory.AddCell(new HSSFRichTextString(Resources.BetList.stake), headerStyle);
+            cellAddr = factory.AddCell(new HSSFRichTextString(BetList.stake), headerStyle);
             factory.SetColumnWidth(cellAddr.ColumnIndex, 2400);
 
             if (isShowWinLost)
             {
-                cellAddr = factory.AddCell(new HSSFRichTextString(Resources.BetList.winloss), headerStyle);
+                cellAddr = factory.AddCell(new HSSFRichTextString(BetList.winloss), headerStyle);
                 factory.SetColumnWidth(cellAddr.ColumnIndex, 3400);
             }
 
-            cellAddr = factory.AddCell(new HSSFRichTextString(Resources.BetList.status), headerStyle);
+            cellAddr = factory.AddCell(new HSSFRichTextString(BetList.status), headerStyle);
             factory.SetColumnWidth(cellAddr.ColumnIndex, 3400);
 
             if (isShowAgentPT)
             {
-                cellAddr = factory.AddCell(new HSSFRichTextString(Resources.BetList.agentPT.Replace("<br/>", "\n")), headerStyle);
+                cellAddr = factory.AddCell(new HSSFRichTextString(BetList.agentPT.Replace("<br/>", "\n")), headerStyle);
                 factory.SetColumnWidth(cellAddr.ColumnIndex, 3400);
 
-                cellAddr = factory.AddCell(new HSSFRichTextString(Resources.BetList.agentComm.Replace("<br/>", "\n")), headerStyle);
+                cellAddr = factory.AddCell(new HSSFRichTextString(BetList.agentComm.Replace("<br/>", "\n")), headerStyle);
                 factory.SetColumnWidth(cellAddr.ColumnIndex, 3400);
             }
 
@@ -297,20 +298,20 @@ namespace Fanex.BetList.Age.BetListExcelBuilderExt
             decimal sumWinLoss = filteredTickets.Sum(ticket => ticket.Winlost);
             decimal sumPlayerComm = filteredTickets.Sum(ticket => ticket.PlayerComm);
 
-            HSSFRichTextString rtfSubtotalWinlossText = new HSSFRichTextString(string.Join(null, new string[] { Resources.BetList.subtotalWinlost, ":" }));
+            HSSFRichTextString rtfSubtotalWinlossText = new HSSFRichTextString(string.Join(null, new string[] { BetList.subtotalWinlost, ":" }));
 
             rtfNumberRenderer.Render(ConvertByBetType.Winloss(sumWinLoss));
 
             IRichTextString rtfSubtotalWinlossValue = factory.RTFHelper.RTFRenderer.Render();
             factory.RTFHelper.RTFRenderer.Clear();
 
-            HSSFRichTextString rtfSubtotalCommText = new HSSFRichTextString(string.Join(null, new string[] { Resources.BetList.subtotalCom, ":" }));
+            HSSFRichTextString rtfSubtotalCommText = new HSSFRichTextString(string.Join(null, new string[] { BetList.subtotalCom, ":" }));
 
             rtfNumberRenderer.Render(ConvertByBetType.Comm(sumPlayerComm));
             IRichTextString rtfSubtotalCommValue = factory.RTFHelper.RTFRenderer.Render();
             factory.RTFHelper.RTFRenderer.Clear();
 
-            HSSFRichTextString rtfBetListTotalText = new HSSFRichTextString(string.Join(null, new string[] { Resources.BetList.total, ":" }));
+            HSSFRichTextString rtfBetListTotalText = new HSSFRichTextString(string.Join(null, new string[] { BetList.total, ":" }));
 
             rtfNumberRenderer.Render(ConvertByBetType.Winloss(sumWinLoss + sumPlayerComm));
 
