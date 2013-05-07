@@ -136,6 +136,7 @@ namespace Apollo.Age.Web
         protected string GetResourceData(string key)
         {
             ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
+            rm.IgnoreCase = true;
             return rm.GetString(key);
         }
     }
