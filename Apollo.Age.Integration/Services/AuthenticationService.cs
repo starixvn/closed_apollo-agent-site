@@ -8,25 +8,22 @@
 // </history>
 
 
-namespace Apollo.Age.Integration
+namespace Apollo.Age.Integration.Services
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
     using Apollo.Age.Integration.Configurations;
-    using System.Configuration;
     using System.Net;
     using System.IO;
-    using System.Web.Script.Serialization;
     using System.Web.Helpers;
+    using Apollo.Age.Integration.Models;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class AuthenticationService
     {
-        private const string FormParams = "grant_type=authorization_code&code={0}&redirect_uri={1}&client_id={2}&client_secret={3}";        
+        private const string FormParams = "grant_type=authorization_code&code={0}&redirect_uri={1}&client_id={2}&client_secret={3}";
 
         public AuthenticationService()
         {
@@ -69,7 +66,7 @@ namespace Apollo.Age.Integration
                     // read response stream and parse to JsonResponseModel
                     using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
                     {
-                        string jsonString = reader.ReadToEnd();                                                
+                        string jsonString = reader.ReadToEnd();
                         jsonResponseModel = Json.Decode<JsonResponseModel>(jsonString);
                     }
                 }
@@ -110,6 +107,56 @@ namespace Apollo.Age.Integration
             AuthModel authModel = new AuthModel(GetSessionToken(authorizationCode));
 
             return authModel;
-        }       
+        }
+
+        /// <summary>
+        ///  Transalate error message key returned from OAuth service to understandable message
+        /// </summary>
+        /// <param name="errorCode">server_error is default error code</param>
+        /// <returns></returns>
+        public static string TranslateErrorMsg(string errorCode = ErrorCode.ServerError)
+        {
+            switch (errorCode)
+            {
+                case ErrorCode.InvalidRequest:
+                    return "invalid request";
+                case ErrorCode.UnauthorizedClient:
+                    return "unauthorized_client";
+                case ErrorCode.AccessDenied:
+                    return "access_denied";
+                case ErrorCode.UnsupportedResponseType:
+                    return "unsupported_response_type";
+                case ErrorCode.ServerError:
+                    return "server_error";
+                case ErrorCode.TemporarilyUnavailable:
+                default:
+                    return "temporarily_unavailable";
+            }
+        }
+
+        /// <summary>
+        ///  Convert language code returned from OAuth service to Apollo agent language code
+        /// </summary>
+        /// <param name="langOfSungame"></param>
+        /// <returns></returns>
+        public string ConvertToApolloLanguage(string langOfSungame)
+        {
+            switch (langOfSungame)
+            {
+                case "zh_TW":
+                    return "zh-TW";
+                case "zh_GB":
+                    return "zh-CN";
+                case "ja_JP":
+                    return "ja-JP";
+                case "th_TH":
+                    return "th-TH";
+                case "vm_VM":
+                    return "vi-VN";
+                case "en_US":
+                default:
+                    return "en-US";
+            }
+        }
     }
 }

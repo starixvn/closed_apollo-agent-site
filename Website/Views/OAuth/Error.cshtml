@@ -1,10 +1,13 @@
-﻿
+﻿@using Apollo.Age.Integration.Services;
+@model System.String
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
 </head>
 <body>
-   
+    <center>
+        @AuthenticationService.TranslateErrorMsg(Model);
+    </center>
 </body>
 </html>

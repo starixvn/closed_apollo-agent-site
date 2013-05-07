@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
@@ -50,12 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticationException.cs" />
-    <Compile Include="AuthenticationService.cs">
+    <Compile Include="Models\ErrorCode.cs" />
+    <Compile Include="Services\AuthenticationService.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AuthModel.cs" />
+    <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Configurations\OAuthSettings.cs" />
-    <Compile Include="JsonResponseModel.cs" />
+    <Compile Include="Models\JsonResponseModel.cs" />
     <Compile Include="Controllers\OAuthController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +73,7 @@
       <Name>Apollo.Age</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
