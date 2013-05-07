@@ -22,11 +22,11 @@
 		</div>
 		<div class="menu">
 			<iframe src="<%= Page.ResolveUrl("~/Account/Menu")%>" id="menu" name="menu"
-				width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+				width="100%" height="99%" frameborder="0" scrolling="no"></iframe>
 		</div>
 		<div class="mainpage">
 			<iframe src="<%= Page.ResolveUrl("~/Message/Portal")%>" id="main" name="main"
-				width="100%" height="100%" frameborder="0"></iframe>
+				width="100%" height="99%" frameborder="0"></iframe>
 		</div>
 	</form>
 	<input type="hidden" id="ApoRoot" value="<%= Page.ResolveUrl("~/")%>" />
