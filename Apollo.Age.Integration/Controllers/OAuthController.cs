@@ -100,23 +100,23 @@ namespace Apollo.Age.Integration.Controllers
             switch (error)
             {
                 case "invalid_request":
-                    errorMessage = "invalid request";
+                    errorMessage = Resources.Lang.lblInvalidRequest;
                     break;
                 case "unauthorized_client":
-                    errorMessage = "unauthorized_client";
+                    errorMessage = Resources.Lang.lblUnauthorizedClient;
                     break;
                 case "access_denied":
-                    errorMessage = "access_denied";
+                    errorMessage = Resources.Lang.lblAccessDenied;
                     break;
                 case "unsupported_response_type":
-                    errorMessage = "unsupported_response_type";
+                    errorMessage = Resources.Lang.lblUnsupportedResponseType;
                     break;
                 case "server_error":
-                    errorMessage = "server_error";
+                    errorMessage = Resources.Lang.lblServerError;
                     break;
                 case "temporarily_unavailable":
                 default:
-                    errorMessage = "temporarily_unavailable";
+                    errorMessage = Resources.Lang.lblTemporarilyUnavailable;
                     break;
             }
 

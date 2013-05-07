@@ -4101,4 +4101,22 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="lblViewMemberSetting" xml:space="preserve">
     <value>View Member Setting - {0}</value>
   </data>
+  <data name="lblAccessDenied" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
+  <data name="lblInvalidRequest" xml:space="preserve">
+    <value>Invalid Request</value>
+  </data>
+  <data name="lblServerError" xml:space="preserve">
+    <value>Server Error</value>
+  </data>
+  <data name="lblTemporarilyUnavailable" xml:space="preserve">
+    <value>Temporarily Unavailable</value>
+  </data>
+  <data name="lblUnauthorizedClient" xml:space="preserve">
+    <value>Unauthorized Client</value>
+  </data>
+  <data name="lblUnsupportedResponseType" xml:space="preserve">
+    <value>Unsupported Response Type</value>
+  </data>
 </root>
