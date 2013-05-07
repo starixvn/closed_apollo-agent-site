@@ -33,16 +33,16 @@ namespace Apollo.Age.Web.Filters
                 var currentSession = SessionManager.Instance.CurrentSession;
                 int agentId = filterContext.ActionParameters.ContainsKey("agentId") ? Converter.ToInt(filterContext.ActionParameters["agentId"]) : 0;
                 int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"]) : 0;
-                if (agentId > 0)
+                if (memberId > 0)
                 {
-                    if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
+                    if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
                     {
                         DoUnAuthorized(filterContext);
                     }
                 }
-                else if (memberId > 0)
+                else if (agentId > 0)
                 {
-                    if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
+                    if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
                     {
                         DoUnAuthorized(filterContext);
                     }
