@@ -454,7 +454,7 @@ Spinner.prototype = {
         // ensure the value is within the permitted range
         if ('minimum' in this.options && !checkConstrain) value = Math.max(this.options.minimum, value);
         if ('maximum' in this.options && !checkConstrain) value = Math.min(this.options.maximum, value);
-
+        
         // store the sign
         var sign = (value < 0 ? '-' : '');
         value = Math.abs(value);
@@ -620,13 +620,16 @@ Spinner.prototype = {
         if (this.input.onchange) this.input.onchange();
     },
     updateAndSetMaxValue: function (maxValue) {
+        if (maxValue < 0) maxValue = 0;
         this.options.maximum = maxValue;
         this.setValue(maxValue);
     },
     updateMaxValue: function (maxValue) {
+        if (maxValue < 0) maxValue = 0;
         this.options.maximum = maxValue;
     },
     updateMinValue: function (mixValue) {
+        if (mixValue < 0) mixValue = 0;
         this.options.minimum = mixValue;
     },
     isValid: function () {
