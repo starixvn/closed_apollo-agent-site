@@ -17,13 +17,13 @@ namespace Apollo.Age.Account.Services
 
     public interface IMessageService
     {
-        IEnumerable<AnnouncementModel> GetAnnouncement(int agentId, DateTime lastPostDate, int totalMessage = 10, bool isTest = false);
+        IEnumerable<AnnouncementModel> GetAnnouncement(int agentId, DateTime lastPostDate, int totalMessage = 10, bool isTest = false, bool isAgent = true);
 
         bool UpdateReadMessage(int userId, int messsageId, bool isAgent = true);
 
         bool GetHasPrivateMessage24(int userId, bool isTest = false, bool isAgent = true);
 
-        int CountUnreadPrivateMessage(int userId, string username);
+        int CountUnreadPrivateMessage(int userId, bool isAgent = true);
 
         bool UpdateReadPrivateMessage(int userId, string username);
 

@@ -23,7 +23,7 @@ namespace Apollo.Age.Account.Criterias
     {
         public override string GetSettingKey()
         {
-            return "Age_CustomerSelMessages";
+            return "Age_Msg_GetByCustomer";
         }
 
         [SpParam(SqlParamName = "targetID")]
@@ -34,6 +34,8 @@ namespace Apollo.Age.Account.Criterias
 
         [SpParam(SqlParamName = "lastPostTime")]
         public DateTime LastPostTime { get; set; }
+
+        public bool IsAgent { get; set; }
 
         [SpParam(SqlParamName = "totalMessage")]
         public int TotalMessage { get; set; }

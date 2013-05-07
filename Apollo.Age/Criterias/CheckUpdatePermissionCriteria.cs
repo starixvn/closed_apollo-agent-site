@@ -31,7 +31,7 @@ namespace Apollo.Age.Criterias
 
         public override string GetSettingKey()
         {
-            return "Age_Agent_CheckUpdatePermission";
+            return "AgentAdmin_Age_Agent_CheckUpdatePermission";
         }
 
         public override bool IsValid()

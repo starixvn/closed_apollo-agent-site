@@ -1,13 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@model Apollo.Age.Integration.Models.AuthModel
+<!DOCTYPE html>
 <html>
 <head>
     <title></title>
 </head>
 <body>
+    @if (Model != null && Model.IsValid)
+    {               
+        @Html.Hidden("url", Url.Content("~/Index.aspx"));
+    }
+    else
+    {
+        @Html.Hidden("url", Url.Content("~/OAuth/Error?error_code=" + Model.ErrorCode));
+    }
+    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
     <script type="text/javascript">
-  if (window.parent != undefined) {
-      window.parent.location.href =  "@Url.Content("~/Index.aspx")";
-      }
+        $(function () {
+            if (window.parent != undefined) {
+                window.parent.location.href = $("#url").val();
+            }
+        });
     </script>
 </body>
 </html>

@@ -22,7 +22,7 @@ namespace Apollo.Age.Account.Criterias
     {
         public override string GetSettingKey()
         {
-            return "Age_CustomerUpdMessagesRead";
+            return "Age_Msg_UpdateRead";
         }
 
         [SpParam(SqlParamName = "TargetId")]

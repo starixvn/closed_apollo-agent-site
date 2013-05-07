@@ -177,7 +177,7 @@ namespace Apollo.Age.Account.Controllers
                 privateMessages[1] = priMessage.GetContent();
             }
 
-            var countPriMessage = this._messageService.CountUnreadPrivateMessage(userId, username);
+            var countPriMessage = this._messageService.CountUnreadPrivateMessage(userId);
 
             return Json(new
             {
