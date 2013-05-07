@@ -56,11 +56,18 @@ namespace Apollo.Age.Web.Filters
         private void DoUnAuthorized(ActionExecutingContext filterContext)
         {
             var response = filterContext.HttpContext.Response;
-            response.Clear();
-            response.StatusCode = UN_AUTHORIZED_CODE;
-            response.StatusDescription = string.Empty;
-            response.Write(Resources.Lang.UnauthorizedMsg);
-            response.End();
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
+            {
+                response.Clear();
+                response.StatusCode = UN_AUTHORIZED_CODE;
+                response.StatusDescription = string.Empty;
+                response.Write(Resources.Lang.UnauthorizedMsg);
+                response.End();
+            }
+            else
+            {
+                response.Redirect("~/Auth/Unauthorized");
+            }
         }
     }
 }
