@@ -4430,4 +4430,7 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
   <data name="lblUnsupportedResponseType" xml:space="preserve">
     <value>Unsupported Response Type</value>
   </data>
+  <data name="TicketCancelled" xml:space="preserve">
+    <value>Cancelled Tickets</value>
+  </data>
 </root>

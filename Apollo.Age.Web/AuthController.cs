@@ -24,17 +24,19 @@ namespace Apollo.Age.Web
     public class AuthController : Controller
     {
         private const string APOLLO_SESSION_KEY = "Apollo.Age.Web.CurrentSession";
+        private const string APOLLO_SESSION_CAPTCHA = "ApolloCaptcha";
         private const string INVALID_REQ_MSG = "Invalid Request.";
         private const string USER_NOT_FOUND_MSG = "User not found.";
         private const string AGENT_NOT_FOUND_MSG = "Agent not found.";
         private const string INVALID_USER_PWD_MSG = "Invalid Username or Password.";        
 
         private readonly IUserService _userService;
-             
+          
 
         public AuthController()
         {
             _userService = new UserService();
+        
         }
 
         #region SignIn
@@ -102,9 +104,9 @@ namespace Apollo.Age.Web
 
             if (ModelState.IsValid)
             {
-                if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)
+                if (Session[APOLLO_SESSION_CAPTCHA] == null || Session[APOLLO_SESSION_CAPTCHA].ToString() != model.Captcha)
                 {
-                        ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
+                        ModelState.AddModelError("Captcha", "Wrong value of captchar, please try again.");
                         //dispay error and generate a new captcha
                         return View(model);
                 }
@@ -140,30 +142,42 @@ namespace Apollo.Age.Web
 
             return View();
         }
+        public Bitmap GenerateNoise(int width, int height)
+        {
+            Bitmap finalBmp = new Bitmap(width, height);
+            Random r = new Random();
 
-       public ActionResult CaptchaImage(string prefix, bool noisy = true)
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    int num = r.Next(0, 256);
+                    finalBmp.SetPixel(x, y, Color.Gray);
+                }
+            }
+
+            return finalBmp;
+        }
+       public ActionResult CaptchaImage(bool noisy = true)
         {
             var rand = new Random((int)DateTime.Now.Ticks);
             
-           
-            //generate new question
-            int a = rand.Next(10, 99);
-            int b = rand.Next(0, 9);
-            var captcha = string.Format("{0} + {1} = ?", a, b);
+            
+            int a = rand.Next(10000, 99999);            
+            var captcha = string.Format("{0}", a);
 
             //store answer
-            Session["Captcha" + prefix] = a + b;
+            Session[APOLLO_SESSION_CAPTCHA] = captcha;
 
             //image stream
             FileContentResult img = null;
 
             using (var mem = new MemoryStream())
-            using (var bmp = new Bitmap(130, 30))
+            using (var bmp = GenerateNoise(60,23))
             using (var gfx = Graphics.FromImage((Image)bmp))
             {
                 gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-                gfx.SmoothingMode = SmoothingMode.AntiAlias;
-                gfx.FillRectangle(Brushes.White, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                gfx.SmoothingMode = SmoothingMode.AntiAlias;               
 
                 //add noise
                 if (noisy)
@@ -183,10 +197,11 @@ namespace Apollo.Age.Web
 
                         gfx.DrawEllipse(pen, x - r, y - r, r, r);
                     }
+                   
                 }
 
-                //add question
-                gfx.DrawString(captcha, new Font("Tahoma", 15), Brushes.Gray, 2, 3);
+                //add captcha
+                gfx.DrawString(captcha, new Font("Tahoma", 13), Brushes.White, 4, 2);
 
                 //render as Jpeg
                 bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg);

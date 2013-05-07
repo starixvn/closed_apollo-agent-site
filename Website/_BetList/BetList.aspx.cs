@@ -117,6 +117,7 @@ namespace Sunplus.Agent.UI._BetList
 
             foreach (ITicket ticket in tickets)
             {
+                ticket.AgentLevel = Convert.ToInt32(CurrentSession.AgentLevel);
                 isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
 
                 ticketHelper.Index = ++index;
@@ -180,6 +181,7 @@ namespace Sunplus.Agent.UI._BetList
             var criteria = new BetListCriteria
             {
                 LoggedId = loggedId,
+                AgentId = mainShareHolderId,
                 Bettypes = bettype,
                 MatchId = matchId,
                 LiveIndicator = live,
@@ -210,21 +212,23 @@ namespace Sunplus.Agent.UI._BetList
             mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
             live = GetIntRequest("islive", 0);
             isForecast = GetBooleanRequest("isForecast", false);
+
             if (CurrentSession.IsSuper)
             {
                 mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria());
                 if (mainShareHolderId == 0)
                 {
-                    loggedId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
+                    mainShareHolderId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
                 }
                 else
                 {
-                    loggedId = Convert.ToInt32(mainShareHolderId);
+                    mainShareHolderId = Convert.ToInt32(mainShareHolderId);
                 }
+                loggedId = CurrentSession.AgentId;
             }
             else
             {
-                loggedId = CurrentSession.AgentId;
+                loggedId = mainShareHolderId = CurrentSession.AgentId;
             }
 
             if (type.ToLower().Equals("correctscore"))

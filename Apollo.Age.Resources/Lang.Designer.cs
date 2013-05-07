@@ -11585,7 +11585,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tickets Cancelled.
+        ///   Looks up a localized string similar to Cancelled Tickets.
         /// </summary>
         public static string TicketCancelled {
             get {
