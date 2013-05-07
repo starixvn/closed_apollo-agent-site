@@ -6,10 +6,10 @@ using System.Text;
 using TplCore;
 using TplCore.Element;
 #pragma warning disable
-namespace Fanex.Age.UI.Reports
+namespace Fanex.Agent.UI
 {
-	using BetList;
-	namespace BetList
+	using _BetList;
+	namespace _BetList
 	{
 		public class BetListTransaction_Template : Template
 		{
