@@ -55,8 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BetList\BetListTransaction.htm" />
-    <Content Include="BetList\BetListOnMember.htm" />
     <Content Include="Common\ButtonBoxLeague.htm" />
     <Content Include="Common\MatchResultEntered.htm" />
     <Content Include="Common\Outstanding.htm" />
@@ -104,8 +102,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
-    <Compile Include="BetList\BetListOnMember.htm.cs" />
-    <Compile Include="BetList\BetListTransaction.htm.cs" />
     <Compile Include="Common\ButtonBoxLeague.htm.cs" />
     <Compile Include="Common\MatchResultEntered.htm.cs" />
     <Compile Include="Common\Outstanding.htm.cs" />
@@ -161,6 +157,9 @@
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BetList\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
