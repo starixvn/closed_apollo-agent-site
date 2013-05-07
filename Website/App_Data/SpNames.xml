@@ -464,6 +464,7 @@
     <Setting Key="Age_Exchange_InsertRate" SpName="Age_Exchange_InsertRate" DbName="PRODB" Plain="0" />
     <Setting Key="Age_Exchange_UpdateRate" SpName="Age_Exchange_UpdateRate" DbName="PRODB" Plain="0" />
     <Setting Key="AgentAdmin_Age_Agent_GetStatus" SpName="Age_Agent_GetStatus" DbName="REPDB" Plain="0" />
+    <Setting Key="AgentAdmin_Age_Agent_CheckUpdatePermission" SpName="Age_Agent_CheckUpdatePermission" DbName="PRODB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-Setting">

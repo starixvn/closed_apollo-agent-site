@@ -20,5 +20,7 @@ namespace Apollo.Age.Repositories.Interface
         int GetUserStatus(ICriteria criteria);
 
         bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria);
+
+        bool HasPermissionOnUpdating(ICriteria criteria);
     }
 }
