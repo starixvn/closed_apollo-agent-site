@@ -44,7 +44,7 @@ var MEMBERLIST = function ($) {
                                 + "&agentId=" + $("#gridId").attr("agentId"));
             MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, LANGUAGES.PopUpTitle + $this.attr("username"), {
                 width: 980,
-                height: 500,
+                height: 470,
                 position: { my: "top+25%", at: "center top", of: window },
                 close: function (event, ui) {
                 }
@@ -61,7 +61,7 @@ var MEMBERLIST = function ($) {
                 + "&agentLevel=" + $this.attr("agentLevel"));
                 MEMBERLIST.currentPopUp = APOLLO.openDialogFrame(url, LANGUAGES.PopUpAgentTitle + $this.attr('username'), {
                     width: 980,
-                    height: 500,
+                    height: 470,
                     position: { my: "top+25%", at: "center top", of: window },
                     close: function (event, ui) {
                     }
