@@ -31,8 +31,8 @@
             <div class="cell">
                 <div class="editor">
                     <input id="btnSubmit" value="@Apollo.Age.Resources.Lang.Generate" type="submit" class="btn" />
-                    <input id="btnToday" value="@DateTime.Now.Date.ToShortDateString()" type="submit" class="btn" />
-                    <input id="btnYesterday" value="@DateTime.Now.AddDays(-1).Date.ToShortDateString()" type="submit" class="btn"/>
+                    <input id="btnToday" value="@Formater.ShortDateFormat(DateTime.Now)" type="submit" class="btn" />
+                    <input id="btnYesterday" value="@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))" type="submit" class="btn"/>
                 </div>
             </div>
         </div>
