@@ -64,6 +64,5 @@ if (typeof jQuery != 'undefined') {
 	}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
 function UpdateForecastValue() {
-    RefreshCountDown_Init();
 	FORECASTBYMATCH.loadContentView();
 }
