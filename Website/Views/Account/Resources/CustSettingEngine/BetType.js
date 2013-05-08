@@ -352,7 +352,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
             Fanex.ValidateMessage(this, Language.INVALID_RANGE);
             return;
         }
-        minValue = Math.max(minValueCorrect, currentPt.Upline.Min);
+        minValueCorrect = Math.max(minValueCorrect, currentPt.Upline.Min);
 
         currentPt.MinMaxSpan = minValueCorrect;
         maxSpinBox.updateMinValue(currentPt.MinMaxSpan);
