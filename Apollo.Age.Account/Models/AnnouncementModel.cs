@@ -104,7 +104,7 @@ namespace Apollo.Age.Account.Models
             if ((value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString())) 
                 && !userLanguage.Contains("zh"))
             {
-                langName = "Content_en";
+                langName = "Contenten";
             }
 
             if (userLanguage.Contains("zh"))
@@ -114,7 +114,7 @@ namespace Apollo.Age.Account.Models
 
                 if (string.IsNullOrWhiteSpace(this.ContentCS) && string.IsNullOrWhiteSpace(this.ContentCH))
                 {
-                    langName = "Content_en";
+                    langName = "Contenten";
                 }
                 else
                 {
@@ -123,7 +123,7 @@ namespace Apollo.Age.Account.Models
                         value = GetValue(this, langName);
                         if (value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString()))
                         {
-                            langName = "Content_ch";
+                            langName = "Contentch";
                         }
                     }
                     else
@@ -131,12 +131,12 @@ namespace Apollo.Age.Account.Models
                         value = GetValue(this, langName);
                         if (value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString()))
                         {
-                            langName = "Content_cs";
+                            langName = "Contentcs";
                         }
                     }
                 }
             }
-
+            
             value = GetValue(this, langName);
             if (value != null || value != DBNull.Value)
             {
