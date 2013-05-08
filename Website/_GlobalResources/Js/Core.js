@@ -173,7 +173,8 @@ if (typeof jQuery != 'undefined') {
 						? $('<div class="page-info" />').appendTo('#header_main')
 						: $('#' + thisId.substr(0, thisId.length - 5)); // 5 is the length of "-info";
 
-					trigger.attr('title', tipTitle ? tipTitle : title)
+					if (trigger.length > 0) {
+						trigger.attr('title', tipTitle ? tipTitle : title)
 						.tooltip({
 							position: { my: "right-10 center", at: "center center+5" },
 							show: null,
@@ -182,33 +183,12 @@ if (typeof jQuery != 'undefined') {
 						.click(function () {
 							APOLLO.openDialog($this, title, { modal: false });
 						});
+					}
 				});
-
-				//                var pageInfo = $('#page-info'); // hidden field contains the page info
-
-				//                // if page-info exists then it should be showed as a popup
-				//                if (pageInfo.length > 0) {
-				//                    var pageInfoIcon = $('<div class="page-info" />').appendTo('#header_main');
-				//                    var title = pageInfo.attr('title');
-				//                    var tipTitle = pageInfo.attr('tip-title');
-
-				//                    pageInfoIcon.attr('title', tipTitle ? tipTitle : title)
-				//						.tooltip({
-				//						    position: {
-				//						        my: "right-10 center", at: "center center+5"
-				//						    },
-				//						    show: null,
-				//						    hide: null
-				//						})
-				//						.click(function () {
-				//						    APOLLO.openDialog(pageInfo, title, { modal: false });
-				//						});
-				//                }
 			},
 
 			init: function () {
-				APOLLO.initDatePicker();
-				APOLLO.initPageInfo();
+				APOLLO.initDatePicker();				
 			}
 		};
 	} (jQuery);
