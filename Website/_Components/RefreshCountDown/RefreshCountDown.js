@@ -10,15 +10,14 @@ function CountDownRefresh_Tick() {
     countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
 
     if (curCountDown < 0) {
-        //if (!isStopCoundown) {
-        if (countDownTimer != null) clearTimeout(countDownTimer);
-            eval(countDownRefreshFunc);
-//        }
-//        else {
-//            curCountDown = initCountDown;
-//        }
+        DoRefreshFunction();
     }
 }
+function DoRefreshFunction() {
+    document.getElementById('CountDownRefresh').innerHTML = loadingTxt;
+    eval(countDownRefreshFunc);
+    curCountDown = initCountDown;
+};
 
 function CountDownRefresh() {
     if (countDownTimer != null) clearTimeout(countDownTimer);
@@ -60,7 +59,7 @@ function CountDownRefresh_Refresh() {
     var pnlDown = document.getElementById('CountDownMenu');
     if (pnlDown.style.display == '')
         pnlDown.style.display = 'none';
-    eval(countDownRefreshFunc);
+    DoRefreshFunction();
 }
 
 function CountDownRefresh_DoOpenOption(btnDown) {
