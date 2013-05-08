@@ -81,6 +81,7 @@ label {
 
 input[type=submit] {
     padding: 5px 20px;
+    background: #3b3b3b;
     background: -moz-linear-gradient(top,#a3a3a3 0%,#3b3b3b 50%,#242424 50%,#000000);
     background: -webkit-gradient(linear, left top, left bottom, from(#a3a3a3),color-stop(0.50, #3b3b3b),color-stop(0.50, #242424),to(#000000));
     border-radius: 5px;

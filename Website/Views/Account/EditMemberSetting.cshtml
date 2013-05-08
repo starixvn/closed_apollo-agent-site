@@ -1,21 +1,42 @@
 ﻿@{
-    var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
-    ViewBag.UserName = ViewBag.UserName ?? string.Empty;
-    ViewBag.Title = string.Format(titleFormat, ViewBag.UserName);
-    Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
-    var memberId = ViewBag.MemberId ?? 0;
+	var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
+	ViewBag.UserName = ViewBag.UserName ?? string.Empty;
+	ViewBag.Title = string.Format(titleFormat, ViewBag.UserName);
+	Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
+	var memberId = ViewBag.MemberId ?? 0;
 }
-<div id="commissionSettingContainer">
-</div>
-<div id="bettingLimitContainer">
-</div>
-<div id="ptContainer">
-</div>
+<div id="commissionSettingContainer"></div>
+<div id="bettingLimitContainer"></div>
+<div id="ptContainer"></div>
+
+@Html.Action("Index", "Instruction", new {
+	key = "MemberCommissionSetting",
+	trigger = "commission-info-button",
+	title =  Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+	key = "MemberBetSetting",
+	trigger = "bet-limit-info-button",
+	title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+	key = "MemberShareSetting",
+	trigger = "share-setting-info-button",
+	title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
 @section scripts
 {
-    <script type="text/javascript">
-        var memberId = @(memberId);
-    </script>
-    <script src="~/CustomerSetting/GetMemberSetting?memberId=@(memberId)&ugroup=@(ViewBag.UserGroup)&agentId=@(ViewBag.CurentParentAgentId)" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/EditSetting.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var memberId = @(memberId);
+	</script>
+
+	<script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
+	<script src="~/CustomerSetting/GetMemberSetting?memberId=@(memberId)&ugroup=@(ViewBag.UserGroup)&agentId=@(ViewBag.CurentParentAgentId)" type="text/javascript"></script>
+	<script src="~/Views/Account/Resources/EditSetting.js" type="text/javascript"></script>
 }

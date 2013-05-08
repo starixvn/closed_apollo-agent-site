@@ -17,20 +17,27 @@ namespace Apollo.Age.Web
     using System.Diagnostics.CodeAnalysis;
     using System.Net;
     using System.Web.Mvc;
-    using System.Web.SessionState;
-    using Fanex.Common.Extensions;
-    using Apollo.Age.Services.Impl;
     using System.Web.Security;
+    using Apollo.Age.Services.Impl;
+    using System.Threading;
+    using System.Globalization;
     using System.Resources;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
 
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
+        public BaseController()
+        {
+            //CurrentSession.Language = "vi-VN"; // for testing only
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
+        }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             bool skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true)
-                        || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
+                || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
 
             if (!skipAuthorization)
             {
@@ -42,10 +49,8 @@ namespace Apollo.Age.Web
             base.OnActionExecuting(filterContext);
         }
 
-        private void CheckValidDownline()
-        {
-        }
-
+        #region Auth
+        
         private void CheckAuthenticationRequest()
         {
             if (!Request.IsAuthenticated || CurrentSession == null)
@@ -67,15 +72,20 @@ namespace Apollo.Age.Web
             }
         }
 
+        private void CheckValidDownline()
+        {
+        }
+
         private void CheckKickOut(ActionExecutingContext filterContext)
         {
             var isKickOut = PermissionService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
+
             if (isKickOut)
             {
                 if (Request.IsAjaxRequest())
                 {
                     Response.Buffer = true;
-                    Response.Write("<center><b>" + GetResourceData("lblAccountWasStopped") + "</b></center>");
+                    Response.Write(GetResourceData("lblAccountWasStopped"));
                     Response.Flush();
                     Response.Close();
                     Response.End();
@@ -86,6 +96,8 @@ namespace Apollo.Age.Web
                 }
             }
         }
+
+        #endregion
 
         private void DoSignOut()
         {
