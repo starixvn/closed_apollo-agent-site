@@ -8,7 +8,7 @@
 // </history>
 
 
-namespace Apollo.Age.Integration
+namespace Apollo.Age.Integration.Models
 {
     using System;
     using System.Collections.Generic;

@@ -4119,4 +4119,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="lblUnsupportedResponseType" xml:space="preserve">
     <value>Unsupported Response Type</value>
   </data>
+  <data name="TicketCancelled" xml:space="preserve">
+    <value>Cancelled Tickets</value>
+  </data>
 </root>

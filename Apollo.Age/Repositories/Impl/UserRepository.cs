@@ -77,7 +77,7 @@ namespace Apollo.Age.Repositories.Impl
                 {
                     var currentParams = criteria.GetSpParams();
                     objectDb.ExecuteNonQuery(currentParams);
-                    return Converter.ToBool(currentParams["HasPermission"]);
+                    return Converter.ToBool(currentParams["haspermission"]);
                 }
             }
             return false;

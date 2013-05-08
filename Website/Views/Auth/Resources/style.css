@@ -16,7 +16,7 @@
     background: -webkit-linear-gradient(top,  #eee 0%,#ccc 100%);
     background: -o-linear-gradient(top,  #eee 0%,#ccc 100%);
     background: -ms-linear-gradient(top,  #eee 0%,#ccc 100%);
-    background: linear-gradient(to bottom,  #eee 0%,#ccc 100%);
+    background: linear-gradient(to bottom,  #eee 0%,#ccc 100%);    
     border: 1px solid #999;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     border-radius: 10px;
@@ -62,15 +62,21 @@ label {
     font-weight: bold;
     line-height: 1.6;
 }
+
 .validation-summary-errors ul {
     list-style-type: none;
     padding: 0;
 }
+
 .input-validation-error {
 }
 
-input[type=text], input[type=password] {
+.input-textbox{
     width: 220px;
+}
+
+.input-captcha {
+	width: 80px;
 }
 
 input[type=submit] {
@@ -86,11 +92,22 @@ input[type=submit] {
     color: #fff;
     text-shadow: 0px -1px 0px rgba(000,000,000,1), 0px 1px 0px rgba(255,255,255,0.2);
 }
+
 input[type=submit]:hover {
     opacity: .9;
-    filter: alpha(opacity=90);
 }
+
 input[type=submit]:active {
     position: relative;
     top: 1px;
+}
+
+.login-box p img, .login-box p input, .login-box p label {
+    vertical-align: middle;
+}
+
+/* FIX IE */
+.eq-ie7 input[type=submit], .eq-ie8 input[type=submit], .eq-ie9 input[type=submit] {
+    background: #585858;
+    color: #fff;
 }

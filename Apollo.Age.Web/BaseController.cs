@@ -21,6 +21,8 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Impl;
     using System.Threading;
     using System.Globalization;
+    using System.Resources;
+
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
@@ -145,7 +147,9 @@ namespace Apollo.Age.Web
 
         protected string GetResourceData(string key)
         {
-            return System.Web.HttpContext.GetGlobalResourceObject("Lang", key) as string;
+            ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
+            rm.IgnoreCase = true;
+            return rm.GetString(key);
         }
     }
 }

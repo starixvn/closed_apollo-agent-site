@@ -15,20 +15,28 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.ViewModels;
     using Apollo.Age.Criterias;
+    using System.Drawing;
+    using System;
+    using System.Drawing.Text;
+    using System.Drawing.Drawing2D;
+    using System.IO;
 
     public class AuthController : Controller
     {
         private const string APOLLO_SESSION_KEY = "Apollo.Age.Web.CurrentSession";
+        private const string APOLLO_SESSION_CAPTCHA = "ApolloCaptcha";
         private const string INVALID_REQ_MSG = "Invalid Request.";
         private const string USER_NOT_FOUND_MSG = "User not found.";
         private const string AGENT_NOT_FOUND_MSG = "Agent not found.";
         private const string INVALID_USER_PWD_MSG = "Invalid Username or Password.";        
 
         private readonly IUserService _userService;
+          
 
         public AuthController()
         {
             _userService = new UserService();
+        
         }
 
         #region SignIn
@@ -96,6 +104,13 @@ namespace Apollo.Age.Web
 
             if (ModelState.IsValid)
             {
+                if (Session[APOLLO_SESSION_CAPTCHA] == null || Session[APOLLO_SESSION_CAPTCHA].ToString() != model.Captcha)
+                {
+                        ModelState.AddModelError("Captcha", "Wrong value of captchar, please try again.");
+                        //dispay error and generate a new captcha
+                        return View(model);
+                }
+
                 bool NapUserIsValid = _userService.AuthenticateNapUser(new AuthenticateNapUserCriteria
                     {
                         Username = model.Username,
@@ -104,19 +119,20 @@ namespace Apollo.Age.Web
 
                 if (NapUserIsValid)
                 {
-                    var agent = _userService.GetUserByUsername(model.Agent);
+                    FormsAuthentication.RedirectFromLoginPage(model.Username, model.RememberMe);
+                    //var agent = _userService.GetUserByUsername(model.Agent);
 
-                    if (agent != null)
-                    {
-                        agent.IsMaster = false; // CSD user will be treated as a shadow account
-                        Session[APOLLO_SESSION_KEY] = new CurrentSession(agent);
+                    //if (agent != null)
+                    //{
+                    //    agent.IsMaster = false; // CSD user will be treated as a shadow account
+                    //    Session[APOLLO_SESSION_KEY] = new CurrentSession(agent);
 
-                        FormsAuthentication.RedirectFromLoginPage(agent.Username, model.RememberMe);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("Agent", AGENT_NOT_FOUND_MSG);
-                    }
+                    //    FormsAuthentication.RedirectFromLoginPage(agent.Username, model.RememberMe);
+                    //}
+                    //else
+                    //{
+                    //    ModelState.AddModelError("Agent", AGENT_NOT_FOUND_MSG);
+                    //}
                 }
                 else
                 {
@@ -126,6 +142,75 @@ namespace Apollo.Age.Web
 
             return View();
         }
+        public Bitmap GenerateNoise(int width, int height)
+        {
+            Bitmap finalBmp = new Bitmap(width, height);
+            Random r = new Random();
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    int num = r.Next(0, 256);
+                    finalBmp.SetPixel(x, y, Color.Gray);
+                }
+            }
+
+            return finalBmp;
+        }
+       public ActionResult CaptchaImage(bool noisy = true)
+        {
+            var rand = new Random((int)DateTime.Now.Ticks);
+            
+            
+            int a = rand.Next(10000, 99999);            
+            var captcha = string.Format("{0}", a);
+
+            //store answer
+            Session[APOLLO_SESSION_CAPTCHA] = captcha;
+
+            //image stream
+            FileContentResult img = null;
+
+            using (var mem = new MemoryStream())
+            using (var bmp = GenerateNoise(60,23))
+            using (var gfx = Graphics.FromImage((Image)bmp))
+            {
+                gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+                gfx.SmoothingMode = SmoothingMode.AntiAlias;               
+
+                //add noise
+                if (noisy)
+                {
+                    int i, r, x, y;
+                    var pen = new Pen(Color.Yellow);
+                    for (i = 1; i < 10; i++)
+                    {
+                        pen.Color = Color.FromArgb(
+                        (rand.Next(0, 255)),
+                        (rand.Next(0, 255)),
+                        (rand.Next(0, 255)));
+
+                        r = rand.Next(0, (130 / 3));
+                        x = rand.Next(0, 130);
+                        y = rand.Next(0, 30);
+
+                        gfx.DrawEllipse(pen, x - r, y - r, r, r);
+                    }
+                   
+                }
+
+                //add captcha
+                gfx.DrawString(captcha, new Font("Tahoma", 13), Brushes.White, 4, 2);
+
+                //render as Jpeg
+                bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg);
+                img = this.File(mem.GetBuffer(), "image/Jpeg");
+            }
+
+            return img;
+        }
+       
 
         #endregion
 
