@@ -33,6 +33,7 @@ namespace Apollo.Age.Forecast.Controllers
     {
         private readonly ForecastService _forecastService;
 
+        #region Ctors
         public ForecastController()
             : this(null)
         {
@@ -42,6 +43,7 @@ namespace Apollo.Age.Forecast.Controllers
         {
             _forecastService = forecastService ?? new ForecastService();
         }
+        #endregion
 
         #region Forecast 1X2
 
@@ -227,7 +229,6 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        [OutputCache(Duration = 0)]
         public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes, int mainShareHolderId = 0)
         {
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
@@ -236,6 +237,7 @@ namespace Apollo.Age.Forecast.Controllers
 
         #endregion Score Map
 
+        #region Helpers
         /// <summary>
         /// Get Current Agent Id
         /// If MainShareholderId > 0 and Current Login user is Super then set first is selected
@@ -264,5 +266,6 @@ namespace Apollo.Age.Forecast.Controllers
 
             return agentId;
         }
+        #endregion
     }
 }

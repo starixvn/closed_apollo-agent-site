@@ -7,6 +7,7 @@
 //   <change who="Anders" date="2013.3.27">Created</change>
 //   <change who="Anders.Le" date="2013.4.9">Change input param of GetModel to Enum</change>
 //   <change who="Ricky.Nguyen" date="2013.4.29">Update SuperView</change>
+//   <change who="Ricky.Nguyen" date="2013.5.8">Comment Code</change>
 // </history>
 
 namespace Apollo.Age.TotalBets.Controllers
@@ -34,21 +35,14 @@ namespace Apollo.Age.TotalBets.Controllers
             _totalBetsService = new TotalBetsService();
         }
    
-        //protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        //{
-        //    if (CurrentSession.IsSuper)
-        //    {
-        //        filterContext.Result = new HttpNotFoundResult();
-        //    }
-        //}
-
         /// <summary>
-        /// Get totalbet data by bettype
+        /// Get totalbet data by bettype, if MainShareHolderId > 0 and Current is Supper
+        /// then load Data of that MainShareHolder
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="betType"></param>
         /// <returns></returns>
-        protected IEnumerable<T> GetModel<T>(BetTypes betType, int mainShareHolderId)
+        private IEnumerable<T> GetModel<T>(BetTypes betType, int mainShareHolderId)
         {
             int agentId = base.CurrentSession.AgentId;
             if (base.CurrentSession.IsSuper)
@@ -74,36 +68,66 @@ namespace Apollo.Age.TotalBets.Controllers
             });
         }
 
+        /// <summary>
+        /// Load Handicap View
+        /// </summary>
+        /// <param name="mainShareHolderId"></param>
+        /// <returns></returns>
         public ViewResult Handicap(int mainShareHolderId = 0)
         {
             var model = GetModel<HandicapModel>(BetTypes.Handicap, mainShareHolderId);
             return View(model);
         }
 
+        /// <summary>
+        /// Load Money Line View
+        /// </summary>
+        /// <param name="mainShareHolderId"></param>
+        /// <returns></returns>
         public ViewResult MoneyLine(int mainShareHolderId = 0)
         {
             var model = GetModel<MoneyLineModel>(BetTypes.Money_Line, mainShareHolderId);
             return View(model);
         }
 
+        /// <summary>
+        /// Load Total Goal
+        /// </summary>
+        /// <param name="mainShareHolderId"></param>
+        /// <returns></returns>
         public ViewResult TotalGoal(int mainShareHolderId = 0)
         {
             var model = GetModel<TotalGoalModel>(BetTypes.Total_Goal, mainShareHolderId);
             return View(model);
         }
 
+        /// <summary>
+        /// Load Odd Even
+        /// </summary>
+        /// <param name="mainShareHolderId"></param>
+        /// <returns></returns>
         public ViewResult OddEven(int mainShareHolderId = 0)
         {
             var model = GetModel<OddEvenModel>(BetTypes.Odd_Even, mainShareHolderId);
             return View(model);
         }
 
+        /// <summary>
+        /// Load HTFT
+        /// </summary>
+        /// <param name="mainShareHolderId"></param>
+        /// <returns></returns>
         public ViewResult HTFT(int mainShareHolderId = 0)
         {
             var model = GetModel<HTFTModel>(BetTypes.HT_FT, mainShareHolderId);
             return View(model);
         }
 
+        /// <summary>
+        /// Load OutRight
+        /// </summary>
+        /// <param name="mainShareHolderId"></param>
+        /// <returns></returns>
         public ViewResult OutRight(int mainShareHolderId = 0)
         {
             var model = GetModel<OutRightModel>(BetTypes.Outright, mainShareHolderId);
@@ -116,12 +140,22 @@ namespace Apollo.Age.TotalBets.Controllers
         //    return View(model);
         //}
 
+        /// <summary>
+        /// Load Home No Bet, Draw No Bet
+        /// </summary>
+        /// <param name="mainShareHolderId"></param>
+        /// <returns></returns>
         public ViewResult HomeNoBet(int mainShareHolderId = 0)
         {
             var model = GetModel<HomeNoBetModel>(BetTypes.Draw_No_Bet, mainShareHolderId);
             return View(model);
         }
 
+        /// <summary>
+        /// Load FGLG
+        /// </summary>
+        /// <param name="mainShareHolderId"></param>
+        /// <returns></returns>
         public ViewResult FirstGoal(int mainShareHolderId = 0)
         {
             var model = GetModel<FirstGoalModel>(BetTypes.First_Goal_Last_Goal, mainShareHolderId);

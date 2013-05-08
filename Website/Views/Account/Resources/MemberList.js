@@ -6,6 +6,7 @@ var MEMBERLIST = function ($) {
         currentPopUp: null,
         AgentLevel: null,
         Username: null,
+        IsShowEditSetting: true,
         init: function () {
             MEMBERLIST.AgentId = $("#gridId").attr("agentId");
             MEMBERLIST.AgentLevel = $("#gridId").attr("agentLevel");
@@ -13,10 +14,23 @@ var MEMBERLIST = function ($) {
             $("#currUsername").html(MEMBERLIST.Username);
             MEMBERLIST.loadMemberList();
             MEMBERLIST.bindingNavigation();
-            MEMBERLIST.bindingQuickiLinkEditSetting(MEMBERLIST.AgentId, MEMBERLIST.AgentLevel, MEMBERLIST.Username);
+            MEMBERLIST.bindingQuickLinkEditSetting(MEMBERLIST.AgentId, MEMBERLIST.AgentLevel, MEMBERLIST.Username);
+
         },
-        bindingQuickiLinkEditSetting: function (agentId, agentLevel, username) {
+        bindingQuickLinkEditSetting: function (agentId, agentLevel, username) {
             var $quickLinkEditSetting = $("#quickLinkEditSetting");
+            if ($("#gridId").attr("agentId") == $("#gridId").attr("firstAgentId")) {
+                $quickLinkEditSetting.css('display', 'none');
+            }
+            else {
+                if (DEFAULTS.IsMaster) {
+                    $quickLinkEditSetting.removeClass("edit-setting ").addClass("edit-setting icon-pencil");
+                }
+                else {
+                    $quickLinkEditSetting.removeClass("edit-setting icon-pencil").addClass("edit-setting icon-th-large");
+                }
+            }
+
             $quickLinkEditSetting.attr("agentId", agentId);
             $quickLinkEditSetting.attr("agentLevel", agentLevel);
             $quickLinkEditSetting.attr("username", username);
