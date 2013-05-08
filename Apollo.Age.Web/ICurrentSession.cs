@@ -12,7 +12,7 @@ namespace Apollo.Age.Web
     using System;
 
     /// <summary>
-    /// It contains all properties of an authenticated user
+    /// Contains all properties of an authenticated user
     /// </summary>
     public interface ICurrentSession
     {
@@ -40,10 +40,9 @@ namespace Apollo.Age.Web
 
         decimal VirtualMultiplier { get; set; }
 
-        string AdminName { get; set; }
+        string CsdAdminName { get; set; }
 
-        bool IsAdmin { get; set; }
-
+        bool IsCsdAdmin { get; set; }
 
         /// <summary>
         /// True indicate admin user can view VN ip.

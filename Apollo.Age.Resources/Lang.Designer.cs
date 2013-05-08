@@ -1338,6 +1338,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click on the captcha picture to get a new one.
+        /// </summary>
+        public static string CaptchaInstruction {
+            get {
+                return ResourceManager.GetString("CaptchaInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Casino.
         /// </summary>
         public static string casino {
@@ -1820,6 +1829,15 @@ namespace Apollo.Age.Resources {
         public static string content {
             get {
                 return ResourceManager.GetString("content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string Continue {
+            get {
+                return ResourceManager.GetString("Continue", resourceCulture);
             }
         }
         
@@ -3764,6 +3782,15 @@ namespace Apollo.Age.Resources {
         public static string includeTodayWL {
             get {
                 return ResourceManager.GetString("includeTodayWL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have entered an incorrect answer for CAPTCHA..
+        /// </summary>
+        public static string IncorrectCaptchaMsg {
+            get {
+                return ResourceManager.GetString("IncorrectCaptchaMsg", resourceCulture);
             }
         }
         
@@ -10914,6 +10941,24 @@ namespace Apollo.Age.Resources {
         public static string SignIn {
             get {
                 return ResourceManager.GetString("SignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign In as Agent.
+        /// </summary>
+        public static string SignInAsAgent {
+            get {
+                return ResourceManager.GetString("SignInAsAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Out.
+        /// </summary>
+        public static string SignOut {
+            get {
+                return ResourceManager.GetString("SignOut", resourceCulture);
             }
         }
         
