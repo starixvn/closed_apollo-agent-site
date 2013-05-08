@@ -15,33 +15,37 @@ namespace Apollo.Age.Web
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Net;
+    using System.Resources;
+    using System.Threading;
     using System.Web.Mvc;
     using System.Web.Security;
     using Apollo.Age.Services.Impl;
-    using System.Threading;
-    using System.Globalization;
-    using System.Resources;
-
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
         public BaseController()
         {
-            //CurrentSession.Language = "vi-VN"; // for testing only
-
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
+            if (CurrentSession != null)
+            {
+                //CurrentSession.Language = "vi-VN"; // for testing only
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
+            }
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            bool skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true)
-                || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
+            bool ActionIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.IsDefined(
+                typeof(AllowAnonymousAttribute), inherit: true);
+            bool ControllerIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(
+                typeof(AllowAnonymousAttribute), inherit: true);
+            bool skipAuth = ActionIsMarkedWithAllowAnonymous || ControllerIsMarkedWithAllowAnonymous;
 
-            if (!skipAuthorization)
+            if (!skipAuth)
             {
-                CheckAuthenticationRequest();
+                CheckAuthentication();
                 CheckValidDownline();
                 CheckKickOut(filterContext);
             }
@@ -51,7 +55,7 @@ namespace Apollo.Age.Web
 
         #region Auth
         
-        private void CheckAuthenticationRequest()
+        private void CheckAuthentication()
         {
             if (!Request.IsAuthenticated || CurrentSession == null)
             {

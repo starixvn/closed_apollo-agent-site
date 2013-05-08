@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Lewis.Le" date="2013.5.3">Created</change>
+//   <change who="Terry.Nguyen" date="2013.5.8">Created</change>
 // </history>
 
 namespace Apollo.Age.Web.ViewModels
@@ -15,8 +15,7 @@ namespace Apollo.Age.Web.ViewModels
     {
         [Required]
         public string Agent { get; set; }
-
+        
         public bool RememberMe { get; set; }
-
     }
 }

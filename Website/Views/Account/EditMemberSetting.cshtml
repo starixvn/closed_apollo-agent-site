@@ -30,6 +30,27 @@
 	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
+@Html.Action("Index", "Instruction", new {
+	key = "MemberCommissionSettingAdv",
+	trigger = "commission-info-button-adv",
+	title =  Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+	key = "MemberBetSettingAdv",
+	trigger = "bet-limit-info-button-adv",
+	title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+	key = "MemberShareSettingAdv",
+	trigger = "share-setting-info-button-adv",
+	title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
 @section scripts
 {
 	<script type="text/javascript">
