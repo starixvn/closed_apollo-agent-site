@@ -386,6 +386,18 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             var items = this.items;
                             copyCheck.label.onclick = function () {
                                 var currentCopyBetType = elements[0];
+                                if (currentCopyBetType.maxSpinBox && !currentCopyBetType.maxSpinBox.isValid()) {
+                                    return;
+                                }
+                                if (currentCopyBetType.minSpinBox && !currentCopyBetType.minSpinBox.isValid()) {
+                                    return;
+                                }
+                                if (currentCopyBetType.presetSpinBox && !currentCopyBetType.presetSpinBox.isValid()) {
+                                    return;
+                                }
+                                if (currentCopyBetType.ptSpinBox && !currentCopyBetType.ptSpinBox.isValid()) {
+                                    return;
+                                }
                                 var betTypes = elements;
                                 var betTypesLength = betTypes.length;
                                 for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
@@ -671,14 +683,14 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 
                                 if (dataChanged == true) {
 
-//                                    if (typeof (currentBetType.Pt.Max) != 'undefined'
-//                                    && typeof (currentBetType.Pt.Min) != 'undefined'
-//                                    && currentPtValue.Max < currentBetType.Pt.Min) {
-//                                        return null;
-//                                    }
-//                                    else {
-//                                        currentPtValue.Min = currentBetType.Pt.Min;
-//                                    }
+                                    //                                    if (typeof (currentBetType.Pt.Max) != 'undefined'
+                                    //                                    && typeof (currentBetType.Pt.Min) != 'undefined'
+                                    //                                    && currentPtValue.Max < currentBetType.Pt.Min) {
+                                    //                                        return null;
+                                    //                                    }
+                                    //                                    else {
+                                    //                                        currentPtValue.Min = currentBetType.Pt.Min;
+                                    //                                    }
                                     currentBetType.Pt = Fanex.CloneObject(currentPtValue);
 
                                 }
@@ -820,6 +832,18 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 			                    cloneFromSoccer.parent.items[0].Toggle(true); // Expand
 			                    var c = elements.length;
 			                    var currentCopyBetType = elements[0].betTypeGroupElements[0].betTypeElements[0];
+			                    if (currentCopyBetType.maxSpinBox && !currentCopyBetType.maxSpinBox.isValid()) {
+			                        return;
+			                    }
+			                    if (currentCopyBetType.minSpinBox && !currentCopyBetType.minSpinBox.isValid()) {
+			                        return;
+			                    }
+			                    if (currentCopyBetType.presetSpinBox && !currentCopyBetType.presetSpinBox.isValid()) {
+			                        return;
+			                    }
+			                    if (currentCopyBetType.ptSpinBox && !currentCopyBetType.ptSpinBox.isValid()) {
+			                        return;
+			                    }
 			                    var sportTypes = elements;
 			                    var sportTypesLength = elements.length;
 			                    for (var sportTypeIndex = 0; sportTypeIndex < sportTypesLength; sportTypeIndex++) {
