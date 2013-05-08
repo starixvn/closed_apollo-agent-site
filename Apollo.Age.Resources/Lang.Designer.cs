@@ -493,6 +493,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent WinLoss Instructions.
+        /// </summary>
+        public static string AgentWinLossInstructions {
+            get {
+                return ResourceManager.GetString("AgentWinLossInstructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent Win Loss Old Detail.
         /// </summary>
         public static string agentwinlossolddetail {
