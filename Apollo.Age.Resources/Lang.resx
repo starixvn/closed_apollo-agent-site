@@ -4446,4 +4446,16 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblUnsupportedResponseType" xml:space="preserve">
     <value>Unsupported Response Type</value>
   </data>
+  <data name="ClickToViewInstructions" xml:space="preserve">
+    <value>Click to view instructions</value>
+  </data>
+  <data name="CommissionSettingInstructions" xml:space="preserve">
+    <value>Commission Setting Instructions</value>
+  </data>
+  <data name="BetSettingInstructions" xml:space="preserve">
+    <value>Bet Setting Instructions</value>
+  </data>
+  <data name="AgentWinLossInstructions" xml:space="preserve">
+    <value>Agent WinLoss Instructions</value>
+  </data>
 </root>

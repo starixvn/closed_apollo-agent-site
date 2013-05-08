@@ -30,6 +30,8 @@ if (typeof jQuery != 'undefined') {
                 var positionTakingContainer = document.getElementById('ptContainer');
                 positionTakingContainer.innerHTML = "";
                 EDITSETTING.positionTakingElement.Render(positionTakingContainer);
+
+                APOLLO.initPageInfo();
             },
 
             init: function () {
@@ -127,7 +129,7 @@ if (typeof jQuery != 'undefined') {
                 if (currentList != null) {
                     if (isSimpleMode == true) {
                         currentList.currentPopUp.dialog("option", {
-                            height: 450,
+                            height: 470,
                             position: { my: "top+25%", at: "center top", of: parent.window }
                         });
                     }

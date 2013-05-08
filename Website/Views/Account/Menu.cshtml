@@ -18,7 +18,7 @@
         //if (!Model.IsSuper || (Model.IsSuper))
         //{
         string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
-       ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
+        ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
         
         <li class="menu-item @activeClass"><a class="menu-item-title">@rm.GetString(item.Title)</a>
             @if (item.HasChildNodes)

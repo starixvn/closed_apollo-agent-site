@@ -56,13 +56,7 @@ if (typeof jQuery != 'undefined') {
         if (currentMainShareHolderId > 0) {
             $("#ddlMainShareHolder").change(function () {
                 var $this = $(this);
-                var markIndex = document.location.href.indexOf('?');
-                var link = document.location.href;
-                if (markIndex > 0) {
-                    link = document.location.href.substring(0, markIndex);
-                }
-
-                document.location.href = link + "?mainShareHolderId=" + $this.val();
+                window.location.href = currentActionLink + "?mainShareHolderId=" + $this.val();
             });
         }
 
@@ -76,5 +70,5 @@ function UpdateForecastHDValue() {
     if (currentMainShareHolderId > 0) {
         url += '&mainShareHolderId=' + currentMainShareHolderId;
     }
-    document.location.href = url;
+    window.location.href = url;
 }

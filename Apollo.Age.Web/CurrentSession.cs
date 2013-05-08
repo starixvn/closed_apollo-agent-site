@@ -30,7 +30,7 @@ namespace Apollo.Age.Web
             Username = user.Username;
             IsMaster = user.IsMaster;
             MatchLimit = user.Agent.MatchLimit;
-            Language = language; //get language of user
+            Language = language;
             CurrencyId = user.Agent.Currency;
             AdminName = user.AdminName;
             IsAdmin = user.IsAdmin;
