@@ -16,12 +16,7 @@
         type="text/css" />
 }
 @RazorHelper.Navigation(Model)
-@*<div class="tab-header">
-    <ul>
-        <li><a href="#" id="quickLinkAgentList">@Apollo.Age.Resources.Lang.lblAgentList</a></li>
-        <li id="current"><a href="#">@Apollo.Age.Resources.Lang.lblPlayerList</a></li>
-    </ul>
-</div>*@
+
 <div id="gridId" class="freegrid  content-grid" agentid="@Model.Last().Id" username="@Model.Last().Username" agentlevel="@Model.Last().Level">
 </div>
 @section scripts
@@ -51,7 +46,9 @@
                 EditSetting: "@Apollo.Age.Resources.Lang.lblEditSetting",
                 ViewSetting: "@Apollo.Age.Resources.Lang.lblViewSetting",
                 PopUpTitle: "@titleFormat",
-                PopUpAgentTitle: "@agenttitleFormat"
+                PopUpAgentTitle: "@agenttitleFormat",
+                AgentList : "@Apollo.Age.Resources.Lang.lblAgentList",
+                MemberList : "@Apollo.Age.Resources.Lang.lblPlayerList"
             };
         } (jQuery);
     </script>
