@@ -4458,4 +4458,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="AgentWinLossInstructions" xml:space="preserve">
     <value>Agent WinLoss Instructions</value>
   </data>
+  <data name="lblPleaseCheckConstrainMaxMin" xml:space="preserve">
+    <value>Given Share Value is lower than Min Given Value, please Use Advanced Mode to see it</value>
+  </data>
 </root>

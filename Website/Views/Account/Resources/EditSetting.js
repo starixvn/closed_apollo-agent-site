@@ -70,9 +70,15 @@ if (typeof jQuery != 'undefined') {
                         return;
                     }
 
+                    var postionTakingValue = EDITSETTING.positionTakingElement.Save();
+                    if (postionTakingValue == null) {
+                        noty({ text: Language.OUTRANGE_SIMPLE_MODE_ERROR, type: 'error', timeout: 5000 });
+                        return;
+                    }
+
                     var dataObject = {
                         settingContext: EDITSETTING.settingContext,
-                        positionTakingSetting: EDITSETTING.positionTakingElement.Save(),
+                        positionTakingSetting: postionTakingValue,
                         commissionSetting: commissionSettingValue,
                         betLimits: EDITSETTING.betLimitElement.Save()
                     };
@@ -116,7 +122,7 @@ if (typeof jQuery != 'undefined') {
                     else if (typeof (parent.AGENTLIST) != 'undefined') {
                         parent.AGENTLIST.loadAgentList();
                     }
-                }, 3000);
+                }, 4500);
             },
             setDialogHeight: function (isSimpleMode) {
                 var currentList = null;

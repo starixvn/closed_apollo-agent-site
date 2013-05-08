@@ -654,12 +654,14 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder
 								&& currentBetType.Pt.Max != currentPtValue.Max) {
                                     dataChanged = true;
+                                    currentPtValue.Min = currentBetType.Pt.Min;
                                 }
 
                                 if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Agent
 								&& (currentBetType.Pt.Max != currentPtValue.Max
 								|| currentBetType.Pt.Preset != currentPtValue.Preset)) {
                                     dataChanged = true;
+                                    currentPtValue.Min = currentBetType.Pt.Min;
                                 }
 
                                 if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member
@@ -668,7 +670,17 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 }
 
                                 if (dataChanged == true) {
-                                    currentBetType.Pt = currentPtValue;
+
+//                                    if (typeof (currentBetType.Pt.Max) != 'undefined'
+//                                    && typeof (currentBetType.Pt.Min) != 'undefined'
+//                                    && currentPtValue.Max < currentBetType.Pt.Min) {
+//                                        return null;
+//                                    }
+//                                    else {
+//                                        currentPtValue.Min = currentBetType.Pt.Min;
+//                                    }
+                                    currentBetType.Pt = Fanex.CloneObject(currentPtValue);
+
                                 }
                                 else {
                                     currentBetType.Pt = null;
@@ -692,7 +704,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 
             this.Validate = function () {
                 if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == true) {
-                    return this.Validate();
+                    return true;
                 }
                 else {
                     var items = this.items;

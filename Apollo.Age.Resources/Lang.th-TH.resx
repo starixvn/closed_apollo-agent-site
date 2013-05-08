@@ -4120,4 +4120,7 @@
   <data name="TicketCancelled" xml:space="preserve">
     <value>Cancelled Tickets</value>
   </data>
+  <data name="lblPleaseCheckConstrainMaxMin" xml:space="preserve">
+    <value>Given Share Value is lower than Min Given Value, please Use Advanced Mode to see it</value>
+  </data>
 </root>
