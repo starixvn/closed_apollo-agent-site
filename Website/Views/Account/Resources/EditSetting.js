@@ -129,7 +129,7 @@ if (typeof jQuery != 'undefined') {
                 if (currentList != null) {
                     if (isSimpleMode == true) {
                         currentList.currentPopUp.dialog("option", {
-                            height: 450,
+                            height: 500,
                             position: { my: "top+25%", at: "center top", of: parent.window }
                         });
                     }
