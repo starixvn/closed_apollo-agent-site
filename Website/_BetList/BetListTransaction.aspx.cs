@@ -14,6 +14,7 @@ namespace Sunplus.Agent.UI._BetList
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
     using System.Text;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
@@ -32,7 +33,7 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
 
-    public partial class BetListTransaction : TplPage
+    public partial class BetListTransaction : BetListBase
     {
         #region Variables
 
@@ -44,7 +45,7 @@ namespace Sunplus.Agent.UI._BetList
 
         private string username = string.Empty;
         private DateTime fromDate, toDate;
-        private int agentId, custId;
+        private int agentId, custId, skip;
         private bool userType = false;
         private string pageType = string.Empty;
         private string statusIds = string.Empty;
@@ -96,8 +97,9 @@ namespace Sunplus.Agent.UI._BetList
             {
                 index++;
                 ticketHelper.Index = index;
+
                 builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
-                       .AddNo(index, "<td class='w-order'>", "</td>")
+                       .AddNo(index + ((this.PageIndex - 1) * this.PageSize), "<td class='w-order'>", "</td>")
                        .AddMember(ticket, "<td class='l'>", "</td>")
                        .AddTrans(ticket, "<td class='c'>", "</td>")
                        .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", false)
@@ -127,6 +129,12 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
+
+            // Paging
+            int _rowCount = 0;
+            Paging_Control pagingControl = new Paging_Control(tpl, "BetListTransaction_Paging", this.PageSize, Request.Url.AbsoluteUri, this.TotalRows, PAGE_SIZES);
+            tpl.PagingControl = pagingControl.ToString();
+
             writer.Write(tpl);
 
             #endregion RENDER HTML
@@ -203,6 +211,17 @@ namespace Sunplus.Agent.UI._BetList
                 if (pageType == "transaction")
                 {
                     mainTickets = betListService.GetAllBetsTransactionByDateAndMem(criteria);
+
+                    this.TotalRows = mainTickets.TicketList.Count();
+
+                    skip = this.PageSize * (this.PageIndex - 1);
+
+                    if (skip < this.TotalRows)
+                    {
+                        var newTicketList = mainTickets.TicketList.Skip(skip)
+                                     .Take(this.PageSize).ToList() as IList<ITicket>;
+                        mainTickets.TicketList = newTicketList;
+                    }
                 }
                 else
                 {
@@ -245,6 +264,9 @@ namespace Sunplus.Agent.UI._BetList
             userType = GetBooleanRequest("userType", true);
             mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
             mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
+
+            this.PageIndex = GetIntRequest("pageIndex", this.PageIndex);
+            this.PageSize = GetIntRequest("pageSize", this.PageSize);
         }
 
         public override object ValidateRequest(Hashtable hash)

@@ -8,8 +8,8 @@ using TplCore.Element;
 #pragma warning disable
 namespace Fanex.Age.UI.Components
 {
-	using PagingHeader.Paging;
-	namespace PagingHeader.Paging
+	using Paging;
+	namespace Paging
 	{
 		public class Paging_Template : Template
 		{
@@ -39,7 +39,7 @@ namespace Fanex.Age.UI.Components
 			protected static string s11 = "\" type=\"button\" onclick=\"";
 			protected string t3_id;
 			protected static string s12 = ".Move(-1)\" class=\"icon pagingPrev\" /><span class=\"pagingSeperator\"></span>";
-			protected static string s13{get{return Resources.Lang.tpage;}}
+			protected static string s13{get{return Apollo.Age.Resources.Lang.tpage;}}
 			protected static string s14 = "<input id=\"txt";
 			protected string t4_id;
 			protected static string s15 = "\" type=\"text\" class=\"pagingCurrent\" maxlength=\"4\" size=\"2\" value=\"";
@@ -49,7 +49,7 @@ namespace Fanex.Age.UI.Components
 			protected static string s17 = ".DoEnter(event, '";
 			protected string t7_id;
 			protected static string s18 = ".Go()')\" />";
-			protected static string s19{get{return Resources.Lang.of;}}
+			protected static string s19{get{return Apollo.Age.Resources.Lang.of;}}
 			protected static string s20 = " ";
 			protected string t8_pagecount;
 			protected static string s21 = "<span class=\"pagingSeperator\"></span><input ";

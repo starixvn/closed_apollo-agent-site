@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web;
-using TplCore.Element;
-
-/*
- * Created 20100330@Lee - Common paging control
- * Revision:
- *
- *
- */
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="ErrorPag.aspx.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Kaden.Trinh" date="2013.05.08">Apply paging component</change>
+// </history>
+// ---------------------------------------------------------------------------------
 
 namespace Fanex.Age.UI.Components
-{   
-    using Fanex.Age.UI.Components.PagingHeader.Paging;
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Web;
+    using Paging;
+    using TplCore.Element;
 
     public class Paging_Control : TplCore.Element.IComponent
     {
@@ -22,7 +23,6 @@ namespace Fanex.Age.UI.Components
         private int _PageCount = 0;
         private int _PageIndex = 0;
         private int _RowCount = 0;
-
         public int PageIndex
         {
             get { return _PageIndex; }
@@ -33,7 +33,7 @@ namespace Fanex.Age.UI.Components
             get { return _PageCount; }
         }
 
-        protected int PageSize = 50; // Default
+        protected int PageSize = 500; 
         protected List<object> PAGE_SIZES = new List<object>(new object[] { 10, 20, 50, 100, 200, 500 });
 
         #endregion Definition
@@ -49,7 +49,8 @@ namespace Fanex.Age.UI.Components
         public Paging_Control(IElement parent, string id, string url, int rowCount)
             : this(parent, id, -1, url, rowCount) { }
 
-        public Paging_Control(IElement parent, string id, int pageSize, string url, int rowCount)
+
+        public Paging_Control(IElement parent, string id, int pageSize, string url, int rowCount) 
             : this(parent, id, pageSize, url, rowCount, true) { }
 
         public Paging_Control(IElement parent, string id, int pageSize, string url, int rowCount, bool isSelPageSize)
@@ -177,8 +178,9 @@ namespace Fanex.Age.UI.Components
             tpl.SelPageSize.selPageSize = HtmlGenerator.ComboBox("sel" + id, (object)(PageSize), PAGE_SIZES, id + ".SetPageSize(this.value)");
 
             ShowHidePageSize();
-        }
 
+        }
+             
         protected void ShowHidePageSize()
         {
             if (PageCount == 0) tpl.pageclass = "pagingHiden";
@@ -198,7 +200,7 @@ namespace Fanex.Age.UI.Components
         protected void ParseUrl(string url, ref int pageSize, ref int pageIndex)
         {
             if (url == null) return;
-            
+
             string ps = UrlProcessor.GetParameterValue(PAGE_SIZE_P, url);
             int.TryParse(ps, out pageSize);
 
@@ -215,6 +217,7 @@ namespace Fanex.Age.UI.Components
 
         public override string ToString()
         {
+            
             return tpl.ToString();
         }
 
@@ -230,3 +233,4 @@ namespace Fanex.Age.UI.Components
         #endregion
     }
 }
+

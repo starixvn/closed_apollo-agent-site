@@ -1,21 +1,16 @@
-﻿using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
-
-using Fanex.Age.UI.Components.ErrorPage;
-
-/*
- * Created 20091211@Lee - Common error message page
- * Revision:
- * 
- * 
- */
-
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="ErrorPag.aspx.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Kaden.Trinh" date="2013.05.08">Apply Error page</change>
+// </history>
+// ---------------------------------------------------------------------------------
 
 namespace Fanex.Age.UI.Components
 {
+    using Fanex.Age.UI.Components.ErrorPage;
     public class ErrorPage_Page
     {
         private string _error;
