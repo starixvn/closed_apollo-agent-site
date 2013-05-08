@@ -36,7 +36,7 @@ if (typeof jQuery != 'undefined') {
                     $.get(url, function (contentView) {
                         $("#BoxMatchWL").replaceWith(contentView);
                         if (currentMainShareHolderId > 0) {
-                            $("#BoxMatchWL").css("top", "115px");
+                            $("#BoxMatchWL").css("top", "124px");
                         }
                         SCOREMAP.registerCheckAll("#chLCheckAll", ".match-item");
                         $("#closeBoxMatch").click(function () {
