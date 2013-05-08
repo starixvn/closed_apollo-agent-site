@@ -16,7 +16,7 @@ var TOTALBETS = function ($) {
                 ageWnd.openDialog(url, 'FORECAST', {
                     width: 665,
                     height: 350,
-                    position: { my: "top+50", at: "center top", of: window },
+                    position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
@@ -36,8 +36,8 @@ var TOTALBETS = function ($) {
                 }
                 ageWnd.openDialog(url, "BET LIST", {
                     width: 930,
-                    height: 770,
-                    position: { my: "top+50", at: "center top", of: window },
+                    height: 720,
+                    position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
@@ -60,7 +60,7 @@ var TOTALBETS = function ($) {
                 ageWnd.openDialog(url, title, {
                     width: 930,
                     height: 770,
-                    position: { my: "top+50", at: "center top", of: window },
+                    position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
@@ -83,7 +83,7 @@ var TOTALBETS = function ($) {
                 ageWnd.openDialog(url, 'Bet List', {
                     width: 930,
                     height: 770,
-                    position: { my: "top+50", at: "center top", of: window },
+                    position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
@@ -104,7 +104,7 @@ var TOTALBETS = function ($) {
                 ageWnd.openDialog(url, 'FORECAST', {
                     width: 600,
                     height: 600,
-                    position: { my: "top+50", at: "center top", of: window },
+                    position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
