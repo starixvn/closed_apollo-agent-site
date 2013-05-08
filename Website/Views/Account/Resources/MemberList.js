@@ -104,6 +104,27 @@ var MEMBERLIST = function ($) {
             var counter = (memberList.CurrentPage * memberList.ItemsPerPage);
             for (var i = 0; i < rowLength; i++) {
                 var current = memberList.ListData[i];
+
+                var status = current.Status; // 1 : active, 2: stop, 3: lock, 4. c.lock
+                if (current.Status == 2) {
+                    status = current.Status; // Stop
+                }
+                else if (current.Status == 1 && current.BetStatus == 2) {
+                    status = 4; // C.lock
+                }
+                else if (current.Status == 1 && current.BetStatus == 1) {
+                    status = 1; //active
+                }
+                else if (current.Status == 3) {
+                    if (current.UplineStatus == 2) {
+                        status = 4; //C.lock
+                    }
+                    else {
+                        status = 3;
+                    }
+
+                }
+
                 counter++;
                 bodyData.push({
                     Columns:
@@ -111,7 +132,7 @@ var MEMBERLIST = function ($) {
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
-                            { Name: "Status", Value: current.Status },
+                            { Name: "Status", Value: status },
                             { Name: "BetStatus", Value: current.BetStatus },
                             { Name: "UserGroup", Value: current.UserGroup },
                             { Name: "AgentGroup", Value: current.AgentGroup * 100 },

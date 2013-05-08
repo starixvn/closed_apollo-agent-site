@@ -27,7 +27,7 @@
     function load(settings, root, child, container, link) {
         $.getJSON(settings.url+"?agentId=" + root, null, function (response) {
             function createNode(parent) {
-                var current = $("<li/>").attr("id", this.Id || "").html("<span>" + stringFormat(settings.link, this.Id, this.Username, this.Username)  + "</span>").appendTo(parent);
+                var current = this.Id == undefined ? "" : $("<li/>").attr("id", this.Id || "").html("<span>" + stringFormat(settings.link, this.Id, this.Username, this.Username)  + "</span>").appendTo(parent);
                 if (this.classes) {
                     current.children("span").addClass(this.classes);
                 }

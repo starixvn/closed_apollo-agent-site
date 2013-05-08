@@ -15,6 +15,13 @@ var AGENTLIST = function ($) {
         initQuickLinkEditSetting: function (agent, hideSetting) {
             var $quickLinkEditSetting = $("#quickLinkEditSetting");
 
+            if (DEFAULTS.IsMaster) {
+                $quickLinkEditSetting.removeClass("edit-setting ").addClass("edit-setting icon-pencil");
+            }
+            else {
+                $quickLinkEditSetting.removeClass("edit-setting icon-pencil").addClass("edit-setting icon-th-large");
+            }
+
             $quickLinkEditSetting.attr("agentId", agent.Id);
             $quickLinkEditSetting.attr("agentLevel", agent.Level);
             $quickLinkEditSetting.attr("username", agent.Username);
@@ -171,6 +178,25 @@ var AGENTLIST = function ($) {
             var counter = (agentList.CurrentPage * agentList.ItemsPerPage);
             for (var i = 0; i < rowLength; i++) {
                 var current = agentList.ListData[i];
+                var status = current.Status; // 1 : active, 2: stop, 3: lock, 4. c.lock
+                if (current.Status == 2) {
+                    status = current.Status; // Stop
+                }
+                else if (current.Status == 1 && current.BetStatus == 2) {
+                    status = 4; // C.lock
+                }
+                else if (current.Status == 1 && current.BetStatus == 1) {
+                    status = 1; //active
+                }
+                else if (current.Status == 3) {
+                    if (current.UplineStatus == 2) {
+                        status = 4; //C.lock
+                    }
+                    else {
+                        status = 3;
+                    }
+
+                }
                 counter++;
                 var currentRow = {
                     Columns:
@@ -178,7 +204,7 @@ var AGENTLIST = function ($) {
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
-                            { Name: "Status", Value: current.Status },
+                            { Name: "Status", Value: status },
                             { Name: "BetStatus", Value: current.BetStatus },
                             { Name: "NumberOfAgent", Value: current },
                             { Name: "NumberOfMember", Value: current },
