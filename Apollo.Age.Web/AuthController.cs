@@ -25,6 +25,8 @@ namespace Apollo.Age.Web
     {
         private const string APOLLO_SESSION_KEY = "Apollo.Age.Web.CurrentSession";
         private const string APOLLO_SESSION_CAPTCHA = "ApolloCaptcha";
+        private const string APOLLO_SESSION_ADMIN = "ApolloAdminLogin";
+
         private const string INVALID_REQ_MSG = "Invalid Request.";
         private const string USER_NOT_FOUND_MSG = "User not found.";
         private const string AGENT_NOT_FOUND_MSG = "Agent not found.";
@@ -84,6 +86,39 @@ namespace Apollo.Age.Web
         #region SignIn2 (for CSD login)
 
         [HttpGet]
+        public ActionResult SelectAccount()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SelectAccount(InternalSelectAccountViewModel model)
+        {
+            if (Session[APOLLO_SESSION_ADMIN] == null)
+            {            
+                return Redirect("~/Auth/Signin2");
+            }
+            if (ModelState.IsValid)
+            {
+                var agent = _userService.GetUserByUsername(model.Agent);
+
+                if (agent != null)
+                {
+                    agent.IsMaster = false; // CSD user will be treated as a shadow account
+                    agent.AdminName = Session[APOLLO_SESSION_ADMIN].ToString();
+                    agent.IsAdmin = true;
+
+                    Session[APOLLO_SESSION_KEY] = new CurrentSession(agent);
+
+                    FormsAuthentication.RedirectFromLoginPage(agent.Username, model.RememberMe);
+                }
+                else
+                {
+                    ModelState.AddModelError("Agent", AGENT_NOT_FOUND_MSG);
+                }
+            }
+            return View();
+        }
+        [HttpGet]
         public ActionResult SignIn2()
         {
             if (Request.IsAjaxRequest())
@@ -119,20 +154,8 @@ namespace Apollo.Age.Web
 
                 if (NapUserIsValid)
                 {
-                    FormsAuthentication.RedirectFromLoginPage(model.Username, model.RememberMe);
-                    //var agent = _userService.GetUserByUsername(model.Agent);
-
-                    //if (agent != null)
-                    //{
-                    //    agent.IsMaster = false; // CSD user will be treated as a shadow account
-                    //    Session[APOLLO_SESSION_KEY] = new CurrentSession(agent);
-
-                    //    FormsAuthentication.RedirectFromLoginPage(agent.Username, model.RememberMe);
-                    //}
-                    //else
-                    //{
-                    //    ModelState.AddModelError("Agent", AGENT_NOT_FOUND_MSG);
-                    //}
+                    Session[APOLLO_SESSION_ADMIN] = model.Username;
+                    return Redirect("~/Auth/SelectAccount");                 
                 }
                 else
                 {

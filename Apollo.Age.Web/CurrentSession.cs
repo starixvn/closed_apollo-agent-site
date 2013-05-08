@@ -10,12 +10,9 @@
 namespace Apollo.Age.Web
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.Serialization;
-    using System.Text;
-    using Apollo.Age.Entities;
     using System.Web;
+    using Apollo.Age.Entities;
 
     /// <summary>
     ///  It contains all properties of an authenticated user
@@ -35,6 +32,8 @@ namespace Apollo.Age.Web
             MatchLimit = user.Agent.MatchLimit;
             Language = language;
             CurrencyId = user.Agent.Currency;
+            AdminName = user.AdminName;
+            IsAdmin = user.IsAdmin;
 
             HttpContext.Current.Session["Apollo.Age.Web.CurrentSession"] = this;
         }
@@ -73,6 +72,7 @@ namespace Apollo.Age.Web
             info.AddValue("VirtualMultiplier", VirtualMultiplier);
             info.AddValue("DoubleCommLosing", DoubleCommLosing);
             info.AddValue("Language", Language);
+            
         }
 
         public int AgentId { get; set; }
@@ -110,5 +110,9 @@ namespace Apollo.Age.Web
             get;
             set;
         }
+
+        public string AdminName { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }

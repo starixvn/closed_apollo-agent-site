@@ -40,6 +40,9 @@ namespace Apollo.Age.Web
 
         decimal VirtualMultiplier { get; set; }
 
+        string AdminName { get; set; }
+
+        bool IsAdmin { get; set; }
 
 
         /// <summary>

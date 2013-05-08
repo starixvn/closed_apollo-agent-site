@@ -23,6 +23,10 @@ namespace Apollo.Age.Entities
     {
         public bool IsMaster { get; set; }
         public Agent Agent { get; set; }
+
+        public string AdminName { get; set; }
+        public bool IsAdmin { get; set; }
+
         public bool IsSuper
         {
             get

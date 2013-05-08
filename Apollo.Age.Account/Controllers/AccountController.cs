@@ -27,7 +27,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Pager;
     using Fanex.Common;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]
+   [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
     {
         private const int PAGEINDEX = 0; // Current index page
@@ -82,7 +82,7 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult TopBar()
         {
-            return View(base.CurrentSession);
+            return View(CurrentSession);
         }
 
         public ActionResult Menu()
