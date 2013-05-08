@@ -65,6 +65,7 @@
     <Compile Include="HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="SessionManager.cs" />
+    <Compile Include="ViewModels\InternalSelectAccountViewModel.cs" />
     <Compile Include="ViewModels\SignIn2ViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\UnderMaintenanceViewModel.cs" />

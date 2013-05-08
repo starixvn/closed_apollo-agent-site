@@ -17,8 +17,11 @@
                 <b>This bar is for testing only and will be removed later</b>
                 <div class="login-info">
                     @Apollo.Age.Resources.Lang.lblWebHostLogin
-                    <span class="username">@Model.Username<span> (@Model.AgentName)</span></span> <a
-                        href="javascript:top.age.SignOut()">Sign Out</a>
+                    <span class="username">@Model.Username<span> (@Model.AgentName)</span></span> 
+                    @if (Model.IsAdmin)
+                    {
+                        <a href="javascript:top.age.SignOut()">Sign Out</a>
+                    }
                 </div>
             </div>
             <div id="text_news_out">
