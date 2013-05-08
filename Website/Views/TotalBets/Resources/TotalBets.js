@@ -113,7 +113,7 @@ var TOTALBETS = function ($) {
         },
         innitFreeHeader: function () {
             //APOLLO.browser
-            if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) === 7) {
+            if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) > 8) {
                 return;
             }
             var clonedHeaderRow;
