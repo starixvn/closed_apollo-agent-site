@@ -20,7 +20,11 @@
                     <span class="username">@Model.Username<span> (@Model.AgentName)</span></span> 
                     @if (Model.IsAdmin)
                     {
-                        <a href="javascript:top.age.SignOut()">Sign Out</a>
+                        <a href="javascript:top.age.SignOut()">Admin Sign Out</a>
+                    }
+                    else
+                    { 
+                         <a href="javascript:top.age.SignOut()">Sign Out</a>
                     }
                 </div>
             </div>
