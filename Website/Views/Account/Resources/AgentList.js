@@ -15,6 +15,13 @@ var AGENTLIST = function ($) {
         initQuickLinkEditSetting: function (agent, hideSetting) {
             var $quickLinkEditSetting = $("#quickLinkEditSetting");
 
+            if (DEFAULTS.IsMaster) {
+                $quickLinkEditSetting.removeClass("edit-setting ").addClass("edit-setting icon-pencil");
+            }
+            else {
+                $quickLinkEditSetting.removeClass("edit-setting icon-pencil").addClass("edit-setting icon-th-large");
+            }
+
             $quickLinkEditSetting.attr("agentId", agent.Id);
             $quickLinkEditSetting.attr("agentLevel", agent.Level);
             $quickLinkEditSetting.attr("username", agent.Username);
