@@ -10,6 +10,8 @@
 
         public byte Status { get; set; }
 
+        public byte UplineStatus { get; set; }
+
         public byte BetStatus { get; set; }
 
         public Int32 HandicapTakenShare { get; set; }
