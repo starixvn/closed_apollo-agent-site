@@ -32,4 +32,5 @@
 
 $(document).ready(function () {
     WINLOSS.init();
+    APOLLO.initPageInfo();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
