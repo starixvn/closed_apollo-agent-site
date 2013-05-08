@@ -12,6 +12,7 @@ namespace Apollo.Age.Web
     using System;
     using System.Runtime.Serialization;
     using System.Web;
+    using Apollo.Age.Core;
     using Apollo.Age.Entities;
 
     /// <summary>
@@ -21,7 +22,7 @@ namespace Apollo.Age.Web
     [Serializable]
     public class CurrentSession : ICurrentSession, ISerializable
     {
-        public CurrentSession(User user, string language = "en-US")
+        public CurrentSession(User user, string csdAdminName = null, string language = "en-US")
         {
             AgentId = user.Agent.Id;
             AgentLevel = user.Agent.Level;
@@ -32,15 +33,14 @@ namespace Apollo.Age.Web
             MatchLimit = user.Agent.MatchLimit;
             Language = language;
             CurrencyId = user.Agent.Currency;
-            AdminName = user.AdminName;
-            IsAdmin = user.IsAdmin;
 
-            HttpContext.Current.Session["Apollo.Age.Web.CurrentSession"] = this;
+            CsdAdminName = csdAdminName;
+            IsCsdAdmin = !string.IsNullOrWhiteSpace(csdAdminName);
         }
 
         public CurrentSession(SerializationInfo info, StreamingContext context)
         {
-            if (ReferenceEquals(null, info))
+            if (info == null)
                 throw new ArgumentNullException("info");
 
             AgentId = info.GetInt32("AgentId");
@@ -54,6 +54,8 @@ namespace Apollo.Age.Web
             VirtualMultiplier = info.GetDecimal("VirtualMultiplier");
             DoubleCommLosing = info.GetBoolean("DoubleCommLosing");
             Language = info.GetString("Language");
+            CsdAdminName = info.GetString("CsdAdminName");
+            IsCsdAdmin = info.GetBoolean("IsCsdAdmin");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -72,7 +74,8 @@ namespace Apollo.Age.Web
             info.AddValue("VirtualMultiplier", VirtualMultiplier);
             info.AddValue("DoubleCommLosing", DoubleCommLosing);
             info.AddValue("Language", Language);
-            
+            info.AddValue("CsdAdminName", CsdAdminName);
+            info.AddValue("IsCsdAdmin", IsCsdAdmin);
         }
 
         public int AgentId { get; set; }
@@ -103,7 +106,7 @@ namespace Apollo.Age.Web
         public string Language { get; set; }
 
         /// <summary>
-        /// True indicate admin user can view VN ip.
+        /// if true: indicates admin user can view VN ip.
         /// </summary>
         public bool IsAdminCanViewVNIP
         {
@@ -111,8 +114,8 @@ namespace Apollo.Age.Web
             set;
         }
 
-        public string AdminName { get; set; }
+        public string CsdAdminName { get; set; }
 
-        public bool IsAdmin { get; set; }
+        public bool IsCsdAdmin { get; set; }
     }
 }

@@ -15,16 +15,15 @@ namespace Apollo.Age.Web
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// http://msdn.microsoft.com/en-us/library/ff650316.aspx
     /// </summary>
     public sealed class SessionManager
     {
-        private const string CacheKeyCurrentSession = "Apollo.Age.Web.CurrentSession";
         private const string CacheKeySuncityLanguage = "Apollo.Age.Web.SuncityLanguage";
         private const string CacheKeySuncityUsername = "Apollo.Age.Web.SuncityUsername";
-
 
         private static volatile SessionManager instance;
         private static object syncRoot = new Object();
@@ -54,11 +53,11 @@ namespace Apollo.Age.Web
         {
             get
             {
-                return (ICurrentSession)HttpContext.Current.Session[CacheKeyCurrentSession];
+                return (ICurrentSession)HttpContext.Current.Session[Constants.APOLLO_CURRENT_SESSION_KEY];
             }
             set
             {
-                HttpContext.Current.Session[CacheKeyCurrentSession] = value;
+                HttpContext.Current.Session[Constants.APOLLO_CURRENT_SESSION_KEY] = value;
             }
         }
 
