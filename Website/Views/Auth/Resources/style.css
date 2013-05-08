@@ -106,7 +106,7 @@ input[type=submit]:active {
 }
 
 /* FIX IE */
-.eq-ie7 input[type=submit], .eq-ie8 input[type=submit] {
+.eq-ie7 input[type=submit], .eq-ie8 input[type=submit], .eq-ie9 input[type=submit] {
     background: #585858;
     color: #fff;
 }
