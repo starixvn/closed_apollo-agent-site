@@ -87,13 +87,7 @@ if (typeof jQuery != 'undefined') {
         if (currentMainShareHolderId > 0) {
             $("#ddlMainShareHolder").change(function () {
                 var $this = $(this);
-                var markIndex = document.location.href.indexOf('?');
-                var link = document.location.href;
-                if (markIndex > 0) {
-                    link = document.location.href.substring(0, markIndex);
-                }
-
-                document.location.href = link + "?mainShareHolderId=" + $this.val();
+                window.location.href = currentActionLink + "?mainShareHolderId=" + $this.val();
             });
         }
 		FC1X2.init();
@@ -102,13 +96,13 @@ if (typeof jQuery != 'undefined') {
 
 function UpdateForecast1x2Value() {
     if (FC1X2.matchId > 0) {
-        location.reload();
+        window.location.href = window.location.href;
     }
     else {
         var url = APOLLO.resolveUrl("Forecast/FC1X2?leagueId=" + FC1X2.currentLeague);
         if (currentMainShareHolderId > 0) {
             url += '&mainShareHolderId=' + currentMainShareHolderId;
         }
-        document.location.href = url;
+        window.location.href = url;
     }
 }
