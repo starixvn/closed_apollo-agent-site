@@ -193,7 +193,7 @@ var MEMBERLIST = function ($) {
                 showTitle: true,
                 titleInfo:
                 {
-                    text: '<ul><li><a href="#" id="quickLinkAgentList">Agent List</a></li><li id="current"><a href="#">Member List</a></li></ul>'
+                    text: '<ul><li><a href="#" id="quickLinkAgentList">' + LANGUAGES.AgentList + '</a></li><li id="current"><a href="#">' + LANGUAGES.MemberList + '</a></li></ul>'
                 }
             };
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
