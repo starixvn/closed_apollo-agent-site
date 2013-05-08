@@ -9,35 +9,46 @@
 
 namespace Apollo.Age.Web
 {
+    using System;
+    using System.Drawing;
+    using System.Drawing.Drawing2D;
+    using System.Drawing.Text;
+    using System.IO;
     using System.Web.Mvc;
     using System.Web.Security;
+    using Apollo.Age.Criterias;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.ViewModels;
-    using Apollo.Age.Criterias;
-    using System.Drawing;
-    using System;
-    using System.Drawing.Text;
-    using System.Drawing.Drawing2D;
-    using System.IO;
 
     public class AuthController : Controller
     {
+        #region Const
+        
         private const string APOLLO_SESSION_KEY = "Apollo.Age.Web.CurrentSession";
         private const string APOLLO_SESSION_CAPTCHA = "ApolloCaptcha";
         private const string INVALID_REQ_MSG = "Invalid Request.";
         private const string USER_NOT_FOUND_MSG = "User not found.";
         private const string AGENT_NOT_FOUND_MSG = "Agent not found.";
-        private const string INVALID_USER_PWD_MSG = "Invalid Username or Password.";        
+        private const string INVALID_USER_PWD_MSG = "Invalid Username or Password.";
 
+        #endregion
+
+        #region Services
+        
         private readonly IUserService _userService;
-          
+
+        #endregion
+
+        #region Ctors
 
         public AuthController()
         {
             _userService = new UserService();
-        
+
         }
+
+        #endregion
 
         #region SignIn
 
@@ -106,9 +117,9 @@ namespace Apollo.Age.Web
             {
                 if (Session[APOLLO_SESSION_CAPTCHA] == null || Session[APOLLO_SESSION_CAPTCHA].ToString() != model.Captcha)
                 {
-                        ModelState.AddModelError("Captcha", "Wrong value of captchar, please try again.");
-                        //dispay error and generate a new captcha
-                        return View(model);
+                    ModelState.AddModelError("Captcha", "Wrong value of captchar, please try again.");
+                    //dispay error and generate a new captcha
+                    return View(model);
                 }
 
                 bool NapUserIsValid = _userService.AuthenticateNapUser(new AuthenticateNapUserCriteria
@@ -158,12 +169,12 @@ namespace Apollo.Age.Web
 
             return finalBmp;
         }
-       public ActionResult CaptchaImage(bool noisy = true)
+        public ActionResult CaptchaImage(bool noisy = true)
         {
             var rand = new Random((int)DateTime.Now.Ticks);
-            
-            
-            int a = rand.Next(10000, 99999);            
+
+
+            int a = rand.Next(10000, 99999);
             var captcha = string.Format("{0}", a);
 
             //store answer
@@ -173,11 +184,11 @@ namespace Apollo.Age.Web
             FileContentResult img = null;
 
             using (var mem = new MemoryStream())
-            using (var bmp = GenerateNoise(60,23))
+            using (var bmp = GenerateNoise(60, 23))
             using (var gfx = Graphics.FromImage((Image)bmp))
             {
                 gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-                gfx.SmoothingMode = SmoothingMode.AntiAlias;               
+                gfx.SmoothingMode = SmoothingMode.AntiAlias;
 
                 //add noise
                 if (noisy)
@@ -197,7 +208,7 @@ namespace Apollo.Age.Web
 
                         gfx.DrawEllipse(pen, x - r, y - r, r, r);
                     }
-                   
+
                 }
 
                 //add captcha
@@ -210,7 +221,7 @@ namespace Apollo.Age.Web
 
             return img;
         }
-       
+
 
         #endregion
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.UI;
+using Apollo.Age.Web;
+using System.Web.Security;
 
 public partial class _Default : Page
 {
@@ -7,9 +9,19 @@ public partial class _Default : Page
     {
         base.OnInit(e);
 
-        if (!User.Identity.IsAuthenticated)
+        if (!User.Identity.IsAuthenticated || CurrentSession == null)
         {
-            Response.Redirect("~/sso.aspx");
+            FormsAuthentication.RedirectToLoginPage();
         }
+
+        //if (!User.Identity.IsAuthenticated)
+        //{
+        //    Response.Redirect("~/sso.aspx");
+        //}
+    }
+
+    protected ICurrentSession CurrentSession
+    {
+        get { return SessionManager.Instance.CurrentSession; }
     }
 }
