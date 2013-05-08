@@ -7,9 +7,8 @@
 //   <change who="Lewis.Le" date="2013.5.6">Created</change>
 // </history>
 
-namespace Apollo.Age.Reports.Controllers
+namespace Apollo.Age.Web
 {
-    using Apollo.Age.Web;
     using System.Web.Mvc;
 
     public class InstructionController : BaseController

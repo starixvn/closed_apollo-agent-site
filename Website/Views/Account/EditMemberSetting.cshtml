@@ -1,5 +1,5 @@
 ﻿@{
-    var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
+	var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
 	ViewBag.UserName = ViewBag.UserName ?? string.Empty;
 	ViewBag.Title = string.Format(titleFormat, ViewBag.UserName);
 	Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
@@ -12,22 +12,22 @@
 @Html.Action("Index", "Instruction", new {
 	key = "MemberCommissionSetting",
 	trigger = "commission-info-button",
-	title = Resources.Lang.CommissionSettingInstructions,
-	tipTitle = Resources.Lang.ClickToViewInstructions
+	title =  Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
 @Html.Action("Index", "Instruction", new {
 	key = "MemberBetSetting",
 	trigger = "bet-limit-info-button",
-	title = Resources.Lang.CommissionSettingInstructions,
-	tipTitle = Resources.Lang.ClickToViewInstructions
+	title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
 @Html.Action("Index", "Instruction", new {
 	key = "MemberShareSetting",
 	trigger = "share-setting-info-button",
-	title = Resources.Lang.CommissionSettingInstructions,
-	tipTitle = Resources.Lang.ClickToViewInstructions
+	title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
 @section scripts
