@@ -12,26 +12,29 @@
     <div class="boderBoxMatch">
         <div class="ContentMatchWL">
             <!--ContentMatch-->
-            <ul class="ListMatch">
-                @{
-                    if (Model != null && Model.Any())
-                    {
+            @{
+                if (Model != null && Model.Any())
+                {
+                <ul class="ListMatch">
                     <li>
                         <input class="hand" type="checkbox" id="chLCheckAll">
                         <label class="hand" for="chLCheckAll">
                             <b>@Apollo.Age.Resources.Lang.all</b></label>
                     </li>
-                        foreach (var match in Model)
-                        {
-                    <li>
-                        <input class="hand match-item" type="checkbox" id="chL@(match.MatchId)" value="@(match.MatchId)" />
-                        <label class="hand" for="chL@(match.MatchId)">@(match.MatchName)</label>
-                    </li>
-                        }
-
+                    @foreach (var match in Model)
+                    {
+                        <li>
+                            <input class="hand match-item" type="checkbox" id="chL@(match.MatchId)" value="@(match.MatchId)" />
+                            <label class="hand" for="chL@(match.MatchId)">@(match.MatchName)</label>
+                        </li>
                     }
+                </ul>
                 }
-            </ul>
+                else
+                {
+                    <label>@Apollo.Age.Resources.Lang.noInfo</label>
+                }
+            }
             <!--/ContentMatch-->
         </div>
         <div class="btn-select">
