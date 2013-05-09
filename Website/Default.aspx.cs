@@ -12,12 +12,7 @@ public partial class _Default : Page
         if (!User.Identity.IsAuthenticated || CurrentSession == null)
         {
             FormsAuthentication.RedirectToLoginPage();
-        }
-
-        //if (!User.Identity.IsAuthenticated)
-        //{
-        //    Response.Redirect("~/sso.aspx");
-        //}
+        }  
     }
 
     protected ICurrentSession CurrentSession

@@ -9,7 +9,7 @@
 <body>
     @if (Model != null && Model.IsValid)
     {       
-        // Sso sucessfully         
+        // Sso sucessfully                 
         @Html.Hidden("url", Url.Content(OAuthSettings.Settings.DefaultUrl));
     }
     else

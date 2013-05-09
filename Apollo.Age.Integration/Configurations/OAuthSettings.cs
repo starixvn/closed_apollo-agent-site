@@ -99,7 +99,7 @@ namespace Apollo.Age.Integration.Configurations
         [ConfigurationProperty("DefaultUrl", IsRequired = true)]
         public string DefaultUrl
         {
-            get { return (string)this["DefaulUrl"]; }
+            get { return (string)this["DefaultUrl"]; }
             set { this["DefaultUrl"] = value; }
         }
     }
