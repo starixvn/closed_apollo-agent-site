@@ -115,7 +115,10 @@ namespace Apollo.Age.Web
             {
                 return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
             }
-
+            if (Session[APOLLO_SESSION_CSDADMIN] != null)
+            {
+                return Redirect("~/Internal/SelectAccount");
+            }
             return View();
         }
 
