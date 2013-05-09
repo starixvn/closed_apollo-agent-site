@@ -115,7 +115,10 @@ namespace Apollo.Age.Web
             {
                 return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
             }
-
+            if (Session[APOLLO_SESSION_CSDADMIN] != null)
+            {
+                return Redirect("~/Internal/SelectAccount");
+            }
             return View();
         }
 
@@ -179,7 +182,7 @@ namespace Apollo.Age.Web
 
                 if (agent != null)
                 {
-                    agent.IsMaster = false; 
+                    //agent.IsMaster = true; 
 
                     this.CurrentSession = new CurrentSession(agent, csdAdminName);
 
