@@ -72,7 +72,7 @@ var AGENTLIST = function ($) {
                             template += "<span class='breadcrumbs'>&nbsp;</span>";
                         }
                     }
-                    $("#divnavigation").html(template);
+                    $("#divnavigation").html("<li>" + template + "</li>");
 
                     AGENTLIST.bindingNavigation();
                     AGENTLIST.loadAgentList();
