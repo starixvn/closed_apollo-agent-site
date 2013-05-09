@@ -37,7 +37,7 @@ public abstract class BetListBase : TplPage
     }
 
     protected int PageSize = 50;
-    protected List<object> PAGE_SIZES = new List<object>(new object[] { 10, 20, 50, 100, 200, 500 });
+    protected List<object> PAGE_SIZES = new List<object>(new object[] {10, 20, 50, 100, 200, 500 });
 
     #endregion Member Variables
 
