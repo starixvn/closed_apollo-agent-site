@@ -66,7 +66,7 @@ if (typeof jQuery != 'undefined') {
                 && EDITSETTING.positionTakingElement.Validate()) {
                     var commissionSettingValue = EDITSETTING.commissionSettingElement.Save();
                     if (commissionSettingValue == null && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) {
-                        noty({ text: invalidComMessage, type: 'error', timeout: 5000 });
+                        noty({ text: Language.INVALID_COMMISSION_MESSAGE, type: 'error', timeout: 5000 });
                         return;
                     }
 
@@ -84,12 +84,12 @@ if (typeof jQuery != 'undefined') {
                     };
 
                     var url = APOLLO.resolveUrl('CustomerSetting/');
-                    if (typeof (memberId) != 'undefined') {
-                        dataObject.memberId = memberId;
+                    if (typeof (DEFAULT_OBJECT.memberId) != 'undefined') {
+                        dataObject.memberId = DEFAULT_OBJECT.memberId;
                         url += "UpdateMemberSetting";
                     }
-                    else if (typeof (agentId) != 'undefined') {
-                        dataObject.agentId = agentId;
+                    else if (typeof (DEFAULT_OBJECT.agentId) != 'undefined') {
+                        dataObject.agentId = DEFAULT_OBJECT.agentId;
                         url += "UpdateAgentSetting";
                     }
 

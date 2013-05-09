@@ -61,6 +61,9 @@ if (typeof jQuery != 'undefined') {
                 + '&betType=' + FC1X2.betType
                 + '&type=BettypeMatch'
                 + '&leagueName=' + FC1X2.cuurentLeagueName);
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                	url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
+                }
                 parent.$(".ui-dialog .ui-dialog-title").text("BET LIST");
                 location.href = url;
             }
