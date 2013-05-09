@@ -244,16 +244,16 @@ namespace Apollo.Age.Web
         public ActionResult CaptchaImage(bool noisy = true)
         {
             var rand = new Random((int)DateTime.Now.Ticks);
-            int a = rand.Next(10000, 99999);
-            var captcha = string.Format("{0}", a);
+            int captcha = rand.Next(1000, 9999);
+           
 
             // saves answer
-            Session[APOLLO_SESSION_CAPTCHA] = captcha;
+            Session[APOLLO_SESSION_CAPTCHA] = captcha.ToString();
 
             FileContentResult img = null; // image stream
 
             using (var mem = new MemoryStream())
-            using (var bmp = GenerateNoise(60, 23))
+            using (var bmp = GenerateNoise(55, 23))
             using (var gfx = Graphics.FromImage((Image)bmp))
             {
                 gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
@@ -280,7 +280,7 @@ namespace Apollo.Age.Web
                 }
 
                 // add captcha
-                gfx.DrawString(captcha, new Font("Tahoma", 13), Brushes.White, 4, 2);
+                gfx.DrawString(captcha.ToString(), new Font("Tahoma", 13), Brushes.White, 5, 2);
 
                 // render as JPEG
                 bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg);

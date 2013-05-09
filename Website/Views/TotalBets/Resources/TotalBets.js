@@ -10,8 +10,8 @@ var TOTALBETS = function ($) {
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
                  + '&leagueName=' + $(this).attr("league-name"));
-                if (currentMainShareHolderId > 0) {
-                    url += "&mainShareHolderId=" + currentMainShareHolderId;
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
                 ageWnd.openDialog(url, 'FORECAST', {
                     width: 665,
@@ -31,8 +31,8 @@ var TOTALBETS = function ($) {
                 + '&betType=' + $(this).attr("bet-type")
                 + '&type=' + $(this).attr("betlist-type")
                 + '&leagueName=' + $(this).attr("league-name"));
-                if (currentMainShareHolderId > 0) {
-                    url += "&mainShareHolderId=" + currentMainShareHolderId + "&isForecast=true";
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
                 ageWnd.openDialog(url, "BET LIST", {
                     width: 930,
@@ -54,8 +54,8 @@ var TOTALBETS = function ($) {
                 + '&islive=' + $(this).attr("is-live"));
                 var title = $(this).attr("league-name") + "-" + $(this).attr("bet-type-name");
 
-                if (currentMainShareHolderId > 0) {
-                    url += "&mainShareHolderId=" + currentMainShareHolderId + "&isForecast=true";
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
                 ageWnd.openDialog(url, title, {
                     width: 930,
@@ -77,8 +77,8 @@ var TOTALBETS = function ($) {
                 + '&islive=' + $(this).attr("is-live")
                 + '&betteam=' + $(this).attr("bet-team"));
 
-                if (currentMainShareHolderId > 0) {
-                    url += "&mainShareHolderId=" + currentMainShareHolderId + "&isForecast=true";
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
                 ageWnd.openDialog(url, 'Bet List', {
                     width: 930,
@@ -98,8 +98,8 @@ var TOTALBETS = function ($) {
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
                 + '&leagueName=' + $(this).attr("league-name"));
-                if (currentMainShareHolderId > 0) {
-                    url += "&mainShareHolderId=" + currentMainShareHolderId;
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
                 ageWnd.openDialog(url, 'FORECAST', {
                     width: 600,
@@ -171,10 +171,10 @@ var TOTALBETS = function ($) {
 } (jQuery);
 
 $(function () {
-	if (currentMainShareHolderId > 0) {
+	if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
 		$("#ddlMainShareHolder").change(function () {
 			var $this = $(this);
-			window.location.href = currentActionLink + "?mainShareHolderId=" + $this.val();
+			window.location.href = DEFAULT_LAYOUT.currentActionLink + "?mainShareHolderId=" + $this.val();
 		});
 	}
 });
