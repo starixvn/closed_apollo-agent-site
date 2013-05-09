@@ -138,7 +138,9 @@ var MEMBERLIST = function ($) {
                     }
 
                 }
-
+                else {
+                    status = 1;
+                }
                 counter++;
                 bodyData.push({
                     Columns:

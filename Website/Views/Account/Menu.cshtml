@@ -1,60 +1,59 @@
 ﻿@using System.Resources
 @model ICurrentSession
 @{
-    Layout = "~/Views/Account/Shared/_Layout.cshtml";
-    var menu = ViewBag.RootNode;
+	Layout = "~/Views/Account/Shared/_Layout.cshtml";
+	var menu = ViewBag.RootNode;
 }
 <ul id="tab-menu">
-    <li class="tab-menu active"><a><i class="icon-align-justify"></i>@Apollo.Age.Resources.Lang.mainmenu</a>
-    </li>
-    <li class="tab-tree"><a id="lk-tree-tab" href="javascript:;" target="menu"><i class="icon-user">
-    </i>@Apollo.Age.Resources.Lang.userinfo</a> </li>
-    <li class="tab-acc"><a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search">
-    </i>@Apollo.Age.Resources.Lang.search</a> </li>
+	<li class="tab-menu active"><a><i class="icon-align-justify"></i>@Apollo.Age.Resources.Lang.mainmenu</a></li>
+	<li class="tab-tree"><a id="lk-tree-tab" href="javascript:;" target="menu">
+		<i class="icon-user"></i>@Apollo.Age.Resources.Lang.userinfo</a></li>
+	<li class="tab-acc"><a id="lk-acc-tab" href="javascript:;" target="menu">
+		<i class="icon-search"></i>@Apollo.Age.Resources.Lang.search</a> </li>
 </ul>
 <ul id="menu">
-    @foreach (SiteMapNode item in menu.ChildNodes)
-    {
-        //if (!Model.IsSuper || (Model.IsSuper))
-        //{
-        string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
-        ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
-        
-        <li class="menu-item @activeClass"><a class="menu-item-title">@rm.GetString(item.Title)</a>
-            @if (item.HasChildNodes)
-            {
-                <div class="submenu">
-                    @foreach (SiteMapNode subItem in item.ChildNodes)
-                    {
-                        var isAgentOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
-                        if (Model.AgentLevel < 3 && isAgentOnly)
-                        {
-                            continue;
-                        }
+	@foreach (SiteMapNode item in menu.ChildNodes)
+	{
+		//if (!Model.IsSuper || (Model.IsSuper))
+		//{
+		string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
+		ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
+		
+		<li class="menu-item @activeClass"><a class="menu-item-title">@rm.GetString(item.Title)</a>
+			@if (item.HasChildNodes)
+			{
+				<div class="submenu">
+					@foreach (SiteMapNode subItem in item.ChildNodes)
+					{
+						var isAgentOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
+						if (Model.AgentLevel < 3 && isAgentOnly)
+						{
+							continue;
+						}
 
-                        int bettypeId = 0;
-                        string title = string.Empty;
+						int bettypeId = 0;
+						string title = string.Empty;
 
-                        if (subItem.Title.Contains("bettype")
-                            && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
-                        {
-                            title = Apollo.Age.Services.CacheRef.GetBettype(bettypeId);
-                        }
-                        else
-                        {
-                            title = rm.GetString(subItem.Title);                            
-                            
-                        }
+						if (subItem.Title.Contains("bettype")
+							&& Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
+						{
+							title = Apollo.Age.Services.CacheRef.GetBettype(bettypeId);
+						}
+						else
+						{
+							title = rm.GetString(subItem.Title);                            
+							
+						}
 
-                        <a href="@subItem.Url" target="main">@title</a>
-                    }
-                </div>
+						<a href="@subItem.Url" target="main">@title</a>
+					}
+				</div>
 
-            }
-        </li>
-        //}
-    }
+			}
+		</li>
+		//}
+	}
 </ul>
 @section foot {
-    <script src="~/Views/Account/Resources/Menu.js" type="text/javascript"></script>
+	<script src="~/Views/Account/Resources/Menu.js" type="text/javascript"></script>
 }

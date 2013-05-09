@@ -128,7 +128,7 @@ namespace Sunplus.Agent.UI._BetList
 
             // Paging
             int _rowCount = 0;
-            Paging_Control pagingControl = new Paging_Control(tpl, "BetListTransaction_Paging", this.PageSize, Request.Url.AbsoluteUri, this.TotalRows, PAGE_SIZES);
+            Paging_Control pagingControl = new Paging_Control(tpl, "pagination", this.PageSize, Request.Url.AbsoluteUri, this.TotalRows, PAGE_SIZES);
             tpl.PagingControl = pagingControl.ToString();
 
             writer.Write(tpl);
