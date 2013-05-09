@@ -9,25 +9,9 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 
-public partial class Error : System.Web.UI.Page
+public partial class Error : Page
 {
     protected string ErrorMessage = null;
-    protected string urlBefore = "";//Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl;
-
-    public string GetBaseUrl()
-    {
-        string hostName = Request.Headers["Host"];
-        string appPath = Request.ApplicationPath;
-
-        string url = /*Protocol + hostName +*/ appPath;
-
-        if (appPath.Length > 1)
-        {
-            url += '/';
-        }
-
-        return url;
-    }
 
     protected override void OnLoad(EventArgs e)
     {

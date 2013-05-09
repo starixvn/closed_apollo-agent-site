@@ -46,31 +46,33 @@ namespace Fanex.Age.UI.Components
 			protected string t4_id;
 			protected static string s16 = "\" type=\"text\" class=\"pagingCurrent\" maxlength=\"4\" size=\"2\" value=\"";
 			protected string t5_currentindex;
-			protected static string s17 = "\" onkeydown=\"";
+			protected static string s17 = "\" onkeypress=\"return ";
 			protected string t6_id;
-			protected static string s18 = ".DoEnter(event, '";
+			protected static string s18 = ".DoEnterNumber(event);\" onkeydown=\"";
 			protected string t7_id;
-			protected static string s19 = ".Go()')\" />";
-			protected static string s20{get{return Apollo.Age.Resources.Lang.of;}}
-			protected static string s21 = " ";
-			protected string t8_pagecount;
-			protected static string s22 = "<input ";
+			protected static string s19 = ".DoEnter(event, '";
+			protected string t8_id;
+			protected static string s20 = ".Go()')\" />";
+			protected static string s21{get{return Apollo.Age.Resources.Lang.of;}}
+			protected static string s22 = " ";
+			protected string t9_pagecount;
+			protected static string s23 = "<input ";
 			public string disabledNext = "{disabledNext}";
-			protected static string s23 = " id=\"btnNext";
-			protected string t9_id;
-			protected static string s24 = "\" type=\"button\" onclick=\"";
+			protected static string s24 = " id=\"btnNext";
 			protected string t10_id;
-			protected static string s25 = ".Move(1)\" class=\"icon pagingNext\" /><input ";
-			public string disabledLast = "{disabledLast}";
-			protected static string s26 = " id=\"btnLast";
+			protected static string s25 = "\" type=\"button\" onclick=\"";
 			protected string t11_id;
-			protected static string s27 = "\" type=\"button\" onclick=\"";
+			protected static string s26 = ".Move(1)\" class=\"icon pagingNext\" /><input ";
+			public string disabledLast = "{disabledLast}";
+			protected static string s27 = " id=\"btnLast";
 			protected string t12_id;
-			protected static string s28 = ".Last()\" class=\"icon pagingLast\" /></div><script type=\"text/javascript\">var ";
+			protected static string s28 = "\" type=\"button\" onclick=\"";
 			protected string t13_id;
-			protected static string s29 = " = new Paging('";
+			protected static string s29 = ".Last()\" class=\"icon pagingLast\" /></div><script type=\"text/javascript\">var ";
 			protected string t14_id;
-			protected static string s30 = "');</script>";
+			protected static string s30 = " = new Paging('";
+			protected string t15_id;
+			protected static string s31 = "');</script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -114,19 +116,19 @@ namespace Fanex.Age.UI.Components
 					bd.Append(s18);
 					bd.Append(id);
 					bd.Append(s19);
+					bd.Append(id);
 					bd.Append(s20);
 					bd.Append(s21);
-					bd.Append(pagecount);
 					bd.Append(s22);
-					bd.Append(disabledNext);
+					bd.Append(pagecount);
 					bd.Append(s23);
-					bd.Append(id);
+					bd.Append(disabledNext);
 					bd.Append(s24);
 					bd.Append(id);
 					bd.Append(s25);
-					bd.Append(disabledLast);
-					bd.Append(s26);
 					bd.Append(id);
+					bd.Append(s26);
+					bd.Append(disabledLast);
 					bd.Append(s27);
 					bd.Append(id);
 					bd.Append(s28);
@@ -134,6 +136,8 @@ namespace Fanex.Age.UI.Components
 					bd.Append(s29);
 					bd.Append(id);
 					bd.Append(s30);
+					bd.Append(id);
+					bd.Append(s31);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -148,21 +152,21 @@ namespace Fanex.Age.UI.Components
 
 		public class Paging_ExternalResources_Block: Block
 		{
-			protected static string s31 = "<link href=\"";
-			protected static string s32{get{return AbsoluteUrl("Paging/Paging.less", TplSettings.Question);}}
-			protected static string s33 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src=\"";
-			protected static string s34{get{return AbsoluteUrl("Paging/Paging.js", TplSettings.Question);}}
-			protected static string s35 = "\" type=\"text/javascript\"></script>";
+			protected static string s32 = "<link href=\"";
+			protected static string s33{get{return AbsoluteUrl("Paging/Paging.less", TplSettings.Question);}}
+			protected static string s34 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src=\"";
+			protected static string s35{get{return AbsoluteUrl("Paging/Paging.js", TplSettings.Question);}}
+			protected static string s36 = "\" type=\"text/javascript\"></script>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s31);
 					bd.Append(s32);
 					bd.Append(s33);
 					bd.Append(s34);
 					bd.Append(s35);
+					bd.Append(s36);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -170,14 +174,14 @@ namespace Fanex.Age.UI.Components
 
 		public class Paging_SelPageSize_Block: Block
 		{
-			protected static string s36 = "<div class=\"itemperpage\">Page size </div>";
+			protected static string s37 = "<div class=\"itemperpage\">Page size </div>";
 			public string selPageSize = "{selPageSize}";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s36);
+					bd.Append(s37);
 					bd.Append(selPageSize);
 				}
 				if(IsAssigned){bd.Append(Value);}
