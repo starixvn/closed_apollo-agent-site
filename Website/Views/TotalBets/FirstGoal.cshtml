@@ -110,11 +110,17 @@
 
 @section scripts
 {
-    <script src="~/Views/TotalBets/Resources/TotalBets.js" type="text/javascript"></script>
     <script type="text/javascript">
+        var DEFAULT_OBJECT = function () {
+            return {
+                initData: function () {
+                    TOTALBETS.initViewBetList();
+                    TOTALBETS.innitFreeHeader();
+                }
+            };
+        } ();
         $(function () {
-            TOTALBETS.initViewBetList();
-            TOTALBETS.innitFreeHeader();
+            DEFAULT_OBJECT.initData();
         });
     </script>    
 }

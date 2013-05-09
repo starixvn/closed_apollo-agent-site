@@ -3,7 +3,7 @@ if (typeof jQuery != 'undefined') {
     var FCHANDICAPOU = function ($) {
         return {
             currentLeague: 0,
-            currentLeagueName: leagueName,
+            currentLeagueName: DEFAULT_OBJECT.leagueName,
             init: function () {
                 FCHANDICAPOU.currentLeague = $('#ddlLeague').val();
                 if (FCHANDICAPOU.currentLeague) {
@@ -28,8 +28,8 @@ if (typeof jQuery != 'undefined') {
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
                 + '&betType=' + $this.attr("bet-type")
                 + '&leagueName=' + FCHANDICAPOU.currentLeagueName);
-                if (currentMainShareHolderId > 0) {
-                    url += "&mainShareHolderId=" + currentMainShareHolderId;
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                    url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
                 //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
                 //location.href = url;
@@ -45,7 +45,7 @@ if (typeof jQuery != 'undefined') {
             },
             changeLeague: function () {
                 var url = APOLLO.resolveUrl('Forecast/FCHandicapOverUnderMatches?leagueId=' + FCHANDICAPOU.currentLeague
-                + '&mainShareHolderId=' + currentMainShareHolderId);
+                + '&mainShareHolderId=' + DEFAULT_LAYOUT.currentMainShareHolderId);
                 $("#forecast-body").load(url);
                 FCHANDICAPOU.registerEvents();
             }
@@ -53,10 +53,10 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
-        if (currentMainShareHolderId > 0) {
+        if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
             $("#ddlMainShareHolder").change(function () {
                 var $this = $(this);
-                window.location.href = currentActionLink + "?mainShareHolderId=" + $this.val();
+                window.location.href = DEFAULT_LAYOUT.currentActionLink + "?mainShareHolderId=" + $this.val();
             });
         }
 
@@ -67,8 +67,8 @@ if (typeof jQuery != 'undefined') {
 
 function UpdateForecastHDValue() {
     var url = APOLLO.resolveUrl("Forecast/FCHandicapOverUnder?leagueId=" + FCHANDICAPOU.currentLeague);
-    if (currentMainShareHolderId > 0) {
-        url += '&mainShareHolderId=' + currentMainShareHolderId;
+    if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+        url += '&mainShareHolderId=' + DEFAULT_LAYOUT.currentMainShareHolderId;
     }
     window.location.href = url;
 }
