@@ -6,21 +6,21 @@
 <!--/ExternalResources-->
 
 <div id="{id}" class="{pageclass}" pagesize="{pagesize}" currentindex="{currentindex}" rowcount="{rowcount}" pagecount="{pagecount}">
-
+        <!--SelPageSize-->
+        <div class="itemperpage">Page size </div>
+        {selPageSize}
+        <!--/SelPageSize-->
         <input {disabledFirst} id="btnFirst{id}" type="button" onclick="{id}.First()" class="icon pagingFirst" />
         <input {disabledPrev} id="btnPrev{id}" type="button" onclick="{id}.Move(-1)" class="icon pagingPrev" />
 
-        <span class="pagingSeperator"></span>
+    
         {static:Apollo.Age.Resources.Lang.tpage}
         <input id="txt{id}" type="text" class="pagingCurrent" maxlength="4" size="2" value="{currentindex}" onkeydown="{id}.DoEnter(event, '{id}.Go()')" />
         {static:Apollo.Age.Resources.Lang.of} {pagecount}
-        <span class="pagingSeperator"></span>
-
+    
         <input {disabledNext} id="btnNext{id}" type="button" onclick="{id}.Move(1)" class="icon pagingNext" />
         <input {disabledLast} id="btnLast{id}" type="button" onclick="{id}.Last()" class="icon pagingLast" />
-        <!--SelPageSize-->
-        {selPageSize}
-        <!--/SelPageSize-->
+
 </div>
 
 <script type="text/javascript">
