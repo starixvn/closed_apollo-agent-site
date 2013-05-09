@@ -135,6 +135,16 @@ Paging.prototype.DoEnter = function(evt, action) {
 
 
 }
+// Allow only numbers in TextBox
+Paging.prototype.DoEnterNumber = function (event) {
+	var charCode = (event.which) ? event.which : event.keyCode;
+	if (charCode > 31 && (charCode < 48 || charCode > 57))
+		return false;
+
+	return true;
+}
+
+
 
 function Paging_ElementOver(evt)
 {
