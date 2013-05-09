@@ -17,6 +17,7 @@ namespace Apollo.Age.Integration.Services
     using System.IO;
     using System.Web.Helpers;
     using Apollo.Age.Integration.Models;
+    using Fanex.Logging;
 
     /// <summary>
     /// TODO: Update summary.
@@ -73,13 +74,12 @@ namespace Apollo.Age.Integration.Services
             }
             catch (WebException webException)
             {
-                //writelog
-                Console.WriteLine(webException.ToString());
+                LogService.Error(webException.Message, webException);
+                
             }
             catch (AuthenticationException authException)
             {
-                //writelog
-                Console.WriteLine(authException.ToString());
+                LogService.Error(authException.Message, authException);
             }
             finally
             {

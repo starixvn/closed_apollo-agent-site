@@ -1,24 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web.UI;
-using Apollo.Age.BetList.Criterias;
-using Apollo.Age.BetList.Services;
-using Apollo.Age.Reports.Services;
-using Apollo.Age.Web;
-using Fanex.Age.UI;
-using Fanex.Age.UI.Components;
-using Fanex.Agent.UI._BetList;
-using Fanex.BetList.Age.BetListHTMLBuilderExt;
-using Fanex.BetList.Age.ExtTemplate;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using Fanex.BetList.Core.Factories;
-using Fanex.BetList.Core.TicketHelper;
-using Fanex.BetList.Core.Utils;
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="ViewDetail.aspx.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Kaden.Trinh" date="2013.05.08">View detail Agent Comm</change>
+// </history>
+// ---------------------------------------------------------------------------------
 
 namespace Sunplus.Agent.UI._BetList
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Web.UI;
+    using Apollo.Age.BetList.Criterias;
+    using Apollo.Age.BetList.Services;
+    using Apollo.Age.Reports.Services;
+    using Apollo.Age.Web;
+    using Fanex.Age.UI;
+    using Fanex.Age.UI.Components;
+    using Fanex.Agent.UI._BetList;
+    using Fanex.BetList.Age.BetListHTMLBuilderExt;
+    using Fanex.BetList.Age.ExtTemplate;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Factories;
+    using Fanex.BetList.Core.TicketHelper;
+    using Fanex.BetList.Core.Utils;
+
     public partial class ViewDetail_Page : TplPage
     {
         #region Define variable

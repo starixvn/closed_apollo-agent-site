@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders" date="2013.5.1">Created</change>
 //   <change who="Anders.Le" date="2013.5.7">Refactor GetCode action</change>
+//   <change who="Anders.Le" date="2013.5.9">Add log</change>
 // </history>
 
 
@@ -46,7 +47,7 @@ namespace Apollo.Age.Integration.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+        [AllowAnonymous]        
         public ActionResult GetCode(string code, string error, string state, string username, string language)
         {
             AuthModel authModel = new AuthModel();
@@ -77,6 +78,7 @@ namespace Apollo.Age.Integration.Controllers
                             }
                             else
                             {
+                                LogService.Error(string.Format("User {0} not found or authenticated user {0} and sso user {1} are not the same", authModel.Username, user.Username));
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
                             }
                         }
@@ -87,6 +89,7 @@ namespace Apollo.Age.Integration.Controllers
                     }
                     else
                     {
+                        LogService.Error("Authorization code is empty");
                         authModel.ErrorCode = ErrorCode.InvalidRequest;
                     }
                 }

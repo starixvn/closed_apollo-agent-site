@@ -52,42 +52,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\CasinoLibrary.dll" />
-    <Content Include="bin\CasinoSetting.dll" />
-    <Content Include="bin\CasinoUtility.dll" />
-    <Content Include="bin\Fanex.Age.UI.Components.dll" />
-    <Content Include="bin\Fanex.Age.UI.Components.pdb" />
-    <Content Include="bin\Fanex.Age.UI.dll" />
-    <Content Include="bin\Fanex.Caching.dll" />
-    <Content Include="bin\Fanex.Common.dll" />
-    <Content Include="bin\Fanex.Data.dll" />
-    <Content Include="bin\Fanex.Logging.dll" />
-    <Content Include="bin\Fanex.PTEngine.dll" />
-    <Content Include="bin\IBCCrypt.dll" />
-    <Content Include="bin\IBCFile.dll" />
-    <Content Include="bin\ILogger.dll" />
-    <Content Include="bin\LiveCasinoLibrary.dll" />
-    <Content Include="bin\log4net.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
-    <Content Include="bin\Microsoft.Practices.ServiceLocation.dll" />
-    <Content Include="bin\Microsoft.Practices.Unity.dll" />
-    <Content Include="bin\Microsoft.Practices.Unity.Interception.dll" />
-    <Content Include="bin\Nini.dll" />
-    <Content Include="bin\RemotingRef.dll" />
-    <Content Include="bin\SPSRemoting.dll" />
-    <Content Include="bin\Sunplus.Agent.Configurations.dll" />
-    <Content Include="bin\Sunplus.Agent.Model.dll" />
-    <Content Include="bin\Sunplus.Agent.Utilities.dll" />
-    <Content Include="bin\Sunplus.Core.Common.dll" />
-    <Content Include="bin\Sunplus.Libraries.AOP.dll" />
-    <Content Include="bin\Sunplus.Libraries.APILogger.dll" />
-    <Content Include="bin\Sunplus.Libraries.ThirdPartyTestData.dll" />
     <Content Include="bin\TplCore.dll" />
-    <Content Include="bin\UMControllerLibrary.dll" />
-    <Content Include="DateRangeSelect\Copy of DateRangeSelect.htm" />
+    <Content Include="Paging\Paging.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -95,82 +61,28 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="AnalysisReportFilter\AnalysisReportFilter.htm" />
-    <Content Include="AnalysisReportFilter\AnalysisReportFilterOnChart.htm" />
-    <Content Include="AutoCheckBox_Control\AutoCheckBox_Control.htm" />
-    <Content Include="CopyFromCheckBox_Control\CopyFromCheckBox_Control.htm" />
-    <Content Include="DateRangeSelect\DateRangeSelect.htm" />
-    <Content Include="DateTimeControl\JSCalendar\JSCalendar.htm" />
-    <Content Include="DateTimeFilter\DateTimeFilter.htm" />
-    <Content Include="ErrorMsg\ErrorMsg.htm" />
     <Content Include="ErrorPage\ErrorPage.htm" />
-    <Content Include="MatchByLeague\MatchByLeague.htm" />
-    <Content Include="PagingHeader\PagingHeader.htm" />
-    <Content Include="PagingHeader\Paging\Paging.htm" />
-    <Content Include="PopupMessage\PopupMessage.htm" />
-    <Content Include="PT_Control\PT_Control.htm" />
-    <Content Include="RefreshCountDown\RefreshCountDown.htm" />
-    <Content Include="SearchUserName_Control\SearchUserName_Control.htm" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnalysisReportFilter\AnalysisReportFilter.cs" />
-    <Compile Include="AnalysisReportFilter\AnalysisReportFilter.htm.cs" />
-    <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.cs" />
-    <Compile Include="AnalysisReportFilter\AnalysisReportFilterOnChart.htm.cs" />
     <Compile Include="Formater.cs" />
-    <Compile Include="UrlProcessor.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Content Include="App_Code\TplCore\RefreshCountDown\RefreshCountDown.htm.cs" />
-    <Compile Include="App_GlobalResources\Lang.designer.cs">
-      <DependentUpon>Lang.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="AutoCheckBox_Control\AutoCheckBox_Control.cs" />
-    <Compile Include="AutoCheckBox_Control\AutoCheckBox_Control.htm.cs" />
-    <Compile Include="CopyFromCheckBox_Control\CopyFromCheckBox_Control.cs" />
-    <Compile Include="CopyFromCheckBox_Control\CopyFromCheckBox_Control.htm.cs" />
-    <Compile Include="DateRangeSelect\DateRangeSelect.htm.cs" />
-    <Compile Include="DateRangeSelect\DateRangeSelect_Control.cs" />
-    <Compile Include="DateTimeControl\Calendar\Calendar_Control.cs" />
-    <Compile Include="DateTimeControl\JSCalendar\Calendar_Control.cs" />
-    <Compile Include="DateTimeControl\JSCalendar\JSCalendar.htm.cs" />
-    <Compile Include="DateTimeFilter\DateTimeFilter.cs" />
-    <Compile Include="DateTimeFilter\DateTimeFilter.htm.cs" />
-    <Compile Include="ErrorMsg\ErrorMsg.htm.cs" />
-    <Compile Include="ErrorMsg\ErrorMsg_Control.cs" />
-    <Compile Include="ErrorPage\ErrorPage.cs" />
-    <Compile Include="ErrorPage\ErrorPage.htm.cs" />
     <Compile Include="HtmlGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MatchByLeague\MatchByLeague.htm.cs" />
-    <Compile Include="PagingHeader\PagingHeader.htm.cs" />
-    <Compile Include="PagingHeader\Paging\Paging.htm.cs" />
-    <Compile Include="PagingHeader\Paging\Paging_Control.cs" />
-    <Compile Include="PopupMessage\PopupMessage.cs" />
-    <Compile Include="PopupMessage\PopupMessage.htm.cs" />
-    <Compile Include="PT_Control\PT_Control.cs" />
-    <Compile Include="PT_Control\PT_Control.htm.cs" />
-    <Compile Include="RefreshCountDown\RefreshCountDown.htm.cs" />
-    <Compile Include="RefreshCountDown\RefreshCountDown_Control.cs" />
-    <Compile Include="RefreshLeague\RefreshLeague.cs" />
-    <Compile Include="SearchUserName_Control\SearchUserName_Control.cs" />
-    <Compile Include="SearchUserName_Control\SearchUserName_Control.htm.cs" />
+    <Compile Include="Paging\Paging.htm.cs" />
+    <Compile Include="Paging\Paging_Control.cs" />
+    <Compile Include="UrlProcessor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorPage\ErrorPage.cs" />
+    <Compile Include="ErrorPage\ErrorPage.htm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="App_GlobalResources\Lang.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Lang.designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PopupAd\" />
-    <Folder Include="ShowHideColumn\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>Apollo.Age.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>

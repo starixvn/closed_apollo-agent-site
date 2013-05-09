@@ -5183,6 +5183,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C.Lock.
+        /// </summary>
+        public static string lblCLock {
+            get {
+                return ResourceManager.GetString("lblCLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Closed.
         /// </summary>
         public static string lblClosed {

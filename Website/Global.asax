@@ -47,11 +47,6 @@
 		TplCore.TplSettings.UrlVersion = ConfigurationManager.AppSettings["JsVersion"];
 	}
 
-	void Application_End(object sender, EventArgs e)
-	{
-		//  Code that runs on application shutdown
-	}
-
 	void Application_Error(object sender, EventArgs e)
 	{
 		// Code that runs when an unhandled error occurs
@@ -61,16 +56,18 @@
 			return;
 		}
 
-		string message = ex.Message +
-						"\r\nSource: " + ex.Source +
-						"\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-						"\r\nForm: " + Request.Form.ToString() +
-						"\r\nQueryString: " + Request.QueryString.ToString() +
-						"\r\nTargetSite: " + ex.TargetSite +
-						"\r\nStackTrace: " + ex.StackTrace;
+        if (!Request.IsLocal)
+        {
+            string message = ex.Message +
+                            "\r\nSource: " + ex.Source +
+                            "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+                            "\r\nForm: " + Request.Form.ToString() +
+                            "\r\nQueryString: " + Request.QueryString.ToString() +
+                            "\r\nTargetSite: " + ex.TargetSite +
+                            "\r\nStackTrace: " + ex.StackTrace;
 
-		Logs.Write(message);
-
+            Fanex.Logging.LogService.Error(message);
+        }
 	}
 
 	void Application_AcquireRequestState(object sender, EventArgs e)
@@ -91,21 +88,6 @@
 			Fanex.Logging.LogService.Error(ex.Message, ex);
 		}
 
-	}
-
-	void Application_BeginRequest(object sender, EventArgs e)
-	{
-
-	}
-
-	void Session_Start(object sender, EventArgs e)
-	{
-
-	}
-
-	void Session_End(object sender, EventArgs e)
-	{
-
-	}
+	}	
 
 </script>

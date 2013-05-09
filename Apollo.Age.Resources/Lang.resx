@@ -4460,7 +4460,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblPleaseCheckConstrainMaxMin" xml:space="preserve">
     <value>Given Share Value is lower than Min Given Value, please Use Advanced Mode to see it</value>
-    </data>
+  </data>
   <data name="CaptchaInstruction" xml:space="preserve">
     <value>Click on the captcha picture to get a new one</value>
   </data>
@@ -4475,5 +4475,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="SignOut" xml:space="preserve">
     <value>Sign Out</value>
+  </data>
+  <data name="lblCLock" xml:space="preserve">
+    <value>C.Lock</value>
   </data>
 </root>
