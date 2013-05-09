@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseController.cs" />
-    <Compile Include="AuthController.cs" />
+    <Compile Include="InternalController.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Filters\BelongCheckingAttribute.cs" />
     <Compile Include="HomeController.cs" />

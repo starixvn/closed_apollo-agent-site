@@ -188,7 +188,7 @@ if (typeof jQuery != 'undefined') {
             },
             signOut: function () {
                 
-                parent.location.href = APOLLO.resolveUrl('~/Auth/SignOut');
+                parent.location.href = APOLLO.resolveUrl('~/Internal/SignOut');
                 
             },
             init: function () {
