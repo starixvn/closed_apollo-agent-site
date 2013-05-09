@@ -84,12 +84,12 @@ if (typeof jQuery != 'undefined') {
                     };
 
                     var url = APOLLO.resolveUrl('CustomerSetting/');
-                    if (typeof (memberId) != 'undefined') {
-                        dataObject.memberId = memberId;
+                    if (typeof (DEFAULT_OBJECT.memberId) != 'undefined') {
+                        dataObject.memberId = DEFAULT_OBJECT.memberId;
                         url += "UpdateMemberSetting";
                     }
-                    else if (typeof (agentId) != 'undefined') {
-                        dataObject.agentId = agentId;
+                    else if (typeof (DEFAULT_OBJECT.agentId) != 'undefined') {
+                        dataObject.agentId = DEFAULT_OBJECT.agentId;
                         url += "UpdateAgentSetting";
                     }
 
