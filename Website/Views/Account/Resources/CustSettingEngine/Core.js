@@ -418,8 +418,8 @@ Spinner = function (container, options) {
     //        upButton.style.right = downButton.style.right = ((options.minWidth / 2) - (Fanex.CustSetting.SPINNER_BOX_WIDTH / 2) - 10) + "px";
     //    }
     // add the listeners
-    this.addEventListener(this.input, 'mousewheel', this.handleMouseWheel, [], true);
-    this.addEventListener(this.input, 'DOMMouseScroll', this.handleMouseWheel, [], true);
+    //this.addEventListener(this.input, 'mousewheel', this.handleMouseWheel, [], true);
+    //this.addEventListener(this.input, 'DOMMouseScroll', this.handleMouseWheel, [], true);
     this.addEventListener(this.input, 'keydown', this.handleKeyDown, [], true);
     this.addEventListener(this.input, 'keypress', this.handleKeyPress, [], true);
     this.addEventListener(this.input, 'keyup', this.stop);
