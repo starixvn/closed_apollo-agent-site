@@ -4479,4 +4479,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblCLock" xml:space="preserve">
     <value>C.Lock</value>
   </data>
+  <data name="allowupdates" xml:space="preserve">
+    <value>Allow Updates</value>
+  </data>
 </root>
