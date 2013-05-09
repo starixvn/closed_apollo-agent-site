@@ -9,12 +9,6 @@
 
 	<script src="<%= Page.ResolveUrl("~/_GlobalResources/Js/head.min.js")%>" type="text/javascript"></script>
 	<link href="<%= Page.ResolveUrl("~/_GlobalResources/Css/Index.less")%>" rel="stylesheet" type="text/css" />
-
-	<script type="text/javascript">
-		// For caching in child frames
-		window.cachePage = new Array();
-		window.cacheData = new Array();
-	</script>
 </head>
 <body>
 	

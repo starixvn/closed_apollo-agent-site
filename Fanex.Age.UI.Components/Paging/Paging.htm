@@ -15,7 +15,7 @@
 
     
         {static:Apollo.Age.Resources.Lang.tpage}
-        <input id="txt{id}" type="text" class="pagingCurrent" maxlength="4" size="2" value="{currentindex}" onkeydown="{id}.DoEnter(event, '{id}.Go()')" />
+        <input id="txt{id}" type="text" class="pagingCurrent" maxlength="4" size="2" value="{currentindex}" onkeypress="return {id}.DoEnterNumber(event);" onkeydown="{id}.DoEnter(event, '{id}.Go()')" />
         {static:Apollo.Age.Resources.Lang.of} {pagecount}
     
         <input {disabledNext} id="btnNext{id}" type="button" onclick="{id}.Move(1)" class="icon pagingNext" />
