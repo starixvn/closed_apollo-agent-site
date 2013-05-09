@@ -62,7 +62,9 @@ namespace Apollo.Age.Integration.Configurations
             set { this["AuthorizeUrl"] = value; }
         }
 
-        //[RegexStringValidator(UrlPattern)]
+        /// <summary>
+        /// The url client submit to in order to get authenitcation token
+        /// </summary>
         [ConfigurationProperty("TokenUrl", IsRequired = true)]
         public string TokenUrl
         {
@@ -70,6 +72,9 @@ namespace Apollo.Age.Integration.Configurations
             set { this["TokenUrl"] = value; }
         }
 
+        /// <summary>
+        /// The redirect url required by authorization server
+        /// </summary>
         [ConfigurationProperty("RedirectUri", IsRequired = true)]
         public string RedirectUri
         {
@@ -77,11 +82,24 @@ namespace Apollo.Age.Integration.Configurations
             set { this["RedirectUri"] = value; }
         }
 
+        /// <summary>
+        /// Src path to TGP script which handle the inital step of sso
+        /// </summary>
         [ConfigurationProperty("TgpScriptSrc", IsRequired = true)]
         public string TgpScriptSrc
         {
             get { return (string)this["TgpScriptSrc"]; }
             set { this["TgpScriptSrc"] = value; }
+        }
+
+        /// <summary>
+        /// The url user will be redirected to after sso sucessfull login
+        /// </summary>
+        [ConfigurationProperty("DefaultUrl", IsRequired = true)]
+        public string DefaultUrl
+        {
+            get { return (string)this["DefaulUrl"]; }
+            set { this["DefaultUrl"] = value; }
         }
     }
 }
