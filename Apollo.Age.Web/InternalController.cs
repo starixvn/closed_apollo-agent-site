@@ -62,50 +62,7 @@ namespace Apollo.Age.Web
             _userService = new UserService();
         }
 
-        #endregion Ctors
-
-        #region SignIn
-
-        //[HttpGet]
-        //public ActionResult SignIn()
-        //{
-        //    if (Request.IsAjaxRequest())
-        //    {
-        //        return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
-        //    }
-
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult SignIn(SignInViewModel model)
-        //{
-        //    if (Request.IsAjaxRequest())
-        //    {
-        //        return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = _userService.GetUserByUsername(model.Username);
-
-        //        if (user != null)
-        //        {
-        //            //Session[Constants.APOLLO_CURRENT_SESSION_KEY] = new CurrentSession(user);
-        //            this.CurrentSession = new CurrentSession(user);
-
-        //            FormsAuthentication.RedirectFromLoginPage(user.Username, model.RememberMe);
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("Username", USER_NOT_FOUND_MSG);
-        //        }
-        //    }
-
-        //    return View();
-        //}
-
-        #endregion SignIn
+        #endregion Ctors               
 
         #region SignIn (for CSD login)
 
