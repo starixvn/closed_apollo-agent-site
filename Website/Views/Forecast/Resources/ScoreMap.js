@@ -20,8 +20,8 @@ if (typeof jQuery != 'undefined') {
             resigterEvents: function () {
                 $("#box_header").on("click", "#RefreshLeagues", function () {
                     var url = SCOREMAP.baseLink + 'ScoreMapLeagues?currentLeagueId=' + $('#ddlLeague').val();
-                    if (currentMainShareHolderId > 0) {
-                        url += '&mainShareHolderId=' + currentMainShareHolderId;
+                    if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                        url += '&mainShareHolderId=' + DEFAULT_LAYOUT.currentMainShareHolderId;
                     }
                     $.get(url, function (contentView) {
                         $("#selLeague").html(contentView);
@@ -30,12 +30,12 @@ if (typeof jQuery != 'undefined') {
 
                 $("#dSelMatch").click(function () {
                     var url = SCOREMAP.baseLink + 'ScoreMapMatch?leagueId=' + $('#ddlLeague').val();
-                    if (currentMainShareHolderId > 0) {
-                        url += '&mainShareHolderId=' + currentMainShareHolderId;
+                    if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                        url += '&mainShareHolderId=' + DEFAULT_LAYOUT.currentMainShareHolderId;
                     }
                     $.get(url, function (contentView) {
                         $("#BoxMatchWL").replaceWith(contentView);
-                        if (currentMainShareHolderId > 0) {
+                        if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
                             $("#BoxMatchWL").css("top", "124px");
                         }
                         SCOREMAP.registerCheckAll("#chLCheckAll", ".match-item");
@@ -99,8 +99,8 @@ if (typeof jQuery != 'undefined') {
                 var url = SCOREMAP.baseLink + 'ScoreMapResult?matchIds=' + $('#match-ids').val()
             + '&liveBetTypes=' + betTypesLive
             + '&deadBallBetTypes=' + betTypesDead;
-                if (currentMainShareHolderId > 0) {
-                    url += '&mainShareHolderId=' + currentMainShareHolderId;
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                    url += '&mainShareHolderId=' + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
                 $.get(url, function (contentView) {
                     //// Hide Loading and Hide Message
@@ -135,8 +135,8 @@ if (typeof jQuery != 'undefined') {
                     var url = SCOREMAP.baseLink + 'ScoreMapResult?matchIds=' + attrMatchId
                     + '&liveBetTypes=' + SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-live:checked'))
                     + '&deadBallBetTypes=' + SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
-                    if (currentMainShareHolderId > 0) {
-                        url += '&mainShareHolderId=' + currentMainShareHolderId;
+                    if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                        url += '&mainShareHolderId=' + DEFAULT_LAYOUT.currentMainShareHolderId;
                     }
                     var matchId = "#RefreshContent" + attrMatchId;
                     //RefreshContent
@@ -197,7 +197,7 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
-        if (currentMainShareHolderId > 0) {
+        if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
             $("#ddlMainShareHolder").change(function () {
                 var $this = $(this);
                 var markIndex = document.location.href.indexOf('?');

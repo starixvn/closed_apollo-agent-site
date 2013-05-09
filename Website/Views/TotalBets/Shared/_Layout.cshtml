@@ -42,8 +42,12 @@
     <script src="~/_Components/RefreshCountDown/RefreshCountDown.js" type="text/javascript"></script>
     <script src="~/Views/TotalBets/Resources/TotalBets.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var currentMainShareHolderId = @(currentMainShareHolderId);
-        var currentActionLink = '@Url.Action(null)';
+        var DEFAULT_LAYOUT = function(){
+            return {
+                currentMainShareHolderId : @(currentMainShareHolderId),
+                currentActionLink: '@Url.Action(null)'
+            };
+        }();
     </script>
     @RenderSection("scripts", required: false)
 </body>

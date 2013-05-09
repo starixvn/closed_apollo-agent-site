@@ -2,9 +2,9 @@
 if (typeof jQuery != 'undefined') {
     var FORECASTBYMATCH = function ($) {
         return {
-            matchId: matchId,
-            betType: betType,
-            currentScore: currentScore,
+            matchId: DEFAULT_OBJECT.matchId,
+            betType: DEFAULT_OBJECT.betType,
+            currentScore: DEFAULT_OBJECT.currentScore,
             contentLink: APOLLO.resolveUrl('Forecast/FORECASTBYMATCHContent'),
             init: function () {
                 parent.$(".ui-dialog .ui-dialog-title").text("FORECAST");
@@ -16,8 +16,8 @@ if (typeof jQuery != 'undefined') {
                 var url = FORECASTBYMATCH.contentLink + '?matchId=' + FORECASTBYMATCH.matchId
         + '&betType=' + FORECASTBYMATCH.betType
         + '&currentScore=' + FORECASTBYMATCH.currentScore;
-                if (currentMainShareHolderId > 0) {
-                    url += '&mainShareHolderId=' + currentMainShareHolderId;
+                if (DEFAULT_OBJECT.currentMainShareHolderId > 0) {
+                    url += '&mainShareHolderId=' + DEFAULT_OBJECT.currentMainShareHolderId;
                 }
                 $.get(url, function (contentView) {
                     $("#forecast-body").html(contentView);
@@ -31,10 +31,10 @@ if (typeof jQuery != 'undefined') {
                     var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
             + '&betType=' + $this.attr("bet-type")
             + '&type=BettypeMatch'
-            + '&leagueName=' + leagueName);
+            + '&leagueName=' + DEFAULT_OBJECT.leagueName);
                     parent.$(".ui-dialog .ui-dialog-title").text("BET LIST");
-                    if (currentMainShareHolderId > 0) {
-                    	url += "&mainShareHolderId=" + currentMainShareHolderId +"&isForecast=true";
+                    if (DEFAULT_OBJECT.currentMainShareHolderId > 0) {
+                    	url += "&mainShareHolderId=" + DEFAULT_OBJECT.currentMainShareHolderId +"&isForecast=true";
                     }
                     location.href = url;
                 });
