@@ -56,7 +56,7 @@
 		// Logging
 		Exception ex = Server.GetLastError().GetBaseException();
 
-		if (!Request.IsLocal)
+		//if (!Request.IsLocal)
 		{
 			string message = ex.Message +
 				"\r\nSource: " + ex.Source +
@@ -78,8 +78,8 @@
 			errorCode = serverError.GetHttpCode().ToString();
 		}
 
-		Server.ClearError();
-		Server.Transfer("~/Error.aspx?err=" + errorCode);
+        //Server.ClearError();
+        //Server.Transfer("~/Error.aspx?err=" + errorCode);
 	}
 
 	void Application_AcquireRequestState(object sender, EventArgs e)

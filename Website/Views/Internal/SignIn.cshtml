@@ -36,7 +36,7 @@
         }
         <p>
        
-            <label for="Language">Langues</label>
+            @Html.LabelFor(m=>m.Language)
             @Html.DropDownListFor(m => m.Language, Model.Languages)
         </p>
         if (!ViewData.ModelState.IsValid)
@@ -50,7 +50,7 @@
 </div>
 @section scripts {
     <script type="text/javascript">
-
+        
         window.onload = function () {
             document.getElementById('img-captcha').onclick = function () {
                 window.location.reload();
