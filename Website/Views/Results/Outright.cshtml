@@ -63,8 +63,12 @@
 
         if (Model.SportList != null && Model.SportList.Any())
         {
-    <div id="resultContainer">
-    </div>
+            <div id="resultContainer">
+            </div>
+        }
+        else
+        {
+            <div class="no-data">@Apollo.Age.Resources.Lang.noInfo</div>
         }
 }
 @section scripts

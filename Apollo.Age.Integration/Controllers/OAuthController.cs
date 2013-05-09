@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders" date="2013.5.1">Created</change>
 //   <change who="Anders.Le" date="2013.5.7">Refactor GetCode action</change>
+//   <change who="Anders.Le" date="2013.5.9">Add log</change>
 // </history>
 
 
