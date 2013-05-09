@@ -15,12 +15,57 @@ namespace Apollo.Age.Criterias
     using System.Linq;
     using System.Text;
     using Fanex.NAP.Framework.Data;
+    using Apollo.Age.Enumerations;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class GetAllMainShareHolderCriteria : CriteriaBase
     {
+        public GetAllMainShareHolderCriteria()
+        {
+        }
+
+        public GetAllMainShareHolderCriteria(BetTypes betType)
+        {
+            _betTypeEnum = betType;
+        }
+
+        public string Bettypes {
+            get {
+                if (!string.IsNullOrEmpty(_betType))
+                {
+                    return _betType;
+                }
+                switch (_betTypeEnum)
+                {
+                    case BetTypes.Handicap:
+                        return "1,3,7,8";
+                    case BetTypes.Total_Goal: 
+                        return "6";
+                    case BetTypes.Money_Line:
+                        return "20,21";
+                    case BetTypes.Odd_Even:
+                        return "2,5,12,15,123";
+                    case BetTypes.HT_FT:
+                        return "16";
+                    case BetTypes.Draw_No_Bet:
+                        return "25,121,122";
+                    case BetTypes.First_Goal_Last_Goal:
+                        return "14";
+                    case BetTypes.Outright:
+                        return "10";
+                }
+                return "1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 15, 20, 21, 24, 25, 26, 27, 28, 30, 121, 122, 123, 9, 29, 10";
+            }
+            set
+            {
+                _betType = value;
+            }
+        }
+        private string _betType;
+        private BetTypes _betTypeEnum;
+
         public override string GetSettingKey()
         {
             return "Age_Agent_GetAllMainShareHolder";
