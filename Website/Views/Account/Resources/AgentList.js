@@ -197,6 +197,9 @@ var AGENTLIST = function ($) {
                     }
 
                 }
+                else {
+                    status = 1;
+                }
                 counter++;
                 var currentRow = {
                     Columns:
