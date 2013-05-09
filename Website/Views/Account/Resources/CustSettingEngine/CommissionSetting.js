@@ -317,7 +317,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         header.className = "pt-grid-header";
         var saveButton = document.createElement("SPAN");
         saveButton.className = "section-info";
-        saveButton.id = (context.TargetRoleId == Fanex.CustSetting.RoleType.Member ? "customer-" : "agent-") + "commission-info-button" + (context.IsSimpleMode ? "" : "-adv");
+        saveButton.id = (context.TargetRoleId == Fanex.CustSetting.RoleType.Member ? "member-" : "agent-") + "commission-info-button" + (context.IsSimpleMode ? "" : "-adv");
         header.appendChild(saveButton);
         container.appendChild(header);
 
