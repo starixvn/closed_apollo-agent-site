@@ -179,7 +179,7 @@ namespace Apollo.Age.Web
 
                 if (agent != null)
                 {
-                    agent.IsMaster = false; 
+                    //agent.IsMaster = true; 
 
                     this.CurrentSession = new CurrentSession(agent, csdAdminName);
 
