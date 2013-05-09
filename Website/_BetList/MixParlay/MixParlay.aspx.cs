@@ -10,7 +10,6 @@
 
 namespace Sunplus.Agent.UI._BetList.MixParlay
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
@@ -18,12 +17,11 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Fanex.Age.UI;
-    using Fanex.Age.UI.Components;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-
+    using Fanex.Age.UI.Components;
     public partial class MixParlay_Page : TplPage
     {
         DataTable betListData = null;

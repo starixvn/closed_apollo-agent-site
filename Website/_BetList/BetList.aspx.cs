@@ -330,7 +330,7 @@ namespace Sunplus.Agent.UI._BetList
 
         private void BoxMainShareholder()
         {
-            tpl.MainShareHolder.option_agent = HtmlGenerator.ComboBox("ddlMainShareHolder", loggedId.ToString(), this.CreateMainShareholderData(), "value", "text", null, 280);
+            tpl.MainShareHolder.option_agent = HtmlGenerator.ComboBox("ddlMainShareHolder", mainShareHolderId.ToString(), this.CreateMainShareholderData(), "value", "text", null, 280);
         }
 
         #endregion Box Main Shareholder

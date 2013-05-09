@@ -47,7 +47,7 @@ AGE.prototype.Scrolling = function () {
     if (age.scrollerPaused) return;
 
     if (age.scroller_left + age.scroller_width < -5) {
-        age.scroller_left = age.maskWidth + 5;
+        age.scroller_left = age.maskWidth - 90;
         age.scroller_width = parseInt(age.topnews.offsetWidth);
     }
 
