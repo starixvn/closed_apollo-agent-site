@@ -1,4 +1,6 @@
-﻿@model Apollo.Age.Integration.Models.AuthModel
+﻿@using Apollo.Age.Integration.Configurations;
+
+@model Apollo.Age.Integration.Models.AuthModel
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,8 +8,9 @@
 </head>
 <body>
     @if (Model != null && Model.IsValid)
-    {               
-        @Html.Hidden("url", Url.Content("~/Index.aspx"));
+    {       
+        // Sso sucessfully         
+        @Html.Hidden("url", Url.Content(OAuthSettings.Settings.DefaultUrl));
     }
     else
     {
