@@ -119,7 +119,7 @@ namespace Apollo.Age.Web
                 }
             }
 
-            return View();
+            return View(new InternalSignInViewModel());
         }
 
         [HttpGet]
