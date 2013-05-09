@@ -1934,10 +1934,10 @@
     <value>TF</value>
   </data>
   <data name="mainmenu" xml:space="preserve">
-    <value>Main menu</value>
+    <value>Menu</value>
   </data>
   <data name="userinfo" xml:space="preserve">
-    <value>Account Info</value>
+    <value>Account</value>
   </data>
   <data name="indexname" xml:space="preserve">
     <value>Index Name</value>
