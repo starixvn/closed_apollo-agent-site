@@ -26,47 +26,47 @@ namespace Fanex.Age.UI.Components
 			public string rowcount = "{rowcount}";
 			protected static string s5 = "\" pagecount=\"";
 			public string pagecount = "{pagecount}";
-			protected static string s6 = "\"><input ";
-			public string disabledFirst = "{disabledFirst}";
-			protected static string s7 = " id=\"btnFirst";
-			protected string t0_id;
-			protected static string s8 = "\" type=\"button\" onclick=\"";
-			protected string t1_id;
-			protected static string s9 = ".First()\" class=\"icon pagingFirst\" /><input ";
-			public string disabledPrev = "{disabledPrev}";
-			protected static string s10 = " id=\"btnPrev";
-			protected string t2_id;
-			protected static string s11 = "\" type=\"button\" onclick=\"";
-			protected string t3_id;
-			protected static string s12 = ".Move(-1)\" class=\"icon pagingPrev\" /><span class=\"pagingSeperator\"></span>";
-			protected static string s13{get{return Apollo.Age.Resources.Lang.tpage;}}
-			protected static string s14 = "<input id=\"txt";
-			protected string t4_id;
-			protected static string s15 = "\" type=\"text\" class=\"pagingCurrent\" maxlength=\"4\" size=\"2\" value=\"";
-			protected string t5_currentindex;
-			protected static string s16 = "\" onkeydown=\"";
-			protected string t6_id;
-			protected static string s17 = ".DoEnter(event, '";
-			protected string t7_id;
-			protected static string s18 = ".Go()')\" />";
-			protected static string s19{get{return Apollo.Age.Resources.Lang.of;}}
-			protected static string s20 = " ";
-			protected string t8_pagecount;
-			protected static string s21 = "<span class=\"pagingSeperator\"></span><input ";
-			public string disabledNext = "{disabledNext}";
-			protected static string s22 = " id=\"btnNext";
-			protected string t9_id;
-			protected static string s23 = "\" type=\"button\" onclick=\"";
-			protected string t10_id;
-			protected static string s24 = ".Move(1)\" class=\"icon pagingNext\" /><input ";
-			public string disabledLast = "{disabledLast}";
-			protected static string s25 = " id=\"btnLast";
-			protected string t11_id;
-			protected static string s26 = "\" type=\"button\" onclick=\"";
-			protected string t12_id;
-			protected static string s27 = ".Last()\" class=\"icon pagingLast\" />";
+			protected static string s6 = "\">";
 			public Paging_SelPageSize_Block SelPageSize = new Paging_SelPageSize_Block();
-			protected static string s28 = "</div><script type=\"text/javascript\">var ";
+			protected static string s7 = "<input ";
+			public string disabledFirst = "{disabledFirst}";
+			protected static string s8 = " id=\"btnFirst";
+			protected string t0_id;
+			protected static string s9 = "\" type=\"button\" onclick=\"";
+			protected string t1_id;
+			protected static string s10 = ".First()\" class=\"icon pagingFirst\" /><input ";
+			public string disabledPrev = "{disabledPrev}";
+			protected static string s11 = " id=\"btnPrev";
+			protected string t2_id;
+			protected static string s12 = "\" type=\"button\" onclick=\"";
+			protected string t3_id;
+			protected static string s13 = ".Move(-1)\" class=\"icon pagingPrev\" />";
+			protected static string s14{get{return Apollo.Age.Resources.Lang.tpage;}}
+			protected static string s15 = "<input id=\"txt";
+			protected string t4_id;
+			protected static string s16 = "\" type=\"text\" class=\"pagingCurrent\" maxlength=\"4\" size=\"2\" value=\"";
+			protected string t5_currentindex;
+			protected static string s17 = "\" onkeydown=\"";
+			protected string t6_id;
+			protected static string s18 = ".DoEnter(event, '";
+			protected string t7_id;
+			protected static string s19 = ".Go()')\" />";
+			protected static string s20{get{return Apollo.Age.Resources.Lang.of;}}
+			protected static string s21 = " ";
+			protected string t8_pagecount;
+			protected static string s22 = "<input ";
+			public string disabledNext = "{disabledNext}";
+			protected static string s23 = " id=\"btnNext";
+			protected string t9_id;
+			protected static string s24 = "\" type=\"button\" onclick=\"";
+			protected string t10_id;
+			protected static string s25 = ".Move(1)\" class=\"icon pagingNext\" /><input ";
+			public string disabledLast = "{disabledLast}";
+			protected static string s26 = " id=\"btnLast";
+			protected string t11_id;
+			protected static string s27 = "\" type=\"button\" onclick=\"";
+			protected string t12_id;
+			protected static string s28 = ".Last()\" class=\"icon pagingLast\" /></div><script type=\"text/javascript\">var ";
 			protected string t13_id;
 			protected static string s29 = " = new Paging('";
 			protected string t14_id;
@@ -90,45 +90,45 @@ namespace Fanex.Age.UI.Components
 					bd.Append(s5);
 					bd.Append(pagecount);
 					bd.Append(s6);
-					bd.Append(disabledFirst);
+					if(null != SelPageSize) SelPageSize.ToString(ref bd);
 					bd.Append(s7);
-					bd.Append(id);
+					bd.Append(disabledFirst);
 					bd.Append(s8);
 					bd.Append(id);
 					bd.Append(s9);
-					bd.Append(disabledPrev);
-					bd.Append(s10);
 					bd.Append(id);
+					bd.Append(s10);
+					bd.Append(disabledPrev);
 					bd.Append(s11);
 					bd.Append(id);
 					bd.Append(s12);
+					bd.Append(id);
 					bd.Append(s13);
 					bd.Append(s14);
-					bd.Append(id);
 					bd.Append(s15);
-					bd.Append(currentindex);
-					bd.Append(s16);
 					bd.Append(id);
+					bd.Append(s16);
+					bd.Append(currentindex);
 					bd.Append(s17);
 					bd.Append(id);
 					bd.Append(s18);
+					bd.Append(id);
 					bd.Append(s19);
 					bd.Append(s20);
-					bd.Append(pagecount);
 					bd.Append(s21);
-					bd.Append(disabledNext);
+					bd.Append(pagecount);
 					bd.Append(s22);
-					bd.Append(id);
+					bd.Append(disabledNext);
 					bd.Append(s23);
 					bd.Append(id);
 					bd.Append(s24);
-					bd.Append(disabledLast);
-					bd.Append(s25);
 					bd.Append(id);
+					bd.Append(s25);
+					bd.Append(disabledLast);
 					bd.Append(s26);
 					bd.Append(id);
 					bd.Append(s27);
-					if(null != SelPageSize) SelPageSize.ToString(ref bd);
+					bd.Append(id);
 					bd.Append(s28);
 					bd.Append(id);
 					bd.Append(s29);
@@ -170,12 +170,14 @@ namespace Fanex.Age.UI.Components
 
 		public class Paging_SelPageSize_Block: Block
 		{
+			protected static string s36 = "<div class=\"itemperpage\">Page size </div>";
 			public string selPageSize = "{selPageSize}";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
+					bd.Append(s36);
 					bd.Append(selPageSize);
 				}
 				if(IsAssigned){bd.Append(Value);}
