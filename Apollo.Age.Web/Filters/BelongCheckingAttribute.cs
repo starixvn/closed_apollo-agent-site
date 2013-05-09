@@ -73,7 +73,7 @@ namespace Apollo.Age.Web.Filters
             }
             else
             {
-                response.Redirect("~/Auth/Unauthorized");
+                response.Redirect("~/Internal/Unauthorized");
             }
         }
     }
