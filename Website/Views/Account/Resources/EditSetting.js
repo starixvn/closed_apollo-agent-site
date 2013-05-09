@@ -66,7 +66,7 @@ if (typeof jQuery != 'undefined') {
                 && EDITSETTING.positionTakingElement.Validate()) {
                     var commissionSettingValue = EDITSETTING.commissionSettingElement.Save();
                     if (commissionSettingValue == null && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) {
-                        noty({ text: invalidComMessage, type: 'error', timeout: 5000 });
+                        noty({ text: Language.INVALID_COMMISSION_MESSAGE, type: 'error', timeout: 5000 });
                         return;
                     }
 

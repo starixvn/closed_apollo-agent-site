@@ -66,7 +66,11 @@
 	<script src="~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
-		var isSimpleMode = true;
+	    var DEFAULT_LAYOUT = function () {
+	        return {
+                isSimpleMode : true
+            };
+	    }();
 		var Language =
 		{
 			MIN_BET: "@(Apollo.Age.Resources.Lang.lblMinBet)",
@@ -129,9 +133,9 @@
 			SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare)",
 			SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare)",
 			INVALID_RANGE: "@(Apollo.Age.Resources.Lang.lblInvalidValueRange)",
-			OUTRANGE_SIMPLE_MODE_ERROR: "@(Apollo.Age.Resources.Lang.lblPleaseCheckConstrainMaxMin)"
+			OUTRANGE_SIMPLE_MODE_ERROR: "@(Apollo.Age.Resources.Lang.lblPleaseCheckConstrainMaxMin)",
+            INVALID_COMMISSION_MESSAGE: "@(Apollo.Age.Resources.Lang.lblInvalidGroupCommissionRange)"
 		};
-		var invalidComMessage = '@(Apollo.Age.Resources.Lang.lblInvalidGroupCommissionRange)';
 	</script>
 	@RenderSection("scripts", required: false)
 </body>
