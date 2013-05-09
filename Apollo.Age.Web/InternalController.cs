@@ -22,7 +22,7 @@ namespace Apollo.Age.Web
     using Apollo.Age.Web.ViewModels;
     using Apollo.Age.Core;
 
-    public class AuthController : Controller
+    public class InternalController : Controller
     {
         #region Const
 
@@ -37,7 +37,7 @@ namespace Apollo.Age.Web
 
         private const string CSD_ADMIN_USERNAME = "Invalid Username or Password.";
 
-        private const string CSD_SIGNIN_URL = "~/Auth/SignIn2";
+        private const string CSD_SIGNIN_URL = "~/Internal/SignIn";
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace Apollo.Age.Web
 
         #region Ctors
 
-        public AuthController()
+        public InternalController()
         {
             _userService = new UserService();
 
@@ -64,6 +64,49 @@ namespace Apollo.Age.Web
         #endregion
 
         #region SignIn
+
+        //[HttpGet]
+        //public ActionResult SignIn()
+        //{
+        //    if (Request.IsAjaxRequest())
+        //    {
+        //        return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
+        //    }
+
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult SignIn(SignInViewModel model)
+        //{
+        //    if (Request.IsAjaxRequest())
+        //    {
+        //        return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = _userService.GetUserByUsername(model.Username);
+
+        //        if (user != null)
+        //        {
+        //            //Session[Constants.APOLLO_CURRENT_SESSION_KEY] = new CurrentSession(user);
+        //            this.CurrentSession = new CurrentSession(user);
+
+        //            FormsAuthentication.RedirectFromLoginPage(user.Username, model.RememberMe);
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("Username", USER_NOT_FOUND_MSG);
+        //        }
+        //    }
+
+        //    return View();
+        //}
+
+        #endregion
+
+        #region SignIn (for CSD login)
 
         [HttpGet]
         public ActionResult SignIn()
@@ -77,50 +120,7 @@ namespace Apollo.Age.Web
         }
 
         [HttpPost]
-        public ActionResult SignIn(SignInViewModel model)
-        {
-            if (Request.IsAjaxRequest())
-            {
-                return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
-            }
-
-            if (ModelState.IsValid)
-            {
-                var user = _userService.GetUserByUsername(model.Username);
-
-                if (user != null)
-                {
-                    //Session[Constants.APOLLO_CURRENT_SESSION_KEY] = new CurrentSession(user);
-                    this.CurrentSession = new CurrentSession(user);
-
-                    FormsAuthentication.RedirectFromLoginPage(user.Username, model.RememberMe);
-                }
-                else
-                {
-                    ModelState.AddModelError("Username", USER_NOT_FOUND_MSG);
-                }
-            }
-
-            return View();
-        }
-
-        #endregion
-
-        #region SignIn2 (for CSD login)
-
-        [HttpGet]
-        public ActionResult SignIn2()
-        {
-            if (Request.IsAjaxRequest())
-            {
-                return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
-            }
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult SignIn2(SignIn2ViewModel model)
+        public ActionResult SignIn(InternalSignInViewModel model)
         {
             if (Request.IsAjaxRequest())
             {
@@ -179,9 +179,7 @@ namespace Apollo.Age.Web
 
                 if (agent != null)
                 {
-                    agent.IsMaster = false; // CSD user will be treated as a shadow account
-                    //Session[Constants.APOLLO_CURRENT_SESSION_KEY] =
-                    //    new CurrentSession(agent, Session[APOLLO_SESSION_CSDADMIN].ToString());
+                    agent.IsMaster = false; 
 
                     this.CurrentSession = new CurrentSession(agent, csdAdminName);
 
