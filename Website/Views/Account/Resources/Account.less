@@ -9,14 +9,18 @@ html, body {
 
 #tab-menu {
 	#gradient.vertical(#F8F8F8, #E5E5E5);
+	border: 1px solid @borderColor;
+	border-width: 1px 0 1px 0;
 	text-align: center;
 	.clearfix;
 	margin-top: 1px;	
+	height: 35px;
 
 	li {
 		float: left;
-		border: 1px solid @borderColor;
-		border-width: 1px 0 1px 1px;
+		border-left: 1px solid @borderColor;
+		border-width: 0 0 0 1px;
+		padding: 0 5px;
 
 		&.tab-menu, &.tab-acc, &.tab-tree {
 			&.active, &:hover {			
@@ -31,7 +35,6 @@ html, body {
 
 			&.active {		
 				border-top: 2px solid @secondColor;
-				border-bottom: 1px solid @white;
 				background-color: @white;
 						
 				a {
@@ -41,9 +44,9 @@ html, body {
 			}
 		}
 
-		&.tab-menu	{ width: 58px; }
-		&.tab-acc	{ width: 75px; }
-		&.tab-tree	{ width: 85px; }
+		&.tab-menu	{ width: auto; }
+		&.tab-acc	{ width: auto; }
+		&.tab-tree	{ width: auto; }
 
 		&:first-child { border-left: 0 }
 		&:last-child { border-right: 0 }
