@@ -46,8 +46,11 @@
         }
 
         public static bool AllowInternalUpdate
-        { 
-            return GetValue("AllowInternalUpdate") == "1";
+        {
+            get
+            {
+                return GetValue("AllowInternalUpdate") == "1";
+            }
         }
     }
 }
