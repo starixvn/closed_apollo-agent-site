@@ -11,7 +11,7 @@ namespace Apollo.Age.Web.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class SignIn2ViewModel
+    public class InternalSignInViewModel
     {
         [Required]
         public string Username { get; set; }

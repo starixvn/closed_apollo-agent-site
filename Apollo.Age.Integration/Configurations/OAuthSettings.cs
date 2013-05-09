@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.4.26">Created</change>
+//   <change who="Anders.Le" date="2013.5.9">Add default url</change>
 // </history>
 
 namespace Apollo.Age.Integration.Configurations
