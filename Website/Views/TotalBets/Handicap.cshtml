@@ -152,10 +152,17 @@
 @section scripts
 {
     <script type="text/javascript">
-        $(document).ready(function () {
-            TOTALBETS.initViewForeCastHandicap();
-            TOTALBETS.initViewBetList();
-            TOTALBETS.innitFreeHeader();
-        }).ajaxStart($.blockUI).ajaxStop($.unblockUI); ;
+        var DEFAULT_OBJECT = function () {
+            return {
+                initData: function () {
+                    TOTALBETS.initViewForeCastHandicap();
+                    TOTALBETS.initViewBetList();
+                    TOTALBETS.innitFreeHeader();
+                }
+            };
+        } ();
+        $(function () {
+            DEFAULT_OBJECT.initData();
+        });
     </script>    
 }
