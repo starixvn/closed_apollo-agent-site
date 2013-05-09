@@ -835,6 +835,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow Updates.
+        /// </summary>
+        public static string allowupdates {
+            get {
+                return ResourceManager.GetString("allowupdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are allowed to view the data within 3 months only!.
         /// </summary>
         public static string allowviewdatareport {

@@ -73,7 +73,7 @@ namespace Apollo.Age.Account.Controllers
             int special = 0;
             int maxSize = 50;
 
-            criteria.CustId = this.CurrentSession.UserId;
+            criteria.CustId = this.CurrentSession.AgentId;
             criteria.SiteId = this._messageService.GetParentSitesID(SITEID.ToString());
             criteria.Record = maxSize;
 
@@ -86,7 +86,7 @@ namespace Apollo.Age.Account.Controllers
             {
                 if (!this.CurrentSession.IsSuper)
                 {
-                    this._messageService.UpdateReadPrivateMessage(this.CurrentSession.UserId, this.CurrentSession.Username);
+                    this._messageService.UpdateReadPrivateMessage(this.CurrentSession.AgentId, this.CurrentSession.Username);
                 }
             }
 
@@ -140,7 +140,7 @@ namespace Apollo.Age.Account.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return Json(this._messageService.UpdateReadPrivateMessage(this.CurrentSession.UserId, this.CurrentSession.Username));
+                return Json(this._messageService.UpdateReadPrivateMessage(this.CurrentSession.AgentId, this.CurrentSession.Username));
             }
 
             return Json(null);
@@ -152,7 +152,7 @@ namespace Apollo.Age.Account.Controllers
             // Message type from older source code
             int messageType = 3;
 
-            int userId = this.CurrentSession.UserId;
+            int agentId = this.CurrentSession.AgentId;
             string username = this.CurrentSession.Username;
 
             object[] publicMessages = new object[3];
@@ -170,14 +170,14 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            var priMessage = this._messageService.GetTopPrivateMessage24(userId);
+            var priMessage = this._messageService.GetTopPrivateMessage24(agentId);
             if (!ReferenceEquals(priMessage, null))
             {
                 privateMessages[0] = priMessage.MessageId;
                 privateMessages[1] = priMessage.GetContent();
             }
 
-            var countPriMessage = this._messageService.CountUnreadPrivateMessage(userId);
+            var countPriMessage = this._messageService.CountUnreadPrivateMessage(agentId);
 
             return Json(new
             {

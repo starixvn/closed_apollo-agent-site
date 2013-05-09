@@ -16,11 +16,11 @@ namespace Apollo.Age.Web
     using System.IO;
     using System.Web.Mvc;
     using System.Web.Security;
+    using Apollo.Age.Core;
     using Apollo.Age.Criterias;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.ViewModels;
-    using Apollo.Age.Core;
 
     public class InternalController : Controller
     {
@@ -29,6 +29,8 @@ namespace Apollo.Age.Web
         //private const string APOLLO_CURRENT_SESSION_KEY = "Apollo.Age.Web.CurrentSession";
         private const string APOLLO_SESSION_CAPTCHA = "ApolloCaptcha";
         private const string APOLLO_SESSION_CSDADMIN = "ApolloCSDAdmin";
+        private const string APOLLO_SESSION_CSDADMIN_ALLOWEDUPDATE = "ApolloCSDAdminAllowedUpdate";
+        private const string APOLLO_SESSION_CSDADMIN_LANGUAGUE = "ApolloCSDAdminLangague";
 
         private const string INVALID_REQ_MSG = "Invalid Request.";
         private const string USER_NOT_FOUND_MSG = "User not found.";
@@ -39,13 +41,13 @@ namespace Apollo.Age.Web
 
         private const string CSD_SIGNIN_URL = "~/Internal/SignIn";
 
-        #endregion
+        #endregion Const
 
         #region Services
 
         private readonly IUserService _userService;
 
-        #endregion
+        #endregion Services
 
         protected ICurrentSession CurrentSession
         {
@@ -58,53 +60,9 @@ namespace Apollo.Age.Web
         public InternalController()
         {
             _userService = new UserService();
-
         }
 
-        #endregion
-
-        #region SignIn
-
-        //[HttpGet]
-        //public ActionResult SignIn()
-        //{
-        //    if (Request.IsAjaxRequest())
-        //    {
-        //        return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
-        //    }
-
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult SignIn(SignInViewModel model)
-        //{
-        //    if (Request.IsAjaxRequest())
-        //    {
-        //        return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = _userService.GetUserByUsername(model.Username);
-
-        //        if (user != null)
-        //        {
-        //            //Session[Constants.APOLLO_CURRENT_SESSION_KEY] = new CurrentSession(user);
-        //            this.CurrentSession = new CurrentSession(user);
-
-        //            FormsAuthentication.RedirectFromLoginPage(user.Username, model.RememberMe);
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("Username", USER_NOT_FOUND_MSG);
-        //        }
-        //    }
-
-        //    return View();
-        //}
-
-        #endregion
+        #endregion Ctors               
 
         #region SignIn (for CSD login)
 
@@ -119,7 +77,8 @@ namespace Apollo.Age.Web
             {
                 return Redirect("~/Internal/SelectAccount");
             }
-            return View();
+
+            return View(new InternalSignInViewModel());
         }
 
         [HttpPost]
@@ -149,6 +108,9 @@ namespace Apollo.Age.Web
                 if (NapUserIsValid)
                 {
                     Session[APOLLO_SESSION_CSDADMIN] = model.Username;
+                    Session[APOLLO_SESSION_CSDADMIN_ALLOWEDUPDATE] = model.AllowUpdates;
+                    Session[APOLLO_SESSION_CSDADMIN_LANGUAGUE] = model.Language;
+
                     return RedirectToAction("SelectAccount");
                 }
                 else
@@ -182,9 +144,9 @@ namespace Apollo.Age.Web
 
                 if (agent != null)
                 {
-                    //agent.IsMaster = true; 
+                    agent.IsMaster = Configurations.AppSettings.AllowInternalUpdate && Convert.ToBoolean(Session[APOLLO_SESSION_CSDADMIN_ALLOWEDUPDATE]);
 
-                    this.CurrentSession = new CurrentSession(agent, csdAdminName);
+                    this.CurrentSession = new CurrentSession(agent, csdAdminName, Session[APOLLO_SESSION_CSDADMIN_LANGUAGUE].ToString());
 
                     FormsAuthentication.RedirectFromLoginPage(agent.Username, model.RememberMe);
                 }
@@ -197,7 +159,7 @@ namespace Apollo.Age.Web
             return View();
         }
 
-        #endregion
+        #endregion SignIn (for CSD login)
 
         public ActionResult SignOut()
         {
@@ -246,7 +208,6 @@ namespace Apollo.Age.Web
         {
             var rand = new Random((int)DateTime.Now.Ticks);
             int captcha = rand.Next(1000, 9999);
-           
 
             // saves answer
             Session[APOLLO_SESSION_CAPTCHA] = captcha.ToString();
@@ -291,6 +252,6 @@ namespace Apollo.Age.Web
             return img;
         }
 
-        #endregion
+        #endregion Helpers
     }
 }
