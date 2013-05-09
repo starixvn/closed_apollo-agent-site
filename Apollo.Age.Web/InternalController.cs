@@ -25,8 +25,7 @@ namespace Apollo.Age.Web
     public class InternalController : Controller
     {
         #region Const
-
-        //private const string APOLLO_CURRENT_SESSION_KEY = "Apollo.Age.Web.CurrentSession";
+                
         private const string APOLLO_SESSION_CAPTCHA = "ApolloCaptcha";
         private const string APOLLO_SESSION_CSDADMIN = "ApolloCSDAdmin";
         private const string APOLLO_SESSION_CSDADMIN_ALLOWEDUPDATE = "ApolloCSDAdminAllowedUpdate";

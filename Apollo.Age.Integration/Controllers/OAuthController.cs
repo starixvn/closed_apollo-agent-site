@@ -20,6 +20,7 @@ namespace Apollo.Age.Integration.Controllers
     using Fanex.Logging;
     using Apollo.Age.Integration.Services;
     using Apollo.Age.Integration.Models;
+    using Apollo.Age.Core;
 
     [AllowAnonymous]
     public class OAuthController : Controller
@@ -38,6 +39,7 @@ namespace Apollo.Age.Integration.Controllers
             _authService = authService ?? new AuthenticationService();
             _userService = userService ?? new UserService();
         }
+             
 
         [AllowAnonymous]
         public ViewResult Index(string user_id, string lang)
@@ -108,6 +110,21 @@ namespace Apollo.Age.Integration.Controllers
         public ViewResult Error(string errorCode)
         {
             return View((object)errorCode);
+        }
+
+        [AllowAnonymous]
+        public ActionResult SignOut()
+        {
+            var currentSession = Session[Constants.APOLLO_CURRENT_SESSION_KEY] as CurrentSession;
+            string redirectUrl = currentSession != null && currentSession.IsCsdAdmin
+                ? "~/Internal/SignIn"
+                : FormsAuthentication.LoginUrl;
+
+            Session.Abandon();
+            Response.Cookies.Clear();
+            FormsAuthentication.SignOut();
+
+            return Redirect(redirectUrl);
         }
     }
 }
