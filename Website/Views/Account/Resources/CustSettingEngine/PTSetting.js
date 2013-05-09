@@ -791,7 +791,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 			            else {
 			                informationButton.id = "agent-";
 			            }
-			            informationButton.id += "share-setting-info-button";
+			            informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
 			            header.appendChild(informationButton);
 			            box.appendChild(header);
 			            // Each sport types
@@ -957,7 +957,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 			        else {
 			            informationButton.id = "agent-";
 			        }
-			        informationButton.id += "share-setting-info-button";
+			        informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
 			        header.appendChild(informationButton);
 			        box.appendChild(header);
 

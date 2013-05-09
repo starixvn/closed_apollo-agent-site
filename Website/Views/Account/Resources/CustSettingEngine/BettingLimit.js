@@ -246,20 +246,21 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         header.className = "pt-grid-header";
         var informationButton = document.createElement("SPAN");
         informationButton.className = "section-info";
-        if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+        if (context.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
             informationButton.id = "member-";
         }
-        else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+        else if (context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
             informationButton.id = "mainshareholder-";
         }
         else {
             informationButton.id = "agent-";
         }
-        informationButton.id += "bet-limit-info-button";
+        informationButton.id += "bet-limit-info-button" + (context.IsSimpleMode ? "" : "-adv");
+        
         header.appendChild(informationButton);
         container.appendChild(header);
 
-        if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == false) {
+        if (context.IsSimpleMode == false) {
 
             var box = document.createElement("DIV");
             // Create MinBet, MaxBet, MaxPerMatch header
