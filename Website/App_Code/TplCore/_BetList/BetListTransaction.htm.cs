@@ -26,19 +26,21 @@ namespace Fanex.Agent.UI
 			protected static string s8 = "</div><div id=\"content_main\">";
 			public BetListTransaction_Filter_Block Filter = new BetListTransaction_Filter_Block();
 			public string content = "{content}";
-			protected static string s9 = "<div id=\"dialog-details\"></div></div>";
+			protected static string s9 = "<div>";
+			public string PagingControl = "{PagingControl}";
+			protected static string s10 = "</div><div id=\"dialog-details\"></div></div>";
 			public BetListTransaction_HiddenFields_Block HiddenFields = new BetListTransaction_HiddenFields_Block();
-			protected static string s10 = "</div></form><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
-			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
-			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
-			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s17{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
-			protected static string s18 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s19{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
-			protected static string s20 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s11 = "</div></form><script src=\"";
+			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
+			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
+			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s17 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s18{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s19 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s20{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
+			protected static string s21 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -58,8 +60,9 @@ namespace Fanex.Agent.UI
 					if(null != Filter) Filter.ToString(ref bd);
 					bd.Append(content);
 					bd.Append(s9);
-					if(null != HiddenFields) HiddenFields.ToString(ref bd);
+					bd.Append(PagingControl);
 					bd.Append(s10);
+					if(null != HiddenFields) HiddenFields.ToString(ref bd);
 					bd.Append(s11);
 					bd.Append(s12);
 					bd.Append(s13);
@@ -70,6 +73,7 @@ namespace Fanex.Agent.UI
 					bd.Append(s18);
 					bd.Append(s19);
 					bd.Append(s20);
+					bd.Append(s21);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -84,61 +88,61 @@ namespace Fanex.Agent.UI
 
 		public class BetListTransaction_Filter_Block: Block
 		{
-			protected static string s21 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label>";
-			protected static string s22{get{return Apollo.Age.Resources.Lang.from;}}
-			protected static string s23 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
+			protected static string s22 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label>";
+			protected static string s23{get{return Apollo.Age.Resources.Lang.from;}}
+			protected static string s24 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
-			protected static string s24 = "\"mindate=\"";
+			protected static string s25 = "\"mindate=\"";
 			public string valueMinDate = "{valueMinDate}";
-			protected static string s25 = "\" maxdate=\"";
+			protected static string s26 = "\" maxdate=\"";
 			public string valueMaxDate = "{valueMaxDate}";
-			protected static string s26 = "\" /><img src=\"";
-			protected static string s27{get{return AbsoluteUrl("_GlobalResources/Css/img/cal/calendar_10.png");}}
-			protected static string s28 = "\" class=\"img-calendar\"></div></div><div class=\"cell\"><div class=\"label\"><label>";
-			protected static string s29{get{return Apollo.Age.Resources.Lang.to;}}
-			protected static string s30 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
+			protected static string s27 = "\" /><img src=\"";
+			protected static string s28{get{return AbsoluteUrl("_GlobalResources/Css/img/cal/calendar_10.png");}}
+			protected static string s29 = "\" class=\"img-calendar\"></div></div><div class=\"cell\"><div class=\"label\"><label>";
+			protected static string s30{get{return Apollo.Age.Resources.Lang.to;}}
+			protected static string s31 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
 			public string valueToDate = "{valueToDate}";
-			protected static string s31 = "\"mindate=\"";
+			protected static string s32 = "\"mindate=\"";
 			protected string t1_valueMinDate;
-			protected static string s32 = "\" maxdate=\"";
+			protected static string s33 = "\" maxdate=\"";
 			protected string t2_valueMaxDate;
-			protected static string s33 = "\" /><img src=\"";
-			protected static string s34{get{return AbsoluteUrl("_GlobalResources/Css/img/cal/calendar_10.png");}}
-			protected static string s35 = "\" class=\"img-calendar\"></div></div>";
+			protected static string s34 = "\" /><img src=\"";
+			protected static string s35{get{return AbsoluteUrl("_GlobalResources/Css/img/cal/calendar_10.png");}}
+			protected static string s36 = "\" class=\"img-calendar\"></div></div>";
 			public BetListTransaction_Filter_User_Block User = new BetListTransaction_Filter_User_Block();
-			protected static string s36 = "<div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
-			protected static string s37{get{return Apollo.Age.Resources.Lang.Generate;}}
-			protected static string s38 = "\"></div></div></div></div>";
+			protected static string s37 = "<div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
+			protected static string s38{get{return Apollo.Age.Resources.Lang.Generate;}}
+			protected static string s39 = "\"></div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s21);
 					bd.Append(s22);
 					bd.Append(s23);
-					bd.Append(valueFromDate);
 					bd.Append(s24);
-					bd.Append(valueMinDate);
+					bd.Append(valueFromDate);
 					bd.Append(s25);
-					bd.Append(valueMaxDate);
+					bd.Append(valueMinDate);
 					bd.Append(s26);
+					bd.Append(valueMaxDate);
 					bd.Append(s27);
 					bd.Append(s28);
 					bd.Append(s29);
 					bd.Append(s30);
-					bd.Append(valueToDate);
 					bd.Append(s31);
-					bd.Append(valueMinDate);
+					bd.Append(valueToDate);
 					bd.Append(s32);
-					bd.Append(valueMaxDate);
+					bd.Append(valueMinDate);
 					bd.Append(s33);
+					bd.Append(valueMaxDate);
 					bd.Append(s34);
 					bd.Append(s35);
-					if(null != User) User.ToString(ref bd);
 					bd.Append(s36);
+					if(null != User) User.ToString(ref bd);
 					bd.Append(s37);
 					bd.Append(s38);
+					bd.Append(s39);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -146,21 +150,21 @@ namespace Fanex.Agent.UI
 
 		public class BetListTransaction_Filter_User_Block: Block
 		{
-			protected static string s39 = "<div class=\"cell\"><div class=\"editor\">";
+			protected static string s40 = "<div class=\"cell\"><div class=\"editor\">";
 			public string option_user = "{option_user}";
-			protected static string s40 = "</div></div><div class=\"cell\"><div class=\"editor\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
+			protected static string s41 = "</div></div><div class=\"cell\"><div class=\"editor\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
 			public string username = "{username}";
-			protected static string s41 = "\" maxlength=\"50\"style=\"width: 120px;\" autocomplete=\"off\" class=\"ui-autocomplete-input\" /></div></div>";
+			protected static string s42 = "\" maxlength=\"50\"style=\"width: 120px;\" autocomplete=\"off\" class=\"ui-autocomplete-input\" /></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s39);
-					bd.Append(option_user);
 					bd.Append(s40);
-					bd.Append(username);
+					bd.Append(option_user);
 					bd.Append(s41);
+					bd.Append(username);
+					bd.Append(s42);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -168,29 +172,29 @@ namespace Fanex.Agent.UI
 
 		public class BetListTransaction_HiddenFields_Block: Block
 		{
-			protected static string s42 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			protected static string s43 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s43 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
+			protected static string s44 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
 			public string MainShareHolderId = "{MainShareHolderId}";
-			protected static string s44 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
+			protected static string s45 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
 			public string MainShareHolderUsername = "{MainShareHolderUsername}";
-			protected static string s45 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
+			protected static string s46 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
 			public string pageType = "{pageType}";
-			protected static string s46 = "\" />";
+			protected static string s47 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s42);
-					bd.Append(ApoRoot);
 					bd.Append(s43);
-					bd.Append(MainShareHolderId);
+					bd.Append(ApoRoot);
 					bd.Append(s44);
-					bd.Append(MainShareHolderUsername);
+					bd.Append(MainShareHolderId);
 					bd.Append(s45);
-					bd.Append(pageType);
+					bd.Append(MainShareHolderUsername);
 					bd.Append(s46);
+					bd.Append(pageType);
+					bd.Append(s47);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
