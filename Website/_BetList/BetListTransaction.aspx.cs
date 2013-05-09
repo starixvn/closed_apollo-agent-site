@@ -22,7 +22,6 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Web;
-    using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
     using Fanex.Agent.UI._BetList;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
@@ -37,15 +36,12 @@ namespace Sunplus.Agent.UI._BetList
     {
         #region Variables
 
-        private DataTable dtResult = null;
-        private DataTable outDataTable = null;
-
         private string title = string.Empty;
         private BetListTransaction_Template tpl = new BetListTransaction_Template();
 
         private string username = string.Empty;
         private DateTime fromDate, toDate;
-        private int agentId, custId, skip;
+        private int agentId, custId, currentPage;
         private bool userType = false;
         private string pageType = string.Empty;
         private string statusIds = string.Empty;
@@ -211,21 +207,22 @@ namespace Sunplus.Agent.UI._BetList
                 if (pageType == "transaction")
                 {
                     mainTickets = betListService.GetAllBetsTransactionByDateAndMem(criteria);
-
-                    this.TotalRows = mainTickets.TicketList.Count();
-
-                    skip = this.PageSize * (this.PageIndex - 1);
-
-                    if (skip < this.TotalRows)
-                    {
-                        var newTicketList = mainTickets.TicketList.Skip(skip)
-                                     .Take(this.PageSize).ToList() as IList<ITicket>;
-                        mainTickets.TicketList = newTicketList;
-                    }
                 }
                 else
                 {
                     mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+                }
+
+                // Paging
+                this.TotalRows = mainTickets.TicketList.Count();
+
+                currentPage = this.PageSize * (this.PageIndex - 1);
+
+                if (currentPage < this.TotalRows)
+                {
+                    var newTicketList = mainTickets.TicketList.Skip(currentPage)
+                                 .Take(this.PageSize).ToList() as IList<ITicket>;
+                    mainTickets.TicketList = newTicketList;
                 }
             }
             return mainTickets;
