@@ -20,7 +20,7 @@ namespace Apollo.Age.Web
             ViewBag.Title = title;
             ViewBag.TipTitle = tipTitle;
 
-            string viewName = string.Format("{0}.{1}", key, CurrentSession.Language);
+            string viewName = string.Format("~/Views/Instruction/{0}/{1}.cshtml", CurrentSession.Language, key);
 
             return View(viewName);
         }

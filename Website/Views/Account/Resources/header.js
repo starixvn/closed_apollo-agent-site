@@ -109,6 +109,11 @@ function GetMessages() {
             var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
             var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
 
+            console.log(publicMessage);
+            console.log(privateMessage);
+            console.log(unreadPriMsgCount);
+
+
             //Update count of private messages
             var countText = document.getElementById('privateMsgLnk').innerHTML;
             document.getElementById('privateMsgLnk').innerHTML = countText.substring(0, countText.indexOf("(") + 1) + unreadPriMsgCount + ")";
@@ -134,7 +139,7 @@ function GetMessages() {
 
             //Process Private Message: show new private message
             if ((privateMessage[MSGID] != null) && (privateMessageId != privateMessage[MSGID])) {
-                document.getElementById('topnews').innerHTML += ". <font color=\"green\">Private message:" + privateMessage[MSGCONTENT] + "</font>";
+                document.getElementById('topnews').innerHTML += ". <span style=\"color:green\">Private message:" + privateMessage[MSGCONTENT] + "</span>";
                 if (privateMessageId > 0) {
                     balloonPopupContent = privateMessage[MSGCONTENT];
                 }

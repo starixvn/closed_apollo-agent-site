@@ -9,7 +9,7 @@
 <%@ Import Namespace="Apollo.Age.Web.Services" %>
 <script RunAt="server">
 	public static UnderMaintenanceService maintenanceService = null;
-	
+
 	public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 	{
 		filters.Add(new HandleErrorAttribute());
@@ -47,27 +47,39 @@
 		TplCore.TplSettings.UrlVersion = ConfigurationManager.AppSettings["JsVersion"];
 	}
 
+	/// <summary>
+	/// Code that runs when an unhandled error occurs
+	/// </summary>
 	void Application_Error(object sender, EventArgs e)
 	{
-		// Code that runs when an unhandled error occurs
+
+		// Logging
 		Exception ex = Server.GetLastError().GetBaseException();
-		if (ex is HttpException)
+
+		if (!Request.IsLocal)
 		{
-			return;
+			string message = ex.Message +
+				"\r\nSource: " + ex.Source +
+				"\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+				"\r\nForm: " + Request.Form.ToString() +
+				"\r\nQueryString: " + Request.QueryString.ToString() +
+				"\r\nTargetSite: " + ex.TargetSite +
+				"\r\nStackTrace: " + ex.StackTrace;
+
+			Fanex.Logging.LogService.Error(message);
 		}
 
-        if (!Request.IsLocal)
-        {
-            string message = ex.Message +
-                            "\r\nSource: " + ex.Source +
-                            "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-                            "\r\nForm: " + Request.Form.ToString() +
-                            "\r\nQueryString: " + Request.QueryString.ToString() +
-                            "\r\nTargetSite: " + ex.TargetSite +
-                            "\r\nStackTrace: " + ex.StackTrace;
+		// Redirect to Error pages
+		var serverError = Server.GetLastError() as HttpException;
+		string errorCode = string.Empty;
 
-            Fanex.Logging.LogService.Error(message);
-        }
+		if (serverError != null)
+		{
+			errorCode = serverError.GetHttpCode().ToString();
+		}
+
+		Server.ClearError();
+		Server.Transfer("~/Error.aspx?err=" + errorCode);
 	}
 
 	void Application_AcquireRequestState(object sender, EventArgs e)
