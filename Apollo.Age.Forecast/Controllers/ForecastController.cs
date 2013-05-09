@@ -56,7 +56,7 @@ namespace Apollo.Age.Forecast.Controllers
         /// <returns></returns>
         public ViewResult FC1X2(int? matchId, int betType = (int)BetTypes.FT_1X2, string leagueName = "", int leagueId = 0, int mainShareHolderId = 0)
         {
-            var currentAgentId = GetCurrentAgentId(mainShareHolderId);
+            var currentAgentId = GetCurrentAgentId(mainShareHolderId, ((int)BetTypes.FT_1X2).ToString());
             IEnumerable<LeagueModel> leagues = _forecastService.GetRunningLeague(betType, currentAgentId);
             ViewBag.Leagues = leagues;
             ViewBag.MatchId = matchId;
@@ -98,7 +98,7 @@ namespace Apollo.Age.Forecast.Controllers
         /// <returns></returns>
         public ViewResult FCHandicapOverUnder(string leagueName = "", int leagueId = 0, int mainShareHolderId = 0)
         {
-            var currentAgentId = GetCurrentAgentId(mainShareHolderId);
+            var currentAgentId = GetCurrentAgentId(mainShareHolderId, "1,3,7,8");
             IEnumerable<LeagueModel> leagues = _forecastService.GetRunningLeague(betType: (int)BetTypes.Handicap, agentId: currentAgentId);
             ViewBag.LeagueId = leagueId;
             ViewBag.Leagues = leagues;
@@ -244,13 +244,15 @@ namespace Apollo.Age.Forecast.Controllers
         /// </summary>
         /// <param name="mainShareHolderId"></param>
         /// <returns></returns>
-        private int GetCurrentAgentId(int mainShareHolderId)
+        private int GetCurrentAgentId(int mainShareHolderId, string betType = null)
         {
             int agentId = base.CurrentSession.AgentId;
             if (base.CurrentSession.IsSuper)
             {
                 //// Should Use Cache, fix later
-                var mainShareHolders = _forecastService.GetData<Agent>(new GetAllMainShareHolderCriteria());
+                var mainShareHolders = _forecastService.GetData<Agent>(new GetAllMainShareHolderCriteria {
+                    Bettypes = betType
+                });
                 if (mainShareHolderId > 0)
                 {
                     agentId = mainShareHolderId;
