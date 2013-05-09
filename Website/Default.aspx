@@ -37,8 +37,9 @@
 	<script type="text/javascript">
 		head.js(
 			"<%= Page.ResolveUrl("_GlobalResources/Js/jquery.js")%>",
-			"<%= Page.ResolveUrl("_GlobalResources/Js/Core.js")%>"
-		);
+			"<%= Page.ResolveUrl("_GlobalResources/Js/Core.js")%>",
+            "<%= Page.ResolveUrl("_GlobalResources/Js/default.js")%>"
+		);        
 	</script>
 
 </body>
