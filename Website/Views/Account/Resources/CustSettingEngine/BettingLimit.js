@@ -244,10 +244,19 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         var header = document.createElement("DIV");
         header.innerHTML = Language.BET_SETTING_HEADER;
         header.className = "pt-grid-header";
-        var saveButton = document.createElement("SPAN");
-        saveButton.className = "section-info";
-        saveButton.id = "bet-limit-info-button";
-        header.appendChild(saveButton);
+        var informationButton = document.createElement("SPAN");
+        informationButton.className = "section-info";
+        if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+            informationButton.id = "member-";
+        }
+        else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+            informationButton.id = "mainshareholder-";
+        }
+        else {
+            informationButton.id = "agent-";
+        }
+        informationButton.id += "bet-limit-info-button";
+        header.appendChild(informationButton);
         container.appendChild(header);
 
         if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == false) {

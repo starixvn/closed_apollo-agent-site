@@ -768,8 +768,9 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 25, top - 148, -10, height, 10000, true);
             },
 			this.Render = function (owner) {
+			    var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
 			    var box = null;
-			    if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == false) {
+			    if (currentContext.IsSimpleMode == false) {
 			        var elements = []; // Child sport type elements
 			        if (typeof (this.sportTypes) != 'object' || typeof (this.sportTypes.length) == 'undefined') {
 			            console.log("Input data source sportTypes is empty.");
@@ -779,9 +780,19 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 			            var header = document.createElement("DIV");
 			            header.innerHTML = Language.POSITION_SETTING_HEADER;
 			            header.className = "pt-grid-header";
-			            var saveButton = document.createElement("SPAN");
-			            saveButton.className = "section-info";
-			            header.appendChild(saveButton);
+			            var informationButton = document.createElement("SPAN");
+			            informationButton.className = "section-info";
+			            if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+			                informationButton.id = "member-";
+			            }
+			            else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+			                informationButton.id = "mainshareholder-";
+                        }
+			            else {
+			                informationButton.id = "agent-";
+			            }
+			            informationButton.id += "share-setting-info-button";
+			            header.appendChild(informationButton);
 			            box.appendChild(header);
 			            // Each sport types
 			            var count = this.sportTypes.length;
@@ -807,8 +818,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 			            box.className = "pt-grid";
 			            var items = this.items;
 			            var elements = this.elements;
-			            if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
-						&& Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
+			            if (currentContext.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
+						&& currentContext.FormId != Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
 			                // Implementation for clone button of Soccer 1 and Basketball 2
 			                var cloneFromSoccer = this.items[0].cloneObjectButton;
 			                var cloneFromBasketball = this.items[2].cloneObjectButton;
@@ -935,15 +946,24 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 			        var header = document.createElement("DIV");
 			        header.innerHTML = Language.POSITION_SETTING_SIMPLE_MODE_HEADER;
 			        header.className = "pt-grid-header";
-			        var saveButton = document.createElement("SPAN");
-			        saveButton.className = "section-info";
-			        saveButton.id = "share-setting-info-button";
-			        header.appendChild(saveButton);
+			        var informationButton = document.createElement("SPAN");
+			        informationButton.className = "section-info";
+			        if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+			            informationButton.id = "member-";
+			        }
+			        else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+			            informationButton.id = "mainshareholder-";
+			        }
+			        else {
+			            informationButton.id = "agent-";
+			        }
+			        informationButton.id += "share-setting-info-button";
+			        header.appendChild(informationButton);
 			        box.appendChild(header);
 
-			        var formId = Fanex.CustSetting.CURRENT_CONTEXT.FormId;
-			        var roleId = Fanex.CustSetting.CURRENT_CONTEXT.RoleId; //(this.context.TargetRoleId == 1 || formId != Fanex.CustSetting.FormTypes.EDIT_PT) ? this.context.RoleId : 0;
-			        var targetRoleId = Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId;
+			        var formId = currentContext.FormId;
+			        var roleId = currentContext.RoleId; //(this.context.TargetRoleId == 1 || formId != Fanex.CustSetting.FormTypes.EDIT_PT) ? this.context.RoleId : 0;
+			        var targetRoleId = currentContext.TargetRoleId;
 			        var method = this['RenderSimpleMode_'.concat(roleId, '_', targetRoleId, '_', formId)];
 			        if (typeof (method) == "function") {
 			            box.appendChild(method.call(this, owner));
