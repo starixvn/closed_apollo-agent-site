@@ -1,10 +1,33 @@
-@*@model  
-@{
-    ViewBag.Title = "Home Page";
+@model Dictionary<string, string>
+
+<table class="tblRpt">
+	<thead>
+		<tr>
+			<th>Key</th>
+			<th>English (US)</th>
+			<th>Chinese (Traditional)</th>
+		</tr>
+	</thead>
+	<tbody>
+	@if (Model != null && Model.Any())
+	{
+		foreach (var entry in Model)
+		{
+		<tr>
+			<td>@entry.Key</td>
+			<td>@entry.Value</td>
+			<td></td>
+		</tr>
+		}
+	}
+	</tbody>
+</table>
+
+@if (Model != null && Model.Any())
+{
+	<script type="text/javascript">
+
+		alert(@Model.Count());
+
+	</script>
 }
-<h1>@ViewBag.Title.</h1>
-<h2>@ViewBag.Message</h2>*@
-<div>
-    <h3>ID: @Model.ID</h3>
-    <h3>Name: @Model.Name</h3>
-</div>

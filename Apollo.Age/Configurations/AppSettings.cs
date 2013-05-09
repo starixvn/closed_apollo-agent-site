@@ -44,5 +44,13 @@
                 return GetValue("EndTime");
             }
         }
+
+        public static bool AllowInternalUpdate
+        {
+            get
+            {
+                return GetValue("AllowInternalUpdate") == "1";
+            }
+        }
     }
 }

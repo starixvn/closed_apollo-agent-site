@@ -308,6 +308,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     };
     this.Render = function (owner) {
         Validators.hide();
+        var context = Fanex.CustSetting.CURRENT_CONTEXT;
         var container = document.createElement("DIV");
         container.className = "commission-container-header";
 
@@ -316,7 +317,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         header.className = "pt-grid-header";
         var saveButton = document.createElement("SPAN");
         saveButton.className = "section-info";
-        saveButton.id = "commission-info-button";
+        saveButton.id = (context.TargetRoleId == Fanex.CustSetting.RoleType.Member ? "member-" : "agent-") + "commission-info-button" + (context.IsSimpleMode ? "" : "-adv");
         header.appendChild(saveButton);
         container.appendChild(header);
 
@@ -328,7 +329,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         var boxTBody = document.createElement("TBODY");
 
 
-        var context = Fanex.CustSetting.CURRENT_CONTEXT;
+        
         var isEditNonDirectMember = context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
         if (context.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";

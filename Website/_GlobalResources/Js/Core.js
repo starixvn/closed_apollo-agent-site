@@ -188,7 +188,7 @@ if (typeof jQuery != 'undefined') {
             },
             signOut: function () {
                 
-                parent.location.href = APOLLO.resolveUrl('~/Auth/SignOut');
+                parent.location.href = APOLLO.resolveUrl('~/Internal/SignOut');
                 
             },
             init: function () {
@@ -1046,19 +1046,19 @@ AGE.prototype.Invalidate = function () {
     top.location = age.RemoveBookmarksInUrl(top.location.href);
 }
 // SignOut
-AGE.prototype.SignOut = function () {
-    var index = window;
+//AGE.prototype.SignOut = function () {
+//    var index = window;
 
-    while (index != index.parent) // Jump out
-    {
-        index = index.parent;
-    }
+//    while (index != index.parent) // Jump out
+//    {
+//        index = index.parent;
+//    }
 
-    //index.location = this.GetBaseUrl() + '_Authorization/Handlers/SignOut.ashx';
-    //var signOutUrl = APOLLO.resolveUrl('~/_Authorization/Handlers/SignOut.ashx');
+//    //index.location = this.GetBaseUrl() + '_Authorization/Handlers/SignOut.ashx';
+//    //var signOutUrl = APOLLO.resolveUrl('~/_Authorization/Handlers/SignOut.ashx');
 
-    index.location = APOLLO.resolveUrl('~/Auth/SignOut');
-}
+//    index.location = APOLLO.resolveUrl('~/Auth/SignOut');
+//}
 
 // Password must be at least 6 in length and at least 2 characters and 2 digits
 function IsPassword(str) {

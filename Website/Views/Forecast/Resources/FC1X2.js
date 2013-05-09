@@ -3,14 +3,14 @@ if (typeof jQuery != 'undefined') {
     var FC1X2 = function ($) {
         return {
             currentLeague: 0,
-            matchId: matchId,
-            betType: betType,
-            cuurentLeagueName: initLeagueName,
+            matchId: DEFAULT_OBJECT.matchId,
+            betType: DEFAULT_OBJECT.betType,
+            cuurentLeagueName: DEFAULT_OBJECT.initLeagueName,
             link: APOLLO.resolveUrl('Forecast/FC1X2Matches'),
             init: function () {
                 parent.$(".ui-dialog .ui-dialog-title").text("FORECAST");
                 if (FC1X2.matchId > 0) {
-                    if (currentMainShareHolderId > 0) {
+                    if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
                         $("#main-shareholder-box").hide();
                     }
                     FC1X2.loadMatch();
@@ -43,8 +43,8 @@ if (typeof jQuery != 'undefined') {
             + '&type=BettypeMatch'
             + '&leagueName=' + FC1X2.cuurentLeagueName);
 
-                if (currentMainShareHolderId > 0) {
-                	url += "&mainShareHolderId=" + currentMainShareHolderId + "&isForecast=true";
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                	url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
                 //location.href = url;
                 ageWnd.openDialog(url, 'BET LIST', {
@@ -61,6 +61,9 @@ if (typeof jQuery != 'undefined') {
                 + '&betType=' + FC1X2.betType
                 + '&type=BettypeMatch'
                 + '&leagueName=' + FC1X2.cuurentLeagueName);
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                	url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
+                }
                 parent.$(".ui-dialog .ui-dialog-title").text("BET LIST");
                 location.href = url;
             }
@@ -68,14 +71,14 @@ if (typeof jQuery != 'undefined') {
             },
             changeLeague: function () {
                 var url = FC1X2.link + '?leagueId=' + FC1X2.currentLeague
-                + '&mainShareHolderId=' + currentMainShareHolderId;
+                + '&mainShareHolderId=' + DEFAULT_LAYOUT.currentMainShareHolderId;
                 $("#forecast-body").load(url);
                 FC1X2.registerEvents(true);
             },
             loadMatch: function () {
                 var url = FC1X2.link + '?matchId=' + FC1X2.matchId + '&betType=' + FC1X2.betType;
-                if (currentMainShareHolderId > 0) {
-                    url += '&mainShareHolderId=' + currentMainShareHolderId;
+                if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+                    url += '&mainShareHolderId=' + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
                 $("#forecast-body").load(url);
                 FC1X2.registerEvents(false);
@@ -84,10 +87,10 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
-        if (currentMainShareHolderId > 0) {
+        if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
             $("#ddlMainShareHolder").change(function () {
                 var $this = $(this);
-                window.location.href = currentActionLink + "?mainShareHolderId=" + $this.val();
+                window.location.href = DEFAULT_LAYOUT.currentActionLink + "?mainShareHolderId=" + $this.val();
             });
         }
 		FC1X2.init();
@@ -100,8 +103,8 @@ function UpdateForecast1x2Value() {
     }
     else {
         var url = APOLLO.resolveUrl("Forecast/FC1X2?leagueId=" + FC1X2.currentLeague);
-        if (currentMainShareHolderId > 0) {
-            url += '&mainShareHolderId=' + currentMainShareHolderId;
+        if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+            url += '&mainShareHolderId=' + DEFAULT_LAYOUT.currentMainShareHolderId;
         }
         window.location.href = url;
     }

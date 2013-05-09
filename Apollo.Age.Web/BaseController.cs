@@ -71,7 +71,7 @@ namespace Apollo.Age.Web
                 }
                 else
                 {
-                    Response.Redirect("~/Auth/Unauthorized");
+                    Response.Redirect("~/Internal/Unauthorized");
                 }
             }
         }
@@ -96,7 +96,7 @@ namespace Apollo.Age.Web
                 }
                 else
                 {
-                    Response.Redirect("~/Auth/AccountStopped");
+                    Response.Redirect("~/Internal/AccountStopped");
                 }
             }
         }

@@ -9,7 +9,7 @@
 <%@ Import Namespace="Apollo.Age.Web.Services" %>
 <script RunAt="server">
 	public static UnderMaintenanceService maintenanceService = null;
-	
+
 	public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 	{
 		filters.Add(new HandleErrorAttribute());
@@ -47,30 +47,39 @@
 		TplCore.TplSettings.UrlVersion = ConfigurationManager.AppSettings["JsVersion"];
 	}
 
-	void Application_End(object sender, EventArgs e)
-	{
-		//  Code that runs on application shutdown
-	}
-
+	/// <summary>
+	/// Code that runs when an unhandled error occurs
+	/// </summary>
 	void Application_Error(object sender, EventArgs e)
 	{
-		// Code that runs when an unhandled error occurs
+
+		// Logging
 		Exception ex = Server.GetLastError().GetBaseException();
-		if (ex is HttpException)
+
+		if (!Request.IsLocal)
 		{
-			return;
+			string message = ex.Message +
+				"\r\nSource: " + ex.Source +
+				"\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+				"\r\nForm: " + Request.Form.ToString() +
+				"\r\nQueryString: " + Request.QueryString.ToString() +
+				"\r\nTargetSite: " + ex.TargetSite +
+				"\r\nStackTrace: " + ex.StackTrace;
+
+			Fanex.Logging.LogService.Error(message);
 		}
 
-		string message = ex.Message +
-						"\r\nSource: " + ex.Source +
-						"\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-						"\r\nForm: " + Request.Form.ToString() +
-						"\r\nQueryString: " + Request.QueryString.ToString() +
-						"\r\nTargetSite: " + ex.TargetSite +
-						"\r\nStackTrace: " + ex.StackTrace;
+		// Redirect to Error pages
+		var serverError = Server.GetLastError() as HttpException;
+		string errorCode = string.Empty;
 
-		Logs.Write(message);
+		if (serverError != null)
+		{
+			errorCode = serverError.GetHttpCode().ToString();
+		}
 
+		Server.ClearError();
+		Server.Transfer("~/Error.aspx?err=" + errorCode);
 	}
 
 	void Application_AcquireRequestState(object sender, EventArgs e)
@@ -91,21 +100,6 @@
 			Fanex.Logging.LogService.Error(ex.Message, ex);
 		}
 
-	}
-
-	void Application_BeginRequest(object sender, EventArgs e)
-	{
-
-	}
-
-	void Session_Start(object sender, EventArgs e)
-	{
-
-	}
-
-	void Session_End(object sender, EventArgs e)
-	{
-
-	}
+	}	
 
 </script>
