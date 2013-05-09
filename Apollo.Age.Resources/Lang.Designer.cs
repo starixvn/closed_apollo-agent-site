@@ -9379,7 +9379,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No data is available.
+        ///   Looks up a localized string similar to No data is available..
         /// </summary>
         public static string noInfo {
             get {
