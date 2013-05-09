@@ -505,7 +505,8 @@ namespace Apollo.Age.Account.Controllers
                 RoleId = this.GetRoleFromAgentLevel(base.CurrentSession.AgentLevel),
                 TargetRoleId = this.GetTargetRoleIdFromAgenLevel(agentLevel),
                 FormSetting = (int)formSettingType,
-                FormId = FormType.EditPT
+                FormId = FormType.EditPT,
+                Language = base.CurrentSession.Language
             };
 
             //// If current Cust Edited Role is Member, then set Edit Role is Agent
