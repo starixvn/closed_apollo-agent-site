@@ -213,28 +213,10 @@ namespace Sunplus.Agent.UI._BetList
             live = GetIntRequest("islive", 0);
             isForecast = GetBooleanRequest("isForecast", false);
 
-            if (CurrentSession.IsSuper)
-            {
-                mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria());
-                if (mainShareHolderId == 0)
-                {
-                    mainShareHolderId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
-                }
-                else
-                {
-                    mainShareHolderId = Convert.ToInt32(mainShareHolderId);
-                }
-                loggedId = CurrentSession.AgentId;
-            }
-            else
-            {
-                loggedId = mainShareHolderId = CurrentSession.AgentId;
-            }
-
             if (type.ToLower().Equals("correctscore"))
             {
                 title = CacheRef.GetBettype((int)BetTypes.Correct_Score).ToUpper();
-                bettype = string.Format("{0}^{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
+                bettype = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
             }
             else if (type.ToLower().Equals("mixparlay"))
             {
@@ -257,6 +239,24 @@ namespace Sunplus.Agent.UI._BetList
                 {
                     title = CacheRef.GetBettype(bettype).ToUpper();
                 }
+            }
+
+            if (CurrentSession.IsSuper)
+            {
+                mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = bettype });
+                if (mainShareHolderId == 0)
+                {
+                    mainShareHolderId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
+                }
+                else
+                {
+                    mainShareHolderId = Convert.ToInt32(mainShareHolderId);
+                }
+                loggedId = CurrentSession.AgentId;
+            }
+            else
+            {
+                loggedId = mainShareHolderId = CurrentSession.AgentId;
             }
         }
 
@@ -301,7 +301,7 @@ namespace Sunplus.Agent.UI._BetList
 
         private DataTable CreateMainShareholderData()
         {
-            var mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria());
+            var mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = bettype });
 
             DataTable dataTable = new DataTable();
             DataColumn column;
