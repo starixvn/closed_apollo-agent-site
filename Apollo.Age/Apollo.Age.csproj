@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Core\Constants.cs" />
     <Compile Include="Criterias\Accounts\AgentGetStatusCriteria.cs" />
     <Compile Include="Criterias\AuthenticateNapUserCriteria.cs" />
     <Compile Include="Criterias\CheckUpdatePermissionCriteria.cs" />
