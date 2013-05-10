@@ -20,36 +20,36 @@ namespace Apollo.Age.Web
     /// <summary>
     /// http://msdn.microsoft.com/en-us/library/ff650316.aspx
     /// </summary>
-    public sealed class SessionManager
+    public static class SessionManager
     {
         private const string CacheKeySuncityLanguage = "Apollo.Age.Web.SuncityLanguage";
         private const string CacheKeySuncityUsername = "Apollo.Age.Web.SuncityUsername";
 
-        private static volatile SessionManager instance;
-        private static object syncRoot = new Object();
+        //private static volatile SessionManager instance;
+        //private static object syncRoot = new Object();
 
-        private SessionManager() { }
+        //private SessionManager() { }
 
-        public static SessionManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new SessionManager();
-                        }
-                    }
-                }
+        //public static SessionManager Instance
+        //{
+        //    get
+        //    {
+        //        if (instance == null)
+        //        {
+        //            lock (syncRoot)
+        //            {
+        //                if (instance == null)
+        //                {
+        //                    instance = new SessionManager();
+        //                }
+        //            }
+        //        }
 
-                return instance;
-            }
-        }
+        //        return instance;
+        //    }
+        //}
 
-        public ICurrentSession CurrentSession
+        public static ICurrentSession CurrentSession
         {
             get
             {
@@ -61,27 +61,13 @@ namespace Apollo.Age.Web
             }
         }
 
-        public string SuncityLanguage
+        public static void ClearAll()
         {
-            get
+            if (HttpContext.Current != null && HttpContext.Current.Session != null)
             {
-                return (string)HttpContext.Current.Session[CacheKeySuncityLanguage];
-            }
-            set
-            {
-                HttpContext.Current.Session[CacheKeySuncityLanguage] = value;
-            }
-        }
-
-        public string SuncityUsername
-        {
-            get
-            {
-                return (string)HttpContext.Current.Session[CacheKeySuncityUsername];
-            }
-            set
-            {
-                HttpContext.Current.Session[CacheKeySuncityUsername] = value;
+                HttpContext.Current.Session.Clear();
+                HttpContext.Current.Session.Abandon();
+                HttpContext.Current.Response.Cookies.Clear();
             }
         }
     }
