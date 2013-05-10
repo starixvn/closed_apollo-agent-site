@@ -10,7 +10,7 @@
     <div class="row">
         @{
             var maxDate = DateTime.Now;
-            var minDate = maxDate.AddDays(1 - maxDate.Day).AddMonths(-3);
+            var minDate = maxDate.AddMonths(-3);
         }
         <div class="cell">
             <div class="label">
