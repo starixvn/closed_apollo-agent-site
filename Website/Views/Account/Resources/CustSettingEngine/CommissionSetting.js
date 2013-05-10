@@ -16,6 +16,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.spinBoxItems = [];
     this.items = source.CommissionItems;
     this.currentGroup = source.UserGroup;
+    this.oldGroup = source.UserGroup;
     this.group = ["A", "B", "C", "D"];
     this.currentDisableMaxSpanText = ' [0]';
     this.groupSelect = null;
@@ -106,6 +107,13 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                         Discount: currentGameValue
                     });
                 };
+            }
+
+        }
+
+        if (editItems.length == 0) {
+            if (typeof (this.currentGroup) != 'undefined' && this.currentGroup == this.oldGroup.toUpperCase()) {
+                this.currentGroup = undefined;
             }
         }
 

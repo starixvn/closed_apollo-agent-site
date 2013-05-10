@@ -83,6 +83,19 @@ if (typeof jQuery != 'undefined') {
                         betLimits: EDITSETTING.betLimitElement.Save()
                     };
 
+                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
+                    && !EDITSETTING.positionTakingElement.CheckChangeData(postionTakingValue.SportTypes)) {
+                        noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
+                        return;
+                    }
+                    else if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
+                    && dataObject.betLimits.length == 0
+                    && commissionSettingValue.CommissionItems.length == 0 && typeof (commissionSettingValue.UserGroup) == 'undefined'
+                    && !EDITSETTING.positionTakingElement.CheckChangeData(postionTakingValue.SportTypes)) {
+                        noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
+                        return;
+                    }
+
                     var url = APOLLO.resolveUrl('CustomerSetting/');
                     if (typeof (DEFAULT_OBJECT.memberId) != 'undefined') {
                         dataObject.memberId = DEFAULT_OBJECT.memberId;
@@ -116,7 +129,7 @@ if (typeof jQuery != 'undefined') {
             },
             completeUpdate: function (result) {
                 setTimeout(function () {
-                    
+
                     if (typeof (parent.MEMBERLIST) != 'undefined') {
                         parent.MEMBERLIST.loadMemberList();
                     }

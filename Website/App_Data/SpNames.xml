@@ -523,6 +523,7 @@
         <Setting Key="PlayerSetting_Age_Customer_UpdateDiscount" SpName="Age_Customer_UpdateDiscount" DbName="CUSTDB"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Customer_UpdatePositionTaking" DbName="CUSTDB"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="CUSTDB" TimeOut="600"/>
+        <Setting Key="PlayerSetting_Age_Customer_GetInfo" SpName="Age_Customer_GetInfo" DbName="REPDB"  TimeOut="600"/>
     </Function>
 
     <Function Name="Agent-Apollo-BalanceUpDay">

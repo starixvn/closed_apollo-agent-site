@@ -369,9 +369,10 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
-        public ActionResult GetMemberSetting(int memberId, string ugroup, int? agentId)
+        public ActionResult GetMemberSetting(int memberId, int? agentId)
         {
-            string jsString = this.GetSettingScript(memberId, agentId, null, ugroup);
+
+            string jsString = this.GetSettingScript(memberId, agentId, null, _customerSettingService.GetMemberGroup(memberId));
             return JavaScript(jsString);
         }
 
@@ -576,6 +577,13 @@ namespace Apollo.Age.Account.Controllers
         [NonAction]
         public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
         {
+            if (commissionSetting == null && betLimits == null && positionTakingSetting == null)
+            {
+                return ReturnResult(new Result { 
+                    ErrCode = 0,
+                    ErrMsg = Apollo.Age.Resources.Lang.noChangeToUpdate
+                });
+            }
             Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
             return ReturnResult(result);
         }
