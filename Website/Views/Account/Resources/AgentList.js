@@ -56,7 +56,7 @@ var AGENTLIST = function ($) {
                             AGENTLIST.AgentLevel = result[i].Level;
                             AGENTLIST.AgentId = result[i].Id;
 
-                            template += "<span>" + AGENTLIST.Username + "</span>";
+                            template += "<li><span>" + AGENTLIST.Username + "</span></li>";
                             $("#currUsername").html(AGENTLIST.Username);
                             AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
 
@@ -68,8 +68,8 @@ var AGENTLIST = function ($) {
                             }
                         }
                         else {
-                            template += "<a href='#' name='navigation' agentId='" + result[i].Id + "' agentlevel='" + result[i].Level + "' >" + result[i].Username + "</a>";
-                            template += "<span class='breadcrumbs'>&nbsp;</span>";
+                            template += "<li><a href='#' name='navigation' agentId='" + result[i].Id + "' agentlevel='" + result[i].Level + "' >" + result[i].Username + "</a>";
+                            template += "<span class='breadcrumbs'>&nbsp;</span></li>";
                         }
                     }
                     $("#divnavigation").html(template);

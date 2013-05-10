@@ -17,6 +17,6 @@ public partial class _Default : Page
 
     protected ICurrentSession CurrentSession
     {
-        get { return SessionManager.Instance.CurrentSession; }
+        get { return SessionManager.CurrentSession; }
     }
 }

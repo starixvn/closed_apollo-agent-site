@@ -279,7 +279,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             get
             {
-                return SessionManager.Instance.CurrentSession;
+                return SessionManager.CurrentSession;
             }
         }
 

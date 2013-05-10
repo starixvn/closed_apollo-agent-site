@@ -30,7 +30,7 @@ namespace Apollo.Age.Web.Filters
         {
             try
             {
-                var currentSession = SessionManager.Instance.CurrentSession;
+                var currentSession = SessionManager.CurrentSession;
                 int agentId = filterContext.ActionParameters.ContainsKey("agentId") ? Converter.ToInt(filterContext.ActionParameters["agentId"]) : 0;
                 int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"]) : 0;
                 if (memberId > 0)

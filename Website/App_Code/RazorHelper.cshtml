@@ -89,37 +89,45 @@
 }
 @helper Navigation(List<Apollo.Age.Entities.Agent> Model)
     {
-    <div id="divnavigation" class="boxNavigation">
-        @foreach (Apollo.Age.Entities.Agent item in Model)
-        {
-            var last = Model.LastOrDefault();
-            if (last != null && !last.Equals(item))
-            { <a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-            <span class="breadcrumbs">&nbsp;</span>
+    <div class="boxNavigation">
+        <ul id="divnavigation">
+            @foreach (Apollo.Age.Entities.Agent item in Model)
+            {
+                var last = Model.LastOrDefault();
+                if (last != null && !last.Equals(item))
+                { 
+                <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                    <span class="breadcrumbs">&nbsp;</span> </li>
+                }
+                else
+                { 
+                <li><span>@item.Username</span> </li>
+                }
             }
-            else
-            { <span>@item.Username</span> }
-        }
+        </ul>
     </div>
 }
 @helper Navigation(List<Apollo.Age.Entities.Agent> Model, bool linkLastItem)
     {
         if (linkLastItem)
         {
-    <div id="divnavigation" class="boxNavigation">
-        @foreach (Apollo.Age.Entities.Agent item in Model)
-        {
-            var last = Model.LastOrDefault();
-            if (last != null && !last.Equals(item))
+    <div class="boxNavigation">
+        <ul id="divnavigation">
+            @foreach (Apollo.Age.Entities.Agent item in Model)
             {
-            <a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-            <span class="breadcrumbs">&nbsp;</span>
+                var last = Model.LastOrDefault();
+                if (last != null && !last.Equals(item))
+                {
+                <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                    <span class="breadcrumbs">&nbsp;</span></li>
+                }
+                else
+                {
+                <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                </li>
+                }
             }
-            else
-            {
-            <a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-            }
-        }
+        </ul>
     </div>
         }
         else

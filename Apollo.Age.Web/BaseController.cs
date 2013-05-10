@@ -112,7 +112,7 @@ namespace Apollo.Age.Web
 
         protected ICurrentSession CurrentSession
         {
-            get { return SessionManager.Instance.CurrentSession; }
+            get { return SessionManager.CurrentSession; }
         }
 
         protected string RequestIP
