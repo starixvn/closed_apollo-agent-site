@@ -141,7 +141,7 @@ namespace Fanex.Age.UI
             {
                 DateTime value = DateTime.Now;
                 if (!DateTime.TryParse(HttpContext.Current.Request[name], out value)) return defaultValue;
-                return value;
+                return Convert.ToDateTime(value.ToString("MM/dd/yyyy"));
             }
         }
 
