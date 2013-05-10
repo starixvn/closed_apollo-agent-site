@@ -4436,4 +4436,7 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
   <data name="lblPleaseCheckConstrainMaxMin" xml:space="preserve">
     <value>Given Share Value is lower than Min Given Value, please Use Advanced Mode to see it</value>
   </data>
+  <data name="shareSettingInstruction" xml:space="preserve">
+    <value>Share Setting Instructions</value>
+  </data>
 </root>
