@@ -58,16 +58,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseController.cs" />
-    <Compile Include="InternalController.cs" />
+    <Compile Include="WebConstants.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Filters\BelongCheckingAttribute.cs" />
-    <Compile Include="HomeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
-    <Compile Include="InstructionController.cs" />
+    <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="SessionManager.cs" />
-    <Compile Include="ViewModels\InternalSelectAccountViewModel.cs" />
-    <Compile Include="ViewModels\InternalSignInViewModel.cs" />
+    <Compile Include="ViewModels\SelectAccountViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\UnderMaintenanceViewModel.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />

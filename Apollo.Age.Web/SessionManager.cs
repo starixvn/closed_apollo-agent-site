@@ -10,12 +10,7 @@
 
 namespace Apollo.Age.Web
 {
-    using System;
     using System.Web;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Core;
 
     /// <summary>
     /// http://msdn.microsoft.com/en-us/library/ff650316.aspx
@@ -53,11 +48,11 @@ namespace Apollo.Age.Web
         {
             get
             {
-                return (ICurrentSession)HttpContext.Current.Session[Constants.APOLLO_CURRENT_SESSION_KEY];
+                return (ICurrentSession)HttpContext.Current.Session[WebConstants.APOLLO_CURRENT_SESSION_KEY];
             }
             set
             {
-                HttpContext.Current.Session[Constants.APOLLO_CURRENT_SESSION_KEY] = value;
+                HttpContext.Current.Session[WebConstants.APOLLO_CURRENT_SESSION_KEY] = value;
             }
         }
 

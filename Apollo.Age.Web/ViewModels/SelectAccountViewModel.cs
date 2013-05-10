@@ -11,11 +11,14 @@ namespace Apollo.Age.Web.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class InternalSelectAccountViewModel
+    public class SelectAccountViewModel
     {
         [Required]
         public string Agent { get; set; }
-        
-        public bool RememberMe { get; set; }
+
+        [Display(Name = "Allow Update")]
+        public bool AllowUpdate { get; set; }
+
+        public string Language { get; set; }
     }
 }

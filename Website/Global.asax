@@ -78,8 +78,8 @@
 			errorCode = serverError.GetHttpCode().ToString();
 		}
 
-        //Server.ClearError();
-        //Server.Transfer("~/Error.aspx?err=" + errorCode);
+		Server.ClearError();
+		Response.Redirect("~/Home/Error?err=" + errorCode);
 	}
 
 	void Application_AcquireRequestState(object sender, EventArgs e)
