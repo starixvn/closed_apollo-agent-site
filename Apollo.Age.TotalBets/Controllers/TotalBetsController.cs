@@ -47,7 +47,7 @@ namespace Apollo.Age.TotalBets.Controllers
             int agentId = base.CurrentSession.AgentId;
             if (base.CurrentSession.IsSuper)
             {
-                var mainShareHolders = _totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria());
+                var mainShareHolders = _totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria(betType));
                 if (mainShareHolderId > 0)
                 {
                     agentId = mainShareHolderId;
