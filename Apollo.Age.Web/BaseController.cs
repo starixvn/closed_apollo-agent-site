@@ -22,10 +22,12 @@ namespace Apollo.Age.Web
     using System.Web.Mvc;
     using System.Web.Security;
     using Apollo.Age.Services.Impl;
+using Apollo.Age.Services.Interface;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
+        private readonly IUserService _userService;
         public BaseController()
         {
             if (CurrentSession != null)
@@ -33,6 +35,8 @@ namespace Apollo.Age.Web
                 //CurrentSession.Language = "vi-VN"; // for testing only
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
             }
+
+            _userService = new UserService();
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -82,7 +86,7 @@ namespace Apollo.Age.Web
 
         private void CheckKickOut(ActionExecutingContext filterContext)
         {
-            var isKickOut = PermissionService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
+            var isKickOut = _userService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
 
             if (isKickOut)
             {
@@ -112,7 +116,7 @@ namespace Apollo.Age.Web
 
         protected ICurrentSession CurrentSession
         {
-            get { return SessionManager.Instance.CurrentSession; }
+            get { return SessionManager.CurrentSession; }
         }
 
         protected string RequestIP

@@ -16,16 +16,17 @@ namespace Apollo.Age.Web
     using System.IO;
     using System.Web.Mvc;
     using System.Web.Security;
-    using Apollo.Age.Core;
     using Apollo.Age.Criterias;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.ViewModels;
+    using Apollo.Age.Resources;
+    using Apollo.Age.Configurations;
 
     public class InternalController : Controller
     {
         #region Const
-                
+
         private const string APOLLO_SESSION_CAPTCHA = "ApolloCaptcha";
         private const string APOLLO_SESSION_CSDADMIN = "ApolloCSDAdmin";
         private const string APOLLO_SESSION_CSDADMIN_ALLOWEDUPDATE = "ApolloCSDAdminAllowedUpdate";
@@ -48,11 +49,6 @@ namespace Apollo.Age.Web
 
         #endregion Services
 
-        protected ICurrentSession CurrentSession
-        {
-            get { return SessionManager.Instance.CurrentSession; }
-            set { SessionManager.Instance.CurrentSession = value; }
-        }
 
         #region Ctors
 
@@ -61,7 +57,7 @@ namespace Apollo.Age.Web
             _userService = new UserService();
         }
 
-        #endregion Ctors               
+        #endregion Ctors
 
         #region SignIn (for CSD login)
 
@@ -70,7 +66,7 @@ namespace Apollo.Age.Web
         {
             if (Request.IsAjaxRequest())
             {
-                return new HttpUnauthorizedResult(Resources.Lang.UnauthorizedMsg);
+                return new HttpUnauthorizedResult(Lang.UnauthorizedMsg);
             }
             if (Session[APOLLO_SESSION_CSDADMIN] != null)
             {
@@ -94,7 +90,7 @@ namespace Apollo.Age.Web
                 if (Session[APOLLO_SESSION_CAPTCHA] == null
                     || Session[APOLLO_SESSION_CAPTCHA].ToString() != model.Captcha)
                 {
-                    ModelState.AddModelError("Captcha", Apollo.Age.Resources.Lang.IncorrectCaptchaMsg);
+                    ModelState.AddModelError("Captcha", Lang.IncorrectCaptchaMsg);
                     return View(model);
                 }
 
@@ -143,9 +139,9 @@ namespace Apollo.Age.Web
 
                 if (agent != null)
                 {
-                    agent.IsMaster = Configurations.AppSettings.AllowInternalUpdate && Convert.ToBoolean(Session[APOLLO_SESSION_CSDADMIN_ALLOWEDUPDATE]);
+                    agent.IsMaster = AppSettings.AllowInternalUpdate && Convert.ToBoolean(Session[APOLLO_SESSION_CSDADMIN_ALLOWEDUPDATE]);
 
-                    this.CurrentSession = new CurrentSession(agent, csdAdminName, Session[APOLLO_SESSION_CSDADMIN_LANGUAGUE].ToString());
+                    SessionManager.CurrentSession = new CurrentSession(agent, csdAdminName, Session[APOLLO_SESSION_CSDADMIN_LANGUAGUE].ToString());
 
                     FormsAuthentication.RedirectFromLoginPage(agent.Username, model.RememberMe);
                 }
@@ -162,7 +158,7 @@ namespace Apollo.Age.Web
 
         public ActionResult SignOut()
         {
-            var currentSession = Session[Constants.APOLLO_CURRENT_SESSION_KEY] as CurrentSession;
+            var currentSession = SessionManager.CurrentSession;
             string redirectUrl = currentSession != null && currentSession.IsCsdAdmin
                 ? CSD_SIGNIN_URL
                 : FormsAuthentication.LoginUrl;
