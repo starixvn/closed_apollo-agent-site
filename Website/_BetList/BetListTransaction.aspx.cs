@@ -31,6 +31,7 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
+    using Apollo.Age.Forecast.Services;
 
     public partial class BetListTransaction : BetListBase
     {
@@ -63,6 +64,10 @@ namespace Sunplus.Agent.UI._BetList
             var tickets = ticketResult.TicketList;
             var ticketData = ticketResult.TicketDataList;
 
+            var forecastService = new ForecastService();
+            var listBetType = forecastService.GetListScoreMapBetType();
+            bool isShowScoremap;
+
             int index = 0;
             bool isAdminCanViewVNIP = true;
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
@@ -92,13 +97,14 @@ namespace Sunplus.Agent.UI._BetList
             foreach (ITicket ticket in tickets)
             {
                 index++;
+                isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
                 ticketHelper.Index = index;
 
                 builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
                        .AddNo(index + ((this.PageIndex - 1) * this.PageSize), "<td class='w-order'>", "</td>")
                        .AddMember(ticket, "<td class='l'>", "</td>")
                        .AddTrans(ticket, "<td class='c'>", "</td>")
-                       .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", false)
+                       .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", isShowScoremap)
                        .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
                        .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
 
