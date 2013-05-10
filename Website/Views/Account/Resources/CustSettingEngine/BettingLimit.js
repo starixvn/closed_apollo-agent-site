@@ -595,7 +595,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             inputValue.value = ''.FormatNumber(betLimitValue);
             betSettingContainer.appendChild(inputValue);
 
-            
+
 
             if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
                 betSettingContainer.className = "bet-limit-value-mainshareholder";
