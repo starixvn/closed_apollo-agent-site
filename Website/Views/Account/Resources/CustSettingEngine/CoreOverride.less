@@ -3,8 +3,8 @@
 
 /* File Created: March 13, 2013 */
 
-.pt-grid {
-	font-size: @fontSize;
+body, .pt-grid {
+	font-size: (@fontSize -1);
 }
 
 .betting-limit-item {
@@ -263,7 +263,7 @@
 }
 
 .simple-mode-container .bet-limit-constrain-max, .simple-mode-container .bet-limit-constrain-min,
-.simple-mode-container .bet-limit-constrain-max-match 
+.simple-mode-container .bet-limit-constrain-max-match, simple-mode-container .bet-limit-constrain-mainshareholder
 {
 	border-top: 1px solid @borderColor;
 	border-bottom: 1px solid @borderColor;
@@ -271,13 +271,16 @@
 }
 
 .simple-mode-container .bet-limit-value-max, .simple-mode-container .bet-limit-value-min,
-.simple-mode-container .bet-limit-value-max-match 
+.simple-mode-container .bet-limit-value-max-match
 {
 	border-top: 1px solid @borderColor;
 	border-bottom: 1px solid @borderColor;
 	border-left: 1px solid @borderColor;
 }
-
+.simple-mode-container .bet-limit-value-mainshareholder
+{
+	border: 1px solid @borderColor;
+}
 .btnLeft {
 	margin-bottom: 20px;
 }

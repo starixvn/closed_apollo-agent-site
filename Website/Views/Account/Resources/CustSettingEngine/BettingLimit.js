@@ -256,7 +256,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             informationButton.id = "agent-";
         }
         informationButton.id += "bet-limit-info-button" + (context.IsSimpleMode ? "" : "-adv");
-        
+
         header.appendChild(informationButton);
         container.appendChild(header);
 
@@ -581,7 +581,11 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         }
         else {
             betSettingContainer.className = "bet-limit-value-" + suffixClass;
-            betSettingContainer.innerHTML = minMaxText + ' ';
+            var divText = document.createElement("DIV");
+            divText.innerHTML = minMaxText + ' ';
+            divText.title = minMaxText + ' ';
+            divText.className = "div-bet-limit-value-" + suffixClass;
+            betSettingContainer.appendChild(divText);
             parentElement.appendChild(betSettingContainer);
 
             var inputValue = document.createElement("INPUT");
@@ -591,10 +595,20 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             inputValue.value = ''.FormatNumber(betLimitValue);
             betSettingContainer.appendChild(inputValue);
 
-            var constrainBetSettingContainer = document.createElement("TD");
-            constrainBetSettingContainer.className = "bet-limit-constrain-" + suffixClass;
-            constrainBetSettingContainer.innerHTML = constrainText;
-            parentElement.appendChild(constrainBetSettingContainer);
+            
+
+            if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+                betSettingContainer.className = "bet-limit-value-mainshareholder";
+                inputValue.className = "bet-limit-input-mainshareholder";
+                divText.className = "div-bet-limit-value-mainshareholder";
+                //constrainBetSettingContainer.className = "bet-limit-constrain-mainshareholder";
+            }
+            else {
+                var constrainBetSettingContainer = document.createElement("TD");
+                constrainBetSettingContainer.className = "bet-limit-constrain-" + suffixClass;
+                constrainBetSettingContainer.innerHTML = constrainText;
+                parentElement.appendChild(constrainBetSettingContainer);
+            }
         }
         return inputValue;
     }
