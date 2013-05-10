@@ -11,6 +11,6 @@ namespace Apollo.Age.Core
 {
     public static class Constants
     {
-        public const string APOLLO_CURRENT_SESSION_KEY = "Apollo.Age.Web.CurrentSession";
+        public const string ApolloCurrentSessionKey = "Apollo.Age.Web.CurrentSession";
     }
 }

@@ -126,8 +126,7 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
 
-            // Paging
-            int _rowCount = 0;
+            // Paging            
             Paging_Control pagingControl = new Paging_Control(tpl, "pagination", this.PageSize, Request.Url.AbsoluteUri, this.TotalRows, PAGE_SIZES);
             tpl.PagingControl = pagingControl.ToString();
 
@@ -279,7 +278,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             get
             {
-                return SessionManager.Instance.CurrentSession;
+                return SessionManager.CurrentSession;
             }
         }
 

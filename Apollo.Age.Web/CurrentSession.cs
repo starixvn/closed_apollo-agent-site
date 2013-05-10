@@ -103,16 +103,7 @@ namespace Apollo.Age.Web
 
         public bool DoubleCommLosing { get; set; }
 
-        public string Language { get; set; }
-
-        /// <summary>
-        /// if true: indicates admin user can view VN ip.
-        /// </summary>
-        public bool IsAdminCanViewVNIP
-        {
-            get;
-            set;
-        }
+        public string Language { get; set; }      
 
         public string CsdAdminName { get; set; }
 

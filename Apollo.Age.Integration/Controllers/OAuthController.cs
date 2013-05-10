@@ -76,7 +76,7 @@ namespace Apollo.Age.Integration.Controllers
                             {
                                 authModel.ErrorCode = string.Empty;
                                 ICurrentSession currentSession = new CurrentSession(user, language);
-                                SessionManager.Instance.CurrentSession = currentSession;
+                                SessionManager.CurrentSession = currentSession;
                                 FormsAuthentication.SetAuthCookie(user.Username, true);
                             }
                             else
@@ -115,7 +115,7 @@ namespace Apollo.Age.Integration.Controllers
         [AllowAnonymous]
         public ActionResult SignOut()
         {
-            var currentSession = Session[Constants.APOLLO_CURRENT_SESSION_KEY] as CurrentSession;
+            var currentSession = Session[Constants.ApolloCurrentSessionKey] as CurrentSession;
             string redirectUrl = currentSession != null && currentSession.IsCsdAdmin
                 ? "~/Internal/SignIn"
                 : FormsAuthentication.LoginUrl;
