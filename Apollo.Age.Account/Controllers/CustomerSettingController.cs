@@ -341,12 +341,13 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [BelongChecking()]
-        public ActionResult EditMemberSetting(int memberId, string userName, string userGroup, int? agentId, bool showHeader = false)
+        public ActionResult EditMemberSetting(int memberId, string userName, string userGroup, int? agentId, bool showHeader = false, bool isSimpleMode = true)
         {
             ViewBag.MemberId = memberId;
             ViewBag.UserName = userName;
             ViewBag.UserGroup = userGroup;
             ViewBag.CurentParentAgentId = agentId;
+            ViewBag.IsSimpleMode = isSimpleMode;
             if (showHeader)
             {
                 ViewBag.IsShowHeader = true;
@@ -356,11 +357,12 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [BelongChecking()]
-        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool showHeader = false)
+        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool showHeader = false, bool isSimpleMode = true)
         {
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
+            ViewBag.IsSimpleMode = isSimpleMode;
             if (showHeader)
             {
                 ViewBag.IsShowHeader = true;
@@ -369,9 +371,10 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
-        public ActionResult GetMemberSetting(int memberId, string ugroup, int? agentId)
+        public ActionResult GetMemberSetting(int memberId, int? agentId)
         {
-            string jsString = this.GetSettingScript(memberId, agentId, null, ugroup);
+
+            string jsString = this.GetSettingScript(memberId, agentId, null, _customerSettingService.GetMemberGroup(memberId));
             return JavaScript(jsString);
         }
 
@@ -576,6 +579,13 @@ namespace Apollo.Age.Account.Controllers
         [NonAction]
         public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
         {
+            if (commissionSetting == null && betLimits == null && positionTakingSetting == null)
+            {
+                return ReturnResult(new Result { 
+                    ErrCode = 0,
+                    ErrMsg = Apollo.Age.Resources.Lang.noChangeToUpdate
+                });
+            }
             Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
             return ReturnResult(result);
         }

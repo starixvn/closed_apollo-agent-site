@@ -23,10 +23,14 @@ namespace Apollo.Age.Web
     using System.Web.Security;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Resources;
+    using Apollo.Age.Services.Interface;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
+        private readonly IUserService _userService;
+
+            _userService = new UserService();
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             bool actionIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.IsDefined(
@@ -67,7 +71,7 @@ namespace Apollo.Age.Web
 
         private void CheckKickOut(ActionExecutingContext filterContext)
         {
-            var isKickOut = PermissionService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
+            var isKickOut = _userService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
 
             if (isKickOut)
             {

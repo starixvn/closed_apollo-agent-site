@@ -16,6 +16,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.spinBoxItems = [];
     this.items = source.CommissionItems;
     this.currentGroup = source.UserGroup;
+    this.oldGroup = source.UserGroup;
     this.group = ["A", "B", "C", "D"];
     this.currentDisableMaxSpanText = ' [0]';
     this.groupSelect = null;
@@ -106,6 +107,13 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                         Discount: currentGameValue
                     });
                 };
+            }
+
+        }
+
+        if (editItems.length == 0) {
+            if (typeof (this.currentGroup) != 'undefined' && this.currentGroup == this.oldGroup.toUpperCase()) {
+                this.currentGroup = undefined;
             }
         }
 
@@ -233,7 +241,13 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     };
     this.RenderAgentCom = function (trBox, textName, discount, uplineDiscount, disable) {
         var tdTextBox = document.createElement("TD");
-        tdTextBox.innerHTML = textName + ' :';
+        var divText = document.createElement("DIV");
+        if (textName == Language.OTHERS_COM) {
+            divText.title = textName + ' :';
+        }
+        divText.className = "div-commission-text";
+        divText.innerHTML = textName + ' :';
+        tdTextBox.appendChild(divText);
         tdTextBox.className = "commission-text";
         trBox.appendChild(tdTextBox);
 
@@ -329,7 +343,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         var boxTBody = document.createElement("TBODY");
 
 
-        
+
         var isEditNonDirectMember = context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
         if (context.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";

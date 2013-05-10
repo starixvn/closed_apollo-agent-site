@@ -6,12 +6,14 @@
 // <history>
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
 //   <change who="Lewis.Le" date="2013.5.3">Added AuthenticateNapUser</change>
+//   <change who="Ricky.Nguyen" date="2013.5.10">Added IsKickOut, HasPermissionOnUpdating</change>
 // </history>
 
 namespace Apollo.Age.Services.Interface
 {
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
+    using Apollo.Age.Enumerations;
 
     public interface IUserService
     {
@@ -23,5 +25,9 @@ namespace Apollo.Age.Services.Interface
         /// Validates a username and password against credentials stored in NAP database
         /// </summary>
         bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria);
+
+        bool IsKickOut(int agentId, int agentUserId);
+
+        bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType);
     }
 }

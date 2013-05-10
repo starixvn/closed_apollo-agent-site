@@ -9,53 +9,47 @@ html, body {
 
 #tab-menu {
 	#gradient.vertical(#F8F8F8, #E5E5E5);
-	border: 1px solid @borderColor;
-	border-width: 1px 0 1px 0;
 	text-align: center;
 	.clearfix;
 	margin-top: 1px;	
-	height: 35px;
+	width: 100%;
 
-	li {
-		float: left;
-		border-left: 1px solid @borderColor;
-		border-width: 0 0 0 1px;
-		padding: 0 3px;
+	td {		
+		border: 1px solid @borderColor;
+		border-width: 1px 0px 1px 1px;
+		text-align: center;
+		padding: 0;
+		
+		&.active, &:hover {		
+					
+			a {
+				color: @secondColor;
 
-		&.tab-menu, &.tab-acc, &.tab-tree {
-			&.active, &:hover {			
-				a {
-					color: @secondColor;
-
-					i {
-						background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings.png);
-					}
-				}
-			}
-
-			&.active {		
-				border-top: 2px solid @secondColor;
-				background-color: @white;
-						
-				a {
-					padding: 9px 0 6px;
-					cursor: default;
+				i {
+					background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings.png);
 				}
 			}
 		}
 
-		&.tab-menu	{ width: auto; }
-		&.tab-acc	{ width: auto; }
-		&.tab-tree	{ width: auto; }
+		&.active {		
+			border-top: 2px solid @secondColor;
+			border-bottom: 1px solid @white;
+			background-color: @white;
+						
+			a {
+				padding: 8px 0 7px;
+				cursor: default;
+			}
+		}
+		
 
 		&:first-child { border-left: 0 }
 		&:last-child { border-right: 0 }
 
 		a {
 			display: block;
-			padding: 10px 0 6px;
+			padding: 9px 0 7px;
 			text-decoration: none;
-			text-align: center;
 			color: #707070;
 			text-transform: uppercase;
 			font-size: .9em;
@@ -401,7 +395,8 @@ html, body {
 .treeview {
 	
 	li {
-		width: 90%;
+		width: auto;
+		white-space: nowrap;
 	}
 
 	a {
@@ -520,6 +515,8 @@ html, body {
 		}
 		
 		.search-box {
+			z-index: 200;
+
 			input[type="text"] {
 				height: 15px;
 			}
@@ -527,6 +524,12 @@ html, body {
 			.search-button {
 				height: 21px;
 			}
+		}
+	}
+
+	.treeview {
+		li {
+			min-width: 150px;
 		}
 	}
 }

@@ -10936,6 +10936,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Share Setting Instructions.
+        /// </summary>
+        public static string shareSettingInstruction {
+            get {
+                return ResourceManager.GetString("shareSettingInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Share Taken On Member (%).
         /// </summary>
         public static string ShareTakenOnMember {

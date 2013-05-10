@@ -49,12 +49,13 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
     //// Taken Share
     var presetSelected = this.pt.Preset;
-    currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Max,2), 0);
+    currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Max, 2), 0);
+    currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.MinGiven - this.pt.Max, 2), 0);
     var presetContainer = document.createElement("DIV");
     presetContainer.className = "bet-type-select";
     var presetSpinBox = Fanex.CustSetting.PT_RenderSpinner(presetContainer,
     {
-        minimum: 0,
+        minimum: currentPt.MinPresetSpan,
         maximum: currentPt.MaxPresetSpan,
         decimals: Fanex.CustSetting.PT_DECIMALS,
         step: Fanex.CustSetting.PT_STEP,
@@ -64,7 +65,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     }, Fanex.CustSetting.PT_MAX_LENGTH);
     box.appendChild(presetContainer);
     var presetMaxSpan = document.createElement("SPAN");
-    presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxPresetSpan);
+    presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
     presetMaxSpan.className = "upline-agent-share";
     presetContainer.appendChild(presetMaxSpan);
 
@@ -95,17 +96,9 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
             return;
         }
         var presetValue = presetSpinBox.getValue();
-        var maxValue = maxSpinBox.getValue();
-        if (presetValue + maxValue > currentPt.Upline.Max) {
-            var newMaxValue = Fanex.RoundNumber(currentPt.Upline.Max - maxValue, 2);
-            //presetSpinBox.setValue(newMaxValue);
-            Fanex.ValidateMessage(this, Language.INVALID_RANGE);
-        }
-        else {
+        if (presetSpinBox.isValid()) {
             presetSpinBox.setValue(presetValue);
         }
-
-
     }
     //// Max K Change affect To Min K and Preset K
     maxSpinBox.input.onchange = function (event) {
@@ -131,8 +124,10 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
         //// Update New Preset Range
         currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - maxValueCorrect, 2), 0);
-        presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxPresetSpan);
+        currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - maxValueCorrect, 2), 0);
+        presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
         presetSpinBox.updateMaxValue(currentPt.MaxPresetSpan);
+
         //// Update New Min Range
         currentPt.MaxMinSpan = maxValueCorrect;
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
@@ -441,13 +436,14 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     trSetting.appendChild(presetLabel);
 
     var presetSelected = currentPt.Preset;
-    currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - currentPt.Max, 2),0);
+    currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - currentPt.Max, 2), 0);
+    currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - currentPt.Max, 2), 0);
     var presetContainer = document.createElement("TD");
     presetContainer.className = "share-setting-value";
     trSetting.appendChild(presetContainer);
     var presetSpinBox = Fanex.CustSetting.PT_RenderSpinner(presetContainer,
                     {
-                        minimum: 0,
+                        minimum: currentPt.MinPresetSpan,
                         maximum: currentPt.MaxPresetSpan,
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
@@ -457,7 +453,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
     var presetMaxSpan = document.createElement("SPAN");
-    presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxPresetSpan);
+    presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
     presetMaxSpan.className = "upline-agent-share";
     presetContainer.appendChild(presetMaxSpan);
 
@@ -466,11 +462,10 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         if (!maxSpinBox.isValid()) {
             return;
         }
+
         var presetValue = presetSpinBox.getValue();
-        var maxValue = maxSpinBox.getValue();
-        if (presetValue + maxValue > currentPt.Upline.Max) {
-            Fanex.ValidateMessage(this, Language.INVALID_RANGE);
-            return;
+        if (presetSpinBox.isValid()) {
+            presetSpinBox.setValue(presetValue);
         }
     }
     //// Max K Change affect To Min K and Preset K
@@ -494,8 +489,9 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         }
 
         currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - maxValueCorrect, 2), 0);
+        currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - maxValueCorrect, 2), 0);
         presetSpinBox.updateMaxValue(currentPt.MaxPresetSpan);
-        presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxPresetSpan);
+        presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
     }
 
     this.Validate = function () {

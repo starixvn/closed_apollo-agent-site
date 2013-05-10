@@ -19,12 +19,25 @@ namespace Apollo.Age.Web.Filters
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Enumerations;
     using Fanex.Logging;
+    using Apollo.Age.Services.Interface;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class BelongCheckingAttribute : ActionFilterAttribute
     {
+        private readonly IUserService _userService;
+
+        public BelongCheckingAttribute()
+            : this(null)
+        {
+        }
+
+        public BelongCheckingAttribute(IUserService userService = null)
+        {
+            _userService = userService ?? new UserService();
+        }
+        
         private const int UN_AUTHORIZED_CODE = 401;
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -35,14 +48,14 @@ namespace Apollo.Age.Web.Filters
                 int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"]) : 0;
                 if (memberId > 0)
                 {
-                    if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
+                    if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
                     {
                         DoUnAuthorized(filterContext);
                     }
                 }
                 else if (agentId > 0)
                 {
-                    if (!PermissionService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
+                    if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
                     {
                         DoUnAuthorized(filterContext);
                     }

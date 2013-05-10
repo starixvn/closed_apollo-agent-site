@@ -134,7 +134,7 @@ namespace Fanex.BetList.Age
 		{
 			protected static string s21 = "<th style=\"width: 85px;\">";
 			protected static string s22{get{return Apollo.Age.Resources.BetList.agentPT;}}
-			protected static string s23 = "</th><th style=\"width: 85px;\">";
+			protected static string s23 = "</th><th>";
 			protected static string s24{get{return Apollo.Age.Resources.BetList.agentComm;}}
 			protected static string s25 = "</th>";
 			public override void ToString(ref StringBuilder bd)
