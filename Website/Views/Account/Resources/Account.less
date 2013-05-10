@@ -395,7 +395,8 @@ html, body {
 .treeview {
 	
 	li {
-		width: 90%;
+		width: auto;
+		white-space: nowrap;
 	}
 
 	a {
@@ -523,6 +524,12 @@ html, body {
 			.search-button {
 				height: 21px;
 			}
+		}
+	}
+
+	.treeview {
+		li {
+			min-width: 150px;
 		}
 	}
 }
