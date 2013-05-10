@@ -29,57 +29,5 @@ namespace Apollo.Age.Services.Impl
             _userRepository = new UserRepository();
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="agentUserId"></param>
-        /// <returns></returns>
-        public static bool IsKickOut(int agentId, int agentUserId)
-        {
-            try
-            {
-                var currentStatus = _userRepository.GetUserStatus(new AgentGetStatusCriteria
-                {
-                    AgentId = agentId,
-                    AgentUserId = agentUserId
-                });
-
-                if (currentStatus >= (int)CustomerStatus.Stopped)
-                {
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
-            return false;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="agentUserId"></param>
-        /// <param name="isMaster"></param>
-        /// <returns></returns>
-        public static bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType)
-        {
-            try
-            {
-                return _userRepository.HasPermissionOnUpdating(new CheckUpdatePermissionCriteria
-                {
-                    ActorAgentId = actorAgentId,
-                    ObjectId = custId,
-                    ObjectTypeId = (int)customerType
-                });
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
-            return false;
-        }
     }
 }

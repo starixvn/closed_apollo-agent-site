@@ -63,6 +63,8 @@ namespace Apollo.Age.Criterias
                 _betType = value;
             }
         }
+
+
         private string _betType;
         private BetTypes _betTypeEnum;
 
