@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
+using Apollo.Age.Web;
 
 //using Sunplus.Agent.Model.BL;
 //using Sunplus.Agent.Model.Entities;
@@ -27,7 +28,7 @@ namespace Fanex.Age.UI
     {
         protected override void InitializeCulture()
         {
-            //SetLanguage(CurrentUserSession.Language);
+            SetLanguage(SessionManager.CurrentSession.Language);
             base.InitializeCulture();
         }
 
@@ -141,7 +142,7 @@ namespace Fanex.Age.UI
             {
                 DateTime value = DateTime.Now;
                 if (!DateTime.TryParse(HttpContext.Current.Request[name], out value)) return defaultValue;
-                return Convert.ToDateTime(value.ToString("MM/dd/yyyy"));
+                return value;
             }
         }
 

@@ -41,7 +41,7 @@ namespace Sunplus.Agent.UI._BetList
         private BetListTransaction_Template tpl = new BetListTransaction_Template();
 
         private string username = string.Empty;
-        private string fromDate, toDate;
+        private DateTime fromDate, toDate;
         private int agentId, custId, currentPage;
         private bool userType = false;
         private string pageType = string.Empty;
@@ -152,8 +152,8 @@ namespace Sunplus.Agent.UI._BetList
             }
 
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
-            tpl.Filter.valueFromDate = fromDate;
-            tpl.Filter.valueToDate = toDate;
+            tpl.Filter.valueFromDate = fromDate.ToString("MM/dd/yyyy");
+            tpl.Filter.valueToDate = toDate.ToString("MM/dd/yyyy");
             tpl.Filter.valueMaxDate = maxDate.ToString("MM/dd/yyyy");
             tpl.Filter.valueMinDate = minDate.ToString("MM/dd/yyyy");
             tpl.Filter.User.username = username;
@@ -203,8 +203,8 @@ namespace Sunplus.Agent.UI._BetList
                     LoggedId = CurrentSession.AgentId,
                     AgentId = agentId,
                     CustId = custId,
-                    FromDate = Formater.ResetStartDate(Convert.ToDateTime(fromDate)),
-                    ToDate = Formater.ResetEndDate(Convert.ToDateTime(toDate)),
+                    FromDate = Formater.ResetStartDate(fromDate),
+                    ToDate = Formater.ResetEndDate(toDate),
                     StatusIds = statusIds,
                     MoveBetsDay = moveBetsDay
                 };
@@ -266,8 +266,8 @@ namespace Sunplus.Agent.UI._BetList
                     (int)Apollo.Age.Enumerations.BetStatus.Won,
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
-            fromDate = Formater.ShortDateFormat(GetDateTimeRequest("fromDate", DateTime.Now));
-            toDate = GetDateTimeRequest("toDate", DateTime.Now).ToString("MM/dd/yyyy");
+            fromDate = GetDateTimeRequest("fromDate", DateTime.Now);
+            toDate = GetDateTimeRequest("toDate", DateTime.Now);
             username = this.GetStringRequest("username", CurrentSession.AgentName).Trim();
             userType = GetBooleanRequest("userType", true);
             mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
