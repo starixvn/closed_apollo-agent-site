@@ -143,7 +143,7 @@ namespace Sunplus.Agent.UI._BetList
 
             if (pageType == "accountinfo")
             {
-                statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}^{6}^{7}",
+                statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
                    (int)Apollo.Age.Enumerations.BetStatus.Void,
                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -155,7 +155,7 @@ namespace Sunplus.Agent.UI._BetList
             }
             else if (pageType == "report")
             {
-                statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}",
+                statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
                        (int)Apollo.Age.Enumerations.BetStatus.Void,
                        (int)Apollo.Age.Enumerations.BetStatus.Reject,
                        (int)Apollo.Age.Enumerations.BetStatus.Refund,
@@ -165,7 +165,7 @@ namespace Sunplus.Agent.UI._BetList
             }
             else
             {
-                statusIds = string.Format("{0}^{1}",
+                statusIds = string.Format("{0},{1}",
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
                    (int)Apollo.Age.Enumerations.BetStatus.Waiting);
             }

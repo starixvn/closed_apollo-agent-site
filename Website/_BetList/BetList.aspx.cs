@@ -216,7 +216,7 @@ namespace Sunplus.Agent.UI._BetList
             if (type.ToLower().Equals("correctscore"))
             {
                 title = CacheRef.GetBettype((int)BetTypes.Correct_Score).ToUpper();
-                bettype = string.Format("{0}^{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
+                bettype = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
             }
             else if (type.ToLower().Equals("mixparlay"))
             {

@@ -20,6 +20,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Services;
+    using Apollo.Age.Forecast.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Web;
     using Fanex.Age.UI.Components;
@@ -31,7 +32,6 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Apollo.Age.Forecast.Services;
 
     public partial class BetListTransaction : BetListBase
     {
@@ -48,7 +48,7 @@ namespace Sunplus.Agent.UI._BetList
         private string statusIds = string.Empty;
         private bool isShowAgentPT = true;
         private bool isShowWinLost = true;
-        private DateTime moveBetsDay;
+        private DateTime moveBetsDay, maxDate, minDate;
         private string mainShareHolderId, mainShareHolderUsername;
 
         #endregion Variables
@@ -145,7 +145,6 @@ namespace Sunplus.Agent.UI._BetList
         private void BoxFilter()
         {
             var selectedUserType = "0";
-            var maxDate = DateTime.Now;
 
             if (userType)
             {
@@ -155,8 +154,8 @@ namespace Sunplus.Agent.UI._BetList
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
             tpl.Filter.valueFromDate = fromDate.ToString("MM/dd/yyyy");
             tpl.Filter.valueToDate = toDate.ToString("MM/dd/yyyy");
-            tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
-            tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
+            tpl.Filter.valueMaxDate = maxDate.ToString("MM/dd/yyyy");
+            tpl.Filter.valueMinDate = minDate.ToString("MM/dd/yyyy");
             tpl.Filter.User.username = username;
             tpl.HiddenFields.pageType = pageType;
         }
@@ -245,13 +244,19 @@ namespace Sunplus.Agent.UI._BetList
             {
                 tpl.title = Apollo.Age.Resources.Lang.voidandreject;
                 isShowAgentPT = isShowWinLost = false;
-                statusIds = string.Format("{0}^{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
+                maxDate = DateTime.Now;
+                minDate = moveBetsDay;
+
+                statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             }
             else if (pageType == "transaction")
             {
                 tpl.title = Apollo.Age.Resources.Lang.transaction;
                 isShowWinLost = true;
-                statusIds = string.Format("{0}^{1}^{2}^{3}^{4}^{5}^{6}^{7}",
+                maxDate = DateTime.Now;
+                minDate = maxDate.AddMonths(-3);
+
+                statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
                     (int)Apollo.Age.Enumerations.BetStatus.Void,
                     (int)Apollo.Age.Enumerations.BetStatus.Reject,
                     (int)Apollo.Age.Enumerations.BetStatus.Running,
