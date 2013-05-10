@@ -138,12 +138,13 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             var minBetValue = Fanex.RoundNumber(parseFloat(this.items[0].minBetElement.value, true), 1);
             var maxBetValue = Fanex.RoundNumber(parseFloat(this.items[0].maxBetElement.value, true), 1);
             var maxPerMatchValue = Fanex.RoundNumber(parseFloat(this.items[0].maxPerMatchElement.value, true), 1);
-            if (minBetValue != this.items[0].MinBet
-            || maxBetValue != this.items[0].MaxBet
-            || maxPerMatchValue != this.items[0].MaxPerMatch) {
-                var c = this.items.length;
-                for (var i = 0; i < c; i++) {
-                    var item = this.items[i];
+
+            var c = this.items.length;
+            for (var i = 0; i < c; i++) {
+                var item = this.items[i];
+                if (minBetValue != item.MinBet
+                    || maxBetValue != item.MaxBet
+                    || maxPerMatchValue != item.MaxPerMatch) {
                     bettingLimits.push({
                         SportId: item.SportId,
                         BetTypeId: item.BetTypeId,

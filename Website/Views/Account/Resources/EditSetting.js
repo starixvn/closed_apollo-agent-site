@@ -33,10 +33,22 @@ if (typeof jQuery != 'undefined') {
 
                 APOLLO.initPageInfo();
             },
-
+            initForMode: function () {
+                if (EDITSETTING.currentIsSimpleMode) {
+                    $("setting-mode #simple-mode").removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
+                    $("#settingContainer .edit-setting-warning").show();
+                }
+                else {
+                    $(".setting-mode #advanced-mode").removeClass("active-mode").addClass("deactive-mode");
+                    $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
+                    $("#settingContainer .edit-setting-warning").hide();
+                }
+            },
             init: function () {
-                EDITSETTING.currentIsSimpleMode = true;
-                EDITSETTING.initOthers(true);
+                EDITSETTING.currentIsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
+                EDITSETTING.initOthers(DEFAULT_LAYOUT.isSimpleMode);
+                EDITSETTING.initForMode();
                 $("#btnSubmitFooter").unbind("click").click(function () {
                     EDITSETTING.saveSetting();
                 });
@@ -137,7 +149,11 @@ if (typeof jQuery != 'undefined') {
                         parent.AGENTLIST.loadAgentList();
                     }
                     else {
-                        window.location.href = window.location.href;
+                        var url = window.location.href;
+                        if (url.indexOf("&isSimpleMode=") > 0) {
+                            url = url.substring(0, url.indexOf("&isSimpleMode="));
+                        }
+                        window.location.href = url + '&isSimpleMode=' + EDITSETTING.currentIsSimpleMode;
                     }
                 }, 4500);
             },
