@@ -60,12 +60,6 @@ var AGENTLIST = function ($) {
                             $("#currUsername").html(AGENTLIST.Username);
                             AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
 
-                            if (AGENTLIST.IsSuper || AGENTLIST.IsMainShareHolder || AGENTLIST.IsShareHolder) {
-                                $("#quickLinkCustomerList").hide();
-                            }
-                            else {
-                                $("#quickLinkCustomerList").show();
-                            }
                         }
                         else {
                             template += "<li><a href='#' name='navigation' agentId='" + result[i].Id + "' agentlevel='" + result[i].Level + "' >" + result[i].Username + "</a>";
@@ -345,6 +339,14 @@ var AGENTLIST = function ($) {
                 return false;
             }
             $("#gridId").fanexGrid(gridOption);
+
+            //// Show hide quicklink
+            if (AGENTLIST.IsSuper || AGENTLIST.IsMainShareHolder || AGENTLIST.IsShareHolder) {
+                $("#quickLinkCustomerList").hide();
+            }
+            else {
+                $("#quickLinkCustomerList").show();
+            }
 
             AGENTLIST.bindingViewAgent();
             AGENTLIST.bindingViewMember();
