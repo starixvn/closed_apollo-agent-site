@@ -60,7 +60,7 @@ if (typeof jQuery != 'undefined') {
 
                 }
                 if (matchIds == "") {
-                    $('#msgMatchErr').text(plsChooseMatch);
+                    $('#msgMatchErr').text(DEFAULT_OBJECT.plsChooseMatch);
                     $('#tblMsgMatch').show();
                     return;
                 }
@@ -92,7 +92,7 @@ if (typeof jQuery != 'undefined') {
                     betTypesDead = SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
                 }
                 if (betTypesLive == "" && betTypesDead == "") {
-                    ageMsg.Show(plsChooseBetType, 0);
+                    ageMsg.Show(DEFAULT_OBJECT.plsChooseBetType, 0);
                     $("#mainContent").html('');
                     return;
                 }
