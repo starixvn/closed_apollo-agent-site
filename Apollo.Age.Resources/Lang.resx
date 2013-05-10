@@ -4482,4 +4482,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="allowupdates" xml:space="preserve">
     <value>Allow Updates</value>
   </data>
+  <data name="shareSettingInstruction" xml:space="preserve">
+    <value>Share Setting Instructions</value>
+  </data>
 </root>

@@ -116,11 +116,15 @@ if (typeof jQuery != 'undefined') {
             },
             completeUpdate: function (result) {
                 setTimeout(function () {
+                    
                     if (typeof (parent.MEMBERLIST) != 'undefined') {
                         parent.MEMBERLIST.loadMemberList();
                     }
                     else if (typeof (parent.AGENTLIST) != 'undefined') {
                         parent.AGENTLIST.loadAgentList();
+                    }
+                    else {
+                        window.location.href = window.location.href;
                     }
                 }, 4500);
             },
