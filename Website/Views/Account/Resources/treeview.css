@@ -4,10 +4,6 @@
     list-style: none;
 }
 
-.treeview ul {
-    margin-top: 4px;
-}
-
 .treeview .hitarea {
     background: url("Images/treeview-default.gif") no-repeat scroll 0 -111px #FFF;
     height: 16px;
