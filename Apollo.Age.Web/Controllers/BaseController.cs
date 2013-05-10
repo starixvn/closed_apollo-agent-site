@@ -30,7 +30,11 @@ namespace Apollo.Age.Web
     {
         private readonly IUserService _userService;
 
+        public BaseController()
+        {
             _userService = new UserService();
+        }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             bool actionIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.IsDefined(
