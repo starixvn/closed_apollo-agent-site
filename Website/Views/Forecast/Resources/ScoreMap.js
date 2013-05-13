@@ -36,7 +36,7 @@ if (typeof jQuery != 'undefined') {
                     $.get(url, function (contentView) {
                         $("#BoxMatchWL").replaceWith(contentView);
                         if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
-                            $("#BoxMatchWL").css("top", "124px");
+                            $("#BoxMatchWL").css("top", "124px");                            
                         }
                         SCOREMAP.registerCheckAll("#chLCheckAll", ".match-item");
                         $("#closeBoxMatch").click(function () {
@@ -202,6 +202,8 @@ if (typeof jQuery != 'undefined') {
 
                 document.location.href = link + "?mainShareHolderId=" + $this.val();
             });
+
+            $(".selectLeague label").width($("#main-shareholder-box label").width());
         }
         SCOREMAP.init();
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
