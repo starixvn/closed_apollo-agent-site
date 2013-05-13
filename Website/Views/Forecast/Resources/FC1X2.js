@@ -27,7 +27,7 @@ if (typeof jQuery != 'undefined') {
                                 FC1X2.changeLeague();
                             }
                         });
-                        //FC1X2.changeLeague();
+                        FC1X2.registerEvents(true);
                     }
                 }
             },
