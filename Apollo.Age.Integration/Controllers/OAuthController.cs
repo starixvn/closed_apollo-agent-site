@@ -9,7 +9,6 @@
 //   <change who="Anders.Le" date="2013.5.9">Add log</change>
 // </history>
 
-
 namespace Apollo.Age.Integration.Controllers
 {
     using System;
@@ -20,7 +19,6 @@ namespace Apollo.Age.Integration.Controllers
     using Fanex.Logging;
     using Apollo.Age.Integration.Services;
     using Apollo.Age.Integration.Models;
-    using Apollo.Age.Core;
 
     [AllowAnonymous]
     public class OAuthController : Controller
@@ -75,7 +73,7 @@ namespace Apollo.Age.Integration.Controllers
                             if (user != null && user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
                             {
                                 authModel.ErrorCode = string.Empty;
-                                ICurrentSession currentSession = new CurrentSession(user, language);
+                                ICurrentSession currentSession = new CurrentSession(user, false, language);
                                 SessionManager.CurrentSession = currentSession;
                                 FormsAuthentication.SetAuthCookie(user.Username, true);
                             }
@@ -113,18 +111,11 @@ namespace Apollo.Age.Integration.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult SignOut()
+        public void SignOut()
         {
-            var currentSession = Session[Constants.APOLLO_CURRENT_SESSION_KEY] as CurrentSession;
-            string redirectUrl = currentSession != null && currentSession.IsCsdAdmin
-                ? "~/Internal/SignIn"
-                : FormsAuthentication.LoginUrl;
-
             Session.Abandon();
             Response.Cookies.Clear();
             FormsAuthentication.SignOut();
-
-            return Redirect(redirectUrl);
         }
     }
 }
