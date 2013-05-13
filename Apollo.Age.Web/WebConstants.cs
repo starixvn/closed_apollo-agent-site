@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Lewis.Le" date="2013.5.8">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.5.13">Update Const</change>
 // </history>
 
 namespace Apollo.Age.Web
