@@ -211,7 +211,7 @@ namespace Apollo.Age.Web
 
             if (isInternalSignIn)
             {
-                return Redirect(WebConstants.InternalSignInUrl);
+                return Redirect(ApoURLs.URLs.InternalSignIn);
             }
 
             return Redirect(FormsAuthentication.LoginUrl);
