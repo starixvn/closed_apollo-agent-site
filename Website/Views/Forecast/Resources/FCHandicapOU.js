@@ -16,7 +16,7 @@ if (typeof jQuery != 'undefined') {
                             FCHANDICAPOU.changeLeague();
                         }
                     });
-                    FCHANDICAPOU.changeLeague();
+                    //FCHANDICAPOU.changeLeague();
                 }
             },
             registerEvents: function () {

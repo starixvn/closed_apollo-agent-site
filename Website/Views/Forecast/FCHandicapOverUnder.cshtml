@@ -6,6 +6,7 @@
     IEnumerable<LeagueModel> leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     string leagueName = ViewBag.LeagueName;
     var leagueId = ViewBag.LeagueId ?? 0;
+    var fcHDPList = (IEnumerable<ForecastHandicapOUModel>)ViewBag.FCHDPList;
 }
 @section css
 {
@@ -68,7 +69,7 @@
             </tr>
         </thead>
         <tbody id="forecast-body">
-            @*Load Ajax*@
+            @Html.Partial("FCHandicapOverUnderMatches", fcHDPList)
         </tbody>
     </table>
 }

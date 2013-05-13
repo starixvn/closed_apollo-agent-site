@@ -8,6 +8,7 @@
     int betType = ViewBag.BetType != null ? (int)ViewBag.BetType : 0;
     string initLeagueName = ViewBag.LeagueName;
     var leagueId = ViewBag.LeagueId ?? 0;
+    var fc1X2List = (IEnumerable<Forecast1X2Model>)ViewBag.FC1X2List;
 }
 @section css
 {
@@ -72,7 +73,12 @@
             </tr>
         </thead>
         <tbody id="forecast-body">
-            @*Ajax Content*@
+            @{
+    if (matchId == 0)
+    {
+        @Html.Partial("FC1X2Matches", fc1X2List)
+    }
+                }
         </tbody>
     </table>
 }
