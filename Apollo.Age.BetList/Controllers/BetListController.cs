@@ -9,14 +9,16 @@
 
 namespace Apollo.Age.BetList.Controllers
 {
+    using System;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Apollo.Age.BetList.Services;
-    using Apollo.Age.Enumerations;
     using Apollo.Age.Web;
 
     /// <summary>
     /// BetList Controller
     /// </summary>
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListController : BaseController
     {
         private readonly BetListService betListService;
@@ -29,7 +31,12 @@ namespace Apollo.Age.BetList.Controllers
             this.betListService = new BetListService();
         }
 
-        public ViewResult Index(string type, int betType = (int)BetTypes.Handicap)
+        public ViewResult Index()
+        {
+            return this.View();
+        }
+
+        public ViewResult ViewDetail(long transId, DateTime fromDate, DateTime toDate, string type)
         {
             return this.View();
         }
