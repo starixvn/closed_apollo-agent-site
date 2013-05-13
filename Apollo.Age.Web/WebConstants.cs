@@ -16,5 +16,7 @@ namespace Apollo.Age.Web
         public const string AccountStoppedUrl = "~/Internal/AccountStopped";
         
         public const string UnauthorizedUrl = "~/Internal/Unauthorized";
+
+        public const string InternalSignInUrl = "~/Internal/SignIn";
     }
 }
