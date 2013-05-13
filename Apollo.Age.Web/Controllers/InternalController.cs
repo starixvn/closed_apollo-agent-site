@@ -131,7 +131,7 @@ namespace Apollo.Age.Web
                 {
                     // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and
                     // may be removed in future
-                    agent.IsMaster = AppSettings.AllowInternalUpdate && model.AllowUpdate;
+                    agent.IsMaster = agent.IsMaster && AppSettings.AllowInternalUpdate && model.AllowUpdate;
 
                     // saves user session
                     SessionManager.CurrentSession = new CurrentSession(
@@ -202,9 +202,17 @@ namespace Apollo.Age.Web
 
         public ActionResult SignOut()
         {
+            bool isInternalSignIn = SessionManager.CurrentSession != null
+                && SessionManager.CurrentSession.IsInternalSignIn;
+
             Session.Abandon();
             Response.Cookies.Clear();
             FormsAuthentication.SignOut();
+
+            if (isInternalSignIn)
+            {
+                return Redirect(WebConstants.InternalSignInUrl);
+            }
 
             return Redirect(FormsAuthentication.LoginUrl);
         }

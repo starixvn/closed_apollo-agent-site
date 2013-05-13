@@ -20,6 +20,8 @@ namespace Apollo.Age.Web
 
         public const string ACCESS_DENY_URL = "~/Internal/AccessDeny";
 
+        public const string InternalSignInUrl = "~/Internal/SignIn";
+        
         public const int UN_AUTHORIZED_CODE = 401;
     }
 }
