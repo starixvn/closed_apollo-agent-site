@@ -63,6 +63,14 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.BetType = betType;
             ViewBag.LeagueName = leagueName;
             ViewBag.LeagueId = leagueId;
+            if (matchId == null)
+            {
+                if (leagueId == 0 && leagues != null && leagues.Any())
+                {
+                    leagueId = leagues.ElementAt(0).LeagueId;
+                }
+                ViewBag.FC1X2List = _forecastService.GetForecast1x2(currentAgentId, leagueId);
+            }
             return View();
         }
 
@@ -103,6 +111,11 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.LeagueId = leagueId;
             ViewBag.Leagues = leagues;
             ViewBag.LeagueName = leagueName;
+            if (leagueId == 0 && leagues != null && leagues.Any())
+            {
+                leagueId = leagues.ElementAt(0).LeagueId;
+            }
+            ViewBag.FCHDPList = _forecastService.GetForecastHandicapOverUnder(currentAgentId, leagueId);
             return View();
         }
 
