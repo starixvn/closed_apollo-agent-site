@@ -10,18 +10,14 @@
 
 namespace Apollo.Age.Web
 {
-    public static class WebConstants
-    {
-        public const string ApolloCurrentSessionKey = "Apollo.Age.Web.CurrentSession";
+    //public static class WebConstants
+    //{
+    //    public const string AccountStoppedUrl = "~/Internal/AccountStopped";
 
-        public const string AccountStoppedUrl = "~/Internal/AccountStopped";
-        
-        public const string UnauthorizedUrl = "~/Internal/Unauthorized";
+    //    public const string UnauthorizedUrl = "~/Internal/Unauthorized";
 
-        public const string AccessDeniedUrl = "~/Internal/AccessDenied";
+    //    public const string AccessDeniedUrl = "~/Internal/AccessDenied";
 
-        public const string InternalSignInUrl = "~/Internal/SignIn";
-        
-        public const int UnauthorizedCode = 401;
-    }
+    //    public const string InternalSignInUrl = "~/Internal/SignIn";
+    //}
 }
