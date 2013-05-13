@@ -14,18 +14,18 @@
 
     switch (Model.PageQuery)
     {
-        case WebConstants.NORMAL:
+        case Constants.NORMAL:
             normal = "current";
             break;
-        case WebConstants.SPECIAL:
+        case Constants.SPECIAL:
             special = "current";
             color = "Red";
             break;
-        case WebConstants.ALLSPECIAL:
+        case Constants.ALLSPECIAL:
             special = "current";
             color = "Red";
             break;
-        case WebConstants.PRIVATE:
+        case Constants.PRIVATE:
             color = "Green";
             pri = "current";
             break;
@@ -72,11 +72,11 @@
             <tr>
                 <th colspan="4" class="tbList">
                     <ul>
-                        <li id="@normal"><a href="#" query="@WebConstants.NORMAL" class="pagequery">
+                        <li id="@normal"><a href="#" query="@Constants.NORMAL" class="pagequery">
                             @Apollo.Age.Resources.Lang.normalmessage</a> </li>
-                        <li id="@special"><a href="#" query="@WebConstants.SPECIAL" class="pagequery">
+                        <li id="@special"><a href="#" query="@Constants.SPECIAL" class="pagequery">
                             @Apollo.Age.Resources.Lang.specialmessage</a> </li>
-                        <li id="@pri"><a href="#" query="@WebConstants.PRIVATE" class="pagequery">
+                        <li id="@pri"><a href="#" query="@Constants.PRIVATE" class="pagequery">
                             @Apollo.Age.Resources.Lang.personalmessage</a> </li>
                         @Html.HiddenFor(m => m.PageQuery)
                     </ul>
