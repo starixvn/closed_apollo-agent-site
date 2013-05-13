@@ -339,4 +339,7 @@
   <data name="agentPT" xml:space="preserve">
     <value>Agent Share</value>
   </data>
+  <data name="viewCommDetails" xml:space="preserve">
+    <value>View Comm Details</value>
+  </data>
 </root>
