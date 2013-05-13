@@ -60,7 +60,7 @@ if (typeof jQuery != 'undefined') {
 
                 }
                 if (matchIds == "") {
-                    $('#msgMatchErr').text(plsChooseMatch);
+                    $('#msgMatchErr').text(DEFAULT_OBJECT.plsChooseMatch);
                     $('#tblMsgMatch').show();
                     return;
                 }
@@ -92,7 +92,7 @@ if (typeof jQuery != 'undefined') {
                     betTypesDead = SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
                 }
                 if (betTypesLive == "" && betTypesDead == "") {
-                    ageMsg.Show(plsChooseBetType, 0);
+                    ageMsg.Show(DEFAULT_OBJECT.plsChooseBetType, 0);
                     $("#mainContent").html('');
                     return;
                 }
@@ -125,12 +125,6 @@ if (typeof jQuery != 'undefined') {
 
                 resultContainer.find(".refresh-scoremap").click(function () {
                     var $this = $(this);
-                    if ($this.hasClass("lnkRefresh")) {
-                        $this.removeClass("lnkRefresh").addClass("lnkRefreshClick");
-                    }
-                    else {
-                        $this.removeClass("lnkRefreshClick").addClass("lnkRefresh");
-                    }
                     var attrMatchId = $this.attr("match-id");
                     var url = SCOREMAP.baseLink + 'ScoreMapResult?matchIds=' + attrMatchId
                     + '&liveBetTypes=' + SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-live:checked'))

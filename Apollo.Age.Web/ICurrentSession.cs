@@ -40,9 +40,7 @@ namespace Apollo.Age.Web
 
         decimal VirtualMultiplier { get; set; }
 
-        string CsdAdminName { get; set; }
-
-        bool IsCsdAdmin { get; set; }
+        bool IsInternalSignIn { get; set; }
 
         /// <summary>
         /// True indicate admin user can view VN ip.

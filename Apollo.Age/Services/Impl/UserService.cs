@@ -6,6 +6,7 @@
 // <history>
 //   <change who="???" date="???">Created</change>
 //   <change who="Lewis.Le" date="2013.5.3">Added AuthenticateNapUser</change>
+//   <change who="Ricky.Nguyen" date="2013.5.10">Added IsKickOut, HasPermissionOnUpdating</change>
 // </history>
 
 namespace Apollo.Age.Services.Impl
@@ -21,6 +22,9 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Criterias;
     using Fanex.Common;
+    using Fanex.Logging;
+    using Apollo.Age.Criterias.Accounts;
+    using Apollo.Age.Enumerations;
 
     public class UserService : IUserService
     {
@@ -64,6 +68,59 @@ namespace Apollo.Age.Services.Impl
             criteria.Password = Cryptography.CfsEnCode(criteria.Password);
 
             return _userRepository.AuthenticateNapUser(criteria);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="agentUserId"></param>
+        /// <returns></returns>
+        public bool IsKickOut(int agentId, int agentUserId)
+        {
+            try
+            {
+                var currentStatus = _userRepository.GetUserStatus(new AgentGetStatusCriteria
+                {
+                    AgentId = agentId,
+                    AgentUserId = agentUserId
+                });
+
+                if (currentStatus >= (int)CustomerStatus.Stopped)
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="agentUserId"></param>
+        /// <param name="isMaster"></param>
+        /// <returns></returns>
+        public bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType)
+        {
+            try
+            {
+                return _userRepository.HasPermissionOnUpdating(new CheckUpdatePermissionCriteria
+                {
+                    ActorAgentId = actorAgentId,
+                    ObjectId = custId,
+                    ObjectTypeId = (int)customerType
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+            return false;
         }
     }
 }

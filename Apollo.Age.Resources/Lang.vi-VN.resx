@@ -677,7 +677,7 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
     <value>Thông tin của Agent</value>
   </data>
   <data name="lblAgentList" xml:space="preserve">
-    <value>Danh sách Agent</value>
+    <value>DS Agent</value>
   </data>
   <data name="lblAgentMaxCredit" xml:space="preserve">
     <value>Hạn mức tín dụng tối đa của Agent</value>
@@ -4435,5 +4435,8 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
   </data>
   <data name="lblPleaseCheckConstrainMaxMin" xml:space="preserve">
     <value>Given Share Value is lower than Min Given Value, please Use Advanced Mode to see it</value>
+  </data>
+  <data name="shareSettingInstruction" xml:space="preserve">
+    <value>Share Setting Instructions</value>
   </data>
 </root>

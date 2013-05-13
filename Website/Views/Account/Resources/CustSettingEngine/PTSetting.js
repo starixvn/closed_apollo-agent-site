@@ -714,6 +714,25 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 };
             };
 
+            this.CheckChangeData = function (sportTypes) {
+                var sportTypeLength = sportTypes.length;
+                for (var sportTypeIndex = 0; sportTypeIndex < sportTypeLength; sportTypeIndex++) {
+                    var currentBetTypeGroups = sportTypes[sportTypeIndex].BetTypeGroups;
+                    var betTypeGroupLength = currentBetTypeGroups.length;
+                    for (var btGroupIndex = 0; btGroupIndex < betTypeGroupLength; btGroupIndex++) {
+                        var currentBetTypes = currentBetTypeGroups[btGroupIndex].BetTypes;
+                        var betTypeLength = currentBetTypes.length;
+                        for (var btIndex = 0; btIndex < betTypeLength; btIndex++) {
+                            var currentPt = sportTypes[sportTypeIndex].BetTypeGroups[btGroupIndex].BetTypes[btIndex].Pt;
+                            if (currentPt != null) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            };
+
             this.Validate = function () {
                 if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == true) {
                     return true;
@@ -787,7 +806,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 			            }
 			            else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
 			                informationButton.id = "mainshareholder-";
-                        }
+			            }
 			            else {
 			                informationButton.id = "agent-";
 			            }

@@ -138,12 +138,13 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             var minBetValue = Fanex.RoundNumber(parseFloat(this.items[0].minBetElement.value, true), 1);
             var maxBetValue = Fanex.RoundNumber(parseFloat(this.items[0].maxBetElement.value, true), 1);
             var maxPerMatchValue = Fanex.RoundNumber(parseFloat(this.items[0].maxPerMatchElement.value, true), 1);
-            if (minBetValue != this.items[0].MinBet
-            || maxBetValue != this.items[0].MaxBet
-            || maxPerMatchValue != this.items[0].MaxPerMatch) {
-                var c = this.items.length;
-                for (var i = 0; i < c; i++) {
-                    var item = this.items[i];
+
+            var c = this.items.length;
+            for (var i = 0; i < c; i++) {
+                var item = this.items[i];
+                if (minBetValue != item.MinBet
+                    || maxBetValue != item.MaxBet
+                    || maxPerMatchValue != item.MaxPerMatch) {
                     bettingLimits.push({
                         SportId: item.SportId,
                         BetTypeId: item.BetTypeId,
@@ -256,7 +257,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             informationButton.id = "agent-";
         }
         informationButton.id += "bet-limit-info-button" + (context.IsSimpleMode ? "" : "-adv");
-        
+
         header.appendChild(informationButton);
         container.appendChild(header);
 
@@ -581,7 +582,11 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         }
         else {
             betSettingContainer.className = "bet-limit-value-" + suffixClass;
-            betSettingContainer.innerHTML = minMaxText + ' ';
+            var divText = document.createElement("DIV");
+            divText.innerHTML = minMaxText + ' ';
+            divText.title = minMaxText + ' ';
+            divText.className = "div-bet-limit-value-" + suffixClass;
+            betSettingContainer.appendChild(divText);
             parentElement.appendChild(betSettingContainer);
 
             var inputValue = document.createElement("INPUT");
@@ -591,10 +596,20 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             inputValue.value = ''.FormatNumber(betLimitValue);
             betSettingContainer.appendChild(inputValue);
 
-            var constrainBetSettingContainer = document.createElement("TD");
-            constrainBetSettingContainer.className = "bet-limit-constrain-" + suffixClass;
-            constrainBetSettingContainer.innerHTML = constrainText;
-            parentElement.appendChild(constrainBetSettingContainer);
+
+
+            if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+                betSettingContainer.className = "bet-limit-value-mainshareholder";
+                inputValue.className = "bet-limit-input-mainshareholder";
+                divText.className = "div-bet-limit-value-mainshareholder";
+                //constrainBetSettingContainer.className = "bet-limit-constrain-mainshareholder";
+            }
+            else {
+                var constrainBetSettingContainer = document.createElement("TD");
+                constrainBetSettingContainer.className = "bet-limit-constrain-" + suffixClass;
+                constrainBetSettingContainer.innerHTML = constrainText;
+                parentElement.appendChild(constrainBetSettingContainer);
+            }
         }
         return inputValue;
     }

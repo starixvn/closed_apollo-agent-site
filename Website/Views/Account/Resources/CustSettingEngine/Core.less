@@ -681,12 +681,13 @@ pt-groupset2
 
 .hint ul
 {
-	margin: 5px 0px 0px 0px;
+	margin: 5px 0 0 13px;
 }
 
 .hint ul li
 {
 	line-height: 18px;
+	list-style: disc;
 }
 .closePopup
 {
@@ -724,6 +725,13 @@ pt-groupset2
 	vertical-align: middle;
 	width: 18%;
 	font-weight: bold;
+}
+
+.commission-setting-table tr td.commission-text .div-commission-text {
+	overflow: hidden;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 150px;
 }
 
 /*.commission-setting-table tr td.commission-select, .commission-setting-table-player tr td.commission-select 
@@ -921,12 +929,13 @@ pt-groupset2
 }
 
 .simple-mode-container .bet-limit-value-max, .simple-mode-container .bet-limit-value-min,
-.simple-mode-container .bet-limit-value-max-match 
+.simple-mode-container .bet-limit-value-max-match, .simple-mode-container .bet-limit-value-mainshareholder
 {
     text-align: right;
 	border-top: 1px solid #12A3EB;
 	border-bottom: 1px solid #12A3EB;
 	border-left: 1px solid #12A3EB;
+
 }
 
 .simple-mode-container .bet-limit-value-max {
@@ -939,6 +948,38 @@ pt-groupset2
 
 .simple-mode-container .bet-limit-value-max-match {
 	width: 185px;
+}
+
+.simple-mode-container .bet-limit-value-mainshareholder
+{
+	width: 200px;
+}
+
+.simple-mode-container .div-bet-limit-value-max, .simple-mode-container .div-bet-limit-value-min,
+.simple-mode-container .div-bet-limit-value-max-match, .simple-mode-container .div-bet-limit-value-mainshareholder
+{
+	float: left;
+	text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.simple-mode-container .div-bet-limit-value-max {
+	width: 45px;
+}
+
+.simple-mode-container .div-bet-limit-value-min {
+	width: 42px;
+}
+
+.simple-mode-container .div-bet-limit-value-max-match {
+	width: 80px;
+}
+
+.simple-mode-container .div-bet-limit-value-mainshareholder {
+	width: 90px;
+	
 }
 
 .simple-mode-container .bet-limit-text 
@@ -954,8 +995,15 @@ pt-groupset2
      width: 85px;
 }
 
+.simple-mode-container .bet-limit-input-mainshareholder 
+{
+	margin-right: 10px;
+    text-align: right;
+     width: 140px;
+}
+
 .simple-mode-container .bet-limit-constrain-max, .simple-mode-container .bet-limit-constrain-min,
-.simple-mode-container .bet-limit-constrain-max-match  
+.simple-mode-container .bet-limit-constrain-max-match, simple-mode-container .bet-limit-constrain-mainshareholder 
 {
 	border-top: 1px solid #12A3EB;
 	border-bottom: 1px solid #12A3EB;
@@ -972,6 +1020,10 @@ pt-groupset2
 
 .simple-mode-container .bet-limit-constrain-max-match {
 	width: 115px;
+}
+
+.simple-mode-container .bet-limit-constrain-mainshareholder {
+	width: 0px;
 }
 
 .simple-mode-container .bet-limit-table {
