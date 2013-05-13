@@ -85,7 +85,7 @@ namespace Apollo.Age.Web.Filters
             }
             else
             {
-                response.Redirect(WebConstants.UnauthorizedUrl);
+                response.Redirect(WebConstants.ACCESS_DENY_URL);
             }
         }
     }

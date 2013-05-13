@@ -202,9 +202,17 @@ namespace Apollo.Age.Web
 
         public ActionResult SignOut()
         {
+            bool isInternalSignIn = SessionManager.CurrentSession != null
+                && SessionManager.CurrentSession.IsInternalSignIn;
+
             Session.Abandon();
             Response.Cookies.Clear();
             FormsAuthentication.SignOut();
+
+            if (isInternalSignIn)
+            {
+                return Redirect(WebConstants.InternalSignInUrl);
+            }
 
             return Redirect(FormsAuthentication.LoginUrl);
         }
@@ -216,6 +224,11 @@ namespace Apollo.Age.Web
                 return new HttpUnauthorizedResult(Lang.UnauthorizedMsg);
             }
 
+            return View();
+        }
+
+        public ActionResult AccessDeny()
+        {
             return View();
         }
 
