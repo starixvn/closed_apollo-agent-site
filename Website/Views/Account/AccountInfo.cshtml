@@ -60,7 +60,7 @@
                             </td>
                         }
                         <td class="parent-name">
-                            @if (!Model.IsMember && (Model.ActorAgentId == Model.CustId || Model.Level == WebConstants.MAIN_SHAREHOLDER_LEVEL))
+                            @if (!Model.IsMember && (Model.ActorAgentId == Model.CustId || Model.Level == Constants.MAIN_SHAREHOLDER_LEVEL))
                             {
                                 @Model.ParentName
                             }
@@ -105,7 +105,7 @@
                     @Apollo.Age.Resources.Lang.lblAgentList
                 </a>
                 }
-                if (Model.HasMemberDownline && Model.Level > WebConstants.SHAREHOLDER_LEVEL)
+                if (Model.HasMemberDownline && Model.Level > Constants.SHAREHOLDER_LEVEL)
                 {
                 <a class="lnk-member-list"
                             target="main" href="~/Account/MemberList?agentid=@Model.CustId">
@@ -128,7 +128,7 @@
                 {
                     <li id="agentsTab"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
                         <span>@Apollo.Age.Resources.Lang.lblAgents</span> </a></li>
-                    if (Model.Level > WebConstants.SHAREHOLDER_LEVEL)
+                    if (Model.Level > Constants.SHAREHOLDER_LEVEL)
                     {
                     <li id="membersTab"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
                         <span>@Apollo.Age.Resources.Lang.lblMembers</span> </a></li>
