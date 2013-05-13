@@ -36,18 +36,18 @@ var MEMBERLIST = function ($) {
             $quickLinkEditSetting.attr("username", username);
         },
         bindingNavigation: function () {
-            $("[name='navigation']").unbind('click').bind('click', function () {
+            $("[name='navigation']").on('click', function () {
                 location.href = APOLLO.resolveUrl("Account/Agentlist?agentid=" + $(this).attr('agentId'));
                 return false;
             });
         },
         bindingQuickLink: function () {
-            $("#quickLinkAgentList").unbind('click').bind('click', function () {
+            $("#quickLinkAgentList").on('click', function () {
                 location.href = APOLLO.resolveUrl("Account/AgentList?agentid=" + MEMBERLIST.AgentId);
             });
         },
         bindingSearch: function () {
-            $("#Search").unbind('click').bind('click', function () {
+            $("#Search").on('click', function () {
                 MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
             });
         },
@@ -65,10 +65,10 @@ var MEMBERLIST = function ($) {
             });
         },
         bindingEdit: function () {
-            $("[name='Edit']").unbind('click').bind('click', function () {
+            $("[name='Edit']").on('click', function () {
                 MEMBERLIST.editCustomerSetting($(this));
             });
-            $("#quickLinkEditSetting").unbind('click').bind('click', function () {
+            $("#quickLinkEditSetting").on('click', function () {
                 // Edit Agent
                 var $this = $(this);
                 var url = APOLLO.resolveUrl("CustomerSetting/EditAgentSetting?agentId=" + $this.attr("agentId")

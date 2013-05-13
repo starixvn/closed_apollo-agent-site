@@ -78,7 +78,7 @@ var AGENTLIST = function ($) {
                 });
         },
         bindingViewAgent: function () {
-            $('[name="viewAgent"]').unbind('click').bind('click', function () {
+            $('[name="viewAgent"]').on('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentId');
 
                 $("#txtUserName").val(BASELANGUAGES.EnterUsername);
@@ -87,7 +87,7 @@ var AGENTLIST = function ($) {
             });
         },
         bindingViewMember: function () {
-            $('[name="viewMember"]').unbind('click').bind('click', function () {
+            $('[name="viewMember"]').on('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
 
                 location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId);
@@ -95,7 +95,7 @@ var AGENTLIST = function ($) {
             });
         },
         bindingNavigation: function () {
-            $("[name='navigation']").unbind('click').bind('click', function () {
+            $("[name='navigation']").on('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
                 $("#txtUserName").val('');
 
@@ -104,13 +104,13 @@ var AGENTLIST = function ($) {
             });
         },
         bindingQuickLink: function () {
-            $("#quickLinkCustomerList").unbind('click').bind('click', function () {
+            $("#quickLinkCustomerList").on('click', function () {
                 location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId);
                 return false;
             });
         },
         bindingSearch: function () {
-            $("#Search").unbind('click').bind('click', function () {
+            $("#Search").on('click', function () {
                 AGENTLIST.loadAgentList(AGENTLIST.AgentId);
             });
         },
@@ -126,11 +126,11 @@ var AGENTLIST = function ($) {
             });
         },
         bindingEdit: function () {
-            $("[name='Edit']").unbind('click').bind('click', function () {
+            $("[name='Edit']").on('click', function () {
                 // Edit Agent
                 AGENTLIST.editAgentSetting($(this));
             });
-            $("#quickLinkEditSetting").unbind('click').bind('click', function () {
+            $("#quickLinkEditSetting").on('click', function () {
                 // Edit Uplilne Agent
                 AGENTLIST.editAgentSetting($(this));
             });
