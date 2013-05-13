@@ -58,6 +58,8 @@ if (typeof jQuery != 'undefined') {
                 var $this = $(this);
                 window.location.href = DEFAULT_LAYOUT.currentActionLink + "?mainShareHolderId=" + $this.val();
             });
+
+            $(".selectLeague label").width($("#main-shareholder-box label").width());
         }
 
         FCHANDICAPOU.init();

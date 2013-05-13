@@ -4,13 +4,13 @@ var ACCOUNTLIST = function ( $ ) {
         init: function () {
             var txtUsername = $( '#txtUserName' );
             txtUsername.unbind( 'click' ).bind( 'click', function () {
-                if ( txtUsername.val() == BASELANGUAGES.EnterUsername ) {
+                if ( APOLLO.htmlDecode(txtUsername.val()) == APOLLO.htmlDecode(BASELANGUAGES.EnterUsername) ) {
                     txtUsername.val( '' );
                 }
             } ),
             txtUsername.blur( function () {
                 if ( txtUsername.val() == '' ) {
-                    txtUsername.val( BASELANGUAGES.EnterUsername );
+                    txtUsername.val(APOLLO.htmlDecode(BASELANGUAGES.EnterUsername));
                 }
             } )
         }

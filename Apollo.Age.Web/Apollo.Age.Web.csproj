@@ -48,6 +48,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -58,7 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WebConstants.cs" />
+    <Compile Include="ApoURLs.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="CurrentSession.cs" />

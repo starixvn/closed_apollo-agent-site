@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AuthController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="InternalController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -211,7 +211,7 @@ namespace Apollo.Age.Web
 
             if (isInternalSignIn)
             {
-                return Redirect(WebConstants.InternalSignInUrl);
+                return Redirect(ApoURLs.URLs.InternalSignIn);
             }
 
             return Redirect(FormsAuthentication.LoginUrl);
@@ -227,7 +227,7 @@ namespace Apollo.Age.Web
             return View();
         }
 
-        public ActionResult AccessDeny()
+        public ActionResult AccessDenied()
         {
             return View();
         }

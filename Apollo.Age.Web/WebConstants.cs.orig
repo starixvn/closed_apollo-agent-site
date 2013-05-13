@@ -18,10 +18,10 @@ namespace Apollo.Age.Web
         
         public const string UnauthorizedUrl = "~/Internal/Unauthorized";
 
-        public const string ACCESS_DENY_URL = "~/Internal/AccessDeny";
-
+<<<<<<< HEAD
         public const string InternalSignInUrl = "~/Internal/SignIn";
-        
+=======
         public const int UN_AUTHORIZED_CODE = 401;
+>>>>>>> c4f43f8ef804613456e41629fb42f8aff9cea427
     }
 }
