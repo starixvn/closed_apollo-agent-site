@@ -124,7 +124,13 @@ if (typeof jQuery != 'undefined') {
                 });
 
                 resultContainer.find(".refresh-scoremap").click(function () {
-                    var $this = $(this);                    
+                    var $this = $(this);
+//                    if ($this.hasClass("lnkRefresh")) {
+//                        $this.removeClass("lnkRefresh").addClass("lnkRefreshClick");
+//                    }
+//                    else {
+//                        $this.removeClass("lnkRefreshClick").addClass("lnkRefresh");
+//                    }
                     var attrMatchId = $this.attr("match-id");
                     var url = SCOREMAP.baseLink + 'ScoreMapResult?matchIds=' + attrMatchId
                     + '&liveBetTypes=' + SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-live:checked'))
