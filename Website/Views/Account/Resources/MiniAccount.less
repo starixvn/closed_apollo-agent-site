@@ -1,0 +1,116 @@
+﻿@import "../../../_globalresources/css/agent.less";
+
+/* MINI MENU */
+
+ul, li {
+	margin: 0;
+	padding: 0;
+}
+		
+ul.tab-menu-icon {
+	display: none;
+	margin: 8px;
+
+	li {
+		list-style: none;
+		position: relative;
+		cursor: pointer;
+
+		i {
+			cursor: pointer;
+			background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings.png);
+
+			&:hover {	
+				background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-gray.png);
+			}			
+		}
+
+		&.main-menu:hover, &.account:hover, &.search:hover {
+			background: none;
+		}
+	}
+}
+
+/* LEVEL ONE */
+ul.tab-menu-icon {
+	 position: relative;
+}
+
+ul.tab-menu-icon li { 
+	font-weight: bold;
+	float: left;
+	zoom: 1;
+}
+
+ul.tab-menu-icon a:hover {
+	color: #000;
+}
+
+ul.tab-menu-icon a:active { 
+	color: #ffa500;
+}
+
+ul.tab-menu-icon li a { 
+	display: block;
+	color: #222;
+}
+
+ul.tab-menu-icon li:last-child a  { 
+	border-right: none;
+} /* Doesn't work in IE */
+
+ul.tab-menu-icon li.hover, ul.tab-menu-icon li:hover  { 
+	background: #EEEEEE;
+	color: black;
+	position: relative;
+}
+
+ul.tab-menu-icon li.hover a  { 
+	color: black;
+}
+
+/* LEVEL TWO */
+ul.tab-menu-icon ul {
+	 width: 220px;
+	 visibility: hidden;
+	 position: absolute;
+	 top: 89%;
+	 left: 0;
+	 z-index: 990;
+	 border-bottom: 1px solid #b5b5b5;
+}
+
+ul.tab-menu-icon ul li { 
+	 font-weight: normal;
+	 background: #ddd;
+	 color: #000; 
+	 border: 1px solid #b5b5b5;
+	 border-bottom: none;
+	 float: none;
+	 padding: 4px 8px;
+}
+									  
+/* IE 6 & 7 Needs Inline Block */
+ul.dropdown ul li a	{ 
+	border-right: none;
+	width: 100%;
+	display: inline-block;
+} 
+
+/* LEVEL THREE */
+ul.tab-menu-icon ul ul { 
+	left: 100%;
+	top: -1px;
+
+	li {
+		background: #f3f3f3;
+
+		&:hover {
+			background: #fff;
+		}
+	}
+}
+
+ul.tab-menu-icon li:hover > ul { 
+	visibility: visible;
+}
