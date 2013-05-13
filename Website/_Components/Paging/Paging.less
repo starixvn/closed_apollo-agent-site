@@ -23,7 +23,8 @@
 
 	input {
 		&.icon {
-			background-image: url(ui-icons.png);
+			//background-image: url(ui-icons.png);
+			background-image: url("../../../_GlobalResources/Css/img/glyphicons-halflings-gray.png");
 			width: 16px;
 			height: 16px;
 			border: none;
@@ -33,29 +34,30 @@
 
 			&.pagingFirst, &.pagingPrev, &.pagingLast, &.pagingNext {
 				&.pagingDisable {
-					background-image: url(ui-icons-disabled.png);
+					//background-image: url(ui-icons-disabled.png);
+					background-image: url("../../../_GlobalResources/Css/img/glyphicons-halflings-gray-lighter.png");
 					cursor: default;
 				}
 
 				&.pagingElementOver {
-					background-image: url(ui-icons-over.png);
+					background-image: url("../../../_GlobalResources/Css/img/glyphicons-halflings.png");
 				}
 			}
 
 			&.pagingFirst {
-				background-position: -80px -160px;
+				background-position: 279px -70px;
 			}
 
 			&.pagingPrev {
-				background-position: -48px -160px;
+				background-position: 35px -70px;
 			}
 
 			&.pagingLast {
-				background-position: -64px -160px;
+				background-position: 84px -70px;
 			}
 
 			&.pagingNext {
-				background-position: -32px -160px;
+				background-position: 15px -70px;
 			}
 
 			&.pagingHiden {

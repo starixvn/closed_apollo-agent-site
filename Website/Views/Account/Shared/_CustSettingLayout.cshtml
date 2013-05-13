@@ -1,6 +1,7 @@
 ﻿@{
 	var isShowHeader = ViewBag.IsShowHeader ?? false;
 	var isMaster = ViewBag.IsMaster ?? false;
+    var isSimpleMode = ViewBag.IsSimpleMode ?? true;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -68,7 +69,7 @@
 	<script type="text/javascript">
 	    var DEFAULT_LAYOUT = function () {
 	        return {
-                isSimpleMode : true,
+                isSimpleMode : @(isSimpleMode ? "true" : "false"),
                 noChangeMessage: "@(Apollo.Age.Resources.Lang.noChangeToUpdate)"
             };
 	    }();

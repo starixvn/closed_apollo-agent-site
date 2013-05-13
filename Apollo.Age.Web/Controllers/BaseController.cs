@@ -22,30 +22,26 @@ namespace Apollo.Age.Web
     using System.Web.Mvc;
     using System.Web.Security;
     using Apollo.Age.Services.Impl;
-using Apollo.Age.Services.Interface;
+    using Apollo.Age.Resources;
+    using Apollo.Age.Services.Interface;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
         private readonly IUserService _userService;
+
         public BaseController()
         {
-            if (CurrentSession != null)
-            {
-                //CurrentSession.Language = "vi-VN"; // for testing only
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
-            }
-
             _userService = new UserService();
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            bool ActionIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.IsDefined(
+            bool actionIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.IsDefined(
                 typeof(AllowAnonymousAttribute), inherit: true);
-            bool ControllerIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(
+            bool controllerIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(
                 typeof(AllowAnonymousAttribute), inherit: true);
-            bool skipAuth = ActionIsMarkedWithAllowAnonymous || ControllerIsMarkedWithAllowAnonymous;
+            bool skipAuth = actionIsMarkedWithAllowAnonymous || controllerIsMarkedWithAllowAnonymous;
 
             if (!skipAuth)
             {
@@ -54,34 +50,27 @@ using Apollo.Age.Services.Interface;
                 CheckKickOut(filterContext);
             }
 
+            if (CurrentSession != null)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
+            }
+
             base.OnActionExecuting(filterContext);
         }
 
         #region Auth
-        
+
         private void CheckAuthentication()
         {
             if (!Request.IsAuthenticated || CurrentSession == null)
             {
-                // redirect user to a page with corresponding message
-                // your session is timeout or the request is not authenticated
-
-                if (Request.IsAjaxRequest())
-                {
-                    // this will redirect the request to SignIn action
-                    Response.Clear();
-                    Response.StatusCode = 401;
-                    Response.StatusDescription = GetResourceData("UnauthorizedMsg");
-                }
-                else
-                {
-                    Response.Redirect("~/Internal/Unauthorized");
-                }
+                Response.Redirect(WebConstants.UnauthorizedUrl);
             }
         }
 
         private void CheckValidDownline()
         {
+
         }
 
         private void CheckKickOut(ActionExecutingContext filterContext)
@@ -93,6 +82,7 @@ using Apollo.Age.Services.Interface;
                 if (Request.IsAjaxRequest())
                 {
                     Response.Buffer = true;
+                    Response.StatusCode = WebConstants.UN_AUTHORIZED_CODE;
                     Response.Write(GetResourceData("lblAccountWasStopped"));
                     Response.Flush();
                     Response.Close();
@@ -100,19 +90,12 @@ using Apollo.Age.Services.Interface;
                 }
                 else
                 {
-                    Response.Redirect("~/Internal/AccountStopped");
+                    Response.Redirect(WebConstants.AccountStoppedUrl);
                 }
             }
         }
 
         #endregion
-
-        private void DoSignOut()
-        {
-            Response.Cookies.Clear();
-            Session.Abandon();
-            FormsAuthentication.SignOut();
-        }
 
         protected ICurrentSession CurrentSession
         {
@@ -155,9 +138,7 @@ using Apollo.Age.Services.Interface;
 
         protected string GetResourceData(string key)
         {
-            ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
-            rm.IgnoreCase = true;
-            return rm.GetString(key);
+            return (new ResourceManager(typeof(Lang)) { IgnoreCase = true }).GetString(key);
         }
     }
 }

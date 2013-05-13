@@ -341,12 +341,13 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [BelongChecking()]
-        public ActionResult EditMemberSetting(int memberId, string userName, string userGroup, int? agentId, bool showHeader = false)
+        public ActionResult EditMemberSetting(int memberId, string userName, string userGroup, int? agentId, bool showHeader = false, bool isSimpleMode = true)
         {
             ViewBag.MemberId = memberId;
             ViewBag.UserName = userName;
             ViewBag.UserGroup = userGroup;
             ViewBag.CurentParentAgentId = agentId;
+            ViewBag.IsSimpleMode = isSimpleMode;
             if (showHeader)
             {
                 ViewBag.IsShowHeader = true;
@@ -356,11 +357,12 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [BelongChecking()]
-        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool showHeader = false)
+        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool showHeader = false, bool isSimpleMode = true)
         {
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
+            ViewBag.IsSimpleMode = isSimpleMode;
             if (showHeader)
             {
                 ViewBag.IsShowHeader = true;
