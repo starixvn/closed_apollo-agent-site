@@ -25,14 +25,17 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Pager;
-    using Fanex.Common;
 
-   [SessionState(SessionStateBehavior.ReadOnly)]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
     {
-        private const int PAGEINDEX = 0; // Current index page
-        private const int PAGESIZE = 50; // Maximum items in a page
-        private const int TOTALPAGE = 0; // Maximum page totals
+        #region Const for paging
+        
+        private const int PageIndex = 0; // Current index page
+        private const int PageSize = 50; // Maximum items in a page
+        private const int TotalPage = 0; // Maximum page totals
+
+        #endregion
 
         private readonly IAccountService _accountService;
         private int _agentId;
@@ -92,6 +95,13 @@ namespace Apollo.Age.Account.Controllers
             return View(base.CurrentSession);
         }
 
+        public ActionResult MiniMenu()
+        {
+            ViewBag.RootNode = SiteMap.RootNode;
+
+            return View(base.CurrentSession);
+        }
+
         public ActionResult MemberDownline(int agentId, int? page)
         {
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
@@ -100,14 +110,14 @@ namespace Apollo.Age.Account.Controllers
             {
                 AgentId = agentId,
                 PageIndex = currentPageIndex + 1,
-                PageSize = PAGESIZE,
+                PageSize = PageSize,
                 TotalPages = totalPage
             };
 
             var memberList = _accountService.GetMemberDownline(ref criteria);
             totalPage = criteria.TotalPages;
 
-            return View(memberList.ToPagedList(currentPageIndex, PAGESIZE, totalPage * PAGESIZE));
+            return View(memberList.ToPagedList(currentPageIndex, PageSize, totalPage * PageSize));
         }
 
         public ActionResult AgentInfo(string username, int agentId)
@@ -287,9 +297,9 @@ namespace Apollo.Age.Account.Controllers
         public JsonResult GetAgentList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
             CurrentAgentId = agentId;
-            var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
+            var currentPageIndex = !pageIndex.HasValue ? PageIndex : pageIndex.Value;
             var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-            var currentPageSize = !pageSize.HasValue ? PAGESIZE : pageSize.Value;
+            var currentPageSize = !pageSize.HasValue ? PageSize : pageSize.Value;
 
             AgentListCriteria criteria = new AgentListCriteria()
             {
@@ -315,9 +325,9 @@ namespace Apollo.Age.Account.Controllers
         public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
         {
             CurrentAgentId = agentId;
-            var currentPageIndex = !pageIndex.HasValue ? PAGEINDEX : pageIndex.Value;
+            var currentPageIndex = !pageIndex.HasValue ? PageIndex : pageIndex.Value;
             var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-            var currentPageSize = !pageSize.HasValue ? PAGESIZE : pageSize.Value;
+            var currentPageSize = !pageSize.HasValue ? PageSize : pageSize.Value;
 
             CustomerListCriteria criteria = new CustomerListCriteria()
             {
