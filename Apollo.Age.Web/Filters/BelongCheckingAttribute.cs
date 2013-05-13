@@ -38,7 +38,6 @@ namespace Apollo.Age.Web.Filters
             _userService = userService ?? new UserService();
         }
         
-        private const int UN_AUTHORIZED_CODE = 401;
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
@@ -79,14 +78,14 @@ namespace Apollo.Age.Web.Filters
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 response.Clear();
-                response.StatusCode = UN_AUTHORIZED_CODE;
+                response.StatusCode = WebConstants.UN_AUTHORIZED_CODE;
                 response.StatusDescription = string.Empty;
                 response.Write(Resources.Lang.UnauthorizedMsg);
                 response.End();
             }
             else
             {
-                response.Redirect("~/Internal/Unauthorized");
+                response.Redirect(WebConstants.UnauthorizedUrl);
             }
         }
     }
