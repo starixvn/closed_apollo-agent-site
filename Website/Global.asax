@@ -54,32 +54,32 @@
     {
 
         // Logging
-        //Exception ex = Server.GetLastError().GetBaseException();
+        Exception ex = Server.GetLastError().GetBaseException();
 
-        ////if (!Request.IsLocal)
-        //{
-        //    string message = ex.Message +
-        //        "\r\nSource: " + ex.Source +
-        //        "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-        //        "\r\nForm: " + Request.Form.ToString() +
-        //        "\r\nQueryString: " + Request.QueryString.ToString() +
-        //        "\r\nTargetSite: " + ex.TargetSite +
-        //        "\r\nStackTrace: " + ex.StackTrace;
+        if (!Request.IsLocal)
+        {
+            string message = ex.Message +
+                "\r\nSource: " + ex.Source +
+                "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+                "\r\nForm: " + Request.Form.ToString() +
+                "\r\nQueryString: " + Request.QueryString.ToString() +
+                "\r\nTargetSite: " + ex.TargetSite +
+                "\r\nStackTrace: " + ex.StackTrace;
 
-        //    Fanex.Logging.LogService.Error(message);
-        //}
+            Fanex.Logging.LogService.Error(message);
+        }
 
-        //// Redirect to Error pages
-        //var serverError = Server.GetLastError() as HttpException;
-        //string errorCode = string.Empty;
+        // Redirect to Error pages
+        var serverError = Server.GetLastError() as HttpException;
+        string errorCode = string.Empty;
 
-        //if (serverError != null)
-        //{
-        //    errorCode = serverError.GetHttpCode().ToString();
-        //}
+        if (serverError != null)
+        {
+            errorCode = serverError.GetHttpCode().ToString();
+        }
 
-        //Server.ClearError();
-        //Response.Redirect("~/Home/Error?err=" + errorCode);
+        Server.ClearError();
+        Response.Redirect("~/Home/Error?err=" + errorCode);
     }
 
     void Application_AcquireRequestState(object sender, EventArgs e)
