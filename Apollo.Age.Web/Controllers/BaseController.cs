@@ -82,7 +82,7 @@ namespace Apollo.Age.Web
                 if (Request.IsAjaxRequest())
                 {
                     Response.Buffer = true;
-                    Response.StatusCode = WebConstants.UN_AUTHORIZED_CODE;
+                    Response.StatusCode = WebConstants.UnauthorizedCode;
                     Response.Write(GetResourceData("lblAccountWasStopped"));
                     Response.Flush();
                     Response.Close();

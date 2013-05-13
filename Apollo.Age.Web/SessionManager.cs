@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders" date="2013.5.1">Created</change>
-//   <change who="Anders.Le" date="2013.5.10">Change to static class</change>
 // </history>
 
 
@@ -17,7 +16,9 @@ namespace Apollo.Age.Web
     /// http://msdn.microsoft.com/en-us/library/ff650316.aspx
     /// </summary>
     public static class SessionManager
-    {        
+    {
+        private const string CacheKeySuncityLanguage = "Apollo.Age.Web.SuncityLanguage";
+        private const string CacheKeySuncityUsername = "Apollo.Age.Web.SuncityUsername";
 
         //private static volatile SessionManager instance;
         //private static object syncRoot = new Object();
@@ -47,19 +48,11 @@ namespace Apollo.Age.Web
         {
             get
             {
-<<<<<<< HEAD
-                return (ICurrentSession)HttpContext.Current.Session[Constants.ApolloCurrentSessionKey];
+                return (ICurrentSession)HttpContext.Current.Session[WebConstants.ApolloCurrentSessionKey];
             }
             set
             {
-                HttpContext.Current.Session[Constants.ApolloCurrentSessionKey] = value;
-=======
-                return (ICurrentSession)HttpContext.Current.Session[WebConstants.APOLLO_CURRENT_SESSION_KEY];
-            }
-            set
-            {
-                HttpContext.Current.Session[WebConstants.APOLLO_CURRENT_SESSION_KEY] = value;
->>>>>>> 13e5a07cb18cbbf93c0dda834ae10a0eb54c0301
+                HttpContext.Current.Session[WebConstants.ApolloCurrentSessionKey] = value;
             }
         }
 

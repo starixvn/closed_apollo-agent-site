@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="Constant.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="WebConstants.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -12,16 +12,16 @@ namespace Apollo.Age.Web
 {
     public static class WebConstants
     {
-        public const string APOLLO_CURRENT_SESSION_KEY = "Apollo.Age.Web.CurrentSession";
+        public const string ApolloCurrentSessionKey = "Apollo.Age.Web.CurrentSession";
 
         public const string AccountStoppedUrl = "~/Internal/AccountStopped";
         
         public const string UnauthorizedUrl = "~/Internal/Unauthorized";
 
-        public const string ACCESS_DENY_URL = "~/Internal/AccessDeny";
+        public const string AccessDeniedUrl = "~/Internal/AccessDenied";
 
         public const string InternalSignInUrl = "~/Internal/SignIn";
         
-        public const int UN_AUTHORIZED_CODE = 401;
+        public const int UnauthorizedCode = 401;
     }
 }
