@@ -48,11 +48,11 @@ namespace Apollo.Age.Web
         {
             get
             {
-                return (ICurrentSession)HttpContext.Current.Session[WebConstants.APOLLO_CURRENT_SESSION_KEY];
+                return (ICurrentSession)HttpContext.Current.Session[WebConstants.ApolloCurrentSessionKey];
             }
             set
             {
-                HttpContext.Current.Session[WebConstants.APOLLO_CURRENT_SESSION_KEY] = value;
+                HttpContext.Current.Session[WebConstants.ApolloCurrentSessionKey] = value;
             }
         }
 

@@ -78,14 +78,14 @@ namespace Apollo.Age.Web.Filters
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 response.Clear();
-                response.StatusCode = WebConstants.UN_AUTHORIZED_CODE;
+                response.StatusCode = WebConstants.UnauthorizedCode;
                 response.StatusDescription = string.Empty;
                 response.Write(Resources.Lang.UnauthorizedMsg);
                 response.End();
             }
             else
             {
-                response.Redirect(WebConstants.ACCESS_DENY_URL);
+                response.Redirect(WebConstants.AccessDeniedUrl);
             }
         }
     }
