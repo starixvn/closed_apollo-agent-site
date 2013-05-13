@@ -15,7 +15,6 @@ var MEMBERLIST = function ($) {
             MEMBERLIST.loadMemberList();
             MEMBERLIST.bindingNavigation();
             MEMBERLIST.bindingQuickLinkEditSetting(MEMBERLIST.AgentId, MEMBERLIST.AgentLevel, MEMBERLIST.Username);
-
         },
         bindingQuickLinkEditSetting: function (agentId, agentLevel, username) {
             var $quickLinkEditSetting = $("#quickLinkEditSetting");
@@ -105,6 +104,7 @@ var MEMBERLIST = function ($) {
                 APOLLO.closeDialog(MEMBERLIST.currentPopUp);
             }
         },
+        
         initMemberList: function (memberList) {
             var icon = "icon-th-large";
             var tooltip = LANGUAGES.ViewSetting;
@@ -118,29 +118,7 @@ var MEMBERLIST = function ($) {
             var counter = (memberList.CurrentPage * memberList.ItemsPerPage);
             for (var i = 0; i < rowLength; i++) {
                 var current = memberList.ListData[i];
-
-                var status = current.Status; // 1 : active, 2: stop, 3: lock, 4. c.lock
-                if (current.Status == 2) {
-                    status = current.Status; // Stop
-                }
-                else if (current.Status == 1 && current.UplineStatus == 2) {
-                    status = 4; // C.lock
-                }
-                else if (current.Status == 1 && current.UplineStatus == 1) {
-                    status = 1; //active
-                }
-                else if (current.Status == 3) {
-                    if (current.UplineStatus == 2) {
-                        status = 4; //C.lock
-                    }
-                    else {
-                        status = 3;
-                    }
-
-                }
-                else {
-                    status = 1;
-                }
+                
                 counter++;
                 bodyData.push({
                     Columns:
@@ -148,7 +126,7 @@ var MEMBERLIST = function ($) {
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
-                            { Name: "Status", Value: status },
+                            { Name: "Status", Value: current },
                             { Name: "BetStatus", Value: current.BetStatus },
                             { Name: "UserGroup", Value: current.UserGroup },
                             { Name: "AgentGroup", Value: current.AgentGroup * 100 },
@@ -190,12 +168,12 @@ var MEMBERLIST = function ($) {
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                          { HeaderText: LANGUAGES.Status, Width: 50, Name: "Status", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : (cell.Value == 3 ? "<span class='lock'>" + LANGUAGES.Locked + "</span>" : "<span class='lock'>" + LANGUAGES.CLock + "</span>")));
+                                 return ACCOUNTLIST.initStatus(cell.Value.Status, cell.Value.UplineStatus);
                              }
                          },
                          { HeaderText: LANGUAGES.BetStatus, Width: 100, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : "<span class='lock'>" + LANGUAGES.Locked + "</span>"));
+                                 return ACCOUNTLIST.initBetStatus(cell.Value);
                              }
                          },
                          { HeaderText: LANGUAGES.Group, Width: 100, Name: "UserGroup", HeaderAlign: "center", CellAlign: "center" },
