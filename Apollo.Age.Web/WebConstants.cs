@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Lewis.Le" date="2013.5.8">Created</change>
+//   <change who="Ricky.Nguyen" date="2013.5.13">Update Const</change>
 // </history>
 
 namespace Apollo.Age.Web
@@ -18,5 +19,7 @@ namespace Apollo.Age.Web
         public const string UnauthorizedUrl = "~/Internal/Unauthorized";
 
         public const string InternalSignInUrl = "~/Internal/SignIn";
+        
+        public const int UN_AUTHORIZED_CODE = 401;
     }
 }

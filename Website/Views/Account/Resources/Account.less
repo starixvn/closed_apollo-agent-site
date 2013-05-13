@@ -272,8 +272,13 @@ html, body {
 		}
 	}
 
+	.lnk-agent-list {
+		float: left;
+	}
+
 	.lnk-member-list {
-		margin: 0 0 0 20px;
+		margin: 0px 8px 4px 0;
+		float: right;
 	}
 
 	#agent-setting {
@@ -304,7 +309,7 @@ html, body {
 
 					float: left;
 					margin: 0 3px 0 0;
-					padding: 4px 8px;
+					padding: 4px 6px;
 
 					&:hover {
 						#gradient.vertical(lighten(@grayLighter, 10%), darken(@grayLighter, 10%));
@@ -314,7 +319,7 @@ html, body {
 
 			li.current {
 				a {
-					filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffffffff', GradientType=0);
+					filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#fff', GradientType=0);
 					background: #fff;
 					border-bottom-color: #fff;
 					cursor: default;
@@ -530,6 +535,14 @@ html, body {
 	.treeview {
 		li {
 			min-width: 150px;
+		}
+	}
+}
+
+.eq-ie7, .eq-ie8 { 
+	#wrapper {
+		#agent-setting .tabs li.current a{
+			filter: none;
 		}
 	}
 }

@@ -18,7 +18,7 @@
     </div>
     <div id="CountDownMenu" class="panelDown" style="display: none">
         <!--Seconds-->
-        @for (int i = 1; i < 6; i++)
+        @for (int i = 0; i < 5; i++)
         {
             <div id="option@(i)" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id)">
                 @(fromSecond + i * 15)@Apollo.Age.Resources.Lang.sec
