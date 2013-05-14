@@ -64,7 +64,8 @@ namespace Apollo.Age.TotalBets.Controllers
             return _totalBetsService.GetData<T>(new TotalBetsCriteria
             {
                 AgentId = agentId,
-                BetType = (int)betType
+                BetType = (int)betType,
+                LoggedId = base.CurrentSession.AgentId
             });
         }
 
