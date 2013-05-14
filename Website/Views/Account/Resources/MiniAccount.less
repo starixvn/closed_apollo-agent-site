@@ -17,13 +17,12 @@ ul.tab-menu-icon {
 		position: relative;
 		cursor: pointer;
 		float: left;
-		color: @textColor;
-
-		
+		color: @textColor;	
 
 		&.main-menu, &.account, &.search {
 			text-align: center;
 			width: 30px;
+			height: 20px;
 			padding: 4px 0;
 			border-bottom: 1px solid #bbb;
 
@@ -33,7 +32,7 @@ ul.tab-menu-icon {
 			}
 
 			&:hover {
-				//background: #cceaf3;
+				z-index: 900;
 				background: #0084B4;
 				i {
 					background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-white.png);
@@ -97,6 +96,7 @@ ul.tab-menu-icon {
 				 padding: 4px 8px;
 				 text-align: left;
 				 text-transform: uppercase;
+				 height: 20px;
 
 				 /* IE 6 & 7 Needs Inline Block */
 				 a	{ 
@@ -115,6 +115,7 @@ ul.tab-menu-icon {
 ul.tab-menu-icon ul ul { 
 	left: 100%;
 	top: -1px;
+	display: none;
 
 	li {
 		background: #f3f3f3;
@@ -131,6 +132,6 @@ ul.tab-menu-icon ul ul {
 	}
 }
 
-ul.tab-menu-icon ul li:hover > ul {
+ul.tab-menu-icon ul li:hover ul {
 	display: block;
 }
