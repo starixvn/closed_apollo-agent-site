@@ -16,7 +16,7 @@
         scrolling="no"></iframe>
 </div>
 <div class="mainpage">
-    <div id="btn-mini-menu" class="collapse">
+    <div id="btn-mini-menu" class="collapse" title="Resource.Minimize">
     </div>
     <iframe src="~/Message/Portal" id="main" name="main" width="100%" height="99%" frameborder="0">
     </iframe>
@@ -24,6 +24,8 @@
 @section scripts
 {
     <script type="text/javascript">
-		head.js("@Url.Content("~/Views/Home/Resources/Default.js")");
+		head.js("@Url.Content("~/Views/Home/Resources/Default.js")",
+                "@Url.Content("~/Views/Account/Resources/menu.js")"
+                );
     </script>
 }
