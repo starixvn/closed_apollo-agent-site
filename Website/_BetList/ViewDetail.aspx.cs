@@ -85,29 +85,8 @@ namespace Sunplus.Agent.UI._BetList
                         builder.AddAgentComm(ticket, null, true, "<td class='r'>", "</td>");
                     }
                     builder.Append("</tr>");
-
-                    #region Total ticket
-
-                    totalTicket.AWinlost += ticket.AWinlost;
-                    totalTicket.APositionTaking += Convert.ToDecimal(ConvertByBetType.Pt(ticket.APositionTaking)) / 100;
-
-                    totalTicket.AComm += ticket.AComm;
-                    totalTicket.ADiscount += Convert.ToDecimal(ConvertByBetType.Comm_Percentage(ticket.ADiscount)) / 100;
-                    totalTicket.Status = ticket.Status;
-                    totalTicket.AgentLevel = ticket.AgentLevel;
-
-                    #endregion Total ticket
-                }
-                builder.Append("<tfoot><tr class='total'>");
-                builder.Append(string.Format("<td class='c'>{0}</td>", Apollo.Age.Resources.Lang.total));
-
-                if (isShowAgentPT)
-                {
-                    builder.AddAgentPT(totalTicket, null, "<td class='r'>", "</td>");
-                    builder.AddAgentComm(totalTicket, null, true, "<td class='r'>", "</td>");
                 }
 
-                builder.Append("</tr></tfoot>");
                 content.Append(builder.GetBetList());
                 content.Append("</tbody></table>");
             }
