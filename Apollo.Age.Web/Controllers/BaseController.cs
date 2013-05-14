@@ -64,7 +64,7 @@ namespace Apollo.Age.Web
         {
             if (!Request.IsAuthenticated || CurrentSession == null)
             {
-                Response.Redirect(WebConstants.UnauthorizedUrl);
+                Response.Redirect(ApoURLs.URLs.Unauthorized);
             }
         }
 
@@ -82,7 +82,7 @@ namespace Apollo.Age.Web
                 if (Request.IsAjaxRequest())
                 {
                     Response.Buffer = true;
-                    Response.StatusCode = WebConstants.UnauthorizedCode;
+                    Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                     Response.Write(GetResourceData("lblAccountWasStopped"));
                     Response.Flush();
                     Response.Close();
@@ -90,7 +90,7 @@ namespace Apollo.Age.Web
                 }
                 else
                 {
-                    Response.Redirect(WebConstants.AccountStoppedUrl);
+                    Response.Redirect(ApoURLs.URLs.AccountStopped);
                 }
             }
         }

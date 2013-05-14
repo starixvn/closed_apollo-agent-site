@@ -20,6 +20,7 @@ namespace Apollo.Age.Web.Filters
     using Apollo.Age.Enumerations;
     using Fanex.Logging;
     using Apollo.Age.Services.Interface;
+    using System.Net;
 
     /// <summary>
     /// TODO: Update summary.
@@ -78,14 +79,14 @@ namespace Apollo.Age.Web.Filters
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 response.Clear();
-                response.StatusCode = WebConstants.UnauthorizedCode;
+                response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 response.StatusDescription = string.Empty;
                 response.Write(Resources.Lang.UnauthorizedMsg);
                 response.End();
             }
             else
             {
-                response.Redirect(WebConstants.AccessDeniedUrl);
+                response.Redirect(ApoURLs.URLs.AccessDenied);
             }
         }
     }

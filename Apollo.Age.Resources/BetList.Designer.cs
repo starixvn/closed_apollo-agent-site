@@ -664,6 +664,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Comm Details.
+        /// </summary>
+        public static string viewCommDetails {
+            get {
+                return ResourceManager.GetString("viewCommDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Void.
         /// </summary>
         public static string voided {

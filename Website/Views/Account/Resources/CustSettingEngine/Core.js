@@ -634,10 +634,14 @@ Spinner.prototype = {
         if (mixValue < 0) mixValue = 0;
         this.options.minimum = mixValue;
     },
-    isValid: function () {
+    isValid: function (hideMessage) {
         var value = this.getValue();
         if ((value < this.options.minimum || value > this.options.maximum) && (this.options.minimum <= this.options.maximum)) {
-            Fanex.ValidateMessage(this.input, Language.INVALID_RANGE);
+            if (hideMessage == true) { 
+            }
+            else {
+                Fanex.ValidateMessage(this.input, Language.INVALID_RANGE);
+            }
             return false;
         }
         return true;
