@@ -171,29 +171,7 @@ var AGENTLIST = function ($) {
             var rowLength = agentList.ListData.length;
             var counter = (agentList.CurrentPage * agentList.ItemsPerPage);
             for (var i = 0; i < rowLength; i++) {
-                var current = agentList.ListData[i];
-                var status = current.Status; // 1 : active, 2: stop, 3: lock, 4. c.lock
-                if (current.Status == 2) {
-                    status = current.Status; // Stop
-                }
-                else if (current.Status == 1 && current.UplineStatus == 2) {
-                    status = 4; // C.lock
-                }
-                else if (current.Status == 1 && current.UplineStatus == 1) {
-                    status = 1; //active
-                }
-                else if (current.Status == 3) {
-                    if (current.UplineStatus == 2) {
-                        status = 4; //C.lock
-                    }
-                    else {
-                        status = 3;
-                    }
-
-                }
-                else {
-                    status = 1;
-                }
+                var current = agentList.ListData[i];               
                 counter++;
                 var currentRow = {
                     Columns:
@@ -201,7 +179,7 @@ var AGENTLIST = function ($) {
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
-                            { Name: "Status", Value: status },
+                            { Name: "Status", Value: current },
                             { Name: "BetStatus", Value: current.BetStatus },
                             { Name: "NumberOfAgent", Value: current },
                             { Name: "NumberOfMember", Value: current },
@@ -254,13 +232,13 @@ var AGENTLIST = function ($) {
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                          { HeaderText: LANGUAGES.Status, Width: 80, Name: "Status", HeaderAlign: "center", CellAlign: "center",
-                             CustomCellRender: function (cell) {
-                                 return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : (cell.Value == 3 ? "<span class='lock'>" + LANGUAGES.Locked + "</span>" : "<span class='lock'>" + LANGUAGES.CLock + "</span>")));
+                             CustomCellRender: function (cell) {                                 
+                                 return ACCOUNTLIST.initStatus(cell.Value.Status, cell.Value.UplineStatus);
                              }
                          },
                           { HeaderText: LANGUAGES.BetStatus, Width: 80, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
                               CustomCellRender: function (cell) {
-                                  return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : "<span class='lock'>" + LANGUAGES.Locked + "</span>"));
+                                  return ACCOUNTLIST.initBetStatus(cell.Value);                                  
                               }
                           },
                          { HeaderText: LANGUAGES.NumberOfAgent, Width: 70, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",

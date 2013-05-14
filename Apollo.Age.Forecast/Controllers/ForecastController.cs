@@ -69,7 +69,7 @@ namespace Apollo.Age.Forecast.Controllers
                 {
                     leagueId = leagues.ElementAt(0).LeagueId;
                 }
-                ViewBag.FC1X2List = _forecastService.GetForecast1x2(currentAgentId, leagueId);
+                ViewBag.FC1X2List = _forecastService.GetForecast1x2(currentAgentId, this.CurrentSession.AgentId, leagueId);
             }
             return View();
         }
@@ -87,11 +87,11 @@ namespace Apollo.Age.Forecast.Controllers
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
             if (matchId != null && matchId.Value > 0)
             {
-                forecasts = _forecastService.GetForecast1X2Matches(currentAgentId, matchId.Value, betType);
+                forecasts = _forecastService.GetForecast1X2Matches(currentAgentId, this.CurrentSession.AgentId, matchId.Value, betType);
             }
             else
             {
-                forecasts = _forecastService.GetForecast1x2(currentAgentId, leagueId.Value);
+                forecasts = _forecastService.GetForecast1x2(currentAgentId, this.CurrentSession.AgentId, leagueId.Value);
             }
             return View(forecasts);
         }
@@ -115,7 +115,7 @@ namespace Apollo.Age.Forecast.Controllers
             {
                 leagueId = leagues.ElementAt(0).LeagueId;
             }
-            ViewBag.FCHDPList = _forecastService.GetForecastHandicapOverUnder(currentAgentId, leagueId);
+            ViewBag.FCHDPList = _forecastService.GetForecastHandicapOverUnder(currentAgentId, base.CurrentSession.AgentId, leagueId);
             return View();
         }
 
@@ -126,8 +126,8 @@ namespace Apollo.Age.Forecast.Controllers
         /// <returns></returns>
         public ActionResult FCHandicapOverUnderMatches(int leagueId, int mainShareHolderId = 0)
         {
-            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            var forecasts = _forecastService.GetForecastHandicapOverUnder(currentAgentId, leagueId);
+            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : base.CurrentSession.AgentId;
+            var forecasts = _forecastService.GetForecastHandicapOverUnder(currentAgentId,base.CurrentSession.AgentId,  leagueId);
             return View(forecasts);
         }
 
@@ -149,7 +149,7 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.MatchId = matchId;
             ViewBag.CurrentScore = currentScore;
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            return View(_forecastService.GetForecastMatcheValue(currentAgentId, matchId, betType, currentScore));
+            return View(_forecastService.GetForecastMatcheValue(currentAgentId,this.CurrentSession.AgentId, matchId, betType, currentScore));
         }
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace Apollo.Age.Forecast.Controllers
         public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes, int mainShareHolderId = 0)
         {
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            return View(_forecastService.GetScoreMapResults(currentAgentId, matchIds, liveBetTypes, deadBallBetTypes));
+            return View(_forecastService.GetScoreMapResults(currentAgentId,this.CurrentSession.AgentId, matchIds, liveBetTypes, deadBallBetTypes));
         }
 
         #endregion Score Map

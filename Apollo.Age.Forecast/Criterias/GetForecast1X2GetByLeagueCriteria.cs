@@ -19,6 +19,8 @@ namespace Apollo.Age.Forecast.Criterias
 
         public int LeagueID { get; set; }
 
+        public int LoggedId { get; set; }
+
         public override string GetSettingKey()
         {
             return "Age_Forecast_5_15_GetByLeague";

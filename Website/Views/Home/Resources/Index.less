@@ -1,6 +1,7 @@
-﻿@import "variables.less";
+﻿@import "../../../_globalresources/css/variables.less";
 @headerHeight:	60px;
 @menuWidth:		220px;
+@miniMenuWidth:	30px;
 
 html, body {
 	padding: 0;
@@ -29,9 +30,12 @@ iframe {
 	top: @headerHeight + 1;
 	width: @menuWidth;
 	border-right: 1px solid #999;
+
+	&.mini-menu {
+		width: @miniMenuWidth;
+		background: #EEE;
+	}
 }
-
-
 
 .mainpage {
 	background: url(img/bg-mainpage.png) repeat-y;
@@ -39,7 +43,29 @@ iframe {
 	left: @menuWidth + 1;
 	right: 0;
 	padding: 0 5px 10px;
+
+	.collapse, .expand {
+		background: url(img/buttons.png) no-repeat;
+		background-position: -7px 0;
+		height: 25px;
+		width: 14px;
+		position: fixed;
+		top: 300px;
+		left: @menuWidth + 1;
+		cursor: pointer;
+		z-index: 300;
+	}
+
+	.expand {
+		background-position: 7px 0;
+		left: @miniMenuWidth - 6;
+	}
+
+	&.max-mainpage {
+		left: @miniMenuWidth + 1;
+	}
 }
+
 
 /* Fix layout for IE7 */
 
