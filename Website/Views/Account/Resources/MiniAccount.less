@@ -6,96 +6,110 @@ ul, li {
 	margin: 0;
 	padding: 0;
 }
-		
+
+/* LEVEL ONE */		
 ul.tab-menu-icon {
 	display: none;
-	margin: 8px;
+	position: relative;
 
 	li {
 		list-style: none;
 		position: relative;
 		cursor: pointer;
+		float: left;
+		color: @textColor;
 
-		i {
-			cursor: pointer;
-			background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings.png);
+		
 
-			&:hover {	
-				background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-gray.png);
-			}			
+		&.main-menu, &.account, &.search {
+			text-align: center;
+			width: 30px;
+			padding: 4px 0;
+			border-bottom: 1px solid #bbb;
+
+			i {
+				cursor: pointer;
+				background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings.png);		
+			}
+
+			&:hover {
+				//background: #cceaf3;
+				background: #0084B4;
+				i {
+					background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-white.png);
+				}
+			}
 		}
 
-		&.main-menu:hover, &.account:hover, &.search:hover {
-			background: none;
+		&.account, &.search {
+			border-top: 1px solid @white;
+		}
+
+		&.main-menu.active {
+			background: #0084B4;
+
+			i {
+				background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-white.png);
+			}
+		}
+
+		a {
+			display: block;
+			color: @textColor;
+
+			&:hover {
+				color: @hoverLinkYellowColor;
+			}
+
+			&:active { 
+				color: #ffa500;
+			}
+		}
+
+		&:last-child a  { 
+			border-right: none;
+		} /* Doesn't work in IE */
+
+		&.hover, &:hover  { 
+			background: #EEE;
+			position: relative;
+
+			a {
+				color: @textColor;
+			}
+		}
+
+		/* LEVEL TWO */
+		ul {
+			 width: 220px;
+			 display: none;
+			 position: absolute;
+			 top: 79%;
+			 left: 9px;
+			 z-index: 990;
+			 border-bottom: 1px solid #b5b5b5;
+
+			 li { 
+				 background: #ddd;
+				 border: 1px solid #b5b5b5;
+				 border-bottom: none;
+				 float: none;
+				 padding: 4px 8px;
+				 text-align: left;
+				 text-transform: uppercase;
+
+				 /* IE 6 & 7 Needs Inline Block */
+				 a	{ 
+					border-right: none;
+					width: 100%;
+					display: inline-block;
+					color: @textColor;
+				 } 
+			}
 		}
 	}
-}
+}							  
 
-/* LEVEL ONE */
-ul.tab-menu-icon {
-	 position: relative;
-}
-
-ul.tab-menu-icon li { 
-	font-weight: bold;
-	float: left;
-	zoom: 1;
-}
-
-ul.tab-menu-icon a:hover {
-	color: #000;
-}
-
-ul.tab-menu-icon a:active { 
-	color: #ffa500;
-}
-
-ul.tab-menu-icon li a { 
-	display: block;
-	color: #222;
-}
-
-ul.tab-menu-icon li:last-child a  { 
-	border-right: none;
-} /* Doesn't work in IE */
-
-ul.tab-menu-icon li.hover, ul.tab-menu-icon li:hover  { 
-	background: #EEEEEE;
-	color: black;
-	position: relative;
-}
-
-ul.tab-menu-icon li.hover a  { 
-	color: black;
-}
-
-/* LEVEL TWO */
-ul.tab-menu-icon ul {
-	 width: 220px;
-	 visibility: hidden;
-	 position: absolute;
-	 top: 89%;
-	 left: 0;
-	 z-index: 990;
-	 border-bottom: 1px solid #b5b5b5;
-}
-
-ul.tab-menu-icon ul li { 
-	 font-weight: normal;
-	 background: #ddd;
-	 color: #000; 
-	 border: 1px solid #b5b5b5;
-	 border-bottom: none;
-	 float: none;
-	 padding: 4px 8px;
-}
-									  
-/* IE 6 & 7 Needs Inline Block */
-ul.dropdown ul li a	{ 
-	border-right: none;
-	width: 100%;
-	display: inline-block;
-} 
 
 /* LEVEL THREE */
 ul.tab-menu-icon ul ul { 
@@ -104,13 +118,19 @@ ul.tab-menu-icon ul ul {
 
 	li {
 		background: #f3f3f3;
+		text-transform: none;
 
 		&:hover {
-			background: #fff;
+			background: @white;
+			color: @textColor;
+			
+			a	{ 						
+				color: @linkColor;
+			} 
 		}
 	}
 }
 
-ul.tab-menu-icon li:hover > ul { 
-	visibility: visible;
+ul.tab-menu-icon ul li:hover > ul {
+	display: block;
 }
