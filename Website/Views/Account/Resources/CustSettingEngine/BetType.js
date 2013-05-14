@@ -172,9 +172,10 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
         if (maxSpinBox.isValid(true) && currentPt.MaxMinSpan != maxSpinBox.getValue()) {
             //// Update New Min Range
-            currentPt.MaxMinSpan = maxSpinBox.getValue();
-            uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
-            minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
+            //            currentPt.MaxMinSpan = maxSpinBox.getValue();
+            //            uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
+            //            minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
+            maxSpinBox.input.onchange();
         }
     }
 
