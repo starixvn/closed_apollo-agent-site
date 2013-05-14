@@ -47,7 +47,7 @@ if (typeof jQuery != 'undefined') {
                 	url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
                 //location.href = url;
-                ageWnd.openDialog(url, 'BET LIST', {
+             ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
                     width: 930,
                     height: 700,
                     position: { my: "top+30", at: "center top", of: window },
@@ -64,7 +64,7 @@ if (typeof jQuery != 'undefined') {
                 if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
                 	url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
-                parent.$(".ui-dialog .ui-dialog-title").text("BET LIST");
+             parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.betListString);
                 location.href = url;
             }
         });
