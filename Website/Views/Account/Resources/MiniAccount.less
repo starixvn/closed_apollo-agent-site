@@ -87,6 +87,7 @@ ul.tab-menu-icon {
 			 left: 9px;
 			 z-index: 990;
 			 border-bottom: 1px solid #b5b5b5;
+			 background: #eee;
 
 			 li { 
 				 background: #ddd;
@@ -105,6 +106,11 @@ ul.tab-menu-icon {
 					display: inline-block;
 					color: @textColor;
 				 } 
+
+				 &.hasChild {
+					background: url(img/hasChild.png) no-repeat center right;	
+					background-position: 204px;
+				 }
 			}
 		}
 	}
