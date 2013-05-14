@@ -4,7 +4,7 @@
             $('#btn-mini-menu').addClass('expand').removeClass('collapse');
             $('#btn-mini-menu').attr('title', 'Resource.Expand');
             // change size of menu navigation
-            $('.menu').animate({ "width": "30px" }, "300").addClass('mini-menu');
+            $('.menu').animate({ "width": "30px" }, "100").addClass('mini-menu');
             $('.mainpage').addClass('max-mainpage');
             $('.menu iframe').hide();
             $('ul.tab-menu-icon').show();
