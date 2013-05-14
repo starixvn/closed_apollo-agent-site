@@ -4,7 +4,7 @@
             $('#btn-mini-menu').addClass('expand').removeClass('collapse');
             $('#btn-mini-menu').attr('title', 'Resource.Expand');
             // change size of menu navigation
-            $('.menu').addClass('mini-menu');
+            $('.menu').animate({ "width": "30px" }, "100").addClass('mini-menu');
             $('.mainpage').addClass('max-mainpage');
             $('.menu iframe').hide();
             $('ul.tab-menu-icon').show();
@@ -13,7 +13,7 @@
             $('#btn-mini-menu').addClass('collapse').removeClass('expand');
             $('#btn-mini-menu').attr('title', 'Resource.Minimize');
             // change size of menu navigation
-            $('.menu').removeClass('mini-menu');
+            $('.menu').removeClass('mini-menu').width(220);
             $('.mainpage').removeClass('max-mainpage');
             $('.menu iframe').show();
             $('ul.tab-menu-icon').hide();
@@ -45,11 +45,11 @@ $(document).ready(function () {
 
     // Click on "main menu" icon and change to "main menu" page   
     $('.main-menu').click(function (e) {
-        if ($('ul.tab-menu-icon li:hover > ul').css('display') == 'none') {
-            $('ul.tab-menu-icon li:hover > ul').show();
+        if ($('ul.tab-menu-icon li > ul').css('display') == 'none') {
+            $('ul.tab-menu-icon li.main-menu ul.parent').fadeIn(300);
             $('.main-menu').addClass('active');
         } else {
-            $('ul.tab-menu-icon li:hover > ul').hide();
+            $('ul.tab-menu-icon li.main-menu ul.parent').fadeOut(300);
             $('.main-menu').removeClass('active');
         }
         e.stopPropagation();
