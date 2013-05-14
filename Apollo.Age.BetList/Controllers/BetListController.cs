@@ -14,11 +14,12 @@ namespace Apollo.Age.BetList.Controllers
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.BetList.Criterias;
+    using Apollo.Age.BetList.MetaModel;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.BetList.ViewModels;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Web;
-    using Fanex.BetList.Age.BetListHTMLBuilderExt;
+    using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -47,32 +48,35 @@ namespace Apollo.Age.BetList.Controllers
         /// <summary>
         /// View detail comm
         /// </summary>
-        /// <param name="transId"></param>
-        /// <param name="fromDate"></param>
-        /// <param name="toDate"></param>
-        /// <param name="type"></param>
+        /// <param name="metaModel"></param>
         /// <returns></returns>
-        //public ViewResult ViewDetail(long transId, DateTime fromDate, DateTime toDate, string type)
-        public ViewResult ViewDetail(long transId, string type)
+        public ViewResult ViewDetail(BetListMetaModel metaModel)
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
+            var balanceUpDay = reportService.GetBalanceUpDay();
+            var moveBetsDay = reportService.MoveBetsDay();
 
-            var IsFromReportWinloss = type == "report" ? true : false;
+            if (metaModel.FromDate == DateTime.MinValue)
+            {
+                metaModel.FromDate = moveBetsDay;
+            }
+            if (metaModel.ToDate == DateTime.MinValue)
+            {
+                metaModel.ToDate = DateTime.Now;
+            }
 
             var criteria = new BetListCriteria
             {
                 LoggedId = this.CurrentSession.AgentId,
-                TransId = transId,
-                //FromDate = Formater.ResetStartDate(fromDate),
-                //ToDate = Formater.ResetEndDate(toDate),
-                FromDate = reportService.MoveBetsDay(),
-                ToDate = DateTime.Now,
-                BalanceUpDay = reportService.GetBalanceUpDay(),
-                MoveBetsDay = reportService.MoveBetsDay()
+                TransId = metaModel.TransId,
+                FromDate = metaModel.FromDate,
+                ToDate = metaModel.ToDate,
+                BalanceUpDay = balanceUpDay,
+                MoveBetsDay = moveBetsDay
             };
 
-            if (IsFromReportWinloss)
+            if (metaModel.Type == "report")
             {
                 listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
             }
@@ -81,9 +85,9 @@ namespace Apollo.Age.BetList.Controllers
                 listAgentComm = betListService.GetDetailAgentComm(criteria);
             }
 
-            var viewModel = new BetListViewModel
+            var viewModel = new BetListViewModel()
             {
-                ListAgentComm = listAgentComm
+                ListAgentComm = this.Ticket(listAgentComm)
             };
             return this.View(viewModel);
         }
@@ -91,23 +95,20 @@ namespace Apollo.Age.BetList.Controllers
         private List<TicketText> Ticket(IList<ITicket> tickets)
         {
             var index = 0;
-            var builder = new BetListHTMLBuilderExt();
+            var builder = new BetListHTMLBuilder();
+            var ticketTextList = new List<TicketText>();
             foreach (var ticket in tickets)
             {
                 var ticketText = new TicketText
                 {
-                    Index = index++,
                     UserName = ticket.UserName,
-                    AgentComm = ticket.AgentComm,
-                    AgentShare = ticket.AgentPT
-                    Status = builder.BuildStatus(ticket, this._ticketHelper, ticketResult.TicketDataList, false),
-                    Choice = builder.BuildChoice(ticket, this._ticketHelper, ticketResult.TicketDataList, false),
-                    Odds = builder.BuildOdds(ticket, ticketResult.TicketDataList, CacheRef.GetOddsTypeName),
-                    Stake = builder.BuildStake(ticket),
+                    TransTime = builder.BuildTrans(ticket),
+                    AgentComm = builder.BuildAgentComm(ticket, true),
+                    AgentShare = builder.BuildAgentShare(ticket, null)
                 };
-
                 ticketTextList.Add(ticketText);
             }
+            return ticketTextList;
         }
     }
 }

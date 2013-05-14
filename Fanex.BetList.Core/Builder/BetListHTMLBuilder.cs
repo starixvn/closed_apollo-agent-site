@@ -229,21 +229,42 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="openTag"></param>
         /// <param name="closeTag"></param>
         /// <returns></returns>
-        public static BetListHTMLBuilder AddAgentComm(this BetListHTMLBuilder factory, ITicket ticket, List<ITicketData> ticketData, bool hideDetail, string openTag, string closeTag)
+        public BetListHTMLBuilder AddAgentComm(ITicket ticket, bool isHideLink, string openTag, string closeTag)
         {
-            IAgentComm agentCommBuilder = CreateAgentCommBuilder(ticket.BetTypeId);
-            string agentCom = agentCommBuilder.Render(ticket, ticketData, hideDetail);
-            factory.Append(string.Join(null, new string[] { openTag, agentCom, closeTag }));
+            string agentComm = BuildAgentComm(ticket, isHideLink);
+            this._content.Append(string.Join(null, new string[] { openTag, agentComm, closeTag }));
 
-            return factory;
+            return this;
         }
 
-        public string BuildAgentComm(ITicket ticket)
+        /// <summary>
+        /// Build agent comm
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="hideLinkDetail">Show or Hide link</param>
+        /// <returns></returns>
+        public string BuildAgentComm(ITicket ticket, bool isHideLink)
         {
-            IAgentComm agentCommBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
-            string status = statusBuilder.Render(ticket, ticketHelper, ticketData, isShowVNIP);
+            IAgentComm agentCommBuilder = this.CreateAgentCommBuilder(ticket.BetTypeId);
+            string agentComm = agentCommBuilder.Render(ticket, isHideLink);
 
-            return status;
+            return agentComm;
+        }
+
+        public BetListHTMLBuilder AddAgentShare(ITicket ticket, List<ITicketData> ticketData, string openTag, string closeTag)
+        {
+            string agentShare = BuildAgentShare(ticket, ticketData);
+            this._content.Append(string.Join(null, new string[] { openTag, agentShare, closeTag }));
+
+            return this;
+        }
+
+        public string BuildAgentShare(ITicket ticket, List<ITicketData> ticketData)
+        {
+            IAgentShare agentShareBuilder = this.CreateAgentShareBuilder(ticket.BetTypeId);
+            string agentShare = agentShareBuilder.Render(ticket, ticketData);
+
+            return agentShare;
         }
 
         /// <summary>
@@ -398,7 +419,7 @@ namespace Fanex.BetList.Core.Builder
         /// Creates the agent PT builder.
         /// </summary>
         /// <returns></returns>
-        private static IAgentShare CreateAgentShareBuilder(int bettype)
+        private IAgentShare CreateAgentShareBuilder(int bettype)
         {
             string typeName = string.Join(
                                            null,
@@ -426,7 +447,7 @@ namespace Fanex.BetList.Core.Builder
         /// Creates the agent Comm builder.
         /// </summary>
         /// <returns></returns>
-        private static IAgentComm CreateAgentCommBuilder(int bettype)
+        private IAgentComm CreateAgentCommBuilder(int bettype)
         {
             string typeName = string.Join(
                                            null,

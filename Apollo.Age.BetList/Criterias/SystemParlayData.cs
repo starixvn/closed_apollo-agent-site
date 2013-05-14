@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Fanex.BetList.Core.Entities;
 
-namespace Apollo.Age.BetList.Models
+namespace Apollo.Age.BetList.Criterias
 {
     public class SystemParlayData
     {

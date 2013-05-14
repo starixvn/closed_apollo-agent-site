@@ -1,36 +1,55 @@
 ﻿@using Fanex.BetList.Core.TicketHelper;
 @using Fanex.BetList.Core.Factories;
-@using Fanex.BetList.Age.BetListHTMLBuilderExt;
 @model Apollo.Age.BetList.ViewModels.BetListViewModel
 @{
     Layout = "~/Views/BetList/Shared/_Layout.cshtml";
-    ViewBag.Title = "";// Apollo.Age.Resources.BetList.viewCommDetails;
+    ViewBag.Title = Apollo.Age.Resources.BetList.viewCommDetails;
 }
 @{
-    var ticketHelper = new TicketHelper();
-    var factory = new BetListHTMLFactory();
-    var builder = factory.CreateBuilder();
     var tickets = Model.ListAgentComm;
     var index = 0;
-    var str = string.Empty;
 }
 <div id="spData">
-    @if (tickets.Count > 0)
-    {
-        <table>
+    <table class="tblRpt">
+        <thead>
+            <tr>
+                <th>
+                    @Apollo.Age.Resources.Lang.agent
+                </th>
+                <th style="width: 100px;">
+                    @Apollo.Age.Resources.BetList.agentPT
+                </th>
+                <th style="width: 100px;">
+                    @Apollo.Age.Resources.BetList.agentComm
+                </th>
+            </tr>
+        </thead>
+        @if (tickets.Count > 0)
+        {
             <tbody>
                 @foreach (var ticket in tickets)
                 {
                     index++;
-                    ticketHelper.Index = index;
-                    str += builder.Append(string.Format("<tr {0}>", index % 2 == 0 ? string.Empty : "class='alt'")).ToString();
-                    str += builder.AddMember(ticket, "<td class='l'>", "</td>");
-                    str += builder.AddAgentPT(ticket, null, "<td class='r'>", "</td>");
-                    str += builder.AddAgentComm(ticket, null, true, "<td class='r'>", "</td>");
-                    str += builder.Append("</tr>");
-                    Html.Raw(str.ToString());
+                    <tr @(index % 2 == 0 ? string.Empty : "class=alt")>
+                        <td class='l'>
+                            @ticket.UserName
+                        </td>
+                        <td class='r'>@Html.Raw(ticket.AgentShare)
+                        </td>
+                        <td class='r'>@Html.Raw(ticket.AgentComm)
+                        </td>
+                    </tr>
                 }
             </tbody>
-        </table>
-    }
+        }
+        else
+        {
+            <tfoot>
+                <tr class='total no-result'>
+                    <td class='c' colspan='4'>@Apollo.Age.Resources.Lang.noInfo
+                    </td>
+                </tr>
+            </tfoot>
+        }
+    </table>
 </div>
