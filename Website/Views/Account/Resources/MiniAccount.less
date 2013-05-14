@@ -11,6 +11,7 @@ ul, li {
 ul.tab-menu-icon {
 	display: none;
 	position: relative;
+	border-top: 1px solid @white;
 
 	li {
 		list-style: none;
@@ -84,7 +85,7 @@ ul.tab-menu-icon {
 			 display: none;
 			 position: absolute;
 			 top: 79%;
-			 left: 9px;
+			 left: 32px;
 			 z-index: 990;
 			 border-bottom: 1px solid #b5b5b5;
 			 background: #eee;
@@ -108,8 +109,12 @@ ul.tab-menu-icon {
 				 } 
 
 				 &.hasChild {
-					background: url(img/hasChild.png) no-repeat center right;	
+					background: url(img/hasChild.png) #DDD no-repeat center right;	
 					background-position: 204px;
+
+					&:hover {
+						background: url(img/hasChild.png) #eee no-repeat center right;	
+					}
 				 }
 			}
 		}
