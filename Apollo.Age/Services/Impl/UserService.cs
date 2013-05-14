@@ -12,19 +12,16 @@
 namespace Apollo.Age.Services.Impl
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Services.Interface;
-    using Fanex.Common.Helper;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Repositories.Interface;
-    using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Criterias;
-    using Fanex.Common;
-    using Fanex.Logging;
     using Apollo.Age.Criterias.Accounts;
+    using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Repositories.Impl;
+    using Apollo.Age.Repositories.Interface;
+    using Apollo.Age.Services.Interface;
+    using Fanex.Common;
+    using Fanex.Common.Helper;
+    using Fanex.Logging;
 
     public class UserService : IUserService
     {
@@ -54,20 +51,20 @@ namespace Apollo.Age.Services.Impl
                      });
             }
             catch (Exception ex)
-            { 
+            {
                 //writelog
             }
 
             return user;
         }
 
-        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria)
+        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria,  ref int AdminId)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
             criteria.Password = Cryptography.CfsEnCode(criteria.Password);
 
-            return _userRepository.AuthenticateNapUser(criteria);
+            return _userRepository.AuthenticateNapUser(criteria,ref AdminId);
         }
 
         /// <summary>
@@ -122,5 +119,49 @@ namespace Apollo.Age.Services.Impl
             }
             return false;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="AgentId"></param>
+        /// <param name="AgentUserId"></param>
+        /// <param name="ServerId"></param>
+        /// <param name="ActionId"></param>
+        /// <param name="Doing"></param>
+        /// <param name="LoginIp"></param>
+        /// <param name="DomainName"></param>
+        /// <param name="BrowserName"></param>
+        /// <param name="Platform"></param>
+        /// <param name="CountryCode"></param>
+        /// <param name="Duration"></param>
+        /// <returns></returns>
+        public int WriteLogInternalLogin(int AgentId, int AgentUserId, int ServerId, int ActionId, string Doing, string LoginIp, string DomainName, string BrowserName, string Platform, string CountryCode, int Duration)
+        {
+            try
+            {
+                return _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
+                {
+                    AgentId = AgentId,
+                    AgentUserId = AgentUserId,
+                    ServerId = ServerId,
+                    ActionId = ActionId,
+                    Doing = Doing,
+                    LoginIp = LoginIp,
+                    Platform = Platform,
+                    CountryCode = CountryCode,
+                    Duration = Duration,
+                    BrowserName = BrowserName,
+                    DomainName = DomainName
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+            return -1;
+        }
+
+
+      
     }
 }

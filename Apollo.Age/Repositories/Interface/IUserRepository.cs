@@ -8,7 +8,6 @@
 //   <change who="Lewis.Le" date="2013.5.3">Added AuthenticateNapUser</change>
 // </history>
 
-
 namespace Apollo.Age.Repositories.Interface
 {
     using Apollo.Age.Criterias;
@@ -19,8 +18,10 @@ namespace Apollo.Age.Repositories.Interface
     {
         int GetUserStatus(ICriteria criteria);
 
-        bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria);
+        bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref    int AdminId);
 
         bool HasPermissionOnUpdating(ICriteria criteria);
+
+        int WritelogInternalLogin(InternalLogLoginCriteria criteria);
     }
 }
