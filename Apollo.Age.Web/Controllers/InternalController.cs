@@ -24,7 +24,8 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.ViewModels;
-
+    using Apollo.Age.Web.Services;
+    using Apollo.Age.Entities;
     public class InternalController : Controller
     {
         #region Const
@@ -33,6 +34,7 @@ namespace Apollo.Age.Web
         private const string AllowUpdate = "AllowUpdate";
         private const string Language = "Language";
         private const string AdminName = "AdminName";
+        private const string AdminId = "AdminId";
 
         #endregion Const
 
@@ -84,17 +86,20 @@ namespace Apollo.Age.Web
                 #endregion
 
                 #region check if NAP username & password are correct
+                int _AdminId = 0;
                 bool napUserIsValid = _userService.AuthenticateNapUser(new AuthenticateNapUserCriteria
                     {
                         Username = model.Username,
                         Password = model.Password
-                    });
+
+                    }, ref _AdminId);
                 #endregion
 
                 if (napUserIsValid) // redirect to SelectAccount page
                 {
                     TempData[Language] = model.Language;
                     TempData[AdminName] = model.Username;
+                    TempData[AdminId] = _AdminId;
 
                     return RedirectToAction("SelectAccount");
                 }
@@ -116,7 +121,7 @@ namespace Apollo.Age.Web
                 return Redirect(FormsAuthentication.LoginUrl);
             }
 
-            return View(new SelectAccountViewModel { Language = TempData[Language].ToString() });
+            return View(new SelectAccountViewModel { Language = TempData[Language].ToString(), AdminId = Convert.ToInt32(TempData[AdminId]), AdminName = TempData[AdminName].ToString() });
         }
 
         [HttpPost]
@@ -125,7 +130,7 @@ namespace Apollo.Age.Web
         {
             if (ModelState.IsValid)
             {
-                Apollo.Age.Entities.User agent = _userService.GetUserByUsername(model.Agent);
+                User agent = _userService.GetUserByUsername(model.Agent);
 
                 if (agent != null) // continue sign-in process
                 {
@@ -138,6 +143,24 @@ namespace Apollo.Age.Web
                         user: agent,
                         isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
                         language: model.Language);
+
+                    // Write log internal login
+                    DeviceService deviceService = new DeviceService(Request);
+                    int result = _userService.WriteLogInternalLogin(
+                        agent.Id,
+                        model.AdminId,
+                        0,
+                        1306,
+                        "Admin: " + model.AdminName + " via Agent: " + agent.Username + " Logged in to Apollo Agent Site - Result: Successful."  ,
+                        deviceService.ClientIp,
+                        deviceService.DomainName,
+                        deviceService.BrowserName,
+                        deviceService.Platform,
+                        deviceService.CountryCode,
+                        0);
+                     
+
+
 
                     FormsAuthentication.RedirectFromLoginPage(agent.Username, createPersistentCookie: false);
                 }

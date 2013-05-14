@@ -20,5 +20,9 @@ namespace Apollo.Age.Web.ViewModels
         public bool AllowUpdate { get; set; }
 
         public string Language { get; set; }
+
+        public string AdminName { get; set; }
+
+        public int AdminId { get; set; }
     }
 }

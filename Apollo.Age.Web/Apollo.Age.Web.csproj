@@ -67,6 +67,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="Controllers\InstructionController.cs" />
+    <Compile Include="Services\DeviceService.cs" />
     <Compile Include="SessionManager.cs" />
     <Compile Include="ViewModels\SelectAccountViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />

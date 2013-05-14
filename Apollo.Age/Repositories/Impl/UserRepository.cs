@@ -17,10 +17,10 @@ namespace Apollo.Age.Repositories.Impl
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Repositories.Interface;
+    using Fanex.Common;
     using Fanex.Common.Extensions;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-    using Fanex.Common;
 
     public class UserRepository : RepositoryBase<User>, IUserRepository
     {
@@ -98,15 +98,33 @@ namespace Apollo.Age.Repositories.Impl
             throw new NotImplementedException();
         }
 
-        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria)
+        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int AdminId)
         {
             try
             {
                 using (var db = new ObjectDb(criteria.GetSettingKey()))
                 {
                     IDataReader reader = db.ExecuteReader(criteria.GetSpParams());
+                    if (reader.Read())
+                    {
+                        AdminId = Convert.ToInt32(reader["UserId"]);
+                    }
+                    return AdminId != 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-                    return reader.Read();
+        public int WritelogInternalLogin(InternalLogLoginCriteria criteria)
+        {
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return db.ExecuteNonQuery(criteria.GetSpParams());
                 }
             }
             catch (Exception ex)
