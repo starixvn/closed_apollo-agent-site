@@ -6,7 +6,7 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.04.17">Created and Implement</change>
 // </history>
-namespace Apollo.Age.BetList.Models
+namespace Apollo.Age.BetList.Criterias
 {
     using System.Collections.Generic;
     using Fanex.BetList.Core.Entities;

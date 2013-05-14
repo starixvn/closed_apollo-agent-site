@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -51,7 +51,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     null,
                                                     new string[]
                                                     {
-                                                        CoreBetList.race,
+                                                        Apollo.Age.Resources.BetList.race,
                                                         "&nbsp;",
                                                         ticket.Race
                                                     }

@@ -8,12 +8,9 @@
 // </history>
 namespace Apollo.Age.BetList.Services
 {
-    using System.Collections;
     using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
     using Fanex.BetList.Core.Entities;
-    using Fanex.Data.DNAide;
 
     /// <summary>
     /// Service Interface

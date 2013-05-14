@@ -97,11 +97,11 @@
                 if (last != null && !last.Equals(item))
                 { 
                 <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-                    <span class="breadcrumbs">&nbsp;</span> </li>
+                </li>
                 }
                 else
                 { 
-                <li><span>@item.Username</span> </li>
+                <li class="currentUser"><span>@item.Username</span> </li>
                 }
             }
         </ul>
@@ -119,11 +119,11 @@
                 if (last != null && !last.Equals(item))
                 {
                 <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-                    <span class="breadcrumbs">&nbsp;</span></li>
+                </li>
                 }
                 else
                 {
-                <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                <li class="currentUser"><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
                 </li>
                 }
             }

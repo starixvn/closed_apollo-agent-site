@@ -553,17 +553,16 @@ table {
 			list-style: none;
 			float: left;
 			white-space: nowrap;
-
-			span.breadcrumbs {
-				background: url('../Images/breadcrumb.gif') no-repeat left center;
-				margin: 5px;
-				height: 10px;
-				width: 10px;
-				float: left;
-			}
+			background: url('../Images/breadcrumb.gif') no-repeat right center;
+			padding-left: 3px;
 
 			a {
 				float: left;
+				padding-right: 17px;
+			}
+
+			&.currentUser {
+				background: none;
 			}
 		}
 	}

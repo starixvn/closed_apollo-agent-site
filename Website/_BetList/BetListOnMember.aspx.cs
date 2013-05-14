@@ -17,7 +17,6 @@ namespace Sunplus.Agent.UI._BetList
     using System.Text;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Reports.Services;
