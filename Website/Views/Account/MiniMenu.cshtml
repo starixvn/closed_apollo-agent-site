@@ -3,15 +3,16 @@
     var menu = ViewBag.RootNode;
 }
 <ul class="tab-menu-icon">
-<li class="main-menu" title="resource.Menu"><i class="icon-align-justify"></i>
-<ul class="parent">
-    @{ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
-        foreach (SiteMapNode item in menu.ChildNodes)
-        {
-            string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
+    <li class="main-menu" title="@Apollo.Age.Resources.Lang.mainmenu"><i class="icon-align-justify"></i>
+    <ul class="parent">
+        @{ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
+            foreach (SiteMapNode item in menu.ChildNodes)
+            {
+                string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
                 if (item.HasChildNodes)
                 {
-                    <li class="hasChild"><a class="">@rm.GetString(item.Title)</a>
+                    var parentTitle = rm.GetString(item.Title);
+                    <li class="hasChild" title="@parentTitle"><a class="">@parentTitle</a>
                     <ul>
                         @foreach (SiteMapNode subItem in item.ChildNodes)
                         {
@@ -34,7 +35,7 @@
                                 title = rm.GetString(subItem.Title);
 
                             }
-                            <li>
+                            <li title="@title">
                                 <a href="@subItem.Url" target="main">@title</a>
                             </li>
                         }
@@ -43,15 +44,13 @@
                 }
                 else
                 {
-                     <li><a class="">@rm.GetString(item.Title)</a>
-                     </li>
+                    <li><a class="">@rm.GetString(item.Title)</a></li>
                 }
         
+            }
         }
-    }
-</ul>
-</li>
-
-    <li class="account" title="resource.Account"><i class="icon-user"></i></li>
-    <li class="search" title="resource.Search"><i class="icon-search"></i></li>
+    </ul>
+    </li>
+    <li class="account" title="@Apollo.Age.Resources.Lang.userinfo"><i class="icon-user"></i></li>
+    <li class="search" title="@Apollo.Age.Resources.Lang.search"><i class="icon-search"></i></li>
 </ul>
