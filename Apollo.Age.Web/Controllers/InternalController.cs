@@ -13,19 +13,18 @@ namespace Apollo.Age.Web
     using System.Drawing;
     using System.Drawing.Drawing2D;
     using System.Drawing.Text;
-    using System.Globalization;
     using System.IO;
-    using System.Threading;
     using System.Web.Mvc;
     using System.Web.Security;
     using Apollo.Age.Configurations;
     using Apollo.Age.Criterias;
+    using Apollo.Age.Entities;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
-    using Apollo.Age.Web.ViewModels;
     using Apollo.Age.Web.Services;
-    using Apollo.Age.Entities;
+    using Apollo.Age.Web.ViewModels;
+
     public class InternalController : Controller
     {
         #region Const
@@ -77,23 +76,26 @@ namespace Apollo.Age.Web
             if (ModelState.IsValid)
             {
                 #region if captcha is null or incorrect then return View with captcha error message
+
                 var captcha = Session[ApolloSessionCaptcha];
                 if (captcha == null || captcha.ToString() != model.Captcha)
                 {
                     ModelState.AddModelError("Captcha", Lang.IncorrectCaptchaMsg);
                     return View(model);
                 }
-                #endregion
+
+                #endregion if captcha is null or incorrect then return View with captcha error message
 
                 #region check if NAP username & password are correct
+
                 int _AdminId = 0;
                 bool napUserIsValid = _userService.AuthenticateNapUser(new AuthenticateNapUserCriteria
                     {
                         Username = model.Username,
                         Password = model.Password
-
                     }, ref _AdminId);
-                #endregion
+
+                #endregion check if NAP username & password are correct
 
                 if (napUserIsValid) // redirect to SelectAccount page
                 {
@@ -101,10 +103,17 @@ namespace Apollo.Age.Web
                     TempData[AdminName] = model.Username;
                     TempData[AdminId] = _AdminId;
 
+                    //write log
+                    string doing = "Admin: " + model.Username + "Logged in to Apollo Agent Site - Result: sucessful.";
+                    WritelogLogin(0, _AdminId, 1307, 0, doing);  
+
                     return RedirectToAction("SelectAccount");
                 }
                 else // return View with error message
                 {
+                    string doing = "Admin: " + model.Username + "Logged in to Apollo Agent Site - Result: fail.";
+                    WritelogLogin(0, _AdminId, 1308, 0, doing);  
+
                     ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
                 }
             }
@@ -145,32 +154,36 @@ namespace Apollo.Age.Web
                         language: model.Language);
 
                     // Write log internal login
-                    DeviceService deviceService = new DeviceService(Request);
-                    int result = _userService.WriteLogInternalLogin(
-                        agent.Id,
-                        model.AdminId,
-                        0,
-                        1306,
-                        "Admin: " + model.AdminName + " via Agent: " + agent.Username + " Logged in to Apollo Agent Site - Result: Successful."  ,
-                        deviceService.ClientIp,
-                        deviceService.DomainName,
-                        deviceService.BrowserName,
-                        deviceService.Platform,
-                        deviceService.CountryCode,
-                        0);
-                     
-
-
+                    string doing = "Admin: " + model.AdminName + " via Agent: " + agent.Username + " Logged in to Apollo Agent Site - Result: Successful.";
+                    WritelogLogin(agent.Id, model.AdminId, 1306, 0, doing);
 
                     FormsAuthentication.RedirectFromLoginPage(agent.Username, createPersistentCookie: false);
                 }
                 else // return View with not-found error message
-                {
+                {                  
+
                     ModelState.AddModelError("Agent", Lang.AgentNotFound);
                 }
             }
 
             return View(model);
+        }
+
+        private void WritelogLogin(int AgentId, int AgentUserId, int ActionId, int ServerId, string Doing)
+        {
+            DeviceService deviceService = new DeviceService(Request);
+            int result = _userService.WriteLogInternalLogin(
+                AgentId,
+                AgentUserId,
+                ServerId,
+                ActionId,
+                Doing,
+                deviceService.ClientIp,
+                deviceService.DomainName,
+                deviceService.BrowserName,
+                deviceService.Platform,
+                deviceService.CountryCode,
+                0);
         }
 
         public ActionResult CaptchaImage(bool noisy = true)
@@ -258,7 +271,7 @@ namespace Apollo.Age.Web
         public ActionResult AccountStopped()
         {
             return View();
-        }        
+        }
 
         private bool IsInternalSignIn
         {
