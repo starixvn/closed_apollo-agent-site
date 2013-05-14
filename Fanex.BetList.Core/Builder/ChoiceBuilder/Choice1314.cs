@@ -11,7 +11,6 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -31,7 +30,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             bool yes = ticket.BetTeam == "h";
 
-            this.Template.betTeam = yes ? CoreLang.lblYes : CoreLang.lblNo;            
+            this.Template.betTeam = yes ? Apollo.Age.Resources.Lang.lblYes : Apollo.Age.Resources.Lang.lblNo;
 
             this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }

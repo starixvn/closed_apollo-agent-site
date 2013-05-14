@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -55,7 +55,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                                     {"4-5","5,10,15,20,25,30,35,40,45,50,55,60,65,70,75"}
                                                                 };
 
-        #endregion
+        #endregion BETTEAM MAP
 
         /// <summary>
         /// Builds the choice.
@@ -86,8 +86,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.betTeam = string.Join(null, new string[] { betTeamName, liveScore });
             this.Template.betTeamClassName = BL_FAVORITE;
 
-            this.Template.betTypeName = CoreLang.numberGroup;
-            this.Template.homeTeam = string.Join(null, new string[] { CoreLang.numbergameno, "&nbsp;", ticket.MatchCode });
-        }        
+            this.Template.betTypeName = Apollo.Age.Resources.Lang.numberGroup;
+            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.Lang.numbergameno, "&nbsp;", ticket.MatchCode });
+        }
     }
 }

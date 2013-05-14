@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.BetList.Age">
+      <HintPath>..\Fanex.BetList.Age\bin\Debug\Fanex.BetList.Age.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.BetList.Core">
       <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
     </Reference>
@@ -60,6 +63,7 @@
     <Compile Include="Controllers\BetListController.cs" />
     <Compile Include="Criterias\BetListCriteria.cs" />
     <Compile Include="Criterias\SystemParlayDetailCriteria.cs" />
+    <Compile Include="Criterias\TicketText.cs" />
     <Compile Include="Models\SystemParlayData.cs" />
     <Compile Include="Models\TicketResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +75,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Reports\Apollo.Age.Reports.csproj">
+      <Project>{0DCAB062-FC45-436B-9F66-4D141DEBAF49}</Project>
+      <Name>Apollo.Age.Reports</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
       <Name>Apollo.Age.Web</Name>

@@ -13,6 +13,8 @@ namespace Fanex.BetList.Core.Builder
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using Fanex.BetList.Core.Builder.AgentCommBuilder;
+    using Fanex.BetList.Core.Builder.AgentShareBuilder;
     using Fanex.BetList.Core.Builder.ChoiceBuilder;
     using Fanex.BetList.Core.Builder.OddsBuilder;
     using Fanex.BetList.Core.Builder.StakeBuilder;
@@ -30,6 +32,8 @@ namespace Fanex.BetList.Core.Builder
         private const string STAKE_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.StakeBuilder";
         private const string TRANS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.TransBuilder";
         private const string STATUS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.StatusBuilder";
+        private const string AGENTCOMM_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.AgentCommBuilder";
+        private const string AGENTSHARE_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.AgentShareBuilder";
 
         #endregion Attributes
 
@@ -217,6 +221,32 @@ namespace Fanex.BetList.Core.Builder
         }
 
         /// <summary>
+        /// Add the agent Comm
+        /// </summary>
+        /// <param name="factory"></param>
+        /// <param name="ticket"></param>
+        /// <param name="ticketData"></param>
+        /// <param name="openTag"></param>
+        /// <param name="closeTag"></param>
+        /// <returns></returns>
+        public static BetListHTMLBuilder AddAgentComm(this BetListHTMLBuilder factory, ITicket ticket, List<ITicketData> ticketData, bool hideDetail, string openTag, string closeTag)
+        {
+            IAgentComm agentCommBuilder = CreateAgentCommBuilder(ticket.BetTypeId);
+            string agentCom = agentCommBuilder.Render(ticket, ticketData, hideDetail);
+            factory.Append(string.Join(null, new string[] { openTag, agentCom, closeTag }));
+
+            return factory;
+        }
+
+        public string BuildAgentComm(ITicket ticket)
+        {
+            IAgentComm agentCommBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
+            string status = statusBuilder.Render(ticket, ticketHelper, ticketData, isShowVNIP);
+
+            return status;
+        }
+
+        /// <summary>
         /// Creates the choice builder.
         /// </summary>
         /// <param name="bettype">The bettype.</param>
@@ -361,6 +391,62 @@ namespace Fanex.BetList.Core.Builder
             else
             {
                 return Activator.CreateInstance(type) as ITrans;
+            }
+        }
+
+        /// <summary>
+        /// Creates the agent PT builder.
+        /// </summary>
+        /// <returns></returns>
+        private static IAgentShare CreateAgentShareBuilder(int bettype)
+        {
+            string typeName = string.Join(
+                                           null,
+                                           new string[]
+                                            {
+                                                AGENTSHARE_BUILDER_NAMESPACE,
+                                                ".AgentShare",
+                                                bettype.ToString()
+                                            }
+                                        );
+
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                return new AgentShare1();
+            }
+            else
+            {
+                return Activator.CreateInstance(type) as IAgentShare;
+            }
+        }
+
+        /// <summary>
+        /// Creates the agent Comm builder.
+        /// </summary>
+        /// <returns></returns>
+        private static IAgentComm CreateAgentCommBuilder(int bettype)
+        {
+            string typeName = string.Join(
+                                           null,
+                                           new string[]
+                                            {
+                                                AGENTCOMM_BUILDER_NAMESPACE,
+                                                ".AgentComm",
+                                                bettype.ToString()
+                                            }
+                                        );
+
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                return new AgentComm1();
+            }
+            else
+            {
+                return Activator.CreateInstance(type) as IAgentComm;
             }
         }
     }

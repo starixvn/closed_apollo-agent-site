@@ -12,7 +12,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
@@ -35,7 +35,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             bool team1 = ticket.BetTeam == "1";
             bool team2 = ticket.BetTeam == "2";
 
-            this.Template.betTeam = team1 ? string.Join(null, new string[] { "<span class=\"underdog\">", CoreBetList.under, "</span>" }) : team2 ? string.Join(null, new string[] { "<span class=\"favorite\">", CoreBetList.over, "</span>" }) : string.Join(null, new string[] { "<span class=\"underdog\">", CoreBetList.exactly, "</span>" });
+            this.Template.betTeam = team1 ? string.Join(null, new string[] { "<span class=\"underdog\">", Apollo.Age.Resources.BetList.under, "</span>" }) : team2 ? string.Join(null, new string[] { "<span class=\"favorite\">", Apollo.Age.Resources.BetList.over, "</span>" }) : string.Join(null, new string[] { "<span class=\"underdog\">", Apollo.Age.Resources.BetList.exactly, "</span>" });
             this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }
     }

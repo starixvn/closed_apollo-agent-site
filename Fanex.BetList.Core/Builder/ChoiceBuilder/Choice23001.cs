@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -35,7 +35,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.Score = null;
             this.Template.Handicap.handicap = null;
 
-            this.Template.betTeam = string.Join(null, new string[] { CoreBetList.casinoGame, " - ", CoreBetList.transfer });
+            this.Template.betTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.casinoGame, " - ", Apollo.Age.Resources.BetList.transfer });
             this.Template.betTeamClassName = BL_FAVORITE;
         }
     }

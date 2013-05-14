@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -33,11 +33,11 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeamClassName = BL_FAVORITE;
             this.Template.betTeam = string.Join(
-                                                    null, 
-                                                    new string[] 
-                                                    { 
-                                                        CoreBetList.ft, 
-                                                        ".", 
+                                                    null,
+                                                    new string[]
+                                                    {
+                                                        Apollo.Age.Resources.BetList.ft,
+                                                        ".",
                                                         ticket.BetTeam.ToUpper()
                                                     }
                                                );

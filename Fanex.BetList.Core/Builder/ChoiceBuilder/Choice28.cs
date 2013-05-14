@@ -16,7 +16,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System;
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
@@ -35,17 +35,17 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Handicap.handicap = null; 
+            this.Template.Handicap.handicap = null;
 
-            string teamName = CoreBetList.lblDraw;            
+            string teamName = Apollo.Age.Resources.BetList.lblDraw;
             decimal hdp1 = ticket.Handicap1;
-            decimal hdp2 = ticket.Handicap2;            
-            
+            decimal hdp2 = ticket.Handicap2;
+
             string handicap = string.Empty;
             this.Template.betTeamClassName = BL_FAVORITE;
 
             if ("1" == ticket.BetTeam)
-            {                
+            {
                 teamName = this.Template.homeTeam;
                 handicap = Formatter.FormatSignNumber((int)(hdp2 - hdp1));
             }
@@ -56,15 +56,15 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 handicap = Formatter.FormatSignNumber((int)(hdp1 - hdp2));
             }
             else
-            {                
-                teamName = CoreBetList.lblDraw;
+            {
+                teamName = Apollo.Age.Resources.BetList.lblDraw;
                 if (hdp1 - hdp2 > 0)
                 {
-                    handicap = CoreBetList.a + "&nbsp;";
+                    handicap = Apollo.Age.Resources.BetList.a + "&nbsp;";
                 }
                 else if (hdp1 - hdp2 < 0)
                 {
-                    handicap = CoreBetList.h + "&nbsp;";
+                    handicap = Apollo.Age.Resources.BetList.h + "&nbsp;";
                 }
                 else
                 {
@@ -75,15 +75,15 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             }
 
             this.Template.betTeam = string.Join(
-                                                    null, 
-                                                    new string[] 
-                                                    { 
-                                                        teamName, 
-                                                        "&nbsp;<span class=\"underdog\">(", 
-                                                        handicap.ToString(), 
-                                                        ")</span>" 
+                                                    null,
+                                                    new string[]
+                                                    {
+                                                        teamName,
+                                                        "&nbsp;<span class=\"underdog\">(",
+                                                        handicap.ToString(),
+                                                        ")</span>"
                                                     }
-                                               );            
+                                               );
         }
     }
 }

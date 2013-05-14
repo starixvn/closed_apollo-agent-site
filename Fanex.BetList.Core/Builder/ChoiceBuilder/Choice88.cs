@@ -11,11 +11,11 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Warrior    
+    /// Warrior
     /// </summary>
     public class Choice88 : Choice1
     {
@@ -33,7 +33,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.VS = null;
             this.Template.Handicap.handicap = null;
 
-            string betTeam = ticket.BetTeam == "h" ? CoreBetList.warrior2ndBall : CoreBetList.warrior3rdBall;
+            string betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.warrior2ndBall : Apollo.Age.Resources.BetList.warrior3rdBall;
 
             string bettypeName = this.Template.betTypeName;
 
@@ -41,8 +41,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.betTeamClassName = BL_FAVORITE;
 
             this.Template.betTypeName = bettypeName;
-            
-            this.Template.homeTeam = string.Join(null, new string[] { CoreBetList.numbergameno, "&nbsp;", ticket.MatchCode });            
+
+            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
         }
     }
 }
