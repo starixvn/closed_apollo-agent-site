@@ -55,6 +55,8 @@ namespace Apollo.Age.TotalBets.Criterias
             set { _agentId = value; }
         }
 
+        public int LoggedId { get; set; }
+
         public int BetType { get; set; }
 
         public override bool IsValid()

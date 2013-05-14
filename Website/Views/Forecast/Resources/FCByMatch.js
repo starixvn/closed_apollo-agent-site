@@ -7,7 +7,7 @@ if (typeof jQuery != 'undefined') {
             currentScore: DEFAULT_OBJECT.currentScore,
             contentLink: APOLLO.resolveUrl('Forecast/FORECASTBYMATCHContent'),
             init: function () {
-                parent.$(".ui-dialog .ui-dialog-title").text("FORECAST");
+                parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.forecastString);
                 FORECASTBYMATCH.loadContentView();
             },
             updateValue: function () {
@@ -32,7 +32,7 @@ if (typeof jQuery != 'undefined') {
             + '&betType=' + $this.attr("bet-type")
             + '&type=BettypeMatch'
             + '&leagueName=' + DEFAULT_OBJECT.leagueName);
-                    parent.$(".ui-dialog .ui-dialog-title").text("BET LIST");
+                    parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.betListString);
                     if (DEFAULT_OBJECT.currentMainShareHolderId > 0) {
                     	url += "&mainShareHolderId=" + DEFAULT_OBJECT.currentMainShareHolderId +"&isForecast=true";
                     }

@@ -45,10 +45,14 @@
         var DEFAULT_LAYOUT = function(){
             return {
                 currentMainShareHolderId : @(currentMainShareHolderId),
-                currentActionLink: '@Url.Action(null)'
+                currentActionLink: '@Url.Action(null)',
+                betListString: '@Apollo.Age.Resources.Lang.BetList.ToUpper()',
+                forecastString: '@Apollo.Age.Resources.Lang.Forecast.ToUpper()'
             };
         }();
     </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+
