@@ -50,6 +50,7 @@
     <Compile Include="Criterias\GetForecast1X2GetByLeagueCriteria.cs" />
     <Compile Include="Criterias\GetForecastByMatchCriteria.cs" />
     <Compile Include="Criterias\GetForecastHandicapOverUnderCriteria.cs" />
+    <Compile Include="Criterias\GetMainShareHolderByMemberCriteria.cs" />
     <Compile Include="Criterias\GetRunningLeagueCriteria.cs" />
     <Compile Include="Criterias\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criterias\GetScoreMapLeaguesCriteria.cs" />
