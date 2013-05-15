@@ -60,7 +60,7 @@ namespace Apollo.Age.BetList.Controllers
             //DateTime value = DateTime.Now;
             //DateTime.TryParse(fromDate, out value)
 
-            var test = value;
+           // var test = value;
             var criteria = new BetListCriteria
             {
                 LoggedId = this.CurrentSession.AgentId,
