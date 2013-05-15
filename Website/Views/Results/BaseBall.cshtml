@@ -55,29 +55,49 @@
         @if (Model != null && Model.Any())
         {
             var currentLeagueId = 0;
+            var eventStatus = string.Empty;
+            var betStatus = string.Empty;
 
+            var finalHomeScore = 0;
+            var finalAwayScore = 0;
+
+            var haftTimeHomeScore = 0;
+            var haftTimeAwayScore = 0;
+
+            var homeTeam = string.Empty;
+            var awayTeam = string.Empty;
+
+            var ieHome = "-";
+            var ieAway = "-";
+
+            List<string> homeSet = null;
+            List<string> awaySet = null;
+
+            var totalPointAway = string.Empty;
+            var totalPointHome = string.Empty;
+            
             foreach (var item in Model)
             {
-                var eventStatus = string.Empty;
-                var betStatus = string.Empty;
+                 eventStatus = string.Empty;
+                 betStatus = string.Empty;
 
-                var finalHomeScore = 0;
-                var finalAwayScore = 0;
+                 finalHomeScore = 0;
+                 finalAwayScore = 0;
 
-                var haftTimeHomeScore = 0;
-                var haftTimeAwayScore = 0;
+                 haftTimeHomeScore = 0;
+                 haftTimeAwayScore = 0;
 
-                var homeTeam = string.Empty;
-                var awayTeam = string.Empty;
+                 homeTeam = string.Empty;
+                 awayTeam = string.Empty;
 
-                var ieHome = "-";
-                var ieAway = "-";
+                 ieHome = "-";
+                 ieAway = "-";
 
-                List<string> homeSet = new List<string>();
-                List<string> awaySet = new List<string>();
+                 homeSet = new List<string>();
+                 awaySet = new List<string>();
 
-                var totalPointAway = string.Empty;
-                var totalPointHome = string.Empty;
+                 totalPointAway = string.Empty;
+                 totalPointHome = string.Empty;
 
                 betStatus = item.BetStatus;
                 finalHomeScore = item.FinalHomeScore;
