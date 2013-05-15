@@ -104,14 +104,14 @@ namespace Apollo.Age.Web
                     TempData[AdminId] = _AdminId;
 
                     //write log
-                    string doing = "Admin: " + model.Username + "Logged in to Apollo Agent Site - Result: sucessful.";
+                    string doing = "Admin: " + model.Username + "Logged in to Apollo Agent Site - Result: Successful.";
                     WritelogLogin(0, _AdminId, 1307, 0, doing);  
 
                     return RedirectToAction("SelectAccount");
                 }
                 else // return View with error message
                 {
-                    string doing = "Admin: " + model.Username + "Logged in to Apollo Agent Site - Result: fail.";
+                    string doing = "Admin: " + model.Username + "Logged in to Apollo Agent Site - Result: Failed.";
                     WritelogLogin(0, _AdminId, 1308, 0, doing);  
 
                     ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
@@ -150,6 +150,8 @@ namespace Apollo.Age.Web
                     // saves user session
                     SessionManager.CurrentSession = new CurrentSession(
                         user: agent,
+                        AdminId: model.AdminId,
+                        AdminName: model.AdminName,
                         isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
                         language: model.Language);
 
@@ -172,7 +174,7 @@ namespace Apollo.Age.Web
         private void WritelogLogin(int AgentId, int AgentUserId, int ActionId, int ServerId, string Doing)
         {
             DeviceService deviceService = new DeviceService(Request);
-            int result = _userService.WriteLogInternalLogin(
+            _userService.WriteLogInternalLogin(
                 AgentId,
                 AgentUserId,
                 ServerId,
@@ -182,8 +184,8 @@ namespace Apollo.Age.Web
                 deviceService.DomainName,
                 deviceService.BrowserName,
                 deviceService.Platform,
-                deviceService.CountryCode,
-                0);
+                deviceService.CountryCode
+                );
         }
 
         public ActionResult CaptchaImage(bool noisy = true)
@@ -241,12 +243,17 @@ namespace Apollo.Age.Web
             bool isInternalSignIn = SessionManager.CurrentSession != null
                 && SessionManager.CurrentSession.IsInternalSignIn;
 
+            string doing = "Admin: " + SessionManager.CurrentSession.AdminName + " via Agent: " + SessionManager.CurrentSession.Username + " Log out - Result: Successful.";
+
             Session.Abandon();
             Response.Cookies.Clear();
             FormsAuthentication.SignOut();
 
             if (isInternalSignIn)
             {
+                // Write log internal login
+               
+                WritelogLogin(SessionManager.CurrentSession.AgentId, SessionManager.CurrentSession.AdminId, 1309, 0, doing);
                 return Redirect(ApoURLs.URLs.InternalSignIn);
             }
 

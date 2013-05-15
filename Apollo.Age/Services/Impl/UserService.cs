@@ -52,7 +52,7 @@ namespace Apollo.Age.Services.Impl
             }
             catch (Exception ex)
             {
-                //writelog
+                Logger.Log.Error(ex.Message, ex);
             }
 
             return user;
@@ -135,11 +135,11 @@ namespace Apollo.Age.Services.Impl
         /// <param name="CountryCode"></param>
         /// <param name="Duration"></param>
         /// <returns></returns>
-        public int WriteLogInternalLogin(int AgentId, int AgentUserId, int ServerId, int ActionId, string Doing, string LoginIp, string DomainName, string BrowserName, string Platform, string CountryCode, int Duration)
+        public void WriteLogInternalLogin(int AgentId, int AgentUserId, int ServerId, int ActionId, string Doing, string LoginIp, string DomainName, string BrowserName, string Platform, string CountryCode)
         {
             try
             {
-                return _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
+                var result= _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
                 {
                     AgentId = AgentId,
                     AgentUserId = AgentUserId,
@@ -148,8 +148,7 @@ namespace Apollo.Age.Services.Impl
                     Doing = Doing,
                     LoginIp = LoginIp,
                     Platform = Platform,
-                    CountryCode = CountryCode,
-                    Duration = Duration,
+                    CountryCode = CountryCode,                    
                     BrowserName = BrowserName,
                     DomainName = DomainName
                 });
@@ -158,7 +157,7 @@ namespace Apollo.Age.Services.Impl
             {
                 Logger.Log.Error(ex.Message, ex);
             }
-            return -1;
+          
         }
 
 

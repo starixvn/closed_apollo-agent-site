@@ -42,6 +42,10 @@ namespace Apollo.Age.Web
 
         bool IsInternalSignIn { get; set; }
 
+        int AdminId { get; set; }
+
+        string AdminName { get; set; }
+
         /// <summary>
         /// True indicate admin user can view VN ip.
         /// </summary>

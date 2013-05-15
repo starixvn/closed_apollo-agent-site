@@ -22,9 +22,7 @@
 
         public string Platform { get; set; }
 
-        public string CountryCode { get; set; }
-
-        public int Duration { get; set; }
+        public string CountryCode { get; set; }        
 
         public override string GetSettingKey()
         {
