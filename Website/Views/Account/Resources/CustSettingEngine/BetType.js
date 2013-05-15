@@ -147,6 +147,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
             maxSpinBox.updateMinValue(minValue);
             uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(minValue, currentPt.MaxMaxSpan);
         }
+
     }
     //// Min K Change affect To Max K
     minSpinBox.input.onchange = function (event) {
