@@ -16,8 +16,17 @@ namespace Apollo.Age.Web.Services
         public DeviceService(HttpRequestBase Request)
         {
             DomainName = Request.ServerVariables["SERVER_NAME"] as string;
-            BrowserName = Request.UserAgent.ToLower().Contains("chrome") ? "Chrome" : Request.Browser.Browser + " " + Request.Browser.Version;
-            Platform = GetPlatform(Request);
+            if (Request.Browser.IsMobileDevice)
+            {
+                BrowserName = Request.Browser.Browser + " " + Request.Browser.MajorVersion;
+                Platform = Request.Browser.MobileDeviceModel;
+            }
+            else
+            {
+                BrowserName = Request.Browser.Browser + " " + Request.Browser.Version;
+                Platform = GetPlatform(Request);
+            }
+           
             CountryCode = string.Empty ;
             ClientIp = Request.ServerVariables["REMOTE_ADDR"] as string;                
         }
