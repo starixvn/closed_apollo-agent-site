@@ -174,7 +174,9 @@ namespace Fanex.Age.UI.Components
 
 		public class Paging_SelPageSize_Block: Block
 		{
-			protected static string s37 = "<div class=\"itemperpage\">Page size </div>";
+			protected static string s37 = "<div class=\"itemperpage\">";
+			protected static string s38{get{return Apollo.Age.Resources.Lang.pagesize;}}
+			protected static string s39 = " </div>";
 			public string selPageSize = "{selPageSize}";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -182,6 +184,8 @@ namespace Fanex.Age.UI.Components
 				if(RenderChild)
 				{
 					bd.Append(s37);
+					bd.Append(s38);
+					bd.Append(s39);
 					bd.Append(selPageSize);
 				}
 				if(IsAssigned){bd.Append(Value);}
