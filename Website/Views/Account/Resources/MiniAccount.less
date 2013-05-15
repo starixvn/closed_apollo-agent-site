@@ -35,6 +35,10 @@ ul.tab-menu-icon {
 			&:hover {
 				z-index: 900;
 				background: #0084B4;
+				height: 20px;
+				width: 28px;
+				border: 1px solid @white;
+
 				i {
 					background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-white.png);
 				}
@@ -45,8 +49,16 @@ ul.tab-menu-icon {
 			border-top: 1px solid @white;
 		}
 
+		&.main-menu:hover {
+			border-top: none;
+		}
+
 		&.main-menu.active {
 			background: #0084B4;
+			height: 19px;
+			width: 28px;
+			border: 1px solid @white;
+			border-top: none;
 
 			i {
 				background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-white.png);
@@ -113,7 +125,8 @@ ul.tab-menu-icon {
 					background-position: 204px;
 
 					&:hover {
-						background: url(img/hasChild.png) #eee no-repeat center right;	
+						background: url(img/hasChild.png) #eee no-repeat center right;
+						background-position: 204px;	
 					}
 				 }
 			}
