@@ -4,19 +4,44 @@
             $('#btn-mini-menu').addClass('expand').removeClass('collapse');
             $('#btn-mini-menu').attr('title', 'Resource.Expand');
             // change size of menu navigation
-            $('.menu').animate({ "width": "30px" }, "100").addClass('mini-menu');
-            $('.mainpage').addClass('max-mainpage');
-            $('.menu iframe').hide();
-            $('ul.tab-menu-icon').show();
+            $('.menu').animate(
+                 { "width": "30px" },
+                 {
+                     duration: 50,
+                     specialEasing: {
+                         width: 'linear',
+                         height: 'easeOutBounce'
+                     },
+                     complete: function () {
+                         $(this).addClass('mini-menu');
+                         $('.menu iframe').hide();
+                         $('ul.tab-menu-icon').show();
+                         $('.mainpage').animate({left: '31px'}, 100).addClass('max-mainpage');
+                     }
+                 }
+            );
         },
         expandMenu: function () {
             $('#btn-mini-menu').addClass('collapse').removeClass('expand');
             $('#btn-mini-menu').attr('title', 'Resource.Minimize');
             // change size of menu navigation
-            $('.menu').removeClass('mini-menu').width(220);
-            $('.mainpage').removeClass('max-mainpage');
-            $('.menu iframe').show();
-            $('ul.tab-menu-icon').hide();
+            // $('.menu').removeClass('mini-menu').width(220);
+            $('.menu').animate(
+                 { "width": "220px" },
+                 {
+                     duration: 10,
+                     specialEasing: {
+                         width: 'linear',
+                         height: 'easeOutBounce'
+                     },
+                     complete: function () {
+                         $(this).removeClass('mini-menu');
+                         $('.menu iframe').show();
+                         $('ul.tab-menu-icon').hide();
+                         $('.mainpage').animate({ left: '221px' }, 50).removeClass('max-mainpage');
+                     }
+                 }
+            );
         }
     }
 } (jQuery);
