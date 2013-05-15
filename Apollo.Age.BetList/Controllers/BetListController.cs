@@ -14,7 +14,6 @@ namespace Apollo.Age.BetList.Controllers
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.MetaModel;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.BetList.ViewModels;
     using Apollo.Age.Reports.Services;
@@ -57,10 +56,6 @@ namespace Apollo.Age.BetList.Controllers
             var balanceUpDay = reportService.GetBalanceUpDay();
             var moveBetsDay = reportService.MoveBetsDay();
 
-            //DateTime value = DateTime.Now;
-            //DateTime.TryParse(fromDate, out value)
-
-           // var test = value;
             var criteria = new BetListCriteria
             {
                 LoggedId = this.CurrentSession.AgentId,
