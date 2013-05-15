@@ -32,11 +32,19 @@ namespace Apollo.Age.BetList.Repositories.Impl
         public IList<ITicket> GetDetailAgentComm(BetListCriteria criteria)
         {
             var uspKey = "Age_BetList_AgentDetail";
+
             try
             {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+                    var dataSet = db.ExecuteDataSet(new
+                    {
+                        criteria.TransId,
+                        criteria.LoggedId,
+                        criteria.FromDate,
+                        criteria.ToDate,
+                        criteria.MoveBetsDay
+                    });
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                     return this.ReadTicket(mainTable);
                 }
@@ -617,7 +625,14 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+                    var dataSet = db.ExecuteDataSet(new
+                    {
+                        criteria.TransId,
+                        criteria.LoggedId,
+                        criteria.FromDate,
+                        criteria.ToDate,
+                        criteria.MoveBetsDay
+                    });
 
                     // Main ticket list
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
