@@ -399,6 +399,11 @@ namespace Apollo.Age.Forecast.Services
             return matchOddsViewModels.ElementAtOrDefault(0);
         }
 
+        public int GetMainShareHolderByMember(GetMainShareHolderByMemberCriteria criteria)
+        {
+            return _forecastRepository.GetMainShareHolderByMember(criteria);
+        }
+
         #region Private Methods
 
         /// <summary>

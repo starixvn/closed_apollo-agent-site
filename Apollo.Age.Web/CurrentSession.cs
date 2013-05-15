@@ -20,7 +20,7 @@ namespace Apollo.Age.Web
     [Serializable]
     public class CurrentSession : ICurrentSession, ISerializable
     {
-        public CurrentSession(User user, int AdminId = 0, string AdminName = "", bool isInternalSignIn = false, string language = "en-US")
+        public CurrentSession(User user, int adminId = 0, string adminName = "", bool isInternalSignIn = false, string language = "en-US")
         {
             AgentId = user.Agent.Id;
             AgentLevel = user.Agent.Level;
@@ -32,8 +32,8 @@ namespace Apollo.Age.Web
             Language = language;
             CurrencyId = user.Agent.Currency;
             IsInternalSignIn = isInternalSignIn;
-            AdminId = AdminId;
-            AdminName = AdminName;
+            AdminId = adminId;
+            AdminName = adminName;
         }
 
         public CurrentSession(SerializationInfo info, StreamingContext context)

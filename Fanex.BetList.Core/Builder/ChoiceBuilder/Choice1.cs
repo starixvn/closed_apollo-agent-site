@@ -400,6 +400,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             {
                 this.Template.ScoreMapIcon.matchId = ticket.MatchId.ToString();
                 this.Template.ScoreMapIcon.betTypeId = ticket.BetTypeId.ToString();
+                this.Template.ScoreMapIcon.custId = ticket.CustId.ToString();
                 this.Template.ScoreMapIcon.liveindicator = Convert.ToInt32(ticket.IsLive).ToString();
             }
             else

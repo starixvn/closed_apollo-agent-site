@@ -85,7 +85,7 @@ table {
 	position: relative;
 	padding: 16px 0 1px;
 	margin:  0 10px 10px;
-	border-bottom: 1px solid #00546D;
+	border-bottom: 1px solid #83989E;
 	text-transform: uppercase;
 	color: @titleColor;
 	font-size: 1.2em;
@@ -285,7 +285,7 @@ table {
 	}
 
 	input.datepicker {
-		width: 60px;
+		width: 80px;
 	}
 
 	select {		
@@ -314,12 +314,18 @@ table {
 				}
 			}
 
-			.editor {
-				img.img-calendar {
-						cursor: pointer;
-						height: 16px;
-						width: 16px;
-					}
+			.editor {				
+				position: relative;
+
+				div.img-calendar {
+					position: absolute;
+					right: 7px;
+					top: 3px;
+					background: url(img/arrow_down.png) no-repeat center top;
+					height: 16px;
+					width: 16px;
+					cursor: pointer;
+				}
 			}
 		}
 	}

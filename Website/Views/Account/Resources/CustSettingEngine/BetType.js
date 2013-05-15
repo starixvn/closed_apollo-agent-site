@@ -146,7 +146,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     minSpinBox.input.onchange = function (event) {
         var minValue = minSpinBox.getValue();
         var checkMinValue = Math.max(minValue, currentPt.Upline.Min);
-        if (minValue < currentPt.MaxMaxSpan) {
+        if (minValue < currentPt.MaxMinSpan) {
             maxSpinBox.updateMinValue(minValue);
         }
         if (!maxSpinBox.isValid()) {
