@@ -141,12 +141,19 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
         minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
 
+        if (minValue > currentPt.Upline.Min && minValue > currentPt.MinMaxSpan && minValue <= maxValueCorrect) {
+            //// Update New Max Range
+            currentPt.MinMaxSpan = minValue;
+            maxSpinBox.updateMinValue(minValue);
+            uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(minValue, currentPt.MaxMaxSpan);
+        }
+
     }
     //// Min K Change affect To Max K
     minSpinBox.input.onchange = function (event) {
         var minValue = minSpinBox.getValue();
         var checkMinValue = Math.max(minValue, currentPt.Upline.Min);
-        if (minValue < currentPt.MaxMaxSpan) {
+        if (minValue < currentPt.MaxMinSpan) {
             maxSpinBox.updateMinValue(minValue);
         }
         if (!maxSpinBox.isValid()) {
