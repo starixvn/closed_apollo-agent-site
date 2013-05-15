@@ -34,13 +34,13 @@ namespace Apollo.Age
         public const string DECIMAL_FORMAT3C_VI = "{0:#.##0,000}";
         public const string DECIMAL_FORMAT4_VI = "{0:#.##0,####}";
         public const string DECIMAL_FORMAT40_VI = "{0:#.##0,0000}";
-        
+
         public Formater()
         {
-
         }
 
         #region Decimal
+
         private static string FormatDecimal(object value, byte decDigits)
         {
             //"{0:0.##}"
@@ -65,18 +65,22 @@ namespace Apollo.Age
                 throw new NullReferenceException();
             }
         }
+
         public static string DecFormat(decimal value, byte decDigits)
         {
             return FormatDecimal(value, decDigits);
         }
+
         public static string DecFormat(object value, byte decDigits)
         {
             return FormatDecimal(value, decDigits);
         }
+
         public static string DecFormat(object value, byte decDigits, string numberDefault)
         {
             return (Convert.IsDBNull(value) || value == null) ? numberDefault : DecFormat(Convert.ToDecimal(value), decDigits);
         }
+
         public static string DecFormat(decimal value, byte decDigits, bool chop)
         {
             if (!chop)
@@ -86,28 +90,33 @@ namespace Apollo.Age
             else
             {
                 int a = (int)Math.Pow(10, decDigits);
-                //Returns the largest integer less than or equal number 
+                //Returns the largest integer less than or equal number
                 if (value < 0) //If the value is negative, then we use Ceiling() function instead of Floor() function
                     return string.Format(DECIMAL_FORMAT2, (Math.Ceiling(value * a) / a));
                 return string.Format(DECIMAL_FORMAT2, (Math.Floor(value * a) / a));
             }
         }
+
         public static string DecFormat(object value, byte decDigits, bool chop)
         {
             return DecFormat(Convert.ToDecimal(value), decDigits, chop);
         }
-        #endregion
+
+        #endregion Decimal
 
         #region Float
+
         public static string FloatFormat(float value, byte decDigits)
         {
             return value.ToString("N" + decDigits);
         }
+
         public static string FloatFormat(object value, byte decDigits)
         {
             return FloatFormat(Convert.ToSingle(value), decDigits);
         }
-        #endregion
+
+        #endregion Float
 
         #region Double
 
@@ -115,12 +124,13 @@ namespace Apollo.Age
         {
             return value.ToString("N" + decDigits);
         }
+
         public static string DoubleFormat(object value, byte decDigits)
         {
             return DoubleFormat(Convert.ToDouble(value), decDigits);
         }
 
-        #endregion
+        #endregion Double
 
         #region Number
 
@@ -136,6 +146,7 @@ namespace Apollo.Age
                 return _engCult;
             }
         }
+
         public static CultureInfo ViCult
         {
             get
@@ -143,6 +154,7 @@ namespace Apollo.Age
                 return _viCult;
             }
         }
+
         /// <summary>
         /// Format number with 1 decimal, automatically remove redundant '0'
         /// </summary>
@@ -155,8 +167,8 @@ namespace Apollo.Age
             if (culture == CULT_NAME_VI)
                 return string.Format(DECIMAL_FORMAT1_VI, obj);
             return string.Format(DECIMAL_FORMAT1, obj);
-
         }
+
         /// <summary>
         /// Format number with 2 decimal, automatically remove redundant '0'
         /// </summary>
@@ -169,8 +181,8 @@ namespace Apollo.Age
             if (culture == CULT_NAME_VI)
                 return string.Format(DECIMAL_FORMAT2_VI, obj);
             return string.Format(DECIMAL_FORMAT2, obj);
-
         }
+
         public static string FormatNumber20(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
@@ -183,7 +195,7 @@ namespace Apollo.Age
         /// <summary>
         /// Format number with 2 decimal, automatically remove redundant '0'
         /// And do not include comma
-        /// </summary>        
+        /// </summary>
         public static string FormatNumber2C(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
@@ -201,6 +213,7 @@ namespace Apollo.Age
                 return string.Format(DECIMAL_FORMAT30_VI, obj);
             return string.Format(DECIMAL_FORMAT30, obj);
         }
+
         /// <summary>
         /// Format number with 3 decimal, automatically remove redundant '0'
         /// And do not include comma
@@ -217,6 +230,7 @@ namespace Apollo.Age
                 return string.Format(DECIMAL_FORMAT3C_VI, obj);
             return string.Format(DECIMAL_FORMAT3C, obj);
         }
+
         /// <summary>
         /// Format number with 3 decimal, automatically remove redundant '0'
         /// </summary>
@@ -261,16 +275,18 @@ namespace Apollo.Age
             return string.Format(DECIMAL_FORMAT40, obj);
         }
 
-
         public static string FormatSignNumber(int number)
         {
             if (number > 0) return "+" + number.ToString();
             else return number.ToString();
         }
-        #endregion
+
+        #endregion Number
 
         #region Date
+
         private static CultureInfo cult = new System.Globalization.CultureInfo("en-US");
+
         public static string LongDateFormat(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
@@ -288,11 +304,13 @@ namespace Apollo.Age
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
             return string.Format(cult, "{0:MM/dd/yyyy hh:mm:ss tt}", dt);
         }
+
         public static string FullDateFormat2Ln(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
             return string.Format(cult, "{0:MM/dd/yyyy<br/>hh:mm:ss tt}", dt);
         }
+
         public static string FullDateFormat2Line(object obj)
         {
             return FullDateFormat2Ln(obj);
@@ -316,6 +334,7 @@ namespace Apollo.Age
                 return "Error";
             }
         }
+
         public static string FormatDateTime22DDMM(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
@@ -329,6 +348,7 @@ namespace Apollo.Age
                 return "Error";
             }
         }
+
         public static string FormatTimeMiliSec(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
@@ -342,6 +362,7 @@ namespace Apollo.Age
                 return "Error";
             }
         }
+
         public static string FormatDateEn(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
@@ -355,6 +376,7 @@ namespace Apollo.Age
                 return "Error";
             }
         }
+
         public static string FormatDateVi(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
@@ -368,6 +390,7 @@ namespace Apollo.Age
                 return "Error";
             }
         }
+
         public static string FormatDateTimeEn12(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
@@ -381,6 +404,7 @@ namespace Apollo.Age
                 return "Error";
             }
         }
+
         public static string FormatDateTimeEn12NoSec(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
@@ -394,6 +418,7 @@ namespace Apollo.Age
                 return "Error";
             }
         }
+
         public static string FormatDateTimeEn24(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
@@ -407,6 +432,7 @@ namespace Apollo.Age
                 return "Error";
             }
         }
+
         /// <summary>
         /// IF Time is 12:00, then do not return time
         /// </summary>
@@ -434,14 +460,16 @@ namespace Apollo.Age
         {
             return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
         }
+
         public static DateTime ResetEndDate(DateTime dt)
         {
             return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
         }
 
-        #endregion
+        #endregion Date
 
         #region String
+
         /// <summary>
         /// TruncateWithTip
         /// </summary>
@@ -456,7 +484,6 @@ namespace Apollo.Age
         //    }
         //    else
         //    {
-                
         //        if (hasSpanReturn)
         //            value = string.Format("<span>{0}</span>", HttpUtility.HtmlEncode(value));
         //    }
@@ -467,7 +494,7 @@ namespace Apollo.Age
         //{
         //    return TruncateWithTip(value, maxLength, false);
         //}
-        #endregion
-    }
 
+        #endregion String
+    }
 }
