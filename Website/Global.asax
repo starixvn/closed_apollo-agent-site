@@ -7,6 +7,9 @@
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="Sunplus.Agent.Utilities" %>
 <%@ Import Namespace="Apollo.Age.Web.Services" %>
+<%@ Import Namespace="System.Web.Optimization" %>
+<%@ Import Namespace="Fanex.Data.Configuration" %>
+
 <script RunAt="server">
 	public static UnderMaintenanceService maintenanceService = null;
 
@@ -29,15 +32,23 @@
 		 );
 	}
 
+	static void RegisterBundles(BundleCollection bundles)
+	{
+		bundles.Add(new ScriptBundle("~/homejs").Include(
+			"~/_GlobalResources/Js/jquery.js",
+			"~/_GlobalResources/Js/Core.js"));
+	}
+
 	void Application_Start(object sender, EventArgs e)
 	{
 		maintenanceService = new UnderMaintenanceService();
 		AreaRegistration.RegisterAllAreas();
 		RegisterGlobalFilters(GlobalFilters.Filters);
+		
 		RegisterRoutes(RouteTable.Routes);
+		RegisterBundles(BundleTable.Bundles);
 
-		Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
-
+		DbSettingProviderManager.Current.Start();
 	}
 
 	void AppSettings_LoadComplete(object sender, bool error)
