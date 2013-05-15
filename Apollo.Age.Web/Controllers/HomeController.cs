@@ -30,7 +30,7 @@ namespace Apollo.Age.Web
 
         public ActionResult Index()
         {
-            return View();
+            return View(SessionManager.CurrentSession);
         }
 
         //public ActionResult UnderMaintenance()

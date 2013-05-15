@@ -37,7 +37,6 @@ namespace Apollo.Age.Integration.Controllers
             _authService = authService ?? new AuthenticationService();
             _userService = userService ?? new UserService();
         }
-             
 
         [AllowAnonymous]
         public ViewResult Index(string user_id, string lang)
