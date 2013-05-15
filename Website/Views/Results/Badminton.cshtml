@@ -41,22 +41,37 @@
         {
             var currentLeagueId = 0;
 
+            var betStatus = string.Empty;
+            var eventStatus = string.Empty;
+
+            var finalHomeScore = 0;
+            var finalAwayScore = 0;
+
+            var homeTeam = string.Empty;
+            var awayTeam = string.Empty;
+
+            List<string> homeSets = null;
+            List<string> awaySets = null;
+
+            var totalPointAway = string.Empty;
+            var totalPointHome = string.Empty;
+            
             foreach (var item in Model)
             {
-                var betStatus = string.Empty;
-                var eventStatus = string.Empty;
+                 betStatus = string.Empty;
+                 eventStatus = string.Empty;
 
-                var finalHomeScore = 0;
-                var finalAwayScore = 0;
+                 finalHomeScore = 0;
+                 finalAwayScore = 0;
 
-                var homeTeam = string.Empty;
-                var awayTeam = string.Empty;
+                 homeTeam = string.Empty;
+                 awayTeam = string.Empty;
 
-                List<string> homeSets = new List<string> { "-", "-", "-", "-", "-" };
-                List<string> awaySets = new List<string> { "-", "-", "-", "-", "-" };
+                 homeSets = new List<string> { "-", "-", "-", "-", "-" };
+                 awaySets = new List<string> { "-", "-", "-", "-", "-" };
 
-                var totalPointAway = string.Empty;
-                var totalPointHome = string.Empty;
+                 totalPointAway = string.Empty;
+                 totalPointHome = string.Empty;
 
                 betStatus = item.BetStatus;
                 finalHomeScore = item.FinalHomeScore;
