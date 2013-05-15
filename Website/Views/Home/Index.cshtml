@@ -8,7 +8,6 @@
 }
 @section css
 {
-	<link href="~/Views/Account/Resources/MiniAccount.less" rel="stylesheet" type="text/css" />
 	<link href="~/Views/Home/Resources/Index.less" rel="stylesheet" type="text/css" />
 }
 
@@ -26,5 +25,15 @@
 
 @section scripts
 {
-	<script src="~/Views/Home/Resources/Default.js" type="text/javascript"></script>
+	@Scripts.Render("~/homejs")
+	
+
+	<script type="text/javascript">
+		var LANGUAGES = function () {
+			return {
+				Collapse: "@Apollo.Age.Resources.Lang.Collapse",
+				Expand: "@Apollo.Age.Resources.Lang.Expand"
+			};
+		} ();
+	</script>
 }

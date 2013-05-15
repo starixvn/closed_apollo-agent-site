@@ -2857,8 +2857,8 @@ Hoa hồng 3(Comm 3) được áp dụng cho tất cả các  thể loại cá c
   <data name="withPictures" xml:space="preserve">
     <value>Kết quả bằng hình ảnh</value>
   </data>
-  <data name="undermaintenance" xml:space="preserve">
-    <value>Server đang được bảo trì,Webside sẽ không thể truy cập từ {0} cho đến {1} .Xin lỗi vì sự bất tiện này</value>
+  <data name="UnderMaintenanceMsg" xml:space="preserve">
+    <value>Server đang được bảo trì. Webside sẽ không thể truy cập từ {0} cho đến {1} .Xin lỗi vì sự bất tiện này!</value>
   </data>
   <data name="lblHrFOdds" xml:space="preserve">
     <value>Đua Ngựa (FOdds)</value>
@@ -4438,5 +4438,8 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
   </data>
   <data name="shareSettingInstruction" xml:space="preserve">
     <value>Share Setting Instructions</value>
+  </data>
+  <data name="UnderMaintenance" xml:space="preserve">
+    <value>Under Maintenance</value>
   </data>
 </root>

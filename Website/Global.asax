@@ -44,7 +44,9 @@
 	{
 		bundles.Add(new ScriptBundle("~/homejs").Include(
 			"~/_GlobalResources/Js/jquery.js",
-			"~/_GlobalResources/Js/Core.js"));
+			"~/_GlobalResources/Js/Core.js",
+			"~/_GlobalResources/Js/jquery.cookie.js",
+			"~/Views/Home/Resources/Default.js"));
 	}
 
 	void Application_Start(object sender, EventArgs e)

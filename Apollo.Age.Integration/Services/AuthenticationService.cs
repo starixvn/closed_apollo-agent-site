@@ -18,6 +18,7 @@ namespace Apollo.Age.Integration.Services
     using System.Web.Helpers;
     using Apollo.Age.Integration.Models;
     using Fanex.Logging;
+    using Apollo.Age.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -119,18 +120,18 @@ namespace Apollo.Age.Integration.Services
             switch (errorCode)
             {
                 case ErrorCode.InvalidRequest:
-                    return Apollo.Age.Resources.Lang.lblInvalidRequest;
+                    return Lang.lblInvalidRequest;
                 case ErrorCode.UnauthorizedClient:
-                    return Apollo.Age.Resources.Lang.lblUnauthorizedClient;
+                    return Lang.lblUnauthorizedClient;
                 case ErrorCode.AccessDenied:
-                    return Apollo.Age.Resources.Lang.lblAccessDenied;
+                    return Lang.lblAccessDenied;
                 case ErrorCode.UnsupportedResponseType:
-                    return Apollo.Age.Resources.Lang.lblUnsupportedResponseType;
+                    return Lang.lblUnsupportedResponseType;
                 case ErrorCode.ServerError:
-                    return Apollo.Age.Resources.Lang.lblServerError;
+                    return Lang.lblServerError;
                 case ErrorCode.TemporarilyUnavailable:
                 default:
-                    return Apollo.Age.Resources.Lang.lblTemporarilyUnavailable;
+                    return Lang.lblTemporarilyUnavailable;
             }
         }
 

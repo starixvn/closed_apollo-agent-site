@@ -324,7 +324,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 }
                 else
                 {
-                    mainTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss", criteria, out referenceTable);
+                    mainTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable);
                 }
 
                 // Main ticket list
@@ -625,14 +625,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    var dataSet = db.ExecuteDataSet(new
-                    {
-                        criteria.TransId,
-                        criteria.LoggedId,
-                        criteria.FromDate,
-                        criteria.ToDate,
-                        criteria.MoveBetsDay
-                    });
+                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
 
                     // Main ticket list
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
