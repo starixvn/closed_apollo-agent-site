@@ -11,19 +11,19 @@ ul, li {
 ul.tab-menu-icon {
 	display: none;
 	position: relative;
+	border-top: 1px solid @white;
 
 	li {
 		list-style: none;
 		position: relative;
 		cursor: pointer;
 		float: left;
-		color: @textColor;
-
-		
+		color: @textColor;	
 
 		&.main-menu, &.account, &.search {
 			text-align: center;
 			width: 30px;
+			height: 20px;
 			padding: 4px 0;
 			border-bottom: 1px solid #bbb;
 
@@ -33,8 +33,12 @@ ul.tab-menu-icon {
 			}
 
 			&:hover {
-				//background: #cceaf3;
+				z-index: 900;
 				background: #0084B4;
+				height: 20px;
+				width: 28px;
+				border: 1px solid @white;
+
 				i {
 					background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-white.png);
 				}
@@ -45,8 +49,16 @@ ul.tab-menu-icon {
 			border-top: 1px solid @white;
 		}
 
+		&.main-menu:hover {
+			border-top: none;
+		}
+
 		&.main-menu.active {
 			background: #0084B4;
+			height: 20px;
+			width: 28px;
+			border: 1px solid @white;
+			border-top: none;
 
 			i {
 				background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-white.png);
@@ -85,9 +97,10 @@ ul.tab-menu-icon {
 			 display: none;
 			 position: absolute;
 			 top: 79%;
-			 left: 9px;
+			 left: 32px;
 			 z-index: 990;
 			 border-bottom: 1px solid #b5b5b5;
+			 background: #eee;
 
 			 li { 
 				 background: #ddd;
@@ -97,6 +110,7 @@ ul.tab-menu-icon {
 				 padding: 4px 8px;
 				 text-align: left;
 				 text-transform: uppercase;
+				 height: 20px;
 
 				 /* IE 6 & 7 Needs Inline Block */
 				 a	{ 
@@ -105,6 +119,16 @@ ul.tab-menu-icon {
 					display: inline-block;
 					color: @textColor;
 				 } 
+
+				 &.hasChild {
+					background: url(img/hasChild.png) #DDD no-repeat center right;	
+					background-position: 204px;
+
+					&:hover {
+						background: url(img/hasChild.png) #eee no-repeat center right;
+						background-position: 204px;	
+					}
+				 }
 			}
 		}
 	}
@@ -115,6 +139,7 @@ ul.tab-menu-icon {
 ul.tab-menu-icon ul ul { 
 	left: 100%;
 	top: -1px;
+	display: none;
 
 	li {
 		background: #f3f3f3;
@@ -131,6 +156,6 @@ ul.tab-menu-icon ul ul {
 	}
 }
 
-ul.tab-menu-icon ul li:hover > ul {
+ul.tab-menu-icon ul li:hover ul {
 	display: block;
 }

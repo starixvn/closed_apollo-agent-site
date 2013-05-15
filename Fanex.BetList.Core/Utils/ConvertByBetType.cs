@@ -15,7 +15,6 @@ namespace Fanex.BetList.Core.Utils
 {
     using System;
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
 
     public static partial class ConvertByBetType
     {
@@ -97,28 +96,28 @@ namespace Fanex.BetList.Core.Utils
             {
                 if (chars[0] == '1')
                 {
-                    returnValue = CoreLang.home;
+                    returnValue = Apollo.Age.Resources.Lang.home;
                 }
                 else if (chars[0] == '2')
                 {
-                    returnValue = CoreLang.away;
+                    returnValue = Apollo.Age.Resources.Lang.away;
                 }
                 else
                 {
-                    returnValue = CoreLang.no0;
+                    returnValue = Apollo.Age.Resources.Lang.no0;
                 }
 
                 if (chars[c - 1] == '1')
                 {
-                    returnValue += "&nbsp;" + CoreLang.FG;
+                    returnValue += "&nbsp;" + Apollo.Age.Resources.Lang.FG;
                 }
                 else if (chars[c - 1] == '2')
                 {
-                    returnValue += "&nbsp;" + CoreLang.LG;
+                    returnValue += "&nbsp;" + Apollo.Age.Resources.Lang.LG;
                 }
                 else
                 {
-                    returnValue += "&nbsp;" + CoreLang.goal;
+                    returnValue += "&nbsp;" + Apollo.Age.Resources.Lang.goal;
                 }
             }
             else if (betType == 16)
@@ -126,28 +125,28 @@ namespace Fanex.BetList.Core.Utils
                 // HTFT
                 if (chars[0] == '1')
                 {
-                    returnValue = CoreLang.h;
+                    returnValue = Apollo.Age.Resources.Lang.h;
                 }
                 else if (chars[0] == '2')
                 {
-                    returnValue = CoreLang.a;
+                    returnValue = Apollo.Age.Resources.Lang.a;
                 }
                 else
                 {
-                    returnValue = CoreLang.d;
+                    returnValue = Apollo.Age.Resources.Lang.d;
                 }
 
                 if (chars[c - 1] == '1')
                 {
-                    returnValue += CoreLang.h;
+                    returnValue += Apollo.Age.Resources.Lang.h;
                 }
                 else if (chars[c - 1] == '2')
                 {
-                    returnValue += CoreLang.a;
+                    returnValue += Apollo.Age.Resources.Lang.a;
                 }
                 else
                 {
-                    returnValue += CoreLang.d;
+                    returnValue += Apollo.Age.Resources.Lang.d;
                 }
             }
             else

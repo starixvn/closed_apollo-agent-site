@@ -15,7 +15,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using System.Linq;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Services;
@@ -42,7 +41,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
 
             var combMixParlayData = View as SystemParlayData;
 
-            tpl.title =Apollo.Age.Resources.Lang.lblSystemParlay;
+            tpl.title = Apollo.Age.Resources.Lang.lblSystemParlay;
 
             _outStanding = combMixParlayData.Outstanding;
             RenderReportContent(combMixParlayData, tpl.Content);

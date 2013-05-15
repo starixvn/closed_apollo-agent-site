@@ -12,7 +12,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -33,11 +33,11 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.Handicap.handicap = null;
             bool home = ticket.BetTeam == "1";
             bool away = ticket.BetTeam == "2";
-            
+
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
-            this.Template.betTeam = home ? this.Template.homeTeam : away ? awayName : CoreBetList.noTiebreak;
-            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);         
+            this.Template.betTeam = home ? this.Template.homeTeam : away ? awayName : Apollo.Age.Resources.BetList.noTiebreak;
+            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }
     }
 }

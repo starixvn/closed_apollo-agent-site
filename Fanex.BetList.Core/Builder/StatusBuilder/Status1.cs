@@ -12,7 +12,7 @@
 namespace Fanex.BetList.Core.Builder.StatusBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
@@ -48,28 +48,28 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
             switch (ticketBetStatus)
             {
                 case BetStatus.Running:
-                    result = CoreBetList.running;
+                    result = Apollo.Age.Resources.BetList.running;
                     break;
                 case BetStatus.Reject:
-                    result = CoreBetList.reject;
+                    result = Apollo.Age.Resources.BetList.reject;
                     break;
                 case BetStatus.Won:
-                    result = CoreBetList.won;
+                    result = Apollo.Age.Resources.BetList.won;
                     break;
                 case BetStatus.Lose:
-                    result = CoreBetList.lose;
+                    result = Apollo.Age.Resources.BetList.lose;
                     break;
                 case BetStatus.Draw:
-                    result = CoreBetList.draw;
+                    result = Apollo.Age.Resources.BetList.draw;
                     break;
                 case BetStatus.Waiting:
-                    result = CoreBetList.waiting;
+                    result = Apollo.Age.Resources.BetList.waiting;
                     break;
                 case BetStatus.Void:
-                    result = CoreBetList.voided;
+                    result = Apollo.Age.Resources.BetList.voided;
                     break;
                 case BetStatus.Refund:
-                    result = CoreBetList.refund;
+                    result = Apollo.Age.Resources.BetList.refund;
                     break;
             }
 

@@ -57,7 +57,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
-            IRichTextString rtfChoice = new HSSFRichTextString(App_GlobalResources.CoreLang.lblMixParlay);
+            IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.Lang.lblMixParlay);
             lstRTFChoices.Add(rtfChoice);
             return lstRTFChoices;
         }

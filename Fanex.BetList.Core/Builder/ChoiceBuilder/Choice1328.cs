@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -35,16 +35,16 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             switch (choice)
             {
                 case "01":
-                    betTeam = "4 " + CoreBetList.points;
+                    betTeam = "4 " + Apollo.Age.Resources.BetList.points;
                     break;
                 case "02":
-                    betTeam = "5 " + CoreBetList.points;
+                    betTeam = "5 " + Apollo.Age.Resources.BetList.points;
                     break;
                 case "03":
-                    betTeam = "6 " + CoreBetList.points;
+                    betTeam = "6 " + Apollo.Age.Resources.BetList.points;
                     break;
                 case "04":
-                    betTeam = "7 " + CoreBetList.upPoints;
+                    betTeam = "7 " + Apollo.Age.Resources.BetList.upPoints;
                     break;
                 default:
                     break;
@@ -52,7 +52,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             // "&nbsp" because export format
             this.Template.betTeam = "&nbsp;" + betTeam;
-            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);  
+            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }
     }
 }

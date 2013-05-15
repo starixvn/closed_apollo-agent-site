@@ -17,6 +17,8 @@ namespace Fanex.BetList.Core.Builder
     using Fanex.BetList.Core.Builder.ChoiceBuilder;
     using Fanex.BetList.Core.Builder.OddsBuilder;
     using Fanex.BetList.Core.Builder.StakeBuilder;
+    using Fanex.BetList.Core.Builder.StatusBuilder;
+    using Fanex.BetList.Core.Builder.TransBuilder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using Fanex.BetList.Core.Utils.NPOIExt;
@@ -24,13 +26,9 @@ namespace Fanex.BetList.Core.Builder
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
-    using Fanex.BetList.Core.Templates;
-    using Fanex.BetList.Core.Builder.TransBuilder;
-    using Fanex.BetList.Core.Builder.StatusBuilder;
-    using Fanex.BetList.Core.App_GlobalResources;
 
     /// <summary>
-    /// CoreBetList Excel Builder
+    /// Apollo.Age.Resources.BetList Excel Builder
     /// </summary>
     public class BetListExcelBuilder : IBetListBuilder
     {
@@ -46,19 +44,23 @@ namespace Fanex.BetList.Core.Builder
         private ISheet _worksheet;
         private int _nextCellIndex;
 
-        #endregion
+        #endregion Attributes
 
         #region Properties
 
         public ICellStyle OddCellStyle { get; set; }
+
         public ICellStyle EvenCellStyle { get; set; }
+
         public ICellStyle OddCellStyleCenterAligned { get; set; }
+
         public ICellStyle EvenCellStyleCenterAligned { get; set; }
 
         public RTFHelper RTFHelper { get; set; }
+
         public int LastContentRow { get { return _worksheet.LastRowNum; } }
 
-        #endregion
+        #endregion Properties
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BetListExcelBuilder" /> class.
@@ -131,6 +133,7 @@ namespace Fanex.BetList.Core.Builder
             _reportColumnsNum = numberOfColumns;
             return this;
         }
+
         /// <summary>
         /// Gets the bet list.
         /// </summary>
@@ -382,11 +385,11 @@ namespace Fanex.BetList.Core.Builder
         {
             string typeName = string.Join(
                                             null,
-                                            new string[] 
-                                            { 
-                                                CHOICE_BUILDER_NAMESPACE, 
-                                                ".Choice", 
-                                                bettype.ToString() 
+                                            new string[]
+                                            {
+                                                CHOICE_BUILDER_NAMESPACE,
+                                                ".Choice",
+                                                bettype.ToString()
                                             }
                                          );
 
@@ -416,11 +419,11 @@ namespace Fanex.BetList.Core.Builder
             }
             string typeName = string.Join(
                                             null,
-                                            new string[] 
-                                            { 
-                                                ODDS_BUILDER_NAMESPACE, 
-                                                ".Odds", 
-                                                bettype.ToString() 
+                                            new string[]
+                                            {
+                                                ODDS_BUILDER_NAMESPACE,
+                                                ".Odds",
+                                                bettype.ToString()
                                             }
                                          );
 
@@ -445,11 +448,11 @@ namespace Fanex.BetList.Core.Builder
         {
             string typeName = string.Join(
                                             null,
-                                            new string[] 
-                                            { 
-                                                STAKE_BUILDER_NAMESPACE, 
-                                                ".Stake", 
-                                                bettype.ToString() 
+                                            new string[]
+                                            {
+                                                STAKE_BUILDER_NAMESPACE,
+                                                ".Stake",
+                                                bettype.ToString()
                                             }
                                          );
 
@@ -473,11 +476,11 @@ namespace Fanex.BetList.Core.Builder
         {
             string typeName = string.Join(
                                             null,
-                                            new string[] 
-                                            { 
-                                                STATUS_BUILDER_NAMESPACE, 
-                                                ".Status", 
-                                                bettype.ToString() 
+                                            new string[]
+                                            {
+                                                STATUS_BUILDER_NAMESPACE,
+                                                ".Status",
+                                                bettype.ToString()
                                             }
                                          );
 
@@ -501,11 +504,11 @@ namespace Fanex.BetList.Core.Builder
         {
             string typeName = string.Join(
                                             null,
-                                            new string[] 
-                                            { 
-                                                TRANS_BUILDER_NAMESPACE, 
-                                                ".Trans", 
-                                                bettype.ToString() 
+                                            new string[]
+                                            {
+                                                TRANS_BUILDER_NAMESPACE,
+                                                ".Trans",
+                                                bettype.ToString()
                                             }
                                          );
 
@@ -588,7 +591,7 @@ namespace Fanex.BetList.Core.Builder
             EvenCellStyle.FillBackgroundColor = 27;
 
             OddCellStyle.SetFont(RTFHelper.NormalFont);
-            EvenCellStyle.SetFont(RTFHelper.NormalFont);            
+            EvenCellStyle.SetFont(RTFHelper.NormalFont);
 
             OddCellStyleCenterAligned.CloneStyleFrom(OddCellStyle);
             OddCellStyleCenterAligned.Alignment = HorizontalAlignment.CENTER;

@@ -14,7 +14,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -32,30 +32,30 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Handicap.handicap = null;            
+            this.Template.Handicap.handicap = null;
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
             string team = ticket.BetTeam.Contains("1") ? this.Template.homeTeam : awayName;
-            string draw_away = ticket.BetTeam.EndsWith("x") ? CoreBetList.lblDraw : this.Template.awayTeam;
+            string draw_away = ticket.BetTeam.EndsWith("x") ? Apollo.Age.Resources.BetList.lblDraw : this.Template.awayTeam;
 
             this.Template.betTeam = string.Join(
                                             null,
-                                            new string[] 
-                                            { 
+                                            new string[]
+                                            {
                                                 " <span class=\"",
                                                 BL_FAVORITE,
                                                 "\">",
                                                 team,
                                                 "</span>",
                                                 "&nbsp;",
-                                                CoreBetList.lblOr.ToLower(),
+                                                Apollo.Age.Resources.BetList.lblOr.ToLower(),
                                                 " <span class=\"",
                                                 BL_FAVORITE,
                                                 "\">",
                                                 "&nbsp;",
                                                 draw_away,
-                                                "</span>" 
-                                            });                     
+                                                "</span>"
+                                            });
         }
     }
 }

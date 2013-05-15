@@ -10,15 +10,12 @@
 
 namespace Apollo.Age.BetList.Services
 {
-    using System.Collections;
     using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Repositories.Impl;
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Services.Impl;
     using Fanex.BetList.Core.Entities;
-    using Fanex.Data.DNAide;
 
     /// <summary>
     /// BetList Service

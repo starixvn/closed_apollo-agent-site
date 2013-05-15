@@ -1,24 +1,55 @@
-﻿<ul class="tab-menu-icon">
-    <li class="main-menu" title="resource.Menu"><i class="icon-align-justify"></i>
-        <ul>
-            <li>Total Bet <span class="pull-right hasChild">»</span>
-                <ul>
-                    <li><a href="#">Handicap/Over Under/Live</a></li>
-                    <li><a href="#">Money Line</a></li>
-                    <li><a href="#">Odd/Even + 1x2 + DND</a></li>
-                    <li><a href="#">Correct Score</a></li>
-                </ul>
-            </li>
-            <li>Total Bet 2 <span class="pull-right hasChild">»</span>
-                <ul>
-                    <li><a href="#">Handicap/Over Under/Live</a></li>
-                    <li><a href="#">Money Line</a></li>
-                    <li><a href="#">Odd/Even + 1x2 + DND</a></li>
-                    <li><a href="#">Correct Score</a></li>
-                </ul>
-            </li>
-        </ul>
+﻿@using System.Resources
+@{
+    var menu = ViewBag.RootNode;
+}
+<ul class="tab-menu-icon">
+    <li class="main-menu"><i class="icon-align-justify" title="@Apollo.Age.Resources.Lang.mainmenu"></i>
+    <ul class="parent">
+        @{ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
+            foreach (SiteMapNode item in menu.ChildNodes)
+            {
+                string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
+                if (item.HasChildNodes)
+                {
+                    <li class="hasChild"><a class="">@rm.GetString(item.Title)</a>
+                    <ul>
+                        @foreach (SiteMapNode subItem in item.ChildNodes)
+                        {
+                            var isAgentOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
+                            if (Model.AgentLevel < 3 && isAgentOnly)
+                            {
+                                continue;
+                            }
+
+                            int bettypeId = 0;
+                            string title = string.Empty;
+
+                            if (subItem.Title.Contains("bettype")
+                                && Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
+                            {
+                                title = Apollo.Age.Services.CacheRef.GetBettype(bettypeId);
+                            }
+                            else
+                            {
+                                title = rm.GetString(subItem.Title);
+
+                            }
+                            <li>
+                                <a href="@subItem.Url" target="main">@title</a>
+                            </li>
+                        }
+                    </ul>
+                    </li>
+                }
+                else
+                {
+                    <li><a class="">@rm.GetString(item.Title)</a></li>
+                }
+        
+            }
+        }
+    </ul>
     </li>
-    <li class="account" title="resource.Account"><i class="icon-user"></i></li>
-    <li class="search" title="resource.Search"><i class="icon-search"></i></li>
+    <li class="account"><i class="icon-user" title="@Apollo.Age.Resources.Lang.userinfo"></i></li>
+    <li class="search"><i class="icon-search" title="@Apollo.Age.Resources.Lang.search"></i></li>
 </ul>
