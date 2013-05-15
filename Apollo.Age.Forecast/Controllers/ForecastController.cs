@@ -190,7 +190,7 @@ namespace Apollo.Age.Forecast.Controllers
                 ViewBag.LiveBetTypes = _forecastService.GetAllBetTypeFromBetType(liveBetTypes, true);
                 ViewBag.DeadBallBetTypes = _forecastService.GetAllBetTypeFromBetType(deadBallBetTypes, false);
 
-                if (this.CurrentSession.IsSuper && mainShareHolderId != 0 && custId != 0)
+                if (this.CurrentSession.IsSuper && mainShareHolderId == 0 && custId != 0)
                 {
                     mainShareHolderId = _forecastService.GetMainShareHolderByMember(
                         new GetMainShareHolderByMemberCriteria{

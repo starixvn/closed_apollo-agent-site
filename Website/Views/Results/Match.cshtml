@@ -24,8 +24,11 @@
 			<div class="cell">
 				<div class="editor">
 					<input id="btnSubmit" value="@Apollo.Age.Resources.Lang.Generate" type="submit" class="btn" />
-					<input id="btnToday" value="@Formater.ShortDateFormat(DateTime.Now)" type="submit" class="btn" />
-					<input id="btnYesterday" value="@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))" type="submit" class="btn"/>
+					<input id="btnToday" value="@Apollo.Age.Resources.Lang.today" type="submit" class="btn" />
+					<input id="btnYesterday" value="@Apollo.Age.Resources.Lang.yesterday" type="submit" class="btn"/>
+
+                    <input type="hidden" name="todayValue" id="todayValue" value="@Formater.ShortDateFormat(DateTime.Now)">
+                    <input type="hidden" name="yesterdayValue" id="yesterdayValue" value="@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))">
 				</div>
 			</div>
 		</div>

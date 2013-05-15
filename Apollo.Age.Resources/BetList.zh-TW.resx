@@ -334,10 +334,10 @@
     <value>No Tiebreak</value>
   </data>
   <data name="agentComm" xml:space="preserve">
-    <value>Agent Comm</value>
+    <value>代理佣金</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>Agent Share</value>
+    <value>代理商占成數</value>
   </data>
   <data name="viewCommDetails" xml:space="preserve">
     <value>View Comm Details</value>

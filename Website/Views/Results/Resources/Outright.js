@@ -26,13 +26,13 @@ var Outright = (function () {
             });
 
             btnToday.bind('click', function () {
-                $("#FromDate").val(btnToday.val());
-                $("#ToDate").val(btnToday.val());
+                $("#FromDate").val($("#todayValue").val());
+                $("#ToDate").val($("#todayValue").val());
             });
 
             btnYesterday.bind('click', function () {
-                $("#FromDate").val(btnYesterday.val());
-                $("#ToDate").val(btnYesterday.val());
+                $("#FromDate").val($("#yesterdayValue").val());
+                $("#ToDate").val($("#yesterdayValue").val());
             });
         },
 
