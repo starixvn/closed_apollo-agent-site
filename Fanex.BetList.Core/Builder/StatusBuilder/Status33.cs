@@ -14,10 +14,9 @@
 namespace Fanex.BetList.Core.Builder.StatusBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Entities;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.UserModel;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Win/Place
@@ -60,8 +59,8 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
                     string contextWinStatus = GetContextStatus(winStatus);
                     string contextPlaceStatus = GetContextStatus(placeStatus);
 
-                    string winStatusMarkup = string.Join(null, new string[] { "<span class='blue' style='font-weight:normal;'>", CoreBetList.win, ": ", "<b>", contextWinStatus, "</b>", "</span>" });
-                    string placeStatusMarkup = string.Join(null, new string[] { "<span class='' style='font-weight:normal;'>", CoreBetList.place, ": ", "<b>", contextPlaceStatus, "</b>", "</span>" });
+                    string winStatusMarkup = string.Join(null, new string[] { "<span class='blue' style='font-weight:normal;'>", Apollo.Age.Resources.BetList.win, ": ", "<b>", contextWinStatus, "</b>", "</span>" });
+                    string placeStatusMarkup = string.Join(null, new string[] { "<span class='' style='font-weight:normal;'>", Apollo.Age.Resources.BetList.place, ": ", "<b>", contextPlaceStatus, "</b>", "</span>" });
 
                     string ticketBetStatus = ticket.Status.ToLower();
 
@@ -102,7 +101,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
                 string status_Win = ExtractStringBetweenTag("b", status_WinString);
                 string status_Place = ExtractStringBetweenTag("b", status_PlaceString);
 
-                rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { CoreBetList.win, ": ", status_Win, "\n", CoreBetList.place, ": ", status_Place }), rtfHelper.PosFont);
+                rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", status_Win, "\n", Apollo.Age.Resources.BetList.place, ": ", status_Place }), rtfHelper.PosFont);
             }
 
             if (Template.ShowIPVN.Visible)
@@ -154,21 +153,21 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
             switch (betStatus)
             {
                 case BetStatus.Draw:
-                    return CoreBetList.draw;
+                    return Apollo.Age.Resources.BetList.draw;
                 case BetStatus.Lose:
-                    return CoreBetList.lose;
+                    return Apollo.Age.Resources.BetList.lose;
                 case BetStatus.Refund:
-                    return CoreBetList.refund;
+                    return Apollo.Age.Resources.BetList.refund;
                 case BetStatus.Reject:
-                    return CoreBetList.reject;
+                    return Apollo.Age.Resources.BetList.reject;
                 case BetStatus.Running:
-                    return CoreBetList.running;
+                    return Apollo.Age.Resources.BetList.running;
                 case BetStatus.Void:
-                    return CoreBetList.voided;
+                    return Apollo.Age.Resources.BetList.voided;
                 case BetStatus.Waiting:
-                    return CoreBetList.waiting;
+                    return Apollo.Age.Resources.BetList.waiting;
                 case BetStatus.Won:
-                    return CoreBetList.won;
+                    return Apollo.Age.Resources.BetList.won;
                 default:
                     return string.Empty;
             }

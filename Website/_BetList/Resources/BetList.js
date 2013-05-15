@@ -214,8 +214,8 @@ if (typeof jQuery != "undefined") {
 					fromDate = $("#fromDate").val(),
 					toDate = $("#toDate").val(),
 					type = $("#type").val(),
-                    url = APOLLO.resolveUrl("~/_BetList/ViewDetail.aspx"),
-                    ajaxParams = "transid=" + transId +
+                    url = APOLLO.resolveUrl("~/BetList/ViewDetail"),
+                    ajaxParams = "?transid=" + transId +
                         "&fromdate=" + fromDate +
                         "&toDate=" + toDate +
 						"&type=" + type;

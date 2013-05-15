@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Fanex.BetList.Core.App_GlobalResources.CoreBetList" Collapsed="true">
+  <Class Name="Fanex.BetList.Core.App_GlobalResources.Apollo.Age.Resources.BetList" Collapsed="true">
     <Position X="90.25" Y="25.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QCQIFFSgAEQsSggQIQIrGDKIAckA4AhwSEVMgRKEMOI=</HashCode>

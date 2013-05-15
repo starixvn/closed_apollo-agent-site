@@ -529,4 +529,8 @@
     <Function Name="Agent-Apollo-BalanceUpDay">
         <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="REPDB" TimeOut="600"/>
     </Function>
+  <Function Name="Write log internal login">
+    <Setting Key="WriteLog_AgentLog_Login" SpName="WriteLog_AgentLog_Login" DbName="LOGDB" TimeOut="600"/>
+  </Function>
+  
 </Functions>

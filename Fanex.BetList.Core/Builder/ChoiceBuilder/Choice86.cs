@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -45,18 +45,18 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             string bettypeName = this.Template.betTypeName;
             if (!ticket.IsLive)
             {
-                bettypeName = string.Join(null, new string[] { CoreBetList.ft, ". ", bettypeName });
+                bettypeName = string.Join(null, new string[] { Apollo.Age.Resources.BetList.ft, ". ", bettypeName });
             }
             else
             {
-                bettypeName = CoreBetList.next + "&nbsp;" + bettypeName;
+                bettypeName = Apollo.Age.Resources.BetList.next + "&nbsp;" + bettypeName;
                 liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(null, new string[] { " [", betId, "]" });
             }
 
             this.Template.betTeam = betTeam + liveScore;
             this.Template.betTypeName = bettypeName;
-            
-            this.Template.homeTeam = string.Join(null, new string[] { CoreBetList.numbergameno, "&nbsp;", ticket.MatchCode });
+
+            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
 
             //Bet team name is always in red for this bettype
             this.Template.betTeamClassName = BL_FAVORITE;

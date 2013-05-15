@@ -14,12 +14,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using System.Collections.Generic;
     using System.Data;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Repositories.Interface;
     using Fanex.BetList.Core.Entities;
     using Fanex.Common;
     using Fanex.Data;
-    using Fanex.Data.DNAide;
 
     /// <summary>
     /// BetList Repository

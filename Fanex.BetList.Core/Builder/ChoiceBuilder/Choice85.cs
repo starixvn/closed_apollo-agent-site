@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -52,7 +52,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                 null,
                                                 new string[]
                                                 {
-                                                    CoreBetList.ft,
+                                                    Apollo.Age.Resources.BetList.ft,
                                                     ". ",
                                                     bettypeName
                                                 }
@@ -64,7 +64,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                 null,
                                                 new string[]
                                                 {
-                                                    CoreBetList.next,
+                                                    Apollo.Age.Resources.BetList.next,
                                                     "&nbsp;",
                                                     bettypeName
                                                 }
@@ -84,12 +84,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.betTeam = betTeam + liveScore;
             this.Template.betTeamClassName = BL_FAVORITE;
 
-            this.Template.betTypeName = bettypeName;            
+            this.Template.betTypeName = bettypeName;
             this.Template.homeTeam = string.Join(
                                                 null,
                                                 new string[]
                                                 {
-                                                    CoreBetList.numbergameno,
+                                                    Apollo.Age.Resources.BetList.numbergameno,
                                                     "&nbsp;",
                                                     ticket.MatchCode
                                                 }

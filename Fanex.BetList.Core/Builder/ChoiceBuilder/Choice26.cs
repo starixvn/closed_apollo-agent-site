@@ -11,13 +11,13 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
     /// Both/One/Neither team to score
     /// </summary>
-    public class Choice26:Choice1
+    public class Choice26 : Choice1
     {
         /// <summary>
         /// Builds the choice.
@@ -29,22 +29,22 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Handicap.handicap = null;      
+            this.Template.Handicap.handicap = null;
 
             if (ticket.BetTeam == "b")
             {
-                this.Template.betTeam = CoreBetList.lblBoth;
+                this.Template.betTeam = Apollo.Age.Resources.BetList.lblBoth;
             }
             else if (ticket.BetTeam == "o")
             {
-                this.Template.betTeam = CoreBetList.lblOne;
+                this.Template.betTeam = Apollo.Age.Resources.BetList.lblOne;
             }
             else if (ticket.BetTeam == "n")
             {
-                this.Template.betTeam = CoreBetList.nogoal;
+                this.Template.betTeam = Apollo.Age.Resources.BetList.nogoal;
             }
 
-            this.Template.betTeamClassName = BL_FAVORITE;              
+            this.Template.betTeamClassName = BL_FAVORITE;
         }
     }
 }

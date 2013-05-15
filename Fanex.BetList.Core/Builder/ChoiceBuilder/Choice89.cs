@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -46,13 +46,13 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             string betTeam = string.Empty;
             switch (ticket.BetTeam)
             {
-                case "1:1": betTeam = CoreBetList.lblOverOdd;
+                case "1:1": betTeam = Apollo.Age.Resources.BetList.lblOverOdd;
                     break;
-                case "1:2": betTeam = CoreBetList.lblOverEven;
+                case "1:2": betTeam = Apollo.Age.Resources.BetList.lblOverEven;
                     break;
-                case "2:1": betTeam = CoreBetList.lblUnderOdd;
+                case "2:1": betTeam = Apollo.Age.Resources.BetList.lblUnderOdd;
                     break;
-                case "2:2": betTeam = CoreBetList.lblUnderEven;
+                case "2:2": betTeam = Apollo.Age.Resources.BetList.lblUnderEven;
                     break;
             }
 
@@ -60,8 +60,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = betTeam + liveScore;
             this.Template.betTeamClassName = BL_FAVORITE;
-            
-            this.Template.homeTeam = string.Join(null, new string[] { CoreBetList.numbergameno, "&nbsp;", ticket.MatchCode });
+
+            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
         }
     }
 }
