@@ -109,14 +109,14 @@ namespace Apollo.Age.Web
                     TempData[AdminId] = _AdminId;
 
                     //write log
-                    string doing = "Admin: " + model.Username + "Logged in to Apollo Agent Site - Result: Successful.";
+                    string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: Successful.";
                     WritelogLogin(0, _AdminId, 1307, 0, doing);  
 
                     return RedirectToAction("SelectAccount");
                 }
                 else // return View with error message
                 {
-                    string doing = "Admin: " + model.Username + "Logged in to Apollo Agent Site - Result: Failed.";
+                    string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: Failed.";
                     WritelogLogin(0, _AdminId, 1308, 0, doing);  
 
                     ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
@@ -155,8 +155,8 @@ namespace Apollo.Age.Web
                     // saves user session
                     SessionManager.CurrentSession = new CurrentSession(
                         user: agent,
-                        AdminId: model.AdminId,
-                        AdminName: model.AdminName,
+                        adminId: model.AdminId,
+                        adminName: model.AdminName,
                         isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
                         language: model.Language);
 

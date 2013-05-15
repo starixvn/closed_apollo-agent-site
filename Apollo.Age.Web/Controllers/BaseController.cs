@@ -29,6 +29,7 @@ namespace Apollo.Age.Web
     public class BaseController : Controller
     {
         private readonly IUserService _userService;
+        private readonly CultureInfo englishCulture = CultureInfo.CreateSpecificCulture("en-US");
 
         public BaseController()
         {
@@ -52,11 +53,19 @@ namespace Apollo.Age.Web
 
             if (CurrentSession != null)
             {
-                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture
-                    = CultureInfo.GetCultureInfo(CurrentSession.Language);
+                SetCulture(CurrentSession.Language);
             }
 
             base.OnActionExecuting(filterContext);
+        }
+
+        private void SetCulture(string language)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = englishCulture.DateTimeFormat;
+            Thread.CurrentThread.CurrentCulture.NumberFormat = englishCulture.NumberFormat;
         }
 
         #region Auth

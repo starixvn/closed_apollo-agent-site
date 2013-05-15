@@ -17,5 +17,7 @@ namespace Apollo.Age.Forecast.Repositories
     public interface IForecastRepository
     {
         ScoreMapResultModel GetScoreMapResult(ICriteria criteria);
+
+        int GetMainShareHolderByMember(ICriteria criteria);
     }
 }
