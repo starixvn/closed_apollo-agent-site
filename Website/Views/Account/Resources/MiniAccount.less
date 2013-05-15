@@ -99,11 +99,12 @@ ul.tab-menu-icon {
 			 top: 79%;
 			 left: 32px;
 			 z-index: 990;
-			 border-bottom: 1px solid #b5b5b5;
+			 border: 1px solid #b5b5b5;
+			 border-width: 0 0 1px 0;
 			 background: #eee;
 
 			 li { 
-				 background: #ddd;
+				 background: #eee;
 				 border: 1px solid #b5b5b5;
 				 border-bottom: none;
 				 float: none;
@@ -121,12 +122,23 @@ ul.tab-menu-icon {
 				 } 
 
 				 &.hasChild {
-					background: url(img/hasChild.png) #DDD no-repeat center right;	
-					background-position: 204px;
+					background: url(img/hasChild.png) #eee no-repeat center right;	
+					background-position: 204px;					
 
 					&:hover {
-						background: url(img/hasChild.png) #eee no-repeat center right;
+						background: url(img/hasChild-white.png) #0084B4 no-repeat center right;
 						background-position: 204px;	
+						border-bottom: 1px solid @white;
+						border-top: 1px solid #b5b5b5;
+						height: 20px;
+
+						a {
+							color: @white;
+						}
+
+						ul li a {
+							color: @linkColor;
+						}
 					}
 				 }
 			}
@@ -136,21 +148,20 @@ ul.tab-menu-icon {
 
 
 /* LEVEL THREE */
-ul.tab-menu-icon ul ul { 
+ul.tab-menu-icon ul ul, ul.tab-menu-icon li ul li.hasChild ul { 
 	left: 100%;
 	top: -1px;
-	display: none;
 
 	li {
-		background: #f3f3f3;
+		background: @white;
 		text-transform: none;
 
 		&:hover {
-			background: @white;
+			background: #0084B4;
 			color: @textColor;
 			
 			a	{ 						
-				color: @linkColor;
+				color: @white;
 			} 
 		}
 	}

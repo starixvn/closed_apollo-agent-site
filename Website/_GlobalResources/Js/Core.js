@@ -224,7 +224,7 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 	APOLLO.browser = APOLLO.detectBrowser();
 	$(document).ready(function () {
-		APOLLO.init();
+	    APOLLO.init();
 	});
 }
 
