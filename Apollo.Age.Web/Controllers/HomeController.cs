@@ -33,38 +33,38 @@ namespace Apollo.Age.Web
             return View();
         }
 
-        public ActionResult UnderMaintenance()
-        {
-            var maintenanceInfo = maintenanceService.MaintenanceInfo;
+        //public ActionResult UnderMaintenance()
+        //{
+        //    var maintenanceInfo = maintenanceService.MaintenanceInfo;
 
-            if (maintenanceInfo.IsDownTime)
-            {
-                return View(maintenanceInfo);
-            }
-            else
-            {
-                return Redirect(FormsAuthentication.DefaultUrl);
-            }
-        }
+        //    if (maintenanceInfo.IsDownTime)
+        //    {
+        //        return View(maintenanceInfo);
+        //    }
+        //    else
+        //    {
+        //        return Redirect(FormsAuthentication.DefaultUrl);
+        //    }
+        //}
 
-        [AllowAnonymous]
-        public ActionResult Error(string err)
-        {
-            switch (err)
-            {
-                case "403":
-                    ViewBag.ErrorMessage = Apollo.Age.Resources.Lang.HttpError_403;
-                    break;
-                case "404":
-                    ViewBag.ErrorMessage = Apollo.Age.Resources.Lang.HttpError_404;
-                    break;
-                default:
-                    ViewBag.ErrorMessage = Apollo.Age.Resources.Lang.HttpError_Default;
-                    break;
-            }
+        //[AllowAnonymous]
+        //public ActionResult Error(string err)
+        //{
+        //    switch (err)
+        //    {
+        //        case "403":
+        //            ViewBag.ErrorMessage = Apollo.Age.Resources.Lang.HttpError_403;
+        //            break;
+        //        case "404":
+        //            ViewBag.ErrorMessage = Apollo.Age.Resources.Lang.HttpError_404;
+        //            break;
+        //        default:
+        //            ViewBag.ErrorMessage = Apollo.Age.Resources.Lang.HttpError_Default;
+        //            break;
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
 
         /// <summary>
         /// This action is for testing ONLY

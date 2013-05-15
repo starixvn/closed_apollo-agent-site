@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="ApoURLs.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Filters\BelongCheckingAttribute.cs" />

@@ -15,12 +15,14 @@
 
 	@Html.Hidden("ApoRoot", Url.Content("~/"))
 
-	<script type="text/javascript">
+	@*<script type="text/javascript">
 		head.js(
 			"@Url.Content("~/_GlobalResources/Js/jquery.js")",
 			"@Url.Content("~/_GlobalResources/Js/Core.js")"
 		);        
-	</script>
+	</script>*@
+
+	@Scripts.Render("~/homejs")
 
 	@RenderSection("scripts", false)
 </body>
