@@ -24,11 +24,11 @@ var Match = (function () {
             });
 
             btnToday.bind('click', function () {
-                $("#EventDate").val(btnToday.val());
+                $("#EventDate").val($("#todayValue").val());
             });
 
             btnYesterday.bind('click', function () {
-                $("#EventDate").val(btnYesterday.val());
+                $("#EventDate").val($("#yesterdayValue").val());
             });
         },
 
