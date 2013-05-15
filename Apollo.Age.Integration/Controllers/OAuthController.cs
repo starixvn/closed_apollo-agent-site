@@ -73,7 +73,7 @@ namespace Apollo.Age.Integration.Controllers
                             if (user != null && user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
                             {
                                 authModel.ErrorCode = string.Empty;
-                                ICurrentSession currentSession = new CurrentSession(user, false, language);
+                                ICurrentSession currentSession = new CurrentSession(user, 0, string.Empty ,false, language);
                                 SessionManager.CurrentSession = currentSession;
                                 FormsAuthentication.SetAuthCookie(user.Username, true);
                             }
