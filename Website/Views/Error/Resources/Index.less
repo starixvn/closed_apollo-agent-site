@@ -1,81 +1,14 @@
-﻿@import "../../../_globalresources/css/variables.less";
-@headerHeight:	60px;
-@menuWidth:		220px;
-@miniMenuWidth:	30px;
-
-html, body {
-	padding: 0;
+﻿body {
 	margin: 0;
-	border: 0;
+	padding: 0;
+	font-family: Arial, Tahoma, Sans-Serif;
+	color: #333;
 }
 
-iframe { 
-	border: 0;
-}
-
-.header, .menu, .mainpage {
-	position: absolute;
-	top: 0;
-	bottom: 5px;
-	left: 0;
-}
-
-.header {
-	height: @headerHeight;
-	width: 100%;	
-	border-bottom: 1px solid @headerBorderColor;
-}
-
-.menu {
-	top: @headerHeight + 1;
-	width: @menuWidth;
-	border-right: 1px solid #999;
-
-	&.mini-menu {
-		width: @miniMenuWidth;
-		background: #EEE;
-		z-index: 900;
-	}
-}
-
-.mainpage {
-	background: url(img/bg-mainpage.png) repeat-y;
-	top: @headerHeight + 1;
-	left: @menuWidth + 1;
-	right: 0;
-	padding: 0 5px 10px;
-
-	.collapse, .expand {
-		background: url(img/buttons.png) no-repeat;
-		background-position: -7px 0;
-		height: 25px;
-		width: 14px;
-		position: fixed;
-		top: 300px;
-		left: @menuWidth + 1;
-		cursor: pointer;
-		z-index: 300;
-	}
-
-	.expand {
-		background-position: 7px 0;
-		left: @miniMenuWidth - 6;
-	}
-
-	&.max-mainpage {
-		left: @miniMenuWidth + 1;
-	}
-}
-
-
-/* Fix layout for IE7 */
-
-.eq-ie7 {
-	.menu{
-		height: 760px;
-	}
-
-	.mainpage {
-		height: 752px;
-	}
+.err-block {
+	background: url(../../../_GlobalResources/Images/error2.png) no-repeat center;
+	width: 800px;
+	margin: 100px auto 0;
+	padding-top: 180px;
+	text-align: center;
 }
