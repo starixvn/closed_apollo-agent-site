@@ -22,30 +22,20 @@ namespace Apollo.Age.Web
     using System.Web.Mvc;
     using System.Web.Security;
     using Apollo.Age.Services.Impl;
-<<<<<<< HEAD:Apollo.Age.Web/Controllers/BaseController.cs
     using Apollo.Age.Resources;
-=======
-using Apollo.Age.Services.Interface;
->>>>>>> c7b5c1091719c1b30fbb7fd6994b9e89f3866bce:Apollo.Age.Web/BaseController.cs
+    using Apollo.Age.Services.Interface;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
-<<<<<<< HEAD:Apollo.Age.Web/Controllers/BaseController.cs
-=======
         private readonly IUserService _userService;
+        private readonly CultureInfo englishCulture = CultureInfo.CreateSpecificCulture("en-US");
+
         public BaseController()
         {
-            if (CurrentSession != null)
-            {
-                //CurrentSession.Language = "vi-VN"; // for testing only
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
-            }
-
             _userService = new UserService();
         }
 
->>>>>>> c7b5c1091719c1b30fbb7fd6994b9e89f3866bce:Apollo.Age.Web/BaseController.cs
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             bool actionIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.IsDefined(
@@ -63,10 +53,24 @@ using Apollo.Age.Services.Interface;
 
             if (CurrentSession != null)
             {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
+<<<<<<< HEAD
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture
+                    = CultureInfo.GetCultureInfo(CurrentSession.Language);
+=======
+                SetCulture(CurrentSession.Language);
+>>>>>>> d47f3f4a9ce5a6d92ad616f48f9dbc1f1cd64c06
             }
 
             base.OnActionExecuting(filterContext);
+        }
+
+        private void SetCulture(string language)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = englishCulture.DateTimeFormat;
+            Thread.CurrentThread.CurrentCulture.NumberFormat = englishCulture.NumberFormat;
         }
 
         #region Auth
@@ -75,7 +79,7 @@ using Apollo.Age.Services.Interface;
         {
             if (!Request.IsAuthenticated || CurrentSession == null)
             {
-                Response.Redirect(WebConstants.UnauthorizedUrl);
+                Response.Redirect(ApoURLs.URLs.Unauthorized);
             }
         }
 
@@ -93,6 +97,7 @@ using Apollo.Age.Services.Interface;
                 if (Request.IsAjaxRequest())
                 {
                     Response.Buffer = true;
+                    Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                     Response.Write(GetResourceData("lblAccountWasStopped"));
                     Response.Flush();
                     Response.Close();
@@ -100,7 +105,7 @@ using Apollo.Age.Services.Interface;
                 }
                 else
                 {
-                    Response.Redirect(WebConstants.AccountStoppedUrl);
+                    Response.Redirect(ApoURLs.URLs.AccountStopped);
                 }
             }
         }
