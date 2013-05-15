@@ -52,6 +52,11 @@ namespace Apollo.Age.Web
 
         #endregion Ctors
 
+        public ActionResult Index()
+        {
+            return RedirectToAction("SignIn");
+        }
+
         #region SignIn
 
         [HttpGet]
@@ -258,26 +263,6 @@ namespace Apollo.Age.Web
             }
 
             return Redirect(FormsAuthentication.LoginUrl);
-        }
-
-        public ActionResult Unauthorized()
-        {
-            if (Request.IsAjaxRequest())
-            {
-                return new HttpUnauthorizedResult(Lang.UnauthorizedMsg);
-            }
-
-            return View();
-        }
-
-        public ActionResult AccessDenied()
-        {
-            return View();
-        }
-
-        public ActionResult AccountStopped()
-        {
-            return View();
         }
 
         private bool IsInternalSignIn

@@ -27,11 +27,11 @@
 		routes.IgnoreRoute("{*allashx}", new { allashx = @".*\.ashx(/.*)?" });
 		routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 
-		routes.MapRoute("AccessDenied", "AccessDenied", new { controller = "Internal", action = "AccessDenied" });
-		routes.MapRoute("AccountStopped", "AccountStopped", new { controller = "Internal", action = "AccountStopped" });
-		routes.MapRoute("Error", "Error", new { controller = "Home", action = "Error" });	
-		routes.MapRoute("Unauthorized", "Unauthorized", new { controller = "Internal", action = "Unauthorized" });
-		routes.MapRoute("UnderMaintenance", "UnderMaintenance", new { controller = "Home", action = "UnderMaintenance" });
+		routes.MapRoute("AccessDenied", "AccessDenied", new { controller = "Error", action = "AccessDenied" });
+		routes.MapRoute("AccountStopped", "AccountStopped", new { controller = "Error", action = "AccountStopped" });
+		routes.MapRoute("Error", "Error", new { controller = "Error", action = "Index" });
+		routes.MapRoute("Unauthorized", "Unauthorized", new { controller = "Error", action = "Unauthorized" });
+		routes.MapRoute("UnderMaintenance", "UnderMaintenance", new { controller = "Error", action = "UnderMaintenance" });
 		
 		routes.MapRoute(
 			"Default", // Route name

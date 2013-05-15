@@ -52,7 +52,8 @@ namespace Apollo.Age.Web
 
             if (CurrentSession != null)
             {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture
+                    = CultureInfo.GetCultureInfo(CurrentSession.Language);
             }
 
             base.OnActionExecuting(filterContext);
