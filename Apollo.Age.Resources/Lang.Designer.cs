@@ -12423,11 +12423,20 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Under Maintenance.
+        /// </summary>
+        public static string UnderMaintenance {
+            get {
+                return ResourceManager.GetString("UnderMaintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We are having server maintenance, website will be unavailable from {0} until {1}. Sorry for the inconveniences caused!.
         /// </summary>
-        public static string undermaintenance {
+        public static string UnderMaintenanceMsg {
             get {
-                return ResourceManager.GetString("undermaintenance", resourceCulture);
+                return ResourceManager.GetString("UnderMaintenanceMsg", resourceCulture);
             }
         }
         

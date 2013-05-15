@@ -3208,7 +3208,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="under" xml:space="preserve">
     <value>Under</value>
   </data>
-  <data name="undermaintenance" xml:space="preserve">
+  <data name="UnderMaintenanceMsg" xml:space="preserve">
     <value>We are having server maintenance, website will be unavailable from {0} until {1}. Sorry for the inconveniences caused!</value>
   </data>
   <data name="Unknown" xml:space="preserve">
@@ -4496,5 +4496,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="Expand" xml:space="preserve">
     <value>Expand</value>
+  </data>
+  <data name="UnderMaintenance" xml:space="preserve">
+    <value>Under Maintenance</value>
   </data>
 </root>

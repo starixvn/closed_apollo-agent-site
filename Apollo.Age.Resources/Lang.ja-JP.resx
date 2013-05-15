@@ -2680,7 +2680,7 @@
   <data name="withPictures" xml:space="preserve">
     <value>Results with pictures</value>
   </data>
-  <data name="undermaintenance" xml:space="preserve">
+  <data name="UnderMaintenanceMsg" xml:space="preserve">
     <value>We are having server maintenance, website will be unavailable from {0} until {1}. Sorry for the inconveniences caused!</value>
   </data>
   <data name="lblHrFOdds" xml:space="preserve">
@@ -4172,5 +4172,8 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   </data>
   <data name="shareSettingInstruction" xml:space="preserve">
     <value>Share Setting Instructions</value>
+  </data>
+  <data name="UnderMaintenance" xml:space="preserve">
+    <value>Under Maintenance</value>
   </data>
 </root>

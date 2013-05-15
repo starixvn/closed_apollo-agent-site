@@ -2633,7 +2633,7 @@
   <data name="withPictures" xml:space="preserve">
     <value>ผลพร้อมภาพ</value>
   </data>
-  <data name="undermaintenance" xml:space="preserve">
+  <data name="UnderMaintenanceMsg" xml:space="preserve">
     <value>ขณะนี้ทางเรามีการบำรุงรักษาเซิร์ฟเวอร์ เว็บไซต์จะไม่สามารถเข้าใช้งานได้ตั้งต่เวลา  {0} until {1}. ขออภัยในความไม่สะดวก</value>
   </data>
   <data name="lblHrFOdds" xml:space="preserve">
@@ -4125,5 +4125,8 @@
   </data>
   <data name="shareSettingInstruction" xml:space="preserve">
     <value>Share Setting Instructions</value>
+  </data>
+  <data name="UnderMaintenance" xml:space="preserve">
+    <value>Under Maintenance</value>
   </data>
 </root>

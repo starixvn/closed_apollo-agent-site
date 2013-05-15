@@ -1,8 +1,15 @@
-﻿@using Apollo.Age.Web.ViewModels
-@model UnderMaintenanceViewModel
-<div class="UnderMaintenance">
-    <h2>
-        UNDER MAINTENANCE</h2>
-    We are having server maintenance, website will be unavailable from&nbsp;<b>@Model.StartTime</b>
-    &nbsp;to&nbsp;<b>@Model.EndTime</b>&nbsp;. Sorry for the inconveniences caused!
-</div>
+﻿@model Apollo.Age.Web.ViewModels.UnderMaintenanceViewModel
+@{
+	Layout = null;
+	string title = Apollo.Age.Resources.Lang.UnderMaintenance;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>@title</title>
+</head>
+<body>
+	<h2>@title</h2>
+	<p>@string.Format(Apollo.Age.Resources.Lang.UnderMaintenanceMsg, Model.StartTime, Model.EndTime)</p>
+</body>
+</html>
