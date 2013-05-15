@@ -46,37 +46,32 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// View detail comm
+        /// View detail popup Agent Share and Agent Comm
         /// </summary>
         /// <param name="metaModel"></param>
         /// <returns></returns>
-        public ViewResult ViewDetail(BetListMetaModel metaModel)
+        public ViewResult ViewDetail(long transId, string fromDate, string toDate, string type)
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
             var balanceUpDay = reportService.GetBalanceUpDay();
             var moveBetsDay = reportService.MoveBetsDay();
 
-            if (metaModel.FromDate == DateTime.MinValue)
-            {
-                metaModel.FromDate = moveBetsDay;
-            }
-            if (metaModel.ToDate == DateTime.MinValue)
-            {
-                metaModel.ToDate = DateTime.Now;
-            }
+            //DateTime value = DateTime.Now;
+            //DateTime.TryParse(fromDate, out value)
 
+           // var test = value;
             var criteria = new BetListCriteria
             {
                 LoggedId = this.CurrentSession.AgentId,
-                TransId = metaModel.TransId,
-                FromDate = metaModel.FromDate,
-                ToDate = metaModel.ToDate,
+                TransId = transId,
+                FromDate = Formater.ResetStartDate(string.IsNullOrEmpty(fromDate) ? moveBetsDay : Convert.ToDateTime(fromDate)),
+                ToDate = Formater.ResetEndDate(string.IsNullOrEmpty(toDate) ? DateTime.Now : Convert.ToDateTime(toDate)),
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
 
-            if (metaModel.Type == "report")
+            if (type == "report")
             {
                 listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
             }
