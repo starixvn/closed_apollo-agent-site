@@ -15,7 +15,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
@@ -35,7 +35,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
             this.Template.Handicap.handicap = ConvertByBetType.Hdp(ticket.Handicap1);
-            this.Template.betTeam = ticket.BetTeam == "h" ? CoreBetList.over : CoreBetList.under;            
+            this.Template.betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.over : Apollo.Age.Resources.BetList.under;
         }
     }
 }

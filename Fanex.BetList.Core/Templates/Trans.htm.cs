@@ -40,7 +40,7 @@ namespace Fanex.BetList.Core
 
 		public class Trans_TransTime_Block: Block
 		{
-			protected static string s2{get{return App_GlobalResources.CoreBetList.refno;}}
+			protected static string s2{get{return Apollo.Age.Resources.BetList.refno;}}
 			protected static string s3 = ": ";
 			public string refNo = "{refNo}";
 			public override void ToString(ref StringBuilder bd)

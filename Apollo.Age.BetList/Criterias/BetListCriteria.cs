@@ -21,8 +21,6 @@ namespace Apollo.Age.BetList.Criterias
         {
             this.FromDate = DateTime.Today;
             this.ToDate = DateTime.Today;
-            this.PageIndex = 1;
-            this.PageSize = int.MaxValue - 1;
         }
 
         public DateTime FromDate { get; set; }
@@ -52,10 +50,6 @@ namespace Apollo.Age.BetList.Criterias
         public string BetTeam { get; set; }
 
         public int? LiveIndicator { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
 
         public override bool IsValid()
         {

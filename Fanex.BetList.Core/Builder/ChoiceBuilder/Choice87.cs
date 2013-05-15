@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -41,7 +41,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             string liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(null, new string[] { " [", betId, "]" });
 
-            string betTeam = ticket.BetTeam == "h" ? CoreBetList.high : CoreBetList.low;
+            string betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.high : Apollo.Age.Resources.BetList.low;
 
             string bettypeName = this.Template.betTypeName;
 
@@ -50,7 +50,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTypeName = bettypeName;
 
-            this.Template.homeTeam = string.Join(null, new string[] { CoreBetList.numbergameno, "&nbsp;", ticket.MatchCode });
+            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
         }
     }
 }

@@ -11,13 +11,10 @@
 
 namespace Fanex.BetList.Core.Builder.TransBuilder
 {
-    using System;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
-    using Fanex.BetList.Core.Utils;
-    using NPOI.SS.UserModel;
-    using Fanex.BetList.Core.App_GlobalResources;
     using NPOI.HSSF.UserModel;
+    using NPOI.SS.UserModel;
 
     public class Trans1 : ITrans
     {
@@ -37,7 +34,7 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         public virtual Trans_Template Render(ITicket ticket)
         {
             Template.transTime = ticket.TransDate.ToString();
-            
+
             // For Mixparlay (Trans9) to reuse
             Template.TransTime.refNo = ticket.TransId.ToString();
 
@@ -50,9 +47,9 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
 
             string refNo = Template.TransTime.refNo;
 
-            string transTime = string.Join(null, new string[] { CoreBetList.refno, ": ", refNo });
+            string transTime = string.Join(null, new string[] { Apollo.Age.Resources.BetList.refno, ": ", refNo });
             IRichTextString rtfTrans = new HSSFRichTextString(string.Join(null, new string[] { transTime, "\n", Template.transTime }));
-            
+
             return rtfTrans;
         }
 

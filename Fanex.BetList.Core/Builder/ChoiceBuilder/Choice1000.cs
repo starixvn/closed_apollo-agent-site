@@ -11,7 +11,6 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
 
@@ -32,13 +31,13 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             string content = string.Join(
                                             null,
-                                            new string[] 
-                                            { 
-                                                "<div><span class='", 
-                                                BL_FAVORITE, 
-                                                "'>", 
-                                                CoreLang.p2pGame, 
-                                                "</span></div>" 
+                                            new string[]
+                                            {
+                                                "<div><span class='",
+                                                BL_FAVORITE,
+                                                "'>",
+                                                Apollo.Age.Resources.Lang.p2pGame,
+                                                "</span></div>"
                                             }
                                         );
 
@@ -49,7 +48,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
         protected override NPOI.SS.UserModel.IRichTextString BuildRTFChoice(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper)
         {
-            rtfHelper.RTFRenderer.AddText(CoreLang.p2pGame, rtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.Lang.p2pGame, rtfHelper.PosFont);
 
             var choiceRtf = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
