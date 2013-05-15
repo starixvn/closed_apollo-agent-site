@@ -2,7 +2,7 @@
     return {
         collapseMenu: function () {
             $('#btn-mini-menu').addClass('expand').removeClass('collapse');
-            $('#btn-mini-menu').attr('title', 'Resource.Expand');
+            $('#btn-mini-menu').attr('title', LANGUAGES.Expand);
             // change size of menu navigation
             $('.menu').animate(
                  { "width": "30px" },
@@ -23,7 +23,7 @@
         },
         expandMenu: function () {
             $('#btn-mini-menu').addClass('collapse').removeClass('expand');
-            $('#btn-mini-menu').attr('title', 'Resource.Minimize');
+            $('#btn-mini-menu').attr('title', LANGUAGES.Collapse);
             // change size of menu navigation
             // $('.menu').removeClass('mini-menu').width(220);
             $('.menu').animate(
@@ -89,7 +89,24 @@ $(document).ready(function () {
 
     // Click on "search" icon and change to search page
     $('.search').click(function (e) {
-        $('.menu iframe').attr('src', APOLLO.resolveUrl('Account/AccountInfo'));
+
+        var custId = $.cookie('searching-id');
+        var username = $.cookie('searching-name');
+        var isMember = $.cookie('searching-ismember');
+
+        var url = "Account/AccountInfo";
+        if ((custId != undefined || username != undefined) && isMember != undefined) {
+            if ($.cookie('searching-id') != "-1" || username.length > 0) {
+                if (isMember.toBoolean()) {
+                    url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
+                }
+                else {
+                    url = 'Account/AgentInfo?agentid=' + custId + '&username=' + username
+                }
+            }
+        }
+
+        $('.menu iframe').attr('src', APOLLO.resolveUrl(url));
         MINI_MENU.expandMenu();
         e.stopPropagation();
     });
