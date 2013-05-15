@@ -15,6 +15,7 @@ namespace Apollo.Age.Forecast.Repositories
     using Fanex.Common.Extensions;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
+    using Fanex.Common.Helper;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastRepository : IForecastRepository
@@ -59,6 +60,22 @@ namespace Apollo.Age.Forecast.Repositories
                 }
             }
             return null;
+        }
+
+        public int GetMainShareHolderByMember(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            try
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return (int)db.ExecuteScalar(criteria.GetSpParams());
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

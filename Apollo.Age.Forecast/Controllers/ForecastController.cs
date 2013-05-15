@@ -23,6 +23,7 @@ namespace Apollo.Age.Forecast.Controllers
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Web;
     using System.Web.SessionState;
+    using Apollo.Age.Forecast.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -181,13 +182,22 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        public ViewResult ScoreMap(string matchIds = "", int liveBetTypes = 0, int deadBallBetTypes = 0, int mainShareHolderId = 0)
+        public ViewResult ScoreMap(string matchIds = "", int liveBetTypes = 0, int deadBallBetTypes = 0, int mainShareHolderId = 0, int custId = 0)
         {
             if (!string.IsNullOrEmpty(matchIds))
             {
                 ViewBag.MatchIds = matchIds;
                 ViewBag.LiveBetTypes = _forecastService.GetAllBetTypeFromBetType(liveBetTypes, true);
                 ViewBag.DeadBallBetTypes = _forecastService.GetAllBetTypeFromBetType(deadBallBetTypes, false);
+
+                if (this.CurrentSession.IsSuper && mainShareHolderId != 0 && custId != 0)
+                {
+                    mainShareHolderId = _forecastService.GetMainShareHolderByMember(
+                        new GetMainShareHolderByMemberCriteria{
+                            CustId = custId
+                        });
+                }
+
                 ViewBag.CurrentMainShareHolderId = mainShareHolderId;
             }
             else
