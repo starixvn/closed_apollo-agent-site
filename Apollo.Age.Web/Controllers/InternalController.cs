@@ -174,7 +174,7 @@ namespace Apollo.Age.Web
         private void WritelogLogin(int AgentId, int AgentUserId, int ActionId, int ServerId, string Doing)
         {
             DeviceService deviceService = new DeviceService(Request);
-            int result = _userService.WriteLogInternalLogin(
+            _userService.WriteLogInternalLogin(
                 AgentId,
                 AgentUserId,
                 ServerId,
@@ -184,8 +184,8 @@ namespace Apollo.Age.Web
                 deviceService.DomainName,
                 deviceService.BrowserName,
                 deviceService.Platform,
-                deviceService.CountryCode,
-                0);
+                deviceService.CountryCode
+                );
         }
 
         public ActionResult CaptchaImage(bool noisy = true)
