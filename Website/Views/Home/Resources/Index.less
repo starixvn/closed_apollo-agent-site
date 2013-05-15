@@ -1,7 +1,8 @@
 ﻿@import "../../../_globalresources/css/variables.less";
-@headerHeight:	60px;
-@menuWidth:		220px;
-@miniMenuWidth:	30px;
+@internalHeaderHeight:	29px;
+@headerHeight:			60px;
+@menuWidth:				220px;
+@miniMenuWidth:			30px;
 
 html, body {
 	padding: 0;
@@ -20,12 +21,28 @@ iframe {
 	left: 0;
 }
 
+.header.int {
+	height: @internalHeaderHeight;
+	width: 100%;	
+	border-bottom: 1px solid @headerBorderColor;
+}
 .header {
 	height: @headerHeight;
 	width: 100%;	
 	border-bottom: 1px solid @headerBorderColor;
 }
 
+.menu.int {
+	top: @internalHeaderHeight + 1;
+	width: @menuWidth;
+	border-right: 1px solid #999;
+
+	&.mini-menu {
+		width: @miniMenuWidth;
+		background: #EEE;
+		z-index: 900;
+	}
+}
 .menu {
 	top: @headerHeight + 1;
 	width: @menuWidth;
@@ -38,6 +55,34 @@ iframe {
 	}
 }
 
+.mainpage.int {
+	background: url(img/bg-mainpage.png) repeat-y;
+	top: @internalHeaderHeight + 1;
+	left: @menuWidth + 1;
+	right: 0;
+	padding: 0 5px 10px;
+
+	.collapse, .expand {
+		background: url(img/buttons.png) no-repeat;
+		background-position: -7px 0;
+		height: 25px;
+		width: 14px;
+		position: fixed;
+		top: 300px;
+		left: @menuWidth + 1;
+		cursor: pointer;
+		z-index: 300;
+	}
+
+	.expand {
+		background-position: 7px 0;
+		left: @miniMenuWidth - 6;
+	}
+
+	&.max-mainpage {
+		left: @miniMenuWidth + 1;
+	}
+}
 .mainpage {
 	background: url(img/bg-mainpage.png) repeat-y;
 	top: @headerHeight + 1;

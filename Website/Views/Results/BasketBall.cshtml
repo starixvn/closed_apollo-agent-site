@@ -40,24 +40,39 @@
         @if (Model != null && Model.Any())
         {
             var currentLeagueId = 0;
+            var eventStatus = string.Empty;
+            var betStatus = string.Empty;
 
+            var finalHomeScore = string.Empty;
+            var finalAwayScore = string.Empty;
+            var firstHalfHomeScore = string.Empty;
+            var firstHalfAwayScore = string.Empty;
+
+            var homeTeam = string.Empty;
+            var awayTeam = string.Empty;
+            List<string> homeSet = null;
+            List<string> awaySet = null;
+
+            var OTAway = string.Empty;
+            var OTHome = string.Empty;
+            
             foreach (var item in Model)
             {
-                var eventStatus = string.Empty;
-                var betStatus = string.Empty;
+                 eventStatus = string.Empty;
+                 betStatus = string.Empty;
 
-                var finalHomeScore = string.Empty;
-                var finalAwayScore = string.Empty;
-                var firstHalfHomeScore = string.Empty;
-                var firstHalfAwayScore = string.Empty;
+                 finalHomeScore = string.Empty;
+                 finalAwayScore = string.Empty;
+                 firstHalfHomeScore = string.Empty;
+                 firstHalfAwayScore = string.Empty;
 
-                var homeTeam = string.Empty;
-                var awayTeam = string.Empty;
-                List<string> homeSet = new List<string>() { "-", "-", "-", "-", "-" };
-                List<string> awaySet = new List<string>() { "-", "-", "-", "-", "-" };
+                 homeTeam = string.Empty;
+                 awayTeam = string.Empty;
+                 homeSet = new List<string>() { "-", "-", "-", "-", "-" };
+                 awaySet = new List<string>() { "-", "-", "-", "-", "-" };
 
-                var OTAway = string.Empty;
-                var OTHome = string.Empty;
+                 OTAway = string.Empty;
+                 OTHome = string.Empty;
 
                 eventStatus = item.EventStatus.ToLower();
 

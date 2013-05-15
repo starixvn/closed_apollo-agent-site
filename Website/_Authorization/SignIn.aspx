@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" CodeFile="SignIn.aspx.cs" Inherits="Sunplus.Agent.UI._Authorization.SignIn_Page" %>

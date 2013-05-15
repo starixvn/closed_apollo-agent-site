@@ -37,11 +37,16 @@
                      complete: function () {
                          $(this).removeClass('mini-menu');
                          $('.menu iframe').show();
-                         $('ul.tab-menu-icon').hide();
+                         $('ul.tab-menu-icon').hide();                        
                          $('.mainpage').animate({ left: '221px' }, 50).removeClass('max-mainpage');
+                         if ($('li.main-menu').hasClass('active')) {
+                             $('li.main-menu').removeClass('active');
+                             $('ul.tab-menu-icon li.main-menu > ul').hide();
+                         } 
                      }
                  }
             );
+
         }
     }
 } (jQuery);

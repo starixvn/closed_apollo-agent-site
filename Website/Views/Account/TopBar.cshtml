@@ -13,13 +13,16 @@
 	@if (Model != null)
 	{
 		<div id="news_main">
+			@*@if (Model.IsInternalSignIn)*@
+			@if (false)
+			{
 			<div class="login-bg clearfix">
-				
 				<div class="login-info">
 					<span class="username">@Model.Username<span> (@Model.AgentName)</span></span>
 					<a href="#" onclick="APOLLO.signOut()">@Apollo.Age.Resources.Lang.SignOut</a>
 				</div>
 			</div>
+			}
 			<div id="text_news_out">
 				<div id="text_news" onclick="Change2Menu('Message/NewMessage?PageQuery=normal', this)">
 					<div id="scroller" class="news-scroller">
@@ -31,6 +34,7 @@
 						target="main"><span class="icon-home icon-white"></span></a>
 			</div>
 		</div>
+
 		<input type="hidden" id="ApoRoot" value="@Url.Content("~/")" />
 		<input type="hidden" id="ctime" value="@DateTime.Now.AddHours(12).ToString("H-m-s-tt")" />
 		<input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />
