@@ -50,6 +50,13 @@ namespace Apollo.Age.Web
             set { this["AccountStopped"] = value; }
         }
 
+        [ConfigurationProperty("Error", IsRequired = true)]
+        public string Error
+        {
+            get { return (string)this["Error"]; }
+            set { this["Error"] = value; }
+        }
+
         [ConfigurationProperty("InternalSignIn", IsRequired = true)]
         public string InternalSignIn
         {
@@ -62,6 +69,13 @@ namespace Apollo.Age.Web
         {
             get { return (string)this["Unauthorized"]; }
             set { this["Unauthorized"] = value; }
+        }
+
+        [ConfigurationProperty("UnderMaintenance", IsRequired = true)]
+        public string UnderMaintenance
+        {
+            get { return (string)this["UnderMaintenance"]; }
+            set { this["UnderMaintenance"] = value; }
         }
     }
 }

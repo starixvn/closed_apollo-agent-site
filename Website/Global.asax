@@ -8,28 +8,37 @@
 <%@ Import Namespace="Apollo.Age.Web.Services" %>
 <%@ Import Namespace="System.Web.Optimization" %>
 <%@ Import Namespace="Fanex.Data.Configuration" %>
+<%@ Import Namespace="Fanex.Logging" %>
+<%@ Import Namespace="Apollo.Age.Web" %>
 
 <script RunAt="server">
-    public static UnderMaintenanceService maintenanceService = null;
 
-    public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-    {
-        filters.Add(new HandleErrorAttribute());
-    }
+	public static UnderMaintenanceService maintenanceService = null;
 
-    static void RegisterRoutes(RouteCollection routes)
-    {
-        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-        routes.IgnoreRoute("{*allaspx}", new { allaspx = @".*\.aspx(/.*)?" });
-        routes.IgnoreRoute("{*allashx}", new { allashx = @".*\.ashx(/.*)?" });
-        routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+	public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+	{
+		filters.Add(new HandleErrorAttribute());
+	}
 
-        routes.MapRoute(
-             "Default", // Route name
-             "{controller}/{action}/{id}", // URL with parameters
-             new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-         );
-    }
+	static void RegisterRoutes(RouteCollection routes)
+	{
+		routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+		routes.IgnoreRoute("{*allaspx}", new { allaspx = @".*\.aspx(/.*)?" });
+		routes.IgnoreRoute("{*allashx}", new { allashx = @".*\.ashx(/.*)?" });
+		routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+
+		routes.MapRoute("AccessDenied", "AccessDenied", new { controller = "Internal", action = "AccessDenied" });
+		routes.MapRoute("AccountStopped", "AccountStopped", new { controller = "Internal", action = "AccountStopped" });
+		routes.MapRoute("Error", "Error", new { controller = "Home", action = "Error" });	
+		routes.MapRoute("Unauthorized", "Unauthorized", new { controller = "Internal", action = "Unauthorized" });
+		routes.MapRoute("UnderMaintenance", "UnderMaintenance", new { controller = "Home", action = "UnderMaintenance" });
+		
+		routes.MapRoute(
+			"Default", // Route name
+			"{controller}/{action}/{id}", // URL with parameters
+			new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+		);
+	}
 
 	static void RegisterBundles(BundleCollection bundles)
 	{
@@ -38,78 +47,74 @@
 			"~/_GlobalResources/Js/Core.js"));
 	}
 
-    void Application_Start(object sender, EventArgs e)
-    {
-        maintenanceService = new UnderMaintenanceService();
-        AreaRegistration.RegisterAllAreas();
-        RegisterGlobalFilters(GlobalFilters.Filters);
+	void Application_Start(object sender, EventArgs e)
+	{
+		maintenanceService = new UnderMaintenanceService();
+		AreaRegistration.RegisterAllAreas();
+		RegisterGlobalFilters(GlobalFilters.Filters);
 		
 		RegisterRoutes(RouteTable.Routes);
 		RegisterBundles(BundleTable.Bundles);
 
 		DbSettingProviderManager.Current.Start();
-    }
+	}
 
-    void AppSettings_LoadComplete(object sender, bool error)
-    {
-        if (error) return;
+	/// <summary>
+	/// Code that runs when an unhandled error occurs
+	/// </summary>
+	void Application_Error(object sender, EventArgs e)
+	{
+		// Logging
+		Exception ex = Server.GetLastError().GetBaseException();
 
-        TplCore.TplSettings.UrlVersion = ConfigurationManager.AppSettings["JsVersion"];
-    }
+		if (!Request.IsLocal)
+		{
+			string message = ex.Message +
+				"\r\nSource: " + ex.Source +
+				"\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+				"\r\nForm: " + Request.Form.ToString() +
+				"\r\nQueryString: " + Request.QueryString.ToString() +
+				"\r\nTargetSite: " + ex.TargetSite +
+				"\r\nStackTrace: " + ex.StackTrace;
 
-    /// <summary>
-    /// Code that runs when an unhandled error occurs
-    /// </summary>
-    void Application_Error(object sender, EventArgs e)
-    {
+			LogService.Error(message);
+		}
 
-        // Logging
-        Exception ex = Server.GetLastError().GetBaseException();
+		// Redirect to Error pages
+		var serverError = Server.GetLastError() as HttpException;
+		string errorCode = string.Empty;
 
-        if (!Request.IsLocal)
-        {
-            string message = ex.Message +
-                "\r\nSource: " + ex.Source +
-                "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-                "\r\nForm: " + Request.Form.ToString() +
-                "\r\nQueryString: " + Request.QueryString.ToString() +
-                "\r\nTargetSite: " + ex.TargetSite +
-                "\r\nStackTrace: " + ex.StackTrace;
+		if (serverError != null)
+		{
+			errorCode = serverError.GetHttpCode().ToString();
+		}
 
-            Fanex.Logging.LogService.Error(message);
-        }
+		Server.ClearError();
+		Response.Redirect(string.Format("{0}?err={1}", ApoURLs.URLs.Error, errorCode));
+	}
 
-        // Redirect to Error pages
-        var serverError = Server.GetLastError() as HttpException;
-        string errorCode = string.Empty;
+	void Application_AcquireRequestState(object sender, EventArgs e)
+	{
+		try
+		{
+			var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
 
-        if (serverError != null)
-        {
-            errorCode = serverError.GetHttpCode().ToString();
-        }
+			if (executeFileName.IndexOf("UnderMaintenance") == -1
+				&& executeFileName.IndexOf("GetMessage") == -1)
+			{
+				var maintenanceInfo = maintenanceService.MaintenanceInfo;
 
-        Server.ClearError();
-        Response.Redirect("~/Home/Error?err=" + errorCode);
-    }
+				if (maintenanceInfo.IsDownTime)
+				{
+					Response.Redirect(ApoURLs.URLs.UnderMaintenance);
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			LogService.Error(ex.Message, ex);
+		}
 
-    void Application_AcquireRequestState(object sender, EventArgs e)
-    {
-
-        try
-        {
-            var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
-            if (executeFileName.IndexOf("UnderMaintenance") == -1 && executeFileName.IndexOf("GetMessage") == -1)
-            {
-                var maintenanceInfo = maintenanceService.MaintenanceInfo;
-                if (maintenanceInfo.IsDownTime)
-                    Response.Redirect("~/Home/UnderMaintenance");
-            }
-        }
-        catch (Exception ex)
-        {
-            Fanex.Logging.LogService.Error(ex.Message, ex);
-        }
-
-    }
+	}
 
 </script>
