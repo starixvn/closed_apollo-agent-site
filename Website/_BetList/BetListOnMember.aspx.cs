@@ -31,6 +31,7 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
+    using Apollo.Age.Resources;
 
     public partial class BetListOnMember : TplPage
     {
@@ -134,6 +135,8 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             writer.Write(tpl);
+            RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails.ToUpper());
+            RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
         }
 
         public override void ProcessRequest(ref System.Collections.Hashtable hash)

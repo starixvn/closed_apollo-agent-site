@@ -14,6 +14,8 @@
 
         public byte BetStatus { get; set; }
 
+        public byte UplineBetStatus { get; set; }
+
         public Int32 HandicapTakenShare { get; set; }
 
         public string UserGroup { get; set; }
