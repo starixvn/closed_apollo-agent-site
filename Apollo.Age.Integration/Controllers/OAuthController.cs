@@ -80,7 +80,7 @@ namespace Apollo.Age.Integration.Controllers
                                 FormsAuthentication.SetAuthCookie(user.Username, true);
 
                                 //Write log SSO
-                                string doing = "SSO logged in via Agent: " + user.Username + " Result: Successfull.";
+                                string doing = "SSO logged in via Agent: " + user.Username + " - Result: Successful.";
                                 WritelogLogin(user.Id, 0, 1400, 0, doing);
                             }
                             else
@@ -88,7 +88,7 @@ namespace Apollo.Age.Integration.Controllers
                                 LogService.Error(string.Format("User {0} not found or not the requested user ({1})", authModel.Username, user.Username));
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
-                                string doing = "SSO logged in via Agent: " + user.Username + " Result: Fail(User not found).";
+                                string doing = "SSO logged in via Agent: " + user.Username + " - Result: Fail(User not found).";
                                 WritelogLogin(0, 0, 1401, 0, doing);
                             }
                         }
@@ -123,6 +123,9 @@ namespace Apollo.Age.Integration.Controllers
         [AllowAnonymous]
         public void SignOut()
         {
+            string doing = "SSO log out via Agent: " + SessionManager.CurrentSession.Username + " - Result: Successful.";
+            WritelogLogin(SessionManager.CurrentSession.UserId, 0, 1402, 0, doing);
+
             Session.Abandon();
             Response.Cookies.Clear();
             FormsAuthentication.SignOut();
