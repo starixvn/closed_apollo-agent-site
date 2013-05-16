@@ -301,7 +301,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     //// Given Share
     var maxSelected = this.pt.Max;
     currentPt.MaxMaxSpan = this.pt.Upline.Max;
-    currentPt.MinMaxSpan = this.pt.Upline.Min;
+    currentPt.MinMaxSpan = Math.max(this.pt.Upline.Min, this.pt.Min);
     var maxContainer = document.createElement("DIV");
     maxContainer.className = "bet-type-select";
     var maxSpinBox = Fanex.CustSetting.PT_RenderSpinner(maxContainer,
@@ -578,11 +578,12 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
 
     var valueSelected = currentPt.Max;
     var valueContainer = document.createElement("TD");
+    currentPt.MinMaxSpan = Math.max(currentPt.Upline.Min, currentPt.Min);
     valueContainer.className = "share-setting-value";
     trSetting.appendChild(valueContainer);
     var maxSpinBox = Fanex.CustSetting.PT_RenderSpinner(valueContainer,
                     {
-                        minimum: currentPt.Upline.Min,
+                        minimum: currentPt.MinMaxSpan,
                         maximum: currentPt.Upline.Max,
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
@@ -592,13 +593,13 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
     var uplineMaxSpan = document.createElement("SPAN");
-    uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.Upline.Min, currentPt.Upline.Max);
+    uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMaxSpan, currentPt.Upline.Max);
     uplineMaxSpan.className = "upline-agent-share";
     valueContainer.appendChild(uplineMaxSpan);
 
     maxSpinBox.input.onchange = function (event) {
         var currentValue = maxSpinBox.getValue();
-        if (currentValue > currentPt.Upline.Max || currentValue < currentPt.Upline.Min) {
+        if (currentValue > currentPt.Upline.Max || currentValue < currentPt.MinMaxSpan) {
             Fanex.ValidateMessage(this, Language.INVALID_RANGE);
             return;
         }
