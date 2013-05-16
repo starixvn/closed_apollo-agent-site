@@ -3,6 +3,15 @@
 @model IEnumerable<MatchResultModel>
 <table class="tblRpt">
     <thead>
+        @if ((bool)@ViewBag.IsParlay)
+        {
+            <tr>
+                <th class="summary-header" colspan="6">
+                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
+                    <span>@Model.ToList()[0].LeagueName</span>
+                </th>
+            </tr> 
+        }
         <tr class="RptHeader">
             <td style="width: 90px" columnname="kickofftime">
                 @Apollo.Age.Resources.Lang.kickofftime
@@ -37,11 +46,6 @@
             var eventStatus = string.Empty;
             var betStatus = string.Empty;
 
-            var finalHomeScore = 0;
-            var finalAwayScore = 0;
-
-            var homeTeam = string.Empty;
-            var awayTeam = string.Empty;
             List<string> PHome = null;
             List<string> PAway = null;
 
@@ -53,11 +57,6 @@
                 eventStatus = string.Empty;
                 betStatus = string.Empty;
 
-                finalHomeScore = 0;
-                finalAwayScore = 0;
-
-                homeTeam = string.Empty;
-                awayTeam = string.Empty;
                 PHome = new List<string>() { "-", "-", "-", "-" };
                 PAway = new List<string>() { "-", "-", "-", "-" };
 
@@ -65,24 +64,7 @@
                 OTHome = string.Empty;
 
                 betStatus = item.BetStatus;
-                finalHomeScore = item.FinalHomeScore;
-                finalAwayScore = item.FinalAwayScore;
-
-                if (finalHomeScore > finalAwayScore)
-                {
-                    homeTeam = "<b>" + item.HomeTeam + "</b>";
-                    awayTeam = item.AwayTeam;
-                }
-                else if (finalHomeScore < finalAwayScore)
-                {
-                    homeTeam = item.HomeTeam;
-                    awayTeam = "<b>" + item.AwayTeam + "</b>";
-                }
-                else
-                {
-                    homeTeam = item.HomeTeam;
-                    awayTeam = item.AwayTeam;
-                }
+                
                 if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
                 {
 
@@ -106,15 +88,17 @@
 
                     }
                 }
-
-                if (currentLeagueId != item.LeagueId)
+                if (!(bool)@ViewBag.IsParlay)
                 {
-                    currentLeagueId = item.LeagueId;
-            <tr class="league">
-                <td colspan="10">
-                    @item.LeagueName
-                </td>
-            </tr>
+                    if (currentLeagueId != item.LeagueId)
+                    {
+                        currentLeagueId = item.LeagueId;
+                        <tr class="league">
+                            <td colspan="10">
+                                @item.LeagueName
+                            </td>
+                        </tr>
+                    }
                 }
 
             <tr class="c">
@@ -122,7 +106,15 @@
                     @item.KickoffTime
                 </td>
                 <td class="l">
-                    @Html.Raw(homeTeam)
+                    @if (item.FinalHomeScore > item.FinalAwayScore)
+                    {
+                        <b>@Html.Raw(item.HomeTeam)</b>
+                    }
+                    else
+                    {
+                        @Html.Raw(item.HomeTeam)
+                    }
+                    
                 </td>
                 <td>
                     @PHome[0]
@@ -137,7 +129,7 @@
                     @OTHome
                 </td>
                 <td>
-                    @finalHomeScore
+                    @item.FinalHomeScore
                 </td>
                 <td rowspan="2">
                     @item.EventStatusTranslation
@@ -145,7 +137,14 @@
             </tr>
             <tr class="c">
                 <td class="l">
-                    @Html.Raw(awayTeam)
+                    @if (item.FinalHomeScore < item.FinalAwayScore)
+                    {
+                        <b>@Html.Raw(item.AwayTeam)</b>
+                    }
+                    else
+                    {
+                        @Html.Raw(item.AwayTeam)
+                    }
                 </td>
                 <td>
                     @PAway[0]
@@ -160,7 +159,7 @@
                     @OTAway
                 </td>
                 <td>
-                    @finalAwayScore
+                    @item.FinalAwayScore
                 </td>
             </tr>
 

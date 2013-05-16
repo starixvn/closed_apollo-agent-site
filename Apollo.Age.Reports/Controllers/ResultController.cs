@@ -98,7 +98,8 @@ namespace Apollo.Age.Reports.Controllers
                 matchResults = matchResults.OrderBy(match => match.LeagueId);
             }
 
-            string viewName = GetSportName(sportId);
+            string viewName = GetViewName(sportId);
+            ViewBag.IsParlay = false;
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
@@ -112,9 +113,10 @@ namespace Apollo.Age.Reports.Controllers
                 results = results.OrderBy(match => match.LeagueId);
             }
 
-            string sportName = GetSportName(sportId);
+            string sportName = GetViewName(sportId);
 
             ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
+            ViewBag.IsParlay = false;
 
             return View("~/Views/Results/MatchResult.cshtml", results);
         }
@@ -123,17 +125,22 @@ namespace Apollo.Age.Reports.Controllers
         {
             IEnumerable<MatchResultModel> results = _resultService.GetResultByParlay(refNo);
 
+            foreach (var result in results)
+            {
+                result.ViewName = GetViewName(result.SportId);
+            }
+
             if (results != null && results.Any())
             {
                 results = results.OrderBy(match => match.LeagueId);
             }
 
-            ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", SportTypes.OtherSports.ToString());
+            ViewBag.IsParlay = true;
 
-            return View("~/Views/Results/MatchResult.cshtml", results);
+            return View("~/Views/Results/ParlayResult.cshtml", results);
         }
 
-        private string GetSportName(byte sportId)
+        private string GetViewName(byte sportId)
         {
             switch (sportId)
             {
