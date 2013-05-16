@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
@@ -52,15 +55,25 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Dependencies\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RazorEngine, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RazorEngine.3.2.0\lib\net40\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerSettingController.cs" />
@@ -73,6 +86,7 @@
     <Compile Include="Criterias\GetAgentByUsernameCriteria.cs" />
     <Compile Include="Criterias\GetCommissionToMemberCriteria.cs" />
     <Compile Include="Criterias\GetCommissionToAgentCriteria.cs" />
+    <Compile Include="Criterias\GetLogCustSettingCriteria.cs" />
     <Compile Include="Criterias\GetMemberByUsernameCriteria.cs" />
     <Compile Include="Criterias\GetMessageCriteria.cs" />
     <Compile Include="Criterias\GetMemberInfoCriteria.cs" />
@@ -90,13 +104,17 @@
     <Compile Include="Entities\SportSetting.cs" />
     <Compile Include="Models\AgentShareModel.cs" />
     <Compile Include="Models\CustomerCommissionModel.cs" />
+    <Compile Include="Models\BetSettingModel.cs" />
+    <Compile Include="Models\LogRunSpModel.cs" />
     <Compile Include="Models\MemberShareModel.cs" />
     <Compile Include="Repositories\Impl\AccountRepository.cs" />
     <Compile Include="Repositories\Interface\IAccountRepository.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\IAccountService.cs" />
+    <Compile Include="Services\ILogRunSpService.cs" />
     <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\ISportSettingService.cs" />
+    <Compile Include="Services\LogRunSpService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Models\AgentListModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
@@ -123,7 +141,9 @@
       <Name>Apollo.Age</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

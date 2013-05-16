@@ -27,5 +27,11 @@ namespace Apollo.Age.Account.Core
         public const int MAIN_SHAREHOLDER_LEVEL = 1;
 
         public const int SHAREHOLDER_LEVEL = 2;
+
+        public const int LOGACTIONDISCOUNT = 2;
+
+        public const int LOGACTIONBETSETTING = 301;
+
+        public const int LOGACTIONPOSITIONTAKING = 4;        
     }
 }
