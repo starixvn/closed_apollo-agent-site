@@ -163,7 +163,7 @@
     <value>หรือ</value>
   </data>
   <data name="lblYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>ตกลง</value>
   </data>
   <data name="lose" xml:space="preserve">
     <value>แพ้</value>
@@ -307,7 +307,7 @@
     <value>รายละเอียด</value>
   </data>
   <data name="scoreMap" xml:space="preserve">
-    <value>Score Map</value>
+    <value>กระดานผล</value>
   </data>
   <data name="a" xml:space="preserve">
     <value>A</value>

@@ -163,7 +163,7 @@
     <value>或者</value>
   </data>
   <data name="lblYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>是</value>
   </data>
   <data name="lose" xml:space="preserve">
     <value>输</value>
@@ -307,7 +307,7 @@
     <value>详细信息</value>
   </data>
   <data name="scoreMap" xml:space="preserve">
-    <value>Score Map</value>
+    <value>盈利预测图</value>
   </data>
   <data name="a" xml:space="preserve">
     <value>客</value>
