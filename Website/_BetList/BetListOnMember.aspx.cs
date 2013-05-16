@@ -172,11 +172,8 @@ namespace Sunplus.Agent.UI._BetList
                    (int)Apollo.Age.Enumerations.BetStatus.Waiting);
             }
 
-            if (Request["custid"] != null && Request["username"] != null)
-            {
-                int.TryParse(Request["custid"], out custid);
-                username = Request["username"];
-            }
+            int.TryParse(Request["custid"], out custid);
+            username = Request["username"];
 
             var reportService = new ReportService();
             balanceUpDay = reportService.GetBalanceUpDay();

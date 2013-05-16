@@ -226,7 +226,6 @@ namespace Sunplus.Agent.UI._BetList
             {
                 if (Request["leagueName"] != null)
                 {
-                    title =
                     title = string.Format("{0} - {1}", Request["leagueName"].ToUpper(), CacheRef.GetBettype(bettype).ToUpper());
                 }
                 else
@@ -256,7 +255,7 @@ namespace Sunplus.Agent.UI._BetList
 
         public override object ValidateRequest(Hashtable p)
         {
-            if (Request["custid"] != null)
+            if (!string.IsNullOrEmpty(Request["custid"]))
             {
                 if (int.Parse(Request["custid"].ToString()) <= 0)
                 {
@@ -264,7 +263,7 @@ namespace Sunplus.Agent.UI._BetList
                 }
             }
 
-            if (Request["bettype"] != null)
+            if (!string.IsNullOrEmpty(Request["bettype"]))
             {
                 if (int.Parse(Request["bettype"].ToString()) < 0)
                 {
