@@ -664,7 +664,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View Comm Details.
+        ///   Looks up a localized string similar to View Details.
         /// </summary>
         public static string viewCommDetails {
             get {
