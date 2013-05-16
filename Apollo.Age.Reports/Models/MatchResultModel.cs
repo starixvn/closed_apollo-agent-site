@@ -30,6 +30,16 @@ namespace Apollo.Age.Reports.Models
             }
         }
 
+        public string ViewName { get; set; }
+
+        public string SportName
+        {
+            get
+            {
+                return CacheRef.GetSportName(this.SportId);
+            }
+        }
+
         public int MatchId { get; set; }
 
         public string LColor { get; set; }

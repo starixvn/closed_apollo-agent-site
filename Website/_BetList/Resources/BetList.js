@@ -110,8 +110,8 @@ function showCombMP(transid, orderID) {
 function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 	var width = 750,
         height = 350,
-        params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
-        detailTitle = $(target).siblings('.combinationLink').text();
+        params = '?refno=' + refno + '&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
+        detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + _page.refNo + ": " + transid;
 
 	if (parent.ageWnd) {
 		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
@@ -162,7 +162,6 @@ function InitBetList() {
 	InitExcelFunction();
 }
 
-
 function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
 	var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
 	var url = APOLLO.resolveUrl("~/Forecast/ScoreMap?matchIds=" + matchIds +
@@ -208,7 +207,6 @@ if (typeof jQuery != "undefined") {
 		var submit = $(".act-submit");
 		if (viewDetailsLinks.length > 0) {
 			viewDetailsLinks.click(function () {
-				var title = _page.titleViewComm;
 				var fromDate = toDate = type = "";
 
 				if (typeof ($("#fromDate").val()) !== 'undefined') {
@@ -231,6 +229,8 @@ if (typeof jQuery != "undefined") {
                         "&fromdate=" + fromDate +
                         "&toDate=" + toDate +
 						"&type=" + type;
+
+				var title = _page.titleViewComm + " - " + _page.refNo + ": " + transId;
 
 				ajax.Request(url, {
 					asynchronous: true,
