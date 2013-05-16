@@ -199,7 +199,7 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void ProcessRequest(ref Hashtable hash)
         {
-            type = Request["type"];
+            type = GetStringRequest("type", string.Empty).ToLower();
             bettype = GetStringRequest("bettype", string.Empty);
             betTeam = GetStringRequest("betteam", string.Empty);
             matchId = GetIntRequest("matchid", 0);
@@ -208,17 +208,17 @@ namespace Sunplus.Agent.UI._BetList
             live = GetIntRequest("islive", 0);
             isForecast = GetBooleanRequest("isForecast", false);
 
-            if (type.ToLower().Equals("correctscore"))
+            if (type.Equals("correctscore"))
             {
                 title = CacheRef.GetBettype((int)BetTypes.Correct_Score).ToUpper();
                 bettype = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
             }
-            else if (type.ToLower().Equals("mixparlay"))
+            else if (type.Equals("mixparlay"))
             {
                 bettype = Convert.ToString((int)BetTypes.Mix_Parlay);
                 title = CacheRef.GetBettype(bettype).ToUpper();
             }
-            else if (type.ToLower().Equals("combmixparlaybetlist"))
+            else if (type.Equals("combmixparlaybetlist"))
             {
                 bettype = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
                 title = Apollo.Age.Resources.Lang.lblSystemParlay.ToUpper();
