@@ -79,7 +79,7 @@
                  OTAway = string.Empty;
                  OTHome = string.Empty;
 
-                eventStatus = item.EventStatus.ToLower();
+                eventStatus = item.EventStatus;//.ToLower();
 
                 if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
                 {
@@ -88,22 +88,22 @@
                 else if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
                 {
                     finalHomeScore = finalAwayScore = @Apollo.Age.Resources.Lang.lblNA;
-                    firstHalfHomeScore = item.HalfTimeHomeScore.ToString();
-                    firstHalfAwayScore = item.HalfTimeAwayScore.ToString();
+                    firstHalfHomeScore = item.HalfTimeHomeScore == null ? "-" : item.HalfTimeHomeScore.ToString();
+                    firstHalfAwayScore = item.HalfTimeAwayScore == null ? "-" : item.HalfTimeAwayScore.ToString();
                 }
                 else if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND_HT)
                 {
-                    finalHomeScore = item.FinalHomeScore.ToString();
-                    finalAwayScore = item.FinalAwayScore.ToString();
+                    finalHomeScore = item.FinalHomeScore == null ? "-" : item.FinalHomeScore.ToString();
+                    finalAwayScore = item.FinalAwayScore == null ? "-" : item.FinalAwayScore.ToString();
                     firstHalfHomeScore = firstHalfAwayScore = @Apollo.Age.Resources.Lang.lblNA;
 
                 }
                 else
                 {
-                    finalHomeScore = item.FinalHomeScore.ToString();
-                    finalAwayScore = item.FinalAwayScore.ToString();
-                    firstHalfHomeScore = item.HalfTimeHomeScore.ToString();
-                    firstHalfAwayScore = item.HalfTimeAwayScore.ToString();
+                    firstHalfHomeScore = item.HalfTimeHomeScore == null ? "-" : item.HalfTimeHomeScore.ToString();
+                    firstHalfAwayScore = item.HalfTimeAwayScore == null ? "-" : item.HalfTimeAwayScore.ToString();
+                    finalHomeScore = item.FinalHomeScore == null ? "-" : item.FinalHomeScore.ToString();
+                    finalAwayScore = item.FinalAwayScore == null ? "-" : item.FinalAwayScore.ToString();
                 }
 
                 if (eventStatus != Apollo.Age.Reports.Core.Constants.REFUND_FT)
@@ -173,7 +173,14 @@
                     @homeSet[3]
                 </td>
                 <td>
-                    @OTHome
+                    @if(string.IsNullOrWhiteSpace(OTHome))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @OTHome
+                    }
                 </td>
                 <td>
                     @firstHalfHomeScore
@@ -209,7 +216,14 @@
                     @awaySet[3]
                 </td>
                 <td>
-                    @OTAway
+                    @if (string.IsNullOrWhiteSpace(OTAway))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @OTAway
+                    }
                 </td>
                 <td>
                     @firstHalfAwayScore

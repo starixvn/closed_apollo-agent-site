@@ -139,10 +139,24 @@
                     @homeSets[4]
                 </td>
                 <td>
-                    @totalPointHome
+                    @if(string.IsNullOrWhiteSpace(totalPointHome))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @totalPointHome
+                    }
                 </td>
                 <td>
-                    @item.FinalHomeScore
+                    @if(item.FinalHomeScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalHomeScore
+                    }
                 </td>
                 <td rowspan="2">
                     @item.EventStatusTranslation
@@ -175,10 +189,24 @@
                     @awaySets[4]
                 </td>
                 <td>
-                    @totalPointAway
+                    @if (string.IsNullOrWhiteSpace(totalPointAway))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @totalPointAway
+                    }
                 </td>
                 <td>
-                    @item.FinalAwayScore
+                    @if (item.FinalAwayScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalAwayScore
+                    }
                 </td>
             </tr>
 
