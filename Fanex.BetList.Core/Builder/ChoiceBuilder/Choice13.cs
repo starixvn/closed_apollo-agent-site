@@ -10,10 +10,9 @@
 
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
-    using System.Linq;
-    using Fanex.BetList.Core.App_GlobalResources;
-    using Fanex.BetList.Core.Entities;
     using System.Collections.Generic;
+    using System.Linq;
+    using Fanex.BetList.Core.Entities;
 
     /// <summary>
     /// Clean Sheet
@@ -33,16 +32,16 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
             string team = ticket.BetTeam != null && ticket.BetTeam.Contains("h") ? this.Template.homeTeam : awayName;
-            string yesNo = ticket.BetTeam.Contains('y') ? CoreBetList.lblYes : CoreBetList.lblNo;
+            string yesNo = ticket.BetTeam.Contains('y') ? Apollo.Age.Resources.BetList.lblYes : Apollo.Age.Resources.BetList.lblNo;
             this.Template.betTeam = string.Join(
                                                     null,
-                                                    new string[] 
-                                                    { 
-                                                        team, 
-                                                        " <span class=\"",                                                                                                 BL_FAVORITE, 
-                                                        "\">", 
-                                                        yesNo.ToUpper(), 
-                                                        "</span>" 
+                                                    new string[]
+                                                    {
+                                                        team,
+                                                        " <span class=\"",                                                                                                 BL_FAVORITE,
+                                                        "\">",
+                                                        yesNo.ToUpper(),
+                                                        "</span>"
                                                     }
                                                );
 

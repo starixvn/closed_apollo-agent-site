@@ -12,13 +12,13 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
     ///      Set x Games y & y+1 Winner
     /// </summary>
-    public class Choice1333 :Choice1
+    public class Choice1333 : Choice1
     {
         /// <summary>
         /// Builds the choice.
@@ -36,8 +36,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
-            this.Template.betTeam = team1 ? this.Template.homeTeam : team2 ? awayName : CoreLang.lblNeither;
-            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);   
+            this.Template.betTeam = team1 ? this.Template.homeTeam : team2 ? awayName : Apollo.Age.Resources.Lang.lblNeither;
+            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }
     }
 }

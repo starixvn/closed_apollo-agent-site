@@ -17,6 +17,8 @@ namespace Apollo.Age.Forecast.Criterias
     {
         public string MatchIds { get; set; }
 
+        public int LoggedId { get; set; }
+
         public int AgentId { get; set; }
 
         [SpParam(SqlParamName = "bettypes_live")]

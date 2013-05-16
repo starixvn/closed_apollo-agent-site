@@ -1509,6 +1509,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collapse.
+        /// </summary>
+        public static string Collapse {
+            get {
+                return ResourceManager.GetString("Collapse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comm.
         /// </summary>
         public static string com {
@@ -2855,6 +2864,15 @@ namespace Apollo.Age.Resources {
         public static string exitCSConfirmMsg {
             get {
                 return ResourceManager.GetString("exitCSConfirmMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand.
+        /// </summary>
+        public static string Expand {
+            get {
+                return ResourceManager.GetString("Expand", resourceCulture);
             }
         }
         
@@ -12405,11 +12423,20 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Under Maintenance.
+        /// </summary>
+        public static string UnderMaintenance {
+            get {
+                return ResourceManager.GetString("UnderMaintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We are having server maintenance, website will be unavailable from {0} until {1}. Sorry for the inconveniences caused!.
         /// </summary>
-        public static string undermaintenance {
+        public static string UnderMaintenanceMsg {
             get {
-                return ResourceManager.GetString("undermaintenance", resourceCulture);
+                return ResourceManager.GetString("UnderMaintenanceMsg", resourceCulture);
             }
         }
         

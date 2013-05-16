@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -27,15 +27,15 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
-            base.BuildChoice(ticket, ticketHelper, ticketData);            
+            base.BuildChoice(ticket, ticketHelper, ticketData);
 
             this.Template.betTeam = string.Join(
-                                                    null, 
-                                                    new string[] 
-                                                    { 
-                                                        CoreBetList.ht, 
-                                                        ".", 
-                                                        ticket.BetTeam.ToUpper() 
+                                                    null,
+                                                    new string[]
+                                                    {
+                                                        Apollo.Age.Resources.BetList.ht,
+                                                        ".",
+                                                        ticket.BetTeam.ToUpper()
                                                     }
                                                );
 

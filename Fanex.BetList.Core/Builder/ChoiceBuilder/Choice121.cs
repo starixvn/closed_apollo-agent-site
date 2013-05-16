@@ -14,7 +14,6 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -35,7 +34,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             string homeName = ticketHelper.GetTeamNameById(ticket.HomeId);
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
-            this.Template.betTeam = betHomeTeam ? CoreLang.lblDraw : awayName;
+            this.Template.betTeam = betHomeTeam ? Apollo.Age.Resources.Lang.lblDraw : awayName;
             this.Template.betTeamClassName = betHomeTeam ? (ticket.Handicap2 >= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE) : (ticket.Handicap2 <= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE);
             this.Template.Handicap.handicap = null;
 

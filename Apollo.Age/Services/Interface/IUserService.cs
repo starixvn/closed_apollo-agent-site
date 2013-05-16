@@ -24,10 +24,12 @@ namespace Apollo.Age.Services.Interface
         /// <summary>
         /// Validates a username and password against credentials stored in NAP database
         /// </summary>
-        bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria);
+        bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int AdminId);
 
         bool IsKickOut(int agentId, int agentUserId);
 
         bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType);
+
+        void WriteLogInternalLogin(int AgentId, int AgentUserId, int ServerId, int ActionId, string Doing, string LoginIp, string DomainName, string BrowserName, string Platform, string CountryCode);
     }
 }

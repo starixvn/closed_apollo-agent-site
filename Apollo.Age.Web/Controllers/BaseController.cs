@@ -29,6 +29,7 @@ namespace Apollo.Age.Web
     public class BaseController : Controller
     {
         private readonly IUserService _userService;
+        private static readonly CultureInfo usCulture = CultureInfo.CreateSpecificCulture("en-US");
 
         public BaseController()
         {
@@ -52,10 +53,19 @@ namespace Apollo.Age.Web
 
             if (CurrentSession != null)
             {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(CurrentSession.Language);
+                SetCulture(CurrentSession.Language);
             }
 
             base.OnActionExecuting(filterContext);
+        }
+
+        private void SetCulture(string language)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = usCulture.DateTimeFormat;
+            Thread.CurrentThread.CurrentCulture.NumberFormat = usCulture.NumberFormat;
         }
 
         #region Auth
@@ -64,7 +74,7 @@ namespace Apollo.Age.Web
         {
             if (!Request.IsAuthenticated || CurrentSession == null)
             {
-                Response.Redirect(WebConstants.UnauthorizedUrl);
+                Response.Redirect(ApoURLs.URLs.Unauthorized);
             }
         }
 
@@ -82,7 +92,7 @@ namespace Apollo.Age.Web
                 if (Request.IsAjaxRequest())
                 {
                     Response.Buffer = true;
-                    Response.StatusCode = WebConstants.UN_AUTHORIZED_CODE;
+                    Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                     Response.Write(GetResourceData("lblAccountWasStopped"));
                     Response.Flush();
                     Response.Close();
@@ -90,7 +100,7 @@ namespace Apollo.Age.Web
                 }
                 else
                 {
-                    Response.Redirect(WebConstants.AccountStoppedUrl);
+                    Response.Redirect(ApoURLs.URLs.AccountStopped);
                 }
             }
         }

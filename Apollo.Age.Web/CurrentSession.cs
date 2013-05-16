@@ -11,7 +11,6 @@ namespace Apollo.Age.Web
 {
     using System;
     using System.Runtime.Serialization;
-    using System.Web;
     using Apollo.Age.Entities;
 
     /// <summary>
@@ -21,7 +20,7 @@ namespace Apollo.Age.Web
     [Serializable]
     public class CurrentSession : ICurrentSession, ISerializable
     {
-        public CurrentSession(User user, bool isInternalSignIn = false, string language = "en-US")
+        public CurrentSession(User user, int adminId = 0, string adminName = "", bool isInternalSignIn = false, string language = "en-US")
         {
             AgentId = user.Agent.Id;
             AgentLevel = user.Agent.Level;
@@ -33,6 +32,8 @@ namespace Apollo.Age.Web
             Language = language;
             CurrencyId = user.Agent.Currency;
             IsInternalSignIn = isInternalSignIn;
+            AdminId = adminId;
+            AdminName = adminName;
         }
 
         public CurrentSession(SerializationInfo info, StreamingContext context)
@@ -51,6 +52,8 @@ namespace Apollo.Age.Web
             DoubleCommLosing = info.GetBoolean("DoubleCommLosing");
             Language = info.GetString("Language");
             IsInternalSignIn = info.GetBoolean("IsInternalSignIn");
+            AdminId = info.GetInt32("AdminId");
+            AdminName = info.GetString("AdminName");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -69,6 +72,8 @@ namespace Apollo.Age.Web
             info.AddValue("DoubleCommLosing", DoubleCommLosing);
             info.AddValue("Language", Language);
             info.AddValue("IsInternalSignIn", IsInternalSignIn);
+            info.AddValue("AdminId", AdminId);
+            info.AddValue("AdminName", AdminName);
         }
 
         public int AgentId { get; set; }
@@ -96,17 +101,20 @@ namespace Apollo.Age.Web
 
         public bool DoubleCommLosing { get; set; }
 
-        public string Language { get; set; }
+        public string Language { get; set; }      
 
-        /// <summary>
-        /// if true: indicates admin user can view VN ip.
-        /// </summary>
-        public bool IsAdminCanViewVNIP
+        public bool IsInternalSignIn { get; set; }
+
+        public int AdminId
         {
             get;
             set;
         }
 
-        public bool IsInternalSignIn { get; set; }
+        public string AdminName
+        {
+            get;
+            set;
+        }
     }
 }

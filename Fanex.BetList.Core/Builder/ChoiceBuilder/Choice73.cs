@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -37,10 +37,10 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.home_firstGoal_lastGoal = null;
             this.Template.awayTeam = null;
             this.Template.away_firstGoal_lastGoal = null;
-            this.Template.LeagueName.leagueName = null;  
+            this.Template.LeagueName.leagueName = null;
 
-            this.Template.betTeam = CoreBetList.bingo;
-            this.Template.betTeamClassName = BL_FAVORITE;                     
+            this.Template.betTeam = Apollo.Age.Resources.BetList.bingo;
+            this.Template.betTeamClassName = BL_FAVORITE;
         }
     }
 }

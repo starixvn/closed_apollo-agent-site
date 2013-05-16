@@ -7,6 +7,7 @@
 //   <change who="Anders" date="2013.5.1">Created</change>
 //   <change who="Anders.Le" date="2013.5.7">Refactor GetCode action</change>
 //   <change who="Anders.Le" date="2013.5.9">Add log</change>
+//   <change who="Anders.Le" date="2013.5.15">Change error message log</change>
 // </history>
 
 namespace Apollo.Age.Integration.Controllers
@@ -37,7 +38,6 @@ namespace Apollo.Age.Integration.Controllers
             _authService = authService ?? new AuthenticationService();
             _userService = userService ?? new UserService();
         }
-             
 
         [AllowAnonymous]
         public ViewResult Index(string user_id, string lang)
@@ -73,13 +73,13 @@ namespace Apollo.Age.Integration.Controllers
                             if (user != null && user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
                             {
                                 authModel.ErrorCode = string.Empty;
-                                ICurrentSession currentSession = new CurrentSession(user, false, language);
+                                ICurrentSession currentSession = new CurrentSession(user, 0, string.Empty ,false, language);
                                 SessionManager.CurrentSession = currentSession;
                                 FormsAuthentication.SetAuthCookie(user.Username, true);
                             }
                             else
                             {
-                                LogService.Error(string.Format("User {0} not found or authenticated user {0} and sso user {1} are not the same", authModel.Username, user.Username));
+                                LogService.Error(string.Format("User {0} not found or not the requested user ({1})", authModel.Username, user.Username));
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
                             }
                         }

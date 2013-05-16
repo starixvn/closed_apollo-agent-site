@@ -2638,7 +2638,7 @@
   <data name="withPictures" xml:space="preserve">
     <value>賽果含圖片</value>
   </data>
-  <data name="undermaintenance" xml:space="preserve">
+  <data name="UnderMaintenanceMsg" xml:space="preserve">
     <value>我們正在服務器維護，網站將被從（0）至（1）無法使用。不便之處，敬請原諒！</value>
   </data>
   <data name="lblHrFOdds" xml:space="preserve">
@@ -4124,5 +4124,368 @@
   </data>
   <data name="shareSettingInstruction" xml:space="preserve">
     <value>Share Setting Instructions</value>
+  </data>
+  <data name="lblPhone2" xml:space="preserve">
+    <value>(63) 91542 22222</value>
+  </data>
+  <data name="lblPhone1" xml:space="preserve">
+    <value>(63) 99917 88888</value>
+  </data>
+  <data name="minBetShouldBeLessThanOrEqualToMaxPerBall" xml:space="preserve">
+    <value>{0} - 最小下注金額應該小於或等於每一球最大下注額</value>
+  </data>
+  <data name="EntityDoesNotExistTpl" xml:space="preserve">
+    <value>{0} 不存在</value>
+  </data>
+  <data name="NameExistedTpl" xml:space="preserve">
+    <value>{0}' 存在</value>
+  </data>
+  <data name="FieldIsRequiredTpl" xml:space="preserve">
+    <value>{0}' 為必需</value>
+  </data>
+  <data name="lblWarningEditSetting" xml:space="preserve">
+    <value>※警告: 在簡單的模式下, 您足球設定的改變將運用於所有運動類型及下注類型</value>
+  </data>
+  <data name="lblAccountSetting" xml:space="preserve">
+    <value>帳戶設定</value>
+  </data>
+  <data name="Actual" xml:space="preserve">
+    <value>實際</value>
+  </data>
+  <data name="AddNewExchangeRate" xml:space="preserve">
+    <value>增加新的匯率</value>
+  </data>
+  <data name="lblAdmin" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="lblAdvancedMode" xml:space="preserve">
+    <value>進階模式</value>
+  </data>
+  <data name="lblAgent" xml:space="preserve">
+    <value>代理商</value>
+  </data>
+  <data name="lblFormatAgentSetting" xml:space="preserve">
+    <value>代理商 {0} 設定</value>
+  </data>
+  <data name="AgentCommission" xml:space="preserve">
+    <value>代理商佣金 (%)</value>
+  </data>
+  <data name="lblagentCommission" xml:space="preserve">
+    <value>代理商佣金 (%)</value>
+  </data>
+  <data name="lblAgentListOf" xml:space="preserve">
+    <value>代理商的名單</value>
+  </data>
+  <data name="lblAgentListTitle" xml:space="preserve">
+    <value>代理商名單:</value>
+  </data>
+  <data name="lblAgentShare" xml:space="preserve">
+    <value>代理商占成數</value>
+  </data>
+  <data name="AgentWinLossInstructions" xml:space="preserve">
+    <value>代理商輸贏說明</value>
+  </data>
+  <data name="lblAgents" xml:space="preserve">
+    <value>代理商</value>
+  </data>
+  <data name="BaseRate" xml:space="preserve">
+    <value>基本利率</value>
+  </data>
+  <data name="betlimit" xml:space="preserve">
+    <value>下注限制</value>
+  </data>
+  <data name="BetSettingInstructions" xml:space="preserve">
+    <value>下注設定說明</value>
+  </data>
+  <data name="betstatus" xml:space="preserve">
+    <value>下注狀態</value>
+  </data>
+  <data name="CaptchaInstruction" xml:space="preserve">
+    <value>點選刷新頁面得到新畫面</value>
+  </data>
+  <data name="ClickToViewInstructions" xml:space="preserve">
+    <value>點選瀏覽說明</value>
+  </data>
+  <data name="lblCommissionGroup" xml:space="preserve">
+    <value>佣金群組</value>
+  </data>
+  <data name="lblCommissionSetting" xml:space="preserve">
+    <value>佣金設定</value>
+  </data>
+  <data name="CommissionSettingInstructions" xml:space="preserve">
+    <value>佣金設定說明</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>繼續</value>
+  </data>
+  <data name="lblCustomerOf" xml:space="preserve">
+    <value>客戶名單</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>敘述</value>
+  </data>
+  <data name="lblDetails" xml:space="preserve">
+    <value>細項</value>
+  </data>
+  <data name="lblEditPositionTalking" xml:space="preserve">
+    <value>編輯占成數</value>
+  </data>
+  <data name="lblEditSetting" xml:space="preserve">
+    <value>編輯設定</value>
+  </data>
+  <data name="ExchangeRate" xml:space="preserve">
+    <value>匯率</value>
+  </data>
+  <data name="lblExchangeRate" xml:space="preserve">
+    <value>匯率</value>
+  </data>
+  <data name="Exchange_Rate" xml:space="preserve">
+    <value>匯率</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>預測</value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>產能</value>
+  </data>
+  <data name="givenshare" xml:space="preserve">
+    <value>給予占成數</value>
+  </data>
+  <data name="lblGivenShare" xml:space="preserve">
+    <value>給予占成數 (%)</value>
+  </data>
+  <data name="GrossTotal" xml:space="preserve">
+    <value>總毛利</value>
+  </data>
+  <data name="hdpLive" xml:space="preserve">
+    <value>讓球滾球</value>
+  </data>
+  <data name="lblHost" xml:space="preserve">
+    <value>主機</value>
+  </data>
+  <data name="lblHotLine" xml:space="preserve">
+    <value>熱線:</value>
+  </data>
+  <data name="lblInvalidGroupCommissionRange" xml:space="preserve">
+    <value>無效群組佣金範圍</value>
+  </data>
+  <data name="locked" xml:space="preserve">
+    <value>上鎖</value>
+  </data>
+  <data name="AgentLevel3" xml:space="preserve">
+    <value>主要代理商</value>
+  </data>
+  <data name="AgentLevel1" xml:space="preserve">
+    <value>主要股東</value>
+  </data>
+  <data name="lblMainShareHolder" xml:space="preserve">
+    <value>主要股東</value>
+  </data>
+  <data name="lblMatchResult" xml:space="preserve">
+    <value>比對結果</value>
+  </data>
+  <data name="lblMaxGivenShare" xml:space="preserve">
+    <value>最大給予占成數 (%)</value>
+  </data>
+  <data name="MaxGivenShare" xml:space="preserve">
+    <value>最大給予占成數 (%)</value>
+  </data>
+  <data name="lblMaxTakenShare" xml:space="preserve">
+    <value>最大獲得占成數 (%)</value>
+  </data>
+  <data name="lblMember" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="memberCommission" xml:space="preserve">
+    <value>會員佣金 (%)</value>
+  </data>
+  <data name="lblMemberCommissionPercent" xml:space="preserve">
+    <value>會員佣金 (%)</value>
+  </data>
+  <data name="lblPlayerList" xml:space="preserve">
+    <value>會員名單</value>
+  </data>
+  <data name="lblMemberListOf" xml:space="preserve">
+    <value>會員的名單</value>
+  </data>
+  <data name="lblMembers" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="MessageHistory" xml:space="preserve">
+    <value>歷史訊息</value>
+  </data>
+  <data name="MinBet" xml:space="preserve">
+    <value>最小下注</value>
+  </data>
+  <data name="MinBetLive" xml:space="preserve">
+    <value>現場最小下注</value>
+  </data>
+  <data name="lblMinGivenShare" xml:space="preserve">
+    <value>最小給予占成數 (%)</value>
+  </data>
+  <data name="MinGivenShare" xml:space="preserve">
+    <value>最小給予占成數 (%)</value>
+  </data>
+  <data name="MultipliedBy" xml:space="preserve">
+    <value>乘以</value>
+  </data>
+  <data name="lblViewAllSetting" xml:space="preserve">
+    <value>我的設定</value>
+  </data>
+  <data name="lblNA" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="ovLive" xml:space="preserve">
+    <value>大/小 滾球</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="lblParentname" xml:space="preserve">
+    <value>直接上線</value>
+  </data>
+  <data name="lblRead" xml:space="preserve">
+    <value>讀取</value>
+  </data>
+  <data name="lblShadowList" xml:space="preserve">
+    <value>分身名單</value>
+  </data>
+  <data name="lblShadowManagement" xml:space="preserve">
+    <value>分身管理</value>
+  </data>
+  <data name="lblShadowName" xml:space="preserve">
+    <value>分身名稱</value>
+  </data>
+  <data name="ShareAmount" xml:space="preserve">
+    <value>占成數量</value>
+  </data>
+  <data name="sharesetting" xml:space="preserve">
+    <value>占成設定</value>
+  </data>
+  <data name="lblShareSetting" xml:space="preserve">
+    <value>占成設定</value>
+  </data>
+  <data name="lblShareSettingSimpleMode" xml:space="preserve">
+    <value>占成設定 (足球 死球 讓球)</value>
+  </data>
+  <data name="ShareTakenOnMember" xml:space="preserve">
+    <value>會員獲得占成數 (%)</value>
+  </data>
+  <data name="AgentLevel2" xml:space="preserve">
+    <value>股東</value>
+  </data>
+  <data name="txtShowUpline" xml:space="preserve">
+    <value>顯示上線</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="SignInAsAgent" xml:space="preserve">
+    <value>以代理人登入</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="lblSimpleModel" xml:space="preserve">
+    <value>簡單模式</value>
+  </data>
+  <data name="soccerdeadballhdpgivenshare" xml:space="preserve">
+    <value>足球 死球 讓球 給予占成數 (%)</value>
+  </data>
+  <data name="soccerdeadballhdptakenshare" xml:space="preserve">
+    <value>足球 死球 讓球 獲得占成數(%)</value>
+  </data>
+  <data name="soccerdeadballhdp" xml:space="preserve">
+    <value>足球 死球 讓球(%)</value>
+  </data>
+  <data name="lblSoccerPT" xml:space="preserve">
+    <value>足球占成數 (%)</value>
+  </data>
+  <data name="SportType" xml:space="preserve">
+    <value>運動類型</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>運動</value>
+  </data>
+  <data name="stopped" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="AgentLevel0" xml:space="preserve">
+    <value>Super</value>
+  </data>
+  <data name="takenshare" xml:space="preserve">
+    <value>獲得占成數</value>
+  </data>
+  <data name="TakenShareText" xml:space="preserve">
+    <value>獲得占成數 (%)</value>
+  </data>
+  <data name="lblTakenShare" xml:space="preserve">
+    <value>獲得占成數 (%)</value>
+  </data>
+  <data name="transaction" xml:space="preserve">
+    <value>交易</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>未經授權</value>
+  </data>
+  <data name="UplineTotal" xml:space="preserve">
+    <value>總上線</value>
+  </data>
+  <data name="lblUser" xml:space="preserve">
+    <value>使用者</value>
+  </data>
+  <data name="lblUserManagement" xml:space="preserve">
+    <value>使用者管理</value>
+  </data>
+  <data name="lblUsername" xml:space="preserve">
+    <value>使用者姓名</value>
+  </data>
+  <data name="lblViewAgentDownline" xml:space="preserve">
+    <value>瀏覽代理人下線</value>
+  </data>
+  <data name="ViewBetList" xml:space="preserve">
+    <value>瀏覽下注清單</value>
+  </data>
+  <data name="ViewCommission" xml:space="preserve">
+    <value>瀏覽退水</value>
+  </data>
+  <data name="ViewForeCast" xml:space="preserve">
+    <value>瀏覽預測</value>
+  </data>
+  <data name="txtViewFullPath" xml:space="preserve">
+    <value>瀏覽完整路徑</value>
+  </data>
+  <data name="lblViewMember" xml:space="preserve">
+    <value>瀏覽會員</value>
+  </data>
+  <data name="lblViewBetlist" xml:space="preserve">
+    <value>瀏覽會員的下注清單</value>
+  </data>
+  <data name="lblViewMemberOutstanding" xml:space="preserve">
+    <value>瀏覽會員的未付帳款</value>
+  </data>
+  <data name="lblViewSetting" xml:space="preserve">
+    <value>瀏覽設定</value>
+  </data>
+  <data name="ViewShare" xml:space="preserve">
+    <value>瀏覽占成數</value>
+  </data>
+  <data name="ViewSportsbook" xml:space="preserve">
+    <value>瀏覽體育博彩</value>
+  </data>
+  <data name="lblWebHostLogin" xml:space="preserve">
+    <value>網路主機登入</value>
+  </data>
+  <data name="IncorrectCaptchaMsg" xml:space="preserve">
+    <value>您輸入錯誤的識別碼</value>
+  </data>
+  <data name="lblAccountWasStopped" xml:space="preserve">
+    <value>您的帳號被停止了!</value>
+  </data>
+  <data name="UnauthorizedMsg" xml:space="preserve">
+    <value>您的連線已被終止或者尚未授權</value>
+  </data>
+  <data name="UnderMaintenance" xml:space="preserve">
+    <value>Under Maintenance</value>
   </data>
 </root>

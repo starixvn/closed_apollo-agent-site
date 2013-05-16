@@ -23,6 +23,7 @@ namespace Apollo.Age.Forecast.Controllers
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Web;
     using System.Web.SessionState;
+    using Apollo.Age.Forecast.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -63,6 +64,14 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.BetType = betType;
             ViewBag.LeagueName = leagueName;
             ViewBag.LeagueId = leagueId;
+            if (matchId == null)
+            {
+                if (leagueId == 0 && leagues != null && leagues.Any())
+                {
+                    leagueId = leagues.ElementAt(0).LeagueId;
+                }
+                ViewBag.FC1X2List = _forecastService.GetForecast1x2(currentAgentId, this.CurrentSession.AgentId, leagueId);
+            }
             return View();
         }
 
@@ -79,11 +88,11 @@ namespace Apollo.Age.Forecast.Controllers
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
             if (matchId != null && matchId.Value > 0)
             {
-                forecasts = _forecastService.GetForecast1X2Matches(currentAgentId, matchId.Value, betType);
+                forecasts = _forecastService.GetForecast1X2Matches(currentAgentId, this.CurrentSession.AgentId, matchId.Value, betType);
             }
             else
             {
-                forecasts = _forecastService.GetForecast1x2(currentAgentId, leagueId.Value);
+                forecasts = _forecastService.GetForecast1x2(currentAgentId, this.CurrentSession.AgentId, leagueId.Value);
             }
             return View(forecasts);
         }
@@ -103,6 +112,11 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.LeagueId = leagueId;
             ViewBag.Leagues = leagues;
             ViewBag.LeagueName = leagueName;
+            if (leagueId == 0 && leagues != null && leagues.Any())
+            {
+                leagueId = leagues.ElementAt(0).LeagueId;
+            }
+            ViewBag.FCHDPList = _forecastService.GetForecastHandicapOverUnder(currentAgentId, base.CurrentSession.AgentId, leagueId);
             return View();
         }
 
@@ -113,8 +127,8 @@ namespace Apollo.Age.Forecast.Controllers
         /// <returns></returns>
         public ActionResult FCHandicapOverUnderMatches(int leagueId, int mainShareHolderId = 0)
         {
-            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            var forecasts = _forecastService.GetForecastHandicapOverUnder(currentAgentId, leagueId);
+            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : base.CurrentSession.AgentId;
+            var forecasts = _forecastService.GetForecastHandicapOverUnder(currentAgentId,base.CurrentSession.AgentId,  leagueId);
             return View(forecasts);
         }
 
@@ -136,7 +150,7 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.MatchId = matchId;
             ViewBag.CurrentScore = currentScore;
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            return View(_forecastService.GetForecastMatcheValue(currentAgentId, matchId, betType, currentScore));
+            return View(_forecastService.GetForecastMatcheValue(currentAgentId,this.CurrentSession.AgentId, matchId, betType, currentScore));
         }
 
         /// <summary>
@@ -168,13 +182,22 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        public ViewResult ScoreMap(string matchIds = "", int liveBetTypes = 0, int deadBallBetTypes = 0, int mainShareHolderId = 0)
+        public ViewResult ScoreMap(string matchIds = "", int liveBetTypes = 0, int deadBallBetTypes = 0, int mainShareHolderId = 0, int custId = 0)
         {
             if (!string.IsNullOrEmpty(matchIds))
             {
                 ViewBag.MatchIds = matchIds;
                 ViewBag.LiveBetTypes = _forecastService.GetAllBetTypeFromBetType(liveBetTypes, true);
                 ViewBag.DeadBallBetTypes = _forecastService.GetAllBetTypeFromBetType(deadBallBetTypes, false);
+
+                if (this.CurrentSession.IsSuper && mainShareHolderId == 0 && custId != 0)
+                {
+                    mainShareHolderId = _forecastService.GetMainShareHolderByMember(
+                        new GetMainShareHolderByMemberCriteria{
+                            CustId = custId
+                        });
+                }
+
                 ViewBag.CurrentMainShareHolderId = mainShareHolderId;
             }
             else
@@ -232,7 +255,7 @@ namespace Apollo.Age.Forecast.Controllers
         public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes, int mainShareHolderId = 0)
         {
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            return View(_forecastService.GetScoreMapResults(currentAgentId, matchIds, liveBetTypes, deadBallBetTypes));
+            return View(_forecastService.GetScoreMapResults(currentAgentId,this.CurrentSession.AgentId, matchIds, liveBetTypes, deadBallBetTypes));
         }
 
         #endregion Score Map

@@ -15,7 +15,6 @@ var MEMBERLIST = function ($) {
             MEMBERLIST.loadMemberList();
             MEMBERLIST.bindingNavigation();
             MEMBERLIST.bindingQuickLinkEditSetting(MEMBERLIST.AgentId, MEMBERLIST.AgentLevel, MEMBERLIST.Username);
-
         },
         bindingQuickLinkEditSetting: function (agentId, agentLevel, username) {
             var $quickLinkEditSetting = $("#quickLinkEditSetting");
@@ -36,18 +35,18 @@ var MEMBERLIST = function ($) {
             $quickLinkEditSetting.attr("username", username);
         },
         bindingNavigation: function () {
-            $("[name='navigation']").unbind('click').bind('click', function () {
+            $("[name='navigation']").on('click', function () {
                 location.href = APOLLO.resolveUrl("Account/Agentlist?agentid=" + $(this).attr('agentId'));
                 return false;
             });
         },
         bindingQuickLink: function () {
-            $("#quickLinkAgentList").unbind('click').bind('click', function () {
+            $("#quickLinkAgentList").on('click', function () {
                 location.href = APOLLO.resolveUrl("Account/AgentList?agentid=" + MEMBERLIST.AgentId);
             });
         },
         bindingSearch: function () {
-            $("#Search").unbind('click').bind('click', function () {
+            $("#Search").on('click', function () {
                 MEMBERLIST.loadMemberList(MEMBERLIST.AgentId);
             });
         },
@@ -65,10 +64,10 @@ var MEMBERLIST = function ($) {
             });
         },
         bindingEdit: function () {
-            $("[name='Edit']").unbind('click').bind('click', function () {
+            $("[name='Edit']").on('click', function () {
                 MEMBERLIST.editCustomerSetting($(this));
             });
-            $("#quickLinkEditSetting").unbind('click').bind('click', function () {
+            $("#quickLinkEditSetting").on('click', function () {
                 // Edit Agent
                 var $this = $(this);
                 var url = APOLLO.resolveUrl("CustomerSetting/EditAgentSetting?agentId=" + $this.attr("agentId")
@@ -88,7 +87,7 @@ var MEMBERLIST = function ($) {
                 url: APOLLO.resolveUrl("Account/GetMemberList"),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: $("#txtUserName").val().trim() == BASELANGUAGES.EnterUsername ? "" : $("#txtUserName").val().trim() }),
+                data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: APOLLO.htmlDecode($("#txtUserName").val().trim()) == APOLLO.htmlDecode(BASELANGUAGES.EnterUsername) ? "" : APOLLO.htmlDecode($("#txtUserName").val().trim()) }),
                 timeout: 120000
             })
                 .done(function (result) {
@@ -105,6 +104,7 @@ var MEMBERLIST = function ($) {
                 APOLLO.closeDialog(MEMBERLIST.currentPopUp);
             }
         },
+        
         initMemberList: function (memberList) {
             var icon = "icon-th-large";
             var tooltip = LANGUAGES.ViewSetting;
@@ -118,29 +118,7 @@ var MEMBERLIST = function ($) {
             var counter = (memberList.CurrentPage * memberList.ItemsPerPage);
             for (var i = 0; i < rowLength; i++) {
                 var current = memberList.ListData[i];
-
-                var status = current.Status; // 1 : active, 2: stop, 3: lock, 4. c.lock
-                if (current.Status == 2) {
-                    status = current.Status; // Stop
-                }
-                else if (current.Status == 1 && current.UplineStatus == 2) {
-                    status = 4; // C.lock
-                }
-                else if (current.Status == 1 && current.UplineStatus == 1) {
-                    status = 1; //active
-                }
-                else if (current.Status == 3) {
-                    if (current.UplineStatus == 2) {
-                        status = 4; //C.lock
-                    }
-                    else {
-                        status = 3;
-                    }
-
-                }
-                else {
-                    status = 1;
-                }
+                
                 counter++;
                 bodyData.push({
                     Columns:
@@ -148,7 +126,7 @@ var MEMBERLIST = function ($) {
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
-                            { Name: "Status", Value: status },
+                            { Name: "Status", Value: current },
                             { Name: "BetStatus", Value: current.BetStatus },
                             { Name: "UserGroup", Value: current.UserGroup },
                             { Name: "AgentGroup", Value: current.AgentGroup * 100 },
@@ -190,12 +168,12 @@ var MEMBERLIST = function ($) {
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                          { HeaderText: LANGUAGES.Status, Width: 50, Name: "Status", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : (cell.Value == 3 ? "<span class='lock'>" + LANGUAGES.Locked + "</span>" : "<span class='lock'>" + LANGUAGES.CLock + "</span>")));
+                                 return ACCOUNTLIST.initStatus(cell.Value.Status, cell.Value.UplineStatus);
                              }
                          },
                          { HeaderText: LANGUAGES.BetStatus, Width: 100, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : "<span class='lock'>" + LANGUAGES.Locked + "</span>"));
+                                 return ACCOUNTLIST.initBetStatus(cell.Value);
                              }
                          },
                          { HeaderText: LANGUAGES.Group, Width: 100, Name: "UserGroup", HeaderAlign: "center", CellAlign: "center" },

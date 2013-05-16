@@ -18,21 +18,24 @@
                 </div>
                 <div class="editor">
                     @Html.DatePicker("FromDate", Model.FromDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
-                    <img src="~/_GlobalResources/Css/img/cal/calendar_10.png" class="img-calendar">
+                    <div class="img-calendar"></div>
                 </div>
                 <div class="label">
                     <label for="ToDate">@Apollo.Age.Resources.Lang.to</label>
                 </div>
                 <div class="editor">
                     @Html.DatePicker("ToDate", Model.ToDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
-                    <img src="~/_GlobalResources/Css/img/cal/calendar_10.png" class="img-calendar">
+                    <div class="img-calendar"></div>
                 </div>
             </div>
             <div class="cell">
                 <div class="editor">
                     <input id="btnSubmit" value="@Apollo.Age.Resources.Lang.Generate" type="submit" class="btn" />
-                    <input id="btnToday" value="@Formater.ShortDateFormat(DateTime.Now)" type="submit" class="btn" />
-                    <input id="btnYesterday" value="@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))" type="submit" class="btn"/>
+                  	<input id="btnToday" value="@Apollo.Age.Resources.Lang.today" type="submit" class="btn" />
+					<input id="btnYesterday" value="@Apollo.Age.Resources.Lang.yesterday" type="submit" class="btn"/>
+
+                    <input type="hidden" name="todayValue" id="todayValue" value="@Formater.ShortDateFormat(DateTime.Now)"/>
+                    <input type="hidden" name="yesterdayValue" id="yesterdayValue" value="@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))"/>
                 </div>
             </div>
         </div>

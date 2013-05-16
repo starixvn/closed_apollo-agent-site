@@ -16,7 +16,7 @@ if (typeof jQuery != 'undefined') {
                             FCHANDICAPOU.changeLeague();
                         }
                     });
-                    FCHANDICAPOU.changeLeague();
+                    FCHANDICAPOU.registerEvents();
                 }
             },
             registerEvents: function () {
@@ -33,7 +33,7 @@ if (typeof jQuery != 'undefined') {
                 }
                 //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
                 //location.href = url;
-                ageWnd.openDialog(url, 'FORECAST', {
+                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
                     width: 680,
                     height: 350,
                     position: { my: "top+50", at: "center top", of: window },
@@ -58,6 +58,8 @@ if (typeof jQuery != 'undefined') {
                 var $this = $(this);
                 window.location.href = DEFAULT_LAYOUT.currentActionLink + "?mainShareHolderId=" + $this.val();
             });
+
+            $(".selectLeague label").width($("#main-shareholder-box label").width());
         }
 
         FCHANDICAPOU.init();

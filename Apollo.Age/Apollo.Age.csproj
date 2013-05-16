@@ -53,11 +53,14 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Core\Constants.cs" />
     <Compile Include="Criterias\Accounts\AgentGetStatusCriteria.cs" />
+    <Compile Include="Criterias\InternalLogLoginCriteria.cs" />
     <Compile Include="Criterias\AuthenticateNapUserCriteria.cs" />
     <Compile Include="Criterias\CheckUpdatePermissionCriteria.cs" />
     <Compile Include="Criterias\GetAllMainShareHolderCriteria.cs" />
@@ -116,10 +119,7 @@
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Entities\Language.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\Forecast\" />
-    <Folder Include="DTO\TotalBets\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -14,12 +14,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using System.Collections.Generic;
     using System.Data;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Repositories.Interface;
     using Fanex.BetList.Core.Entities;
     using Fanex.Common;
     using Fanex.Data;
-    using Fanex.Data.DNAide;
 
     /// <summary>
     /// BetList Repository
@@ -34,11 +32,19 @@ namespace Apollo.Age.BetList.Repositories.Impl
         public IList<ITicket> GetDetailAgentComm(BetListCriteria criteria)
         {
             var uspKey = "Age_BetList_AgentDetail";
+
             try
             {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+                    var dataSet = db.ExecuteDataSet(new
+                    {
+                        criteria.TransId,
+                        criteria.LoggedId,
+                        criteria.FromDate,
+                        criteria.ToDate,
+                        criteria.MoveBetsDay
+                    });
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                     return this.ReadTicket(mainTable);
                 }

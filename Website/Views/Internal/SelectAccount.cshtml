@@ -16,6 +16,8 @@
 	<h1>@title</h1>
 	@Html.AntiForgeryToken()
 	@Html.HiddenFor(m => m.Language)
+	@Html.HiddenFor(m => m.AdminId)
+	@Html.HiddenFor(m => m.AdminName)
 	<p class="username">
 		@Html.LabelFor(m => m.Agent, Lang.agent)
 		@Html.TextBoxFor(m => m.Agent, new { @class = "input-text", autocomplete = "off" })

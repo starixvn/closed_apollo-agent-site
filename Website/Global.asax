@@ -5,9 +5,14 @@
 <%@ Import Namespace="System.Web.Configuration" %>
 <%@ Import Namespace="System.Collections" %>
 <%@ Import Namespace="System.Data" %>
-<%@ Import Namespace="Sunplus.Agent.Utilities" %>
 <%@ Import Namespace="Apollo.Age.Web.Services" %>
+<%@ Import Namespace="System.Web.Optimization" %>
+<%@ Import Namespace="Fanex.Data.Configuration" %>
+<%@ Import Namespace="Fanex.Logging" %>
+<%@ Import Namespace="Apollo.Age.Web" %>
+
 <script RunAt="server">
+
 	public static UnderMaintenanceService maintenanceService = null;
 
 	public static void RegisterGlobalFilters(GlobalFilterCollection filters)
@@ -22,11 +27,26 @@
 		routes.IgnoreRoute("{*allashx}", new { allashx = @".*\.ashx(/.*)?" });
 		routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 
+		routes.MapRoute("AccessDenied", "AccessDenied", new { controller = "Error", action = "AccessDenied" });
+		routes.MapRoute("AccountStopped", "AccountStopped", new { controller = "Error", action = "AccountStopped" });
+		routes.MapRoute("Error", "Error", new { controller = "Error", action = "Index" });
+		routes.MapRoute("Unauthorized", "Unauthorized", new { controller = "Error", action = "Unauthorized" });
+		routes.MapRoute("UnderMaintenance", "UnderMaintenance", new { controller = "Error", action = "UnderMaintenance" });
+		
 		routes.MapRoute(
-			 "Default", // Route name
-			 "{controller}/{action}/{id}", // URL with parameters
-			 new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-		 );
+			"Default", // Route name
+			"{controller}/{action}/{id}", // URL with parameters
+			new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+		);
+	}
+
+	static void RegisterBundles(BundleCollection bundles)
+	{
+		bundles.Add(new ScriptBundle("~/homejs").Include(
+			"~/_GlobalResources/Js/jquery.js",
+			"~/_GlobalResources/Js/Core.js",
+			"~/_GlobalResources/Js/jquery.cookie.js",
+			"~/Views/Home/Resources/Default.js"));
 	}
 
 	void Application_Start(object sender, EventArgs e)
@@ -34,17 +54,11 @@
 		maintenanceService = new UnderMaintenanceService();
 		AreaRegistration.RegisterAllAreas();
 		RegisterGlobalFilters(GlobalFilters.Filters);
+		
 		RegisterRoutes(RouteTable.Routes);
+		RegisterBundles(BundleTable.Bundles);
 
-		Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
-
-	}
-
-	void AppSettings_LoadComplete(object sender, bool error)
-	{
-		if (error) return;
-
-		TplCore.TplSettings.UrlVersion = ConfigurationManager.AppSettings["JsVersion"];
+		DbSettingProviderManager.Current.Start();
 	}
 
 	/// <summary>
@@ -52,11 +66,10 @@
 	/// </summary>
 	void Application_Error(object sender, EventArgs e)
 	{
-
 		// Logging
 		Exception ex = Server.GetLastError().GetBaseException();
 
-		//if (!Request.IsLocal)
+		if (!Request.IsLocal)
 		{
 			string message = ex.Message +
 				"\r\nSource: " + ex.Source +
@@ -66,7 +79,7 @@
 				"\r\nTargetSite: " + ex.TargetSite +
 				"\r\nStackTrace: " + ex.StackTrace;
 
-			Fanex.Logging.LogService.Error(message);
+			LogService.Error(message);
 		}
 
 		// Redirect to Error pages
@@ -78,28 +91,32 @@
 			errorCode = serverError.GetHttpCode().ToString();
 		}
 
-		Server.ClearError();
-		Response.Redirect("~/Home/Error?err=" + errorCode);
+        //Server.ClearError();
+        //Response.Redirect(string.Format("{0}?err={1}", ApoURLs.URLs.Error, errorCode));
 	}
 
 	void Application_AcquireRequestState(object sender, EventArgs e)
 	{
-
 		try
 		{
 			var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
-			if (executeFileName.IndexOf("UnderMaintenance") == -1 && executeFileName.IndexOf("GetMessage") == -1)
+
+			if (executeFileName.IndexOf("UnderMaintenance") == -1
+				&& executeFileName.IndexOf("GetMessage") == -1)
 			{
 				var maintenanceInfo = maintenanceService.MaintenanceInfo;
+
 				if (maintenanceInfo.IsDownTime)
-					Response.Redirect("~/Home/UnderMaintenance");
+				{
+					Response.Redirect(ApoURLs.URLs.UnderMaintenance);
+				}
 			}
 		}
 		catch (Exception ex)
 		{
-			Fanex.Logging.LogService.Error(ex.Message, ex);
+			LogService.Error(ex.Message, ex);
 		}
 
-	}	
+	}
 
 </script>

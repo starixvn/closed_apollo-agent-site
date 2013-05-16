@@ -166,7 +166,7 @@ function OpenIPInfo(ip) {
 	ageWnd.open(APOLLO.resolveUrl("~/_IPInfo/IpInfo.aspx?ip=" + ip), '', 300, 100, 400, 170);
 }
 
-function OpenScoreMap(matchIds, bettype, liveindicator) {
+function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
 	var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
 	var url = APOLLO.resolveUrl("~/Forecast/ScoreMap?matchIds=" + matchIds +
             (liveindicator == 1
@@ -183,6 +183,7 @@ function OpenScoreMap(matchIds, bettype, liveindicator) {
 	if (typeof (mainShareHolderUsername) !== 'undefined' && mainShareHolderUsername != "") {
 		mainShareHolderUsername = " - " + mainShareHolderUsername;
 	}
+	url += "&custId=" + custId;
 	wnd.open(url, 'SCORE MAP' + mainShareHolderUsername, 0, 20, 900, 550);
 }
 
@@ -214,8 +215,8 @@ if (typeof jQuery != "undefined") {
 					fromDate = $("#fromDate").val(),
 					toDate = $("#toDate").val(),
 					type = $("#type").val(),
-                    url = APOLLO.resolveUrl("~/_BetList/ViewDetail.aspx"),
-                    ajaxParams = "transid=" + transId +
+                    url = APOLLO.resolveUrl("~/BetList/ViewDetail"),
+                    ajaxParams = "?transid=" + transId +
                         "&fromdate=" + fromDate +
                         "&toDate=" + toDate +
 						"&type=" + type;

@@ -56,14 +56,13 @@ var AGENTLIST = function ($) {
                             AGENTLIST.AgentLevel = result[i].Level;
                             AGENTLIST.AgentId = result[i].Id;
 
-                            template += "<li><span>" + AGENTLIST.Username + "</span></li>";
+                            template += "<li class='currentUser'><span>" + AGENTLIST.Username + "</span></li>";
                             $("#currUsername").html(AGENTLIST.Username);
                             AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
 
                         }
                         else {
-                            template += "<li><a href='#' name='navigation' agentId='" + result[i].Id + "' agentlevel='" + result[i].Level + "' >" + result[i].Username + "</a>";
-                            template += "<span class='breadcrumbs'>&nbsp;</span></li>";
+                            template += "<li><a href='#' name='navigation' agentId='" + result[i].Id + "' agentlevel='" + result[i].Level + "' >" + result[i].Username + "</a></li>";
                         }
                     }
                     $("#divnavigation").html(template);
@@ -78,7 +77,7 @@ var AGENTLIST = function ($) {
                 });
         },
         bindingViewAgent: function () {
-            $('[name="viewAgent"]').unbind('click').bind('click', function () {
+            $('[name="viewAgent"]').on('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentId');
 
                 $("#txtUserName").val(BASELANGUAGES.EnterUsername);
@@ -87,7 +86,7 @@ var AGENTLIST = function ($) {
             });
         },
         bindingViewMember: function () {
-            $('[name="viewMember"]').unbind('click').bind('click', function () {
+            $('[name="viewMember"]').on('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
 
                 location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId);
@@ -95,7 +94,7 @@ var AGENTLIST = function ($) {
             });
         },
         bindingNavigation: function () {
-            $("[name='navigation']").unbind('click').bind('click', function () {
+            $("[name='navigation']").on('click', function () {
                 AGENTLIST.AgentId = $(this).attr('agentid');
                 $("#txtUserName").val('');
 
@@ -104,13 +103,13 @@ var AGENTLIST = function ($) {
             });
         },
         bindingQuickLink: function () {
-            $("#quickLinkCustomerList").unbind('click').bind('click', function () {
+            $("#quickLinkCustomerList").on('click', function () {
                 location.href = APOLLO.resolveUrl("Account/MemberList?agentId=" + AGENTLIST.AgentId);
                 return false;
             });
         },
         bindingSearch: function () {
-            $("#Search").unbind('click').bind('click', function () {
+            $("#Search").on('click', function () {
                 AGENTLIST.loadAgentList(AGENTLIST.AgentId);
             });
         },
@@ -126,11 +125,11 @@ var AGENTLIST = function ($) {
             });
         },
         bindingEdit: function () {
-            $("[name='Edit']").unbind('click').bind('click', function () {
+            $("[name='Edit']").on('click', function () {
                 // Edit Agent
                 AGENTLIST.editAgentSetting($(this));
             });
-            $("#quickLinkEditSetting").unbind('click').bind('click', function () {
+            $("#quickLinkEditSetting").on('click', function () {
                 // Edit Uplilne Agent
                 AGENTLIST.editAgentSetting($(this));
             });
@@ -142,7 +141,7 @@ var AGENTLIST = function ($) {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: false,
-                data: JSON.stringify({ AgentId: AGENTLIST.AgentId, Username: $("#txtUserName").val().trim() == BASELANGUAGES.EnterUsername ? "" : $("#txtUserName").val().trim() }),
+                data: JSON.stringify({ AgentId: AGENTLIST.AgentId, Username: APOLLO.htmlDecode($("#txtUserName").val().trim()) == APOLLO.htmlDecode(BASELANGUAGES.EnterUsername) ? "" : APOLLO.htmlDecode($("#txtUserName").val().trim()) }),
                 timeout: 120000
             })
                 .done(function (result) {
@@ -171,29 +170,7 @@ var AGENTLIST = function ($) {
             var rowLength = agentList.ListData.length;
             var counter = (agentList.CurrentPage * agentList.ItemsPerPage);
             for (var i = 0; i < rowLength; i++) {
-                var current = agentList.ListData[i];
-                var status = current.Status; // 1 : active, 2: stop, 3: lock, 4. c.lock
-                if (current.Status == 2) {
-                    status = current.Status; // Stop
-                }
-                else if (current.Status == 1 && current.UplineStatus == 2) {
-                    status = 4; // C.lock
-                }
-                else if (current.Status == 1 && current.UplineStatus == 1) {
-                    status = 1; //active
-                }
-                else if (current.Status == 3) {
-                    if (current.UplineStatus == 2) {
-                        status = 4; //C.lock
-                    }
-                    else {
-                        status = 3;
-                    }
-
-                }
-                else {
-                    status = 1;
-                }
+                var current = agentList.ListData[i];               
                 counter++;
                 var currentRow = {
                     Columns:
@@ -201,7 +178,7 @@ var AGENTLIST = function ($) {
                             { Name: "No", Value: counter },
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
-                            { Name: "Status", Value: status },
+                            { Name: "Status", Value: current },
                             { Name: "BetStatus", Value: current.BetStatus },
                             { Name: "NumberOfAgent", Value: current },
                             { Name: "NumberOfMember", Value: current },
@@ -254,13 +231,13 @@ var AGENTLIST = function ($) {
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                          { HeaderText: LANGUAGES.Status, Width: 80, Name: "Status", HeaderAlign: "center", CellAlign: "center",
-                             CustomCellRender: function (cell) {
-                                 return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : (cell.Value == 3 ? "<span class='lock'>" + LANGUAGES.Locked + "</span>" : "<span class='lock'>" + LANGUAGES.CLock + "</span>")));
+                             CustomCellRender: function (cell) {                                 
+                                 return ACCOUNTLIST.initStatus(cell.Value.Status, cell.Value.UplineStatus);
                              }
                          },
                           { HeaderText: LANGUAGES.BetStatus, Width: 80, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
                               CustomCellRender: function (cell) {
-                                  return (cell.Value == 1 ? "<span class='active'>" + LANGUAGES.Active + "</span>" : (cell.Value == 2 ? "<span class='stop'>" + LANGUAGES.Stopped + "</span>" : "<span class='lock'>" + LANGUAGES.Locked + "</span>"));
+                                  return ACCOUNTLIST.initBetStatus(cell.Value);                                  
                               }
                           },
                          { HeaderText: LANGUAGES.NumberOfAgent, Width: 70, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",

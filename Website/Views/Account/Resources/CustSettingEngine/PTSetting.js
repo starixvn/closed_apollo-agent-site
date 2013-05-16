@@ -402,23 +402,38 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 var betTypesLength = betTypes.length;
                                 for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                     var betType = betTypes[betTypeIndex];
-                                    if (betType.maxSpinBox) {
-                                        betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
-                                        betType.maxSpinBox.input.onchange();
-                                    }
-                                    if (betType.minSpinBox) {
-                                        betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-                                        betType.minSpinBox.input.onchange();
-                                    }
-                                    if (betType.presetSpinBox) {
-                                        betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
-                                        betType.presetSpinBox.input.onchange();
-                                    }
-                                    if (betType.ptSpinBox) {
-                                        betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
-                                        betType.ptSpinBox.input.onchange();
+                                    var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
+                                    while (reload <= 1) {
+                                        if (betType.maxSpinBox) {
+                                            betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue(), true);
+                                        }
+                                        if (betType.minSpinBox) {
+                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue(), true);
+                                        }
+                                        if (betType.presetSpinBox) {
+                                            betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
+                                        }
+                                        if (betType.ptSpinBox) {
+                                            betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue(), true);
+                                        }
+
+                                        if (betType.maxSpinBox) {
+                                            betType.maxSpinBox.input.onchange();
+                                        }
+                                        if (betType.minSpinBox) {
+                                            betType.minSpinBox.input.onchange();
+                                        }
+                                        if (betType.presetSpinBox) {
+                                            betType.presetSpinBox.input.onchange();
+                                        }
+                                        if (betType.ptSpinBox) {
+                                            betType.ptSpinBox.input.onchange();
+                                        }
+                                        reload++;
                                     }
                                 }
+                                clearInterval(Validators.intervalAnimate);
+                                Validators.hide();
                                 //};
                             };
                         };
@@ -786,217 +801,219 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 }
                 Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 25, top - 148, -10, height, 10000, true);
             },
-			this.Render = function (owner) {
-			    var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
-			    var box = null;
-			    if (currentContext.IsSimpleMode == false) {
-			        var elements = []; // Child sport type elements
-			        if (typeof (this.sportTypes) != 'object' || typeof (this.sportTypes.length) == 'undefined') {
-			            console.log("Input data source sportTypes is empty.");
-			        } else {
-			            box = document.createElement("DIV");
-			            //// Position Taking Header
-			            var header = document.createElement("DIV");
-			            header.innerHTML = Language.POSITION_SETTING_HEADER;
-			            header.className = "pt-grid-header";
-			            var informationButton = document.createElement("SPAN");
-			            informationButton.className = "section-info";
-			            if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
-			                informationButton.id = "member-";
-			            }
-			            else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
-			                informationButton.id = "mainshareholder-";
-			            }
-			            else {
-			                informationButton.id = "agent-";
-			            }
-			            informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
-			            header.appendChild(informationButton);
-			            box.appendChild(header);
-			            // Each sport types
-			            var count = this.sportTypes.length;
-			            for (var i = 0; i < count; i++) {
-			                var item = this.sportTypes[i];
-			                var sportItem = new Fanex.CustSetting.SportType(item);
-			                sportItem.parent = this; // Keep reference to current grid
-			                var element = sportItem.Render(box);
-			                var clear = document.createElement("DIV");
-			                clear.style.clear = "both";
-			                box.appendChild(clear);
-			                if (element != null) {
-			                    elements[i] = element;
-			                    this.items[i] = sportItem;
-			                }
-			            }
-			            this.elements = elements;
-			        }
-			        if (this.elements.length == 0) {
-			            box = null;
-			        }
-			        if (box != null) {
-			            box.className = "pt-grid";
-			            var items = this.items;
-			            var elements = this.elements;
-			            if (currentContext.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
+            this.UpdateCopyValue = function (currentCopyBetType, betType) {
+                var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
+                while (reload <= 1) {
+                    if (betType.maxSpinBox) {
+                        betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue(), true);
+                    }
+                    if (betType.minSpinBox) {
+                        betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue(), true);
+                    }
+                    if (betType.presetSpinBox) {
+                        betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
+                    }
+                    if (betType.ptSpinBox) {
+                        betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue(), true);
+                    }
+
+                    if (betType.maxSpinBox) {
+                        betType.maxSpinBox.input.onchange();
+                    }
+                    if (betType.minSpinBox) {
+                        betType.minSpinBox.input.onchange();
+                    }
+                    if (betType.presetSpinBox) {
+                        betType.presetSpinBox.input.onchange();
+                    }
+                    if (betType.ptSpinBox) {
+                        betType.ptSpinBox.input.onchange();
+                    }
+                    reload++;
+                }
+            };
+            this.Render = function (owner) {
+                var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
+                var box = null;
+                if (currentContext.IsSimpleMode == false) {
+                    var elements = []; // Child sport type elements
+                    if (typeof (this.sportTypes) != 'object' || typeof (this.sportTypes.length) == 'undefined') {
+                        console.log("Input data source sportTypes is empty.");
+                    } else {
+                        box = document.createElement("DIV");
+                        //// Position Taking Header
+                        var header = document.createElement("DIV");
+                        header.innerHTML = Language.POSITION_SETTING_HEADER;
+                        header.className = "pt-grid-header";
+                        var informationButton = document.createElement("SPAN");
+                        informationButton.className = "section-info";
+                        if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                            informationButton.id = "member-";
+                        }
+                        else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+                            informationButton.id = "mainshareholder-";
+                        }
+                        else {
+                            informationButton.id = "agent-";
+                        }
+                        informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
+                        header.appendChild(informationButton);
+                        box.appendChild(header);
+                        // Each sport types
+                        var count = this.sportTypes.length;
+                        for (var i = 0; i < count; i++) {
+                            var item = this.sportTypes[i];
+                            var sportItem = new Fanex.CustSetting.SportType(item);
+                            sportItem.parent = this; // Keep reference to current grid
+                            var element = sportItem.Render(box);
+                            var clear = document.createElement("DIV");
+                            clear.style.clear = "both";
+                            box.appendChild(clear);
+                            if (element != null) {
+                                elements[i] = element;
+                                this.items[i] = sportItem;
+                            }
+                        }
+                        this.elements = elements;
+                    }
+                    if (this.elements.length == 0) {
+                        box = null;
+                    }
+                    if (box != null) {
+                        box.className = "pt-grid";
+                        var items = this.items;
+                        var elements = this.elements;
+                        if (currentContext.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
 						&& currentContext.FormId != Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
-			                // Implementation for clone button of Soccer 1 and Basketball 2
-			                var cloneFromSoccer = this.items[0].cloneObjectButton;
-			                var cloneFromBasketball = this.items[2].cloneObjectButton;
-			                var editBasketball = this.items[2].editButton;
-			                var copiedItemSoccer = {
-			                    sportId: 1,
-			                    id: 1,
-			                    isLive: false
-			                };
-			                var copiedItemBasketball = {
-			                    sportId: 2,
-			                    id: 1,
-			                    isLive: false
-			                };
-			                cloneFromSoccer.parent = cloneFromBasketball.parent = this;
-			                var hideHintTimeout = 0;
-			                cloneFromSoccer.onclick = function () {
-			                    Validators.hide();
-			                    cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
-			                    cloneFromSoccer.parent.activeCopiedTitle = "{0} {1}".Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-			                    cloneFromSoccer.parent.items[0].Toggle(true); // Expand
-			                    var c = elements.length;
-			                    var currentCopyBetType = elements[0].betTypeGroupElements[0].betTypeElements[0];
-			                    if (currentCopyBetType.maxSpinBox && !currentCopyBetType.maxSpinBox.isValid()) {
-			                        return;
-			                    }
-			                    if (currentCopyBetType.minSpinBox && !currentCopyBetType.minSpinBox.isValid()) {
-			                        return;
-			                    }
-			                    if (currentCopyBetType.presetSpinBox && !currentCopyBetType.presetSpinBox.isValid()) {
-			                        return;
-			                    }
-			                    if (currentCopyBetType.ptSpinBox && !currentCopyBetType.ptSpinBox.isValid()) {
-			                        return;
-			                    }
-			                    var sportTypes = elements;
-			                    var sportTypesLength = elements.length;
-			                    for (var sportTypeIndex = 0; sportTypeIndex < sportTypesLength; sportTypeIndex++) {
-			                        var betTypeGroups = sportTypes[sportTypeIndex].betTypeGroupElements;
-			                        var betTypeGroupsLength = betTypeGroups.length;
-			                        for (var betTypeGroupIndex = 0; betTypeGroupIndex < betTypeGroupsLength; betTypeGroupIndex++) {
-			                            var betTypes = betTypeGroups[betTypeGroupIndex].betTypeElements;
-			                            var betTypesLength = betTypes.length;
-			                            for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
-			                                var betType = betTypes[betTypeIndex];
-			                                if (betType.maxSpinBox) {
-			                                    betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
-			                                    betType.maxSpinBox.input.onchange();
-			                                }
-			                                if (betType.minSpinBox) {
-			                                    betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-			                                    betType.minSpinBox.input.onchange();
-			                                }
-			                                if (betType.presetSpinBox) {
-			                                    betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
-			                                    betType.presetSpinBox.input.onchange();
-			                                }
-			                                if (betType.ptSpinBox) {
-			                                    betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
-			                                    betType.ptSpinBox.input.onchange();
-			                                }
-			                            }
-			                        }
+                            // Implementation for clone button of Soccer 1 and Basketball 2
+                            var cloneFromSoccer = this.items[0].cloneObjectButton;
+                            var cloneFromBasketball = this.items[2].cloneObjectButton;
+                            var editBasketball = this.items[2].editButton;
+                            var copiedItemSoccer = {
+                                sportId: 1,
+                                id: 1,
+                                isLive: false
+                            };
+                            var copiedItemBasketball = {
+                                sportId: 2,
+                                id: 1,
+                                isLive: false
+                            };
+                            cloneFromSoccer.parent = cloneFromBasketball.parent = this;
+                            var hideHintTimeout = 0;
+                            cloneFromSoccer.onclick = function () {
+                                Validators.hide();
+                                cloneFromSoccer.parent.copiedItem = copiedItemSoccer;
+                                cloneFromSoccer.parent.activeCopiedTitle = "{0} {1}".Format(items[0].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                cloneFromSoccer.parent.items[0].Toggle(true); // Expand
+                                var c = elements.length;
+                                var currentCopyBetType = elements[0].betTypeGroupElements[0].betTypeElements[0];
+                                if (currentCopyBetType.maxSpinBox && !currentCopyBetType.maxSpinBox.isValid()) {
+                                    return;
+                                }
+                                if (currentCopyBetType.minSpinBox && !currentCopyBetType.minSpinBox.isValid()) {
+                                    return;
+                                }
+                                if (currentCopyBetType.presetSpinBox && !currentCopyBetType.presetSpinBox.isValid()) {
+                                    return;
+                                }
+                                if (currentCopyBetType.ptSpinBox && !currentCopyBetType.ptSpinBox.isValid()) {
+                                    return;
+                                }
+                                var sportTypes = elements;
+                                var sportTypesLength = elements.length;
+                                for (var sportTypeIndex = 0; sportTypeIndex < sportTypesLength; sportTypeIndex++) {
+                                    var betTypeGroups = sportTypes[sportTypeIndex].betTypeGroupElements;
+                                    var betTypeGroupsLength = betTypeGroups.length;
+                                    for (var betTypeGroupIndex = 0; betTypeGroupIndex < betTypeGroupsLength; betTypeGroupIndex++) {
+                                        var betTypes = betTypeGroups[betTypeGroupIndex].betTypeElements;
+                                        var betTypesLength = betTypes.length;
+                                        for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
+                                            var betType = betTypes[betTypeIndex];
+                                            cloneFromSoccer.parent.UpdateCopyValue(currentCopyBetType, betType);
+                                        }
+                                    }
 
-			                    }
+                                }
+                                clearInterval(Validators.intervalAnimate);
+                                cloneFromSoccer.parent.ShowCloneHint();
+                            };
+                            // Basketball
+                            cloneFromBasketball.onclick = function () {
+                                Validators.hide();
+                                cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
+                                cloneFromBasketball.parent.activeCopiedTitle = "{0} {1}".Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
+                                cloneFromBasketball.parent.items[2].Toggle(true); // Expand
+                                var c = elements.length;
+                                var currentCopyBetType = elements[2].betTypeGroupElements[0].betTypeElements[0];
+                                var sportTypes = elements;
+                                var sportTypesLength = elements.length;
+                                for (var sportTypeIndex = 2; sportTypeIndex < sportTypesLength; sportTypeIndex++) {
+                                    var betTypeGroups = sportTypes[sportTypeIndex].betTypeGroupElements;
+                                    var betTypeGroupsLength = betTypeGroups.length;
+                                    for (var betTypeGroupIndex = 0; betTypeGroupIndex < betTypeGroupsLength; betTypeGroupIndex++) {
+                                        var betTypes = betTypeGroups[betTypeGroupIndex].betTypeElements;
+                                        var betTypesLength = betTypes.length;
+                                        for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
+                                            var betType = betTypes[betTypeIndex];
+                                            cloneFromBasketball.parent.UpdateCopyValue(currentCopyBetType, betType);
+                                        }
+                                    }
 
-			                    cloneFromSoccer.parent.ShowCloneHint();
-			                };
-			                // Basketball
-			                cloneFromBasketball.onclick = function () {
-			                    Validators.hide();
-			                    cloneFromBasketball.parent.copiedItem = copiedItemBasketball;
-			                    cloneFromBasketball.parent.activeCopiedTitle = "{0} {1}".Format(items[2].name, items[0].betTypeGroups[0].BetTypes[0].Name);
-			                    cloneFromBasketball.parent.items[2].Toggle(true); // Expand
-			                    var c = elements.length;
-			                    var currentCopyBetType = elements[2].betTypeGroupElements[0].betTypeElements[0];
-			                    var sportTypes = elements;
-			                    var sportTypesLength = elements.length;
-			                    for (var sportTypeIndex = 2; sportTypeIndex < sportTypesLength; sportTypeIndex++) {
-			                        var betTypeGroups = sportTypes[sportTypeIndex].betTypeGroupElements;
-			                        var betTypeGroupsLength = betTypeGroups.length;
-			                        for (var betTypeGroupIndex = 0; betTypeGroupIndex < betTypeGroupsLength; betTypeGroupIndex++) {
-			                            var betTypes = betTypeGroups[betTypeGroupIndex].betTypeElements;
-			                            var betTypesLength = betTypes.length;
-			                            for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
-			                                var betType = betTypes[betTypeIndex];
-			                                if (betType.maxSpinBox) {
-			                                    betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue());
-			                                    betType.maxSpinBox.input.onchange();
-			                                }
-			                                if (betType.minSpinBox) {
-			                                    betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue());
-			                                    betType.minSpinBox.input.onchange();
-			                                }
-			                                if (betType.presetSpinBox) {
-			                                    betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue());
-			                                    betType.presetSpinBox.input.onchange();
-			                                }
-			                                if (betType.ptSpinBox) {
-			                                    betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue());
-			                                    betType.ptSpinBox.input.onchange();
-			                                }
-			                            }
-			                        }
+                                }
+                                clearInterval(Validators.intervalAnimate);
+                                cloneFromBasketball.parent.ShowCloneHint();
+                            };
+                        }
+                        this.DOM = box;
+                        // Append or return the object
+                        if (typeof (owner) == 'object') {
+                            //// Render 
+                            owner.appendChild(box);
+                        }
+                    }
+                }
+                else {
+                    this.currentPtValue = this.sportTypes[0].BetTypeGroups[0].BetTypes[0].Pt;
+                    box = document.createElement("DIV");
+                    box.className = "simple-mode-container";
+                    //Fanex.CustSetting.SPINNER_BOX_WIDTH = 80;
+                    //// Position Taking Header
+                    var header = document.createElement("DIV");
+                    header.innerHTML = Language.POSITION_SETTING_SIMPLE_MODE_HEADER;
+                    header.className = "pt-grid-header";
+                    var informationButton = document.createElement("SPAN");
+                    informationButton.className = "section-info";
+                    if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                        informationButton.id = "member-";
+                    }
+                    else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+                        informationButton.id = "mainshareholder-";
+                    }
+                    else {
+                        informationButton.id = "agent-";
+                    }
+                    informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
+                    header.appendChild(informationButton);
+                    box.appendChild(header);
 
-			                    }
-			                    cloneFromBasketball.parent.ShowCloneHint();
-			                };
-			            }
-			            this.DOM = box;
-			            // Append or return the object
-			            if (typeof (owner) == 'object') {
-			                //// Render 
-			                owner.appendChild(box);
-			            }
-			        }
-			    }
-			    else {
-			        this.currentPtValue = this.sportTypes[0].BetTypeGroups[0].BetTypes[0].Pt;
-			        box = document.createElement("DIV");
-			        box.className = "simple-mode-container";
-			        //Fanex.CustSetting.SPINNER_BOX_WIDTH = 80;
-			        //// Position Taking Header
-			        var header = document.createElement("DIV");
-			        header.innerHTML = Language.POSITION_SETTING_SIMPLE_MODE_HEADER;
-			        header.className = "pt-grid-header";
-			        var informationButton = document.createElement("SPAN");
-			        informationButton.className = "section-info";
-			        if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
-			            informationButton.id = "member-";
-			        }
-			        else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
-			            informationButton.id = "mainshareholder-";
-			        }
-			        else {
-			            informationButton.id = "agent-";
-			        }
-			        informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
-			        header.appendChild(informationButton);
-			        box.appendChild(header);
+                    var formId = currentContext.FormId;
+                    var roleId = currentContext.RoleId; //(this.context.TargetRoleId == 1 || formId != Fanex.CustSetting.FormTypes.EDIT_PT) ? this.context.RoleId : 0;
+                    var targetRoleId = currentContext.TargetRoleId;
+                    var method = this['RenderSimpleMode_'.concat(roleId, '_', targetRoleId, '_', formId)];
+                    if (typeof (method) == "function") {
+                        box.appendChild(method.call(this, owner));
+                    }
 
-			        var formId = currentContext.FormId;
-			        var roleId = currentContext.RoleId; //(this.context.TargetRoleId == 1 || formId != Fanex.CustSetting.FormTypes.EDIT_PT) ? this.context.RoleId : 0;
-			        var targetRoleId = currentContext.TargetRoleId;
-			        var method = this['RenderSimpleMode_'.concat(roleId, '_', targetRoleId, '_', formId)];
-			        if (typeof (method) == "function") {
-			            box.appendChild(method.call(this, owner));
-			        }
-
-			        this.DOM = box;
-			        // Append or return the object
-			        if (typeof (owner) == 'object') {
-			            //// Render 
-			            owner.appendChild(box);
-			        }
-			    }
-			    return box;
-			}
+                    this.DOM = box;
+                    // Append or return the object
+                    if (typeof (owner) == 'object') {
+                        //// Render 
+                        owner.appendChild(box);
+                    }
+                }
+                return box;
+            }
         }
     }
 };

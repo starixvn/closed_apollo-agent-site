@@ -18,7 +18,6 @@ namespace Sunplus.Agent.UI._BetList
     using System.Text;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
-    using Apollo.Age.BetList.Models;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Reports.Services;
@@ -132,8 +131,7 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
 
-            // Paging
-            int _rowCount = 0;
+            // Paging            
             Paging_Control pagingControl = new Paging_Control(tpl, "pagination", this.PageSize, Request.Url.AbsoluteUri, this.TotalRows, PAGE_SIZES);
             tpl.PagingControl = pagingControl.ToString();
 

@@ -34,22 +34,35 @@
         @if (Model != null && Model.Any())
         {
             var currentLeagueId = 0;
+            var eventStatus = string.Empty;
+            var betStatus = string.Empty;
+
+            var finalHomeScore = 0;
+            var finalAwayScore = 0;
+
+            var homeTeam = string.Empty;
+            var awayTeam = string.Empty;
+            List<string> PHome = null;
+            List<string> PAway = null;
+
+            var OTAway = string.Empty;
+            var OTHome = string.Empty;
 
             foreach (var item in Model)
             {
-                var eventStatus = string.Empty;
-                var betStatus = string.Empty;
+                eventStatus = string.Empty;
+                betStatus = string.Empty;
 
-                var finalHomeScore = 0;
-                var finalAwayScore = 0;
+                finalHomeScore = 0;
+                finalAwayScore = 0;
 
-                var homeTeam = string.Empty;
-                var awayTeam = string.Empty;
-                List<string> PHome = new List<string>() { "-", "-", "-", "-" };
-                List<string> PAway = new List<string>() { "-", "-", "-", "-" };
+                homeTeam = string.Empty;
+                awayTeam = string.Empty;
+                PHome = new List<string>() { "-", "-", "-", "-" };
+                PAway = new List<string>() { "-", "-", "-", "-" };
 
-                var OTAway = string.Empty;
-                var OTHome = string.Empty;
+                OTAway = string.Empty;
+                OTHome = string.Empty;
 
                 betStatus = item.BetStatus;
                 finalHomeScore = item.FinalHomeScore;

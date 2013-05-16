@@ -25,16 +25,23 @@
         @if (Model != null && Model.Any())
         {
             var currentLeagueId = 0;
+            var finalHomeScore = 0;
+            var finalAwayScore = 0;
+            var firstHalfHomeScore = 0;
+            var firstHalfAwayScore = 0;
+
+            var homeTeam = string.Empty;
+            var awayTeam = string.Empty;
 
             foreach (var item in Model)
             {
-                var finalHomeScore = 0;
-                var finalAwayScore = 0;
-                var firstHalfHomeScore = 0;
-                var firstHalfAwayScore = 0;
+                finalHomeScore = 0;
+                finalAwayScore = 0;
+                firstHalfHomeScore = 0;
+                firstHalfAwayScore = 0;
 
-                var homeTeam = string.Empty;
-                var awayTeam = string.Empty;
+                homeTeam = string.Empty;
+                awayTeam = string.Empty;
 
                 finalHomeScore = item.FinalHomeScore;
                 finalAwayScore = item.FinalAwayScore;

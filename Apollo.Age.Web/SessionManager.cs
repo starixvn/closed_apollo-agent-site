@@ -17,42 +17,17 @@ namespace Apollo.Age.Web
     /// </summary>
     public static class SessionManager
     {
-        private const string CacheKeySuncityLanguage = "Apollo.Age.Web.SuncityLanguage";
-        private const string CacheKeySuncityUsername = "Apollo.Age.Web.SuncityUsername";
-
-        //private static volatile SessionManager instance;
-        //private static object syncRoot = new Object();
-
-        //private SessionManager() { }
-
-        //public static SessionManager Instance
-        //{
-        //    get
-        //    {
-        //        if (instance == null)
-        //        {
-        //            lock (syncRoot)
-        //            {
-        //                if (instance == null)
-        //                {
-        //                    instance = new SessionManager();
-        //                }
-        //            }
-        //        }
-
-        //        return instance;
-        //    }
-        //}
+        private const string ApolloCurrentSessionKey = "Apollo.Age.Web.CurrentSession";
 
         public static ICurrentSession CurrentSession
         {
             get
             {
-                return (ICurrentSession)HttpContext.Current.Session[WebConstants.APOLLO_CURRENT_SESSION_KEY];
+                return (ICurrentSession)HttpContext.Current.Session[ApolloCurrentSessionKey];
             }
             set
             {
-                HttpContext.Current.Session[WebConstants.APOLLO_CURRENT_SESSION_KEY] = value;
+                HttpContext.Current.Session[ApolloCurrentSessionKey] = value;
             }
         }
 

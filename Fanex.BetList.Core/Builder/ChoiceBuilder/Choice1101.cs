@@ -12,9 +12,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using System.Data;
     using System.Text;
-    using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
@@ -33,7 +31,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.LeagueName.leagueName = string.Join(null, new string[] { CoreLang.baccarat, "&nbsp;", ticket.ShowTime });
+            this.Template.LeagueName.leagueName = string.Join(null, new string[] { Apollo.Age.Resources.Lang.baccarat, "&nbsp;", ticket.ShowTime });
 
             if (ticketData != null && ticketData.Count > 0)
             {
@@ -64,7 +62,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             {
                 this.Template.betTeam = string.Empty;
                 this.Template.Handicap.Hide();
-                this.Template.betTypeName = CoreLang.baccarat;
+                this.Template.betTypeName = Apollo.Age.Resources.Lang.baccarat;
                 this.Template.betTeamClassName = string.Empty;
                 this.Template.VS.Hide();
             }

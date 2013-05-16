@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
@@ -30,20 +30,18 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
             this.Template.VS = null;
-            this.Template.betTeam = ticket.BetTeam == "h" ? CoreBetList.over : CoreBetList.under;
-            
-            
+            this.Template.betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.over : Apollo.Age.Resources.BetList.under;
 
             this.Template.betTeamClassName = BL_FAVORITE;
 
-            this.Template.Handicap.handicap = "37.5";            
+            this.Template.Handicap.handicap = "37.5";
             this.Template.homeTeam = string.Join(
                                                 null,
                                                 new string[]
                                                 {
-                                                    CoreBetList.numbergameno,
+                                                    Apollo.Age.Resources.BetList.numbergameno,
                                                     "&nbsp;",
-                                                    ticket.MatchCode    
+                                                    ticket.MatchCode
                                                 }
                                             );
         }

@@ -13,7 +13,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using System;
     using System.Collections.Generic;
     using System.Web;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
@@ -87,7 +87,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                             ",&quot;",
                                             custid,
                                             "&quot;, this);\">",
-                                            CoreBetList.details,
+                                            Apollo.Age.Resources.BetList.details,
                                             "</div>"
                                         }
                                    );
@@ -109,7 +109,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, Entities.RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
-            IRichTextString rtfChoice = new HSSFRichTextString(App_GlobalResources.CoreLang.lblSystemParlay);
+            IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.Lang.lblSystemParlay);
             lstRTFChoices.Add(rtfChoice);
             return lstRTFChoices;
         }

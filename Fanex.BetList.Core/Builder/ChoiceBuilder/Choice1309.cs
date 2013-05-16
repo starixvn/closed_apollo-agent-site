@@ -14,7 +14,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.App_GlobalResources;
+
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
@@ -32,7 +32,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
-            
+
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
             bool betHome = ticket.BetTeam == "1";
@@ -54,8 +54,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             else
             {
                 this.Template.betTeamClassName = BL_UNDER_DOG;
-                this.Template.betTeam = ticket.Handicap2 > ticket.Handicap1 ? string.Join(null, new string[] { CoreLang.lblDraw, "&nbsp;(", CoreBetList.h, "+", ConvertByBetType.Hdp(ticket.Handicap2) + ")" }) :
-                                                    string.Join(null, new string[] { CoreLang.lblDraw, "&nbsp;(", CoreBetList.a, "+", ConvertByBetType.Hdp(ticket.Handicap1), ")" });
+                this.Template.betTeam = ticket.Handicap2 > ticket.Handicap1 ? string.Join(null, new string[] { Apollo.Age.Resources.Lang.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.h, "+", ConvertByBetType.Hdp(ticket.Handicap2) + ")" }) :
+                                                    string.Join(null, new string[] { Apollo.Age.Resources.Lang.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.a, "+", ConvertByBetType.Hdp(ticket.Handicap1), ")" });
                 this.Template.Handicap.handicap = null;
             }
 

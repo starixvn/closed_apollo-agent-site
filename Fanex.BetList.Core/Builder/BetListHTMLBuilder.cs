@@ -13,6 +13,8 @@ namespace Fanex.BetList.Core.Builder
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using Fanex.BetList.Core.Builder.AgentCommBuilder;
+    using Fanex.BetList.Core.Builder.AgentShareBuilder;
     using Fanex.BetList.Core.Builder.ChoiceBuilder;
     using Fanex.BetList.Core.Builder.OddsBuilder;
     using Fanex.BetList.Core.Builder.StakeBuilder;
@@ -30,6 +32,8 @@ namespace Fanex.BetList.Core.Builder
         private const string STAKE_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.StakeBuilder";
         private const string TRANS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.TransBuilder";
         private const string STATUS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.StatusBuilder";
+        private const string AGENTCOMM_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.AgentCommBuilder";
+        private const string AGENTSHARE_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.AgentShareBuilder";
 
         #endregion Attributes
 
@@ -217,6 +221,53 @@ namespace Fanex.BetList.Core.Builder
         }
 
         /// <summary>
+        /// Add the agent Comm
+        /// </summary>
+        /// <param name="factory"></param>
+        /// <param name="ticket"></param>
+        /// <param name="ticketData"></param>
+        /// <param name="openTag"></param>
+        /// <param name="closeTag"></param>
+        /// <returns></returns>
+        public BetListHTMLBuilder AddAgentComm(ITicket ticket, bool isHideLink, string openTag, string closeTag)
+        {
+            string agentComm = BuildAgentComm(ticket, isHideLink);
+            this._content.Append(string.Join(null, new string[] { openTag, agentComm, closeTag }));
+
+            return this;
+        }
+
+        /// <summary>
+        /// Build agent comm
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="hideLinkDetail">Show or Hide link</param>
+        /// <returns></returns>
+        public string BuildAgentComm(ITicket ticket, bool isHideLink)
+        {
+            IAgentComm agentCommBuilder = this.CreateAgentCommBuilder(ticket.BetTypeId);
+            string agentComm = agentCommBuilder.Render(ticket, isHideLink);
+
+            return agentComm;
+        }
+
+        public BetListHTMLBuilder AddAgentShare(ITicket ticket, List<ITicketData> ticketData, string openTag, string closeTag)
+        {
+            string agentShare = BuildAgentShare(ticket, ticketData);
+            this._content.Append(string.Join(null, new string[] { openTag, agentShare, closeTag }));
+
+            return this;
+        }
+
+        public string BuildAgentShare(ITicket ticket, List<ITicketData> ticketData)
+        {
+            IAgentShare agentShareBuilder = this.CreateAgentShareBuilder(ticket.BetTypeId);
+            string agentShare = agentShareBuilder.Render(ticket, ticketData);
+
+            return agentShare;
+        }
+
+        /// <summary>
         /// Creates the choice builder.
         /// </summary>
         /// <param name="bettype">The bettype.</param>
@@ -361,6 +412,62 @@ namespace Fanex.BetList.Core.Builder
             else
             {
                 return Activator.CreateInstance(type) as ITrans;
+            }
+        }
+
+        /// <summary>
+        /// Creates the agent PT builder.
+        /// </summary>
+        /// <returns></returns>
+        private IAgentShare CreateAgentShareBuilder(int bettype)
+        {
+            string typeName = string.Join(
+                                           null,
+                                           new string[]
+                                            {
+                                                AGENTSHARE_BUILDER_NAMESPACE,
+                                                ".AgentShare",
+                                                bettype.ToString()
+                                            }
+                                        );
+
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                return new AgentShare1();
+            }
+            else
+            {
+                return Activator.CreateInstance(type) as IAgentShare;
+            }
+        }
+
+        /// <summary>
+        /// Creates the agent Comm builder.
+        /// </summary>
+        /// <returns></returns>
+        private IAgentComm CreateAgentCommBuilder(int bettype)
+        {
+            string typeName = string.Join(
+                                           null,
+                                           new string[]
+                                            {
+                                                AGENTCOMM_BUILDER_NAMESPACE,
+                                                ".AgentComm",
+                                                bettype.ToString()
+                                            }
+                                        );
+
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                return new AgentComm1();
+            }
+            else
+            {
+                return Activator.CreateInstance(type) as IAgentComm;
             }
         }
     }
