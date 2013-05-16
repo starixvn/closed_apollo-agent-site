@@ -45,16 +45,19 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// View detail popup Agent Share and Agent Comm
+        /// View detail popup Agent Share and Agent commission
         /// </summary>
-        /// <param name="metaModel"></param>
-        /// <returns></returns>
+        /// <param name="transId">Trans Id</param>
+        /// <param name="fromDate">From date</param>
+        /// <param name="toDate">to date</param>
+        /// <param name="type">page type</param>
+        /// <returns>Return view</returns>
         public ViewResult ViewDetail(long transId, string fromDate, string toDate, string type)
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
-            var balanceUpDay = reportService.GetBalanceUpDay();
-            var moveBetsDay = reportService.MoveBetsDay();
+            var balanceUpDay = this.reportService.GetBalanceUpDay();
+            var moveBetsDay = this.reportService.MoveBetsDay();
 
             var criteria = new BetListCriteria
             {
@@ -66,7 +69,7 @@ namespace Apollo.Age.BetList.Controllers
                 MoveBetsDay = moveBetsDay
             };
 
-            if (type == "report")
+            if (type.ToLower().Equals("report"))
             {
                 listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
             }
@@ -98,6 +101,7 @@ namespace Apollo.Age.BetList.Controllers
                 };
                 ticketTextList.Add(ticketText);
             }
+
             return ticketTextList;
         }
     }

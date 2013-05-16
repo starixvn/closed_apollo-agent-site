@@ -127,7 +127,7 @@ var MEMBERLIST = function ($) {
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
                             { Name: "Status", Value: current },
-                            { Name: "BetStatus", Value: current.BetStatus },
+                            { Name: "BetStatus", Value: current },
                             { Name: "UserGroup", Value: current.UserGroup },
                             { Name: "AgentGroup", Value: current.AgentGroup * 100 },
                             { Name: "AgentOneXTwo", Value: current.AgentDiscountOneXTwo * 100 },
@@ -173,7 +173,7 @@ var MEMBERLIST = function ($) {
                          },
                          { HeaderText: LANGUAGES.BetStatus, Width: 100, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return ACCOUNTLIST.initBetStatus(cell.Value);
+                                 return ACCOUNTLIST.initStatus(cell.Value.BetStatus, cell.Value.UplineBetStatus);
                              }
                          },
                          { HeaderText: LANGUAGES.Group, Width: 100, Name: "UserGroup", HeaderAlign: "center", CellAlign: "center" },

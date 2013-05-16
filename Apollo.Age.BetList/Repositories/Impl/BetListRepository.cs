@@ -324,7 +324,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 }
                 else
                 {
-                    mainTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable);
+                    mainTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss", criteria, out referenceTable);
                 }
 
                 // Main ticket list

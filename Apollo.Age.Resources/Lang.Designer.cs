@@ -2400,6 +2400,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Displaying.
+        /// </summary>
+        public static string Displaying {
+            get {
+                return ResourceManager.GetString("Displaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diving.
         /// </summary>
         public static string diving {
@@ -4054,6 +4063,15 @@ namespace Apollo.Age.Resources {
         public static string IsNeutral {
             get {
                 return ResourceManager.GetString("IsNeutral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to items(s).
+        /// </summary>
+        public static string Items {
+            get {
+                return ResourceManager.GetString("Items", resourceCulture);
             }
         }
         
@@ -9919,7 +9937,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page Size:.
+        ///   Looks up a localized string similar to Page Size.
         /// </summary>
         public static string pagesize {
             get {
@@ -12423,11 +12441,20 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Under Maintenance.
+        /// </summary>
+        public static string UnderMaintenance {
+            get {
+                return ResourceManager.GetString("UnderMaintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We are having server maintenance, website will be unavailable from {0} until {1}. Sorry for the inconveniences caused!.
         /// </summary>
-        public static string undermaintenance {
+        public static string UnderMaintenanceMsg {
             get {
-                return ResourceManager.GetString("undermaintenance", resourceCulture);
+                return ResourceManager.GetString("UnderMaintenanceMsg", resourceCulture);
             }
         }
         

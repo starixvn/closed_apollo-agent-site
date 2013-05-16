@@ -4,7 +4,7 @@
 }
 <ul class="tab-menu-icon">
     <li class="main-menu"><i class="icon-align-justify" title="@Apollo.Age.Resources.Lang.mainmenu"></i>
-    <ul class="parent">
+    <ul class="parent"  id="isParent">
         @{ResourceManager rm = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
             foreach (SiteMapNode item in menu.ChildNodes)
             {
