@@ -137,7 +137,8 @@ namespace Sunplus.Agent.UI._BetList
             tpl.PagingControl = pagingControl.ToString();
 
             writer.Write(tpl);
-            RegisterJavascriptObject("titleViewComm", string.Format("{0} - {1}: ", BetList.viewCommDetails, BetList.refno));
+            RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails);
+            RegisterJavascriptObject("refNo", BetList.refno);
             RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
 
             #endregion RENDER HTML
