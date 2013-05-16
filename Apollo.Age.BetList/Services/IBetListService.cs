@@ -1,0 +1,40 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="IBetListService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Kaden.Trinh" date="2013.04.17">Created and Implement</change>
+// </history>
+namespace Apollo.Age.BetList.Services
+{
+    using System.Collections.Generic;
+    using Apollo.Age.BetList.Criterias;
+    using Fanex.BetList.Core.Entities;
+
+    /// <summary>
+    /// Service Interface
+    /// </summary>
+    public interface IBetListService
+    {
+        IList<ITicket> GetDetailAgentComm(BetListCriteria criteria);
+
+        IList<ITicket> GetDetailWinLossAgentComm(BetListCriteria criteria);
+
+        IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria);
+
+        TicketResult GetRunningByBettype(BetListCriteria criteria);
+
+        TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria);
+
+        TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria);
+
+        TicketResult GetWinLossByDateAndMem(BetListCriteria criteria);
+
+        TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria);
+
+        SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria);
+
+        void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode);
+    }
+}
