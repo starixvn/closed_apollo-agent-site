@@ -2400,6 +2400,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Displaying.
+        /// </summary>
+        public static string Displaying {
+            get {
+                return ResourceManager.GetString("Displaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diving.
         /// </summary>
         public static string diving {
@@ -4054,6 +4063,15 @@ namespace Apollo.Age.Resources {
         public static string IsNeutral {
             get {
                 return ResourceManager.GetString("IsNeutral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to items(s).
+        /// </summary>
+        public static string Items {
+            get {
+                return ResourceManager.GetString("Items", resourceCulture);
             }
         }
         
@@ -9919,7 +9937,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page Size:.
+        ///   Looks up a localized string similar to Page Size.
         /// </summary>
         public static string pagesize {
             get {

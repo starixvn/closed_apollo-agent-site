@@ -31,17 +31,6 @@ var ACCOUNTLIST = function ($) {
             else {
                 return "<span class='lock'>" + LANGUAGES.Locked + "</span>";
             }
-        },
-        initBetStatus: function (betStatus) {
-            if (betStatus == 1) {
-                return "<span class='active'>" + LANGUAGES.Active + "</span>";
-            }
-            else if (betStatus == 2) {
-                return "<span class='stop'>" + LANGUAGES.Stopped + "</span>";
-            }
-            else {
-                return "<span class='lock'>" + LANGUAGES.Locked + "</span>";
-            }
         }
     };
 } (jQuery);

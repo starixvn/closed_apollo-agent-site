@@ -20,6 +20,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Reports.Services;
+    using Apollo.Age.Resources;
     using Apollo.Age.Web;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
@@ -134,13 +135,15 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             writer.Write(tpl);
+            RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails.ToUpper());
+            RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
         }
 
         public override void ProcessRequest(ref System.Collections.Hashtable hash)
         {
             pageType = Request["type"];
 
-            if (pageType == "accountinfo")
+            if (pageType.ToLower().Equals("accountinfo"))
             {
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
                    (int)Apollo.Age.Enumerations.BetStatus.Void,
@@ -152,7 +155,7 @@ namespace Sunplus.Agent.UI._BetList
                    (int)Apollo.Age.Enumerations.BetStatus.Won,
                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
-            else if (pageType == "report")
+            else if (pageType.ToLower().Equals("report"))
             {
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
                        (int)Apollo.Age.Enumerations.BetStatus.Void,
@@ -169,11 +172,8 @@ namespace Sunplus.Agent.UI._BetList
                    (int)Apollo.Age.Enumerations.BetStatus.Waiting);
             }
 
-            if (Request["custid"] != null && Request["username"] != null)
-            {
-                int.TryParse(Request["custid"], out custid);
-                username = Request["username"];
-            }
+            int.TryParse(Request["custid"], out custid);
+            username = Request["username"];
 
             var reportService = new ReportService();
             balanceUpDay = reportService.GetBalanceUpDay();
@@ -200,7 +200,7 @@ namespace Sunplus.Agent.UI._BetList
                 MoveBetsDay = moveBetsDay
             };
 
-            if (pageType == "report")
+            if (pageType.ToLower().Equals("report"))
             {
                 mainTickets = betListService.GetWinLossByDateAndMem(criteria);
             }
