@@ -26,7 +26,7 @@
         foreach (var LeagueId in arrLeagueId)
         {
             listMatch = Model.Where(t => t.LeagueId == LeagueId).ToList();
-            sportName = listMatch[0].SportName;
+            sportName = listMatch[0].ViewName;
             
             Html.RenderPartial(string.Format("~/Views/Results/{0}.cshtml", sportName), listMatch);
         }
