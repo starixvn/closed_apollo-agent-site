@@ -179,7 +179,7 @@ var AGENTLIST = function ($) {
                             { Name: "Edit", Value: current },
                             { Name: "Username", Value: current.Username },
                             { Name: "Status", Value: current },
-                            { Name: "BetStatus", Value: current.BetStatus },
+                            { Name: "BetStatus", Value: current },
                             { Name: "NumberOfAgent", Value: current },
                             { Name: "NumberOfMember", Value: current },
                             { Name: "GroupA", Value: current.GroupA * 100 },
@@ -237,7 +237,7 @@ var AGENTLIST = function ($) {
                          },
                           { HeaderText: LANGUAGES.BetStatus, Width: 80, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
                               CustomCellRender: function (cell) {
-                                  return ACCOUNTLIST.initBetStatus(cell.Value);                                  
+                                  return ACCOUNTLIST.initStatus(cell.Value.BetStatus, cell.Value.UplineBetStatus);                                  
                               }
                           },
                          { HeaderText: LANGUAGES.NumberOfAgent, Width: 70, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
