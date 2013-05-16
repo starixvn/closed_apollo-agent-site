@@ -4,11 +4,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------
 // <history>
-//     <change who="Jacob.Phan" date="2010.05.29">Render BetList page</change>
-//     <change who="Thai" date="2011.03.08">Render BetList page</change>
-//     <change who="Marc.Bui" date="2012.12.19">Apply CoreBetList</change>
-//     <change who="Marc.Bui" date="2012.12.19">Rollback old Betlist</change>
-//     <change who="Marc.Bui" date="2013.02.26">Apply CoreBetList</change>
+//      <change who="Kaden.Trinh" date="2013.01.12">Create</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -27,6 +23,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Forecast.Services;
+    using Apollo.Age.Resources;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Fanex.Age.UI;
@@ -37,7 +34,6 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Apollo.Age.Resources;
 
     public partial class BetList_Page : TplPage
     {
@@ -169,6 +165,7 @@ namespace Sunplus.Agent.UI._BetList
             writer.Write(tpl);
             RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails.ToUpper());
             RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
+
             #endregion RENDER HTML
         }
 

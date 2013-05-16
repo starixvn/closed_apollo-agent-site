@@ -20,6 +20,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Reports.Services;
+    using Apollo.Age.Resources;
     using Apollo.Age.Web;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
@@ -31,7 +32,6 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Apollo.Age.Resources;
 
     public partial class BetListOnMember : TplPage
     {
@@ -143,7 +143,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             pageType = Request["type"];
 
-            if (pageType == "accountinfo")
+            if (pageType.ToLower().Equals("accountinfo"))
             {
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
                    (int)Apollo.Age.Enumerations.BetStatus.Void,
@@ -155,7 +155,7 @@ namespace Sunplus.Agent.UI._BetList
                    (int)Apollo.Age.Enumerations.BetStatus.Won,
                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
-            else if (pageType == "report")
+            else if (pageType.ToLower().Equals("report"))
             {
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
                        (int)Apollo.Age.Enumerations.BetStatus.Void,
@@ -203,7 +203,7 @@ namespace Sunplus.Agent.UI._BetList
                 MoveBetsDay = moveBetsDay
             };
 
-            if (pageType == "report")
+            if (pageType.ToLower().Equals("report"))
             {
                 mainTickets = betListService.GetWinLossByDateAndMem(criteria);
             }
