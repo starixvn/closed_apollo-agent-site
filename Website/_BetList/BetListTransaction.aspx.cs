@@ -21,6 +21,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Reports.Services;
+    using Apollo.Age.Resources;
     using Apollo.Age.Web;
     using Fanex.Age.UI.Components;
     using Fanex.Agent.UI._BetList;
@@ -131,11 +132,13 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
 
-            // Paging            
+            // Paging
             Paging_Control pagingControl = new Paging_Control(tpl, "pagination", this.PageSize, Request.Url.AbsoluteUri, this.TotalRows, PAGE_SIZES);
             tpl.PagingControl = pagingControl.ToString();
 
             writer.Write(tpl);
+            RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails.ToUpper());
+            RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
 
             #endregion RENDER HTML
         }
@@ -207,7 +210,7 @@ namespace Sunplus.Agent.UI._BetList
                     MoveBetsDay = moveBetsDay
                 };
 
-                if (pageType == "transaction")
+                if (pageType.ToLower().Equals("transaction"))
                 {
                     mainTickets = betListService.GetAllBetsTransactionByDateAndMem(criteria);
                 }
@@ -238,7 +241,7 @@ namespace Sunplus.Agent.UI._BetList
 
             pageType = Request["type"];
 
-            if (pageType == "cancel")
+            if (pageType.ToLower().Equals("cancel"))
             {
                 tpl.title = Apollo.Age.Resources.Lang.voidandreject;
                 isShowAgentPT = isShowWinLost = false;
@@ -247,7 +250,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             }
-            else if (pageType == "transaction")
+            else if (pageType.ToLower().Equals("transaction"))
             {
                 tpl.title = Apollo.Age.Resources.Lang.transaction;
                 isShowWinLost = true;
