@@ -135,7 +135,7 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             writer.Write(tpl);
-            RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails.ToUpper());
+            RegisterJavascriptObject("titleViewComm", string.Format("{0} - {1}: ", BetList.viewCommDetails, BetList.refno));
             RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
         }
 
