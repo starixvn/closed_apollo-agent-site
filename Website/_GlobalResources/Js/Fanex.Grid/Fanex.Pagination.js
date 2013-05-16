@@ -75,7 +75,7 @@
                 }
 
                 //Generate Items Per Page
-                $('<div class="itemperpage">Page size </div>').appendTo(panel);
+                $('<div class="itemperpage">' + (LANGUAGES.PageSize || 'Page size ') + '</div>').appendTo(panel);
                 var optPageSize = $('<select id="itemperpage"></select>').css("width", "50px");
                 var totalItemPerPage = opts.itemsPerPageArray.length;
 
@@ -165,7 +165,7 @@
 
                 // Generate Status
                 if (opts.showDetail) {
-                    $('<div class="detailtext">Displaying <b>' + (opts.itemsPerPage * opts.currentPage + 1) + '</b> to <b>' + Math.min(opts.itemsPerPage * (opts.currentPage + 1), maxentries) + '</b> of <b>' + maxentries + '</b> item(s)</div>').appendTo(panel);
+                    $('<div class="detailtext">' + (LANGUAGES.Displaying || 'Displaying ') + ' <b>' + (opts.itemsPerPage * opts.currentPage + 1) + '</b> ' + (LANGUAGES.To || 'to ') + ' <b>' + Math.min(opts.itemsPerPage * (opts.currentPage + 1), maxentries) + '</b> ' + (LANGUAGES.Of || 'of ') + ' <b>' + maxentries + '</b> ' + (LANGUAGES.Items || 'items(s) ') + '</div>').appendTo(panel);
                 }
 
                 //GotoPage Pane
@@ -231,7 +231,7 @@
             }
 
             function drawGoToPage() {
-                var goto_page = '<table class="c gotopage_box" id="page_menu" cellpadding="0px" cellspacing="0px"><tr><td style="width:80px;">Go to Page</td><td><input type="text" name="txtpage" id="txtpage" class="txt" size="4"></td><td><input type="button" id="pagenav_ibtn" class="pagenav_ibtn" ></input></td></tr></table>';
+                var goto_page = '<table class="c gotopage_box" id="page_menu" cellpadding="0px" cellspacing="0px"><tr><td style="width:80px;">' + (LANGUAGES.GoToPage || 'Go To Page') + '</td><td><input type="text" name="txtpage" id="txtpage" class="txt" size="4"></td><td><input type="button" id="pagenav_ibtn" class="pagenav_ibtn" ></input></td></tr></table>';
                 return goto_page;
             }
 
