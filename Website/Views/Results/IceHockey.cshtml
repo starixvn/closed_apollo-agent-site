@@ -171,7 +171,14 @@
                     @PAway[2]
                 </td>
                 <td>
-                    @OTAway
+                    @if (string.IsNullOrWhiteSpace(OTAway))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @OTAway
+                    }
                 </td>
                 <td>
                     @if (item.FinalAwayScore == null)
