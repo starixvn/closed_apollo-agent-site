@@ -31,6 +31,7 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
+    using Apollo.Age.Resources;
 
     public partial class BetListTransaction : BetListBase
     {
@@ -136,7 +137,8 @@ namespace Sunplus.Agent.UI._BetList
             tpl.PagingControl = pagingControl.ToString();
 
             writer.Write(tpl);
-
+            RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails.ToUpper());
+            RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
             #endregion RENDER HTML
         }
 

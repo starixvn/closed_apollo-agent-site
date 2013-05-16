@@ -199,7 +199,7 @@
     <value>มากกว่า</value>
   </data>
   <data name="pending" xml:space="preserve">
-    <value>Pending</value>
+    <value>อยู่ระหว่างการดำเนินการ</value>
   </data>
   <data name="race" xml:space="preserve">
     <value>แข่งขัน</value>

@@ -199,7 +199,7 @@
     <value>大</value>
   </data>
   <data name="pending" xml:space="preserve">
-    <value>Pending</value>
+    <value>等待中</value>
   </data>
   <data name="race" xml:space="preserve">
     <value>賽事</value>
