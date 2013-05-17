@@ -29,7 +29,7 @@ namespace Apollo.Age.Account.Models
 
         public string Username { get; set; }
 
-        public int ActionId { get; set; }
+        public int ActionTypeId { get; set; }
 
         public string ActionName { get; set; }
 
@@ -37,26 +37,27 @@ namespace Apollo.Age.Account.Models
 
         public string Data { get; set; }
 
-        public string Content
+        public string GetContent(bool isShowOldValue)
         {
-            get
+
+            string result = string.Empty;
+
+            //<r><z s="1" b="1" mib="270.0000" mab="800.0000" mam="8000.0000"/></r>
+            if (this.ActionTypeId == Constants.LOGACTIONBETSETTING)
             {
-                string result = string.Empty;
+                var listBetSetting = this.GetBetSetting();
+                var bodyTemplate = ReadTextFile(HttpContext.Current.Server.MapPath("~/Views/Log/Templates/BetSetting.cshtml"));
 
-                //<r><z s="1" b="1" mib="270.0000" mab="800.0000" mam="8000.0000"/></r>
-                if (this.ActionId == Constants.LOGACTIONBETSETTING)
-                {
-                    var listBetSetting = this.GetBetSetting();
-                    var bodyTemplate = ReadTextFile(HttpContext.Current.Server.MapPath("~/Views/Log/Templates/BetSetting.cshtml"));
+                RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
+                viewBag.AddValue("IsShowOldValue", isShowOldValue);
 
-                    result = Razor.Parse(bodyTemplate, listBetSetting);
-                }
-
-                return result;
+                result = Razor.Parse(bodyTemplate, listBetSetting, viewBag, null);
             }
+
+            return result;
         }
 
-        private List<BetSettingModel> GetBetSetting()
+        private List<Apollo.Age.Account.Models.BetSettingModel> GetBetSetting()
         {
             var list = new List<BetSettingModel>();
 
@@ -94,9 +95,9 @@ namespace Apollo.Age.Account.Models
                     {
                         SportType = Convert.ToInt32(item.Attribute("s").Value),
                         BetType = Convert.ToInt32(item.Attribute("b").Value),
-                        OldMinBet = Convert.ToDecimal(item.Attribute("mib").Value),
-                        OldMaxBet = Convert.ToDecimal(item.Attribute("mab").Value),
-                        OldMaxPerMatch = Convert.ToDecimal(item.Attribute("mam").Value),
+                        MinBet = Convert.ToDecimal(item.Attribute("mib").Value),
+                        MaxBet = Convert.ToDecimal(item.Attribute("mab").Value),
+                        MaxPerMatch = Convert.ToDecimal(item.Attribute("mam").Value),
                     };
 
                     for (int i = 0; i < list.Count; i++)

@@ -113,12 +113,15 @@
                         @itemLog.LogId
                     </td>
                     <td class="c">
+                        @itemLog.Username
+                    </td>
+                    <td class="c">
                         @itemLog.LogDate
                     </td>
                     <td class="c">
                         @itemLog.ActionName
                     </td>
-                    <td class="message_content">@itemLog.Content
+                    <td class="message_content">@Html.Raw(itemLog.GetContent(Model.ShowOldValue))
                     </td>
                 </tr>
         }
