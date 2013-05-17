@@ -636,13 +636,32 @@ Spinner.prototype = {
     },
     isValid: function (hideMessage) {
         var value = this.getValue();
-        if ((value < this.options.minimum || value > this.options.maximum) && (this.options.minimum <= this.options.maximum)) {
-            if (hideMessage == true) { 
+        if (!this.digitsValid(value)) {
+            if (hideMessage == true) {
             }
             else {
                 Fanex.ValidateMessage(this.input, Language.INVALID_RANGE);
             }
             return false;
+        }
+        if ((value < this.options.minimum || value > this.options.maximum) && (this.options.minimum <= this.options.maximum)) {
+            if (hideMessage == true) {
+            }
+            else {
+                Fanex.ValidateMessage(this.input, Language.INVALID_RANGE);
+            }
+            return false;
+        }
+        return true;
+    },
+    digitsValid: function (value) {
+        // determine the multiplier for rounding
+        var valueString = value.toString();
+
+        if (valueString.indexOf('.') > -1) {
+            if (valueString.indexOf('.') + 3 < valueString.length) {
+                return false;
+            }
         }
         return true;
     }
