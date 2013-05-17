@@ -118,7 +118,7 @@ namespace Apollo.Age.Web
                 }
                 else // return View with error message
                 {
-                    string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: " + Lang.InvalidUsernameOrPassword + " ." ;
+                    string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: Failed(" + Lang.InvalidUsernameOrPassword + ") ." ;
                     WritelogLogin(0, _AdminId, 1308, 0, doing);
 
                     ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
@@ -172,6 +172,8 @@ namespace Apollo.Age.Web
                 }
                 else // return View with not-found error message
                 {
+                    string doing = "Admin: " + model.AdminName + " via Agent: " + agent.Username + " Logged in to Apollo Agent Site - Result: Failed(" + Lang.AgentNotFound + ").";
+                    WritelogLogin(agent.Id, model.AdminId, 1306, 0, doing);
 
                     ModelState.AddModelError("Agent", Lang.AgentNotFound);
                 }
