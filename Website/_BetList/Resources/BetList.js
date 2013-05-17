@@ -110,11 +110,11 @@ function showCombMP(transid, orderID) {
 function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 	var width = 750,
         height = 350,
-        params = '?refno=\'' + refno + '\'&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
-        detailTitle = $(target).siblings('.combinationLink').text();
+        params = '?refno=' + refno + '&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
+        detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + _page.refNo + ": " + transid;
 
 	if (parent.ageWnd) {
-		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), 'Detail', 50, 100, width, height);
+		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
 	} else {
 		ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
 	}
@@ -162,10 +162,6 @@ function InitBetList() {
 	InitExcelFunction();
 }
 
-function OpenIPInfo(ip) {
-	ageWnd.open(APOLLO.resolveUrl("~/_IPInfo/IpInfo.aspx?ip=" + ip), '', 300, 100, 400, 170);
-}
-
 function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
 	var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
 	var url = APOLLO.resolveUrl("~/Forecast/ScoreMap?matchIds=" + matchIds +
@@ -184,7 +180,9 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
 		mainShareHolderUsername = " - " + mainShareHolderUsername;
 	}
 	url += "&custId=" + custId;
-	wnd.open(url, 'SCORE MAP' + mainShareHolderUsername, 0, 20, 900, 550);
+
+	var titleScoreMap = _page.titleScoreMap + mainShareHolderUsername;
+	wnd.open(url, titleScoreMap, 0, 20, 900, 550);
 }
 
 RegisterStartUp(InitBetList);
@@ -207,26 +205,39 @@ if (typeof jQuery != "undefined") {
 
 		var viewDetailsLinks = $(".view-detail");
 		var submit = $(".act-submit");
-
 		if (viewDetailsLinks.length > 0) {
 			viewDetailsLinks.click(function () {
+				var fromDate = toDate = type = "";
+
+				if (typeof ($("#fromDate").val()) !== 'undefined') {
+					fromDate = $("#fromDate").val();
+				}
+				if (typeof ($("#toDate").val()) !== 'undefined') {
+					toDate = $("#toDate").val();
+				}
+				if (typeof ($("#type").val()) !== 'undefined') {
+					type = $("#type").val();
+				}
+
 				var $this = $(this),
                     transId = $this.attr("tid"),
-					fromDate = $("#fromDate").val(),
-					toDate = $("#toDate").val(),
-					type = $("#type").val(),
+					fromDate = fromDate,
+					toDate = toDate,
+					type = type,
                     url = APOLLO.resolveUrl("~/BetList/ViewDetail"),
                     ajaxParams = "?transid=" + transId +
                         "&fromdate=" + fromDate +
                         "&toDate=" + toDate +
 						"&type=" + type;
 
+				var title = _page.titleViewComm + " - " + _page.refNo + ": " + transId;
+
 				ajax.Request(url, {
 					asynchronous: true,
 					parameters: ajaxParams,
 					onComplete: function (data) {
 						BETLIST.dialogDetails.html(data.responseText);
-						APOLLO.openDialog(BETLIST.dialogDetails, "View Comm Details", { modal: false, width: 450, height: 450 });
+						APOLLO.openDialog(BETLIST.dialogDetails, title, { modal: false, width: 450, height: 450 });
 					}
 				});
 			});

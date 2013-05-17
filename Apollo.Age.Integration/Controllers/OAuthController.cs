@@ -20,6 +20,8 @@ namespace Apollo.Age.Integration.Controllers
     using Fanex.Logging;
     using Apollo.Age.Integration.Services;
     using Apollo.Age.Integration.Models;
+    using System.Threading.Tasks;
+    using Apollo.Age.Web.Services;
 
     [AllowAnonymous]
     public class OAuthController : Controller
@@ -76,11 +78,18 @@ namespace Apollo.Age.Integration.Controllers
                                 ICurrentSession currentSession = new CurrentSession(user, 0, string.Empty ,false, language);
                                 SessionManager.CurrentSession = currentSession;
                                 FormsAuthentication.SetAuthCookie(user.Username, true);
+
+                                //Write log SSO
+                                string doing = "SSO logged in via Agent: " + user.Username + " - Result: Successful.";
+                                WritelogLogin(user.Id, 0, 1400, 0, doing);
                             }
                             else
                             {
                                 LogService.Error(string.Format("User {0} not found or not the requested user ({1})", authModel.Username, user.Username));
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
+
+                                string doing = "SSO logged in via Agent: " + user.Username + " - Result: Fail(User not found).";
+                                WritelogLogin(0, 0, 1401, 0, doing);
                             }
                         }
                         else
@@ -101,6 +110,7 @@ namespace Apollo.Age.Integration.Controllers
                 }
             }
 
+           
             return View(authModel);
         }
 
@@ -113,9 +123,32 @@ namespace Apollo.Age.Integration.Controllers
         [AllowAnonymous]
         public void SignOut()
         {
+            string doing = "SSO log out via Agent: " + SessionManager.CurrentSession.Username + " - Result: Successful.";
+            WritelogLogin(SessionManager.CurrentSession.UserId, 0, 1402, 0, doing);
+
             Session.Abandon();
             Response.Cookies.Clear();
             FormsAuthentication.SignOut();
+        }
+
+        private void WritelogLogin(int agentId, int agentUserId, int actionId, int serverId, string doing)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                DeviceService deviceService = new DeviceService(Request);
+                _userService.WriteLogInternalLogin(
+                    agentId,
+                    agentUserId,
+                    serverId,
+                    actionId,
+                    doing,
+                    deviceService.ClientIp,
+                    deviceService.DomainName,
+                    deviceService.BrowserName,
+                    deviceService.Platform,
+                    deviceService.CountryCode
+                    );
+            });
         }
     }
 }

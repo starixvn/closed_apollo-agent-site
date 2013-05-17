@@ -66,7 +66,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
         public override void ProcessRequest(ref Hashtable hash)
         {
             string temp = Request["refno"];
-            temp = temp.Replace("'", null);
             long.TryParse(temp, out _refno);
 
             _transid = Convert.ToInt64(Request["transid"]);

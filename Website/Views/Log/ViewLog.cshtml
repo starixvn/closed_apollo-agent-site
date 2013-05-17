@@ -1,0 +1,133 @@
+﻿@model GetLogCustSettingCriteria
+@{    
+    Layout = "~/Views/Log/Shared/_Layout.cshtml";
+    ViewBag.Title = Apollo.Age.Resources.Lang.viewlog;
+    var logData = (List<LogRunSpModel>)ViewBag.LogData;
+}
+@section head {
+    <link href="~/Views/Log/Resources/Log.less" rel="stylesheet" type="text/css">
+}
+@using (Html.BeginForm("ViewLog", "Log", FormMethod.Get))
+{   
+    <div id="box_header">
+        <div class="row">
+            <div class="cell">
+                <div class="label">
+                    @Html.DropDownListFor(m => m.IsAgent, new List<SelectListItem> {
+            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblAgent },
+            new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.lblMember }
+        })
+                </div>
+            </div>
+            <div class="cell">
+                <div class="editor">
+                    @Html.TextBoxFor(m => m.Username, Apollo.Age.Resources.Lang.enterusername)
+                </div>
+            </div>
+            <div class="cell">
+                <div class="label">
+                    @Html.LabelFor(m => m.ActionTypeId, Apollo.Age.Resources.Lang.viewby)
+                </div>
+                <div class="editor">
+                    @Html.DropDownListFor(m => m.ActionTypeId, new List<SelectListItem>
+               {
+                new SelectListItem{Value ="0",Text=Apollo.Age.Resources.Lang.all},
+                new SelectListItem{Value ="2",Text=Apollo.Age.Resources.Lang.commission},
+                new SelectListItem{Value ="3",Text=Apollo.Age.Resources.Lang.lblBetSetting},
+                new SelectListItem{Value ="4",Text=Apollo.Age.Resources.Lang.positiontaking}
+               })
+                </div>
+            </div>
+            <div class="cell">
+                <div class="label">
+                    @Html.LabelFor(m => m.From, Apollo.Age.Resources.Lang.from)
+                </div>
+                <div class="editor">
+                    @Html.DatePickerFor(m => m.From)
+                    <div class="img-calendar">
+                    </div>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="label">
+                    @Html.LabelFor(m => m.To, Apollo.Age.Resources.Lang.to)
+                </div>
+                <div class="editor">
+                    @Html.DatePickerFor(m => m.To)
+                    <div class="img-calendar">
+                    </div>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="editor">
+                    <input type="submit" class="btn" id="dSubmit" value="@Apollo.Age.Resources.Lang.submit"/>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="editor">
+                    @Html.CheckBoxFor(m => m.ShowOldValue)
+                    @Apollo.Age.Resources.Lang.OldValue
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="tblRpt">
+        <thead>
+            <tr>
+                <th style="width: 20px">
+                    @Apollo.Age.Resources.Lang.no
+                </th>
+                <th style="width: 60px">
+                    @Apollo.Age.Resources.Lang.logid
+                </th>
+                <th style="width: 80px">
+                    @Apollo.Age.Resources.Lang.logdate
+                </th>
+                <th>
+                    @Apollo.Age.Resources.Lang.editby
+                </th>
+                <th>
+                    @Apollo.Age.Resources.Lang.actionname
+                </th>
+                <th>
+                    @Apollo.Age.Resources.Lang.lblDetails
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+    int count = 0;
+    if (!ReferenceEquals(logData, null) && logData.Any())
+    {
+        string rowClass = string.Empty;
+
+        foreach (var itemLog in logData)
+        {
+            count++;
+            rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
+                <tr @Html.Raw(rowClass)>
+                    <td class="c">
+                        @count
+                    </td>
+                    <td class="c">
+                        @itemLog.LogId
+                    </td>
+                    <td class="c">
+                        @itemLog.LogDate
+                    </td>
+                    <td class="c">
+                        @itemLog.ActionName
+                    </td>
+                    <td class="message_content">@itemLog.Content
+                    </td>
+                </tr>
+        }
+    }
+    else
+    {
+                @RazorHelper.ShowNoInfo(4)
+    }
+            }
+        </tbody>
+    </table>
+}

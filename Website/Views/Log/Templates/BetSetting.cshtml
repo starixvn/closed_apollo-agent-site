@@ -1,0 +1,36 @@
+﻿@model List<BetSettingModel>
+@if (!ReferenceEquals(Model, null))
+{
+    <table>
+        @foreach (var item in Model)
+        {
+            var sportName = item.SportName;
+            <tr>
+                <td>
+                    @sportName
+                </td>
+                <td>
+                    @item.MinBet
+                    <br />
+                    @item.OldMinBet
+                </td>
+                <td>
+                    @sportName
+                </td>
+                <td>
+                    @item.MaxBet
+                    <br />
+                    @item.OldMaxBet
+                </td>
+                <td>
+                    @sportName
+                </td>
+                <td>
+                    @item.MaxPerMatch
+                    <br />
+                    @item.OldMaxPerMatch
+                </td>
+            </tr>
+        }
+    </table>
+}

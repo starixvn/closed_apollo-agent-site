@@ -20,6 +20,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Reports.Services;
+    using Apollo.Age.Resources;
     using Apollo.Age.Web;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
@@ -56,7 +57,7 @@ namespace Sunplus.Agent.UI._BetList
 
             var tpl = new BetListOnMember_Template();
             tpl.title = Apollo.Age.Resources.Lang.lblBetLists + " - " + username;
-            if (pageType == "accountinfo")
+            if (pageType.Equals("accountinfo"))
             {
                 var maxDate = DateTime.Now;
                 tpl.HiddenFields.username = username;
@@ -134,13 +135,16 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             writer.Write(tpl);
+            RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails);
+            RegisterJavascriptObject("refNo", BetList.refno);
+            RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
         }
 
         public override void ProcessRequest(ref System.Collections.Hashtable hash)
         {
-            pageType = Request["type"];
+            pageType = GetStringRequest("type", string.Empty).ToLower();
 
-            if (pageType == "accountinfo")
+            if (pageType.Equals("accountinfo"))
             {
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
                    (int)Apollo.Age.Enumerations.BetStatus.Void,
@@ -152,7 +156,7 @@ namespace Sunplus.Agent.UI._BetList
                    (int)Apollo.Age.Enumerations.BetStatus.Won,
                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
-            else if (pageType == "report")
+            else if (pageType.Equals("report"))
             {
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
                        (int)Apollo.Age.Enumerations.BetStatus.Void,
@@ -169,13 +173,10 @@ namespace Sunplus.Agent.UI._BetList
                    (int)Apollo.Age.Enumerations.BetStatus.Waiting);
             }
 
-            if (Request["custid"] != null && Request["username"] != null)
-            {
-                int.TryParse(Request["custid"], out custid);
-                username = Request["username"];
-            }
-
+            int.TryParse(Request["custid"], out custid);
             var reportService = new ReportService();
+            
+            username = GetStringRequest("username", string.Empty);
             balanceUpDay = reportService.GetBalanceUpDay();
             moveBetsDay = reportService.MoveBetsDay();
             fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
@@ -200,7 +201,7 @@ namespace Sunplus.Agent.UI._BetList
                 MoveBetsDay = moveBetsDay
             };
 
-            if (pageType == "report")
+            if (pageType.Equals("report"))
             {
                 mainTickets = betListService.GetWinLossByDateAndMem(criteria);
             }

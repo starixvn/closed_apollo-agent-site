@@ -2,8 +2,18 @@
 @using Apollo.Age.Reports.Core
 @using Apollo.Age
 @model IEnumerable<MatchResultModel>
+
 <table class="tblRpt">
     <thead>
+        @if ((bool)@ViewBag.IsParlay)
+        {
+            <tr>
+                <th class="summary-header" colspan="6">
+                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
+                    <span>@Model.ToList()[0].LeagueName</span>
+                </th>
+            </tr> 
+        }
         <tr class="RptHeader">
             <th style="width: 90px">
                 @Apollo.Age.Resources.Lang.kickofftime
@@ -43,13 +53,16 @@
 </table>
 @helper ShowLeague(int currentLeagueId, MatchResultModel item)
     {
-        if (currentLeagueId != item.LeagueId)
+        if (!(bool)ViewBag.IsParlay)
         {
-    <tr class="league">
-        <td colspan="6">
-            @item.LeagueName
-        </td>
-    </tr>
+            if (currentLeagueId != item.LeagueId)
+            {
+                <tr class="league">
+                    <td colspan="6">
+                        @item.LeagueName
+                    </td>
+                </tr>
+            }
         }
 }
 @helper ShowMatch(MatchResultModel item)
@@ -101,7 +114,7 @@
         var betStatus = string.Empty;
         if (item.EventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
         {
-            if(!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(";"))
+            if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(";"))
             {
                 string[] refundArray = item.BetStatus.Split(';');
                 if (refundArray.Length == 2 && refundArray[1].ToString() != string.Empty)
@@ -168,7 +181,14 @@
             if (isRowHome)
             {
     <td>
-        @item.HalfTimeHomeScore
+        @if (item.HalfTimeHomeScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.HalfTimeHomeScore
+        }
     </td>
     <td>
         @Apollo.Age.Resources.Lang.lblNA
@@ -177,7 +197,14 @@
             else
             {
     <td>
-        @item.HalfTimeAwayScore
+        @if (item.HalfTimeAwayScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.HalfTimeAwayScore
+        }
     </td>
     <td>
         @Apollo.Age.Resources.Lang.lblNA
@@ -192,7 +219,14 @@
         @Apollo.Age.Resources.Lang.lblNA
     </td>
     <td>
-        @item.FinalHomeScore
+        @if (item.FinalHomeScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.FinalHomeScore
+        }
     </td>
             }
             else
@@ -201,7 +235,14 @@
         @Apollo.Age.Resources.Lang.lblNA
     </td>
     <td>
-        @item.FinalAwayScore
+        @if (item.FinalAwayScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.FinalAwayScore
+        }
     </td>
             }
         }
@@ -210,19 +251,47 @@
             if (isRowHome)
             {
                 <td>
-                    @item.HalfTimeHomeScore
+                    @if (item.HalfTimeHomeScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.HalfTimeHomeScore
+                    }
                 </td>
                 <td>
-                    @item.FinalHomeScore
+                    @if (item.FinalHomeScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalHomeScore
+                    }
                 </td>
             }
             else
             {
                 <td>
-                    @item.HalfTimeAwayScore
+                    @if (item.HalfTimeAwayScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.HalfTimeAwayScore
+                    }
                 </td>
                 <td>
-                    @item.FinalAwayScore
+                    @if (item.FinalAwayScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalAwayScore
+                    }
                 </td>
             }
         }

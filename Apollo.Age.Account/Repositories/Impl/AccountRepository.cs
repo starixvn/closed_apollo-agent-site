@@ -255,5 +255,26 @@ namespace Apollo.Age.Account.Repositories.Impl
                 throw;
             }
         }
+
+        public IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        return db.Query<AgentLogLoginModel>(criteria.GetSpParams());
+                    }
+                }
+
+                return new List<AgentLogLoginModel>();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

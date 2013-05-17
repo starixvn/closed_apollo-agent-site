@@ -30,6 +30,16 @@ namespace Apollo.Age.Reports.Models
             }
         }
 
+        public string ViewName { get; set; }
+
+        public string SportName
+        {
+            get
+            {
+                return CacheRef.GetSportName(this.SportId);
+            }
+        }
+
         public int MatchId { get; set; }
 
         public string LColor { get; set; }
@@ -60,13 +70,13 @@ namespace Apollo.Age.Reports.Models
             }
         }
 
-        public int HalfTimeHomeScore { get; set; }
+        public int? HalfTimeHomeScore { get; set; }
 
-        public int HalfTimeAwayScore { get; set; }
+        public int? HalfTimeAwayScore { get; set; }
 
-        public int FinalHomeScore { get; set; }
+        public int? FinalHomeScore { get; set; }
 
-        public int FinalAwayScore { get; set; }
+        public int? FinalAwayScore { get; set; }
 
         public string EventStatus { get; set; }
 

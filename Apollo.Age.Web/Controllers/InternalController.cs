@@ -24,6 +24,8 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.Services;
     using Apollo.Age.Web.ViewModels;
+    using System.Threading.Tasks;
+    using System.Threading;
 
     public class InternalController : Controller
     {
@@ -110,14 +112,14 @@ namespace Apollo.Age.Web
 
                     //write log
                     string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: Successful.";
-                    WritelogLogin(0, _AdminId, 1307, 0, doing);  
+                    WritelogLogin(0, _AdminId, 1307, 0, doing);
 
                     return RedirectToAction("SelectAccount");
                 }
                 else // return View with error message
                 {
                     string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: Failed.";
-                    WritelogLogin(0, _AdminId, 1308, 0, doing);  
+                    WritelogLogin(0, _AdminId, 1308, 0, doing);
 
                     ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
                 }
@@ -164,10 +166,12 @@ namespace Apollo.Age.Web
                     string doing = "Admin: " + model.AdminName + " via Agent: " + agent.Username + " Logged in to Apollo Agent Site - Result: Successful.";
                     WritelogLogin(agent.Id, model.AdminId, 1306, 0, doing);
 
+
+
                     FormsAuthentication.RedirectFromLoginPage(agent.Username, createPersistentCookie: false);
                 }
                 else // return View with not-found error message
-                {                  
+                {
 
                     ModelState.AddModelError("Agent", Lang.AgentNotFound);
                 }
@@ -176,21 +180,24 @@ namespace Apollo.Age.Web
             return View(model);
         }
 
-        private void WritelogLogin(int AgentId, int AgentUserId, int ActionId, int ServerId, string Doing)
+        private void WritelogLogin(int agentId, int agentUserId, int actionId, int serverId, string doing)
         {
-            DeviceService deviceService = new DeviceService(Request);
-            _userService.WriteLogInternalLogin(
-                AgentId,
-                AgentUserId,
-                ServerId,
-                ActionId,
-                Doing,
-                deviceService.ClientIp,
-                deviceService.DomainName,
-                deviceService.BrowserName,
-                deviceService.Platform,
-                deviceService.CountryCode
-                );
+            Task.Factory.StartNew(() =>
+            {                
+                DeviceService deviceService = new DeviceService(Request);
+                _userService.WriteLogInternalLogin(
+                    agentId,
+                    agentUserId,
+                    serverId,
+                    actionId,
+                    doing,
+                    deviceService.ClientIp,
+                    deviceService.DomainName,
+                    deviceService.BrowserName,
+                    deviceService.Platform,
+                    deviceService.CountryCode
+                    );
+            });
         }
 
         public ActionResult CaptchaImage(bool noisy = true)
@@ -257,7 +264,7 @@ namespace Apollo.Age.Web
             if (isInternalSignIn)
             {
                 // Write log internal login
-               
+
                 WritelogLogin(SessionManager.CurrentSession.AgentId, SessionManager.CurrentSession.AdminId, 1309, 0, doing);
                 return Redirect(ApoURLs.URLs.InternalSignIn);
             }
