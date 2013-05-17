@@ -120,12 +120,9 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         else if (maxValue < currentPt.MinMaxSpan) {
             maxValueCorrect = currentPt.MinMaxSpan;
         }
-        else if (presetValue + maxValue > currentPt.Upline.Max) {
-            //presetSpinBox.setValue(Fanex.RoundNumber(currentPt.Upline.Max - maxValueCorrect, 2));
-        }
 
         if (maxValueCorrect != maxValue) {
-            Fanex.ValidateMessage(this, Language.INVALID_RANGE);
+            maxSpinBox.alertRangeMessage();
             return;
         }
 
@@ -167,7 +164,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         }
 
         if (minValueCorrect != minValue) {
-            Fanex.ValidateMessage(this, Language.INVALID_RANGE);
+            minSpinBox.alertRangeMessage();
             return;
         }
         minValueCorrect = Math.max(minValueCorrect, currentPt.Upline.Min);
@@ -353,7 +350,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
         }
 
         if (maxValue != maxValueCorrect) {
-            Fanex.ValidateMessage(this, Language.INVALID_RANGE);
+            maxSpinBox.alertRangeMessage();
             return;
         }
 
@@ -381,7 +378,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
         }
 
         if (minValue != minValueCorrect) {
-            Fanex.ValidateMessage(this, Language.INVALID_RANGE);
+            minSpinBox.alertRangeMessage();
             return;
         }
         minValueCorrect = Math.max(minValueCorrect, currentPt.Upline.Min);
@@ -529,7 +526,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         }
 
         if (maxValue != maxValueCorrect) {
-            Fanex.ValidateMessage(this, Language.INVALID_RANGE);
+            maxSpinBox.alertRangeMessage();
             return;
         }
 
@@ -601,7 +598,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
     maxSpinBox.input.onchange = function (event) {
         var currentValue = maxSpinBox.getValue();
         if (currentValue > currentPt.Upline.Max || currentValue < currentPt.MinMaxSpan) {
-            Fanex.ValidateMessage(this, Language.INVALID_RANGE);
+            maxSpinBox.alertRangeMessage();
             return;
         }
     }
@@ -663,7 +660,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     valueSpinBox.input.onchange = function (event) {
         var currentValue = valueSpinBox.getValue();
         if (currentValue > currentPt.Upline.Max || currentValue < currentPt.Upline.Min) {
-            Fanex.ValidateMessage(this, Language.INVALID_RANGE);
+            valueSpinBox.alertRangeMessage();
             return;
         }
 

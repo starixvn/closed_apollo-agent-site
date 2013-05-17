@@ -640,7 +640,7 @@ Spinner.prototype = {
             if (hideMessage == true) {
             }
             else {
-                Fanex.ValidateMessage(this.input, Language.INVALID_RANGE);
+                Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -160, 175);
             }
             return false;
         }
@@ -648,7 +648,7 @@ Spinner.prototype = {
             if (hideMessage == true) {
             }
             else {
-                Fanex.ValidateMessage(this.input, Language.INVALID_RANGE);
+                Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -140, 155);
             }
             return false;
         }
@@ -662,8 +662,11 @@ Spinner.prototype = {
             if (valueString.indexOf('.') + 3 < valueString.length) {
                 return false;
             }
-        }
+        };
         return true;
+    },
+    alertRangeMessage: function () {
+        Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -140, 155);
     }
 };
 
