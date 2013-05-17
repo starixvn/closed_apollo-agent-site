@@ -536,6 +536,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - maxValueCorrect, 2), 0);
         currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - maxValueCorrect, 2), 0);
         presetSpinBox.updateMaxValue(currentPt.MaxPresetSpan);
+        presetSpinBox.updateMinValue(currentPt.MinPresetSpan);
         presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
     }
 
