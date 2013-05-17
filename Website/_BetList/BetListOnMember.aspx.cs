@@ -175,7 +175,7 @@ namespace Sunplus.Agent.UI._BetList
 
             int.TryParse(Request["custid"], out custid);
             var reportService = new ReportService();
-            
+
             username = GetStringRequest("username", string.Empty);
             balanceUpDay = reportService.GetBalanceUpDay();
             moveBetsDay = reportService.MoveBetsDay();
@@ -194,8 +194,8 @@ namespace Sunplus.Agent.UI._BetList
                 AgentId = -1,
                 LoggedId = CurrentSession.AgentId,
                 CustId = custid,
-                FromDate = fromDate,
-                ToDate = toDate,
+                FromDate = Formater.ResetStartDate(fromDate),
+                ToDate = Formater.ResetEndDate(toDate),
                 StatusIds = statusIds,
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay

@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders" date="2013.4.8">Created</change>
 //   <change who="Lewis" date="2013.4.15">Added htmlAttributes param for DatePicker</change>
+//   <change who="Lewis" date="2013.5.17">Added Resource</change>
 // </history>
 
 namespace Apollo.Age.Web.Mvc
@@ -18,6 +19,10 @@ namespace Apollo.Age.Web.Mvc
     using System.Web.Mvc.Html;
     using Apollo.Age.Web.Properties;
     using System.Text;
+    using System.Web;
+    using System.Web.Compilation;
+    using System.Globalization;
+    using System.Resources;
 
     public static class HtmlHelperExtensions
     {
@@ -152,6 +157,8 @@ namespace Apollo.Age.Web.Mvc
 
         #endregion
 
+        #region Date, Year Picker
+
         public static MvcHtmlString DatePickerFor<TModel, TValue>(
             this HtmlHelper<TModel> html,
             Expression<Func<TModel, TValue>> expression,
@@ -248,6 +255,8 @@ namespace Apollo.Age.Web.Mvc
             return MvcHtmlString.Create(dropDownList.ToString());
         }
 
+        #endregion
+
         #region Dropdownlist
 
         public static MvcHtmlString DropDownListFor<TModel, TProperty>(
@@ -277,6 +286,25 @@ namespace Apollo.Age.Web.Mvc
             }
 
             return SelectExtensions.DropDownListFor(htmlHelper, expression, selectList, htmlAttributes);
+        }
+
+        #endregion
+
+        #region Resources
+
+        /// <summary>
+        /// Returns the value of the specified System.String resource
+        /// </summary>
+        /// <param name="key">The name of the resource to get</param>
+        /// <param name="resourceSource">A type from which the resource manager derives all information 
+        /// for finding .resources files (default value is Apollo.Age.Resources.Lang).</param>
+        /// <returns></returns>
+        public static string Resource(this HtmlHelper htmlhelper, string key,
+            Type resourceSource = null)
+        {
+            var resMgr = new ResourceManager(resourceSource ?? typeof(Apollo.Age.Resources.Lang));
+
+            return resMgr.GetString(key);
         }
 
         #endregion
