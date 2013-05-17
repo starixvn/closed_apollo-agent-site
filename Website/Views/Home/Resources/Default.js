@@ -54,6 +54,11 @@
 $(document).ready(function () {
     window.IsApoRoot = true;
 
+    // check collapse or expand 
+    if ($.cookie('miniMenu') == 1) {
+        MINI_MENU.collapseMenu();
+    }
+
     // Check IE7
     if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) == 7) {
         var windowHeight = $(window).height(),
@@ -67,8 +72,10 @@ $(document).ready(function () {
     $('#btn-mini-menu').click(function () {
         if ($('#btn-mini-menu').hasClass('collapse')) {
             MINI_MENU.collapseMenu();
+            $.cookie('miniMenu', 1);
         } else {
             MINI_MENU.expandMenu();
+            $.cookie('miniMenu', 0);
         }
     });
 
@@ -114,9 +121,9 @@ $(document).ready(function () {
 
     // Bind the mouseleave for mini menu.
     $(".tab-menu-icon li.main-menu > ul").bind("mouseleave", function (event) {
-//        setTimeout(function () {
-//            $('.tab-menu-icon li.main-menu > ul').fadeOut(50);
-//            $('.main-menu').removeClass('active');
-//        }, 1000);
+        setTimeout(function () {
+            $('.tab-menu-icon li.main-menu > ul').fadeOut(50);
+            $('.main-menu').removeClass('active');
+        }, 1000);
     });
 });

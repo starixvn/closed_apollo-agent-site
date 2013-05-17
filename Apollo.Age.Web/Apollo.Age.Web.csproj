@@ -66,6 +66,7 @@
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Filters\BelongCheckingAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\InternalCheckingAttribute.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="Services\DeviceService.cs" />
