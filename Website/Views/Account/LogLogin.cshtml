@@ -5,14 +5,39 @@
 
 @foreach (var item in Model)
 {    
-    <div style="width:100%; text-align:left">
-    <span>Access Time: </span><span>@item.LogDate</span><br />
-    <span>Ip: </span><span> <a href="http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=' + @item.Ip + '&j=1">@item.Ip</a></span><br />
-    <span>Domain: </span><span>@item.DomainName</span><br />
-    <span>Browser: </span><span>@item.BrowserName</span><br />
-    <span>Platform: </span><span>@item.Platform</span><br />
-    <span>Action: </span><span>@item.Doing</span><br />    
-    </div>
-    <div style="height:1px; width:70%; background-color:#000;"></div>
-    
+    <div class="list-item">
+        <div class="log-item">
+            <div class="item-name">Access Time:</div>
+            <div class="item-value">@item.LogDate</div>
+        </div>
+        <div class="log-item">
+            <div class="item-name">Ip:</div>
+            <div class="item-value"><a href="http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=' + @item.Ip + '&j=1">@item.Ip</a></div>
+        </div>
+        <div class="log-item">
+            <div class="item-name">Domain:</div>
+            <div class="item-value">@item.DomainName</div>
+        </div>
+        <div class="log-item">
+            <div class="item-name">Browser:</div>
+            <div class="item-value">@item.BrowserName</div>
+        </div>
+        <div class="log-item">
+            <div class="item-name">Platform:</div>
+            <div class="item-value">@item.Platform</div>
+        </div>
+        <div class="log-item">
+            <div class="item-name">Action:</div>
+            <div class="item-value">@item.Doing</div>
+        </div>  
+    </div>    
 }
+@*<div style="width:100%; text-align:left">
+<span>Access Time: </span><span>@item.LogDate</span><br />
+<span>Ip: </span><span> <a href="http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=' + @item.Ip + '&j=1">@item.Ip</a></span><br />
+<span>Domain: </span><span>@item.DomainName</span><br />
+<span>Browser: </span><span>@item.BrowserName</span><br />
+<span>Platform: </span><span>@item.Platform</span><br />
+<span>Action: </span><span>@item.Doing</span><br />    
+</div>
+<div style="height:1px; width:70%; background-color:#000;"></div>*@
