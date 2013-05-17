@@ -31,15 +31,19 @@
         <script type="text/javascript" src="~/Views/Account/Resources/jquery.treeview.async.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
+                $(document).ajaxStart($.blockUI);
                 var agentList = $("#agent-list"),
                     agentId = agentList.attr("agent-id"),
                     appRoot = "@Url.Content("~/")";
 
+                
                 agentList.treeview({
                     url: appRoot + "Account/GetDataByNode",
                     link: "<a href='" + appRoot + "Account/AgentList?agentid={0}' target='main'>{1}</a>",
                     agentId: agentId
                 });
+
+                $(document).ajaxStop($.unblockUI);
             })
         </script>
     }
