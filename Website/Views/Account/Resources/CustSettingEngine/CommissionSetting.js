@@ -225,7 +225,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 }, 7);
         spinBox.input.onchange = function (event) {
             if (!spinBox.isValid()) {
-                Fanex.ValidateMessage(spinBox.input, Language.INVALID_RANGE);
             }
             //            var currentValue = spinBox.getValue();
             //            if (currentValue > spinBox.options.maximum) {

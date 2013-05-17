@@ -130,8 +130,7 @@ ul.tab-menu-icon {
 		list-style: none;
 		position: relative;
 		cursor: pointer;
-		float: left;
-		color: @textColor;	
+		float: left;	
 
 		&.main-menu, &.account, &.search {
 			text-align: center;
@@ -221,44 +220,36 @@ ul.tab-menu-icon {
 				 border: 1px solid #b5b5b5;
 				 border-bottom: none;
 				 float: none;
-				 padding: 4px 8px;
 				 text-align: left;
-				 text-transform: uppercase;
-				 height: 20px;
+				 height: 26px;
 
 				 /* IE 6 & 7 Needs Inline Block */
 				 a	{ 
 					border-right: none;
-					width: 100%;
+					width: 210px;
 					display: inline-block;
 					color: @textColor;
-				 } 
-
-				 &.hasChild {
-					background: url(img/hasChild.png) #eee no-repeat center right;	
-					background-position: 204px;					
+					margin: 1px;
+					padding: 0 3px;
+					height: 24px;
 
 					&:hover {
-						background: url(img/hasChild-white.png) #0084B4 no-repeat center right;
-						background-position: 204px;	
-						border-bottom: 1px solid @white;
-						border-top: 1px solid #b5b5b5;
-						height: 20px;
+						background: #0084B4;
+						color: @white;
+					}					
+				 } 
 
-						a {
-							color: @white;
-						}
+				 &:hover {
+					background: @white;
 
-						ul li a {
-							color: @linkColor;
-						}
+					ul li a {
+						color: @linkColor;
 					}
-				 }
+				 } 
 			}
 		}
 	}
-}							  
-
+}
 
 /* LEVEL THREE */
 ul.tab-menu-icon ul ul, ul.tab-menu-icon li ul li.hasChild ul { 
@@ -269,12 +260,21 @@ ul.tab-menu-icon ul ul, ul.tab-menu-icon li ul li.hasChild ul {
 		background: @white;
 		text-transform: none;
 
-		&:hover {
-			background: #0084B4;
+		&:hover {			
 			color: @textColor;
 			
 			a	{ 						
 				color: @white;
+				background: #0084B4;
+				margin: 1px;
+				padding: 0 3px;
+				height: 24px;
+				width: 210px;
+
+				&:hover {
+					background: #0084B4;
+					color: @white;
+				}
 			} 
 		}
 	}

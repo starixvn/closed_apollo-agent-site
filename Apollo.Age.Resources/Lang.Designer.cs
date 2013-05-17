@@ -6299,6 +6299,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input only allow two numbers after the decimal point..
+        /// </summary>
+        public static string lblInvalidInputDecimals {
+            get {
+                return ResourceManager.GetString("lblInvalidInputDecimals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Request.
         /// </summary>
         public static string lblInvalidRequest {
@@ -6308,7 +6317,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Value Range.
+        ///   Looks up a localized string similar to Invalid Value Range, Input must in [{0} - {1}]..
         /// </summary>
         public static string lblInvalidValueRange {
             get {
