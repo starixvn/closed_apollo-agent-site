@@ -169,8 +169,7 @@
                         @Html.Raw(item.HomeTeam)
                     }
                 </td>
-                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND) 
-                    || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_HT))
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
                 {
                     <td>-</td>
                     <td>-</td>
@@ -232,8 +231,7 @@
                         @Html.Raw(item.AwayTeam)
                     }
                 </td>
-                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND) 
-                    || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_HT))
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
                 {
                     <td>-</td>
                     <td>-</td>
