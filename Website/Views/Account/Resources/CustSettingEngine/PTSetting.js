@@ -20,7 +20,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
         PT_STEP100: 10,
         PT_STEP: 0.01,
         PT_DECIMALS: 2,
-        PT_MAX_LENGTH: 6,
+        PT_MAX_LENGTH: 5,
         COMMISSION_STEP: 0.01,
         COMMISSION_DECIMALS: 2,
         MIN_PT_BOX_WIDTH: 144,
