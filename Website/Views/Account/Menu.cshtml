@@ -32,8 +32,9 @@
 					@foreach (SiteMapNode subItem in item.ChildNodes)
 					{
 						var isAgentOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
+                        var isInternalOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
 
-						if (Model.AgentLevel < AgentLevel.MainAgent && isAgentOnly)
+                        if (Model.AgentLevel < AgentLevel.MainAgent && isAgentOnly && isInternalOnly)
 						{
 							continue;
 						}
