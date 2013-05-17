@@ -84,23 +84,38 @@ namespace Apollo.Age.Web
                 var krCulture = new CultureInfo("ko-KR"); // Korean
 
                 ResourceSet resourceSetEnUs =
-                    Apollo.Age.Resources.Lang.ResourceManager.GetResourceSet(thCulture, true, true);
+                    Apollo.Age.Resources.Lang.ResourceManager.GetResourceSet(usCulture, true, true);
                 ResourceSet anotherResourceSet =
-                    Apollo.Age.Resources.Lang.ResourceManager.GetResourceSet(viCulture, true, true);
+                    Apollo.Age.Resources.Lang.ResourceManager.GetResourceSet(cnCulture, true, true);
+
+                ResourceSet anotherResourceSet1 =
+                    Apollo.Age.Resources.Lang.ResourceManager.GetResourceSet(twCulture, true, true);
+
                 var notTransResources = new Dictionary<string, string>();
+                var hasKeybutNotTransResources = new Dictionary<string, string>();
 
                 foreach (DictionaryEntry entry in resourceSetEnUs)
                 {
                     string key = entry.Key.ToString();
                     string value = entry.Value.ToString();
 
-                    if (string.IsNullOrWhiteSpace(anotherResourceSet.GetString(key)))
+                    var otherValue = anotherResourceSet.GetString(key);
+                    var otherValue1 = anotherResourceSet1.GetString(key);
+
+                    if (string.IsNullOrWhiteSpace(otherValue))
                     {
                         notTransResources.Add(key, value);
                     }
+                    else
+                    {
+                        if (value.Equals(otherValue1) && !value.Equals(otherValue))
+                        {
+                            hasKeybutNotTransResources.Add(key, value);
+                        }
+                    }
                 }
 
-                return View(notTransResources);
+                return View(hasKeybutNotTransResources);
             }
             catch (Exception ex)
             {
