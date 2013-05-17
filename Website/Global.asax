@@ -101,6 +101,7 @@
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery.cookie.js",
+			"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
 			"~/_GlobalResources/Js/Core.js"));
 
 		bundles.Add(new ScriptBundle("~/custsettingjs").Include(
@@ -158,10 +159,10 @@
 		DbSettingProviderManager.Current.Start();
 
 
-        
-        
-           
-           
+		
+		
+		   
+		   
 	}
 
 	/// <summary>
