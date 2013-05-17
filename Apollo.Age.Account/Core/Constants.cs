@@ -32,6 +32,6 @@ namespace Apollo.Age.Account.Core
 
         public const int LOGACTIONBETSETTING = 3;
 
-        public const int LOGACTIONPOSITIONTAKING = 4;        
+        public const int LOGACTIONPOSITIONTAKING = 4;     
     }
 }

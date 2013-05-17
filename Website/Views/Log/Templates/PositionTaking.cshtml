@@ -1,0 +1,127 @@
+﻿@model List<Apollo.Age.Account.Models.PositionTakingModel>
+@if (!ReferenceEquals(Model, null) && Model.Any())
+{
+    var isShowOld = (bool)ViewBag.IsShowOldValue;
+
+    var listPTGroupBySport = Model.GroupBy(m => m.SportType);
+
+    var isHaveLive = false;
+    <table class="tblRpt">
+        @foreach (var itemSport in listPTGroupBySport)
+        {
+            var itemSportFirst = itemSport.FirstOrDefault();        
+            <tr>
+                @if (itemSportFirst.SportType == 1)
+                { 
+                    <td colspan="6">
+                        @itemSportFirst.SportName - @Apollo.Age.Resources.Lang.lblDeadball
+                    </td>
+                }
+                else
+                {
+                    <td colspan="6">
+                        @itemSportFirst.SportName
+                    </td>
+                }
+            </tr>    
+                int index = 0;
+                int wide = 5;
+
+                var listItemSport = itemSport.ToList();
+                while (index < listItemSport.Count)
+                {
+                    var itemBet = listItemSport[index];
+
+                    if (itemBet.SportType == 1 && itemBet.IsLive && !isHaveLive)
+                    {
+            <tr>
+                <td colspan="6">
+                    @itemSport.FirstOrDefault().SportName - @Apollo.Age.Resources.Lang.lblLive
+                </td>
+            </tr>    
+                        isHaveLive = true;
+                    }
+
+                    if (itemBet.SportType == 99 && itemBet.BetType == 9)
+                    {
+            <tr>
+                <td colspan="6">
+                    @Apollo.Age.Resources.Lang.lblMixParlay
+                </td>
+            </tr> 
+                    }
+                    
+            <tr>
+                <td>
+                </td>
+                @for (int i = index; i < wide && i < listItemSport.Count; i++)
+                {     
+                    <td>
+                        @listItemSport[i].BetName
+                    </td>                                   
+                }
+            </tr>
+            <tr>
+                <td>
+                    @Apollo.Age.Resources.Lang.lblMaxGivenShare
+                </td>
+                @for (int i = index; i < wide && i < listItemSport.Count; i++)
+                {    
+                    <td>
+                        <span class="valuechanged">@listItemSport[i].MaxGiven</span>
+                        <div class="line">
+                        </div>
+                        <span class="valueold">@listItemSport[i].OldMaxGiven</span>
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    @Apollo.Age.Resources.Lang.lblMaxTakenShare
+                </td>
+                @for (int i = index; i < wide && i < listItemSport.Count; i++)
+                {                  
+                    <td>
+                        <span class="valuechanged">@listItemSport[i].MaxUpper</span>
+                        <div class="line">
+                        </div>
+                        <span class="valueold">@listItemSport[i].OldMaxUpper</span>
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    @Apollo.Age.Resources.Lang.lblMinGivenShare
+                </td>
+                @for (int i = index; i < wide && i < listItemSport.Count; i++)
+                {                   
+                    <td>
+                        <span class="valuechanged">@listItemSport[i].MinGiven</span>
+                        <div class="line">
+                        </div>
+                        <span class="valueold">@listItemSport[i].OldMinGiven</span>
+                    </td>
+                }
+            </tr>
+                index = index + 5;
+                }
+        }
+    </table>
+}
+
+@*
+<tr>
+                <td>
+                    @Apollo.Age.Resources.Lang.lblMaxGivenShare
+                </td>                
+            </tr>
+            <tr>
+                <td>
+                    @Apollo.Age.Resources.Lang.lblMaxTakenShare
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Apollo.Age.Resources.Lang.lblMinGivenShare
+                </td>
+            </tr>*@
