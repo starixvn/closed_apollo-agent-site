@@ -4090,7 +4090,7 @@
     <value>Edit Member Setting - {0}</value>
   </data>
   <data name="lblInvalidValueRange" xml:space="preserve">
-    <value>Invalid Value Range</value>
+    <value>Invalid Value Range, Input must in [{0} - {1}].</value>
   </data>
   <data name="lblViewAgentSetting" xml:space="preserve">
     <value>View Agent Setting - {0}</value>

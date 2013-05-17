@@ -346,15 +346,16 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>System.String.</returns>
         public static string PtValue(object value)
         {
-            decimal d = Cast.AsDecimal(value);
+            var newValue = string.Format(Formatter.DECIMAL_FORMAT20, value);
+            decimal d = Cast.AsDecimal(newValue);
 
             if (d < 0)
             {
-                return string.Format(minus, string.Format(Formatter.DECIMAL_FORMAT20, d));
+                return string.Format(minus, newValue);
             }
             else
             {
-                return string.Format(Formatter.DECIMAL_FORMAT20, d);
+                return newValue;
             }
         }
     }
