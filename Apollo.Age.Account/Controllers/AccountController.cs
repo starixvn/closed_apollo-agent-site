@@ -348,5 +348,19 @@ namespace Apollo.Age.Account.Controllers
                 ListData = models
             });
         }
+
+        public ActionResult LogLogin()
+        {
+            var agentId = CurrentSession.AgentId;
+            var agentUserId = CurrentSession.AdminId;            
+
+            GetLoginLogCriteria criteria = new GetLoginLogCriteria() { 
+            AgentId = agentId,
+            AgentUserId = agentUserId
+            };
+            IEnumerable<AgentLogLoginModel> models = _accountService.GetAgentLogLogin(criteria);
+
+            return View(models);
+        }
     }
 }

@@ -43,5 +43,7 @@ namespace Apollo.Age.Account.Services
         IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria);
 
         IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria);
+
+        IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria);
     }
 }

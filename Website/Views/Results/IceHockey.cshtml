@@ -126,10 +126,25 @@
                     @PHome[2]
                 </td>
                 <td>
-                    @OTHome
+                    @if (string.IsNullOrWhiteSpace(OTHome))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @OTHome
+                    }
                 </td>
                 <td>
-                    @item.FinalHomeScore
+                    @if (item.FinalHomeScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalHomeScore
+                    }
+                    
                 </td>
                 <td rowspan="2">
                     @item.EventStatusTranslation
@@ -156,10 +171,24 @@
                     @PAway[2]
                 </td>
                 <td>
-                    @OTAway
+                    @if (string.IsNullOrWhiteSpace(OTAway))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @OTAway
+                    }
                 </td>
                 <td>
-                    @item.FinalAwayScore
+                    @if (item.FinalAwayScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalAwayScore
+                    }
                 </td>
             </tr>
 

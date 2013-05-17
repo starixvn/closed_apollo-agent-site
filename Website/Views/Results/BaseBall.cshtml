@@ -173,10 +173,24 @@
                     @ieHome
                 </td>
                 <td>
-                    @item.HalfTimeHomeScore
+                    @if (item.HalfTimeHomeScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.HalfTimeHomeScore
+                    }
                 </td>
                 <td>
-                    @item.FinalHomeScore
+                    @if (item.FinalHomeScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalHomeScore
+                    }
                 </td>
                 <td rowspan="2">
                     @item.EventStatusTranslation
@@ -224,10 +238,24 @@
                     @ieAway
                 </td>
                 <td>
-                    @item.HalfTimeAwayScore
+                    @if (item.HalfTimeAwayScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.HalfTimeAwayScore
+                    }
                 </td>
                 <td>
-                    @item.FinalAwayScore
+                    @if (item.FinalAwayScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalAwayScore
+                    }
                 </td>
             </tr>
 

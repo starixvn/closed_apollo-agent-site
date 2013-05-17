@@ -181,7 +181,14 @@
             if (isRowHome)
             {
     <td>
-        @item.HalfTimeHomeScore
+        @if (item.HalfTimeHomeScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.HalfTimeHomeScore
+        }
     </td>
     <td>
         @Apollo.Age.Resources.Lang.lblNA
@@ -190,7 +197,14 @@
             else
             {
     <td>
-        @item.HalfTimeAwayScore
+        @if (item.HalfTimeAwayScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.HalfTimeAwayScore
+        }
     </td>
     <td>
         @Apollo.Age.Resources.Lang.lblNA
@@ -205,7 +219,14 @@
         @Apollo.Age.Resources.Lang.lblNA
     </td>
     <td>
-        @item.FinalHomeScore
+        @if (item.FinalHomeScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.FinalHomeScore
+        }
     </td>
             }
             else
@@ -214,7 +235,14 @@
         @Apollo.Age.Resources.Lang.lblNA
     </td>
     <td>
-        @item.FinalAwayScore
+        @if (item.FinalAwayScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.FinalAwayScore
+        }
     </td>
             }
         }
@@ -223,19 +251,47 @@
             if (isRowHome)
             {
                 <td>
-                    @item.HalfTimeHomeScore
+                    @if (item.HalfTimeHomeScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.HalfTimeHomeScore
+                    }
                 </td>
                 <td>
-                    @item.FinalHomeScore
+                    @if (item.FinalHomeScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalHomeScore
+                    }
                 </td>
             }
             else
             {
                 <td>
-                    @item.HalfTimeAwayScore
+                    @if (item.HalfTimeAwayScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.HalfTimeAwayScore
+                    }
                 </td>
                 <td>
-                    @item.FinalAwayScore
+                    @if (item.FinalAwayScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.FinalAwayScore
+                    }
                 </td>
             }
         }
