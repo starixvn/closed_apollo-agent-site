@@ -156,6 +156,12 @@
 		RegisterBundles(BundleTable.Bundles);
 
 		DbSettingProviderManager.Current.Start();
+
+
+        
+        
+           
+           
 	}
 
 	/// <summary>

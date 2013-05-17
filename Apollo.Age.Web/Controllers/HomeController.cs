@@ -32,7 +32,7 @@ namespace Apollo.Age.Web
         {
             return View(SessionManager.CurrentSession);
         }
-
+       
         //public ActionResult UnderMaintenance()
         //{
         //    var maintenanceInfo = maintenanceService.MaintenanceInfo;

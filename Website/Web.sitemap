@@ -50,6 +50,7 @@
       <siteMapNode title="lblViewAllSetting" url="CustomerSetting/MySetting" isAgentOnly="true" ></siteMapNode>
       <siteMapNode title="ViewShare" url="CustomerSetting/AgentShare" ></siteMapNode>
       <siteMapNode title="ViewCommission" url="CustomerSetting/ViewCommission" ></siteMapNode>
+      <siteMapNode title="loginlog" url="Account/Loglogin" isInternalOnly="true"></siteMapNode>
     </siteMapNode>
     <!--/MemberInfo-->
 
