@@ -16,7 +16,7 @@
                          $(this).addClass('mini-menu');
                          $('.menu iframe').hide();
                          $('ul.tab-menu-icon').show();
-                         $('.mainpage').animate({left: '31px'}, 100).addClass('max-mainpage');
+                         $('.mainpage').animate({ left: '31px' }, 100).addClass('max-mainpage');
                      }
                  }
             );
@@ -37,12 +37,12 @@
                      complete: function () {
                          $(this).removeClass('mini-menu');
                          $('.menu iframe').show();
-                         $('ul.tab-menu-icon').hide();                        
+                         $('ul.tab-menu-icon').hide();
                          $('.mainpage').animate({ left: '221px' }, 50).removeClass('max-mainpage');
                          if ($('li.main-menu').hasClass('active')) {
                              $('li.main-menu').removeClass('active');
                              $('ul.tab-menu-icon li.main-menu > ul').hide();
-                         } 
+                         }
                      }
                  }
             );
@@ -68,7 +68,6 @@ $(document).ready(function () {
         if ($('#btn-mini-menu').hasClass('collapse')) {
             MINI_MENU.collapseMenu();
         } else {
-            $('.menu iframe').attr('src', APOLLO.resolveUrl('Account/Menu'));
             MINI_MENU.expandMenu();
         }
     });
@@ -82,14 +81,12 @@ $(document).ready(function () {
             $('ul.tab-menu-icon li.main-menu ul.parent').fadeOut(300);
             $('.main-menu').removeClass('active');
         }
-        e.stopPropagation();
     });
 
     // Click on "account" icon and change to treeview page
     $('.account').click(function (e) {
         $('.menu iframe').attr('src', APOLLO.resolveUrl('Account/TreeViewList'));
         MINI_MENU.expandMenu();
-        e.stopPropagation();
     });
 
     // Click on "search" icon and change to search page
@@ -113,12 +110,13 @@ $(document).ready(function () {
 
         $('.menu iframe').attr('src', APOLLO.resolveUrl(url));
         MINI_MENU.expandMenu();
-        e.stopPropagation();
     });
 
-    $('.menu').click(function () {
-        $('.tab-menu-icon li.main-menu > ul').hide();
-        $('.main-menu').removeClass('active');
+    // Bind the mouseleave for mini menu.
+    $(".tab-menu-icon li.main-menu > ul").bind("mouseleave", function (event) {
+//        setTimeout(function () {
+//            $('.tab-menu-icon li.main-menu > ul').fadeOut(50);
+//            $('.main-menu').removeClass('active');
+//        }, 1000);
     });
-
 });
