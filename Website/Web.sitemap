@@ -37,9 +37,8 @@
       <siteMapNode title="lblAgentOutstanding" url="Reports/Outstanding"></siteMapNode>
       <siteMapNode title="TicketCancelled" url="_BetList/BetListTransaction.aspx?type=cancel"></siteMapNode>
       <siteMapNode title="transaction" url="_BetList/BetListTransaction.aspx?type=transaction"></siteMapNode>
-      <siteMapNode title="lblOutrightResult" url="Results/Outright"></siteMapNode>
       <siteMapNode title="lblMatchResult" url="Results/Match"></siteMapNode>
-
+      <siteMapNode title="lblOutrightResult" url="Results/Outright"></siteMapNode>
     </siteMapNode>
     <!--/Report-->
 
