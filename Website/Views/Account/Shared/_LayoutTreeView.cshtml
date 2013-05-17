@@ -2,7 +2,6 @@
 <html lang="en-us">
 <head>
     <title>@Page.Title</title>
-    <script src="~/_GlobalResources/Js/head.min.js" type="text/javascript"></script>
     <link href="~/Views/Account/Resources/treeview.css" rel="stylesheet" type="text/css" />
     <link href="~/Views/Account/Resources/Account.less" rel="Stylesheet" type="text/css" />
     @RenderSection("css", required: false)
@@ -11,10 +10,7 @@
     
     @RenderBody()
     @Html.Hidden("ApoRoot", Url.Content("~/"))
-    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/jquery.treeview.js" type="text/javascript"></script>
-    <script src="~/Views/Account/Resources/jquery.treeview.async.js" type="text/javascript"></script>
+    @Scripts.Render("~/treeviewjs")
     @RenderSection("foot", required: false)
 </body>
 </html>
