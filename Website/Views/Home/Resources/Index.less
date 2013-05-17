@@ -124,7 +124,6 @@ ul, li {
 ul.tab-menu-icon {
 	display: none;
 	position: relative;
-	border-top: 1px solid @white;
 
 	li {
 		list-style: none;
@@ -163,14 +162,16 @@ ul.tab-menu-icon {
 
 		&.main-menu:hover {
 			border-top: none;
+			border-right: 1px solid #eee;
 		}
 
 		&.main-menu.active {
 			background: #0084B4;
 			height: 20px;
-			width: 28px;
+			width: 29px;
 			border: 1px solid @white;
 			border-top: none;
+			border-right: 1px solid #eee;
 
 			i {
 				background-image: url(../../../_GlobalResources/Css/img/glyphicons-halflings-white.png);
@@ -208,70 +209,63 @@ ul.tab-menu-icon {
 			 width: 220px;
 			 display: none;
 			 position: absolute;
-			 top: 79%;
-			 left: 32px;
+			 top: 0;
+			 left: 30px;
 			 z-index: 990;
 			 border: 1px solid #b5b5b5;
-			 border-width: 0 0 1px 0;
-			 background: #eee;
+			 border-width: 0px 1px 1px 0;
 
 			 li { 
 				 background: #eee;
-				 border: 1px solid #b5b5b5;
-				 border-bottom: none;
+				 border-top: 1px dotted #bbb;
 				 float: none;
 				 text-align: left;
-				 height: 26px;
+				 height: 28px;
 
 				 /* IE 6 & 7 Needs Inline Block */
-				 a	{ 
-					border-right: none;
-					width: 210px;
+				 a	{
+					width: 212px;
 					display: inline-block;
 					color: @textColor;
-					margin: 1px;
-					padding: 0 3px;
-					height: 24px;
-
-					&:hover {
-						background: #0084B4;
-						color: @white;
-					}					
+					padding: 3px;
+					height: 20px;	
 				 } 
 
 				 &:hover {
-					background: @white;
+					> a {
+						background: #0084B4;
+						color: @white;
+						border: 1px solid @white;
+					}
 
 					ul li a {
-						color: @linkColor;
+						color: @textColor;
 					}
 				 } 
+				 &:first-child {
+					border-top: none;
+				}
 			}
 		}
 	}
 }
 
 /* LEVEL THREE */
-ul.tab-menu-icon ul ul, ul.tab-menu-icon li ul li.hasChild ul { 
+ul.tab-menu-icon ul ul { 
 	left: 100%;
 	top: -1px;
+	border: 1px solid #b5b5b5;
 
 	li {
-		background: @white;
 		text-transform: none;
+		border-right: none;
 
 		&:hover {			
 			color: @textColor;
-			
-			a	{ 						
-				color: @white;
-				background: #0084B4;
-				margin: 1px;
-				padding: 0 3px;
-				height: 24px;
-				width: 210px;
-
+					
+			a	{
 				&:hover {
+					width: 212px;
 					background: #0084B4;
 					color: @white;
 				}
