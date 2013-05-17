@@ -111,7 +111,7 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 	var width = 750,
         height = 350,
         params = '?refno=' + refno + '&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
-        detailTitle = $(target).siblings('.combinationLink').text();
+        detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + _page.refNo + ": " + transid;
 
 	if (parent.ageWnd) {
 		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
@@ -230,7 +230,7 @@ if (typeof jQuery != "undefined") {
                         "&toDate=" + toDate +
 						"&type=" + type;
 
-				var title = _page.titleViewComm + transId;
+				var title = _page.titleViewComm + " - " + _page.refNo + ": " + transId;
 
 				ajax.Request(url, {
 					asynchronous: true,

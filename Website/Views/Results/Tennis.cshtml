@@ -3,6 +3,15 @@
 @model IEnumerable<MatchResultModel>
 <table class="tblRpt">
     <thead>
+        @if ((bool)@ViewBag.IsParlay)
+        {
+            <tr>
+                <th class="summary-header" colspan="10">
+                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
+                    <span>@Model.ToList()[0].LeagueName</span>
+                </th>
+            </tr> 
+        }
         <tr>
             <td style="width: 90px">
                 @Apollo.Age.Resources.Lang.kickofftime
@@ -42,14 +51,17 @@
             var currentLeagueId = 0;
             foreach (var item in Model)
             {
-                if (currentLeagueId != item.LeagueId)
+                if (!(bool)@ViewBag.IsParlay)
                 {
-                    currentLeagueId = item.LeagueId;
-            <tr class="league">
-                <td colspan="10">
-                    @item.LeagueName
-                </td>
-            </tr>
+                    if (currentLeagueId != item.LeagueId)
+                    {
+                        currentLeagueId = item.LeagueId;
+                        <tr class="league">
+                            <td colspan="10">
+                                @item.LeagueName
+                            </td>
+                        </tr>
+                    }
                 }
 
             <tr class="c">

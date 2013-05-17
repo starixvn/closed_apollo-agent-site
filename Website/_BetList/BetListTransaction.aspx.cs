@@ -137,7 +137,8 @@ namespace Sunplus.Agent.UI._BetList
             tpl.PagingControl = pagingControl.ToString();
 
             writer.Write(tpl);
-            RegisterJavascriptObject("titleViewComm", string.Format("{0} - {1}: ", BetList.viewCommDetails, BetList.refno));
+            RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails);
+            RegisterJavascriptObject("refNo", BetList.refno);
             RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
 
             #endregion RENDER HTML
@@ -210,7 +211,7 @@ namespace Sunplus.Agent.UI._BetList
                     MoveBetsDay = moveBetsDay
                 };
 
-                if (pageType.ToLower().Equals("transaction"))
+                if (pageType.Equals("transaction"))
                 {
                     mainTickets = betListService.GetAllBetsTransactionByDateAndMem(criteria);
                 }
@@ -239,9 +240,9 @@ namespace Sunplus.Agent.UI._BetList
             var reportService = new ReportService();
             moveBetsDay = reportService.MoveBetsDay();
 
-            pageType = Request["type"];
+            pageType = GetStringRequest("type", string.Empty).ToLower();
 
-            if (pageType.ToLower().Equals("cancel"))
+            if (pageType.Equals("cancel"))
             {
                 tpl.title = Apollo.Age.Resources.Lang.voidandreject;
                 isShowAgentPT = isShowWinLost = false;
@@ -250,7 +251,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             }
-            else if (pageType.ToLower().Equals("transaction"))
+            else if (pageType.Equals("transaction"))
             {
                 tpl.title = Apollo.Age.Resources.Lang.transaction;
                 isShowWinLost = true;

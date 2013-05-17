@@ -87,6 +87,7 @@
     <Compile Include="Criterias\GetCommissionToMemberCriteria.cs" />
     <Compile Include="Criterias\GetCommissionToAgentCriteria.cs" />
     <Compile Include="Criterias\GetLogCustSettingCriteria.cs" />
+    <Compile Include="Criterias\GetLoginLogCriteria.cs" />
     <Compile Include="Criterias\GetMemberByUsernameCriteria.cs" />
     <Compile Include="Criterias\GetMessageCriteria.cs" />
     <Compile Include="Criterias\GetMemberInfoCriteria.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Models\MemberListModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Services\SportSettingService.cs" />
+    <Compile Include="Models\AgentLogLoginModel.cs" />
     <Compile Include="ViewModels\AgentShareViewModel.cs" />
     <Compile Include="ViewModels\ViewCommissionViewModel.cs" />
     <Compile Include="ViewModels\MemberShareViewModel.cs" />

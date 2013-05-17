@@ -39,7 +39,7 @@
 </div>
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
-    @RazorHelper.Navigation(Model.DownlinePath)
+    @RazorHelper.Navigation(Model.DownlinePath, true)
 }
 <table class="tblRpt">
     <thead>
