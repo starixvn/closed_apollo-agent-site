@@ -114,9 +114,9 @@ $(document).ready(function () {
 
     // Bind the mouseleave for mini menu.
     $(".tab-menu-icon li.main-menu > ul").bind("mouseleave", function (event) {
-        setTimeout(function () {
-            $('.tab-menu-icon li.main-menu > ul').fadeOut(50);
-            $('.main-menu').removeClass('active');
-        }, 1000);
+//        setTimeout(function () {
+//            $('.tab-menu-icon li.main-menu > ul').fadeOut(50);
+//            $('.main-menu').removeClass('active');
+//        }, 1000);
     });
 });
