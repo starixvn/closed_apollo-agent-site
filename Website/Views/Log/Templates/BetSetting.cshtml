@@ -1,34 +1,69 @@
-﻿@model List<BetSettingModel>
-@if (!ReferenceEquals(Model, null))
+﻿@model List<Apollo.Age.Account.Models.BetSettingModel>
+@if (!ReferenceEquals(Model, null) && Model.Any())
 {
-    <table>
+    var isShowOld = (bool)ViewBag.IsShowOldValue;
+    
+    <table class="tblRpt">
         @foreach (var item in Model)
         {
             var sportName = item.SportName;
             <tr>
-                <td>
-                    @sportName
+                <td class="colW1">
+                    @sportName - @Apollo.Age.Resources.Lang.MinBet
                 </td>
-                <td>
-                    @item.MinBet
-                    <br />
-                    @item.OldMinBet
+                <td class="colW2">
+                    @if (item.MinBet != item.OldMinBet)
+                    { 
+                        <span class="valuechanged">@item.MinBet</span>                        
+                        if (isShowOld)
+                        {
+                        <div class="line">
+                        </div>
+                        <span class="valueold">@item.OldMinBet</span>
+                        }
+                    }
+                    else
+                    { 
+                        <span class="valueold">@item.OldMinBet</span>
+                    }
                 </td>
-                <td>
-                    @sportName
+                <td class="colW1">
+                    @sportName - @Apollo.Age.Resources.Lang.lblMaxBet
                 </td>
-                <td>
-                    @item.MaxBet
-                    <br />
-                    @item.OldMaxBet
+                <td class="colW2">
+                    @if (item.MaxBet != item.OldMaxBet)
+                    { 
+                        <span class="valuechanged">@item.MaxBet</span>
+                        if (isShowOld)
+                        {
+                        <div class="line">
+                        </div>
+                        <span class="valueold">@item.OldMaxBet</span>
+                        }
+                    }
+                    else
+                    { 
+                        <span class="valueold">@item.OldMaxBet</span>
+                    }
                 </td>
-                <td>
-                    @sportName
+                <td class="colW1">
+                    @sportName - @Apollo.Age.Resources.Lang.lblMaxPerMatch
                 </td>
-                <td>
-                    @item.MaxPerMatch
-                    <br />
-                    @item.OldMaxPerMatch
+                <td class="colW2">
+                    @if (item.MaxPerMatch != item.OldMaxPerMatch)
+                    { 
+                        <span class="valuechanged">@item.MaxPerMatch</span>
+                        if (isShowOld)
+                        {
+                        <div class="line">
+                        </div>
+                        <span class="valueold">@item.OldMaxPerMatch</span>
+                        }
+                    }
+                    else
+                    { 
+                        <span class="valueold">@item.OldMaxPerMatch</span>
+                    }
                 </td>
             </tr>
         }

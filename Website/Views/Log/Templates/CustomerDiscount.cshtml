@@ -1,0 +1,121 @@
+﻿@model List<Apollo.Age.Account.Models.DiscountModel>
+@if (!ReferenceEquals(Model, null) && Model.Any())
+{
+    var isShowOld = (bool)ViewBag.IsShowOldValue;
+    var oldGroup = (string)ViewBag.OldGroup;
+    var group = (string)ViewBag.Group;
+    
+    <table class="tblRpt">
+        <tr class="colW1">
+            <td>
+                @Apollo.Age.Resources.Lang.group
+            </td>
+            <td colspan="2">
+                @Apollo.Age.Resources.Lang.membercomm
+            </td>
+        </tr>
+        <tr>
+            <td class="colW2" rowspan="3">
+                @if (oldGroup != group)
+                { 
+                    <span class="valuechanged">@group</span>                        
+                    if (isShowOld)
+                    {
+                    <div class="line">
+                    </div>
+                    <span class="valueold">@oldGroup</span>
+                    }
+                }
+                else
+                { 
+                    <span class="valueold">@oldGroup</span>
+                }
+            </td>
+            <td class="colW1">
+                @Apollo.Age.Resources.Lang.hdp, @Apollo.Age.Resources.Lang.lblOU, @Apollo.Age.Resources.Lang.lblOE
+            </td>
+            <td class="colW2">
+                @foreach (var item in Model)
+                {
+                    if (item.SportType == 1 && item.BetType == 1)
+                    {
+                        var discount = item.GroupA;
+                        var oldDiscount = item.OldGroupA;
+                        if (oldDiscount != discount)
+                        { 
+                    <span class="valuechanged">@discount</span>                        
+                            if (isShowOld)
+                            {
+                    <div class="line">
+                    </div>
+                    <span class="valueold">@oldDiscount</span>
+                            }
+                        }
+                        else
+                        { 
+                    <span class="valueold">@oldDiscount</span>
+                        }
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="colW1">
+                @Apollo.Age.Resources.Lang.lbl1x2Comm
+            </td>
+            <td class="colW2">
+                @foreach (var item in Model)
+                {
+                    if (item.SportType == 1 && item.BetType == 5)
+                    {
+                        var discount = item.GroupA;
+                        var oldDiscount = item.OldGroupA;
+                        if (oldDiscount != discount)
+                        { 
+                    <span class="valuechanged">@discount</span>                        
+                            if (isShowOld)
+                            {
+                    <div class="line">
+                    </div>
+                    <span class="valueold">@oldDiscount</span>
+                            }
+                        }
+                        else
+                        { 
+                    <span class="valueold">@oldDiscount</span>
+                        }
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="colW1">
+                @Apollo.Age.Resources.Lang.lblOtherComm
+            </td>
+            <td class="colW2">
+                @foreach (var item in Model)
+                {
+                    if (item.SportType == 1 && item.BetType == 4)
+                    {
+                        var discount = item.GroupA;
+                        var oldDiscount = item.OldGroupA;
+                        if (oldDiscount != discount)
+                        { 
+                    <span class="valuechanged">@discount</span>                        
+                            if (isShowOld)
+                            {
+                    <div class="line">
+                    </div>
+                    <span class="valueold">@oldDiscount</span>
+                            }
+                        }
+                        else
+                        { 
+                    <span class="valueold">@oldDiscount</span>
+                        }
+                    }
+                }
+            </td>
+        </tr>
+    </table>
+}

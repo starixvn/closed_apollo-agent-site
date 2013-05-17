@@ -44,7 +44,7 @@ namespace Apollo.Age.Account.Controllers
             , int actionTypeId = 0
             , DateTime? from = null
             , DateTime? to = null
-            , bool showOldValue = false
+            , bool showOldValue = true
             , int pageSize = 50
             , int pageIndex = 1)
         {
@@ -60,7 +60,8 @@ namespace Apollo.Age.Account.Controllers
                 To = to == null ? DateTime.Now : (DateTime)to,
                 PageIndex = pageIndex,
                 PageSize = pageSize,
-                IsAgent = isAgent
+                IsAgent = isAgent,
+                ShowOldValue = showOldValue
             };
 
             criteria.ActorAgentId = this.CurrentSession.AgentId;
@@ -72,6 +73,6 @@ namespace Apollo.Age.Account.Controllers
 
             return View(criteria);
         }
-       
+
     }
 }

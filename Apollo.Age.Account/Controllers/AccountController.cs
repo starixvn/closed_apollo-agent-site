@@ -25,6 +25,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Pager;
+    using Apollo.Age.Web.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
@@ -348,7 +349,7 @@ namespace Apollo.Age.Account.Controllers
                 ListData = models
             });
         }
-
+        [InternalChecking]
         public ActionResult LogLogin()
         {
             var agentId = CurrentSession.AgentId;
