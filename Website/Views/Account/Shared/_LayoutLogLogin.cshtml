@@ -2,7 +2,6 @@
 <html lang="en-us">
 <head>
     <title>@ViewBag.Title</title>
-    <script src="~/_GlobalResources/Js/head.min.js" type="text/javascript"></script>
     <link href="~/Views/Account/Resources/LogLogin.less" rel="stylesheet" type="text/css" />
     @RenderSection("head", required: false)
 </head>
@@ -16,9 +15,7 @@
         </div>
     </div>   
     @Html.Hidden("ApoRoot", Url.Content("~/"))
-    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    @Scripts.Render("~/logloginjs")
     @RenderSection("foot", required: false)
 </body>
 </html>

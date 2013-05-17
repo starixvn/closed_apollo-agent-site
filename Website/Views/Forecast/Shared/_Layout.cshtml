@@ -1,58 +1,47 @@
 ﻿@{
-    var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
-    var currentAgentId = ViewBag.CurrentAgentId;
-    var mainShareHolders = (IEnumerable<Apollo.Age.Entities.Agent>)ViewBag.MainShareHolders;
+	var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
+	var currentAgentId = ViewBag.CurrentAgentId;
+	var mainShareHolders = (IEnumerable<Apollo.Age.Entities.Agent>)ViewBag.MainShareHolders;
 }
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title - Forecast</title>
-    <script src="~/_GlobalResources/Js/head.min.js" type="text/javascript"></script>
-    <link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet"
-        type="text/css" />
-    <link href="~/_Components/RefreshCountDown/RefreshCountDown.less" rel="Stylesheet"
-        type="text/css" />
-    <link href="~/_Components/ErrorMsg/ErrorMsg.less" rel="stylesheet" type="text/css" />
-    @RenderSection("css", required: false)
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title - Forecast</title>
+	<link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+	<link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="stylesheet" type="text/css" />
+	<link href="~/_Components/ErrorMsg/ErrorMsg.less" rel="stylesheet" type="text/css" />
+	@RenderSection("css", required: false)
 </head>
 <body>
-    
-    <div id="page_main">
-        <div id="header_main">
-            @*<span class="upper">@Resources.Lang.Forecast</span>*@ <span id="leagueName">
-                @ViewBag.Title
-            </span>
-        </div>
-        <div id="content_main">
-            @RenderSection("refreshcountdown", required: false)
-            @{
-                if (currentAgentId == 0)
-                {
-                @RazorHelper.RenderMainShareHolderDropDownList(currentMainShareHolderId, mainShareHolders)
-                }
-            }
-            @RenderBody()
-        </div>
-    </div>
-    @Html.Hidden("ApoRoot", Url.Content("~/"))
-    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/jquery-ui.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
-    <script src="~/_Components/AGEWnd/AGEWnd.js" type="text/javascript"></script>
-    <script src="~/_Components/ErrorMsg/ErrorMsg.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var DEFAULT_LAYOUT = function(){
-            return {
-                currentMainShareHolderId: @(currentMainShareHolderId),
-                currentActionLink: '@Url.Action(null)',
-                betListString: '@Apollo.Age.Resources.Lang.BetList.ToUpper()',
-                forecastString: '@Apollo.Age.Resources.Lang.Forecast.ToUpper()'
-            };
-        }();
-    </script>
-    @RenderSection("scripts", required: false)
+	
+	<div id="page_main">
+		<div id="header_main">
+			<span id="leagueName">@ViewBag.Title</span>
+		</div>
+		<div id="content_main">
+			@RenderSection("refreshcountdown", required: false)
+			@if (currentAgentId == 0)
+			{
+				@RazorHelper.RenderMainShareHolderDropDownList(currentMainShareHolderId, mainShareHolders)
+			}
+			@RenderBody()
+		</div>
+	</div>
+	@Html.Hidden("ApoRoot", Url.Content("~/"))
+	@Scripts.Render("~/forecastjs")
+	
+	<script type="text/javascript">
+		var DEFAULT_LAYOUT = function(){
+			return {
+				currentMainShareHolderId: @(currentMainShareHolderId),
+				currentActionLink: '@Url.Action(null)',
+				betListString: '@Apollo.Age.Resources.Lang.BetList.ToUpper()',
+				forecastString: '@Apollo.Age.Resources.Lang.Forecast.ToUpper()'
+			};
+		}();
+	</script>
+	@RenderSection("scripts", required: false)
 </body>
 </html>
