@@ -118,7 +118,7 @@ namespace Apollo.Age.Web
                 }
                 else // return View with error message
                 {
-                    string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: Failed.";
+                    string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: " + Lang.InvalidUsernameOrPassword + " ." ;
                     WritelogLogin(0, _AdminId, 1308, 0, doing);
 
                     ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
