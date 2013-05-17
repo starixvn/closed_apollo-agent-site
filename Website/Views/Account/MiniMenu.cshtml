@@ -11,7 +11,7 @@
                 string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
                 if (item.HasChildNodes)
                 {
-                    <li class="hasChild"><a class="">@rm.GetString(item.Title)</a>
+                    <li><a>@rm.GetString(item.Title)</a>
                     <ul>
                         @foreach (SiteMapNode subItem in item.ChildNodes)
                         {
