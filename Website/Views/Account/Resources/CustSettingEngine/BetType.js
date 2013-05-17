@@ -159,9 +159,9 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     minSpinBox.input.onchange = function (event) {
         var minValue = minSpinBox.getValue();
         var checkMinValue = Math.max(minValue, currentPt.Upline.Min);
-        if (minValue < currentPt.MaxMinSpan) {
+        if (minValue <= checkMinValue && minValue <= currentPt.Upline.Max) {
             maxSpinBox.updateMinValue(minValue);
-        }
+        };
         if (!maxSpinBox.isValid()) {
             return;
         }
@@ -386,7 +386,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     minSpinBox.input.onchange = function (event) {
         var minValue = minSpinBox.getValue();
         var checkMinValue = Math.max(minValue, currentPt.Upline.Min);
-        if (minValue < currentPt.MaxMaxSpan) {
+        if (minValue <= checkMinValue && minValue <= currentPt.Upline.Max) {
             maxSpinBox.updateMinValue(minValue);
         };
 
