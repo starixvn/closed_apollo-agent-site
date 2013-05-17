@@ -2,18 +2,14 @@
 <html lang="en-us">
 <head>
     <title>@ViewBag.Title</title>
-    <script src="~/_GlobalResources/Js/head.min.js" type="text/javascript"></script>
     <link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Views/Account/Resources/Account.less" rel="stylesheet" type="text/css" />
     @RenderSection("head", required: false)
 </head>
 <body>
-    
     @RenderBody()
     @Html.Hidden("ApoRoot", Url.Content("~/"))
-    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
+    @Scripts.Render("~/accountjs")
     @RenderSection("foot", required: false)
 </body>
 </html>
