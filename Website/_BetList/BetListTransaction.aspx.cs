@@ -123,7 +123,14 @@ namespace Sunplus.Agent.UI._BetList
 
                 builder.Append("</tr>");
             }
-            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
+            if (pageType.Equals("transaction"))
+            {
+                builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Winlost | BetListType.Member);
+            }
+            else
+            {
+                builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
+            }
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
 
