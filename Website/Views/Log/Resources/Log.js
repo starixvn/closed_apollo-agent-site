@@ -103,5 +103,5 @@ $(document).ready(function () {
     $('.monpickr-wrap-parent, #monthDateTime').width(107);
     $('.monpickr-selected-month').width(60);
     $('.daypickr-selected-day').width(20);
-    $('.monpickr-dropdown').width(106);
+    $('.monpickr-dropdown').width(105);
 });
