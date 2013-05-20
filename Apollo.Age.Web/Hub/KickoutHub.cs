@@ -6,31 +6,30 @@
 
     public class KickoutHub : Hub
     {
-        public void Send()
+        public void Send(int adminId)
         {
-            var key = SessionManager.CurrentSession.AdminId + "_" + SessionManager.CurrentSession.AgentId;
-            
+            var key = adminId.ToString();
+
             if (CachingService.Get<OnlineUserCaching>(key) == null)
             {
                 CachingService.Set<OnlineUserCaching>(key, new OnlineUserCaching
                 {
-                    AdminId = SessionManager.CurrentSession.AdminId,
-                    AgentId = SessionManager.CurrentSession.AgentId,
+                    AdminId = adminId,
+                    AgentId = 0,
                     Context = Context
                 });
-                                
             }
             else
             {
                 var connectionId = CachingService.Get<OnlineUserCaching>(key).Context.ConnectionId;
                 Clients.Client(connectionId).KickoutUser(); // Kickout
 
-               CachingService.Set<OnlineUserCaching>(key, new OnlineUserCaching
-               {
-                   AdminId = SessionManager.CurrentSession.AdminId,
-                   AgentId = SessionManager.CurrentSession.AgentId,
-                   Context = Context
-               });
+                CachingService.Set<OnlineUserCaching>(key, new OnlineUserCaching
+                {
+                    AdminId = adminId,
+                    AgentId = 0,
+                    Context = Context
+                });
             }
         }
     }

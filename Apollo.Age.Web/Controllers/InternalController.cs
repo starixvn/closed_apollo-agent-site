@@ -203,18 +203,18 @@ namespace Apollo.Age.Web
             //        );
             //});
             DeviceService deviceService = new DeviceService(Request);
-            _userService.WriteLogInternalLogin(
-                agentId,
-                agentUserId,
-                SERVERID,
-                actionId,
-                doing,
-                deviceService.ClientIp,
-                deviceService.DomainName,
-                deviceService.BrowserName,
-                deviceService.Platform,
-                deviceService.CountryCode
-                );
+                _userService.WriteLogInternalLogin(
+                    agentId,
+                    agentUserId,
+                    SERVERID,
+                    actionId,
+                    doing,
+                    deviceService.ClientIp,
+                    deviceService.DomainName,
+                    deviceService.BrowserName,
+                    deviceService.Platform,
+                    deviceService.CountryCode
+                    );
         }
 
        
