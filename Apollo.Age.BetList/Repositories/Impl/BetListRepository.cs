@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Kaden.Trinh" date="2013.04.09">Created and Implement</change>
+//   <change who="Kaden.Trinh" date="2013.05.20">Add more function get agent upline of member</change>
 // </history>
 
 namespace Apollo.Age.BetList.Repositories.Impl
@@ -15,6 +16,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using System.Data;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Repositories.Interface;
+    using Apollo.Age.Entities;
     using Fanex.BetList.Core.Entities;
     using Fanex.Common;
     using Fanex.Data;
@@ -448,6 +450,33 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         agentId = (int)db.GetParameterValue("agentid");
                         custId = (int)db.GetParameterValue("custid");
                     }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get Agent Upline of member
+        /// </summary>
+        /// <param name="parentId">Logged id</param>
+        /// <param name="custId">customer id</param>
+        /// <returns></returns>
+        public IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId)
+        {
+            var uspKey = "Age_Agent_GetCustomerDownlinePath";
+            var uspParams = new
+            {
+                parentId,
+                custId
+            };
+            try
+            {
+                using (var db = new ObjectDb(uspKey))
+                {
+                    return db.Query<Agent>(uspParams);
                 }
             }
             catch

@@ -7,18 +7,22 @@
 //     <change who="Kaden.Trinh" date="2013.04.10">Create</change>
 //     <change who="Kaden.Trinh" date="2013.04.10">Implement betlist Outstanding</change>
 //     <change who="Kaden.Trinh" date="2013.04.16">Implement betlist Account Info</change>
+//     <change who="Kaden.Trinh" date="2013.05.20">Implement Navigation bar</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
 namespace Sunplus.Agent.UI._BetList
 {
     using System;
+    using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
     using System.Text;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
+    using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Web;
@@ -66,16 +70,22 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.Filter.valueToDate = toDate.ToString("MM/dd/yyyy");
                 tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
                 tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
-                tpl.HiddenFields.pageType = pageType;
                 tpl.HiddenFields.DateTime.Hide();
                 tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList + " - " + username;
+                tpl.Navigation = string.Empty;
             }
             else
             {
+                #region Navigation Link
+
+                tpl.Navigation = this.Navigation(custid);
+
+                #endregion Navigation Link
+
                 tpl.HiddenFields.DateTime.valueFromDate = fromDate.ToShortDateString();
                 tpl.HiddenFields.DateTime.valueToDate = toDate.ToShortDateString();
                 tpl.Filter.Hide();
-                tpl.title = string.Format("{0} {1} --> {2} - {3}", Apollo.Age.Resources.BetList.lblMemberBetList, fromDate.ToString("MM/dd/yyyy"), toDate.ToString("MM/dd/yyyy"), username);
+                tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList;
             }
 
             // Render Content
@@ -144,6 +154,7 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId;
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
+
             writer.Write(tpl);
             RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails);
             RegisterJavascriptObject("refNo", BetList.refno);
@@ -240,6 +251,41 @@ namespace Sunplus.Agent.UI._BetList
             {
                 return SessionManager.CurrentSession;
             }
+        }
+
+        /// <summary>
+        /// Get Navigation link
+        /// </summary>
+        /// <param name="agentId">Agent Id</param>
+        /// <returns></returns>
+        private string Navigation(int agentId)
+        {
+            var betListService = new BetListService();
+            var listAgent = betListService.GetAgentUpLineOfMember(CurrentSession.AgentId, agentId) as List<Apollo.Age.Entities.Agent>;
+            var navigation = new Navigation_Template();
+            navigation.MemberUser.Hide();
+            navigation.AgentUser.Hide();
+            var link = string.Empty;
+            foreach (var item in listAgent)
+            {
+                var last = listAgent.LastOrDefault();
+                if (last != null && !last.Equals(item))
+                {
+                    var li = new Navigation_AgentUser_Block();
+                    li.Level = item.Level.ToString();
+                    li.Id = item.Id.ToString();
+                    li.Username = item.Username;
+                    link += li.ToString();
+                }
+                else
+                {
+                    var li = new Navigation_MemberUser_Block();
+                    li.Username = item.Username;
+                    link += li.ToString();
+                }
+            }
+            navigation.item = link;
+            return navigation.ToString();
         }
     }
 }

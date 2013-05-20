@@ -27,48 +27,51 @@
                                 mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
                         </div>
                     </div>
-                    <div class="cell">
-                        <div class="label">
-                            <label>
-                                {static:Apollo.Age.Resources.Lang.to}</label>
-                        </div>
-                        <div class="editor">
-                            <input type="text" id="toDate" name="toDate" class="datepicker" value="{valueToDate}"
-                                mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
-                        </div>
+                </div>
+                <div class="cell">
+                    <div class="label">
+                        <label>
+                            {static:Apollo.Age.Resources.Lang.to}</label>
                     </div>
-                    <!--User-->
-                    <div class="cell">
-                        <div class="editor">
-                            {option-user}
-                        </div>
-                    </div>
-                    <div class="cell">
-                        <div class="editor">
-                            <input type="text" id="username" name="username" value="{username}" maxlength="50"
-                                style="width: 120px;" autocomplete="off" class="ui-autocomplete-input" />
-                        </div>
-                    </div>
-                    <!--/User-->
-                    <div class="cell">
-                        <div class="editor">
-                            <input type="button" class="btn act-submit" id="dSubmit" value="{static:Apollo.Age.Resources.Lang.Generate}">
-                        </div>
+                    <div class="editor">
+                        <input type="text" id="toDate" name="toDate" class="datepicker" value="{valueToDate}"
+                            mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
                     </div>
                 </div>
             </div>
-            <!--/Filter-->
-            {content}
-            <div>{PagingControl}</div>
-            <div id="dialog-details">
+            <!--User-->
+            <div class="cell">
+                <div class="editor">
+                    {option-user}
+                </div>
+            </div>
+            <div class="cell">
+                <div class="editor">
+                    <input type="text" id="username" name="username" value="{username}" maxlength="50"
+                        style="width: 120px;" autocomplete="off" class="ui-autocomplete-input" />
+                </div>
+            </div>
+            <!--/User-->
+            <div class="cell">
+                <div class="editor">
+                    <input type="button" class="btn act-submit" id="dSubmit" value="{static:Apollo.Age.Resources.Lang.Generate}">
+                </div>
             </div>
         </div>
-        <!--HiddenFields-->
-        <input type="hidden" id="ApoRoot" value="{ApoRoot}" />
-        <input type="hidden" id="MainShareHolderId" value="{MainShareHolderId}" />
-        <input type="hidden" id="MainShareHolderUsername" value="{MainShareHolderUsername}" />
-        <input type="hidden" id="type" name="type" value="{pageType}" />
-        <!--/HiddenFields-->
+    </div>
+    <!--/Filter-->
+    {content}
+    <div>
+        {PagingControl}</div>
+    <div id="dialog-details">
+    </div>
+    </div>
+    <!--HiddenFields-->
+    <input type="hidden" id="ApoRoot" value="{ApoRoot}" />
+    <input type="hidden" id="MainShareHolderId" value="{MainShareHolderId}" />
+    <input type="hidden" id="MainShareHolderUsername" value="{MainShareHolderUsername}" />
+    <input type="hidden" id="type" name="type" value="{pageType}" />
+    <!--/HiddenFields-->
     </div>
     </form>
     <script src="../../_GlobalResources/Js/jquery.js" type="text/javascript"></script>
