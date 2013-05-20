@@ -1,8 +1,9 @@
 ﻿@model GetLogCustSettingCriteria
 @{    
     Layout = "~/Views/Log/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.viewlog;
+    ViewBag.Title = Apollo.Age.Resources.Lang.viewlog + " " + Apollo.Age.Resources.Lang.customer + " " + Apollo.Age.Resources.Lang.setting;
     var logData = (List<LogRunSpModel>)ViewBag.LogData;
+    var agentLevel = ViewBag.AgentLevel != null ? (int)ViewBag.AgentLevel : -1;
 }
 @section head {
     <link href="~/Views/Log/Resources/Log.less" rel="stylesheet" type="text/css">
@@ -14,7 +15,7 @@
             <div class="cell">
                 <div class="label">
                     @Html.DropDownListFor(m => m.IsAgent, new List<SelectListItem> {
-            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblAgent },
+            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblAgent,Selected=true },
             new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.lblMember }
         })
                     <input id="enterUsernameValue" type="hidden" value="@Apollo.Age.Resources.Lang.enterusername"/>
@@ -122,7 +123,7 @@
                     <td class="c">
                         @itemLog.ActionName
                     </td>
-                    <td class="message_content">@Html.Raw(itemLog.GetContent(Model.ShowOldValue))
+                    <td class="message_content">@Html.Raw(itemLog.GetContent(Model.ShowOldValue, agentLevel,Model.IsAgent))
                     </td>
                 </tr>
         }
