@@ -1,25 +1,27 @@
-﻿@model List<Apollo.Age.Account.Models.DiscountModel>
+﻿@using Apollo.Age.Enumerations
+@using Apollo.Age.Account.Models
+@model List<DiscountModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
     var isShowOld = (bool)ViewBag.IsShowOldValue;
 
-    var group = new Apollo.Age.Account.Models.DiscountModel();
-    var group1x2 = new Apollo.Age.Account.Models.DiscountModel();
-    var groupOthers = new Apollo.Age.Account.Models.DiscountModel();
+    var group = new DiscountModel();
+    var group1x2 = new DiscountModel();
+    var groupOthers = new DiscountModel();
 
     foreach (var item in Model)
     {
-        if (item.SportType == 1 && item.BetType == 1)
+        switch (item.BetType)
         {
-            group = item;
-        }
-        if (item.SportType == 1 && item.BetType == 4)
-        {
-            groupOthers = item;
-        }
-        if (item.SportType == 1 && item.BetType == 5)
-        {
-            group1x2 = item;
+            case (int)BetTypes.Handicap:
+                group = item;
+                break;
+            case (int)BetTypes.Correct_Score:
+                groupOthers = item;
+                break;
+            case (int)BetTypes.FT_1X2:
+                group1x2 = item;
+                break;
         }
     }
     

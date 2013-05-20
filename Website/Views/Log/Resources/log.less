@@ -2,7 +2,6 @@
 @import "../../../_GlobalResources/Css/calendar.less";
 
 #box_header {
-	padding: 5px;
 	margin-bottom: 0;
 }
 
@@ -160,6 +159,49 @@ div.line {
 
 	.daypickr-dropdown {
 		max-height: 250px;
+	}
+
+	.ui-widget-content .ui-state-active {
+		width: 95%;
+	}
+}
+
+/* FIX IE */
+
+.eq-ie7, .eq-ie8  {
+	#box_header {
+		.monpickr-wrap, .daypickr-wrap {
+			input[type="text"] {
+				height: 12px;
+				margin-top: 1px;
+				padding-top: 1px;
+			}
+		}
+	}
+}
+
+.eq-ie7  {
+	#box_header {
+		.monpickr-arrows {
+			height: 16px;
+		}
+
+		.monpickr-wrap, .daypickr-wrap {
+			input[type="text"] {
+				height: 9px;
+				padding-top: 0;
+			}
+		}
+
+		.monpickr-arrows {
+			.monpickr-down, .monpickr-prev, .monpickr-next {
+				top: 0;
+			}
+		}
+
+		.ui-monpickr li a {
+			padding: 2px;
+		}
 	}
 }
 

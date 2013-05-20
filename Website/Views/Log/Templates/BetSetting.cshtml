@@ -1,4 +1,5 @@
-﻿@model List<Apollo.Age.Account.Models.BetSettingModel>
+﻿@using Apollo.Age.Account.Models
+@model List<BetSettingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
     var isShowOld = (bool)ViewBag.IsShowOldValue;
