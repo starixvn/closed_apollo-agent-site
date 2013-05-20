@@ -88,7 +88,7 @@ namespace Fanex.Agent.UI
 			public string valueMinDate = "{valueMinDate}";
 			protected static string s23 = "\" maxdate=\"";
 			public string valueMaxDate = "{valueMaxDate}";
-			protected static string s24 = "\" /><div class=\"img-calendar\"></div></div></div><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
+			protected static string s24 = "\" /></div></div><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
 			protected static string s25{get{return Apollo.Age.Resources.Lang.to;}}
 			protected static string s26 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
 			public string valueToDate = "{valueToDate}";
@@ -96,7 +96,7 @@ namespace Fanex.Agent.UI
 			protected string t1_valueMinDate;
 			protected static string s28 = "\" maxdate=\"";
 			protected string t2_valueMaxDate;
-			protected static string s29 = "\" /><div class=\"img-calendar\"></div></div></div><div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"Submit\"></div></div></div></div>";
+			protected static string s29 = "\" /></div></div><div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"Submit\"></div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;

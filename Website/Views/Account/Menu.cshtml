@@ -32,22 +32,22 @@
 					@foreach (SiteMapNode subItem in item.ChildNodes)
 					{
 						var isAgentOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
-                        var isInternalOnly = Convert.ToBoolean(subItem["isInternalOnly"]);
-                        var isNotForSuper = Convert.ToBoolean(subItem["isNotForSuper"]);
+						var isInternalOnly = Convert.ToBoolean(subItem["isInternalOnly"]);
+						var isNotForSuper = Convert.ToBoolean(subItem["isNotForSuper"]);
 
-                        if (Model.IsSuper && isNotForSuper)
-                        {
-                            continue;
-                        }
-         
-                        if (Model.AgentLevel < AgentLevel.MainAgent && isAgentOnly)
+						if (Model.IsSuper && isNotForSuper)
 						{
 							continue;
 						}
-                        if (!SessionManager.CurrentSession.IsInternalSignIn && isInternalOnly)
-                        {
-                            continue;
-                        }
+		 
+						if (Model.AgentLevel < AgentLevel.MainAgent && isAgentOnly)
+						{
+							continue;
+						}
+						if (!SessionManager.CurrentSession.IsInternalSignIn && isInternalOnly)
+						{
+							continue;
+						}
 						int bettypeId = 0;
 						string title = string.Empty;
 
