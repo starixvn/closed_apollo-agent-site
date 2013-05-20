@@ -158,10 +158,12 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     //// Min K Change affect To Max K
     minSpinBox.input.onchange = function (event) {
         var minValue = minSpinBox.getValue();
-        var checkMinValue = Math.max(minValue, currentPt.Upline.Min);
-        if (minValue <= checkMinValue && minValue <= currentPt.Upline.Max) {
-            maxSpinBox.updateMinValue(minValue);
-        };
+        if (minSpinBox.isValid()) {
+            var checkMinValue = Math.max(minValue, currentPt.Upline.Min);
+            if (minValue <= checkMinValue && minValue <= currentPt.Upline.Max) {
+                maxSpinBox.updateMinValue(minValue);
+            };
+        }
         if (!maxSpinBox.isValid()) {
             return;
         }
