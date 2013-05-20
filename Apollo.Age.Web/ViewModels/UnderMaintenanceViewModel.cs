@@ -1,4 +1,14 @@
-﻿namespace Apollo.Age.Web.ViewModels
+﻿
+// --------------------------------------------------------------------------
+// <copyright file="UnderMaintenanceViewModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry.Nguyen" date="2013.5.3">Created</change>
+// </history>
+
+namespace Apollo.Age.Web.ViewModels
 {
     using System;
     using System.Collections.Generic;
