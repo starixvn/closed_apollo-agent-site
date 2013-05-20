@@ -14,7 +14,16 @@ var TOTALBETS = function ($) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
 
-                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
+//                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
+//                    width: 665,
+//                    height: 350,
+//                    position: { my: "top+40", at: "center top", of: window },
+//                    close: function (event, ui) {
+//                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+//                    }
+//                });
+
+                APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
                     width: 665,
                     height: 350,
                     position: { my: "top+40", at: "center top", of: window },
@@ -36,7 +45,16 @@ var TOTALBETS = function ($) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
 
-                ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
+//                ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
+//                    width: 930,
+//                    height: 720,
+//                    position: { my: "top+40", at: "center top", of: window },
+//                    close: function (event, ui) {
+//                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+//                    }
+//                });
+
+                APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
                     width: 930,
                     height: 720,
                     position: { my: "top+40", at: "center top", of: window },
@@ -59,7 +77,17 @@ var TOTALBETS = function ($) {
                 if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
-                ageWnd.openDialog(url, title, {
+
+//                ageWnd.openDialog(url, title, {
+//                    width: 930,
+//                    height: 770,
+//                    position: { my: "top+40", at: "center top", of: window },
+//                    close: function (event, ui) {
+//                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+//                    }
+//                });
+
+                APOLLO.openDialogFrame(url, title, {
                     width: 930,
                     height: 770,
                     position: { my: "top+40", at: "center top", of: window },
@@ -82,7 +110,17 @@ var TOTALBETS = function ($) {
                 if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
-                ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
+
+//                ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
+//                    width: 930,
+//                    height: 770,
+//                    position: { my: "top+40", at: "center top", of: window },
+//                    close: function (event, ui) {
+//                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+//                    }
+//                });
+
+                APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
                     width: 930,
                     height: 770,
                     position: { my: "top+40", at: "center top", of: window },
@@ -103,7 +141,17 @@ var TOTALBETS = function ($) {
                 if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
-                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
+
+//                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
+//                    width: 600,
+//                    height: 600,
+//                    position: { my: "top+40", at: "center top", of: window },
+//                    close: function (event, ui) {
+//                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+//                    }
+//                });
+
+                APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
                     width: 600,
                     height: 600,
                     position: { my: "top+40", at: "center top", of: window },

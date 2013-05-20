@@ -50,6 +50,7 @@ function ViewMixParlayResult(refno_mixparlay, refno) {
 		height = 450,
 		params = '?refNo=' + refno_mixparlay,
 		detailTitle = $('#' + refno).find('a:first').text();
+
 	//ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), detailTitle, 50, 100, width, height);
 	APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ParlayResult" + params),
 		detailTitle, { width: width, height: height });
@@ -64,12 +65,12 @@ function ViewSportBookResult(matchId, sportId, refno) {
 	parent.APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ResultByMatch" + params),
 		detailTitle, { width: width, height: height });
 
-//	if (parent.ageWnd) {
-//		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), detailTitle, 50, 100, width, height);
-//	}
-//	else {
-//		ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), detailTitle, 50, 100, width, height);
-//	}
+	//	if (parent.ageWnd) {
+	//		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), detailTitle, 50, 100, width, height);
+	//	}
+	//	else {
+	//		ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), detailTitle, 50, 100, width, height);
+	//	}
 }
 
 function showMP(transid) {
@@ -121,11 +122,11 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 	parent.APOLLO.openDialogFrame(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params),
 		detailTitle, { width: width, height: height });
 
-//	if (parent.ageWnd) {
-//		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
-//	} else {
-//		ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
-//	}
+	//	if (parent.ageWnd) {
+	//		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
+	//	} else {
+	//		ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
+	//	}
 }
 
 function InitExcelFunction() {
@@ -164,9 +165,9 @@ function InitBetList() {
 		parent.APOLLO.resizeDialog(900, 720);
 	}
 
-//	if (typeof ageWnd != 'undefined' && ageWnd.loaded) {
-//		ageWnd.setRect(ageWnd.left, 50, 900, 720);  // resize parent dialog
-//	}
+	//	if (typeof ageWnd != 'undefined' && ageWnd.loaded) {
+	//		ageWnd.setRect(ageWnd.left, 50, 900, 720);  // resize parent dialog
+	//	}
 
 	if (document.getElementById("exporttoexcel") != null) {
 		document.getElementById("exporttoexcel").style.display = "none";
@@ -175,18 +176,17 @@ function InitBetList() {
 }
 
 function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
-	var wnd = parent.ageWnd ? parent.ageWnd : ageWnd;
-	var url = APOLLO.resolveUrl("~/Forecast/ScoreMap?matchIds=" + matchIds +
-			(liveindicator == 1
-				? "&liveBetTypes=" + bettype
-				: "&deadBallBetTypes=" + bettype));
 	var mainShareHolderId = 0;
+	var url = APOLLO.resolveUrl("~/Forecast/ScoreMap?matchIds=" + matchIds +
+			(liveindicator == 1 ? "&liveBetTypes=" + bettype : "&deadBallBetTypes=" + bettype));
+
 	if (typeof ($("#MainShareHolderId").val()) !== 'undefined' && $("#MainShareHolderId").val() != "") {
 		mainShareHolderId = $("#MainShareHolderId").val();
 		if (mainShareHolderId > 0) {
 			url += "&mainShareHolderId=" + mainShareHolderId;
 		}
 	};
+
 	var mainShareHolderUsername = $("#MainShareHolderUsername").val();
 	if (typeof (mainShareHolderUsername) !== 'undefined' && mainShareHolderUsername != "") {
 		mainShareHolderUsername = " - " + mainShareHolderUsername;
@@ -194,7 +194,9 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
 	url += "&custId=" + custId;
 
 	var titleScoreMap = _page.titleScoreMap + mainShareHolderUsername;
-	wnd.open(url, titleScoreMap, 0, 20, 900, 550);
+	var wnd = parent.IsApoRoot ? window : parent;
+	var singleFrame = false; // allow multiple instances of dialog to keep BetList opened
+	wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 650 }, singleFrame);
 }
 
 RegisterStartUp(InitBetList);
