@@ -104,10 +104,12 @@
     <Compile Include="Entities\BetTypeSetting.cs" />
     <Compile Include="Entities\SportSetting.cs" />
     <Compile Include="Models\AgentShareModel.cs" />
+    <Compile Include="Models\DiscountModel.cs" />
     <Compile Include="Models\CustomerCommissionModel.cs" />
     <Compile Include="Models\BetSettingModel.cs" />
     <Compile Include="Models\LogRunSpModel.cs" />
     <Compile Include="Models\MemberShareModel.cs" />
+    <Compile Include="Models\PositionTakingModel.cs" />
     <Compile Include="Repositories\Impl\AccountRepository.cs" />
     <Compile Include="Repositories\Interface\IAccountRepository.cs" />
     <Compile Include="Services\AccountService.cs" />

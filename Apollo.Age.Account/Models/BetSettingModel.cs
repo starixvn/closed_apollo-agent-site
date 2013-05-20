@@ -12,12 +12,13 @@ namespace Apollo.Age.Account.Models
     using System.Resources;
     using Apollo.Age.Resources;
     using Apollo.Age.Services;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class BetSettingModel
-    {
+    {       
         public int SportType { get; set; }
 
         public int BetType { get; set; }
@@ -30,7 +31,7 @@ namespace Apollo.Age.Account.Models
                 {
                     return (new ResourceManager(typeof(Lang)) { IgnoreCase = true }).GetString("mixsports");
                 }
-
+                
                 return CacheRef.GetSportName(this.SportType);
             }
         }
