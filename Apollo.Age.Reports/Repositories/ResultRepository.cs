@@ -7,18 +7,11 @@
 //   <change who="Anders" date="2013.4.24">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Reports.Repositories
 {
     using System;
     using System.Data;
-
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Reports.Criterias;
     using Fanex.Data;
-    using System.Collections;
 
     /// <summary>
     ///  move code from Sunplus.Agent.Model, it's temporarily use
@@ -130,22 +123,5 @@ namespace Apollo.Age.Reports.Repositories
 
             return dataTable;
         }
-
-        //public DataTable SelectMatchForViewNumberGameResult(int matchId)
-        //{
-        //    var dataTable = new DataTable();
-        //    using (ObjectDb db = new ObjectDb("Age_BetList_SelMatchResultNumberGame"))
-        //    {
-        //        DataSet ds = db.ExecuteDataSet(new { matchId = matchId });
-
-        //        if (ds != null && ds.Tables.Count > 0)
-        //        {
-        //            dataTable = ds.Tables[0];
-        //        }
-
-        //    }
-
-        //    return dataTable;
-        //}
     }
 }
