@@ -12,60 +12,39 @@
                     @sportName - @Apollo.Age.Resources.Lang.MinBet
                 </td>
                 <td class="colW2">
-                    @if (item.MinBet != item.OldMinBet)
-                    { 
-                        <span class="valuechanged">@item.MinBet</span>                        
-                        if (isShowOld)
-                        {
-                        <div class="line">
-                        </div>
-                        <span class="valueold">@item.OldMinBet</span>
-                        }
-                    }
-                    else
-                    { 
-                        <span class="valueold">@item.OldMinBet</span>
-                    }
+                    @ToString(isShowOld, item.OldMinBet, item.MinBet)
                 </td>
                 <td class="colW1">
                     @sportName - @Apollo.Age.Resources.Lang.lblMaxBet
                 </td>
                 <td class="colW2">
-                    @if (item.MaxBet != item.OldMaxBet)
-                    { 
-                        <span class="valuechanged">@item.MaxBet</span>
-                        if (isShowOld)
-                        {
-                        <div class="line">
-                        </div>
-                        <span class="valueold">@item.OldMaxBet</span>
-                        }
-                    }
-                    else
-                    { 
-                        <span class="valueold">@item.OldMaxBet</span>
-                    }
+                    @ToString(isShowOld, item.OldMaxBet, item.MaxBet)
                 </td>
                 <td class="colW1">
                     @sportName - @Apollo.Age.Resources.Lang.lblMaxPerMatch
                 </td>
                 <td class="colW2">
-                    @if (item.MaxPerMatch != item.OldMaxPerMatch)
-                    { 
-                        <span class="valuechanged">@item.MaxPerMatch</span>
-                        if (isShowOld)
-                        {
-                        <div class="line">
-                        </div>
-                        <span class="valueold">@item.OldMaxPerMatch</span>
-                        }
-                    }
-                    else
-                    { 
-                        <span class="valueold">@item.OldMaxPerMatch</span>
-                    }
+                    @ToString(isShowOld, item.OldMaxPerMatch, item.MaxPerMatch)
                 </td>
             </tr>
         }
     </table>
+}
+@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue, 0).ToString();
+        string strNew = Math.Round(newValue, 0).ToString();
+
+        if (oldValue != newValue)
+        { <span class="valuechanged">@strNew</span> 
+            if (isShowOld)
+            {
+    <div class="line">
+    </div>
+    <span class="valueold">@strOld</span> 
+            }
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }            
 }

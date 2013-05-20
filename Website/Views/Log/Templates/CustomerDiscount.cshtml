@@ -39,22 +39,7 @@
                 {
                     if (item.SportType == 1 && item.BetType == 1)
                     {
-                        var discount = item.GroupA;
-                        var oldDiscount = item.OldGroupA;
-                        if (oldDiscount != discount)
-                        { 
-                    <span class="valuechanged">@discount</span>                        
-                            if (isShowOld)
-                            {
-                    <div class="line">
-                    </div>
-                    <span class="valueold">@oldDiscount</span>
-                            }
-                        }
-                        else
-                        { 
-                    <span class="valueold">@oldDiscount</span>
-                        }
+                    @ToString(isShowOld, item.OldGroupA, item.GroupA);
                     }
                 }
             </td>
@@ -68,22 +53,7 @@
                 {
                     if (item.SportType == 1 && item.BetType == 5)
                     {
-                        var discount = item.GroupA;
-                        var oldDiscount = item.OldGroupA;
-                        if (oldDiscount != discount)
-                        { 
-                    <span class="valuechanged">@discount</span>                        
-                            if (isShowOld)
-                            {
-                    <div class="line">
-                    </div>
-                    <span class="valueold">@oldDiscount</span>
-                            }
-                        }
-                        else
-                        { 
-                    <span class="valueold">@oldDiscount</span>
-                        }
+                    @ToString(isShowOld, item.OldGroupA, item.GroupA);
                     }
                 }
             </td>
@@ -97,25 +67,28 @@
                 {
                     if (item.SportType == 1 && item.BetType == 4)
                     {
-                        var discount = item.GroupA;
-                        var oldDiscount = item.OldGroupA;
-                        if (oldDiscount != discount)
-                        { 
-                    <span class="valuechanged">@discount</span>                        
-                            if (isShowOld)
-                            {
-                    <div class="line">
-                    </div>
-                    <span class="valueold">@oldDiscount</span>
-                            }
-                        }
-                        else
-                        { 
-                    <span class="valueold">@oldDiscount</span>
-                        }
+                    @ToString(isShowOld, item.OldGroupA, item.GroupA);
                     }
                 }
             </td>
         </tr>
     </table>
+}
+@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue * 100, 2).ToString();
+        string strNew = Math.Round(newValue * 100, 2).ToString();
+
+        if (oldValue != newValue)
+        { <span class="valuechanged">@strNew</span> 
+            if (isShowOld)
+            {
+    <div class="line">
+    </div>
+    <span class="valueold">@strOld</span> 
+            }
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }            
 }

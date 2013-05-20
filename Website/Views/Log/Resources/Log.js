@@ -28,7 +28,7 @@ var Log = function ($) {
             Log.enterUsernameValue = $('#enterUsernameValue');
             Log.monthDateTime = $('#monthDateTime');
             Log.fromDate = $('#From');
-            Log.toDate = $('#To');           
+            Log.toDate = $('#To');
 
             Log.monthDateTime.monPickr({
                 month: Log.fromDate.val(),
@@ -44,6 +44,9 @@ var Log = function ($) {
                 }
             });
 
+            $('#ShowOldValue').change(function () {
+                $('form').submit();
+            });
         },
 
         initSearchClick: function () {
