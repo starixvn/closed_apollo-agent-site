@@ -46,7 +46,7 @@
         <siteMapNode title="lblAccountInformation">
             <siteMapNode title="lblAgentList" url="Account/AgentList"></siteMapNode>
             <siteMapNode title="lblPlayerList" url="Account/MemberList" isAgentOnly="true"></siteMapNode>
-            <siteMapNode title="lblViewAllSetting" url="CustomerSetting/MySetting" isAgentOnly="true" ></siteMapNode>
+            <siteMapNode title="lblViewAllSetting" url="CustomerSetting/MySetting" isNotForSuper="true" ></siteMapNode>
             <siteMapNode title="ViewShare" url="CustomerSetting/AgentShare" ></siteMapNode>
             <siteMapNode title="ViewCommission" url="CustomerSetting/ViewCommission" ></siteMapNode>
             <siteMapNode title="loginlog" url="Account/Loglogin" isInternalOnly="true"></siteMapNode>
