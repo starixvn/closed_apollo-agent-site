@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="OutStandingController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ReportsController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -24,10 +24,6 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Web;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    /// 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : BaseController
     {
@@ -35,19 +31,9 @@ namespace Apollo.Age.Reports.Controllers
         private readonly IWinLossService _winLossService;
         private int _currentAgentId;
 
-        public int? CurrentAgentId
-        {
-            set
-            {
-                _currentAgentId = (value.HasValue ? value.Value : this.CurrentSession.AgentId);
-            }
-            get
-            {
-                return _currentAgentId;
-            }
+        public ReportsController() : this(null) 
+        { 
         }
-
-        public ReportsController() : this(null) { }
 
         public ReportsController(OutstandingService reportService = null)
         {
@@ -55,15 +41,17 @@ namespace Apollo.Age.Reports.Controllers
             _winLossService = _winLossService ?? new WinLossService();
         }
 
-        private IEnumerable<Agent> AgentDownlinePath(int agentId)
+        public int? CurrentAgentId
         {
-            IEnumerable<Agent> models = _reportService.GetData<Agent>(new AgentDownlinePathCriteria
+            get
             {
-                ParentId = CurrentSession.AgentId,
-                AgentId = agentId
-            });
+                return _currentAgentId;
+            }
 
-            return models;
+            set
+            {
+                _currentAgentId = value.HasValue ? value.Value : this.CurrentSession.AgentId;
+            }
         }
 
         #region Outstanding Report
@@ -102,13 +90,13 @@ namespace Apollo.Age.Reports.Controllers
         public ActionResult MemberOutstanding(int? agentId, int mainShareHolderId, string mainShareHolderUsername)
         {
             CurrentAgentId = agentId;
-            // call service to get report data here
+            //// call service to get report data here
             IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new MemberOutstandingCriteria
             {
                 AgentId = CurrentAgentId.Value
             });
 
-            // Sum total amount
+            //// Sum total amount
             OutstandingModel totalModels = new OutstandingModel();
             if (models != null && models.Any())
             {
@@ -120,7 +108,7 @@ namespace Apollo.Age.Reports.Controllers
                     totalModels.GameShareAmount += item.GameShareAmount;
                 }
             }
-            // return object
+            //// return object
             return Json(new
             {
                 ListOutstanding = models,
@@ -182,5 +170,16 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #endregion Agent Win Loss Report
+
+        private IEnumerable<Agent> AgentDownlinePath(int agentId)
+        {
+            IEnumerable<Agent> models = _reportService.GetData<Agent>(new AgentDownlinePathCriteria
+            {
+                ParentId = CurrentSession.AgentId,
+                AgentId = agentId
+            });
+
+            return models;
+        }
     }
 }

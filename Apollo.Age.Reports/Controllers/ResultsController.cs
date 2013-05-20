@@ -17,7 +17,6 @@ namespace Apollo.Age.Reports.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using System.Web.Security;
     using System.Web.SessionState;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
@@ -40,7 +39,9 @@ namespace Apollo.Age.Reports.Controllers
 
         #region Ctors
 
-        public ResultsController() : this(null) { }
+        public ResultsController() : this(null) 
+        { 
+        }
 
         public ResultsController(ResultService resultService = null)
         {
@@ -79,6 +80,7 @@ namespace Apollo.Age.Reports.Controllers
             {
                 leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
             }
+
             leaguesBySport.ForEach((item) => leagues.Add(new League
             {
                 Id = item.Id,
@@ -233,6 +235,7 @@ namespace Apollo.Age.Reports.Controllers
                     outrightResults = outrightResults.Where(x => x.SportId == sportId);
                 }
             }
+
             return View(outrightResults);
         }
 

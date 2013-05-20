@@ -117,7 +117,7 @@ namespace Apollo.Age.Web
 
                 return View(hasKeybutNotTransResources);
             }
-            catch (Exception ex)
+            catch 
             {
                 return View();
             }
