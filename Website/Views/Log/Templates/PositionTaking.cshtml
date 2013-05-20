@@ -1,24 +1,21 @@
-﻿@model List<Apollo.Age.Account.Models.PositionTakingModel>
+﻿@using Apollo.Age.Enumerations
+@using Apollo.Age.Account.Models
+@model List<PositionTakingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
     var isShowOld = (bool)ViewBag.IsShowOldValue;
-
     var agentLevel = (int)ViewBag.AgentLevel;
-
     var isAgent = (bool)ViewBag.IsAgent;
-
     var listPTGroupBySport = Model.GroupBy(m => m.SportType);
-
     var isHaveLive = false;
-
-    var itemMixSport = new Apollo.Age.Account.Models.PositionTakingModel();
+    var itemMixSport = new PositionTakingModel();
     
     <table class="tblRpt">
         @foreach (var itemSport in listPTGroupBySport)
         {
             var itemSportFirst = itemSport.FirstOrDefault();        
             <tr class="sub-title">
-                @if (itemSportFirst.SportType == 1)
+                @if (itemSportFirst.SportType == (int)SportTypes.Soccer)
                 { 
                     <td colspan="6">
                         @itemSportFirst.SportName - @Apollo.Age.Resources.Lang.lblDeadball
@@ -36,7 +33,7 @@
 
                 var listItemSport = itemSport.OrderBy(m => m.IsLive).ToList();
 
-                if (itemSportFirst.SportType == 99)
+                if (itemSportFirst.SportType == (int)SportTypes.OtherSports)
                 {
                     itemMixSport = listItemSport[3];
                     listItemSport.RemoveAt(3);
