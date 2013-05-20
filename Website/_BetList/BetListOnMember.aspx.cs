@@ -56,7 +56,7 @@ namespace Sunplus.Agent.UI._BetList
             #region INIT
 
             var tpl = new BetListOnMember_Template();
-            tpl.title = Apollo.Age.Resources.Lang.lblBetLists + " - " + username;
+
             if (pageType.Equals("accountinfo"))
             {
                 var maxDate = DateTime.Now;
@@ -68,12 +68,14 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
                 tpl.HiddenFields.pageType = pageType;
                 tpl.HiddenFields.DateTime.Hide();
+                tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList + " - " + username;
             }
             else
             {
                 tpl.HiddenFields.DateTime.valueFromDate = fromDate.ToShortDateString();
                 tpl.HiddenFields.DateTime.valueToDate = toDate.ToShortDateString();
                 tpl.Filter.Hide();
+                tpl.title = string.Format("{0} {1} --> {2} - {3}", Apollo.Age.Resources.BetList.lblMemberBetList, fromDate.ToString("MM/dd/yyyy"), toDate.ToString("MM/dd/yyyy"), username);
             }
 
             // Render Content
@@ -125,7 +127,15 @@ namespace Sunplus.Agent.UI._BetList
                 builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
                 builder.Append("</tr>");
             }
-            builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
+            if (pageType.Equals("report") || pageType.Equals("accountinfo"))
+            {
+                builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Winlost);
+            }
+            else
+            {
+                builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
+            }
+
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
 

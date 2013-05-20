@@ -32,13 +32,16 @@
 					@foreach (SiteMapNode subItem in item.ChildNodes)
 					{
 						var isAgentOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
-                        var isInternalOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
+                        var isInternalOnly = Convert.ToBoolean(subItem["isInternalOnly"]);
 
-                        if (Model.AgentLevel < AgentLevel.MainAgent && isAgentOnly && isInternalOnly)
+                        if (Model.AgentLevel < AgentLevel.MainAgent && isAgentOnly)
 						{
 							continue;
 						}
-
+                        if (!SessionManager.CurrentSession.IsInternalSignIn && isInternalOnly)
+                        {
+                            continue;
+                        }
 						int bettypeId = 0;
 						string title = string.Empty;
 
