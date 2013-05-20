@@ -33,8 +33,10 @@ namespace Fanex.Agent.UI
 			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s15{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
-			protected static string s16 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s15{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s17{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
+			protected static string s18 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -62,6 +64,8 @@ namespace Fanex.Agent.UI
 					bd.Append(s14);
 					bd.Append(s15);
 					bd.Append(s16);
+					bd.Append(s17);
+					bd.Append(s18);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -76,45 +80,45 @@ namespace Fanex.Agent.UI
 
 		public class BetListOnMember_Filter_Block: Block
 		{
-			protected static string s17 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
-			protected static string s18{get{return Apollo.Age.Resources.Lang.from;}}
-			protected static string s19 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
+			protected static string s19 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
+			protected static string s20{get{return Apollo.Age.Resources.Lang.from;}}
+			protected static string s21 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
-			protected static string s20 = "\"mindate=\"";
+			protected static string s22 = "\"mindate=\"";
 			public string valueMinDate = "{valueMinDate}";
-			protected static string s21 = "\" maxdate=\"";
+			protected static string s23 = "\" maxdate=\"";
 			public string valueMaxDate = "{valueMaxDate}";
-			protected static string s22 = "\" /><div class=\"img-calendar\"></div></div></div><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
-			protected static string s23{get{return Apollo.Age.Resources.Lang.to;}}
-			protected static string s24 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
+			protected static string s24 = "\" /></div></div><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
+			protected static string s25{get{return Apollo.Age.Resources.Lang.to;}}
+			protected static string s26 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
 			public string valueToDate = "{valueToDate}";
-			protected static string s25 = "\"mindate=\"";
+			protected static string s27 = "\"mindate=\"";
 			protected string t1_valueMinDate;
-			protected static string s26 = "\" maxdate=\"";
+			protected static string s28 = "\" maxdate=\"";
 			protected string t2_valueMaxDate;
-			protected static string s27 = "\" /><div class=\"img-calendar\"></div></div></div><div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"Submit\"></div></div></div></div>";
+			protected static string s29 = "\" /></div></div><div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"Submit\"></div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s17);
-					bd.Append(s18);
 					bd.Append(s19);
-					bd.Append(valueFromDate);
 					bd.Append(s20);
-					bd.Append(valueMinDate);
 					bd.Append(s21);
-					bd.Append(valueMaxDate);
+					bd.Append(valueFromDate);
 					bd.Append(s22);
-					bd.Append(s23);
-					bd.Append(s24);
-					bd.Append(valueToDate);
-					bd.Append(s25);
 					bd.Append(valueMinDate);
-					bd.Append(s26);
+					bd.Append(s23);
 					bd.Append(valueMaxDate);
+					bd.Append(s24);
+					bd.Append(s25);
+					bd.Append(s26);
+					bd.Append(valueToDate);
 					bd.Append(s27);
+					bd.Append(valueMinDate);
+					bd.Append(s28);
+					bd.Append(valueMaxDate);
+					bd.Append(s29);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -123,38 +127,38 @@ namespace Fanex.Agent.UI
 		public class BetListOnMember_HiddenFields_Block: Block
 		{
 			public BetListOnMember_HiddenFields_DateTime_Block DateTime = new BetListOnMember_HiddenFields_DateTime_Block();
-			protected static string s28 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			protected static string s30 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s29 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
+			protected static string s31 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
 			public string MainShareHolderId = "{MainShareHolderId}";
-			protected static string s30 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
+			protected static string s32 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
 			public string MainShareHolderUsername = "{MainShareHolderUsername}";
-			protected static string s31 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
+			protected static string s33 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
 			public string pageType = "{pageType}";
-			protected static string s32 = "\" /><input type=\"hidden\" id=\"username\" name=\"username\" value=\"";
+			protected static string s34 = "\" /><input type=\"hidden\" id=\"username\" name=\"username\" value=\"";
 			public string username = "{username}";
-			protected static string s33 = "\" /><input type=\"hidden\" id=\"custId\" name=\"custId\" value=\"";
+			protected static string s35 = "\" /><input type=\"hidden\" id=\"custId\" name=\"custId\" value=\"";
 			public string custId = "{custId}";
-			protected static string s34 = "\" />";
+			protected static string s36 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != DateTime) DateTime.ToString(ref bd);
-					bd.Append(s28);
-					bd.Append(ApoRoot);
-					bd.Append(s29);
-					bd.Append(MainShareHolderId);
 					bd.Append(s30);
-					bd.Append(MainShareHolderUsername);
+					bd.Append(ApoRoot);
 					bd.Append(s31);
-					bd.Append(pageType);
+					bd.Append(MainShareHolderId);
 					bd.Append(s32);
-					bd.Append(username);
+					bd.Append(MainShareHolderUsername);
 					bd.Append(s33);
-					bd.Append(custId);
+					bd.Append(pageType);
 					bd.Append(s34);
+					bd.Append(username);
+					bd.Append(s35);
+					bd.Append(custId);
+					bd.Append(s36);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -162,21 +166,21 @@ namespace Fanex.Agent.UI
 
 		public class BetListOnMember_HiddenFields_DateTime_Block: Block
 		{
-			protected static string s35 = "<input type=\"hidden\" id=\"fromDate\" value=\"";
+			protected static string s37 = "<input type=\"hidden\" id=\"fromDate\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
-			protected static string s36 = "\" /><input type=\"hidden\" id=\"toDate\" value=\"";
+			protected static string s38 = "\" /><input type=\"hidden\" id=\"toDate\" value=\"";
 			public string valueToDate = "{valueToDate}";
-			protected static string s37 = "\" />";
+			protected static string s39 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s35);
-					bd.Append(valueFromDate);
-					bd.Append(s36);
-					bd.Append(valueToDate);
 					bd.Append(s37);
+					bd.Append(valueFromDate);
+					bd.Append(s38);
+					bd.Append(valueToDate);
+					bd.Append(s39);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

@@ -17,7 +17,7 @@
         @foreach (var itemSport in listPTGroupBySport)
         {
             var itemSportFirst = itemSport.FirstOrDefault();        
-            <tr>
+            <tr class="sub-title">
                 @if (itemSportFirst.SportType == 1)
                 { 
                     <td colspan="6">
@@ -120,7 +120,7 @@
                 wide += wide;
                 }
         }
-        <tr>
+        <tr class="sub-title">
             <td colspan="6">
                 @Apollo.Age.Resources.Lang.lblMixParlay
             </td>

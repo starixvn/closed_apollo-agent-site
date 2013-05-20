@@ -143,11 +143,6 @@ if (typeof jQuery != 'undefined') {
 									break;
 							}
 						});
-
-						// show calendar when clicking on "calendar" image
-						$this.next('.img-calendar').click(function () {
-							$this.datepicker("show");
-						})
 					});
 				}
 			},

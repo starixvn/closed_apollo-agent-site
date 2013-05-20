@@ -18,14 +18,12 @@
 				</div>
 				<div class="editor">
 					@Html.DatePicker("FromDate", Model.FromDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
-					<div class="img-calendar"></div>
 				</div>
 				<div class="label">
 					<label for="ToDate">@Apollo.Age.Resources.Lang.to</label>
 				</div>
 				<div class="editor">
 					@Html.DatePicker("ToDate", Model.ToDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
-					<div class="img-calendar"></div>
 				</div>
 			</div>
 			<div class="cell">
