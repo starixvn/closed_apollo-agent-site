@@ -14,8 +14,8 @@ if (typeof jQuery != 'undefined') {
             },
             loadContentView: function () {
                 var url = FORECASTBYMATCH.contentLink + '?matchId=' + FORECASTBYMATCH.matchId
-        + '&betType=' + FORECASTBYMATCH.betType
-        + '&currentScore=' + FORECASTBYMATCH.currentScore;
+                    + '&betType=' + FORECASTBYMATCH.betType
+                    + '&currentScore=' + FORECASTBYMATCH.currentScore;
                 if (DEFAULT_OBJECT.currentMainShareHolderId > 0) {
                     url += '&mainShareHolderId=' + DEFAULT_OBJECT.currentMainShareHolderId;
                 }
@@ -29,9 +29,9 @@ if (typeof jQuery != 'undefined') {
                 $('#forecast-body .view-bet-list').click(function () {
                     var $this = $(this);
                     var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
-            + '&betType=' + $this.attr("bet-type")
-            + '&type=BettypeMatch'
-            + '&leagueName=' + DEFAULT_OBJECT.leagueName);
+                        + '&betType=' + $this.attr("bet-type")
+                        + '&type=BettypeMatch'
+                        + '&leagueName=' + DEFAULT_OBJECT.leagueName);
                     parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.betListString);
                     if (DEFAULT_OBJECT.currentMainShareHolderId > 0) {
                     	url += "&mainShareHolderId=" + DEFAULT_OBJECT.currentMainShareHolderId +"&isForecast=true";

@@ -78,7 +78,7 @@
 			"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
 			"~/_Components/AGEWnd/AGEWnd.js",
 			"~/_GlobalResources/Js/RefreshCountDown.js",
-			"~/_Components/ErrorMsg/ErrorMsg.js",
+			"~/_GlobalResources/Js/ErrorMsg/ErrorMsg.js",
 			"~/_GlobalResources/Js/Core.js"));
 		
 		bundles.Add(new ScriptBundle("~/messagejs").Include(

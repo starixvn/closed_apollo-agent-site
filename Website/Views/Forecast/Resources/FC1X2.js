@@ -44,10 +44,10 @@ if (typeof jQuery != 'undefined') {
             + '&leagueName=' + FC1X2.cuurentLeagueName);
 
                 if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
-                	url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
+                    url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
-                //location.href = url;
-             ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
+
+                APOLLO.openDialog(url, DEFAULT_LAYOUT.betListString, {
                     width: 930,
                     height: 700,
                     position: { my: "top+30", at: "center top", of: window },
@@ -55,6 +55,15 @@ if (typeof jQuery != 'undefined') {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
                 });
+
+//                ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
+//                    width: 930,
+//                    height: 700,
+//                    position: { my: "top+30", at: "center top", of: window },
+//                    close: function (event, ui) {
+//                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+//                    }
+//                });
             }
             else {
                 var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + FC1X2.matchId
@@ -62,9 +71,9 @@ if (typeof jQuery != 'undefined') {
                 + '&type=BettypeMatch'
                 + '&leagueName=' + FC1X2.cuurentLeagueName);
                 if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
-                	url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
+                    url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
-             parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.betListString);
+                parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.betListString);
                 location.href = url;
             }
         });
@@ -95,8 +104,8 @@ if (typeof jQuery != 'undefined') {
 
             $(".selectLeague label").width($("#main-shareholder-box label").width());
         }
-		FC1X2.init();
-	}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+        FC1X2.init();
+    }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 };
 
 function UpdateForecast1x2Value() {

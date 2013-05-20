@@ -7,12 +7,13 @@ var TOTALBETS = function ($) {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
 
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
-                + 'matchId=' + $(this).attr("match-id")
-                + '&betType=' + $(this).attr("bet-type")
-                 + '&leagueName=' + $(this).attr("league-name"));
+                    + 'matchId=' + $(this).attr("match-id")
+                    + '&betType=' + $(this).attr("bet-type")
+                    + '&leagueName=' + $(this).attr("league-name"));
                 if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
+
                 ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
                     width: 665,
                     height: 350,
@@ -34,6 +35,7 @@ var TOTALBETS = function ($) {
                 if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
+
                 ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
                     width: 930,
                     height: 720,
@@ -171,12 +173,12 @@ var TOTALBETS = function ($) {
 } (jQuery);
 
 $(function () {
-	if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
-		$("#ddlMainShareHolder").change(function () {
-			var $this = $(this);
-			window.location.href = DEFAULT_LAYOUT.currentActionLink + "?mainShareHolderId=" + $this.val();
-		});
-	}
+    if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+        $("#ddlMainShareHolder").change(function () {
+            var $this = $(this);
+            window.location.href = DEFAULT_LAYOUT.currentActionLink + "?mainShareHolderId=" + $this.val();
+        });
+    }
 });
 
 function ReloadPage() {
