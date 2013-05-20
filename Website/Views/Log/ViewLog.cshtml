@@ -17,6 +17,7 @@
             new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblAgent },
             new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.lblMember }
         })
+                    <input id="enterUsernameValue" type="hidden" value="@Apollo.Age.Resources.Lang.enterusername"/>
                 </div>
             </div>
             <div class="cell">
@@ -128,7 +129,7 @@
     }
     else
     {
-                @RazorHelper.ShowNoInfo(4)
+                @RazorHelper.ShowNoInfo(6)
     }
             }
         </tbody>
