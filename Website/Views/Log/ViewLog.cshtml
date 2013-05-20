@@ -39,11 +39,11 @@
                 new SelectListItem{Value ="4",Text=Apollo.Age.Resources.Lang.positiontaking}
                })
                 </div>
-            </div>
+            </div>    
             <div class="cell">
                 <div id="monthDateTime">
                 </div>
-                @Html.Hidden("From",Model.From.ToString("MM/dd/yyyy"))
+                @Html.Hidden("From", Model.From.ToString("MM/dd/yyyy"))
                 @Html.Hidden("To", Model.To.ToString("MM/dd/yyyy"))
             </div>
             <div class="cell">
@@ -56,7 +56,7 @@
                     @Html.CheckBoxFor(m => m.ShowOldValue)
                     @Apollo.Age.Resources.Lang.OldValue
                 </div>
-            </div>
+            </div>        
         </div>
     </div>
     <table class="tblRpt">
@@ -93,7 +93,7 @@
         foreach (var itemLog in logData)
         {
             count++;
-            actionName = Apollo.Age.Resources.Lang.update+" ";
+            actionName = Apollo.Age.Resources.Lang.update + " ";
             rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
                 <tr @Html.Raw(rowClass)>
                     <td class="c">
@@ -144,3 +144,5 @@
         </tbody>
     </table>
 }
+@Html.Hidden("ToDayLable",Apollo.Age.Resources.Lang.to)
+@Html.Hidden("FromDayLable",Apollo.Age.Resources.Lang.from)

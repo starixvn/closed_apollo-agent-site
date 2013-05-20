@@ -96,7 +96,7 @@ namespace Fanex.Agent.UI
 			public string valueMinDate = "{valueMinDate}";
 			protected static string s26 = "\" maxdate=\"";
 			public string valueMaxDate = "{valueMaxDate}";
-			protected static string s27 = "\" /><div class=\"img-calendar\"></div></div></div><div class=\"cell\"><div class=\"label\"><label>";
+			protected static string s27 = "\" /></div></div><div class=\"cell\"><div class=\"label\"><label>";
 			protected static string s28{get{return Apollo.Age.Resources.Lang.to;}}
 			protected static string s29 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
 			public string valueToDate = "{valueToDate}";
@@ -104,7 +104,7 @@ namespace Fanex.Agent.UI
 			protected string t1_valueMinDate;
 			protected static string s31 = "\" maxdate=\"";
 			protected string t2_valueMaxDate;
-			protected static string s32 = "\" /><div class=\"img-calendar\"></div></div></div>";
+			protected static string s32 = "\" /></div></div>";
 			public BetListTransaction_Filter_User_Block User = new BetListTransaction_Filter_User_Block();
 			protected static string s33 = "<div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
 			protected static string s34{get{return Apollo.Age.Resources.Lang.Generate;}}

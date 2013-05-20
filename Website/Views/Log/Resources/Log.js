@@ -22,6 +22,10 @@ var Log = function ($) {
 
         toDate: null,
 
+        toDayLable: null,
+
+        fromDayLable: null,
+
         init: function () {
             Log.txtUsername = $('#Username');
             Log.ddlIsAgent = $('#IsAgent');
@@ -29,8 +33,12 @@ var Log = function ($) {
             Log.monthDateTime = $('#monthDateTime');
             Log.fromDate = $('#From');
             Log.toDate = $('#To');
+            Log.toDayLable = $('#ToDayLable');
+            Log.fromDayLable = $('#FromDayLable');
 
             Log.monthDateTime.monPickr({
+                fromDayLabel: Log.fromDayLable.val(),
+                toDayLabel: Log.toDayLable.val(),
                 month: Log.fromDate.val(),
                 fromDay: parseInt(Log.fromDate.val().substring(3, 5)),
                 toDay: parseInt(Log.toDate.val().substring(3, 5)),
@@ -100,6 +108,8 @@ $(document).ready(function () {
     Log.initSearchClick();
 
     //format css
-    $('.monpickr-selected-month').attr('style', 'width: 104px;');
-    $('.daypickr-selected-day').attr('style', 'width: 30px;');
+    $('.monpickr-wrap-parent, #monthDateTime').width(107);
+    $('.monpickr-selected-month').width(60);
+    $('.daypickr-selected-day').width(20);
+    $('.monpickr-dropdown').width(105);
 });
