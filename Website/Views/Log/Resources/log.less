@@ -7,10 +7,16 @@
 }
 
 .tblRpt {
-	margin-top: 0;
+	margin-top: 0;	
 
 	tbody td {
 		white-space: normal;
+		background: @white;
+		vertical-align: top;
+	}
+
+	tr.sub-title td {
+		background: #ccc;
 	}
 
 	.tbList {
@@ -85,9 +91,75 @@
 }
 
 div.line {
-    border-bottom: 1px solid #DDDDDD;
+    border-bottom: 1px solid #ccc;
     display: block;
     line-height: 5px;
     margin: 0 10px;
+}
+
+/* FORMATING FOR DATE TEXTBOX */
+.daypickr.monpickr-arrows input.monpickr-input {
+	text-align: center;
+}
+
+.monpickr-wrap *, .daypickr-wrap * {
+	vertical-align: top;
+}
+
+#box_header {
+	.monpickr-wrap, .daypickr-wrap {
+		input[type="text"] {
+			height: 9px;
+			margin-top: 1px;
+		}
+	}
+
+	.daypickr-wrap input[type="text"] {
+		margin-left: 1px;
+	}
+
+	.btn {
+		height: 23px;
+	}
+
+	.monpickr-arrows {
+		padding: 1px;
+		height: 19px;
+	}
+
+	.daypickr {
+		width: 49px;
+	}
+
+	.monpickr-label {
+		margin: 0 10px;
+		font-weight: bold;
+		font-size: 1em;
+	}
+
+	.ui-icon-circle-triangle-w:hover, .ui-icon-circle-triangle-e:hover,
+	.ui-icon-circle-triangle-s:hover {
+		background-image: url("/_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-icons_888888_256x240.png");
+	}
+
+	.ui-icon-circle-triangle-w:hover {
+		margin: 1px 0 0 1px;
+	}
+
+	.ui-icon-circle-triangle-e:hover {
+		margin: 1px 1px 0 0;
+	}
+
+	.ui-icon-circle-triangle-s:hover {
+		margin: 1px 1px 1px 0;
+	}
+
+	.ui-monpickr li {
+		line-height: 0.8em;
+	}
+
+	.daypickr-dropdown {
+		max-height: 250px;
+	}
 }
 

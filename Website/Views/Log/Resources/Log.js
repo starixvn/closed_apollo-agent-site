@@ -100,6 +100,7 @@ $(document).ready(function () {
     Log.initSearchClick();
 
     //format css
-    $('.monpickr-selected-month').attr('style', 'width: 104px;');
-    $('.daypickr-selected-day').attr('style', 'width: 30px;');
+    $('.monpickr-wrap-parent, #monthDateTime').width(107);
+    $('.monpickr-selected-month').width(60);
+    $('.daypickr-selected-day').width(20);
 });

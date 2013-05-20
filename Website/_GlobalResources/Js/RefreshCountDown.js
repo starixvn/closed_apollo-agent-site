@@ -23,16 +23,18 @@ function CountDownRefresh() {
     if (countDownTimer != null) clearTimeout(countDownTimer);
     document.getElementById('CountDownRefresh').innerHTML = loadingTxt;
 
-    ajax.Request(window.location.href, { asynchronous: true, parameters: 'full_mode=0'
-                            , onComplete: function (data) {
-                                document.getElementById('sContent').innerHTML = data.responseText;
-                                RefreshCountDown_Init();
-                            }
-    });
+    ajax.Request(window.location.href,
+        {
+            asynchronous: true,
+            parameters: 'full_mode=0',
+            onComplete: function (data) {
+                document.getElementById('sContent').innerHTML = data.responseText;
+                RefreshCountDown_Init();
+            }
+        });
 
     return true;
 }
-
 
 function CountDownRefresh_SaveOption(idNewOption) {
     document.getElementById('CountDownMenu').style.display = 'none';
@@ -42,7 +44,6 @@ function CountDownRefresh_SaveOption(idNewOption) {
     setCookie(ckiName, initCountDown, 35);
     CountDownRefresh_SetCountDown(initCountDown); //reset
 }
-
 
 function CountDownRefresh_DoCheckMenu() {
     var menus = document.getElementById('CountDownMenu').getElementsByTagName("div");
@@ -93,18 +94,19 @@ function FindPosition(oElement) {
 
 // Start up
 function RefreshCountDown_Init() {
+    if (typeof initCountDown !== 'undefined') {
+        curCountDown = initCountDown;
+        ckiName = "ibcCountDown" + refreshCountDownId;
 
-    curCountDown = initCountDown;
-    ckiName = "ibcCountDown" + refreshCountDownId;
-
-    //read countdown from cookie
-    var countDownFromCookie = getCookie(ckiName);
-    if (countDownFromCookie && countDownFromCookie != 0) {
-        CountDownRefresh_SetCountDown(countDownFromCookie);
+        //read countdown from cookie
+        var countDownFromCookie = getCookie(ckiName);
+        if (countDownFromCookie && countDownFromCookie != 0) {
+            CountDownRefresh_SetCountDown(countDownFromCookie);
+        }
+        CountDownRefresh_DoCheckMenu();
+        //do count down
+        CountDownRefresh_Tick();
     }
-    CountDownRefresh_DoCheckMenu();
-    //do count down
-    CountDownRefresh_Tick();
 }
 
 // utility functions

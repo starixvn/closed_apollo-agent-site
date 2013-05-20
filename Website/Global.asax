@@ -66,7 +66,6 @@
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
-			"~/_Components/AGEWnd/AGEWnd.js",
 			"~/_GlobalResources/Js/RefreshCountDown.js",
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/TotalBets/Resources/TotalBets.js"));
@@ -76,16 +75,14 @@
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
 			"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-			"~/_Components/AGEWnd/AGEWnd.js",
 			"~/_GlobalResources/Js/RefreshCountDown.js",
-			"~/_Components/ErrorMsg/ErrorMsg.js",
+			"~/_GlobalResources/Js/ErrorMsg/ErrorMsg.js",
 			"~/_GlobalResources/Js/Core.js"));
 		
 		bundles.Add(new ScriptBundle("~/messagejs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
-			"~/_Components/AGEWnd/AGEWnd.js",
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/Message/Resources/PortalPage.js"));
 
@@ -93,7 +90,6 @@
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
-			"~/_Components/AGEWnd/AGEWnd.js",
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/Message/Resources/PortalPage.js"));
 
