@@ -77,6 +77,7 @@ namespace Apollo.Age.Account.Controllers
                     var agentInfo = _accountService.GetAgentInfo(new GetAgentInfoCriteria
                     {
                         ActorAgentId = this.CurrentSession.AgentId,
+                        ExcludeActor = false,
                         Username = criteria.Username
                     });
 
