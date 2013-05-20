@@ -16,10 +16,34 @@ var Log = function ($) {
 
         enterUsernameValue: null,
 
+        monthDateTime: null,
+
+        fromDate: null,
+
+        toDate: null,
+
         init: function () {
             Log.txtUsername = $('#Username');
             Log.ddlIsAgent = $('#IsAgent');
             Log.enterUsernameValue = $('#enterUsernameValue');
+            Log.monthDateTime = $('#monthDateTime');
+            Log.fromDate = $('#From');
+            Log.toDate = $('#To');           
+
+            Log.monthDateTime.monPickr({
+                month: Log.fromDate.val(),
+                fromDay: parseInt(Log.fromDate.val().substring(3, 5)),
+                toDay: parseInt(Log.toDate.val().substring(3, 5)),
+                afterChangeMonth: function () {
+                    Log.fromDate.val(Log.monthDateTime.monPickr("getFromDate", "MM/dd/yyyy"));
+                    Log.toDate.val(Log.monthDateTime.monPickr("getToDate", "MM/dd/yyyy"));
+                },
+                afterChangeDay: function () {
+                    Log.fromDate.val(Log.monthDateTime.monPickr("getFromDate", "MM/dd/yyyy"));
+                    Log.toDate.val(Log.monthDateTime.monPickr("getToDate", "MM/dd/yyyy"));
+                }
+            });
+
         },
 
         initSearchClick: function () {
@@ -71,4 +95,9 @@ var Log = function ($) {
 $(document).ready(function () {
     Log.init();
     Log.initSearchClick();
+
+    //format css
+    $('.monpickr-wrap-parent, #monthDateTime').width(110);
+    $('.monpickr-selected-month').width(60);
+    $('.daypickr-selected-day').width(20);
 });

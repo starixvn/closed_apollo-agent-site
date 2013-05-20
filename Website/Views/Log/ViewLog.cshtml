@@ -39,22 +39,12 @@
                 new SelectListItem{Value ="4",Text=Apollo.Age.Resources.Lang.positiontaking}
                })
                 </div>
-            </div>
+            </div>    
             <div class="cell">
-                <div class="label">
-                    @Html.LabelFor(m => m.From, Apollo.Age.Resources.Lang.from)
+                <div id="monthDateTime">
                 </div>
-                <div class="editor">
-                    @Html.DatePickerFor(m => m.From)
-                </div>
-            </div>
-            <div class="cell">
-                <div class="label">
-                    @Html.LabelFor(m => m.To, Apollo.Age.Resources.Lang.to)
-                </div>
-                <div class="editor">
-                    @Html.DatePickerFor(m => m.To)
-                </div>
+                @Html.Hidden("From", Model.From.ToString("MM/dd/yyyy"))
+                @Html.Hidden("To", Model.To.ToString("MM/dd/yyyy"))
             </div>
             <div class="cell">
                 <div class="editor">
@@ -66,7 +56,7 @@
                     @Html.CheckBoxFor(m => m.ShowOldValue)
                     @Apollo.Age.Resources.Lang.OldValue
                 </div>
-            </div>
+            </div>        
         </div>
     </div>
     <table class="tblRpt">
@@ -95,13 +85,15 @@
         <tbody>
             @{
     int count = 0;
+
     if (!ReferenceEquals(logData, null) && logData.Any())
     {
         string rowClass = string.Empty;
-
+        string actionName = string.Empty;
         foreach (var itemLog in logData)
         {
             count++;
+            actionName = Apollo.Age.Resources.Lang.update + " ";
             rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
                 <tr @Html.Raw(rowClass)>
                     <td class="c">
@@ -117,9 +109,29 @@
                         @itemLog.LogDate
                     </td>
                     <td class="c">
-                        @itemLog.ActionName
+                        @switch (itemLog.ActionTypeId)
+                        {
+                            case Constants.LOGACTIONDISCOUNT:
+                                actionName += Apollo.Age.Resources.Lang.commission;
+                                break;
+                            case Constants.LOGACTIONBETSETTING:
+                                actionName += Apollo.Age.Resources.Lang.commission;
+                                break;
+                            case Constants.LOGACTIONPOSITIONTAKING:
+                                actionName += Apollo.Age.Resources.Lang.sharesetting;
+                                break;
+                        }
+                        @if (Model.IsAgent)
+                        {
+                            actionName += " - " + Apollo.Age.Resources.Lang.agent;
+                        }
+                        else
+                        {
+                            actionName += " - " + Apollo.Age.Resources.Lang.customer;
+                        }
+                        @actionName
                     </td>
-                    <td class="message_content">@Html.Raw(itemLog.GetContent(Model.ShowOldValue, agentLevel,Model.IsAgent))
+                    <td class="message_content">@Html.Raw(itemLog.GetContent(Model.ShowOldValue, agentLevel, Model.IsAgent))
                     </td>
                 </tr>
         }
