@@ -76,20 +76,7 @@
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {    
                     <td class="colW2">
-                        @if (listItemSport[i].MaxGiven != listItemSport[i].OldMaxGiven)
-                        { 
-                            <span class="valuechanged">@listItemSport[i].MaxGiven</span>
-                            if (isShowOld)
-                            { 
-                            <div class="line">
-                            </div>
-                            <span class="valueold">@listItemSport[i].OldMaxGiven</span>
-                            }
-                        }
-                        else
-                        {
-                            <span class="valueold">@listItemSport[i].OldMaxGiven</span>
-                        }
+                        @ToString(isShowOld, listItemSport[i].OldMaxGiven, listItemSport[i].MaxGiven)
                     </td>
                 }
             </tr>
@@ -110,20 +97,7 @@
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {                  
                     <td class="colW2">
-                        @if (listItemSport[i].MaxUpper != listItemSport[i].OldMaxUpper)
-                        { 
-                            <span class="valuechanged">@listItemSport[i].MaxUpper</span>
-                            if (isShowOld)
-                            { 
-                            <div class="line">
-                            </div>
-                            <span class="valueold">@listItemSport[i].OldMaxUpper</span>
-                            }
-                        }
-                        else
-                        {
-                            <span class="valueold">@listItemSport[i].OldMaxUpper</span>
-                        }
+                        @ToString(isShowOld, listItemSport[i].OldMaxUpper, listItemSport[i].MaxUpper)
                     </td>
                 }
             </tr>
@@ -137,20 +111,7 @@
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {                   
                     <td class="colW2">
-                        @if (listItemSport[i].MinGiven != listItemSport[i].OldMinGiven)
-                        { 
-                            <span class="valuechanged">@listItemSport[i].MinGiven</span>
-                            if (isShowOld)
-                            { 
-                            <div class="line">
-                            </div>
-                            <span class="valueold">@listItemSport[i].OldMinGiven</span>
-                            }
-                        }
-                        else
-                        {
-                            <span class="valueold">@listItemSport[i].OldMinGiven</span>
-                        }
+                        @ToString(isShowOld, listItemSport[i].OldMinGiven, listItemSport[i].MinGiven)
                     </td>
                 }
             </tr>
@@ -178,20 +139,7 @@
                     @Apollo.Age.Resources.Lang.lblMaxGivenShare
                 </td>
                 <td class="colW2">
-                    @if (itemMixSport.MaxGiven != itemMixSport.OldMaxGiven)
-                    { 
-                        <span class="valuechanged">@itemMixSport.MaxGiven</span>
-                        if (isShowOld)
-                        { 
-                        <div class="line">
-                        </div>
-                        <span class="valueold">@itemMixSport.OldMaxGiven</span>            
-                        }
-                    }
-                    else
-                    {
-                        <span class="valueold">@itemMixSport.OldMaxGiven</span>
-                    }
+                    @ToString(isShowOld, itemMixSport.OldMaxGiven, itemMixSport.MaxGiven)
                 </td>
             </tr>
         }
@@ -209,20 +157,7 @@
                     }
                 </td>
                 <td class="colW2">
-                    @if (itemMixSport.MaxUpper != itemMixSport.OldMaxUpper)
-                    { 
-                        <span class="valuechanged">@itemMixSport.MaxUpper</span>
-                        if (isShowOld)
-                        { 
-                        <div class="line">
-                        </div>                    
-                        <span class="valueold">@itemMixSport.OldMaxUpper</span>
-                        }
-                    }
-                    else
-                    { 
-                        <span class="valueold">@itemMixSport.OldMaxUpper</span>
-                    }
+                    @ToString(isShowOld, itemMixSport.OldMaxUpper, itemMixSport.MaxUpper)
                 </td>
             </tr>
         }
@@ -233,22 +168,27 @@
                     @Apollo.Age.Resources.Lang.lblMinGivenShare
                 </td>
                 <td class="colW2">
-                    @if (itemMixSport.MinGiven != itemMixSport.OldMinGiven)
-                    { 
-                        <span class="valuechanged">@itemMixSport.MinGiven</span>
-                        if (isShowOld)
-                        { 
-                        <div class="line">
-                        </div>
-                        <span class="valueold">@itemMixSport.OldMinGiven</span>
-                        }
-                    }
-                    else
-                    { 
-                        <span class="valueold">@itemMixSport.OldMinGiven</span>
-                    }
+                    @ToString(isShowOld, itemMixSport.OldMinGiven, itemMixSport.MinGiven)
                 </td>
             </tr>
         }
     </table>
+}
+@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue / 100, 2).ToString();
+        string strNew = Math.Round(newValue / 100, 2).ToString();
+
+        if (oldValue != newValue)
+        { <span class="valuechanged">@strNew</span> 
+            if (isShowOld)
+            {
+    <div class="line">
+    </div>
+    <span class="valueold">@strOld</span> 
+            }
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }            
 }
