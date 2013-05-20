@@ -145,6 +145,8 @@
 
 	void Application_Start(object sender, EventArgs e)
 	{
+        RouteTable.Routes.MapHubs();
+        
 		maintenanceService = new UnderMaintenanceService();
 		AreaRegistration.RegisterAllAreas();
 		RegisterGlobalFilters(GlobalFilters.Filters);

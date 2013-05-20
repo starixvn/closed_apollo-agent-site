@@ -66,6 +66,8 @@ namespace Apollo.Age.Account.Controllers
             };
 
             criteria.ActorAgentId = this.CurrentSession.AgentId;
+            criteria.From = new DateTime(criteria.From.Year, criteria.From.Month, criteria.From.Day, 0, 0, 0);
+            criteria.To = new DateTime(criteria.To.Year, criteria.To.Month, criteria.To.Day, 23, 59, 59);
 
             list = _logService.Search(ref criteria);
             results = list != null ? list.ToList() : new List<LogRunSpModel>();
@@ -77,6 +79,7 @@ namespace Apollo.Age.Account.Controllers
                     var agentInfo = _accountService.GetAgentInfo(new GetAgentInfoCriteria
                     {
                         ActorAgentId = this.CurrentSession.AgentId,
+                        ExcludeActor = false,
                         Username = criteria.Username
                     });
 
