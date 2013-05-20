@@ -24,7 +24,8 @@
                         <div class="editor">
                             <input type="text" id="fromDate" name="fromDate" class="datepicker" value="{valueFromDate}"
                                 mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
-                            <div class="img-calendar"></div>
+                            <div class="img-calendar">
+                            </div>
                         </div>
                     </div>
                     <div class="cell">
@@ -35,18 +36,19 @@
                         <div class="editor">
                             <input type="text" id="toDate" name="toDate" class="datepicker" value="{valueToDate}"
                                 mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
-                            <div class="img-calendar"></div>
+                            <div class="img-calendar">
+                            </div>
                         </div>
                     </div>
                     <div class="cell">
                         <div class="editor">
-                            <input type="button" class="btn act-submit" id="dSubmit" value="Submit">
+                            <input type="button" class="btn act-submit" id="dSubmit" value="{static:Apollo.Age.Resources.Lang.Generate}">
                         </div>
                     </div>
                 </div>
             </div>
             <!--/Filter-->
-            {content}
+            {Navigation} {content}
             <div id="dialog-details">
             </div>
         </div>

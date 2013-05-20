@@ -41,7 +41,7 @@ namespace Sunplus.Agent.UI._BetList
 
         private string type = string.Empty;
         private string title = string.Empty;
-        private int custId, matchId, live;
+        private int matchId, live;
         private string bettype, betTeam;
         private DateTime dateFrom = DateTime.Now;
         private DateTime dateTo = DateTime.Now;

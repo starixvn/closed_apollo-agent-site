@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.04.09">Created and Implement</change>
 //   <change who="Kaden.Trinh" date="2013.04.17">Implement function get detail agentComm for Popup</change>
+//   <change who="Kaden.Trinh" date="2013.05.20">Add more function get agent upline of member</change>
 // </history>
 
 namespace Apollo.Age.BetList.Services
@@ -14,6 +15,7 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Repositories.Impl;
     using Apollo.Age.BetList.Repositories.Interface;
+    using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
     using Fanex.BetList.Core.Entities;
 
@@ -144,6 +146,17 @@ namespace Apollo.Age.BetList.Services
         public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
             this.betListRepository.GetUserIdByUserName(loggedId, isAgent, username, out agentId, out custId, out errorCode);
+        }
+
+        /// <summary>
+        /// Get Agent Upline of member
+        /// </summary>
+        /// <param name="parentId">Logged id</param>
+        /// <param name="custId">customer id</param>
+        /// <returns></returns>
+        public IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId)
+        {
+            return this.betListRepository.GetAgentUpLineOfMember(parentId, custId);
         }
     }
 }

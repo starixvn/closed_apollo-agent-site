@@ -1,38 +1,4 @@
-﻿function ShowResultWithPicture(showpic) {
-	var url = location.href;
-	location.href = SetParameterValue("showpic", showpic, url);
-}
-
-function ViewBallNo(id) {
-	// Hide others
-	for (var i = 0; i < 100; i++) {
-		if ('ballNo' + i == id) {
-			continue;
-		}
-
-		if (document.getElementById('ballNo' + i)) {
-			document.getElementById('ballNo' + i).style.display = 'none';
-		} else {
-			break;
-		}
-	}
-
-	var display = document.getElementById(id).style.display == 'none';
-	document.getElementById(id).style.left = '190px';
-	document.getElementById(id).style.display = display ? 'block' : 'none';
-}
-
-function ViewHandHistory(custid, ibcrefno, currency, tableId, tableName, tournamentId, tournamentName, gameType, betType, date) {
-	var url = '../P2P/HandHistory.aspx?custid=' + custid + '&ibcrefno=' + ibcrefno + '&currency=' + currency + '&tableid=' + tableId + '&tablename=' + tableName + '&tournamentid=' + tournamentId + '&tournamentname=' + tournamentName + '&gametype=' + gameType + '&bettype=' + betType + '&Date=' + date;
-	window.location.href = url;
-}
-
-function ViewHandHistoryDetail(custid, handNo, handType, currency) {
-	var url = '../P2P/HandHistoryDetail.aspx?custid=' + custid + '&handno=' + handNo + '&handtype=' + handType + '&currency=' + currency;
-	window.location.href = url;
-}
-
-function ViewCommissionDetail(ibcrefno, currency, tableId, tableName, tournamentId, tournamentName, gameType, betType) {
+﻿function ViewCommissionDetail(ibcrefno, currency, tableId, tableName, tournamentId, tournamentName, gameType, betType) {
 	var url = '../P2P/CommissionDetail.aspx?ibcrefno=' + ibcrefno + '&currency=' + currency + '&tableid=' + tableId + '&tablename=' + tableName + '&tournamentid=' + tournamentId + '&tournamentname=' + tournamentName + '&gametype=' + gameType + '&bettype=' + betType;
 	window.location.href = url;
 }
@@ -291,5 +257,28 @@ if (typeof jQuery != "undefined") {
 				document.location.href = link;
 			});
 		}
+
+		$(".navigation").bind('click', function () {
+			var fromDate = toDate = type = "";
+
+			if (typeof ($("#fromDate").val()) !== 'undefined') {
+				fromDate = $("#fromDate").val();
+			}
+			if (typeof ($("#toDate").val()) !== 'undefined') {
+				toDate = $("#toDate").val();
+			}
+			if (typeof ($("#type").val()) !== 'undefined') {
+				type = $("#type").val();
+			}
+
+			if (type == "report") {
+				var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html()
+                    + '&fromDate=' + fromDate + "&toDate=" + toDate);
+				location.href = url;
+			}
+			else {
+				location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
+			}
+		});
 	});
 }

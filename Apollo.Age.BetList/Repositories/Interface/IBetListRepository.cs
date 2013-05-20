@@ -5,12 +5,14 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Kaden.Trinh" date="2013.04.17">Created and Implement</change>
+//   <change who="Kaden.Trinh" date="2013.05.20">Add more function get agent upline of member</change>
 // </history>
 
 namespace Apollo.Age.BetList.Repositories.Interface
 {
     using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
+    using Apollo.Age.Entities;
     using Fanex.BetList.Core.Entities;
 
     public interface IBetListRepository
@@ -34,5 +36,7 @@ namespace Apollo.Age.BetList.Repositories.Interface
         SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria);
 
         void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode);
+
+        IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId);
     }
 }
