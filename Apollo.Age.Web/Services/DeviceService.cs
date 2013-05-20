@@ -1,6 +1,17 @@
-﻿using System.Web;
+﻿
+// --------------------------------------------------------------------------
+// <copyright file="DeviceService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry" date="2013.05.17">Created</change>
+//
+// </history>
+
 namespace Apollo.Age.Web.Services
 {
+    using System.Web;
     public class DeviceService
     {
         public string DomainName { get; set; }

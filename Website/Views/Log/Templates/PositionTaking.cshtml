@@ -1,24 +1,21 @@
-﻿@model List<Apollo.Age.Account.Models.PositionTakingModel>
+﻿@using Apollo.Age.Enumerations
+@using Apollo.Age.Account.Models
+@model List<PositionTakingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
     var isShowOld = (bool)ViewBag.IsShowOldValue;
-
     var agentLevel = (int)ViewBag.AgentLevel;
-
     var isAgent = (bool)ViewBag.IsAgent;
-
     var listPTGroupBySport = Model.GroupBy(m => m.SportType);
-
     var isHaveLive = false;
-
-    var itemMixSport = new Apollo.Age.Account.Models.PositionTakingModel();
+    var itemMixSport = new PositionTakingModel();
     
     <table class="tblRpt">
         @foreach (var itemSport in listPTGroupBySport)
         {
             var itemSportFirst = itemSport.FirstOrDefault();        
-            <tr>
-                @if (itemSportFirst.SportType == 1)
+            <tr class="sub-title">
+                @if (itemSportFirst.SportType == (int)SportTypes.Soccer)
                 { 
                     <td colspan="6">
                         @itemSportFirst.SportName - @Apollo.Age.Resources.Lang.lblDeadball
@@ -36,7 +33,7 @@
 
                 var listItemSport = itemSport.OrderBy(m => m.IsLive).ToList();
 
-                if (itemSportFirst.SportType == 99)
+                if (itemSportFirst.SportType == (int)SportTypes.OtherSports)
                 {
                     itemMixSport = listItemSport[3];
                     listItemSport.RemoveAt(3);
@@ -76,20 +73,7 @@
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {    
                     <td class="colW2">
-                        @if (listItemSport[i].MaxGiven != listItemSport[i].OldMaxGiven)
-                        { 
-                            <span class="valuechanged">@listItemSport[i].MaxGiven</span>
-                            if (isShowOld)
-                            { 
-                            <div class="line">
-                            </div>
-                            <span class="valueold">@listItemSport[i].OldMaxGiven</span>
-                            }
-                        }
-                        else
-                        {
-                            <span class="valueold">@listItemSport[i].OldMaxGiven</span>
-                        }
+                        @ToString(isShowOld, listItemSport[i].OldMaxGiven, listItemSport[i].MaxGiven)
                     </td>
                 }
             </tr>
@@ -110,20 +94,7 @@
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {                  
                     <td class="colW2">
-                        @if (listItemSport[i].MaxUpper != listItemSport[i].OldMaxUpper)
-                        { 
-                            <span class="valuechanged">@listItemSport[i].MaxUpper</span>
-                            if (isShowOld)
-                            { 
-                            <div class="line">
-                            </div>
-                            <span class="valueold">@listItemSport[i].OldMaxUpper</span>
-                            }
-                        }
-                        else
-                        {
-                            <span class="valueold">@listItemSport[i].OldMaxUpper</span>
-                        }
+                        @ToString(isShowOld, listItemSport[i].OldMaxUpper, listItemSport[i].MaxUpper)
                     </td>
                 }
             </tr>
@@ -137,20 +108,7 @@
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {                   
                     <td class="colW2">
-                        @if (listItemSport[i].MinGiven != listItemSport[i].OldMinGiven)
-                        { 
-                            <span class="valuechanged">@listItemSport[i].MinGiven</span>
-                            if (isShowOld)
-                            { 
-                            <div class="line">
-                            </div>
-                            <span class="valueold">@listItemSport[i].OldMinGiven</span>
-                            }
-                        }
-                        else
-                        {
-                            <span class="valueold">@listItemSport[i].OldMinGiven</span>
-                        }
+                        @ToString(isShowOld, listItemSport[i].OldMinGiven, listItemSport[i].MinGiven)
                     </td>
                 }
             </tr>
@@ -159,7 +117,7 @@
                 wide += wide;
                 }
         }
-        <tr>
+        <tr class="sub-title">
             <td colspan="6">
                 @Apollo.Age.Resources.Lang.lblMixParlay
             </td>
@@ -178,20 +136,7 @@
                     @Apollo.Age.Resources.Lang.lblMaxGivenShare
                 </td>
                 <td class="colW2">
-                    @if (itemMixSport.MaxGiven != itemMixSport.OldMaxGiven)
-                    { 
-                        <span class="valuechanged">@itemMixSport.MaxGiven</span>
-                        if (isShowOld)
-                        { 
-                        <div class="line">
-                        </div>
-                        <span class="valueold">@itemMixSport.OldMaxGiven</span>            
-                        }
-                    }
-                    else
-                    {
-                        <span class="valueold">@itemMixSport.OldMaxGiven</span>
-                    }
+                    @ToString(isShowOld, itemMixSport.OldMaxGiven, itemMixSport.MaxGiven)
                 </td>
             </tr>
         }
@@ -209,20 +154,7 @@
                     }
                 </td>
                 <td class="colW2">
-                    @if (itemMixSport.MaxUpper != itemMixSport.OldMaxUpper)
-                    { 
-                        <span class="valuechanged">@itemMixSport.MaxUpper</span>
-                        if (isShowOld)
-                        { 
-                        <div class="line">
-                        </div>                    
-                        <span class="valueold">@itemMixSport.OldMaxUpper</span>
-                        }
-                    }
-                    else
-                    { 
-                        <span class="valueold">@itemMixSport.OldMaxUpper</span>
-                    }
+                    @ToString(isShowOld, itemMixSport.OldMaxUpper, itemMixSport.MaxUpper)
                 </td>
             </tr>
         }
@@ -233,22 +165,27 @@
                     @Apollo.Age.Resources.Lang.lblMinGivenShare
                 </td>
                 <td class="colW2">
-                    @if (itemMixSport.MinGiven != itemMixSport.OldMinGiven)
-                    { 
-                        <span class="valuechanged">@itemMixSport.MinGiven</span>
-                        if (isShowOld)
-                        { 
-                        <div class="line">
-                        </div>
-                        <span class="valueold">@itemMixSport.OldMinGiven</span>
-                        }
-                    }
-                    else
-                    { 
-                        <span class="valueold">@itemMixSport.OldMinGiven</span>
-                    }
+                    @ToString(isShowOld, itemMixSport.OldMinGiven, itemMixSport.MinGiven)
                 </td>
             </tr>
         }
     </table>
+}
+@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue / 100, 2).ToString();
+        string strNew = Math.Round(newValue / 100, 2).ToString();
+
+        if (oldValue != newValue)
+        { <span class="valuechanged">@strNew</span> 
+            if (isShowOld)
+            {
+    <div class="line">
+    </div>
+    <span class="valueold">@strOld</span> 
+            }
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }            
 }

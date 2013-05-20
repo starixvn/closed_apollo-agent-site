@@ -12,6 +12,7 @@ namespace Apollo.Age.Account.Criterias
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
+    
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class GetLogCustSettingCriteria : CriteriaBase
@@ -21,7 +22,7 @@ namespace Apollo.Age.Account.Criterias
         public string Username { get; set; }
 
         public int ActionTypeId { get; set; }
-
+        
         public DateTime From { get; set; }
 
         public DateTime To { get; set; }
@@ -45,10 +46,10 @@ namespace Apollo.Age.Account.Criterias
             switch (this.IsAgent)
             {
                 case true:
-                    settingKey = "ReadLog_RunSpAgent_Search";
+                    settingKey = "ReadLog_RunSpAgent";
                     break;
                 default:
-                    settingKey = "ReadLog_RunSpCust_Search";
+                    settingKey = "ReadLog_RunSpCust";
                     break;
             }
 

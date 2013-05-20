@@ -66,6 +66,9 @@ namespace Apollo.Age.Account.Models
                 result = Razor.Parse(bodyTemplate, listPositionTaking, viewBag, null);
             }
 
+            //<r><z s="1" b="1" ga="0.025" gb="0.0075" gc="0" gd="0"/></r>
+            //or
+            //<r><z s="1" b="1" d="0.025"/></r>
             if (this.ActionTypeId == Constants.LOGACTIONDISCOUNT)
             {
                 string oldGroup = string.Empty;

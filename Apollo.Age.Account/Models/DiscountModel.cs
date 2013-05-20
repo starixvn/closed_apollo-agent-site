@@ -9,13 +9,13 @@
 
 namespace Apollo.Age.Account.Models
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Resources;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Resources;
     using Apollo.Age.Services;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class DiscountModel
     {
         public int SportType { get; set; }
@@ -26,14 +26,14 @@ namespace Apollo.Age.Account.Models
         {
             get
             {
-                if (this.SportType == 99 && this.BetType == 9)
+                if (this.SportType == (int)SportTypes.OtherSports && this.BetType == (int)BetTypes.Mix_Parlay)
                 {
                     return (new ResourceManager(typeof(Lang)) { IgnoreCase = true }).GetString("mixsports");
                 }
 
                 return CacheRef.GetSportName(this.SportType);
             }
-        }        
+        }
 
         public decimal GroupA { get; set; }
 
