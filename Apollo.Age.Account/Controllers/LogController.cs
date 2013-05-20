@@ -13,15 +13,12 @@ namespace Apollo.Age.Account.Controllers
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    using Apollo.Age.Web;
-    using Apollo.Age.Account.Services;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
-    using Apollo.Age.Account.Core;
-    using System.IO;
+    using Apollo.Age.Account.Services;
+    using Apollo.Age.Web;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
@@ -29,24 +26,28 @@ namespace Apollo.Age.Account.Controllers
     {
         private ILogRunSpService _logService;
 
+        private IAccountService _accountService;
+
         public LogController()
-            : this(null)
+            : this(null, null)
         {
         }
 
-        public LogController(ILogRunSpService logService)
+        public LogController(ILogRunSpService logService, IAccountService accountService)
         {
             _logService = logService ?? new LogRunSpService();
+            _accountService = accountService ?? new AccountService();
         }
 
-        public ViewResult ViewLog(bool isAgent = false
-            , string username = ""
-            , int actionTypeId = 0
-            , DateTime? from = null
-            , DateTime? to = null
-            , bool showOldValue = true
-            , int pageSize = 50
-            , int pageIndex = 1)
+        public ViewResult ViewLog(
+            bool isAgent = true,
+            string username = "",
+            int actionTypeId = 0,
+            DateTime? from = null,
+            DateTime? to = null,
+            bool showOldValue = true,
+            int pageSize = 50,
+            int pageIndex = 1)
         {
             IEnumerable<LogRunSpModel> list;
             List<LogRunSpModel> results = new List<LogRunSpModel>();
@@ -65,14 +66,30 @@ namespace Apollo.Age.Account.Controllers
             };
 
             criteria.ActorAgentId = this.CurrentSession.AgentId;
+            criteria.From = new DateTime(criteria.From.Year, criteria.From.Month, criteria.From.Day, 0, 0, 0);
+            criteria.To = new DateTime(criteria.To.Year, criteria.To.Month, criteria.To.Day, 23, 59, 59);
 
             list = _logService.Search(ref criteria);
             results = list != null ? list.ToList() : new List<LogRunSpModel>();
+
+            if (!ReferenceEquals(results, null) && results.Any())
+            {
+                if (criteria.IsAgent)
+                {
+                    var agentInfo = _accountService.GetAgentInfo(new GetAgentInfoCriteria
+                    {
+                        ActorAgentId = this.CurrentSession.AgentId,
+                        ExcludeActor = false,
+                        Username = criteria.Username
+                    });
+
+                    ViewBag.AgentLevel = agentInfo.Level;
+                }
+            }
 
             ViewBag.LogData = results;
 
             return View(criteria);
         }
-
     }
 }

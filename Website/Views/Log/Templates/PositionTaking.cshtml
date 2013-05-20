@@ -3,6 +3,10 @@
 {
     var isShowOld = (bool)ViewBag.IsShowOldValue;
 
+    var agentLevel = (int)ViewBag.AgentLevel;
+
+    var isAgent = (bool)ViewBag.IsAgent;
+
     var listPTGroupBySport = Model.GroupBy(m => m.SportType);
 
     var isHaveLive = false;
@@ -63,6 +67,8 @@
                     </td>                                   
                 }
             </tr>
+                if (isAgent)
+                { 
             <tr>
                 <td class="colW1">
                     @Apollo.Age.Resources.Lang.lblMaxGivenShare
@@ -87,9 +93,19 @@
                     </td>
                 }
             </tr>
+                }
+                if (agentLevel != 1)
+                { 
             <tr>
                 <td class="colW1">
-                    @Apollo.Age.Resources.Lang.lblMaxTakenShare
+                    @if (isAgent)
+                    { 
+                        @Apollo.Age.Resources.Lang.lblMaxTakenShare
+                    }
+                    else
+                    {
+                        @Apollo.Age.Resources.Lang.lblTakenShare
+                    }
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {                  
@@ -111,6 +127,9 @@
                     </td>
                 }
             </tr>
+                }
+                if (isAgent)
+                { 
             <tr>
                 <td class="colW1">
                     @Apollo.Age.Resources.Lang.lblMinGivenShare
@@ -135,7 +154,7 @@
                     </td>
                 }
             </tr>
-            
+                }
                 index = index + 5;
                 wide += wide;
                 }
@@ -152,68 +171,84 @@
                 @itemMixSport.BetName
             </td>
         </tr>
-        <tr>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblMaxGivenShare
-            </td>
-            <td class="colW2">
-                @if (itemMixSport.MaxGiven != itemMixSport.OldMaxGiven)
-                { 
-                    <span class="valuechanged">@itemMixSport.MaxGiven</span>
-                    if (isShowOld)
+        @if (isAgent)
+        { 
+            <tr>
+                <td class="colW1">
+                    @Apollo.Age.Resources.Lang.lblMaxGivenShare
+                </td>
+                <td class="colW2">
+                    @if (itemMixSport.MaxGiven != itemMixSport.OldMaxGiven)
                     { 
-                    <div class="line">
-                    </div>
-                    <span class="valueold">@itemMixSport.OldMaxGiven</span>            
+                        <span class="valuechanged">@itemMixSport.MaxGiven</span>
+                        if (isShowOld)
+                        { 
+                        <div class="line">
+                        </div>
+                        <span class="valueold">@itemMixSport.OldMaxGiven</span>            
+                        }
                     }
-                }
-                else
-                {
-                    <span class="valueold">@itemMixSport.OldMaxGiven</span>
-                }
-            </td>
-        </tr>
-        <tr>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblMaxTakenShare
-            </td>
-            <td class="colW2">
-                @if (itemMixSport.MaxUpper != itemMixSport.OldMaxUpper)
-                { 
-                    <span class="valuechanged">@itemMixSport.MaxUpper</span>
-                    if (isShowOld)
+                    else
+                    {
+                        <span class="valueold">@itemMixSport.OldMaxGiven</span>
+                    }
+                </td>
+            </tr>
+        }
+        @if (agentLevel != 1)
+        { 
+            <tr>
+                <td class="colW1">
+                    @if (isAgent)
                     { 
-                    <div class="line">
-                    </div>                    
-                    <span class="valueold">@itemMixSport.OldMaxUpper</span>
+                        @Apollo.Age.Resources.Lang.lblMaxTakenShare
                     }
-                }
-                else
-                { 
-                    <span class="valueold">@itemMixSport.OldMaxUpper</span>
-                }
-            </td>
-        </tr>
-        <tr>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblMinGivenShare
-            </td>
-            <td class="colW2">
-                @if (itemMixSport.MinGiven != itemMixSport.OldMinGiven)
-                { 
-                    <span class="valuechanged">@itemMixSport.MinGiven</span>
-                    if (isShowOld)
+                    else
+                    {
+                        @Apollo.Age.Resources.Lang.lblTakenShare
+                    }
+                </td>
+                <td class="colW2">
+                    @if (itemMixSport.MaxUpper != itemMixSport.OldMaxUpper)
                     { 
-                    <div class="line">
-                    </div>
-                    <span class="valueold">@itemMixSport.OldMinGiven</span>
+                        <span class="valuechanged">@itemMixSport.MaxUpper</span>
+                        if (isShowOld)
+                        { 
+                        <div class="line">
+                        </div>                    
+                        <span class="valueold">@itemMixSport.OldMaxUpper</span>
+                        }
                     }
-                }
-                else
-                { 
-                    <span class="valueold">@itemMixSport.OldMinGiven</span>
-                }
-            </td>
-        </tr>
+                    else
+                    { 
+                        <span class="valueold">@itemMixSport.OldMaxUpper</span>
+                    }
+                </td>
+            </tr>
+        }
+        @if (isAgent)
+        { 
+            <tr>
+                <td class="colW1">
+                    @Apollo.Age.Resources.Lang.lblMinGivenShare
+                </td>
+                <td class="colW2">
+                    @if (itemMixSport.MinGiven != itemMixSport.OldMinGiven)
+                    { 
+                        <span class="valuechanged">@itemMixSport.MinGiven</span>
+                        if (isShowOld)
+                        { 
+                        <div class="line">
+                        </div>
+                        <span class="valueold">@itemMixSport.OldMinGiven</span>
+                        }
+                    }
+                    else
+                    { 
+                        <span class="valueold">@itemMixSport.OldMinGiven</span>
+                    }
+                </td>
+            </tr>
+        }
     </table>
 }
