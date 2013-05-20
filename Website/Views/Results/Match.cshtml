@@ -17,8 +17,7 @@
 					<label for="EventDate">@Apollo.Age.Resources.Lang.date</label>
 				</div>
 				<div class="editor">
-					@Html.DatePicker("EventDate", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
-					<div class="img-calendar"></div>
+					@Html.DatePicker("EventDate", Model.EventDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)					
 				</div>
 			</div>
 			<div class="cell">
