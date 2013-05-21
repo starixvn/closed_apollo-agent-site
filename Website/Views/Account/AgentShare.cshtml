@@ -34,7 +34,7 @@
 		<div class="cell">
 			<div class="editor">
 				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-					new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.lblAgent },
+					new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
 					new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblMember }
 				}, new { id = "ddlIsMember" })
 				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", style = "width: 150px" })

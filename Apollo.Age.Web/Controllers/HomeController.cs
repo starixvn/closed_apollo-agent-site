@@ -70,7 +70,6 @@ namespace Apollo.Age.Web
         /// This action is for testing ONLY
         /// </summary>
         /// <returns></returns>
-        [NonAction]
         public ActionResult Index2()
         {
             try
@@ -99,20 +98,22 @@ namespace Apollo.Age.Web
                     string key = entry.Key.ToString();
                     string value = entry.Value.ToString();
 
-                    var otherValue = anotherResourceSet.GetString(key);
-                    var otherValue1 = anotherResourceSet1.GetString(key);
+                    //var otherValue = anotherResourceSet.GetString(key);
+                    //var otherValue1 = anotherResourceSet1.GetString(key);
 
-                    if (string.IsNullOrWhiteSpace(otherValue))
-                    {
-                        notTransResources.Add(key, value);
-                    }
-                    else
-                    {
-                        if (value.Equals(otherValue1) && !value.Equals(otherValue))
-                        {
-                            hasKeybutNotTransResources.Add(key, value);
-                        }
-                    }
+                    //if (string.IsNullOrWhiteSpace(otherValue))
+                    //{
+                    //    notTransResources.Add(key, value);
+                    //}
+                    //else
+                    //{
+                    //    if (value.Equals(otherValue1) && !value.Equals(otherValue))
+                    //    {
+                    //        hasKeybutNotTransResources.Add(key, value);
+                    //    }
+                    //}
+
+                    hasKeybutNotTransResources.Add(key, value);
                 }
 
                 return View(hasKeybutNotTransResources);

@@ -230,7 +230,7 @@
         if (Model == null)
         {
     @Html.DropDownList("IsMember", new List<SelectListItem> {
-            new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.lblAgent },
+            new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
             new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblMember }
         }, new { id = "ddlIsMember" })
 
@@ -240,7 +240,7 @@
         else
         {
     @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-            new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.lblAgent },
+            new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
             new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblMember }
         }, new { id = "ddlIsMember" })
 
