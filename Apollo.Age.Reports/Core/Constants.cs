@@ -9,11 +9,6 @@
 
 namespace Apollo.Age.Reports.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     public class Constants
     {
         public const string NA = "N/A";

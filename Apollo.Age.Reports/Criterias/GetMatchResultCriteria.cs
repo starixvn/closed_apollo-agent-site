@@ -1,15 +1,15 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="GetMatchResultCriteria.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="GetMatchResultCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Quinn.Vo" date="2013.5.20">Created</change>
+// </history>
 
 namespace Apollo.Age.Reports.Criterias
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -17,17 +17,17 @@ namespace Apollo.Age.Reports.Criterias
     /// </summary>
     public class GetMatchResultCriteria : CriteriaBase
     {
-        [SpParam(SqlParamName="FromDate")]
+        [SpParam(SqlParamName = "FromDate")]
         public DateTime EventDate { get; set; }
 
         public int LeagueId { get; set; }
 
         public string Language { get; set; }
 
-        [SpParam(SqlParamName="SportType")]
+        [SpParam(SqlParamName = "SportType")]
         public int SportId { get; set; }
 
-        [SpParam(SqlParamName="IsShowAll")]
+        [SpParam(SqlParamName = "IsShowAll")]
         public bool IsTest { get; set; }
 
         public override string GetSettingKey()
