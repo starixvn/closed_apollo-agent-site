@@ -34,37 +34,17 @@
 		@Html.ValidationSummary()
 	}
 	<p>
-		<input id="btnContinue" type="button" value="@Lang.Continue &rarr;" />
+		<input type="submit" value="@Lang.Continue &rarr;" />
 	</p>
 }
 </div>
 
 @section scripts {
-    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/jquery.signalR-1.1.0.min.js" type="text/javascript"></script>
-    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
-    <script src="~/signalr/hubs" type="text/javascript"></script>
-
 	<script type="text/javascript">
-	    $("#btnContinue").click(function () {
-	       
-	        $("form").submit();
-	    });
 
-//	    $(document).ready(function () {
-//	        var hub = $.connection.kickoutHub;
-//	        hub.client.kickoutUser = function () {
-//	            APOLLO.signOut();
-
-//	        };
-//	        $.connection.hub.start().done(function () {
-//	            $("#btnContinue").click(function () {
-//	                hub.server.send($("#AdminId").val());
-//	                $("form").submit();
-//	            });
-//	        });
-//	    });
-        
+	    window.onload = function () {
+	        document.getElementById('Agent').focus();
+	    };
 
 	</script>
 }

@@ -101,7 +101,7 @@ namespace Apollo.Age.Web
 
         public bool DoubleCommLosing { get; set; }
 
-        public string Language { get; set; }      
+        public string Language { get; set; }
 
         public bool IsInternalSignIn { get; set; }
 

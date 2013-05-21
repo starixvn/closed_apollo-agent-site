@@ -27,43 +27,43 @@
     }
     
     <table class="tblRpt">
-        <tr>
+        <tr class="no-border-top">
             <td class="colW">
                 @Lang.lblGroupa (%)
             </td>
             <td class="colW2">
                 @ToString(isShowOld, group.OldGroupA, group.GroupA)
             </td>
-            <td class="colW">
+            <td class="colW2 left-text">
                 @Lang.lblGroupb (%)
             </td>
             <td class="colW2">
                 @ToString(isShowOld, group.OldGroupB, group.GroupB)
             </td>
-            <td class="colW">
+            <td class="colW2 left-text">
                 @Lang.lblGroupc (%)
             </td>
-            <td class="colW2">
+            <td class="colW2 no-border-right">
                 @ToString(isShowOld, group.OldGroupC, group.GroupC)
             </td>
         </tr>
-        <tr>
-            <td class="colW">
+        <tr class="have-border-bottom">
+            <td class="colW left-text">
                 @Lang.lblGroupd (%)
             </td>
             <td class="colW2">
                 @ToString(isShowOld, group.OldGroupD, group.GroupD)
             </td>
-            <td class="colW">
+            <td class="colW2 left-text">
                 @Lang.lbl1x2Comm (%)
             </td>
             <td class="colW2">
                 @ToString(isShowOld, group1x2.OldGroupA, group1x2.GroupA)
             </td>
-            <td class="colW">
+            <td class="colW2 left-text">
                 @Lang.lblOtherComm (%)
             </td>
-            <td class="colW2">
+            <td class="colW2 no-border-right">
                 @ToString(isShowOld, groupOthers.OldGroupA, groupOthers.GroupA)
             </td>
         </tr>
@@ -75,12 +75,10 @@
         string strNew = Math.Round(newValue * 100, 2).ToString();
 
         if (oldValue != newValue)
-        { <span class="valuechanged">@strNew</span> 
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
             if (isShowOld)
             {
-    <div class="line">
-    </div>
-    <span class="valueold">@strOld</span> 
+    <span>| </span><span class="valueold">@strOld</span>
             }
         }
         else

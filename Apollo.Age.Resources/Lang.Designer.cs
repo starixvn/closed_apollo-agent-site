@@ -3471,6 +3471,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to top.
+        /// </summary>
+        public static string GoToTop {
+            get {
+                return ResourceManager.GetString("GoToTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grand Total.
         /// </summary>
         public static string grandTotal {

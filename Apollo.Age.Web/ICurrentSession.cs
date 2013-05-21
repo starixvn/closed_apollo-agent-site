@@ -9,8 +9,6 @@
 
 namespace Apollo.Age.Web
 {
-    using System;
-
     /// <summary>
     /// Contains all properties of an authenticated user
     /// </summary>

@@ -89,6 +89,8 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult TopBar()
         {
+
+
             return View(CurrentSession);
         }
 

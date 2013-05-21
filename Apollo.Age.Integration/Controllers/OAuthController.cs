@@ -13,26 +13,25 @@
 namespace Apollo.Age.Integration.Controllers
 {
     using System;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.Security;
+    using Apollo.Age.Integration.Models;
+    using Apollo.Age.Integration.Services;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
-    using Fanex.Logging;
-    using Apollo.Age.Integration.Services;
-    using Apollo.Age.Integration.Models;
-    using System.Threading.Tasks;
     using Apollo.Age.Web.Services;
+    using Fanex.Logging;
 
     [AllowAnonymous]
     public class OAuthController : Controller
     {
         private readonly AuthenticationService _authService;
-        private readonly UserService _userService;        
+        private readonly UserService _userService;
 
         public OAuthController()
             : this(null)
         {
-
         }
 
         public OAuthController(AuthenticationService authService = null, UserService userService = null)
@@ -49,7 +48,7 @@ namespace Apollo.Age.Integration.Controllers
             return View();
         }
 
-        [AllowAnonymous]        
+        [AllowAnonymous]
         public ActionResult GetCode(string code, string error, string state, string username, string language)
         {
             AuthModel authModel = new AuthModel();
@@ -75,7 +74,7 @@ namespace Apollo.Age.Integration.Controllers
                             if (user != null && user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
                             {
                                 authModel.ErrorCode = string.Empty;
-                                ICurrentSession currentSession = new CurrentSession(user, 0, string.Empty ,false, language);
+                                ICurrentSession currentSession = new CurrentSession(user, 0, string.Empty, false, language);
                                 SessionManager.CurrentSession = currentSession;
                                 FormsAuthentication.SetAuthCookie(user.Username, true);
 
@@ -104,13 +103,12 @@ namespace Apollo.Age.Integration.Controllers
                     }
                 }
                 catch (AuthenticationException ex)
-                {                    
+                {
                     authModel.ErrorCode = ErrorCode.ServerError;
                     LogService.Error(ex.Message);
                 }
             }
 
-           
             return View(authModel);
         }
 

@@ -2,7 +2,42 @@
 @import "../../../_GlobalResources/Css/calendar.less";
 
 #box_header {
-	margin-bottom: 0;
+	margin-bottom: 0;	
+}
+
+.show-old-value {
+	background: none repeat scroll 0 0 #0084B4;
+    border: 1px solid #fff;
+    padding: 2px 5px 2px 3px;
+    position: fixed;
+    right: 11px;
+    top: 45px;
+
+	* {		
+		vertical-align: middle;
+	}
+
+	label {
+		color:  @white;
+		cursor: pointer;
+	}
+}
+
+.top-link {
+	background: url(images/top-white.png) #0084B4 no-repeat 4px 7px;
+	border: 1px solid #fff;
+	height: 24px;
+	width: 60px;
+    position: fixed;
+    right: 11px;
+    bottom: 0;
+	display: none;
+	padding: 5px 0 0 23px;
+	cursor: pointer;
+
+	a {
+		color: @white;		
+	}
 }
 
 .tblRpt {
@@ -12,7 +47,53 @@
 	tbody td {
 		white-space: normal;
 		background: @white;
-		vertical-align: top;	
+		vertical-align: top;
+		
+		&.message_content {
+			padding: 0;
+		}
+				
+		.tblRpt {
+			border: none;
+			height: 100%;
+
+			tr {
+				td {
+					border-width: 1px 1px 0 0;
+					vertical-align: middle;
+
+					&.no-border-right {
+						border-right: none;
+					}
+
+					&.fixed-width {
+						width: 100px;
+					}
+				}
+
+				&.bg-gray td {
+					background: #ccc;
+				}
+
+				&.sub-title {
+					td {
+						border-width: 1px 0;
+					}
+
+					&:first-child td {
+						border-top: none;
+					}
+				}
+
+				&.no-border-top td {
+					border-top: none;
+				}
+
+				&.have-border-bottom {
+					border-bottom: 1px solid @borderColor;
+				}
+			}
+		}
 	}
 
 	tr.sub-title td {
@@ -62,7 +143,7 @@
 	}
 
 	.valueold {
-		color: #779999;
+		color: #457777;
 	}
 
 	.colW {
@@ -71,7 +152,7 @@
 		padding-left: 5px;
 		text-align: left;
 		text-transform: capitalize;
-		width: 100px;
+		width: 116px;
 		white-space: nowrap;
 	}
 
@@ -100,13 +181,19 @@
 		text-transform: capitalize;
 		vertical-align: middle;
 	}
+
+	.left-text {
+		text-align: left;
+		background: #F3F3F3;
+	}
 }
 
 div.line {
     border-bottom: 1px solid #ccc;
     display: block;
     line-height: 5px;
-    margin: 0 10px;
+    margin: auto;
+	width:100px;
 }
 
 /* FORMATING FOR DATE TEXTBOX */
@@ -215,6 +302,10 @@ div.line {
 		.ui-monpickr li a {
 			padding: 2px;
 		}
+	}
+
+	.show-old-value  {
+		top: 52px;
 	}
 }
 

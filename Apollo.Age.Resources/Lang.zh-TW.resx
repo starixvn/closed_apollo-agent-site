@@ -4099,7 +4099,7 @@
     <value>View Member Setting - {0}</value>
   </data>
   <data name="lblAccessDenied" xml:space="preserve">
-    <value>Access Denied</value>
+    <value>不被允許登入</value>
   </data>
   <data name="lblInvalidRequest" xml:space="preserve">
     <value>Invalid Request</value>

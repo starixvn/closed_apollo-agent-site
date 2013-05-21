@@ -10,6 +10,7 @@
     var listPTGroupBySport = Model.GroupBy(m => m.SportType);
     var isHaveLive = false;
     var itemMixSport = new PositionTakingModel();
+    var numColmnEmpty = 4;
     
     <table class="tblRpt">
         @foreach (var itemSport in listPTGroupBySport)
@@ -41,10 +42,12 @@
 
                 }
 
-                while (index < listItemSport.Count)
-                {
-                    var itemBet = listItemSport[index];
+                var count = listItemSport.Count;
 
+                while (index < count)
+                {
+
+                    var itemBet = listItemSport[index];
                     if (itemBet.SportType == 1 && itemBet.IsLive && !isHaveLive)
                     {
             <tr class="sub-title">
@@ -58,11 +61,29 @@
             <tr>
                 <td class="colW1">
                 </td>
-                @for (int i = index; i < wide && i < listItemSport.Count; i++)
-                {     
-                    <td class="colW1">
+                @for (int i = index; i < wide; i++)
+                {
+                    var noborder = i == 4 || i == 9 || i == 14 ? "no-border-right" : string.Empty;
+                    if (i < count)
+                    { 
+                    <td class="colW1 @noborder">
                         @listItemSport[i].BetName
-                    </td>                                   
+                    </td>            
+                    }
+                    else
+                    {
+                        if (i == 14)
+                        {
+                            i = 4;
+                        }
+                        for (int j = 0; j < 5 - i; j++)
+                        {
+                            noborder = j == 5 - i - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW1 @noborder">
+                    </td>
+                        }
+                        break;
+                    }
                 }
             </tr>
                 if (isAgent)
@@ -71,11 +92,29 @@
                 <td class="colW">
                     @Lang.lblMaxGivenShare
                 </td>
-                @for (int i = index; i < wide && i < listItemSport.Count; i++)
-                {    
-                    <td class="colW2">
+                @for (int i = index; i < wide; i++)
+                {
+                    var noborder = i == 4 || i == 9 || i == 14 ? "no-border-right" : string.Empty;
+                    if (i < count)
+                    { 
+                    <td class="colW2 @noborder">
                         @ToString(isShowOld, listItemSport[i].OldMaxGiven, listItemSport[i].MaxGiven)
                     </td>
+                    }
+                    else
+                    {
+                        if (i == 14)
+                        {
+                            i = 4;
+                        }
+                        for (int j = 0; j < 5 - i; j++)
+                        {
+                            noborder = j == 5 - i - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noborder">
+                    </td>
+                        }
+                        break;
+                    }
                 }
             </tr>
                 }
@@ -92,11 +131,29 @@
                         @Lang.lblTakenShare
                     }
                 </td>
-                @for (int i = index; i < wide && i < listItemSport.Count; i++)
-                {                  
-                    <td class="colW2">
+                @for (int i = index; i < wide; i++)
+                {
+                    var noborder = i == 4 || i == 9 || i == 14 ? "no-border-right" : string.Empty;
+                    if (i < count)
+                    { 
+                    <td class="colW2 @noborder">
                         @ToString(isShowOld, listItemSport[i].OldMaxUpper, listItemSport[i].MaxUpper)
                     </td>
+                    }
+                    else
+                    {
+                        if (i == 14)
+                        {
+                            i = 4;
+                        }
+                        for (int j = 0; j < 5 - i; j++)
+                        {
+                            noborder = j == 5 - i - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noborder">
+                    </td>
+                        }
+                        break;
+                    }
                 }
             </tr>
                 }
@@ -106,11 +163,29 @@
                 <td class="colW">
                     @Lang.lblMinGivenShare
                 </td>
-                @for (int i = index; i < wide && i < listItemSport.Count; i++)
-                {                   
-                    <td class="colW2">
+                @for (int i = index; i < wide; i++)
+                {
+                    var noborder = i == 4 || i == 9 || i == 14 ? "no-border-right" : string.Empty;
+                    if (i < count)
+                    { 
+                    <td class="colW2 @noborder">
                         @ToString(isShowOld, listItemSport[i].OldMinGiven, listItemSport[i].MinGiven)
                     </td>
+                    }
+                    else
+                    {
+                        if (i == 14)
+                        {
+                            i = 4;
+                        }
+                        for (int j = 0; j < 5 - i; j++)
+                        {
+                            noborder = j == 5 - i - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noborder">
+                    </td>
+                        }
+                        break;
+                    }
                 }
             </tr>
                 }
@@ -129,6 +204,12 @@
             <td class="colW1">
                 @itemMixSport.BetName
             </td>
+            @for (int i = 0; i < numColmnEmpty; i++)
+            {
+                var noboreder = i == numColmnEmpty - 1 ? "no-border-right" : string.Empty;
+                <td class="colW1 @noboreder">
+                </td>
+            }
         </tr>
         @if (isAgent)
         { 
@@ -139,6 +220,12 @@
                 <td class="colW2">
                     @ToString(isShowOld, itemMixSport.OldMaxGiven, itemMixSport.MaxGiven)
                 </td>
+                @for (int i = 0; i < numColmnEmpty; i++)
+                {
+                    var noboreder = i == numColmnEmpty - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noboreder">
+                    </td>
+                }
             </tr>
         }
         @if (agentLevel != 1)
@@ -157,6 +244,12 @@
                 <td class="colW2">
                     @ToString(isShowOld, itemMixSport.OldMaxUpper, itemMixSport.MaxUpper)
                 </td>
+                @for (int i = 0; i < numColmnEmpty; i++)
+                {
+                    var noboreder = i == numColmnEmpty - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noboreder">
+                    </td>
+                }
             </tr>
         }
         @if (isAgent)
@@ -168,6 +261,12 @@
                 <td class="colW2">
                     @ToString(isShowOld, itemMixSport.OldMinGiven, itemMixSport.MinGiven)
                 </td>
+                @for (int i = 0; i < numColmnEmpty; i++)
+                {
+                    var noboreder = i == numColmnEmpty - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noboreder">
+                    </td>
+                }
             </tr>
         }
     </table>
@@ -178,12 +277,10 @@
         string strNew = Math.Round(newValue / 100, 2).ToString("N");
 
         if (oldValue != newValue)
-        { <span class="valuechanged">@strNew</span> 
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
             if (isShowOld)
-            {
-    <div class="line">
-    </div>
-    <span class="valueold">@strOld</span> 
+            {                
+    <span>| </span><span class="valueold">@strOld</span>
             }
         }
         else

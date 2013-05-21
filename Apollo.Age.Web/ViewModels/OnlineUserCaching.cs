@@ -8,6 +8,6 @@ namespace Apollo.Age.Web.ViewModels
 
         public int AgentId { get; set; }
 
-        public HubCallerContext Context { get; set; }
+        public string ConnectionId { get; set; }
     }
 }
