@@ -6,16 +6,16 @@
     var isShowOld = (bool)ViewBag.IsShowOldValue;
     
     <table class="tblRpt">
-        <tr>
-            <td>
+        <tr class="no-border-top">
+            <td class="colW1 sub-title">            
             </td>
-            <td class="colW1">
+            <td class="colW1 sub-title">
                 @Lang.lblMinBet
             </td>
-            <td class="colW1">
+            <td class="colW1 sub-title">
                 @Lang.lblMaxBet
             </td>
-            <td class="colW1">
+            <td class="colW1 no-border-right sub-title">
                 @Lang.lblMaxPerMatch
             </td>
         </tr>
@@ -23,7 +23,7 @@
         {
             var sportName = item.SportName;
             <tr>
-                <td class="colW">
+                <td class="colW1">
                     @sportName
                 </td>
                 <td class="colW2">
@@ -32,7 +32,7 @@
                 <td class="colW2">
                     @ToString(isShowOld, item.OldMaxBet, item.MaxBet)
                 </td>
-                <td class="colW2">
+                <td class="colW2 no-border-right">
                     @ToString(isShowOld, item.OldMaxPerMatch, item.MaxPerMatch)
                 </td>
             </tr>
@@ -45,12 +45,10 @@
         string strNew = Math.Round(newValue, 0).ToString("#,#");
 
         if (oldValue != newValue)
-        { <span class="valuechanged">@strNew</span> 
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
             if (isShowOld)
             {
-    <div class="line">
-    </div>
-    <span class="valueold">@strOld</span> 
+   <span>| </span><span class="valueold">@strOld</span>
             }
         }
         else

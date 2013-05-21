@@ -43,6 +43,7 @@
 
                 while (index < listItemSport.Count)
                 {
+
                     var itemBet = listItemSport[index];
 
                     if (itemBet.SportType == 1 && itemBet.IsLive && !isHaveLive)
@@ -59,8 +60,9 @@
                 <td class="colW1">
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
-                {     
-                    <td class="colW1">
+                {
+                    var noborder = i == 4 || i == 9 ? "no-border-right" : string.Empty;
+                    <td class="colW1 @noborder">
                         @listItemSport[i].BetName
                     </td>                                   
                 }
@@ -72,8 +74,9 @@
                     @Lang.lblMaxGivenShare
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
-                {    
-                    <td class="colW2">
+                {
+                    var noborder = i == 4 || i == 9 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noborder">
                         @ToString(isShowOld, listItemSport[i].OldMaxGiven, listItemSport[i].MaxGiven)
                     </td>
                 }
@@ -93,8 +96,9 @@
                     }
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
-                {                  
-                    <td class="colW2">
+                {
+                    var noborder = i == 4 || i == 9 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noborder">
                         @ToString(isShowOld, listItemSport[i].OldMaxUpper, listItemSport[i].MaxUpper)
                     </td>
                 }
@@ -107,8 +111,9 @@
                     @Lang.lblMinGivenShare
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
-                {                   
-                    <td class="colW2">
+                {
+                    var noborder = i == 4 || i == 9 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noborder">
                         @ToString(isShowOld, listItemSport[i].OldMinGiven, listItemSport[i].MinGiven)
                     </td>
                 }
@@ -178,12 +183,10 @@
         string strNew = Math.Round(newValue / 100, 2).ToString("N");
 
         if (oldValue != newValue)
-        { <span class="valuechanged">@strNew</span> 
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
             if (isShowOld)
-            {
-    <div class="line">
-    </div>
-    <span class="valueold">@strOld</span> 
+            {                
+    <span>| </span><span class="valueold">@strOld</span>
             }
         }
         else
