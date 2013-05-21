@@ -145,7 +145,7 @@
 		bundles.Add(new ScriptBundle("~/unauthjs").Include(
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/Core.js",
-			"~/Views/Internal/Resources/Unauthorized.js"));
+			"~/Views/Error/Resources/Unauthorized.js"));
 	}
 
 	void Application_Start(object sender, EventArgs e)
