@@ -5,7 +5,7 @@
     using Microsoft.AspNet.SignalR;
     using System.Web.Security;
 
-    
+    [Authorize]
     public class KickoutHub : Hub
     {
         public void Send(int adminId, int agentId, bool isinternal)
