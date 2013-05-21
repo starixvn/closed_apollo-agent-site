@@ -6,24 +6,28 @@
     var isShowOld = (bool)ViewBag.IsShowOldValue;
     
     <table class="tblRpt">
-        <tr class="no-border-top">
-            <td class="colW1 sub-title">            
+        <tr class="no-border-top bg-gray">
+            <td class="colW1">
             </td>
-            <td class="colW1 sub-title">
+            <td class="colW1">
                 @Lang.lblMinBet
             </td>
-            <td class="colW1 sub-title">
+            <td class="colW1">
                 @Lang.lblMaxBet
             </td>
-            <td class="colW1 no-border-right sub-title">
+            <td class="colW1">
                 @Lang.lblMaxPerMatch
+            </td>
+            <td class="colW1">
+            </td>
+            <td class="colW1 no-border-right">
             </td>
         </tr>
         @foreach (var item in Model)
         {
             var sportName = item.SportName;
             <tr>
-                <td class="colW1">
+                <td class="colW">
                     @sportName
                 </td>
                 <td class="colW2">
@@ -32,8 +36,12 @@
                 <td class="colW2">
                     @ToString(isShowOld, item.OldMaxBet, item.MaxBet)
                 </td>
-                <td class="colW2 no-border-right">
+                <td class="colW2">
                     @ToString(isShowOld, item.OldMaxPerMatch, item.MaxPerMatch)
+                </td>
+                <td class="colW2">
+                </td>
+                <td class="colW2 no-border-right">
                 </td>
             </tr>
         }
@@ -48,7 +56,7 @@
         { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
             if (isShowOld)
             {
-   <span>| </span><span class="valueold">@strOld</span>
+    <span>| </span><span class="valueold">@strOld</span>
             }
         }
         else
