@@ -94,6 +94,7 @@
                 gridExpandHeight: 100,
                 marginRight: 0,
                 showColumnsShowHide: false,
+                hideYBackGroundScroller: true,
                 columnsNeedHide: [3, 4],
                 bodyRowHeight: 28
             };
