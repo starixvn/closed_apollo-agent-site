@@ -24,8 +24,8 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Web;
-    using Apollo.Age.Web.Pager;
     using Apollo.Age.Web.Filters;
+    using Apollo.Age.Web.Pager;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
@@ -42,6 +42,11 @@ namespace Apollo.Age.Account.Controllers
         private int _agentId;
         private string _username;
         private int _agentLevel;
+        
+        public AccountController()
+        {
+            _accountService = new AccountService();
+        }
 
         private int? CurrentAgentId
         {
@@ -49,6 +54,7 @@ namespace Apollo.Age.Account.Controllers
             {
                 return _agentId;
             }
+
             set
             {
                 _agentId = value.HasValue ? value.Value : CurrentSession.AgentId;
@@ -61,6 +67,7 @@ namespace Apollo.Age.Account.Controllers
             {
                 return _username;
             }
+
             set
             {
                 _username = string.IsNullOrWhiteSpace(value) ? CurrentSession.AgentName : value;
@@ -73,15 +80,11 @@ namespace Apollo.Age.Account.Controllers
             {
                 return _agentLevel;
             }
+
             set
             {
                 _agentLevel = value.HasValue ? value.Value : CurrentSession.AgentLevel;
             }
-        }
-
-        public AccountController()
-        {
-            _accountService = new AccountService();
         }
 
         public ActionResult TopBar()
@@ -93,14 +96,14 @@ namespace Apollo.Age.Account.Controllers
         {
             ViewBag.RootNode = SiteMap.RootNode;
 
-            return View(base.CurrentSession);
+            return View(this.CurrentSession);
         }
 
         public ActionResult MiniMenu()
         {
             ViewBag.RootNode = SiteMap.RootNode;
 
-            return View(base.CurrentSession);
+            return View(this.CurrentSession);
         }
 
         public ActionResult MemberDownline(int agentId, int? page)
@@ -349,15 +352,17 @@ namespace Apollo.Age.Account.Controllers
                 ListData = models
             });
         }
+
         [InternalChecking]
         public ActionResult LogLogin()
         {
             var agentId = CurrentSession.AgentId;
-            var agentUserId = CurrentSession.AdminId;            
+            var agentUserId = CurrentSession.AdminId;
 
-            GetLoginLogCriteria criteria = new GetLoginLogCriteria() { 
-            AgentId = agentId,
-            AgentUserId = agentUserId
+            GetLoginLogCriteria criteria = new GetLoginLogCriteria() 
+            { 
+                AgentId = agentId,
+                AgentUserId = agentUserId
             };
             IEnumerable<AgentLogLoginModel> models = _accountService.GetAgentLogLogin(criteria);
 

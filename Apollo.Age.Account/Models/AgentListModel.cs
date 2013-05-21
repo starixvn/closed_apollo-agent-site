@@ -1,9 +1,15 @@
-﻿namespace Apollo.Age.Account.Models
+﻿// --------------------------------------------------------------------------
+// <copyright file="AgentListModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry.Nguyen" date="2013.5.21">Created</change>
+// </history>
+
+namespace Apollo.Age.Account.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     public class AgentListModel
     {

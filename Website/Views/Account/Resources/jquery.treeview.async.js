@@ -40,7 +40,7 @@
                         current.addClass("hasChildren");
                         createNode.call({
                             text: "&nbsp;",
-                            classes: "placeholder",
+                            classes: "",
                             children: []
                         }, branch);
                     }

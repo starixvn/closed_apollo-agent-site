@@ -9,7 +9,6 @@
 //   <change who="Ricky.Nguyen" date="2013.4.29">Update AgentId, Member Id, Shadow Account edit setting</change>
 // </history>
 
-
 namespace Apollo.Age.Account.Controllers
 {
     using System;
@@ -17,20 +16,18 @@ namespace Apollo.Age.Account.Controllers
     using System.Globalization;
     using System.Threading;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
-    using Apollo.Age.Services.Impl;
-    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
+    using Apollo.Age.Web.Filters;
     using Fanex.Common;
     using Fanex.CustSetting.Models;
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
-    using System.Web.SessionState;
-    using Apollo.Age.Web.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerSettingController : BaseController
@@ -42,10 +39,14 @@ namespace Apollo.Age.Account.Controllers
         #region Ctors
 
         public CustomerSettingController()
-            : this(null, null, null) { }
+            : this(null, null, null) 
+        { 
+        }
 
-        public CustomerSettingController(IAccountService accountService, 
-            ICustomerSettingService customerSettingService, ISportSettingService sportService)
+        public CustomerSettingController(
+            IAccountService accountService, 
+            ICustomerSettingService customerSettingService, 
+            ISportSettingService sportService)
         {
             _accountService = accountService ?? new AccountService();
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
@@ -373,7 +374,6 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult GetMemberSetting(int memberId, int? agentId)
         {
-
             string jsString = this.GetSettingScript(memberId, agentId, null, _customerSettingService.GetMemberGroup(memberId));
             return JavaScript(jsString);
         }
@@ -383,7 +383,6 @@ namespace Apollo.Age.Account.Controllers
             string jsString = this.GetSettingScript(agentId, null, (int?) agentLevel, null);
             return JavaScript(jsString);
         }
-                
 
         [HttpPost]
         [BelongChecking()]
@@ -410,7 +409,6 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsMaster = false;
             return View("~/Views/Account/MySetting.cshtml");
         }
-
 
         #endregion
 
