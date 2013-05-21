@@ -85,22 +85,25 @@ namespace Apollo.Age.Web
 
         private void CheckKickOut(ActionExecutingContext filterContext)
         {
-            var isKickOut = _userService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
-
-            if (isKickOut)
+            if (!ReferenceEquals(CurrentSession, null))
             {
-                if (Request.IsAjaxRequest())
+                var isKickOut = _userService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
+
+                if (isKickOut)
                 {
-                    Response.Buffer = true;
-                    Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                    Response.Write(GetResourceData("lblAccountWasStopped"));
-                    Response.Flush();
-                    Response.Close();
-                    Response.End();
-                }
-                else
-                {
-                    Response.Redirect(ApoURLs.URLs.AccountStopped);
+                    if (Request.IsAjaxRequest())
+                    {
+                        Response.Buffer = true;
+                        Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        Response.Write(GetResourceData("lblAccountWasStopped"));
+                        Response.Flush();
+                        Response.Close();
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Redirect(ApoURLs.URLs.AccountStopped);
+                    }
                 }
             }
         }
