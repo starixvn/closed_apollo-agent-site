@@ -5327,6 +5327,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Commission.
+        /// </summary>
+        public static string lblCommission {
+            get {
+                return ResourceManager.GetString("lblCommission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Commission By Bet Type.
         /// </summary>
         public static string lblCommissionByBettype {

@@ -160,6 +160,10 @@
                             href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
                             @Apollo.Age.Resources.Lang.ViewCommission
                         </a>
+                        
+                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=false&Username=@Model.Username">
+                            @Apollo.Age.Resources.Lang.CustomerSettingLog
+                        </a>
                     }
                     else
                     {
@@ -190,6 +194,9 @@
                         <a class="lnk-setting" target="main"
                             href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
                             @Apollo.Age.Resources.Lang.ViewCommission
+                        </a>
+                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
+                            @Apollo.Age.Resources.Lang.CustomerSettingLog
                         </a>
                     }
                 </div>
