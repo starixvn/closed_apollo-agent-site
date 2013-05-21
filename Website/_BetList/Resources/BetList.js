@@ -17,7 +17,6 @@ function ViewMixParlayResult(refno_mixparlay, refno) {
 		params = '?refNo=' + refno_mixparlay,
 		detailTitle = $('#' + refno).find('a:first').text();
 
-	//ageWnd.open(APOLLO.resolveUrl("~/Results/ParlayResult" + params), detailTitle, 50, 100, width, height);
 	APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ParlayResult" + params),
 		detailTitle, { width: width, height: height });
 }
@@ -30,13 +29,6 @@ function ViewSportBookResult(matchId, sportId, refno) {
 
 	parent.APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ResultByMatch" + params),
 		detailTitle, { width: width, height: height });
-
-	//	if (parent.ageWnd) {
-	//		parent.ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), detailTitle, 50, 100, width, height);
-	//	}
-	//	else {
-	//		ageWnd.open(APOLLO.resolveUrl("~/Results/ResultByMatch" + params), detailTitle, 50, 100, width, height);
-	//	}
 }
 
 function showMP(transid) {
@@ -84,15 +76,8 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 		height = 350,
 		params = '?refno=' + refno + '&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
 		detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + _page.refNo + ": " + transid;
-
-	parent.APOLLO.openDialogFrame(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params),
+	APOLLO.openDialogFrame(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params),
 		detailTitle, { width: width, height: height });
-
-	//	if (parent.ageWnd) {
-	//		parent.ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
-	//	} else {
-	//		ageWnd.open(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params), detailTitle, 50, 100, width, height);
-	//	}
 }
 
 function InitExcelFunction() {
@@ -125,15 +110,9 @@ function InitExcelFunction() {
 }
 
 function InitBetList() {
-	//var ageWnd = parent.ageWnd;
-
 	if (parent.APOLLO.currentOpenDialog) {
 		parent.APOLLO.resizeDialog(900, 720);
 	}
-
-	//	if (typeof ageWnd != 'undefined' && ageWnd.loaded) {
-	//		ageWnd.setRect(ageWnd.left, 50, 900, 720);  // resize parent dialog
-	//	}
 
 	if (document.getElementById("exporttoexcel") != null) {
 		document.getElementById("exporttoexcel").style.display = "none";
@@ -261,7 +240,6 @@ if (typeof jQuery != "undefined") {
 				var markIndex = document.location.href.indexOf('?');
 				var link = document.location.href;
 				if (markIndex > 0) {
-					//link = document.location.href.substring(0, markIndex);
 					var markIndexShareHolderId = document.location.href.indexOf("&mainShareHolderId=");
 					if (markIndexShareHolderId > 0) {
 						link = document.location.href.substring(0, markIndexShareHolderId);
