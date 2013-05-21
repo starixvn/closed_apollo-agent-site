@@ -174,8 +174,8 @@
 }
 @helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
     {
-        string strOld = Math.Round(oldValue / 100, 2).ToString();
-        string strNew = Math.Round(newValue / 100, 2).ToString();
+        string strOld = Math.Round(oldValue / 100, 2).ToString("N");
+        string strNew = Math.Round(newValue / 100, 2).ToString("N");
 
         if (oldValue != newValue)
         { <span class="valuechanged">@strNew</span> 
