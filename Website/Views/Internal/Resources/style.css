@@ -79,7 +79,7 @@ label {
     width: 160px;
 }
 
-input[type=button] {
+input[type=submit] {
     padding: 5px 20px;
     background: #3b3b3b;
     background: -moz-linear-gradient(top,#a3a3a3 0%,#3b3b3b 50%,#242424 50%,#000000);

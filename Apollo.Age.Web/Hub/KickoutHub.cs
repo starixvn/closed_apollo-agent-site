@@ -3,35 +3,33 @@
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web.ViewModels;
     using Microsoft.AspNet.SignalR;
+    using System.Web.Security;
 
-    [Authorize]
+    
     public class KickoutHub : Hub
     {
-        public void Send(int adminId)
+        public void Send( int adminId, int agentId )
         {
-            var key = adminId.ToString();
-
-            if (CachingService.Get<OnlineUserCaching>(key) == null)
+            var key = adminId.ToString() + "_" + agentId.ToString();
+            var connectionId = string.Empty;        
+            if (CachingService.Get<OnlineUserCaching>(key) != null)
             {
-                CachingService.Set<OnlineUserCaching>(key, new OnlineUserCaching
-                {
-                    AdminId = adminId,
-                    AgentId = 0,
-                    Context = Context
-                });
-            }
-            else
-            {
-                var connectionId = CachingService.Get<OnlineUserCaching>(key).Context.ConnectionId;
-                Clients.Client(connectionId).KickoutUser(); // Kickout
+                connectionId = CachingService.Get<OnlineUserCaching>(key).ConnectionId;
 
-                CachingService.Set<OnlineUserCaching>(key, new OnlineUserCaching
+                if (!Apollo.Age.Configurations.AppSettings.MultipleSignOn)
                 {
-                    AdminId = adminId,
-                    AgentId = 0,
-                    Context = Context
-                });
+                    Clients.Client(connectionId).kickoutUser(); // Kickout               
+                }
+                
             }
+           
+            CachingService.Set<OnlineUserCaching>(key, new OnlineUserCaching
+            {
+                AdminId = adminId,
+                AgentId = agentId,
+                ConnectionId = Context.ConnectionId
+            });
+                        
         }
     }
 }
