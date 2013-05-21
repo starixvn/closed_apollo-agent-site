@@ -177,9 +177,13 @@ if (typeof jQuery != 'undefined') {
                 });
             },
 
-            signOut: function () {
-                if (parent.IsApoRoot) {
-                    parent.location = APOLLO.resolveUrl('~/Internal/SignOut');
+            signOut: function (isForce) {
+                try {
+                    if (parent.IsApoRoot) {
+                        parent.location = APOLLO.resolveUrl('~/Internal/SignOut?isForce=' + isForce);
+                    }
+                } catch (err) {
+                    APOLLO.console.warn(err);
                 }
             },
 

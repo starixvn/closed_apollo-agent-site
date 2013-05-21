@@ -14,7 +14,6 @@ namespace Apollo.Age.Web
     using System.Drawing.Drawing2D;
     using System.Drawing.Text;
     using System.IO;
-    using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.Security;
     using Apollo.Age.Configurations;
@@ -160,7 +159,7 @@ namespace Apollo.Age.Web
                         adminId: model.AdminId,
                         adminName: model.AdminName,
                         isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
-                        language: model.Language);                                       
+                        language: model.Language);
 
                     // Write log internal login
                     string doing = "Admin: " + model.AdminName + " via Agent: " + agent.Username + " Logged in to Apollo Agent Site - Result: Successful.";
@@ -203,21 +202,19 @@ namespace Apollo.Age.Web
             //        );
             //});
             DeviceService deviceService = new DeviceService(Request);
-                _userService.WriteLogInternalLogin(
-                    agentId,
-                    agentUserId,
-                    SERVERID,
-                    actionId,
-                    doing,
-                    deviceService.ClientIp,
-                    deviceService.DomainName,
-                    deviceService.BrowserName,
-                    deviceService.Platform,
-                    deviceService.CountryCode
-                    );
+            _userService.WriteLogInternalLogin(
+                agentId,
+                agentUserId,
+                SERVERID,
+                actionId,
+                doing,
+                deviceService.ClientIp,
+                deviceService.DomainName,
+                deviceService.BrowserName,
+                deviceService.Platform,
+                deviceService.CountryCode
+                );
         }
-
-       
 
         public ActionResult CaptchaImage(bool noisy = true)
         {
@@ -269,22 +266,32 @@ namespace Apollo.Age.Web
 
         #endregion SignIn
 
-        public ActionResult SignOut()
+        public ActionResult SignOut(bool isForce)
         {
             bool isInternalSignIn = SessionManager.CurrentSession != null
                 && SessionManager.CurrentSession.IsInternalSignIn;
 
-            string doing = "Admin: " + SessionManager.CurrentSession.AdminName + " via Agent: " + SessionManager.CurrentSession.Username + " Log out - Result: Successful.";
+            if (!isForce)
+            {
+                if (isInternalSignIn)
+                {
+                    //remove cache one user logout
+                    var cacheKey = SessionManager.CurrentSession.AdminId.ToString() + "_" + SessionManager.CurrentSession.AgentId.ToString();
+                    CachingService.Remove(cacheKey);
+                    //-------------------------
+
+                    string doing = "Admin: " + SessionManager.CurrentSession.AdminName + " via Agent: " + SessionManager.CurrentSession.Username + " Log out - Result: Successful.";
+                    WritelogLogin(SessionManager.CurrentSession.AgentId, SessionManager.CurrentSession.AdminId, 1309, doing);
+                }
+            }
 
             Session.Abandon();
             Response.Cookies.Clear();
             FormsAuthentication.SignOut();
 
             if (isInternalSignIn)
-            {
-                // Write log internal login
+            {              
 
-                WritelogLogin(SessionManager.CurrentSession.AgentId, SessionManager.CurrentSession.AdminId, 1309, doing);
                 return Redirect(ApoURLs.URLs.InternalSignIn);
             }
 
