@@ -141,7 +141,12 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
 	var titleScoreMap = _page.titleScoreMap + mainShareHolderUsername;
 	var wnd = parent.IsApoRoot ? window : parent;
 	var singleFrame = false; // allow multiple instances of dialog to keep BetList opened
-	wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 650 }, singleFrame);
+	// Check IE7
+	var heightPopup = 605;
+	if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) == 7) {
+	    heightPopup = 585;
+	}
+	wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: heightPopup }, singleFrame);
 }
 
 RegisterStartUp(InitBetList);
