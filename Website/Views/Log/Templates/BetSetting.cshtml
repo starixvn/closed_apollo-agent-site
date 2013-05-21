@@ -5,24 +5,31 @@
     var isShowOld = (bool)ViewBag.IsShowOldValue;
     
     <table class="tblRpt">
+        <tr>
+            <td>
+            </td>
+            <td class="colW1">
+                @Apollo.Age.Resources.Lang.lblMinBet
+            </td>
+            <td class="colW1">
+                @Apollo.Age.Resources.Lang.lblMaxBet
+            </td>
+            <td class="colW1">
+                @Apollo.Age.Resources.Lang.lblMaxPerMatch
+            </td>
+        </tr>
         @foreach (var item in Model)
         {
             var sportName = item.SportName;
             <tr>
-                <td class="colW1">
-                    @sportName - @Apollo.Age.Resources.Lang.MinBet
+                <td class="colW">
+                    @sportName
                 </td>
                 <td class="colW2">
                     @ToString(isShowOld, item.OldMinBet, item.MinBet)
                 </td>
-                <td class="colW1">
-                    @sportName - @Apollo.Age.Resources.Lang.lblMaxBet
-                </td>
                 <td class="colW2">
                     @ToString(isShowOld, item.OldMaxBet, item.MaxBet)
-                </td>
-                <td class="colW1">
-                    @sportName - @Apollo.Age.Resources.Lang.lblMaxPerMatch
                 </td>
                 <td class="colW2">
                     @ToString(isShowOld, item.OldMaxPerMatch, item.MaxPerMatch)

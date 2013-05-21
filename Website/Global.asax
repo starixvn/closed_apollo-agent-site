@@ -104,7 +104,7 @@
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
-			"~/_GlobalResources/Js/noty/jquery.noty.min.js",
+			"~/_GlobalResources/Js/noty/jquery.noty.js",
 			"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/Account/Resources/CustSettingEngine/Core.js",
@@ -141,27 +141,25 @@
 			"~/_GlobalResources/Js/jquery-ui.js",
 			"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
 			"~/_GlobalResources/Js/Core.js"));
+
+		bundles.Add(new ScriptBundle("~/unauthjs").Include(
+			"~/_GlobalResources/Js/jquery.js",
+			"~/_GlobalResources/Js/Core.js",
+			"~/Views/Internal/Resources/Unauthorized.js"));
 	}
 
 	void Application_Start(object sender, EventArgs e)
 	{
-        
-        RouteTable.Routes.MapHubs(new Microsoft.AspNet.SignalR.HubConfiguration { EnableDetailedErrors = true });
-        
+		RouteTable.Routes.MapHubs(new Microsoft.AspNet.SignalR.HubConfiguration { EnableDetailedErrors = true });
+		
 		maintenanceService = new UnderMaintenanceService();
 		AreaRegistration.RegisterAllAreas();
 		RegisterGlobalFilters(GlobalFilters.Filters);
-                
+				
 		RegisterRoutes(RouteTable.Routes);
 		RegisterBundles(BundleTable.Bundles);
 
 		DbSettingProviderManager.Current.Start();
-
-
-		
-		
-		   
-		   
 	}
 
 	/// <summary>

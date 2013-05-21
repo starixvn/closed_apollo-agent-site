@@ -2157,6 +2157,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Setting Log.
+        /// </summary>
+        public static string CustomerSettingLog {
+            get {
+                return ResourceManager.GetString("CustomerSettingLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to D.
         /// </summary>
         public static string d {
@@ -5314,6 +5323,15 @@ namespace Apollo.Age.Resources {
         public static string lblComm {
             get {
                 return ResourceManager.GetString("lblComm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commission.
+        /// </summary>
+        public static string lblCommission {
+            get {
+                return ResourceManager.GetString("lblCommission", resourceCulture);
             }
         }
         

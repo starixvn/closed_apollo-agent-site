@@ -9,12 +9,6 @@
 
 namespace Apollo.Age.Reports.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Entities;
-
     public class OutstandingModel
     {
         public bool IsAgent { get; set; }
