@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Enumerations
 @using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
 @model List<PositionTakingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
@@ -18,7 +19,7 @@
                 @if (itemSportFirst.SportType == (int)SportTypes.Soccer)
                 { 
                     <td colspan="6">
-                        @itemSportFirst.SportName - @Apollo.Age.Resources.Lang.lblDeadball
+                        @itemSportFirst.SportName - @Lang.lblDeadball
                     </td>
                 }
                 else
@@ -48,7 +49,7 @@
                     {
             <tr class="sub-title">
                 <td colspan="6">
-                    @itemSport.FirstOrDefault().SportName - @Apollo.Age.Resources.Lang.lblLive
+                    @itemSport.FirstOrDefault().SportName - @Lang.lblLive
                 </td>
             </tr>    
                         isHaveLive = true;
@@ -68,7 +69,7 @@
                 { 
             <tr>
                 <td class="colW">
-                    @Apollo.Age.Resources.Lang.lblMaxGivenShare
+                    @Lang.lblMaxGivenShare
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {    
@@ -84,11 +85,11 @@
                 <td class="colW">
                     @if (isAgent)
                     { 
-                        @Apollo.Age.Resources.Lang.lblMaxTakenShare
+                        @Lang.lblMaxTakenShare
                     }
                     else
                     {
-                        @Apollo.Age.Resources.Lang.lblTakenShare
+                        @Lang.lblTakenShare
                     }
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
@@ -103,7 +104,7 @@
                 { 
             <tr>
                 <td class="colW">
-                    @Apollo.Age.Resources.Lang.lblMinGivenShare
+                    @Lang.lblMinGivenShare
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {                   
@@ -119,7 +120,7 @@
         }
         <tr class="sub-title">
             <td colspan="6">
-                @Apollo.Age.Resources.Lang.lblMixParlay
+                @Lang.lblMixParlay
             </td>
         </tr>
         <tr>
@@ -133,7 +134,7 @@
         { 
             <tr>
                 <td class="colW">
-                    @Apollo.Age.Resources.Lang.lblMaxGivenShare
+                    @Lang.lblMaxGivenShare
                 </td>
                 <td class="colW2">
                     @ToString(isShowOld, itemMixSport.OldMaxGiven, itemMixSport.MaxGiven)
@@ -146,11 +147,11 @@
                 <td class="colW">
                     @if (isAgent)
                     { 
-                        @Apollo.Age.Resources.Lang.lblMaxTakenShare
+                        @Lang.lblMaxTakenShare
                     }
                     else
                     {
-                        @Apollo.Age.Resources.Lang.lblTakenShare
+                        @Lang.lblTakenShare
                     }
                 </td>
                 <td class="colW2">
@@ -162,7 +163,7 @@
         { 
             <tr>
                 <td class="colW">
-                    @Apollo.Age.Resources.Lang.lblMinGivenShare
+                    @Lang.lblMinGivenShare
                 </td>
                 <td class="colW2">
                     @ToString(isShowOld, itemMixSport.OldMinGiven, itemMixSport.MinGiven)

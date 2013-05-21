@@ -1,4 +1,5 @@
 ﻿@using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
 @model List<BetSettingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
@@ -9,13 +10,13 @@
             <td>
             </td>
             <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblMinBet
+                @Lang.lblMinBet
             </td>
             <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblMaxBet
+                @Lang.lblMaxBet
             </td>
             <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblMaxPerMatch
+                @Lang.lblMaxPerMatch
             </td>
         </tr>
         @foreach (var item in Model)
