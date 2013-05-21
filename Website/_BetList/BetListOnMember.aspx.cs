@@ -76,6 +76,15 @@ namespace Sunplus.Agent.UI._BetList
             }
             else
             {
+                if (pageType.Equals("report"))
+                {
+                    tpl.title = string.Format("{0} {1} - {2}", Apollo.Age.Resources.BetList.lblMemberBetList, fromDate.ToString("MM/dd/yyyy"), toDate.ToString("MM/dd/yyyy"));
+                }
+                else
+                {
+                    tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList;
+                }
+
                 #region Navigation Link
 
                 tpl.Navigation = this.Navigation(custid);
@@ -85,7 +94,6 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.HiddenFields.DateTime.valueFromDate = fromDate.ToShortDateString();
                 tpl.HiddenFields.DateTime.valueToDate = toDate.ToShortDateString();
                 tpl.Filter.Hide();
-                tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList;
             }
 
             // Render Content
