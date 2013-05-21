@@ -18,8 +18,8 @@ namespace Apollo.Age.Forecast.Models
     {
         public ScoreMapResultModel()
         {
-            ScoreMapItems = new List<ScoreMapItem>();
-            ScoreMapMatches = new List<ScoreMapMatch>();
+            this.ScoreMapItems = new List<ScoreMapItem>();
+            this.ScoreMapMatches = new List<ScoreMapMatch>();
         }
 
         public List<ScoreMapItem> ScoreMapItems { get; set; }
@@ -40,6 +40,8 @@ namespace Apollo.Age.Forecast.Models
 
     public class ScoreMapMatch
     {
+        private string _matchName;
+
         public int MatchId { get; set; }
 
         public int HomeId { get; set; }
@@ -62,17 +64,16 @@ namespace Apollo.Age.Forecast.Models
             }
         }
 
-        private string _matchName;
-
         public string MatchName
         {
             get
             {
-                if (_matchName == null)
+                if (this._matchName == null)
                 {
-                    _matchName = HomeTeam + "-vs-" + AwayTeam;
+                    this._matchName = this.HomeTeam + "-vs-" + this.AwayTeam;
                 }
-                return _matchName;
+
+                return this._matchName;
             }
         }
     }
