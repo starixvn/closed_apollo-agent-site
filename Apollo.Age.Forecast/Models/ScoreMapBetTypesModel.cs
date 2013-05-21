@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ScoreMapBetTypeModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ScoreMapBetTypesModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -18,8 +18,8 @@ namespace Apollo.Age.Forecast.Models
     {
         public ScoreMapBetTypesModel()
         {
-            LiveBetTypes = new List<ScoreMapBetTypeModel>();
-            DeadBallBetTypes = new List<ScoreMapBetTypeModel>();
+            this.LiveBetTypes = new List<ScoreMapBetTypeModel>();
+            this.DeadBallBetTypes = new List<ScoreMapBetTypeModel>();
         }
 
         public List<ScoreMapBetTypeModel> LiveBetTypes { get; set; }

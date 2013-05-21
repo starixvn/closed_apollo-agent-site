@@ -18,9 +18,8 @@ namespace Apollo.Age.Reports.Repositories
     /// </summary>
     public class ResultRepository
     {
-        public DataTable GetResultMatchByLeague(DateTime date, int custId, int sportId, int leagueId, string language)
-        {          
-
+        public DataTable GetResultMatchByLeague1(DateTime date, int custId, int sportId, int leagueId, string language)
+        {
             var dataTable = new DataTable();
             using (ObjectDb db = new ObjectDb("Age_Result_MatchSelByLeague"))
             {
@@ -30,13 +29,12 @@ namespace Apollo.Age.Reports.Repositories
                 {
                     dataTable = ds.Tables[0];
                 }
-
             }
 
             return dataTable;
         }
 
-        public DataTable GetResultSportByDate(DateTime date)
+        public DataTable GetResultSportByDate1(DateTime date)
         {
             var dataTable = new DataTable();
             using (ObjectDb db = new ObjectDb("Age_Result_SportSelByDate"))
@@ -47,15 +45,13 @@ namespace Apollo.Age.Reports.Repositories
                 {
                     dataTable = ds.Tables[0];
                 }
-
             }
 
             return dataTable;
         }
 
-        public DataTable GetOutrightResult(DateTime fromDate, DateTime toDate)
+        public DataTable GetOutrightResult1(DateTime fromDate, DateTime toDate)
         {
-
             var dataTable = new DataTable();
             using (ObjectDb db = new ObjectDb("Age_Result_Outright"))
             {
@@ -65,13 +61,12 @@ namespace Apollo.Age.Reports.Repositories
                 {
                     dataTable = ds.Tables[0];
                 }
-
             }
 
             return dataTable;
         }
 
-        public DataTable GetResultLeagueByDate(DateTime date, int sportId, string language)
+        public DataTable GetResultLeagueByDate1(DateTime date, int sportId, string language)
         {
             var dataTable = new DataTable();
             using (ObjectDb db = new ObjectDb("Age_Result_LeagueSelByDate"))
@@ -82,15 +77,13 @@ namespace Apollo.Age.Reports.Repositories
                 {
                     dataTable = ds.Tables[0];
                 }
-
             }
 
             return dataTable;
         }
 
-        public DataTable SelectMatchForViewResult(int matchId, string raceno)
+        public DataTable SelectMatchForViewResult1(int matchId, string raceno)
         {
-
             var dataTable = new DataTable();
             using (ObjectDb db = new ObjectDb("Age_BetList_SelMatchResult"))
             {
@@ -100,14 +93,12 @@ namespace Apollo.Age.Reports.Repositories
                 {
                     dataTable = ds.Tables[0];
                 }
-
             }
 
             return dataTable;
-
         }
 
-        public DataTable SelectMatchResultParlay(long refno)
+        public DataTable SelectMatchResultParlay1(long refno)
         {
             var dataTable = new DataTable();
             using (ObjectDb db = new ObjectDb("Age_BetList_SelMatchResultParlay"))
@@ -118,7 +109,6 @@ namespace Apollo.Age.Reports.Repositories
                 {
                     dataTable = ds.Tables[0];
                 }
-
             }
 
             return dataTable;
