@@ -104,7 +104,7 @@
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
-			"~/_GlobalResources/Js/noty/jquery.noty.min.js",
+			"~/_GlobalResources/Js/noty/jquery.noty.js",
 			"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/Account/Resources/CustSettingEngine/Core.js",
