@@ -26,6 +26,8 @@ var Log = function ($) {
 
         fromDayLable: null,
 
+        btnGoTop: null,
+
         init: function () {
             Log.txtUsername = $('#Username');
             Log.ddlIsAgent = $('#IsAgent');
@@ -35,6 +37,7 @@ var Log = function ($) {
             Log.toDate = $('#To');
             Log.toDayLable = $('#ToDayLable');
             Log.fromDayLable = $('#FromDayLable');
+            Log.btnGoTop = $("#btn-go-top");
 
             Log.monthDateTime.monPickr({
                 fromDayLabel: Log.fromDayLable.val(),
@@ -57,7 +60,7 @@ var Log = function ($) {
                 var line = valuechanged.next();
                 var valueOld = line.next();
                 var value = $(this).is(':checked');
-                
+
                 if (value) {
                     line.show();
                     valueOld.show();
@@ -67,6 +70,20 @@ var Log = function ($) {
                     valueOld.hide();
                 }
 
+            });
+           
+            // go to the top
+            Log.btnGoTop.click(function () {
+                $("html, body").animate({ scrollTop: 0 }, 100);
+                return false;
+            });
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    Log.btnGoTop.fadeIn();
+                } else {
+                    Log.btnGoTop.fadeOut();
+                }
             });
         },
 
