@@ -6,9 +6,9 @@
 }
 
 .show-old-value {
-	background: none repeat scroll 0 0 #EEE;
-    border: 1px solid #999;
-    padding: 2px 3px;
+	background: none repeat scroll 0 0 #0084B4;
+    border: 1px solid #fff;
+    padding: 2px 5px 2px 3px;
     position: fixed;
     right: 11px;
     top: 45px;
@@ -18,8 +18,25 @@
 	}
 
 	label {
-		color:  @linkColor;
+		color:  @white;
 		cursor: pointer;
+	}
+}
+
+.top-link {
+	background: url(images/top-white.png) #0084B4 no-repeat 4px 7px;
+	border: 1px solid #fff;
+	height: 24px;
+	width: 60px;
+    position: fixed;
+    right: 11px;
+    bottom: 0;
+	display: none;
+	padding: 5px 0 0 23px;
+	cursor: pointer;
+
+	a {
+		color: @white;		
 	}
 }
 
