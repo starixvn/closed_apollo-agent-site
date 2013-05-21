@@ -9,7 +9,7 @@
     var group = (string)ViewBag.Group;
     
     <table class="tblRpt">
-        <tr class="colW">
+        <tr class="colW sub-title">
             <td>
                 @Lang.group
             </td>
@@ -35,7 +35,7 @@
                 }
             </td>
             <td class="colW">
-                @Lang.hdp, @Lang.lblOU, @Lang.lblOE
+                @Lang.hdp, @Lang.lblOU, @Lang.lblOE (%)
             </td>
             <td class="colW2">
                 @foreach (var item in Model)
@@ -49,7 +49,7 @@
         </tr>
         <tr>
             <td class="colW">
-                @Lang.lbl1x2Comm
+                @Lang.lbl1x2Comm (%)
             </td>
             <td class="colW2">
                 @foreach (var item in Model)
@@ -63,7 +63,7 @@
         </tr>
         <tr>
             <td class="colW">
-                @Lang.lblOtherComm
+                @Lang.lblOtherComm (%)
             </td>
             <td class="colW2">
                 @foreach (var item in Model)
