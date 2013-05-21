@@ -41,7 +41,7 @@ namespace Apollo.Age.Account.Models
             string result = string.Empty;
 
             //<r><z s="1" b="1" mib="270.0000" mab="800.0000" mam="8000.0000"/></r>
-            if (this.ActionTypeId == Constants.LOGACTIONBETSETTING)
+            if (this.ActionTypeId == Constants.LogActionBetSetting)
             {
                 var listBetSetting = this.GetBetSetting();
                 var bodyTemplate = ReadTextFile(HttpContext.Current.Server.MapPath("~/Views/Log/Templates/BetSetting.cshtml"));
@@ -53,7 +53,7 @@ namespace Apollo.Age.Account.Models
             }
 
             //<r><z s="1" b="1" i="0" p="800" ma="8000" mi="0"/></r>
-            if (this.ActionTypeId == Constants.LOGACTIONPOSITIONTAKING)
+            if (this.ActionTypeId == Constants.LogActionPositionTaking)
             {
                 var listPositionTaking = this.GetPositionTaking(isAgent);
                 var bodyTemplate = ReadTextFile(HttpContext.Current.Server.MapPath("~/Views/Log/Templates/PositionTaking.cshtml"));
@@ -69,7 +69,7 @@ namespace Apollo.Age.Account.Models
             //<r><z s="1" b="1" ga="0.025" gb="0.0075" gc="0" gd="0"/></r>
             //or
             //<r><z s="1" b="1" d="0.025"/></r>
-            if (this.ActionTypeId == Constants.LOGACTIONDISCOUNT)
+            if (this.ActionTypeId == Constants.LogActionDiscount)
             {
                 string oldGroup = string.Empty;
                 string group = string.Empty;
