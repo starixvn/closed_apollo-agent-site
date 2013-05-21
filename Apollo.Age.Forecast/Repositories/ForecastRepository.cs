@@ -13,9 +13,9 @@ namespace Apollo.Age.Forecast.Repositories
     using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Forecast.Models;
     using Fanex.Common.Extensions;
+    using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-    using Fanex.Common.Helper;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastRepository : IForecastRepository
@@ -43,6 +43,7 @@ namespace Apollo.Age.Forecast.Repositories
                             Total = reader.ToDecimal("total")
                         });
                     }
+
                     if (reader.NextResult())
                     {
                         while (reader.Read())
@@ -59,6 +60,7 @@ namespace Apollo.Age.Forecast.Repositories
                     return scoreMapResult;
                 }
             }
+
             return null;
         }
 

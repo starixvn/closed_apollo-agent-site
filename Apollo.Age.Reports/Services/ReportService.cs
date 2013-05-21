@@ -10,13 +10,10 @@
 namespace Apollo.Age.Reports.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
+    using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Services.Impl;
     using Fanex.Caching;
-    using Apollo.Age.Reports.Criterias;
-    using Fanex.Common;
 
     public class ReportService : QueryService
     {

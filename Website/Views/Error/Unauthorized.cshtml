@@ -2,12 +2,13 @@
 	Layout = null;
 	string title = Apollo.Age.Resources.Lang.UnauthorizedMsg;
 }
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>@title</title>
 	<style type="text/css">
 		body {
+		    background: #fff;
 		    margin: 0;
 		    padding: 0;
 		    font-family: 'Segoe UI Light', 'Segoe UI', Arial, Sans-Serif;
@@ -25,6 +26,6 @@
 </head>
 <body>
 	<h1>@title</h1>
-	@Scripts.Render("~/unauthjs")
+	@Scripts.Render("~/scripts/unauthjs")
 </body>
 </html>

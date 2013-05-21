@@ -946,6 +946,18 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 cloneFromBasketball.parent.items[2].Toggle(true); // Expand
                                 var c = elements.length;
                                 var currentCopyBetType = elements[2].betTypeGroupElements[0].betTypeElements[0];
+                                if (currentCopyBetType.maxSpinBox && !currentCopyBetType.maxSpinBox.isValid()) {
+                                    return;
+                                }
+                                if (currentCopyBetType.minSpinBox && !currentCopyBetType.minSpinBox.isValid()) {
+                                    return;
+                                }
+                                if (currentCopyBetType.presetSpinBox && !currentCopyBetType.presetSpinBox.isValid()) {
+                                    return;
+                                }
+                                if (currentCopyBetType.ptSpinBox && !currentCopyBetType.ptSpinBox.isValid()) {
+                                    return;
+                                }
                                 var sportTypes = elements;
                                 var sportTypesLength = elements.length;
                                 for (var sportTypeIndex = 2; sportTypeIndex < sportTypesLength; sportTypeIndex++) {

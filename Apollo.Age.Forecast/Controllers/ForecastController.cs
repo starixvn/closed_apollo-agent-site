@@ -67,8 +67,10 @@ namespace Apollo.Age.Forecast.Controllers
                 {
                     leagueId = leagues.ElementAt(0).LeagueId;
                 }
+
                 ViewBag.FC1X2List = _forecastService.GetForecast1x2(currentAgentId, this.CurrentSession.AgentId, leagueId);
             }
+
             return View();
         }
 
@@ -91,6 +93,7 @@ namespace Apollo.Age.Forecast.Controllers
             {
                 forecasts = _forecastService.GetForecast1x2(currentAgentId, this.CurrentSession.AgentId, leagueId.Value);
             }
+
             return View(forecasts);
         }
 
@@ -113,7 +116,8 @@ namespace Apollo.Age.Forecast.Controllers
             {
                 leagueId = leagues.ElementAt(0).LeagueId;
             }
-            ViewBag.FCHDPList = _forecastService.GetForecastHandicapOverUnder(currentAgentId, base.CurrentSession.AgentId, leagueId);
+
+            ViewBag.FCHDPList = _forecastService.GetForecastHandicapOverUnder(currentAgentId, this.CurrentSession.AgentId, leagueId);
             return View();
         }
 
@@ -124,8 +128,8 @@ namespace Apollo.Age.Forecast.Controllers
         /// <returns></returns>
         public ActionResult FCHandicapOverUnderMatches(int leagueId, int mainShareHolderId = 0)
         {
-            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : base.CurrentSession.AgentId;
-            var forecasts = _forecastService.GetForecastHandicapOverUnder(currentAgentId,base.CurrentSession.AgentId,  leagueId);
+            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
+            var forecasts = _forecastService.GetForecastHandicapOverUnder(currentAgentId, this.CurrentSession.AgentId, leagueId);
             return View(forecasts);
         }
 
@@ -190,7 +194,8 @@ namespace Apollo.Age.Forecast.Controllers
                 if (this.CurrentSession.IsSuper && mainShareHolderId == 0 && custId != 0)
                 {
                     mainShareHolderId = _forecastService.GetMainShareHolderByMember(
-                        new GetMainShareHolderByMemberCriteria{
+                        new GetMainShareHolderByMemberCriteria
+                        {
                             CustId = custId
                         });
                 }
@@ -202,6 +207,7 @@ namespace Apollo.Age.Forecast.Controllers
                 var currentAgentId = GetCurrentAgentId(mainShareHolderId);
                 ViewBag.Leagues = _forecastService.GetScoreMapLeagues(currentAgentId);
             }
+
             return View();
         }
 
@@ -249,12 +255,19 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        public ViewResult ScoreMapResult(string matchIds, string liveBetTypes,
-            string deadBallBetTypes, int mainShareHolderId = 0)
+        public ViewResult ScoreMapResult(
+            string matchIds, 
+            string liveBetTypes,
+            string deadBallBetTypes, 
+            int mainShareHolderId = 0)
         {
             int currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            var scoreMapResult = _forecastService.GetScoreMapResults(currentAgentId, this.CurrentSession.AgentId,
-                matchIds, liveBetTypes, deadBallBetTypes);
+            var scoreMapResult = _forecastService.GetScoreMapResults(
+                currentAgentId, 
+                this.CurrentSession.AgentId,
+                matchIds, 
+                liveBetTypes, 
+                deadBallBetTypes);
 
             return View(scoreMapResult);
         }
@@ -270,13 +283,15 @@ namespace Apollo.Age.Forecast.Controllers
         /// <returns></returns>
         private int GetCurrentAgentId(int mainShareHolderId, string betType = null)
         {
-            int agentId = base.CurrentSession.AgentId;
-            if (base.CurrentSession.IsSuper)
+            int agentId = this.CurrentSession.AgentId;
+            if (this.CurrentSession.IsSuper)
             {
                 //// Should Use Cache, fix later
-                var mainShareHolders = _forecastService.GetData<Agent>(new GetAllMainShareHolderCriteria {
+                var mainShareHolders = _forecastService.GetData<Agent>(new GetAllMainShareHolderCriteria 
+                {
                     Bettypes = betType
                 });
+
                 if (mainShareHolderId > 0)
                 {
                     agentId = mainShareHolderId;
@@ -285,10 +300,12 @@ namespace Apollo.Age.Forecast.Controllers
                 {
                     agentId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
                 }
+
                 ViewBag.CurrentMainShareHolderId = mainShareHolderId;
                 ViewBag.MainShareHolders = mainShareHolders;
             }
-            ViewBag.CurrentAgentId = base.CurrentSession.AgentId;
+
+            ViewBag.CurrentAgentId = this.CurrentSession.AgentId;
 
             return agentId;
         }

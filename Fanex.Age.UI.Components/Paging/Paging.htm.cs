@@ -153,9 +153,9 @@ namespace Fanex.Age.UI.Components
 		public class Paging_ExternalResources_Block: Block
 		{
 			protected static string s32 = "<link href=\"";
-			protected static string s33{get{return AbsoluteUrl("Paging/Paging.less", TplSettings.Question);}}
+			protected static string s33{get{return AbsoluteUrl("_BetList/Resources/Paging.less", TplSettings.Question);}}
 			protected static string s34 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src=\"";
-			protected static string s35{get{return AbsoluteUrl("Paging/Paging.js", TplSettings.Question);}}
+			protected static string s35{get{return AbsoluteUrl("_BetList/Resources/Paging.js", TplSettings.Question);}}
 			protected static string s36 = "\" type=\"text/javascript\"></script>";
 			public override void ToString(ref StringBuilder bd)
 			{

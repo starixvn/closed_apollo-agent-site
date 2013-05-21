@@ -51,7 +51,7 @@ namespace Apollo.Age.Account.Controllers
 
             if (!ReferenceEquals(model, null) && model.Count() > 0)
             {
-                var cookie = new HttpCookie(Constants.LASTPOSTTIMEKEY, model.Last().PostTime.ToString());
+                var cookie = new HttpCookie(Constants.LastPostTimeKey, model.Last().PostTime.ToString());
                 HttpContext.Response.Cookies.Set(cookie);
 
                 ViewBag.LastPostTime = lastPostTime ?? model.Last().PostTime;
@@ -79,9 +79,9 @@ namespace Apollo.Age.Account.Controllers
 
             criteria.From = criteria.From != null ? criteria.From : DateTime.Now.AddDays(-3);
             criteria.To = criteria.To != null ? criteria.To : DateTime.Now;
-            criteria.PageQuery = string.IsNullOrWhiteSpace(criteria.PageQuery) ? Constants.NORMAL : criteria.PageQuery;
+            criteria.PageQuery = string.IsNullOrWhiteSpace(criteria.PageQuery) ? Constants.Normal : criteria.PageQuery;
 
-            if (string.Compare(criteria.PageQuery, Constants.PRIVATE) == 0
+            if (string.Compare(criteria.PageQuery, Constants.Private) == 0
                 && criteria.Extra == 1)
             {
                 if (!this.CurrentSession.IsSuper)
@@ -90,8 +90,8 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            if (string.Compare(criteria.PageQuery, Constants.SPECIAL) == 0
-                || string.Compare(criteria.PageQuery, Constants.ALLSPECIAL) == 0)
+            if (string.Compare(criteria.PageQuery, Constants.Special) == 0
+                || string.Compare(criteria.PageQuery, Constants.AllSpecial) == 0)
             {
                 isPublic = 2;
                 special = 1;
@@ -99,13 +99,13 @@ namespace Apollo.Age.Account.Controllers
                 criteria.To = null;
             }
 
-            if (string.Compare(criteria.PageQuery, Constants.NORMAL) == 0)
+            if (string.Compare(criteria.PageQuery, Constants.Normal) == 0)
             {
                 isPublic = 1;
                 special = 0;
             }
 
-            if (string.Compare(criteria.PageQuery, Constants.PRIVATE) == 0)
+            if (string.Compare(criteria.PageQuery, Constants.Private) == 0)
             {
                 isPublic = 0;
                 special = 2;
@@ -163,10 +163,10 @@ namespace Apollo.Age.Account.Controllers
             {
                 publicMessages[0] = pubMessage.MessageId;
                 publicMessages[1] = pubMessage.GetContent();
-                publicMessages[2] = Constants.NORMAL;
+                publicMessages[2] = Constants.Normal;
                 if (pubMessage.IsSticky)
                 {
-                    publicMessages[2] = Constants.ALLSPECIAL;
+                    publicMessages[2] = Constants.AllSpecial;
                 }
             }
 
