@@ -16,18 +16,15 @@ namespace Apollo.Age.Forecast.Controllers
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Forecast.Criterias;
     using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Web;
-    using System.Web.SessionState;
-    using Apollo.Age.Forecast.Criterias;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ForecastController : BaseController
@@ -252,10 +249,14 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        public ViewResult ScoreMapResult(string matchIds, string liveBetTypes, string deadBallBetTypes, int mainShareHolderId = 0)
+        public ViewResult ScoreMapResult(string matchIds, string liveBetTypes,
+            string deadBallBetTypes, int mainShareHolderId = 0)
         {
-            var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            return View(_forecastService.GetScoreMapResults(currentAgentId,this.CurrentSession.AgentId, matchIds, liveBetTypes, deadBallBetTypes));
+            int currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
+            var scoreMapResult = _forecastService.GetScoreMapResults(currentAgentId, this.CurrentSession.AgentId,
+                matchIds, liveBetTypes, deadBallBetTypes);
+
+            return View(scoreMapResult);
         }
 
         #endregion Score Map

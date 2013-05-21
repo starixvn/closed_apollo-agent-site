@@ -35,7 +35,7 @@ namespace Apollo.Age.Web
         private const string LANGUAGE = "Language";
         private const string ADMINNAME = "AdminName";
         private const string ADMINID = "AdminId";
-        private const int SERVERID = 1111;
+        private const int SERVERID = 2;
 
         #endregion Const
 
@@ -170,8 +170,8 @@ namespace Apollo.Age.Web
                 }
                 else // return View with not-found error message
                 {
-                    string doing = "Admin: " + model.AdminName + " via Agent: " + agent.Username + " Logged in to Apollo Agent Site - Result: Failed(" + Lang.AgentNotFound + ").";
-                    WritelogLogin(agent.Id, model.AdminId, 1306, doing);
+                    string doing = "Admin: " + model.AdminName + " via Agent: " + model.Agent + " Logged in to Apollo Agent Site - Result: Failed(" + Lang.AgentNotFound + ").";
+                    WritelogLogin(0, model.AdminId, 1306, doing);
 
                     ModelState.AddModelError("Agent", Lang.AgentNotFound);
                 }
@@ -203,18 +203,18 @@ namespace Apollo.Age.Web
             //        );
             //});
             DeviceService deviceService = new DeviceService(Request);
-            _userService.WriteLogInternalLogin(
-                agentId,
-                agentUserId,
-                SERVERID,
-                actionId,
-                doing,
-                deviceService.ClientIp,
-                deviceService.DomainName,
-                deviceService.BrowserName,
-                deviceService.Platform,
-                deviceService.CountryCode
-                );
+                _userService.WriteLogInternalLogin(
+                    agentId,
+                    agentUserId,
+                    SERVERID,
+                    actionId,
+                    doing,
+                    deviceService.ClientIp,
+                    deviceService.DomainName,
+                    deviceService.BrowserName,
+                    deviceService.Platform,
+                    deviceService.CountryCode
+                    );
         }
 
        

@@ -1,4 +1,6 @@
-﻿@model List<Apollo.Age.Account.Models.DiscountModel>
+﻿@using Apollo.Age.Enumerations
+@using Apollo.Age.Account.Models
+@model List<DiscountModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
     var isShowOld = (bool)ViewBag.IsShowOldValue;
@@ -37,7 +39,7 @@
             <td class="colW2">
                 @foreach (var item in Model)
                 {
-                    if (item.SportType == 1 && item.BetType == 1)
+                    if (item.BetType == (int)BetTypes.Handicap)
                     {
                     @ToString(isShowOld, item.OldGroupA, item.GroupA);
                     }
@@ -51,7 +53,7 @@
             <td class="colW2">
                 @foreach (var item in Model)
                 {
-                    if (item.SportType == 1 && item.BetType == 5)
+                    if (item.BetType == (int)BetTypes.FT_1X2)
                     {
                     @ToString(isShowOld, item.OldGroupA, item.GroupA);
                     }
@@ -65,7 +67,7 @@
             <td class="colW2">
                 @foreach (var item in Model)
                 {
-                    if (item.SportType == 1 && item.BetType == 4)
+                    if (item.BetType == (int)BetTypes.Correct_Score)
                     {
                     @ToString(isShowOld, item.OldGroupA, item.GroupA);
                     }
