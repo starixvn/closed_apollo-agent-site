@@ -1,7 +1,8 @@
-﻿@model GetLogCustSettingCriteria
+﻿@using Apollo.Age.Resources
+@model GetLogCustSettingCriteria
 @{    
     Layout = "~/Views/Log/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.viewlog + " " + Apollo.Age.Resources.Lang.customer + " " + Apollo.Age.Resources.Lang.setting;
+    ViewBag.Title = Lang.viewlog + " " + Lang.customer + " " + Lang.setting;
     var logData = (List<LogRunSpModel>)ViewBag.LogData;
     var agentLevel = ViewBag.AgentLevel != null ? (int)ViewBag.AgentLevel : -1;
 }
@@ -15,28 +16,28 @@
             <div class="cell">
                 <div class="label">
                     @Html.DropDownListFor(m => m.IsAgent, new List<SelectListItem> {
-            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblAgent,Selected=true },
-            new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.lblMember }
+            new SelectListItem { Value = "true", Text = Lang.lblAgent,Selected=true },
+            new SelectListItem { Value = "false", Text = Lang.lblMember }
         })
-                    <input id="enterUsernameValue" type="hidden" value="@Apollo.Age.Resources.Lang.enterusername"/>
+                    <input id="enterUsernameValue" type="hidden" value="@Lang.enterusername"/>
                 </div>
             </div>
             <div class="cell">
                 <div class="editor">
-                    @Html.TextBoxFor(m => m.Username, Apollo.Age.Resources.Lang.enterusername)
+                    @Html.TextBoxFor(m => m.Username, Lang.enterusername)
                 </div>
             </div>
             <div class="cell">
                 <div class="label">
-                    @Html.LabelFor(m => m.ActionTypeId, Apollo.Age.Resources.Lang.viewby)
+                    @Html.LabelFor(m => m.ActionTypeId, Lang.viewby)
                 </div>
                 <div class="editor">
                     @Html.DropDownListFor(m => m.ActionTypeId, new List<SelectListItem>
                {
-                new SelectListItem{Value ="0",Text=Apollo.Age.Resources.Lang.all},
-                new SelectListItem{Value ="2",Text=Apollo.Age.Resources.Lang.lblCommission},
-                new SelectListItem{Value ="3",Text=Apollo.Age.Resources.Lang.lblBetSetting},
-                new SelectListItem{Value ="4",Text=Apollo.Age.Resources.Lang.positiontaking}
+                new SelectListItem{Value ="0",Text=Lang.all},
+                new SelectListItem{Value ="2",Text=Lang.lblCommission},
+                new SelectListItem{Value ="3",Text=Lang.lblBetSetting},
+                new SelectListItem{Value ="4",Text=Lang.positiontaking}
                })
                 </div>
             </div>
@@ -48,13 +49,13 @@
             </div>
             <div class="cell">
                 <div class="editor">
-                    <input type="submit" class="btn" id="dSubmit" value="@Apollo.Age.Resources.Lang.submit"/>
+                    <input type="submit" class="btn" id="dSubmit" value="@Lang.submit"/>
                 </div>
             </div>
             <div class="cell">
-                <div class="editor">
+                <div class="editor">                
+                    <label for="ShowOldValue">@Lang.ShowOldValues</label>
                     @Html.CheckBoxFor(m => m.ShowOldValue)
-                    @Apollo.Age.Resources.Lang.OldValue
                 </div>
             </div>
         </div>
@@ -62,23 +63,17 @@
     <table class="tblRpt">
         <thead>
             <tr>
-                <th style="width: 20px">
-                    @Apollo.Age.Resources.Lang.no
-                </th>
                 <th style="width: 60px">
-                    @Apollo.Age.Resources.Lang.logid
+                    @Lang.logid
                 </th>
                 <th>
-                    @Apollo.Age.Resources.Lang.editby
-                </th>
-                <th style="width: 80px">
-                    @Apollo.Age.Resources.Lang.logdate
+                    @Lang.editby
                 </th>
                 <th>
-                    @Apollo.Age.Resources.Lang.actionname
+                    @Lang.actionname
                 </th>
                 <th>
-                    @Apollo.Age.Resources.Lang.lblDetails
+                    @Lang.lblDetails
                 </th>
             </tr>
         </thead>
@@ -93,41 +88,29 @@
         foreach (var itemLog in logData)
         {
             count++;
-            actionName = Apollo.Age.Resources.Lang.update + " ";
+            actionName = Lang.update + " ";
             rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
                 <tr @Html.Raw(rowClass)>
-                    <td class="c">
-                        @count
-                    </td>
                     <td class="c">
                         @itemLog.LogId
                     </td>
                     <td class="c">
                         @itemLog.Username
-                    </td>
-                    <td class="c">
-                        @itemLog.LogDate
+                        <p>@itemLog.LogDate.ToShortDateString()</p>
+                        <p>@itemLog.LogDate.ToShortTimeString()</p>
                     </td>
                     <td class="c">
                         @switch (itemLog.ActionTypeId)
                         {
-                            case Constants.LOGACTIONDISCOUNT:
-                                actionName += Apollo.Age.Resources.Lang.lblCommission;
+                            case Constants.LogActionDiscount:
+                                actionName += Lang.lblCommission;
                                 break;
-                            case Constants.LOGACTIONBETSETTING:
-                                actionName += Apollo.Age.Resources.Lang.lblBetSetting;
+                            case Constants.LogActionBetSetting:
+                                actionName += Lang.lblBetSetting;
                                 break;
-                            case Constants.LOGACTIONPOSITIONTAKING:
-                                actionName += Apollo.Age.Resources.Lang.sharesetting;
+                            case Constants.LogActionPositionTaking:
+                                actionName += Lang.sharesetting;
                                 break;
-                        }
-                        @if (Model.IsAgent)
-                        {
-                            actionName += " - " + Apollo.Age.Resources.Lang.agent;
-                        }
-                        else
-                        {
-                            actionName += " - " + Apollo.Age.Resources.Lang.customer;
                         }
                         @actionName
                     </td>
@@ -144,5 +127,5 @@
         </tbody>
     </table>
 }
-@Html.Hidden("ToDayLable", Apollo.Age.Resources.Lang.to)
-@Html.Hidden("FromDayLable", Apollo.Age.Resources.Lang.from)
+@Html.Hidden("ToDayLable", Lang.to)
+@Html.Hidden("FromDayLable", Lang.from)

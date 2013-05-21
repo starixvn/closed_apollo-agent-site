@@ -9802,6 +9802,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to on.
+        /// </summary>
+        public static string on {
+            get {
+                return ResourceManager.GetString("on", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1X2 Commission.
         /// </summary>
         public static string OneXTwoCommission {
@@ -11103,6 +11112,15 @@ namespace Apollo.Age.Resources {
         public static string showhidecolumnAd {
             get {
                 return ResourceManager.GetString("showhidecolumnAd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show old values.
+        /// </summary>
+        public static string ShowOldValues {
+            get {
+                return ResourceManager.GetString("ShowOldValues", resourceCulture);
             }
         }
         
