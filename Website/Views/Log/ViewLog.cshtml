@@ -97,7 +97,7 @@
                     <td class="c">
                         @itemLog.Username
                         <p>@itemLog.LogDate.ToShortDateString()</p>
-                        <p>@itemLog.LogDate.ToShortTimeString()</p>
+                        <p>@itemLog.LogDate.ToString("HH:mm:ss")</p>
                     </td>
                     <td class="c">
                         @switch (itemLog.ActionTypeId)
