@@ -266,11 +266,11 @@ function InitHubConnection() {
     var hub = $.connection.kickoutHub;
     hub.client.kickoutUser = function () {
         alert(LANGUAGES.AlerSignonMessage);
-        APOLLO.signOut();
+        APOLLO.signOut(true);
     };
 
     $.connection.hub.start().done(function () {
-        hub.server.send($("#adminid").val(), $("#agentid").val());
+        hub.server.send($("#adminid").val(), $("#agentid").val(), $("#isinternal").val());
     });
 
 }

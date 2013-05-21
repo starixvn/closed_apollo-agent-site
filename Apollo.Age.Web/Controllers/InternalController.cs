@@ -178,7 +178,6 @@ namespace Apollo.Age.Web
 
             return View(model);
         }
-               
 
         private void WritelogLogin(int agentId, int agentUserId, int actionId, string doing)
         {
@@ -272,14 +271,18 @@ namespace Apollo.Age.Web
             bool isInternalSignIn = SessionManager.CurrentSession != null
                 && SessionManager.CurrentSession.IsInternalSignIn;
 
-            string doing = "Admin: " + SessionManager.CurrentSession.AdminName + " via Agent: " + SessionManager.CurrentSession.Username + " Log out - Result: Successful.";
-
             if (!isForce)
             {
-                //remove cache one user logout
-                var cacheKey = SessionManager.CurrentSession.AdminId.ToString() + "_" + SessionManager.CurrentSession.AgentId.ToString();
-                CachingService.Remove(cacheKey);
-                //-------------------------
+                if (isInternalSignIn)
+                {
+                    //remove cache one user logout
+                    var cacheKey = SessionManager.CurrentSession.AdminId.ToString() + "_" + SessionManager.CurrentSession.AgentId.ToString();
+                    CachingService.Remove(cacheKey);
+                    //-------------------------
+
+                    string doing = "Admin: " + SessionManager.CurrentSession.AdminName + " via Agent: " + SessionManager.CurrentSession.Username + " Log out - Result: Successful.";
+                    WritelogLogin(SessionManager.CurrentSession.AgentId, SessionManager.CurrentSession.AdminId, 1309, doing);
+                }
             }
 
             Session.Abandon();
@@ -287,9 +290,8 @@ namespace Apollo.Age.Web
             FormsAuthentication.SignOut();
 
             if (isInternalSignIn)
-            {
-                // Write log internal login
-                WritelogLogin(SessionManager.CurrentSession.AgentId, SessionManager.CurrentSession.AdminId, 1309, doing);
+            {              
+
                 return Redirect(ApoURLs.URLs.InternalSignIn);
             }
 

@@ -8,28 +8,30 @@
     
     public class KickoutHub : Hub
     {
-        public void Send( int adminId, int agentId )
+        public void Send(int adminId, int agentId, bool isinternal)
         {
-            var key = adminId.ToString() + "_" + agentId.ToString();
-            var connectionId = string.Empty;        
-            if (CachingService.Get<OnlineUserCaching>(key) != null)
+            if (isinternal)
             {
-                connectionId = CachingService.Get<OnlineUserCaching>(key).ConnectionId;
-
-                if (!Apollo.Age.Configurations.AppSettings.MultipleSignOn)
+                var key = adminId.ToString() + "_" + agentId.ToString();
+                var connectionId = string.Empty;
+                if (CachingService.Get<OnlineUserCaching>(key) != null)
                 {
-                    Clients.Client(connectionId).kickoutUser(); // Kickout               
+                    connectionId = CachingService.Get<OnlineUserCaching>(key).ConnectionId;
+
+                    if (!Apollo.Age.Configurations.AppSettings.MultipleSignOn)
+                    {
+                        Clients.Client(connectionId).kickoutUser(); // Kickout               
+                    }
+
                 }
-                
-            }
-           
-            CachingService.Set<OnlineUserCaching>(key, new OnlineUserCaching
-            {
-                AdminId = adminId,
-                AgentId = agentId,
-                ConnectionId = Context.ConnectionId
-            });
-                        
+
+                CachingService.Set<OnlineUserCaching>(key, new OnlineUserCaching
+                {
+                    AdminId = adminId,
+                    AgentId = agentId,
+                    ConnectionId = Context.ConnectionId
+                });
+            }           
         }
     }
 }
