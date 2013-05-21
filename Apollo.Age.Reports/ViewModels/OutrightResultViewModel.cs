@@ -35,9 +35,9 @@ namespace Apollo.Age.Reports.ViewModels
         {
             get
             {
-                if (OutrightResult != null && OutrightResult.Any())
+                if (this.OutrightResult != null && this.OutrightResult.Any())
                 {
-                    return OutrightResult
+                    return this.OutrightResult
                         .Select(item => new Sport { Id = (byte)item.SportId, Name = item.SportName })
                         .Distinct();
                 }
@@ -52,10 +52,10 @@ namespace Apollo.Age.Reports.ViewModels
             {
                 var listLeague = new List<League>();
 
-                byte selectedSportId = ((int)this.SportId <= 0) ? (byte)SportList.First().Id : this.SportId;
-                if (OutrightResult != null && OutrightResult.Any())
+                byte selectedSportId = ((int)this.SportId <= 0) ? (byte)this.SportList.First().Id : this.SportId;
+                if (this.OutrightResult != null && this.OutrightResult.Any())
                 {
-                    listLeague = OutrightResult.Where(item => item.SportId == selectedSportId)
+                    listLeague = this.OutrightResult.Where(item => item.SportId == selectedSportId)
                         .Select(item => new League { Id = item.LeagueId, Name = item.LeagueName })
                         .Distinct().ToList();
 
@@ -75,7 +75,7 @@ namespace Apollo.Age.Reports.ViewModels
         {
             get
             {
-                var selectItemList = SportList.Select(sport => new SelectListItem
+                var selectItemList = this.SportList.Select(sport => new SelectListItem
                   {
                       Value = sport.Id.ToString(),
                       Text = CacheRef.GetSportName(sport.Id)
