@@ -41,14 +41,14 @@
 
 	static void RegisterBundles(BundleCollection bundles)
 	{
-		bundles.Add(new ScriptBundle("~/homejs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/homejs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/Core.js",
 			"~/_GlobalResources/Js/jquery.cookie.js",
 			"~/Views/Home/Resources/Default.js"));
 
-		bundles.Add(new ScriptBundle("~/reportjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/reportjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
@@ -57,12 +57,12 @@
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/Reports/Resources/Reports.js"));
 
-		bundles.Add(new ScriptBundle("~/outstandingjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/outstandingjs").Include(
 			"~/_GlobalResources/Js/Fanex.Grid/moment.js",
 			"~/_GlobalResources/Js/Fanex.Grid/numeral.js",
 			"~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.js"));
 
-		bundles.Add(new ScriptBundle("~/totalbetsjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/totalbetsjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
@@ -70,7 +70,7 @@
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/TotalBets/Resources/TotalBets.js"));
 
-		bundles.Add(new ScriptBundle("~/forecastjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/forecastjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
@@ -79,32 +79,32 @@
 			"~/_GlobalResources/Js/ErrorMsg/ErrorMsg.js",
 			"~/_GlobalResources/Js/Core.js"));
 		
-		bundles.Add(new ScriptBundle("~/messagejs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/messagejs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/Message/Resources/PortalPage.js"));
 
-		bundles.Add(new ScriptBundle("~/logjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/logjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/Message/Resources/PortalPage.js"));
 
-		bundles.Add(new ScriptBundle("~/accountjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/accountjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery.cookie.js",
 			"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
 			"~/_GlobalResources/Js/Core.js"));
 
-		bundles.Add(new ScriptBundle("~/custsettingjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/custsettingjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
-			"~/_GlobalResources/Js/noty/jquery.noty.min.js",
+			"~/_GlobalResources/Js/noty/jquery.noty.js",
 			"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/Account/Resources/CustSettingEngine/Core.js",
@@ -114,7 +114,7 @@
 			"~/Views/Account/Resources/CustSettingEngine/BetTypeGroup.js",
 			"~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js"));
 
-		bundles.Add(new ScriptBundle("~/accountlistjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/accountlistjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
@@ -122,46 +122,44 @@
 			"~/_GlobalResources/Js/Core.js",
 			"~/Views/Account/Resources/AccountList.js"));
 
-		bundles.Add(new ScriptBundle("~/logloginjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/logloginjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery.cookie.js",
 			"~/_GlobalResources/Js/Core.js"));
 
-		bundles.Add(new ScriptBundle("~/treeviewjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/treeviewjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery.cookie.js",
 			"~/Views/Account/Resources/jquery.treeview.js",
 			"~/Views/Account/Resources/jquery.treeview.async.js"));
 
-		bundles.Add(new ScriptBundle("~/viewsettingjs").Include(
+		bundles.Add(new ScriptBundle("~/scripts/viewsettingjs").Include(
 			"~/_GlobalResources/Js/head.js",
 			"~/_GlobalResources/Js/jquery.js",
 			"~/_GlobalResources/Js/jquery-ui.js",
 			"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
 			"~/_GlobalResources/Js/Core.js"));
+
+		bundles.Add(new ScriptBundle("~/scripts/unauthjs").Include(
+			"~/_GlobalResources/Js/jquery.js",
+			"~/_GlobalResources/Js/Core.js",
+			"~/Views/Error/Resources/Unauthorized.js"));
 	}
 
 	void Application_Start(object sender, EventArgs e)
 	{
-        
-        RouteTable.Routes.MapHubs(new Microsoft.AspNet.SignalR.HubConfiguration { EnableDetailedErrors = true });
-        
+		RouteTable.Routes.MapHubs(new Microsoft.AspNet.SignalR.HubConfiguration { EnableDetailedErrors = true });
+		
 		maintenanceService = new UnderMaintenanceService();
 		AreaRegistration.RegisterAllAreas();
 		RegisterGlobalFilters(GlobalFilters.Filters);
-                
+				
 		RegisterRoutes(RouteTable.Routes);
 		RegisterBundles(BundleTable.Bundles);
 
 		DbSettingProviderManager.Current.Start();
-
-
-		
-		
-		   
-		   
 	}
 
 	/// <summary>

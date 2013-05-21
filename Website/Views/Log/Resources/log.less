@@ -7,11 +7,12 @@
 
 .tblRpt {
 	margin-top: 0;	
+	line-height:15px;
 
 	tbody td {
 		white-space: normal;
 		background: @white;
-		vertical-align: top;
+		vertical-align: top;	
 	}
 
 	tr.sub-title td {
@@ -64,19 +65,31 @@
 		color: #779999;
 	}
 
-	.colW1 {
+	.colW {
 		background-color: #F3F3F3;
 		font-weight: normal;
 		padding-left: 5px;
 		text-align: left;
 		text-transform: capitalize;
 		width: 100px;
+		white-space: nowrap;
+	}
+
+	.colW1 {
+		background-color: #F3F3F3;
+		font-weight: normal;
+		padding-left: 5px;
+		text-align: center;
+		text-transform: capitalize;
+		width: 100px;
+		white-space: nowrap;
 	}
 
 	.colW2 {
 		text-transform: capitalize;
 		width: 100px;
 		text-align: center;
+		white-space: nowrap;
 	}
 
 	.headerSportTypeDetail {

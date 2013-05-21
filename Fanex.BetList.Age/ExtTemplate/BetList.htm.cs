@@ -13,26 +13,26 @@ namespace Fanex.BetList.Age
 	{
 		public class BetList_Template : Template
 		{
-			protected static string s0 = "<!DOCTYPE html><html><head><title>Bet List</title><link href=\"";
-			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
-			protected static string s2 = "\"rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
-			protected static string s3{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
-			protected static string s4 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
+			protected static string s0 = "<!DOCTYPE html><html><head><title>Bet List</title><script src=\"";
+			protected static string s1{get{return AbsoluteUrl("_GlobalResources/Js/head.min.js", TplSettings.Question);}}
+			protected static string s2 = "\" type=\"text/javascript\"></script><link href=\"";
+			protected static string s3{get{return AbsoluteUrl("_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css", TplSettings.Question);}}
+			protected static string s4 = "\"rel=\"stylesheet\" type=\"text/css\" /><link href=\"";
+			protected static string s5{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
+			protected static string s6 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"page_main\"><div id=\"header_main\">";
 			public string title = "{title}";
-			protected static string s5 = "</div><div id=\"content_main\">";
+			protected static string s7 = "</div><div id=\"content_main\">";
 			public BetList_MainShareHolder_Block MainShareHolder = new BetList_MainShareHolder_Block();
-			protected static string s6 = "<table id=\"betlist\" class=\"tblRpt\">";
+			protected static string s8 = "<table id=\"betlist\" class=\"tblRpt\">";
 			public string content = "{content}";
-			protected static string s7 = "</table><div id=\"dialog-details\"></div></div></div>";
+			protected static string s9 = "</table><div id=\"dialog-details\"></div></div></div>";
 			public BetList_HiddenFields_Block HiddenFields = new BetList_HiddenFields_Block();
-			protected static string s8 = "<script src=\"";
-			protected static string s9{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
-			protected static string s10 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
+			protected static string s10 = "<script src=\"";
+			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s12 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s13{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
 			protected static string s14 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s15{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s15{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
 			protected static string s16 = "\" type=\"text/javascript\"></script><script src=\"";
 			protected static string s17{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
 			protected static string s18 = "\" type=\"text/javascript\"></script></body></html>";
@@ -46,15 +46,15 @@ namespace Fanex.BetList.Age
 					bd.Append(s2);
 					bd.Append(s3);
 					bd.Append(s4);
-					bd.Append(title);
 					bd.Append(s5);
-					if(null != MainShareHolder) MainShareHolder.ToString(ref bd);
 					bd.Append(s6);
-					bd.Append(content);
+					bd.Append(title);
 					bd.Append(s7);
-					if(null != HiddenFields) HiddenFields.ToString(ref bd);
+					if(null != MainShareHolder) MainShareHolder.ToString(ref bd);
 					bd.Append(s8);
+					bd.Append(content);
 					bd.Append(s9);
+					if(null != HiddenFields) HiddenFields.ToString(ref bd);
 					bd.Append(s10);
 					bd.Append(s11);
 					bd.Append(s12);

@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Enumerations
 @using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
 @model List<DiscountModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
@@ -8,12 +9,12 @@
     var group = (string)ViewBag.Group;
     
     <table class="tblRpt">
-        <tr class="colW1">
+        <tr class="colW">
             <td>
-                @Apollo.Age.Resources.Lang.group
+                @Lang.group
             </td>
             <td colspan="2">
-                @Apollo.Age.Resources.Lang.membercomm
+                @Lang.membercomm
             </td>
         </tr>
         <tr>
@@ -33,8 +34,8 @@
                     <span class="valueold">@oldGroup</span>
                 }
             </td>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.hdp, @Apollo.Age.Resources.Lang.lblOU, @Apollo.Age.Resources.Lang.lblOE
+            <td class="colW">
+                @Lang.hdp, @Lang.lblOU, @Lang.lblOE
             </td>
             <td class="colW2">
                 @foreach (var item in Model)
@@ -47,8 +48,8 @@
             </td>
         </tr>
         <tr>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lbl1x2Comm
+            <td class="colW">
+                @Lang.lbl1x2Comm
             </td>
             <td class="colW2">
                 @foreach (var item in Model)
@@ -61,8 +62,8 @@
             </td>
         </tr>
         <tr>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblOtherComm
+            <td class="colW">
+                @Lang.lblOtherComm
             </td>
             <td class="colW2">
                 @foreach (var item in Model)

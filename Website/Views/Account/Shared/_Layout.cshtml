@@ -9,7 +9,7 @@
 <body>
     @RenderBody()
     @Html.Hidden("ApoRoot", Url.Content("~/"))
-    @Scripts.Render("~/accountjs")
+    @Scripts.Render("~/scripts/accountjs")
     <script src="~/_GlobalResources/Js/BlockUI/jquery.blockUI.js" type="text/javascript"></script>
     @RenderSection("foot", required: false)
 </body>

@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Enumerations
 @using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
 @model List<PositionTakingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
@@ -18,7 +19,7 @@
                 @if (itemSportFirst.SportType == (int)SportTypes.Soccer)
                 { 
                     <td colspan="6">
-                        @itemSportFirst.SportName - @Apollo.Age.Resources.Lang.lblDeadball
+                        @itemSportFirst.SportName - @Lang.lblDeadball
                     </td>
                 }
                 else
@@ -46,9 +47,9 @@
 
                     if (itemBet.SportType == 1 && itemBet.IsLive && !isHaveLive)
                     {
-            <tr>
+            <tr class="sub-title">
                 <td colspan="6">
-                    @itemSport.FirstOrDefault().SportName - @Apollo.Age.Resources.Lang.lblLive
+                    @itemSport.FirstOrDefault().SportName - @Lang.lblLive
                 </td>
             </tr>    
                         isHaveLive = true;
@@ -67,8 +68,8 @@
                 if (isAgent)
                 { 
             <tr>
-                <td class="colW1">
-                    @Apollo.Age.Resources.Lang.lblMaxGivenShare
+                <td class="colW">
+                    @Lang.lblMaxGivenShare
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {    
@@ -81,14 +82,14 @@
                 if (agentLevel != 1)
                 { 
             <tr>
-                <td class="colW1">
+                <td class="colW">
                     @if (isAgent)
                     { 
-                        @Apollo.Age.Resources.Lang.lblMaxTakenShare
+                        @Lang.lblMaxTakenShare
                     }
                     else
                     {
-                        @Apollo.Age.Resources.Lang.lblTakenShare
+                        @Lang.lblTakenShare
                     }
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
@@ -102,8 +103,8 @@
                 if (isAgent)
                 { 
             <tr>
-                <td class="colW1">
-                    @Apollo.Age.Resources.Lang.lblMinGivenShare
+                <td class="colW">
+                    @Lang.lblMinGivenShare
                 </td>
                 @for (int i = index; i < wide && i < listItemSport.Count; i++)
                 {                   
@@ -119,7 +120,7 @@
         }
         <tr class="sub-title">
             <td colspan="6">
-                @Apollo.Age.Resources.Lang.lblMixParlay
+                @Lang.lblMixParlay
             </td>
         </tr>
         <tr>
@@ -132,8 +133,8 @@
         @if (isAgent)
         { 
             <tr>
-                <td class="colW1">
-                    @Apollo.Age.Resources.Lang.lblMaxGivenShare
+                <td class="colW">
+                    @Lang.lblMaxGivenShare
                 </td>
                 <td class="colW2">
                     @ToString(isShowOld, itemMixSport.OldMaxGiven, itemMixSport.MaxGiven)
@@ -143,14 +144,14 @@
         @if (agentLevel != 1)
         { 
             <tr>
-                <td class="colW1">
+                <td class="colW">
                     @if (isAgent)
                     { 
-                        @Apollo.Age.Resources.Lang.lblMaxTakenShare
+                        @Lang.lblMaxTakenShare
                     }
                     else
                     {
-                        @Apollo.Age.Resources.Lang.lblTakenShare
+                        @Lang.lblTakenShare
                     }
                 </td>
                 <td class="colW2">
@@ -161,8 +162,8 @@
         @if (isAgent)
         { 
             <tr>
-                <td class="colW1">
-                    @Apollo.Age.Resources.Lang.lblMinGivenShare
+                <td class="colW">
+                    @Lang.lblMinGivenShare
                 </td>
                 <td class="colW2">
                     @ToString(isShowOld, itemMixSport.OldMinGiven, itemMixSport.MinGiven)

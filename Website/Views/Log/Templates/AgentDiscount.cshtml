@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Enumerations
 @using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
 @model List<DiscountModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
@@ -27,40 +28,40 @@
     
     <table class="tblRpt">
         <tr>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblGroupa
+            <td class="colW">
+                @Lang.lblGroupa
             </td>
             <td class="colW2">
                 @ToString(isShowOld, group.OldGroupA, group.GroupA)
             </td>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblGroupb
+            <td class="colW">
+                @Lang.lblGroupb
             </td>
             <td class="colW2">
                 @ToString(isShowOld, group.OldGroupB, group.GroupB)
             </td>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblGroupc
+            <td class="colW">
+                @Lang.lblGroupc
             </td>
             <td class="colW2">
                 @ToString(isShowOld, group.OldGroupC, group.GroupC)
             </td>
         </tr>
         <tr>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblGroupd
+            <td class="colW">
+                @Lang.lblGroupd
             </td>
             <td class="colW2">
                 @ToString(isShowOld, group.OldGroupD, group.GroupD)
             </td>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lbl1x2Comm
+            <td class="colW">
+                @Lang.lbl1x2Comm
             </td>
             <td class="colW2">
                 @ToString(isShowOld, group1x2.OldGroupA, group1x2.GroupA)
             </td>
-            <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblOtherComm
+            <td class="colW">
+                @Lang.lblOtherComm
             </td>
             <td class="colW2">
                 @ToString(isShowOld, groupOthers.OldGroupA, groupOthers.GroupA)
