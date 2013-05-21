@@ -53,7 +53,20 @@ var Log = function ($) {
             });
 
             $('#ShowOldValue').change(function () {
-                $('form').submit();
+                var valuechanged = $('.valuechanged');
+                var line = valuechanged.next();
+                var valueOld = line.next();
+                var value = $(this).is(':checked');
+                
+                if (value) {
+                    line.show();
+                    valueOld.show();
+                }
+                else {
+                    line.hide();
+                    valueOld.hide();
+                }
+
             });
         },
 

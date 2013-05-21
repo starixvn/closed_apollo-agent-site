@@ -14,6 +14,7 @@ namespace Apollo.Age.Account.ViewModels
     using System.Web.Mvc;
     using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
+    using Apollo.Age.Enumerations;
 
     public class AgentShareViewModel
     {
@@ -32,7 +33,8 @@ namespace Apollo.Age.Account.ViewModels
             get
             {
                 // hard code with Mix Sports Parlay: SportType == 99 && BetType == 9
-                return (this.SportType == 99 && this.BetType == 9) ? ("1-" + this.SportType.ToString()) : ("0-" + this.SportType.ToString());
+                return (this.SportType == (short)SportTypes.OtherSports && this.BetType == (short)BetTypes.Mix_Parlay) 
+                    ? ("1-" + this.SportType.ToString()) : ("0-" + this.SportType.ToString());
             }
         }
 
@@ -54,7 +56,7 @@ namespace Apollo.Age.Account.ViewModels
         {
             get
             {
-                var selectItemList = SportList.Select(sport => new SelectListItem
+                var selectItemList = this.SportList.Select(sport => new SelectListItem
                 {
                     Value = sport.IsMixSportParlay ? ("1-" + sport.Id.ToString()) : ("0-" + sport.Id.ToString()),
                     Text = sport.Name
@@ -68,7 +70,7 @@ namespace Apollo.Age.Account.ViewModels
         {
             get
             {
-                var selectItemList = BetTypeList.Select(bettype => new SelectListItem
+                var selectItemList = this.BetTypeList.Select(bettype => new SelectListItem
                 {
                     Value = bettype.IsLive ? ("1-" + bettype.Id.ToString()) : ("0-" + bettype.Id.ToString()),
                     Text = bettype.IsLive ? (Apollo.Age.Resources.Lang.lblLiveBall + " " + bettype.Name)

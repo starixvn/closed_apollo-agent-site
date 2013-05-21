@@ -15,19 +15,17 @@ namespace Apollo.Age.Forecast.Services
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Forecast.Core;
     using Apollo.Age.Forecast.Criterias;
     using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Repositories;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
-    using Apollo.Age.Enumerations;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastService : QueryService
     {
-        private IForecastRepository _forecastRepository { get; set; }
-
         public ForecastService()
             : this(null)
         {
@@ -37,6 +35,8 @@ namespace Apollo.Age.Forecast.Services
         {
             _forecastRepository = _forecastRepository ?? new ForecastRepository();
         }
+
+        private IForecastRepository _forecastRepository { get; set; }
 
         /// <summary>
         /// Running Leagues
@@ -54,8 +54,7 @@ namespace Apollo.Age.Forecast.Services
                     {
                         AgentId = agentId,
                         BetTypes = betType.ToString()
-                    }
-                );
+                    });
         }
 
         /// <summary>
@@ -75,8 +74,7 @@ namespace Apollo.Age.Forecast.Services
                         AgentId = agentId,
                         LeagueID = leagueId,
                         LoggedId = loggedId
-                    }
-                );
+                    });
         }
 
         /// <summary>
@@ -100,8 +98,7 @@ namespace Apollo.Age.Forecast.Services
                         BaseOffsetHTHDP = 0,
                         BaseOffsetHTOU = 0,
                         BaseOffsetOU = 0
-                    }
-                );
+                    });
         }
 
         /// <summary>
@@ -125,8 +122,7 @@ namespace Apollo.Age.Forecast.Services
                         BetType = betType,
                         MatchId = matchId,
                         LoggedId = loggedId
-                    }
-                );
+                    });
 
             //// Calculate Value
             try
@@ -160,8 +156,7 @@ namespace Apollo.Age.Forecast.Services
                         BetType = betType,
                         MatchId = matchId,
                         LoggedId = loggedId
-                    }
-                );
+                    });
         }
 
         /// <summary>
@@ -225,6 +220,7 @@ namespace Apollo.Age.Forecast.Services
                             }
                         }
                     }
+
                     scoreMapViewResult.Add(scoreMapItem);
                 }
             }
@@ -232,6 +228,7 @@ namespace Apollo.Age.Forecast.Services
             {
                 HandleException(ex);
             }
+
             return scoreMapViewResult;
         }
 
@@ -254,6 +251,7 @@ namespace Apollo.Age.Forecast.Services
                         betTypeIds.Add(betType.Id1st);
                     }
                 }
+
                 CachingService.Set<List<int>>(Constants.SCORE_MAP_BETTYPES_LIST, betTypeIds, TimeSpan.FromHours(2));
                 return betTypeIds;
             }
@@ -282,22 +280,8 @@ namespace Apollo.Age.Forecast.Services
                     scoreMapBetTypes.DeadBallBetTypes.Add(betType);
                 }
             }
-            return scoreMapBetTypes;
-        }
 
-        /// <summary>
-        /// Load Score Map Bet Type from DB or cache
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerable<ScoreMapBetTypeModel> LoadScoreMapBetTypes()
-        {
-            IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = CachingService.Get<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES);
-            if (scoreMapBetTypeList == null)
-            {
-                scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
-                CachingService.Set<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES, scoreMapBetTypeList, new TimeSpan(0, 5, 0));
-            }
-            return scoreMapBetTypeList;
+            return scoreMapBetTypes;
         }
 
         /// <summary>
@@ -336,7 +320,6 @@ namespace Apollo.Age.Forecast.Services
             return betTypeAll;
         }
 
-
         /// <summary>
         /// Score Map Matches
         /// </summary>
@@ -350,8 +333,7 @@ namespace Apollo.Age.Forecast.Services
                     {
                         AgentId = agentId,
                         LeagueId = leagueId
-                    }
-                );
+                    });
             return scoreMapMatches.OrderBy(match => match.MatchName);
         }
 
@@ -393,8 +375,7 @@ namespace Apollo.Age.Forecast.Services
                     {
                         BetType = betType,
                         MatchId = matchId
-                    }
-                );
+                    });
 
             return matchOddsViewModels.ElementAtOrDefault(0);
         }
@@ -509,6 +490,21 @@ namespace Apollo.Age.Forecast.Services
             return forecast;
         }
 
+        /// <summary>
+        /// Load Score Map Bet Type from DB or cache
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerable<ScoreMapBetTypeModel> LoadScoreMapBetTypes()
+        {
+            IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = CachingService.Get<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES);
+            if (scoreMapBetTypeList == null)
+            {
+                scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
+                CachingService.Set<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES, scoreMapBetTypeList, new TimeSpan(0, 5, 0));
+            }
+
+            return scoreMapBetTypeList;
+        }
         #endregion Private Methods
     }
 }

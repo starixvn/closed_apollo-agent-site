@@ -1,21 +1,26 @@
 ﻿@using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
 @model List<BetSettingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
     var isShowOld = (bool)ViewBag.IsShowOldValue;
     
     <table class="tblRpt">
-        <tr>
-            <td>
+        <tr class="no-border-top bg-gray">
+            <td class="colW1">
             </td>
             <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblMinBet
+                @Lang.lblMinBet
             </td>
             <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblMaxBet
+                @Lang.lblMaxBet
             </td>
             <td class="colW1">
-                @Apollo.Age.Resources.Lang.lblMaxPerMatch
+                @Lang.lblMaxPerMatch
+            </td>
+            <td class="colW1">
+            </td>
+            <td class="colW1 no-border-right">
             </td>
         </tr>
         @foreach (var item in Model)
@@ -34,22 +39,24 @@
                 <td class="colW2">
                     @ToString(isShowOld, item.OldMaxPerMatch, item.MaxPerMatch)
                 </td>
+                <td class="colW2">
+                </td>
+                <td class="colW2 no-border-right">
+                </td>
             </tr>
         }
     </table>
 }
 @helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
     {
-        string strOld = Math.Round(oldValue, 0).ToString();
-        string strNew = Math.Round(newValue, 0).ToString();
+        string strOld = Math.Round(oldValue, 0).ToString("#,#");
+        string strNew = Math.Round(newValue, 0).ToString("#,#");
 
         if (oldValue != newValue)
-        { <span class="valuechanged">@strNew</span> 
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
             if (isShowOld)
             {
-    <div class="line">
-    </div>
-    <span class="valueold">@strOld</span> 
+    <span>| </span><span class="valueold">@strOld</span>
             }
         }
         else

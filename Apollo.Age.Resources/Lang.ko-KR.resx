@@ -4102,7 +4102,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>View Member Setting - {0}</value>
   </data>
   <data name="lblAccessDenied" xml:space="preserve">
-    <value>Access Denied</value>
+    <value>엑서스가 거부됨</value>
   </data>
   <data name="lblInvalidRequest" xml:space="preserve">
     <value>Invalid Request</value>

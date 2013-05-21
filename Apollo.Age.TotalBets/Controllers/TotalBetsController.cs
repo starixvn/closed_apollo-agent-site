@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="TotalBetController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="TotalBetsController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -12,18 +12,17 @@
 
 namespace Apollo.Age.TotalBets.Controllers
 {
-        
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
+    using System.Web.SessionState;
+    using Apollo.Age.Criterias;
+    using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.TotalBets.Criterias;
     using Apollo.Age.TotalBets.Models;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
-    using Apollo.Age.Criterias;
-    using System.Linq;
-    using Apollo.Age.Entities;
-    using System.Web.SessionState;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class TotalBetsController : BaseController
@@ -33,40 +32,6 @@ namespace Apollo.Age.TotalBets.Controllers
         public TotalBetsController()
         {
             _totalBetsService = new TotalBetsService();
-        }
-   
-        /// <summary>
-        /// Get totalbet data by bettype, if MainShareHolderId > 0 and Current is Supper
-        /// then load Data of that MainShareHolder
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="betType"></param>
-        /// <returns></returns>
-        private IEnumerable<T> GetModel<T>(BetTypes betType, int mainShareHolderId)
-        {
-            int agentId = base.CurrentSession.AgentId;
-            if (base.CurrentSession.IsSuper)
-            {
-                var mainShareHolders = _totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria(betType));
-                if (mainShareHolderId > 0)
-                {
-                    agentId = mainShareHolderId;
-                }
-                else if (mainShareHolders != null && mainShareHolders.Any())
-                {
-                    agentId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
-                }
-                ViewBag.CurrentMainShareHolderId = mainShareHolderId;
-                ViewBag.MainShareHolders = mainShareHolders;
-            }
-            ViewBag.CurrentAgentId = base.CurrentSession.AgentId;
-
-            return _totalBetsService.GetData<T>(new TotalBetsCriteria
-            {
-                AgentId = agentId,
-                BetType = (int)betType,
-                LoggedId = base.CurrentSession.AgentId
-            });
         }
 
         /// <summary>
@@ -161,6 +126,42 @@ namespace Apollo.Age.TotalBets.Controllers
         {
             var model = GetModel<FirstGoalModel>(BetTypes.First_Goal_Last_Goal, mainShareHolderId);
             return View(model);
+        }
+
+        /// <summary>
+        /// Get totalbet data by bettype, if MainShareHolderId > 0 and Current is Supper
+        /// then load Data of that MainShareHolder
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="betType"></param>
+        /// <returns></returns>
+        private IEnumerable<T> GetModel<T>(BetTypes betType, int mainShareHolderId)
+        {
+            int agentId = this.CurrentSession.AgentId;
+            if (this.CurrentSession.IsSuper)
+            {
+                var mainShareHolders = _totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria(betType));
+                if (mainShareHolderId > 0)
+                {
+                    agentId = mainShareHolderId;
+                }
+                else if (mainShareHolders != null && mainShareHolders.Any())
+                {
+                    agentId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
+                }
+
+                ViewBag.CurrentMainShareHolderId = mainShareHolderId;
+                ViewBag.MainShareHolders = mainShareHolders;
+            }
+
+            ViewBag.CurrentAgentId = this.CurrentSession.AgentId;
+
+            return _totalBetsService.GetData<T>(new TotalBetsCriteria
+            {
+                AgentId = agentId,
+                BetType = (int)betType,
+                LoggedId = this.CurrentSession.AgentId
+            });
         }
     }
 }
