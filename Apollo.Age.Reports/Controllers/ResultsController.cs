@@ -32,11 +32,6 @@ namespace Apollo.Age.Reports.Controllers
     {
         private readonly ResultService _resultService;
 
-        protected DateTime BalanceUpDay
-        {
-            get { return _resultService.GetBalanceUpDay(); }
-        }
-
         #region Ctors
 
         public ResultsController() : this(null) 
@@ -49,6 +44,11 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #endregion Ctors
+
+        protected DateTime BalanceUpDay
+        {
+            get { return _resultService.GetBalanceUpDay(); }
+        }
 
         #region Match Results
 
@@ -141,48 +141,6 @@ namespace Apollo.Age.Reports.Controllers
 
             return View("~/Views/Results/ParlayResult.cshtml", results);
         }
-
-        private string GetViewName(byte sportId)
-        {
-            switch (sportId)
-            {
-                case (byte)SportTypes.Soccer:
-                    return SportTypes.Soccer.ToString();
-                case (byte)SportTypes.BasketBall:
-                case (byte)SportTypes.Netball:
-                case (byte)SportTypes.FootBall:
-                case (byte)SportTypes.Rugby:
-                    return SportTypes.BasketBall.ToString();
-                case (byte)SportTypes.IceHockey:
-                case (byte)SportTypes.FieldHockey:
-                    return SportTypes.IceHockey.ToString();
-                case (byte)SportTypes.Tennis:
-                    return SportTypes.Tennis.ToString();
-                case (byte)SportTypes.BaseBall:
-                    return SportTypes.BaseBall.ToString();
-                case (byte)SportTypes.VolleyBall:
-                case (byte)SportTypes.Badminton:
-                case (byte)SportTypes.Squash:
-                    return SportTypes.Badminton.ToString();
-                case (byte)SportTypes.Golf:
-                case (byte)SportTypes.Motorsports:
-                case (byte)SportTypes.Billard:
-                case (byte)SportTypes.Cycling:
-                case (byte)SportTypes.Fencing:
-                case (byte)SportTypes.Judo:
-                case (byte)SportTypes.ModernPentathlon:
-                case (byte)SportTypes.Rowing:
-                case (byte)SportTypes.Sailing:
-                case (byte)SportTypes.Shooting:
-                case (byte)SportTypes.Taekwondo:
-                case (byte)SportTypes.Triathlon:
-                case (byte)SportTypes.Wrestling:
-                    return SportTypes.Billard.ToString();
-                default:
-                    return SportTypes.OtherSports.ToString();
-            }
-        }
-
         #endregion Match Results
 
         #region Outright Results
@@ -240,5 +198,46 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #endregion Outright Results
+
+        private string GetViewName(byte sportId)
+        {
+            switch (sportId)
+            {
+                case (byte)SportTypes.Soccer:
+                    return SportTypes.Soccer.ToString();
+                case (byte)SportTypes.BasketBall:
+                case (byte)SportTypes.Netball:
+                case (byte)SportTypes.FootBall:
+                case (byte)SportTypes.Rugby:
+                    return SportTypes.BasketBall.ToString();
+                case (byte)SportTypes.IceHockey:
+                case (byte)SportTypes.FieldHockey:
+                    return SportTypes.IceHockey.ToString();
+                case (byte)SportTypes.Tennis:
+                    return SportTypes.Tennis.ToString();
+                case (byte)SportTypes.BaseBall:
+                    return SportTypes.BaseBall.ToString();
+                case (byte)SportTypes.VolleyBall:
+                case (byte)SportTypes.Badminton:
+                case (byte)SportTypes.Squash:
+                    return SportTypes.Badminton.ToString();
+                case (byte)SportTypes.Golf:
+                case (byte)SportTypes.Motorsports:
+                case (byte)SportTypes.Billard:
+                case (byte)SportTypes.Cycling:
+                case (byte)SportTypes.Fencing:
+                case (byte)SportTypes.Judo:
+                case (byte)SportTypes.ModernPentathlon:
+                case (byte)SportTypes.Rowing:
+                case (byte)SportTypes.Sailing:
+                case (byte)SportTypes.Shooting:
+                case (byte)SportTypes.Taekwondo:
+                case (byte)SportTypes.Triathlon:
+                case (byte)SportTypes.Wrestling:
+                    return SportTypes.Billard.ToString();
+                default:
+                    return SportTypes.OtherSports.ToString();
+            }
+        }
     }
 }

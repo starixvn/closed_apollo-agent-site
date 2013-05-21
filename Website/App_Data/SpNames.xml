@@ -540,8 +540,8 @@
 
   </Function>
   <Function Name="Read Log Cust Setting">
-    <Setting Key="ReadLog_RunSpAgent_Search" SpName="ReadLog_RunSpAgent_Search" DbName="LOGDB" TimeOut="600"/>
-    <Setting Key="ReadLog_RunSpCust_Search" SpName="ReadLog_RunSpCust_Search" DbName="LOGDB" TimeOut="600"/>
+    <Setting Key="ReadLog_RunSpAgent" SpName="ReadLog_RunSpAgent" DbName="LOGDB" TimeOut="600"/>
+    <Setting Key="ReadLog_RunSpCust" SpName="ReadLog_RunSpCust" DbName="LOGDB" TimeOut="600"/>
   </Function>
 
 </Functions>
