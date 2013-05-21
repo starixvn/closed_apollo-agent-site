@@ -4,6 +4,7 @@
     using Apollo.Age.Web.ViewModels;
     using Microsoft.AspNet.SignalR;
 
+    [Authorize]
     public class KickoutHub : Hub
     {
         public void Send(int adminId)

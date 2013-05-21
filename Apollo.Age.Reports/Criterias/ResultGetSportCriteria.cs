@@ -10,9 +10,6 @@
 namespace Apollo.Age.Reports.Criterias
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -20,12 +17,12 @@ namespace Apollo.Age.Reports.Criterias
     /// </summary>
     public class ResultGetSportCriteria : CriteriaBase
     {
+        public DateTime EventDate { get; set; }
+
         public override string GetSettingKey()
         {
             return "Age_Result_SportSelByDate";
         }
-
-        public DateTime EventDate { get; set; }
 
         public override bool IsValid()
         {
