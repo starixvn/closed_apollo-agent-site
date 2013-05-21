@@ -37,7 +37,7 @@
             <td class="colW">
                 @Lang.hdp, @Lang.lblOU, @Lang.lblOE (%)
             </td>
-            <td class="colW2">
+            <td class="colW2 no-border-right">
                 @foreach (var item in Model)
                 {
                     if (item.BetType == (int)BetTypes.Handicap)
@@ -51,7 +51,7 @@
             <td class="colW">
                 @Lang.lbl1x2Comm (%)
             </td>
-            <td class="colW2">
+            <td class="colW2 no-border-right">
                 @foreach (var item in Model)
                 {
                     if (item.BetType == (int)BetTypes.FT_1X2)
@@ -65,7 +65,7 @@
             <td class="colW">
                 @Lang.lblOtherComm (%)
             </td>
-            <td class="colW2">
+            <td class="colW2 no-border-right">
                 @foreach (var item in Model)
                 {
                     if (item.BetType == (int)BetTypes.Correct_Score)
@@ -83,12 +83,10 @@
         string strNew = Math.Round(newValue * 100, 2).ToString();
 
         if (oldValue != newValue)
-        { <span class="valuechanged">@strNew</span> 
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
             if (isShowOld)
             {
-    <div class="line">
-    </div>
-    <span class="valueold">@strOld</span> 
+   <span>| </span><span class="valueold">@strOld</span>
             }
         }
         else

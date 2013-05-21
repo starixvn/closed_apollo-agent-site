@@ -16,6 +16,11 @@
 	* {		
 		vertical-align: middle;
 	}
+
+	label {
+		color:  @linkColor;
+		cursor: pointer;
+	}
 }
 
 .tblRpt {
@@ -39,6 +44,13 @@
 				td {
 					border-width: 1px 1px 0 0;
 					vertical-align: middle;
+
+					&.no-border-right {
+						border-right: none;
+					}
+					&.sub-title{
+						background: #ccc;
+					}
 				}
 
 				&.sub-title {
@@ -51,7 +63,7 @@
 					}
 				}
 
-				&.no-border-top td, &.no-border-right td {
+				&.no-border-top td {
 					border-top: none;
 				}
 
@@ -153,7 +165,8 @@ div.line {
     border-bottom: 1px solid #ccc;
     display: block;
     line-height: 5px;
-    margin: 0 10px;
+    margin: auto;
+	width:100px;
 }
 
 /* FORMATING FOR DATE TEXTBOX */

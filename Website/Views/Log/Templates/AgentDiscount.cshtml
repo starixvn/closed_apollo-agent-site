@@ -43,7 +43,7 @@
             <td class="colW">
                 @Lang.lblGroupc (%)
             </td>
-            <td class="colW2">
+            <td class="colW2 no-border-right">
                 @ToString(isShowOld, group.OldGroupC, group.GroupC)
             </td>
         </tr>
@@ -63,7 +63,7 @@
             <td class="colW">
                 @Lang.lblOtherComm (%)
             </td>
-            <td class="colW2">
+            <td class="colW2 no-border-right">
                 @ToString(isShowOld, groupOthers.OldGroupA, groupOthers.GroupA)
             </td>
         </tr>
@@ -75,12 +75,10 @@
         string strNew = Math.Round(newValue * 100, 2).ToString();
 
         if (oldValue != newValue)
-        { <span class="valuechanged">@strNew</span> 
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
             if (isShowOld)
             {
-    <div class="line">
-    </div>
-    <span class="valueold">@strOld</span> 
+    <span>| </span><span class="valueold">@strOld</span>
             }
         }
         else
