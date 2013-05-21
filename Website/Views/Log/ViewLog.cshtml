@@ -34,12 +34,12 @@
                     @Html.DropDownListFor(m => m.ActionTypeId, new List<SelectListItem>
                {
                 new SelectListItem{Value ="0",Text=Apollo.Age.Resources.Lang.all},
-                new SelectListItem{Value ="2",Text=Apollo.Age.Resources.Lang.commission},
+                new SelectListItem{Value ="2",Text=Apollo.Age.Resources.Lang.lblCommission},
                 new SelectListItem{Value ="3",Text=Apollo.Age.Resources.Lang.lblBetSetting},
                 new SelectListItem{Value ="4",Text=Apollo.Age.Resources.Lang.positiontaking}
                })
                 </div>
-            </div>    
+            </div>
             <div class="cell">
                 <div id="monthDateTime">
                 </div>
@@ -56,7 +56,7 @@
                     @Html.CheckBoxFor(m => m.ShowOldValue)
                     @Apollo.Age.Resources.Lang.OldValue
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
     <table class="tblRpt">
@@ -68,11 +68,11 @@
                 <th style="width: 60px">
                     @Apollo.Age.Resources.Lang.logid
                 </th>
-                <th style="width: 80px">
-                    @Apollo.Age.Resources.Lang.logdate
-                </th>
                 <th>
                     @Apollo.Age.Resources.Lang.editby
+                </th>
+                <th style="width: 80px">
+                    @Apollo.Age.Resources.Lang.logdate
                 </th>
                 <th>
                     @Apollo.Age.Resources.Lang.actionname
@@ -112,10 +112,10 @@
                         @switch (itemLog.ActionTypeId)
                         {
                             case Constants.LOGACTIONDISCOUNT:
-                                actionName += Apollo.Age.Resources.Lang.commission;
+                                actionName += Apollo.Age.Resources.Lang.lblCommission;
                                 break;
                             case Constants.LOGACTIONBETSETTING:
-                                actionName += Apollo.Age.Resources.Lang.commission;
+                                actionName += Apollo.Age.Resources.Lang.lblBetSetting;
                                 break;
                             case Constants.LOGACTIONPOSITIONTAKING:
                                 actionName += Apollo.Age.Resources.Lang.sharesetting;
@@ -144,5 +144,5 @@
         </tbody>
     </table>
 }
-@Html.Hidden("ToDayLable",Apollo.Age.Resources.Lang.to)
-@Html.Hidden("FromDayLable",Apollo.Age.Resources.Lang.from)
+@Html.Hidden("ToDayLable", Apollo.Age.Resources.Lang.to)
+@Html.Hidden("FromDayLable", Apollo.Age.Resources.Lang.from)
