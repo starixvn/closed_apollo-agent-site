@@ -39,8 +39,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Forecast", "Apol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Account", "Apollo.Age.Account\Apollo.Age.Account.csproj", "{39FC7B3E-361B-4470-9A02-73B25795D99E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Admin", "Apollo.Age.Admin\Apollo.Age.Admin.csproj", "{6149E074-7B05-4556-AF53-E97D7199F2BF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.BetList", "Apollo.Age.BetList\Apollo.Age.BetList.csproj", "{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Integration", "Apollo.Age.Integration\Apollo.Age.Integration.csproj", "{5065F780-0CF8-4AE4-96F2-70D8BE40332C}"
@@ -87,10 +85,6 @@ Global
 		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6149E074-7B05-4556-AF53-E97D7199F2BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6149E074-7B05-4556-AF53-E97D7199F2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6149E074-7B05-4556-AF53-E97D7199F2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6149E074-7B05-4556-AF53-E97D7199F2BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -259,21 +259,10 @@ function HideTooltipIntroNickname() {
 // Start up
 function InitHeader() {
     timeoutId1 = setTimeout(GetMessages, 100);
-    InitHubConnection();
+    
 }
 
-function InitHubConnection() {
-    var hub = $.connection.kickoutHub;
-    hub.client.kickoutUser = function () {
-        alert(LANGUAGES.AlerSignonMessage);
-        APOLLO.signOut(true);
-    };
 
-    $.connection.hub.start().done(function () {
-        hub.server.send($("#adminid").val(), $("#agentid").val(), $("#isinternal").val());
-    });
-
-}
 
 // Change to message page
 function Change2Menu(url) {

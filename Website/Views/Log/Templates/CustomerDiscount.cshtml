@@ -9,7 +9,7 @@
     var group = (string)ViewBag.Group;
     
     <table class="tblRpt">
-        <tr class="colW sub-title">
+        <tr class="colW bg-gray">
             <td>
                 @Lang.group
             </td>
@@ -35,7 +35,7 @@
                 }
             </td>
             <td class="colW">
-                @Lang.hdp, @Lang.lblOU, @Lang.lblOE (%)
+                @Lang.lblAsianHDC_OU_OE (%)
             </td>
             <td class="colW2 no-border-right">
                 @foreach (var item in Model)
