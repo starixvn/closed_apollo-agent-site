@@ -144,5 +144,26 @@ namespace Apollo.Age.Services.Impl
                  Logger.Log.Error(ex.Message, ex);
              }
         }
+
+
+        public User AgentLoginByUsername(string username)
+        {
+            User user = null;
+            Check.Argument.IsNotNull(username, "username");
+
+            try
+            {
+                user = _userRepository.Get(new LoginByUsernameCriteria
+                {
+                    Username = username
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+
+            return user;
+        }
     }
 }

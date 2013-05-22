@@ -13,7 +13,16 @@
       <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
       <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
     </Setting>
-
+    <Setting Key="Age_Agent_LoginByUserName" SpName="Age_Agent_LoginByUserName" DbName="CUSTDB" Plain="0" >
+      <Mapping DataField="AgentUserId" ObjectProperty="Id"/>
+      <Mapping DataField="Username" ObjectProperty="Username"/>
+      <Mapping DataField="AgentId" ObjectProperty="Id"/>
+      <Mapping DataField="AgentLevel" ObjectProperty="Level"/>
+      <Mapping DataField="AgentName" ObjectProperty="Username"/>
+      <Mapping DataField="Currency" ObjectProperty="Currency"/>
+      <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
+      <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
+    </Setting>
     <Setting Key="NAP_User_Authenticate" SpName="NAP_User_Authenticate" DbName="Nap" />
   </Function>
 

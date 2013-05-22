@@ -60,6 +60,7 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Criterias\Accounts\AgentGetStatusCriteria.cs" />
+    <Compile Include="Criterias\LoginByUsernameCriteria.cs" />
     <Compile Include="Criterias\InternalLogLoginCriteria.cs" />
     <Compile Include="Criterias\AuthenticateNapUserCriteria.cs" />
     <Compile Include="Criterias\CheckUpdatePermissionCriteria.cs" />

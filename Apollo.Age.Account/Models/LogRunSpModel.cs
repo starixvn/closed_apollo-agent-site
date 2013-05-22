@@ -16,8 +16,10 @@ namespace Apollo.Age.Account.Models
     using System.Web;
     using System.Xml.Linq;
     using Apollo.Age.Account.Core;
+    using Fanex.CustSetting.Core;
     using Fanex.Logging;
     using RazorEngine;
+    using RazorEngine.Templating;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class LogRunSpModel
@@ -45,9 +47,11 @@ namespace Apollo.Age.Account.Models
             {
                 var listBetSetting = this.GetBetSetting();
                 var bodyTemplate = ReadTextFile(HttpContext.Current.Server.MapPath("~/Views/Log/Templates/BetSetting.cshtml"));
+                var xdocument = _Configuration.BettingLimitSportNameConfig;
 
-                RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
+                DynamicViewBag viewBag = new DynamicViewBag();
                 viewBag.AddValue("IsShowOldValue", isShowOldValue);
+                viewBag.AddValue("Template", xdocument);
 
                 result = Razor.Parse(bodyTemplate, listBetSetting, viewBag, null);
             }
@@ -57,11 +61,13 @@ namespace Apollo.Age.Account.Models
             {
                 var listPositionTaking = this.GetPositionTaking(isAgent);
                 var bodyTemplate = ReadTextFile(HttpContext.Current.Server.MapPath("~/Views/Log/Templates/PositionTaking.cshtml"));
+                var xdocument = _Configuration.PositionTakingGridConfig;
 
-                RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
+                DynamicViewBag viewBag = new DynamicViewBag();
                 viewBag.AddValue("IsShowOldValue", isShowOldValue);
                 viewBag.AddValue("AgentLevel", agentLevel);
                 viewBag.AddValue("IsAgent", isAgent);
+                viewBag.AddValue("Template", xdocument);
 
                 result = Razor.Parse(bodyTemplate, listPositionTaking, viewBag, null);
             }
@@ -87,7 +93,7 @@ namespace Apollo.Age.Account.Models
                     bodyTemplate = ReadTextFile(HttpContext.Current.Server.MapPath("~/Views/Log/Templates/AgentDiscount.cshtml"));
                 }
 
-                RazorEngine.Templating.DynamicViewBag viewBag = new RazorEngine.Templating.DynamicViewBag();
+                DynamicViewBag viewBag = new DynamicViewBag();
                 viewBag.AddValue("IsShowOldValue", isShowOldValue);
                 viewBag.AddValue("OldGroup", oldGroup);
                 viewBag.AddValue("Group", group);
@@ -98,9 +104,9 @@ namespace Apollo.Age.Account.Models
             return result;
         }
 
-        private List<Apollo.Age.Account.Models.DiscountModel> GetDiscount(ref string oldGroup, ref string group)
+        private List<DiscountModel> GetDiscount(ref string oldGroup, ref string group)
         {
-            var list = new List<Apollo.Age.Account.Models.DiscountModel>();
+            var list = new List<DiscountModel>();
 
             if (!string.IsNullOrWhiteSpace(this.OldData))
             {
@@ -206,6 +212,9 @@ namespace Apollo.Age.Account.Models
                                     && itemOld.BetType == model.BetType)
                                 {
                                     list[i].GroupA = model.GroupA;
+                                    list[i].GroupB = model.GroupB;
+                                    list[i].GroupC = model.GroupC;
+                                    list[i].GroupD = model.GroupD;
                                 }
                             }
                         }
@@ -216,9 +225,9 @@ namespace Apollo.Age.Account.Models
             return list;
         }
 
-        private List<Apollo.Age.Account.Models.PositionTakingModel> GetPositionTaking(bool isAgent)
+        private Dictionary<string, PositionTakingModel> GetPositionTaking(bool isAgent)
         {
-            var list = new List<Apollo.Age.Account.Models.PositionTakingModel>();
+            var list = new Dictionary<string, PositionTakingModel>();
 
             if (!string.IsNullOrWhiteSpace(this.OldData))
             {
@@ -242,7 +251,9 @@ namespace Apollo.Age.Account.Models
                             OldMinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
                         };
 
-                        list.Add(model);
+                        string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+
+                        list.Add(key, model);
                     }
                     else
                     {
@@ -255,7 +266,9 @@ namespace Apollo.Age.Account.Models
                             OldMaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
                         };
 
-                        list.Add(model);
+                        string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+
+                        list.Add(key, model);
                     }
                 }
             }
@@ -279,17 +292,13 @@ namespace Apollo.Age.Account.Models
                             MinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
                         };
 
-                        for (int i = 0; i < list.Count; i++)
+                        string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+
+                        if (list.ContainsKey(key))
                         {
-                            var itemOld = list[i];
-                            if (itemOld.SportType == model.SportType
-                                && itemOld.BetType == model.BetType
-                                && itemOld.IsLive == model.IsLive)
-                            {
-                                list[i].MaxUpper = model.MaxUpper;
-                                list[i].MaxGiven = model.MaxGiven;
-                                list[i].MinGiven = model.MinGiven;
-                            }
+                            list[key].MaxUpper = model.MaxUpper;
+                            list[key].MaxGiven = model.MaxGiven;
+                            list[key].MinGiven = model.MinGiven;
                         }
                     }
                     else
@@ -302,15 +311,13 @@ namespace Apollo.Age.Account.Models
                             MaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
                         };
 
-                        for (int i = 0; i < list.Count; i++)
+                        string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+
+                        if (list.ContainsKey(key))
                         {
-                            var itemOld = list[i];
-                            if (itemOld.SportType == model.SportType
-                                && itemOld.BetType == model.BetType
-                                && itemOld.IsLive == model.IsLive)
-                            {
-                                list[i].MaxUpper = model.MaxUpper;
-                            }
+                            list[key].MaxUpper = model.MaxUpper;
+                            list[key].MaxGiven = model.MaxGiven;
+                            list[key].MinGiven = model.MinGiven;
                         }
                     }
                 }
@@ -319,9 +326,9 @@ namespace Apollo.Age.Account.Models
             return list;
         }
 
-        private List<Apollo.Age.Account.Models.BetSettingModel> GetBetSetting()
+        private Dictionary<string, BetSettingModel> GetBetSetting()
         {
-            var list = new List<BetSettingModel>();
+            var list = new Dictionary<string, BetSettingModel>();
 
             if (!string.IsNullOrWhiteSpace(this.OldData))
             {
@@ -342,7 +349,9 @@ namespace Apollo.Age.Account.Models
                         MaxPerMatch = Convert.ToDecimal(item.Attribute("mam").Value)
                     };
 
-                    list.Add(model);
+                    string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
+
+                    list.Add(key, model);
                 }
             }
 
@@ -362,16 +371,13 @@ namespace Apollo.Age.Account.Models
                         MaxPerMatch = Convert.ToDecimal(item.Attribute("mam").Value),
                     };
 
-                    for (int i = 0; i < list.Count; i++)
+                    string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
+
+                    if (list.ContainsKey(key))
                     {
-                        var itemOld = list[i];
-                        if (itemOld.SportType == model.SportType
-                            && itemOld.BetType == model.BetType)
-                        {
-                            list[i].MinBet = model.MinBet;
-                            list[i].MaxBet = model.MaxBet;
-                            list[i].MaxPerMatch = model.MaxPerMatch;
-                        }
+                        list[key].MinBet = model.MinBet;
+                        list[key].MaxBet = model.MaxBet;
+                        list[key].MaxPerMatch = model.MaxPerMatch;
                     }
                 }
             }
