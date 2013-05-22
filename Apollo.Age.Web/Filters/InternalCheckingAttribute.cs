@@ -8,19 +8,30 @@
 // </history>
 namespace Apollo.Age.Web.Filters
 {
-    using System.Web.Mvc;
+    using System;
     using System.Net;
+    using System.Web.Mvc;
+    using Fanex.Logging;
 
     public class InternalCheckingAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var currentSession = SessionManager.CurrentSession;
-            if (!currentSession.IsInternalSignIn)
+            try
             {
-                DoUnAuthorized(filterContext);
+                if (SessionManager.CurrentSession != null)
+                {
+                    var currentSession = SessionManager.CurrentSession;
+                    if (!currentSession.IsInternalSignIn)
+                    {
+                        DoUnAuthorized(filterContext);
+                    }
+                }
             }
-
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
             base.OnActionExecuted(filterContext);
         }
 
@@ -40,6 +51,5 @@ namespace Apollo.Age.Web.Filters
                 response.Redirect(ApoURLs.URLs.AccessDenied);
             }
         }
-       
     }
 }

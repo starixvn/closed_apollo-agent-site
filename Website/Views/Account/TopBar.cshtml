@@ -38,8 +38,7 @@
 		<input type="hidden" id="ctime" value="@DateTime.Now.AddHours(12).ToString("H-m-s-tt")" />
 		<input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />
 		<input type="hidden" id="userid" value="@Model.UserId" />
-		<input type="hidden" id="adminid" value="@Model.AdminId" />
-		<input type="hidden" id="agentid" value="@Model.AgentId" />
+		<input type="hidden" id="adminid" value="@Model.AdminId" />		
 	 
 		   if (Model.IsInternalSignIn)
 		   {
