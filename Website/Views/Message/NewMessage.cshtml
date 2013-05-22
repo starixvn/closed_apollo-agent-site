@@ -2,7 +2,7 @@
 @model GetMessageCriteria
 @{    
     Layout = "~/Views/Message/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.messagetitle;
+    ViewBag.Title = Apollo.Age.Resources.Lang.MessageHistory;
 
     var listMessage = ViewBag.Messages ?? new List<MessageModel>();
     var normal = string.Empty;
@@ -14,18 +14,18 @@
 
     switch (Model.PageQuery)
     {
-        case Constants.NORMAL:
+        case Constants.Normal:
             normal = "current";
             break;
-        case Constants.SPECIAL:
+        case Constants.Special:
             special = "current";
             color = "Red";
             break;
-        case Constants.ALLSPECIAL:
+        case Constants.AllSpecial:
             special = "current";
             color = "Red";
             break;
-        case Constants.PRIVATE:
+        case Constants.Private:
             color = "Green";
             pri = "current";
             break;
@@ -47,7 +47,6 @@
                 </div>
                 <div class="editor">
                     @Html.DatePickerFor(m => m.From, minDate: minDate, maxDate: maxDate)
-                    <div class="img-calendar"></div>
                 </div>
             </div>
             <div class="cell">
@@ -56,7 +55,6 @@
                 </div>
                 <div class="editor">
                     @Html.DatePickerFor(m => m.To, minDate: minDate, maxDate: maxDate)
-                    <div class="img-calendar"></div>
                 </div>
             </div>
             <div class="cell">
@@ -72,11 +70,11 @@
             <tr>
                 <th colspan="4" class="tbList">
                     <ul>
-                        <li id="@normal"><a href="#" query="@Constants.NORMAL" class="pagequery">
+                        <li id="@normal"><a href="#" query="@Constants.Normal" class="pagequery">
                             @Apollo.Age.Resources.Lang.normalmessage</a> </li>
-                        <li id="@special"><a href="#" query="@Constants.SPECIAL" class="pagequery">
+                        <li id="@special"><a href="#" query="@Constants.Special" class="pagequery">
                             @Apollo.Age.Resources.Lang.specialmessage</a> </li>
-                        <li id="@pri"><a href="#" query="@Constants.PRIVATE" class="pagequery">
+                        <li id="@pri"><a href="#" query="@Constants.Private" class="pagequery">
                             @Apollo.Age.Resources.Lang.personalmessage</a> </li>
                         @Html.HiddenFor(m => m.PageQuery)
                     </ul>

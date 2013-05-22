@@ -169,21 +169,6 @@
 	cursor: pointer;
 }
 
-
-/* Report for result */
-
-#box_header {
-	margin-bottom: 10px;
-
-	.row {
-		margin-bottom: 0;
-	}
-
-	img.img-calendar {
-		margin-left: 4px;
-	}	
-}
-
 #spDateTimeSearch {
 	float: left;
 }
@@ -226,6 +211,25 @@
 				font-weight: bold;
 				border: 1px solid @borderColor;
 			}
+
+			&.bl_footertotal {
+				background: @rowTotalBackground;
+				color: @white;
+
+				td {
+					border-right: 1px solid @borderColor;
+					font-weight: bold;
+				}
+
+				&:hover {
+					background: @rowTotalBackground;
+				}
+
+				.red-color {
+					color: #FF4C4C;
+				}
+
+			}
 		}		
 	}
 	
@@ -234,10 +238,10 @@
 
 			&.total td {
 				font-weight: bold;
-
-				.red-color {
-					color: #FF4C4C;
-				}
+			}	
+			
+			.red-color {
+				color: #FF4C4C;
 			}		
 		}
 	}

@@ -1,8 +1,10 @@
-﻿@model GetLogCustSettingCriteria
+﻿@using Apollo.Age.Resources
+@model GetLogCustSettingCriteria
 @{    
     Layout = "~/Views/Log/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.viewlog;
+    ViewBag.Title = Lang.viewlog + " " + Lang.customer + " " + Lang.setting;
     var logData = (List<LogRunSpModel>)ViewBag.LogData;
+    var agentLevel = ViewBag.AgentLevel != null ? (int)ViewBag.AgentLevel : -1;
 }
 @section head {
     <link href="~/Views/Log/Resources/Log.less" rel="stylesheet" type="text/css">
@@ -14,120 +16,116 @@
             <div class="cell">
                 <div class="label">
                     @Html.DropDownListFor(m => m.IsAgent, new List<SelectListItem> {
-            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblAgent },
-            new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.lblMember }
+            new SelectListItem { Value = "true", Text = Lang.agent,Selected=true },
+            new SelectListItem { Value = "false", Text = Lang.lblMember }
         })
+                    <input id="enterUsernameValue" type="hidden" value="@Lang.enterusername"/>
                 </div>
             </div>
             <div class="cell">
                 <div class="editor">
-                    @Html.TextBoxFor(m => m.Username, Apollo.Age.Resources.Lang.enterusername)
+                    @Html.TextBoxFor(m => m.Username, Lang.enterusername)
                 </div>
             </div>
             <div class="cell">
                 <div class="label">
-                    @Html.LabelFor(m => m.ActionTypeId, Apollo.Age.Resources.Lang.viewby)
+                    @Html.LabelFor(m => m.ActionTypeId, Lang.viewby)
                 </div>
                 <div class="editor">
                     @Html.DropDownListFor(m => m.ActionTypeId, new List<SelectListItem>
                {
-                new SelectListItem{Value ="0",Text=Apollo.Age.Resources.Lang.all},
-                new SelectListItem{Value ="2",Text=Apollo.Age.Resources.Lang.commission},
-                new SelectListItem{Value ="3",Text=Apollo.Age.Resources.Lang.lblBetSetting},
-                new SelectListItem{Value ="4",Text=Apollo.Age.Resources.Lang.positiontaking}
+                new SelectListItem{Value ="0",Text=Lang.all},
+                new SelectListItem{Value ="2",Text=Lang.lblCommission},
+                new SelectListItem{Value ="3",Text=Lang.lblBetSetting},
+                new SelectListItem{Value ="4",Text=Lang.positiontaking}
                })
                 </div>
             </div>
             <div class="cell">
-                <div class="label">
-                    @Html.LabelFor(m => m.From, Apollo.Age.Resources.Lang.from)
+                <div id="monthDateTime">
                 </div>
-                <div class="editor">
-                    @Html.DatePickerFor(m => m.From)
-                    <div class="img-calendar">
-                    </div>
-                </div>
-            </div>
-            <div class="cell">
-                <div class="label">
-                    @Html.LabelFor(m => m.To, Apollo.Age.Resources.Lang.to)
-                </div>
-                <div class="editor">
-                    @Html.DatePickerFor(m => m.To)
-                    <div class="img-calendar">
-                    </div>
-                </div>
+                @Html.Hidden("From", Model.From.ToString("MM/dd/yyyy"))
+                @Html.Hidden("To", Model.To.ToString("MM/dd/yyyy"))
             </div>
             <div class="cell">
                 <div class="editor">
-                    <input type="submit" class="btn" id="dSubmit" value="@Apollo.Age.Resources.Lang.submit"/>
+                    <input type="submit" class="btn" id="dSubmit" value="@Lang.submit"/>
                 </div>
             </div>
-            <div class="cell">
-                <div class="editor">
-                    @Html.CheckBoxFor(m => m.ShowOldValue)
-                    @Apollo.Age.Resources.Lang.OldValue
-                </div>
-            </div>
+            
         </div>
+    </div>
+    <div class="show-old-value">
+        @Html.CheckBoxFor(m => m.ShowOldValue)
+        <label for="ShowOldValue">@Lang.ShowOldValues</label>
     </div>
     <table class="tblRpt">
         <thead>
             <tr>
-                <th style="width: 20px">
-                    @Apollo.Age.Resources.Lang.no
-                </th>
                 <th style="width: 60px">
-                    @Apollo.Age.Resources.Lang.logid
-                </th>
-                <th style="width: 80px">
-                    @Apollo.Age.Resources.Lang.logdate
+                    @Lang.logid
                 </th>
                 <th>
-                    @Apollo.Age.Resources.Lang.editby
+                    @Lang.editby
                 </th>
                 <th>
-                    @Apollo.Age.Resources.Lang.actionname
+                    @Lang.actionname
                 </th>
                 <th>
-                    @Apollo.Age.Resources.Lang.lblDetails
+                    @Lang.lblDetails
                 </th>
             </tr>
         </thead>
         <tbody>
             @{
     int count = 0;
+
     if (!ReferenceEquals(logData, null) && logData.Any())
     {
         string rowClass = string.Empty;
-
+        string actionName = string.Empty;
         foreach (var itemLog in logData)
         {
             count++;
+            actionName = Lang.update + " ";
             rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
                 <tr @Html.Raw(rowClass)>
-                    <td class="c">
-                        @count
-                    </td>
                     <td class="c">
                         @itemLog.LogId
                     </td>
                     <td class="c">
-                        @itemLog.LogDate
+                        @itemLog.Username
+                        <p>@itemLog.LogDate.ToShortDateString()</p>
+                        <p>@itemLog.LogDate.ToShortTimeString()</p>
                     </td>
                     <td class="c">
-                        @itemLog.ActionName
+                        @switch (itemLog.ActionTypeId)
+                        {
+                            case Constants.LogActionDiscount:
+                                actionName += Lang.lblCommission;
+                                break;
+                            case Constants.LogActionBetSetting:
+                                actionName += Lang.lblBetSetting;
+                                break;
+                            case Constants.LogActionPositionTaking:
+                                actionName += Lang.sharesetting;
+                                break;
+                        }
+                        @actionName
                     </td>
-                    <td class="message_content">@itemLog.Content
+                    <td class="message_content">@Html.Raw(itemLog.GetContent(Model.ShowOldValue, agentLevel, Model.IsAgent))
                     </td>
                 </tr>
         }
     }
     else
     {
-                @RazorHelper.ShowNoInfo(4)
+                @RazorHelper.ShowNoInfo(6)
     }
             }
         </tbody>
     </table>
+    <div id="btn-go-top" class="top-link"><a href="#">@Lang.GoToTop</a></div>
 }
+@Html.Hidden("ToDayLable", Lang.to)
+@Html.Hidden("FromDayLable", Lang.from)

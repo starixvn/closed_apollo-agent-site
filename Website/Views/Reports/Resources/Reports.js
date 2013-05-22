@@ -69,7 +69,7 @@
                 groupHeaderRows: [
                                  {
                                      Columns: [
-                                            { HeaderText: LANGUAGES.Member, Name: "Member", MergeRowNumber: 2 },
+                                            { HeaderText: "", Name: "Member", MergeRowNumber: 2 },
                                             { HeaderText: LANGUAGES.SportBook, Name: "Outstanding", MergeColNumber: 2 },
                                             { HeaderText: LANGUAGES.NumberGame, Name: "OutstandingGame", MergeColNumber: 2 }
                                         ]
@@ -77,7 +77,7 @@
                         ],
                 columns: [
 
-                         { HeaderText: LANGUAGES.Member, Width: 150, Name: "Member", HeaderAlign: "center", CellAlign: "left",
+                         { HeaderText: "", Width: 150, Name: "Member", HeaderAlign: "center", CellAlign: "left",
                              CustomCellRender: function (cell) {
                                  return (cell.Value.Outstanding != 0 ? "<a href='#' class='act-view-betlist' mainShareHolderId='" + outstandingData.MainShareHolderId + "'  mainShareHolderUsername='" + outstandingData.MainShareHolderUsername + "' data-custid='" + cell.Value.UserId + "' title='" + LANGUAGES.ViewBetlist + "' >" + cell.Value.UserName + "</a>" : cell.Value.UserName);
                              }
@@ -94,6 +94,7 @@
                 gridExpandHeight: 100,
                 marginRight: 0,
                 showColumnsShowHide: false,
+                hideYBackGroundScroller: true,
                 columnsNeedHide: [3, 4],
                 bodyRowHeight: 28
             };

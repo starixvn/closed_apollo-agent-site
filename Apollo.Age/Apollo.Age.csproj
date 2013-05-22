@@ -86,6 +86,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enumerations\BetStatus.cs" />
     <Compile Include="Enumerations\BetTypes.cs" />
+    <Compile Include="Enumerations\AgentLevel.cs" />
     <Compile Include="Enumerations\CustomerStatus.cs" />
     <Compile Include="Enumerations\CustomerType.cs" />
     <Compile Include="Enumerations\MessageTypes.cs" />

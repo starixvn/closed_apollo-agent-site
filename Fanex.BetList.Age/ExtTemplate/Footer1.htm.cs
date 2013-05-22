@@ -58,11 +58,11 @@ namespace Fanex.BetList.Age
 
 		public class Footer1_Winloss_Block: Block
 		{
-			protected static string s10 = "<div class=\"bl_footertotal\">";
+			protected static string s10 = "<div>";
 			public string subTotalWinloss = "{subTotalWinloss}";
-			protected static string s11 = "</div><div class=\"bl_footertotal\">";
+			protected static string s11 = "</div><div>";
 			public string subTotalCom = "{subTotalCom}";
-			protected static string s12 = "</div><div class=\"bl_footertotal\">";
+			protected static string s12 = "</div><div>";
 			public string total = "{total}";
 			protected static string s13 = "</div>";
 			public override void ToString(ref StringBuilder bd)

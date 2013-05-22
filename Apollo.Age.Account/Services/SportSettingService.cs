@@ -15,6 +15,7 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Account.Entities;
     using Apollo.Age.Services.Impl;
     using Fanex.Common;
+    using Apollo.Age.Enumerations;
 
     public class SportSettingService : ServiceBase, ISportSettingService
     {
@@ -55,7 +56,7 @@ namespace Apollo.Age.Account.Services
                     && sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value != null)
                 {
                     var isLive = Converter.ToBool(sportTypeNode.Attributes[ATTRIBUTE_SPORT_LIVE].Value);
-                    var sportId = Converter.To<byte>(sportTypeNode.Attributes[ATTRIBUTE_SPORT_ID].Value);
+                    var sportId = Converter.To<short>(sportTypeNode.Attributes[ATTRIBUTE_SPORT_ID].Value);
 
                     var sport = sportList.Where(t => t.Id == sportId).SingleOrDefault();
 
@@ -75,7 +76,7 @@ namespace Apollo.Age.Account.Services
                     else // process for sport id=99 & name=Mix Sports Parlay
                     {
                         var sportName = sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value.ToString();
-                        if (sportId == 99 && sportName == MIX_SPORT_PARLAY)
+                        if (sportId == (short)SportTypes.OtherSports && sportName == MIX_SPORT_PARLAY)
                         {
                             sport = new SportSetting()
                             {

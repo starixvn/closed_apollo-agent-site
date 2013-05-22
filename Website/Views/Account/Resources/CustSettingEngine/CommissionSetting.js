@@ -222,10 +222,9 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     value: discount,
                     minWidth: 150,
                     lastLetter: Fanex.CustSetting.COM_LAST_LETTER
-                }, 7);
+                }, 4);
         spinBox.input.onchange = function (event) {
             if (!spinBox.isValid()) {
-                Fanex.ValidateMessage(spinBox.input, Language.INVALID_RANGE);
             }
             //            var currentValue = spinBox.getValue();
             //            if (currentValue > spinBox.options.maximum) {

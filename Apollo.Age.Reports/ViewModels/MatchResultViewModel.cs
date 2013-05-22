@@ -12,8 +12,6 @@ namespace Apollo.Age.Reports.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-
     using System.Web.Mvc;
     using Apollo.Age.Entities;
     using Apollo.Age.Services;
@@ -35,7 +33,7 @@ namespace Apollo.Age.Reports.ViewModels
         {
             get
             {
-                var selectItemList = SportList.Select(sport => new SelectListItem
+                var selectItemList = this.SportList.Select(sport => new SelectListItem
                   {
                       Value = sport.Id.ToString(),
                       Text = CacheRef.GetSportName(sport.Id)

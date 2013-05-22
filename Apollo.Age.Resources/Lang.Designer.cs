@@ -2157,6 +2157,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Setting Log.
+        /// </summary>
+        public static string CustomerSettingLog {
+            get {
+                return ResourceManager.GetString("CustomerSettingLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to D.
         /// </summary>
         public static string d {
@@ -3462,6 +3471,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to top.
+        /// </summary>
+        public static string GoToTop {
+            get {
+                return ResourceManager.GetString("GoToTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grand Total.
         /// </summary>
         public static string grandTotal {
@@ -4553,6 +4571,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access Time:.
+        /// </summary>
+        public static string lblaccesstime {
+            get {
+                return ResourceManager.GetString("lblaccesstime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Information.
         /// </summary>
         public static string lblAccountInformation {
@@ -4585,6 +4612,15 @@ namespace Apollo.Age.Resources {
         public static string lblAccumulatedWinLoss {
             get {
                 return ResourceManager.GetString("lblAccumulatedWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action:.
+        /// </summary>
+        public static string lblaction {
+            get {
+                return ResourceManager.GetString("lblaction", resourceCulture);
             }
         }
         
@@ -4648,15 +4684,6 @@ namespace Apollo.Age.Resources {
         public static string lblAG {
             get {
                 return ResourceManager.GetString("lblAG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Agent.
-        /// </summary>
-        public static string lblAgent {
-            get {
-                return ResourceManager.GetString("lblAgent", resourceCulture);
             }
         }
         
@@ -5183,6 +5210,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browser:.
+        /// </summary>
+        public static string lblbrowser {
+            get {
+                return ResourceManager.GetString("lblbrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelled Bets.
         /// </summary>
         public static string lblCancelledBets {
@@ -5287,6 +5323,15 @@ namespace Apollo.Age.Resources {
         public static string lblComm {
             get {
                 return ResourceManager.GetString("lblComm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commission.
+        /// </summary>
+        public static string lblCommission {
+            get {
+                return ResourceManager.GetString("lblCommission", resourceCulture);
             }
         }
         
@@ -5651,6 +5696,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Session.
+        /// </summary>
+        public static string lblcurrentsession {
+            get {
+                return ResourceManager.GetString("lblcurrentsession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer Information.
         /// </summary>
         public static string lblCustomerInfomation {
@@ -5710,6 +5764,15 @@ namespace Apollo.Age.Resources {
         public static string lblDisabledHR {
             get {
                 return ResourceManager.GetString("lblDisabledHR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domain:.
+        /// </summary>
+        public static string lbldomain {
+            get {
+                return ResourceManager.GetString("lbldomain", resourceCulture);
             }
         }
         
@@ -6299,6 +6362,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input only allow two numbers after the decimal point..
+        /// </summary>
+        public static string lblInvalidInputDecimals {
+            get {
+                return ResourceManager.GetString("lblInvalidInputDecimals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Request.
         /// </summary>
         public static string lblInvalidRequest {
@@ -6308,11 +6380,29 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Value Range.
+        ///   Looks up a localized string similar to Invalid Value Range, Input must in [{0} - {1}]..
         /// </summary>
         public static string lblInvalidValueRange {
             get {
                 return ResourceManager.GetString("lblInvalidValueRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ip:.
+        /// </summary>
+        public static string lblip {
+            get {
+                return ResourceManager.GetString("lblip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Accessed:.
+        /// </summary>
+        public static string lbllastaccessed {
+            get {
+                return ResourceManager.GetString("lbllastaccessed", resourceCulture);
             }
         }
         
@@ -7186,6 +7276,15 @@ namespace Apollo.Age.Resources {
         public static string lblPlace {
             get {
                 return ResourceManager.GetString("lblPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Platform:.
+        /// </summary>
+        public static string lblplatform {
+            get {
+                return ResourceManager.GetString("lblplatform", resourceCulture);
             }
         }
         
@@ -9703,6 +9802,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to on.
+        /// </summary>
+        public static string on {
+            get {
+                return ResourceManager.GetString("on", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1X2 Commission.
         /// </summary>
         public static string OneXTwoCommission {
@@ -11004,6 +11112,15 @@ namespace Apollo.Age.Resources {
         public static string showhidecolumnAd {
             get {
                 return ResourceManager.GetString("showhidecolumnAd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show old values.
+        /// </summary>
+        public static string ShowOldValues {
+            get {
+                return ResourceManager.GetString("ShowOldValues", resourceCulture);
             }
         }
         

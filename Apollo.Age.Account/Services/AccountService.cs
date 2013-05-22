@@ -128,7 +128,6 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetCommissionToAgent(criteria);
         }
 
-
         public IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");

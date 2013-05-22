@@ -31,15 +31,15 @@ var isTimeout = false;
 // age=this is the object of AGE instance
 AGE.prototype.Scrolling = function () {
     //    try {
-    //        if (top.main.location.href.indexOf(_page.getBaseURL) == -1) {
+    //        if (parent.main.location.href.indexOf(_page.getBaseURL) == -1) {
     //            setCookie(_page.CookieCurrentURLKey, '', -1);
-    //            top.location = _page.getBaseURL;
+    //            parent.location = _page.getBaseURL;
     //            isTimeout = true;
     //            return;
     //        }
     //    } catch (e) { // Permission is denied because of cross domain issue
     //        setCookie(_page.CookieCurrentURLKey, '', -1);
-    //        top.location = _page.getBaseURL;
+    //        parent.location = _page.getBaseURL;
     //        isTimeout = true;
     //        return;
     //    }
@@ -259,16 +259,30 @@ function HideTooltipIntroNickname() {
 // Start up
 function InitHeader() {
     timeoutId1 = setTimeout(GetMessages, 100);
+    InitHubConnection();
+}
+
+function InitHubConnection() {
+    var hub = $.connection.kickoutHub;
+    hub.client.kickoutUser = function () {
+        alert(LANGUAGES.AlerSignonMessage);
+        APOLLO.signOut(true);
+    };
+
+    $.connection.hub.start().done(function () {
+        hub.server.send($("#adminid").val(), $("#agentid").val(), $("#isinternal").val());
+    });
+
 }
 
 // Change to message page
 function Change2Menu(url) {
-    if (top.menu && top.menu.ClearCurrentLeftMenu) {
-        top.menu.ClearCurrentLeftMenu();
+    if (parent.menu && parent.menu.ClearCurrentLeftMenu) {
+        parent.menu.ClearCurrentLeftMenu();
     }
 
-    //top.main.location = _page.getBaseURL + url;
-    top.main.location = APOLLO.resolveUrl(url);
+    //parent.main.location = _page.getBaseURL + url;
+    parent.main.location = APOLLO.resolveUrl(url);
     SelectTopMenu(url);
 }
 
@@ -281,8 +295,8 @@ function SelectTopMenu(url) {
     var mainUrl = '';
     if (url) {
         mainUrl = url;
-    } else if (top.main) {
-        mainUrl = top.main.location.href;
+    } else if (parent.main) {
+        mainUrl = parent.main.location.href;
     }
 
     var start = mainUrl.lastIndexOf('/');

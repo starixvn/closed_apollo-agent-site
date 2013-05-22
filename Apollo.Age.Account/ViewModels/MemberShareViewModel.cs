@@ -14,6 +14,7 @@ namespace Apollo.Age.Account.ViewModels
     using System.Web.Mvc;
     using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
+    using Apollo.Age.Enumerations;
 
     public class MemberShareViewModel
     {
@@ -32,7 +33,8 @@ namespace Apollo.Age.Account.ViewModels
             get
             {
                 // hard code with Mix Sports Parlay: SportType == 99 && BetType == 9
-                return (this.SportType == 99 && this.BetType == 9) ? ("1-" + this.SportType.ToString()) : ("0-" + this.SportType.ToString());
+                return (this.SportType == (short)SportTypes.OtherSports && this.BetType == (short)BetTypes.Mix_Parlay)
+                    ? ("1-" + this.SportType.ToString()) : ("0-" + this.SportType.ToString());
             }
         }
 

@@ -1,36 +1,65 @@
-﻿@model List<BetSettingModel>
-@if (!ReferenceEquals(Model, null))
+﻿@using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
+@model List<BetSettingModel>
+@if (!ReferenceEquals(Model, null) && Model.Any())
 {
-    <table>
+    var isShowOld = (bool)ViewBag.IsShowOldValue;
+    
+    <table class="tblRpt">
+        <tr class="no-border-top bg-gray">
+            <td class="colW1">
+            </td>
+            <td class="colW1">
+                @Lang.lblMinBet
+            </td>
+            <td class="colW1">
+                @Lang.lblMaxBet
+            </td>
+            <td class="colW1">
+                @Lang.lblMaxPerMatch
+            </td>
+            <td class="colW1">
+            </td>
+            <td class="colW1 no-border-right">
+            </td>
+        </tr>
         @foreach (var item in Model)
         {
             var sportName = item.SportName;
             <tr>
-                <td>
+                <td class="colW">
                     @sportName
                 </td>
-                <td>
-                    @item.MinBet
-                    <br />
-                    @item.OldMinBet
+                <td class="colW2">
+                    @ToString(isShowOld, item.OldMinBet, item.MinBet)
                 </td>
-                <td>
-                    @sportName
+                <td class="colW2">
+                    @ToString(isShowOld, item.OldMaxBet, item.MaxBet)
                 </td>
-                <td>
-                    @item.MaxBet
-                    <br />
-                    @item.OldMaxBet
+                <td class="colW2">
+                    @ToString(isShowOld, item.OldMaxPerMatch, item.MaxPerMatch)
                 </td>
-                <td>
-                    @sportName
+                <td class="colW2">
                 </td>
-                <td>
-                    @item.MaxPerMatch
-                    <br />
-                    @item.OldMaxPerMatch
+                <td class="colW2 no-border-right">
                 </td>
             </tr>
         }
     </table>
+}
+@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue, 0).ToString("#,#");
+        string strNew = Math.Round(newValue, 0).ToString("#,#");
+
+        if (oldValue != newValue)
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
+            if (isShowOld)
+            {
+    <span>| </span><span class="valueold">@strOld</span>
+            }
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }            
 }

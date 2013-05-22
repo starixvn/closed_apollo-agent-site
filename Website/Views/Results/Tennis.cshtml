@@ -114,10 +114,10 @@
             </tr>
             <tr class="c">
                 <td class="l">
-                    @if (item.FinalAwayScore > item.FinalHomeScore)
-                    { <b>@item.HomeTeam</b> }
+                    @if (item.FinalAwayScore < item.FinalHomeScore)
+                    { <b>@item.AwayTeam</b> }
                     else
-                    { @item.HomeTeam }
+                    { @item.AwayTeam }
                 </td>
                 @foreach (var status in betStatusList)
                 {

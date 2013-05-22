@@ -286,6 +286,7 @@ table {
 
 	input.datepicker {
 		width: 80px;
+		background: url(img/arrow_down.png) no-repeat right 2px;
 	}
 
 	select {		
@@ -313,20 +314,6 @@ table {
 					vertical-align: middle;
 				}
 			}
-
-			.editor {				
-				position: relative;
-
-				div.img-calendar {
-					position: absolute;
-					right: 7px;
-					top: 3px;
-					background: url(img/arrow_down.png) no-repeat center top;
-					height: 16px;
-					width: 16px;
-					cursor: pointer;
-				}
-			}
 		}
 	}
 }
@@ -338,7 +325,6 @@ table {
 
 	#gradient.vertical(#eee, #ddd);
 	border: 1px solid @grayLight;
-	//.border-radius(2px);
 	.box-shadow(~"1px 1px 0 white inset,1px 1px 0px rgba(0,0,0,0.1)");
 	.transition(all 0.2s);
 
@@ -351,6 +337,7 @@ table {
 
 	&:hover, &:focus { #gradient.vertical(#ddd, #ccc) }
 	&:active { #gradient.vertical(#ccc, #ddd) }
+	&::-moz-focus-inner { border: 0 }
 }
 
 /* DATE RANGE CONTROL */

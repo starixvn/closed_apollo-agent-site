@@ -16,21 +16,22 @@ namespace Apollo.Age.Forecast.Models
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class LeagueModel
     {
+        private string _leagueName;
+
         public int LeagueId { get; set; }
 
         public byte SportType { get; set; }
-
-        private string _leagueName;
 
         public string LeagueName
         {
             get
             {
-                if (_leagueName == null)
+                if (this._leagueName == null)
                 {
-                    _leagueName = CacheRef.GetLeagueName(this.LeagueId);
+                    this._leagueName = CacheRef.GetLeagueName(this.LeagueId);
                 }
-                return _leagueName;
+
+                return this._leagueName;
             }
         }
     }

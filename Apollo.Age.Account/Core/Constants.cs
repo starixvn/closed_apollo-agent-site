@@ -14,24 +14,24 @@ namespace Apollo.Age.Account.Core
     /// </summary>
     public static class Constants
     {
-        public const string NORMAL = "normal";
+        public const string Normal = "normal";
 
-        public const string SPECIAL = "special";
+        public const string Special = "special";
 
-        public const string ALLSPECIAL = "allSpecial";
+        public const string AllSpecial = "allSpecial";
 
-        public const string PRIVATE = "private";
+        public const string Private = "private";
 
-        public const string LASTPOSTTIMEKEY = "lastPostTime";
+        public const string LastPostTimeKey = "lastPostTime";
 
-        public const int MAIN_SHAREHOLDER_LEVEL = 1;
+        public const int MainShareHolderLevel = 1;
 
-        public const int SHAREHOLDER_LEVEL = 2;
+        public const int ShareHolderLevel = 2;
 
-        public const int LOGACTIONDISCOUNT = 2;
+        public const int LogActionDiscount = 2;
 
-        public const int LOGACTIONBETSETTING = 301;
+        public const int LogActionBetSetting = 3;
 
-        public const int LOGACTIONPOSITIONTAKING = 4;        
+        public const int LogActionPositionTaking = 4;     
     }
 }

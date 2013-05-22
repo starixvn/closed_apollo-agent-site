@@ -4092,7 +4092,7 @@
     <value>Edit Member Setting - {0}</value>
   </data>
   <data name="lblInvalidValueRange" xml:space="preserve">
-    <value>Invalid Value Range</value>
+    <value>Invalid Value Range, Input must in [{0} - {1}].</value>
   </data>
   <data name="lblViewAgentSetting" xml:space="preserve">
     <value>View Agent Setting - {0}</value>
@@ -4101,7 +4101,7 @@
     <value>View Member Setting - {0}</value>
   </data>
   <data name="lblAccessDenied" xml:space="preserve">
-    <value>Access Denied</value>
+    <value>不被允许登入</value>
   </data>
   <data name="lblInvalidRequest" xml:space="preserve">
     <value>Invalid Request</value>
@@ -4162,9 +4162,6 @@
   </data>
   <data name="lblAdvancedMode" xml:space="preserve">
     <value>进阶模式</value>
-  </data>
-  <data name="lblAgent" xml:space="preserve">
-    <value>代理商</value>
   </data>
   <data name="lblFormatAgentSetting" xml:space="preserve">
     <value>代理商 {0} 设定</value>
@@ -4489,5 +4486,26 @@
   </data>
   <data name="UnderMaintenance" xml:space="preserve">
     <value>Under Maintenance</value>
+  </data>
+  <data name="lblaction" xml:space="preserve">
+    <value>Action:</value>
+  </data>
+  <data name="lblbrowser" xml:space="preserve">
+    <value>Browser:</value>
+  </data>
+  <data name="lbldomain" xml:space="preserve">
+    <value>Domain:</value>
+  </data>
+  <data name="lblip" xml:space="preserve">
+    <value>Ip:</value>
+  </data>
+  <data name="lblplatform" xml:space="preserve">
+    <value>Platform:</value>
+  </data>
+  <data name="lblaccesstime" xml:space="preserve">
+    <value>Access Time:</value>
+  </data>
+  <data name="lbllastaccessed" xml:space="preserve">
+    <value>Last Accessed:</value>
   </data>
 </root>

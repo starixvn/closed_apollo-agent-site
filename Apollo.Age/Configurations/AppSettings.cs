@@ -52,5 +52,12 @@
                 return GetValue("AllowInternalUpdate") == "1";
             }
         }
+        public static bool MultipleSignOn
+        {
+            get
+            {
+                return GetValue("MultipleSignOn") == "1";
+            }
+        }
     }
 }

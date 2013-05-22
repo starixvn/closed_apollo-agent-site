@@ -26,14 +26,13 @@ if (typeof jQuery != 'undefined') {
                 var $this = $(this);
                 if (countDownTimer != null) clearTimeout(countDownTimer);
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
-                + '&betType=' + $this.attr("bet-type")
-                + '&leagueName=' + FCHANDICAPOU.currentLeagueName);
+                    + '&betType=' + $this.attr("bet-type")
+                    + '&leagueName=' + FCHANDICAPOU.currentLeagueName);
                 if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
-                //'_Forecast/FCAH.aspx?matchid=' + matchId + '&b=' + betType, '', 70, 50, 600, 222);
-                //location.href = url;
-                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
+
+                APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
                     width: 680,
                     height: 350,
                     position: { my: "top+50", at: "center top", of: window },
@@ -41,6 +40,15 @@ if (typeof jQuery != 'undefined') {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
                 });
+
+//                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
+//                    width: 680,
+//                    height: 350,
+//                    position: { my: "top+50", at: "center top", of: window },
+//                    close: function (event, ui) {
+//                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+//                    }
+//                });
             });
             },
             changeLeague: function () {

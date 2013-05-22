@@ -47,7 +47,7 @@ namespace Apollo.Age.TotalBets.Models
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((IsNeutral) ? "(N)" : string.Empty);
+                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
             }
         }
 

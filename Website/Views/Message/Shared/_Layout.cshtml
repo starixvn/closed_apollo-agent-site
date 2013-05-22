@@ -4,12 +4,10 @@
 	<meta charset="utf-8" />
 	<title>@ViewBag.Title</title>
 	<meta name="viewport" content="width=device-width" />
-	<script src="~/_GlobalResources/Js/head.min.js" type="text/javascript"></script>
 	<link href="~/_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 	@RenderSection("head", required: false)    
 </head>
 <body>
-	
 	<div id="page_main">
 		<div id="header_main">
 			@ViewBag.Title
@@ -19,17 +17,7 @@
 		</div>
 	</div>
 	@Html.Hidden("ApoRoot", Url.Content("~/"))
-
-	<script type="text/javascript">
-		head.js(
-			"@Url.Content("~/_GlobalResources/Js/jquery.js")",
-			"@Url.Content("~/_GlobalResources/Js/jquery-ui.js")",
-			"@Url.Content("~/_GlobalResources/Js/Core.js")",
-			"@Url.Content("~/_Components/AGEWnd/AGEWnd.js")",
-			"@Url.Content("~/Views/Message/Resources/PortalPage.js")"
-		);
-	</script>
-
+	@Scripts.Render("~/scripts/messagejs")
 	@RenderSection("foot", required: false)
 </body>
 </html>

@@ -1,6 +1,7 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
 @model IEnumerable<MatchResultModel>
+
 <table class="tblRpt">
     <thead>
         @if ((bool)@ViewBag.IsParlay)
@@ -62,41 +63,50 @@
 
             var OTAway = string.Empty;
             var OTHome = string.Empty;
-            
+
             foreach (var item in Model)
             {
-                 eventStatus = string.Empty;
-                 betStatus = string.Empty;
+                eventStatus = string.Empty;
+                betStatus = string.Empty;
 
-                 finalHomeScore = string.Empty;
-                 finalAwayScore = string.Empty;
-                 firstHalfHomeScore = string.Empty;
-                 firstHalfAwayScore = string.Empty;
+                finalHomeScore = string.Empty;
+                finalAwayScore = string.Empty;
+                firstHalfHomeScore = string.Empty;
+                firstHalfAwayScore = string.Empty;
 
-                 homeSet = new List<string>() { "-", "-", "-", "-", "-" };
-                 awaySet = new List<string>() { "-", "-", "-", "-", "-" };
+                homeSet = new List<string>() { "-", "-", "-", "-", "-" };
+                awaySet = new List<string>() { "-", "-", "-", "-", "-" };
 
-                 OTAway = string.Empty;
-                 OTHome = string.Empty;
+                OTAway = string.Empty;
+                OTHome = string.Empty;
 
-                eventStatus = item.EventStatus;//.ToLower();
+                eventStatus = item.EventStatus;
 
-                if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND)
+                if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
                 {
                     finalHomeScore = finalAwayScore = firstHalfHomeScore = firstHalfAwayScore = @Apollo.Age.Resources.Lang.lblNA;
                 }
-                else if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND_FT)
+                else if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_FT))
                 {
+                    if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.IndexOf(';') >= 0)
+                    {
+                        betStatus = item.BetStatus.Split(';')[1];
+                    }
+                    
                     finalHomeScore = finalAwayScore = @Apollo.Age.Resources.Lang.lblNA;
                     firstHalfHomeScore = item.HalfTimeHomeScore == null ? "-" : item.HalfTimeHomeScore.ToString();
                     firstHalfAwayScore = item.HalfTimeAwayScore == null ? "-" : item.HalfTimeAwayScore.ToString();
                 }
-                else if (eventStatus == Apollo.Age.Reports.Core.Constants.REFUND_HT)
+                else if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_HT))
                 {
+                    if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.IndexOf(';') >= 0)
+                    {
+                        betStatus = item.BetStatus.Split(';')[1];
+                    }
+                    
                     finalHomeScore = item.FinalHomeScore == null ? "-" : item.FinalHomeScore.ToString();
                     finalAwayScore = item.FinalAwayScore == null ? "-" : item.FinalAwayScore.ToString();
                     firstHalfHomeScore = firstHalfAwayScore = @Apollo.Age.Resources.Lang.lblNA;
-
                 }
                 else
                 {
@@ -104,12 +114,12 @@
                     firstHalfAwayScore = item.HalfTimeAwayScore == null ? "-" : item.HalfTimeAwayScore.ToString();
                     finalHomeScore = item.FinalHomeScore == null ? "-" : item.FinalHomeScore.ToString();
                     finalAwayScore = item.FinalAwayScore == null ? "-" : item.FinalAwayScore.ToString();
+
+                    betStatus = item.BetStatus;
                 }
 
-                if (eventStatus != Apollo.Age.Reports.Core.Constants.REFUND_FT)
+                if (!eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
                 {
-                    betStatus = item.BetStatus.ToLower();
-
                     //23-12,26-11,17-13,15-15
                     if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
                     {
@@ -130,7 +140,6 @@
                             OTAway = listOfBetStatus[4].Split('-')[1];
                         }
                     }
-
                 }
 
                 if (!(bool)@ViewBag.IsParlay)
@@ -151,7 +160,7 @@
                     @item.KickoffTime
                 </td>
                 <td class="l">
-                    @if(item.FinalHomeScore > item.FinalAwayScore)
+                    @if (item.FinalHomeScore > item.FinalAwayScore)
                     {
                         <b>@Html.Raw(item.HomeTeam)</b>
                     }
@@ -160,20 +169,39 @@
                         @Html.Raw(item.HomeTeam)
                     }
                 </td>
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
+                {
+                    <td>-</td>
+                    <td>-</td>
+                }
+                else
+                {
+                    <td>
+                        @homeSet[0]
+                    </td>
+                    <td>
+                        @homeSet[1]
+                    </td>
+                }
+                
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND) 
+                    || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_FT))
+                {
+                    <td>-</td>
+                    <td>-</td>
+                }
+                else
+                {
+                    <td>
+                        @homeSet[2]
+                    </td>
+                    <td>
+                        @homeSet[3]
+                    </td>
+                }
+
                 <td>
-                    @homeSet[0]
-                </td>
-                <td>
-                    @homeSet[1]
-                </td>
-                <td>
-                    @homeSet[2]
-                </td>
-                <td>
-                    @homeSet[3]
-                </td>
-                <td>
-                    @if(string.IsNullOrWhiteSpace(OTHome))
+                    @if (string.IsNullOrWhiteSpace(OTHome))
                     {
                         <span>-</span>
                     }
@@ -203,18 +231,37 @@
                         @Html.Raw(item.AwayTeam)
                     }
                 </td>
-                <td>
-                    @awaySet[0]
-                </td>
-                <td>
-                    @awaySet[1]
-                </td>
-                <td>
-                    @awaySet[2]
-                </td>
-                <td>
-                    @awaySet[3]
-                </td>
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
+                {
+                    <td>-</td>
+                    <td>-</td>
+                }
+                else
+                {
+                    <td>
+                        @awaySet[0]
+                    </td>
+                    <td>
+                        @awaySet[1]
+                    </td>
+                }
+                
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND) 
+                    || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_FT))
+                {
+                    <td>-</td>
+                    <td>-</td>
+                }
+                else
+                {
+                    <td>
+                        @awaySet[2]
+                    </td>
+                    <td>
+                        @awaySet[3]
+                    </td>
+                }
+
                 <td>
                     @if (string.IsNullOrWhiteSpace(OTAway))
                     {
@@ -232,7 +279,6 @@
                     @finalAwayScore
                 </td>
             </tr>
-
             }
         }
         else

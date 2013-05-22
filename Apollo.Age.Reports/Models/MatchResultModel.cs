@@ -16,6 +16,50 @@ namespace Apollo.Age.Reports.Models
 
     public class MatchResultModel
     {
+        private object locker = new object();
+        private ResourceManager _resourceManager = null;
+
+        // Define list key for eventstatus
+        private Dictionary<string, int> _event = new Dictionary<string, int>()
+        {
+            { "running", Convert.ToInt32("0000000", 2) },
+            { "completed", Convert.ToInt32("0000001", 2) },
+            { "closed", Convert.ToInt32("0000010", 2) },
+            { "postponed", Convert.ToInt32("0000011", 2) },
+            { "refund", Convert.ToInt32("0000100", 2) },
+            { "refund ft", Convert.ToInt32("0000101", 2) },
+            { "refund ht", Convert.ToInt32("0000110", 2) },
+            { "won", Convert.ToInt32("0000111", 2) },
+            { "internal", Convert.ToInt32("0001000", 2) }
+        };
+
+        // Define list key for Result: isPending(1 bit) isHTCal(1 bit) calculate(1 bit) enventStatus(4 bit)
+        private Dictionary<int, string> _result = new Dictionary<int, string>()
+        {
+            { Convert.ToInt32("0000010", 2), "closed" },
+            { Convert.ToInt32("0100010", 2), "closed" },
+            { Convert.ToInt32("0000000", 2), "running" },
+            { Convert.ToInt32("0100000", 2), "running" },
+            { Convert.ToInt32("1000000", 2), "pending" },
+            { Convert.ToInt32("1010010", 2), "pending" },
+            { Convert.ToInt32("1100010", 2), "pending" },
+            { Convert.ToInt32("1100000", 2), "pending" },
+            { Convert.ToInt32("1010000", 2), "pending" },
+            { Convert.ToInt32("0110001", 2), "completed" },
+            { Convert.ToInt32("1000010", 2), "pending" },
+            { Convert.ToInt32("0000100", 2), "refund" },
+            { Convert.ToInt32("0000101", 2), "refundft" },
+            { Convert.ToInt32("0010101", 2), "refundft" },
+            { Convert.ToInt32("0010110", 2), "refundht" },
+            { Convert.ToInt32("0000110", 2), "refundht" },
+            { Convert.ToInt32("0010111", 2), "lblWon" },
+            { Convert.ToInt32("0000111", 2), "lblWon" },
+            { Convert.ToInt32("0010011", 2), "postponed" },
+            { Convert.ToInt32("0000011", 2), "postponed" },
+            { Convert.ToInt32("0011000", 2), "Internal" },
+            { Convert.ToInt32("0001000", 2), "Internal" },
+        };
+
         public byte SportId { get; set; }
 
         public string BetStatus { get; set; }
@@ -88,7 +132,6 @@ namespace Apollo.Age.Reports.Models
 
         public string GoalRecord { get; set; }
 
-
         public bool IsHTCal { get; set; }
 
         public bool Calculate { get; set; }
@@ -96,47 +139,6 @@ namespace Apollo.Age.Reports.Models
         public bool IsPending { get; set; }
 
         #region Map event status to coresponding language
-
-        // Define list key for eventstatus
-        static Dictionary<string, int> _event = new Dictionary<string, int>()
-        {
-            { "running", Convert.ToInt32("0000000", 2) },
-            { "completed", Convert.ToInt32("0000001", 2) },
-            { "closed", Convert.ToInt32("0000010", 2) },
-            { "postponed", Convert.ToInt32("0000011", 2) },
-            { "refund", Convert.ToInt32("0000100", 2) },
-            { "refund ft", Convert.ToInt32("0000101", 2) },
-            { "refund ht", Convert.ToInt32("0000110", 2) },
-            { "won", Convert.ToInt32("0000111", 2) },
-            { "internal", Convert.ToInt32("0001000", 2) }
-        };
-
-        // Define list key for Result: isPending(1 bit) isHTCal(1 bit) calculate(1 bit) enventStatus(4 bit)
-        static Dictionary<int, string> _result = new Dictionary<int, string>()
-        {
-            { Convert.ToInt32("0000010", 2), "closed" },
-            { Convert.ToInt32("0100010", 2), "closed" },
-            { Convert.ToInt32("0000000", 2), "running" },
-            { Convert.ToInt32("0100000", 2), "running" },
-            { Convert.ToInt32("1000000", 2), "pending" },
-            { Convert.ToInt32("1010010", 2), "pending" },
-            { Convert.ToInt32("1100010", 2), "pending" },
-            { Convert.ToInt32("1100000", 2), "pending" },
-            { Convert.ToInt32("1010000", 2), "pending" },
-            { Convert.ToInt32("0110001", 2), "completed" },
-            { Convert.ToInt32("1000010", 2), "pending" },
-            { Convert.ToInt32("0000100", 2), "refund" },
-            { Convert.ToInt32("0000101", 2), "refundft" },
-            { Convert.ToInt32("0010101", 2), "refundft" },
-            { Convert.ToInt32("0010110", 2), "refundht" },
-            { Convert.ToInt32("0000110", 2), "refundht" },
-            { Convert.ToInt32("0010111", 2), "lblWon" },
-            { Convert.ToInt32("0000111", 2), "lblWon" },
-            { Convert.ToInt32("0010011", 2), "postponed" },
-            { Convert.ToInt32("0000011", 2), "postponed" },
-            { Convert.ToInt32("0011000", 2), "Internal" },
-            { Convert.ToInt32("0001000", 2), "Internal" },
-        };
 
         /// <summary>
         /// Map event status to coresponding language
@@ -156,13 +158,13 @@ namespace Apollo.Age.Reports.Models
 
                 resultKey = pending | htCal | cal;
 
-                if (_event.ContainsKey(this.EventStatus.ToLowerInvariant()))
+                if (this._event.ContainsKey(this.EventStatus.ToLowerInvariant()))
                 {
-                    resultKey |= _event[this.EventStatus.ToLowerInvariant()]; // Or with event status
+                    resultKey |= this._event[this.EventStatus.ToLowerInvariant()]; // Or with event status
 
-                    if (_result.ContainsKey(resultKey))
+                    if (this._result.ContainsKey(resultKey))
                     {
-                        return this.GetResource(_result[resultKey]);
+                        return this.GetResource(this._result[resultKey]);
                     }
                     else
                     {
@@ -176,71 +178,28 @@ namespace Apollo.Age.Reports.Models
                     }
                 }
 
-                return UppercaseFirst(this.EventStatus);
+                return this.UppercaseFirst(this.EventStatus);
             }
         }
 
-        #region rem
-
-        //public string MapEventStatus(string eventStatus, bool isPending, bool isHTcal, bool calculate)
-        //{
-        //    int resultKey = 0x0000000;
-        //    int pending = Convert.ToInt32(isPending);
-        //    int htCal = Convert.ToInt32(isHTcal);
-        //    int cal = Convert.ToInt32(calculate);
-
-        //    pending <<= 6;  // Shift right 6 bit for pending status
-        //    htCal <<= 5;    // Shift right 5 bit for haft time calculate status
-        //    cal <<= 4;      // Shift right 4 bit for calculate status
-
-        //    resultKey = pending | htCal | cal;
-
-        //    if (_event.ContainsKey(eventStatus.ToLowerInvariant()))
-        //    {
-        //        resultKey |= _event[eventStatus.ToLowerInvariant()]; // Or with event status
-
-        //        if (_result.ContainsKey(resultKey))
-        //        {
-        //            return this.GetResource(_result[resultKey]);
-        //        }
-        //        else
-        //        {
-        //            // Get status from resource lang, if any
-        //            string str = this.GetResource(eventStatus.ToLower());
-
-        //            if (str != string.Empty)
-        //            {
-        //                return str;
-        //            }
-        //        }
-        //    }
-
-        //    return this.UppercaseFirst(eventStatus);
-        //}
-
-        #endregion rem
-
-        static object locker = new object();
-        static ResourceManager _resourceManager = null;
-
         public string GetResource(string key)
         {
-            if (_resourceManager == null)
+            if (this._resourceManager == null)
             {
-                lock (locker)
+                lock (this.locker)
                 {
-                    if (_resourceManager == null)
+                    if (this._resourceManager == null)
                     {
-                        _resourceManager = new ResourceManager(typeof(Resources.Lang));
-                        _resourceManager.IgnoreCase = true;
+                        this._resourceManager = new ResourceManager(typeof(Resources.Lang));
+                        this._resourceManager.IgnoreCase = true;
                     }
                 }
             }
 
-            return _resourceManager.GetString(key) ?? string.Empty;
+            return this._resourceManager.GetString(key) ?? string.Empty;
         }
 
-        static private string UppercaseFirst(string s)
+        private string UppercaseFirst(string s)
         {
             if (string.IsNullOrEmpty(s))
             {

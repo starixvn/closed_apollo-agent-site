@@ -30,6 +30,6 @@ namespace Apollo.Age.Services.Interface
 
         bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType);
 
-        void WriteLogInternalLogin(int AgentId, int AgentUserId, int ServerId, int ActionId, string Doing, string LoginIp, string DomainName, string BrowserName, string Platform, string CountryCode);
+        void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode);
     }
 }

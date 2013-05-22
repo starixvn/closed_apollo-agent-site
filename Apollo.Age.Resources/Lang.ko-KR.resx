@@ -4093,7 +4093,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Edit Member Setting - {0}</value>
   </data>
   <data name="lblInvalidValueRange" xml:space="preserve">
-    <value>Invalid Value Range</value>
+    <value>Invalid Value Range, Input must in [{0} - {1}].</value>
   </data>
   <data name="lblViewAgentSetting" xml:space="preserve">
     <value>View Agent Setting - {0}</value>
@@ -4102,7 +4102,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>View Member Setting - {0}</value>
   </data>
   <data name="lblAccessDenied" xml:space="preserve">
-    <value>Access Denied</value>
+    <value>엑서스가 거부됨</value>
   </data>
   <data name="lblInvalidRequest" xml:space="preserve">
     <value>Invalid Request</value>
@@ -4130,5 +4130,26 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   </data>
   <data name="UnderMaintenance" xml:space="preserve">
     <value>Under Maintenance</value>
+  </data>
+  <data name="lblaction" xml:space="preserve">
+    <value>Action:</value>
+  </data>
+  <data name="lblbrowser" xml:space="preserve">
+    <value>Browser:</value>
+  </data>
+  <data name="lbldomain" xml:space="preserve">
+    <value>Domain:</value>
+  </data>
+  <data name="lblip" xml:space="preserve">
+    <value>Ip:</value>
+  </data>
+  <data name="lblplatform" xml:space="preserve">
+    <value>Platform:</value>
+  </data>
+  <data name="lblaccesstime" xml:space="preserve">
+    <value>Access Time:</value>
+  </data>
+  <data name="lbllastaccessed" xml:space="preserve">
+    <value>Last Accessed:</value>
   </data>
 </root>

@@ -41,7 +41,7 @@ namespace Sunplus.Agent.UI._BetList
 
         private string type = string.Empty;
         private string title = string.Empty;
-        private int custId, matchId, live;
+        private int matchId, live;
         private string bettype, betTeam;
         private DateTime dateFrom = DateTime.Now;
         private DateTime dateTo = DateTime.Now;
@@ -58,8 +58,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             #region INIT
 
-            bool isShowWinLost = false,
-                 isShowAgentPT = true,
+            bool isShowAgentPT = true,
                  isShowMember = true;
 
             var ticketResult = View as TicketResult;
@@ -84,12 +83,7 @@ namespace Sunplus.Agent.UI._BetList
                 excelColumns--;
                 betlistHeader.Member.Hide();
             }
-
-            if (!isShowWinLost)
-            {
-                excelColumns--;
-                betlistHeader.Winloss.Hide();
-            }
+            betlistHeader.Winloss.Hide();
 
             #endregion Customize
 
@@ -131,11 +125,6 @@ namespace Sunplus.Agent.UI._BetList
                        .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
                        .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
 
-                if (isShowWinLost)
-                {
-                    builder.AddWinLoss(ticket, "<td class='r nowrap'>", "</td>");
-                }
-
                 builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
                 builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
                 builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
@@ -144,7 +133,6 @@ namespace Sunplus.Agent.UI._BetList
             }
 
             builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
-
             content.Append(builder.GetBetList());
             content.Append("</tbody>");
 

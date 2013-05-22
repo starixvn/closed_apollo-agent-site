@@ -4077,9 +4077,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblUserManagement" xml:space="preserve">
     <value>User Management</value>
   </data>
-  <data name="lblAgent" xml:space="preserve">
-    <value>Agent</value>
-  </data>
   <data name="lblUsername" xml:space="preserve">
     <value>Username</value>
   </data>
@@ -4411,7 +4408,7 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
     <value>Edit Member Setting - {0}</value>
   </data>
   <data name="lblInvalidValueRange" xml:space="preserve">
-    <value>Invalid Value Range</value>
+    <value>Invalid Value Range, Input must in [{0} - {1}].</value>
   </data>
   <data name="lblViewAgentSetting" xml:space="preserve">
     <value>View Agent Setting - {0}</value>
@@ -4505,5 +4502,47 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="Items" xml:space="preserve">
     <value>items(s)</value>
+  </data>
+  <data name="lblInvalidInputDecimals" xml:space="preserve">
+    <value>Input only allow two numbers after the decimal point.</value>
+  </data>
+  <data name="lblaction" xml:space="preserve">
+    <value>Action:</value>
+  </data>
+  <data name="lblbrowser" xml:space="preserve">
+    <value>Browser:</value>
+  </data>
+  <data name="lbldomain" xml:space="preserve">
+    <value>Domain:</value>
+  </data>
+  <data name="lblip" xml:space="preserve">
+    <value>Ip:</value>
+  </data>
+  <data name="lblplatform" xml:space="preserve">
+    <value>Platform:</value>
+  </data>
+  <data name="lblaccesstime" xml:space="preserve">
+    <value>Access Time:</value>
+  </data>
+  <data name="lblcurrentsession" xml:space="preserve">
+    <value>Current Session</value>
+  </data>
+  <data name="lbllastaccessed" xml:space="preserve">
+    <value>Last Accessed:</value>
+  </data>
+  <data name="CustomerSettingLog" xml:space="preserve">
+    <value>Customer Setting Log</value>
+  </data>
+  <data name="lblCommission" xml:space="preserve">
+    <value>Commission</value>
+  </data>
+  <data name="on" xml:space="preserve">
+    <value>on</value>
+  </data>
+  <data name="ShowOldValues" xml:space="preserve">
+    <value>Show old values</value>
+  </data>
+  <data name="GoToTop" xml:space="preserve">
+    <value>Go to top</value>
   </data>
 </root>

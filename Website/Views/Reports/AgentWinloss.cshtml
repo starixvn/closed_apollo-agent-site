@@ -19,7 +19,6 @@
 			</div>
 			<div class="editor">
 				@Html.DatePickerFor(m => m.FromDate, minDate, maxDate)
-				<div class="img-calendar"></div>
 			</div>
 		</div>
 		<div class="cell">
@@ -28,7 +27,6 @@
 			</div>
 			<div class="editor">
 				@Html.DatePickerFor(m => m.ToDate, minDate, maxDate)
-				<div class="img-calendar"></div>
 			</div>
 		</div>
 		<div class="cell">
@@ -50,7 +48,7 @@
 		<thead>
 			<tr>
 				<th rowspan="2">
-					@Apollo.Age.Resources.Lang.AgentLevel1
+					
 				</th>
 				<th rowspan="2">
 					@Apollo.Age.Resources.Lang.lblSoccerPT
@@ -279,7 +277,6 @@
 
 @section scripts
 {
-	<script src="~/_GlobalResources/Js/noty/jquery.noty.min.js" type="text/javascript"></script>
 	<script src="~/Views/Reports/Resources/WinLoss.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		var LANGUAGES = function () {

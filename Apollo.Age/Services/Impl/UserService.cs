@@ -120,47 +120,29 @@ namespace Apollo.Age.Services.Impl
             return false;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="AgentId"></param>
-        /// <param name="AgentUserId"></param>
-        /// <param name="ServerId"></param>
-        /// <param name="ActionId"></param>
-        /// <param name="Doing"></param>
-        /// <param name="LoginIp"></param>
-        /// <param name="DomainName"></param>
-        /// <param name="BrowserName"></param>
-        /// <param name="Platform"></param>
-        /// <param name="CountryCode"></param>
-        /// <param name="Duration"></param>
-        /// <returns></returns>
-        public void WriteLogInternalLogin(int AgentId, int AgentUserId, int ServerId, int ActionId, string Doing, string LoginIp, string DomainName, string BrowserName, string Platform, string CountryCode)
+       
+        public void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode)
         {
-            try
-            {
-                var result= _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
-                {
-                    AgentId = AgentId,
-                    AgentUserId = AgentUserId,
-                    ServerId = ServerId,
-                    ActionId = ActionId,
-                    Doing = Doing,
-                    LoginIp = LoginIp,
-                    Platform = Platform,
-                    CountryCode = CountryCode,                    
-                    BrowserName = BrowserName,
-                    DomainName = DomainName
-                });
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
-          
+             try
+             {
+                 var result = _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
+                 {
+                     AgentId = agentId,
+                     AgentUserId = agentUserId,
+                     ServerId = serverId,
+                     ActionId = actionId,
+                     Doing = doing,
+                     LoginIp = loginIp,
+                     Platform = platform,
+                     CountryCode = countryCode,
+                     BrowserName = browserName,
+                     DomainName = domainName
+                 });
+             }
+             catch (Exception ex)
+             {
+                 Logger.Log.Error(ex.Message, ex);
+             }
         }
-
-
-      
     }
 }

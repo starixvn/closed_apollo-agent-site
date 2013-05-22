@@ -25,6 +25,36 @@ namespace Apollo.Age.Reports.Services
             return ConvertToMatchEnteredModel(matchEnteredList);
         }
 
+        public List<AgentWinLossModel> GetAgentWinLoss(int agentId, DateTime fromDate, DateTime toDate)
+        {
+            var criteria = new AgentWinLossCriteria() 
+            { 
+                AgentId = agentId,
+                FromDate = fromDate,
+                ToDate = toDate,
+                BalanceUpDay = this.GetBalanceUpDay()
+            };
+
+            var agentWinLossList = this.GetData<AgentWinLossModel>(criteria).ToList();
+
+            return agentWinLossList;
+        }
+
+        public List<MemberWinLossModel> GetMemberWinLoss(int agentId, DateTime fromDate, DateTime toDate)
+        {
+            var criteria = new MemberWinLossCriteria()
+            {
+                AgentId = agentId,
+                FromDate = fromDate,
+                ToDate = toDate,
+                BalanceUpDay = this.GetBalanceUpDay()
+            };
+
+            var memberWinLossList = this.GetData<MemberWinLossModel>(criteria).ToList();
+
+            return memberWinLossList;
+        }
+
         private List<MatchEnteredViewModel> ConvertToMatchEnteredModel(List<MatchEnteredModel> enteredDTOList)
         {
             List<MatchEnteredViewModel> matchEnteredList = null;
@@ -46,13 +76,13 @@ namespace Apollo.Age.Reports.Services
                         }
                         else
                         {
-                            if(sportType != -1)
+                            if (sportType != -1)
                             {
                                 matchEnteredList.Add(matchEntered);
                                 matchEntered = null;
                             }
 
-                            if(enteredDTO.IsToday == 1)
+                            if (enteredDTO.IsToday == 1)
                             {
                                 matchEntered = new MatchEnteredViewModel()
                                 {
@@ -80,35 +110,6 @@ namespace Apollo.Age.Reports.Services
             }
 
             return matchEnteredList;
-        }
-
-        public List<AgentWinLossModel> GetAgentWinLoss(int agentId, DateTime fromDate, DateTime toDate)
-        {
-            var criteria = new AgentWinLossCriteria() { 
-                AgentId = agentId,
-                FromDate = fromDate,
-                ToDate = toDate,
-                BalanceUpDay = this.GetBalanceUpDay()
-            };
-
-            var agentWinLossList = this.GetData<AgentWinLossModel>(criteria).ToList();
-
-            return agentWinLossList;
-        }
-
-        public List<MemberWinLossModel> GetMemberWinLoss(int agentId, DateTime fromDate, DateTime toDate)
-        {
-            var criteria = new MemberWinLossCriteria()
-            {
-                AgentId = agentId,
-                FromDate = fromDate,
-                ToDate = toDate,
-                BalanceUpDay = this.GetBalanceUpDay()
-            };
-
-            var memberWinLossList = this.GetData<MemberWinLossModel>(criteria).ToList();
-
-            return memberWinLossList;
         }
     }
 }

@@ -1,0 +1,289 @@
+﻿@using Apollo.Age.Enumerations
+@using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
+@model List<PositionTakingModel>
+@if (!ReferenceEquals(Model, null) && Model.Any())
+{
+    var isShowOld = (bool)ViewBag.IsShowOldValue;
+    var agentLevel = (int)ViewBag.AgentLevel;
+    var isAgent = (bool)ViewBag.IsAgent;
+    var listPTGroupBySport = Model.GroupBy(m => m.SportType);
+    var isHaveLive = false;
+    var itemMixSport = new PositionTakingModel();
+    var numColmnEmpty = 4;
+    
+    <table class="tblRpt">
+        @foreach (var itemSport in listPTGroupBySport)
+        {
+            var itemSportFirst = itemSport.FirstOrDefault();        
+            <tr class="sub-title">
+                @if (itemSportFirst.SportType == (int)SportTypes.Soccer)
+                { 
+                    <td colspan="6">
+                        @itemSportFirst.SportName - @Lang.lblDeadball
+                    </td>
+                }
+                else
+                {
+                    <td colspan="6">
+                        @itemSportFirst.SportName
+                    </td>
+                }
+            </tr>    
+                int index = 0;
+                int wide = 5;
+
+                var listItemSport = itemSport.OrderBy(m => m.IsLive).ToList();
+
+                if (itemSportFirst.SportType == (int)SportTypes.OtherSports)
+                {
+                    itemMixSport = listItemSport[3];
+                    listItemSport.RemoveAt(3);
+
+                }
+
+                var count = listItemSport.Count;
+
+                while (index < count)
+                {
+
+                    var itemBet = listItemSport[index];
+                    if (itemBet.SportType == 1 && itemBet.IsLive && !isHaveLive)
+                    {
+            <tr class="sub-title">
+                <td colspan="6">
+                    @itemSport.FirstOrDefault().SportName - @Lang.lblLive
+                </td>
+            </tr>    
+                        isHaveLive = true;
+                    }      
+                    
+            <tr>
+                <td class="colW1">
+                </td>
+                @for (int i = index; i < wide; i++)
+                {
+                    var noborder = i == 4 || i == 9 || i == 14 ? "no-border-right" : string.Empty;
+                    if (i < count)
+                    { 
+                    <td class="colW1 @noborder">
+                        @listItemSport[i].BetName
+                    </td>            
+                    }
+                    else
+                    {
+                        if (i == 14)
+                        {
+                            i = 4;
+                        }
+                        for (int j = 0; j < 5 - i; j++)
+                        {
+                            noborder = j == 5 - i - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW1 @noborder">
+                    </td>
+                        }
+                        break;
+                    }
+                }
+            </tr>
+                if (isAgent)
+                { 
+            <tr>
+                <td class="colW">
+                    @Lang.lblMaxGivenShare
+                </td>
+                @for (int i = index; i < wide; i++)
+                {
+                    var noborder = i == 4 || i == 9 || i == 14 ? "no-border-right" : string.Empty;
+                    if (i < count)
+                    { 
+                    <td class="colW2 @noborder">
+                        @ToString(isShowOld, listItemSport[i].OldMaxGiven, listItemSport[i].MaxGiven)
+                    </td>
+                    }
+                    else
+                    {
+                        if (i == 14)
+                        {
+                            i = 4;
+                        }
+                        for (int j = 0; j < 5 - i; j++)
+                        {
+                            noborder = j == 5 - i - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noborder">
+                    </td>
+                        }
+                        break;
+                    }
+                }
+            </tr>
+                }
+                if (agentLevel != 1)
+                { 
+            <tr>
+                <td class="colW">
+                    @if (isAgent)
+                    { 
+                        @Lang.lblMaxTakenShare
+                    }
+                    else
+                    {
+                        @Lang.lblTakenShare
+                    }
+                </td>
+                @for (int i = index; i < wide; i++)
+                {
+                    var noborder = i == 4 || i == 9 || i == 14 ? "no-border-right" : string.Empty;
+                    if (i < count)
+                    { 
+                    <td class="colW2 @noborder">
+                        @ToString(isShowOld, listItemSport[i].OldMaxUpper, listItemSport[i].MaxUpper)
+                    </td>
+                    }
+                    else
+                    {
+                        if (i == 14)
+                        {
+                            i = 4;
+                        }
+                        for (int j = 0; j < 5 - i; j++)
+                        {
+                            noborder = j == 5 - i - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noborder">
+                    </td>
+                        }
+                        break;
+                    }
+                }
+            </tr>
+                }
+                if (isAgent)
+                { 
+            <tr>
+                <td class="colW">
+                    @Lang.lblMinGivenShare
+                </td>
+                @for (int i = index; i < wide; i++)
+                {
+                    var noborder = i == 4 || i == 9 || i == 14 ? "no-border-right" : string.Empty;
+                    if (i < count)
+                    { 
+                    <td class="colW2 @noborder">
+                        @ToString(isShowOld, listItemSport[i].OldMinGiven, listItemSport[i].MinGiven)
+                    </td>
+                    }
+                    else
+                    {
+                        if (i == 14)
+                        {
+                            i = 4;
+                        }
+                        for (int j = 0; j < 5 - i; j++)
+                        {
+                            noborder = j == 5 - i - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noborder">
+                    </td>
+                        }
+                        break;
+                    }
+                }
+            </tr>
+                }
+                index = index + 5;
+                wide += wide;
+                }
+        }
+        <tr class="sub-title">
+            <td colspan="6">
+                @Lang.lblMixParlay
+            </td>
+        </tr>
+        <tr>
+            <td class="colW1">
+            </td>
+            <td class="colW1">
+                @itemMixSport.BetName
+            </td>
+            @for (int i = 0; i < numColmnEmpty; i++)
+            {
+                var noboreder = i == numColmnEmpty - 1 ? "no-border-right" : string.Empty;
+                <td class="colW1 @noboreder">
+                </td>
+            }
+        </tr>
+        @if (isAgent)
+        { 
+            <tr>
+                <td class="colW">
+                    @Lang.lblMaxGivenShare
+                </td>
+                <td class="colW2">
+                    @ToString(isShowOld, itemMixSport.OldMaxGiven, itemMixSport.MaxGiven)
+                </td>
+                @for (int i = 0; i < numColmnEmpty; i++)
+                {
+                    var noboreder = i == numColmnEmpty - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noboreder">
+                    </td>
+                }
+            </tr>
+        }
+        @if (agentLevel != 1)
+        { 
+            <tr>
+                <td class="colW">
+                    @if (isAgent)
+                    { 
+                        @Lang.lblMaxTakenShare
+                    }
+                    else
+                    {
+                        @Lang.lblTakenShare
+                    }
+                </td>
+                <td class="colW2">
+                    @ToString(isShowOld, itemMixSport.OldMaxUpper, itemMixSport.MaxUpper)
+                </td>
+                @for (int i = 0; i < numColmnEmpty; i++)
+                {
+                    var noboreder = i == numColmnEmpty - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noboreder">
+                    </td>
+                }
+            </tr>
+        }
+        @if (isAgent)
+        { 
+            <tr>
+                <td class="colW">
+                    @Lang.lblMinGivenShare
+                </td>
+                <td class="colW2">
+                    @ToString(isShowOld, itemMixSport.OldMinGiven, itemMixSport.MinGiven)
+                </td>
+                @for (int i = 0; i < numColmnEmpty; i++)
+                {
+                    var noboreder = i == numColmnEmpty - 1 ? "no-border-right" : string.Empty;
+                    <td class="colW2 @noboreder">
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+}
+@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue / 100, 2).ToString("N");
+        string strNew = Math.Round(newValue / 100, 2).ToString("N");
+
+        if (oldValue != newValue)
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
+            if (isShowOld)
+            {                
+    <span>| </span><span class="valueold">@strOld</span>
+            }
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }            
+}
