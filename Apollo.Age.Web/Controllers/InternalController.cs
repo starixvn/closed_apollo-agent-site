@@ -109,19 +109,22 @@ namespace Apollo.Age.Web
                     TempData[ADMINNAME] = model.Username;
                     TempData[ADMINID] = _AdminId;
 
-                    //write log
+                    //Write log
+                    //ActionId: 700 - Login successful
                     string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Successful.", 
                                     model.Username);
-                    WriteLoginLog(0, _AdminId, 1307, doing);
+                    WriteLoginLog(0, _AdminId, 700, doing);
 
                     return RedirectToAction("SelectAccount");
                 }
                 else // return View with error message
                 {
+                    //Write log
+                    //ActionId: 6000 - Login fail
                     string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Failed({1}) .", 
                                     model.Username, 
                                     Lang.InvalidUsernameOrPassword);
-                    WriteLoginLog(0, _AdminId, 1308, doing);
+                    WriteLoginLog(0, _AdminId, 7000, doing);
 
                     ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
                 }
@@ -165,22 +168,23 @@ namespace Apollo.Age.Web
                         language: model.Language);
 
                     // Write log internal login
-
+                    // ActionId: 701 - Select Account successful
                     string doing = string.Format("Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
                                     model.AdminName,
                                     user.Agent.Username);
-                    WriteLoginLog(user.Agent.Id, model.AdminId, 1306, doing);
+                    WriteLoginLog(user.Agent.Id, model.AdminId, 701, doing);
 
                     FormsAuthentication.RedirectFromLoginPage(user.Agent.Username, createPersistentCookie: false);
                 }
                 else // return View with not-found error message
                 {
-                    //string doing = "Admin: " + model.AdminName + " via Agent: " + model.Agent + " Logged in to Apollo Agent Site - Result: Failed(" + Lang.AgentNotFound + ").";
+                    //// Write log internal login
+                    // ActionId: 6001 - Select Account fail
                     string doing = string.Format("Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Failed({2}).",
                                     model.AdminName,
                                     model.Agent,
                                     Lang.AgentNotFound);
-                    WriteLoginLog(0, model.AdminId, 1306, doing);
+                    WriteLoginLog(0, model.AdminId, 7001, doing);
 
                     ModelState.AddModelError("Agent", Lang.AgentNotFound);
                 }
@@ -294,11 +298,13 @@ namespace Apollo.Age.Web
 
                     #endregion removes cache once user logout
 
+                    // Write log once user logout
+                    // ActionId: 702 - Logout successful
                     string doing = string.Format("Admin [{0}] via Agent [{1}] signed out successfully",
                         SessionManager.CurrentSession.AdminName,
                         SessionManager.CurrentSession.Username);
                     WriteLoginLog(SessionManager.CurrentSession.AgentId,
-                        SessionManager.CurrentSession.AdminId, 1309, doing);
+                        SessionManager.CurrentSession.AdminId, 702, doing);
                 }
             }
 
@@ -310,7 +316,7 @@ namespace Apollo.Age.Web
             {
                 return Redirect(ApoURLs.URLs.InternalSignIn);
             }
-
+            
             return Redirect(FormsAuthentication.LoginUrl);
         }
 
