@@ -109,7 +109,7 @@
                     <td class="colW2 @noborder">
                         @if (!ReferenceEquals(model, null))
                         {
-                            @ToString(isShowOld, model.OldMinGiven, model.MinGiven)
+                            @ToString(isShowOld, model.OldMaxUpper, model.MaxUpper)
                         }
                     </td>                            
                         count++;
@@ -136,7 +136,7 @@
                     <td class="colW2 @noborder">
                         @if (!ReferenceEquals(model, null))
                         {
-                            @ToString(isShowOld, model.OldMaxUpper, model.MaxUpper)
+                            @ToString(isShowOld, model.OldMinGiven, model.MinGiven)
                         }
                     </td>                            
                         count++;
