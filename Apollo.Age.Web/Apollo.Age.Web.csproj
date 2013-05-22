@@ -88,6 +88,7 @@
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Filters\BelongCheckingAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\P3PAttribute.cs" />
     <Compile Include="Filters\InternalCheckingAttribute.cs" />
     <Compile Include="Hub\KickoutHub.cs" />
     <Compile Include="ICurrentSession.cs" />
