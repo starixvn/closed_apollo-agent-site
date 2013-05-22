@@ -212,6 +212,9 @@ namespace Apollo.Age.Account.Models
                                     && itemOld.BetType == model.BetType)
                                 {
                                     list[i].GroupA = model.GroupA;
+                                    list[i].GroupB = model.GroupB;
+                                    list[i].GroupC = model.GroupC;
+                                    list[i].GroupD = model.GroupD;
                                 }
                             }
                         }
