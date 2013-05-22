@@ -4163,9 +4163,6 @@
   <data name="lblAdvancedMode" xml:space="preserve">
     <value>进阶模式</value>
   </data>
-  <data name="lblAgent" xml:space="preserve">
-    <value>代理商</value>
-  </data>
   <data name="lblFormatAgentSetting" xml:space="preserve">
     <value>代理商 {0} 设定</value>
   </data>

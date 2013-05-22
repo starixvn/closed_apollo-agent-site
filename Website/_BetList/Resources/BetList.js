@@ -12,7 +12,7 @@ function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostd
 }
 
 function ViewMixParlayResult(refno_mixparlay, refno) {
-	var width = 730,
+	var width = 760,
 		height = 450,
 		params = '?refNo=' + refno_mixparlay,
 		detailTitle = $('#' + refno).find('a:first').text();
@@ -27,7 +27,7 @@ function ViewSportBookResult(matchId, sportId, refno) {
 		params = '?matchId= ' + matchId + '&sportId=' + sportId,
 		detailTitle = $('#' + refno).find('.league').html().replace(/<\/?[^>]+>/gi, "").replace("&nbsp;", " - ");
 
-	parent.APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ResultByMatch" + params),
+	APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ResultByMatch" + params),
 		detailTitle, { width: width, height: height });
 }
 
@@ -141,7 +141,12 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
 	var titleScoreMap = _page.titleScoreMap + mainShareHolderUsername;
 	var wnd = parent.IsApoRoot ? window : parent;
 	var singleFrame = false; // allow multiple instances of dialog to keep BetList opened
-	wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 650 }, singleFrame);
+	// Check IE7
+	var heightPopup = 605;
+	if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) == 7) {
+	    heightPopup = 585;
+	}
+	wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: heightPopup }, singleFrame);
 }
 
 RegisterStartUp(InitBetList);

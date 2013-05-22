@@ -1,179 +1,153 @@
 ﻿@using Apollo.Age.Enumerations
 @using Apollo.Age.Account.Models
 @using Apollo.Age.Resources
-@model List<PositionTakingModel>
+@using System.Linq
+@using System.Xml.Linq
+@using System.Resources
+@model Dictionary<string, PositionTakingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
     var isShowOld = (bool)ViewBag.IsShowOldValue;
     var agentLevel = (int)ViewBag.AgentLevel;
     var isAgent = (bool)ViewBag.IsAgent;
-    var listPTGroupBySport = Model.GroupBy(m => m.SportType);
-    var isHaveLive = false;
     var itemMixSport = new PositionTakingModel();
+    var template = (XDocument)ViewBag.Template;
+    var xmlSportType = template.Descendants("SportType");
+    var count = 0;
     
     <table class="tblRpt">
-        @foreach (var itemSport in listPTGroupBySport)
+        @foreach (var itemSportType in xmlSportType)
         {
-            var itemSportFirst = itemSport.FirstOrDefault();        
-            <tr class="sub-title">
-                @if (itemSportFirst.SportType == (int)SportTypes.Soccer)
-                { 
-                    <td colspan="6">
-                        @itemSportFirst.SportName - @Lang.lblDeadball
-                    </td>
-                }
-                else
-                {
-                    <td colspan="6">
-                        @itemSportFirst.SportName
-                    </td>
-                }
-            </tr>    
-                int index = 0;
-                int wide = 5;
-
-                var listItemSport = itemSport.OrderBy(m => m.IsLive).ToList();
-
-                if (itemSportFirst.SportType == (int)SportTypes.OtherSports)
-                {
-                    itemMixSport = listItemSport[3];
-                    listItemSport.RemoveAt(3);
-
-                }
-
-                while (index < listItemSport.Count)
-                {
-
-                    var itemBet = listItemSport[index];
-
-                    if (itemBet.SportType == 1 && itemBet.IsLive && !isHaveLive)
-                    {
+            var sportId = itemSportType.Attribute("id").Value;
+            var isLive = itemSportType.Attribute("isLive").Value;
+            var resoureKey = itemSportType.Attribute("resourcekey").Value;
             <tr class="sub-title">
                 <td colspan="6">
-                    @itemSport.FirstOrDefault().SportName - @Lang.lblLive
+                    @if (sportId == ((int)SportTypes.Soccer).ToString())
+                    {
+                        var strLive = isLive == "true" ? Lang.lblLive : Lang.lblDeadball;            
+                  
+                        @GetResource(resoureKey, strLive)                    
+                    }
+                    else
+                    {
+                        @GetResource(resoureKey)                
+                    }
                 </td>
-            </tr>    
-                        isHaveLive = true;
-                    }      
-                    
+            </tr>   
+                    var xmlBetGroup = itemSportType.Descendants("BetTypeGroup");
+
+                    foreach (var itemBetGroup in xmlBetGroup)
+                    {
+                        var xmlBetType = itemBetGroup.Descendants("BetType");
             <tr>
                 <td class="colW1">
                 </td>
-                @for (int i = index; i < wide && i < listItemSport.Count; i++)
+                @foreach (var itemBet in xmlBetType)
                 {
-                    var noborder = i == 4 || i == 9 ? "no-border-right" : string.Empty;
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    var betResourceKey = itemBet.Attribute("resourcekey").Value;                   
                     <td class="colW1 @noborder">
-                        @listItemSport[i].BetName
-                    </td>                                   
+                        @GetResource(betResourceKey)
+                    </td>                            
+                    count++;
+                }
+                @GenerateEmptyColumn(count, "colW1")
+                @{
+                count = 0;
                 }
             </tr>
                 if (isAgent)
-                { 
+                {
             <tr>
                 <td class="colW">
                     @Lang.lblMaxGivenShare
                 </td>
-                @for (int i = index; i < wide && i < listItemSport.Count; i++)
+                @foreach (var itemBet in xmlBetType)
                 {
-                    var noborder = i == 4 || i == 9 ? "no-border-right" : string.Empty;
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    string key = string.Format("{0}_{1}_{2}", sportId, betId, isLive);
+                    var model = Model.ContainsKey(key) ? Model[key] : null;
+                    
                     <td class="colW2 @noborder">
-                        @ToString(isShowOld, listItemSport[i].OldMaxGiven, listItemSport[i].MaxGiven)
-                    </td>
+                        @if (!ReferenceEquals(model, null))
+                        { 
+                            @ToString(isShowOld, model.OldMaxGiven, model.MaxGiven)
+                        }
+                    </td>                            
+                        count++;
+                }
+                @GenerateEmptyColumn(count)
+                @{
+                count = 0;
                 }
             </tr>
                 }
+
                 if (agentLevel != 1)
                 { 
+
             <tr>
                 <td class="colW">
                     @if (isAgent)
                     { 
-                        @Lang.lblMaxTakenShare
+ @Lang.lblMaxTakenShare
                     }
                     else
                     {
-                        @Lang.lblTakenShare
+ @Lang.lblTakenShare
                     }
                 </td>
-                @for (int i = index; i < wide && i < listItemSport.Count; i++)
+                @foreach (var itemBet in xmlBetType)
                 {
-                    var noborder = i == 4 || i == 9 ? "no-border-right" : string.Empty;
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    string key = string.Format("{0}_{1}_{2}", sportId, betId, isLive);
+                    var model = Model.ContainsKey(key) ? Model[key] : null;           
                     <td class="colW2 @noborder">
-                        @ToString(isShowOld, listItemSport[i].OldMaxUpper, listItemSport[i].MaxUpper)
-                    </td>
+                        @if (!ReferenceEquals(model, null))
+                        {
+                            @ToString(isShowOld, model.OldMaxUpper, model.MaxUpper)
+                        }
+                    </td>                            
+                        count++;
+                }
+                @GenerateEmptyColumn(count)
+                @{
+                count = 0;
                 }
             </tr>
                 }
                 if (isAgent)
                 { 
+
             <tr>
                 <td class="colW">
                     @Lang.lblMinGivenShare
                 </td>
-                @for (int i = index; i < wide && i < listItemSport.Count; i++)
+                @foreach (var itemBet in xmlBetType)
                 {
-                    var noborder = i == 4 || i == 9 ? "no-border-right" : string.Empty;
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    string key = string.Format("{0}_{1}_{2}", sportId, betId, isLive);
+                    var model = Model.ContainsKey(key) ? Model[key] : null;           
                     <td class="colW2 @noborder">
-                        @ToString(isShowOld, listItemSport[i].OldMinGiven, listItemSport[i].MinGiven)
-                    </td>
+                        @if (!ReferenceEquals(model, null))
+                        {
+                            @ToString(isShowOld, model.OldMinGiven, model.MinGiven)
+                        }
+                    </td>                            
+                        count++;
+                }
+                @GenerateEmptyColumn(count)
+                @{
+                count = 0;
                 }
             </tr>
                 }
-                index = index + 5;
-                wide += wide;
-                }
-        }
-        <tr class="sub-title">
-            <td colspan="6">
-                @Lang.lblMixParlay
-            </td>
-        </tr>
-        <tr>
-            <td class="colW1">
-            </td>
-            <td class="colW1">
-                @itemMixSport.BetName
-            </td>
-        </tr>
-        @if (isAgent)
-        { 
-            <tr>
-                <td class="colW">
-                    @Lang.lblMaxGivenShare
-                </td>
-                <td class="colW2">
-                    @ToString(isShowOld, itemMixSport.OldMaxGiven, itemMixSport.MaxGiven)
-                </td>
-            </tr>
-        }
-        @if (agentLevel != 1)
-        { 
-            <tr>
-                <td class="colW">
-                    @if (isAgent)
-                    { 
-                        @Lang.lblMaxTakenShare
                     }
-                    else
-                    {
-                        @Lang.lblTakenShare
-                    }
-                </td>
-                <td class="colW2">
-                    @ToString(isShowOld, itemMixSport.OldMaxUpper, itemMixSport.MaxUpper)
-                </td>
-            </tr>
-        }
-        @if (isAgent)
-        { 
-            <tr>
-                <td class="colW">
-                    @Lang.lblMinGivenShare
-                </td>
-                <td class="colW2">
-                    @ToString(isShowOld, itemMixSport.OldMinGiven, itemMixSport.MinGiven)
-                </td>
-            </tr>
         }
     </table>
 }
@@ -192,4 +166,22 @@
         else
         { <span class="valueold">@strOld</span>
         }            
+}
+@helper GetResource(string key, string isLive = "")
+    {
+        string str = (new ResourceManager(typeof(Lang)) { IgnoreCase = true }).GetString(key);    
+    @str @isLive    
+}
+@helper GenerateEmptyColumn(int count, string className = "colW2")
+    {
+        if (count <= 4)
+        {
+            for (int i = count; i < 4; i++)
+            {
+    <td class="@className">
+    </td>
+            }
+    <td class="@className no-border-right">
+    </td>
+        }
 }

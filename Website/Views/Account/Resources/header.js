@@ -263,16 +263,17 @@ function InitHeader() {
 }
 
 function InitHubConnection() {
-    var hub = $.connection.kickoutHub;
-    hub.client.kickoutUser = function () {
-        alert(LANGUAGES.AlerSignonMessage);
-        APOLLO.signOut(true);
-    };
+    if ($("#isinternal").val()) {
+        var hub = $.connection.kickoutHub;
+        hub.client.kickoutUser = function () {
+            alert(LANGUAGES.AlerSignonMessage);
+            APOLLO.signOut(true);
+        };
 
-    $.connection.hub.start().done(function () {
-        hub.server.send($("#adminid").val(), $("#agentid").val(), $("#isinternal").val());
-    });
-
+        $.connection.hub.start().done(function () {
+            hub.server.send($("#adminid").val(), $("#isinternal").val());
+        });
+    }
 }
 
 // Change to message page

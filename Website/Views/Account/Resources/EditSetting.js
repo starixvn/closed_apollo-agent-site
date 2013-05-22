@@ -77,10 +77,10 @@ if (typeof jQuery != 'undefined') {
                 && EDITSETTING.betLimitElement.Validate()
                 && EDITSETTING.positionTakingElement.Validate()) {
                     var commissionSettingValue = EDITSETTING.commissionSettingElement.Save();
-                    if (commissionSettingValue == null && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) {
-                        noty({ text: Language.INVALID_COMMISSION_MESSAGE, type: 'error', timeout: 5000 });
-                        return;
-                    }
+//                    if (commissionSettingValue == null && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) {
+//                        noty({ text: Language.INVALID_COMMISSION_MESSAGE, type: 'error', timeout: 5000 });
+//                        return;
+//                    }
 
                     var postionTakingValue = EDITSETTING.positionTakingElement.Save();
                     if (postionTakingValue == null) {

@@ -4688,15 +4688,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent.
-        /// </summary>
-        public static string lblAgent {
-            get {
-                return ResourceManager.GetString("lblAgent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Agent Commission (%).
         /// </summary>
         public static string lblagentCommission {

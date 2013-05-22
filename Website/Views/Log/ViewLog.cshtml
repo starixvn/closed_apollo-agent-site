@@ -16,7 +16,7 @@
             <div class="cell">
                 <div class="label">
                     @Html.DropDownListFor(m => m.IsAgent, new List<SelectListItem> {
-            new SelectListItem { Value = "true", Text = Lang.lblAgent,Selected=true },
+            new SelectListItem { Value = "true", Text = Lang.agent,Selected=true },
             new SelectListItem { Value = "false", Text = Lang.lblMember }
         })
                     <input id="enterUsernameValue" type="hidden" value="@Lang.enterusername"/>
