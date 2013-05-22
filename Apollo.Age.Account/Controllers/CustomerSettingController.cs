@@ -191,17 +191,23 @@ namespace Apollo.Age.Account.Controllers
             var isMixSport = isMixSportParlay.HasValue ? isMixSportParlay.Value : false;
 
             var sportList = _sportService.GetAllSportType();
-            var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
-
             foreach (var sportItem in sportList)
             {
                 sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
             }
 
+            if (SportSettingService.SportList == null)
+            {
+                SportSettingService.SportList = sportList;
+            }
+
+            var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
             foreach (var betTypeItem in betTypeList)
             {
                 betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
             }
+
+            
 
             var agentShareViewModel = new AgentShareViewModel()
             {
@@ -291,7 +297,15 @@ namespace Apollo.Age.Account.Controllers
         public JsonResult GetBetType(short sportId, bool isMixSportParlay)
         {
             var view = new AgentShareViewModel();
-            view.BetTypeList = _sportService.GetBetTypeBySport(sportId, isMixSportParlay);
+
+            var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSportParlay);
+
+            foreach (var betTypeItem in betTypeList)
+            {
+                betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
+            }
+
+            view.BetTypeList = betTypeList;
 
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }

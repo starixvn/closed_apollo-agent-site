@@ -223,24 +223,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Badminton.
-        /// </summary>
-        public static string Badminton {
-            get {
-                return ResourceManager.GetString("Badminton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Balance Info.
-        /// </summary>
-        public static string balanceinfo {
-            get {
-                return ResourceManager.GetString("balanceinfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Baseball.
         /// </summary>
         public static string Baseball {
@@ -273,60 +255,6 @@ namespace Apollo.Age.Resources {
         public static string Basketball {
             get {
                 return ResourceManager.GetString("Basketball", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to bets.
-        /// </summary>
-        public static string bet {
-            get {
-                return ResourceManager.GetString("bet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to bet at.
-        /// </summary>
-        public static string betat {
-            get {
-                return ResourceManager.GetString("betat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet Count.
-        /// </summary>
-        public static string betcount {
-            get {
-                return ResourceManager.GetString("betcount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet Credit.
-        /// </summary>
-        public static string betcredit {
-            get {
-                return ResourceManager.GetString("betcredit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet ID.
-        /// </summary>
-        public static string betid {
-            get {
-                return ResourceManager.GetString("betid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet Per Line.
-        /// </summary>
-        public static string betperline {
-            get {
-                return ResourceManager.GetString("betperline", resourceCulture);
             }
         }
         

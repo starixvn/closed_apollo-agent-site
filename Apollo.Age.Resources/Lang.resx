@@ -159,12 +159,6 @@
   <data name="away" xml:space="preserve">
     <value>Away</value>
   </data>
-  <data name="Badminton" xml:space="preserve">
-    <value>Badminton</value>
-  </data>
-  <data name="balanceinfo" xml:space="preserve">
-    <value>Balance Info</value>
-  </data>
   <data name="Baseball" xml:space="preserve">
     <value>Baseball</value>
   </data>
@@ -176,24 +170,6 @@
   </data>
   <data name="Basketball" xml:space="preserve">
     <value>Basketball</value>
-  </data>
-  <data name="bet" xml:space="preserve">
-    <value>bets</value>
-  </data>
-  <data name="betat" xml:space="preserve">
-    <value>bet at</value>
-  </data>
-  <data name="betcount" xml:space="preserve">
-    <value>Bet Count</value>
-  </data>
-  <data name="betcredit" xml:space="preserve">
-    <value>Bet Credit</value>
-  </data>
-  <data name="betid" xml:space="preserve">
-    <value>Bet ID</value>
-  </data>
-  <data name="betperline" xml:space="preserve">
-    <value>Bet Per Line</value>
   </data>
   <data name="betslip" xml:space="preserve">
     <value>Bet Slip</value>
