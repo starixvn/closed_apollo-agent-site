@@ -47,9 +47,11 @@ namespace Apollo.Age.Account.Models
             {
                 var listBetSetting = this.GetBetSetting();
                 var bodyTemplate = ReadTextFile(HttpContext.Current.Server.MapPath("~/Views/Log/Templates/BetSetting.cshtml"));
+                var xdocument = _Configuration.BettingLimitSportNameConfig;
 
                 DynamicViewBag viewBag = new DynamicViewBag();
                 viewBag.AddValue("IsShowOldValue", isShowOldValue);
+                viewBag.AddValue("Template", xdocument);
 
                 result = Razor.Parse(bodyTemplate, listBetSetting, viewBag, null);
             }
@@ -222,7 +224,7 @@ namespace Apollo.Age.Account.Models
 
         private Dictionary<string, PositionTakingModel> GetPositionTaking(bool isAgent)
         {
-            var list = new Dictionary<string, PositionTakingModel>();            
+            var list = new Dictionary<string, PositionTakingModel>();
 
             if (!string.IsNullOrWhiteSpace(this.OldData))
             {
@@ -321,9 +323,9 @@ namespace Apollo.Age.Account.Models
             return list;
         }
 
-        private List<BetSettingModel> GetBetSetting()
+        private Dictionary<string, BetSettingModel> GetBetSetting()
         {
-            var list = new List<BetSettingModel>();
+            var list = new Dictionary<string, BetSettingModel>();
 
             if (!string.IsNullOrWhiteSpace(this.OldData))
             {
@@ -344,7 +346,9 @@ namespace Apollo.Age.Account.Models
                         MaxPerMatch = Convert.ToDecimal(item.Attribute("mam").Value)
                     };
 
-                    list.Add(model);
+                    string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
+
+                    list.Add(key, model);
                 }
             }
 
@@ -364,16 +368,13 @@ namespace Apollo.Age.Account.Models
                         MaxPerMatch = Convert.ToDecimal(item.Attribute("mam").Value),
                     };
 
-                    for (int i = 0; i < list.Count; i++)
+                    string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
+
+                    if (list.ContainsKey(key))
                     {
-                        var itemOld = list[i];
-                        if (itemOld.SportType == model.SportType
-                            && itemOld.BetType == model.BetType)
-                        {
-                            list[i].MinBet = model.MinBet;
-                            list[i].MaxBet = model.MaxBet;
-                            list[i].MaxPerMatch = model.MaxPerMatch;
-                        }
+                        list[key].MinBet = model.MinBet;
+                        list[key].MaxBet = model.MaxBet;
+                        list[key].MaxPerMatch = model.MaxPerMatch;
                     }
                 }
             }
