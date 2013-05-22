@@ -18,7 +18,7 @@
 			<div class="login-bg clearfix">
 				<div class="login-info">
 					<span class="username">@Model.Username<span> (@Model.AgentName)</span></span>
-					<a href="#" onclick="APOLLO.signOut(false)">@Apollo.Age.Resources.Lang.SignOut</a>
+					<a href="#" onclick="APOLLO.signOut()">@Apollo.Age.Resources.Lang.SignOut</a>
 				</div>
 			</div>
 			}
@@ -37,22 +37,15 @@
 		<input type="hidden" id="ApoRoot" value="@Url.Content("~/")" />
 		<input type="hidden" id="ctime" value="@DateTime.Now.AddHours(12).ToString("H-m-s-tt")" />
 		<input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />
-		<input type="hidden" id="userid" value="@Model.UserId" />
-		<input type="hidden" id="adminid" value="@Model.AdminId" />		
+	
 	 
-		   if (Model.IsInternalSignIn)
-		   {
-					<input type="hidden" id="isinternal" value="true" />
-		   }
-		   else
-		   { 
-					<input type="hidden" id="isinternal" value="false" />
-		   }
+	
 	 
 
 		<script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
-		<script src="~/_GlobalResources/Js/jquery.signalR-1.1.0.min.js" type="text/javascript"></script>
-		<script src="~/signalr/hubs" type="text/javascript"></script>
+		
+        
+		
 		<script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
 	 
 		<script src="~/Views/Account/Resources/header.js" type="text/javascript"></script>

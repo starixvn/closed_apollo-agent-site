@@ -151,8 +151,7 @@
 
     void Application_Start(object sender, EventArgs e)
     {
-        RouteTable.Routes.MapHubs(new Microsoft.AspNet.SignalR.HubConfiguration { EnableDetailedErrors = true });
-
+        
         maintenanceService = new UnderMaintenanceService();
         AreaRegistration.RegisterAllAreas();
         RegisterGlobalFilters(GlobalFilters.Filters);
