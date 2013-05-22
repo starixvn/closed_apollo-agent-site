@@ -25,7 +25,7 @@
                 <td colspan="6">
                     @if (sportId == ((int)SportTypes.Soccer).ToString())
                     {
-                        var strLive = isLive == "true" ? Lang.lblLive : Lang.lblDeadball;            
+                        var strLive = isLive == "true" ? Lang.lblLive : Lang.lblDeadball + " ";            
                   
                         @GetResource(resoureKey, strLive)                    
                     }
