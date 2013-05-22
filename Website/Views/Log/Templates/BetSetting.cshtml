@@ -1,10 +1,14 @@
 ﻿@using Apollo.Age.Account.Models
 @using Apollo.Age.Resources
-@model List<BetSettingModel>
+@using System.Xml.Linq
+@using System.Resources
+@model Dictionary<string, BetSettingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
     var isShowOld = (bool)ViewBag.IsShowOldValue;
-    
+    var xmlBetSetting = (XDocument)ViewBag.Template;
+
+    var itemBetSetting = xmlBetSetting.Descendants("Name");
     <table class="tblRpt">
         <tr class="no-border-top bg-gray">
             <td class="colW1">
@@ -23,12 +27,16 @@
             <td class="colW1 no-border-right">
             </td>
         </tr>
-        @foreach (var item in Model)
+        @foreach (var itemBet in itemBetSetting)
         {
-            var sportName = item.SportName;
+            var sportId = itemBet.Attribute("sportId").Value;
+            var betTypeId = itemBet.Attribute("betTypeId").Value;
+            var resourcekey = itemBet.Attribute("resourcekey").Value;
+            var key = string.Format("{0}_{1}", sportId, betTypeId);
+            var item = Model[key];
             <tr>
                 <td class="colW">
-                    @sportName
+                    @GetResource(resourcekey)
                 </td>
                 <td class="colW2">
                     @ToString(isShowOld, item.OldMinBet, item.MinBet)
@@ -62,4 +70,9 @@
         else
         { <span class="valueold">@strOld</span>
         }            
+}
+@helper GetResource(string key)
+    {
+        string str = (new ResourceManager(typeof(Lang)) { IgnoreCase = true }).GetString(key);   
+    @str  
 }
