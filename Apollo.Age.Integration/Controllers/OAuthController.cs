@@ -139,23 +139,38 @@ namespace Apollo.Age.Integration.Controllers
 
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, int serverId, string doing)
         {
-            Task.Factory.StartNew(() =>
-            {
-                var deviceService = new DeviceService(Request);
+            //Task.Factory.StartNew(() =>
+            //{
+            //    var deviceService = new DeviceService(Request);
 
-                _userService.WriteLogInternalLogin(
-                    agentId,
-                    agentUserId,
-                    serverId,
-                    actionId,
-                    doing,
-                    deviceService.ClientIp,
-                    deviceService.DomainName,
-                    deviceService.BrowserName,
-                    deviceService.Platform,
-                    deviceService.CountryCode
-                );
-            });
+            //    _userService.WriteLogInternalLogin(
+            //        agentId,
+            //        agentUserId,
+            //        serverId,
+            //        actionId,
+            //        doing,
+            //        deviceService.ClientIp,
+            //        deviceService.DomainName,
+            //        deviceService.BrowserName,
+            //        deviceService.Platform,
+            //        deviceService.CountryCode
+            //    );
+            //});
+
+            var deviceService = new DeviceService(Request);
+
+            _userService.WriteLogInternalLogin(
+                agentId,
+                agentUserId,
+                serverId,
+                actionId,
+                doing,
+                deviceService.ClientIp,
+                deviceService.DomainName,
+                deviceService.BrowserName,
+                deviceService.Platform,
+                deviceService.CountryCode
+            );
         }
     }
 }

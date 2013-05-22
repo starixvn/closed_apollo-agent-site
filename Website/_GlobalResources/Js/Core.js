@@ -175,12 +175,12 @@ if (typeof jQuery != 'undefined') {
 				});
 			},
 
-			signOut: function (isForce) {
-				isForce = isForce || false;
+			signOut: function () {
+			
 
 				try {
 					if (parent.IsApoRoot) {
-						parent.location = APOLLO.resolveUrl('~/Internal/SignOut?isForce=' + isForce);
+						parent.location = APOLLO.resolveUrl('~/Internal/SignOut');
 					}
 				} catch (err) {
 					APOLLO.console.warn(err);
