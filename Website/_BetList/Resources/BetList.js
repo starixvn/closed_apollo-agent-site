@@ -12,7 +12,7 @@ function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostd
 }
 
 function ViewMixParlayResult(refno_mixparlay, refno) {
-	var width = 730,
+	var width = 760,
 		height = 450,
 		params = '?refNo=' + refno_mixparlay,
 		detailTitle = $('#' + refno).find('a:first').text();
