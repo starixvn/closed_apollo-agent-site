@@ -30,10 +30,12 @@ namespace Apollo.Age.Web
     {
         private readonly IUserService _userService;
         private static readonly CultureInfo usCulture = CultureInfo.CreateSpecificCulture("en-US");
+        private ResourceManager _resourceManagerLang;
 
         public BaseController()
         {
             _userService = new UserService();
+            _resourceManagerLang = new ResourceManager(typeof(Lang)) { IgnoreCase = true };
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -85,22 +87,25 @@ namespace Apollo.Age.Web
 
         private void CheckKickOut(ActionExecutingContext filterContext)
         {
-            var isKickOut = _userService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
-
-            if (isKickOut)
+            if (!ReferenceEquals(CurrentSession, null))
             {
-                if (Request.IsAjaxRequest())
+                var isKickOut = _userService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
+
+                if (isKickOut)
                 {
-                    Response.Buffer = true;
-                    Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                    Response.Write(GetResourceData("lblAccountWasStopped"));
-                    Response.Flush();
-                    Response.Close();
-                    Response.End();
-                }
-                else
-                {
-                    Response.Redirect(ApoURLs.URLs.AccountStopped);
+                    if (Request.IsAjaxRequest())
+                    {
+                        Response.Buffer = true;
+                        Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        Response.Write(GetResourceData("lblAccountWasStopped"));
+                        Response.Flush();
+                        Response.Close();
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Redirect(ApoURLs.URLs.AccountStopped);
+                    }
                 }
             }
         }
@@ -148,7 +153,11 @@ namespace Apollo.Age.Web
 
         protected string GetResourceData(string key)
         {
-            return (new ResourceManager(typeof(Lang)) { IgnoreCase = true }).GetString(key);
+            if (!ReferenceEquals(_resourceManagerLang, null))
+            {
+                return _resourceManagerLang.GetString(key);
+            }
+            return string.Empty;
         }
     }
 }
