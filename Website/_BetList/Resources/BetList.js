@@ -27,7 +27,7 @@ function ViewSportBookResult(matchId, sportId, refno) {
 		params = '?matchId= ' + matchId + '&sportId=' + sportId,
 		detailTitle = $('#' + refno).find('.league').html().replace(/<\/?[^>]+>/gi, "").replace("&nbsp;", " - ");
 
-	parent.APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ResultByMatch" + params),
+	APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ResultByMatch" + params),
 		detailTitle, { width: width, height: height });
 }
 
