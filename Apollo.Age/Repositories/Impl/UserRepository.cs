@@ -132,5 +132,58 @@ namespace Apollo.Age.Repositories.Impl
                 throw ex;
             }
         }
+
+        public int InternalCheckIn(InternalCheckinCriteria criteria)
+        {
+            try
+            {
+                var currentParams = criteria.GetSpParams();
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    db.ExecuteNonQuery(currentParams);
+                    return Convert.ToInt32(currentParams["onuserid"]);
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public byte InternalReCheckIn(InternalReCheckinCriteria criteria)
+        {
+            try
+            {
+                var currentParams = criteria.GetSpParams();
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    db.ExecuteNonQuery(currentParams);
+                    return Convert.ToByte(currentParams["iskickedout"]);
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int InternalLogout(InternalLogoutCriteria criteria)
+        {
+            try
+            {
+                var currentParams = criteria.GetSpParams();
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    db.ExecuteNonQuery(currentParams);
+                }
+                return Convert.ToInt32(currentParams["onuserid"]);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

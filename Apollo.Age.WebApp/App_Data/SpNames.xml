@@ -12,7 +12,7 @@
       <Mapping DataField="Currency" ObjectProperty="Currency"/>
       <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
       <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
-    </Setting>
+    </Setting>   
     <Setting Key="Age_Agent_LoginByUserName" SpName="Age_Agent_LoginByUserName" DbName="CUSTDB" Plain="0" >
       <Mapping DataField="AgentUserId" ObjectProperty="Id"/>
       <Mapping DataField="Username" ObjectProperty="Username"/>
@@ -24,6 +24,9 @@
       <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
     </Setting>
     <Setting Key="NAP_User_Authenticate" SpName="NAP_User_Authenticate" DbName="Nap" />
+    <Setting Key="Age_Admin_CheckIn" SpName="Age_Admin_CheckIn" DbName="ONUSER" Plain="0" />
+    <Setting Key="Age_Admin_ReCheckIn" SpName="Age_Admin_ReCheckIn" DbName="ONUSER" Plain="0" />
+    <Setting Key="Age_Admin_Logout" SpName="Age_Admin_Logout" DbName="ONUSER" Plain="0" />
   </Function>
 
   <Function Name="Apollo Agent Message">

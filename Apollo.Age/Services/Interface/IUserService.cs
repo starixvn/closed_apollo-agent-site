@@ -33,5 +33,25 @@ namespace Apollo.Age.Services.Interface
         bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType);
 
         void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode);
+        /// <summary>
+        /// Return OnUserId
+        /// </summary>
+        /// <param name="adminId"></param>
+        /// <param name="netSessionId"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        int InternalCheckIn(int adminId, string netSessionId, string ip);
+        /// <summary>
+        /// Return IsKickOut
+        /// </summary>
+        /// <param name="adminId"></param>
+        /// <returns></returns>
+        bool InternalReCheckIn(int onUserId);
+        /// <summary>
+        /// Return OnUserId
+        /// </summary>
+        /// <param name="onUserId"></param>
+        /// <returns></returns>
+        int InternalLogout(int onUserId);
     }
 }

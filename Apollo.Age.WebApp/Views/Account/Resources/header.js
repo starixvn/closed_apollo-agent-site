@@ -259,7 +259,7 @@ function HideTooltipIntroNickname() {
 // Start up
 function InitHeader() {
     timeoutId1 = setTimeout(GetMessages, 100);
-    
+    setTimeout(HEADER.init(), 200);       
 }
 
 
@@ -322,4 +322,31 @@ function SelectTopMenu(url) {
     if (currentTab) currentTab.className = "active";
     else ClearActiveTab();
 }
+
+var HEADER = function ($) {
+    return {
+        init: function () {
+           // setInterval(HEADER.reCheckIn(),30000);
+        },
+        reCheckIn: function () {
+            $.ajax({
+                type: "POST",
+                url: APOLLO.resolveUrl("Internal/ReCheckIn"),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                timeout: 120000
+            })
+                .done(function (result) {
+                    if (result.isKickout) {
+                        alert(LANGUAGES.AlerSignonMessage);
+                        APOLLO.signOut();
+                    }
+                })
+                .fail(function (event, jqXHR, ajaxSettings) {
+                    APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
+                });
+        }
+    };
+} (jQuery);
 RegisterStartUp(InitHeader);

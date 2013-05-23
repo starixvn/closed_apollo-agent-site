@@ -20,7 +20,7 @@ namespace Apollo.Age.Web
     [Serializable]
     public class CurrentSession : ICurrentSession, ISerializable
     {
-        public CurrentSession(User user, int adminId = 0, string adminName = "", bool isInternalSignIn = false, string language = "en-US")
+        public CurrentSession(User user, int adminId = 0, string adminName = "", int onUserId = 0, bool isInternalSignIn = false, string language = "en-US")
         {
             AgentId = user.Agent.Id;
             AgentLevel = user.Agent.Level;
@@ -34,6 +34,7 @@ namespace Apollo.Age.Web
             IsInternalSignIn = isInternalSignIn;
             AdminId = adminId;
             AdminName = adminName;
+            OnUserId = onUserId;
         }
 
         public CurrentSession(SerializationInfo info, StreamingContext context)
@@ -54,6 +55,7 @@ namespace Apollo.Age.Web
             IsInternalSignIn = info.GetBoolean("IsInternalSignIn");
             AdminId = info.GetInt32("AdminId");
             AdminName = info.GetString("AdminName");
+            OnUserId = info.GetInt32("OnUserId"); 
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -74,6 +76,7 @@ namespace Apollo.Age.Web
             info.AddValue("IsInternalSignIn", IsInternalSignIn);
             info.AddValue("AdminId", AdminId);
             info.AddValue("AdminName", AdminName);
+            info.AddValue("OnUserId", OnUserId);
         }
 
         public int AgentId { get; set; }
@@ -112,6 +115,13 @@ namespace Apollo.Age.Web
         }
 
         public string AdminName
+        {
+            get;
+            set;
+        }
+
+
+        public int OnUserId
         {
             get;
             set;
