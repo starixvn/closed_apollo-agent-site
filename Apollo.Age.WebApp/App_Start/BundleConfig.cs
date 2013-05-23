@@ -33,6 +33,7 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",
                 "~/_GlobalResources/Js/jquery-ui.js",
+                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
                 "~/_GlobalResources/Js/RefreshCountDown.js",
                 "~/_GlobalResources/Js/Core.js",
                 "~/Views/TotalBets/Resources/TotalBets.js"));
@@ -50,6 +51,7 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",
                 "~/_GlobalResources/Js/jquery-ui.js",
+                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
                 "~/_GlobalResources/Js/Core.js",
                 "~/Views/Message/Resources/PortalPage.js"));
 
@@ -57,6 +59,7 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",
                 "~/_GlobalResources/Js/jquery-ui.js",
+                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
                 "~/_GlobalResources/Js/Core.js",
                 "~/Views/Log/Resources/monPickr-0.0.3.js",
                 "~/Views/Log/Resources/Log.js"));
@@ -94,6 +97,7 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",
                 "~/_GlobalResources/Js/jquery.cookie.js",
+                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
                 "~/_GlobalResources/Js/Core.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/treeviewjs").Include(
