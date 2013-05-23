@@ -29,7 +29,7 @@ namespace Apollo.Age.Integration.Controllers
     {
         private readonly AuthenticationService _authService;
         private readonly UserService _userService;
-
+        private const int SERVERID = 1;
         public OAuthController()
             : this(null)
         {
@@ -139,38 +139,26 @@ namespace Apollo.Age.Integration.Controllers
 
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, int serverId, string doing)
         {
-            //Task.Factory.StartNew(() =>
-            //{
-            //    var deviceService = new DeviceService(Request);
-
-            //    _userService.WriteLogInternalLogin(
-            //        agentId,
-            //        agentUserId,
-            //        serverId,
-            //        actionId,
-            //        doing,
-            //        deviceService.ClientIp,
-            //        deviceService.DomainName,
-            //        deviceService.BrowserName,
-            //        deviceService.Platform,
-            //        deviceService.CountryCode
-            //    );
-            //});
-
-            var deviceService = new DeviceService(Request);
-
-            _userService.WriteLogInternalLogin(
-                agentId,
-                agentUserId,
-                serverId,
-                actionId,
-                doing,
-                deviceService.ClientIp,
-                deviceService.DomainName,
-                deviceService.BrowserName,
-                deviceService.Platform,
-                deviceService.CountryCode
-            );
+            Task.Factory.StartNew(() =>
+            {
+                throw new Exception(Resources.Lang.HttpError_Default);
+            }, TaskCreationOptions.None).ContinueWith((Task previous) =>
+            {
+                previous.Wait();
+                DeviceService deviceService = new DeviceService(Request);
+                _userService.WriteLogInternalLogin(
+                    agentId,
+                    agentUserId,
+                    SERVERID,
+                    actionId,
+                    doing,
+                    deviceService.ClientIp,
+                    deviceService.DomainName,
+                    deviceService.BrowserName,
+                    deviceService.Platform,
+                    deviceService.CountryCode
+                    );
+            });
         }
     }
 }
