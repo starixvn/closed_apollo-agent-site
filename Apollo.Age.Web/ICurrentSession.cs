@@ -44,6 +44,8 @@ namespace Apollo.Age.Web
 
         string AdminName { get; set; }
 
+        int OnUserId { get; set; }
+
         /// <summary>
         /// True indicate admin user can view VN ip.
         /// </summary>
