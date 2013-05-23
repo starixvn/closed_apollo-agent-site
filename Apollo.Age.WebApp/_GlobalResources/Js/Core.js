@@ -136,7 +136,7 @@ if (typeof jQuery != 'undefined') {
 
 						$this.datepicker({
 							defaultDate: new Date($this.val()),
-							dateFormat: "mm/dd/yy",
+							dateFormat: "m/d/yy",
 							minDate: limitDate("mindate"),
 							maxDate: limitDate("maxdate"),
 							beforeShow: function (input, inst) {
