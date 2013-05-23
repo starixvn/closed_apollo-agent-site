@@ -86,7 +86,7 @@ if (typeof jQuery != 'undefined') {
 			console: {
 				write: function (msg, consoleFunc) {
 					if (typeof console != 'undefined' && !APOLLO.detectBrowser().msie) {
-						consoleFunc(msg);
+						//consoleFunc(msg);
 					}
 				},
 				log: function (msg) { APOLLO.console.write(msg, console.log) },

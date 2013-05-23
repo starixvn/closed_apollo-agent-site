@@ -1,0 +1,102 @@
+﻿.AGEWnd 
+{
+	border: 1px solid #000000;
+	background-color: #eeeeee;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	border-collapse: collapse;
+	
+	-moz-border-radius: 3px  3px  2px  2px; /* Firefox */
+	-webkit-border-radius: 3px  3px  2px  2px; /* Safari and Chrome */
+	border-radius: 3px  3px  2px  2px  2px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+
+}
+
+.AGEWndMask
+{
+	border: dashed 2px #999999;
+	background-color: transparent;
+	z-index: 1002;
+	border-style: dotted;
+	cursor: move;
+}
+
+.AGEWndTitleMask
+{
+	border: solid 0px #ff;
+	background-color: #727272; 
+	height: 20px;
+	cursor: move;
+	position: absolute;
+	top: 0px; left: 0px;
+	filter: alpha(opacity=01);
+	-moz-opacity: .01;
+	-khtml-opacity: 0.01;
+	opacity: 0.01;	
+	z-index: 1002;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	border-style: none;
+}
+
+.AGEWndTable
+{
+	table-layout: fixed;
+	cursor: default;
+	width: 100%;
+	border: solid 0px transparent;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;	
+}
+
+.AGEWndTitle
+{
+	background-color: #727272; 
+	color: #ffffff;
+	font-weight: bold;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	background: #000000 url(bg_popup.jpg) repeat scroll 0 0;
+	-moz-user-select: no;
+}
+
+.AGEWndTitleDiv
+{
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.AGEWndTitleText
+{
+	text-align: left;
+	cursor: pointer;
+}
+
+.AGEWndTitleButton
+{
+	text-align: right;
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
+	padding-right: 1px;
+}
+
+.AGEWndCloseButton
+{
+	width: 15px;
+	height: 15px;
+	background-image: url('x.jpg');
+	line-height: 0px;
+	display: block;
+	cursor: pointer;
+}
+
+.AGEWndNoPadding
+{
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+.clssBackground
+{
+    background-color:#f8b72b;
+}
