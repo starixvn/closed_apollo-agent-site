@@ -47,6 +47,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Resources", "Apo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.Components", "Fanex.Age.UI.Components\Fanex.Age.UI.Components.csproj", "{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.WebApp", "Apollo.Age.WebApp\Apollo.Age.WebApp.csproj", "{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C60FBCF-4D7E-4773-A9AC-3FEAA8B83C47}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +108,10 @@ Global
 		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

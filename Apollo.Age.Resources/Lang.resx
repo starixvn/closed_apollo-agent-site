@@ -162,89 +162,11 @@
   <data name="Baseball" xml:space="preserve">
     <value>Baseball</value>
   </data>
-  <data name="basecurrency" xml:space="preserve">
-    <value>Base Currency:</value>
-  </data>
-  <data name="baseon" xml:space="preserve">
-    <value>Base on</value>
-  </data>
   <data name="Basketball" xml:space="preserve">
     <value>Basketball</value>
   </data>
-  <data name="betslip" xml:space="preserve">
-    <value>Bet Slip</value>
-  </data>
-  <data name="betsummary" xml:space="preserve">
-    <value>Bet Summary</value>
-  </data>
-  <data name="bettingLimitMsg" xml:space="preserve">
-    <value>Please choose at least 1 betting limit for each game type</value>
-  </data>
   <data name="bettype" xml:space="preserve">
     <value>Bet Type</value>
-  </data>
-  <data name="Billiard" xml:space="preserve">
-    <value>Billiard</value>
-  </data>
-  <data name="bingoPositionTaking" xml:space="preserve">
-    <value>Bingo Share (%)</value>
-  </data>
-  <data name="bonusFreeSpin" xml:space="preserve">
-    <value>Bonus Free Spin</value>
-  </data>
-  <data name="bonusGame" xml:space="preserve">
-    <value>Bonus Game</value>
-  </data>
-  <data name="bonusNo" xml:space="preserve">
-    <value>Bonus No</value>
-  </data>
-  <data name="boxing" xml:space="preserve">
-    <value>Boxing</value>
-  </data>
-  <data name="btnAdd" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="canoeing" xml:space="preserve">
-    <value>Canoeing</value>
-  </data>
-  <data name="casino" xml:space="preserve">
-    <value>Casino</value>
-  </data>
-  <data name="casinodownlines" xml:space="preserve">
-    <value>Previous enabled downlines</value>
-  </data>
-  <data name="casinodownlinesdisabled" xml:space="preserve">
-    <value>Casino downlines will be disabled as well</value>
-  </data>
-  <data name="casinoGame" xml:space="preserve">
-    <value>Casino Games</value>
-  </data>
-  <data name="casinoPositionTaking" xml:space="preserve">
-    <value>Casino Share (%)</value>
-  </data>
-  <data name="choice" xml:space="preserve">
-    <value>Choice</value>
-  </data>
-  <data name="choonsedaily" xml:space="preserve">
-    <value>Please choose Daily instead of 7 days.</value>
-  </data>
-  <data name="chooseoneday" xml:space="preserve">
-    <value>Please select at least one day.</value>
-  </data>
-  <data name="city" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="clearallcredit" xml:space="preserve">
-    <value>Clear All Credit</value>
-  </data>
-  <data name="close" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="coinsize" xml:space="preserve">
-    <value>Coin Size</value>
   </data>
   <data name="commission" xml:space="preserve">
     <value>Commission (%)</value>
@@ -252,145 +174,11 @@
   <data name="company" xml:space="preserve">
     <value>Company</value>
   </data>
-  <data name="configNow" xml:space="preserve">
-    <value>Config now</value>
-  </data>
-  <data name="configuredNicknameSuccessfully" xml:space="preserve">
-    <value>Your nickname was configured successfully</value>
-  </data>
-  <data name="confirmAllowOutright" xml:space="preserve">
-    <value>Are you sure you want to allow outright betting for this customer?</value>
-  </data>
-  <data name="confirmClearCredit" xml:space="preserve">
-    <value>Are you sure you want to clear all credits of this customer?\nWarning: Credit of all downlines will be cleared as well!</value>
-  </data>
-  <data name="confirmClearCreditMem" xml:space="preserve">
-    <value>Are you sure you want to clear all credits of this customer?</value>
-  </data>
-  <data name="confirmCloseDownline" xml:space="preserve">
-    <value>Are you sure you want to change Close status for this customer? \n Warning, all downlines will be closed as well!</value>
-  </data>
-  <data name="confirmCloseMem" xml:space="preserve">
-    <value>Are you sure you want to change Close status for this customer?</value>
-  </data>
-  <data name="confirmDisableMAutoPT" xml:space="preserve">
-    <value>Are you sure you want to disable auto position taking feature of this master?</value>
-  </data>
-  <data name="confirmDisableNumberGame" xml:space="preserve">
-    <value>Are you sure you want to disable Number Game on this customer?</value>
-    <comment>Alert</comment>
-  </data>
-  <data name="confirmDisableNumberGameDownline" xml:space="preserve">
-    <value>Are you sure you want to disable Number Game on this customer and all downlines?</value>
-    <comment>Alert</comment>
-  </data>
-  <data name="confirmDisableOutright" xml:space="preserve">
-    <value>Are you sure you want to disallow outright betting for this customer?\nWarning, all members under this agent can't place outright bet!</value>
-  </data>
-  <data name="confirmDisableOutright_Member" xml:space="preserve">
-    <value>Are you sure you want to disallow outright betting for this customer?</value>
-  </data>
-  <data name="confirmEnableMAutoPT" xml:space="preserve">
-    <value>Are you sure you want to enable auto position taking feature of this master?</value>
-  </data>
-  <data name="confirmEnableOutright" xml:space="preserve">
-    <value>Are you sure you want to change Outright status for this customer?</value>
-  </data>
-  <data name="confirmSuspendDownline" xml:space="preserve">
-    <value>Are you sure you want to change Suspend status for this customer? \n Warning, all members under this agent can't place bet!</value>
-  </data>
-  <data name="confirmSuspendMem" xml:space="preserve">
-    <value>Are you sure you want to change Suspend status for this customer?\n Warning, this member can't place bet!</value>
-  </data>
-  <data name="confirmtranscondition" xml:space="preserve">
-    <value>Are you sure that you want to update this transfer condition for all of downlines?</value>
-  </data>
-  <data name="confirmtransfer" xml:space="preserve">
-    <value>Are you sure you want to transfer</value>
-  </data>
-  <data name="confirmUnSuspended" xml:space="preserve">
-    <value>Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well.</value>
-  </data>
-  <data name="confirmUnSuspendMem" xml:space="preserve">
-    <value>Are you sure you want to change Suspend status for this customer?</value>
-  </data>
-  <data name="confrmtransnotdownline" xml:space="preserve">
-    <value>Are you sure that you want to update this transfer condition?</value>
-  </data>
-  <data name="consolidatedreport" xml:space="preserve">
-    <value>Consolidation</value>
-  </data>
-  <data name="content" xml:space="preserve">
-    <value>Content</value>
-  </data>
-  <data name="copyallfromtotewin" xml:space="preserve">
-    <value>Copy all Position Taking From Tote - Win</value>
-  </data>
-  <data name="copyallfromuktotewin" xml:space="preserve">
-    <value>Copy all Bet Setting and Position Taking From UK Tote - Win</value>
-  </data>
-  <data name="copymasterpresetformember" xml:space="preserve">
-    <value>Apply Master Preset PT to all members</value>
-  </data>
-  <data name="copyright" xml:space="preserve">
-    <value>Copyright</value>
-  </data>
-  <data name="copysuperpresetformember" xml:space="preserve">
-    <value>Apply Super Preset PT to all members</value>
-  </data>
   <data name="correctscore" xml:space="preserve">
     <value>Correct Score</value>
   </data>
-  <data name="country" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="crdproblem" xml:space="preserve">
-    <value>Sorry, increase credit unsuccessful. You have exceeded your agent credit.</value>
-  </data>
-  <data name="createaccount" xml:space="preserve">
-    <value>Create Account</value>
-  </data>
-  <data name="CreatedDate" xml:space="preserve">
-    <value>Created Date</value>
-  </data>
-  <data name="credit" xml:space="preserve">
-    <value>Credit</value>
-  </data>
-  <data name="creditbalance" xml:space="preserve">
-    <value>Credit/Balance</value>
-  </data>
-  <data name="CreditDebit" xml:space="preserve">
-    <value>Credit/Debit</value>
-  </data>
-  <data name="creditlog" xml:space="preserve">
-    <value>Credit Log</value>
-  </data>
-  <data name="cricket" xml:space="preserve">
-    <value>Cricket</value>
-  </data>
-  <data name="currency" xml:space="preserve">
-    <value>Currency</value>
-  </data>
-  <data name="currentmonth" xml:space="preserve">
-    <value>Current Month</value>
-  </data>
-  <data name="CurrentReport" xml:space="preserve">
-    <value>Back To Current Report</value>
-  </data>
-  <data name="currentstatus" xml:space="preserve">
-    <value>Current Status</value>
-  </data>
-  <data name="currentstatustransaction" xml:space="preserve">
-    <value>Current Status All Transactions</value>
-  </data>
-  <data name="currentweek" xml:space="preserve">
-    <value>Current Week</value>
-  </data>
   <data name="customer" xml:space="preserve">
     <value>Customer</value>
-  </data>
-  <data name="customerlist" xml:space="preserve">
-    <value>Customer List</value>
   </data>
   <data name="d" xml:space="preserve">
     <value>D</value>
@@ -3029,9 +2817,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblSP" xml:space="preserve">
     <value>SP</value>
   </data>
-  <data name="combination" xml:space="preserve">
-    <value>Combination</value>
-  </data>
   <data name="editmultp2p" xml:space="preserve">
     <value>Edit Multiple Poker</value>
   </data>
@@ -3040,12 +2825,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblS" xml:space="preserve">
     <value>S = Super</value>
-  </data>
-  <data name="BON" xml:space="preserve">
-    <value>BON</value>
-  </data>
-  <data name="CSheet" xml:space="preserve">
-    <value>C.Sheet</value>
   </data>
   <data name="DChance" xml:space="preserve">
     <value>D.Chance</value>
@@ -3127,9 +2906,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="showhidecolumnAd" xml:space="preserve">
     <value>Right-click on the header to show/hide columns</value>
-  </data>
-  <data name="charts" xml:space="preserve">
-    <value>Charts</value>
   </data>
   <data name="monthlyWinlossChart" xml:space="preserve">
     <value>Monthly Winloss Chart</value>
@@ -3221,9 +2997,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="notExist" xml:space="preserve">
     <value>This user does not exist</value>
   </data>
-  <data name="confirmUncheckAll" xml:space="preserve">
-    <value>Your downline has uncheck all stake levels, by default, the system checked the lowest level. Please check and update.</value>
-  </data>
   <data name="settingOf" xml:space="preserve">
     <value>'s setting</value>
   </data>
@@ -3269,12 +3042,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="updateFailed" xml:space="preserve">
     <value>Updated unsuccessfully because Live Casino status has been disabled at upline</value>
   </data>
-  <data name="confirmEnableLiveCasino" xml:space="preserve">
-    <value>Are you sure you want to enable Live Casino for this customer?</value>
-  </data>
-  <data name="confirmDisableLiveCasino" xml:space="preserve">
-    <value>Are you sure you want to disable Live Casino for this customer?</value>
-  </data>
   <data name="generalInformation" xml:space="preserve">
     <value>General Information</value>
   </data>
@@ -3301,9 +3068,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="infoSearchAndCopyMember" xml:space="preserve">
     <value>Products without preview such as Live Casino will also be offered to new member.</value>
-  </data>
-  <data name="creditInvalid" xml:space="preserve">
-    <value>Given credit value is invalid.</value>
   </data>
   <data name="lblNoDraw" xml:space="preserve">
     <value>No Draw</value>
@@ -3401,10 +3165,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="EditVirtualSports" xml:space="preserve">
     <value>Edit Virtual Sports</value>
   </data>
-  <data name="confirmDisableVirtualSportsDownline" xml:space="preserve">
-    <value>Are you sure you want to disable Virtual Sports on this customer and all downlines?</value>
-    <comment>Alert</comment>
-  </data>
   <data name="strConfirmDisableVirtualSports" xml:space="preserve">
     <value>WARNING!!!\n\nAre you sure you want to disable Virtual Sports on this customer and all downlines?</value>
   </data>
@@ -3453,14 +3213,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="OnGivenCredit" xml:space="preserve">
     <value>on given credit</value>
   </data>
-  <data name="CurrentWinLimit" xml:space="preserve">
-    <value>Current Win Limit</value>
-  </data>
   <data name="SaveMemberWinLimit" xml:space="preserve">
     <value>Save Member Win Limit</value>
-  </data>
-  <data name="ClickToViewCurrentWinLimit" xml:space="preserve">
-    <value>Click to view Current Win Limit</value>
   </data>
   <data name="MemberWinLimit" xml:space="preserve">
     <value>Member Win Limit</value>
@@ -3470,12 +3224,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="GamesDetails" xml:space="preserve">
     <value>Games Details</value>
-  </data>
-  <data name="Commission1Details" xml:space="preserve">
-    <value>Commission 1 Details</value>
-  </data>
-  <data name="Commission2Details" xml:space="preserve">
-    <value>Commission 2 Details</value>
   </data>
   <data name="OneXTwoCommission" xml:space="preserve">
     <value>1X2 Commission</value>
@@ -3494,9 +3242,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="editDoubleCommission" xml:space="preserve">
     <value>Edit Double Commission</value>
-  </data>
-  <data name="confirmDisableDoubleComm" xml:space="preserve">
-    <value>Are you sure you want to disallow Double Commission feature for Sportsbook's Losing tickets on this customer?\n\nWarning, all members under this agent will be disallowed as well!</value>
   </data>
   <data name="strConfirmDisableDoubleCommMember" xml:space="preserve">
     <value>Are you sure you want to turn OFF Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
@@ -3572,9 +3317,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblSoccerPT" xml:space="preserve">
     <value>Soccer Share (%)</value>
-  </data>
-  <data name="confirmUpdateMembers" xml:space="preserve">
-    <value>Confirm Update Members\'s PT</value>
   </data>
   <data name="lblAgentListTitle" xml:space="preserve">
     <value>Agent List:</value>
