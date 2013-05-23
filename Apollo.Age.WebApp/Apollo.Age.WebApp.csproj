@@ -402,9 +402,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\Navigation.htm.cs" />
-    <Compile Include="App_Code\BetListBase.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Content Include="App_Code\Formater.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
