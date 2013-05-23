@@ -86,8 +86,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.betTeam = string.Join(null, new string[] { betTeamName, liveScore });
             this.Template.betTeamClassName = BL_FAVORITE;
 
-            this.Template.betTypeName = Apollo.Age.Resources.Lang.numberGroup;
-            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.Lang.numbergameno, "&nbsp;", ticket.MatchCode });
+            this.Template.betTypeName = Apollo.Age.Resources.BetList.numberGroup;
+            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
         }
     }
 }

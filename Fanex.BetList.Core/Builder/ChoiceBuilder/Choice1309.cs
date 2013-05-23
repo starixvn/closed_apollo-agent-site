@@ -54,8 +54,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             else
             {
                 this.Template.betTeamClassName = BL_UNDER_DOG;
-                this.Template.betTeam = ticket.Handicap2 > ticket.Handicap1 ? string.Join(null, new string[] { Apollo.Age.Resources.Lang.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.h, "+", ConvertByBetType.Hdp(ticket.Handicap2) + ")" }) :
-                                                    string.Join(null, new string[] { Apollo.Age.Resources.Lang.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.a, "+", ConvertByBetType.Hdp(ticket.Handicap1), ")" });
+                this.Template.betTeam = ticket.Handicap2 > ticket.Handicap1 ? string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.h, "+", ConvertByBetType.Hdp(ticket.Handicap2) + ")" }) :
+                                                    string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.a, "+", ConvertByBetType.Hdp(ticket.Handicap1), ")" });
                 this.Template.Handicap.handicap = null;
             }
 

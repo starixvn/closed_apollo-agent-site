@@ -35,7 +35,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.Score = null;
             this.Template.Handicap.handicap = null;
 
-            this.Template.betTeam = string.Join(null, new string[] { Apollo.Age.Resources.Lang.p2pGame, " - ", Apollo.Age.Resources.BetList.transfer });
+            this.Template.betTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.p2pGame, " - ", Apollo.Age.Resources.BetList.transfer });
             this.Template.betTeamClassName = BL_FAVORITE;
         }
     }

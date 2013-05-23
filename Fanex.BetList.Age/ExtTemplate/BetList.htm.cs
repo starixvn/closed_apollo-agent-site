@@ -79,7 +79,7 @@ namespace Fanex.BetList.Age
 		public class BetList_MainShareHolder_Block: Block
 		{
 			protected static string s19 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label for=\"ddlLeague\">";
-			protected static string s20{get{return Apollo.Age.Resources.Lang.lblMainShareHolder;}}
+			protected static string s20{get{return Apollo.Age.Resources.BetList.lblMainShareHolder;}}
 			protected static string s21 = "</label></div><div class=\"editor\">";
 			public string option_agent = "{option_agent}";
 			protected static string s22 = "</div></div></div></div>";

@@ -77,7 +77,7 @@ namespace Fanex.BetList.Age
 			protected static string s4 = "<a class=\"view-detail\" href=\"#\" tid=\"";
 			public string transId = "{transId}";
 			protected static string s5 = "\">";
-			protected static string s6{get{return Apollo.Age.Resources.Lang.lblDetails;}}
+			protected static string s6{get{return Apollo.Age.Resources.BetList.details;}}
 			protected static string s7 = "</a>";
 			public override void ToString(ref StringBuilder bd)
 			{

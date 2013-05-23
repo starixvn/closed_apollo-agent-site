@@ -36,7 +36,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                 "<div><span class='",
                                                 BL_FAVORITE,
                                                 "'>",
-                                                Apollo.Age.Resources.Lang.p2pGame,
+                                                Apollo.Age.Resources.BetList.p2pGame,
                                                 "</span></div>"
                                             }
                                         );
@@ -48,7 +48,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
         protected override NPOI.SS.UserModel.IRichTextString BuildRTFChoice(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper)
         {
-            rtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.Lang.p2pGame, rtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.BetList.p2pGame, rtfHelper.PosFont);
 
             var choiceRtf = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();

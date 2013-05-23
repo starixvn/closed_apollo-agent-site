@@ -342,4 +342,55 @@
   <data name="viewCommDetails" xml:space="preserve">
     <value>View Details</value>
   </data>
+  <data name="away" xml:space="preserve">
+    <value>Away</value>
+  </data>
+  <data name="baccarat" xml:space="preserve">
+    <value>Baccarat</value>
+  </data>
+  <data name="d" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="FG" xml:space="preserve">
+    <value>FG</value>
+  </data>
+  <data name="goal" xml:space="preserve">
+    <value>Goal</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="LG" xml:space="preserve">
+    <value>LG</value>
+  </data>
+  <data name="no0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="lblMainShareHolder" xml:space="preserve">
+    <value>Main Shareholder</value>
+  </data>
+  <data name="lblNA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="lblNeither" xml:space="preserve">
+    <value>Neither</value>
+  </data>
+  <data name="lblNoDraw" xml:space="preserve">
+    <value>No Draw</value>
+  </data>
+  <data name="lblSystemParlay" xml:space="preserve">
+    <value>System Parlay</value>
+  </data>
+  <data name="numberGroup" xml:space="preserve">
+    <value>Number Wheel</value>
+  </data>
+  <data name="p2pGame" xml:space="preserve">
+    <value>Poker Games</value>
+  </data>
+  <data name="Roulette" xml:space="preserve">
+    <value>Roulette</value>
+  </data>
 </root>

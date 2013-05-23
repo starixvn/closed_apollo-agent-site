@@ -342,4 +342,55 @@
   <data name="viewCommDetails" xml:space="preserve">
     <value>View Details</value>
   </data>
+  <data name="agent" xml:space="preserve">
+    <value>에이전트</value>
+  </data>
+  <data name="away" xml:space="preserve">
+    <value>어웨이</value>
+  </data>
+  <data name="baccarat" xml:space="preserve">
+    <value>바카라</value>
+  </data>
+  <data name="d" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="FG" xml:space="preserve">
+    <value>FG</value>
+  </data>
+  <data name="goal" xml:space="preserve">
+    <value>골</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>홈</value>
+  </data>
+  <data name="lblMainShareHolder" xml:space="preserve">
+    <value>Main Shareholder</value>
+  </data>
+  <data name="lblNA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="lblNeither" xml:space="preserve">
+    <value>어느 쪽도 포함되지 않습니다.</value>
+  </data>
+  <data name="lblNoDraw" xml:space="preserve">
+    <value>No Draw</value>
+  </data>
+  <data name="lblSystemParlay" xml:space="preserve">
+    <value>시스템 팔레이</value>
+  </data>
+  <data name="LG" xml:space="preserve">
+    <value>LG</value>
+  </data>
+  <data name="no0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="numberGroup" xml:space="preserve">
+    <value>라이브빙고게임 그룹</value>
+  </data>
+  <data name="p2pGame" xml:space="preserve">
+    <value>Poker 게임</value>
+  </data>
+  <data name="Roulette" xml:space="preserve">
+    <value>Roulette</value>
+  </data>
 </root>

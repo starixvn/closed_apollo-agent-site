@@ -33,7 +33,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             string homeName = ticketHelper.GetTeamNameById(ticket.HomeId);
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
-            this.Template.betTeam = betHomeTeam ? Apollo.Age.Resources.Lang.lblDraw : Apollo.Age.Resources.Lang.lblNoDraw;
+            this.Template.betTeam = betHomeTeam ? Apollo.Age.Resources.BetList.lblDraw : Apollo.Age.Resources.BetList.lblNoDraw;
             this.Template.betTeamClassName = betHomeTeam ? (ticket.Handicap2 >= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE) : (ticket.Handicap2 <= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE);
 
             this.Template.Score.homeScore = ticket.LiveHomeScore.ToString();

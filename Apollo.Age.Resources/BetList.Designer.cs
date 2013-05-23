@@ -70,6 +70,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        public static string agent {
+            get {
+                return ResourceManager.GetString("agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent Comm.
         /// </summary>
         public static string agentComm {
@@ -93,6 +102,24 @@ namespace Apollo.Age.Resources {
         public static string agentPTcomm {
             get {
                 return ResourceManager.GetString("agentPTcomm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Away.
+        /// </summary>
+        public static string away {
+            get {
+                return ResourceManager.GetString("away", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baccarat.
+        /// </summary>
+        public static string baccarat {
+            get {
+                return ResourceManager.GetString("baccarat", resourceCulture);
             }
         }
         
@@ -142,6 +169,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to D.
+        /// </summary>
+        public static string d {
+            get {
+                return ResourceManager.GetString("d", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         public static string details {
@@ -178,6 +214,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FG.
+        /// </summary>
+        public static string FG {
+            get {
+                return ResourceManager.GetString("FG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Goal.
         /// </summary>
         public static string firstgoal {
@@ -196,6 +241,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Goal.
+        /// </summary>
+        public static string goal {
+            get {
+                return ResourceManager.GetString("goal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to H.
         /// </summary>
         public static string h {
@@ -210,6 +264,15 @@ namespace Apollo.Age.Resources {
         public static string high {
             get {
                 return ResourceManager.GetString("high", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string home {
+            get {
+                return ResourceManager.GetString("home", resourceCulture);
             }
         }
         
@@ -250,6 +313,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Main Shareholder.
+        /// </summary>
+        public static string lblMainShareHolder {
+            get {
+                return ResourceManager.GetString("lblMainShareHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master Win Lost Detail.
         /// </summary>
         public static string lblMasterWinLoseDetail {
@@ -286,11 +358,38 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        public static string lblNA {
+            get {
+                return ResourceManager.GetString("lblNA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neither.
+        /// </summary>
+        public static string lblNeither {
+            get {
+                return ResourceManager.GetString("lblNeither", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string lblNo {
             get {
                 return ResourceManager.GetString("lblNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Draw.
+        /// </summary>
+        public static string lblNoDraw {
+            get {
+                return ResourceManager.GetString("lblNoDraw", resourceCulture);
             }
         }
         
@@ -331,6 +430,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to System Parlay.
+        /// </summary>
+        public static string lblSystemParlay {
+            get {
+                return ResourceManager.GetString("lblSystemParlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Under/Even.
         /// </summary>
         public static string lblUnderEven {
@@ -354,6 +462,15 @@ namespace Apollo.Age.Resources {
         public static string lblYes {
             get {
                 return ResourceManager.GetString("lblYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LG.
+        /// </summary>
+        public static string LG {
+            get {
+                return ResourceManager.GetString("LG", resourceCulture);
             }
         }
         
@@ -412,6 +529,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string no0 {
+            get {
+                return ResourceManager.GetString("no0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Goal.
         /// </summary>
         public static string nogoal {
@@ -448,6 +574,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number Wheel.
+        /// </summary>
+        public static string numberGroup {
+            get {
+                return ResourceManager.GetString("numberGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odd.
         /// </summary>
         public static string odd {
@@ -471,6 +606,15 @@ namespace Apollo.Age.Resources {
         public static string over {
             get {
                 return ResourceManager.GetString("over", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poker Games.
+        /// </summary>
+        public static string p2pGame {
+            get {
+                return ResourceManager.GetString("p2pGame", resourceCulture);
             }
         }
         
@@ -543,6 +687,15 @@ namespace Apollo.Age.Resources {
         public static string results {
             get {
                 return ResourceManager.GetString("results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roulette.
+        /// </summary>
+        public static string Roulette {
+            get {
+                return ResourceManager.GetString("Roulette", resourceCulture);
             }
         }
         

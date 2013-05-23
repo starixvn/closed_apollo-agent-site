@@ -96,28 +96,28 @@ namespace Fanex.BetList.Core.Utils
             {
                 if (chars[0] == '1')
                 {
-                    returnValue = Apollo.Age.Resources.Lang.home;
+                    returnValue = Apollo.Age.Resources.BetList.home;
                 }
                 else if (chars[0] == '2')
                 {
-                    returnValue = Apollo.Age.Resources.Lang.away;
+                    returnValue = Apollo.Age.Resources.BetList.away;
                 }
                 else
                 {
-                    returnValue = Apollo.Age.Resources.Lang.no0;
+                    returnValue = Apollo.Age.Resources.BetList.no0;
                 }
 
                 if (chars[c - 1] == '1')
                 {
-                    returnValue += "&nbsp;" + Apollo.Age.Resources.Lang.FG;
+                    returnValue += "&nbsp;" + Apollo.Age.Resources.BetList.FG;
                 }
                 else if (chars[c - 1] == '2')
                 {
-                    returnValue += "&nbsp;" + Apollo.Age.Resources.Lang.LG;
+                    returnValue += "&nbsp;" + Apollo.Age.Resources.BetList.LG;
                 }
                 else
                 {
-                    returnValue += "&nbsp;" + Apollo.Age.Resources.Lang.goal;
+                    returnValue += "&nbsp;" + Apollo.Age.Resources.BetList.goal;
                 }
             }
             else if (betType == 16)
@@ -125,28 +125,28 @@ namespace Fanex.BetList.Core.Utils
                 // HTFT
                 if (chars[0] == '1')
                 {
-                    returnValue = Apollo.Age.Resources.Lang.h;
+                    returnValue = Apollo.Age.Resources.BetList.h;
                 }
                 else if (chars[0] == '2')
                 {
-                    returnValue = Apollo.Age.Resources.Lang.a;
+                    returnValue = Apollo.Age.Resources.BetList.a;
                 }
                 else
                 {
-                    returnValue = Apollo.Age.Resources.Lang.d;
+                    returnValue = Apollo.Age.Resources.BetList.d;
                 }
 
                 if (chars[c - 1] == '1')
                 {
-                    returnValue += Apollo.Age.Resources.Lang.h;
+                    returnValue += Apollo.Age.Resources.BetList.h;
                 }
                 else if (chars[c - 1] == '2')
                 {
-                    returnValue += Apollo.Age.Resources.Lang.a;
+                    returnValue += Apollo.Age.Resources.BetList.a;
                 }
                 else
                 {
-                    returnValue += Apollo.Age.Resources.Lang.d;
+                    returnValue += Apollo.Age.Resources.BetList.d;
                 }
             }
             else

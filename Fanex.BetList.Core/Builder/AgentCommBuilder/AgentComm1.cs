@@ -44,7 +44,7 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
             }
             if (ticket.AgentLevel == 0)
             {
-                Template.AgentComm.agentComm_setting = Apollo.Age.Resources.Lang.lblNA;
+                Template.AgentComm.agentComm_setting = Apollo.Age.Resources.BetList.lblNA;
             }
             else
             {

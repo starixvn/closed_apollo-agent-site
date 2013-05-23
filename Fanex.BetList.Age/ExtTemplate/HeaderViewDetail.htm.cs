@@ -14,7 +14,7 @@ namespace Fanex.BetList.Age
 		public class HeaderViewDetail_Template : Template
 		{
 			protected static string s0 = "<thead><tr><th>";
-			protected static string s1{get{return Apollo.Age.Resources.Lang.agent;}}
+			protected static string s1{get{return Apollo.Age.Resources.BetList.agent;}}
 			protected static string s2 = "</th><th style=\"width: 100px;\">";
 			protected static string s3{get{return Apollo.Age.Resources.BetList.agentPT;}}
 			protected static string s4 = "</th><th style=\"width: 100px;\">";

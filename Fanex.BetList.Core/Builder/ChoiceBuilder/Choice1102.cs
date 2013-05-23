@@ -31,7 +31,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.LeagueName.leagueName = string.Join(null, new string[] { Apollo.Age.Resources.Lang.Roulette, "&nbsp;", ticket.ShowTime });
+            this.Template.LeagueName.leagueName = string.Join(null, new string[] { Apollo.Age.Resources.BetList.Roulette, "&nbsp;", ticket.ShowTime });
 
             if (ticketData != null && ticketData.Count > 0)
             {
@@ -61,7 +61,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             {
                 this.Template.betTeam = string.Empty;
                 this.Template.Handicap.Hide();
-                this.Template.betTypeName = Apollo.Age.Resources.Lang.Roulette;
+                this.Template.betTypeName = Apollo.Age.Resources.BetList.Roulette;
                 this.Template.betTeamClassName = string.Empty;
                 this.Template.VS.Hide();
             }

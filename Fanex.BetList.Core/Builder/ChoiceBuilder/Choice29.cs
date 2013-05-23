@@ -109,7 +109,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, Entities.RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
-            IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.Lang.lblSystemParlay);
+            IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblSystemParlay);
             lstRTFChoices.Add(rtfChoice);
             return lstRTFChoices;
         }

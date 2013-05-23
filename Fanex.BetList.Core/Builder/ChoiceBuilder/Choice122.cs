@@ -38,7 +38,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.homeTeam = string.Join(null, new string[] { homeName, (ticket.IsNeutral ? " (N) " : string.Empty) });
 
-            this.Template.betTeam = betHomeTeam ? this.Template.homeTeam : Apollo.Age.Resources.Lang.lblDraw;
+            this.Template.betTeam = betHomeTeam ? this.Template.homeTeam : Apollo.Age.Resources.BetList.lblDraw;
             this.Template.betTeamClassName = betHomeTeam ? (ticket.Handicap2 >= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE) : (ticket.Handicap2 <= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE);
 
             this.Template.Score.homeScore = ticket.LiveHomeScore.ToString();

@@ -342,4 +342,52 @@
   <data name="viewCommDetails" xml:space="preserve">
     <value>View Details</value>
   </data>
+  <data name="baccarat" xml:space="preserve">
+    <value>百家樂</value>
+  </data>
+  <data name="d" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="FG" xml:space="preserve">
+    <value>FG</value>
+  </data>
+  <data name="goal" xml:space="preserve">
+    <value>Goal</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>主</value>
+  </data>
+  <data name="LG" xml:space="preserve">
+    <value>LG</value>
+  </data>
+  <data name="no0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="agent" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="lblMainShareHolder" xml:space="preserve">
+    <value>主要股東</value>
+  </data>
+  <data name="lblNA" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="lblNeither" xml:space="preserve">
+    <value>皆不</value>
+  </data>
+  <data name="lblNoDraw" xml:space="preserve">
+    <value>No Draw</value>
+  </data>
+  <data name="lblSystemParlay" xml:space="preserve">
+    <value>系統Parlay</value>
+  </data>
+  <data name="numberGroup" xml:space="preserve">
+    <value>包牌</value>
+  </data>
+  <data name="p2pGame" xml:space="preserve">
+    <value>扑克</value>
+  </data>
+  <data name="Roulette" xml:space="preserve">
+    <value>Roulette</value>
+  </data>
 </root>
