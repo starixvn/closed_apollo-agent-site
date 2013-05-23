@@ -162,50 +162,11 @@
   <data name="Baseball" xml:space="preserve">
     <value>Baseball</value>
   </data>
-  <data name="basecurrency" xml:space="preserve">
-    <value>Base Currency:</value>
-  </data>
-  <data name="baseon" xml:space="preserve">
-    <value>Base on</value>
-  </data>
   <data name="Basketball" xml:space="preserve">
     <value>Basketball</value>
   </data>
-  <data name="betslip" xml:space="preserve">
-    <value>Bet Slip</value>
-  </data>
-  <data name="betsummary" xml:space="preserve">
-    <value>Bet Summary</value>
-  </data>
-  <data name="bettingLimitMsg" xml:space="preserve">
-    <value>Please choose at least 1 betting limit for each game type</value>
-  </data>
   <data name="bettype" xml:space="preserve">
     <value>Bet Type</value>
-  </data>
-  <data name="Billiard" xml:space="preserve">
-    <value>Billiard</value>
-  </data>
-  <data name="bingoPositionTaking" xml:space="preserve">
-    <value>Bingo Share (%)</value>
-  </data>
-  <data name="bonusFreeSpin" xml:space="preserve">
-    <value>Bonus Free Spin</value>
-  </data>
-  <data name="bonusGame" xml:space="preserve">
-    <value>Bonus Game</value>
-  </data>
-  <data name="bonusNo" xml:space="preserve">
-    <value>Bonus No</value>
-  </data>
-  <data name="boxing" xml:space="preserve">
-    <value>Boxing</value>
-  </data>
-  <data name="btnAdd" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="cancel" xml:space="preserve">
-    <value>Cancel</value>
   </data>
   <data name="canoeing" xml:space="preserve">
     <value>Canoeing</value>
@@ -3040,9 +3001,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblS" xml:space="preserve">
     <value>S = Super</value>
-  </data>
-  <data name="BON" xml:space="preserve">
-    <value>BON</value>
   </data>
   <data name="CSheet" xml:space="preserve">
     <value>C.Sheet</value>

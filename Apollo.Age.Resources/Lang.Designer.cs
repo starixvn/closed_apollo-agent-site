@@ -232,24 +232,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base Currency:.
-        /// </summary>
-        public static string basecurrency {
-            get {
-                return ResourceManager.GetString("basecurrency", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Base on.
-        /// </summary>
-        public static string baseon {
-            get {
-                return ResourceManager.GetString("baseon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Basketball.
         /// </summary>
         public static string Basketball {
@@ -268,15 +250,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bet Slip.
-        /// </summary>
-        public static string betslip {
-            get {
-                return ResourceManager.GetString("betslip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bet Status.
         /// </summary>
         public static string betstatus {
@@ -286,110 +259,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bet Summary.
-        /// </summary>
-        public static string betsummary {
-            get {
-                return ResourceManager.GetString("betsummary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please choose at least 1 betting limit for each game type.
-        /// </summary>
-        public static string bettingLimitMsg {
-            get {
-                return ResourceManager.GetString("bettingLimitMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bet Type.
         /// </summary>
         public static string bettype {
             get {
                 return ResourceManager.GetString("bettype", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Billiard.
-        /// </summary>
-        public static string Billiard {
-            get {
-                return ResourceManager.GetString("Billiard", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bingo Share (%).
-        /// </summary>
-        public static string bingoPositionTaking {
-            get {
-                return ResourceManager.GetString("bingoPositionTaking", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to BON.
-        /// </summary>
-        public static string BON {
-            get {
-                return ResourceManager.GetString("BON", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bonus Free Spin.
-        /// </summary>
-        public static string bonusFreeSpin {
-            get {
-                return ResourceManager.GetString("bonusFreeSpin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bonus Game.
-        /// </summary>
-        public static string bonusGame {
-            get {
-                return ResourceManager.GetString("bonusGame", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bonus No.
-        /// </summary>
-        public static string bonusNo {
-            get {
-                return ResourceManager.GetString("bonusNo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Boxing.
-        /// </summary>
-        public static string boxing {
-            get {
-                return ResourceManager.GetString("boxing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add.
-        /// </summary>
-        public static string btnAdd {
-            get {
-                return ResourceManager.GetString("btnAdd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        public static string cancel {
-            get {
-                return ResourceManager.GetString("cancel", resourceCulture);
             }
         }
         
