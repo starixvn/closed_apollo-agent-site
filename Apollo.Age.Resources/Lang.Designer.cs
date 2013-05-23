@@ -403,74 +403,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to D.
-        /// </summary>
-        public static string d {
-            get {
-                return ResourceManager.GetString("d", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to DA.
         /// </summary>
         public static string da {
             get {
                 return ResourceManager.GetString("da", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Daily.
-        /// </summary>
-        public static string daily {
-            get {
-                return ResourceManager.GetString("daily", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Daily Consolidated Report.
-        /// </summary>
-        public static string dailyconsolidatedreport {
-            get {
-                return ResourceManager.GetString("dailyconsolidatedreport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Daily reset.
-        /// </summary>
-        public static string dailyreset {
-            get {
-                return ResourceManager.GetString("dailyreset", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Daily Statement.
-        /// </summary>
-        public static string dailystatement {
-            get {
-                return ResourceManager.GetString("dailystatement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Daily Winloss Analysis.
-        /// </summary>
-        public static string dailywinlossanalysisreport {
-            get {
-                return ResourceManager.GetString("dailywinlossanalysisreport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Darts.
-        /// </summary>
-        public static string Darts {
-            get {
-                return ResourceManager.GetString("Darts", resourceCulture);
             }
         }
         
@@ -484,110 +421,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to D.Chance.
-        /// </summary>
-        public static string DChance {
-            get {
-                return ResourceManager.GetString("DChance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allow Double Commission.
-        /// </summary>
-        public static string dcommMultiEditPopupAllowOption {
-            get {
-                return ResourceManager.GetString("dcommMultiEditPopupAllowOption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disallow Double Commission.
-        /// </summary>
-        public static string dcommMultiEditPopupDisallowOption {
-            get {
-                return ResourceManager.GetString("dcommMultiEditPopupDisallowOption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Turn OFF Double Commission.
-        /// </summary>
-        public static string dcommMultiEditPopupOFFOption {
-            get {
-                return ResourceManager.GetString("dcommMultiEditPopupOFFOption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Turn ON Double Commission.
-        /// </summary>
-        public static string dcommMultiEditPopupONOption {
-            get {
-                return ResourceManager.GetString("dcommMultiEditPopupONOption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit Multiple Double Commission for Losing Tickets.
-        /// </summary>
-        public static string dcommMultiEditPopupTitle {
-            get {
-                return ResourceManager.GetString("dcommMultiEditPopupTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to DD.
         /// </summary>
         public static string dd {
             get {
                 return ResourceManager.GetString("dd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Debit.
-        /// </summary>
-        public static string debit {
-            get {
-                return ResourceManager.GetString("debit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dec.
-        /// </summary>
-        public static string dec {
-            get {
-                return ResourceManager.GetString("dec", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to December.
-        /// </summary>
-        public static string December {
-            get {
-                return ResourceManager.GetString("December", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Deduction.
-        /// </summary>
-        public static string deduction {
-            get {
-                return ResourceManager.GetString("deduction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Default Log.
-        /// </summary>
-        public static string defaultlog {
-            get {
-                return ResourceManager.GetString("defaultlog", resourceCulture);
             }
         }
         
@@ -601,119 +439,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disabled.
-        /// </summary>
-        public static string disabled {
-            get {
-                return ResourceManager.GetString("disabled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disabled Finance.
-        /// </summary>
-        public static string disabledfi {
-            get {
-                return ResourceManager.GetString("disabledfi", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disabled HR.
-        /// </summary>
-        public static string disabledHR {
-            get {
-                return ResourceManager.GetString("disabledHR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disallowed.
-        /// </summary>
-        public static string disallowed {
-            get {
-                return ResourceManager.GetString("disallowed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Displaying.
         /// </summary>
         public static string Displaying {
             get {
                 return ResourceManager.GetString("Displaying", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Diving.
-        /// </summary>
-        public static string diving {
-            get {
-                return ResourceManager.GetString("diving", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DNB.
-        /// </summary>
-        public static string DNB {
-            get {
-                return ResourceManager.GetString("DNB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DND.
-        /// </summary>
-        public static string DND {
-            get {
-                return ResourceManager.GetString("DND", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not show again.
-        /// </summary>
-        public static string donotshowagain {
-            get {
-                return ResourceManager.GetString("donotshowagain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Double Comm.
-        /// </summary>
-        public static string doublecommission {
-            get {
-                return ResourceManager.GetString("doublecommission", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OFF.
-        /// </summary>
-        public static string doublecommissionOFF {
-            get {
-                return ResourceManager.GetString("doublecommissionOFF", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ON.
-        /// </summary>
-        public static string doublecommissionON {
-            get {
-                return ResourceManager.GetString("doublecommissionON", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Downline List.
-        /// </summary>
-        public static string downlinelist {
-            get {
-                return ResourceManager.GetString("downlinelist", resourceCulture);
             }
         }
         
@@ -732,15 +462,6 @@ namespace Apollo.Age.Resources {
         public static string editby {
             get {
                 return ResourceManager.GetString("editby", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit Customer Information.
-        /// </summary>
-        public static string editcustinfo {
-            get {
-                return ResourceManager.GetString("editcustinfo", resourceCulture);
             }
         }
         

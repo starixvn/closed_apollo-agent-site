@@ -180,29 +180,8 @@
   <data name="customer" xml:space="preserve">
     <value>Customer</value>
   </data>
-  <data name="d" xml:space="preserve">
-    <value>D</value>
-  </data>
   <data name="da" xml:space="preserve">
     <value>DA</value>
-  </data>
-  <data name="daily" xml:space="preserve">
-    <value>Daily</value>
-  </data>
-  <data name="dailyconsolidatedreport" xml:space="preserve">
-    <value>Daily Consolidated Report</value>
-  </data>
-  <data name="dailyreset" xml:space="preserve">
-    <value>Daily reset</value>
-  </data>
-  <data name="dailystatement" xml:space="preserve">
-    <value>Daily Statement</value>
-  </data>
-  <data name="dailywinlossanalysisreport" xml:space="preserve">
-    <value>Daily Winloss Analysis</value>
-  </data>
-  <data name="Darts" xml:space="preserve">
-    <value>Darts</value>
   </data>
   <data name="date" xml:space="preserve">
     <value>Date</value>
@@ -210,50 +189,14 @@
   <data name="dd" xml:space="preserve">
     <value>DD</value>
   </data>
-  <data name="debit" xml:space="preserve">
-    <value>Debit</value>
-  </data>
-  <data name="dec" xml:space="preserve">
-    <value>Dec</value>
-  </data>
-  <data name="December" xml:space="preserve">
-    <value>December</value>
-  </data>
-  <data name="deduction" xml:space="preserve">
-    <value>Deduction</value>
-  </data>
-  <data name="defaultlog" xml:space="preserve">
-    <value>Default Log</value>
-  </data>
   <data name="dh" xml:space="preserve">
     <value>DH</value>
-  </data>
-  <data name="disabled" xml:space="preserve">
-    <value>Disabled</value>
-  </data>
-  <data name="disabledfi" xml:space="preserve">
-    <value>Disabled Finance</value>
-  </data>
-  <data name="disabledHR" xml:space="preserve">
-    <value>Disabled HR</value>
-  </data>
-  <data name="diving" xml:space="preserve">
-    <value>Diving</value>
-  </data>
-  <data name="donotshowagain" xml:space="preserve">
-    <value>Do not show again</value>
-  </data>
-  <data name="downlinelist" xml:space="preserve">
-    <value>Downline List</value>
   </data>
   <data name="edit" xml:space="preserve">
     <value>Edit</value>
   </data>
   <data name="editby" xml:space="preserve">
     <value>Edit By</value>
-  </data>
-  <data name="editcustinfo" xml:space="preserve">
-    <value>Edit Customer Information</value>
   </data>
   <data name="editmultbingo" xml:space="preserve">
     <value>Edit Multiple Bingo</value>
@@ -2826,12 +2769,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblS" xml:space="preserve">
     <value>S = Super</value>
   </data>
-  <data name="DChance" xml:space="preserve">
-    <value>D.Chance</value>
-  </data>
-  <data name="DNB" xml:space="preserve">
-    <value>DNB</value>
-  </data>
   <data name="ThirdWayHdp" xml:space="preserve">
     <value>3-way Hdp</value>
   </data>
@@ -3096,9 +3033,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="HNB" xml:space="preserve">
     <value>HNB</value>
   </data>
-  <data name="DND" xml:space="preserve">
-    <value>DND</value>
-  </data>
   <data name="copyAllBetSettingFromExcludingNG" xml:space="preserve">
     <value>Copy all below bet settings from {0}</value>
   </data>
@@ -3234,12 +3168,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="LCSWinLimit" xml:space="preserve">
     <value>LC Win %</value>
   </data>
-  <data name="disallowed" xml:space="preserve">
-    <value>Disallowed</value>
-  </data>
-  <data name="doublecommission" xml:space="preserve">
-    <value>Double Comm</value>
-  </data>
   <data name="editDoubleCommission" xml:space="preserve">
     <value>Edit Double Commission</value>
   </data>
@@ -3252,23 +3180,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="strConfirmEnableDoubleCommMember" xml:space="preserve">
     <value>Are you sure you want to turn ON Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
   </data>
-  <data name="doublecommissionON" xml:space="preserve">
-    <value>ON</value>
-  </data>
-  <data name="doublecommissionOFF" xml:space="preserve">
-    <value>OFF</value>
-  </data>
   <data name="editMultipleDoubleComm" xml:space="preserve">
     <value>Edit Multiple Double Comm</value>
-  </data>
-  <data name="dcommMultiEditPopupTitle" xml:space="preserve">
-    <value>Edit Multiple Double Commission for Losing Tickets</value>
-  </data>
-  <data name="dcommMultiEditPopupAllowOption" xml:space="preserve">
-    <value>Allow Double Commission</value>
-  </data>
-  <data name="dcommMultiEditPopupDisallowOption" xml:space="preserve">
-    <value>Disallow Double Commission</value>
   </data>
   <data name="lblDComNotAuthorized" xml:space="preserve">
     <value>Cannot update Double Commission Losing status on this customer because the upline is not allowed.</value>
@@ -3290,12 +3203,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="OldValue" xml:space="preserve">
     <value>Old value</value>
-  </data>
-  <data name="dcommMultiEditPopupOFFOption" xml:space="preserve">
-    <value>Turn OFF Double Commission</value>
-  </data>
-  <data name="dcommMultiEditPopupONOption" xml:space="preserve">
-    <value>Turn ON Double Commission</value>
   </data>
   <data name="Gaming" xml:space="preserve">
     <value>Gaming</value>
