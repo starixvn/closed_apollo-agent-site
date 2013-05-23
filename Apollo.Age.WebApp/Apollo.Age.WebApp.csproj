@@ -684,6 +684,7 @@
     <Content Include="_GlobalResources\Images\icon_close.jpg" />
     <Content Include="_GlobalResources\Images\lastGoal.gif" />
     <Content Include="_GlobalResources\Images\letter_icoconts.png" />
+    <Content Include="_GlobalResources\Images\loader.gif" />
     <Content Include="_GlobalResources\Images\loader3.gif" />
     <Content Include="_GlobalResources\Images\more.gif" />
     <Content Include="_GlobalResources\Images\sticky-arrow.png" />
