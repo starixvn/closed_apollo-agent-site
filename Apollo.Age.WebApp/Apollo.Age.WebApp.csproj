@@ -349,31 +349,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="_BetList\BetList.aspx.cs">
+    <Content Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_BetList\BetListOnMember.aspx.cs">
+    </Content>
+    <Content Include="_BetList\BetListOnMember.aspx.cs">
       <DependentUpon>BetListOnMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_BetList\BetListOnMember.htm.cs" />
-    <Compile Include="_BetList\BetListTransaction.aspx.cs">
+    </Content>
+    <Content Include="_BetList\BetListOnMember.htm.cs" />
+    <Content Include="_BetList\BetListTransaction.aspx.cs">
       <DependentUpon>BetListTransaction.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_BetList\BetListTransaction.htm.cs" />
-    <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
+    </Content>
+    <Content Include="_BetList\BetListTransaction.htm.cs" />
+    <Content Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
       <DependentUpon>CombinationMixParlayDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
-    <Compile Include="_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
-    <Compile Include="_BetList\MixParlay\MixParlay.aspx.cs">
+    </Content>
+    <Content Include="_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
+    <Content Include="_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
+    <Content Include="_BetList\MixParlay\MixParlay.aspx.cs">
       <DependentUpon>MixParlay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_BetList\Navigation.htm.cs" />
+    </Content>
+    <Content Include="_BetList\Navigation.htm.cs" />
     <Content Include="App_Code\Formater.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -785,14 +785,14 @@
     <Content Include="Views\Account\Menu.cshtml" />
     <Content Include="Views\Account\MiniMenu.cshtml" />
     <Content Include="Views\Account\MySetting.cshtml" />
-    <None Include="Views\Account\Resources\Account.less" />
-    <None Include="Views\Account\Resources\CustomerList.less" />
+    <Content Include="Views\Account\Resources\Account.less" />
+    <Content Include="Views\Account\Resources\CustomerList.less" />
     <None Include="Views\Account\Resources\CustSettingEngine\Core.less" />
     <None Include="Views\Account\Resources\CustSettingEngine\CoreOverride.less" />
-    <None Include="Views\Account\Resources\header.less" />
-    <None Include="Views\Account\Resources\LogLogin.less" />
-    <None Include="Views\Account\Resources\MiniAccount.less" />
-    <None Include="Views\Account\Resources\ViewSetting.less" />
+    <Content Include="Views\Account\Resources\header.less" />
+    <Content Include="Views\Account\Resources\LogLogin.less" />
+    <Content Include="Views\Account\Resources\MiniAccount.less" />
+    <Content Include="Views\Account\Resources\ViewSetting.less" />
     <Content Include="Views\Account\Shared\_CustSettingLayout.cshtml" />
     <Content Include="Views\Account\Shared\_Layout.cshtml" />
     <None Include="Views\Account\Shared\_Layout.cshtml.orig" />
@@ -805,13 +805,13 @@
     <Content Include="Views\Account\TreeViewList.cshtml" />
     <Content Include="Views\Account\TreeViewList.testdefer.cshtml" />
     <Content Include="Views\Account\ViewCommission.cshtml" />
-    <None Include="Views\BetList\Resources\BetList.less" />
+    <Content Include="Views\BetList\Resources\BetList.less" />
     <Content Include="Views\BetList\Shared\_Layout.cshtml" />
     <Content Include="Views\BetList\ViewDetail.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\Error\AccountStopped.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <None Include="Views\Error\Resources\Index.less" />
+    <Content Include="Views\Error\Resources\Index.less" />
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Error\UnderMaintenance.cshtml" />
     <Content Include="Views\Forecast\FC1X2.cshtml" />
@@ -820,8 +820,8 @@
     <Content Include="Views\Forecast\FCHandicapOverUnderMatches.cshtml" />
     <Content Include="Views\Forecast\ForecastByMatch.cshtml" />
     <Content Include="Views\Forecast\ForecastByMatchContent.cshtml" />
-    <None Include="Views\Forecast\Resources\FC.less" />
-    <None Include="Views\Forecast\Resources\ScoreMap.less" />
+    <Content Include="Views\Forecast\Resources\FC.less" />
+    <Content Include="Views\Forecast\Resources\ScoreMap.less" />
     <Content Include="Views\Forecast\ScoreMap.cshtml" />
     <Content Include="Views\Forecast\ScoreMapBetType.cshtml" />
     <Content Include="Views\Forecast\ScoreMapLeagues.cshtml" />
@@ -829,7 +829,7 @@
     <Content Include="Views\Forecast\ScoreMapResult.cshtml" />
     <Content Include="Views\Forecast\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
-    <None Include="Views\Home\Resources\Index.less" />
+    <Content Include="Views\Home\Resources\Index.less" />
     <Content Include="Views\Instruction\en-US\AgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentCommissionSetting.cshtml" />
@@ -952,7 +952,7 @@
     <Content Include="Views\Instruction\zh-TW\MemberShareSettingAdv.cshtml" />
     <Content Include="Views\Internal\SelectAccount.cshtml" />
     <Content Include="Views\Internal\SignIn.cshtml" />
-    <None Include="Views\Log\Resources\log.less" />
+    <Content Include="Views\Log\Resources\log.less" />
     <Content Include="Views\Log\Shared\_Layout.cshtml" />
     <Content Include="Views\Log\Templates\AgentDiscount.cshtml" />
     <Content Include="Views\Log\Templates\BetSetting.cshtml" />
@@ -962,8 +962,8 @@
     <Content Include="Views\Message\Announcement.cshtml" />
     <Content Include="Views\Message\NewMessage.cshtml" />
     <Content Include="Views\Message\Portal.cshtml" />
-    <None Include="Views\Message\Resources\message.less" />
-    <None Include="Views\Message\Resources\PortalPage.less" />
+    <Content Include="Views\Message\Resources\message.less" />
+    <Content Include="Views\Message\Resources\PortalPage.less" />
     <Content Include="Views\Message\Shared\_Layout.cshtml" />
     <Content Include="Views\OAuth\Error.cshtml" />
     <Content Include="Views\OAuth\GetCode.cshtml" />
@@ -972,7 +972,7 @@
     <Content Include="Views\Reports\MatchEntered.cshtml" />
     <Content Include="Views\Reports\MemberWinLoss.cshtml" />
     <Content Include="Views\Reports\Outstanding.cshtml" />
-    <None Include="Views\Reports\Resources\Reports.less" />
+    <Content Include="Views\Reports\Resources\Reports.less" />
     <Content Include="Views\Reports\Shared\_Layout.cshtml" />
     <Content Include="Views\Results\Badminton.cshtml" />
     <Content Include="Views\Results\BaseBall.cshtml" />
@@ -985,7 +985,7 @@
     <Content Include="Views\Results\Outright.cshtml" />
     <Content Include="Views\Results\OutrightResult.cshtml" />
     <Content Include="Views\Results\ParlayResult.cshtml" />
-    <None Include="Views\Results\Resources\Results.less" />
+    <Content Include="Views\Results\Resources\Results.less" />
     <Content Include="Views\Results\Soccer.cshtml" />
     <Content Include="Views\Results\Tennis.cshtml" />
     <Content Include="Views\TotalBets\FirstGoal.cshtml" />
@@ -996,27 +996,27 @@
     <Content Include="Views\TotalBets\NumberGame.cshtml" />
     <Content Include="Views\TotalBets\OddEven.cshtml" />
     <Content Include="Views\TotalBets\OutRight.cshtml" />
-    <None Include="Views\TotalBets\Resources\TotalBets.less" />
+    <Content Include="Views\TotalBets\Resources\TotalBets.less" />
     <Content Include="Views\TotalBets\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\TotalGoal.cshtml" />
     <Content Include="Web.AppSettings.config" />
     <Content Include="Web.ConnectionString.config" />
     <Content Include="Web.sitemap" />
-    <None Include="_BetList\Resources\BetList.less" />
-    <None Include="_BetList\Resources\ErrorPage.less" />
-    <None Include="_BetList\Resources\Paging.less" />
+    <Content Include="_BetList\Resources\BetList.less" />
+    <Content Include="_BetList\Resources\ErrorPage.less" />
+    <Content Include="_BetList\Resources\Paging.less" />
     <Content Include="_Components\web.config" />
     <Content Include="_Components\AGEWnd\web.config" />
-    <None Include="_GlobalResources\Css\Agent.less" />
-    <None Include="_GlobalResources\Css\calendar.less" />
+    <Content Include="_GlobalResources\Css\Agent.less" />
+    <Content Include="_GlobalResources\Css\calendar.less" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
-    <None Include="_GlobalResources\Css\mixins.less" />
-    <None Include="_GlobalResources\Css\RefreshCountDown.less" />
-    <None Include="_GlobalResources\Css\sprites.less" />
-    <None Include="_GlobalResources\Css\variables.less" />
-    <None Include="_GlobalResources\Js\ErrorMsg\ErrorMsg.less" />
-    <None Include="_GlobalResources\Js\Fanex.Grid\Fanex.Grid.less" />
-    <None Include="_GlobalResources\Js\Fanex.Grid\Fanex.Pagination.less" />
+    <Content Include="_GlobalResources\Css\mixins.less" />
+    <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
+    <Content Include="_GlobalResources\Css\sprites.less" />
+    <Content Include="_GlobalResources\Css\variables.less" />
+    <Content Include="_GlobalResources\Js\ErrorMsg\ErrorMsg.less" />
+    <Content Include="_GlobalResources\Js\Fanex.Grid\Fanex.Grid.less" />
+    <Content Include="_GlobalResources\Js\Fanex.Grid\Fanex.Pagination.less" />
     <Content Include="_GlobalResources\Js\web.config" />
   </ItemGroup>
   <ItemGroup>
