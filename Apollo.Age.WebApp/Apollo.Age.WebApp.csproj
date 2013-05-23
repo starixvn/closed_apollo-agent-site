@@ -63,9 +63,11 @@
       <HintPath>..\Dependencies\Fanex.BetList.Age.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=1.0.4883.26344, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.4875.17936, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching">
