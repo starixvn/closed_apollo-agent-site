@@ -646,15 +646,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to H.
-        /// </summary>
-        public static string h {
-            get {
-                return ResourceManager.GetString("h", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to HA.
         /// </summary>
         public static string ha {
@@ -673,33 +664,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Handball.
-        /// </summary>
-        public static string handball {
-            get {
-                return ResourceManager.GetString("handball", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hand History Detail.
-        /// </summary>
-        public static string handhistorydetail {
-            get {
-                return ResourceManager.GetString("handhistorydetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Harness.
-        /// </summary>
-        public static string harness {
-            get {
-                return ResourceManager.GetString("harness", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to HD.
         /// </summary>
         public static string hd {
@@ -709,92 +673,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HDP.
-        /// </summary>
-        public static string hdp {
-            get {
-                return ResourceManager.GetString("hdp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to HH.
         /// </summary>
         public static string hh {
             get {
                 return ResourceManager.GetString("hh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide League.
-        /// </summary>
-        public static string hideLeague {
-            get {
-                return ResourceManager.GetString("hideLeague", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide Match.
-        /// </summary>
-        public static string hideMatch {
-            get {
-                return ResourceManager.GetString("hideMatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to High.
-        /// </summary>
-        public static string high {
-            get {
-                return ResourceManager.GetString("high", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Highest turnover members of the month.
-        /// </summary>
-        public static string highestturnoverofthemonth {
-            get {
-                return ResourceManager.GetString("highestturnoverofthemonth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to High/Low.
-        /// </summary>
-        public static string highlow {
-            get {
-                return ResourceManager.GetString("highlow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This report supports viewing historical data up to 18 months.
-        /// </summary>
-        public static string historicalMessage18months {
-            get {
-                return ResourceManager.GetString("historicalMessage18months", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HNB.
-        /// </summary>
-        public static string HNB {
-            get {
-                return ResourceManager.GetString("HNB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ice Hockey.
-        /// </summary>
-        public static string Hockey {
-            get {
-                return ResourceManager.GetString("Hockey", resourceCulture);
             }
         }
         
@@ -813,24 +696,6 @@ namespace Apollo.Age.Resources {
         public static string homeaway {
             get {
                 return ResourceManager.GetString("homeaway", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hot Level.
-        /// </summary>
-        public static string HotLevel {
-            get {
-                return ResourceManager.GetString("HotLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HT.
-        /// </summary>
-        public static string ht {
-            get {
-                return ResourceManager.GetString("ht", resourceCulture);
             }
         }
         
@@ -867,15 +732,6 @@ namespace Apollo.Age.Resources {
         public static string HttpError_Default {
             get {
                 return ResourceManager.GetString("HttpError_Default", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Log Out.
-        /// </summary>
-        public static string ImgLogOut {
-            get {
-                return ResourceManager.GetString("ImgLogOut", resourceCulture);
             }
         }
         

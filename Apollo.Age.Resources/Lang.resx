@@ -243,62 +243,23 @@
   <data name="group" xml:space="preserve">
     <value>Group</value>
   </data>
-  <data name="h" xml:space="preserve">
-    <value>H</value>
-  </data>
   <data name="ha" xml:space="preserve">
     <value>HA</value>
   </data>
   <data name="halftime" xml:space="preserve">
     <value>Half Time</value>
   </data>
-  <data name="handball" xml:space="preserve">
-    <value>Handball</value>
-  </data>
-  <data name="handhistorydetail" xml:space="preserve">
-    <value>Hand History Detail</value>
-  </data>
-  <data name="harness" xml:space="preserve">
-    <value>Harness</value>
-  </data>
   <data name="hd" xml:space="preserve">
     <value>HD</value>
   </data>
-  <data name="hdp" xml:space="preserve">
-    <value>HDP</value>
-  </data>
   <data name="hh" xml:space="preserve">
     <value>HH</value>
-  </data>
-  <data name="hideLeague" xml:space="preserve">
-    <value>Hide League</value>
-  </data>
-  <data name="high" xml:space="preserve">
-    <value>High</value>
-  </data>
-  <data name="highestturnoverofthemonth" xml:space="preserve">
-    <value>Highest turnover members of the month</value>
-  </data>
-  <data name="highlow" xml:space="preserve">
-    <value>High/Low</value>
-  </data>
-  <data name="historicalMessage18months" xml:space="preserve">
-    <value>This report supports viewing historical data up to 18 months</value>
-  </data>
-  <data name="Hockey" xml:space="preserve">
-    <value>Ice Hockey</value>
   </data>
   <data name="home" xml:space="preserve">
     <value>Home</value>
   </data>
   <data name="homeaway" xml:space="preserve">
     <value>Home/Away</value>
-  </data>
-  <data name="HotLevel" xml:space="preserve">
-    <value>Hot Level</value>
-  </data>
-  <data name="ht" xml:space="preserve">
-    <value>HT</value>
   </data>
   <data name="htft" xml:space="preserve">
     <value>HT/FT</value>
@@ -311,9 +272,6 @@
   </data>
   <data name="HttpError_Default" xml:space="preserve">
     <value>Oops... you are here because of a system error, please notify the administrators</value>
-  </data>
-  <data name="ImgLogOut" xml:space="preserve">
-    <value>Log Out</value>
   </data>
   <data name="includeTodayWL" xml:space="preserve">
     <value>Include today's Win/Loss</value>
@@ -2592,9 +2550,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="SelectMatch" xml:space="preserve">
     <value>Select Match</value>
   </data>
-  <data name="hideMatch" xml:space="preserve">
-    <value>Hide Match</value>
-  </data>
   <data name="PlsWait" xml:space="preserve">
     <value>Please wait</value>
   </data>
@@ -2795,9 +2750,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="PreGame" xml:space="preserve">
     <value>Pre Game</value>
-  </data>
-  <data name="HNB" xml:space="preserve">
-    <value>HNB</value>
   </data>
   <data name="copyAllBetSettingFromExcludingNG" xml:space="preserve">
     <value>Copy all below bet settings from {0}</value>
